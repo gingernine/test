@@ -504,13 +504,102 @@ $X$上の掛け算作用素$M_a$を次で定める：
 \end{description}
 \end{prf}
 
-\begin{qst}
-	$a = (a_n)_{n=1}^{\infty} \in l^1$に対して$T_a:c_0 \longmapsto \C$を次で定める:
+[12].\ $a = (a_n)_{n=1}^{\infty} \in l^1$に対して$T_a:c_0 \longmapsto \C$を次で定める:
 	\begin{align}
-		T_a(x) = \sum_{n=1}^{\infty}a_n x_n\ (x=(x_n) \in c_0)
+		T_a(x) = \sum_{n=1}^{\infty}a_n x_n\ (x=(x_n) \in c_0).
 	\end{align}
-\end{qst}
+	\begin{description}
+		\item[(1)] $\forall a = (a_n) \in l^1,\ T_a \in c_o^*$かつ$\Norm{T_a}{} = \Norm{a}{l^1}$であることを示せ．
+		\item[(2)] $T:l^1 \ni a \longmapsto T_a \in c_0^*$はBanach空間としての同系写像であることを示せ．
+	\end{description}
 
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1)] 
+		設問[11]の結果により，$T_a$の定義域である$c_0$は$\Norm{\cdot}{l^{\infty}}$をノルムとして
+		$l^{\infty}$の閉線型部分空間であり，よってBanach空間である．このことに留意して以下進む．
+		$a = (a_n)_{n=1}^{\infty} \in l^1$を任意に取って固定する．
+		任意の$x=(x_n) \in c_0$に対して
+		\begin{align}
+			\sum_{n=1}^{\infty} |a_n| |x_n| \leq \sum_{n=1}^{\infty} |a_n| \Norm{x}{l^{\infty}} = \Norm{a}{l^1} \Norm{x}{l^{\infty}} < +\infty
+		\end{align}
+		となり級数$T_a (x)\ (\forall x \in c_0)$は有限確定するから，級数の被積分項の和は級数の和に一致し，スカラ倍は級数全体のスカラ倍に一致する．よって
+		任意に$x=(x_n), y=(y_n) \in c_0$と$\alpha \in \C$を取れば．
+		\begin{align}
+			&T_a(x + y) = \sum_{n=1}^{\infty}a_n (x_n + y_n) 
+			= \sum_{n=1}^{\infty} (a_n x_n + a_n y_n) = \sum_{n=1}^{\infty}a_n x_n + \sum_{n=1}^{\infty}a_n y_n = T_a x + T_a y, \\
+			&T_a(\alpha x) = \sum_{n=1}^{\infty}a_n(\alpha x_n) = \sum_{n=1}^{\infty}(a_n\alpha)x_n = \sum_{n=1}^{\infty}(\alpha a_n)x_n
+			= \sum_{n=1}^{\infty}\alpha (a_n x_n) = \alpha \sum_{n=1}^{\infty} a_n x_n = \alpha T_a(x)
+		\end{align}
+		により$T_a$の線型性が示されるから，$T_a$は$c_0 \rightarrow \C$の線型汎関数である．
+		有界性は式により
+		\begin{align}
+			|T_a(x)| \leq \Norm{a}{l^1} \Norm{x}{l^{\infty}}
+		\end{align}
+		から$\Norm{T_a}{} \leq \Norm{a}{l^1}$となるとわかる．ゆえに$T_a \in c_0^*\ (\forall a \in l^1)$である．
+		また$\Norm{T_a}{} = \Norm{a}{l^1}$について，$a=0$の場合は$T_a$が零作用素になるから明らかに成り立つ．
+		$a \neq 0$の場合，任意の$\Norm{a}{l^1} >> \epsilon >0$に対して或る$N \in \N$が存在して
+		\begin{align}
+			\Norm{a}{l^1} - \epsilon < \sum_{n = 1}^{N} |a_n|
+		\end{align}
+		とできる．$x \in c_0$を
+		\begin{align}
+			x_n = \begin{cases}
+				1 & a_n > 0,\ n \leq N \\
+				-1 & a_n \leq 0,\ n \leq N \\
+				0 & n > N
+			\end{cases}
+		\end{align}
+		となっているもので取れば，
+		\begin{align}
+			\Norm{a}{l^1} - \epsilon < \sum_{n = 1}^{N} |a_n| = \sum_{n = 1}^{\infty} a_n x_n = T_a(x)
+		\end{align}
+		が成立することになる．
+		\begin{align}
+			\Norm{a}{l^1} - \epsilon < T_a(x) = \frac{|T_a(x)|}{\Norm{x}{l^{\infty}}} \leq \sup{0 \neq x \in c_0}{\frac{|T_a(x)|}{\Norm{x}{l^{\infty}}}} = \Norm{T_a}{} \leq \Norm{a}{l^1}
+		\end{align}
+		が成り立ち，$\epsilon$が任意であるから，$a=0$の場合と合わせて$\Norm{T_a}{} = \Norm{a}{l^1}\ (\forall a \in l^1)$が示された．
+	
+	\item[(2)] まず，$l^1$は$\Norm{\cdot}{l^1}$をノルムとしてBanach空間となり，$c_0^*$は$T_a$の値域$\C$がBanach空間であるから作用素ノルム
+		によりBanach空間となっている．写像$T$が
+		\begin{align}
+			\Norm{Ta}{} = \Norm{T_a}{} = \Norm{a}{l^1}\quad (\forall a \in l^1)
+		\end{align}
+		の意味で等長であることは(1)で示してあるから，後は$T$が線型全単射であることを証明すればよい．
+		任意の$a = (a_n), b=(b_n) \in l^1,\ \alpha \in \C$に対して
+		\begin{align}
+			&\sum_{n=1}^{\infty} (a_n + b_n) x_n 
+			= \sum_{n=1}^{\infty} (a_n x_n + b_n x_n) 
+			=  \sum_{n=1}^{\infty} a_n x_n + \sum_{n=1}^{\infty} b_n x_n, \\
+			&\sum_{n=1}^{\infty} (\alpha a_n) x_n
+			= \sum_{n=1}^{\infty} \alpha (a_n x_n)
+			= \alpha \sum_{n=1}^{\infty} a_n x_n
+		\end{align}
+		が成り立つから
+		\begin{align}
+			&T(a+b) = T_{a+b} = T_a + T_b = Ta + Tb \\
+			&T(\alpha a) = T_{\alpha a} = \alpha T_a = \alpha Ta
+		\end{align}
+		も成り立つことにより$T$の線型性が示される．
+		また$a = (a_n), b=(b_n) \in l^1$に対して，$a \neq b$であるなら或る$N \in \N$番目で
+		$a_N \neq b_N$となっているはずであるから，
+		\begin{align}
+			x_N = \begin{cases}
+				1 & n=N \\
+				0 & n \neq N
+			\end{cases}
+		\end{align}
+		となる$x=(x_n) \in c_0$に対して
+		\begin{align}
+			T_a(x) = a_N \neq b_N = T_b(x)
+		\end{align}
+		となり，$T$が単射であることが示される．最後に$T$が全射であることを示す．
+		任意に$L \in c_0^*$を取る．或る$a \in l^1$に対して$L$が$T_a$に一致することを見ればよい．
+		\begin{align}
+			g
+		\end{align}
+\end{description}
+\end{prf}
 
 
 
