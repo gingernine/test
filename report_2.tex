@@ -1,0 +1,98 @@
+\begin{dfn}[Brown運動の講義における定義(講義資料引用)]
+	$\mu$を$\R^N$上の分布(i.e.Borel確率測度)とする．確率空間$(\Omega, \mathfrak{F}, \operatorname{P})$上の
+	$\R^N$-値確率過程$B = (B_t)_{t \geq 0}$で以下を満たすものを，初期分布$\mu$の$N$次元Brown運動という．とくに，
+	$\mu$が$x \in \R^N$のDirac測度$\delta_x$のとき，$B$は$x$から出発する$N$次元Brown運動と呼ばれる．
+	\begin{description}
+		\item[\rm{(i)}] 任意の$\omega \in \Omega$に対して，$[0,\infty) \ni t \longmapsto B_t(\omega) \in \R^N$は連続．
+		\item[\rm{(ii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathfrak{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立．
+		\item[\rm{(iii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
+			である．ここで$I_N$は$N$次元単位行列を表す．
+		\item[\rm{(iv)}] $\operatorname{P}_{B_0} = \mu$.
+	\end{description}
+\end{dfn}
+
+\section{レポート課題その1}
+
+
+定理3.8のBrown運動の性質(1), (2), (3)を示せ．
+
+\begin{description}
+	\item[(1)](回転不変性)　任意の$R \in O(N)$に対して$RB = (RB_t)$は原点から出発するBrown運動である．ただし，
+		$O(N)$は$N$次直交行列全体で$Rx$はベクトル$x$に左から行列$R$をかけることいを意味する．
+	\item[(2)](スケール則)　任意の$c > 0$に対して$((1/\sqrt{c})B_{ct})$は原点から出発するBrown運動である．
+	\item[(3)] 任意の$h > 0$に対して$(B_{t+h} - B_h)$は原点から出発するBrown運動である．
+\end{description}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1)] 
+		上に載せた定義の番号の順番に照合していく．(i)について，
+		任意の$N$次直交行列$R$は，通常のEuclidノルムの入ったノルム空間$\R^N$(通常の位相空間としての$\R^N$に同じ)において
+		$\R^N \rightarrow \R^N$の有界な線型作用素である．即ち$\R^N \rightarrow \R^N$の連続写像であり，
+		連続写像の合成である
+		\begin{align}
+			[0,\infty) \ni t \longmapsto RB_t(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
+		\end{align}
+		もまた連続写像であるから，(i)は満たされている．
+		次に(ii)を示す．$\borel{\R^N}$は$\R^N$のBorel集合族を表すとする．まずは任意の$t \leq 0$に対して
+		\begin{align}
+			\left\{(RB_t)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} 
+			= \left\{B_t^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} \label{eq:stoc_proc_Q1_1}
+		\end{align}
+		が成り立つことを示す．これは次の理由による．
+		任意の$N$次直交行列$R$は，通常のEuclidノルムの入ったノルム空間$\R^N$において
+		$\R^N \rightarrow \R^N$の有界な線型作用素である．即ち$\R^N \rightarrow \R^N$の連続写像であり，
+		任意のBorel集合$E \in \borel{\R^N}$を$\R^N$のBorel集合に引き戻す．また
+		$R$が$\R^N \rightarrow \R^N$の全単射であること(全射，単射であることは$R$の正則性により示される，つまり
+		任意の$y \in \R^N$に対して$Rx = y$を満たすような$x$は$R^{-1}y$であり，$Rx=Ry$ならば$R(x-y)=0$の両辺に$R^{-1}$をかけて$x=y$が出る．)
+		と$\R^N$の完備性により関数解析の値域定理が適用され，
+		$R$の逆写像$R^{-1}$もまた$\R^N \rightarrow \R^N$の有界な線型作用素である．
+		従って任意のBorel集合の$R$による像は$\R^N$のBorel集合となる．
+		以上より任意のBorel集合$A \in \borel{\R^N}$に対して
+		\begin{align}
+			&(RB_t)^{-1}(A) = B_t^{-1}\left(R^{-1}(A)\right) \in \left\{B_t^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}, \\
+			&B_t^{-1}(A) = B_t^{-1}\left(R^{-1}(R(A))\right) \in \left\{(RB_t)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}
+		\end{align}
+		が示され，式(\refeq{eq:stoc_proc_Q1_1})が成り立つと判る．従って
+		\begin{align}
+			\sigma(B_u\ :\ u \leq s) = \bigvee_{u \leq s} \left\{B_u^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}
+			= \bigvee_{u \leq s} \left\{(RB_u)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} 
+			= \sigma(RB_u\ :\ u \leq s)
+		\end{align}
+		が成り立つ．任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathfrak{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立であるから，
+		任意の$A \in \borel{\R^N}$と$F \in \sigma(RB_u\ :\ u \leq s) = \sigma(B_u\ :\ u \leq s)$に対して，
+		$R^{-1}(A) \in \borel{\R^N}$に注意すれば
+		\begin{align}
+			\operatorname{P}\left(\{RB_t - RB_s \in A\} \cap F \right) 
+			&= \operatorname{P}\left(\{R(B_t - B_s) \in A\} \cap F \right) \\
+			&= \operatorname{P}\left(\{B_t - B_s \in R^{-1}(A)\} \cap F \right) \\
+			&= \operatorname{P}\left(B_t - B_s \in R^{-1}(A)\right)\operatorname{P}(F) \\
+			&= \operatorname{P}\left(R(B_t - B_s) \in A\right)\operatorname{P}(F)
+			= \operatorname{P}\left(RB_t - RB_s \in A\right)\operatorname{P}(F)
+		\end{align}
+		が成り立つ．これは任意の$0 \leq s < t$に対して$RB_t - RB_s$と$\sigma(RB_u\ :\ u \leq s)$とが独立であることを表しているから，
+		(ii)も示されたことになる．(iii)について，行列式$\Det{R}$が$\pm 1$になることに注意すれば，任意の$A \in \borel{\R^N}$に対して
+		\begin{align}
+			\operatorname{P}(RB_t - RB_s \in A) &= \operatorname{P}\left(B_t - B_s \in R^{-1}(A)\right) \\
+			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{R^{-1}(A)} \mathrm{exp}\left( -\frac{|x|^2}{2(t-s)} \right)\, dx \\
+			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{A} \mathrm{exp}\left( -\frac{|y|^2}{2(t-s)} \right)\, dy & \left(y = Rx\mbox{として変数変換}\right)
+		\end{align}
+		が成り立つことにより，任意の$0 \leq s < t$に対して$RB_t - RB_s$もまた平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
+		であることが示された．最後に(iv)が満たされていることを確認する．今，$\operatorname{P}_{B_0} = \delta_0$を仮定している．
+		全単射線型写像$R$について$0 \in A \Leftrightarrow 0 \in R^{-1}(A)\ (\forall A \in \borel{\R^N})$であることに注意すれば
+		\begin{align}
+			\operatorname{P}_{RB_0}(A) = \operatorname{P}_{B_0}(R^{-1}(A)) 
+			= \begin{cases}
+				1 & 0 \in R^{-1}(A) \\
+				0 & 0 \notin R^{-1}(A)
+			\end{cases}
+			= \begin{cases}
+				1 & 0 \in A \\
+				0 & 0 \notin A
+			\end{cases}
+			= \operatorname{P}_{B_0}(A)
+		\end{align}
+		となり，$\operatorname{P}_{RB_0}$と$\operatorname{P}_{B_0}$は$\borel{\R^N}$の上で一致する．
+		\QED
+\end{description}
+\end{prf}
