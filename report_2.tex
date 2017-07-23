@@ -94,5 +94,65 @@
 		\end{align}
 		となり，$\operatorname{P}_{RB_0}$と$\operatorname{P}_{B_0}$は$\borel{\R^N}$の上で一致する．
 		\QED
+	
+	\item[(2)] 上に載せた定義の番号の順番に照合していく．(i)について，
+		これも連続写像の合成
+		\begin{align}
+			[0,\infty) \ni t \longmapsto ct \longmapsto \tfrac{1}{\sqrt{c}} B_{ct}(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
+		\end{align}
+		と見做せばよい．(ii)について，(i)と同様に考えればよい．写像$\R^N \ni x \longmapsto x/\sqrt{c} \in \R^N$は
+		$\R^N \rightarrow \R^N$の連続な全単射であり，明らかに逆写像$\R^N \ni x \longmapsto \sqrt{c} \in \R^N$もまた
+		連続な全単射である．従って任意の$A \in \borel{\R^N}$に対して
+		\begin{align}
+			\tfrac{1}{\sqrt{c}} A \coloneqq \left\{ x/\sqrt{c}\ \left|\ x \in A \right.\right\} \in \borel{\R^N}, \quad
+			\sqrt{c} A \coloneqq \left\{ \sqrt{c}x\ \left|\ x \in A \right.\right\} \in \borel{\R^N}
+		\end{align}
+		が成り立つから，任意の$t \geq 0$に対して
+		\begin{align}
+			\left\{\left. \tfrac{1}{\sqrt{c}}B_{ct} \in A\ \right|\ A \in \borel{\R^N} \right\}
+			= \left\{\left. B_{ct} \in A\ \right|\ A \in \borel{\R^N} \right\}
+		\end{align}
+		が成り立つ．即ち任意の$s \geq 0$に対して
+		\begin{align}
+			\sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right)
+			\coloneqq \bigvee_{u \leq s} \left\{ \tfrac{1}{\sqrt{c}}B_{cu} \in A\ \left|\ A \in \borel{\R^N} \right.\right\}
+			= \bigvee_{u \leq s} \left\{ B_{cu} \in A\ \left|\ A \in \borel{\R^N} \right.\right\}
+			= \sigma(B_{cu}\ :\ u \leq s)
+		\end{align}
+		となっていて，さらに設問の仮定により任意の$0 \leq s < t$に対して$B_{ct} - B_{cs}$は$\sigma(B_{cu}\ :\ u \leq s)$と独立である．
+		以上より，任意の$A \in \borel{\R^N}$と$F \in \sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right) = \sigma(B_{cu}\ :\ u \leq s)$に対して
+		\begin{align}
+			\operatorname{P}\left( \left\{ \tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs} \in A \right\} \cap F \right)
+			&= \operatorname{P}\left( \left\{ B_{ct} - B_{cs} \in \sqrt{c}A \right\} \cap F \right) \\
+			&= \operatorname{P}\left(B_{ct} - B_{cs} \in \sqrt{c}A \right)  \operatorname{P}(F) \\
+			&= \operatorname{P}\left(\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs} \in A \right)  \operatorname{P}(F)
+		\end{align}
+		が成り立つから，任意の$0 \leq s < t$に対して$\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs}$は
+		$\sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right)$と独立であると示された．
+		(iii)について，これもヤコビアンが$\sqrt{c}$になることに注意すれば
+		\begin{align}
+			\operatorname{P}\left( \tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs} \in A \right)
+			&= \operatorname{P}\left( B_{ct} - B_{cs} \in \sqrt{c}A \right) \\
+			&= (2\pi(ct-cs))^{-\frac{N}{2}} \int_{\sqrt{c}A} \mathrm{exp}\left( -\frac{|x|^2}{2(ct-cs)} \right)\, dx \\
+			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{A} \mathrm{exp}\left( -\frac{|y|^2}{2(t-s)} \right)\, dy 
+				& \left( y = \tfrac{1}{\sqrt{c}}x\mbox{と変数変換}\right) \\
+		\end{align}
+		が成り立つことにより，任意の$0 \leq s < t$に対して$\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs}$
+		は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数である．最後に(iv)を示す．
+		任意の$A \in \borel{\R^N}$に対して
+		$0 \in A \Leftrightarrow 0 \in \sqrt{c}A$であることに注意すれば，
+		\begin{align}
+			\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}(A) = \operatorname{P}_{B_0}(\sqrt{c}A) 
+			= \begin{cases}
+				1 & 0 \in \sqrt{c}A \\
+				0 & 0 \notin \sqrt{c}A
+			\end{cases}
+			= \begin{cases}
+				1 & 0 \in A \\
+				0 & 0 \notin A
+			\end{cases}
+			= \operatorname{P}_{B_0}(A)
+		\end{align}
+		が成り立つから$\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}$と$\operatorname{P}_{B_0}$は$\borel{\R^N}$の上で一致する．
 \end{description}
 \end{prf}
