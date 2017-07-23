@@ -1,10 +1,13 @@
+
+以下に定義するBrown運動が存在する確率空間$(\Omega, \mathcal{F}, \operatorname{P})$を基礎に考える．
+
 \begin{dfn}[Brown運動の講義における定義(講義資料引用)]
-	$\mu$を$\R^N$上の分布(i.e.Borel確率測度)とする．確率空間$(\Omega, \mathfrak{F}, \operatorname{P})$上の
+	$\mu$を$\R^N$上の分布(i.e.Borel確率測度)とする．確率空間$(\Omega, \mathcal{F}, \operatorname{P})$上の
 	$\R^N$-値確率過程$B = (B_t)_{t \geq 0}$で以下を満たすものを，初期分布$\mu$の$N$次元Brown運動という．とくに，
 	$\mu$が$x \in \R^N$のDirac測度$\delta_x$のとき，$B$は$x$から出発する$N$次元Brown運動と呼ばれる．
 	\begin{description}
 		\item[\rm{(i)}] 任意の$\omega \in \Omega$に対して，$[0,\infty) \ni t \longmapsto B_t(\omega) \in \R^N$は連続．
-		\item[\rm{(ii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathfrak{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立．
+		\item[\rm{(ii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathcal{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立．
 		\item[\rm{(iii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
 			である．ここで$I_N$は$N$次元単位行列を表す．
 		\item[\rm{(iv)}] $\operatorname{P}_{B_0} = \mu$.
@@ -15,13 +18,15 @@
 
 
 定理3.8のBrown運動の性質(1), (2), (3)を示せ．
-
+\begin{thm}[定理3.8]
+$B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，いかが成り立つ．
 \begin{description}
 	\item[(1)](回転不変性)　任意の$R \in O(N)$に対して$RB = (RB_t)$は原点から出発するBrown運動である．ただし，
 		$O(N)$は$N$次直交行列全体で$Rx$はベクトル$x$に左から行列$R$をかけることいを意味する．
 	\item[(2)](スケール則)　任意の$c > 0$に対して$((1/\sqrt{c})B_{ct})$は原点から出発するBrown運動である．
 	\item[(3)] 任意の$h > 0$に対して$(B_{t+h} - B_h)$は原点から出発するBrown運動である．
 \end{description}
+\end{thm}
 
 \begin{prf}
 \begin{description}\mbox{}
@@ -59,7 +64,7 @@
 			= \bigvee_{u \leq s} \left\{(RB_u)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} 
 			= \sigma(RB_u\ :\ u \leq s)
 		\end{align}
-		が成り立つ．任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathfrak{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立であるから，
+		が成り立つ．任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathcal{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立であるから，
 		任意の$A \in \borel{\R^N}$と$F \in \sigma(RB_u\ :\ u \leq s) = \sigma(B_u\ :\ u \leq s)$に対して，
 		$R^{-1}(A) \in \borel{\R^N}$に注意すれば
 		\begin{align}
@@ -78,10 +83,11 @@
 			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{A} \mathrm{exp}\left( -\frac{|y|^2}{2(t-s)} \right)\, dy & \left(y = Rx\mbox{として変数変換}\right)
 		\end{align}
 		が成り立つことにより，任意の$0 \leq s < t$に対して$RB_t - RB_s$もまた平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
-		であることが示された．最後に(iv)が満たされていることを確認する．今，$\operatorname{P}_{B_0} = \delta_0$を仮定している．
+		であることが示された．最後に(iv)が満たされていることを確認する．
 		全単射線型写像$R$について$0 \in A \Leftrightarrow 0 \in R^{-1}(A)\ (\forall A \in \borel{\R^N})$であることに注意すれば
 		\begin{align}
-			\operatorname{P}_{RB_0}(A) = \operatorname{P}_{B_0}(R^{-1}(A)) 
+			\operatorname{P}_{RB_0}(A) 
+			= \operatorname{P}\left(B_0^{-1}\left(R^{-1}(A)\right)\right) 
 			= \begin{cases}
 				1 & 0 \in R^{-1}(A) \\
 				0 & 0 \notin R^{-1}(A)
@@ -90,10 +96,8 @@
 				1 & 0 \in A \\
 				0 & 0 \notin A
 			\end{cases}
-			= \operatorname{P}_{B_0}(A)
 		\end{align}
-		となり，$\operatorname{P}_{RB_0}$と$\operatorname{P}_{B_0}$は$\borel{\R^N}$の上で一致する．
-		\QED
+		となり，$\operatorname{P}_{RB_0}$と$\delta_0$は$\borel{\R^N}$の上で一致する．
 	
 	\item[(2)] 上に載せた定義の番号の順番に照合していく．(i)について，
 		これも連続写像の合成
@@ -142,7 +146,8 @@
 		任意の$A \in \borel{\R^N}$に対して
 		$0 \in A \Leftrightarrow 0 \in \sqrt{c}A$であることに注意すれば，
 		\begin{align}
-			\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}(A) = \operatorname{P}_{B_0}(\sqrt{c}A) 
+			\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}(A) 
+			= \operatorname{P}\left(B_0^{-1}(\sqrt{c}A)\right)
 			= \begin{cases}
 				1 & 0 \in \sqrt{c}A \\
 				0 & 0 \notin \sqrt{c}A
@@ -151,8 +156,56 @@
 				1 & 0 \in A \\
 				0 & 0 \notin A
 			\end{cases}
-			= \operatorname{P}_{B_0}(A)
 		\end{align}
-		が成り立つから$\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}$と$\operatorname{P}_{B_0}$は$\borel{\R^N}$の上で一致する．
+		が成り立つから$\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}$と$\delta_0$は$\borel{\R^N}$の上で一致する．
+		
+	\item[(3)] 定義の(i)から見ていく．$B = (B_t)$がBrown運動であるならば
+		\begin{align}
+			[0,\infty) \ni t \longmapsto B_{t+h}(\omega) - B_h(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
+		\end{align}
+		が連続写像であることは明らかである．次に(ii)を確認する．任意の$t \geq 0$に対して
+		$B_{t+h}$は可測$\mathcal{F}_{t+h}^B/\borel{\R^N}$，$B_h$は可測$\mathcal{F}_h^B/\borel{\R^N}$であって，
+		$\mathcal{F}_{h}^B \subset \mathcal{F}_{t+h}^B$により$B_{t+h} - B_h$は可測$\mathcal{F}_{t+h}^B/\borel{\R^N}$
+		である．従って
+		\begin{align}
+			\left\{ \left. \left(B_{t+h} - B_h\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
+			\subset \mathcal{F}_{t+h}^B = \sigma(B_{u}\ :\ u \leq t+h)
+		\end{align}
+		が成り立つ．明らかに
+		\begin{align}
+			\sigma(B_{u+h} - B_h\ :\ u \leq s)
+			= \bigvee_{u \leq s} \left\{ \left. \left(B_{u+h} - B_h\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
+			\subset \sigma(B_{u}\ :\ u \leq s+h)
+		\end{align}
+		が成り立っている．従って任意の$A \in \borel{\R^N}$と$F \in \sigma(B_{u+h} - B_h\ :\ u \leq s) \subset \sigma(B_{u}\ :\ u \leq s+h)$
+		に対して
+		\begin{align}
+			\operatorname{P}\left( \left\{ (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right\} \cap F \right)
+			&= \operatorname{P}\left( \left\{ B_{t+h} - B_{s+h} \in A \right\} \cap F \right) \\
+			&= \operatorname{P}\left( B_{t+h} - B_{s+h} \in A \right) \operatorname{P}(F) \\
+			&= \operatorname{P}\left( (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right) \operatorname{P}(F)
+		\end{align}
+		となるから，任意の$0 \leq s < t$に対して$(B_{t+h} - B_h) - (B_{s+h} - B_h)$は$\sigma(B_{u+h} - B_h\ :\ u \leq s)$と独立であることが示された．
+		(iii)について，任意の$A \in \borel{\R^N}$に対して
+		\begin{align}
+			\operatorname{P}\left( (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right)
+			&= \operatorname{P}\left( B_{t+h} - B_{s+h} \in A \right) \\
+			&= (2\pi((t+h)-(s+h)))^{-\frac{N}{2}} \int_{A} \mathrm{exp}\left( -\frac{|x|^2}{2((t+h)-(s+h))} \right)\, dx \\
+			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{A} \mathrm{exp}\left( -\frac{|x|^2}{2(t-s)} \right)\, dx
+		\end{align}
+		が成り立つから，任意の$0 \leq s < t$に対して$(B_{t+h} - B_h) - (B_{s+h} - B_h) $
+		は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数であると示された．最後に(iv)を確認する．
+		便宜上$Y_t \coloneqq B_{t+h} - B_h\ (\forall t \geq 0)$と表記する．
+		$t=0$の場合$\Omega$上で$Y_0 = 0$が成り立っているから，任意の$A \in \borel{\R^N}$に対して
+		\begin{align}
+			\operatorname{P}_{Y_0}(A) 
+			= \operatorname{P}\left(Y_0^{-1}(A)\right) 
+			= \begin{cases}
+				1 & 0 \in A \\
+				0 & 0 \notin A
+			\end{cases}
+		\end{align}
+		となり，$Y_0$の分布は$\borel{\R^N}$上で$\delta_0$に一致する．
+		\QED
 \end{description}
 \end{prf}
