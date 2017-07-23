@@ -545,18 +545,19 @@ $X$上の掛け算作用素$M_a$を次で定める：
 		とできる．$x \in c_0$を
 		\begin{align}
 			x_n = \begin{cases}
-				1 & a_n > 0,\ n \leq N \\
-				-1 & a_n \leq 0,\ n \leq N \\
-				0 & n > N
+				\overline{a_n}/|a_n| & a_n \neq 0,\rm{and}\ n \leq N \\
+				0 & a_n = 0,\rm{or}\ n > N
 			\end{cases}
 		\end{align}
 		となっているもので取れば，
 		\begin{align}
-			\Norm{a}{l^1} - \epsilon < \sum_{n = 1}^{N} |a_n| = \sum_{n = 1}^{\infty} a_n x_n = T_a(x)
+			\Norm{a}{l^1} - \epsilon < \sum_{n = 1}^{N} |a_n| = \sum_{n = 1}^{\infty} a_n x_n = T_a(x) = |T_a(x)|
 		\end{align}
-		が成立することになる．
+		が成立することになる．$\Norm{x}{l^{\infty}}=1$であることに注意すれば
 		\begin{align}
-			\Norm{a}{l^1} - \epsilon < T_a(x) = \frac{|T_a(x)|}{\Norm{x}{l^{\infty}}} \leq \sup{0 \neq x \in c_0}{\frac{|T_a(x)|}{\Norm{x}{l^{\infty}}}} = \Norm{T_a}{} \leq \Norm{a}{l^1}
+			\Norm{a}{l^1} - \epsilon 
+			< T_a(x) = \frac{|T_a(x)|}{\Norm{x}{l^{\infty}}} 
+			\leq \sup{0 \neq y \in c_0}{\frac{|T_a(y)|}{\Norm{y}{l^{\infty}}}} = \Norm{T_a}{} \leq \Norm{a}{l^1}
 		\end{align}
 		が成り立ち，$\epsilon$が任意であるから，$a=0$の場合と合わせて$\Norm{T_a}{} = \Norm{a}{l^1}\ (\forall a \in l^1)$が示された．
 	
@@ -599,20 +600,60 @@ $X$上の掛け算作用素$M_a$を次で定める：
 		\begin{align}
 			e_n \coloneqq (\delta_{jn})_{j=1}^{\infty}
 		\end{align}
-		で表現される$e_n\ (n=1,2,3,\cdots)$は$c_0$の元であり，
+		で表現される$e_n\ (n=1,2,3,\cdots)$は$c_0$の元であり，各$n = 1,2,3,\cdots$に対して
 		\begin{align}
-			a_n \coloneqq L(e_n)\quad n=1,2,3,\cdots
+			a_n \coloneqq L(e_n) \label{eq:def_a_n_in_l1}
 		\end{align}
-		として複素数列$(a_n)_{n=1}^{\infty}$を作る．任意の$x=(x_n) \in c_0$は
+		とおく．任意の$x=(x_n) \in c_0$に対して
 		\begin{align}
-			x = \sum_{n=1}^{\infty} x_n e_n
+			x^{(N)} = \sum_{n=1}^{N} x_n e_n, \quad (N = 1,2,3,\cdots)
 		\end{align}
-		で表現でき，右辺の和は
+		として作られる数列の族$\left(x^{(N)}\right)_{N=1}^{\infty}$は$l^{\infty}$において収束し，$x^{(N)} \rightarrow x\ (N \rightarrow +\infty)$が成り立つ．
+		これは$x = (x_n)$が収束数列であることによる．任意の$\epsilon > 0$に対して或る$N \in \N$を選べば
 		\begin{align}
-			\Norm{\sum_{n=p+1}^{q} x_n e_n}{l^{\infty}} 
-			\leq \sum_{n=p+1}^{q} \Norm{x_n e_n}{l^{\infty}} 
-			\leq \sum_{n=p+1}^{q} |x_n| \Norm{e_n}{l^{\infty}}
-			= \sum_{n=p+1}^{q} |x_n|
+			|x_n| < \epsilon, \quad (\forall n > N)
 		\end{align}
+		が成り立つから，$n>N$なる任意の自然数$n$に対して
+		\begin{align}
+			\Norm{x - x^{(n)}}{l^{\infty}} = \sup{m > n}{|x_m|} < \epsilon
+		\end{align}
+		となり，$x^{(N)} \rightarrow x\ (N \rightarrow +\infty)$が示されるのである．
+		$L$が有界線型汎関数であることも併せれば
+		\begin{align}
+			\left|L(x) - L(x^{(N)})\right| \leq \Norm{L}{}\Norm{x - x^{(N)}}{l^{\infty}} \longrightarrow 0\quad (N \longrightarrow +\infty) 
+		\end{align}
+		により
+		\begin{align}
+			L(x) = \lim_{N \to +\infty} L(x^{(N)}) 
+			= \lim_{N \to +\infty} \sum_{n=1}^{N} L(x_n e_n)
+			= \lim_{N \to +\infty} \sum_{n=1}^{N} a_n x_n
+			= \sum_{n=1}^{+\infty} a_n x_n \quad (\forall x \in c_0)
+		\end{align}
+		が成り立つ．後は(\refeq{eq:def_a_n_in_l1})で定義した複素数列$(a_n)_{n=1}^{\infty}$が$l^1$に属していることを示せば，
+		写像$L:c_0 \longmapsto \C$が$T_a:c_0 \longmapsto \C$に一致していると証明される．これは次のように示される．
+		$a_n \neq 0\ (\exists n \leq M)$となるような$M \in \N$を取って，この$M$に対して$x = (x_n) \in c_0$として
+		\begin{align}
+			x_n = \begin{cases}
+				\overline{a_n}/|a_n| & a_n \neq 0,\rm{and}\ n \leq M \\
+				0 & a_n = 0,\rm{or}\ n > M
+			\end{cases}
+		\end{align}
+		となるものを取れば，
+		\begin{align}
+			L(x) = \lim_{N \to +\infty} \sum_{n=1}^{N} a_n x_n = \sum_{n=1}^{M} |a_n|
+		\end{align}
+		が成り立つ．$\Norm{x}{l^{\infty}} = 1$であることに注意すれば
+		\begin{align}
+			\sum_{n=1}^{M} |a_n| = L(x) = |L(x)| \leq \Norm{L}{} \Norm{x}{l^{\infty}} = \Norm{L}{}
+		\end{align}
+		となる．$M$は任意に大きく取って問題ないから，
+		\begin{align}
+			\sum_{n=1}^{M'} |a_n| \leq \Norm{L}{}, \quad (\forall M' \geq M)
+		\end{align}
+		が成り立ち，従って
+		\begin{align}
+			\sum_{n=1}^{\infty} |a_n| \leq \Norm{L}{}
+		\end{align}
+		となることにより$a \in l^1$であることが示された．
 \end{description}
 \end{prf}
