@@ -1,0 +1,677 @@
+
+(約束及び定義)
+\begin{itemize}
+	\item 係数体は複素数体$\C$．
+	\item 位相空間$X,Y$に対し，$C(X,Y) = \{f\ |\ \mbox{$f$は$X$から$Y$への連続写像}\};\ C(X) = C(X, \C)$．
+		$C_b(X) = \{f\in C(X)\ |\ \mbox{$f$は有界}\}$は$\Norm{u}{} = \sup{x \in X}{|u(x)|}$をノルム(sup-norm)としてBanach空間である．
+	\item $s$を複素数列全体のなす線形空間とする．
+		$l^{\infty} = \{a = (a_n)_{n=1}^{\infty} \in s\ |\ \Norm{a}{l^{\infty}} = \sup{n}{|a_n|} < \infty\},\ 
+		c_0=\{a=(a_n)_{n=1}^{\infty} \in \ |\ \lim_{n \to \infty}a_n=0\}.$
+		このとき$l^{\infty}$は$\Norm{a}{l^{\infty}}$をノルムとしてBanach空間である．
+\end{itemize}
+
+[4].\ $k \in \mathbb{N}_0$，$I = [a,b]$とする．$C^k(I)$は$|f|_k = \sum_{j=0}^{k}\sup{x \in I}{\left|f^{(j)}(x)\right|}$
+をノルムとしてBanach空間であることを示せ．
+
+\begin{prf}
+	以下の手順で示す．
+	\begin{description}
+		\item[\rm{(i)}] $|\cdot|_k$が$C^k(I)$におけるノルムである．
+		\item[\rm{(ii)}] $C^k(I)$の$|\cdot|_k$によるCauchy列を取ると，各$j\ (=0,1,2,\cdots,k)$
+			階導関数列に対し或る$I$上の連続関数$f^j$が存在し，$j$階導関数列は$f^j$に$I$上で一様収束する．
+		\item[\rm{(iii)}] 各$j=0,1,2,\cdots,k-1,$について$f^j$は$I$上連続微分可能で
+			$f^{j+1}(x) = \tfrac{d}{dx}f^{j}(x)\ (\forall x \in I)$が成り立っている．
+	\end{description}
+	\begin{description}
+	\item[\rm{(i)}] $f,g \in C^k(I)$と$\alpha \in \C$を任意に取る．正値性$|f|_k \geq 0$は右辺の各項が$\geq 0$であることから成り立つ．また$|f|_k=0$の場合，
+	右辺で$\sup{x \in I}{|f^{(j)}(x)|} = 0\ (j=0,1,2,\cdots,k)$が成り立ち，特に$f$は$I$上で零写像であるとわかるから$f = 0$である．
+	逆に$f$が$I$上で零写像ならば全ての導関数が零写像になるため右辺は$0$になり，従って$|f|_k=0$となる．同次性は
+	\begin{align}
+		|\alpha f|_k = \sum_{j=0}^{k}\sup{x \in I}{\left|\left(\alpha f^{(j)}\right)(x)\right|} 
+		= \sum_{j=0}^{k}\sup{x \in I}{\left|\alpha f^{(j)}(x)\right|}
+		= \sum_{j=0}^{k}\sup{x \in I}{|\alpha|\left|f^{(j)}(x)\right|} 
+		= |\alpha| \sum_{j=0}^{k}\sup{x \in I}{\left|f^{(j)}(x)\right|} = |\alpha||f|_k
+	\end{align}
+	により示される．三角不等式は
+	\begin{align}
+		|f+g|_k 
+		&= \sum_{j=0}^{k}\sup{x \in I}{\left|(f + g)^{(j)}(x)\right|} \\
+		&= \sum_{j=0}^{k}\sup{x \in I}{\left|\left(f^{(j)} + g^{(j)}\right)(x)\right|} \\
+		&\leq \sum_{j=0}^{k}\sup{x \in I}{\left|f^{(j)}(x) + g^{(j)}(x)\right|} \\
+		&\leq \sum_{j=0}^{k}\left(\sup{x \in I}{\left|f^{(j)}(x)\right|} + \sup{x \in I}{\left|g^{(j)}(x)\right|}\right)
+		= |f|_k + |g|_k
+	\end{align}
+	により示される．
+	\item[\rm{(ii)}] $f_n \in C^k(I) \ (n=1,2,3,\cdots)$を$C^k(I)$の$|\cdot|_k$によるCauchy列とする．任意の$\epsilon > 0$に対し或る
+	$N \in \N$が存在して全ての$n,m > N$で
+	\begin{align}
+		\epsilon > |f_n - f_m|_k =  \sum_{j=0}^{k}\sup{x \in I}{\left|f_n^{(j)}(x) - f_m^{(j)}(x)\right|}
+	\end{align}
+	が成り立っているから，各$j = 0,1,2,\cdots,k$について$\left(f_n^{(j)}\right)_{n=1}^{+\infty}$はsup-normに関してCauchy列をなしている．
+	$(C(I),\ \mathrm{sup-norm})$がBanach空間であることが認められているから，各$j = 0,1,2,\cdots,k$についてそれぞれ或る$I$上の連続関数$f^j$が存在して，
+	$\left(f_n^{(j)}\right)_{n=1}^{+\infty}$は$f^j$にsup-normで収束，即ち$I$上で一様収束する．\\
+	\item[\rm{(iii)}] 上で取った$(f_n)_{n=1}^{+\infty} \subset C^k(I)$について，全ての$n \in \N$と$j = 0,1,2,\cdots,k-1$に対して次の関係が成り立っている．
+	\begin{align}
+		f_n^{(j)}(x) - f_n^{(j)}(b) = \int_{b}^{x} f_n^{(j+1)}(t)\, dt, \quad (\forall x \in I).
+	\end{align}
+	ここで(ii)の結果から，任意の$x \in I$と$\epsilon > 0$に対し或る$N = N(j,\epsilon) \in \N$が存在して全ての$n > N$で
+	\begin{align}
+		\left|f^j(x) - f_n^{(j)}(x)\right| < \frac{\epsilon}{3},\quad \left|f_n^{(j+1)}(x) - f^{j+1}(x)\right| < \frac{\epsilon}{3(b-a)}
+	\end{align}
+	が成り立つようにできるから，同じ$n$について
+	\begin{align}
+		\left|\left(f^j(x) - f^j(b)\right) - \int_{b}^{x} f^{j+1}(t)\, dt\right| 
+		&= \left|\left(f^j(x) - f^j(b)\right) - \left(f_n^{(j)}(x) - f_n^{(j)}(b)\right)
+			+ \int_{b}^{x} f_n^{(j+1)}(t)\, dt - \int_{b}^{x} f^{j+1}(t)\, dt\right| \\
+		&\leq \left|f^j(x) - f_n^{(j)}(x)\right| + \left|f^j(b) - f_n^{(j)}(b)\right| 
+			+ \int_{b}^{x} \left| f_n^{(j+1)}(t) - f^{j+1}(t) \right|\, dt \\
+		&< \frac{\epsilon}{3} + \frac{\epsilon}{3} + (b-a) \frac{\epsilon}{3(b-a)} = \epsilon
+ 	\end{align}
+ 	が成り立つ．$\epsilon$は任意だから
+ 	\begin{align}
+ 		f^j(x) - f^j(b) = \int_{b}^{x} f^{j+1}(t)\, dt, \quad (\forall x \in I,\ j=0,1,2,\cdots,k-1)
+ 	\end{align}
+ 	が示されたことになる．右辺は連続関数$f^{j+1}$の積分だから左辺$f^j$は$x$に関して微分可能関数(端点は片側微分を考える)となり，導関数は$f^{j+1}$である．
+ 	ゆえに$f^0 \in C^k(I)$が示される．表記を改めて$f \coloneqq f^0,\ f^{(j)} \coloneqq f^j\ (j=1,2,\cdots,k)$と表せば，(ii)の結果より
+ 	\begin{align}
+ 		|f_n - f|_k = \sum_{j=0}^{k}\sup{x \in I}{\left|f_n^{(j)}(x) - f^{(j)}(x)\right|} \longrightarrow 0\quad (n \rightarrow +\infty)
+ 	\end{align}
+ 	が成り立つことで$C^k(I)$が$|\cdot|_k$をノルムとしてBanach空間をなしていると示される．
+ 	\QED
+ 	\end{description}
+\end{prf}
+
+[5].\ $X=C([0,1])$をsup-normの入ったBanach空間とする．$0 < a <1,\ Y=\{f \in X\ ;\ [0,\ a]\mbox{上で}f(t)=0\}$とおく．
+\begin{description}
+	\item[(1)] $Y$が$X$の閉線形部分空間であることを示せ．
+	\item[(2)] $X/Y$と$C([0,\ a])$(sup-normを入れる)はBanach空間として同型であることを示せ．
+\end{description}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1)]
+		$Y$が$X$の線形部分空間であることは，任意の$f,g \in Y$と任意の複素数$\alpha \in \C$に対して
+		\begin{align}
+			&(f+g)(t) = f(t) + g(t) = 0, \quad (\forall t \in [0,\ a]) \\
+			&(\alpha f) (t) = \alpha f(t) = 0, \quad (\forall t \in [0,\ a])
+		\end{align}
+		が成り立つことから示される．後はsup-normに関して$Y$が閉集合となっていることを示せばよい．
+		$f_n \in Y\ (n=1,2,3,\cdots)$をsup-normに関するCauchy列とする．$(C([0,\ 1]),\ \rm{sup-norm})$の完備性から
+		$(f_n)_{n=1}^{\infty}$は或る$f \in C([0,\ 1])$に$[0,\ 1]$上で一様に収束するが，もし或る$x \in [0,\ a]$について
+		$|f(x)| > 0$であるならば，この$x$において$f_n(x)=0\ (n=1,2,3,\cdots)$であることから
+		\begin{align}
+			0 < |f(x)| = |f_n(x) - f(x)| \leq \sup{t \in [0,\ 1]}{|f_n(t) - f(t)|}, \qquad (n=1,2,3,\cdots)
+		\end{align}
+		となり$(f_n)_{n=1}^{\infty}$が$f$に収束することに反する．従って$f$も$[0,\ a]$上で0でなくてはならず，
+		$f$は$Y$に属することになる．これは$Y$がsup-normの下で完備ノルム空間となっていることを主張し，以上より$Y$は
+		$X$の閉線形部分空間であると示された．
+	\item[(2)]
+		$X$のsup-normを$\Norm{\cdot}{}$で表現する．
+		$X$を$Y$で割った商空間$X/Y$の元を$[f]\ (\mbox{代表元}\ f \in X)$で表現して，$Y$が閉線形部分空間であるから$X/Y$は
+		\begin{align}
+			\Norm{[f]}{X/Y} \coloneqq \inf{g \in Y}{\Norm{f - g}{}},\qquad ([f] \in X/Y)
+		\end{align}
+		をノルムとしてノルム空間となり，さらに$(X,\ \Norm{\cdot}{})$がBanach空間であるから$(X/Y,\ \Norm{\cdot}{X/Y})$もBanach空間となる．
+		任意の$[f] \in X/Y$について$f_1, f_2 \in [f]$は$f_1 - f_2 \in Y$を満たすから即ち
+		\begin{align}
+			f_1(t) = f_2(t) \quad (\forall t \in [0,\ a])
+		\end{align}
+		が成り立っている．
+		\begin{align}
+			\Norm{[f]}{X/Y} = \inf{g \in Y}{\Norm{f - g}{}} = \inf{g \in Y}\sup{t \in [0,\ 1]}{|f(t) - g(t)|} = \sup{t \in [0,\ a]}{|f(t)|}
+		\end{align}
+		が成り立つことに注意する．
+		\begin{align}
+			\sup{t \in [0,\ a]}{|f(t)|} = \sup{t \in [0,\ a]}{|f(t) - g(t)|} \leq \sup{t \in [0,\ 1]}{|f(t) - g(t)|}\quad (\forall g \in Y)
+		\end{align}
+		\begin{align}
+			\sup{t \in [0,\ a]}{|f(t)|} \leq \inf{g \in Y}{\sup{t \in [0,\ 1]}{|f(t) - g(t)|}}
+		\end{align}
+		$[f]$の元の定義域を$[0,a]$に制限した関数は$C([0,\ a])$の或る元に一致する．$C([0,\ a])$の任意の元は定義域を$[0,1]$に拡張
+		(例えば$[a,\ 1]$上では適当な一次関数でおく)すれば$X=C([0,\ 1])$の或る元に一致するから或る$X/Y$の或る元(同値類)に属するしていることになる．
+		写像$X/Y \ni [f] \longmapsto f|_{[0,\ a]} \in C([0,\ a])$は$X/Y$から$C([0,\ a])$への全単射である．この写像を$T$と表すとする．
+		$T$は次の意味で等長である．$\Norm{[f]}{X/Y} = \Norm{f|_{[0,\ a]}}{} = \Norm{T[f]}{}$．$T$の線型性は
+		\begin{align}
+			&T([f] + [h]) = T[f+h] = (f+h)|_{[0,\ a]} = f|_{[0,\ a]} + h|_{[0,\ a]} = T[f] + T[h], \\
+			&T(\alpha[f]) = T[\alpha f] = (\alpha f)|_{[0,\ a]} = \alpha f|_{[0,\ a]} = \alpha T[f]
+		\end{align}
+		により示される．ゆえに$T$は$X/Y \longmapsto C([0,\ a])$の同型写像であり，$X/Y$と$C([0,\ a])$がBanach空間として同型であることが示された．
+		\QED
+\end{description}
+\end{prf}
+
+[6].\ $I=[0,\ 1]$とし，$X=C(I)$をsup-normの入ったBanach空間とする．$K \in C(I \times I)$とし，$A = \sup{(t,s)\in I \times I}{|K(t,s)|}$
+とおく．$u \in X$に対して$Tu\, :\, I \longmapsto \C$を次で定める:
+\begin{align}
+	Tu(t) = \int_{0}^{t} K(t,s)u(s)\, ds,\ (t \in I).
+\end{align}
+\begin{description}
+	\item[(1)] $u \in X$ならば$Tu \in X$を示せ．
+	\item[(2)] 写像$X \ni u \longmapsto Tu \in X$を同じ記号$T$であらわすとき，$T \in B(X)$及び$\Norm{T^n}{} \leq A^n/n!\ (n \in \N_0)$を示せ．
+	\item[(3)] $I-T$は逆作用素を持ち，$(I-T)^{-1} \in B(X)$であることを示せ．ただし$I$は$X$の高等写像である．
+\end{description}
+
+\begin{prf}
+	$X$におけるsup-normを$\Norm{\cdot}{X}$と表す．また$T^0 = I$(恒等写像)として考える．
+\begin{description}
+	\item[(1)] $u \in X$に対して$Tu$が$I$上で連続であることを示せばよい．
+		任意の正数$\epsilon > 0$に対して$\delta = \epsilon/{A\Norm{u}{X}}$と取れば，
+		$t \in [0,\ 1)$と$t+h \in [0,\ 1] \cap (t,t+\delta)$に対して
+		\begin{align}
+			|Tu(t + h) - Tu(t)| 
+			&= \left|\int_{0}^{t+h} K(t,s)u(s)\, ds - \int_{0}^{t} K(t,s)u(s)\, ds \right| \\
+			&\leq \left|\int_{t}^{t+h} K(t,s)u(s)\, ds \right| \\
+			&\leq \int_{t}^{t+h} |K(t,s)||u(s)|\, ds \\
+			&\leq \int_{t}^{t+h} \sup{(t,s)\in I \times I}{|K(t,s)|}\, \sup{s \in I}{|u(s)|}\, ds \\
+			&\leq A \Norm{u}{X} h < \epsilon
+		\end{align}
+		が成り立つことにより$Tu$が$[0,\ 1)$上右連続であることが示される．同様にして
+		$Tu$が$(0,\ 1]$上で左連続であることも示されるから，$Tu \in X$が示される．
+	\item[(2)] (1)の結果より$X \ni u \longmapsto Tu \in X$が判っているから，
+		後は写像$T:X \longmapsto X$の線型性を示せば，$T$が$X$を定義域とする線型作用素であること，即ち$T \in B(X)$が示される．
+		$T$の線型性は，任意の$u, v \in X,\ \alpha \in \C,\ t \in I$に対して
+		\begin{align}
+			T(u+v)(t) &= \int_{0}^{t} K(t,s)(u+v)(s)\, ds \\
+			&= \int_{0}^{t} K(t,s)(u(s) + v(s))\, ds \\
+			&= \int_{0}^{t} K(t,s)u(s)\, ds + \int_{0}^{t} K(t,s)v(s)\, ds = Tu(t) + Tv(t), \\
+			T(\alpha u)(t) &= \int_{0}^{t} K(t,s)(\alpha u)(s)\, ds \\
+			&= \int_{0}^{t} K(t,s)(\alpha u(s))\, ds \\
+			&= \alpha\int_{0}^{t} K(t,s)u(s)\, ds = \alpha Tu(t)
+		\end{align}
+		が成り立つことにより示される．
+		次に$\Norm{T^n}{} \leq A^n/n!\ (n \in \N_0)$を示すが，その準備に次のことを示す．
+		\begin{align}
+			|T^nu(t)| \leq \frac{A^n}{n!}\Norm{u}{X}t^n, \quad(t \in I,\ n=1,2,3,\cdots). \label{eq:func_analy_induction}
+		\end{align}
+		証明は数学的帰納法による．$n=1$のとき
+		\begin{align}
+			|Tu(t)| &= \left|\int_{0}^{t} K(t,s)u(s)\, ds\right| \\
+			&\leq \int_{0}^{t} |K(t,s)||u(s)|\, ds \\
+			&\leq \int_{0}^{t} \sup{(t,s)\in I \times I}{|K(t,s)|}\, \sup{s \in I}{|u(s)|}\, ds \\
+			&\leq A\Norm{u}{X} \int_{0}^{t}\, ds \\
+			&= A\Norm{u}{X}t
+		\end{align}
+		が成り立つ．$n=k$のとき(\refeq{eq:func_analy_induction})を仮定すると，
+		\begin{align}
+			|T^{k+1}u(t)| &= |T(T^ku)(t)| = \left|\int_{0}^{t} K(t,s)T^ku(s)\, ds\right| \\
+			&\leq \int_{0}^{t} |K(t,s)||T^ku(s)|\, ds \\
+			&\leq \int_{0}^{t} \sup{(t,s)\in I \times I}{|K(t,s)|}\, \frac{A^k}{k!}\Norm{u}{X}s^k\, ds \\
+			&\leq \frac{A^{k+1}}{(k+1)!}\Norm{u}{X}t^{k+1}
+		\end{align}
+		となることにより(\refeq{eq:func_analy_induction})が任意の$n \in \N$で成立すると示された．従って$t \in I$についての上限を取れば
+		\begin{align}
+			\Norm{T^nu}{X} = \sup{t \in I}{|T^nu(t)|} \leq \sup{t \in I}{\frac{A^n}{n!}\Norm{u}{X}t^n} = \frac{A^n}{n!}\Norm{u}{X}, 
+			\quad (\forall u \in X,\ n = 1,2,3,\cdots)
+		\end{align}
+		となる．$n=0$の場合は，$\Norm{Iu}{X} = \Norm{u}{X}\ (\forall u \in X)$により
+		$\Norm{T^0}{} = \Norm{I}{} = 1$である．以上より$\Norm{T^n}{} \leq A^n/n!\ (n \in \N_0)$となることが示された．
+	\item[(3)] $(X,\ \Norm{\cdot}{X})$がBanach空間であるから$B(X)$も作用素ノルムの下でBanach空間となっている．従って級数
+		\begin{align}
+			\sum_{n=0}^{+\infty} T^n \label{eq:func_analy_series}
+		\end{align}
+		が収束することの十分条件は
+		\begin{align}
+			\sum_{n=0}^{+\infty} \Norm{T^n}{} < +\infty
+		\end{align}
+		が成り立つことである．今，(2)の結果より
+		\begin{align}
+			\sum_{n=0}^{+\infty} \Norm{T^n}{} \leq \sum_{n=0}^{+\infty} \frac{A^n}{n!} = \exp{A} < +\infty
+		\end{align}
+		が成り立っているから(\refeq{eq:func_analy_series})は収束する．つまり
+		\begin{align}
+			T^* \coloneqq \sum_{n=0}^{+\infty} T^n
+		\end{align}
+		と表せば$T^*$は$B(X)$の元であり，部分和を$T_N \coloneqq \sum_{n=0}^{N} T^n\ (N = 0,1,2,\cdots)$と表現して
+		$\Norm{T_N - T^*}{} \rightarrow 0\ (N \rightarrow +\infty)$が成り立っていることになる．任意の$u \in X$に対して
+		\begin{align}
+			\Norm{(TT^* - TT_N)u}{X} = \Norm{TT^*u - TT_Nu}{X} = \Norm{T(T^*u) - T(T_Nu)}{X} = \Norm{T(T^*u - T_Nu)}{X} = \Norm{T(T^* - T_N)u}{X}
+		\end{align}
+		と
+		\begin{align}
+			\Norm{(T^*T - T_NT)u}{X} = \Norm{T^*Tu - T_NTu}{X} = \Norm{T^*(Tu) - T_N(Tu)}{X} = \Norm{(T^*-T_N)Tu}{X}
+		\end{align}
+		が成り立つことから，
+		\begin{align}
+			\Norm{TT^* - TT_N}{} \leq \Norm{T}{}\Norm{T^* - T_N}{} \longrightarrow 0\ (N \longrightarrow +\infty) \label{eq:func_analy_conv1}
+		\end{align}
+		と
+		\begin{align}
+			\Norm{T^*T - T_NT}{} \leq \Norm{T^* - T_N}{}\Norm{T}{} \longrightarrow 0\ (N \longrightarrow +\infty) \label{eq:func_analy_conv2}
+		\end{align}
+		が成り立つ．(\refeq{eq:func_analy_conv1})により
+		\begin{align}
+			TT^* = \lim_{N \to \infty} TT_N = \lim_{N \to \infty} \sum_{n=1}^{N+1} T^n = \sum_{n=1}^{+\infty} T^n = T^* - I
+		\end{align}
+		が成り立つから$I = T^* - TT^* = (I - T)T^*$と表現でき，また(\refeq{eq:func_analy_conv2})により
+		\begin{align}
+			T^*T = \lim_{N \to \infty} T_NT = \lim_{N \to \infty} \sum_{n=1}^{N+1} T^n = \sum_{n=1}^{+\infty} T^n = T^* - I
+		\end{align}
+		も成り立つから$I = T^* - T^*T = T^*(I - T)$と表現できる．ゆえに$I = (I - T)T^* = T^*(I - T)$が成り立ち，この等式は
+		$I-T$が$X \longmapsto X$の全単射であり$T^* \in B(X)$を逆写像にもつことを示している．
+		\QED
+\end{description}
+\end{prf}
+
+
+[9].\ $(S, \mathfrak{M}, \mu)$は$\sigma-$有限な測度空間，$X=\Lp{2}{S, \mathfrak{M}, \mu}=\Lp{2}{\mu}$とする．可測関数$a:S \rightarrow \C$に対して，
+$X$上の掛け算作用素$M_a$を次で定める：
+\begin{align}
+	D(M_a) = \{u \in X\, |\, au \in X\}, \quad (M_au)(x) = a(x)u(x)\ (x \in S).
+\end{align}
+\begin{description}
+	\item[(1)]
+	\item[(2)] $a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$ならば$M_a \in B(X)$であり，$\Norm{M_a}{} = \Norm{a}{\Lp{\infty}{\mu}}$が成り立つことを示せ．
+	\item[(3)] 逆に$M_a \in B(X)$ならば$a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$であることを示せ．
+\end{description}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1)] 
+	\item[(2)] $a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$ならば，$\Norm{\cdot}{\Lp{\infty}{\mu}}$の定義より
+		\begin{align}
+			\Norm{a}{\Lp{\infty}{\mu}} = \inf{}{\left\{b \in [0, +\infty)\ |\ \mu(x \in S\ |\ |a(x)| > b) = 0 \right\}} < +\infty
+		\end{align}
+		である．特に
+		\begin{align}
+			N_m \coloneqq \left\{x \in S\ \left|\ |a(x)| \geq \Norm{a}{\Lp{\infty}{\mu}} + \frac{1}{m} \right.\right\}, \quad(m = 1,2,3,\cdots)
+		\end{align}
+		と置けば$\mu(N_m)=0\ (m=1,2,3,\cdots)$であって，
+		$\mu$零集合$N$を
+		\begin{align}
+			N \coloneqq \bigcup_{m=1}^{\infty} N_m
+		\end{align}
+		で定めれば
+		\begin{align}
+			|a(x)| \leq \Norm{a}{\Lp{\infty}{\mu}}, \quad (\forall x \in S \cap N^c) \label{eq:func_analy_Q9}
+		\end{align}
+		が成り立つ．また$0 < c < \Norm{a}{\Lp{\infty}{\mu}}$となるような任意の$c$については
+		\begin{align}
+			\mu(\ \{x \in S\ |\ |a(x)| > c\}\ ) > 0 \label{eq:func_analy_Linfty}
+		\end{align}
+		が成り立つことにも注意しておく．全ての$u \in X$に対して，(\refeq{eq:func_analy_Q9})により
+		\begin{align}
+			\Norm{M_a u}{\Lp{2}{\mu}}^2 
+			&= \int_{S} |a(x)u(x)|^2\, \mu(dx) \\
+			&= \int_{S/N} |a(x)u(x)|^2\, \mu(dx) \\
+			&\leq \int_{S/N} \Norm{a}{\Lp{\infty}{\mu}}^2|u(x)|^2\, \mu(dx) \\
+			&= \int_{S} \Norm{a}{\Lp{\infty}{\mu}}^2|u(x)|^2\, \mu(dx)
+			= \Norm{a}{\Lp{\infty}{\mu}}^2 \Norm{u}{\Lp{2}{\mu}}
+		\end{align}
+		が成り立っていることから，$\Norm{M_a}{} \leq \Norm{a}{\Lp{\infty}{\mu}}$であり$M_a \in B(X)$が示される．
+		さらに，$(S, \mathfrak{M}, \mu)$が$\sigma-$有限な測度空間であるという条件の下では，$\Norm{M_a}{} = \Norm{a}{\Lp{\infty}{\mu}}$であることが
+		次のように示される．$\Norm{a}{\Lp{\infty}{\mu}} = 0$ならば明らかに$M_a$は零作用素で$0 = \Norm{M_a}{} = \Norm{a}{\Lp{\infty}{\mu}}$である．
+		$\Norm{a}{\Lp{\infty}{\mu}} > 0$である場合，$\Norm{a}{\Lp{\infty}{\mu}} >> \epsilon > 0$を満たすような$\epsilon$を任意に取り，
+		\begin{align}
+			G_\epsilon \coloneqq \left\{ x \in S \cap N^c\ \left|\ \Norm{a}{\Lp{\infty}{\mu}} - \epsilon < |a(x)| \right.\right\}
+		\end{align}
+		として$\mu$可測集合$G_\epsilon$を作る．(\refeq{eq:func_analy_Linfty})により，$\mu(G_\epsilon) > 0$であることが次で示される．
+		\begin{align}
+			\mu(G_\epsilon) &= \mu\left(\left\{x \in S\ \left|\ \Norm{a}{\Lp{\infty}{\mu}}-\epsilon < |a(x)|\right.\right\} \cap N^c\right) \\
+			&= \mu\left(\left\{x \in S\ \left|\ \Norm{a}{\Lp{\infty}{\mu}}-\epsilon < |a(x)|\right.\right\}\right) & (\because \mu(N)=0) \\
+			&> 0. & (\because (\refeq{eq:func_analy_Linfty})).
+ 		\end{align}
+		$\sigma-$有限の仮定より，単調増大な$\mu$可測集合列$S_1 \subset S_2 \subset S_3 \subset \cdots$で$\mu(S_k) < +\infty\ (k=1,2,3,\cdots)$と
+		$\cup_{k=1}^{\infty}S_k = S$を満たすものが存在して
+		\begin{align}
+			0 < \mu(G_\epsilon) = \lim_{k \to \infty} \mu(S_k \cap G_\epsilon)
+		\end{align}
+		となるから，必ず或る$S_{k}$に対して
+		\begin{align}
+			r_\epsilon \coloneqq \mu(S_{k} \cap G_\epsilon) > 0
+		\end{align}
+		となっている．
+		\begin{align}
+			u_\epsilon(x) \coloneqq 
+			\begin{cases}
+				1/\sqrt{r_\epsilon} & x \in S_{k} \cap G_\epsilon \\
+				0 & x \notin S_{k} \cap G_\epsilon
+			\end{cases}
+		\end{align}
+		と定義すれば，$\mu(S_{k} \cap G_\epsilon) < +\infty$であるから$u_\epsilon \in X$であって
+		\begin{align}
+			\Norm{u_\epsilon}{\Lp{2}{\mu}} = 1
+		\end{align}
+		となっている．この$u_\epsilon$に対して
+		\begin{align}
+			\left(\Norm{a}{\Lp{\infty}{\mu}} - \epsilon\right)^2 
+			< \int_{S_k \cap G_\epsilon} |a(x)u_\epsilon(x)|^2\, \mu(dx) 
+			= \int_{S} |a(x)u_\epsilon(x)|^2\, \mu(dx)
+			\leq \Norm{a}{\Lp{\infty}{\mu}}^2
+		\end{align}
+		により
+		\begin{align}
+			\Norm{a}{\Lp{\infty}{\mu}} - \epsilon < \Norm{M_a u_\epsilon}{\Lp{2}{\mu}} \leq \Norm{a}{\Lp{\infty}{\mu}}
+		\end{align}
+		が成り立っているから
+		\begin{align}
+			\Norm{a}{\Lp{\infty}{\mu}} - \epsilon 
+			< \sup{0 \neq u \in X}{\frac{\Norm{M_a u}{\Lp{2}{\mu}}}{\Norm{u}{\Lp{2}{\mu}}}} = \Norm{M_a}{} 
+			\leq \Norm{a}{\Lp{\infty}{\mu}}
+		\end{align}
+		である．$\epsilon > 0$は任意に取っていたから，$\epsilon \rightarrow 0$で考えれば
+		\begin{align}
+			\Norm{a}{\Lp{\infty}{\mu}} = \Norm{M_a}{}
+		\end{align}
+		が示されたことになる．
+		
+	\item[(3)] $M_a \in B(X)$ならば
+		\begin{align}
+			\int_{S} |a(x)u(x)|^2\, \mu(dx) 
+			= \Norm{M_au}{\Lp{2}{\mu}}^2 \leq \Norm{M_a}{}^2 \Norm{u}{\Lp{2}{\mu}}^2 
+			= \Norm{M_a}{}^2 \int_{S} |u(x)|^2\, \mu(dx)
+		\end{align}
+		が成立している．$(S, \mathfrak{M}, \mu)$が$\sigma-$有限な測度空間であるという条件の下では
+		\begin{align}
+			\mu\left(\ \{x \in S\ |\ |a(x)| > \Norm{M_a}{}\}\ \right) = 0
+		\end{align}
+		が成り立つことを示す．これが示されれば$a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$が従う．
+		$\sigma-$有限の仮定より，単調増大な$\mu$可測集合列$S_1 \subset S_2 \subset S_3 \subset \cdots$で$\mu(S_k) < +\infty\ (k=1,2,3,\cdots)$と
+		$\cup_{k=1}^{\infty}S_k = S$を満たすものが存在する．
+		$\mu$可測集合
+		\begin{align}
+			G \coloneqq \{x \in S\ |\ |a(x)| > \Norm{M_a}{}\}
+		\end{align}
+		について，これが仮に$\mu(G) > 0$であるとすると
+		\begin{align}
+			0 < \mu(G) = \lim_{k \to \infty} \mu(S_k \cap G)
+		\end{align}
+		により或る$K \in \N$が存在して$\mu(S_k \cap G) > 0 \ (\forall k > K)$が成立する．$k > K$を満たす$k$を選んで
+		\begin{align}
+			u(x) = \begin{cases}
+				1 & x \in S_k \cap G \\
+				0 & x \notin S_k \cap G
+			\end{cases}
+		\end{align}
+		と置けば，$\mu(S_k \cap G) < +\infty$であることから$u \in X$であって，
+		\begin{align}
+			\Norm{u}{\Lp{2}{\mu}}^2 = \int_{S} |u(x)|^2\, \mu(dx) = \mu(S_k \cap G)
+		\end{align}
+		が成り立っている．$G$上で$|a(x)| > \Norm{M_a}{}$であるから
+		\begin{align}
+			\Norm{M_a}{}^2 \Norm{u}{\Lp{2}{\mu}}^2 
+			&= \Norm{M_a}{}^2 \int_{S} |u(x)|^2\, \mu(dx) \\
+			&= \Norm{M_a}{}^2 \int_{S_k \cap G} |u(x)|^2\, \mu(dx) \\
+			&< \int_{S_k \cap G} |a(x)u(x)|^2\, \mu(dx) \\
+			&\leq \int_{S} |a(x)u(x)|^2\, \mu(dx) \\
+			&\leq \Norm{M_a}{}^2 \Norm{u}{\Lp{2}{\mu}}^2 
+		\end{align}
+		となるが，最右辺と最左辺を$\Norm{u}{\Lp{2}{\mu}}^2$で割ると
+		\begin{align}
+			\Norm{M_a}{} < \Norm{M_a}{}
+		\end{align}
+		と矛盾が出る．従って$\mu(G)=0$でなくてはならない．
+		\QED
+\end{description}
+\end{prf}
+
+[11].\ 
+	\begin{description}
+		\item[(1)] $c_0$は$l^{\infty}$の閉線形部分空間であることを示せ．
+		\item[(2)] $l^{\infty}$と$c_0$が可分であるかどうか判定せよ．
+	\end{description}
+	
+\begin{prf}\mbox{}
+\begin{description}
+	\item[(1)] まず$c_0 \subset l^{\infty}$であることを示す．$\forall a=(a_n)_{n=1}^{\infty} \in c_0$は収束点列である．
+		任意の$\epsilon > 0$に対して或る$N \in \N$を取れば，$N$以降の$n \in \N$については$|a_n| < \epsilon$で抑えられるから
+		\begin{align}
+			\sup{n \in \N}{|a_n|} \leq \max{}{\{|a_1|,\ |a_2|,\ \cdots,\ |a_N|,\ \epsilon\}} < +\infty
+		\end{align}
+		が成り立ち$a \in l^{\infty}$が判る．従って$c_0 \subset l^{\infty}$である．
+		つぎに$c_0$が線型空間$l^{\infty}$の線形部分空間であることを示す．
+		任意の$a=(a_n)_{n=1}^{\infty},\ b=(b_n)_{n=1}^{\infty} \in c_0,\ \alpha \in \C$
+		に対し
+		\begin{align}
+			&|a_n + b_n| \leq |a_n| + |b_n| \longrightarrow 0 \quad (n \longrightarrow +\infty), \\
+			&|\alpha a_n|= |\alpha||a_n| \longrightarrow 0 \quad (n \longrightarrow +\infty)
+		\end{align}
+		が成り立つことにより$a + b \in c_0$と$\alpha a \in c_0$が示される．従って$c_0$は$l^{\infty}$の線形部分空間である．
+		最後に$c_0$が$l^{\infty}$で閉集合となっていることを示す．$l^{\infty}$は$\Norm{\cdot}{l^{\infty}}$をノルムとしてBanach空間となっているから，
+		その部分空間である$c_0$が$\Norm{\cdot}{l^{\infty}}$をノルムとしてBanach空間をなしていることを示せばよい．
+		$a^{(n)} = \left(a_m^{(n)}\right)_{m=1}^{\infty} \in c_0\ (m=1,2,3,\cdots)$を$\Norm{\cdot}{l^{\infty}}$に関するCauchy列とする. 
+		$(l^{\infty},\ \Norm{\cdot}{l^{\infty}})$が完備であるから，$\left(a^{(n)}\right)_{n=1}^{\infty}$
+		は或る$a^{*} = \left(a_m^{*}\right)_{m=1}^{\infty} \in l^{\infty}$
+		に$m$に関して一様に収束している．つまり任意の$\epsilon > 0$に対して或る$N \in \N$が存在して，全ての$n > N$について
+		\begin{align}
+			\Norm{a^{(n)} - a^{*}}{l^{\infty}} = \sup{m \in \N}{\left|a_m^{(n)} - a_m^{*}\right|} < \epsilon \label{eq:func_analy_Q11}
+		\end{align}
+		が成り立っている．
+		$a^{*} = (a_m^{*})_{m=1}^{\infty}$が$c_0$の元であることは帰謬法で示す．$a^* \notin c_0$であると仮定すると，或る$\delta > 0$に対しては，いかなる$N \in \N$を取っても
+		必ず$n > N$なる自然数で
+		\begin{align}
+			|a_n^*| \geq \delta
+		\end{align}
+		を満たすものが存在する．$(a_m^*)_{m=1}^{\infty}$の部分列$(a_{m_k}^*)_{k=1}^{\infty}$を
+		\begin{align}
+			|a_{m_k}^*| \geq \delta, \qquad (m_k < m_{k+1},\ k= 1,2,3,\cdots)
+		\end{align}
+		を満たすものとして取ることが出来て，(\refeq{eq:func_analy_Q11})により
+		或る$N_\delta \in \N$を取れば，全ての$n > N_\delta$で
+		\begin{align}
+			\sup{k \in \N}{\left|a_{m_k}^{(n)} - a_{m_k}^{*}\right|} < \frac{\delta}{2}
+		\end{align}
+		が成立することになる．
+		$n > N_\delta$番目の数列$a^{(n)}=\left(a_m^{(n)}\right)_{m=1}^{\infty}$は$c_0$の元であるから，
+		或る$N_\delta^n \in \N$が存在して全ての$p > N_\delta^n$に対し
+		\begin{align}
+			\left|a_p^{(n)}\right| < \frac{\delta}{2}
+		\end{align}
+		となるはずであるが，$m_1 < m_2 < m_3 < \cdots \rightarrow +\infty$であるから$m_k > N_\delta^n$となるような添数$m_k$が存在してしまい，
+		\begin{align}
+			\frac{\delta}{2} \leq \left|a_{m_k}^*\right| - \frac{\delta}{2} < \left|a_{m_k}^{(n)}\right| < \frac{\delta}{2}
+		\end{align}
+		と矛盾が出る．従って$a^* \in c_0$であるべきで，これは$c_0$が$\Norm{\cdot}{l^{\infty}}$をノルムとして完備であることを示したことになる．
+		ゆえに$c_0$は$l^{\infty}$の閉線形部分空間である．
+		
+	\item[(2)]
+		結論は，$l^{\infty}$は可分ではなく$c_0$は可分である．順番に示す．
+		$l^{\infty}$の部分集合として0と1のみで成る数列全体
+		\begin{align}
+			M \coloneqq \left\{a \in l^{\infty}\, \left|\, a = (a_n)_{n=1}^{+\infty},\ a_n \in \{0,1\},\, n=1,2,3,\cdots \right.\right\}
+		\end{align}
+		を考える．また任意の$a=(a_n)_{n=1}^{\infty},\, b=(b_n)_{n=1}^{\infty} \in M$に対し
+		\begin{align}
+			\Norm{a-b}{l^{\infty}} = \sup{n \in \N}{|a_n - b_n|} = \begin{cases}
+				1 & (a = b) \\
+				0 & (a \neq b)
+			\end{cases}
+		\end{align}
+		が成り立つから，$M$の異なる2元の$\Norm{\cdot}{l^{\infty}}$による距離は1で固定されている．もし$l^{\infty}$が可分であるとすれば，
+		$\Norm{\cdot}{l^{\infty}}$に関して$l^{\infty}$で稠密な可算部分集合$C$が存在することになる．任意の$a \in M$に対して
+		その$1/2$近傍(sup-norm)の内部に$C$の元が存在していることになるから，そのうちの一つを$c_a$と表し対応を付ける．
+		$a \in M$に対応する$c_a \in C$は他の$M$の元の$1/2$近傍に属することはない．もし$c_a$が或る$a \neq b \in M$の$1/2$近傍に入ると
+		\begin{align}
+			1 = \Norm{a-b}{l^{\infty}} \leq \Norm{a - c_a}{l^{\infty}} + \Norm{b-c_a}{l^{\infty}} < \frac{1}{2} + \frac{1}{2} = 1
+		\end{align}
+		と矛盾ができるからである．即ち$M$から$C$への対応関係$M \ni a \longmapsto c_a \in C$は単射である．
+		ここで$M$の濃度$2^{\N}$が連続体濃度であることに注意すれば，単射の存在により$C$の濃度は連続体濃度以上で
+		$C$が可算集合であることに反する．従って$l^{\infty}$は可分ではない．
+		一方で$c_0$は$\Norm{\cdot}{l^{\infty}}$をノルムとして可分なノルム空間をなす．$c_0$の可算部分集合を
+		\begin{align}
+			S \coloneqq 
+			\left\{b \in c_0\, \left|\, 
+			b = (\alpha_n + i \beta_n)_{n=1}^{+\infty},\ 
+			\begin{cases}
+				\alpha_n,\ \beta_n \in \Q, & n=1,2,\cdots,N,\\
+				\alpha_n=\beta_n=0, & n \geq N+1,
+			\end{cases}
+			\ (N = 1,2,3,\cdots) \right.\right\}
+		\end{align}
+		として取る．ただし$i$は$i^2 = -1$なる虚数単位で$\Q$は有理数全体である．任意の$a=(a_n)_{n=1}^{+\infty} \in c_0$について，
+		任意の正数$\epsilon > 0$に対して或る$N \in \N$を取れば全ての$n > N$で
+		\begin{align}
+			|a_n| < \epsilon
+		\end{align}
+		が成り立つから，後は$(a_n)_{n=1}^{N}$の部分で
+		\begin{align}
+			\sup{n=1,2,\cdots,N}{|a_n - b_n|} < \epsilon
+		\end{align}
+		となるように$S$の元$b=(b_n)_{n=1}^{+\infty}\ (b_n = 0,\ n>N)$を取れば
+		\begin{align}
+			\Norm{a - b}{l^{\infty}} < \epsilon
+		\end{align}
+		が成り立つ．即ち$S$が$c_0$において$\Norm{\cdot}{l^{\infty}}$に関して稠密であるとわかり，$c_0$が可分であると示された．
+		\QED
+\end{description}
+\end{prf}
+
+[12].\ $a = (a_n)_{n=1}^{\infty} \in l^1$に対して$T_a:c_0 \longmapsto \C$を次で定める:
+	\begin{align}
+		T_a(x) = \sum_{n=1}^{\infty}a_n x_n\ (x=(x_n) \in c_0).
+	\end{align}
+	\begin{description}
+		\item[(1)] $\forall a = (a_n) \in l^1,\ T_a \in c_o^*$かつ$\Norm{T_a}{} = \Norm{a}{l^1}$であることを示せ．
+		\item[(2)] $T:l^1 \ni a \longmapsto T_a \in c_0^*$はBanach空間としての同系写像であることを示せ．
+	\end{description}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1)] 
+		設問[11]の結果により，$T_a$の定義域である$c_0$は$\Norm{\cdot}{l^{\infty}}$をノルムとして
+		$l^{\infty}$の閉線型部分空間であり，よってBanach空間である．このことに留意して以下進む．
+		$a = (a_n)_{n=1}^{\infty} \in l^1$を任意に取って固定する．
+		任意の$x=(x_n) \in c_0$に対して
+		\begin{align}
+			\sum_{n=1}^{\infty} |a_n| |x_n| \leq \sum_{n=1}^{\infty} |a_n| \Norm{x}{l^{\infty}} = \Norm{a}{l^1} \Norm{x}{l^{\infty}} < +\infty
+			\label{eq:func_analy_Q12}
+		\end{align}
+		となり級数$T_a (x)\ (\forall x \in c_0)$は有限確定するから，
+		任意の$x=(x_n), y=(y_n) \in c_0,\ \alpha \in \C$に対して以下に示す式変形が正当化される．
+		\begin{align}
+			\sum_{n=1}^{+\infty} a_n x_n + a_n y_n = \sum_{n=1}^{+\infty} a_n x_n + \sum_{n=1}^{+\infty} a_n y_n,\quad 
+			\sum_{n=1}^{+\infty} \alpha a_n x_n = \alpha \sum_{n=1}^{+\infty} a_n x_n,\quad
+			\left| \sum_{n=1}^{+\infty} a_n x_n \right| \leq \sum_{n=1}^{+\infty} |a_n||x_n|.
+		\end{align}
+		従って任意に$x=(x_n), y=(y_n) \in c_0$と$\alpha \in \C$を取れば．
+		\begin{align}
+			&T_a(x + y) = \sum_{n=1}^{\infty}a_n (x_n + y_n) 
+			= \sum_{n=1}^{\infty} (a_n x_n + a_n y_n) = \sum_{n=1}^{\infty}a_n x_n + \sum_{n=1}^{\infty}a_n y_n = T_a x + T_a y, \\
+			&T_a(\alpha x) = \sum_{n=1}^{\infty}a_n(\alpha x_n) = \sum_{n=1}^{\infty}(a_n\alpha)x_n = \sum_{n=1}^{\infty}(\alpha a_n)x_n
+			= \sum_{n=1}^{\infty}\alpha (a_n x_n) = \alpha \sum_{n=1}^{\infty} a_n x_n = \alpha T_a(x)
+		\end{align}
+		により$T_a$の線型性が示されるから，$T_a$は$c_0 \rightarrow \C$の線型汎関数である．
+		有界性は式(\refeq{eq:func_analy_Q12})により
+		\begin{align}
+			|T_a(x)| \leq \Norm{a}{l^1} \Norm{x}{l^{\infty}}
+		\end{align}
+		から$\Norm{T_a}{} \leq \Norm{a}{l^1}$となるとわかる．ゆえに$T_a \in c_0^*\ (\forall a \in l^1)$である．
+		また$\Norm{T_a}{} = \Norm{a}{l^1}$について，$a=0$の場合は$T_a$が零作用素になるから明らかに成り立つ．
+		$a \neq 0$の場合，任意の$\Norm{a}{l^1} >> \epsilon >0$に対して或る$N \in \N$が存在して
+		\begin{align}
+			\Norm{a}{l^1} - \epsilon < \sum_{n = 1}^{N} |a_n|
+		\end{align}
+		とできる．$x \in c_0$を
+		\begin{align}
+			x_n = \begin{cases}
+				\overline{a_n}/|a_n| & a_n \neq 0,\rm{and}\ n \leq N \\
+				0 & a_n = 0,\rm{or}\ n > N
+			\end{cases}
+		\end{align}
+		となっているもので取れば，
+		\begin{align}
+			\Norm{a}{l^1} - \epsilon < \sum_{n = 1}^{N} |a_n| = \sum_{n = 1}^{\infty} a_n x_n = T_a(x) = |T_a(x)|
+		\end{align}
+		が成立することになる．$\Norm{x}{l^{\infty}}=1$であることに注意すれば
+		\begin{align}
+			\Norm{a}{l^1} - \epsilon 
+			< T_a(x) = \frac{|T_a(x)|}{\Norm{x}{l^{\infty}}} 
+			\leq \sup{0 \neq y \in c_0}{\frac{|T_a(y)|}{\Norm{y}{l^{\infty}}}} = \Norm{T_a}{} \leq \Norm{a}{l^1}
+		\end{align}
+		が成り立ち，$\epsilon$が任意であるから，$a=0$の場合と合わせて$\Norm{T_a}{} = \Norm{a}{l^1}\ (\forall a \in l^1)$が示された．
+	
+	\item[(2)] まず，$l^1$は$\Norm{\cdot}{l^1}$をノルムとしてBanach空間となり，$c_0^*$は$T_a$の値域$\C$がBanach空間であるから作用素ノルム
+		によりBanach空間となっている．写像$T$が
+		\begin{align}
+			\Norm{Ta}{} = \Norm{T_a}{} = \Norm{a}{l^1}\quad (\forall a \in l^1)
+		\end{align}
+		の意味で等長であることは(1)で示してあるから，後は$T$が線型全単射であることを証明すればよい．
+		任意の$a = (a_n), b=(b_n) \in l^1,\ \alpha \in \C$に対して
+		\begin{align}
+			&\sum_{n=1}^{\infty} (a_n + b_n) x_n 
+			= \sum_{n=1}^{\infty} (a_n x_n + b_n x_n) 
+			=  \sum_{n=1}^{\infty} a_n x_n + \sum_{n=1}^{\infty} b_n x_n, \\
+			&\sum_{n=1}^{\infty} (\alpha a_n) x_n
+			= \sum_{n=1}^{\infty} \alpha (a_n x_n)
+			= \alpha \sum_{n=1}^{\infty} a_n x_n
+		\end{align}
+		が成り立つから
+		\begin{align}
+			&T(a+b) = T_{a+b} = T_a + T_b = Ta + Tb \\
+			&T(\alpha a) = T_{\alpha a} = \alpha T_a = \alpha Ta
+		\end{align}
+		も成り立つことにより$T$の線型性が示される．
+		また$a = (a_n), b=(b_n) \in l^1$に対して，$a \neq b$であるなら或る$N \in \N$番目で
+		$a_N \neq b_N$となっているはずであるから，
+		\begin{align}
+			x_N = \begin{cases}
+				1 & n=N \\
+				0 & n \neq N
+			\end{cases}
+		\end{align}
+		となる$x=(x_n) \in c_0$に対して
+		\begin{align}
+			T_a(x) = a_N \neq b_N = T_b(x)
+		\end{align}
+		となり，$T$が単射であることが示される．最後に$T$が全射であることを示す．
+		任意に$L \in c_0^*$を取る．或る$a \in l^1$に対して$L$が$T_a$に一致することを見ればよい．
+		Kroneckerのデルタを用いて
+		\begin{align}
+			e_n \coloneqq (\delta_{jn})_{j=1}^{\infty}
+		\end{align}
+		で表現される$e_n\ (n=1,2,3,\cdots)$は$c_0$の元であり，各$n = 1,2,3,\cdots$に対して
+		\begin{align}
+			a_n \coloneqq L(e_n) \label{eq:def_a_n_in_l1}
+		\end{align}
+		とおく．任意の$x=(x_n) \in c_0$に対して
+		\begin{align}
+			x^{(N)} = \sum_{n=1}^{N} x_n e_n, \quad (N = 1,2,3,\cdots)
+		\end{align}
+		として作られる数列の族$\left(x^{(N)}\right)_{N=1}^{\infty}$は$l^{\infty}$において収束し，$x^{(N)} \rightarrow x\ (N \rightarrow +\infty)$が成り立つ．
+		これは$x = (x_n)$が収束数列であることによる．任意の$\epsilon > 0$に対して或る$N \in \N$を選べば
+		\begin{align}
+			|x_n| < \epsilon, \quad (\forall n > N)
+		\end{align}
+		が成り立つから，$n>N$なる任意の自然数$n$に対して
+		\begin{align}
+			\Norm{x - x^{(n)}}{l^{\infty}} = \sup{m > n}{|x_m|} < \epsilon
+		\end{align}
+		となり，$x^{(N)} \rightarrow x\ (N \rightarrow +\infty)$が示されるのである．
+		$L$が有界線型汎関数であることも併せれば
+		\begin{align}
+			\left|L(x) - L(x^{(N)})\right| \leq \Norm{L}{}\Norm{x - x^{(N)}}{l^{\infty}} \longrightarrow 0\quad (N \longrightarrow +\infty) 
+		\end{align}
+		により
+		\begin{align}
+			L(x) = \lim_{N \to +\infty} L(x^{(N)}) 
+			= \lim_{N \to +\infty} \sum_{n=1}^{N} L(x_n e_n)
+			= \lim_{N \to +\infty} \sum_{n=1}^{N} a_n x_n
+			= \sum_{n=1}^{+\infty} a_n x_n \quad (\forall x \in c_0)
+		\end{align}
+		が成り立つ．後は(\refeq{eq:def_a_n_in_l1})で定義した複素数列$(a_n)_{n=1}^{\infty}$が$l^1$に属していることを示せば，
+		写像$L:c_0 \longmapsto \C$が$T_a:c_0 \longmapsto \C$に一致していると証明される．これは次のように示される．
+		$a_n \neq 0\ (\exists n \leq M)$となるような$M \in \N$を取って，この$M$に対して$x = (x_n) \in c_0$として
+		\begin{align}
+			x_n = \begin{cases}
+				\overline{a_n}/|a_n| & a_n \neq 0,\rm{and}\ n \leq M \\
+				0 & a_n = 0,\rm{or}\ n > M
+			\end{cases}
+		\end{align}
+		となるものを取れば，
+		\begin{align}
+			L(x) = \lim_{N \to +\infty} \sum_{n=1}^{N} a_n x_n = \sum_{n=1}^{M} |a_n|
+		\end{align}
+		が成り立つ．$\Norm{x}{l^{\infty}} = 1$であることに注意すれば
+		\begin{align}
+			\sum_{n=1}^{M} |a_n| = L(x) = |L(x)| \leq \Norm{L}{} \Norm{x}{l^{\infty}} = \Norm{L}{}
+		\end{align}
+		となる．$M$は任意に大きく取って問題ないから，
+		\begin{align}
+			\sum_{n=1}^{M'} |a_n| \leq \Norm{L}{}, \quad (\forall M' \geq M)
+		\end{align}
+		が成り立ち，従って
+		\begin{align}
+			\sum_{n=1}^{\infty} |a_n| \leq \Norm{L}{}
+		\end{align}
+		となることにより$a \in l^1$であることが示された．
+\end{description}
+\end{prf}
