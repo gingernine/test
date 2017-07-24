@@ -14,6 +14,16 @@
 	\end{description}
 \end{dfn}
 
+\begin{dfn}[Gauss型確率変数(講義資料引用)]
+	$(\Omega, \mathcal{F}, \operatorname{P})$上の$\R^N$値確率変数$X$が
+	平均ベクトル0，共分散行列$(t-s)I_N$のGauss型確率変数とは，任意の$0 \leq s < t$と$E \in \borel{\R^N}$に対して
+	\begin{align}
+		\operatorname{P}(X \in E) = (2\pi (t-s))^{-\frac{N}{2}} \int_{E} \mathrm{exp}\left( -\frac{|x|^2}{2(t-s)} \right)\, dx
+	\end{align}
+	が成り立つことである．ここで記号$dx$は$N$次元Lebesgue測度による積分の記号を表し，
+	$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して$|x| = \sqrt{x_1^2 + \cdots + x_N^2}$とする．
+\end{dfn}
+
 \section{レポート課題その1}
 
 
@@ -25,6 +35,10 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		$O(N)$は$N$次直交行列全体で$Rx$はベクトル$x$に左から行列$R$をかけることいを意味する．
 	\item[(2)](スケール則)　任意の$c > 0$に対して$((1/\sqrt{c})B_{ct})$は原点から出発するBrown運動である．
 	\item[(3)] 任意の$h > 0$に対して$(B_{t+h} - B_h)$は原点から出発するBrown運動である．
+	\item[(4)] $B$の各座標が定める実数値確率過程を$B_i = (B_i(t))\ (i = 1,2,\cdots,N)$とすると，
+		$B_i\ (i=1,2,\cdots,N)$は独立な1次元Brown運動である．逆に，独立な1次元Brown運動
+		$B_i\ (i=1,2,\cdots,N)$が与えられたとき$B(t) = {}^t(B_1(t),\cdots,B_N(t))$とおくと
+		$(B(t))$は$N$次元Brown運動である．
 \end{description}
 \end{thm}
 
@@ -207,5 +221,68 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\end{align}
 		となり，$Y_0$の分布は$\borel{\R^N}$上で$\delta_0$に一致する．
 		\QED
+	
+	\item[(4)] 
+		一般に$N$次元実確率変数$X = (X_1, \cdots, X_N)$の各成分も1次元実確率変数である．これは射影を考えればよい．
+		$B = (B_i(t))\ (i=1,\cdots,N)$が$N$次元Brown運動であるとする．
+		写像$pr_i : \R^N \longmapsto \R^1\ (i=1,\cdots,N)$を$i$射影とすると，
+		各$i=1,2,\cdots,N$について，任意の$0 \leq s < t$と$A \in \borel{\R^1}$に対して
+		\begin{align}
+			\operatorname{P}(B_i(t) - B_i(s) \in A) 
+			&= \operatorname{P}(pr_i \circ (B(t) - B(s)) \in A) \\
+			&= \operatorname{P}(B(t) - B(s) \in pr_i^{-1}(A)) \\
+			&= (2 \pi (t-s))^{-\frac{N}{2}} \int_{pr_i^{-1}(A)} \mathrm{exp} \left( -\frac{|x|^2}{2(t-s)} \right)\, dx \\
+			&= \frac{1}{\sqrt{2 \pi (t-s)}} \int_{A} \mathrm{exp} \left( -\frac{x_i^2}{2(t-s)} \right)\, dx_i 
+				\ \prod_{j \neq i} \left(\frac{1}{\sqrt{2 \pi (t-s)}} \int_{\R^1} \mathrm{exp} \left( -\frac{x_j^2}{2(t-s)} \right)\, dx_j \right) \\
+			&= \frac{1}{\sqrt{2 \pi (t-s)}} \int_{A} \mathrm{exp} \left( -\frac{x_i^2}{2(t-s)} \right)\, dx_i 
+		\end{align}
+		が成り立つ．これはGauss型確率変数の定義より$B_i(t)\ (i=1,2,\cdots,N)$がそれぞれ平均0，分散$t-s$の1次元Gauss型確率変数であることを示している．
+		代表として$(B_1(t))_{t \geq 0}$が1次元Brown運動であることを確認する．
+		写像$[0,\infty) \ni t \longmapsto B_1(t) \in \R^1$が連続写像であることは明らかである．
+		(ii)について，任意の$s$と$u \leq s$と$A \in \borel{\R^1}$ついて
+		\begin{align}
+			(B_1(u) \in A) = \left(B(u) \in pr_1^{-1}(A)\right), \quad pr_1^{-1}(A) \in \borel{\R^N}
+		\end{align}
+		であることに注意して
+		\begin{align}
+			\mathcal{F}_s^1 \coloneqq \bigvee_{u \leq s} \left\{ (B_1(u) \in A)\ \left|\ A \in \borel{\R^1} \right.\right\}
+			\subset \bigvee_{u \leq s} \left\{ (B(u) \in E)\ \left|\ E \in \borel{\R^N} \right.\right\}
+		\end{align}
+		と$\mathcal{F}_s^1$を定義する．任意の$0 \leq s < t$，$A \in \borel{\R^1}$と$F \in \mathcal{F}_s^1$に対して
+		\begin{align}
+			\operatorname{P}(\{B_1(t) - B_1(s) \in A\} \cap F)
+			&= \operatorname{P}\left( \left\{ B(t) - B(s) \in pr_1^{-1}(A)\right\} \cap F\right) \\
+			&= \operatorname{P}\left( B(t) - B(s) \in pr_1^{-1}(A)\right) \operatorname{P}(F) \\
+			&= \operatorname{P}\left( B_1(t) - B_1(s) \in A\right) \operatorname{P}(F)
+		\end{align}
+		が成り立つ．これは任意の$0 \leq s < t$について$(B_1(t) - B_1(s))$が$\mathcal{F}_s^1$と独立であることを示している．
+		(iv)を確認する．任意の$A \in \borel{\R^1}$に対して$0 \in A \Leftrightarrow 0 \in pr_1^{-1}(A)$(両辺で
+		0の次元は違う)に注意すれば
+		\begin{align}
+			\operatorname{P}(B_1(0) \in A) = \operatorname{P}(B(0) \in pr_1^{-1}(A))
+			= \begin{cases}
+				1 & 0 \in pr_1^{-1}(A) \\
+				0 & 0 \notin pr_1^{-1}(A)
+			\end{cases}
+			= \begin{cases}
+				1 & 0 \in A \\
+				0 & 0 \notin A
+			\end{cases}
+		\end{align}
+		が成り立つ．これは$B_1(0)$の分布と1次元Dirac分布$\delta_0$が$\borel{\R^1}$上で一致することを示す．
+		最後に$(B_i(t))_{i=1}^{N}$が独立な確率変数の族であることを示す．
+		$0 \leq i_1 < i_2 < \cdots < i_n \leq N$として任意に$n$個($n$も任意)の確率変数$(B_{i_j}(t))_{j=1}^{n}$を取る．
+		$F_{i_j} \in \mathcal{F}_t^{i_j}\ (j=1,2,\cdots,n)$を取れば，
+		各$F_{i_j}$は或る$A_{i_j} \in \borel{\R^1}$によって$F_{i_j} = \left(B_{i_j}(t) \in A_{i_j} \right)$と表現される
+		から，
+		\begin{align}
+			\operatorname{P}\left(F_{i_1} \cap F_{i_2} \cap \cdots \cap F_{i_n}\right)
+			&= \operatorname{P}\left( \left(B_{i_1}(t) \in A_{i_1} \right) \cap \cdots \cap \left(B_{i_n}(t) \in A_{i_n} \right)\right) \\
+			&= \operatorname{P}\left( B(t) \in pr_{i_1}^{-1}(A_{i_1}) \cap \cdots \cap pr_{i_n}^{-1}(A_{i_n})\right) \\
+			&= \prod_{j=1}^{n} \frac{1}{\sqrt{2 \pi (t-s)}} \int_{A_{i_j}} \mathrm{exp} \left( -\frac{x_{i_j}^2}{2(t-s)} \right)\, dx_{i_j} \\
+			&= \operatorname{P}\left(F_{i_1}\right) \operatorname{P}\left(F_{i_2}\right) \cdots \operatorname{P}\left(F_{i_n}\right)
+		\end{align}
+		によって$(B_i(t))_{i=1}^{N}$の独立性が示された．
+		次に
 \end{description}
 \end{prf}
