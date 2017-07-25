@@ -55,7 +55,8 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 	\item[(1)] $|B_x|^2 = \left(\left|B^x(t)\right|^2\right)_{t \geq 0}$はクラス(DL)に属するSbMGであることを示し，
 		そのDoob-Meyer分解を求めよ．
 	\item[(2)] 任意の$t \geq 0$に対して$\Exp{|B^x(\sigma \wedge t)|^2} = N\Exp{\sigma \wedge t} + |x|^2$が成り立つことを示せ．
-	\item[(3)]
+	\item[(3)] $D$を$\R^N$の有界領域とし，$x \in D$とする．$\sigma_D$を領域$D$からの脱出時間
+		$\sigma_D = \inf{}{\{ t > 0\ :\ B^x(t) \in \R^N \backslash D \}}$とするとき，$\prob{\sigma_D < \infty} = 1$が成り立つことを示せ．
 \end{description}
 
 \begin{prf}
@@ -169,5 +170,44 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 		
 	\item[(3)] 講義資料定義2.8により$\sigma_D$は広義停止時間であるが，同資料仮定2.11によりフィルトレーションは右連続であるから，命題2.7により
 		$\sigma_D$は停止時間として扱うことができる．
+		(2)の結果により任意の$t \geq 0$に対して
+		\begin{align}
+			\Exp{|B^x(\sigma_D \wedge t)|^2} = N\Exp{\sigma_D \wedge t} + |x|^2 \label{eq:stoc_report_Q2_3}
+		\end{align}
+		が成り立つ．ここで左辺が$t$に関して一様に有界であることを証明する．各$\omega \in \Omega$ごとに，写像$[0,+\infty) \ni t \longmapsto B^x(t, \omega)$
+		が連続であることと$D$が開集合であることにより$0 \leq s \leq \sigma_D(\omega)$であるような$s$に対して$B^x(s, \omega) \in \overline{D}$となる．
+		ここで$\overline{D}$は$D$の閉包を表すとする．$D$が$\R^N$の有界領域であるから
+		(つまり十分大きな$n \in \N$に対して$D$は原点中心半径$n$の閉球に含まれる．)
+		$\overline{D}$も$\R^N$の有界閉集合となる．ここで
+		\begin{align}
+			d \coloneqq \sup{}{\left\{|x - y|\ :\ x,y \in \overline{D} \right\}}
+		\end{align}
+		とおく．等式(\refeq{eq:stoc_report_Q2_3})の左辺の被積分関数について，時刻の部分は$\sigma_D(\omega) \wedge t \leq \sigma_D(\omega)$
+		が全ての$\omega \in \Omega$で成立しているから，$\omega$ごとに$B^x(\sigma_D(\omega) \wedge t, \omega)$は$\overline{D}$に属している．
+		従って$|B^x(\sigma_D(\omega) \wedge t, \omega) - x| \leq d \ (\forall \omega \in \Omega)$で抑えられるから
+		\begin{align}
+			\Exp{|B^x(\sigma_D \wedge t)|^2} 
+			&= \int_{\Omega} |B^x(\sigma_D(\omega) \wedge t, \omega)|^2\, \prob{d\omega} \\
+			&= \int_{\Omega} |B^x(\sigma_D(\omega) \wedge t, \omega) - x + x|^2\, \prob{d\omega} \\
+			&= \int_{\Omega} |B^x(\sigma_D(\omega) \wedge t, \omega) - x|^2 + 2\inprod<B^x(\sigma_D(\omega) \wedge t, \omega),\ x> + |x|^2\, \prob{d\omega} \\
+			&\leq d^2 + 2d|x| + |x|^2
+		\end{align}
+		が成り立つ．ここで$\inprod<\cdot, \cdot>$は$\R^N$の標準的内積を表し(つまり$\inprod<x, y> = \sum_{i=1}^{N}x_iy_i$.)，最後の式変形でSchwarzの不等式を使った．
+		等式(\refeq{eq:stoc_report_Q2_3})にこの結果を適用すれば
+		\begin{align}
+			\Exp{\sigma_D \wedge t} \leq \frac{d^2 + 2d|x|}{N}
+		\end{align}
+		が$t \geq 0$に依らずに成り立つ．これにより$\prob{\sigma_D = +\infty} = 0$が示される．
+		もし$\alpha \coloneqq \prob{\sigma_D = +\infty} > 0$であるとすれば，集合$\{ \sigma_D = +\infty \}$
+		の上では$\sigma_D$の値をいくらでも大きくできるから
+		$t > (d^2 + 2d|x|)/(\alpha N)$となる$t$に対して
+		\begin{align}
+			\frac{d^2 + 2d|x|}{\alpha N} \prob{\sigma_D = +\infty} 
+			< \int_{\{\sigma_D = +\infty\}} \sigma_D(\omega) \wedge t\, \prob{d\omega}
+			\leq \int_{\Omega} \sigma_D(\omega) \wedge t\, \prob{d\omega}
+			\leq \frac{d^2 + 2d|x|}{N}
+		\end{align}
+		が成り立ち矛盾ができるからである．ゆえに$\prob{\sigma_D < +\infty} = 1$が示された．
+		\QED
 \end{description}
 \end{prf}
