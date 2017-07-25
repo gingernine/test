@@ -1,0 +1,95 @@
+\section{レポート課題その3}
+$B=(B(t))_{t \geq 0},\ W = (W(t))_{t \geq 0}$は，ともに0から出発する独立な1-次元Brown運動，$a,\ b$は$ab \neq 0$なる実実数，
+$n$は2以上の整数とする．このとき，以下の(1),\ (2)の確率過程にIt\Hat{o}の公式が適用できることを確認し，適用したその結果を書け．(3)は$Z$の満たす
+確率微分方程式について考察せよ．
+\begin{description}
+	\item[(1)] $X = (X(t))_{t \geq 0}$は$t \geq 0$に対して$X(t) = \left(B(t) + at\right)^n$で定義される確率過程．
+	\item[(2)] $Y = (Y(t))_{t \geq 0}$は$t \geq 0$に対して$Y(t) = B(t)W(t)$で定義される確率過程．
+	\item[(3)] $Z = (Z(t))_{t \geq 0}$は$t \geq 0$に対して$Z(t) = \exp{-bt} \left(a + \int_{0}^{t} \exp{bs}\, dB(s) \right)$で定義される確率過程．
+\end{description}
+
+
+\begin{description}
+	\item[解答] 設問文ではただのBrown運動と書いてありますが，講義資料内の仮定や(3)を考察した際に講義資料定義2.1の(5)(予測可能)を
+		用いらざるを得なくなったため，講義資料5に合わせて，考えている確率空間は''原点から出発する1次元$(\mathcal{F}_t)$-Brown運動
+		$B = (B_t)$を備えたusualなフィルター付き確率空間$(\Omega, \mathcal{F}, \operatorname{P}, (\mathcal{F}_t))$''
+		とし，設問の$B,\ W$は1-次元$(\mathcal{F}_t)$-Brown運動であると考えて以下に進みます．
+	\item[(1)] 講義資料定理6.2を適用する．
+		\begin{align}
+			B(t) = \int_{0}^{t} dB(s)
+		\end{align}
+		であるから，講義資料中の式(6.1)における$\Phi = (\Phi(t))_{t \geq 0},\ \Psi = (\Psi(t))_{t \geq 0}$
+		はそれぞれ$\Phi(t) = 1,\ \Psi(t) = 0\ (\forall t \geq 0)$である．よって明らかに
+		$\Phi \in \mathcal{L}_{2,loc},\ \Psi \in \mathcal{L}_{1,loc}$であるから，$(B(t))_{t \geq 0}$は1次元It\Hat{o}過程である．
+		また定理6.2の$f\ :\ [0, T] \times \R \ni (t,x) \longmapsto f(t,x) \in \R$は
+		この場合$f(t,x) = (x + at)^n$で表現される関数であり，$t \in [0,T]$を固定して$x$の多項式関数であるから
+		$x$の関数として$C^2$級であり，$x \in \R$を固定したとき$t$の関数としても多項式関数であるから$[0, T]$で$C^1$級である．
+		以上より講義資料定理6.2を適用することができて，講義資料式(6.5)により
+		\begin{align}
+			\left(B(t) + at\right)^n = %f(t,B(t)) - f(0, B(0)) &= \int_{0}^{t} \frac{\partial f}{\partial t}(s,B(s))\, ds \\
+				%&\quad+ \int_{0}^{t} \frac{\partial f}{\partial x}(s,B(s))\Phi(s)\, dB(s) \\
+				%&\quad+ \int_{0}^{t} \frac{\partial f}{\partial x}(s,B(s))\Psi(s)\, ds \\
+				%&\quad+ \frac{1}{2} \int_{0}^{t} \frac{\partial^2 f}{\partial x^2}(s,B(s))\Phi(s)^2\, ds \\
+			\int_{0}^{t} an(B(s) + at)^{n-1}\, ds
+				+ \int_{0}^{t} n(B(s) + at)^{n-1}\, dB(s)
+				+ \frac{1}{2} \int_{0}^{t} n(n-1)(B(s) + at)^{n-2}\, ds
+		\end{align}
+		が成り立つ．
+	
+	\item[(2)] 講義資料定理6.3を適用する．
+		$B,W$が独立な原点出発の1次元Brown運動であるから$(B(t),\ W(t))_{t \geq 0}$も定理3.8により原点出発の2次元Brown運動である．
+		\begin{align}
+			B(t) = \int_{0}^{t} dB(s), \quad W(t) = \int_{0}^{t} dW(s)
+		\end{align}
+		であるから，講義資料中の式(6.8)における$\Phi = ((\Phi^{ik}(t))_{1 \leq i, k \leq 2})_{t \geq 0},\ \Psi = (\Psi^1(t),\ \Psi^2(t))_{t \geq 0}$
+		はそれぞれ$\Phi^{ik}(t) = \delta_{ik},\ \Psi^i(t) = 0\ (\forall t \geq 0,\ i,k=1,2)$である．ただし$\delta_{ik}$はKroneckerのデルタである．
+		従って$(B(t),\ W(t))_{t \geq 0}$は2次元It\Hat{o}過程である．
+		また定理6.3の$f\ :\ [0, T] \times \R^2 \ni (t,x) \longmapsto f(t,x) \in \R$は
+		この場合$f(t,x) = x_1 x_2\ (x = {}^t(x_1, x_2) \in \R^2)$で表現される関数であり，
+		$x$の関数として$C^2$級である．$x \in \R$を固定したときは$t$についての定数関数であると見做せば$[0, T]$で$C^1$級である．
+		以上より講義資料定理6.3を適用することができて，
+		\begin{align}
+			B(t)W(t) = \int_{0}^{t} W(s)\, dB(s) + \int_{0}^{t} B(s)\, dW(s)  
+		\end{align}
+		が成り立つ．
+	
+	\item[(3)] 
+		$U(t) \coloneqq \exp{bt}Z(t)\ (\forall t \geq 0)$と置けば
+		\begin{align}
+			U(t) - U(0) = \exp{bt}Z(t) - a &= \int_{0}^{t} \exp{bs}\, dB(s)
+		\end{align}
+		と表現できる．ここで講義資料定理6.2における関数$f$として$f(t,x) = \exp{bt}x$とおき，確率過程$\Phi$や$\Psi$は未知であるけれども
+		式(6.5)を書けば
+		\begin{align}
+			U(t) - U(0) &= f(t,Z(t)) - f(0, Z(0)) \\
+			&= \int_{0}^{t} b\exp{bs}Z(s)\, ds + \int_{0}^{t} \exp{bs}\Phi(s)\, dB(s) + \int_{0}^{t} \exp{bs}\Psi(s)\, ds
+			\label{eq:stoc_report_Q3_1}
+		\end{align}
+		と表すことができる．従ってこの場合$\forall t \geq 0$で次の等式が成り立つ．
+		\begin{align}
+			\int_{0}^{t} \exp{bs}\, dB(s) 
+			= \int_{0}^{t} b\exp{bs}Z(s)\, ds + \int_{0}^{t} \exp{bs}\Phi(s)\, dB(s) + \int_{0}^{t} \exp{bs}\Psi(s)\, ds.
+			\label{eq:stoc_report_Q3_2}
+		\end{align}
+		例えば
+		\begin{align}
+			\Phi(t) = 1,\quad \Psi(t) = -bZ(t) = -b\exp{-bt} \left(a + \int_{0}^{t} \exp{bs}\, dB(s) \right), \quad(\forall t \geq 0)
+		\end{align}
+		が満たされているならば等式(\refeq{eq:stoc_report_Q3_2})が満たされる．$\Phi$は定数関数であるから$\mathcal{L}_{2,loc}$の元であり，
+		$\Psi$については$(\exp{bt})_{t \geq 0}$が$[0, +\infty) \times \Omega \rightarrow \R^1$の関数として$\mathcal{L}_2$の元であることと
+		講義資料定理5.8(1)により確率積分項が二乗可積分で連続な$(\mathcal{F}_t)$-適合過程であるから$\Psi$も連続な適合過程となり，もちろん左連続だから予測可能，
+		連続性から任意の区間$[0,T]$で二乗可積分であるから$\Psi \in \mathcal{L}_{2,loc}$である．
+		即ちもし$Z = (Z(t))_{t \geq 0}$が
+		\begin{align}
+			\begin{cases}
+				Z(0) = a, & \\
+				Z(t) - Z(0) = \int_{0}^{t} dB(s) + \int_{0}^{t} -b\exp{-bs} \left(a + \int_{0}^{s} \exp{bu}\, dB(u) \right)\, ds & (t > 0)
+			\end{cases}
+		\end{align}
+		を満たすIt\Hat{o}過程ならば，$f(t,x) = \exp{bt}x$としてIt\Hat{o}の公式(講義資料定理6.2)を適用することにより等式(\refeq{eq:stoc_report_Q3_2})が満たされ，
+		上式(\refeq{eq:stoc_report_Q3_1})により
+		\begin{align}
+			\exp{bt}Z(t) - a = \int_{0}^{t} \exp{bs}\, dB(s) 
+		\end{align}
+		が満たされる．
+\end{description}
