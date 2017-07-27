@@ -14,7 +14,7 @@
 	\end{description}
 \end{dfn}
 
-\begin{dfn}[Gauss型確率変数(講義資料引用)]
+\begin{dfn}[Gauss型確率変数(講義資料に沿って)]
 	$(\Omega, \mathcal{F}, \operatorname{P})$上の$\R^N$値確率変数$X$が
 	平均ベクトル0，共分散行列$(t-s)I_N$のGauss型確率変数とは，任意の$0 \leq s < t$と$E \in \borel{\R^N}$に対して
 	\begin{align}
@@ -45,32 +45,30 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 \begin{prf}
 \begin{description}\mbox{}
 	\item[(1)] 
-		上に載せた定義の番号の順番に照合していく．(i)について，
-		任意の$N$次直交行列$R$は，通常のEuclidノルムの入ったノルム空間$\R^N$(通常の位相空間としての$\R^N$に同じ)において
-		$\R^N \rightarrow \R^N$の有界な線型作用素である．即ち$\R^N \rightarrow \R^N$の連続写像であり，
+		講義資料定義3.1の番号(i)(ii)(iii)の順番に照合していくが，その前に$RB = (RB_t)$
+		が確率空間$(\Omega, \mathcal{F}, \operatorname{P})$上の確率過程となっていることを確認する．
+		任意の$N$次直交行列$R$は$\R^N \rightarrow \R^N$の連続な全単射線型作用素であるから可測
+		$\borel{\R^N}/\borel{\R^N}$である．従って任意の$t \geq 0$に対して$RB_t$は可測$\mathcal{F}/\borel{\R^N}$
+		となるから$RB = (RB_t)$は確率過程である．講義資料定義3.1の(i)について，
 		連続写像の合成である
 		\begin{align}
 			[0,\infty) \ni t \longmapsto RB_t(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
 		\end{align}
 		もまた連続写像であるから，(i)は満たされている．
-		次に(ii)を示す．$\borel{\R^N}$は$\R^N$のBorel集合族を表すとする．まずは任意の$t \leq 0$に対して
+		次に(ii)を示す．まずは任意の$t \leq 0$に対して
 		\begin{align}
 			\left\{(RB_t)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} 
 			= \left\{B_t^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} \label{eq:stoc_proc_Q1_1}
 		\end{align}
 		が成り立つことを示す．これは次の理由による．
-		任意の$N$次直交行列$R$は，通常のEuclidノルムの入ったノルム空間$\R^N$において
-		$\R^N \rightarrow \R^N$の有界な線型作用素である．即ち$\R^N \rightarrow \R^N$の連続写像であり，
+		任意の$N$次直交行列$R$は$\R^N \rightarrow \R^N$の連続写像であるから
 		任意のBorel集合$E \in \borel{\R^N}$を$\R^N$のBorel集合に引き戻す．また
-		$R$が$\R^N \rightarrow \R^N$の全単射であること(全射，単射であることは$R$の正則性により示される，つまり
-		任意の$y \in \R^N$に対して$Rx = y$を満たすような$x$は$R^{-1}y$であり，$Rx=Ry$ならば$R(x-y)=0$の両辺に$R^{-1}$をかけて$x=y$が出る．)
-		と$\R^N$の完備性により関数解析の値域定理が適用され，
-		$R$の逆写像$R^{-1}$もまた$\R^N \rightarrow \R^N$の有界な線型作用素である．
-		従って任意のBorel集合の$R$による像は$\R^N$のBorel集合となる．
-		以上より任意のBorel集合$A \in \borel{\R^N}$に対して
+		$R$の逆写像$R^{-1}$もまた$O(N)$の元であるから，
+		任意のBorel集合の$R$による像，即ち$R^{-1}$によって引き戻した集合は$\R^N$のBorel集合となる．
+		従って任意のBorel集合$A \in \borel{\R^N}$に対して
 		\begin{align}
-			&(RB_t)^{-1}(A) = B_t^{-1}\left(R^{-1}(A)\right) \in \left\{B_t^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}, \\
-			&B_t^{-1}(A) = B_t^{-1}\left(R^{-1}(R(A))\right) \in \left\{(RB_t)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}
+			&(RB_t)^{-1}(A) = B_t^{-1}\left(R^{-1}A\right) \in \left\{B_t^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}, \\
+			&B_t^{-1}(A) = B_t^{-1}\left(R^{-1}RA\right) \in \left\{(RB_t)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\}
 		\end{align}
 		が示され，式(\refeq{eq:stoc_proc_Q1_1})が成り立つと判る．従って
 		\begin{align}
@@ -84,24 +82,24 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\begin{align}
 			\operatorname{P}\left(\{RB_t - RB_s \in A\} \cap F \right) 
 			&= \operatorname{P}\left(\{R(B_t - B_s) \in A\} \cap F \right) \\
-			&= \operatorname{P}\left(\{B_t - B_s \in R^{-1}(A)\} \cap F \right) \\
-			&= \operatorname{P}\left(B_t - B_s \in R^{-1}(A)\right)\operatorname{P}(F) \\
+			&= \operatorname{P}\left(\{B_t - B_s \in R^{-1}A\} \cap F \right) \\
+			&= \operatorname{P}\left(B_t - B_s \in R^{-1}A\right)\operatorname{P}(F) \\
 			&= \operatorname{P}\left(R(B_t - B_s) \in A\right)\operatorname{P}(F)
 			= \operatorname{P}\left(RB_t - RB_s \in A\right)\operatorname{P}(F)
 		\end{align}
 		が成り立つ．これは任意の$0 \leq s < t$に対して$RB_t - RB_s$と$\sigma(RB_u\ :\ u \leq s)$とが独立であることを表しているから，
 		(ii)も示されたことになる．(iii)について，行列式$\Det{R}$が$\pm 1$になることに注意すれば，任意の$A \in \borel{\R^N}$に対して
 		\begin{align}
-			\operatorname{P}(RB_t - RB_s \in A) &= \operatorname{P}\left(B_t - B_s \in R^{-1}(A)\right) \\
-			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{R^{-1}(A)} \mathrm{exp}\left( -\frac{|x|^2}{2(t-s)} \right)\, dx \\
+			\operatorname{P}(RB_t - RB_s \in A) &= \operatorname{P}\left(B_t - B_s \in R^{-1}A\right) \\
+			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{R^{-1}A} \mathrm{exp}\left( -\frac{|x|^2}{2(t-s)} \right)\, dx \\
 			&= (2\pi(t-s))^{-\frac{N}{2}} \int_{A} \mathrm{exp}\left( -\frac{|y|^2}{2(t-s)} \right)\, dy & \left(y = Rx\mbox{として変数変換}\right)
 		\end{align}
 		が成り立つことにより，任意の$0 \leq s < t$に対して$RB_t - RB_s$もまた平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
 		であることが示された．最後に(iv)が満たされていることを確認する．
-		全単射線型写像$R$について$0 \in A \Leftrightarrow 0 \in R^{-1}(A)\ (\forall A \in \borel{\R^N})$であることに注意すれば
+		全単射線型写像$R$について$0 \in A \Leftrightarrow 0 \in R^{-1}A\ (\forall A \in \borel{\R^N})$であることに注意すれば
 		\begin{align}
 			\operatorname{P}_{RB_0}(A) 
-			= \operatorname{P}\left(B_0^{-1}\left(R^{-1}(A)\right)\right) 
+			= \operatorname{P}\left(B_0^{-1}\left(R^{-1}A\right)\right) 
 			= \begin{cases}
 				1 & 0 \in R^{-1}(A) \\
 				0 & 0 \notin R^{-1}(A)
@@ -113,28 +111,31 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\end{align}
 		となり，$\operatorname{P}_{RB_0}$と$\delta_0$は$\borel{\R^N}$の上で一致する．
 	
-	\item[(2)] 上に載せた定義の番号の順番に照合していく．(i)について，
+	\item[(2)] 講義資料定義3.1の番号(i)(ii)(iii)の順番に照合していく. $((1/\sqrt{c})B_{ct})$
+		が確率空間$(\Omega, \mathcal{F}, \operatorname{P})$上の確率過程となっていることは，$(1/\sqrt{c})I_N$\ ($I_N$は$N$次単位行列)が
+		$\R^N \rightarrow \R^N$の連続写像であることと(1)の証明から確認できる．
+		(i)について，
 		これも連続写像の合成
 		\begin{align}
 			[0,\infty) \ni t \longmapsto ct \longmapsto \tfrac{1}{\sqrt{c}} B_{ct}(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
 		\end{align}
-		と見做せばよい．(ii)について，(i)と同様に考えればよい．写像$\R^N \ni x \longmapsto x/\sqrt{c} \in \R^N$は
-		$\R^N \rightarrow \R^N$の連続な全単射であり，明らかに逆写像$\R^N \ni x \longmapsto \sqrt{c} \in \R^N$もまた
+		と見做せばよい．(ii)について，写像$\R^N \ni x \longmapsto x/\sqrt{c} \in \R^N$は
+		$\R^N \rightarrow \R^N$の連続な全単射であり，明らかに逆写像$\R^N \ni x \longmapsto \sqrt{c}x \in \R^N$もまた
 		連続な全単射である．従って任意の$A \in \borel{\R^N}$に対して
 		\begin{align}
-			\tfrac{1}{\sqrt{c}} A \coloneqq \left\{ x/\sqrt{c}\ \left|\ x \in A \right.\right\} \in \borel{\R^N}, \quad
-			\sqrt{c} A \coloneqq \left\{ \sqrt{c}x\ \left|\ x \in A \right.\right\} \in \borel{\R^N}
+			\tfrac{1}{\sqrt{c}} A \coloneqq \left\{\left. x/\sqrt{c}\ \right|\ x \in A \right\} \in \borel{\R^N}, \quad
+			\sqrt{c} A \coloneqq \left\{\left. \sqrt{c}x\ \right|\ x \in A \right\} \in \borel{\R^N}
 		\end{align}
 		が成り立つから，任意の$t \geq 0$に対して
 		\begin{align}
-			\left\{\left. \tfrac{1}{\sqrt{c}}B_{ct} \in A\ \right|\ A \in \borel{\R^N} \right\}
-			= \left\{\left. B_{ct} \in A\ \right|\ A \in \borel{\R^N} \right\}
+			\left\{\left. \left(\tfrac{1}{\sqrt{c}}B_{ct}\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
+			= \left\{\left. B_{ct}^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
 		\end{align}
 		が成り立つ．即ち任意の$s \geq 0$に対して
 		\begin{align}
 			\sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right)
-			\coloneqq \bigvee_{u \leq s} \left\{ \tfrac{1}{\sqrt{c}}B_{cu} \in A\ \left|\ A \in \borel{\R^N} \right.\right\}
-			= \bigvee_{u \leq s} \left\{ B_{cu} \in A\ \left|\ A \in \borel{\R^N} \right.\right\}
+			\coloneqq \bigvee_{u \leq s} \left\{ \left(\tfrac{1}{\sqrt{c}}B_{cu}\right)^{-1}(A)\ \left|\ A \in \borel{\R^N} \right.\right\}
+			= \bigvee_{u \leq s} \left\{ B_{cu}^{-1}(A)\ \left|\ A \in \borel{\R^N} \right.\right\}
 			= \sigma(B_{cu}\ :\ u \leq s)
 		\end{align}
 		となっていて，さらに設問の仮定により任意の$0 \leq s < t$に対して$B_{ct} - B_{cs}$は$\sigma(B_{cu}\ :\ u \leq s)$と独立である．
@@ -156,12 +157,12 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 				& \left( y = \tfrac{1}{\sqrt{c}}x\mbox{と変数変換}\right)
 		\end{align}
 		が成り立つことにより，任意の$0 \leq s < t$に対して$\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs}$
-		は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数である．最後に(iv)を示す．
+		は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数であると判る．最後に(iv)を示す．
 		任意の$A \in \borel{\R^N}$に対して
 		$0 \in A \Leftrightarrow 0 \in \sqrt{c}A$であることに注意すれば，
 		\begin{align}
 			\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}(A) 
-			= \operatorname{P}\left(B_0^{-1}(\sqrt{c}A)\right)
+			= \operatorname{P}\left(B_0^{-1}\left(\sqrt{c}A\right)\right)
 			= \begin{cases}
 				1 & 0 \in \sqrt{c}A \\
 				0 & 0 \notin \sqrt{c}A
@@ -173,31 +174,33 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\end{align}
 		が成り立つから$\operatorname{P}_{\tfrac{1}{\sqrt{c}}B_0}$と$\delta_0$は$\borel{\R^N}$の上で一致する．
 		
-	\item[(3)] 定義の(i)から見ていく．$B = (B_t)$がBrown運動であるならば
+	\item[(3)] 形から$(B_{t+h} - B_h)$が確率過程であることは明らかである．
+		講義資料定義3.1の(i)から見ていく．$B = (B_t)$がBrown運動であるから
 		\begin{align}
 			[0,\infty) \ni t \longmapsto B_{t+h}(\omega) - B_h(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
 		\end{align}
 		が連続写像であることは明らかである．次に(ii)を確認する．任意の$t \geq 0$に対して
 		$B_{t+h}$は可測$\mathcal{F}_{t+h}^B/\borel{\R^N}$，$B_h$は可測$\mathcal{F}_h^B/\borel{\R^N}$であって，
 		$\mathcal{F}_{h}^B \subset \mathcal{F}_{t+h}^B$により$B_{t+h} - B_h$は可測$\mathcal{F}_{t+h}^B/\borel{\R^N}$
-		である．従って
+		である．つまり
 		\begin{align}
 			\left\{ \left. \left(B_{t+h} - B_h\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
-			\subset \mathcal{F}_{t+h}^B = \sigma(B_{u}\ :\ u \leq t+h)
+			\subset \mathcal{F}_{t+h}^B %= \sigma(B_{u}\ :\ u \leq t+h)
 		\end{align}
-		が成り立つ．明らかに
+		が成り立っているから
 		\begin{align}
 			\sigma(B_{u+h} - B_h\ :\ u \leq s)
-			= \bigvee_{u \leq s} \left\{ \left. \left(B_{u+h} - B_h\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
-			\subset \sigma(B_{u}\ :\ u \leq s+h)
+			\coloneqq \bigvee_{u \leq s} \left\{ \left. \left(B_{u+h} - B_h\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
+			\subset \mathcal{F}_{s+h}^B 
+			%= \sigma(B_{u}\ :\ u \leq s+h)
 		\end{align}
-		が成り立っている．従って任意の$A \in \borel{\R^N}$と$F \in \sigma(B_{u+h} - B_h\ :\ u \leq s) \subset \sigma(B_{u}\ :\ u \leq s+h)$
-		に対して
+		の関係がわかる．従って任意の$A \in \borel{\R^N}$と$F \in \sigma(B_{u+h} - B_h\ :\ u \leq s) \subset \mathcal{F}_{s+h}^B $
+		に対して，
 		\begin{align}
-			\operatorname{P}\left( \left\{ (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right\} \cap F \right)
-			&= \operatorname{P}\left( \left\{ B_{t+h} - B_{s+h} \in A \right\} \cap F \right) \\
-			&= \operatorname{P}\left( B_{t+h} - B_{s+h} \in A \right) \operatorname{P}(F) \\
-			&= \operatorname{P}\left( (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right) \operatorname{P}(F)
+			&\operatorname{P}\left( \left\{ (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right\} \cap F \right) \\
+			&\quad= \operatorname{P}\left( \left\{ B_{t+h} - B_{s+h} \in A \right\} \cap F \right) \\
+			&\quad= \operatorname{P}\left( B_{t+h} - B_{s+h} \in A \right) \operatorname{P}(F) & (\mbox{$B_{t+h} - B_{s+h}$と$\mathcal{F}_{s+h}^B$が独立}) \\
+			&\quad= \operatorname{P}\left( (B_{t+h} - B_h) - (B_{s+h} - B_h) \in A \right) \operatorname{P}(F)
 		\end{align}
 		となるから，任意の$0 \leq s < t$に対して$(B_{t+h} - B_h) - (B_{s+h} - B_h)$は$\sigma(B_{u+h} - B_h\ :\ u \leq s)$と独立であることが示された．
 		(iii)について，任意の$A \in \borel{\R^N}$に対して
@@ -226,7 +229,7 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		一般に$N$次元実確率変数$X = (X_1, \cdots, X_N)$の各成分も1次元実確率変数である．これは射影を考えればよい．
 		$B = (B_i(t))\ (i=1,\cdots,N)$が$N$次元Brown運動であるとする．
 		写像$pr_i : \R^N \longmapsto \R^1\ (i=1,\cdots,N)$を$i$射影とすると，
-		各$i=1,2,\cdots,N$について，任意の$0 \leq s < t$と$A \in \borel{\R^1}$に対して
+		各$i=1,2,\cdots,N$について，任意の$0 \leq s < t$と$A \in \borel{\R^1}$に対して，Fubiniの定理を適用し
 		\begin{align}
 			\operatorname{P}(B_i(t) - B_i(s) \in A) 
 			&= \operatorname{P}(pr_i \circ (B(t) - B(s)) \in A) \\
@@ -236,30 +239,33 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 				\ \prod_{j \neq i} \left(\frac{1}{\sqrt{2 \pi (t-s)}} \int_{\R^1} \mathrm{exp} \left( -\frac{x_j^2}{2(t-s)} \right)\, dx_j \right) \\
 			&= \frac{1}{\sqrt{2 \pi (t-s)}} \int_{A} \mathrm{exp} \left( -\frac{x_i^2}{2(t-s)} \right)\, dx_i 
 		\end{align}
-		が成り立つ．これはGauss型確率変数の定義より$B_i(t)\ (i=1,2,\cdots,N)$がそれぞれ平均0，分散$t-s$の1次元Gauss型確率変数であることを示している．
+		が成り立つ．これは$B_i(t)\ (i=1,2,\cdots,N)$がそれぞれ平均0，分散$t-s$の1次元Gauss型確率変数であることを示している．
 		代表として$(B_1(t))_{t \geq 0}$が1次元Brown運動であることを確認する．
 		写像$[0,\infty) \ni t \longmapsto B_1(t) \in \R^1$が連続写像であることは明らかである．
-		(ii)について，任意の$s$と$u \leq s$と$A \in \borel{\R^1}$ついて
+		(ii)について，
+		\begin{align}
+			\mathcal{F}_s^1 \coloneqq \bigvee_{u \leq s} \left\{ (B_1(u) \in A)\ \left|\ A \in \borel{\R^1} \right.\right\}
+		\end{align}
+		と$\mathcal{F}_s^1$を定義すれば，任意の$u \leq s$と$A \in \borel{\R^1}$ついて
 		\begin{align}
 			(B_1(u) \in A) = \left(B(u) \in pr_1^{-1}(A)\right), \quad pr_1^{-1}(A) \in \borel{\R^N}
 		\end{align}
-		であることに注意して
+		であることにより
 		\begin{align}
-			\mathcal{F}_s^1 \coloneqq \bigvee_{u \leq s} \left\{ (B_1(u) \in A)\ \left|\ A \in \borel{\R^1} \right.\right\}
-			\subset \bigvee_{u \leq s} \left\{ (B(u) \in E)\ \left|\ E \in \borel{\R^N} \right.\right\}
+			\mathcal{F}_s^1 \subset \bigvee_{u \leq s} \left\{ (B(u) \in E)\ \left|\ E \in \borel{\R^N} \right.\right\} = \mathcal{F}_s^B
 		\end{align}
-		と$\mathcal{F}_s^1$を定義する．任意の$0 \leq s < t$，$A \in \borel{\R^1}$と$F \in \mathcal{F}_s^1$に対して
+		が成り立つ．従って任意の$0 \leq s < t$，$A \in \borel{\R^1}$と$F \in \mathcal{F}_s^1$に対して
 		\begin{align}
 			\operatorname{P}(\{B_1(t) - B_1(s) \in A\} \cap F)
 			&= \operatorname{P}\left( \left\{ B(t) - B(s) \in pr_1^{-1}(A)\right\} \cap F\right) \\
 			&= \operatorname{P}\left( B(t) - B(s) \in pr_1^{-1}(A)\right) \operatorname{P}(F) \\
 			&= \operatorname{P}\left( B_1(t) - B_1(s) \in A\right) \operatorname{P}(F)
 		\end{align}
-		が成り立つ．これは任意の$0 \leq s < t$について$(B_1(t) - B_1(s))$が$\mathcal{F}_s^1$と独立であることを示している．
+		が成り立ち，任意の$0 \leq s < t$について$(B_1(t) - B_1(s))$が$\mathcal{F}_s^1$と独立であることが示される．
 		(iv)を確認する．任意の$A \in \borel{\R^1}$に対して$0 \in A \Leftrightarrow 0 \in pr_1^{-1}(A)$(両辺で
 		0の次元は違う)に注意すれば
 		\begin{align}
-			\operatorname{P}(B_1(0) \in A) = \operatorname{P}(B(0) \in pr_1^{-1}(A))
+			\operatorname{P}(B_1(0) \in A) = \operatorname{P}\left(B(0) \in pr_1^{-1}(A)\right)
 			= \begin{cases}
 				1 & 0 \in pr_1^{-1}(A) \\
 				0 & 0 \notin pr_1^{-1}(A)
@@ -271,7 +277,7 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\end{align}
 		が成り立つ．これは$B_1(0)$の分布と1次元Dirac分布$\delta_0$が$\borel{\R^1}$上で一致することを示す．
 		最後に$(B_i(t))_{i=1}^{N}$が独立な確率変数の族であることを示す．
-		$0 \leq i_1 < i_2 < \cdots < i_n \leq N$として任意に$n$個($n$も任意)の確率変数$(B_{i_j}(t))_{j=1}^{n}$を取る．
+		$0 \leq i_1 < i_2 < \cdots < i_n \leq N$として任意に$n$個($n$も任意)の確率変数$\left(B_{i_j}(t)\right)_{j=1}^{n}$を取る．
 		$F_{i_j} \in \mathcal{F}_t^{i_j}\ (j=1,2,\cdots,n)$を取れば，
 		各$F_{i_j}$は或る$A_{i_j} \in \borel{\R^1}$によって$F_{i_j} = \left(B_{i_j}(t) \in A_{i_j} \right)$と表現される
 		から，
