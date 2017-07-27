@@ -1,31 +1,8 @@
 
-以下に定義するBrown運動が存在する確率空間$(\Omega, \mathcal{F}, \operatorname{P})$を基礎に考える．
-
-\begin{dfn}[Brown運動の講義における定義(講義資料引用)]
-	$\mu$を$\R^N$上の分布(i.e.Borel確率測度)とする．確率空間$(\Omega, \mathcal{F}, \operatorname{P})$上の
-	$\R^N$-値確率過程$B = (B_t)_{t \geq 0}$で以下を満たすものを，初期分布$\mu$の$N$次元Brown運動という．とくに，
-	$\mu$が$x \in \R^N$のDirac測度$\delta_x$のとき，$B$は$x$から出発する$N$次元Brown運動と呼ばれる．
-	\begin{description}
-		\item[\rm{(i)}] 任意の$\omega \in \Omega$に対して，$[0,\infty) \ni t \longmapsto B_t(\omega) \in \R^N$は連続．
-		\item[\rm{(ii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathcal{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立．
-		\item[\rm{(iii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
-			である．ここで$I_N$は$N$次元単位行列を表す．
-		\item[\rm{(iv)}] $\operatorname{P}_{B_0} = \mu$.
-	\end{description}
-\end{dfn}
-
-\begin{dfn}[Gauss型確率変数(講義資料に沿って)]
-	$(\Omega, \mathcal{F}, \operatorname{P})$上の$\R^N$値確率変数$X$が
-	平均ベクトル0，共分散行列$(t-s)I_N$のGauss型確率変数とは，任意の$0 \leq s < t$と$E \in \borel{\R^N}$に対して
-	\begin{align}
-		\operatorname{P}(X \in E) = (2\pi (t-s))^{-\frac{N}{2}} \int_{E} \mathrm{exp}\left( -\frac{|x|^2}{2(t-s)} \right)\, dx
-	\end{align}
-	が成り立つことである．ここで記号$dx$は$N$次元Lebesgue測度による積分の記号を表し，
-	$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して$|x| = \sqrt{x_1^2 + \cdots + x_N^2}$とする．
-\end{dfn}
 
 \section{レポート課題その1}
 
+講義資料定義3.1に定義されるBrown運動が存在する確率空間$(\Omega, \mathcal{F}, \operatorname{P})$を基礎に考える．
 
 定理3.8のBrown運動の性質(1), (2), (3)を示せ．
 \begin{thm}[定理3.8]
@@ -35,10 +12,12 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		$O(N)$は$N$次直交行列全体で$Rx$はベクトル$x$に左から行列$R$をかけることいを意味する．
 	\item[(2)](スケール則)　任意の$c > 0$に対して$((1/\sqrt{c})B_{ct})$は原点から出発するBrown運動である．
 	\item[(3)] 任意の$h > 0$に対して$(B_{t+h} - B_h)$は原点から出発するBrown運動である．
+	\begin{comment}
 	\item[(4)] $B$の各座標が定める実数値確率過程を$B_i = (B_i(t))\ (i = 1,2,\cdots,N)$とすると，
 		$B_i\ (i=1,2,\cdots,N)$は独立な1次元Brown運動である．逆に，独立な1次元Brown運動
 		$B_i\ (i=1,2,\cdots,N)$が与えられたとき$B(t) = {}^t(B_1(t),\cdots,B_N(t))$とおくと
 		$(B(t))$は$N$次元Brown運動である．
+	\end{comment}
 \end{description}
 \end{thm}
 
@@ -76,9 +55,8 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 			= \bigvee_{u \leq s} \left\{(RB_u)^{-1}(E)\ \left|\ E \in \borel{\R^N} \right.\right\} 
 			= \sigma(RB_u\ :\ u \leq s)
 		\end{align}
-		が成り立つ．任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathcal{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立であるから，
-		任意の$A \in \borel{\R^N}$と$F \in \sigma(RB_u\ :\ u \leq s) = \sigma(B_u\ :\ u \leq s)$に対して，
-		$R^{-1}(A) \in \borel{\R^N}$に注意すれば
+		が任意の$s \geq 0$で成り立つ．任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathcal{F}_s^B = \sigma(B_u\ :\ u \leq s)$と独立であるから，
+		任意の$A \in \borel{\R^N}$と$F \in \sigma(RB_u\ :\ u \leq s) = \sigma(B_u\ :\ u \leq s)$に対して
 		\begin{align}
 			\operatorname{P}\left(\{RB_t - RB_s \in A\} \cap F \right) 
 			&= \operatorname{P}\left(\{R(B_t - B_s) \in A\} \cap F \right) \\
@@ -111,43 +89,39 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\end{align}
 		となり，$\operatorname{P}_{RB_0}$と$\delta_0$は$\borel{\R^N}$の上で一致する．
 	
-	\item[(2)] 講義資料定義3.1の番号(i)(ii)(iii)の順番に照合していく. $((1/\sqrt{c})B_{ct})$
+	\item[(2)] 講義資料定義3.1の番号(i)(ii)(iii)の順番に照合していく. その前に，$((1/\sqrt{c})B_{ct})$
 		が確率空間$(\Omega, \mathcal{F}, \operatorname{P})$上の確率過程となっていることは，$(1/\sqrt{c})I_N$\ ($I_N$は$N$次単位行列)が
 		$\R^N \rightarrow \R^N$の連続写像であることと(1)の証明から確認できる．
-		(i)について，
-		これも連続写像の合成
-		\begin{align}
-			[0,\infty) \ni t \longmapsto ct \longmapsto \tfrac{1}{\sqrt{c}} B_{ct}(\omega) \in \R^N, \quad(\forall \omega \in \Omega)
-		\end{align}
-		と見做せばよい．(ii)について，写像$\R^N \ni x \longmapsto x/\sqrt{c} \in \R^N$は
+		(i)について，$[0,\infty) \ni t \longmapsto B_{ct}(\omega) \in \R^N, \quad(\forall \omega \in \Omega)$
+		が連続であるから$[0,\infty) \ni t \longmapsto (1/\sqrt{c}) B_{ct}(\omega) \in \R^N, \quad(\forall \omega \in \Omega)$の連続性も明らかである．(ii)について，写像$\R^N \ni x \longmapsto x/\sqrt{c} \in \R^N$は
 		$\R^N \rightarrow \R^N$の連続な全単射であり，明らかに逆写像$\R^N \ni x \longmapsto \sqrt{c}x \in \R^N$もまた
 		連続な全単射である．従って任意の$A \in \borel{\R^N}$に対して
 		\begin{align}
-			\tfrac{1}{\sqrt{c}} A \coloneqq \left\{\left. x/\sqrt{c}\ \right|\ x \in A \right\} \in \borel{\R^N}, \quad
+			\tfrac{1}{\sqrt{c}} A \coloneqq \left\{\left. \tfrac{1}{\sqrt{c}}x\ \right|\ x \in A \right\} \in \borel{\R^N}, \quad
 			\sqrt{c} A \coloneqq \left\{\left. \sqrt{c}x\ \right|\ x \in A \right\} \in \borel{\R^N}
 		\end{align}
-		が成り立つから，任意の$t \geq 0$に対して
+		が成り立つ．よって任意の$t \geq 0$に対して
 		\begin{align}
 			\left\{\left. \left(\tfrac{1}{\sqrt{c}}B_{ct}\right)^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
 			= \left\{\left. B_{ct}^{-1}(A)\ \right|\ A \in \borel{\R^N} \right\}
 		\end{align}
-		が成り立つ．即ち任意の$s \geq 0$に対して
+		が成り立つから，任意の$s \geq 0$に対して
 		\begin{align}
 			\sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right)
 			\coloneqq \bigvee_{u \leq s} \left\{ \left(\tfrac{1}{\sqrt{c}}B_{cu}\right)^{-1}(A)\ \left|\ A \in \borel{\R^N} \right.\right\}
 			= \bigvee_{u \leq s} \left\{ B_{cu}^{-1}(A)\ \left|\ A \in \borel{\R^N} \right.\right\}
 			= \sigma(B_{cu}\ :\ u \leq s)
 		\end{align}
-		となっていて，さらに設問の仮定により任意の$0 \leq s < t$に対して$B_{ct} - B_{cs}$は$\sigma(B_{cu}\ :\ u \leq s)$と独立である．
-		以上より，任意の$A \in \borel{\R^N}$と$F \in \sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right) = \sigma(B_{cu}\ :\ u \leq s)$に対して
+		となり，任意の$0 \leq s < t$に対して$B_{ct} - B_{cs}$は$\sigma(B_{cu}\ :\ u \leq s)$と独立であるから，
+		任意の$A \in \borel{\R^N}$と$F \in \sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right) = \sigma(B_{cu}\ :\ u \leq s)$に対して
 		\begin{align}
 			\operatorname{P}\left( \left\{ \tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs} \in A \right\} \cap F \right)
 			&= \operatorname{P}\left( \left\{ B_{ct} - B_{cs} \in \sqrt{c}A \right\} \cap F \right) \\
 			&= \operatorname{P}\left(B_{ct} - B_{cs} \in \sqrt{c}A \right)  \operatorname{P}(F) \\
 			&= \operatorname{P}\left(\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs} \in A \right)  \operatorname{P}(F)
 		\end{align}
-		が成り立つから，任意の$0 \leq s < t$に対して$\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs}$は
-		$\sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right)$と独立であると示された．
+		が成り立つ．これは任意の$0 \leq s < t$に対して$\tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs}$が
+		$\sigma\left(\tfrac{1}{\sqrt{c}}B_{cu}\ :\ u \leq s\right)$と独立であることを示す．
 		(iii)について，これもヤコビアンが$\left(\sqrt{c}\right)^{N}$になることに注意すれば
 		\begin{align}
 			\operatorname{P}\left( \tfrac{1}{\sqrt{c}}B_{ct} - \tfrac{1}{\sqrt{c}}B_{cs} \in A \right)
@@ -225,6 +199,7 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		となり，$Y_0$の分布は$\borel{\R^N}$上で$\delta_0$に一致する．
 		\QED
 	
+	\begin{comment}
 	\item[(4)] 
 		一般に$N$次元実確率変数$X = (X_1, \cdots, X_N)$の各成分も1次元実確率変数である．これは射影を考えればよい．
 		$B = (B_i(t))\ (i=1,\cdots,N)$が$N$次元Brown運動であるとする．
@@ -290,5 +265,6 @@ $B = (B_t)$を原点から出発する$N$-次元Brown運動とするとき，い
 		\end{align}
 		によって$(B_i(t))_{i=1}^{N}$の独立性が示された．
 		次に
+	\end{comment}
 \end{description}
 \end{prf}
