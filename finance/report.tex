@@ -1,7 +1,7 @@
 \section{CRR}
-問題の仮定
+\begin{asm}[問題の仮定]\mbox{}
 \begin{itemize}
-	\item 以下$\R_+ \coloneqq (0, +\infty)$として考える．
+	\item 以下$\R_+ \coloneqq (0, +\infty)$として考える．(位相はEuclid距離で構成する$\R$の位相の相対位相を考える．) 
 	\item 確率空間$(\Omega, \mathscr{F}, \operatorname{P})$,
 	\item 時点列$\mathbb{T} \coloneqq \{0, 1, 2, \cdots, T\} \ (T \in \N)$,
 	\item 安全資産の各期の利率は$r \in \R$で固定．安全資産過程$(B_t)_{t \in \mathbb{T}}$は
@@ -15,7 +15,7 @@
 		\begin{align}
 			R_t = \frac{S_t - S_{t-1}}{S_{t-1}}.
 		\end{align}
-		そして$(R_t)_{t=1}^{T}$は$u$または$l$に値を取る独立同分布に従う確率変数の族であると仮定する:
+		$(R_t)_{t=1}^{T}$は$u$または$l$に値を取る独立な確率変数の族で，全て同分布
 		\begin{align}
 			\begin{cases}
 				\prob{R_t = u} = p, \\
@@ -23,10 +23,11 @@
 			\end{cases}
 			\quad(-\infty < l < u < +\infty,\ \ 0 \leq p \leq 1).
 		\end{align}
+		に従うと仮定する．
 \end{itemize}
+\end{asm}
 
-株価過程$(S_t)_{t \in \mathbb{T}}$について，$S_0(\omega) > 0\ (\forall \omega \in \Omega)$として考える．
-各時点$t$の株価$S_t$はリターンを用いて
+株価過程$(S_t)_{t \in \mathbb{T}}$について，各時点$t$の株価$S_t$はリターンを用いて
 \begin{align}
 	S_t = S_0 (1 + R_1)(1 + R_2)\cdots(1 + R_t), \quad (\forall t \in \mathbb{T})
 \end{align}
@@ -68,14 +69,129 @@
 \end{prf}
 
 \begin{asm}[フィルトレーション]
-	今考えている確率空間$(\Omega, \mathscr{F}, \operatorname{P})$にフィルトレーションとして，
+	今考えている確率空間$(\Omega, \mathscr{F}, \operatorname{P})$に，フィルトレーションとして
 	株価過程$(S_t)_{t \in \mathbb{T}}$から生成される$\sigma$-加法族の系$(\mathscr{F}_t^S)_{t \in \mathbb{T}}$を採用する．
 	命題に書いたとおり$\mathscr{F}_0^S = \{\emptyset,\ \Omega\}$であって，$R_t$は$\mathscr{F}_{t-1}^S$と独立$(t = 1,2,\cdots,T)$である．
 \end{asm}
 
 \begin{dfn}[割引過程]
-	任意の時点$t \in \mathbb{T}$において，$B_t = (1 + r)^t$と表せる．
+	任意の時点$t \in \mathbb{T}$において，$B_t = (1 + r)^t$と表せる．$S_t$を$B_t$で割ったものを
+	\begin{align}
+		\tilde{S}_t = \frac{S_t}{B_t}, \quad (\forall t \in \mathbb{T})
+	\end{align}
+	で表現する．
 \end{dfn}
+
+\begin{dfn}[リスク中立]
+	資産過程がリスク中立的であるということを
+	割引過程$\left(\tilde{S}_t\right)_{t \geq 0}$が$(\mathscr{F}_t^S)$-マルチンゲールとなっていることで定義する．
+	割引資産過程$\left(\tilde{G}_t(\xi)\right)_{t \geq 0}$も$(\mathscr{F}_t^S)$-マルチンゲールとなっていることに注意する．
+\end{dfn}
+
+\begin{prp}[リスク中立的であることの同値条件]
+	$l < r < u$が成り立っている下で，以下に羅列する事柄は全て同値である．
+	\begin{description}
+		\item[(1)] 割引過程$\left(\tilde{S}_t\right)_{t \geq 0}$は$(\mathscr{F}_t^S)$-マルチンゲールである．
+		\item[(2)] $p = (r - l)/(u - l)$である．
+		\item[(3)] 各時点$t = 1,2,\cdots,T$において
+			\begin{align}
+				\cexp{\frac{S_t - S_{t-1}}{S_{t-1}}}{\mathscr{F}_{t-1}^S} = r \quad a.s.
+			\end{align}
+			が成り立っている．
+	\end{description}
+\end{prp}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1) $\Leftrightarrow$ (2)]
+		定義より
+		\begin{align}
+			\frac{S_t}{S_{t-1}} = 1 + R_t \quad (t = 1,2,\cdots,T)
+		\end{align}
+		であるから，左辺の株価を割引けば
+		\begin{align}
+			\frac{\tilde{S}_t}{\tilde{S}_{t-1}} = \frac{1 + R_t}{1 + r} \quad (t = 1,2,\cdots,T)
+		\end{align}
+		が成り立つ．このことに注意して(1)の主張を書き下せば
+		\begin{align}
+			\cexp{\tilde{S}_t}{\mathscr{F}_{t-1}^S} 
+			&= \cexp{\tilde{S}_t - \tilde{S}_{t-1} + \tilde{S}_{t-1}}{\mathscr{F}_{t-1}^S} \\
+			&= \cexp{\tilde{S}_t - \tilde{S}_{t-1}}{\mathscr{F}_{t-1}^S} + \tilde{S}_{t-1} \\
+			&= \cexp{\frac{1 + R_t}{1 + r} - 1}{\mathscr{F}_{t-1}^S} + \tilde{S}_{t-1} \\
+			&= \Exp{\frac{1 + R_t}{1 + r} - 1}{}{} + \tilde{S}_{t-1} & (\because \mbox{独立性}) \\
+			&= p\left(\frac{1 + u}{1 + r} - 1\right) + (1-p)\left(\frac{1 + l}{1 + r} - 1\right) + \tilde{S}_{t-1} \\
+			&= \frac{pu + (1-p)l - r}{1+r} + \tilde{S}_{t-1} \quad a.s.
+		\end{align}
+		が成り立つ．従って割引過程がマルチンゲールとなる必要十分条件は
+		\begin{align}
+			p = \frac{r-l}{u-l}
+		\end{align}
+		となることである．
+	\item[(1) $\Leftrightarrow$ (3)]
+		(1)の主張により
+		\begin{align}
+			\cexp{\frac{\tilde{S}_t}{\tilde{S}_{t-1}}}{\mathscr{F}_{t-1}^S} = 1 \quad a.s. \quad (\forall t = 1,2,\cdots,T),
+		\end{align}
+		が成り立っている．割引く前の株価に直せば
+		\begin{align}
+			\cexp{\frac{S_t}{S_{t-1}}}{\mathscr{F}_{t-1}^S} = 1 + r \quad a.s. \quad (\forall t = 1,2,\cdots,T),
+		\end{align}
+		が成り立つから(3)が示される．逆に(3)が成り立っているなら，上の操作の逆をたどれば(1)が示される．
+		\QED
+\end{description}
+\end{prf}
+
+与えられた確率測度$\operatorname{P}$の下でいつでも資産過程がリスク中立的であるとは限らないが，或る条件さえ満たされていれば
+$\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\operatorname{Q}$の下で資産過程はリスク中立的となる．
+この確率測度$\operatorname{Q}$をリスク中立確率測度という．
+
+\begin{prp}[リスク中立確率測度]
+	$l < r < u$かつ$0 < p < 1$が成り立っているならば，与えられた確率測度$\operatorname{P}$
+	に同値な確率測度$\operatorname{Q}$を構成でき，$\operatorname{Q}$の下で資産過程はリスク中立的となる．
+	この確率測度$\operatorname{Q}$をリスク中立確率測度という．
+\end{prp}
+
+\begin{prf}
+	\begin{align}
+		q \coloneqq \frac{r - l}{u - l}
+	\end{align}
+	とおき，$\Omega$上の可測$\mathscr{F}/\borel{\R}$関数として
+	\begin{align}
+		Z_t(\omega) \coloneqq \frac{q}{p}\defunc_{(R_t = u)}(\omega) + \frac{1-q}{1-p}\defunc_{(R_t = l)}(\omega), 
+		\quad (\forall t \in \mathbb{T},\ \omega \in \Omega) 
+	\end{align}
+	を定義する．$(R_t)_{t \in \mathbb{T}\backslash \{0\}}$が独立な確率変数の系であるから，
+	そのある種関数の形で表されている$(Z_t)_{t \in \mathbb{T}\backslash \{0\}}$も独立な確率変数の系である．
+	さらに
+	\begin{align}
+		Z(\omega) \coloneqq \prod_{t = 1}^{T} Z_t(\omega),\quad (\forall \omega \in \Omega)
+	\end{align}
+	として確率変数$Z$を定義し，さらに$Z$により構成される$\mathscr{F}$上の集合関数を
+	\begin{align}
+		\operatorname{Q}(A) \coloneqq \int_{A} Z(\omega)\, \prob{d\omega}, \quad (\forall A \in \mathscr{F})
+	\end{align}
+	として定義する．独立性により
+	\begin{align}
+		\operatorname{Q}(\Omega) = \int_{\Omega} Z(\omega)\, \prob{d\omega}
+		= \prod_{t=1}^{T} \int_{\Omega} Z_t(\omega)\, \prob{d\omega}
+		= \prod_{t=1}^{T} \left( \frac{q}{p}\prob{R_t = u} + \frac{1-q}{1-p}\prob{R_t = l} \right)
+		= 1
+	\end{align}
+	が成り立ち，非負関数$Z$の可積分性が判る．従って$\operatorname{Q}$は$\operatorname{P}$に関して絶対連続な集合関数であり，
+	定義より明らかに非負値で$\mathscr{F}$の上で完全加法的である(Radon-Nikodymの定理によれば$Z$は$\operatorname{Q}$
+	の密度関数である)．$\Omega$上の積分が1で或ることも合わせれば，
+	$\operatorname{Q}$は可測空間$(\Omega, \mathscr{F})$上の確率測度である．さらに任意の$t \in \{1,2,\cdots,T\}$に対して
+	\begin{align}
+		\operatorname{Q}(R_t = u) &= \int_{(R_t=u)} Z(\omega)\, \prob{d\omega} \\
+		&= \int_{\Omega} \defunc_{(R_t = u)} Z(\omega)\, \prob{d\omega} \\
+		&= \int_{\Omega} \defunc_{(R_t = u)} Z_t(\omega)\, \prob{d\omega}\ \prod_{s \neq t} \int_{\Omega} Z_s(\omega)\, \prob{d\omega} \\
+		&= \frac{q}{p}\prob{R_t = u} \\
+		&= q
+	\end{align}
+	が成り立つ．同様にして$\operatorname{Q}(R_t = l) = 1-q$も成立する．つまり$\operatorname{Q}$は
+	前命題の条件(2)を満たし，その同値条件により資産過程は確率測度$\operatorname{Q}$の下でリスク中立的となる．
+	\QED
+\end{prf}
 
 \newpage
 1.\ $\mathbb{T} \coloneqq \{0, 1, \cdots,T\}\ (T \in \N)$を時刻を表す集合とする．安全運用過程
