@@ -259,14 +259,37 @@ $X$上の掛け算作用素$M_a$を次で定める：
 	D(M_a) = \{u \in X\, |\, au \in X\}, \quad (M_au)(x) = a(x)u(x)\ (x \in S).
 \end{align}
 \begin{description}
-	\item[(1)]
+	\item[(1)] $D(M_a)$が$X$で稠密であることを示せ．
 	\item[(2)] $a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$ならば$M_a \in B(X)$であり，$\Norm{M_a}{} = \Norm{a}{\Lp{\infty}{\mu}}$が成り立つことを示せ．
 	\item[(3)] 逆に$M_a \in B(X)$ならば$a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$であることを示せ．
 \end{description}
 
 \begin{prf}
 \begin{description}\mbox{}
-	\item[(1)] 
+	\item[(1)] 任意の$v \in X$に対して
+		$v_n \coloneqq vI_{(|a| \leq n)}\ (n=1,2,3,\cdots)$として関数列$(v_n)_{n=1}^{\infty}$を作る．$I_{(|a| \leq n)}$は定義関数で
+		$|a(x)| \leq n$となる$x \in S$の上で1，その外では0となる．全ての$x \in S$で$|v_n(x)| \leq |v(x)|$となるから
+		$(v_n)_{n \in \N} \subset X$である．さらに$(v_n)_{n \in \N} \subset D(M_a)$でもあることが示される．全ての$n \in \N$について
+		\begin{align}
+			\int_{S} |a(x)v_n(x)|^2 \mu(dx) = \int_{(|a| \leq n)} |a(x)v(x)|^2 \mu(dx) \leq n^2  \int_{S} |v(x)|^2 \mu(dx)
+		\end{align}
+		が成り立つからである．$X$のノルムを$\Norm{\cdot}{\Lp{2}{\mu}}$で表せば
+		\begin{align}
+			\Norm{v - v_n}{\Lp{2}{\mu}}^2 = \int_{S} |v(x) - v_n(x)|^2\, \mu(dx) = \int_{S} I_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
+			\label{eq:func_report_Q9_1}
+		\end{align}
+		が成り立つ．$a$は$\C$値であるから，各点$x \in S$で$\lim_{n \to +\infty} I_{(|a| > n)}(x) = 0$が成り立つ．
+		式(\refeq{eq:func_report_Q9_1})の右辺の被積分関数は$n$に関係なく可積分関数$|v|^2$で抑えられ各点で$n \to +\infty$で$0$に収束
+		するから，Lebesgueの収束定理を適用すれば
+		\begin{align}
+			\lim_{n \to +\infty} \Norm{v - v_n}{\Lp{2}{\mu}}^2 
+			= \lim_{n \to +\infty} \int_{S} I_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
+			= \int_{S} \lim_{n \to +\infty} I_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
+			= 0
+		\end{align}
+		が成立する．これは$X = \left(X,\ \Norm{\cdot}{\Lp{2}{\mu}}\right)$において$v$の任意の近傍に$D(M_a)$の元$v_n$が存在することを表していて，
+		$v$は任意に選んでいたから$D(M_a)$は$X$で稠密であると示された．
+		
 	\item[(2)] $a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$ならば，$\Norm{\cdot}{\Lp{\infty}{\mu}}$の定義より
 		\begin{align}
 			\Norm{a}{\Lp{\infty}{\mu}} = \inf{}{\left\{b \in [0, +\infty)\ |\ \mu(x \in S\ |\ |a(x)| > b) = 0 \right\}} < +\infty

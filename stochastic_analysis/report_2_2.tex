@@ -1,52 +1,6 @@
 \section{レポート課題その2}
 
-勝手で申し訳ございませんが，レポート問題ではなくても問題を解く際に必要になる部分をメモとしてここに載せることにいたします．
-\begin{dfn}[$(\mathcal{F}_t)$-Brown運動(講義資料引用)]
-	$\mu$を$\R^N$上の分布(i.e.Borel確率測度)とする．フィルター付き確率空間$(\Omega, \mathcal{F}, \operatorname{P}, (\mathcal{F}_t))$上の
-	$(\mathcal{F}_t)$-適合$\R^N$-値確率過程$B = (B_t)_{t \geq 0}$で以下をみたすものを，初期分布$\mu$の$N$次元$(\mathcal{F}_t)$-Brown運動という．
-	とくに，$\mu$が$x \in \R^N$のDirac測度$\delta_x$のとき，$B$は$x$から出発する$(\mathcal{F}_t)$-Brown運動と呼ばれる．
-	\begin{description}
-		\item[\rm{(i)}] 任意の$\omega \in \Omega$に対して，$[0,\infty) \ni t \longmapsto B_t(\omega) \in \R^N$は連続．
-		\item[\rm{(ii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は$\mathcal{F}_s$と独立．
-		\item[\rm{(iii)}] 任意の$0 \leq s < t$に対して$B_t - B_s$は平均ベクトル0，共分散行列$(t-s)I_N$の$N$次元Gauss型確率変数
-			である．ここで$I_N$は$N$次元単位行列を表す．
-		\item[\rm{(iv)}] $\operatorname{P}_{B_0} = \mu$.
-	\end{description}
-\end{dfn}
-
-\begin{thm}[命題3.9'\ :\ 命題3.9を点$x$出発の$(\mathcal{F}_t)$-Brown運動で考えたもの]
-$B = (B_t)$を点$x \in \R^1$から出発する1次元$(\mathcal{F}_t)$-Brown運動とするとき，以下の事実を確かめることができる．
-\begin{description}
-	\item[(1)] $s,t \geq 0$に対して$\Exp{B(t)B(s)} = t \wedge s + x^2$．
-	\item[(2)] $t \geq 0$と正整数$n$に対して
-		\begin{align}
-			\Exp{(B(t)-B(0))^n} = \begin{cases} 
-				0 & \mbox{$n$が奇数} \\ 
-				(n-1)!!t^{n/2} & \mbox{$n$が偶数} 
-			\end{cases},
-		\end{align}
-		ただし$(2n-1)!! = (2n - 1)(2n - 3)\cdots3 \cdot 1$．
-	\item[(3)] 
-\end{description}
-\end{thm}
-
-\begin{prf}
-\begin{description}\mbox{}
-	\item[(1)] 
-		$t = s = 0$の場合，
-		\begin{align}
-			\Exp{B(0)^2} = x^2.
-		\end{align}
-		$t = s > 0$の場合，
-		\begin{align}
-			\Exp{B(t)^2} = \Exp{(B(t) - B(0) + B(0))^2} = \Exp{(B(t) - B(0))^2} + 2\Exp{(B(t) - B(0))B(0)} + \Exp{B(0)^2} = t + x^2.
-		\end{align}
-		$t > s \geq 0$の場合，
-		\begin{align}
-			\Exp{B(t)B(s)} = \Exp{(B(t) - B(s) + B(s))B(s)} = \Exp{(B(t) - B(s))B(s)} + \Exp{B(s)^2} = \Exp{B(s)^2} =  s + x^2.
-		\end{align}
-\end{description}
-\end{prf}
+講義資料定義3.12に定義されるBrown運動が存在する確率空間$(\Omega, \mathcal{F}, \operatorname{P})$を基礎に考える．
 
 $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt{x_1^2 + \cdots + x_N^2}$
 でEuclidのノルムを定義する．$B^x = \left(B^x(t)\right)_{t \geq 0}$を$x$から出発する$N$-次元$(\mathcal{F}_t)$-Brown運動
@@ -55,15 +9,17 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 	\item[(1)] $|B_x|^2 = \left(\left|B^x(t)\right|^2\right)_{t \geq 0}$はクラス(DL)に属するSbMGであることを示し，
 		そのDoob-Meyer分解を求めよ．
 	\item[(2)] 任意の$t \geq 0$に対して$\Exp{|B^x(\sigma \wedge t)|^2} = N\Exp{\sigma \wedge t} + |x|^2$が成り立つことを示せ．
-	\item[(3)]
+	\item[(3)] $D$を$\R^N$の有界領域とし，$x \in D$とする．$\sigma_D$を領域$D$からの脱出時間
+		$\sigma_D = \inf{}{\{ t > 0\ :\ B^x(t) \in \R^N \backslash D \}}$とするとき，$\prob{\sigma_D < \infty} = 1$が成り立つことを示せ．
 \end{description}
 
 \begin{prf}
 \begin{description}\mbox{}
-	\item[(1)] 命題3.9により$B_i^{x_i}\ (i = 1,2,\cdots,N)$が$(\mathcal{F}_t)$-マルチンゲールであるとわかっているから，
+	\item[(1)] 講義資料命題3.9(3)は講義資料定義3.12で定義される$x$出発の$(\mathcal{F}_t)$-Brown運動についても成り立つ．
+		よって$B_i^{x_i}\ (i = 1,2,\cdots,N)$が$(\mathcal{F}_t)$-マルチンゲールであるから，
 		凸関数$|\cdot|^2$で変換することにより$\left|B_i^{x_i}\right|^2\ (i = 1,2,\cdots,N)$は$(\mathcal{F}_t)$-劣マルチンゲール
-		である．従ってその有限和で表される$|B^x|^2 = \left(\left|B^x(t)\right|^2\right)_{t \geq 0}$も
-		$(\mathcal{F}_t)$-劣マルチンゲールである．実際，$B_i^{x_i}\ (i = 1,2,\cdots,N)$が$(\mathcal{F}_t)$-適合過程で命題3.9より任意の$t \geq 0$
+		となる．従ってその有限和で表される$|B^x|^2 = \left(\left|B^x(t)\right|^2\right)_{t \geq 0}$も
+		$(\mathcal{F}_t)$-劣マルチンゲールである．実際，$B_i^{x_i}\ (i = 1,2,\cdots,N)$が$(\mathcal{F}_t)$-適合過程で任意の$t \geq 0$
 		で二乗可積分であることから，$|B^x|^2$についても$(\mathcal{F}_t)$-適合で任意の$t \geq 0$で可積分であることが従い，
 		また任意の$0 \leq s < t$に対して$A \in \mathcal{F}_s$を任意に取れば
 		\begin{align}
@@ -73,7 +29,7 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 			= \int_{A} |B^x(s,\omega)|^2\, \prob{d\omega} 
 		\end{align}
 		が成り立つから$|B^x|^2$が$(\mathcal{F}_t)$-劣マルチンゲールであると判る．次に$|B^x|^2$がクラス(DL)に属することを示す．
-		任意に$a > 0$を固定する．講義資料に倣い$\bf{S}_a$を$\sigma(\omega) \leq a\ (\forall \omega \in \Omega)$
+		任意に$a > 0$を固定する．講義資料に倣い$\bf{S}_a$が$\sigma(\omega) \leq a\ (\forall \omega \in \Omega)$
 		を満たす$(\Omega, \mathcal{F}, \operatorname{P}, (\mathcal{F}_t)_{t \geq 0})$上の停止時刻$\sigma$全体を表すとする．
 		任意抽出定理(講義資料定理2.21)を適用すれば，任意の$\sigma \in \bf{S}_a$と$c > 0$に対して
 		\begin{align}
@@ -84,14 +40,16 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 		\begin{align}
 			\prob{|B^x(\sigma)|^2 \geq c} \leq \frac{1}{c} \int_{\Omega} |B^x(a, \omega)|^2\, \prob{d\omega} \label{eq:stoc_report_Q2}
 		\end{align}
-		も成り立ち，右辺が可積分であるから$\sigma$によらずに$c$の値のみで右辺をいくらでも小さくできる．可積分関数$|B^x(\sigma)|^2$について，
+		も成り立つ．右辺の可積分関数$|B^x(a)|^2$について，
 		任意の$\epsilon > 0$に対して或る$\delta > 0$が存在し，$\prob{A} < \delta$なる任意の$A \in \mathcal{F}$上での積分は$< \epsilon$となる．
 		従って(\refeq{eq:stoc_report_Q2})の右辺を$ < \delta$となるような$c > 0$を選べば，全ての$c' > c$に対して
 		\begin{align}
 			\sup{\sigma \in \bf{S}_a}{\int_{|B^x(\sigma)|^2 \geq c'} |B^x(\sigma(\omega), \omega)|^2\, \prob{d\omega}} < \epsilon
 		\end{align}
 		が成り立つ．これは確率変数の族$\left(|B^x(\sigma)|^2\right)_{\sigma \in \bf{S}_a}$が一様可積分であることを表している．
-		最後に$|B^x(\sigma)|^2$のDoob-Meyer分解を求める．命題3.9により$\left(|B_i^{x_i}(t)|^2 - t\right)_{t \geq 0}$が
+		$a$は任意であったから$|B^x|^2$がクラス(DL)に属することが示された．
+		最後に$|B^x|^2$のDoob-Meyer分解を求める．命題3.9(3)により($(\mathcal{F}_t)$-Brown運動でも成り立つ)
+		$\left(|B_i^{x_i}(t)|^2 - t\right)_{t \geq 0}$が
 		$(\mathcal{F}_t)$-マルチンゲールであるとわかっているから，$\left(|B^x(t)|^2 - Nt\right)_{t \geq 0}$もまた
 		$(\mathcal{F}_t)$-マルチンゲールである．実際，$(\mathcal{F}_t)$-適合であることと可積分性は上に書いた理由で問題なく，
 		任意の$0 \leq s < t$と$A \in \mathcal{F}_s$に対して
@@ -102,24 +60,25 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 			&= \sum_{i=1}^{N} \int_{A} |B_i^{x_i}(s,\omega)|^2 - s\, \prob{d\omega} \\
 			&= \int_{A} |B^x(s, \omega)|^2 - Ns\, \prob{d\omega} 
 		\end{align}
-		も成り立つと確認された．これが求めるDoob-Meyer分解になっていることを確認する．講義資料の定理2.25に則れば，
+		も成り立つ．これが求めるDoob-Meyer分解になっていることを確認する．講義資料の定理2.25に則れば，
 		まず$\left(|B^x(t)|^2\right)_{t \geq 0}$がクラス(DL)に属している$(\mathcal{F}_t)$-劣マルチンゲールであり
 		$\left(|B^x(t)|^2 - Nt\right)_{t \geq 0}$は$(\mathcal{F}_t)$-マルチンゲールであるから，
-		あとは$(Nt)_{t \geq 0}$が予測可能な可積分増加過程であれば良い．
-		$Nt$は明らかに左連続であって，更に$(\mathcal{F}_t)$-適合過程の差で表現できるから$(\mathcal{F}_t)$-適合過程で，
-		従ってこれは予測可能である．また$\omega \in \Omega$に無関係に$N 0 = 0$，
+		あとは$(Nt)_{t \geq 0}$が予測可能な可積分増加過程であることをいえば良い．
+		$Nt$は明らかに左連続，更に各$t$ごとに$\omega \in \Omega$の関数としては定数関数であるから$(\mathcal{F}_t)$-適合過程であり，
+		よって予測可能である．また$\omega \in \Omega$に無関係に$N 0 = 0$，
 		$Nt$は$t$の右連続な単調増加関数であって，全ての$t \geq 0$で$\Exp{Nt} = Nt < +\infty$が成り立っていることにより，これは可積分増加過程でもある．
-		\QED
 	
-	\item[(2)] 一般にマルチンゲールを停止時間で停めた過程もまたマルチンゲールとなることをいえばよい．
-		フィルター付き確率空間$(\Omega, \mathcal{F}, \operatorname{P}, (\mathcal{F}_t))$上の$\R^1$値確率過程$(X_t)_{t \geq 0}$
+	\item[(2)] 一般に連続マルチンゲールを停止時間で停めた過程もまたマルチンゲールとなることをいえばよい．
+		フィルター付き確率空間$(\Omega, \mathcal{F}, \operatorname{P}, (\mathcal{F}_t))$上の$\R^1$値連続確率過程$(X_t)_{t \geq 0}$
 		が$(\mathcal{F}_t)$マルチンゲールであるとする．この確率空間上の停止時間$\sigma$を任意に取り$(X_{\sigma \wedge t})_{t \geq 0}$を考える．
 		$(x_t)_{t \geq 0}$が連続で$(\mathcal{F}_t)$-適合であることから$(\mathcal{F}_t)$-発展的可測となり，講義資料命題2.20により
-		全ての$t$で$X_{\sigma \wedge t}$は可測$\mathcal{F}_{\sigma \wedge t}/\borel{\R^1}$となる．$\mathcal{F}_{\sigma \wedge t}
-		\subset \mathcal{F}_t$により$(X_{\sigma \wedge t})_{t \geq 0}$もまた$(\mathcal{F}_t)$-適合であると判る．
-		全ての$t$で$X_{\sigma \wedge t}$が可積分となることは，任意抽出定理(講義資料定理2.21)により
+		全ての$t$で$X_{\sigma \wedge t}\ \left(= X_{\sigma \wedge t}I_{(\sigma \wedge t < +\infty)}\right)$
+		は可測$\mathcal{F}_{\sigma \wedge t}/\borel{\R^1}$となる．$\mathcal{F}_{\sigma \wedge t}
+		\subset \mathcal{F}_t$により$(X_{\sigma \wedge t})_{t \geq 0}$もまた$(\mathcal{F}_t)$-適合かつ連続であると判る．
+		全ての$t$で$X_{\sigma \wedge t}$が可積分となることは，$(|X_t|)_{t \geq 0}$が$(\mathcal{F}_t)$-劣マルチンゲールであることと
+		任意抽出定理(講義資料定理2.21)により
 		\begin{align}
-			\Exp{X_t\ |\ \mathcal{F}_{\sigma \wedge t}} = X_{\sigma \wedge t}, \quad a.s.
+			\Exp{|X_t|\ |\ \mathcal{F}_{\sigma \wedge t}} \geq |X_{\sigma \wedge t}|, \quad a.s.
 		\end{align}
 		となることより従う．マルチンゲール性の三つ目の性質が満たされるかを確認する．
 		任意の時間$0 \leq s < t$に対して$A \in \mathcal{F}_s$を任意に取る．このとき
@@ -161,13 +120,51 @@ $N$を正整数，$x = {}^t(x_1,\cdots,x_N) \in \R^N$に対して，$|x| = \sqrt
 			= \sum_{i=1}^{N} x_i^2
 			= |x|^2
 		\end{align}
-		が成り立つ．右辺の変形は上に乗せた命題3.9'の(1)による．左辺の被積分関数はどちらも可積分関数であるから，以上で任意の$t \geq 0$に対して
+		が成り立つ．右辺の変形は命題3.9の(1)による(点$x$出発なので$x_i^2$となる)．左辺の被積分関数はどちらも可積分関数であるから，以上で任意の$t \geq 0$に対して
 		\begin{align}
 			\Exp{|B^x(\sigma \wedge t)|^2} = N\Exp{\sigma \wedge t} + |x|^2
 		\end{align}
 		が成り立つことが示された．
 		
-	\item[(3)] 講義資料定義2.8により$\sigma_D$は広義停止時間であるが，同資料仮定2.11によりフィルトレーションは右連続であるから，命題2.7により
-		$\sigma_D$は停止時間として扱うことができる．
+	\item[(3)] 講義資料定義2.8と定理2.9により$\sigma_D$は広義停止時間であるが，同資料仮定2.11によりフィルトレーションは右連続であるから，命題2.7により
+		$\sigma_D$は$(\mathcal{F}_t)$-停止時間として扱うことができる．
+		(2)の結果により任意の$t \geq 0$に対して
+		\begin{align}
+			\Exp{|B^x(\sigma_D \wedge t)|^2} = N\Exp{\sigma_D \wedge t} + |x|^2 \label{eq:stoc_report_Q2_3}
+		\end{align}
+		が成り立つ．ここで左辺が$t$に関して一様に有界であることを証明する．各$\omega \in \Omega$ごとに，写像$[0,+\infty) \ni t \longmapsto B^x(t, \omega)$
+		が連続であることと$D$が開集合であることにより$0 \leq s \leq \sigma_D(\omega)$であるような$s$に対して$B^x(s, \omega) \in \overline{D}$となる．
+		ここで$\overline{D}$は$D$の閉包を表すとする．$D$が$\R^N$の有界領域であるから
+		$\overline{D}$も$\R^N$の有界閉集合となる．ここで
+		\begin{align}
+			d \coloneqq \sup{}{\left\{|x - y|\ :\ x,y \in \overline{D} \right\}}
+		\end{align}
+		とおく．等式(\refeq{eq:stoc_report_Q2_3})の左辺の被積分関数について，時刻の部分は$\sigma_D(\omega) \wedge t \leq \sigma_D(\omega)$
+		が全ての$\omega \in \Omega$で成立しているから，$\omega$ごとに$B^x(\sigma_D(\omega) \wedge t, \omega)$は$\overline{D}$に属している．
+		従って$|B^x(\sigma_D(\omega) \wedge t, \omega) - x| \leq d \ (\forall \omega \in \Omega)$で抑えられるから
+		\begin{align}
+			\Exp{|B^x(\sigma_D \wedge t)|^2} 
+			&= \int_{\Omega} |B^x(\sigma_D(\omega) \wedge t, \omega)|^2\, \prob{d\omega} \\
+			&= \int_{\Omega} |B^x(\sigma_D(\omega) \wedge t, \omega) - x + x|^2\, \prob{d\omega} \\
+			&= \int_{\Omega} |B^x(\sigma_D(\omega) \wedge t, \omega) - x|^2 + 2\inprod<B^x(\sigma_D(\omega) \wedge t, \omega) - x,\ x> + |x|^2\, \prob{d\omega} \\
+			&\leq d^2 + 2d|x| + |x|^2
+		\end{align}
+		が成り立つ．ここで$\inprod<\cdot, \cdot>$は$\R^N$の標準的内積を表し(つまり$\inprod<x, y> = \sum_{i=1}^{N}x_iy_i,\ \ 
+		x={}^t(x_1, \cdots, x_N),\ y={}^t(y_1, \cdots, y_N) \in \R^N$.)，最後の式変形でSchwarzの不等式を使った．
+		等式(\refeq{eq:stoc_report_Q2_3})にこの結果を適用すれば
+		\begin{align}
+			\Exp{\sigma_D \wedge t} \leq \frac{d^2 + 2d|x|}{N}
+		\end{align}
+		が$t \geq 0$に依らずに成り立つ．これにより$\prob{\sigma_D = +\infty} = 0$が示される．
+		もし$\alpha \coloneqq \prob{\sigma_D = +\infty} > 0$であるとすれば，集合$\{ \sigma_D = +\infty \}$
+		の上で，$t > (d^2 + 2d|x|)/(\alpha N)$となる$t$に対して
+		\begin{align}
+			\frac{d^2 + 2d|x|}{\alpha N} \prob{\sigma_D = +\infty} 
+			< \int_{\{\sigma_D = +\infty\}} \sigma_D(\omega) \wedge t\, \prob{d\omega}
+			\leq \int_{\Omega} \sigma_D(\omega) \wedge t\, \prob{d\omega}
+			\leq \frac{d^2 + 2d|x|}{N}
+		\end{align}
+		が成り立ち矛盾ができるからである．ゆえに$\prob{\sigma_D < +\infty} = 1$が示された．
+		\QED
 \end{description}
 \end{prf}

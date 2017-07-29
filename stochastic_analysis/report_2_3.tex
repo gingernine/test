@@ -1,0 +1,82 @@
+\section{レポート課題その3}
+$B=(B(t))_{t \geq 0},\ W = (W(t))_{t \geq 0}$は，ともに0から出発する独立な1-次元Brown運動，$a,\ b$は$ab \neq 0$なる実実数，
+$n$は2以上の整数とする．このとき，以下の(1),\ (2),\ (3)の確率過程にIt\Hat{o}の公式が適用できることを確認し，適用したその結果を書け．
+\begin{description}
+	\item[(1)] $X = (X(t))_{t \geq 0}$は$t \geq 0$に対して$X(t) = \left(B(t) + at\right)^n$で定義される確率過程．
+	\item[(2)] $Y = (Y(t))_{t \geq 0}$は$t \geq 0$に対して$Y(t) = B(t)W(t)$で定義される確率過程．
+	\item[(3)] $Z = (Z(t))_{t \geq 0}$は$t \geq 0$に対して$Z(t) = \exp{-bt} \left(a + \int_{0}^{t} \exp{bs}\, dB(s) \right)$で定義される確率過程．
+\end{description}
+
+
+\begin{description}
+	\item[解答] 設問文ではただのBrown運動と書いてありますが，講義資料5の仮定に合わせて，考えている確率空間は''原点から出発する1次元$(\mathcal{F}_t)$-Brown運動
+		$B = (B_t)$を備えたusualなフィルター付き確率空間$(\Omega, \mathcal{F}, \operatorname{P}, (\mathcal{F}_t))$''
+		とし，設問の$B,\ W$は1-次元$(\mathcal{F}_t)$-Brown運動であると考えて以下に進みます．
+	\item[(1)] 講義資料定理6.2を適用する．
+		\begin{align}
+			B(t) = \int_{0}^{t} dB(s)
+		\end{align}
+		であるから，講義資料中の式(6.1)における$\Phi = (\Phi(t))_{t \geq 0},\ \Psi = (\Psi(t))_{t \geq 0}$
+		はそれぞれ$\Phi(t) = 1,\ \Psi(t) = 0\ (\forall t \geq 0)$である．よって明らかに
+		$\Phi \in \mathcal{L}_{2,loc},\ \Psi \in \mathcal{L}_{1,loc}$であるから，$(B(t))_{t \geq 0}$は1次元It\Hat{o}過程である．
+		また定理6.2の$f\ :\ [0, T] \times \R \ni (t,x) \longmapsto f(t,x) \in \R$は
+		この場合$f(t,x) = (x + at)^n$で表現される関数であり，$t \in [0,T]$を固定して$x$の多項式関数であるから
+		$x$の関数として$C^2$級であり，$x \in \R$を固定したとき$t$の関数としても多項式関数であるから$[0, T]$で$C^1$級である．
+		以上より講義資料定理6.2を適用することができて，講義資料式(6.5)により
+		\begin{align}
+			\left(B(t) + at\right)^n = %f(t,B(t)) - f(0, B(0)) &= \int_{0}^{t} \frac{\partial f}{\partial t}(s,B(s))\, ds \\
+				%&\quad+ \int_{0}^{t} \frac{\partial f}{\partial x}(s,B(s))\Phi(s)\, dB(s) \\
+				%&\quad+ \int_{0}^{t} \frac{\partial f}{\partial x}(s,B(s))\Psi(s)\, ds \\
+				%&\quad+ \frac{1}{2} \int_{0}^{t} \frac{\partial^2 f}{\partial x^2}(s,B(s))\Phi(s)^2\, ds \\
+			\int_{0}^{t} an(B(s) + at)^{n-1}\, ds
+				+ \int_{0}^{t} n(B(s) + at)^{n-1}\, dB(s)
+				+ \frac{1}{2} \int_{0}^{t} n(n-1)(B(s) + at)^{n-2}\, ds
+		\end{align}
+		が成り立つ．
+	
+	\item[(2)] 講義資料定理6.3を適用する．
+		$B,W$が独立な原点出発の1次元Brown運動であるから$(B(t),\ W(t))_{t \geq 0}$も原点出発の2次元Brown運動である．
+		\begin{align}
+			B(t) = \int_{0}^{t} dB(s), \quad W(t) = \int_{0}^{t} dW(s)
+		\end{align}
+		であるから，講義資料中の式(6.8)における$\Phi = ((\Phi^{ik}(t))_{1 \leq i, k \leq 2})_{t \geq 0},\ \Psi = (\Psi^1(t),\ \Psi^2(t))_{t \geq 0}$
+		はそれぞれ$\Phi^{ik}(t) = \delta_{ik},\ \Psi^i(t) = 0\ (\forall t \geq 0,\ i,k=1,2)$である．ただし$\delta_{ik}$はKroneckerのデルタである．
+		従って$(B(t),\ W(t))_{t \geq 0}$は2次元It\Hat{o}過程である．
+		また定理6.3の$f\ :\ [0, T] \times \R^2 \ni (t,x) \longmapsto f(t,x) \in \R$は
+		この場合$f(t,x) = x_1 x_2\ (x = {}^t(x_1, x_2) \in \R^2)$で表現される関数であり，
+		$x$の関数として$C^2$級である．$x \in \R$を固定したときは$t$についての定数関数であると見做せば$[0, T]$で$C^1$級である．
+		以上より講義資料定理6.3を適用することができて，
+		\begin{align}
+			B(t)W(t) = \int_{0}^{t} W(s)\, dB(s) + \int_{0}^{t} B(s)\, dW(s)  
+		\end{align}
+		と表せる．
+	
+	\item[(3)] 
+		$Z(0) = a$である．$U(t) \coloneqq \exp{bt}Z(t)\ (\forall t \geq 0)$と置けば
+		\begin{align}
+			U(t) - U(0) = \exp{bt}Z(t) - a &= \int_{0}^{t} \exp{bs}\, dB(s)
+		\end{align}
+		と表現できる．右辺はIt\Hat{o}過程であるから講義資料定理6.2を適用できる．
+		関数$f:[0,+\infty) \times \R^1 \ni (t,x) \longmapsto f(t,x) \in \R^1$として$f(t,x) = \exp{-bt}x$とおき式(6.5)を書けば
+		\begin{align}
+			f(t,U(t)) - f(0,U(0)) &= Z(t) - Z(0) \\
+			&= \int_{0}^{t} -bZ(s)\, ds + \int_{0}^{t} \exp{-bs}\, dB(s)
+			\label{eq:stoc_report_Q3_1}
+		\end{align}
+		と表すことができる．ここで上式の右辺がIt\Hat{o}過程となっていることを示す．
+		確率積分項の被積分関数$[0,+\infty) \ni t \longmapsto \exp{-bt} \in \R^1$について，
+		各$t \geq 0$において$\omega$の関数として定数関数と見れば確率空間$(\Omega, \mathcal{F}, \operatorname{P})$上の予測可能
+		な確率過程となり，任意の$[0,T]\ (T>0)$上で$t$について二乗可積分であるから$\mathcal{L}_{2,loc}$に属する．
+		式(\refeq{eq:stoc_report_Q3_1})のもう一方の項では確率過程$(Z(t))_{t \geq 0}$が被積分関数となっている．
+		設問文中の$Z(t)$の定義式における$\int_{0}^{t} \exp{bs}\, dB(s)$は，
+		$(\exp{bt})_{t \geq 0}$が$[0, +\infty) \times \Omega \rightarrow \R^1$の関数として$\mathcal{L}_2$の元であることと
+		講義資料定理5.8(1)により$\mathcal{M}_{2,c}$に属しているとわかる．従って$Z(t)$は適合過程となり，もちろん左連続でもあるから予測可能である．
+		また$Z(t)$は連続だから任意の区間$[0,T]$で可積分であり，$(Z(t))_{t \geq 0} \in \mathcal{L}_{1,loc}$であるとわかる．
+		ゆえに式(\refeq{eq:stoc_report_Q3_1})の右辺はIt\Hat{o}過程を表している．
+		以上より$Z(t)$は確率微分方程式
+		\begin{align}
+			dZ(t) = \exp{-bt}\, dB(t) - bZ(t)\, dt
+		\end{align}
+		をみたす．
+		\QED
+\end{description}

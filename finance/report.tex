@@ -1,0 +1,356 @@
+\section{Cix, Ross and Rubinstein Model}
+\begin{asm}[問題の仮定]\mbox{}
+\begin{itemize}
+	\item 以下$\R_+ \coloneqq (0, +\infty)$として考える．(位相はEuclid距離で構成する$\R$の位相の相対位相を考える．) 
+	\item 確率空間$(\Omega, \mathscr{F}, \operatorname{P})$,
+	\item 時点列$\mathbb{T} \coloneqq \{0, 1, 2, \cdots, T\} \ (T \in \N)$,
+	\item 安全資産の各期の利率は$r \in \R$で固定．安全資産過程$(B_t)_{t \in \mathbb{T}}$は
+		\begin{align}
+			B_0 = 1, \quad \frac{B_t - B_{t-1}}{B_{t-1}} = r
+		\end{align}
+		を満たす．
+	\item 各時点における株価$S_t\ (t \in \mathbb{T})$は確率変数(可測$\mathscr{F}/\borel{\R_+}$)，
+		ただし$S_0$は定数関数とする．
+	\item 各時点におけるリターン$R_t\ (t = 1,2,\cdots,T)$は次の式で与えられる:
+		\begin{align}
+			R_t = \frac{S_t - S_{t-1}}{S_{t-1}}.
+		\end{align}
+		$(R_t)_{t=1}^{T}$は$u$または$l$に値を取る独立な確率変数の族で，全て同分布
+		\begin{align}
+			\begin{cases}
+				\prob{R_t = u} = p, \\
+				\prob{R_t = l} = 1-p,
+			\end{cases}
+			\quad(-\infty < l < u < +\infty,\ \ 0 \leq p \leq 1).
+		\end{align}
+		に従うと仮定する．
+\end{itemize}
+\end{asm}
+
+株価過程$(S_t)_{t \in \mathbb{T}}$について，各時点$t$の株価$S_t$はリターンを用いて
+\begin{align}
+	S_t = S_0 (1 + R_1)(1 + R_2)\cdots(1 + R_t), \quad (\forall t \in \mathbb{T})
+\end{align}
+と表現できる．このことから次の命題が導かれる．
+
+\begin{prp}[株価過程とリターンの過程で生成される$\sigma$-加法族は同じ]
+	各時点$t = 1,2,\cdots,T$について
+	\begin{align}
+		&\mathscr{F}_t^S \coloneqq \bigvee_{u \leq t}\left\{\left.S_u^{-1}(A)\ \right|\ A \in \borel{\R_+}\right\} \\
+		&\mathscr{F}_t^R \coloneqq \bigvee_{u \leq t}\left\{\left.R_u^{-1}(A)\ \right|\ A \in \borel{\R}\right\} 
+	\end{align}
+	と定義すれば，$\mathscr{F}_t^S = \mathscr{F}_t^R\ (\forall t \in \mathbb{T})$が成り立つ．
+	特に問題の仮定により，(株価過程については時点0の場合も同様に定義しておく)$\mathscr{F}_0^S = \{\emptyset,\ \Omega\}$であって，
+	$R_t$は$\mathscr{F}_{t-1}^S$と独立である．$(t = 1,2,\cdots,T)$
+\end{prp}
+
+\begin{prf}
+	時点$1 \leq u\ (\leq t)$のリターン$R_u$は$S_u$と$S_{u-1}$を用いて表せる．写像$f: \R_+ \times \R_+ \ni (x,y) \longmapsto f(x,y) \in \R$を
+	$f(x,y) = (x-y) / y$とおく．$f$は連続であるから可測$\borel{\R_+} \times \borel{\R_+}/\borel{\R}$である．
+	$\R_+$は第二可算公理を満たすから$\borel{\R_+ \times \R_+} = \borel{\R_+} \times \borel{\R_+}$が成り立っていることに注意する．
+	確率ベクトル$\Vector{S}_u \coloneqq (S_{u-1},\ S_u)$について，これは$\Omega \rightarrow \R_+ \times \R_+$の写像であり，
+	任意の$A \times B\ (A, B \in \borel{\R_+})$なる形の集合に対して，$\mathscr{F}_t^S$の作り方から
+	\begin{align}
+		\Vector{S}_u^{-1}(A \times B) = S_{u-1}^{-1}(A) \cap S_u^{-1}(B) \in \mathscr{F}_t^S
+	\end{align}
+	が成り立つから
+	\begin{align}
+		\borel{\R_+} \times \borel{\R_+} \subset \left\{A\ \left|\ \Vector{S}^{-1}(A) \in \mathscr{F}_t^S\right.\right\}
+	\end{align}
+	が成り立ち，$\Vector{S}_u$は可測$\mathscr{F}_t^S/\borel{\R_+} \times \borel{\R_+}$であるとわかる．
+	つまり合成写像$R_u = f(\Vector{S}_u):\Omega \rightarrow \R$は可測$\mathscr{F}_t^S/\borel{\R}$である．
+	$1 \leq u \leq t$で任意の$u$を対象に示したから，
+	\begin{align}
+		\mathscr{F}_t^R \subset \mathscr{F}_t^S
+	\end{align}
+	がまず示されたことになる．逆の包含関係についても，上に載せたように$S_t$は$R_1,\cdots,R_t$を用いて表せるから$\mathscr{F}_t^S \subset \mathscr{F}_t^R$
+	が成り立つ．
+	\QED
+\end{prf}
+
+\begin{asm}[フィルトレーション]
+	今考えている確率空間$(\Omega, \mathscr{F}, \operatorname{P})$に，フィルトレーションとして
+	株価過程$(S_t)_{t \in \mathbb{T}}$から生成される$\sigma$-加法族の系$(\mathscr{F}_t^S)_{t \in \mathbb{T}}$を採用する．
+	命題に書いたとおり$\mathscr{F}_0^S = \{\emptyset,\ \Omega\}$であって，$R_t$は$\mathscr{F}_{t-1}^S$と独立$(t = 1,2,\cdots,T)$である．
+\end{asm}
+
+\begin{dfn}[割引過程]
+	任意の時点$t \in \mathbb{T}$において，$B_t = (1 + r)^t$と表せる．$S_t$を$B_t$で割ったものを
+	\begin{align}
+		\tilde{S}_t = \frac{S_t}{B_t}, \quad (\forall t \in \mathbb{T})
+	\end{align}
+	で表現する．
+\end{dfn}
+
+\begin{dfn}[リスク中立]
+	資産過程がリスク中立的であるということを
+	割引過程$\left(\tilde{S}_t\right)_{t \geq 0}$が$(\mathscr{F}_t^S)$-マルチンゲールとなっていることで定義する．
+	割引資産過程$\left(\tilde{G}_t(\xi)\right)_{t \geq 0}$も$(\mathscr{F}_t^S)$-マルチンゲールとなっていることに注意する．
+\end{dfn}
+
+\begin{prp}[リスク中立的であることの同値条件]
+	$l < r < u$が成り立っている下で，以下に羅列する事柄は全て同値である．
+	\begin{description}
+		\item[(1)] 割引過程$\left(\tilde{S}_t\right)_{t \geq 0}$は$(\mathscr{F}_t^S)$-マルチンゲールである．
+		\item[(2)] $p = (r - l)/(u - l)$である．
+		\item[(3)] 各時点$t = 1,2,\cdots,T$において
+			\begin{align}
+				\cexp{\frac{S_t - S_{t-1}}{S_{t-1}}}{\mathscr{F}_{t-1}^S} = r \quad a.s.
+			\end{align}
+			が成り立っている．
+	\end{description}
+\end{prp}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[(1) $\Leftrightarrow$ (2)]
+		定義より
+		\begin{align}
+			\frac{S_t}{S_{t-1}} = 1 + R_t \quad (t = 1,2,\cdots,T)
+		\end{align}
+		であるから，左辺の株価を割引けば
+		\begin{align}
+			\frac{\tilde{S}_t}{\tilde{S}_{t-1}} = \frac{1 + R_t}{1 + r} \quad (t = 1,2,\cdots,T)
+		\end{align}
+		が成り立つ．このことに注意して(1)の主張を書き下せば
+		\begin{align}
+			\cexp{\tilde{S}_t}{\mathscr{F}_{t-1}^S} 
+			&= \cexp{\tilde{S}_t - \tilde{S}_{t-1} + \tilde{S}_{t-1}}{\mathscr{F}_{t-1}^S} \\
+			&= \cexp{\tilde{S}_t - \tilde{S}_{t-1}}{\mathscr{F}_{t-1}^S} + \tilde{S}_{t-1} \\
+			&= \cexp{\frac{1 + R_t}{1 + r} - 1}{\mathscr{F}_{t-1}^S} + \tilde{S}_{t-1} \\
+			&= \Exp{\frac{1 + R_t}{1 + r} - 1}{}{} + \tilde{S}_{t-1} & (\because \mbox{独立性}) \\
+			&= p\left(\frac{1 + u}{1 + r} - 1\right) + (1-p)\left(\frac{1 + l}{1 + r} - 1\right) + \tilde{S}_{t-1} \\
+			&= \frac{pu + (1-p)l - r}{1+r} + \tilde{S}_{t-1} \quad a.s.
+		\end{align}
+		が成り立つ．従って割引過程がマルチンゲールとなる必要十分条件は
+		\begin{align}
+			p = \frac{r-l}{u-l}
+		\end{align}
+		となることである．
+	\item[(1) $\Leftrightarrow$ (3)]
+		(1)の主張により
+		\begin{align}
+			\cexp{\frac{\tilde{S}_t}{\tilde{S}_{t-1}}}{\mathscr{F}_{t-1}^S} = 1 \quad a.s. \quad (\forall t = 1,2,\cdots,T),
+		\end{align}
+		が成り立っている．割引く前の株価に直せば
+		\begin{align}
+			\cexp{\frac{S_t}{S_{t-1}}}{\mathscr{F}_{t-1}^S} = 1 + r \quad a.s. \quad (\forall t = 1,2,\cdots,T),
+		\end{align}
+		が成り立つから(3)が示される．逆に(3)が成り立っているなら，上の操作の逆をたどれば(1)が示される．
+		\QED
+\end{description}
+\end{prf}
+
+与えられた確率測度$\operatorname{P}$の下でいつでも資産過程がリスク中立的であるとは限らないが，或る条件さえ満たされていれば
+$\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\operatorname{Q}$の下で資産過程はリスク中立的となる．
+この確率測度$\operatorname{Q}$をリスク中立確率測度という．
+
+\begin{prp}[リスク中立確率測度]
+	$l < r < u$かつ$0 < p < 1$が成り立っているならば，与えられた確率測度$\operatorname{P}$
+	に同値な確率測度$\operatorname{Q}$を構成でき，$\operatorname{Q}$の下で資産過程はリスク中立的となる．
+	この確率測度$\operatorname{Q}$をリスク中立確率測度という．
+\end{prp}
+
+\begin{prf}
+	\begin{align}
+		q \coloneqq \frac{r - l}{u - l}
+	\end{align}
+	とおき，$\Omega$上の可測$\mathscr{F}/\borel{\R}$関数として
+	\begin{align}
+		Z_t(\omega) \coloneqq \frac{q}{p}\defunc_{(R_t = u)}(\omega) + \frac{1-q}{1-p}\defunc_{(R_t = l)}(\omega), 
+		\quad (\forall t \in \mathbb{T},\ \omega \in \Omega) 
+	\end{align}
+	を定義する．$(R_t)_{t \in \mathbb{T}\backslash \{0\}}$が独立な確率変数の系であるから，
+	そのある種関数の形で表されている$(Z_t)_{t \in \mathbb{T}\backslash \{0\}}$も独立な確率変数の系である．
+	さらに
+	\begin{align}
+		Z(\omega) \coloneqq \prod_{t = 1}^{T} Z_t(\omega),\quad (\forall \omega \in \Omega)
+	\end{align}
+	として確率変数$Z$を定義し，さらに$Z$により構成される$\mathscr{F}$上の集合関数を
+	\begin{align}
+		\operatorname{Q}(A) \coloneqq \int_{A} Z(\omega)\, \prob{d\omega}, \quad (\forall A \in \mathscr{F})
+	\end{align}
+	として定義する．独立性により
+	\begin{align}
+		\operatorname{Q}(\Omega) = \int_{\Omega} Z(\omega)\, \prob{d\omega}
+		= \prod_{t=1}^{T} \int_{\Omega} Z_t(\omega)\, \prob{d\omega}
+		= \prod_{t=1}^{T} \left( \frac{q}{p}\prob{R_t = u} + \frac{1-q}{1-p}\prob{R_t = l} \right)
+		= 1
+	\end{align}
+	が成り立ち，非負関数$Z$の可積分性が判る．従って$\operatorname{Q}$は$\operatorname{P}$に関して絶対連続な集合関数であり，
+	定義より明らかに非負値で$\mathscr{F}$の上で完全加法的である(Radon-Nikodymの定理によれば$Z$は$\operatorname{P}$零集合を除いて一意な
+	$\operatorname{Q}$の密度関数である)．$\Omega$上の積分が1で或ることも合わせれば，
+	$\operatorname{Q}$は可測空間$(\Omega, \mathscr{F})$上の確率測度である．さらに任意の$t \in \{1,2,\cdots,T\}$に対して
+	\begin{align}
+		\operatorname{Q}(R_t = u) &= \int_{(R_t=u)} Z(\omega)\, \prob{d\omega} \\
+		&= \int_{\Omega} \defunc_{(R_t = u)} Z(\omega)\, \prob{d\omega} \\
+		&= \int_{\Omega} \defunc_{(R_t = u)} Z_t(\omega)\, \prob{d\omega}\ \prod_{s \neq t} \int_{\Omega} Z_s(\omega)\, \prob{d\omega} \\
+		&= \frac{q}{p}\prob{R_t = u} \\
+		&= q
+	\end{align}
+	が成り立つ．同様にして$\operatorname{Q}(R_t = l) = 1-q$も成立する．つまり$\operatorname{Q}$は
+	前命題の条件(2)を満たし，その同値条件により資産過程は確率測度$\operatorname{Q}$の下でリスク中立的となる．
+	最後に$\operatorname{Q}$が$\operatorname{P}$と同値であることを示す．命題の仮定により
+	$0 < p,q$であるから，全ての$\omega \in \Omega$について
+	\begin{align}
+		0 < m \coloneqq \min{}{\left\{\tfrac{q}{p}, \tfrac{1-q}{1-p}\right\}}
+		\leq Z_t(\omega) \leq \max{}{\left\{\tfrac{q}{p}, \tfrac{1-q}{1-p}\right\}} \eqqcolon M
+	\end{align}
+	が成り立っている．従って$\operatorname{P}(A) > 0$なる$A \in \mathscr{F}$に対しては
+	\begin{align}
+		m^T \operatorname{P}(A) \leq \operatorname{Q}(A) \leq M^T \operatorname{P}(A)
+	\end{align}
+	が成り立つから，$\operatorname{Q}$と$\operatorname{P}$が同値であることが示された．
+	\QED
+\end{prf}
+
+\newpage
+1.\ $\mathbb{T} \coloneqq \{0, 1, \cdots,T\}\ (T \in \N)$を時刻を表す集合とする．安全運用過程
+\begin{align}
+	(B_t)_{t \in \mathbb{T}}
+\end{align}
+は
+\begin{align}
+	B_0 = 1, \quad \frac{B_t - B_{t-1}}{B_{t-1}} = r
+\end{align}
+を満たす．ここで$r$は金利を表す定数である．また株価過程
+\begin{align}
+	(S_t)_{t \in \mathbb{T}}
+\end{align}
+は
+\begin{align}
+	S_0 > 0, \quad \frac{S_t - S_{t-1}}{S_{t-1}} = R_t.
+\end{align}
+ただし$(R_t)_{t \in \mathbb{T}\backslash \{0\}}$は独立同分布な確率変数列であり
+\begin{align}
+	R_t = \begin{cases}
+		u & \mbox{with probability } p, \\
+		l & \mbox{with probability } 1-p
+	\end{cases}
+\end{align}
+を満たしている．以下の問いに答えよ．
+\begin{description}
+	\item[1)] リスク中立確率$\mathbb{Q}$が存在するための条件を求め，$\mathbb{Q}$の下での株価過程の上昇(下降)確率を求めよ．
+	\item[2)] 満期$T$でのペイオフが$f(S_T)$の(ヨーロピアン)デリバティブを時刻0で
+		\begin{align}
+			C_1 < \Exp{B_T^{-1}f(S_T)}{}{\mathbb{Q}} < C_2
+		\end{align}
+		を満たす$C_1$か$C_2$で売買できたとする．このとき，それぞれどのような運用を行えば裁定機会が産まれるか論じなさい．
+\end{description}
+
+\begin{description}
+\item[解答] 講義と同じく$l < u$として考える．
+\item[1)] リスク中立確率が存在するための条件は
+	\begin{itemize}
+		\item $ l < r < u$
+		\item $ 0 < p < 1$
+	\end{itemize}
+	が満たされていることであり，
+	\begin{align}
+		q \coloneqq \frac{r - l}{u - l}
+	\end{align}
+	と置けばリスク中立確率$\mathbb{Q}$は次のように表せる．
+	\begin{align}
+		\mbox{上昇確率} \quad \mathbb{Q}(R_t = u) &= \frac{q}{p}, \\
+		\mbox{下降確率} \quad \mathbb{Q}(R_t = l) &= \frac{1-q}{1 - p}.
+	\end{align}
+\end{description}
+
+\newpage
+4.\ $(w_t)_{t \geq 0}$をブラウン運動とする．以下の問いに答えよ．
+\begin{description}
+	\item[8)] $Q_t \coloneqq w_t^2 -t\ (t \geq 0)$がマルチンゲールであることを示せ．
+	\item[9)] $L_t \coloneqq tw_t - \int_{0}^{t} w_s\, ds\ (t \geq 0)$がマルチンゲールであることを示せ．
+	\item[10)] $Z_t \coloneqq \mathrm{exp}\left\{\sigma w_t + \left(\mu-\frac{\sigma^2}{2}\right)t\right\}\ (t \geq 0,\ \sigma, \mu > 0)$に対して
+		$Y_t \coloneqq 1/Z_t$と定義する．$(Y_t)_{t \geq 0}$の優/劣マルチンゲールを判定せよ．
+\end{description}
+
+\begin{prf}
+講義中のマルチンゲールの定義に合わせて示す．
+\begin{description}
+	\item[8)] 時刻$0 \leq s < t$を任意に取る．時刻$s$までの情報で条件付けた期待値は
+		\begin{align}
+			\Exp{Q_t}{s}{} &= \Exp{w_t^2 -t}{s}{} \\
+			&= \Exp{(w_t - w_s + w_s)^2 -t}{s}{} \\
+			&= \Exp{(w_t - w_s)^2 + 2w_s(w_t - w_s) + w_s^2}{s}{} - t \\
+			&= \Exp{(w_t - w_s)^2}{s}{} + \Exp{2w_s(w_t - w_s)}{s}{} + \Exp{w_s^2}{s}{} - t.
+		\end{align}
+		とまで表せる．ここでブラウン運動の定義より$w_t - w_s$は時刻$s$までの情報と独立，そして平均0，分散$t-s$の正規分布に従っている．
+		この性質と条件付期待値の性質を使ってさらに式変形すれば
+		\begin{align}
+			&\Exp{(w_t - w_s)^2}{s}{} + \Exp{2w_s(w_t - w_s)}{s}{} + \Exp{w_s^2}{s}{} - t \\
+			&\quad= \Exp{(w_t - w_s)^2}{}{} + 2w_s\Exp{w_t - w_s}{}{} + w_s^2 - t \\
+			&\quad= t-s + w_s^2 - t = Q_s
+		\end{align}
+		が成り立つ．つまり$\Exp{Q_t}{s}{} = Q_s$が成り立ち，$(Q_t)_{t \geq 0}$がマルチンゲールであることが示された．
+	
+	\item[9)] 時刻$0 \leq s < t$を任意に取る．時刻$s$までの情報で条件付けた期待値は
+		\begin{align}
+			\Exp{L_t}{s}{} &= \Exp{tw_t - \int_{0}^{t} w_u\, du}{s}{} \\
+			&= \Exp{t(w_t - w_s + w_s) - \int_{0}^{s} w_u\, du - \int_{s}^{t} w_u\, du}{s}{} \\
+			&= \Exp{t(w_t - w_s) + tw_s - \int_{0}^{s} w_u\, du - \int_{s}^{t} w_u - w_s + w_s\, du}{s}{} - t \\
+			&= t\Exp{w_t - w_s}{s}{} + t\Exp{w_s}{s}{} - \Exp{\int_{0}^{s} w_u\, du}{s}{} - \Exp{\int_{s}^{t} w_u - w_s\, du}{s}{}
+				- \Exp{\int_{s}^{t} w_s\, du}{s}{} \\
+			&= t\Exp{w_t - w_s}{s}{} + t\Exp{w_s}{s}{} - \Exp{\int_{0}^{s} w_u\, du}{s}{} - \Exp{\int_{s}^{t} w_u - w_s\, du}{s}{}
+				- \Exp{(t-s) w_s}{s}{}
+		\end{align}
+		となる．ここで$8)$と同様にブラウン運動の性質と条件付期待値の性質により
+		\begin{align}
+			&t\Exp{w_t - w_s}{s}{} + t\Exp{w_s}{s}{} - \Exp{\int_{0}^{s} w_u\, du}{s}{} - \Exp{\int_{s}^{t} w_u - w_s\, du}{s}{}
+				- \Exp{(t-s) w_s}{s}{} \\
+			&\quad= tw_s - \int_{0}^{s} w_u\, du - \Exp{\int_{s}^{t} w_u - w_s\, du}{s}{} - (t-s) w_s
+		\end{align}
+		まで表せる．$\Exp{\int_{s}^{t} w_u - w_s\, du}{s}{}$の項について，Fubiniの定理を適用すれば
+		\begin{align}
+			\Exp{\int_{s}^{t} w_u - w_s\, du}{s}{} = \Exp{\int_{s}^{t} w_u - w_s\, du}{}{}
+			= \int_{s}^{t} \Exp{w_u - w_s}{}{}\, du = 0
+		\end{align}
+		が成り立つから，結局
+		\begin{align}
+			\Exp{L_t}{s}{} = tw_s - \int_{0}^{s} w_u\, du - (t-s) w_s = sw_s - \int_{0}^{s} w_u\, du = L_s
+		\end{align}
+		が成り立ち，$(L_t)_{t \geq 0}$がマルチンゲールであることが示された．
+	
+	\item[10)] 
+		$Y_t = \exp{-\sigma w_t - \left(\mu - \frac{\sigma^2}{2}\right)t}$である．
+		時刻$0 \leq s < t$を任意に取り，時刻$s$までの情報で条件付けた期待値を計算する．
+		\begin{align}
+			\Exp{Y_t}{s}{} &= \Exp{\exp{-\sigma w_t - \left(\mu - \frac{\sigma^2}{2}\right)t}}{s}{} \\
+			&= \exp{- \left(\mu - \frac{\sigma^2}{2}\right)t} \Exp{\exp{-\sigma (w_t - w_s + w_s)}}{s}{} \\
+			&= \exp{-\sigma w_s - \left(\mu - \frac{\sigma^2}{2}\right)t} \Exp{\exp{-\sigma (w_t - w_s)}}{s}{} \\
+			&= Y_s \Exp{\exp{-\sigma (w_t - w_s)}}{}{}
+		\end{align}
+		と表せる．ここで表記を簡単にするために確率変数$X$を$X \sim N(0, t-s)$として$\Exp{\exp{-\sigma X}}{}{}$を計算する．
+		\begin{align}
+			\Exp{\exp{-\sigma X}}{}{} = \Exp{\sum_{n=0}^{+\infty} \frac{(-\sigma X)^n}{n!}}{}{} 
+			= \Exp{\sum_{n=0}^{+\infty} \frac{(-\sigma X)^{2n}}{(2n)!} + \sum_{n=0}^{+\infty} \frac{(-\sigma X)^{2n+1}}{(2n+1)!}}{}{} 
+		\end{align}
+		となるが，ここで
+		\begin{align}
+			\Exp{X^{2n}}{}{} = (t-s)^n (2n-1)!!, \quad \Exp{X^{2n + 1}}{}{} = 0, \quad (n = 0,1,2,3,\cdots)
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\sum_{n=0}^{+\infty} \frac{\sigma^{2n}}{(2n)!} \Exp{X^{2n}}{}{} 
+			&= \sum_{n=0}^{+\infty} \frac{\sigma^{2n}}{(2n)!} (t-s)^n (2n-1)!! \\
+			&= \sum_{n=0}^{+\infty} \left(\frac{\sigma^2(t-s)}{2}\right)^n \frac{1}{n!} \\
+			&= \exp{\frac{\sigma^2}{2}(t-s)}, \\
+			\sum_{n=0}^{+\infty} \frac{\sigma^{2n+1}}{(2n+1)!} \Exp{X^{2n+1}}{}{} &= 0
+		\end{align}
+		となり，Fubiniの定理より
+		\begin{align}
+			\Exp{\sum_{n=0}^{+\infty} \frac{(-\sigma X)^{2n}}{(2n)!} + \sum_{n=0}^{+\infty} \frac{(-\sigma X)^{2n+1}}{(2n+1)!}}{}{}
+			&= \Exp{\sum_{n=0}^{+\infty} \frac{(-\sigma X)^{2n}}{(2n)!}}{}{}
+			+ \Exp{\sum_{n=0}^{+\infty} \frac{(-\sigma X)^{2n+1}}{(2n+1)!}}{}{} \\
+			&= \sum_{n=0}^{+\infty} \frac{\sigma^{2n}}{(2n)!} \Exp{X^{2n}}{}{}
+			+ \sum_{n=0}^{+\infty} \frac{\sigma^{2n+1}}{(2n+1)!} \Exp{X^{2n+1}}{}{} \\
+			&= \exp{\frac{\sigma^2}{2}(t-s)}
+		\end{align}
+		が成り立つ．$s < t$としているから$\exp{\frac{\sigma^2}{2}(t-s)} > 1$であり
+		\begin{align}
+			\Exp{Y_t}{s}{} = Y_s \Exp{\exp{-\sigma (w_t - w_s)}}{}{} = Y_s\exp{\frac{\sigma^2}{2}(t-s)} \geq Y_s
+		\end{align}
+		が成り立つから$(Y_t)_{t \geq 0}$は劣マルチンゲールである．
+		\QED
+\end{description}
+\end{prf}
