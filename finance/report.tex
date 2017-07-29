@@ -257,6 +257,61 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 \end{description}
 
 \newpage
+2.\ $\delta > 0$とし$\mathbb{T} \coloneqq \{ 0 ,\delta, \cdots, N\delta \}\ (T = N\delta)$を時刻を表す集合とする.安全運用過程
+\begin{align}
+	(B_t)_{t \in \mathbb{T}}
+\end{align}
+は
+\begin{align}
+	B_0 = 1,\ \frac{B_t - B_{t - \delta}}{B_{t - \delta}} = r \delta
+\end{align}
+を満たす．ここで$r$は金利(年利)を表す定数である．また株価過程
+\begin{align}
+	(S_t)_{t \in \mathbb{T}}
+\end{align}
+は
+\begin{align}
+	S_0 > 0, \frac{S_t - S_{t - \delta}}{S_{t - \delta}} = R_t.
+\end{align}
+ただし$(R_t)_{t \in \mathbb{T} \backslash \{0\}}$は独立同分布な確率変数列であり
+\begin{align}
+	\Log{(1 + R_t)} = \begin{cases}
+		r \delta + \sigma \sqrt{\delta} & \mbox{with probability } 1/2, \\
+		r \delta - \sigma \sqrt{\delta} & \mbox{with probability } 1/2
+	\end{cases}
+\end{align} 
+を満たしている．
+\begin{description}
+	\item[3)] $\delta \rightarrow 0$とするとき，$\Log{\frac{S_t}{S_0}}$の分布はどのような分布に収束するか?
+	\item[4)] 
+\end{description}
+
+\begin{description}
+	\item[解答]
+	\item[3)] 設問文の$R_t$の定義式より
+		\begin{align}
+			S_t = S_{t - \delta}( 1 + R_t ) = S_{t - \delta}( 1 + R_{\frac{t}{\delta}\delta} ), \quad (\forall t \in \mathbb{T} \backslash \{0\})
+		\end{align}
+		が成り立っているから，帰納的に考えて
+		\begin{align}
+			S_t = S_0(1 + R_\delta)(1 + R_{2\delta}) \cdots(1 + R_{\frac{t}{\delta}\delta}) \quad (\forall t \in \mathbb{T} \backslash \{0\})
+		\end{align}
+		となり，対数変換で
+		\begin{align}
+			\Log{\frac{S_t}{S_0}} = \Log{(1 + R_\delta)} + \Log{(1 + R_{2\delta})} + \cdots + \Log{(1 + R_{\frac{t}{\delta}\delta})}
+		\end{align}
+		と表わせる．次は右辺の特性関数を計算し$\delta \rightarrow 0$の極限を求める.表記を簡単にするため$X_n \coloneqq \Log{(1 + R_{n\delta})}\ (n = 1,2,\cdots,N),\ 
+		Y \coloneqq X_1 + X_2 + \cdots + X_{\frac{t}{\delta}}$とおく．任意の$z \in \R^1$に対して
+		\begin{align}
+			\Exp{\exp{izY}}{}{} 
+			&= \Exp{\exp{iz(X_1 + X_2 + \cdots + X_{\frac{t}{\delta}})}}{}{} \\
+			&= \prod_{n=1}^{t/\delta} \Exp{\exp{izX_n}}{}{} && (\because \mbox{独立性}) \\
+			&= \left(\Exp{\exp{izX_1}}{}{}\right)^{\frac{t}{\delta}} && (\because \mbox{同分布}) \\
+		\end{align}
+		となる．
+\end{description}
+
+\newpage
 4.\ $(w_t)_{t \geq 0}$をブラウン運動とする．以下の問いに答えよ．
 \begin{description}
 	\item[8)] $Q_t \coloneqq w_t^2 -t\ (t \geq 0)$がマルチンゲールであることを示せ．
