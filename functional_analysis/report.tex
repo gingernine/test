@@ -427,6 +427,111 @@ $X$上の掛け算作用素$M_a$を次で定める：
 \end{description}
 \end{prf}
 
+[10].\ $X$をノルム空間，$X_0$をその部分空間とする．$i\ :\ X_0 \rightarrow X$を$i(x) = x\ (x \in X_0)$なる包含写像とする．
+$T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定める．
+\begin{description}
+	\item[(1)] $T$は連続かつ全射であることを示せ．
+	\item[(2)] $X_0$が$X$で稠密ならば，$T$はノルム空間としての同型写像であることを示せ．
+	\item[(3)] $X_0$が$X$で稠密でないならば，$T$は単射でないことを示せ．
+\end{description}
+
+\begin{prf}
+\begin{description}
+	\item[(1)] 任意の$x^* \in X^*$と$u \in X_0$に対して
+		\begin{align}
+			\left|\left( x^* \circ i \right) (u)\right| = \left| x^*(u) \right| \leq \Norm{x^*}{X^*} \Norm{u}{X}
+		\end{align}
+		が成り立つから$\Norm{x^* \circ i}{X_0^*} \leq \Norm{x^*}{X^*}\ (\forall x^* \in X^*)$が成立する．
+		従って
+		\begin{align}
+			\Norm{Tx^*}{X_0^*} = \Norm{x^* \circ i}{X_0^*} \leq \Norm{x^*}{X^*} \quad \forall x^* \in X^*
+		\end{align}
+		となり$T$が有界作用素であることが示される．$T$が全射であることはHahn-Banachの定理による．
+		任意の$f_0 \in X_0^*$に対して$X$上のセミノルムとして$X \ni x \longmapsto \Norm{f_0}{X_0^*}\Norm{x}{X} \in \C$を考えれば
+		作用素ノルムの定義より
+		\begin{align}
+			|f_0 (x)| \leq  \Norm{f_0}{X_0^*}\Norm{x}{X}\quad (\forall x \in X_0)
+		\end{align}
+		が成り立っているから，Hahn-Banachの定理が適用されて$X$上の線型汎関数$f \in X^*$で
+		\begin{align}
+			\begin{cases}
+				|f (x)| \leq  \Norm{f_0}{X_0^*}\Norm{x}{X} & (\forall x \in X), \\
+				f(x) = f_0(x) & (\forall x \in X_0)
+			\end{cases}
+		\end{align}
+		を満たすものが存在する．明らかに$f \circ i = f_0$が成り立っているから$T$が全射であることが示された．
+	
+	\item[(2)] $X_0$が$X$で稠密であるなら，任意の$f_0 \in X_0^*$はノルムを変えることなく$f \in X^*$に一意に拡張されるということが示される．
+		まずはこのことを証明する．これが示されれば，(1)の結果と合わせて
+		\begin{itemize}
+			\item $T\ :\ X \longmapsto X_0$は線型全単射である．
+			\item $\Norm{T x^*}{X_0^*} = \Norm{x^* \circ i}{X_0^*} = \Norm{x^*}{X^*}$
+		\end{itemize}
+		が成り立つことが示され，$T$がノルム空間としての同型写像であると判る．
+		$X_0$が$X$で稠密であるということにより，任意の$x \in X$に対して
+		$x_k \in X_0 \ (k=1,2,\cdots)$で$\Norm{x_k - x}{X} \longrightarrow 0\ (k \longrightarrow +\infty)$
+		となるものを取れる．任意に$f_0 \in X_0^*$を取れば，任意の$m,n \in \N$に対して
+		\begin{align}
+			|f_0(x_m) - f_0(x_n)| \leq \Norm{f_0}{X_0^*} \Norm{x_m - x_n}{X}
+		\end{align}
+		が成り立つから，右辺が$X_0$のCauchy列をなすことにより$(f_0(x_n))_{n=1}^{+\infty}$も$\C$のCauchy列となる．
+		$\C$の完備性から$(f_0(x_n))_{n=1}^{+\infty}$は或る$u \in \C$に収束する．この$u$は$x \in X$に対して一意に定まる．
+		なぜならば，$x$への別の収束列$y_k \in X_0 \ (k=1,2,\cdots)$を取った場合，$(f_0(y_n))_{n=1}^{+\infty}$の収束先が
+		$v \in \C$であるとして，任意の$n,m \in \N$に対して
+		\begin{align}
+			|u - v| &= |u - f_0(x_n) + f_0(x_n) - f_0(y_m) + f_0(y_m) - v| \\
+			&\leq |u - f_0(x_n)| + |f_0(x_n) - f_0(y_m)| + |f_0(y_m) - v| \\
+			&\leq |u - f_0(x_n)| + \Norm{f_0}{X_0^*}\Norm{x_n - y_m}{X} + |f_0(y_m) - v| \\
+			&\leq |u - f_0(x_n)| + \Norm{f_0}{X_0^*}\left(\Norm{x_n - x}{X} + \Norm{x - y_m}{X}\right)+ |f_0(y_m) - v|
+		\end{align}
+		となるから$n,m \longrightarrow +\infty$で右辺は0に収束し，$u = v$が示されるためである．
+		$x$に$u$を対応させる関係は$X \longmapsto \C$の写像となり，この写像を$f$と表すことにする．$f$の線型性も次のように示される．
+		任意の$x,\ y \in X,\ \alpha,\ \beta \in \C$に対して，$x,y$への収束列$(x_k)_{k=1}^{+\infty},\ (y_k)_{k=1}^{+\infty} \subset X_0$
+		を取れば$(\alpha x_k + \beta y_k)_{k=1}^{+\infty}$が$\alpha x+ \beta y$への収束列となるから
+		\begin{align}
+			|f(\alpha x + \beta y) - \alpha f(x) - \beta f(y)| 
+			&= |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k) + f_0(\alpha x_k) + f_0(\beta y_k) - \alpha f(x) - \beta f(y)| \\
+			&\leq |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k)| 
+				+ |\alpha f_0(x_k) - \alpha f(x)| + |\beta f_0(y_k) - \beta f(y)| \\
+			&\leq |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k)| 
+				+ |\alpha| |f_0(x_k) - f(x)| + |\beta| |f_0(y_k) - f(y)| \\
+			&\longrightarrow 0\quad (k \longrightarrow +\infty)
+		\end{align}
+		が成り立つ．ゆえに$f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)\ (\forall x,\ y \in X,\ \alpha,\ \beta \in \C)$である．
+		また$f$は有界な線型作用素である．なぜなら
+		$x \in X_0$に対しては$x= x_k \in X_0\ (k=1,2,\cdots)$が$x$への一つの収束列になるから
+		$\displaystyle f(x) = \lim_{k \to +\infty} f_0(x_k) = f_0(x)$となり$f$と$f_0$は$X_0$の上で一致する．($f$は$f_0$の拡張となっている．)
+		従って
+		\begin{align}
+			|f(x)| = |f_0(x)| \leq \Norm{f_0}{X_0^*} \Norm{x}{X}\quad (\forall x \in X_0)
+		\end{align}
+		となり$f \in X^*$であることと$\Norm{f}{X^*} \leq \Norm{f_0}{X_0^*}$が判る．
+		さらに作用素ノルムの性質より
+		\begin{align}
+			\Norm{f}{X^*} = \sup{\substack{x \in X \\ \Norm{x}{X} = 1}}{|f(x)|} 
+			\geq \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{|f(x)|} 
+			= \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{|f_0(x)|} = \Norm{f_0}{X_0^*}
+		\end{align}
+		も成り立つから結局$\Norm{f}{X^*} = \Norm{f_0}{X_0^*}$であると判る．以上より
+		任意の$f_0 \in X_0^*$がノルムを変えないまま或る$f \in X^*$に一意に拡張されることが示された．
+		最後にを示して終わる．
+		任意に$x^* \circ i\ (x^* \in X^*)$を取り$x^* \circ i$を$x^* \circ i = f_0 \in X_0^*$と表現する．
+		上記の結果より$f_0$は或る$f \in X^*$に拡張されるが，このとき$f = x^*$であることを示す，任意の$x \in X \backslash X_0$
+		に対して$x_k \in X_0\ (k = 1,2,\cdots)$で
+		$x_k \longrightarrow x\ (k \longrightarrow +\infty)$となるものを取れば
+		\begin{align}
+			\left| f(x) - x^*(x) \right| &= \left| f(x) - f_0(x_k) + \left(x^* \circ i \right)(x_k) - x^*(x) \right| \\
+			&\leq \left| f(x) - f_0(x_k) \right| + \left|\left(x^* \circ i \right)(x_k) - x^*(x) \right| \\
+			&\leq \left| f(x) - f(x_k) \right| + \left|x^*(x_k) - x^*(x) \right| \\
+			&\leq \Norm{f}{X^*}\Norm{x_k - x}{X} + \Norm{x^*}{X^*}\Norm{x_k - x}{X} \\
+			&\longrightarrow 0 \quad (k \longrightarrow +\infty)
+		\end{align}
+		が成り立つから$f(x) = x^*(x)\ (\forall x \in X \backslash X_0)$，すなわち$f(x) = x^*(x)\ (\forall x \in X)$
+		が成り立つ．
+	\item[(3)] 
+\end{description}
+\end{prf}
+
 [11].\ 
 	\begin{description}
 		\item[(1)] $c_0$は$l^{\infty}$の閉線形部分空間であることを示せ．
@@ -696,5 +801,58 @@ $X$上の掛け算作用素$M_a$を次で定める：
 			\sum_{n=1}^{\infty} |a_n| \leq \Norm{L}{}
 		\end{align}
 		となることにより$a \in l^1$であることが示された．
+\end{description}
+\end{prf}
+
+[13].\ $1 < p < \infty$とする．$l^p$の点列$x(1),x(2),x(3),\cdots$(ただし$x(j)=\left(x(j)_n\right)_{n=1}^{\infty}$)と
+$x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値であることを示せ：
+\begin{description}
+	\item[(1)] $\displaystyle \wlim_{n \to \infty} x(j) = x.$
+	\item[(2)] $\left\{x(j);j\in\N\right\}$は有界でかつ$\forall n \in \N\ \displaystyle \lim_{j \to \infty}x(j)_n = x_n$.
+\end{description}
+
+\begin{prf}
+\begin{description}\mbox{}
+	\item[$l^p$の共役空間] まず$l^p$の共役空間の任意の元$f \in \left(l^p\right)^*$が或る$v \in l^q$に対応して
+		\begin{align}
+			f(x) = \sum_{n=1}^{\infty} x_n v_n, \quad \left(x = (x_n)_{n=1}^{\infty} \in l^p,\ v = (v_n)_{n=1}^{\infty} \in l^q\right)
+		\end{align}
+		で表現されることを示す．
+	\item[(1) $\Rightarrow$ (2)] 任意の$f \in \left(l^p\right)^*$に対して，$f$には或る$v = (v_n)_{n=1}^{\infty} \in l^q$が対応して
+		\begin{align}
+			f(x(j)) = \sum_{n=1}^{\infty} x(j)_n v_n
+		\end{align}
+		と表すことができる．弱収束の仮定より任意の$\epsilon > 0$に対してある$J \in \N$が存在して，全ての$j > J$で
+		\begin{align}
+			|f(x(j)) - f(x)| < \epsilon
+		\end{align}
+		が成り立っている．$x(j),x \in l^p,\ v \in l^q$であるからH\Ddot{o}lderの不等式により
+		\begin{align}
+			|f(x(j)) - f(x)| = \left|\sum_{n=1}^{\infty} x(j)_n v_n - \sum_{n=1}^{\infty} x_n v_n  \right|
+			= \left|\sum_{n=1}^{\infty} \left(x(j)_n - x_n\right) v_n \right|
+			\leq \Norm{x(j) - x}{l^p}\Norm{v}{l^q}
+		\end{align}
+		と表現することができる．
+	\item[(2) $\Rightarrow$ (1)] $x(j)$が有界であるから，或る正数$M$が存在して
+		\begin{align}
+			\sup{j \in \N}{\Norm{x(j)}{l^p}} \leq M
+		\end{align}
+		が成り立っている．即ち
+		\begin{align}
+			\sup{j,n \in \N}{\left|x(j)_n\right|} < +\infty
+		\end{align}
+		が成り立っていることになる．また$\forall n \in \N\ \displaystyle \lim_{j \to \infty}x(j)_n = x_n$の意味は
+		$n \in \N$に関して$x(j)$が$x$に各点収束しているということである．$f \in \left(l^p\right)^*$を任意に取り，
+		$f(x(j)),\ f(x)$が$v=(v_n)_{n=1}^{\infty} \in l^q$を用いて
+		\begin{align}
+			f(x(j)) = \sum_{n=1}^{\infty} x(j)_n v_n,\quad f(x) = \sum_{n=1}^{\infty} x_n v_n
+		\end{align}
+		と表現できているとする．測度空間$(\N, 2^{\N}, v)\ (v(n) = v_n)$における
+		積分の収束を考えているとみなせば，以上の仮定によりLebesgueの優収束定理が適用できて
+		\begin{align}
+			\lim_{j \to \infty} \sum_{n=1}^{\infty} x(j)_n v_n = \sum_{n=1}^{\infty} \lim_{j \to \infty} x(j)_n v_n = \sum_{n=1}^{\infty} x_n v_n
+		\end{align}
+		が成り立つ．これは$f(x(j)) \longrightarrow f(x)\ (j \longrightarrow +\infty)$を意味していて，線型汎関数$f \in \left(l^p\right)^*$
+		は任意に取っているから$\displaystyle \wlim_{n \to \infty} x(j) = x$が示されたことになる．
 \end{description}
 \end{prf}
