@@ -301,14 +301,55 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 			\Log{\frac{S_t}{S_0}} = \Log{(1 + R_\delta)} + \Log{(1 + R_{2\delta})} + \cdots + \Log{(1 + R_{\frac{t}{\delta}\delta})}
 		\end{align}
 		と表わせる．次は右辺の特性関数を計算し$\delta \rightarrow 0$の極限を求める.表記を簡単にするため$X_n \coloneqq \Log{(1 + R_{n\delta})}\ (n = 1,2,\cdots,N),\ 
-		Y \coloneqq X_1 + X_2 + \cdots + X_{\frac{t}{\delta}}$とおく．任意の$z \in \R^1$に対して
+		Y \coloneqq X_1 + X_2 + \cdots + X_{\frac{t}{\delta}}$とおく．$i = \sqrt{-1}$と任意の$z \in \R^1$に対して
 		\begin{align}
 			\Exp{\exp{izY}}{}{} 
-			&= \Exp{\exp{iz(X_1 + X_2 + \cdots + X_{\frac{t}{\delta}})}}{}{} \\
+			= \Exp{\exp{iz(X_1 + X_2 + \cdots + X_{\frac{t}{\delta}})}}{}{}
 			&= \prod_{n=1}^{t/\delta} \Exp{\exp{izX_n}}{}{} && (\because \mbox{独立性}) \\
-			&= \left(\Exp{\exp{izX_1}}{}{}\right)^{\frac{t}{\delta}} && (\because \mbox{同分布}) \\
+			&= \left(\Exp{\exp{izX_1}}{}{}\right)^{\frac{t}{\delta}} && (\because \mbox{同分布})
 		\end{align}
-		となる．
+		となる．ここで極限操作を精しく評価するための準備をしておく．任意の$x \neq 0$に対して，
+		\begin{align}
+			\frac{1}{ix}\left(\exp{ix} - 1\right) &= \int_{0}^{1} \exp{isx}\, ds \\
+			&= \left[-(1-s)\exp{isx}\right]_{0}^{1} + ix \int_{0}^{1} (1-s)\exp{isx}\, ds \\
+			&= 1 + ix\left\{ \left[-\frac{1}{2}(1-s)^2\exp{isx}\right]_{0}^{1} + \frac{1}{2}ix \int_{0}^{1} (1-s)^2\exp{isx}\, ds \right\} \\
+			&= 1 + \frac{ix}{2} - \frac{x^2}{2} \int_{0}^{1} (1-s)^2\exp{isx}\, ds
+		\end{align}
+		表せるから，最左辺と最右辺で分母の$ix$を取り払えば
+		\begin{align}
+			&\exp{ix} - 1 = ix - \frac{x^2}{2} - \frac{ix^3}{2} \int_{0}^{1} (1-s)^2\exp{isx}\, ds \\
+			\Rightarrow \quad & \exp{ix} - \left( 1 + ix - \frac{x^2}{2} \right) = - \frac{ix^3}{2} \int_{0}^{1} (1-s)^2\exp{isx}\, ds
+		\end{align}
+		が任意の$x \in \R^1$に対して成り立つ($x=0$の場合でも明らかに成り立つ)．
+		$x$を確率変数$zX_1$に置き換えて期待値を取れば
+		\begin{align}
+			\left| \Exp{\exp{izX_1} - \left( 1 + izX_1 - \tfrac{1}{2}z^2X_1^2 \right)}{}{} \right|
+			&= \left| \Exp{\exp{izX_1}}{}{} - \Exp{1 + izX_1 - \tfrac{1}{2}z^2X_1^2}{}{} \right| \\
+			&= \left| \Exp{\tfrac{1}{2}iz^3X_1^3 \int_{0}^{1} (1-s)^2\exp{iszX_1}\, ds}{}{} \right| \\
+			&\leq \Exp{\left| \tfrac{1}{2}z^3X_1^3 \right| \int_{0}^{1} (1-s)^2\, ds}{}{} \\
+			&= \left|\tfrac{1}{6}z^3 \right| \Exp{\left| X_1^3 \right|}{}{} \\
+		\end{align}
+		となる．確率変数$X_1$は確率$1/2$で$r \delta + \sigma \sqrt{\delta}$または$r \delta - \sigma \sqrt{\delta}$となる．
+		また$\delta$はいくらでも小さくしていくものだから，現時点ですでに十分小さい値として考え$\delta < (\sigma/r)^2$が成り立っているとすれば
+		$r \delta - \sigma \sqrt{\delta} < 0$となる．このことに注意すれば$|X_1|^3$の期待値は
+		\begin{align}
+			\Exp{\left| X_1^3 \right|}{}{} 
+			= \frac{1}{2}\left(r \delta + \sigma \sqrt{\delta}\right)^3 - \frac{1}{2}\left(r \delta - \sigma \sqrt{\delta}\right)^3
+			= 3r^2\sigma \delta^\frac{5}{2} + \sigma^3\delta^\frac{3}{2}
+		\end{align}
+		となり，すなわち$z$を固定して考えている下ではLandauの記法により
+		\begin{align}
+			\Exp{\exp{izX_1}}{}{} - \Exp{1 + izX_1 - \tfrac{1}{2}z^2X_1^2}{}{} = o(\delta)
+		\end{align}
+		と表現できる．
+		\begin{align}
+			\Exp{X_1}{}{} = r \delta, \quad \Exp{X_1^2}{}{} = r^2 \delta^2 + \sigma^2 \delta
+		\end{align}
+		であるから，更に
+		\begin{align}
+			\Exp{\exp{izX_1}}{}{} = 1 + \delta \left(izr - \frac{1}{2}z^2 \sigma^2 \right) + o(\delta)
+		\end{align}
+		と表現できる．
 \end{description}
 
 \newpage
