@@ -95,7 +95,7 @@
 			&(f+g)(t) = f(t) + g(t) = 0, \quad (\forall t \in [0,\ a]) \\
 			&(\alpha f) (t) = \alpha f(t) = 0, \quad (\forall t \in [0,\ a])
 		\end{align}
-		が成り立つことから示される．後はsup-normに関して$Y$が閉集合となっていることを示せばよい．
+		が成り立つことで示される．後はsup-normに関して$Y$が閉集合となっていることを示せばよい．
 		$f_n \in Y\ (n=1,2,3,\cdots)$をsup-normに関するCauchy列とする．$(C([0,\ 1]),\ \rm{sup-norm})$の完備性から
 		$(f_n)_{n=1}^{\infty}$は或る$f \in C([0,\ 1])$に$[0,\ 1]$上で一様に収束するが，もし或る$x \in [0,\ a]$について
 		$|f(x)| > 0$であるならば，この$x$において$f_n(x)=0\ (n=1,2,3,\cdots)$であることから
@@ -106,8 +106,8 @@
 		$f$は$Y$に属することになる．これは$Y$がsup-normの下で完備ノルム空間となっていることを主張し，以上より$Y$は
 		$X$の閉線形部分空間であると示された．
 	\item[(2)]
-		$X$のsup-normを$\Norm{\cdot}{}$で表現する．
-		$X$を$Y$で割った商空間$X/Y$の元を$[f]\ (\mbox{代表元}\ f \in X)$で表現して，$Y$が閉線形部分空間であるから$X/Y$は
+		$X$のsup-normを$\Norm{\cdot}{}$で表し，
+		$X$を$Y$で割った商空間$X/Y$の元を$[f]\ (\mbox{代表元}\ f \in X)$で表す．$Y$が閉線形部分空間であるから$X/Y$は
 		\begin{align}
 			\Norm{[f]}{X/Y} \coloneqq \inf{g \in Y}{\Norm{f - g}{}},\qquad ([f] \in X/Y)
 		\end{align}
@@ -116,21 +116,37 @@
 		\begin{align}
 			f_1(t) = f_2(t) \quad (\forall t \in [0,\ a])
 		\end{align}
-		が成り立っている．
+		が成り立っている．ここで
 		\begin{align}
-			\Norm{[f]}{X/Y} = \inf{g \in Y}{\Norm{f - g}{}} = \inf{g \in Y}\sup{t \in [0,\ 1]}{|f(t) - g(t)|} = \sup{t \in [0,\ a]}{|f(t)|}
+			\Norm{[f]}{X/Y} = \inf{g \in Y}{\Norm{f - g}{}} = \inf{g \in Y}\sup{t \in [0,\ 1]}{|f(t) - g(t)|} = \sup{t \in [0,\ a]}{|f(t)|} \label{eq:func_analy_Q5_1}
 		\end{align}
-		が成り立つことに注意する．
+		が成り立つことを示す．任意の$g \in Y$に対して
 		\begin{align}
-			\sup{t \in [0,\ a]}{|f(t)|} = \sup{t \in [0,\ a]}{|f(t) - g(t)|} \leq \sup{t \in [0,\ 1]}{|f(t) - g(t)|}\quad (\forall g \in Y)
+			\sup{t \in [0,\ a]}{|f(t)|} = \sup{t \in [0,\ a]}{|f(t) - g(t)|} \leq \sup{t \in [0,\ 1]}{|f(t) - g(t)|}
 		\end{align}
+		が成り立つから
 		\begin{align}
-			\sup{t \in [0,\ a]}{|f(t)|} \leq \inf{g \in Y}{\sup{t \in [0,\ 1]}{|f(t) - g(t)|}}
+			\sup{t \in [0,\ a]}{|f(t)|} \leq \inf{g \in Y}{\sup{t \in [0,\ 1]}{|f(t) - g(t)|}} = \Norm{[f]}{X/Y} \label{eq:func_analy_Q5_2}
 		\end{align}
-		$[f]$の元の定義域を$[0,a]$に制限した関数は$C([0,\ a])$の或る元に一致する．$C([0,\ a])$の任意の元は定義域を$[0,1]$に拡張
-		(例えば$[a,\ 1]$上では適当な一次関数でおく)すれば$X=C([0,\ 1])$の或る元に一致するから或る$X/Y$の或る元(同値類)に属するしていることになる．
-		写像$X/Y \ni [f] \longmapsto f|_{[0,\ a]} \in C([0,\ a])$は$X/Y$から$C([0,\ a])$への全単射である．この写像を$T$と表すとする．
-		$T$は次の意味で等長である．$\Norm{[f]}{X/Y} = \Norm{f|_{[0,\ a]}}{} = \Norm{T[f]}{}$．$T$の線型性は
+		の関係がまず示される．後は式(\refeq{eq:func_analy_Q5_2})右辺のinfを実現する$g \in Y$の存在を言えばよい．例えば区間$[a,\ 1]$上で$f$と$|f(a)|$の距離を保ち続ける
+		連続関数$g$によりinfは実現される．つまり$f(a)$の正負に応じて
+		\begin{align}
+			g(t) &= \begin{cases}
+				0 & t \in [0,\ a] \\
+				f(t) - |f(a)| & t \in [a,\ 1]
+			\end{cases}, & (f(a) \geq 0) \\ 
+			g(t) &= \begin{cases}
+				0 & t \in [0,\ a] \\
+				f(t) + |f(a)| & t \in [a,\ 1]
+			\end{cases}, & (f(a) < 0)
+		\end{align}
+		となるような$g \in Y$を考えればよい．$X/Y$と$C([0,\ a])$がBanach空間として同型であることを示すために，まず$X/Y$から$C([0,\ a])$への
+		線形全単射が存在することを示す．$[f]\ (\in X/Y)$の代表元の定義域を$[0,\ a]$に制限した関数は$C([0,\ a])$の或る元に一致し，
+		$[f_1] \neq [f_2]\ ([f_1],[f_2] \in X/Y)$ならば対応する$C([0,\ a])$の元も違う．一方で$C([0,\ a])$の任意の元は定義域を$[0,\ 1]$に拡張
+		(例えば$[a,\ 1]$上では適当な一次関数でおく)すれば$X=C([0,\ 1])$の元となるから$X/Y$の或る同値類に属することになる．
+		従って写像$X/Y \ni [f] \longmapsto f|_{[0,\ a]} \in C([0,\ a])$は$X/Y$から$C([0,\ a])$への全単射である．この写像を$T$と表す．
+		式(\refeq{eq:func_analy_Q5_1})により$T$は$\Norm{[f]}{X/Y} = \Norm{f|_{[0,\ a]}}{} = \Norm{T[f]}{}$の意味で等長である．
+		そして$T$の線型性は
 		\begin{align}
 			&T([f] + [h]) = T[f+h] = (f+h)|_{[0,\ a]} = f|_{[0,\ a]} + h|_{[0,\ a]} = T[f] + T[h], \\
 			&T(\alpha[f]) = T[\alpha f] = (\alpha f)|_{[0,\ a]} = \alpha f|_{[0,\ a]} = \alpha T[f]
@@ -267,36 +283,36 @@ $X$上の掛け算作用素$M_a$を次で定める：
 \begin{prf}
 \begin{description}\mbox{}
 	\item[(1)] 任意の$v \in X$に対して
-		$v_n \coloneqq vI_{(|a| \leq n)}\ (n=1,2,3,\cdots)$として関数列$(v_n)_{n=1}^{\infty}$を作る．$I_{(|a| \leq n)}$は定義関数で
-		$|a(x)| \leq n$となる$x \in S$の上で1，その外では0となる．全ての$x \in S$で$|v_n(x)| \leq |v(x)|$となるから
-		$(v_n)_{n \in \N} \subset X$である．さらに$(v_n)_{n \in \N} \subset D(M_a)$でもあることが示される．全ての$n \in \N$について
+		$v_n \coloneqq v\defunc_{(|a| \leq n)}\ (n=1,2,3,\cdots)$として関数列$(v_n)_{n=1}^{\infty}$を作る．ただし$\defunc_{(|a| \leq n)}$は定義関数で
+		$|a(x)| \leq n$となる$x \in S$の集合の上で1，その外では0となるものである．全ての$x \in S$で$|v_n(x)| \leq |v(x)|$となるから
+		$(v_n)_{n \in \N} \subset X$である．さらに全ての$n \in \N$について
 		\begin{align}
 			\int_{S} |a(x)v_n(x)|^2 \mu(dx) = \int_{(|a| \leq n)} |a(x)v(x)|^2 \mu(dx) \leq n^2  \int_{S} |v(x)|^2 \mu(dx)
 		\end{align}
-		が成り立つからである．$X$のノルムを$\Norm{\cdot}{\Lp{2}{\mu}}$で表せば
+		が成り立つから$(v_n)_{n \in \N} \subset D(M_a)$でもある．$X$のノルムを$\Norm{\cdot}{\Lp{2}{\mu}}$で表せば
 		\begin{align}
-			\Norm{v - v_n}{\Lp{2}{\mu}}^2 = \int_{S} |v(x) - v_n(x)|^2\, \mu(dx) = \int_{S} I_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
+			\Norm{v - v_n}{\Lp{2}{\mu}}^2 = \int_{S} |v(x) - v_n(x)|^2\, \mu(dx) = \int_{S} \defunc_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
 			\label{eq:func_report_Q9_1}
 		\end{align}
-		が成り立つ．$a$は$\C$値であるから，各点$x \in S$で$\lim_{n \to +\infty} I_{(|a| > n)}(x) = 0$が成り立つ．
+		となり，$a$は$\C$値であるから各点$x \in S$で$\lim_{n \to +\infty} \defunc_{(|a| > n)}(x) = 0$が成り立つ．
 		式(\refeq{eq:func_report_Q9_1})の右辺の被積分関数は$n$に関係なく可積分関数$|v|^2$で抑えられ各点で$n \to +\infty$で$0$に収束
 		するから，Lebesgueの収束定理を適用すれば
 		\begin{align}
 			\lim_{n \to +\infty} \Norm{v - v_n}{\Lp{2}{\mu}}^2 
-			= \lim_{n \to +\infty} \int_{S} I_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
-			= \int_{S} \lim_{n \to +\infty} I_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
+			= \lim_{n \to +\infty} \int_{S} \defunc_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
+			= \int_{S} \lim_{n \to +\infty} \defunc_{(|a| > n)}(x)|v(x)|^2\, \mu(dx)
 			= 0
 		\end{align}
-		が成立する．これは$X = \left(X,\ \Norm{\cdot}{\Lp{2}{\mu}}\right)$において$v$の任意の近傍に$D(M_a)$の元$v_n$が存在することを表していて，
+		が成立する．これはノルム空間$X = \left(X,\ \Norm{\cdot}{\Lp{2}{\mu}}\right)$において$v$の任意の近傍に$D(M_a)$の元$v_n$が存在することを表していて，
 		$v$は任意に選んでいたから$D(M_a)$は$X$で稠密であると示された．
 		
-	\item[(2)] $a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$ならば，$\Norm{\cdot}{\Lp{\infty}{\mu}}$の定義より
+	\item[(2)] 任意の$a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$に対して，$\Norm{a}{\Lp{\infty}{\mu}}$は
 		\begin{align}
-			\Norm{a}{\Lp{\infty}{\mu}} = \inf{}{\left\{b \in [0, +\infty)\ |\ \mu(x \in S\ |\ |a(x)| > b) = 0 \right\}} < +\infty
+			\Norm{a}{\Lp{\infty}{\mu}} = \inf{}{\left\{b \in [0, +\infty)\ |\ \mu(x \in S\ |\ |a(x)| > b) = 0 \right\}}
 		\end{align}
-		である．特に
+		と表される．特に
 		\begin{align}
-			N_m \coloneqq \left\{x \in S\ \left|\ |a(x)| \geq \Norm{a}{\Lp{\infty}{\mu}} + \frac{1}{m} \right.\right\}, \quad(m = 1,2,3,\cdots)
+			N_m \coloneqq \left\{x \in S\ \left|\ |a(x)| \geq \Norm{a}{\Lp{\infty}{\mu}} + 1/m \right.\right\}, \quad(m = 1,2,3,\cdots)
 		\end{align}
 		と置けば$\mu(N_m)=0\ (m=1,2,3,\cdots)$であって，
 		$\mu$零集合$N$を
@@ -315,15 +331,15 @@ $X$上の掛け算作用素$M_a$を次で定める：
 		\begin{align}
 			\Norm{M_a u}{\Lp{2}{\mu}}^2 
 			&= \int_{S} |a(x)u(x)|^2\, \mu(dx) \\
-			&= \int_{S/N} |a(x)u(x)|^2\, \mu(dx) \\
-			&\leq \int_{S/N} \Norm{a}{\Lp{\infty}{\mu}}^2|u(x)|^2\, \mu(dx) \\
+			&= \int_{S \cap N^c} |a(x)u(x)|^2\, \mu(dx) \\
+			&\leq \int_{S \cap N^c} \Norm{a}{\Lp{\infty}{\mu}}^2|u(x)|^2\, \mu(dx) \\
 			&= \int_{S} \Norm{a}{\Lp{\infty}{\mu}}^2|u(x)|^2\, \mu(dx)
 			= \Norm{a}{\Lp{\infty}{\mu}}^2 \Norm{u}{\Lp{2}{\mu}}
 		\end{align}
 		が成り立っていることから，$\Norm{M_a}{} \leq \Norm{a}{\Lp{\infty}{\mu}}$であり$M_a \in B(X)$が示される．
 		さらに，$(S, \mathfrak{M}, \mu)$が$\sigma-$有限な測度空間であるという条件の下では，$\Norm{M_a}{} = \Norm{a}{\Lp{\infty}{\mu}}$であることが
 		次のように示される．$\Norm{a}{\Lp{\infty}{\mu}} = 0$ならば明らかに$M_a$は零作用素で$0 = \Norm{M_a}{} = \Norm{a}{\Lp{\infty}{\mu}}$である．
-		$\Norm{a}{\Lp{\infty}{\mu}} > 0$である場合，$\Norm{a}{\Lp{\infty}{\mu}} >> \epsilon > 0$を満たすような$\epsilon$を任意に取り，
+		$\Norm{a}{\Lp{\infty}{\mu}} > 0$である場合，$\Norm{a}{\Lp{\infty}{\mu}} > \epsilon > 0$を満たすような$\epsilon$を任意に取り，
 		\begin{align}
 			G_\epsilon \coloneqq \left\{ x \in S \cap N^c\ \left|\ \Norm{a}{\Lp{\infty}{\mu}} - \epsilon < |a(x)| \right.\right\}
 		\end{align}
@@ -365,7 +381,7 @@ $X$上の掛け算作用素$M_a$を次で定める：
 		\begin{align}
 			\Norm{a}{\Lp{\infty}{\mu}} - \epsilon < \Norm{M_a u_\epsilon}{\Lp{2}{\mu}} \leq \Norm{a}{\Lp{\infty}{\mu}}
 		\end{align}
-		が成り立っているから
+		が成り立っているから，先に示した$\Norm{M_a}{} \leq \Norm{a}{\Lp{\infty}{\mu}}$と合わせて
 		\begin{align}
 			\Norm{a}{\Lp{\infty}{\mu}} - \epsilon 
 			< \sup{0 \neq u \in X}{\frac{\Norm{M_a u}{\Lp{2}{\mu}}}{\Norm{u}{\Lp{2}{\mu}}}} = \Norm{M_a}{} 
@@ -387,7 +403,7 @@ $X$上の掛け算作用素$M_a$を次で定める：
 		\begin{align}
 			\mu\left(\ \{x \in S\ |\ |a(x)| > \Norm{M_a}{}\}\ \right) = 0
 		\end{align}
-		が成り立つことを示す．これが示されれば$a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$が従う．
+		が成り立つことを示す．これが示されれば$\mu$-零集合を除いて$a$は有界となるから$a \in \Lp{\infty}{S, \mathfrak{M}, \mu}$が従う．
 		$\sigma-$有限の仮定より，単調増大な$\mu$可測集合列$S_1 \subset S_2 \subset S_3 \subset \cdots$で$\mu(S_k) < +\infty\ (k=1,2,3,\cdots)$と
 		$\cup_{k=1}^{\infty}S_k = S$を満たすものが存在する．
 		$\mu$可測集合
@@ -407,7 +423,7 @@ $X$上の掛け算作用素$M_a$を次で定める：
 		\end{align}
 		と置けば，$\mu(S_k \cap G) < +\infty$であることから$u \in X$であって，
 		\begin{align}
-			\Norm{u}{\Lp{2}{\mu}}^2 = \int_{S} |u(x)|^2\, \mu(dx) = \mu(S_k \cap G)
+			\Norm{u}{\Lp{2}{\mu}}^2 = \int_{S} |u(x)|^2\, \mu(dx) = \int_{S_k \cap G} |u(x)|^2\, \mu(dx) = \mu(S_k \cap G)
 		\end{align}
 		が成り立っている．$G$上で$|a(x)| > \Norm{M_a}{}$であるから
 		\begin{align}
@@ -415,7 +431,7 @@ $X$上の掛け算作用素$M_a$を次で定める：
 			&= \Norm{M_a}{}^2 \int_{S} |u(x)|^2\, \mu(dx) \\
 			&= \Norm{M_a}{}^2 \int_{S_k \cap G} |u(x)|^2\, \mu(dx) \\
 			&< \int_{S_k \cap G} |a(x)u(x)|^2\, \mu(dx) \\
-			&\leq \int_{S} |a(x)u(x)|^2\, \mu(dx) \\
+			&= \int_{S} |a(x)u(x)|^2\, \mu(dx) \\
 			&\leq \Norm{M_a}{}^2 \Norm{u}{\Lp{2}{\mu}}^2 
 		\end{align}
 		となるが，最右辺と最左辺を$\Norm{u}{\Lp{2}{\mu}}^2$で割ると
@@ -436,7 +452,7 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 \end{description}
 
 \begin{prf}
-\begin{description}
+\begin{description} $X,\ X^*,\ X_0^*$におけるノルムをそれぞれ$\Norm{\cdot}{X},\ \Norm{\cdot}{X^*},\ \Norm{\cdot}{X_0^*}$で表現する．
 	\item[(1)] 任意の$x^* \in X^*$と$u \in X_0$に対して
 		\begin{align}
 			\left|\left( x^* \circ i \right) (u)\right| = \left| x^*(u) \right| \leq \Norm{x^*}{X^*} \Norm{u}{X}
@@ -444,11 +460,10 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 		が成り立つから$\Norm{x^* \circ i}{X_0^*} \leq \Norm{x^*}{X^*}\ (\forall x^* \in X^*)$が成立する．
 		従って
 		\begin{align}
-			\Norm{Tx^*}{X_0^*} = \Norm{x^* \circ i}{X_0^*} \leq \Norm{x^*}{X^*} \quad \forall x^* \in X^*
+			\Norm{Tx^*}{X_0^*} = \Norm{x^* \circ i}{X_0^*} \leq \Norm{x^*}{X^*} \quad \left(\forall x^* \in X^*\right)
 		\end{align}
 		となり$T$が有界作用素であることが示される．$T$が全射であることはHahn-Banachの定理による．
 		任意の$f_0 \in X_0^*$に対して$X$上のセミノルムとして$X \ni x \longmapsto \Norm{f_0}{X_0^*}\Norm{x}{X} \in \C$を考えれば
-		作用素ノルムの定義より
 		\begin{align}
 			|f_0 (x)| \leq  \Norm{f_0}{X_0^*}\Norm{x}{X}\quad (\forall x \in X_0)
 		\end{align}
@@ -470,13 +485,13 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 		が成り立つことが示され，$T$がノルム空間としての同型写像であると判る．
 		$X_0$が$X$で稠密であるということにより，任意の$x \in X$に対して
 		$x_k \in X_0 \ (k=1,2,\cdots)$で$\Norm{x_k - x}{X} \longrightarrow 0\ (k \longrightarrow +\infty)$
-		となるものを取れる．任意に$f_0 \in X_0^*$を取れば，任意の$m,n \in \N$に対して
+		となるものを取ることができる．任意に$f_0 \in X_0^*$を取れば，任意の$m,n \in \N$に対して
 		\begin{align}
 			|f_0(x_m) - f_0(x_n)| \leq \Norm{f_0}{X_0^*} \Norm{x_m - x_n}{X}
 		\end{align}
 		が成り立つから，右辺が$X_0$のCauchy列をなすことにより$(f_0(x_n))_{n=1}^{+\infty}$も$\C$のCauchy列となる．
-		$\C$の完備性から$(f_0(x_n))_{n=1}^{+\infty}$は或る$u \in \C$に収束する．この$u$は$x \in X$に対して一意に定まる．
-		なぜならば，$x$への別の収束列$y_k \in X_0 \ (k=1,2,\cdots)$を取った場合，$(f_0(y_n))_{n=1}^{+\infty}$の収束先が
+		$\C$の完備性から$(f_0(x_n))_{n=1}^{+\infty}$は或る$u \in \C$に収束し，$u$は$x \in X$に対して一意に定まる．
+		なぜならば，$x$への別の収束列$y_k \in X_0 \ (k=1,2,\cdots)$を取った場合の$(f_0(y_n))_{n=1}^{+\infty}$の収束先が
 		$v \in \C$であるとして，任意の$n,m \in \N$に対して
 		\begin{align}
 			|u - v| &= |u - f_0(x_n) + f_0(x_n) - f_0(y_m) + f_0(y_m) - v| \\
@@ -485,12 +500,12 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 			&\leq |u - f_0(x_n)| + \Norm{f_0}{X_0^*}\left(\Norm{x_n - x}{X} + \Norm{x - y_m}{X}\right)+ |f_0(y_m) - v|
 		\end{align}
 		となるから$n,m \longrightarrow +\infty$で右辺は0に収束し，$u = v$が示されるためである．
-		$x$に$u$を対応させる関係は$X \longmapsto \C$の写像となり，この写像を$f$と表すことにする．$f$の線型性も次のように示される．
+		つまり$x$に$u$を対応させる関係は$X \longmapsto \C$の写像となり，この写像を$f$と表すことにする．$f$の線型性も次のように示される．
 		任意の$x,\ y \in X,\ \alpha,\ \beta \in \C$に対して，$x,y$への収束列$(x_k)_{k=1}^{+\infty},\ (y_k)_{k=1}^{+\infty} \subset X_0$
 		を取れば$(\alpha x_k + \beta y_k)_{k=1}^{+\infty}$が$\alpha x+ \beta y$への収束列となるから
 		\begin{align}
 			|f(\alpha x + \beta y) - \alpha f(x) - \beta f(y)| 
-			&= |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k) + f_0(\alpha x_k) + f_0(\beta y_k) - \alpha f(x) - \beta f(y)| \\
+			&= |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k) + \alpha f_0(x_k) + \beta f_0(y_k) - \alpha f(x) - \beta f(y)| \\
 			&\leq |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k)| 
 				+ |\alpha f_0(x_k) - \alpha f(x)| + |\beta f_0(y_k) - \beta f(y)| \\
 			&\leq |f(\alpha x + \beta y) - f_0(\alpha x_k + \beta y_k)| 
@@ -498,17 +513,16 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 			&\longrightarrow 0\quad (k \longrightarrow +\infty)
 		\end{align}
 		が成り立つ．ゆえに$f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)\ (\forall x,\ y \in X,\ \alpha,\ \beta \in \C)$である．
-		また$f$は有界な線型作用素である．なぜなら，任意に$x \in X$と$x$への収束列$x_k \in X_0\ (k = 1,2,\cdots)$を取れば
-		任意の$\epsilon > 0$に対して或る$K \in \N$が存在して全ての$k > K$について
+		また$f$は有界な線型作用素である．なぜなら，任意に$x \in X$と$x$への収束列$x_k \in X_0\ (k = 1,2,\cdots)$を取れば，
+		任意の$\epsilon > 0$に対し或る$K \in \N$が存在して全ての$k > K$について
 		\begin{align}
 			|f(x)| < |f_0(x_k)| + \epsilon, \quad \Norm{x}{X} < \Norm{x_k}{X} + \epsilon/\Norm{f_0}{X_0^*}
 		\end{align}
 		が成り立つようにできるから，この下で
 		\begin{align}
-			|f(x)| < |f_0(x)| + \epsilon \leq \Norm{f_0}{X_0^*} \Norm{x}{X} + 2\epsilon
+			|f(x)| < |f_0(x)| + \epsilon < \Norm{f_0}{X_0^*} \Norm{x}{X} + 2\epsilon
 		\end{align}
-		となり$f \in X^*$であることと$\Norm{f}{X^*} \leq \Norm{f_0}{X_0^*}$が判るからである．
-		さらに作用素ノルムの性質より
+		となり$f \in X^*$であることと$\Norm{f}{X^*} \leq \Norm{f_0}{X_0^*}$が判るからである．さらに
 		\begin{align}
 			\Norm{f}{X^*} = \sup{\substack{x \in X \\ \Norm{x}{X} = 1}}{|f(x)|} 
 			\geq \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{|f(x)|} 
@@ -516,7 +530,7 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 		\end{align}
 		も成り立つから結局$\Norm{f}{X^*} = \Norm{f_0}{X_0^*}$であると判る．以上より
 		任意の$f_0 \in X_0^*$がノルムを変えないまま或る$f \in X^*$に拡張されることが示された．拡張の一意性について，
-		$f_0$の$X^*$への別の拡張$g$が存在したとする．つまり$g$は$X$上の有界な線型汎関数で$x_0$の上では$f_0$と一致するものである．
+		$f_0$の$X^*$への別の拡張$g$が存在したとする．つまり$g$は$X$上の有界な線型汎関数で$X_0$の上では$f_0$と一致するものである．
 		$g$が$f$に$X$上で完全に一致することを示すには$f$と$g$が$X \backslash X_0$で一致することを見ればよい．
 		任意の$x \in X \backslash X_0$に対して$x_k \in X_0\ (k = 1,2,\cdots)$で
 		$x_k \longrightarrow x\ (k \longrightarrow +\infty)$となるものを取れば
@@ -527,7 +541,7 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 			&\longrightarrow 0 \quad (k \longrightarrow +\infty)
 		\end{align}
 		が成り立つから$f(x) = g(x)\ (\forall x \in X \backslash X_0)$，すなわち$f(x) = g(x)\ (\forall x \in X)$
-		が成り立つと示された．任意の$x^* \in X^*$は$x^* \circ i$を$X^*$の元に拡張したものであるから，
+		が成り立つと示された．任意の$x^* \in X^*$は$x^* \circ i \in X_0^*$を$X^*$の元に拡張したものであるから，
 		つまり$x^*,\ y^* \in X^*$に対して$X_0$上で$x^* \circ i = y^* \circ i$が成り立っているならば拡張の一意性により
 		$X$上で$x^* = y^*$が成り立つから$T$は単射である．(全射であることは(1)で示した．)またノルムを変えない拡張であるから
 		$\Norm{T x^*}{X_0^*} = \Norm{x^* \circ i}{X_0^*} = \Norm{x^*}{X^*}$の意味で$T$は等長で，以上で$T$が
