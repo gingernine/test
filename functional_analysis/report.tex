@@ -156,6 +156,7 @@
 \end{description}
 \end{prf}
 
+\begin{comment}
 [6].\ $I=[0,\ 1]$とし，$X=C(I)$をsup-normの入ったBanach空間とする．$K \in C(I \times I)$とし，$A = \sup{(t,s)\in I \times I}{|K(t,s)|}$
 とおく．$u \in X$に対して$Tu\, :\, I \longmapsto \C$を次で定める:
 \begin{align}
@@ -267,7 +268,7 @@
 		\QED
 \end{description}
 \end{prf}
-
+\end{comment}
 
 [9].\ $(S, \mathfrak{M}, \mu)$は$\sigma-$有限な測度空間，$X=\Lp{2}{S, \mathfrak{M}, \mu}=\Lp{2}{\mu}$とする．可測関数$a:S \rightarrow \C$に対して，
 $X$上の掛け算作用素$M_a$を次で定める：
@@ -879,27 +880,75 @@ $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値である�
 
 \begin{prf}
 \begin{description}\mbox{}
-	\item[$l^p$の共役空間] まず$l^p$の共役空間の任意の元$f \in \left(l^p\right)^*$が或る$v \in l^q$に対応して
+	\item[$l^p$の共役空間] まず$l^p$の共役空間の任意の元$f \in \left(l^p\right)^*$が或る$v = (v_n)_{n=1}^{\infty} \in l^q$に対応して
 		\begin{align}
-			f(x) = \sum_{n=1}^{\infty} x_n v_n, \quad \left(x = (x_n)_{n=1}^{\infty} \in l^p,\ v = (v_n)_{n=1}^{\infty} \in l^q\right)
+			f(x) = \sum_{n=1}^{\infty} x_n v_n, \quad \left(x = (x_n)_{n=1}^{\infty} \in l^p\right)
 		\end{align}
 		で表現されることを示す．
-	\item[\rm{(i)} $\Rightarrow$ \rm{(ii)}] 
-		任意の$f \in \left(l^p\right)^*$に対して，$f$には或る$v = (v_n)_{n=1}^{\infty} \in l^q$が対応して
+	\item[\rm{(i)} $\Rightarrow$ \rm{(ii)}]
+		今，各$f \in \left(l^p\right)^*$に対して
 		\begin{align}
-			f(x(j)) = \sum_{n=1}^{\infty} x(j)_n v_n
+			\lim_{j \to +\infty} f(x(j)) = f(x) \label{eq:func_analy_Q13_1}
 		\end{align}
-		と表すことができる．弱収束の仮定より任意の$\epsilon > 0$に対してある$J \in \N$が存在して，全ての$j > J$で
+		が成り立っている．ここでBanach空間$\left(l^p\right)^*$上で一様有界性の原理を適用するために以下のものを導入する．
+		任意の$x \in l^p$に対し，$\left(l^p\right)^* \rightarrow \C$への写像を
 		\begin{align}
-			|f(x(j)) - f(x)| < \epsilon
+			T_x\ :\ \left(l^p\right)^* \ni f \longmapsto f(x) \in \C 
 		\end{align}
-		が成り立っている．$x(j),x \in l^p,\ v \in l^q$であるからH\Ddot{o}lderの不等式により
+		と定義して対応させる．任意の$f,g \in \left(l^p\right)^*,\ \alpha,\beta \in \C$に対して
 		\begin{align}
-			|f(x(j)) - f(x)| = \left|\sum_{n=1}^{\infty} x(j)_n v_n - \sum_{n=1}^{\infty} x_n v_n  \right|
-			= \left|\sum_{n=1}^{\infty} \left(x(j)_n - x_n\right) v_n \right|
-			\leq \Norm{x(j) - x}{l^p}\Norm{v}{l^q}
+			T_x(\alpha f + \beta g) = (\alpha f + \beta g)(x) = (\alpha f)(x) + (\beta g)(x) = \alpha f(x) + \beta g(x) = \alpha T_x(f) + \beta T_x(g)
 		\end{align}
-		と表現することができる．
+		が成り立つことにより$T_x$は$\left(l^p\right)^*$上の線型汎関数であり，
+		\begin{align}
+			|T_x(f)| = |f(x)| \leq \Norm{f}{\left(l^p\right)^*} \Norm{x}{l^p}
+		\end{align}
+		により$T_x$は有界作用素である．従って$T_x$は$\left(l^p\right)$の第二共役空間$\left(l^p\right)^{**}$の元であると判る．
+		また$\Norm{T_x}{\left(l^p\right)^{**}} = \Norm{x}{l^p}$であることが次のように示される：
+		\begin{align}
+			\Norm{T_x}{\left(l^p\right)^{**}} = \sup{0 \neq f \in \left(l^p\right)^*}{\frac{|T_x(f)|}{\Norm{f}{\left(l^p\right)^*}}}
+		\end{align}
+		の右辺が$\Norm{x}{l^p}$に一致することを示せばよい．
+		\begin{align}
+			\Norm{f}{\left(l^p\right)^*} = \sup{0 \neq x \in l^p}{\frac{|f(x)|}{\Norm{x}{l^p}}}
+		\end{align}
+		であるから当然零写像を除く全ての$f$に対して$\Norm{x}{l^p} \geq |f(x)|/\Norm{f}{\left(l^p\right)^*}$が成り立っているが，
+		$x$が生成する部分空間上で$f_0(\alpha x) = \alpha \Norm{x}{l^p}\ (\forall \alpha \in \C)$となる有界線型汎関数$f_0$(作用素ノルムは1)
+		をHahn-Banachの定理でノルムを$\leq 1$で保ったまま$l^p$上の線型汎関数まで拡張した写像$f'$に対し$|f'(x)| = \Norm{x}{l^p}$と$\Norm{f}{\left(l^p\right)^*} = 1$
+		($x$の生成する部分空間の上では$|f_0(x)| = |f'(x)| \leq \Norm{f'}{\left(l^p\right)^*} \Norm{x}{l^p}$により拡張によりノルムが小さくなることがないため)が成り立つから，
+		$f'$については不等式$\Norm{x}{l^p} \geq |f(x)|/\Norm{f}{\left(l^p\right)^*}$の等号が成立し
+		\begin{align}
+			\Norm{x}{l^p} = \sup{0 \neq f \in \left(l^p\right)^*}{\frac{|T_x(f)|}{\Norm{f}{\left(l^p\right)^*}}} = \Norm{T_x}{\left(l^p\right)^{**}}
+			\label{eq:func_analy_Q13_2}
+		\end{align}
+		が成り立つことになる．$l^p \ni x \longmapsto T_x \in \left(l^p\right)^{**}$を用いれば，式(\refeq{eq:func_analy_Q13_1})は
+		\begin{align}
+			\lim_{j \to +\infty} T_{x(j)}(f) = T_x(f) \quad \left(\forall f \in \left(l^p\right)^*\right)
+		\end{align}
+		と書き直せる．各$f \in \left(l^p\right)^*$ごとに$\left|T_{x(j)}(f) \right|\ (j=1,2,\cdots)$が有界となるから，
+		一様有界性の原理が適用されて
+		\begin{align}
+			\sup{j \in \N} \Norm{T_{x(j)}}{\left(l^p\right)^{**}} < +\infty
+		\end{align}
+		が成り立つことになる．これは式(\refeq{eq:func_analy_Q13_2})によって
+		\begin{align}
+			\sup{j \in \N} \Norm{x(j)}{l^p} < +\infty
+		\end{align}
+		が成り立っていることと同じであるから，以上で$\left\{x(j);j\in\N\right\}$が有界であることが示された．
+		次に任意の$n \in \N$で$\displaystyle \lim_{j \to \infty}x(j)_n = x_n$が成り立つことを示す．
+		任意の$n \in \N$に対して，Kroneckerのデルタを用いて
+		\begin{align}
+			v_n \coloneqq (\delta_{ni})_{i=1}^{+\infty}
+		\end{align}
+		と表される数列$v_n \in l^q$に対し
+		\begin{align}
+			f_{v_n} (u) = \sum_{i = 1}^{+\infty} u_i \delta_{ni} \quad \left(\forall u = (u_i)_{i=1}^{+\infty} \in l^p\right)
+		\end{align}
+		で定義される$f_{v_n}$は$\left(l^p\right)^*$の元であり，弱収束の仮定により
+		\begin{align}
+			\lim_{j \to +\infty}\left|f_{v_n}(x(j)) - f_{v_n}(x)\right| = \lim_{j \to +\infty}|x(j)_n - x_n| = 0
+		\end{align}
+		が成り立つ．これにより任意の$n \in \N$で$\displaystyle \lim_{j \to \infty}x(j)_n = x_n$が成り立つことが示された．
 	\item[\rm{(ii)} $\Rightarrow$ \rm{(i)}] $x(j)$が有界であるから，或る正数$M$が存在して
 		\begin{align}
 			\sup{j \in \N}{\Norm{x(j)}{l^p}} \leq M
@@ -909,17 +958,18 @@ $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値である�
 			\sup{j,n \in \N}{\left|x(j)_n\right|} < +\infty
 		\end{align}
 		が成り立っていることになる．また$\forall n \in \N\ \displaystyle \lim_{j \to \infty}x(j)_n = x_n$の意味は
-		$n \in \N$に関して$x(j)$が$x$に各点収束しているということである．$f \in \left(l^p\right)^*$を任意に取り，
-		$f(x(j)),\ f(x)$が$v=(v_n)_{n=1}^{\infty} \in l^q$を用いて
+		$n \in \N$に関して$x(j)$が$x$に各点収束しているということである．$f \in \left(l^p\right)^*$を任意に取れば，
+		$f(x(j)),\ f(x)$は或る$v=(v_n)_{n=1}^{\infty} \in l^q$を用いて
 		\begin{align}
 			f(x(j)) = \sum_{n=1}^{\infty} x(j)_n v_n,\quad f(x) = \sum_{n=1}^{\infty} x_n v_n
 		\end{align}
-		と表現できているとする．測度空間$(\N, 2^{\N}, v)\ (v(n) = v_n)$における
-		積分の収束を考えているとみなせば，以上の仮定によりLebesgueの優収束定理が適用できて
+		と表現できる．測度空間$\left(\N, 2^{\N}, v\right)\ (v(n) = v_n)$における
+		積分の収束を考えていると見做せば，Lebesgueの優収束定理を適用することにより
 		\begin{align}
-			\lim_{j \to \infty} \sum_{n=1}^{\infty} x(j)_n v_n = \sum_{n=1}^{\infty} \lim_{j \to \infty} x(j)_n v_n = \sum_{n=1}^{\infty} x_n v_n
+			\lim_{j \to \infty} f(x(j)) = \lim_{j \to \infty} \sum_{n=1}^{\infty} x(j)_n v_n 
+			= \sum_{n=1}^{\infty} \lim_{j \to \infty} x(j)_n v_n = \sum_{n=1}^{\infty} x_n v_n = f(x)
 		\end{align}
-		が成り立つ．これは$f(x(j)) \longrightarrow f(x)\ (j \longrightarrow +\infty)$を意味していて，線型汎関数$f \in \left(l^p\right)^*$
-		は任意に取っているから$\displaystyle \wlim_{n \to \infty} x(j) = x$が示されたことになる．
+		が成り立つ．$f \in \left(l^p\right)^*$は任意に取っているから$\displaystyle \wlim_{n \to \infty} x(j) = x$が示されたことになる．
+		\QED
 \end{description}
 \end{prf}
