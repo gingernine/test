@@ -558,20 +558,42 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 			\quad \Leftrightarrow \quad x^*|_{\closure{X_0}} = y^*|_{\closure{X_0}}
 		\end{align}
 		が成り立つ．つまり$X \backslash \closure{X_0}$の上での$x^*,\ y^*$の値に関係なく，
-		$X_0$の上で一致するための必要十分条件は$\closure{X_0}$の上で一致していることである．
-		$x^* \in X^*$を任意にとって(零写像でないものを取る)2つの写像$x_1^*,\ x_2^*$を
+		両者が$X_0$の上で一致するための必要十分条件は$\closure{X_0}$の上で一致していることである．
+		$T$が単射でないことは，$\closure{X_0}$の上では一致し，その外側で一致しない$X^*$の元の組が存在することで示される．
+		$x^* \in X^*$を零写像であるとする．$x^*$に対して上記の性質を満たす$y^* \in X^*$の存在をHahn-Banachの定理により示す．
+		$X \backslash \closure{X_0} \neq \emptyset$であるから$w \in X \backslash \closure{X_0}$を取れば
+		これは$w \neq 0$でありかつ$d \coloneqq \inf{x \in \closure{X_0}}{\Norm{w - x}{X}} > 0$を満たす．
+		$w$と$\closure{X_0}$が生成する$X$の部分空間を
 		\begin{align}
-			x_1^*(x) = \begin{cases}
-				x_1(x) & (x \in \closure{X_0}) \\
-				\Norm{x^*}{X^*} x & (x \in X \backslash \closure{X_0})
-			\end{cases}, \quad
-			x_2^*(x) = \begin{cases}
-				x_1(x) & (x \in \closure{X_0}) \\
-				- \Norm{x^*}{X^*} x & (x \in X \backslash \closure{X_0})
+			L \coloneqq \left\{ \alpha w + x\ \left|\ \alpha \in \C,\ x \in \closure{X_0} \right.\right\}
+		\end{align}
+		と表し，$L$上の写像$f$を
+		\begin{align}
+			f(\alpha w + x) = \alpha d, \quad (\forall \alpha w + x \in L)
+		\end{align}
+		と定義する．$w \notin \closure{X_0}$により$L$の元$\alpha w + x$の表し方は一意で
+		(つまり$\alpha w + x = \alpha' w + x' \Rightarrow \alpha = \alpha'$かつ$x = x'$)
+		あるから$f$が一価関数であることが保証されている．さらに$f$は明らかに線型性を持ち，
+		\begin{align}
+			|\alpha| d \leq |\alpha| \Norm{w + \alpha^{-1}x}{X} = \Norm{\alpha w + x}{X} \quad \left( \forall \alpha \in \C,\ x \in \closure{X_0} \right)
+		\end{align}
+		により
+		\begin{align}
+			|f(u)| \leq \Norm{u}{X} \quad (\forall x \in L) \label{eq:func_analy_Q10_3}
+		\end{align}
+		が成り立つから$f$は$L$上の有界線型汎関数でもある．$f$の作用素ノルムを$\Norm{f}{L}$と表せば
+		$|f(u)| \leq \Norm{f}{L} \Norm{u}{X}\ (\forall x \in L)$が成り立ち，右辺は明らかに$L$の上のセミノルムとなっているから，Hahn-Banachの定理により
+		$f$は$X$上の有界な線型汎関数$F$に拡張される．(有界性は$F$が不等式$|F(u)| \leq \Norm{f}{L} \Norm{u}{X}\ (\forall u \in X)$を満たすことによる．)
+		$F$は少なくとも
+		\begin{align}
+			\begin{cases}
+				F(u) = 0 & u \in \closure{X_0}, \\
+				F(u) = \alpha d & u \in L,\ \alpha \neq 0
 			\end{cases}
 		\end{align}
-		と定義すれば，$X_0$が部分空間であるから$\emptyset \neq X \backslash \closure{X_0}$かつ$0 \notin X \backslash \closure{X_0}$により
-		$x_1^* \neq x_2^*$が成り立っている．
+		を満たす$X^*$の元であるから，$y^* = F$と置けば$x^*, y^*$は$x^* \circ i = y^* \circ i$であるけれども
+		$x^* \neq y^*$満たす$X^*$の元の組である．以上で$T$が単射でないことが示された．
+		\QED
 \end{description}
 \end{prf}
 
@@ -709,7 +731,7 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 		となり級数$T_a (x)\ (\forall x \in c_0)$は有限確定するから，
 		任意の$x=(x_n), y=(y_n) \in c_0,\ \alpha \in \C$に対して以下に示す式変形が正当化される．
 		\begin{align}
-			\sum_{n=1}^{+\infty} a_n x_n + a_n y_n = \sum_{n=1}^{+\infty} a_n x_n + \sum_{n=1}^{+\infty} a_n y_n,\quad 
+			\sum_{n=1}^{+\infty} (a_n x_n + a_n y_n) = \sum_{n=1}^{+\infty} a_n x_n + \sum_{n=1}^{+\infty} a_n y_n,\quad 
 			\sum_{n=1}^{+\infty} \alpha a_n x_n = \alpha \sum_{n=1}^{+\infty} a_n x_n,\quad
 			\left| \sum_{n=1}^{+\infty} a_n x_n \right| \leq \sum_{n=1}^{+\infty} |a_n||x_n|.
 		\end{align}
@@ -844,14 +866,15 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 			\sum_{n=1}^{\infty} |a_n| \leq \Norm{L}{}
 		\end{align}
 		となることにより$a \in l^1$であることが示された．
+		\QED
 \end{description}
 \end{prf}
 
 [13].\ $1 < p < \infty$とする．$l^p$の点列$x(1),x(2),x(3),\cdots$(ただし$x(j)=\left(x(j)_n\right)_{n=1}^{\infty}$)と
 $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値であることを示せ：
 \begin{description}
-	\item[(1)] $\displaystyle \wlim_{n \to \infty} x(j) = x.$
-	\item[(2)] $\left\{x(j);j\in\N\right\}$は有界でかつ$\forall n \in \N\ \displaystyle \lim_{j \to \infty}x(j)_n = x_n$.
+	\item[\rm{(i)}] $\displaystyle \wlim_{n \to \infty} x(j) = x.$
+	\item[\rm{(ii)}] $\left\{x(j);j\in\N\right\}$は有界でかつ$\forall n \in \N\ \displaystyle \lim_{j \to \infty}x(j)_n = x_n$.
 \end{description}
 
 \begin{prf}
@@ -861,7 +884,8 @@ $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値である�
 			f(x) = \sum_{n=1}^{\infty} x_n v_n, \quad \left(x = (x_n)_{n=1}^{\infty} \in l^p,\ v = (v_n)_{n=1}^{\infty} \in l^q\right)
 		\end{align}
 		で表現されることを示す．
-	\item[(1) $\Rightarrow$ (2)] 任意の$f \in \left(l^p\right)^*$に対して，$f$には或る$v = (v_n)_{n=1}^{\infty} \in l^q$が対応して
+	\item[\rm{(i)} $\Rightarrow$ \rm{(ii)}] 
+		任意の$f \in \left(l^p\right)^*$に対して，$f$には或る$v = (v_n)_{n=1}^{\infty} \in l^q$が対応して
 		\begin{align}
 			f(x(j)) = \sum_{n=1}^{\infty} x(j)_n v_n
 		\end{align}
@@ -876,7 +900,7 @@ $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値である�
 			\leq \Norm{x(j) - x}{l^p}\Norm{v}{l^q}
 		\end{align}
 		と表現することができる．
-	\item[(2) $\Rightarrow$ (1)] $x(j)$が有界であるから，或る正数$M$が存在して
+	\item[\rm{(ii)} $\Rightarrow$ \rm{(i)}] $x(j)$が有界であるから，或る正数$M$が存在して
 		\begin{align}
 			\sup{j \in \N}{\Norm{x(j)}{l^p}} \leq M
 		\end{align}
