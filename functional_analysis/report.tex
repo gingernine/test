@@ -12,7 +12,7 @@
 			&l^{\infty} = \{a = (a_n)_{n=1}^{\infty} \in s\ ;\ \Norm{a}{l^{\infty}} = \sup{n}{|a_n|} < \infty\}, \quad
 			c_0=\{a=(a_n)_{n=1}^{\infty} \in s\ ;\ \lim_{n \to \infty}a_n=0\}.
 		\end{align}
-		このとき$l^{\infty}$は$\Norm{\cdot}{l^{\infty}}$をノルムとしてBanach空間である．
+		このとき$l^p$は$\Norm{\cdot}{l^p}$をノルムとしてBanach空間である．
 \end{itemize}
 
 \newpage
@@ -854,7 +854,7 @@ $T\ :\ X^* \ni x^* \longmapsto x^* \circ i \in X_0^*$により線型写像を定
 		\end{align}
 		が成り立つ．後は(\refeq{eq:def_a_n_in_l1})で定義した複素数列$(a_n)_{n=1}^{\infty}$が$l^1$に属していることを示せば，
 		写像$L:c_0 \longmapsto \C$が$T_a:c_0 \longmapsto \C$に一致していると証明される．これは次のように示される．
-		$a_n \neq 0\ (\exists n \leq M)$となるような$M \in \N$を取って，この$M$に対して$x = (x_n) \in c_0$として
+		$n \leq M$を満たす少なくとも一つの$n \in \N$については$a_n \neq 0$となるように十分大きいところの$M \in \N$を取って，この$M$に対して$x = (x_n) \in c_0$として
 		\begin{align}
 			x_n = \begin{cases}
 				\overline{a_n}/|a_n| & a_n \neq 0,\rm{and}\ n \leq M \\
@@ -892,7 +892,7 @@ $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値である�
 
 \begin{prf}
 \begin{description} $l^p$の共役空間，第二共役空間の作用素ノルムをそれぞれ$\Norm{\cdot}{\left(l^p\right)^*},\ \Norm{\cdot}{\left(l^p\right)^{**}}$と表す．
-	\item[$l^p$の共役空間] まず$l^p$の共役空間の任意の元$f \in \left(l^p\right)^*$が或る$v = (v_n)_{n=1}^{\infty} \in l^q$に対応して
+	\item[$l^p$の共役空間] まず$l^p$の共役空間の任意の元$f \in \left(l^p\right)^*$が或る$v = (v_n)_{n=1}^{\infty} \in l^q\ (1/p + 1/q = 1)$に対応して
 		\begin{align}
 			f(x) = \sum_{n=1}^{\infty} x_n v_n, \quad \left(x = (x_n)_{n=1}^{\infty} \in l^p\right)
 		\end{align}
@@ -923,10 +923,45 @@ $x=(x_n)_{n=1}^{\infty} \in l^p$に対し，次の(i),\ (ii)が同値である�
 			f(x) = \lim_{N \to +\infty} f(x^{(N)}) 
 			= \lim_{N \to +\infty} \sum_{n=1}^{N} f(x_n e_n)
 			= \lim_{N \to +\infty} \sum_{n=1}^{N} x_n v_n 
-			= \sum_{n=1}^{+\infty} x_n v_n \quad (\forall x \in l^p)
+			= \sum_{n=1}^{+\infty} x_n v_n \quad (\forall x \in l^p) \label{eq:func_analy_Q13_3}
 		\end{align}
-		が成り立つ．後は上で定義した複素数列$(v_n)_{n=1}^{\infty}$が$l^q$に属していることを示せばよい．
-		
+		が成り立つ．後は上で定義した複素数列$v = (v_n)_{n=1}^{\infty}$が$l^q$に属していることを示せばよい．
+		$v = 0$の場合は明らかに$v \in l^q$であるから$v \neq 0$である場合を考える．
+		各$n \in \N$について
+		\begin{align}
+			v_n = |v_n| \exp{\sqrt{-1} \theta_n}
+		\end{align}
+		が成り立つように$\theta_n \in \R^1$を一つ選ぶ．$v = (v_n)_{n=1}^{+\infty}$に対して，$n \leq N$を満たす少なくとも一つの$n \in \N$
+		については$v_n \neq 0$となるように，十分大きいところの$N \in \N$を任意に取り，
+		\begin{align}
+			w_n = \begin{cases}
+				|v_n|^{q-1} \exp{- \sqrt{-1} \theta_n} & (n = 1,2,\cdots,N), \\
+				0 & (n = N+1, N+2, \cdots)
+			\end{cases} 
+		\end{align}
+		として複素数列$w = (w_n)_{n=1}^{+\infty}$を作る．有限個を除いて0となる数列だから$w \in l^p$であり，
+		\begin{align}
+			\Norm{w}{l^p}^p = \sum_{n=1}^{N} |w_n|^p = \sum_{n=1}^{N} |v_n|^q
+		\end{align}
+		が成り立っていることにより，式(\refeq{eq:func_analy_Q13_3})の結果と合わせて
+		\begin{align}
+			f(w) = \sum_{n=1}^{+\infty} w_n v_n = \sum_{n=1}^{N} |v_n|^q 
+			= \left( \sum_{n=1}^{N} |v_n|^q \right)^{\frac{1}{q}}\left( \sum_{n=1}^{N} |v_n|^q \right)^{\frac{1}{p}}
+			= \left( \sum_{n=1}^{N} |v_n|^q \right)^{\frac{1}{q}} \Norm{w}{l^p}
+		\end{align}
+		と表現できる．$f$が有界線型作用素であることにより
+		\begin{align}
+			\left( \sum_{n=1}^{N} |v_n|^q \right)^{\frac{1}{q}} \Norm{w}{l^p} \leq \Norm{f}{\left(l^p\right)^*} \Norm{w}{l^p}
+		\end{align}
+		となるから，十分大きな任意の$N \in \N$について
+		\begin{align}
+			\sum_{n=1}^{N} |v_n|^q \leq \Norm{f}{\left(l^p\right)^*}^q
+		\end{align}
+		が成り立つことになるから，
+		\begin{align}
+			\sum_{n=1}^{+\infty} |v_n|^q \leq \Norm{f}{\left(l^p\right)^*}^q
+		\end{align}
+		が示され$v \in l^q$であることがわかる．
 	\item[\rm{(i)} $\Rightarrow$ \rm{(ii)}]
 		今，各$f \in \left(l^p\right)^*$に対して
 		\begin{align}
