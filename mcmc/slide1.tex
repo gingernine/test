@@ -1,0 +1,134 @@
+\section{Markov連鎖}
+	基礎となる確率空間$(\Omega, \mathcal{F}, \operatorname{P})$．
+	\begin{itemize}
+		\item $E$:\ 集合,
+		\item $(E, \mathcal{E})$:\ 可測空間,
+		\item $(X_n)_{n=1}^{+\infty}$：\ $E$-値確率過程．
+	\end{itemize}
+	\begin{rem}
+		\ref{sec:first}章 $\sim$ \ref{sec:ergodic}章は$E$が高々可算集合であるとして考える．
+	\end{rem}
+\section{Markov連鎖}
+	\label{sec:first}
+	\begin{dfn}[Markov性]
+		$\forall n \in \N,\ i_0, i_1, \cdots,i_n \in E,$
+		\begin{align}
+			 &\cprob{X_n = i_n}{X_0 = i_0,\ X_1 = i_1,\ \cdots, X_{n-1} = i_{n-1}} \\
+			 &\qquad= \cprob{X_n = i_n}{X_{n-1} = i_{n-1}}.
+		\end{align}
+	\end{dfn}
+	$(X_n)_{n=1}^{+\infty}$がMarkov性を持つ場合，これをMarkov連鎖という．
+	以後$(X_n)_{n=1}^{+\infty}$はMarkov連鎖．
+
+\section{Markov行列}
+	\begin{dfn}[Markov 行列]
+		$(i,j)$成分$(\forall i,j \in E)$を$\cprob{X_1 = j}{X_0 = i}$とする確率行列．
+		行列を$P$，$(i,j)$成分を$[P]_{ij}$と表記．計算規則は以下．
+		\begin{align}
+			P^0 &= I, && (\mbox{$I$：恒等写像}),\\
+			[P^n]_{ij} &= \sum_{k \in E} [P^{n-1}]_{ik} [P]_{kj}, && (\forall i,j \in E,\ n \in \N). 
+		\end{align}
+	\end{dfn}
+	定義から次が成立
+	\begin{align}
+		[P^n]_{ij} = \cprob{X_n = j}{X_0 = i}, \ (\forall n \in \N,\ i,j \in E).
+	\end{align}
+
+\section{Chapman-Kolmogorov方程式}
+	\begin{prp}[Chapman-Kolmogorov方程式]
+		任意の$n,m = 0,1,2,\cdots$と$i,j \in E$に対し次が成立．
+		\begin{align}
+			[P^{n+m}]_{ij} = \sum_{k \in E}[P^n]_{ik}[P^m]_{kj}. 
+		\end{align}
+	\end{prp}
+
+\section{既約性・再帰性}
+	\begin{dfn}[既約性]
+		$P$が既約である
+		\begin{align}
+			\DEF\ \forall i, j \in E,\ \exists n \in \N,\ \mathrm{s.t. \quad} [P^n]_{ij} > 0.
+		\end{align}
+	\end{dfn}
+	\begin{dfn}[再帰性]
+		$P$が再帰的である
+		\begin{align}
+			\DEF\ \cprob{\exists n \geq 1,\ X_n = i}{X_0 = i} = 1 \quad(\forall i \in E).
+		\end{align}
+		$P$が非再帰的である
+		\begin{align}
+			\DEF\ \cprob{\forall n \geq 1,\ X_n \neq i}{X_0 = i} > 0 \quad(\forall i \in E).
+		\end{align}
+	\end{dfn}
+	
+\section{離散空間上のMarkov連鎖}
+	\begin{dfn}[到達時刻と到達回数]
+		$\forall i \in E,\ \omega \in \Omega,$
+		\begin{description}
+			\item[到達時刻] $\tau_i(\omega) \coloneqq \inf{}{\left\{ n \geq 1\ \left|\ X_n(\omega) = i \right.\right\}},$
+			\item[到達回数] $\eta_i(\omega) \coloneqq \sum_{n=1}^{+\infty} \defunc_{(X_n = i)}(\omega).$
+		\end{description}
+	\end{dfn}
+	$p_{ij} \coloneqq \cprob{\tau_j < \infty}{X_0 = i}, \quad (\forall i,j \in E)$\\
+	と表記すれば次が成立:
+	\begin{align}
+		p_{ii} &= \cprob{\exists n \geq 1,\ X_n = j}{X_0 = i}, \\
+		p_{ii} &< 1 \Leftrightarrow \cexp{\eta_i}{X_0 = i} < +\infty, \quad (\forall i \in E).
+	\end{align}
+
+\section{正再帰性}
+	\begin{dfn}[不変確率測度]
+		$E$上の確率測度$\pi = ([\pi]_i)_{i \in E},\ (\sum_{i \in E} [\pi]_i = 1)$が$P$に対して不変確率測度である
+		\begin{align}
+			\DEF\ [\pi]_i = [\pi P]_i ( = \sum_{j \in E}[\pi]_j [P]_{ji} ), \quad (\forall i \in E).
+		\end{align}
+	\end{dfn}
+	\begin{dfn}[正再帰性]
+		$P$は正再帰的 \\
+		$\quad\DEF\quad$ $P$が既約かつ不変確率測度が存在． 
+	\end{dfn}
+\section{再帰性の諸命題}
+	\begin{prp}
+		$P$が既約の下，(i) $\sim$ (iv)が順に示される:
+		\begin{description}
+			\item[\rm{(i)}] $P$が再帰的 $\Leftrightarrow \cexp{\eta_i}{X_0 = i} = +\infty, \ (\forall i \in E),$
+			\item[\rm{(ii)}] $P$は再帰的であるか非再帰的のどちらか．特に$E$が有限集合なら$P$は再帰的．
+			\item[\rm{(iii)}] $P$が正再帰的 $\Rightarrow$ $P$は再帰的．
+			\item[\rm{(iv)}] $E$が有限集合なら$P$は正再帰的．
+		\end{description}
+	\end{prp}
+
+\section{周期}
+	\begin{dfn}[$i \in E$の周期]
+		$\mathcal{N}_i \coloneqq \left\{n \geq 1\ \left|\ [p^n]_{ii} > 0 \right.\right\}$の最大公約数を
+		$i \in E$の周期といい$d_i$と表す．
+	\end{dfn}
+	\begin{prp}[既約なら周期はunique]
+		$P$が既約ならば$d_i = d_j\ (\forall i,j \in E)$．
+		この場合$d_i$を$P$の周期という．
+	\end{prp}
+	\begin{dfn}[非周期性]
+		$P$が既約の下，
+		\begin{align}
+			\mbox{$P$は非周期的 $\quad\DEF\quad$ $P$の周期が1}.
+		\end{align}
+	\end{dfn}
+
+\section{Ergodicity}
+	\label{sec:ergodic}
+	\begin{prp}[周期に関する一命題]
+		$P$：既約，非周期的，
+		\begin{align}
+			\forall i,j \in E,\ \exists n_{ij} \in \N,\ \mathrm{s.t.}\ [P^n]_{ij} > 0 \ (\forall n \geq n_{ij}).
+		\end{align}
+	\end{prp}
+	\begin{thm}[Ergodicity]
+		$P$が既約で非周期的かつ正再帰的であるとする．$P$の不変確率測度を$\pi$で表すとき次が成立．
+		\begin{align}
+			\lim_{n \to +\infty}[P^n]_{ij} = [\pi]_j, \quad (\forall i,j \in E).
+		\end{align}
+	\end{thm}
+	
+	
+	
+	
+	
