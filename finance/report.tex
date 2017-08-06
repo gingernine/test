@@ -240,20 +240,64 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 
 \begin{description}
 \item[解答] 講義と同じく$l < u$として考える．
-\item[1)] リスク中立確率が存在するための条件は
-	\begin{itemize}
-		\item $ l < r < u$
-		\item $ 0 < p < 1$
-	\end{itemize}
-	が満たされていることであり，
+\item[1)] リスク中立的であるということは株価の割引過程がマルチンゲールとなっていることである．現在の条件付き期待値を数式で表すと次のようになる．
+	\begin{align}
+		\Exp{\tilde{S}_t}{t-1}{}
+			&= \Exp{\tilde{S}_t - \tilde{S}_{t-1} + \tilde{S}_{t-1}}{t-1}{} \\
+			&= \Exp{\tilde{S}_t - \tilde{S}_{t-1}}{t-1}{} + \tilde{S}_{t-1} \\
+			&= \Exp{\frac{1 + R_t}{1 + r} - 1}{t-1}{} + \tilde{S}_{t-1} \\
+			&= \Exp{\frac{1 + R_t}{1 + r} - 1}{}{} + \tilde{S}_{t-1} & (\because \mbox{独立性}) \\
+			&= p\left(\frac{1 + u}{1 + r} - 1\right) + (1-p)\left(\frac{1 + l}{1 + r} - 1\right) + \tilde{S}_{t-1} \\
+			&= \frac{pu + (1-p)l - r}{1+r} + \tilde{S}_{t-1},\quad (\forall t = 1,2,\cdots,T).
+	\end{align}
+	従ってまずリスク中立的であるためには最右辺の第一項が消えればよいから
+	\begin{align}
+		p = \mbox{($R_t=u$となる確率)} = \frac{r-l}{u-l}, \quad (l \leq r \leq u), \quad (\forall t = 1,2,\cdots,T) \label{eq:finance_1}
+	\end{align}
+	が満たされていなければならないことが判る．しかし$p$は与えられた確率であるから，上式を満たすリスク中立確率測度を構成する必要がある．
 	\begin{align}
 		q \coloneqq \frac{r - l}{u - l}
 	\end{align}
-	と置けばリスク中立確率$\mathbb{Q}$は次のように表せる．
+	とおき，さらに
 	\begin{align}
-		\mbox{上昇確率} \quad \mathbb{Q}(R_t = u) &= \frac{q}{p}, \\
-		\mbox{下降確率} \quad \mathbb{Q}(R_t = l) &= \frac{1-q}{1 - p}.
+		0 < p < 1 \label{eq:finance_2}
 	\end{align}
+	となっている下で
+	\begin{align}
+		Z_t \coloneqq \frac{q}{p}\defunc_{(R_t = u)}+ \frac{1-q}{1-p}\defunc_{(R_t = l)}, 
+		\quad (\forall t = 1,2,\cdots,T) 
+	\end{align}
+	を定義する．$(R_t)_{t \in \mathbb{T}\backslash \{0\}}$が独立な確率変数の系であるから，
+	$(Z_t)_{t \in \mathbb{T}\backslash \{0\}}$も独立な確率変数の系である．
+	さらに
+	\begin{align}
+		Z \coloneqq \prod_{t = 1}^{T} Z_t
+	\end{align}
+	として確率変数$Z$を定義し，さらに$Z$により構成される集合関数を
+	\begin{align}
+		\operatorname{Q}(A) \coloneqq \int_{A} Z\, d\operatorname{P}
+	\end{align}
+	として定義すれば，これは確率測度となる．ただし$\operatorname{P}$は元々与えられていた確率測度を表し，
+	\begin{align}
+		\prob{R_t = u} = p, \quad \prob{R_t = l} = 1-p
+	\end{align}
+	を満たすものである．任意の$t \in \{1,2,\cdots,T\}$に対して
+	\begin{align}
+		\operatorname{Q}(R_t = u) &= \int_{(R_t=u)} Z\, d\operatorname{P} \\
+		&= \int_{\Omega} \defunc_{(R_t = u)} Z\, d\operatorname{P} \\
+		&= \int_{\Omega} \defunc_{(R_t = u)} Z_t\, d\operatorname{P}\ \prod_{s \neq t} \int_{\Omega} Z_s\, d\operatorname{P} \\
+		&= \frac{q}{p}\prob{R_t = u} \\
+		&= q
+	\end{align}
+	が成り立つ．同様にして$\operatorname{Q}(R_t = l) = 1-q$も成立する．つまり$\operatorname{Q}$は
+	式(\refeq{eq:finance_1})を満たすから，確率測度$\operatorname{Q}$がリスク中立確率測度であると判る．
+	以上より，式(\refeq{eq:finance_1})と式(\refeq{eq:finance_2})がリスク中立確率測度が存在するための十分条件である．つまり
+	求める条件は
+	\begin{itemize}
+		\item $0 < p < 1$
+		\item $l < r < u$
+	\end{itemize}
+	である．
 \end{description}
 
 \newpage
@@ -283,7 +327,6 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 を満たしている．
 \begin{description}
 	\item[3)] $\delta \rightarrow 0$とするとき，$\Log{\frac{S_t}{S_0}}$の分布はどのような分布に収束するか?
-	\item[4)] 
 \end{description}
 
 \begin{description}
