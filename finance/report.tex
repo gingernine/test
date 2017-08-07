@@ -1,3 +1,4 @@
+\begin{comment}
 \section{Cox, Ross and Rubinstein Model}
 \begin{asm}[問題の仮定]\mbox{}
 \begin{itemize}
@@ -203,7 +204,7 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 	が成り立つから，$\operatorname{Q}$と$\operatorname{P}$が同値であることが示された．
 	\QED
 \end{prf}
-
+\end{comment}
 \newpage
 1.\ $\mathbb{T} \coloneqq \{0, 1, \cdots,T\}\ (T \in \N)$を時刻を表す集合とする．安全運用過程
 \begin{align}
@@ -351,7 +352,7 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 		\begin{align}
 			S_t = S_{t - \delta}( 1 + R_t ) = S_{t - \delta}( 1 + R_{\frac{t}{\delta}\delta} ), \quad (\forall t \in \mathbb{T} \backslash \{0\})
 		\end{align}
-		が成り立っているから，帰納的に考えて
+		が成り立っているから，続ければ
 		\begin{align}
 			S_t = S_0(1 + R_\delta)(1 + R_{2\delta}) \cdots(1 + R_{\frac{t}{\delta}\delta}) \quad (\forall t \in \mathbb{T} \backslash \{0\})
 		\end{align}
@@ -360,26 +361,26 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 			\Log{\frac{S_t}{S_0}} = \Log{(1 + R_\delta)} + \Log{(1 + R_{2\delta})} + \cdots + \Log{(1 + R_{\frac{t}{\delta}\delta})}
 		\end{align}
 		と表わせる．次は右辺の特性関数を計算し$\delta \rightarrow 0$の極限を求める.表記を簡単にするため$X_n \coloneqq \Log{(1 + R_{n\delta})}\ (n = 1,2,\cdots,N),\ 
-		Y \coloneqq X_1 + X_2 + \cdots + X_{\frac{t}{\delta}}$とおく．$i = \sqrt{-1}$と任意の$z \in \R^1$に対して
+		Y \coloneqq X_1 + X_2 + \cdots + X_{\frac{t}{\delta}}$とおけば，$i = \sqrt{-1}$と任意の$z \in \R^1$に対して
 		\begin{align}
 			\Exp{\exp{izY}}{}{} 
 			= \Exp{\exp{iz(X_1 + X_2 + \cdots + X_{\frac{t}{\delta}})}}{}{}
 			&= \prod_{n=1}^{t/\delta} \Exp{\exp{izX_n}}{}{} && (\because \mbox{独立性}) \\
 			&= \left(\Exp{\exp{izX_1}}{}{}\right)^{\frac{t}{\delta}} && (\because \mbox{同分布})
 		\end{align}
-		となる．ここで極限操作を精しく評価するための準備をしておく．任意の$x \neq 0$に対して，
+		と表せる．ここで右辺を計算しやすい形にするための準備をする．任意の$x \neq 0$に対して，
 		\begin{align}
 			\frac{1}{ix}\left(\exp{ix} - 1\right) &= \int_{0}^{1} \exp{isx}\, ds \\
 			&= \left[-(1-s)\exp{isx}\right]_{0}^{1} + ix \int_{0}^{1} (1-s)\exp{isx}\, ds \\
 			&= 1 + ix\left\{ \left[-\frac{1}{2}(1-s)^2\exp{isx}\right]_{0}^{1} + \frac{1}{2}ix \int_{0}^{1} (1-s)^2\exp{isx}\, ds \right\} \\
 			&= 1 + \frac{ix}{2} - \frac{x^2}{2} \int_{0}^{1} (1-s)^2\exp{isx}\, ds
 		\end{align}
-		表せるから，最左辺と最右辺で分母の$ix$を取り払えば
+		となるから，最左辺と最右辺で分母の$ix$を取り払えば
 		\begin{align}
 			&\exp{ix} - 1 = ix - \frac{x^2}{2} - \frac{ix^3}{2} \int_{0}^{1} (1-s)^2\exp{isx}\, ds \\
 			\Rightarrow \quad & \exp{ix} - \left( 1 + ix - \frac{x^2}{2} \right) = - \frac{ix^3}{2} \int_{0}^{1} (1-s)^2\exp{isx}\, ds
 		\end{align}
-		が任意の$x \in \R^1$に対して成り立つ($x=0$の場合でも明らかに成り立つ)．
+		が任意の$x \in \R^1$に対して成り立ち($x=0$の場合でも明らかに成り立つ)，
 		$x$を確率変数$zX_1$に置き換えて期待値を取れば
 		\begin{align}
 			\left| \Exp{\exp{izX_1} - \left( 1 + izX_1 - \tfrac{1}{2}z^2X_1^2 \right)}{}{} \right|
@@ -388,18 +389,18 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 			&\leq \Exp{\left| \tfrac{1}{2}z^3X_1^3 \right| \int_{0}^{1} (1-s)^2\, ds}{}{} \\
 			&= \left|\tfrac{1}{6}z^3 \right| \Exp{\left| X_1^3 \right|}{}{} \label{eq:finance_Q2_1}
 		\end{align}
-		となる．確率変数$X_1$は確率$1/2$で$\Log{(1 + r \delta + \sigma \sqrt{\delta})}$または$\Log{(1 + r \delta - \sigma \sqrt{\delta})}$となるものであるから，
+		と表せる．確率変数$X_1$は確率$1/2$で$\Log{(1 + r \delta + \sigma \sqrt{\delta})}$または$\Log{(1 + r \delta - \sigma \sqrt{\delta})}$となるものであるから，
 		ここでこの対数の評価をしておく．まず$s \in (0,1)$に対して
 		\begin{align}
 			\Log{(1 + s)} = s - \frac{s^2}{2} + \frac{s^3}{3} - \frac{s^4}{4} + \frac{s^5}{5} - \cdots
 		\end{align}
-		となるが，$s$の3乗以降の項について
+		となるが，$s$の3乗以降の項については
 		\begin{align}
 			\frac{s^3}{3} - \frac{s^4}{4} + \frac{s^5}{5} - \cdots \leq \frac{s^3}{3} + \frac{s^4}{4} + \frac{s^5}{5} + \cdots
 			\leq s^3 + s^4 + s^5 + \cdots
 			= \frac{s^3}{1-s} \quad (\because s \in (0,1))
 		\end{align}
-		となる．$\Log{(1 - s)}$の場合は
+		となる．$\Log{(1 - s)}$の場合も
 		\begin{align}
 			\Log{(1 - s)} = -s - \frac{s^2}{2} - \frac{s^3}{3} - \frac{s^4}{4} - \frac{s^5}{5} - \cdots
 		\end{align}
@@ -412,14 +413,18 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 		となる．$\delta$は後に0に近づける実数であるが，すでに$\delta$が十分小さいと考えれば$0 < r \delta + \sigma \sqrt{\delta} < 1$かつ$0 < \sigma \sqrt{\delta} - r \delta < 1$となるから，
 		$s$に$r \delta + \sigma \sqrt{\delta}$及び$\sigma \sqrt{\delta} - r \delta$を代入すれば，いずれの場合もLandauの記法により
 		\begin{align}
-			\frac{s^3}{1-s} \leq s^3 = o(\delta)
+			\frac{s^3}{1-s} \leq \frac{s^3}{a} = o(\delta) 
 		\end{align}
-		と表現することができる．$\Log{(1 + r \delta + \sigma \sqrt{\delta})}$と$\Log{(1 + r \delta - \sigma \sqrt{\delta})} = \Log{(1 - (\sigma \sqrt{\delta} - r \delta))}$
+		と表現することができる．ただし$a$は$1 > a$となるように無作為に選ぶ定数であり，$s$が十分小さければ(つまり$\delta$が十分小さければ)$1 - s > a$となるから上の不等式が成立する．
+		$\Log{(1 + r \delta + \sigma \sqrt{\delta})}$と$\Log{(1 + r \delta - \sigma \sqrt{\delta})} = \Log{(1 - (\sigma \sqrt{\delta} - r \delta))}$
 		に対して上の結果を適用すれば
 		\begin{align}
-			\Log{(1 + r \delta + \sigma \sqrt{\delta})} &= r \delta + \sigma \sqrt{\delta} - \frac{r^2 \delta^2 + 2r \sigma \delta^\frac{3}{2} + \sigma^2 \delta}{2} + o(\delta) \\
+			\Log{(1 + r \delta + \sigma \sqrt{\delta})} &= r \delta + \sigma \sqrt{\delta} - \frac{(r \delta + \sigma \sqrt{\delta})^2}{2} + o(\delta) \\
+				&= r \delta + \sigma \sqrt{\delta} - \frac{r^2 \delta^2 + 2r \sigma \delta^\frac{3}{2} + \sigma^2 \delta}{2} + o(\delta) \\
 				&= \left(r - \frac{\sigma^2}{2}\right)\delta + \sigma \sqrt{\delta} + o(\delta), \\
-			\Log{(1 + r \delta - \sigma \sqrt{\delta})} &= r \delta - \sigma \sqrt{\delta} - \frac{r^2 \delta^2 - 2r \sigma \delta^\frac{3}{2} + \sigma^2 \delta}{2} + o(\delta) \\
+			\Log{(1 + r \delta - \sigma \sqrt{\delta})} &= \Log{(1 - (\sigma \sqrt{\delta} - r \delta))} \\
+				&= - (\sigma \sqrt{\delta} - r \delta) - \frac{(\sigma \sqrt{\delta} - r \delta)^2}{2} + o(\delta) \\
+				&= r \delta - \sigma \sqrt{\delta} - \frac{r^2 \delta^2 - 2r \sigma \delta^\frac{3}{2} + \sigma^2 \delta}{2} + o(\delta) \\
 				&= \left(r - \frac{\sigma^2}{2}\right)\delta - \sigma \sqrt{\delta} + o(\delta)
 		\end{align}
 		と表せる．この結果により確率変数$X_1$の3乗は$o(\delta)$で表現できることになるから，$z$を固定して考えている下では式(\refeq{eq:finance_Q2_1})により
@@ -434,7 +439,10 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 		\begin{align}
 			\Exp{\exp{izX_1}}{}{} = 1 + \delta \left(iz\left(r - \frac{\sigma^2}{2}\right) - \frac{1}{2}z^2 \sigma^2 \right) + o(\delta)
 		\end{align}
-		が成立する．
+		が成立する．両辺を$t/\delta$乗して$\delta \longrightarrow +\infty$とすれば右辺は$\exp{iz\left(r - \frac{\sigma^2}{2}\right)t - \frac{1}{2}z^2 \sigma^2t}$
+		となり，これは平均$\left(r - \frac{\sigma^2}{2}\right)t$，分散$\sigma^2t$の正規分布の特性関数である．特性関数が各点$z \in \R^1$で収束しているから対応する分布は弱収束していることになり，
+		従って求める分布は平均$\left(r - \frac{\sigma^2}{2}\right)t$，分散$\sigma^2t$の正規分布である．
+		\QED
 \end{description}
 
 \newpage
