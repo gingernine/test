@@ -1,0 +1,183 @@
+
+\begin{description}
+	\item[\fbox{1}] 以下の問いに答えよ．
+	\item[(1)] $X$を空でない集合とし，その部分集合族$\mathcal{F}$を次で与える．
+		\begin{align}
+			\mathcal{F} = \left\{ A \subset X\ |\ \mbox{$A$または$A^c$は可算集合} \right\}
+		\end{align}
+		\begin{description}
+			\item[\rm{(i)}] $\mathcal{F}$は$X$上の$\sigma$集合体であることを示せ．
+			\item[\rm{(ii)}] $\mathcal{F}$上の関数$\operatorname{P}$を次で定義する．
+				\begin{align}
+					\prob{A} = \begin{cases}
+						1 & (\mbox{$A^c$は可算集合}) \\
+						0 & (\mbox{$A$は可算集合})
+					\end{cases} \quad (A \in \mathcal{F})
+				\end{align}
+		\end{description}
+		\begin{description}
+			\item[解答]
+			\item[\rm{(i)}] 
+				\begin{enumerate}
+					\item $X^c = \emptyset$の濃度は0であるから$X \in \mathcal{F}$である．
+					\item $A \in \mathcal{F}$であれば$A$または$A^c$が可算集合である．これは$A^c$または
+						$(A^c)^c$が可算集合であることと同じであるから$A^c \in \mathcal{F}$である．
+					\item $A_n \in \mathcal{F}\ (n=1,2,\cdots)$を取る．$A_n\ (n=1,2,\cdots)$がすべて可算集合であるなら$\cup_{n \in \N} A_n$も可算集合であるから$\cup_{n \in \N} A_n \in \mathcal{F}$が成り立つ．
+					ある$N \in \N$について$A_N$が非可算集合である場合，$A_N^c$が可算集合であって
+					\begin{align}
+						\bigcap_{n \in \N} A_n^c \subset A_N^c
+					\end{align}
+					となるから$\cap_{n \in \N} A_n^c \in \mathcal{F}$であることが判る．二番目の結果により
+					この場合も$\cup_{n \in \N} A_n \in \mathcal{F}$が成り立つ．以上でいかなる場合も
+					$\cup_{n \in \N} A_n \in \mathcal{F}$が成り立つことが示された．
+				\end{enumerate}
+				以上で$\mathcal{F}$が$\sigma$集合体であることの定義を満たしていることが確認された．
+			\item[\rm{(ii)}] (i)の結果により$(X, \mathcal{F})$は可測空間となる．定義された集合関数
+				$\operatorname{P}$が確率測度の定義を満たしていることを確認する．
+				\begin{enumerate}
+					\item $X^c = \emptyset$が可算集合であるから$\prob{X}=1$である．
+					\item $\forall A \in \mathcal{F}$に対し$\prob{A}= 0$または$1$でしかないから
+						$0 \leq \prob{A} \leq 1$が満たされている．
+					\item $A_n \in \mathcal{F}\ (n = 1,2,\cdots),\ A_n \cap A_m = \emptyset\ (n \neq m)$
+						となる集合の系$(A_n)_{n \in \N}$に対して，$A_n\ (n=1,2,\cdots)$が全て可算集合であるなら
+						$\sum_{n \in \N} A_n$も可算集合となるから$\prob{\sum_{n \in \N} A_n} = 0$となり，
+						かつ全ての$n \in \N$に対して$\prob{A_n}=0$ともなっているから
+						\begin{align}
+							\prob{\sum_{n \in \N} A_n} = \sum_{n \in \N} \prob{A_n}
+						\end{align}
+						が成立する．或る$N \in \N$について$A_N$が非可算集合となっている場合，$n \neq N$となる$n \in \N$
+						については$A_n \subset A_N^c$が成り立つことから，非可算集合は$A_N$のみとなることに注意する．(i)を示した時と同じ理由で$\cap_{n \in \N}A_n^c$が可算集合となるから$\prob{\sum_{n \in \N}A_n}=1$であり，
+						\begin{align}
+							1 = \prob{A_N} = \sum_{n \in \N} \prob{A_n} = \prob{\sum_{n \in \N}A_n}
+						\end{align}
+						が成り立つことから，いかなる場合も
+						\begin{align}
+							\prob{\sum_{n \in \N} A_n} = \sum_{n \in \N} \prob{A_n}
+						\end{align}
+						が成立することが示され，ゆえに$\operatorname{P}$は$\mathcal{F}$の上で完全加法的である．
+				\end{enumerate}
+				以上より$\operatorname{P}$が可測空間$(X, \mathcal{F})$上の確率測度であることが示された．
+				\QED
+		\end{description}
+	\item[(2)] $(\Omega,\mathcal{F},\operatorname{P})$を確率空間とし，$A_1,A_2,\cdots \in \mathcal{F}$とする．
+	\begin{description}
+		\item[\rm{(i)}] $n \geq 2$に対して次の等式を示せ：
+			\begin{align}
+				\prob{\bigcup_{k=1}^{n}A_k} = \sum_{k=1}^{n}(-1)^{k-1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \prob{\bigcap_{m=1}^{k}A_{i_m}} \label{eq:prob_Q1_1}
+			\end{align}
+		\item[\rm{(ii)}] $n \geq 2$に対して次の不等式を示せ：
+			\begin{align}
+				\prob{\bigcup_{k=1}^{n} A_k} \geq \sum_{k=1}^{n} \prob{A_k} - \sum_{1 \leq i < j \leq n} \prob{A_i \cap A_j} \label{eq:prob_Q1_2}
+			\end{align}
+	\end{description}
+	
+	\begin{description}
+		\item[解答]
+		\item[\rm{(i)}] 数学的帰納法で証明する．$n=2$の場合
+			\begin{align}
+				\prob{A_1 \cup A_2} = \prob{A_1 + A_2 \backslash (A_1 \cap A_2)}
+				%= \prob{A_1} + \prob{A_2 \backslash (A_1 \cap A_2)}
+				= \prob{A_1} + \prob{A_2} - \prob{A_1 \cap A_2}
+			\end{align}
+			となるから等式(\refeq{eq:prob_Q1_1})は成立している．
+			$n\ (\geq 2)$番目まで等式(\refeq{eq:prob_Q1_1})が成立していると仮定して$n+1$番目を考える．まず一般に
+			\begin{align}
+				\prob{\bigcup_{k=1}^{n+1}A_k} = \prob{\bigcup_{k=1}^{n}A_k} + \prob{A_{n+1} \backslash \bigcup_{k=1}^{n}A_k}
+			\end{align}
+			が成立している．ここで右辺の第二項を分解していくと
+			\begin{align}
+				\prob{A_{n+1} \backslash \bigcup_{k=1}^{n}A_k} &= \prob{A_{n+1}} - \prob{\bigcup_{k_1=1}^{n}A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1} \backslash \bigcup_{k_2=1}^{k_1 - 1}A_{k_2} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=1}^{n} \prob{\bigcup_{k_2=1}^{k_1 - 1}A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=1}^{n} \prob{\sum_{k_2=1}^{k_1 - 1} A_{k_2} \cap A_{k_1} \cap A_{n+1} \backslash \bigcup_{k_3=1}^{k_2 - 1} A_{k_3} \cap A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1} \backslash \bigcup_{k_3=1}^{k_2 - 1} A_{k_3} \cap A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad- \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{\bigcup_{k_3=1}^{k_2 - 1} A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad- \sum_{k_1=3}^{n} \sum_{k_2=2}^{k_1 - 1} \prob{\sum_{k_3=1}^{k_2 - 1} A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1} \backslash \bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad- \sum_{k_1=3}^{n} \sum_{k_2=2}^{k_1 - 1} \sum_{k_3=1}^{k_2 - 1} \prob{ A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad- \sum_{k_1=4}^{n} \sum_{k_2=3}^{k_1 - 1} \sum_{k_3=2}^{k_2 - 1} \prob{\bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+				& \vdots \\
+				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad- \sum_{k_1=3}^{n} \sum_{k_2=2}^{k_1 - 1} \sum_{k_3=1}^{k_2 - 1} \prob{ A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad- \sum_{k_1=4}^{n} \sum_{k_2=3}^{k_1 - 1} \sum_{k_3=2}^{k_2 - 1} \prob{\bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad\cdots \\
+					&\quad +(-1)^n  \sum_{k_1=n}^{n} \sum_{k_2=n-1}^{k_1 - 1} \cdots \sum_{k_{n-1} = 2}^{k_{n-2}-1} \prob{\bigcup_{k_n = 1}^{k_{n-1} - 1} A_{k_{n}} \cap \cdots \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+				&= \prob{A_{n+1}} + \sum_{k=1}^{n}(-1)^k \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \prob{\bigcap_{m=1}^{k}A_{i_m} \cap A_{n+1}}
+			\end{align}
+			が成り立つ．上の結果と帰納法の仮定を使えば
+			\begin{align}
+				&\prob{\bigcup_{k=1}^{n} A_k} + \prob{A_{n+1} \backslash \bigcup_{k=1}^{n}A_k} \\
+				&= \prob{\bigcup_{k=1}^{n} A_k} + \prob{A_{n+1}} + \sum_{k=1}^{n}(-1)^k \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \prob{\bigcap_{m=1}^{k}A_{i_m} \cap A_{n+1}} \\
+				&= \sum_{k=1}^{n}(-1)^{k-1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \prob{\bigcap_{m=1}^{k}A_{i_m}} + \prob{A_{n+1}} + \sum_{k=1}^{n}(-1)^k \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \prob{\bigcap_{m=1}^{k}A_{i_m} \cap A_{n+1}} \\
+				&=\sum_{k=1}^{n+1}(-1)^{k-1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n+1} \prob{\bigcap_{m=1}^{k}A_{i_m}}
+			\end{align}
+			が成り立つから
+			\begin{align}
+				\prob{\bigcup_{k=1}^{n+1}} = \sum_{k=1}^{n+1}(-1)^{k-1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n+1} \prob{\bigcap_{m=1}^{k}A_{i_m}}
+			\end{align}
+			となり，$n+1$番目にも等式(\refeq{eq:prob_Q1_1})が成立していることが示される．以上で数学的帰納法により
+			全ての自然数$n \geq 2$で等式(\refeq{eq:prob_Q1_1})が成立していることが示された．
+		\item[\rm{(ii)}] これも数学的帰納法による．$n=2$の場合は
+			\begin{align}
+				\prob{A_1 \cup A_2} = \prob{A_1} + \prob{A_2} - \prob{A_1 \cap A_2}
+			\end{align}
+			により不等式(\refeq{eq:prob_Q1_2})は成立している．$n\ (\geq 2)$番目まで不等式(\refeq{eq:prob_Q1_2})が成立していると仮定して$n+1$番目を考えれば
+			\begin{align}
+				\prob{\bigcup_{k=1}^{n+1} A_k} 
+				&= \prob{\bigcup_{k=1}^{n} A_k} + \prob{A_{n+1} \backslash \bigcup_{k=1}^{n} A_k} \\
+				&= \prob{\bigcup_{k=1}^{n} A_k} + \prob{A_{n+1}} - \prob{\bigcup_{k=1}^{n} A_k \cap A_{n+1}} \\
+				&\geq \prob{\bigcup_{k=1}^{n} A_k} + \prob{A_{n+1}} - \sum_{k=1}^{n} \prob{A_k \cap A_{n+1}} \\
+				&\geq \sum_{k=1}^{n} \prob{A_k} - \sum_{1 \leq i < j \leq n} \prob{A_i \cap A_j} + \prob{A_{n+1}} - \sum_{k=1}^{n} \prob{A_k \cap A_{n+1}} \\
+				&= \sum_{k=1}^{n+1} \prob{A_k} - \sum_{1 \leq i < j \leq n+1} \prob{A_i \cap A_j} 
+			\end{align}
+			となり，$n+1$番目にも不等式(\refeq{eq:prob_Q1_2})が成立していることが示される．以上で数学的帰納法により
+			全ての自然数$n \geq 2$で不等式(\refeq{eq:prob_Q1_2})が成立していることが示された．
+			\QED
+	\end{description}
+\end{description}
+
+\newpage
+\begin{description}
+	\item[\fbox{2}] 確率測度の列$(\mu_n)_{n=1}^{\infty}$を次で定める．
+		\begin{align}
+			\mu_n(\{k\}) = \frac{n!}{k!(n-k)!} \left( \frac{1}{n} \right)^k \left( 1 - \frac{1}{n} \right)^{n-k} \quad (k=0,1,2,\cdots,n)
+		\end{align}
+		\begin{description}
+			\item[(1)] 確率測度$\mu_n$の特性関数$\phi_n(\xi)$を計算せよ．
+			\item[(2)] $\lim_{n \to \infty} \phi_n(\xi)$を求めよ．
+			\item[(3)] 確率測度$\mu$を次で定める．
+				\begin{align}
+					\mu(\{k\}) = \frac{1}{e \cdot k!} \quad (k=0,1,2,\cdots)
+				\end{align}
+				$\mu$の特性関数$\phi(\xi)$を計算し，$\mu_n \Rightarrow \mu$を示せ．
+		\end{description}
+		\begin{description}
+			\item[解答]
+			\item[(1)] $i=\sqrt{-1}$とする．任意の$\xi \in \R^1$に対して
+				\begin{align}
+					\phi_n(\xi) &= \sum_{k=0}^{n} \frac{n!}{k!(n-k)!} \left( \frac{1}{n} \right)^k \left( 1 - \frac{1}{n}\right)^{n-k} \exp{i \xi k}  \\
+					&= \sum_{k=0}^{n} \frac{n!}{k!(n-k)!} \left( \frac{\exp{i \xi}}{n} \right)^k \left( 1 - \frac{1}{n} \right)^{n-k} \\
+					&= \left( 1 + \frac{\exp{i \xi} - 1}{n} \right)^n
+				\end{align}
+				が成り立つ．
+			\item[(2)] $\xi \neq 0$のとき，
+				\begin{align}
+					\lim_{n \to \infty} \phi_n(\xi) = \lim_{n \to \infty} \left( 1 + \frac{\exp{i \xi} - 1}{n} \right)^n = \lim_{n \to \infty} \left( \left( 1 + \frac{\exp{i \xi} - 1}{n} \right)^{n/(\exp{i \xi} - 1)} \right)^{\exp{i \xi} - 1} = \exp{\exp{i \xi} - 1}
+				\end{align}
+				が成り立ち，$\xi = 0$の場合は全ての$n = 1,2,\cdots$について$\phi_n(0) = 1$であるから極限も$1$である．
+				従って全ての$\xi \in \R^1$に対して
+				\begin{align}
+					\lim_{n \to \infty} \phi_n(\xi) = \exp{\exp{i \xi} - 1}
+				\end{align}
+				となる．
+			\item[(3)] 任意の$\xi \in \R^1$に対して
+				\begin{align}
+					\phi(\xi) = \sum_{k=0}^{\infty} \frac{1}{e \cdot k!} \exp{i \xi k} = \frac{1}{e} \sum_{k=0}^{\infty} \frac{(\exp{i \xi})^k}{k!} = \exp{\exp{i \xi} - 1}
+				\end{align}
+				が成り立つ．(2)の結果と合わせて$\phi_n$は$\phi$に各点$\xi \in \R^1$で収束しているから，
+				講義中の定理2.2.5により$\mu_n \Rightarrow \mu$が示された．
+				\QED
+		\end{description}
+\end{description}
