@@ -97,11 +97,11 @@
 					&\quad- \sum_{k_1=3}^{n} \sum_{k_2=2}^{k_1 - 1} \prob{\sum_{k_3=1}^{k_2 - 1} A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1} \backslash \bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
 				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
 					&\quad- \sum_{k_1=3}^{n} \sum_{k_2=2}^{k_1 - 1} \sum_{k_3=1}^{k_2 - 1} \prob{ A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
-					&\quad- \sum_{k_1=4}^{n} \sum_{k_2=3}^{k_1 - 1} \sum_{k_3=2}^{k_2 - 1} \prob{\bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad+ \sum_{k_1=4}^{n} \sum_{k_2=3}^{k_1 - 1} \sum_{k_3=2}^{k_2 - 1} \prob{\bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
 				& \vdots \\
 				&= \prob{A_{n+1}} - \sum_{k_1=1}^{n} \prob{A_{k_1} \cap A_{n+1}} + \sum_{k_1=2}^{n} \sum_{k_2=1}^{k_1 - 1} \prob{A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
 					&\quad- \sum_{k_1=3}^{n} \sum_{k_2=2}^{k_1 - 1} \sum_{k_3=1}^{k_2 - 1} \prob{ A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
-					&\quad- \sum_{k_1=4}^{n} \sum_{k_2=3}^{k_1 - 1} \sum_{k_3=2}^{k_2 - 1} \prob{\bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
+					&\quad+ \sum_{k_1=4}^{n} \sum_{k_2=3}^{k_1 - 1} \sum_{k_3=2}^{k_2 - 1} \prob{\bigcup_{k_4 = 1}^{k_3 - 1} A_{k_4} \cap A_{k_3} \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
 					&\quad\cdots \\
 					&\quad +(-1)^n  \sum_{k_1=n}^{n} \sum_{k_2=n-1}^{k_1 - 1} \cdots \sum_{k_{n-1} = 2}^{k_{n-2}-1} \prob{\bigcup_{k_n = 1}^{k_{n-1} - 1} A_{k_{n}} \cap \cdots \cap A_{k_2} \cap A_{k_1} \cap A_{n+1}} \\
 				&= \prob{A_{n+1}} + \sum_{k=1}^{n}(-1)^k \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n} \prob{\bigcap_{m=1}^{k}A_{i_m} \cap A_{n+1}}
@@ -115,7 +115,7 @@
 			\end{align}
 			が成り立つから
 			\begin{align}
-				\prob{\bigcup_{k=1}^{n+1}} = \sum_{k=1}^{n+1}(-1)^{k-1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n+1} \prob{\bigcap_{m=1}^{k}A_{i_m}}
+				\prob{\bigcup_{k=1}^{n+1} A_k} = \sum_{k=1}^{n+1}(-1)^{k-1} \sum_{1 \leq i_1 < i_2 < \cdots < i_k \leq n+1} \prob{\bigcap_{m=1}^{k}A_{i_m}}
 			\end{align}
 			となり，$n+1$番目にも等式(\refeq{eq:prob_Q1_1})が成立していることが示される．以上で数学的帰納法により
 			全ての自然数$n \geq 2$で等式(\refeq{eq:prob_Q1_1})が成立していることが示された．
@@ -176,7 +176,7 @@
 				\begin{align}
 					\phi(\xi) = \sum_{k=0}^{\infty} \frac{1}{e \cdot k!} \exp{i \xi k} = \frac{1}{e} \sum_{k=0}^{\infty} \frac{(\exp{i \xi})^k}{k!} = \exp{\exp{i \xi} - 1}
 				\end{align}
-				が成り立つ．(2)の結果と合わせて$\phi_n$は$\phi$に各点$\xi \in \R^1$で収束しているから，
+				が成り立つ．(2)の結果と合わせて$\phi_n$は$\phi$に各点$\xi \in \R^1$で収束($n \to +\infty$)しているから，
 				講義中の定理2.2.5により$\mu_n \Rightarrow \mu$が示された．
 				\QED
 		\end{description}
