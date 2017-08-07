@@ -335,7 +335,7 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 \end{align}
 ただし$(R_t)_{t \in \mathbb{T} \backslash \{0\}}$は独立同分布な確率変数列であり
 \begin{align}
-	\Log{(1 + R_t)} = \begin{cases}
+	R_t = \begin{cases}
 		r \delta + \sigma \sqrt{\delta} & \mbox{with probability } 1/2, \\
 		r \delta - \sigma \sqrt{\delta} & \mbox{with probability } 1/2
 	\end{cases}
@@ -386,29 +386,55 @@ $\operatorname{P}$に同値な確率測度$\operatorname{Q}$を構成でき，$\
 			&= \left| \Exp{\exp{izX_1}}{}{} - \Exp{1 + izX_1 - \tfrac{1}{2}z^2X_1^2}{}{} \right| \\
 			&= \left| \Exp{\tfrac{1}{2}iz^3X_1^3 \int_{0}^{1} (1-s)^2\exp{iszX_1}\, ds}{}{} \right| \\
 			&\leq \Exp{\left| \tfrac{1}{2}z^3X_1^3 \right| \int_{0}^{1} (1-s)^2\, ds}{}{} \\
-			&= \left|\tfrac{1}{6}z^3 \right| \Exp{\left| X_1^3 \right|}{}{} \\
+			&= \left|\tfrac{1}{6}z^3 \right| \Exp{\left| X_1^3 \right|}{}{} \label{eq:finance_Q2_1}
 		\end{align}
-		となる．確率変数$X_1$は確率$1/2$で$r \delta + \sigma \sqrt{\delta}$または$r \delta - \sigma \sqrt{\delta}$となる．
-		また$\delta$はいくらでも小さくしていくものだから，現時点ですでに十分小さい値として考え$\delta < (\sigma/r)^2$が成り立っているとすれば
-		$r \delta - \sigma \sqrt{\delta} < 0$となる．このことに注意すれば$|X_1|^3$の期待値は
+		となる．確率変数$X_1$は確率$1/2$で$\Log{(1 + r \delta + \sigma \sqrt{\delta})}$または$\Log{(1 + r \delta - \sigma \sqrt{\delta})}$となるものであるから，
+		ここでこの対数の評価をしておく．まず$s \in (0,1)$に対して
 		\begin{align}
-			\Exp{\left| X_1^3 \right|}{}{} 
-			= \frac{1}{2}\left(r \delta + \sigma \sqrt{\delta}\right)^3 - \frac{1}{2}\left(r \delta - \sigma \sqrt{\delta}\right)^3
-			= 3r^2\sigma \delta^\frac{5}{2} + \sigma^3\delta^\frac{3}{2}
+			\Log{(1 + s)} = s - \frac{s^2}{2} + \frac{s^3}{3} - \frac{s^4}{4} + \frac{s^5}{5} - \cdots
 		\end{align}
-		となり，すなわち$z$を固定して考えている下ではLandauの記法により
+		となるが，$s$の3乗以降の項について
 		\begin{align}
-			\Exp{\exp{izX_1}}{}{} - \Exp{1 + izX_1 - \tfrac{1}{2}z^2X_1^2}{}{} = o(\delta)
+			\frac{s^3}{3} - \frac{s^4}{4} + \frac{s^5}{5} - \cdots \leq \frac{s^3}{3} + \frac{s^4}{4} + \frac{s^5}{5} + \cdots
+			\leq s^3 + s^4 + s^5 + \cdots
+			= \frac{s^3}{1-s} \quad (\because s \in (0,1))
 		\end{align}
-		と表現できる．
+		となる．$\Log{(1 - s)}$の場合は
 		\begin{align}
-			\Exp{X_1}{}{} = r \delta, \quad \Exp{X_1^2}{}{} = r^2 \delta^2 + \sigma^2 \delta
+			\Log{(1 - s)} = -s - \frac{s^2}{2} - \frac{s^3}{3} - \frac{s^4}{4} - \frac{s^5}{5} - \cdots
 		\end{align}
-		であるから，更に
+		となり，同様に$s$の3乗以降の項について
 		\begin{align}
-			\Exp{\exp{izX_1}}{}{} = 1 + \delta \left(izr - \frac{1}{2}z^2 \sigma^2 \right) + o(\delta)
+			\left| - \sum_{k=3}^{\infty} \frac{s^k}{k} \right| \leq \frac{s^3}{3} + \frac{s^4}{4} + \frac{s^5}{5} + \cdots
+			\leq s^3 + s^4 + s^5 + \cdots
+			= \frac{s^3}{1-s} \quad (\because s \in (0,1))
 		\end{align}
-		と表現できる．
+		となる．$\delta$は後に0に近づける実数であるが，すでに$\delta$が十分小さいと考えれば$0 < r \delta + \sigma \sqrt{\delta} < 1$かつ$0 < \sigma \sqrt{\delta} - r \delta < 1$となるから，
+		$s$に$r \delta + \sigma \sqrt{\delta}$及び$\sigma \sqrt{\delta} - r \delta$を代入すれば，いずれの場合もLandauの記法により
+		\begin{align}
+			\frac{s^3}{1-s} \leq s^3 = o(\delta)
+		\end{align}
+		と表現することができる．$\Log{(1 + r \delta + \sigma \sqrt{\delta})}$と$\Log{(1 + r \delta - \sigma \sqrt{\delta})} = \Log{(1 - (\sigma \sqrt{\delta} - r \delta))}$
+		に対して上の結果を適用すれば
+		\begin{align}
+			\Log{(1 + r \delta + \sigma \sqrt{\delta})} &= r \delta + \sigma \sqrt{\delta} - \frac{r^2 \delta^2 + 2r \sigma \delta^\frac{3}{2} + \sigma^2 \delta}{2} + o(\delta) \\
+				&= \left(r - \frac{\sigma^2}{2}\right)\delta + \sigma \sqrt{\delta} + o(\delta), \\
+			\Log{(1 + r \delta - \sigma \sqrt{\delta})} &= r \delta - \sigma \sqrt{\delta} - \frac{r^2 \delta^2 - 2r \sigma \delta^\frac{3}{2} + \sigma^2 \delta}{2} + o(\delta) \\
+				&= \left(r - \frac{\sigma^2}{2}\right)\delta - \sigma \sqrt{\delta} + o(\delta)
+		\end{align}
+		と表せる．この結果により確率変数$X_1$の3乗は$o(\delta)$で表現できることになるから，$z$を固定して考えている下では式(\refeq{eq:finance_Q2_1})により
+		\begin{align}
+			\Exp{\exp{izX_1}}{}{} - \Exp{1 + izX_1 - \tfrac{1}{2}z^2X_1^2}{}{} = o(\delta) \label{eq:finance_Q2_2}
+		\end{align}
+		と表現できる．さらに$X_1$の期待値と2次モーメントも
+		\begin{align}
+			\Exp{X_1}{}{} = \left(r - \frac{\sigma^2}{2}\right)\delta + o(\delta), \quad \Exp{X_1^2}{}{} = \sigma^2 \delta + o(\delta)
+		\end{align}
+		と表現できるから，式(\refeq{eq:finance_Q2_2})に適用すれば
+		\begin{align}
+			\Exp{\exp{izX_1}}{}{} = 1 + \delta \left(iz\left(r - \frac{\sigma^2}{2}\right) - \frac{1}{2}z^2 \sigma^2 \right) + o(\delta)
+		\end{align}
+		が成立する．
 \end{description}
 
 \newpage
