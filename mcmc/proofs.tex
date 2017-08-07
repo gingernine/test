@@ -1,4 +1,7 @@
 \section{Markov連鎖}
+	\begin{rem}
+		$0 \cdot \infty = \infty \cdot 0 = 0$と約束する．
+	\end{rem}
 	基礎となる確率空間$(\Omega, \mathcal{F}, \operatorname{P})$．
 	\begin{itemize}
 		\item $E$:\ 集合,
@@ -8,6 +11,7 @@
 	\begin{rem}
 		\ref{sec:first}章 $\sim$ \ref{sec:ergodic}章は$E$が高々可算集合であるとして考える．
 	\end{rem}
+	
 \section{Markov連鎖}
 	\label{sec:first}
 	\begin{dfn}[Markov性]
@@ -33,6 +37,24 @@
 	\begin{align}
 		[P^n]_{ij} = \cprob{X_n = j}{X_0 = i}, \ (\forall n \in \N,\ i,j \in E).
 	\end{align}
+	\begin{prf}
+		数学的帰納法で示されることである．$[P]_{ij} = \cprob{X_1 = j}{X_0 = i}\ (\forall i,j \in E)$は明らかに成り立つことであるが，
+		自然数$n \geq 3$に対して$[P^{n-1}]_{ij}=\cprob{X_{n-1} = j}{X_0 = i}\ (\forall i,j \in E)$が成り立っていると仮定する．
+		このとき任意の$i, j \in E$に対して
+		\begin{align}
+			[P^n]_{ij} &= \sum_{k \in E} [P^{n-1}]_{ik} [P]_{kj} \\
+			&= \sum_{k \in E} \cprob{X_{n-1} = k}{X_0 = i} \cprob{X_1 = j}{X_0 = k} \\
+			&= \sum_{k \in E} \cprob{X_{n-1} = k}{X_0 = i} \cprob{X_n = j}{X_{n-1} = k} \\
+			&= \sum_{k \in E} \frac{\prob{X_{n-1} = k, X_0 = i}}{\prob{X_0 = i}} \frac{\prob{X_n = j, X_{n-1} = k}}{\prob{X_{n-1} = k}} \\
+			&= \sum_{k \in E} \frac{\prob{X_n = j, X_{n-1} = k, X_0 = i}}{\prob{X_0 = i}} 
+				\frac{\prob{X_{n-1} = k, X_0 = i} \prob{X_n = j, X_{n-1} = k}}{\prob{X_n = j, X_{n-1} = k, X_0 = i} \prob{X_{n-1} = k}} \\
+			&= \sum_{k \in E} \frac{\prob{X_n = j, X_{n-1} = k, X_0 = i}}{\prob{X_0 = i}} \frac{\cprob{X_n = j}{X_{n-1} = k}}{\cprob{X_n = j}{X_{n-1} = k}} \\
+			&= \sum_{k \in E} \cprob{X_n = j, X_{n-1} = k}{X_0 = i} \\
+			&= \cprob{X_n = j}{X_0 = i}
+		\end{align}
+		が成り立つから，以上で$[P^n]_{ij} = \cprob{X_n = j}{X_0 = i}, \ (\forall n \in \N,\ i,j \in E)$が示された．
+		\QED
+	\end{prf}
 
 \section{Chapman-Kolmogorov方程式}
 	\begin{prp}[Chapman-Kolmogorov方程式]
@@ -72,10 +94,53 @@
 	\end{dfn}
 	$p_{ij} \coloneqq \cprob{\tau_j < \infty}{X_0 = i}, \quad (\forall i,j \in E)$\\
 	と表記すれば次が成立:
-	\begin{align}
-		p_{ii} &= \cprob{\exists n \geq 1,\ X_n = j}{X_0 = i}, \\
-		p_{ii} &< 1 \Leftrightarrow \cexp{\eta_i}{X_0 = i} < +\infty, \quad (\forall i \in E).
-	\end{align}
+	\begin{enumerate}
+		\item $p_{ii} = \cprob{\exists n \geq 1,\ X_n = j}{X_0 = i},$
+		\item $\cexp{\eta_i}{X_0 = i} < +\infty \Rightarrow p_{ii} < 1, \quad (\forall i \in E).$
+	\end{enumerate}
+	\begin{prf}
+		初めの式は
+		\begin{align}
+			\left\{ \omega \in \Omega\ \left|\ \exists n \geq 1,\ X_n(\omega) = j \right.\right\} = \left\{ \omega \in \Omega\ \left|\ \tau_j(\omega) < \infty \right.\right\}
+		\end{align}
+		により明らかである．第二式について，任意の$i,j \in E$に対して
+		\begin{align}
+			\cexp{\eta_j}{x_0 = i} &= \cexp{\sum_{n=1}^{\infty} \defunc_{(X_n = i)} }{x_0 = i} \\
+			&= \sum_{n=1}^{\infty} \cprob{X_n = j}{X_0 = i} \\
+			&= \sum_{n=1}^{\infty} \cprob{X_n = j,\ \tau_j \leq n}{X_0 = i} \\
+			&= \sum_{n=1}^{\infty} \sum_{m=1}^{n} \cprob{X_n = j,\ \tau_j = m}{X_0 = i} \\
+			&= \sum_{m=1}^{\infty} \sum_{n=m}^{\infty} \cprob{X_n = j,\ \tau_j = m}{X_0 = i} \\
+			&= \sum_{m=1}^{\infty} \sum_{n=m}^{\infty} \cprob{X_n = j,\ X_m = j,\ X_{m=1},\cdots,X_1 \neq j}{X_0 = i} \\
+			&= \sum_{m=1}^{\infty} \sum_{n=m}^{\infty} \frac{\prob{X_n = j,\ X_m = j,\ X_{m=1},\cdots,X_1 \neq j}}{\prob{X_m = j,\ X_{m=1},\cdots,X_1 \neq j}}
+				\frac{\prob{X_m = j,\ X_{m=1},\cdots,X_1 \neq j}}{\prob{X_0 = i}} \\
+			&= \sum_{m=1}^{\infty} \sum_{n=m}^{\infty} \cprob{X_n = j}{X_m = j} \cprob{\tau_j = m}{X_0 = i} \\
+			&= \sum_{m=1}^{\infty} \sum_{n=0}^{\infty} \cprob{X_n = j}{X_0 = j} \cprob{\tau_j = m}{X_0 = i} \\
+			&= \cprob{\tau_j < \infty}{X_0 = i} \left( \cexp{\eta_j}{X_0 = j} + 1 \right) \\
+			&= p_{ij} \left( \cexp{\eta_j}{X_0 = j} + 1 \right)
+		\end{align}
+		が成り立つ．$i = j$とすれば
+		\begin{align}
+			\cexp{\eta_j}{x_0 = j} = p_{jj} \left( \cexp{\eta_j}{X_0 = j} + 1 \right)
+		\end{align}
+		となるが，$\cexp{\eta_j}{x_0 = j} < \infty$ならば$p_{jj} < 1$で
+		\begin{align}
+			\cexp{\eta_j}{x_0 = j} = \frac{p_{jj}}{1-p_{jj}}
+		\end{align}
+		が成り立つ．$p_{jj} = 1$の場合$\cexp{\eta_j}{x_0 = j} < \infty$ではありえないので$\cexp{\eta_j}{x_0 = j} = \infty$となる．
+		また$\cexp{\eta_j}{x_0 = j} < \infty$ならば
+		\begin{align}
+			\cexp{\eta_j}{x_0 = i} = \frac{p_{ij}}{1 - p_{jj}}
+		\end{align}
+		も成立する．また$p_{ij} = 0$の場合は$\cexp{\eta_j}{x_0 = i} = 0$である．以上の結果をまとめれば
+		\begin{align}
+			\cexp{\eta_j}{x_0 = i} = \begin{cases}
+				\frac{p_{ij}}{1 - p_{jj}} & {\rm if}\ \cexp{\eta_j}{x_0 = j} < \infty, \\
+				0 & {\rm if}\ p_{ij} = 0, \\
+				\infty & {\rm if}\ p_{jj} = 1
+			\end{cases}
+		\end{align}
+		\QED
+	\end{prf}
 
 \section{正再帰性}
 	\begin{dfn}[不変確率測度]
