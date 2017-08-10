@@ -92,7 +92,7 @@
 	\end{dfn}
 	
 	\begin{prp}[既約なら周期は状態に依らない]
-		$P$が既約なら，どの状態も再帰的となるから全ての状態について周期を考えられるが，その周期が一意に定まる．つまり
+		$P$が既約なら，どの状態も再帰的となるから全ての状態について周期を考えることができるが，その周期が一意に定まる．つまり
 		\begin{align}
 			d_i = d_j \quad (\forall i,j \in E).
 		\end{align}
@@ -169,7 +169,7 @@
 		関数$P:E \times \mathcal{E} \longrightarrow [0,1]$がマルコフカーネルであるとは以下を満たすことで定義される．
 		\begin{description}
 			\item[\rm{(i)}] $\forall A \in \mathcal{E}$に対して$P(\cdot,A):E \ni x \longmapsto P(x,A) \in [0,1]$が可測$\mathcal{E}/\borel{[0,1]}$,
-			\item[\rm{(ii)}] $\forall x \in E$に対して$P(x,\cdot)$は$(E,\mathcal{E})$上の確率測度．
+			\item[\rm{(ii)}] $\forall x \in E$に対して$P(x,\cdot):\mathcal{E} \ni A \longmapsto P(x,A) \in [0,1]$は$(E,\mathcal{E})$上の確率測度．
 		\end{description}
 	\end{dfn}
 	
@@ -251,7 +251,7 @@
 		$P$が正再帰的ならば$P$は再帰的である．
 	\end{prp}
 	
-\section{小集合}
+\section{小集合・条件S・Doublin条件}
 	$E$が一般の集合である場合にもエルゴード性を考えることができるよう，ここで性質の良い集合と$P$に関する条件を定義する．
 	
 	\begin{dfn}[小集合]
@@ -272,9 +272,9 @@
 	
 \section{周期}
 	\begin{dfn}[周期]
-		条件Sが満たされている下で或る$A \in \mathcal{E}^+$が$(n,\nu)$小集合であるとする．
+		条件Sが満たされている下で或る$A \in \mathcal{E}^+$が小集合であるとする．
 		\begin{align}
-			\mathcal{N}_A \coloneqq \left\{ n \in \N\ \left|\ \exists \delta_n\ \mathrm{s.t.}\ P^n(x,B) \geq \delta_n \nu(B)\ (\forall x \in A,\ B \in \mathcal{E}) \right.\right\}
+			\mathcal{N}_A \coloneqq \left\{ n \in \N\ \left|\ \exists \delta_n > 0\ \mathrm{s.t.}\ P^n(x,B) \geq \delta_n \nu(B)\ (\forall x \in A,\ B \in \mathcal{E}) \right.\right\}
 		\end{align}
 		に対して$\mathcal{N}_A$の最大公約数を$P$の周期という．周期が1の場合$P$は非周期的であるという．
 	\end{dfn}
@@ -300,22 +300,22 @@
 	\begin{dfn}[エルゴード性]
 		$P$がエルゴード的であるとは，或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
 		\begin{align}
-			\lim_{n \to +\infty} \Norm{p^n(x,\cdot) - \pi}{} = 0 \quad (\pi \rm{-a.e.}x \in E)
+			\lim_{n \to +\infty} \Norm{P^n(x,\cdot) - \pi}{} = 0 \quad (\pi \rm{-a.e.}x \in E)
 		\end{align}
-		が成り立つことをいう．つまり$\displaystyle \lim_{n \to +\infty} p^n(x,\cdot)$は$\mathcal{E}$上で$\pi$に一致する．
+		が成り立つことをいう．つまり$\displaystyle \lim_{n \to +\infty} P^n(x,\cdot)$は$\mathcal{E}$上で$\pi$に一致する．
 	\end{dfn}
 	
 	\begin{dfn}[一様エルゴード性]
 		$P$が一様エルゴード的であるとは，或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
 		\begin{align}
-			\lim_{n \to +\infty} \sup{x \in E}{\Norm{p^n(x,\cdot) - \pi}{}} = \lim_{n \to +\infty} \sup{\substack{x \in E \\ A \in \mathcal{E}}}{\left| p^n(x,A) - \pi(A)\right|} =0.
+			\lim_{n \to +\infty} \sup{x \in E}{\Norm{P^n(x,\cdot) - \pi}{}} = \lim_{n \to +\infty} \sup{\substack{x \in E \\ A \in \mathcal{E}}}{\left| P^n(x,A) - \pi(A)\right|} =0.
 		\end{align}
 		が成り立つことをいう．
 	\end{dfn}
 	
 \section{エルゴード性に関する命題}
 	\begin{prp}[エルゴード性]
-		$P$は条件Sを満たしているとする．このとき$P$が既約，非周期的，かつ正再帰的であれば，$P$の不変確率測度$\pi$に対してエルゴード的である．
+		$P$は条件Sを満たしているとする．このとき$P$が既約，非周期的，かつ正再帰的であれば，$P$はその不変確率測度$\pi$に対してエルゴード的である．
 	\end{prp}
 	
 	\begin{prp}[一様エルゴード性]
@@ -334,7 +334,7 @@
 	\end{prp}
 	
 	\begin{prp}[中心極限定理]
-		$P$が一様エルゴード的であれば次が成り立つ．
+		$P$が条件Sを満たし一様エルゴード的であれば次が成り立つ．
 		\begin{align}
 			\int_E f(x)\, \pi(dx) = 0,\ \sigma^2 \coloneqq \int_E |f(x)|^2\, \pi(dx) < +\infty 
 			\Rightarrow \lim_{N \to +\infty} \frac{1}{\sqrt{N}} \sum_{n=1}^{N} f(X_n) \overset{\mathrm{d}}{\rightarrow} N(0,\sigma^2).
