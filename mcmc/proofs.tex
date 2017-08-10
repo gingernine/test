@@ -1,4 +1,4 @@
-\section{Markov連鎖}
+\section{マルコフ連鎖}
 	\begin{rem}
 		$0 \cdot \infty = \infty \cdot 0 = 0$と約束する．
 	\end{rem}
@@ -12,20 +12,20 @@
 		\ref{sec:first}章 $\sim$ \ref{sec:ergodic}章は$E$が高々可算集合であるとして考える．
 	\end{rem}
 	
-\section{Markov連鎖}
+\section{マルコフ連鎖}
 	\label{sec:first}
-	\begin{dfn}[Markov性]
+	\begin{dfn}[マルコフ性]
 		$\forall n \in \N,\ i_0, i_1, \cdots,i_n \in E,$
 		\begin{align}
 			 &\cprob{X_n = i_n}{X_0 = i_0,\ X_1 = i_1,\ \cdots, X_{n-1} = i_{n-1}} \\
 			 &\qquad= \cprob{X_n = i_n}{X_{n-1} = i_{n-1}}.
 		\end{align}
 	\end{dfn}
-	$(X_n)_{n=1}^{+\infty}$がMarkov性を持つ場合，これをMarkov連鎖という．
-	以後$(X_n)_{n=1}^{+\infty}$はMarkov連鎖．
+	$(X_n)_{n=1}^{+\infty}$がマルコフ性を持つ場合，これをマルコフ連鎖という．
+	以後$(X_n)_{n=1}^{+\infty}$はマルコフ連鎖．
 
-\section{Markov行列}
-	\begin{dfn}[Markov 行列]
+\section{マルコフ行列}
+	\begin{dfn}[マルコフ 行列]
 		$(i,j)$成分$(\forall i,j \in E)$を$\cprob{X_1 = j}{X_0 = i}$とする確率行列．
 		行列を$P$，$(i,j)$成分を$[P]_{ij}$と表記．計算規則は以下．
 		\begin{align}
@@ -56,8 +56,8 @@
 		\QED
 	\end{prf}
 
-\section{Chapman-Kolmogorov方程式}
-	\begin{prp}[Chapman-Kolmogorov方程式]
+\section{チャップマン-コルモゴロフ方程式}
+	\begin{prp}[チャップマン-コルモゴロフ方程式]
 		任意の$n,m = 0,1,2,\cdots$と$i,j \in E$に対し次が成立．
 		\begin{align}
 			[P^{n+m}]_{ij} = \sum_{k \in E}[P^n]_{ik}[P^m]_{kj}. 
@@ -84,7 +84,7 @@
 		\end{align}
 	\end{dfn}
 	
-\section{離散空間上のMarkov連鎖}
+\section{離散空間上のマルコフ連鎖}
 	\begin{dfn}[到達時刻と到達回数]
 		$\forall i \in E,\ \omega \in \Omega,$
 		\begin{description}
@@ -165,9 +165,64 @@
 	\end{prp}
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[\rm{(i)}] $P$が再帰的なら式(\refeq{eq:mcmc_hit_1})により$p_{ii}=1\ (\forall i \in E)$である．従って
+			\item[\rm{(i)}] 
+				$P$が再帰的なら式(\refeq{eq:mcmc_hit_1})により$p_{ii}=1\ (\forall i \in E)$である．従って
 				式(\refeq{eq:mcmc_hit_2})の対偶により$\cexp{\eta_i}{X_0 = i} = +\infty$となる．
-			\item[\rm{(ii)}] $P$が再帰的でないなら非再帰的であるということを示せばよい．$P$が再帰的でないとき$p_{i}$
+			\item[\rm{(ii)}] 
+				或る$i \in E$が再帰的なら全ての$j \in E$が再帰的となることを示せばよい．これが真なら，対偶により或る$j \in E$
+				が非再帰的であれば全ての$i \in E$が非再帰的となる．
+				$P$が既約であるから任意の$j \in E$に対して或る$n,m \in \N$が存在して
+				\begin{align}
+					[P^n]_{ij} > 0, \quad [P^m]_{ji} > 0
+				\end{align}
+				が成り立つ．$i$が再帰的であるから$\cexp{\eta_i}{X_0 = i} = +\infty$であり，チャップマン-コルモゴロフの方程式を用いれば
+				\begin{align}
+					\cexp{\eta_j}{X_0 = j} &= \sum_{n=1}^{+\infty} [P^n]_{jj} 
+					\geq \sum_{l=1}^{+\infty} [P^m]_{ji}[P^l]_{ii}[P^n]_{ij} 
+					= [P^m]_{ji}[P^n]_{ij}\sum_{l=1}^{+\infty}[P^l]_{ii} = +\infty
+				\end{align}
+				が成り立つから$j$も再帰的となる．$E$が有限集合である場合，もし$P$が非再帰的であるなら
+				全ての$i \in E$で$p_{ii} < 1$となる．任意の$i,j \in E$に対して
+				\begin{align}
+					\sum_{n=1}^{+\infty} [P^n]_{ij} = \cexp{\eta_j}{X_0 = i} = \frac{p_{ij}}{1 - p_{ii}} < +\infty
+				\end{align}
+				となっているから$\displaystyle \lim_{n \to +\infty} [P^n]_{ij} = 0$が成り立っているが，一方で$E$が有限集合であるから
+				\begin{align}
+					1 = \lim_{n \to +\infty} \sum_{j \in E} [P^n]_{ij} = \sum_{j \in E} \lim_{n \to +\infty} [P^n]_{ij} = 0
+				\end{align}
+				も成り立つから不合理である．
+			\item[\rm{(iii)}]
+				$P$の不変確率測度を$\pi$で表す．$P$が再帰的でなければ非再帰的である．従って任意の$i,j \in E$に対して
+				$\cexp{\eta_j}{X_0 = i} < +\infty$となるが，
+				\begin{align}
+					+\infty > \cexp{\eta_j}{X_0 = i} = \sum_{i \in E} [\pi]_i \sum_{n=1}^{+\infty} [P^n]_{ij} = \sum_{n=1}^{+\infty} \sum_{i \in E} [\pi]_i [P^n]_{ij} = \sum_{n=1}^{+\infty} [\pi P^n]_{j}
+					= \sum_{n=1}^{+\infty} [\pi]_{j}
+				\end{align}
+				が成り立つから$[\pi]_{j} = 0\ (\forall j \in E)$となり$\pi$が$E$上の確率測度であることに不合理である．
+			\item[\rm{(iv)}]
+				$E$上の確率測度全体を
+				\begin{align}
+					\mathscr{D} \coloneqq \left\{ \nu=([\nu]_i)_{i \in E}\ \left|\ \sum_{i \in E}[\nu]_i = 1 \right.\right\}
+				\end{align}
+				と置けば，これを$\R^{\# E}$(有限次元実数空間，$\# E$は$E$の濃度)の部分集合と見做すことができる．この観点で$\mathscr{D}$は$\R^{\# E}$のコンパクト集合である．
+				$\mathscr{D}$上の関数を
+				\begin{align}
+					\rho\ :\ \mathscr{D} \ni \nu \longmapsto \min{i \in E}{\frac{[\nu P]_i}{[\nu]_i}} \in \R
+				\end{align}
+				と定義すれば$\rho$は$\mathscr{D}$上の連続関数となる．従って或る$\nu^* \in \mathscr{D}$が存在して$\rho$は最大値に達する．
+				$\alpha \coloneqq \rho(\nu^*)$と置いて
+				\begin{align}
+					\alpha = \frac{[\nu^* P]_i}{[\nu^*]_i}\quad (\forall i \in E)
+				\end{align}
+				であることを示す．これが示されれば$\alpha = \sum_{i \in E} \alpha [\nu^*]_i = \sum_{i \in E} [\nu^* P]_i = 1$により$\nu^*$
+				が$P$の不変確率測度であると導かれる．或る$j \in E$に対して$\alpha < [\nu^* P]_j/[\nu^*]_j$が成り立っているとする．
+				$P$が既約であるから任意の$i \in E$に対して$n_i \in \N$が取れて$[P^{n_i}]_{ji} > 0$となるから，
+				$n \coloneqq \max{i \in E}{n_i}$と置けば$[P^n]_{ji} > 0\ (\forall i \in E)$となり，$\mu = \nu^* P^n$と置いて
+				\begin{align}
+					\alpha [\mu]_i = \alpha \sum_{j \neq k \in E} [\nu^*]_k [P^{n}]_{ki} + \alpha [\nu^*]_j [P^{n}]_{ji} 
+					< \sum_{j \neq k \in E} [\nu^* P]_{k} [P^{n}]_{ki} + [\nu^* P]_j [P^{n}]_{ji} = [\nu^* P^{n + 1}]_i = [\mu P]_i
+				\end{align}
+				が成り立ち$\alpha < \rho(\mu)$となるが，これは$\alpha$の最大性に矛盾する．
 		\end{description}
 	\end{prf}
 
@@ -180,6 +235,28 @@
 		$P$が既約ならば$d_i = d_j\ (\forall i,j \in E)$．
 		この場合$d_i$を$P$の周期という．
 	\end{prp}
+	\begin{lem}
+		$\mathcal{N} \subset \N$は和について閉であるとする．この下で$\mathcal{N}$の最大公約数$d$は
+		\begin{align}
+			\exists n_0 \in \N,\quad \forall n \geq n_0,\quad nd \in \N
+		\end{align}
+		を満足する．
+	\end{lem}
+	\begin{prf}[補助定理の証明]
+		整列性により$\mathcal{N}$に最小元$d$が存在する．任意に$x,y \in \mathcal{N}$を取れば$x,y$が生成する空間
+		$\left\{ z \in \mathcal{N} \ \left|\ z = ax + by\ (a,b \in \Z) \right.\right\}$は$\mathcal{N}$の部分集合であるから
+	\end{prf}
+	\begin{prf}[命題の証明]
+		$P$が既約であるから任意に$i,j \in E$を取れば或る$n,m \in \N$が存在して$[P^n]_{ij} > 0$かつ$[P^m]_{ji} > 0$となる．
+		また補助定理により或る$n_i \in \mathcal{N}_i$より大きな任意の自然数$q$に対して$[P^{pd_i}]_{ii} > 0$も成り立つから，
+		チャップマン-コルモゴロフ方程式を適用して
+		\begin{align}
+			[P^{m + qd_i + n}]_{jj} \geq [P^m]_{ji}[P^{q d_i}]_{ii} [P^{n}]_{ij} > 0
+		\end{align}
+		となり$m + qd_i + n \in \mathcal{N}_j$が成り立つ．$q+1 > n_i$により$m + (q+1)d_i + n \in \mathcal{N}_j$
+		も成り立つから，$d_j$の倍数で表される二数の差$d_i$は$d_j$の倍数となる．立場を逆にすれば$d_j$は$d_i$の倍数となるから$d_i = d_j\ (\forall i,j \in E)$
+		が導かれる．
+	\end{prf}
 	\begin{dfn}[非周期性]
 		$P$が既約の下，
 		\begin{align}
@@ -187,7 +264,7 @@
 		\end{align}
 	\end{dfn}
 
-\section{Ergodicity}
+\section{エルゴード性}
 	\label{sec:ergodic}
 	\begin{prp}[周期に関する一命題]
 		$P$：既約，非周期的，
@@ -196,7 +273,7 @@
 		\end{align}
 	\end{prp}
 	
-	\begin{thm}[Ergodicity]
+	\begin{thm}[エルゴード性]
 		$P$が既約で非周期的かつ正再帰的であるとする．$P$の不変確率測度を$\pi$で表すとき次が成立．
 		\begin{align}
 			\lim_{n \to +\infty}[P^n]_{ij} = [\pi]_j, \quad (\forall i,j \in E).
@@ -205,14 +282,14 @@
 	\begin{prf}\mbox{}
 	\begin{description}
 	\item[第一段]
-		直積空間$E \times E$上のMarkov連鎖を考える．$E \times E$のMarkov行列を$Q$と表し
+		直積空間$E \times E$上のマルコフ連鎖を考える．$E \times E$のマルコフ行列を$Q$と表し
 		\begin{align}
 			[Q]_{ik,jl} \coloneqq [P]_{ij}[P]_{kl}, \quad (\forall (i,k), (j,l) \in E \times E)
 		\end{align}
 		と定義する．
 		$(\Omega,\mathcal{F},\operatorname{P})$上の$E$-値確率過程$(X_n)_{n=1}^{+\infty}, (Y_n)_{n=1}^{+\infty}$がそれぞれ
-		Markov行列$P$を持つ独立なMarkov連鎖であるとすれば，$Z_n=(X_n,Y_n)\ (n=1,2,\cdots)$は$E \times E$上のMarkov連鎖で
-		Markov行列$Q$を持つ．なぜならば任意の$n \in \N$と$(i,j),(i_0,j_0),\cdots,(i_{n-1},j_{n-1}) \in E \times E$に対して
+		マルコフ行列$P$を持つ独立なマルコフ連鎖であるとすれば，$Z_n=(X_n,Y_n)\ (n=1,2,\cdots)$は$E \times E$上のマルコフ連鎖で
+		マルコフ行列$Q$を持つ．なぜならば任意の$n \in \N$と$(i,j),(i_0,j_0),\cdots,(i_{n-1},j_{n-1}) \in E \times E$に対して
 		\begin{align}
 			&\cprob{Z_n = (i,j)}{Z_0=(i_0,j_0),Z_1=(i_1,j_1), \cdots, Z_{n-1} = (i_{n-1},j_{n-1})} \\
 			&= \frac{\prob{Z_n = (i,j), Z_0=(i_0,j_0),\cdots, Z_{n-1} = (i_{n-1},j_{n-1})}}{\prob{Z_0=(i_0,j_0),\cdots, Z_{n-1} = (i_{n-1},j_{n-1})}} \\
@@ -301,6 +378,185 @@
 		\QED
 	\end{description}
 	\end{prf}
+	
+\section{一般の状態集合上のマルコフ連鎖}
+	$E$を実数全体など含めた一般の集合として扱う際には，マルコフ行列に代えて次のものを定義する．
+	\begin{dfn}[マルコフカーネル]
+		関数$P:E \times \mathcal{E} \longrightarrow [0,1]$がマルコフカーネルであるとは以下を満たすことで定義される．
+		\begin{description}
+			\item[\rm{(i)}] 任意の$A \in \mathcal{E}$に対して$P(\cdot,A):E \ni x \longmapsto P(x,A) \in [0,1]$が可測$\mathcal{E}/\borel{[0,1]}$,
+			\item[\rm{(ii)}] 任意の$x \in E$に対して$P(x,\cdot)$が$(E,\mathcal{E})$上の確率測度となっている．
+		\end{description}
+	\end{dfn}
+	\begin{dfn}[マルコフ連鎖]
+		$(\Omega,\mathcal{F},\operatorname{P})$上の確率変数列$(X_n)_{n=1}^{+\infty}$がマルコフカーネル$P$を持つマルコフ連鎖である
+		\begin{align}
+			\DEF\quad \cprob{X_{n+1} \in A}{X_0,X_1,\cdots,X_n} = P(X_n,A)\ (\forall n \in \N,\ A \in \mathcal{E}).
+		\end{align}
+	\end{dfn}
+	
+	\begin{dfn}[作用の定義]
+		$\mu$を$(E,\mathcal{E})$上の確率測度，$P,Q$を$E \times \mathcal{E}$上のマルコフカーネル，$f$を$E \rightarrow \C$の$\mathcal{E}$可測関数とするとき，
+		以下の四つの作用を定義する．
+		\begin{align}
+			& (\mu P)(A) \coloneqq \int_{E} P(x,A)\, \mu(dx) && (\forall A \in \mathcal{E}), \\
+			& (Pf) (x) \coloneqq \int_{E} f(y)\, P(x, dy) && (\forall x \in E), \\
+			& (PQ) (x,A) \coloneqq \int_{E} Q(y,A)\, P(x, dy) && (\forall x \in E,\ A \in \mathcal{E}), \\
+			& \mu(f) \coloneqq \int_{E} f(x)\, \mu(dx).
+		\end{align}
+	\end{dfn}
+	また$P^0=I\ $(恒等写像)，$P^n=P^{n-1}P$と計算規則を定めれば$P^n(x,A)=(P^n)(x,A)=\cprob{X_n \in A}{X_0 = x}\ (\forall n \in \N, x \in E,\ A \in \mathcal{E})$が成り立つ．
+	\begin{prf}
+		証明は数学的帰納法による．$n=1$の場合は定義より$P(x,A) = \cprob{X_1 \in A}{X_0 = x}$が成り立つから，以下では或る自然数$n$について
+		$P^n(x,A) = \cprob{X_n \in A}{X_0 = x}$が成り立っていると仮定する．
+		任意の$A \in \mathcal{E}$と$x \in E$を固定する．$E$の分割$E_1,E_2,\cdots,E_N \in \mathcal{E},\ (\sum_{j=1}^{N}E_j = E)$を取れば
+		\begin{align}
+			\cprob{X_{n+1} \in A}{X_0 = x} &= \sum_{j=1}^{N} \cprob{X_{n+1} \in A,\ X_n \in E_j}{X_0 = x} \\
+			&= \sum_{j=1}^{N} \cprob{X_{n+1} \in A}{X_n \in E_j,\ X_0 = x}\cprob{X_n \in E_j}{X_0 = x} \\
+			&= \int_{E} \sum_{j=1}^{N} \cprob{X_{n+1} \in A}{X_n \in E_j,\ X_0 = x} \defunc_{E_j}(y)\, P^n(x, dy)
+		\end{align}
+		が成り立っていることを確認しておく．
+		表記を簡単にするために$f(y) \coloneqq P(y,A)\ (\forall y \in E,\ A \in E)$とおき，可測$\mathcal{E}/\borel{[0,1]}$関数$f$の単関数近似列を考える．
+		任意の$N \in \N$に対して区間$[0,1]$を$2^N$等分割し
+		\begin{align}
+			f_N(y) \coloneqq \sum_{j = 0}^{2^N} \frac{j}{2^N} \defunc_{\left( j/2^N \leq f(y) < (j+1)/2^N \right)} (y) = \sum_{j = 0}^{2^N} \alpha^{(N)}_j \defunc_{E^{(N)}_j} (y) 
+			\quad (y \in E)
+		\end{align}
+		として単関数近似列$(f_N)_{n=1}^{+\infty}$を定義する．ただし$\alpha^{(N)}_j = j/2^N,\ E^{(N)}_j = \left\{ y \in E\ \left|\ j/2^N \leq f(y) < (j+1)/2^N \right.\right\},\ (j=1,2,\cdots,2^N)$である．
+		全ての$N \in \N$に対して$P(y, A) = j / 2^N\ (\forall y \in E^{(N)}_j,\ j=1,2,\cdots,2^N)$としているから$\left| \cprob{X_{n+1} \in A}{X_n \in E^{(N)}_j,\ X_0 = x} - \alpha^{(N)}_j \right| < 1/2^N\ (j=1,2,\cdots,2^N)$
+		が成り立っていることに注意すれば
+		\begin{align}
+			&\left| \cprob{X_{n+1} \in A}{X_0 = x} - \int_{E} f_N(y)\, P^n(x,dy) \right| \\
+			&= \left| \int_{E} \sum_{j=1}^{2^N} \cprob{X_{n+1} \in A}{X_n \in E^{(N)}_j,\ X_0 = x} \defunc_{E^{(N)}_j}(y)\, P^n(x, dy) - \int_{E} \sum_{j=1}^{2^N} \alpha^{(N)}_j \defunc_{E^{(N)}_j}(y)\, P^n(x, dy) \right| \\
+			&\leq \int_{E} \sum_{j=1}^{2^N} \left| \cprob{X_{n+1} \in A}{X_n \in E^{(N)}_j,\ X_0 = x} - \alpha^{(N)}_j \right| \defunc_{E^{(N)}_j}(y)\, P^n(x, dy) \\
+			&< \frac{1}{2^N}
+		\end{align}
+		が成り立つ．この結果を
+		\begin{align}
+			\int_{E} P(y,A)\, P^n(x,dy) = \int_{E} f(y)\, P^n(x,dy) = \lim_{N \to +\infty} \int_{E} f_N(y)\, P^n(x,dy)
+		\end{align}
+		であることと合わせれば
+		\begin{align}
+			\left| \cprob{X_{n+1} \in A}{X_0 = x} - \int_{E} P(y,A)\, P^n(x,dy) \right| &\leq \left| \cprob{X_{n+1} \in A}{X_0 = x} - \int_{E} f_N(y)\, P^n(x,dy) \right| \\
+			&\quad+ \left| \int_{E} f_N(y)\, P^n(x,dy) - \int_{E} f(y)\, P^n(x,dy) \right| \\
+			&\longrightarrow 0 \quad (N \longrightarrow +\infty)
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\cprob{X_{n+1} \in A}{X_0 = x} = \int_{E} P(y,A)\, P^n(x,dy)
+		\end{align}
+		が導かれる．作用の定義と計算規則の定義により$\cprob{X_{n+1} \in A}{X_0 = x} = P^{n+1}(x,A)$が
+		任意の$A \in \mathcal{E}$と$x \in E$について成立することが示された．
+		\QED
+	\end{prf}
+
+\section{既約性}
+	$E$が高々可算集合の場合は$E$の或る元から或る元へ到達する確率を考えたが，$E$を一般の集合として考える場合は
+	元から可測集合の上に到達する確率を考える．
+	\begin{dfn}[既約性]
+		$\psi$を$(E,\mathcal{E})$上の確率測度とする．$P$が$\psi$既約である
+		\begin{align}
+			\DEF \quad \psi(A) > 0 \Rightarrow \forall x \in E,\ \exists n \in \N,\ \rm{s.t.}\ P^n(x,A) > 0, \quad (A \in \mathcal{E}).
+		\end{align}
+		$\psi$既約であることを単に既約という．
+	\end{dfn}
+	
+	\begin{dfn}[極大既約測度]
+		$(E, \mathcal{E})$上の確率測度全体を$\Lambda$と表す．$\lambda_1, \lambda_2 \in \Lambda$に対し
+		$\lambda_1 \ll \lambda_2 \DEF \lambda_1(A) > 0 \Rightarrow \lambda_2(A) > 0$として関係$\ll$を定義すると
+		これは$\Lambda$における順序となる．
+		\begin{align}
+			\Psi \coloneqq \{ \lambda \in \Lambda\ |\ \mbox{$P$が$\lambda$既約．} \}
+		\end{align}
+		とおいて$\Psi \neq \emptyset$とする．或る$\psi^* \in \Psi$が任意の$\psi \in \Psi$に対して$\psi \ll \psi^*$となるとき
+		$\psi^*$を$P$の極大既約測度という．
+	\end{dfn}
+	\begin{prp}[極大既約測度の存在]
+		$P$が既約なら極大既約測度が存在する．
+	\end{prp}
+	極大既約測度$\psi^* \in \Psi$に対し，$\psi^*(A) > 0$となる$A \in \mathcal{E}$の全体を$\mathcal{E}^+$と表す．
+
+\section{再帰性}
+	$P$が再帰的
+	\begin{align}
+		\DEF \quad \mbox{$P$が既約かつ} \forall A \in \mathcal{E}^+,\ \sum_{n=1}^{+\infty} P^n(x,A) = +\infty \quad (\forall x \in E).
+	\end{align}
+	$P$が非再帰的
+	\begin{align}
+		\DEF \quad \mbox{或る$E$の分割$A_1,A_2,\cdots \in \mathcal{E}\ (\sum_{k}A_i = E)$が存在して} \sup{x \in A_i} \sum_{n=1}^{+\infty} P^n(x,A_i) < +\infty.
+	\end{align}
+	
+	\begin{prp}
+		$P$が既約なら$P$は再帰的か非再帰的かのどちらかとなる．
+	\end{prp}
+	
+	\begin{dfn}[正再帰性]
+		$P$が正再帰的である $\quad \DEF \quad$ $P$が既約で$ \pi P = \pi$となる$(E,\mathcal{E})$上の確率測度$\pi$が存在する．
+	\end{dfn}
+	
+	\begin{prp}
+		$P$が正再帰的 $\quad \Rightarrow \quad$ $P$は再帰的．
+	\end{prp}
+	
+\section{エルゴード性}
+	\begin{dfn}[小集合]
+		$n \in \N$と$(E,\mathcal{E})$上の確率測度$\nu$に対し，$A \in \mathcal{E}^+$が$(n,\nu)$小集合である
+		\begin{align}
+			\DEF \quad \exists \delta > 0\ \mathrm{s.t.}\ \quad P^n(x,B) \geq \delta \nu(B) \quad (\forall x \in A,\ B \in \mathcal{E}).
+		\end{align}
+	\end{dfn}
+	
+	\begin{dfn}[条件S]
+		$P$に対して小集合が存在する．
+	\end{dfn}
+	\begin{dfn}[Doublin条件]
+		$E$が$P$の小集合となっている．
+	\end{dfn}
+	Doublin条件の下では$P$は既約となる．
+	
+	\begin{dfn}[周期]
+		条件Sが満たされている下で或る$A \in \mathcal{E}^+$が$(n,\nu)$小集合であるとする．
+		\begin{align}
+			\mathcal{N}_A \coloneqq \left\{ n \in \N\ \left|\ \exists \delta_n\ \mathrm{s.t.}\ P^n(x,B) \geq \delta_n \nu(B)\ (\forall x \in A,\ B \in \mathcal{E}) \right.\right\}
+		\end{align}
+		に対して$\mathcal{N}_A$の最大公約数を$P$の周期という．周期が1の場合$P$は非周期的であるという．
+	\end{dfn}
+	
+	\begin{prp}[周期の一意性]
+		$P$が既約なら周期は小集合$A \in \mathcal{E}^+$に依らずに定まる．
+	\end{prp}
+	\begin{prp}
+		Doublin条件が満たされている下では$P$は非周期的となる．
+	\end{prp}
+	
+	エルゴード性を定義するための収束の概念を規定するノルムを絶対変動ノルムという．
+	\begin{dfn}[絶対変動ノルム]
+		$(E,\mathcal{E})$上の確率測度に対して絶対変動ノルム$\Norm{\cdot}{}$を次で定義する．
+		\begin{align}
+			\Norm{\mu - \nu}{} = \sup{A \in \mathcal{E}}{|\mu(A) - \nu(A)|} = \frac{1}{2} \sup{|f| \leq 1}{\left|\int_E f(x)\, \mu(dx) - \int_E f(x)\, \nu(dx)\right|}
+		\end{align}
+		ただし$\mu,\nu$は$(E,\mathcal{E})$上の任意に選んだ確率測度であり，$f$は$\mathcal{E}$可測である．
+	\end{dfn}
+	
+	\begin{dfn}[エルゴード性]
+		$P$がエルゴード的である $\quad \DEF \quad$ 或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
+		\begin{align}
+			\lim_{n \to +\infty} \Norm{p^n(x,\cdot) - \pi}{} = 0 \quad (\pi \rm{-a.e.}).
+		\end{align}
+	\end{dfn}
+	
+	\begin{dfn}[一様エルゴード性]
+		$P$がエルゴード的である $\quad \DEF \quad$ 或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
+		\begin{align}
+			\lim_{n \to +\infty} \sup{x \in E}{\Norm{p^n(x,\cdot) - \pi}{}} = \lim_{n \to +\infty} \sup{\substack{x \in E \\ A \in \mathcal{E}}}{\left| p^n(x,A) - \pi(A)\right|} =0.
+		\end{align}
+	\end{dfn}
+	
+	
+	
+	
+	
+	
 	
 	
 	

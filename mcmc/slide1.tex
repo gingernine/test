@@ -1,134 +1,354 @@
-\section{Markov連鎖}
-	基礎となる確率空間$(\Omega, \mathcal{F}, \operatorname{P})$．
+\section{導入}
+	まずは MCMC(Markov chain Monte Carlo)法の根幹であるマルコフ連鎖のエルゴード性という性質に到達するまでを書く．
+	基礎となる確率空間を$(\Omega, \mathcal{F}, \operatorname{P})$と表す．
 	\begin{itemize}
-		\item $E$:\ 集合,
+		\item $E$:\ マルコフ連鎖における確率変数の値(状態という)の集合,
 		\item $(E, \mathcal{E})$:\ 可測空間,
 		\item $(X_n)_{n=1}^{+\infty}$：\ $E$-値確率過程．
 	\end{itemize}
-	\begin{rem}
-		\ref{sec:first}章 $\sim$ \ref{sec:ergodic}章は$E$が高々可算集合であるとして考える．
-	\end{rem}
-\section{Markov連鎖}
+	
+	スライド\ref{sec:first}枚目 $\sim$ \ref{sec:ergodic}枚目は$E$が高々可算集合であるとして考える．
+	スライド\ref{sec:generally}枚目以降は$E$を一般の集合として扱う．
+	
+\section{マルコフ連鎖}
 	\label{sec:first}
-	\begin{dfn}[Markov性]
-		$\forall n \in \N,\ i_0, i_1, \cdots,i_n \in E,$
+	\begin{dfn}[マルコフ性]
+		確率過程$(X_n)_{n=1}^{+\infty}$がマルコフ性を持つとは，任意の$n \in \N$と状態$i_0, i_1, \cdots,i_n \in E$に対して
 		\begin{align}
-			 &\cprob{X_n = i_n}{X_0 = i_0,\ X_1 = i_1,\ \cdots, X_{n-1} = i_{n-1}} \\
-			 &\qquad= \cprob{X_n = i_n}{X_{n-1} = i_{n-1}}.
+			\cprob{X_n = i_n}{X_0 = i_0, \cdots, X_{n-1} = i_{n-1}}
+			= \cprob{X_n = i_n}{X_{n-1} = i_{n-1}}
 		\end{align}
+		が成り立つことをいう．
 	\end{dfn}
-	$(X_n)_{n=1}^{+\infty}$がMarkov性を持つ場合，これをMarkov連鎖という．
-	以後$(X_n)_{n=1}^{+\infty}$はMarkov連鎖．
+	$(X_n)_{n=1}^{+\infty}$がマルコフ性を持つ場合，これをマルコフ連鎖という．
+	以後$(X_n)_{n=1}^{+\infty}$はマルコフ連鎖として扱う．
 
-\section{Markov行列}
-	\begin{dfn}[Markov 行列]
-		$(i,j)$成分$(\forall i,j \in E)$を$\cprob{X_1 = j}{X_0 = i}$とする確率行列．
-		行列を$P$，$(i,j)$成分を$[P]_{ij}$と表記．計算規則は以下．
+\section{マルコフ行列}
+	\begin{dfn}[マルコフ 行列]
+		マルコフ連鎖の1ステップ間の転移確率を表す確率行列．行列を$P$，$(i,j)$成分を$[P]_{ij} \coloneqq \cprob{X_1=j}{X_0 = i}$と表記する．計算規則は以下で定義する．
 		\begin{align}
 			P^0 &= I, && (\mbox{$I$：恒等写像}),\\
 			[P^n]_{ij} &= \sum_{k \in E} [P^{n-1}]_{ik} [P]_{kj}, && (\forall i,j \in E,\ n \in \N). 
 		\end{align}
 	\end{dfn}
-	定義から次が成立
+	$P$を$n$乗した行列はマルコフ連鎖の$n$ステップ間の転移確率を表すことになる．
 	\begin{align}
 		[P^n]_{ij} = \cprob{X_n = j}{X_0 = i}, \ (\forall n \in \N,\ i,j \in E).
 	\end{align}
-
-\section{Chapman-Kolmogorov方程式}
-	\begin{prp}[Chapman-Kolmogorov方程式]
-		任意の$n,m = 0,1,2,\cdots$と$i,j \in E$に対し次が成立．
+	
+	\begin{prp}[チャップマン-コルモゴロフ方程式]
+		任意の$n,m = 0,1,2,\cdots$と$i,j \in E$に対し次が成立する．
 		\begin{align}
 			[P^{n+m}]_{ij} = \sum_{k \in E}[P^n]_{ik}[P^m]_{kj}. 
 		\end{align}
 	\end{prp}
+	この命題により，マルコフ連鎖が状態$i$から$k$に到達し，かつ$k$から$j$に到達することが判っているなら$i$から$j$に到達することが保証される．
+	ゆえに後の命題の証明において基礎的である．
 
 \section{既約性・再帰性}
 	\begin{dfn}[既約性]
-		$P$が既約である
+		$P$が既約であるとは，マルコフ連鎖がどの状態を起点にしても任意の状態へ必ず到達することである．数式では
 		\begin{align}
-			\DEF\ \forall i, j \in E,\ \exists n \in \N,\ \mathrm{s.t. \quad} [P^n]_{ij} > 0.
+			\forall i, j \in E,\ \exists n \in \N,\ \mathrm{s.t. \quad} [P^n]_{ij} > 0
 		\end{align}
+		として定義される．
 	\end{dfn}
 	\begin{dfn}[再帰性]
-		$P$が再帰的である
+		$P$が再帰的であるとは，任意の状態について，そこを起点にした場合マルコフ連鎖が必ず戻ってくることをいう．数式では
 		\begin{align}
-			\DEF\ \cprob{\exists n \geq 1,\ X_n = i}{X_0 = i} = 1 \quad(\forall i \in E).
+			\cprob{\exists n \geq 1,\ X_n = i}{X_0 = i} = 1 \quad(\forall i \in E)
 		\end{align}
-		$P$が非再帰的である
+		が成り立つことで定義される．$P$が非再帰的であるとは
 		\begin{align}
-			\DEF\ \cprob{\forall n \geq 1,\ X_n \neq i}{X_0 = i} > 0 \quad(\forall i \in E).
+			\cprob{\forall n \geq 1,\ X_n \neq i}{X_0 = i} > 0 \quad(\forall i \in E)
 		\end{align}
+		として定義される．
 	\end{dfn}
 	
-\section{離散空間上のMarkov連鎖}
+\section{到達時刻・到達回数}
 	\begin{dfn}[到達時刻と到達回数]
+		状態$i$への到達時刻とはマルコフ連鎖が(標本$\omega \in \Omega$ごとに)状態$i$に初めて到達する時刻のことを言う．状態$i$への到達回数とは
+		マルコフ連鎖が(標本$\omega \in \Omega$ごとに)何度その状態に達するかを表すものである．数式で定義すれば次のようになる．
 		$\forall i \in E,\ \omega \in \Omega,$
 		\begin{description}
 			\item[到達時刻] $\tau_i(\omega) \coloneqq \inf{}{\left\{ n \geq 1\ \left|\ X_n(\omega) = i \right.\right\}},$
 			\item[到達回数] $\eta_i(\omega) \coloneqq \sum_{n=1}^{+\infty} \defunc_{(X_n = i)}(\omega).$
 		\end{description}
 	\end{dfn}
-	$p_{ij} \coloneqq \cprob{\tau_j < \infty}{X_0 = i}, \quad (\forall i,j \in E)$\\
-	と表記すれば次が成立:
+	定義式より到達時刻も到達回数も$(\Omega,\mathcal{F},\operatorname{P})$上の実確率変数であることは明らかである．
 	\begin{align}
-		p_{ii} &= \cprob{\exists n \geq 1,\ X_n = j}{X_0 = i}, \\
-		p_{ii} &< 1 \Leftrightarrow \cexp{\eta_i}{X_0 = i} < +\infty, \quad (\forall i \in E).
+		p_{ij} \coloneqq \cprob{\tau_j < \infty}{X_0 = i} = \cprob{\exists n \geq 1,\ X_n = j}{X_0 = i}, \quad (\forall i,j \in E)
+	\end{align}
+	と表記すれば次が成立する:
+	\begin{align}
+		p_{ii} < 1 \Leftrightarrow \cexp{\eta_i}{X_0 = i} < +\infty, \quad (\forall i \in E).
 	\end{align}
 
-\section{正再帰性}
-	\begin{dfn}[不変確率測度]
-		$E$上の確率測度$\pi = ([\pi]_i)_{i \in E},\ (\sum_{i \in E} [\pi]_i = 1)$が$P$に対して不変確率測度である
-		\begin{align}
-			\DEF\ [\pi]_i = [\pi P]_i ( = \sum_{j \in E}[\pi]_j [P]_{ji} ), \quad (\forall i \in E).
-		\end{align}
-	\end{dfn}
-	\begin{dfn}[正再帰性]
-		$P$は正再帰的 \\
-		$\quad\DEF\quad$ $P$が既約かつ不変確率測度が存在． 
-	\end{dfn}
-\section{再帰性の諸命題}
-	\begin{prp}
-		$P$が既約の下，(i) $\sim$ (iv)が順に示される:
-		\begin{description}
-			\item[\rm{(i)}] $P$が再帰的 $\Leftrightarrow \cexp{\eta_i}{X_0 = i} = +\infty, \ (\forall i \in E)$．
-			\item[\rm{(ii)}] $P$は再帰的であるか非再帰的のどちらか．特に$E$が有限集合なら$P$は再帰的．
-			\item[\rm{(iii)}] $P$が正再帰的 $\Rightarrow$ $P$は再帰的．
-			\item[\rm{(iv)}] $E$が有限集合なら$P$は正再帰的．
-		\end{description}
-	\end{prp}
-
 \section{周期}
-	\begin{dfn}[$i \in E$の周期]
-		$\mathcal{N}_i \coloneqq \left\{n \geq 1\ \left|\ [p^n]_{ii} > 0 \right.\right\}$の最大公約数を
+	或る状態$i$について，マルコフ連鎖が$i$を出発して再び$i$に戻るまでのステップ数に規則があるかどうかを示すものとして周期がある．
+	\begin{dfn}[状態の周期]
+		$\mathcal{N}_i \coloneqq \left\{n \geq 1\ \left|\ [P^n]_{ii} > 0 \right.\right\}$の最大公約数を
 		$i \in E$の周期といい$d_i$と表す．
 	\end{dfn}
-	\begin{prp}[既約なら周期はunique]
-		$P$が既約ならば$d_i = d_j\ (\forall i,j \in E)$．
+	
+	\begin{prp}[既約なら周期は状態に依らない]
+		$P$が既約なら，どの状態も再帰的となるから全ての状態について周期を考えられるが，その周期が一意に定まる．つまり
+		\begin{align}
+			d_i = d_j \quad (\forall i,j \in E).
+		\end{align}
 		この場合$d_i$を$P$の周期という．
 	\end{prp}
+	
 	\begin{dfn}[非周期性]
-		$P$が既約の下，
-		\begin{align}
-			\mbox{$P$は非周期的 $\quad\DEF\quad$ $P$の周期が1}.
-		\end{align}
+		$P$が既約の下，$P$の周期が1であるとき$P$は非周期的であるという．
 	\end{dfn}
-
-\section{Ergodicity}
-	\label{sec:ergodic}
-	\begin{prp}[周期に関する一命題]
-		$P$：既約，非周期的，
+	
+	\begin{prp}[非周期性に関する一命題]
+		$P$が既約で非周期的ならば次が成り立つ．
 		\begin{align}
 			\forall i,j \in E,\ \exists n_{ij} \in \N,\ \mathrm{s.t.}\ [P^n]_{ij} > 0 \ (\forall n \geq n_{ij}).
 		\end{align}
 	\end{prp}
-	\begin{thm}[Ergodicity]
+
+\section{正再帰性}
+	\begin{dfn}[不変確率測度]
+		$E$上の確率測度$\pi = ([\pi]_i)_{i \in E},\ (\sum_{i \in E} [\pi]_i = 1)$が$P$に対して不変確率測度であるとは次が成り立つことである．
+		\begin{align}
+			[\pi]_i = [\pi P]_i ( = \sum_{j \in E}[\pi]_j [P]_{ji} ), \quad (\forall i \in E).
+		\end{align}
+	\end{dfn}
+	
+	\begin{dfn}[正再帰性]
+		$P$が既約でかつ不変確率測度が存在すれば$P$は正再帰的であるという． 
+	\end{dfn}
+	
+	\begin{prp}[再帰性・正再帰性の諸命題]
+		$P$が既約の下では次の(i)から(iv)が順に示される:
+		\begin{description}
+			\item[\rm{(i)}] $P$が再帰的であることと$\cexp{\eta_i}{X_0 = i} = +\infty, \ (\forall i \in E)$は同値である．
+			\item[\rm{(ii)}] $P$は再帰的であるか非再帰的であるかのいずれかとなる．
+			\item[\rm{(iii)}] $P$が正再帰的ならば$P$は再帰的となる．
+			\item[\rm{(iv)}] $E$が有限集合ならば$P$は必ず正再帰的となる．
+		\end{description}
+	\end{prp}
+
+
+\section{エルゴード性}
+	\label{sec:ergodic}
+	以上の準備の下でエルゴード性と呼ばれる性質が示される．エルゴード性とは，適当な条件を満たすマルコフ連鎖のステップ数の極限を考えたときに，転移確率が起点に依らない
+	或る分布に従うという性質である．
+	
+	\begin{thm}[エルゴード性]
 		$P$が既約で非周期的かつ正再帰的であるとする．$P$の不変確率測度を$\pi$で表すとき次が成立．
 		\begin{align}
 			\lim_{n \to +\infty}[P^n]_{ij} = [\pi]_j, \quad (\forall i,j \in E).
 		\end{align}
 	\end{thm}
 	
+	さらに，エルゴード的な$P$について大数の法則が成立する．
+	\begin{prp}[大数の法則]
+		$P$が既約で非周期的かつ正再帰的であるとする．$P$の不変確率測度を$\pi$とし，$f$を$E$上の複素数値関数で
+		$\sum_{i \in E} |f(i)|[\pi]_i < +\infty$
+		を満たすものとすれば
+		\begin{align}
+			\lim_{N \to +\infty} \frac{1}{N} \sum_{n=1}^{N} f(X_N) = \sum_{i \in E} f(i) [\pi]_i \quad \mathrm{a.s.}
+		\end{align}
+		が成り立つ．
+	\end{prp}
+
+\section{一般の状態集合上のマルコフ連鎖}
+	\label{sec:generally}
+	\begin{itemize}
+		\item このページ以降は状態集合$E$を一般の集合として扱う．
+		\item 例えば$E$を$\R$と考えれば，マルコフ行列を用いて状態から状態へ転移する確率を表現することは不可能である．従って$E$を一般の集合として扱うためにマルコフ行列に代わるものを定義する必要がある．
+		\item その他は$E$が高々可算集合であった場合と同様の概念を定義し，同様な命題が登場する．
+	\end{itemize}
+
+\section{マルコフカーネル}
+	\begin{dfn}[マルコフカーネル：マルコフ行列に代わるもの]
+		関数$P:E \times \mathcal{E} \longrightarrow [0,1]$がマルコフカーネルであるとは以下を満たすことで定義される．
+		\begin{description}
+			\item[\rm{(i)}] $\forall A \in \mathcal{E}$に対して$P(\cdot,A):E \ni x \longmapsto P(x,A) \in [0,1]$が可測$\mathcal{E}/\borel{[0,1]}$,
+			\item[\rm{(ii)}] $\forall x \in E$に対して$P(x,\cdot)$は$(E,\mathcal{E})$上の確率測度．
+		\end{description}
+	\end{dfn}
 	
+	$E$が高々可算の場合には状態$\rightarrow$状態の転移を考えていたから$[P]_{ij}$などと表記していたが，状態$\rightarrow$集合の中への転移を考えるために定義されたものがマルコフカーネルである．
 	
+	\begin{dfn}[マルコフ連鎖]
+		$(\Omega,\mathcal{F},\operatorname{P})$上の確率変数列$(X_n)_{n=1}^{+\infty}$がマルコフカーネル$P$を持つマルコフ連鎖であるとは
+		\begin{align}
+			\cprob{X_{n+1} \in A}{X_0,X_1,\cdots,X_n} = P(X_n,A)\ (\forall n \in \N,\ A \in \mathcal{E}).
+		\end{align}
+		が成り立つことをいう．
+	\end{dfn}
 	
+	以降は$P$をマルコフカーネルとして扱い，$(X_n)_{n=1}^{+\infty}$をマルコフカーネル$P$を持つマルコフ連鎖として扱う．
+	
+\section{作用の定義}
+	\begin{dfn}[作用の定義]
+		$\mu$を$(E,\mathcal{E})$上の確率測度，$P,Q$を$E \times \mathcal{E}$上のマルコフカーネルとするとき，
+		次の二つの作用を定義する．
+		\begin{align}
+			& (\mu P)(A) \coloneqq \int_{E} P(x,A)\, \mu(dx) && (\forall A \in \mathcal{E}), \\
+			& (PQ) (x,A) \coloneqq \int_{E} Q(y,A)\, P(x, dy) && (\forall x \in E,\ A \in \mathcal{E}).
+		\end{align}
+	\end{dfn}
+	
+	$P^0=I\ $(恒等写像)，$P^n=P^{n-1}P$と計算規則を定めれば
+	\begin{align}
+		P^n(x,A)=(P^n)(x,A)=\cprob{X_n \in A}{X_0 = x}\ (\forall n \in \N, x \in E,\ A \in \mathcal{E})
+	\end{align}
+	が成り立つ．
+
+\section{既約性}
+	\begin{dfn}[既約性]
+		$\psi$を$(E,\mathcal{E})$上の確率測度とする．$P$が$\psi$既約であるとは
+		\begin{align}
+			\psi(A) > 0 \Rightarrow \forall x \in E,\ \exists n \in \N,\ \mathrm{s.t.}\ P^n(x,A) > 0, \quad (A \in \mathcal{E}).
+		\end{align}
+		が成り立つことをいい，$\psi$既約であることを単に既約という．
+	\end{dfn}
+	
+	\begin{dfn}[極大既約測度]
+		$(E, \mathcal{E})$上の確率測度全体を$M$と表す．$\mu_1, \mu_2 \in M$に対し
+		$\mu_1 \ll \mu_2 \DEF \mu_1(A) > 0 \Rightarrow \mu_2(A) > 0$として関係$\ll$を定義すると
+		これは$M$における順序となる．
+		\begin{align}
+			\Psi \coloneqq \{ \mu \in M\ |\ \mbox{$P$が$\mu$既約．} \}
+		\end{align}
+		とおいて$\Psi \neq \emptyset$とする．或る$\psi^* \in \Psi$が任意の$\psi \in \Psi$に対して$\psi \ll \psi^*$となるとき
+		$\psi^*$を$P$の極大既約測度という．
+	\end{dfn}
+	
+	\begin{prp}[極大既約測度の存在]
+		$P$が既約なら極大既約測度が存在する．
+	\end{prp}
+	
+	極大既約測度$\psi^* \in \Psi$に対し，$\psi^*(A) > 0$となる$A \in \mathcal{E}$の全体を$\mathcal{E}^+$と表す．
+
+\section{再帰性}
+	\begin{dfn}[再帰性]
+		$P$が再帰的であるとは次が成り立つことをいう．
+		\begin{align}
+			\mbox{$P$が既約かつ} \sum_{n=1}^{+\infty} P^n(x,A) = +\infty \quad (\forall x \in E,\ A \in \mathcal{E}^+).
+		\end{align}
+		$P$が非再帰的であるとは次が成り立つことをいう．
+		\begin{align}
+			\mbox{或る$E$の分割$A_1,A_2,\cdots \in \mathcal{E}\ (\sum_{i}A_i = E)$が存在して} \sup{x \in A_i} \sum_{n=1}^{+\infty} P^n(x,A_i) < +\infty.
+		\end{align}
+	\end{dfn}
+	
+	\begin{prp}
+		$P$が既約なら$P$は再帰的か非再帰的かのどちらかとなる．
+	\end{prp}
+	
+	\begin{dfn}[正再帰性]
+		 $P$が既約で$ \pi P = \pi$となる$(E,\mathcal{E})$上の確率測度$\pi$が存在するとき，$P$は正再帰的であるという．
+	\end{dfn}
+	
+	\begin{prp}
+		$P$が正再帰的ならば$P$は再帰的である．
+	\end{prp}
+	
+\section{小集合}
+	$E$が一般の集合である場合にもエルゴード性を考えることができるよう，ここで性質の良い集合と$P$に関する条件を定義する．
+	
+	\begin{dfn}[小集合]
+		$n \in \N$と$(E,\mathcal{E})$上の確率測度$\nu$に対し$A \in \mathcal{E}^+$が$(n,\nu)$小集合であるとは，或る$\delta > 0$が存在して
+		\begin{align}
+			P^n(x,B) \geq \delta \nu(B) \quad (\forall x \in A,\ B \in \mathcal{E}).
+		\end{align}
+		が成り立つことをいう．
+	\end{dfn}
+	
+	\begin{dfn}[条件S]
+		$P$に対して小集合が存在する．
+	\end{dfn}
+	
+	\begin{dfn}[Doublin条件]
+		$E$が$P$の小集合となっている．
+	\end{dfn}
+	
+\section{周期}
+	\begin{dfn}[周期]
+		条件Sが満たされている下で或る$A \in \mathcal{E}^+$が$(n,\nu)$小集合であるとする．
+		\begin{align}
+			\mathcal{N}_A \coloneqq \left\{ n \in \N\ \left|\ \exists \delta_n\ \mathrm{s.t.}\ P^n(x,B) \geq \delta_n \nu(B)\ (\forall x \in A,\ B \in \mathcal{E}) \right.\right\}
+		\end{align}
+		に対して$\mathcal{N}_A$の最大公約数を$P$の周期という．周期が1の場合$P$は非周期的であるという．
+	\end{dfn}
+	
+	\begin{prp}[周期の一意性]
+		$P$が既約なら周期は小集合$A \in \mathcal{E}^+$に依らずに定まる．
+	\end{prp}
+	
+	\begin{prp}
+		Doublin条件が満たされている下では$P$は非周期的となる．
+	\end{prp}
+	
+\section{エルゴード性}
+	エルゴード性を定義するための収束の概念を規定するノルムを絶対変動ノルムという．
+	\begin{dfn}[絶対変動ノルム]
+		$(E,\mathcal{E})$上の確率測度に対して絶対変動ノルム$\Norm{\cdot}{}$を次で定義する．
+		\begin{align}
+			\Norm{\mu - \nu}{} = \sup{A \in \mathcal{E}}{|\mu(A) - \nu(A)|} = \frac{1}{2} \sup{|f| \leq 1}{\left|\int_E f(x)\, \mu(dx) - \int_E f(x)\, \nu(dx)\right|}
+		\end{align}
+		ただし$\mu,\nu$は$(E,\mathcal{E})$上の任意に選んだ確率測度であり，$f$は$\mathcal{E}$可測である．
+	\end{dfn}
+	
+	\begin{dfn}[エルゴード性]
+		$P$がエルゴード的であるとは，或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
+		\begin{align}
+			\lim_{n \to +\infty} \Norm{p^n(x,\cdot) - \pi}{} = 0 \quad (\pi \rm{-a.e.}x \in E)
+		\end{align}
+		が成り立つことをいう．つまり$\displaystyle \lim_{n \to +\infty} p^n(x,\cdot)$は$\mathcal{E}$上で$\pi$に一致する．
+	\end{dfn}
+	
+	\begin{dfn}[一様エルゴード性]
+		$P$が一様エルゴード的であるとは，或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
+		\begin{align}
+			\lim_{n \to +\infty} \sup{x \in E}{\Norm{p^n(x,\cdot) - \pi}{}} = \lim_{n \to +\infty} \sup{\substack{x \in E \\ A \in \mathcal{E}}}{\left| p^n(x,A) - \pi(A)\right|} =0.
+		\end{align}
+		が成り立つことをいう．
+	\end{dfn}
+	
+\section{エルゴード性に関する命題}
+	\begin{prp}[エルゴード性]
+		$P$は条件Sを満たしているとする．このとき$P$が既約，非周期的，かつ正再帰的であれば，$P$の不変確率測度$\pi$に対してエルゴード的である．
+	\end{prp}
+	
+	\begin{prp}[一様エルゴード性]
+		$P$がDoublin条件を満たすなら，或る$(E,\mathcal{E})$上の確率測度$\pi$が存在して
+		\begin{align}
+			\lim_{n \to +\infty} \sup{x \in E}{\Norm{p^n(x,\cdot) - \pi}{}} = 0.
+		\end{align}
+		が成り立つ．このとき$\pi$は$P$の不変確率測度となる．逆に$P$が一様エルゴード的で条件Sが満たされているならDoublin条件が成立する．
+	\end{prp}
+	
+	\begin{prp}[大数の法則]
+		$P$が条件Sを満たし，既約かつ正再帰的であれば，$P$の不変確率測度$\pi$に対して次が成り立つ．
+		\begin{align}
+			\int_E |f(x)|\, \pi(dx) < +\infty \Rightarrow \lim_{N \to +\infty} \frac{1}{N} \sum_{n=1}^{N} f(X_n) = \int_E f(x)\, \pi(dx).
+		\end{align}
+	\end{prp}
+	
+	\begin{prp}[中心極限定理]
+		$P$が一様エルゴード的であれば次が成り立つ．
+		\begin{align}
+			\int_E f(x)\, \pi(dx) = 0,\ \sigma^2 \coloneqq \int_E |f(x)|^2\, \pi(dx) < +\infty 
+			\Rightarrow \lim_{N \to +\infty} \frac{1}{\sqrt{N}} \sum_{n=1}^{N} f(X_n) \overset{\mathrm{d}}{\rightarrow} N(0,\sigma^2).
+		\end{align}
+	\end{prp}
+	
+\section{MCMC法}
+	MCMC(Markov chain Monte Carlo)法とは調べたい事象の分布やその分布で測った関数の積分値を計算するために，
+	既約性，非周期性を持ちさらに不変確率測度が存在するようなマルコフ行列あるいはマルコフカーネルを構成して，
+	大数の法則により近似値を求める手法である．
+	
+	\begin{description}
+		\item[例]
+		\item[Metropolis Hastings法]
+		\item[Gibbs sampler]
+	\end{description}
 	
