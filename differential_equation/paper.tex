@@ -1,0 +1,131 @@
+\section{高階方程式の場合}
+	$D$を$\R^n$の閉区間として，$\R$の閉区間$[a,b]$上で定義された微分可能関数$x_i: [a,b] \ni t \longmapsto x_i(t) \in \R\ (i=1,\cdots,n)$が
+	$(x_1(t),\cdots,x_n(t)) \in D\ (\forall t \in [a,b])$を満たしていると仮定する．
+	$\R^{n+1}$上の閉区間$\Omega \coloneqq [a,b] \times D\ $上で定義された$\R$値連続関数$f_i\ (i=1,\cdots,n)$
+	に対して，次の連立方程式を解く．
+	\begin{align}
+		\frac{dx_i}{dt}(t) &= f_i(t,x_1(t),\cdots,x_n(t)) && (i=1,\cdots,n)\\
+		x_i(t_0) &= x_i^0 && (i=1,\cdots,n)
+	\end{align}
+	
+	$\R^n$の点を$\Vector{y} = {}^T(y_1,\cdots,y_n)$と表し，$\Omega$上の$\R^{n}$値関数として
+	$\Vector{f}(t,\Vector{y}) \coloneqq {}^T (f_1(t,\Vector{y}),\cdots,f_n(t,\Vector{y}))$と表すと
+	連立方程式は
+	\begin{align}
+		\frac{d\Vector{x}}{dt}(t) &= \Vector{f}(t,\Vector{x}(t)) \\
+		\Vector{x}(t_0) &= \Vector{x}_0 = (x_1^0,\cdots,x_n^0) \label{eq:deff_eq}
+	\end{align}
+	と簡単に表現できる．この微分方程式についての解の存在と一意性を示す．
+	
+	\begin{prp}
+		上で定義した$\Vector{f}$が，$\Omega$において($t$に関して一様に)$\Vector{y}$についてLipschitz連続であるとする．すなわち
+		或る正数$K > 0$が存在して
+		\begin{align}
+			|\Vector{f}(t,\Vector{y}_1) - \Vector{f}(t,\Vector{y}_2)| \leq K|\Vector{y}_1 - \Vector{y}_2| \quad (\forall t \in [a,b],\ \Vector{y}_1, \Vector{y}_2 \in D)
+		\end{align}
+		が成り立っている．ただし$|\Vector{y}| = (y_1^2 + \cdots + y_n^2)^{1/2}\ (\Vector{y} = (y_1, \cdots, y_n) \in \R^n)$とする．
+		このとき$\Omega$の任意の内点$(t_0, \Vector{x}_0)$に対して或る$\delta > 0$が取れて，閉区間$I_\delta \coloneqq [t_0 - \delta, t_0 + \delta]$上で
+		(\refeq{eq:deff_eq})の解がただ一つ存在する．
+	\end{prp}
+	
+	\begin{prf}\mbox{}\\
+	\begin{description}
+		\item[存在の証明]\mbox{}\\
+			$|\Vector{f}(t,\Vector{y})| = \sqrt{\sum_{i=1}^{n} f_i(t,\Vector{y})}$は$\Omega$上で連続であるから有界であり，適当な正数$M > 0$により
+			\begin{align}
+				|\Vector{f}(t,\Vector{y})| \leq M \quad (\forall (t,\Vector{y}) \in \Omega)
+			\end{align}
+			が成り立つ．正数$\delta > 0$を，
+			閉集合
+			\begin{align}
+				G \coloneqq \{\ (t,y_1,\cdots,y_n) \in \R^{n+1}\quad |\quad |t - t_0| \leq \delta,\quad |y_i - x_i^0| \leq M|t - t_0|\ (i=1,\cdots,n)\ \}
+			\end{align}
+			が$\Omega$に含まれ且つ$\delta \leq 1/2nK$を満たすように取り，$G$上で再帰的に解を構成する．構成の手続きは以下である:
+			全ての$i = 1,\cdots,n$と$t \in I_\delta$に対し
+			\begin{align}
+				x_i^0(t) &= x_i^0, \\
+				x_i^k(t) &= x_i^0 + \int_{t_0}^t f_i(\tau,x_1^{k-1}(\tau),\cdots,x_n^{k-1}(\tau))\ d\tau \quad (k = 1,2,\cdots), \\
+				x_i(t) &= \lim_{k \to \infty} x_i^k(t)
+			\end{align}
+			とする．まず示すことは，全ての$k \geq 0$にわたって$(t, x_1^k(t), \cdots, x_n^k(t)) \in G\ (t \in I_\delta)$が成り立つことである．
+			数学的帰納法によれば，$k=0$の場合は明らかに$(t, x_1^0(t), \cdots, x_n^0(t)) = (t, \Vector{x}_0) \in G$が成り立っているから，
+			$k=m \geq 0$の場合$(t, x_1^m(t), \cdots, x_n^m(t)) \in G$を仮定して
+			\begin{align}
+				|x_i^{m+1}(t) - x_i^0| = \left| \int_{t_0}^t f_i(\tau,x_1^m(\tau),\cdots,x_n^m(\tau))\ d\tau \right|
+					\leq \int_{t_0}^t |f_i(\tau,x_1^m(\tau),\cdots,x_n^m(\tau))|\ |d\tau| \leq M|t - t_0|
+			\end{align}
+			が全ての$i = 1,\cdots,n$について成り立つ．つまり$(t, x_1^{m+1}(t), \cdots, x_n^{m+1}(t)) \in G\ (t \in I_\delta)$が示された．
+			次に示すことは$\left(x_i^k(t)\right)_{k = 0}^{\infty} \ (i=1,\cdots,n)$が各$t \in I_\delta$で収束することである．
+			適当に$p,q \in \N\ (p < q)$を取れば，
+			\begin{align}
+				x_i^q(t) - x_i^p(t) = \sum_{j=p+1}^{q}(x_i^j(t) - x_i^{j-1}(t)) \quad, i=1,\cdots,n,\ t \in I_\delta \label{eq:diff_eq_2}
+			\end{align}
+			と表せるが，$\delta \leq 1/2nK$としておいたことにより
+			\begin{align}
+				|x_i^j(t) - x_i^{j-1}(t)| &= \left| \int_{t_0}^t f_1(\tau,x_1^{j-1}(\tau), \cdots, x_n^{j-1}(\tau)) - f_1(\tau,x_1^{j-2}(\tau), \cdots, x_n^{j-2}(\tau))\ d\tau \right| \\
+					&\leq \int_{t_0}^t K|\Vector{x}_{j-1}(\tau) - \Vector{x}_{j-2}(\tau)| |d\tau| \\
+					&= K\sup{|t - t_0|\leq \delta}{|\Vector{x}_{j-1}(t) - \Vector{x}_{j-2}(t)|} |t-t_0| \\
+					&\leq \frac{1}{2n} \sup{|t - t_0|\leq \delta}{|\Vector{x}_{j-1}(t) - \Vector{x}_{j-2}(t)|}
+			\end{align}
+			が各$t \in I_\delta$で成り立つ．$|\Vector{x}_{j-1}(t) - \Vector{x}_{j-2}(t)| \leq \sum_{i=1}^{n}|x_i^{j-1}(t) - x_i^{j-2}(t)|$であるから先の不等式は
+			\begin{align}
+				|x_i^j(t) - x_i^{j-1}(t)| \leq \frac{1}{2n} \sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^{j-1}(t) - x_i^{j-2}(t)|}, \quad t \in I_\delta
+			\end{align}
+			まで発展し，これが全ての$i = 1, \cdots, n$で成り立つから
+			\begin{align}
+				\sum_{i=1}^{n}|x_i^j(t) - x_i^{j-1}(t)| \leq \frac{1}{2} \sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^{j-1}(t) - x_i^{j-2}(t)|}, \quad t \in I_\delta
+			\end{align}
+			が成り立つ．帰納的な手順で
+			\begin{align}
+				\sum_{i=1}^{n}|x_i^j(t) - x_i^{j-1}(t)| \leq \frac{1}{2^{j-1}} \sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^{1}(t) - x_i^{0}(t)|}, \quad t \in I_\delta
+			\end{align}
+			と表され，右辺が$t \in I_\delta$に依存しないところから
+			\begin{align}
+				\sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^j(t) - x_i^{j-1}(t)|} \leq \frac{1}{2^{j-1}} \sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^{1}(t) - x_i^{0}(t)|}
+			\end{align}
+			が成り立つ．$x_1^1, \cdots, x_n^1$が$[a,b]$上の連続関数であるから$\sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^{1}(t) - x_i^{0}(t)|}$は有限確定し，これを$c$と置けば
+			式(\refeq{eq:diff_eq_2})の関係は
+			\begin{align}
+				\sup{|t - t_0|\leq \delta}{|x_i^q(t) - x_i^p(t)|} \leq \sum_{j=p+1}^{q}|x_i^j(t) - x_i^{j-1}(t)| \leq c \sum_{j=p+1}^{q} \frac{1}{2^{j-1}} \quad, i=1,\cdots,n
+			\end{align}
+			となり，連続関数の列$\left(x_i^k(t)\right)_{k = 0}^{\infty} \ (i=1,\cdots,n)$が$I_\delta$上で絶対一様収束していることが判る．従って極限関数$x_i\ (i=1,\cdots,n)$は$I_\delta$上で連続であり，
+			\begin{align}
+				|f_i(t,\Vector{x}_k(t)) - f_i(t,\Vector{x}(t))| \leq |\Vector{f}(t,\Vector{x}_k(t)) - \Vector{f}(t,\Vector{x}(t))|
+				\leq K|\Vector{x}_k(t) - \Vector{x}(t)| \leq K \sup{|t - t_0|\leq \delta}{\sum_{i=1}^{n}|x_i^{k}(t) - x_i(t)|}
+			\end{align}
+			が全ての$i=1,\cdots,n$と$t \in I_\delta$で成り立つから，右辺が$k \longrightarrow \infty$で$0$に収束することにより$(f_i(t,\Vector{x}_k(t)))_{k=0}^{\infty}$が$I_\delta$上で
+			$f_i(t,\Vector{x}(t))$に一様収束している$(i=1,\cdots,n)$．以上より
+			\begin{align}
+				&\left| x_i(t) - x_i^0 - \int_{t_0}^t f_i(\tau,x_1(\tau), \cdots, x_n(\tau))\ d\tau \right| \\
+				\quad&\leq |x_i(t) - x_i^k(t)| + \left|x_i^k(t) - x_i^0 - \int_{t_0}^t f_i(\tau,x_1^{k-1}(\tau), \cdots, x_n^{k-1}(\tau))\ d\tau \right| \\
+					&\quad+ \left| \int_{t_0}^t f_i(\tau,x_1^{k-1}(\tau), \cdots, x_n^{k-1}(\tau))\ d\tau - \int_{t_0}^t f_i(\tau,x_1(\tau), \cdots, x_n(\tau))\ d\tau \right| \\
+				\quad&\leq |x_i(t) - x_i^k(t)| + \int_{t_0}^t |f_i(\tau,x_1^{k-1}(\tau), \cdots, x_n^{k-1}(\tau)) - f_i(\tau,x_1(\tau), \cdots, x_n(\tau))|\ |d\tau| \\
+				&\longrightarrow 0 \quad (k \longrightarrow \infty)
+			\end{align}
+			が全ての$i=1,\cdots,n$と$t \in I_\delta$で成り立つ．こうして求められた
+			\begin{align}
+				x_i(t) = x_i^0 + \int_{t_0}^t f_i(\tau,x_1(\tau), \cdots, x_n(\tau))\ d\tau, \quad i=1,\cdots,n,\ t \in I_\delta
+			\end{align}
+			は微分方程式(\refeq{eq:deff_eq})を満たす解である．解が存在する範囲は$I_\delta$上だけとは限らない．たとえば，次は初期点を$(t_0+\delta, \Vector{x}(t_0+\delta))$として範囲を拡張できる．
+		
+		\item[一意性の証明]\mbox{}\\
+			$(\phi_i)_{i=1}^{n}, (\psi_i)_{i=1}^{n}$が微分方程式(\refeq{eq:deff_eq})を満たす解であるとする．つまり
+			\begin{align}
+				\phi_i(t) &= x_i^0 + \int_{t_0}^t f_i(\tau,\phi_1(\tau), \cdots, \phi_n(\tau))\ d\tau, \quad i=1,\cdots,n,\ t \in I_\delta, \\
+				\psi_i(t) &= x_i^0 + \int_{t_0}^t f_i(\tau,\psi_1(\tau), \cdots, \psi_n(\tau))\ d\tau, \quad i=1,\cdots,n,\ t \in I_\delta
+			\end{align}
+			が同時に成り立っているとする．全ての$i = 1,\cdots,n$について
+			\begin{align}
+				|\phi_i(t) - \psi_i(t)| &\leq \int_{t_0}^t |f_i(\tau,\phi_1(\tau), \cdots, \phi_n(\tau)) - f_i(\tau,\psi_1(\tau), \cdots, \psi_n(\tau))|\ |d\tau| \\
+				&\leq \int_{t_0}^t K \sum_{i=1}^n |\phi_i(\tau) - \psi_i(\tau)|\ |d\tau| \\
+				&\leq \frac{1}{2n} \sup{|t - t_0|\leq \delta}{\sum_{i=1}^n |\phi_i(t) - \psi_i(t)|}
+			\end{align}
+			が成り立っているから，先と同様にして
+			\begin{align}
+				\sup{|t - t_0|\leq \delta}{\sum_{i=1}^n |\phi_i(t) - \psi_i(t)|} \leq \frac{1}{2} \sup{|t - t_0|\leq \delta}{\sum_{i=1}^n |\phi_i(t) - \psi_i(t)|}
+			\end{align}
+			が成り立ち$\phi_i(t) = \psi_i(t) \ (i=1,\cdots,n,\ t \in I_\delta)$が示される．これは$I_\delta$上だけの一意性ではない．解が存在する範囲では初期値が同じであれば
+			解はただ一つである．
+			\QED
+	\end{description}
+	\end{prf}
