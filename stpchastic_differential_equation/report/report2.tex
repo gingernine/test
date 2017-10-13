@@ -1,0 +1,85 @@
+\section{10/11}
+	基礎の確率空間を$(\Omega,\mathcal{F},\mu)$とする．
+	$\mathcal{G} \subset \mathcal{F}$を部分$\sigma$-加法族とし，
+	Hilbert空間$\Lp{2}{\Omega,\mathcal{F},\mu}$とその閉部分空間
+	$\Lp{2}{\Omega, \mathcal{G},\mu}$を考える．
+	任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，
+	射影定理により一意に定まる射影$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$を
+	\begin{align}
+		g = \cexp{f}{\mathcal{G}}
+	\end{align}
+	と表現する．$\mathcal{G} = \{\emptyset, \Omega\}$のときは$\cexp{f}{\mathcal{G}}$を$\Exp{f}$と書いて$f$の期待値と呼ぶ．
+	\begin{qst}\mbox{}\\
+		扱う関数は全て$\R$値と考える．
+		\begin{description}
+			\item[C1] $\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\Exp{f} = \int_{\Omega} f(x)\ \mu(dx)
+				\end{align}
+				
+			\item[C2]	$\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu},\ \forall h \in \Lp{2}{\Omega, \mathcal{G},\mu}$
+				\begin{align}
+					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \cexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx)
+				\end{align}
+				
+			\item[C3]	$\forall f_1,f_2 \in \Lp{2}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\cexp{f_1 + f_2}{\mathcal{G}} = \cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}}
+				\end{align}
+
+			\item[C4]	$\forall f_1,f_2 \in \Lp{2}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					f_1 \leq f_2 \quad \mathrm{a.s.} \quad \Rightarrow \quad \cexp{f_1}{\mathcal{G}} \leq \cexp{f_2}{\mathcal{G}} \quad \mathrm{a.s.}
+				\end{align}
+			
+			\item[C5]	$\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu},\ \forall g \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$
+				\begin{align}
+					\cexp{gf}{\mathcal{G}} = g\cexp{f}{\mathcal{G}}
+				\end{align}
+			
+			\item[C6]	$\mathcal{H}$が$\mathcal{G}$の部分$\sigma$-加法族ならば$\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} = \cexp{f}{\mathcal{H}}
+				\end{align}
+		\end{description}
+	\end{qst}
+	
+	\begin{prf}
+		\begin{description}
+			\item[C1] $\mathcal{G} = \{\emptyset, \Omega\}$とすれば，
+				$\Lp{2}{\Omega, \mathcal{G},\mu}$の元は$\mathcal{G}$可測でなくてはならないから$\Omega$上の定数関数である．
+				従って任意の$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$に或る定数$\alpha \in \R$が対応して$g(x)=\alpha\ (\forall x \in \Omega)$と表せる．
+				Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$におけるノルムを$\Norm{\cdot}{\Lp{2}{\Omega, \mathcal{F},\mu}}$と表示すれば，
+				射影定理より任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}} = \Exp{f}$は
+				ノルム$\Norm{f-g}{\Lp{2}{\Omega, \mathcal{F},\mu}}$を最小にする$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$である．
+				$g(x)=\alpha\ (\forall x \in \Omega)$としてノルムを直接計算すれば，
+				\begin{align}
+					\Norm{f-g}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - \alpha|^2\ \mu(dx) \\
+					&= \int_{\Omega} |f(x)|^2 - 2 \alpha f(x) + |\alpha|^2\ \mu(dx) \\
+					&= \int_{\Omega} |f(x)|^2\ \mu(dx) - 2 \alpha \int_{\Omega} f(x)\ \mu(dx) + |\alpha|^2 \\
+					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 - \left| \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} |f(x)|^2\ \mu(dx) \\
+					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} \left| f(x) - \beta \right|^2\ \mu(dx) & (\beta \coloneqq \int_{\Omega} f(x)\ \mu(dx))
+				\end{align}
+				と表現できて最終式は$\alpha = \int_{\Omega} f(x)\ \mu(dx)$となることで最小となる．すなわち
+				\begin{align}
+					\Exp{f} = \cexp{f}{\mathcal{G}} = \int_{\Omega} f(x)\ \mu(dx).
+				\end{align}
+			
+			\item[C2] Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>$と表示する．
+				講義中の射影定理により，$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}}$は
+				\begin{align}
+					\inprod<f - \cexp{f}{\mathcal{G}}, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+				\end{align}
+				を満たし，内積の線型性から
+				\begin{align}
+					\inprod<f, h> = \inprod<\cexp{f}{\mathcal{G}}, h> \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+				\end{align}
+				が成り立つ．積分の形式で表示することにより
+				\begin{align}
+					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \cexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+				\end{align}
+				が示された．
+				
+			\item[C3] 
+		\end{description}
+	\end{prf}
