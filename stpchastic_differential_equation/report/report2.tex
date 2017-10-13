@@ -10,7 +10,8 @@
 	\end{align}
 	と表現する．$\mathcal{G} = \{\emptyset, \Omega\}$のときは$\cexp{f}{\mathcal{G}}$を$\Exp{f}$と書いて$f$の期待値と呼ぶ．
 	\begin{qst}\mbox{}\\
-		扱う関数は全て$\R$値と考える．
+		Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>$，ノルムを$\Norm{\cdot}{\Lp{2}{\Omega, \mathcal{F},\mu}}$と表示する．
+		次のC1 $\sim$ C6 を示せ．扱う関数は全て$\R$値と考える．(係数体を実数体としてHilbert空間を扱う．)
 		\begin{description}
 			\item[C1] $\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu}$
 				\begin{align}
@@ -47,7 +48,7 @@
 	\begin{prf}
 		\begin{description}
 			\item[C1] $\mathcal{G} = \{\emptyset, \Omega\}$とすれば，
-				$\Lp{2}{\Omega, \mathcal{G},\mu}$の元は$\mathcal{G}$可測でなくてはならないから$\Omega$上の定数関数である．
+				$\Lp{2}{\Omega, \mathcal{G},\mu}$の元は$\mathcal{G}$-可測でなくてはならないから$\Omega$上の定数関数である．
 				従って任意の$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$に或る定数$\alpha \in \R$が対応して$g(x)=\alpha\ (\forall x \in \Omega)$と表せる．
 				Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$におけるノルムを$\Norm{\cdot}{\Lp{2}{\Omega, \mathcal{F},\mu}}$と表示すれば，
 				射影定理より任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}} = \Exp{f}$は
@@ -65,8 +66,8 @@
 					\Exp{f} = \cexp{f}{\mathcal{G}} = \int_{\Omega} f(x)\ \mu(dx).
 				\end{align}
 			
-			\item[C2] Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>$と表示する．
-				講義中の射影定理により，$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}}$は
+			\item[C2] 
+				射影定理により，$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}}$は
 				\begin{align}
 					\inprod<f - \cexp{f}{\mathcal{G}}, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 				\end{align}
@@ -81,5 +82,63 @@
 				が示された．
 				
 			\item[C3] 
+				射影定理により任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+				\begin{align}
+					\inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h> = 0,\ \inprod<f_1 - \cexp{f_1}{\mathcal{G}}, h> = 0,\ \inprod<f_2 - \cexp{f_2}{\mathcal{G}}, h> = 0
+				\end{align}
+				が成り立っている．従って任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+				\begin{align}
+					0 &= \inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h> - \inprod<f_1 - \cexp{f_1}{\mathcal{G}}, h> - \inprod<f_2 - \cexp{f_2}{\mathcal{G}}, h> \\
+					&= \inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h> - \inprod<(f_1 + f_2) - (\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}}), h> \\
+					&= \inprod<\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}, h>
+				\end{align}
+				となり，特に$h = \cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$とすれば
+				\begin{align}
+					\Norm{\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 = 0
+				\end{align}
+				が成り立つことになるから
+				\begin{align}
+					\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} = \cexp{f_1 + f_2}{\mathcal{G}}
+				\end{align}
+				が示された．
+				
+			\item[C4] 「任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，$f \geq 0\ $a.s.ならば$\cexp{f}{\mathcal{G}} \geq 0\ $a.s.」---(※)を示せばよい．
+				これが示されれば$f_1,f_2 \in \Lp{2}{\Omega, \mathcal{F},\mu}$で$f_1 \leq f_2\ $a.s.となるものに対し
+				\begin{align}
+					0 \leq f_2 - f_1\ \mathrm{a.s.} \quad \Rightarrow 0 \leq \cexp{f_2 - f_1}{\mathcal{G}} = \cexp{f_2}{\mathcal{G}} - \cexp{f_1}{\mathcal{G}}\ \mathrm{a.s.}
+				\end{align}
+				が成り立つ．しかし，この場合本題に入る前に次の命題を証明する必要がある．これは等号$\cexp{f_2 - f_1}{\mathcal{G}} = \cexp{f_2}{\mathcal{G}} - \cexp{f_1}{\mathcal{G}}$が成り立つことを保証するためである．
+				\begin{prp}
+					考えている空間は今までと同じHilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu},\ \Lp{2}{\Omega, \mathcal{G},\mu}$である．
+					任意の実数$\alpha$と任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して次が成立する:
+					\begin{align}
+						\cexp{\alpha f}{\mathcal{G}} = \alpha \cexp{f}{\mathcal{G}}.
+					\end{align}
+				\end{prp}
+				\begin{prf}
+					射影定理より
+					\begin{align}
+						\inprod<f - \cexp{f}{\mathcal{G}}, h> = 0, \quad \inprod<\alpha f - \cexp{\alpha f}{\mathcal{G}}, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+					\end{align}
+					が成り立っているから
+					\begin{align}
+						\inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}}, h> 
+						&= \inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha f, h> - \inprod<\alpha \cexp{f}{\mathcal{G}} - \alpha f, h> \\
+						&= \inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha f, h> - \alpha \inprod<f - \cexp{f}{\mathcal{G}}, h> = 0. \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+					\end{align}
+					特に$h = \cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$として
+					\begin{align}
+						\Norm{\cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 = 0
+					\end{align}
+					だから$\cexp{\alpha f}{\mathcal{G}} = \alpha \cexp{f}{\mathcal{G}}$が成り立つ．
+					\QED
+				\end{prf}
+				次に(※)を示す．
+				\begin{align}
+					A &\coloneqq \{x \in \Omega\ |\quad f(x) < 0 \} && (\in \mathcal{F}), \\
+					B &\coloneqq \{x \in \Omega\ |\quad \cexp{f}{\mathcal{G}}(x) < 0 \} && (\in \mathcal{G})
+				\end{align}
+				として$\mu(A)=0 \quad \Rightarrow \quad \mu(B)=0$が成り立つと言えればよく，$\mu(A) = 0$の下で$\mu(B) > 0$
+				と仮定しては不合理であることを以下に記述する．
 		\end{description}
 	\end{prf}
