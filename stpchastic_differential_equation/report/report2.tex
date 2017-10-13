@@ -152,7 +152,7 @@
 				として定義すると
 				\begin{align}
 					\Norm{f - h}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - h(x)|^2\ \mu(dx) \\
-					&= \int_{A} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B^c} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - h(x)|^2\ \mu(dx) \\
+					&= \int_{A^c \cap B^c} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - h(x)|^2\ \mu(dx) \\
 					&= \int_{A^c \cap B^c} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x)|^2\ \mu(dx) \\
 					&< \int_{A^c \cap B^c} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) \\
 					&= \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2
@@ -163,8 +163,39 @@
 					|f(x) - \cexp{f}{\mathcal{G}}(x)|^2 &- |f(x)|^2 = \left(f(x) - \cexp{f}{\mathcal{G}}(x) + f(x)\right)\left(- \cexp{f}{\mathcal{G}}(x)\right) > 0 \\
 					&(\because f(x) \geq 0,\ \cexp{f}{\mathcal{G}}(x) < 0, \quad \forall x \in A^c \cap B)
 				\end{align}
-				が成り立っていることによる．上の結果は
-				$\cexp{f}{\mathcal{G}}$が$f$の射影であることに違反しているから$\mu(B) = 0$でなくてはならず，(※)が示された．
-				\QED
+				が成り立っていることによる．上の結果，すなわち
+				\begin{align}
+					\Norm{f - h}{\Lp{2}{\Omega, \mathcal{F},\mu}} < \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}
+				\end{align}
+				を満たす$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$が存在することは
+				$\cexp{f}{\mathcal{G}}$が$f$の射影であることに違反している．以上より$\mu(B) = 0$でなくてはならず，(※)が示された．
+			
+			\item[C5] $\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}} = 0$
+				が成り立つことを示す．任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+				\begin{align}
+					\inprod<\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}, h> 
+					= \inprod<\cexp{gf}{\mathcal{G}} - gf, h> + \inprod<gf - g\cexp{f}{\mathcal{G}}, h>
+				\end{align}
+				を考えると，右辺が0になることが次のように証明される．先ず右辺第一項について，
+				$gf$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に入る．
+				$g$は或る$\mu$-零集合$E \in \mathcal{G}$を除いて有界であるから，或る正数$\alpha$によって$|g(x)| \leq \alpha \ (\forall x \in E^c)$と抑えられ，
+				\begin{align}
+					\int_{\Omega} |g(x)f(x)|^2\ \mu(dx) = \int_{E^c} |g(x)|^2|f(x)|^2\ \mu(dx) \leq \alpha^2 \int_{E^c} |f(x)|^2\ \mu(dx) = \alpha^2 \int_{\Omega} |f(x)|^2\ \mu(dx) < \infty
+				\end{align}
+				が成り立つからである．従って射影定理により
+				\begin{align}
+					\inprod<\cexp{gf}{\mathcal{G}} - gf, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu}).
+				\end{align}
+				右辺第二項について，
+				\begin{align}
+					\inprod<gf - g\cexp{f}{\mathcal{G}}, h> = \int_{\Omega} \left( f(x) - \cexp{f}{\mathcal{G}}(x) \right) g(x)h(x)\ \mu(dx)
+					= \inprod<f - \cexp{f}{\mathcal{G}}, gh>
+				\end{align}
+				であって，先と同様の理由で$gh \in \Lp{2}{\Omega, \mathcal{G},\mu} \ (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})$が成り立つから
+				射影定理より
+				\begin{align}
+					\inprod<gf - g\cexp{f}{\mathcal{G}}, h> = 0  \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+				\end{align}
+				であると判明した．ここで
 		\end{description}
 	\end{prf}
