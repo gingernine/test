@@ -140,5 +140,31 @@
 				\end{align}
 				として$\mu(A)=0 \quad \Rightarrow \quad \mu(B)=0$が成り立つと言えればよく，$\mu(A) = 0$の下で$\mu(B) > 0$
 				と仮定しては不合理であることを以下に記述する．
+				
+				$\mu(A) = 0,\ \mu(B) > 0$であるとする．$\Lp{2}{\Omega, \mathcal{G},\mu}$の元を
+				\begin{align}
+					h(x) \coloneqq
+					\begin{cases}
+						\cexp{f}{\mathcal{G}}(x) & (x \in B^c) \\
+						0 & (x \in B)
+					\end{cases}
+				\end{align}
+				として定義すると
+				\begin{align}
+					\Norm{f - h}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - h(x)|^2\ \mu(dx) \\
+					&= \int_{A} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B^c} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - h(x)|^2\ \mu(dx) \\
+					&= \int_{A^c \cap B^c} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x)|^2\ \mu(dx) \\
+					&< \int_{A^c \cap B^c} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) \\
+					&= \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2
+				\end{align}
+				が成り立つ．これは$\mu(A) = 0$であること，$\mu(A^c \cap B) = \mu(B) - \mu(A \cap B) = \mu(B) > 0$であること，
+				それから$A^c \cap B$の上で
+				\begin{align}
+					|f(x) - \cexp{f}{\mathcal{G}}(x)|^2 &- |f(x)|^2 = \left(f(x) - \cexp{f}{\mathcal{G}}(x) + f(x)\right)\left(- \cexp{f}{\mathcal{G}}(x)\right) > 0 \\
+					&(\because f(x) \geq 0,\ \cexp{f}{\mathcal{G}}(x) < 0, \quad \forall x \in A^c \cap B)
+				\end{align}
+				が成り立っていることによる．上の結果は
+				$\cexp{f}{\mathcal{G}}$が$f$の射影であることに違反しているから$\mu(B) = 0$でなくてはならず，(※)が示された．
+				\QED
 		\end{description}
 	\end{prf}
