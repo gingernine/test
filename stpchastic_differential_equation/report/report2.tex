@@ -10,7 +10,7 @@
 	\end{align}
 	と表現する．$\mathcal{G} = \{\emptyset, \Omega\}$のときは$\cexp{f}{\mathcal{G}}$を$\Exp{f}$と書いて$f$の期待値と呼ぶ．
 	\begin{qst}\mbox{}\\
-		Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>$，ノルムを$\Norm{\cdot}{\Lp{2}{\Omega, \mathcal{F},\mu}}$と表示する．
+		Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F},\mu}}$，ノルムを$\Norm{\cdot}{\Lp{2}{\mathcal{F},\mu}}$と表示する．
 		次のC1 $\sim$ C6 を示せ．扱う関数は全て$\R$値と考える．(係数体を実数体としてHilbert空間を扱う．)
 		\begin{description}
 			\item[C1] $\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu}$
@@ -49,19 +49,18 @@
 		\begin{description}
 			\item[C1] $\mathcal{G} = \{\emptyset, \Omega\}$とすれば，
 				$\Lp{2}{\Omega, \mathcal{G},\mu}$の元は$\mathcal{G}$-可測でなくてはならないから$\Omega$上の定数関数である．
-				従って任意の$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$に或る定数$\alpha \in \R$が対応して$g(x)=\alpha\ (\forall x \in \Omega)$と表せる．
-				Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$におけるノルムを$\Norm{\cdot}{\Lp{2}{\Omega, \mathcal{F},\mu}}$と表示すれば，
+				従って各$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$には定数$\alpha \in \R$が対応して$g(x)=\alpha\ (\forall x \in \Omega)$と表せる．
 				射影定理より任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}} = \Exp{f}$は
-				ノルム$\Norm{f-g}{\Lp{2}{\Omega, \mathcal{F},\mu}}$を最小にする$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$である．
+				ノルム$\Norm{f-g}{\Lp{2}{\mathcal{F},\mu}}$を最小にする$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$である．
 				$g(x)=\alpha\ (\forall x \in \Omega)$としてノルムを直接計算すれば，
 				\begin{align}
-					\Norm{f-g}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - \alpha|^2\ \mu(dx) \\
+					\Norm{f-g}{\Lp{2}{\mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - \alpha|^2\ \mu(dx) \\
 					&= \int_{\Omega} |f(x)|^2 - 2 \alpha f(x) + |\alpha|^2\ \mu(dx) \\
 					&= \int_{\Omega} |f(x)|^2\ \mu(dx) - 2 \alpha \int_{\Omega} f(x)\ \mu(dx) + |\alpha|^2 \\
 					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 - \left| \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} |f(x)|^2\ \mu(dx) \\
-					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} \left| f(x) - \beta \right|^2\ \mu(dx) & (\beta \coloneqq \int_{\Omega} f(x)\ \mu(dx))
+					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} \left| f(x) - \beta \right|^2\ \mu(dx) \qquad (\beta \coloneqq \int_{\Omega} f(x)\ \mu(dx))
 				\end{align}
-				と表現できて最終式は$\alpha = \int_{\Omega} f(x)\ \mu(dx)$となることで最小となる．すなわち
+				と表現できて最終式は$\alpha = \int_{\Omega} f(x)\ \mu(dx)$で最小となる．すなわち
 				\begin{align}
 					\Exp{f} = \cexp{f}{\mathcal{G}} = \int_{\Omega} f(x)\ \mu(dx).
 				\end{align}
@@ -69,11 +68,11 @@
 			\item[C2] 
 				射影定理により，$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}}$は
 				\begin{align}
-					\inprod<f - \cexp{f}{\mathcal{G}}, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+					\inprod<f - \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 				\end{align}
 				を満たし，内積の線型性から
 				\begin{align}
-					\inprod<f, h> = \inprod<\cexp{f}{\mathcal{G}}, h> \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+					\inprod<f, h>_{\Lp{2}{\mathcal{F},\mu}} = \inprod<\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 				\end{align}
 				が成り立つ．積分の形式で表示することにより
 				\begin{align}
@@ -84,17 +83,19 @@
 			\item[C3] 
 				射影定理により任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 				\begin{align}
-					\inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h> = 0,\ \inprod<f_1 - \cexp{f_1}{\mathcal{G}}, h> = 0,\ \inprod<f_2 - \cexp{f_2}{\mathcal{G}}, h> = 0
+					&\inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0, \\
+					&\inprod<f_1 - \cexp{f_1}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0, \\
+					&\inprod<f_2 - \cexp{f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0
 				\end{align}
 				が成り立っている．従って任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 				\begin{align}
-					0 &= \inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h> - \inprod<f_1 - \cexp{f_1}{\mathcal{G}}, h> - \inprod<f_2 - \cexp{f_2}{\mathcal{G}}, h> \\
-					&= \inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h> - \inprod<(f_1 + f_2) - (\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}}), h> \\
-					&= \inprod<\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}, h>
+					0 &= \inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} - \inprod<f_1 - \cexp{f_1}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} - \inprod<f_2 - \cexp{f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} \\
+					&= \inprod<(f_1 + f_2) - \cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} - \inprod<(f_1 + f_2) - (\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}}), h>_{\Lp{2}{\mathcal{F},\mu}} \\
+					&= \inprod<\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}}
 				\end{align}
 				となり，特に$h = \cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$とすれば
 				\begin{align}
-					\Norm{\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 = 0
+					\Norm{\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}}{\Lp{2}{\mathcal{F},\mu}}^2 = 0
 				\end{align}
 				が成り立つことになるから
 				\begin{align}
@@ -118,17 +119,18 @@
 				\begin{prf}
 					射影定理より
 					\begin{align}
-						\inprod<f - \cexp{f}{\mathcal{G}}, h> = 0, \quad \inprod<\alpha f - \cexp{\alpha f}{\mathcal{G}}, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+						\inprod<f - \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0, \quad \inprod<\alpha f - \cexp{\alpha f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 					\end{align}
 					が成り立っているから
 					\begin{align}
-						\inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}}, h> 
-						&= \inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha f, h> - \inprod<\alpha \cexp{f}{\mathcal{G}} - \alpha f, h> \\
-						&= \inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha f, h> - \alpha \inprod<f - \cexp{f}{\mathcal{G}}, h> = 0. \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+						\inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} 
+						&= \inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F},\mu}} - \inprod<\alpha \cexp{f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F},\mu}} \\
+						&= \inprod<\cexp{\alpha f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F},\mu}} - \alpha \inprod<f - \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} \\
+						&= 0. \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 					\end{align}
 					特に$h = \cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$として
 					\begin{align}
-						\Norm{\cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 = 0
+						\Norm{\cexp{\alpha f}{\mathcal{G}} - \alpha \cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F},\mu}}^2 = 0
 					\end{align}
 					だから$\cexp{\alpha f}{\mathcal{G}} = \alpha \cexp{f}{\mathcal{G}}$が成り立つ．
 					\QED
@@ -138,7 +140,7 @@
 					A &\coloneqq \{x \in \Omega\ |\quad f(x) < 0 \} && (\in \mathcal{F}), \\
 					B &\coloneqq \{x \in \Omega\ |\quad \cexp{f}{\mathcal{G}}(x) < 0 \} && (\in \mathcal{G})
 				\end{align}
-				として$\mu(A)=0 \quad \Rightarrow \quad \mu(B)=0$が成り立つと言えればよく，$\mu(A) = 0$の下で$\mu(B) > 0$
+				として$\mu(A)=0 \quad \Rightarrow \quad \mu(B)=0$が成り立つと言えばよく，$\mu(A) = 0$の下で$\mu(B) > 0$
 				と仮定しては不合理であることを以下に記述する．
 				
 				$\mu(A) = 0,\ \mu(B) > 0$であるとする．$\Lp{2}{\Omega, \mathcal{G},\mu}$の元を
@@ -151,11 +153,11 @@
 				\end{align}
 				として定義すると
 				\begin{align}
-					\Norm{f - h}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - h(x)|^2\ \mu(dx) \\
+					\Norm{f - h}{\Lp{2}{\mathcal{F},\mu}}^2 &= \int_{\Omega} |f(x) - h(x)|^2\ \mu(dx) \\
 					&= \int_{A^c \cap B^c} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - h(x)|^2\ \mu(dx) \\
 					&= \int_{A^c \cap B^c} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x)|^2\ \mu(dx) \\
 					&< \int_{A^c \cap B^c} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - \cexp{f}{\mathcal{G}}(x)|^2\ \mu(dx) \\
-					&= \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2
+					&= \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F},\mu}}^2
 				\end{align}
 				が成り立つ．これは$\mu(A) = 0$であること，$\mu(A^c \cap B) = \mu(B) - \mu(A \cap B) = \mu(B) > 0$であること，
 				それから$A^c \cap B$の上で
@@ -165,16 +167,16 @@
 				\end{align}
 				が成り立っていることによる．上の結果，すなわち
 				\begin{align}
-					\Norm{f - h}{\Lp{2}{\Omega, \mathcal{F},\mu}} < \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}
+					\Norm{f - h}{\Lp{2}{\mathcal{F},\mu}} < \Norm{f - \cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F},\mu}}
 				\end{align}
 				を満たす$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$が存在することは
 				$\cexp{f}{\mathcal{G}}$が$f$の射影であることに違反している．以上より$\mu(B) = 0$でなくてはならず，(※)が示された．
 			
-			\item[C5] $\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}} = 0$
+			\item[C5] $\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F},\mu}} = 0$
 				が成り立つことを示す．任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 				\begin{align}
-					\inprod<\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}, h> 
-					= \inprod<\cexp{gf}{\mathcal{G}} - gf, h> + \inprod<gf - g\cexp{f}{\mathcal{G}}, h>
+					\inprod<\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} 
+					= \inprod<\cexp{gf}{\mathcal{G}} - gf, h>_{\Lp{2}{\mathcal{F},\mu}} + \inprod<gf - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}}
 				\end{align}
 				を考えると，右辺が0になることが次のように証明される．先ず右辺第一項について，
 				$gf$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に入る．
@@ -184,26 +186,40 @@
 				\end{align}
 				が成り立つからである．従って射影定理により
 				\begin{align}
-					\inprod<\cexp{gf}{\mathcal{G}} - gf, h> = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu}).
+					\inprod<\cexp{gf}{\mathcal{G}} - gf, h>_{\Lp{2}{\mathcal{F},\mu}} = 0 \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu}).
 				\end{align}
 				右辺第二項について，
 				\begin{align}
-					\inprod<gf - g\cexp{f}{\mathcal{G}}, h> = \int_{\Omega} \left( f(x) - \cexp{f}{\mathcal{G}}(x) \right) g(x)h(x)\ \mu(dx)
-					= \inprod<f - \cexp{f}{\mathcal{G}}, gh>
+					\inprod<gf - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = \int_{\Omega} \left( f(x) - \cexp{f}{\mathcal{G}}(x) \right) g(x)h(x)\ \mu(dx)
+					= \inprod<f - \cexp{f}{\mathcal{G}}, gh>_{\Lp{2}{\mathcal{F},\mu}}
 				\end{align}
 				であって，先と同様の理由で$gh \in \Lp{2}{\Omega, \mathcal{G},\mu} \ (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})$が成り立つから
 				射影定理より
 				\begin{align}
-					\inprod<gf - g\cexp{f}{\mathcal{G}}, h> = 0  \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+					\inprod<gf - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0  \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 				\end{align}
 				であると判明した．始めの式に戻れば
 				\begin{align}
-					\inprod<\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}, h> = 0  \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
+					\inprod<\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} = 0  \quad (\forall h \in \Lp{2}{\Omega, \mathcal{G},\mu})
 				\end{align}
 				が成り立つことになり，特に$h = \cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対しては
 				\begin{align}
-					\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\Omega, \mathcal{F},\mu}}^2 = 0
+					\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F},\mu}}^2 = 0
 				\end{align}
 				となることから$\cexp{gf}{\mathcal{G}} = g\cexp{f}{\mathcal{G}}$が示された．
+			
+			\item[C6] 任意の$h \in \Lp{2}{\Omega, \mathcal{H},\mu} \subset \Lp{2}{\Omega, \mathcal{G},\mu}$に対し，射影定理より
+				\begin{align}
+					&\inprod<\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{H}}, h>_{\Lp{2}{\mathcal{F},\mu}} \\
+					&\qquad = \inprod<\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F},\mu}} \\
+						&\qquad \qquad + \inprod<\cexp{f}{\mathcal{G}} - f, h>_{\Lp{2}{\mathcal{F},\mu}} + \inprod<f - \cexp{f}{\mathcal{H}}, h>_{\Lp{2}{\mathcal{F},\mu}}
+					= 0
+				\end{align}
+				が成り立つ．特に$h = \cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{H}} \in \Lp{2}{\Omega, \mathcal{H},\mu}$とすれば
+				\begin{align}
+					\Norm{\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{H}}}{\Lp{2}{\mathcal{F},\mu}}^2 = 0
+				\end{align}
+				ということになるので$\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} = \cexp{f}{\mathcal{H}}$であることが示された.
 		\end{description}
+		\QED
 	\end{prf}
