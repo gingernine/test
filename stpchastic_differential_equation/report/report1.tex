@@ -1,3 +1,210 @@
-\begin{qst}
+
+係数体を$\K$，$\K = \R$或は$\K = \C$と考える．測度空間を$(X,\mathcal{F},m)$とし，
+可測$\mathcal{F}/\borel{\K}$関数$f$に対して
+\begin{align}
+	\Norm{f}{\mathscr{L}^p} \coloneqq
+	\begin{cases}
+		\inf{}{\{\ r \in \R\quad |\quad |f(x)| \leq r,\ \mathrm{a.e.}x \in X\ \}} & (p = \infty) \\
+		\left( \int_{X} |f(x)|^p\ m(dx) \right)^{\frac{1}{p}} & (0 < p < \infty)
+	\end{cases}
+\end{align}
+と定め，
+\begin{align}
+	\semiLp{p}{X,\mathcal{F},m} \coloneqq \{\ f:X \rightarrow \K \quad |\quad f:\mbox{可測}\mathcal{F}/\borel{\K},\ \Norm{f}{\mathscr{L}^p} < \infty \ \} \quad (1 \leq p \leq \infty)
+\end{align}
+として空間$\semiLp{p}{X,\mathcal{F},m}$を定義する．この空間は$\K$上の線形空間となるが，そのことを保証するために
+次の二つの不等式が成り立つことを証明する．
+\begin{thm}[H\Ddot{o}lderの不等式]
+	$1 \leq p, q \leq \infty$，$p + q = pq\ (p = \infty$なら$q = 1)$とする．このとき
+	任意の可測$\mathcal{F}/\borel{\K}$関数$f,g$に対して次が成り立つ:
+	\begin{align}
+		\int_{X} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^p} \Norm{g}{\mathscr{L}^q}. \label{ineq:holder}
+	\end{align} 
+\end{thm}
+\begin{prf}
+	まず次の補助定理を証明する．
+	\begin{lem}
+		$f \in \semiLp{\infty}{X,\mathcal{F},m}$ならば
+		\begin{align}
+			|f(x)| \leq \Norm{f}{\mathscr{L}^\infty} \quad (\mathrm{a.e.}x \in X).
+		\end{align}
+	\end{lem}
+	\begin{prf}
+		$\semiLp{\infty}{X,\mathcal{F},m}$の定義により，任意の実数$\alpha > \Norm{f}{\mathscr{L}^\infty}$に対して
+		\begin{align}
+			m(\{\ x \in X\quad |\quad |f(x)| > \alpha\ \}) = 0
+		\end{align}
+		である．これにより
+		\begin{align}
+			\{\ x \in X\quad |\quad |f(x)| > \Norm{f}{\mathscr{L}^\infty}\ \} = \bigcup_{n =1}^{\infty} \{\ x \in X\quad |\quad |f(x)| > \Norm{f}{\mathscr{L}^\infty} + 1/n\ \}
+		\end{align}
+		の右辺は$m$-零集合となり補題が証明された．
+		\QED
+	\end{prf}
 	
+	定理の証明に入る．\mbox{}\\
+	\begin{description}
+		\item[$p = \infty,\ q = 1$の場合]
+			$\Norm{f}{\mathscr{L}^\infty} = \infty$又は$\Norm{g}{\mathscr{L}^1} = \infty$の場合は明らかに不等式(\refeq{ineq:holder})
+			が成り立つから，$\Norm{f}{\mathscr{L}^\infty} < \infty$かつ$\Norm{g}{\mathscr{L}^1} < \infty$の場合を考える．
+			補助定理により，或る$m$-零集合$A \in \mathcal{F}$を除いて$|f(x)| \leq \Norm{f}{\mathscr{L}^\infty}$が成り立つから，
+			\begin{align}
+				|f(x)g(x)| \leq \Norm{f}{\mathscr{L}^\infty}|g(x)| \quad (\forall x \in X \backslash A).
+			\end{align}
+			従って
+			\begin{align}
+				\int_{X} |f(x)g(x)|\ m(dx) = \int_{X \backslash A} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^\infty} \int_{X \backslash A} |g(x)|\ m(dx) 
+				= \Norm{f}{\mathscr{L}^\infty} \Norm{g}{\mathscr{L}^1}
+			\end{align}
+			となり不等式(\refeq{ineq:holder})が成り立つ．
+		
+		\item[$1 < p,q < \infty$の場合]
+			$\Norm{f}{\mathscr{L}^p} = \infty$又は$\Norm{g}{\mathscr{L}^q} = \infty$の場合は明らかに不等式(\refeq{ineq:holder})
+			が成り立つから，$\Norm{f}{\mathscr{L}^p} < \infty$かつ$\Norm{g}{\mathscr{L}^q} < \infty$の場合を考える．
+			$\Norm{f}{\mathscr{L}^p} = 0$であるとすると
+			\begin{align}
+				B \coloneqq \{\ x \in X\quad |\quad |f(x)| > 0\ \}
+			\end{align}
+			は$m$-零集合となるから，
+			\begin{align}
+				\int_{X} |f(x)g(x)|\ m(dx) = \int_{B} |f(x)g(x)|\ m(dx) + \int_{X \backslash B} |f(x)g(x)|\ m(dx) = 0
+			\end{align}
+			となり不等式(\refeq{ineq:holder})が成り立つ．$\Norm{g}{\mathscr{L}^q} = 0$の場合も同じである．
+			
+			最後に$0 < \Norm{f}{\mathscr{L}^p},\Norm{g}{\mathscr{L}^q} < \infty$の場合を示す．
+			$-\Log{t} \quad (t > 0)$は凸関数であるから，$1/p + 1/q = 1$に対して
+			\begin{align}
+				-\Log{\left( \frac{s}{p} + \frac{t}{q} \right)} \leq \frac{1}{p}(-\Log{s}) + \frac{1}{q}(-\Log{t}) \quad (\forall s,t > 0)
+			\end{align}
+			が成り立ち，従って
+			\begin{align}
+				s^{1/p}t^{1/q} \leq \frac{s}{p} + \frac{t}{q} \quad (\forall s,t > 0)
+			\end{align}
+			が成り立つ．この不等式を用いれば
+			\begin{align}
+				F(x) \coloneqq |f(x)|^p/ \Norm{f}{\mathscr{L}^p}^p,\quad G(x) \coloneqq |g(x)|^q/ \Norm{g}{\mathscr{L}^q}^q \quad (\forall x \in X)
+			\end{align}
+			とした$F,G$に対し
+			\begin{align}
+				F(x)^{1/p}G(x)^{1/q} \leq \frac{1}{p}F(x) + \frac{1}{q}G(x) \quad (\forall x \in X)
+			\end{align}
+			となり，両辺を積分して
+			\begin{align}
+				\int_{X} F(x)^{1/p}G(x)^{1/q}\ m(dx) &\leq \frac{1}{p} \int_{X} F(x)\ m(dx) + \frac{1}{q} \int_{X} G(x)\ m(dx) \\
+				&= \frac{1}{p} \frac{1}{\Norm{f}{\mathscr{L}^p}^p} \int_{X} |f(x)|^p\ m(dx) + \frac{1}{q} \frac{1}{\Norm{g}{\mathscr{L}^q}^q} \int_{X} |g(x)|^q\ m(dx) \\
+				&= \frac{1}{p} + \frac{1}{q} = 1
+			\end{align}
+			が成り立つ．最左辺と最右辺を比べて
+			\begin{align}
+				1 \geq \int_{X} F(x)^{1/p}G(x)^{1/q}\ m(dx) = \int_{X} \frac{|f(x)|}{\Norm{f}{\mathscr{L}^p}} \frac{|g(x)|}{\Norm{g}{\mathscr{L}^q}}\ m(dx)
+			\end{align}
+			から不等式
+			\begin{align}
+				\int_{X} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^p}\Norm{g}{\mathscr{L}^q}
+			\end{align}
+			が示された．
+			\QED
+	\end{description}
+\end{prf}
+
+\begin{thm}[Minkowskiの不等式]
+	$1 \leq p \leq \infty$とする．このとき
+	任意の可測$\mathcal{F}/\borel{\K}$関数$f,g$に対して次が成り立つ:
+	\begin{align}
+		\Norm{f+g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p}. \label{ineq:minkowski}
+	\end{align}
+\end{thm}
+\begin{prf}
+	\begin{description}\mbox{}\\
+		\item[$p = \infty$の場合]
+			\begin{align}
+				|f(x) + g(x)| \leq |f(x)| + |g(x)| \quad (\forall x \in X)
+			\end{align}
+			である．従って$\Norm{f}{\mathscr{L}^\infty} = \infty$又は$\Norm{g}{\mathscr{L}^\infty} = \infty$の場合に不等式
+			(\refeq{ineq:minkowski})が成り立つことは明らかである．$\Norm{f}{\mathscr{L}^\infty} < \infty$かつ$\Norm{g}{\mathscr{L}^\infty} < \infty$
+			の場合は
+			\begin{align}
+				C \coloneqq \{\ x \in X\quad |\quad |f(x)| > \Norm{f}{\mathscr{L}^\infty}\ \} \bigcup \{\ x \in X\quad |\quad |g(x)| > \Norm{g}{\mathscr{L}^\infty}\ \}
+			\end{align}
+			が$m$-零集合となり，$\Norm{\cdot}{\mathscr{L}^\infty}$の定義と
+			\begin{align}
+				|f(x) + g(x)| \leq \Norm{f}{\mathscr{L}^\infty} + \Norm{g}{\mathscr{L}^\infty} \quad (\forall x \in X \backslash C)
+			\end{align}
+			の関係により不等式(\refeq{ineq:minkowski})が成り立つ．
+		
+		\item[$p = 1$の場合]
+			\begin{align}
+				|f(x) + g(x)| \leq |f(x)| + |g(x)| \quad (\forall x \in X)
+			\end{align}
+			の両辺を積分することにより不等式(\refeq{ineq:minkowski})が成り立つ．
+		
+		\item[$1 < p < \infty$の場合]
+			$p + q = pq$が成り立つように$q > 1$を取る．
+			\begin{align}
+				|f(x) + g(x)|^p = |f(x) + g(x)||f(x) + g(x)|^{p-1} \leq |f(x)||f(x) + g(x)|^{p-1} + |g(x)||f(x) + g(x)|^{p-1}
+			\end{align}
+			の両辺を積分すれば，H\Ddot{o}lderの不等式により
+			\begin{align}
+				\Norm{f+g}{\mathscr{L}^p}^p &= \int_{X} |f(x) + g(x)|^p\ m(dx) \\
+				&\leq \int_{X} |f(x)||f(x) + g(x)|^{p-1}\ m(dx) + \int_{X} |g(x)||f(x) + g(x)|^{p-1}\ m(dx) \\
+				&\leq \left( \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^{q(p-1)}\ m(dx) \right)^{1/q} \\
+					&\qquad + \left( \int_{X} |g(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^{q(p-1)}\ m(dx) \right)^{1/q} \\
+				&= \left( \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^p\ m(dx) \right)^{1/q} \\
+					&\qquad + \left( \int_{X} |g(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^p\ m(dx) \right)^{1/q} \\
+				&= \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p/q} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p/q} \\
+				&= \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1}
+			\end{align}
+			が成り立つ．$\Norm{f+g}{\mathscr{L}^p} = 0$の場合は明らかに不等式(\refeq{ineq:minkowski})が成り立つ．
+			$\Norm{f+g}{\mathscr{L}^p} = \infty$の場合，
+			\begin{align}
+				|f(x) + g(x)| \leq |f(x)| + |g(x)| \leq 2 \max{}{(|f(x)|,|g(x)|)} \quad (\forall x \in X)
+			\end{align}
+			より
+			\begin{align}
+				|f(x) + g(x)|^p \leq 2^p \max{}{\left( |f(x)|^p,|g(x)|^p \right)} \leq 2^p \left( |f(x)|^p + |g(x)|^p \right) \quad (\forall x \in X)
+			\end{align}
+			から両辺を積分して
+			\begin{align}
+				\Norm{f+g}{\mathscr{L}^p}^p \leq 2^p \left( \Norm{f}{\mathscr{L}^p}^p + \Norm{g}{\mathscr{L}^p}^p \right)
+			\end{align}
+			という関係が出るから，上式右辺も$\infty$となり不等式(\refeq{ineq:minkowski})が成り立つ．
+			$0 < \Norm{f+g}{\mathscr{L}^p} < \infty$の場合，$\Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} = \infty$
+			なら不等式(\refeq{ineq:minkowski})は明らかに成り立ち，$\Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} < \infty$
+			の場合は
+			\begin{align}
+				\Norm{f+g}{\mathscr{L}^p}^p \leq \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1}
+			\end{align}
+			の両辺を$\Norm{f+g}{\mathscr{L}^p}^{p-1}$で割って不等式(\refeq{ineq:minkowski})が成り立つと判る．
+			\QED
+	\end{description}
+\end{prf}
+
+$\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\semiLp{p}{X,\mathcal{F},m}$においてセミノルムとなる．なぜならば以下のことが言えるからである．
+\begin{description}
+	\item[正値性] これは明らかである．
+	\item[同次性] 
+		\begin{align}
+			\left( \int_{X} |\alpha f(x)|^p\ m(dx) \right)^{1/p} = \left( |\alpha|^p \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} 
+			= |\alpha| \left( \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} \quad (1 \leq p < \infty)
+		\end{align}
+		と
+		\begin{align}
+			\inf{}{\{\ r \in \R\quad |\quad |\alpha f(x)| \leq r,\ \mathrm{a.e.}x \in X\ \}} = |\alpha|\inf{}{\{\ r \in \R\quad |\quad |f(x)| \leq r,\ \mathrm{a.e.}x \in X\ \}}
+		\end{align}
+		により，任意の$\alpha \in \K$と任意の$f \in \semiLp{p}{X,\mathcal{F},m}\ (1 \leq p \leq \infty)$に対して
+		\begin{align}
+			\Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p}
+		\end{align}
+		が成り立つ．
+	\item[三角不等式] Minkowskiの不等式による．
+\end{description}
+
+しかし$\Norm{\cdot}{\mathscr{L}^p}$は$\semiLp{p}{X,\mathcal{F},m}$のノルムとはならない．$\Norm{f}{\mathscr{L}^p} = 0$であっても
+$f(x) = 0 \ (\forall x \in X)$とは限らない．$m$-零集合の上で
+$1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満たすからである．
+このように$\semiLp{p}{X,\mathcal{F},m}$はa.e.での差異を除いて等しい関数ならば$\Norm{\cdot}{\mathscr{L}^p}$が一致する，ような関数の集まりとなっている．
+当然$f,g \in \semiLp{p}{X,\mathcal{F},m}$で$m(\{\ x \in X\quad |\quad |f(x) - g(x)| > 0 \}) > 0$なるものについては
+
+
+\begin{qst}
 \end{qst}
