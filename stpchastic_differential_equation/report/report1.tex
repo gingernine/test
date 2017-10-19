@@ -1,4 +1,5 @@
 \section{10/4講義ノート}
+\begin{qst}
 係数体を$\K$，$\K = \R$或は$\K = \C$と考える．測度空間を$(X,\mathcal{F},m)$とし，
 可測$\mathcal{F}/\borel{\K}$関数$f$に対して
 \begin{align}
@@ -314,25 +315,25 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 	\end{align}
 	が成り立っている．数学的帰納法により
 	\begin{align}
-		\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^p} < 1/2^k \quad (n_{k+1} > n_k,\ k=1,2,3,\cdots)
+		\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^p} < 1/2^k \quad (n_{k+1} > n_k,\ k=1,2,3,\cdots) \label{ineq:Lp_banach_2}
 	\end{align}
 	が成り立つように自然数の部分列$(n_k)_{k=1}^{\infty}$を取ることができる．
 	\begin{description}
-		\item[$p = \infty$の場合]
+		\item[$p = \infty$の場合]\mbox{}\\
 			$[f_n]$の代表元$f_n$について，
 			\begin{align}
-				N_n \coloneqq \left\{\ x \in X\quad |\quad |f_n(x)| > \Norm{f_n}{\mathscr{L}^\infty} \right\}
+				A_n \coloneqq \left\{\ x \in X\quad |\quad |f_n(x)| > \Norm{f_n}{\mathscr{L}^\infty} \right\}
 			\end{align}
-			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(N_n) = 0$であり，
+			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(A_n) = 0$であり，
 			\begin{align}
-				N \coloneqq \bigcup_{n=1}^{\infty} N_n
+				A \coloneqq \bigcup_{n=1}^{\infty} A_n
 			\end{align}
 			として$m$-零集合を定め
 			\begin{align}
 				\hat{f}_n(x) =
 				\begin{cases}
-					f_n(x) & (x \notin N) \\
-					0 & (x \in N)
+					f_n(x) & (x \notin A) \\
+					0 & (x \in A)
 				\end{cases}
 				\quad (\forall x \in X)
 			\end{align}
@@ -340,18 +341,56 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 			$\hat{f}_n$は$X$上の有界可測関数であり
 			\begin{align}
 				\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^\infty} = \Norm{[\hat{f}_{n_{k+1}} - \hat{f}_{n_k}]}{\mathrm{L}^\infty}
-				= \Norm{\hat{f}_{n_{k+1}} - \hat{f}_{n_k}}{\mathscr{L}^\infty} < 1/2^k \quad (k=1,2,3,\cdots)
+				= \Norm{\hat{f}_{n_{k+1}} - \hat{f}_{n_k}}{\mathscr{L}^\infty} < 1/2^k \quad (k=1,2,3,\cdots) \label{ineq:Lp_banach_1}
 			\end{align}
 			を満たしている．すなわち
 			\begin{align}
-				\sup{x \in X}{|\hat{f}_{n_{k+1}}(x) - \hat{f}_{n_k}(x)|} < 1/2^k \quad (k=1,2,3,\cdots)
+				\sup{x \in X}{|\hat{f}_{n_{k+1}}(x) - \hat{f}_{n_k}(x)|} < 1/2^k \quad (k=1,2,3,\cdots) 
 			\end{align}
 			が成り立っていることになるから，各点$x \in X$で$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\K$のCauchy列となる．
 			(これは$\sum_{k > N} 1/2^k = 1/2^N \longrightarrow 0\ (N \longrightarrow \infty)$による．)従って各点$x \in X$
 			で極限が存在するからこれを$\hat{f}(x)$として表す．一般に距離空間に値を取る可測関数列の各点収束の極限関数は可測関数であるから
-			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．あとは$\hat{f}$が有界関数であることを示せばよい．
+			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．また$\hat{f}$は有界である．これは次のように示される．
+			式(\refeq{ineq:Lp_banach_1})から
+			\begin{align}
+				\left|\ \Norm{\hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} - \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty} \right| 
+				\leq \Norm{\hat{f}_{n_{k+1}} - \hat{f}_{n_k}}{\mathscr{L}^\infty} < 1/2^k \quad (k=1,2,3,\cdots)
+			\end{align}
+			となるから，$\left( \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty} \right)_{k=1}^{\infty}$は実数のCauchy列となり有界となる．
+			\begin{align}
+				\sup{k \in \N}{\Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty}} < \alpha
+			\end{align}
+			となるように実数$\alpha > 0$を取れば，各点$x \in X$で収束数列$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は
+			開区間$(-\alpha,\alpha)$の範囲内に収まっているのだから，その収束先は$\hat{f}(x) \in (-\alpha,\alpha)$であり$\hat{f}$が$X$上で有界であると判る．
+			以上で$\hat{f}$が有界可測関数であることが示された．
+			$\hat{f}$を代表元とする$[\hat{f}] \in \Lp{\infty}{X,\mathcal{F},m}$に対し
+			\begin{align}
+				\Norm{[f_{n_k}] - [\hat{f}]}{\mathrm{L}^\infty} = \Norm{\hat{f}_{n_k} - \hat{f}}{\mathscr{L}^\infty} = \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
+				\longrightarrow 0 \ (k \longrightarrow \infty)
+			\end{align}
+			が成り立つから，Cauchy列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$が$[\hat{f}]$に収束すると示されて
+			$\Lp{\infty}{X,\mathcal{F},m}$がBanach空間であると判明した．
 			
+		\item[$1 \leq p < \infty$の場合]\mbox{}\\
+			$k=1,2,3,\cdots$に対して
+			\begin{align}	
+				f_{n_k}(x) &\coloneqq f_{n_1}(x) + \sum_{j=1}^{k}(f_{n_j}(x) - f_{n_{j-1}}(x)) \\
+			\end{align}
+			と表現できるから，これに対して
+			\begin{align}
+				g_k(x) &\coloneqq |f_{n_1}(x)| + \sum_{j=1}^{k}|f_{n_j}(x) - f_{n_{j-1}}(x)|
+			\end{align}
+			として可測関数列$(g_k)_{k=1}^{\infty}$を用意する．Minkowskiの不等式と式(\refeq{ineq:Lp_banach_2})より
+			\begin{align}
+				\Norm{g_k}{\mathscr{L}^p} \leq \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k}\Norm{f_{n_j} - f_{n_{j-1}}}{\mathscr{L}^p}
+				< \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k} 1/2^j < \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
+			\end{align}
+			が成り立つ．各点$x \in X$で$g_k(x)$は$k$について単調増大であるから，単調収束定理より
+			\begin{align}
+				\Norm{g}{\mathscr{L}^p}^p = \lim_{k \to \infty} \Norm{g_k}{\mathscr{L}^p}^p < \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
+			\end{align}
+			となるので$g \in \Lp{p}{X,\mathcal{F},m}$であると判る．
 	\end{description}
 \end{prf}
-\begin{qst}
+
 \end{qst}
