@@ -1,0 +1,147 @@
+\section{10/17}
+	基礎の確率空間を$(\Omega,\mathcal{F},\operatorname{P})$とする．
+	\begin{dfn}[独立性]
+		Xを可測$\mathcal{F}/\borel{\R}$関数，$\mathcal{G}$を$\mathcal{F}$の部分$\sigma$-加法族とする．
+		この下で$X$と$\mathcal{G}$が独立であることを以下で定義する:
+		
+		任意の有界実連続関数$h:\R \rightarrow \R$に対し次が成り立つ．
+		\begin{align}
+			\cexp{h(X)}{\mathcal{G}} = \Exp{h(X)} \quad \operatorname{P}\mathrm{-a.s.}
+		\end{align}
+	\end{dfn}
+	
+	\begin{prp}[独立性の同値条件]
+		任意の有界実連続関数$h:\R \rightarrow \R$に対し
+		\begin{align}
+			\cexp{h(X)}{\mathcal{G}} = \Exp{h(X)} \quad \operatorname{P}\mathrm{-a.s.}
+		\end{align}
+		が成立すること(---(1)とする)と，
+		\begin{align}
+			\prob{X^{-1}(E) \cap A} = \prob{X^{-1}(E)}\prob{A} \quad (\forall E \in \borel{\R},\ A \in \mathcal{G})
+		\end{align}
+		が成立すること(---(2)とする)は同値である．
+	\end{prp}
+	
+	\begin{prf}\mbox{}\\
+		\begin{description}
+			\item[(1) $\Rightarrow$ (2)について] 
+				示したいことは
+				\begin{align}
+					\borel{\R} = \left\{\ E \in \borel{\R}\quad |\quad \prob{X^{-1}(E) \cap A} = \prob{X^{-1}(E)}\prob{A}, \quad \forall A \in \mathcal{G}\ \right\}
+				\end{align}
+				である．証明の手順としてまず上式右辺がDynkin族となることを示し，次に$\R$の閉集合系が右辺に含まれることを示せば，
+				Dynkin族定理より上式が成立することが判る．右辺を
+				\begin{align}
+					\mathscr{D} \coloneqq \left\{\ E \in \borel{\R}\quad |\quad \prob{X^{-1}(E) \cap A} = \prob{X^{-1}(E)}\prob{A}, \quad \forall A \in \mathcal{G}\ \right\}
+				\end{align}
+				とおいて表示を簡単にしておく．$\mathscr{D}$がDynkin族であることを示すには次の3条件を確認すればよい:
+				\begin{description}
+					\item[\rm{(i).}] $\R \in \mathscr{D}$，
+					\item[\rm{(ii).}] $D_1,D_2 \in \mathscr{D},\ D_1 \subset D_2\quad \Rightarrow\quad D_2 - D_1 \in \mathscr{D}$，
+					\item[\rm{(iii).}] $D_n \in \mathscr{D},\ D_n \cap D_m = \emptyset\ (n \neq m)\quad \Rightarrow\quad \sum_{n=1}^{\infty} D_n \in \mathscr{D}$
+				\end{description}
+				(i)について，$\Omega = X^{-1}(\R)$により$\prob{X^{-1}(\R) \cap A} = \prob{A} = \prob{X^{-1}(\R)}\prob{A}\ (\forall A \in \mathcal{G})$であるから$\R \in \mathscr{D}$となる．
+				(ii)について，
+				\begin{align}
+					&\prob{X^{-1}(D_2 - D_1) \cap A} = \prob{X^{-1}(D_2) \cap A} - \prob{X^{-1}(D_1) \cap A} \\
+					&\qquad = \left( \prob{X^{-1}(D_2)} - \prob{X^{-1}(D_1)} \right)\prob{A}
+					= \prob{X^{-1}(D_2 - D_1)}\prob{A},\quad (\forall A \in \mathcal{G})
+				\end{align}
+				により$D_2 - D_1 \in \mathscr{D}$となる．(iii)について，
+				\begin{align}
+					&\prob{X^{-1}(\textstyle\sum_{n=1}^{\infty} D_n) \cap A} = \prob{\textstyle\sum_{n=1}^{\infty} X^{-1}(D_n) \cap A} = \textstyle\sum_{n=1}^{\infty} \prob{X^{-1}(D_n) \cap A} \\
+					&\qquad = \textstyle\sum_{n=1}^{\infty} \prob{X^{-1}(D_n)}\prob{A} = \prob{X^{-1}(\textstyle\sum_{n=1}^{\infty} D_n)}\prob{A},\quad (\forall A \in \mathcal{G})
+				\end{align}
+				により$\sum_{n=1}^{\infty} D_n \in \mathscr{D}$となる．以上で$\mathscr{D}$がDynkin族であることが判った．次に$\R$の閉集合系が
+				$\mathscr{D}$に含まれることを示す．$E$を$\R$の任意の閉集合とする．
+				\begin{align}
+					d(\cdot,E) : \R \ni x \longmapsto \inf{}{\{\ |x-y|\quad |\quad y \in E\ \}}
+				\end{align}
+				として集合との距離の関数を表せばこれは$\R \rightarrow \R$の実連続関数であり，
+				\begin{align}
+					h_n : \R \ni x \longmapsto \frac{1}{1 + nd(x,E)} \quad (n=1,2,3,\cdots)
+				\end{align}
+				は有界実連続関数となる．$E$が閉集合であるから$\lim\limits_{n \to \infty} h_n(x) = \defunc_E(x) \ (\forall x \in \R)$であり，また
+				$h_n$の有界連続性から$h_n \circ X \in \Lp{2}{\mathcal{F},\mu}\ (n=1,2,3,\cdots)$であることに注意すれば，任意の$A \in \mathcal{G}$に対して
+				\begin{align}
+					\prob{X^{-1}(E) \cap A} &= \int_{\Omega} \defunc_E(X(\omega)) \defunc_A(\omega)\ \prob{d\omega} \\
+					&= \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega)) \defunc_A(\omega)\ \prob{d\omega} && (\scriptsize \because \mbox{Lebesgueの収束定理})\\
+					&= \lim_{n \to \infty} \int_{\Omega} \cexp{h_n(X)}{\mathcal{G}}(\omega) \defunc_A(\omega)\ \prob{d\omega} && (\scriptsize\because \mbox{レポート問題2[C2]}) \\
+					&= \lim_{n \to \infty} \Exp{h_n(X)} \int_{\Omega} \defunc_A(\omega)\ \prob{d\omega} && (\scriptsize\because \mbox{(1)より．$\cexp{h_n(X)}{\mathcal{G}}\neq\Exp{h_n(X)}$の部分は積分に影響しない．}) \\
+					&= \prob{A}  \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{レポート問題2[C1]}) \\
+					&= \prob{A} \int_{\Omega} \defunc_E(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{Lebesgueの収束定理})\\
+					&= \prob{X^{-1}(E)}\prob{A}
+				\end{align}
+				が成り立ち，$\R$の閉集合系が$\mathscr{D}$に含まれることが示された．閉集合系は乗法族であり$\borel{\R}$を生成するから(2)が成り立つと判明する．
+			
+			\item[(2) $\Rightarrow$ (1)について]
+				任意の$A \in \mathcal{G}$に対し
+				\begin{align}
+					\int_{\Omega} \defunc_A(\omega) \cexp{h(X)}{\mathcal{G}}(\omega)\ \prob{d\omega} = \prob{A} \Exp{h(X)} = \int_{\Omega} \defunc_A(\omega) \Exp{h(X)} \prob{d\omega}
+				\end{align}
+				が成立することをいえばよい．有界実連続関数$h:\R \rightarrow \R$が非負であるとして$h$の単関数近似を考えると，例えば
+				\begin{align}
+					&E_{n}^{j} \coloneqq \left\{\ x \in \R\quad |\quad \frac{j-1}{3^n} \leq h(x) < \frac{j}{3^n}\ \right\}, \quad (j = 1,2,\cdots,n3^n-1,\ n = 1,2,3,\cdots) \\
+					&E_{n}^{n3^n} \coloneqq \left\{\ x \in \R\quad |\quad n \leq h(x)\ \right\}
+				\end{align}
+				として
+				\begin{align}
+					h_n(x) = \sum_{j=1}^{n3^n} \frac{j}{3^n} \defunc_{E_n^j} (x) \quad (\forall x \in \R,\ n = 1,2,3,\cdots)
+				\end{align}
+				とおけば，$h$が可測$\borel{\R}/\borel{\R}$であるから$E_n^j$は全てBorel集合であり，任意の$A \in \mathcal{G}$に対して
+				\begin{align}
+					\int_{\Omega} \defunc_A(\omega) \cexp{h(X)}{\mathcal{G}}(\omega)\ \prob{d\omega}
+					&= \int_{\Omega} \defunc_A(\omega) h(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{レポート問題2[C2]}) \\
+					&= \lim_{n \to \infty} \int_{\Omega} \defunc_A(\omega) h_n(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{積分の定義}) \\
+					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \int_{\Omega} \defunc_A(\omega) \defunc_{X^{-1}(E_n^j)}(\omega)\ \prob{d\omega} \\
+					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \prob{X^{-1}(E_n^j) \cap A} \\
+					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \prob{X^{-1}(E_n^j)}\prob{A} && (\scriptsize\because \mbox{(2)より．}) \\
+					&= \prob{A} \lim_{n \to \infty} \sum_{j=1}^{n3^n} \int_{\Omega} \defunc_{X^{-1}(E_n^j)}(\omega)\ \prob{d\omega} \\
+					&= \prob{A} \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega))\ \prob{d\omega} \\
+					&= \prob{A} \int_{\Omega} h(X(\omega))\ \prob{d\omega} \\
+					&= \prob{A} \Exp{h(X)}
+				\end{align}
+				が成り立つ．一般の有界実連続関数$h$についても$\{\ x \in \R\quad |\quad h(x) \geq 0\ \}$の部分と$\{\ x \in \R\quad |\quad h(x) < 0\ \}$の部分に
+				分解して上と同様に考えれば
+				\begin{align}
+					\int_{\Omega} \defunc_A(\omega) \cexp{h(X)}{\mathcal{G}}(\omega)\ \prob{d\omega} = \prob{A} \Exp{h(X)} \quad (\forall A \in \mathcal{G})
+				\end{align}
+				となる．従って$\mathcal{G}$の元$\{\ \omega \in \Omega\quad |\quad \cexp{h(X)}{\mathcal{G}}(\omega) > \Exp{h(X)}\ \}$も
+				$\{\ \omega \in \Omega\quad |\quad \cexp{h(X)}{\mathcal{G}}(\omega) < \Exp{h(X)}\ \}$も$\operatorname{P}$-零集合でなくてはならず，
+				\begin{align}
+					\cexp{h(X)}{\mathcal{G}} = \Exp{h(X)} \quad \operatorname{P}\mathrm{-a.s.}
+				\end{align}
+				が示された．		
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{qst}
+		$A,B \in \mathcal{F}$に対し，$X = \defunc_A$，$\mathcal{G} = \{ \emptyset,\ \Omega,\ B,\ B^c\}$とする．この時
+		\begin{align}
+			\mbox{$X$と$\mathcal{G}$が独立}\quad \Leftrightarrow\quad \prob{A \cap B} = \prob{A}\prob{B}.
+		\end{align}
+	\end{qst}
+	
+	\begin{prf}
+		$\forall E \in \borel{\R}$に対して
+		\begin{align}
+			X^{-1}(E) =
+			\begin{cases}
+				\emptyset & (0,1 \notin E) \\
+				A & (0 \notin E,\ 1 \in E) \\
+				A^c & (0 \in E,\ 1 \notin E) \\
+				\Omega & (0, 1 \in E)
+			\end{cases}
+		\end{align}
+		であることに注意する．$\Rightarrow$については前命題より成り立ち，$\Leftarrow$については
+		\begin{align}
+			\prob{A \cap B} = \prob{A}\prob{B}
+		\end{align}
+		ならば
+		\begin{align}
+			\prob{A^c \cap B} = \prob{B} -\prob{A}\prob{B}  = (1 - \prob{A})\prob{B} = \prob{A^c}\prob{B}
+		\end{align}
+		も成り立ち，$A$を$\Omega,\ \emptyset$にしても上の等式は成り立つから，前命題により$X$と$\mathcal{G}$が独立であると判る．
+		\QED
+	\end{prf}
