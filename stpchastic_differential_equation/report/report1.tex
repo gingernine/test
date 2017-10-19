@@ -179,8 +179,9 @@
 	\end{description}
 \end{prf}
 
-$\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\semiLp{p}{X,\mathcal{F},m}$においてセミノルムとなる．なぜならば以下のことが言えるからである．
-\begin{description}
+$\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\semiLp{p}{X,\mathcal{F},m}$においてセミノルムとなる．
+\begin{bcs}\mbox{}\\
+	\begin{description}
 	\item[正値性] これは明らかである．
 	\item[同次性] 
 		\begin{align}
@@ -197,14 +198,92 @@ $\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\semiLp{p}{X,\mathcal{F},m}$にお�
 		\end{align}
 		が成り立つ．
 	\item[三角不等式] Minkowskiの不等式による．
-\end{description}
-
+	\end{description}
+	\QED
+\end{bcs}
 しかし$\Norm{\cdot}{\mathscr{L}^p}$は$\semiLp{p}{X,\mathcal{F},m}$のノルムとはならない．$\Norm{f}{\mathscr{L}^p} = 0$であっても
-$f(x) = 0 \ (\forall x \in X)$とは限らない．$m$-零集合の上で
+$f(x) = 0 \ (\forall x \in X)$とは限らず，$m$-零集合の上で
 $1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満たすからである．
-このように$\semiLp{p}{X,\mathcal{F},m}$はa.e.での差異を除いて等しい関数ならば$\Norm{\cdot}{\mathscr{L}^p}$が一致する．
-当然$f,g \in \semiLp{p}{X,\mathcal{F},m}$で$m(\{\ x \in X\quad |\quad |f(x) - g(x)| > 0 \}) > 0$なるものについては
+ここで次のものを考える．可測関数の集合を
+\begin{align}
+	\mathcal{M} \coloneqq \{\ f:X \rightarrow \K\quad |\quad f:\mbox{可測}\mathcal{F}/\borel{\K} \}
+\end{align}
+と表すことにする．
+\begin{align}
+	f,g \in \mathcal{M},\quad f \sim g \DEF f(x) = g(x)\quad \mathrm{a.e.}x \in X
+\end{align}
+と定義した関係$\sim$は$\mathcal{M}$における同値関係となり，この関係で$\mathcal{M}$を割った商を$ M \coloneqq \mathcal{M}/\sim$と表す．
+$M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加法とスカラ倍を次のように定義すれば$M$は$\K$上の線形空間となる:
+\begin{align}
+	&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in M),\\
+	&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in M,\ \alpha \in \K).
+\end{align}
+そしてこの表現はwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
+\begin{bcs}\mbox{}\\
+	任意の$f' \in [f]$と$g' \in [g]$に対して，$[f'] = [f],\ [g'] = [g]$
+	であるから
+	\begin{align}
+		[f + g] = [f' + g'],\quad [\alpha f'] = [\alpha f]
+	\end{align}
+	をいえばよい．
+	\begin{align}
+		(f \neq g) \coloneqq \{\ x \in X\quad |\quad f(x) \neq g(x)\ \}
+	\end{align}
+	と簡略した表記を使えば
+	\begin{align}
+		&(f+g \neq f'+g') \subset (f \neq f') \cup (g \neq g'), \\
+		&(\alpha f \neq \alpha f') = (f \neq f')
+	\end{align}
+	であり，どちらも右辺は$m$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$である．
+	\QED
+\end{bcs}
 
+次に商空間$M$におけるノルムを定義する．
+\begin{align}
+	\Norm{[f]}{\mathrm{L}^p} \coloneqq \Norm{f}{\mathscr{L}^p} \quad (1 \leq p \leq \infty)
+\end{align}
+として$\Norm{\cdot}{\mathrm{L}^p}$を定義すればこれはwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
+\begin{bcs}\mbox{}\\
+	$f \in \semiLp{p}{X,\mathcal{F},m}$とし，任意に$g \in [f]$で$f \neq g$となるものを選ぶ．
+	\begin{align}
+		A \coloneqq \{\ x \in X\quad |\quad f(x) \neq g(x)\ \} \quad \in \mathcal{F}
+	\end{align}
+	とおけば，$f,g$は同じ同値類の元同士であるから$m(A)=0$である．
+	\begin{description}
+		\item[$p = \infty$の場合]
+			
+			\begin{align}
+				g
+			\end{align}
+		\item[$1 \leq p < \infty$の場合]
+			$m(A)=0$により
+			\begin{align}
+				\Norm{f}{\mathscr{L}^p}^p = \int_X f(x)\ m(dx) = \int_{A^c} f(x)\ m(dx) = \int_{A^c} g(x)\ m(dx) = \int_X g(x)\ m(dx) = \Norm{g}{\mathscr{L}^p}^p
+			\end{align}
+			が成り立つ．
+	\end{description}
+	\QED
+\end{bcs}
+
+$\semiLp{p}{X,\mathcal{F},m}$に代わって
+\begin{align}
+	\Lp{p}{X,\mathcal{F},m} \coloneqq \{\ [f] \in M \quad |\quad \Norm{[f]}{\mathrm{L}^p} < \infty\ \} \quad (1 \leq p \leq \infty)
+\end{align}
+を定義すると，$\Lp{p}{X,\mathcal{F},m}$は$\Norm{\cdot}{\mathrm{L}^p}$をノルムとしてノルム空間となる．
+\begin{bcs}\mbox{}\\
+	任意の$[f],[g] \in \Lp{p}{X,\mathcal{F},m}$と$\alpha \in \K$に対して，
+	$\Norm{[f]}{\mathrm{L}^p} \geq 0$であることは$\Norm{\cdot}{\mathscr{L}^p}$の正値性による．
+	また関数が0でない$x \in X$の集合の測度が正となるとノルムは正となるから，
+	$\Norm{[f]}{\mathrm{L}^p} = 0$であるなら$[f]$は零写像(これを0と表す)の同値類，
+	つまり$[f] = [0]$である．逆に$[f] = [0]$なら$\Norm{[f]}{\mathrm{L}^p} = 0$である．
+	$\Norm{\cdot}{\mathscr{L}^p}$の同次性とMinkowskiの不等式から
+	\begin{align}
+		&\Norm{\alpha[f]}{\mathrm{L}^p} = \Norm{[\alpha f]}{\mathrm{L}^p} = \Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p} = |\alpha|\Norm{[f]}{\mathrm{L}^p} \\
+		&\Norm{[f] + [g]}{\mathrm{L}^p} = \Norm{[f + g]}{\mathrm{L}^p} = \Norm{f + g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} = \Norm{[f]}{\mathrm{L}^p} + \Norm{[g]}{\mathrm{L}^p}
+	\end{align}
+	も成り立つ．以上より$\Norm{\cdot}{\mathrm{L}^p}$は$\Lp{p}{X,\mathcal{F},m}$におけるノルムとなる．
+	\QED
+\end{bcs}
 
 \begin{qst}
 \end{qst}
