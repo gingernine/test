@@ -361,11 +361,12 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 				\sup{k \in \N}{\Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty}} < \alpha
 			\end{align}
 			となるように実数$\alpha > 0$を取れば，各点$x \in X$で収束数列$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は
-			開区間$(-\alpha,\alpha)$の範囲内に収まっているのだから，その収束先は$\hat{f}(x) \in (-\alpha,\alpha)$であり$\hat{f}$が$X$上で有界であると判る．
+			絶対値が開区間$(-\alpha,\alpha)$の範囲内に収まっているのだから，その収束先は$|\hat{f}(x)| \in (-\alpha,\alpha)$であり$\hat{f}$が$X$上で有界であると判る．
 			以上で$\hat{f}$が有界可測関数であることが示された．
 			$\hat{f}$を代表元とする$[\hat{f}] \in \Lp{\infty}{X,\mathcal{F},m}$に対し
 			\begin{align}
-				\Norm{[f_{n_k}] - [\hat{f}]}{\mathrm{L}^\infty} = \Norm{\hat{f}_{n_k} - \hat{f}}{\mathscr{L}^\infty} = \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
+				\Norm{[f_{n_k}] - [\hat{f}]}{\mathrm{L}^\infty} = \Norm{\hat{f}_{n_k} - \hat{f}}{\mathscr{L}^\infty} 
+				= \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
 				\longrightarrow 0 \ (k \longrightarrow \infty)
 			\end{align}
 			が成り立つから，Cauchy列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$が$[\hat{f}]$に収束すると示されて
@@ -374,7 +375,7 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 		\item[$1 \leq p < \infty$の場合]\mbox{}\\
 			$k=1,2,3,\cdots$に対して
 			\begin{align}	
-				f_{n_k}(x) &\coloneqq f_{n_1}(x) + \sum_{j=1}^{k}(f_{n_j}(x) - f_{n_{j-1}}(x)) \\
+				f_{n_k}(x) &\coloneqq f_{n_1}(x) + \sum_{j=1}^{k}(f_{n_j}(x) - f_{n_{j-1}}(x)) \label{eq:Lp_banach_3}
 			\end{align}
 			と表現できるから，これに対して
 			\begin{align}
@@ -389,7 +390,30 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 			\begin{align}
 				\Norm{g}{\mathscr{L}^p}^p = \lim_{k \to \infty} \Norm{g_k}{\mathscr{L}^p}^p < \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
 			\end{align}
-			となるので$g \in \Lp{p}{X,\mathcal{F},m}$であると判る．
+			となるので$g \in \Lp{p}{X,\mathcal{F},m}$である．従って
+			\begin{align}
+				B_n &\coloneqq \{\ x \in X\quad |\quad g(x) \leq n\ \} \in \mathcal{F}, \\
+				B &\coloneqq \bigcup_{n=1}^{\infty} B_n
+			\end{align}
+			とおけば$m(X \backslash B) = 0$であり，式(\refeq{eq:Lp_banach_3})の級数は$B$上で絶対収束する(各点)．
+			\begin{align}
+				f(x) \coloneqq
+				\begin{cases}
+					\lim\limits_{k \to \infty} f_{n_k}(x) & (x \in B) \\
+					0 & (x \in X \backslash B)
+				\end{cases}
+			\end{align}
+			として可測$\mathcal{F}/\borel{\R}$関数$f$を定義すれば，$|f(x)| \leq g(x)\ (\forall x \in X)$と
+			$g^p$が可積分であることから$f$を代表元とする同値類$[f]$は$\Lp{p}{X,\mathcal{F},m}$の元となる．
+			関数列$(\left( f_{n_k} \right)_{k=1}^{\infty})$は$f$に概収束し，
+			$|f_{n_k}(x) - f(x)|^p \leq 2^p(|f_{n_k}(x)|^p + |f(x)|^p) \leq 2^{p+1} g(x)^p\ (\forall x \in X)$となるから
+			Lebesgueの収束定理により
+			\begin{align}
+				\lim_{k \to \infty}\Norm{[f_{n_k}] - [f]}{\mathrm{L}^p}^p
+				= \lim_{k \to \infty}\Norm{f_{n_k} - f}{\mathscr{L}^p}^p
+				= \lim_{k \to \infty} \int_X |f_{n_k}(x) - f(x)|^p\ m(dx) = 0
+			\end{align}
+			が成り立ち，Cauchy列の収束から$\Lp{p}{X,\mathcal{F},m}$がBanach空間であると示された．
 	\end{description}
 \end{prf}
 
