@@ -280,7 +280,7 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 	任意の$[f],[g] \in \Lp{p}{X,\mathcal{F},m}$と$\alpha \in \K$に対して，
 	$\Norm{[f]}{\mathrm{L}^p} \geq 0$であることは$\Norm{\cdot}{\mathscr{L}^p}$の正値性による．
 	また関数が0でない$x \in X$の集合の測度が正となるとノルムは正となるから，
-	$\Norm{[f]}{\mathrm{L}^p} = 0$であるなら$[f]$は零写像(これを0と表す)の同値類，
+	$\Norm{[f]}{\mathrm{L}^p} = 0$であるなら$[f]$は零写像(これを0と表す)の同値類(線形空間の零元)，
 	つまり$[f] = [0]$である．逆に$[f] = [0]$なら$\Norm{[f]}{\mathrm{L}^p} = 0$である．
 	$\Norm{\cdot}{\mathscr{L}^p}$の同次性とMinkowskiの不等式から
 	\begin{align}
@@ -295,6 +295,63 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 	上で定義したノルム空間$\Lp{p}{X,\mathcal{F},m}$はBanach空間である．$(1 \leq p \leq \infty)$
 \end{prp}
 \begin{prf}
+	随意に$\Lp{p}{X,\mathcal{F},m}$のCauchy列$[f_n] \in \Lp{p}{X,\mathcal{F},m}\ (n=1,2,3,\cdots)$を取る．
+	Cauchy列であるから$1/2$に対して或る$N_1 \in \N$が取れて，$n>m \geq N_1$ならば
+	$\Norm{[f_n]-[f_m]}{\mathrm{L}^p} = \Norm{[f_n - f_m]}{\mathrm{L}^p} < 1/2$となる．
+	ここで$m = n_1$と表記することにする．
+	同様に$1/2^2$に対して或る$N_2 \in \N\ (N_2 > N_1)$が取れて，$n'>m' \geq N_2$ならば
+	$\Norm{[f_{n'} - f_{m'}]}{\mathrm{L}^p} < 1/2^2$となる．
+	先ほどの$n$について，$n > N_2$となるように取れるからこれを$n = n_2$と表記し，更に$m' = n_2$ともしておく．今のところ
+	\begin{align}
+		\Norm{[f_{n_2} - f_{n_1}]}{\mathrm{L}^p} < 1/2
+	\end{align}
+	と表示できる．再び同様に$1/2^3$に対して或る$N_3 \in \N\ (N_3 > N_2)$が取れて，$n''>m'' \geq N_2$ならば
+	$\Norm{[f_{n''} - f_{m''}]}{\mathrm{L}^p} < 1/2^3$となる．
+	先ほどの$n'$について$n' > N_3$となるように取れるからこれを$n' = n_3$と表記し，更に$m'' = n_3$ともしておく．今までのところで
+	\begin{align}
+		&\Norm{[f_{n_2} - f_{n_1}]}{\mathrm{L}^p} < 1/2 \\
+		&\Norm{[f_{n_3} - f_{n_2}]}{\mathrm{L}^p} < 1/2^2
+	\end{align}
+	が成り立っている．数学的帰納法により
+	\begin{align}
+		\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^p} < 1/2^k \quad (n_{k+1} > n_k,\ k=1,2,3,\cdots)
+	\end{align}
+	が成り立つように自然数の部分列$(n_k)_{k=1}^{\infty}$を取ることができる．
+	\begin{description}
+		\item[$p = \infty$の場合]
+			$[f_n]$の代表元$f_n$について，
+			\begin{align}
+				N_n \coloneqq \left\{\ x \in X\quad |\quad |f_n(x)| > \Norm{f_n}{\mathscr{L}^\infty} \right\}
+			\end{align}
+			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(N_n) = 0$であり，
+			\begin{align}
+				N \coloneqq \bigcup_{n=1}^{\infty} N_n
+			\end{align}
+			として$m$-零集合を定め
+			\begin{align}
+				\hat{f}_n(x) =
+				\begin{cases}
+					f_n(x) & (x \notin N) \\
+					0 & (x \in N)
+				\end{cases}
+				\quad (\forall x \in X)
+			\end{align}
+			と定義した$\hat{f}_n$もまた$[f_n]$の元となる．代表元を$f_n$に替えて$\hat{f}_n$とすれば，
+			$\hat{f}_n$は$X$上の有界可測関数であり
+			\begin{align}
+				\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^\infty} = \Norm{[\hat{f}_{n_{k+1}} - \hat{f}_{n_k}]}{\mathrm{L}^\infty}
+				= \Norm{\hat{f}_{n_{k+1}} - \hat{f}_{n_k}}{\mathscr{L}^\infty} < 1/2^k \quad (k=1,2,3,\cdots)
+			\end{align}
+			を満たしている．すなわち
+			\begin{align}
+				\sup{x \in X}{|\hat{f}_{n_{k+1}}(x) - \hat{f}_{n_k}(x)|} < 1/2^k \quad (k=1,2,3,\cdots)
+			\end{align}
+			が成り立っていることになるから，各点$x \in X$で$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\K$のCauchy列となる．
+			(これは$\sum_{k > N} 1/2^k = 1/2^N \longrightarrow 0\ (N \longrightarrow \infty)$による．)従って各点$x \in X$
+			で極限が存在するからこれを$\hat{f}(x)$として表す．一般に距離空間に値を取る可測関数列の各点収束の極限関数は可測関数であるから
+			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．あとは$\hat{f}$が有界関数であることを示せばよい．
+			
+	\end{description}
 \end{prf}
 \begin{qst}
 \end{qst}
