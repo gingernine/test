@@ -1,9 +1,65 @@
 \section{10/11}
-	基礎の確率空間を$(\Omega,\mathcal{F},\mu)$とする．
-	$\mathcal{G} \subset \mathcal{F}$を部分$\sigma$-加法族とし，
-	Hilbert空間$\Lp{2}{\Omega,\mathcal{F},\mu}$とその閉部分空間
-	$\Lp{2}{\Omega, \mathcal{G},\mu}$を考える．
-	任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，
+	基礎の確率空間を$(\Omega,\mathcal{F},\mu)$とする．係数体を$\R$として考えると，
+	ノルム空間$\Lp{2}{\Omega,\mathcal{F},\mu}$は
+	\begin{align}
+		\inprod<[f],[g]>_{\Lp{2}{\mathcal{F},\mu}} \coloneqq \int_{\Omega} f(x)g(x)\ \mu(dx) \quad \left( [f],[g] \in \Lp{2}{\Omega,\mathcal{F},\mu} \right)
+	\end{align}
+	を内積としてHilbert空間となる．これは次のように示される．まず左辺は代表元の選び方に依らない．任意に$f' \in [f]$と$g' \in [g]$を取っても，
+	\begin{align}
+		E &\coloneqq \{\ x \in \Omega\quad |\quad f(x) \neq f'(x)\ \}, \\
+		F &\coloneqq \{\ x \in \Omega\quad |\quad g(x) \neq g'(x)\ \}
+	\end{align}
+	とした$E,F$は$\mu$-零集合であって
+	\begin{align}
+		\int_{\Omega} f(x)g(x)\ \mu(dx) = \int_{\Omega \backslash (E \cup F)} f(x)g(x)\ \mu(dx)
+		= \int_{\Omega \backslash (E \cup F)} f'(x)g'(x)\ \mu(dx) = \int_{\Omega} f'(x)g'(x)\ \mu(dx)
+	\end{align}
+	が成り立つからである．また内積の公理を満たすことも次のように示される．
+	\begin{description}
+		\item[正値性] 
+			任意の$[f] \in \Lp{2}{\Omega,\mathcal{F},\mu}$に対して，ノルム$\Norm{[f]}{\Lp{2}{\mathcal{F},\mu}}$との対応から
+			$\inprod<[f],[f]>_{\Lp{2}{\mathcal{F},\mu}} \geq 0$と
+			$\inprod<[f],[f]>_{\Lp{2}{\mathcal{F},\mu}} = 0 \Leftrightarrow [f] = [0]$が成り立つ．
+		\item[対称性] 
+			任意の$[f],[g] \in \Lp{2}{\Omega,\mathcal{F},\mu}$に対して
+			\begin{align}
+				\inprod<[f],[g]>_{\Lp{2}{\mathcal{F},\mu}} = \int_{\Omega} f(x)g(x)\ \mu(dx)
+				= \int_{\Omega} g(x)f(x)\ \mu(dx) = \inprod<[g],[f]>_{\Lp{2}{\mathcal{F},\mu}}
+			\end{align}
+			が成り立つ．
+		\item[双線型性] 
+			任意の$[f],[g],[h] \in \Lp{2}{\Omega,\mathcal{F},\mu}$と$a \in \R$に対して
+			\begin{align}
+				\inprod<[f],[g] + [h]>_{\Lp{2}{\mathcal{F},\mu}} &= \inprod<[f],[g + h]>_{\Lp{2}{\mathcal{F},\mu}} \\
+				&= \int_{\Omega} f(x)(g(x) + h(x))\ \mu(dx) \\
+				&= \int_{\Omega} f(x)g(x)\ \mu(dx) + \int_{\Omega} f(x)h(x)\ \mu(dx) \\
+				&= \inprod<[f],[g]>_{\Lp{2}{\mathcal{F},\mu}} + \inprod<[f],[h]>_{\Lp{2}{\mathcal{F},\mu}}, \\
+				\inprod<\alpha [f],[g]>_{\Lp{2}{\mathcal{F},\mu}} 
+				&= \inprod<[\alpha f],[g]>_{\Lp{2}{\mathcal{F},\mu}} \\
+				&= \int_{\Omega} \alpha f(x)g(x)\ \mu(dx) \\
+				&= \alpha \int_{\Omega} f(x)g(x)\ \mu(dx) \\
+				&= \alpha \inprod<[f],[g]>_{\Lp{2}{\mathcal{F},\mu}}
+			\end{align}
+			が成り立つことと対称性による．
+	\end{description}
+	そしてノルム空間としての完備性から$\Lp{2}{\Omega,\mathcal{F},\mu}$はHilbert空間となる．
+	
+	$\mathcal{G} \subset \mathcal{F}$を部分$\sigma$-加法族として
+	別のHilbert空間$\Lp{2}{\Omega, \mathcal{G},\mu}$を考えれば，
+	任意の$\inprod<g> \in \Lp{2}{\Omega, \mathcal{G},\mu}\ $(空間が違うことを意識するために元の表示を変えた)に対し$g$は可測$\mathcal{F}/\borel{\R}$
+	であるから，対応する$\Lp{2}{\Omega, \mathcal{F},\mu}$の元$[g]$が存在する．$\mathcal{G} \subset \mathcal{F}$より
+	$\inprod<g> \subset [g]$であって必ずしも$\inprod<g> = [g]$ではないが，単射
+	\begin{align}
+		\Lp{2}{\Omega, \mathcal{G},\mu} \ni \inprod<g> \longmapsto [g] \in \Lp{2}{\Omega, \mathcal{F},\mu}
+	\end{align}
+	によって$\Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に埋め込まれ，
+	$\Lp{2}{\Omega, \mathcal{G},\mu}$の完備性から埋め込まれた部分集合は$\Lp{2}{\Omega, \mathcal{F},\mu}$の閉部分空間となる．
+	この部分集合を$\Lp{2}{\Omega, \mathcal{G},\mu}$と同一視し，
+	\begin{align}
+		\Lp{2}{\Omega, \mathcal{G},\mu} \subset \Lp{2}{\Omega, \mathcal{F},\mu}
+	\end{align}
+	と考えることにする．以上の準備の下，以降では同値類と関数は表記上で区別することはせず，
+	$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$と表現することで，この$f$に同値類$[f]$としての意味と，代表元の関数$f$としての意味の両方を持たせる．
 	射影定理により一意に定まる射影$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$を
 	\begin{align}
 		g = \cexp{f}{\mathcal{G}}
@@ -11,7 +67,7 @@
 	と表現する．$\mathcal{G} = \{\emptyset, \Omega\}$のときは$\cexp{f}{\mathcal{G}}$を$\Exp{f}$と書いて$f$の期待値と呼ぶ．
 	\begin{qst}\mbox{}\\
 		Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F},\mu}}$，ノルムを$\Norm{\cdot}{\Lp{2}{\mathcal{F},\mu}}$と表示する．
-		次のC1 $\sim$ C6 を示せ．扱う関数は全て$\R$値と考える．(係数体を実数体としてHilbert空間を扱う．)
+		次のC1 $\sim$ C6 を示せ．
 		\begin{description}
 			\item[C1] $\forall f \in \Lp{2}{\Omega, \mathcal{F},\mu}$
 				\begin{align}
