@@ -295,6 +295,7 @@
 		\begin{align}
 			\sup{\substack{f \in \Lp{2}{\Omega,\mathcal{G},\mu} \\ f \neq 0}}{\frac{ \Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}} }{ \Norm{f}{\Lp{1}{\mathcal{F},\mu}} }} \leq 1.
 		\end{align}
+		\label{lem:conditional_exp_bound}
 	\end{lem}
 	\begin{prf}
 		$f,\  \cexp{f}{\mathcal{G}}$を代表元の関数として扱えば次のように計算できる．
@@ -316,8 +317,9 @@
 		\begin{align}
 			\Lp{1}{\Omega,\mathcal{F},\mu} \ni f \longmapsto \tcexp{f}{\mathcal{G}} \in \Lp{1}{\Omega,\mathcal{G},\mu}
 		\end{align}
-		が有界な線型作用素となり，更にC1$\sim$C6が$\mathrm{L}^2$を$\mathrm{L}^1$に置き換えて成り立つ．
+		が有界な線型作用素となり，更にレポート問題2の[C1]$\sim$[C6]が$\mathrm{L}^2$を$\mathrm{L}^1$に置き換えて成り立つ．
 	\end{thm}
+	$\mathcal{G} = \{\emptyset,\ \Omega\}$である場合は$\tcexp{f}{\mathcal{G}} = \tExp{f}$と表示することにする．
 	\begin{prf}	
 		定理の主張する拡張が可能であることを示すには，$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密なことをいえばよい．
 		任意の$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して，
@@ -329,5 +331,110 @@
 		\begin{align}
 			\lim_{n \to \infty} \Norm{f_n - f}{\Lp{1}{\mathcal{F},\mu}} = 0
 		\end{align}
-		が成り立つ．従って$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密であることが示された．
+		が成り立つ．これで$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密であることが示された．
+		次にレポート問題2の[C1]$\sim$[C6]が$\mathrm{L}^2$が$\mathrm{L}^1$に置き換えても成り立つことを示す．
+		以下に主張を書き直す．
+		\begin{description}
+			\item[$\tilde{\mathrm{C}}$1] $\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\tExp{f} = \int_{\Omega} f(x)\ \mu(dx)
+				\end{align}
+				
+			\item[$\tilde{\mathrm{C}}$2]	$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu},\ \forall h \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$
+				\begin{align}
+					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx)
+				\end{align}
+				
+			\item[$\tilde{\mathrm{C}}$3]	$\forall f_1,f_2 \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\tcexp{f_1 + f_2}{\mathcal{G}} = \tcexp{f_1}{\mathcal{G}} + \tcexp{f_2}{\mathcal{G}}
+				\end{align}
+
+			\item[$\tilde{\mathrm{C}}$4]	$\forall f_1,f_2 \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					f_1 \leq f_2 \quad \mathrm{a.s.} \quad \Rightarrow \quad \tcexp{f_1}{\mathcal{G}} \leq \tcexp{f_2}{\mathcal{G}} \quad \mathrm{a.s.}
+				\end{align}
+			
+			\item[$\tilde{\mathrm{C}}$5]	$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu},\ \forall g \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$
+				\begin{align}
+					\tcexp{gf}{\mathcal{G}} = g\tcexp{f}{\mathcal{G}}
+				\end{align}
+			
+			\item[$\tilde{\mathrm{C}}$6]	$\mathcal{H}$が$\mathcal{G}$の部分$\sigma$-加法族ならば$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f}{\mathcal{H}}
+				\end{align}
+		\end{description}
+		一つ一つ証明していく．
+		\begin{description}
+			\item[$\tilde{\mathrm{C}}$1]
+				$f$に対して先と同じ関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				C1により全ての$n \in \N$に対して
+				\begin{align}
+					\tExp{f_n} = \int_{\Omega} f_n(x)\ \mu(dx)
+				\end{align}
+				が成り立っているから，Lebesgueの収束定理と作用素の有界性により
+				\begin{align}
+					\left| \tExp{f} - \int_{\Omega} f(x)\ \mu(dx) \right|
+					\leq \left| \tExp{f} - \tExp{f_n} \right| + \left| \int_{\Omega} f_n(x)\ \mu(dx) - \int_{\Omega} f(x)\ \mu(dx) \right|
+					\longrightarrow 0\ (n \longrightarrow \infty)
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\tExp{f} = \int_{\Omega} f(x)\ \mu(dx)
+				\end{align}
+				が示された．
+				
+			\item[$\tilde{\mathrm{C}}$2]	
+				$f$に対して先と同じ関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				$h \in \Lp{\infty}{\Omega,\mathcal{F},\mu}$であることに注意すれば，
+				C2により全ての$n \in \N$に対して
+				\begin{align}
+					\int_{\Omega} f_n(x)h(x)\ \mu(dx) = \int_{\Omega} \tcexp{f_n}{\mathcal{G}}(x)h(x)\ \mu(dx)
+				\end{align}
+				が成り立つ．
+				\begin{align}
+					A \coloneqq \left\{\ x \in \Omega\quad |\quad |h(x)| > \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \right\}
+				\end{align}
+				とおけば$\mu(A) = 0$であり，拡張が作用素ノルムを変えないことと補助定理\ref{lem:conditional_exp_bound}の結果より
+				\begin{align}
+					&\left| \int_{\Omega} f(x)h(x)\ \mu(dx) - \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \right| \\
+					&\qquad \leq \left| \int_{\Omega} f(x)h(x)\ \mu(dx) - \int_{\Omega} f_n(x)h(x)\ \mu(dx) \right| \\
+						&\qquad \qquad+ \left| \int_{\Omega} \tcexp{f_n}{\mathcal{G}}(x)h(x)\ \mu(dx) - \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \right| \\
+					%&\qquad = \left| \int_{\Omega \backslash A} f(x)h(x)\ \mu(dx) - \int_{\Omega \backslash A} f_n(x)h(x)\ \mu(dx) \right| 
+					%	+ \left| \int_{\Omega \backslash A} \tcexp{f_n}{\mathcal{G}}(x)h(x)\ \mu(dx) - \int_{\Omega \backslash A} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \right| \\
+					&\qquad \leq \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega \backslash A} |f(x) - f_n(x)|\ \mu(dx) 
+						+ \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega \backslash A} \left| \tcexp{f_n}{\mathcal{G}}(x) - \tcexp{f}{\mathcal{G}}(x) \right|\ \mu(dx) \\
+					&\qquad = \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \Norm{f - f_n}{\Lp{1}{\mathcal{F},\mu}}
+						+ \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \Norm{\tcexp{f}{\mathcal{G}} - \tcexp{f_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}} \\
+					&\qquad \leq 2 \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \Norm{f - f_n}{\Lp{1}{\mathcal{F},\mu}} \quad (\scriptsize\because \mbox{補助定理}\ref{lem:conditional_exp_bound})
+				\end{align}
+				が成り立つ．$(f_n)_{n=1}^{\infty}$の作り方からLebesgueの収束定理が適用されて
+				\begin{align}
+					\Norm{f - f_n}{\Lp{1}{\mathcal{F},\mu}} \longrightarrow 0\ (n \longrightarrow \infty)
+				\end{align}
+				となるから
+				\begin{align}
+					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx)
+				\end{align}
+				が示された．
+				
+			\item[$\tilde{\mathrm{C}}$3]	
+				作用素$\tcexp{\cdot}{\mathcal{G}}$の線型性による．
+
+			\item[$\tilde{\mathrm{C}}$4]	$\forall f_1,f_2 \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					f_1 \leq f_2 \quad \mathrm{a.s.} \quad \Rightarrow \quad \tcexp{f_1}{\mathcal{G}} \leq \tcexp{f_2}{\mathcal{G}} \quad \mathrm{a.s.}
+				\end{align}
+			
+			\item[$\tilde{\mathrm{C}}$5]	$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu},\ \forall g \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$
+				\begin{align}
+					\tcexp{gf}{\mathcal{G}} = g\tcexp{f}{\mathcal{G}}
+				\end{align}
+			
+			\item[$\tilde{\mathrm{C}}$6]	$\mathcal{H}$が$\mathcal{G}$の部分$\sigma$-加法族ならば$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				\begin{align}
+					\tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f}{\mathcal{H}}
+				\end{align}
+		\end{description}
 	\end{prf}
