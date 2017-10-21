@@ -61,11 +61,21 @@
 	\end{align}
 	と考えることにする．以上の準備の下，以降では同値類と関数は表記上で区別することはせず，
 	$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$と表現することで，この$f$に同値類$[f]$としての意味と，代表元の関数$f$としての意味の両方を持たせる．
-	射影定理により一意に定まる射影$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$を
-	\begin{align}
-		g = \cexp{f}{\mathcal{G}}
-	\end{align}
-	と表現する．$\mathcal{G} = \{\emptyset, \Omega\}$のときは$\cexp{f}{\mathcal{G}}$を$\Exp{f}$と書いて$f$の期待値と呼ぶ．
+	
+	\begin{dfn}[条件付き期待値]
+		$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，
+		射影定理により一意に定まる射影$g \in \Lp{2}{\Omega, \mathcal{G},\mu}\ $
+		(上で断った通り，$g$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に埋め込まれた部分にある元を表している)を
+		\begin{align}
+			g = \cexp{f}{\mathcal{G}}
+		\end{align}
+		と表現し，これを$\mathcal{G}$で条件付けた$f$の条件付き期待値と呼ぶ．$\mathcal{G} = \{\emptyset, \Omega\}$の場合は特別に
+		\begin{align}
+			\cexp{f}{\mathcal{G}} = \Exp{f}
+		\end{align}
+		と書いて$f$の期待値と呼ぶ．
+	\end{dfn}
+	
 	\begin{qst}\mbox{}\\
 		Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F},\mu}}$，ノルムを$\Norm{\cdot}{\Lp{2}{\mathcal{F},\mu}}$と表示する．
 		次のC1 $\sim$ C6 を示せ．
@@ -318,13 +328,14 @@
 			\Lp{1}{\Omega,\mathcal{F},\mu} \ni f \longmapsto \tcexp{f}{\mathcal{G}} \in \Lp{1}{\Omega,\mathcal{G},\mu}
 		\end{align}
 		が有界な線型作用素となり，更にレポート問題2の[C1]$\sim$[C6]が$\mathrm{L}^2$を$\mathrm{L}^1$に置き換えて成り立つ．
+		\label{thm:conditional_exp_expansion}
 	\end{thm}
 	$\mathcal{G} = \{\emptyset,\ \Omega\}$である場合は$\tcexp{f}{\mathcal{G}} = \tExp{f}$と表示することにする．
 	\begin{prf}	
 		定理の主張する拡張が可能であることを示すには，$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密なことをいえばよい．
 		任意の$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して，
 		\begin{align}
-			f_n(x) \coloneqq f(x) \defunc_{|f| \leq n} (x) \quad (\forall x \in \Omega,\ n=1,2,3,\cdots)
+			f_n(x) \coloneqq f(x) \defunc_{|f| \leq n} (x) \quad (\forall x \in \Omega,\ n=1,2,3,\cdots) \label{conditional_exp_expansion}
 		\end{align}
 		とおけば$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$となり，
 		関数列として$f$に各点収束しているから，Lebesgueの収束定理より
@@ -368,7 +379,7 @@
 		一つ一つ証明していく．
 		\begin{description}
 			\item[$\tilde{\mathrm{C}}$1]
-				$f$に対して先と同じ関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
 				C1により全ての$n \in \N$に対して
 				\begin{align}
 					\tExp{f_n} = \int_{\Omega} f_n(x)\ \mu(dx)
@@ -386,7 +397,7 @@
 				が示された．
 				
 			\item[$\tilde{\mathrm{C}}$2]	
-				$f$に対して先と同じ関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
 				$h \in \Lp{\infty}{\Omega,\mathcal{F},\mu}$であることに注意すれば，
 				C2により全ての$n \in \N$に対して
 				\begin{align}
@@ -394,7 +405,7 @@
 				\end{align}
 				が成り立つ．
 				\begin{align}
-					A \coloneqq \left\{\ x \in \Omega\quad |\quad |h(x)| > \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \right\}
+					A \coloneqq \left\{\ x \in \Omega\quad |\quad |h(x)| > \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}}\ \right\}
 				\end{align}
 				とおけば$\mu(A) = 0$であり，拡張が作用素ノルムを変えないことと補助定理\ref{lem:conditional_exp_bound}の結果より
 				\begin{align}
@@ -422,19 +433,128 @@
 			\item[$\tilde{\mathrm{C}}$3]	
 				作用素$\tcexp{\cdot}{\mathcal{G}}$の線型性による．
 
-			\item[$\tilde{\mathrm{C}}$4]	$\forall f_1,f_2 \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+			\item[$\tilde{\mathrm{C}}$4]	
+				作用素の線型性から，C4の証明と同様に「任意の$f \in \Lp{1}{\Omega, \mathcal{F},\mu}$に対して，$f \geq 0\ $a.s.ならば$\tcexp{f}{\mathcal{G}} \geq 0\ $a.s.」を示せばよい．
+				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				全ての$n \in \N$に対して
 				\begin{align}
-					f_1 \leq f_2 \quad \mathrm{a.s.} \quad \Rightarrow \quad \tcexp{f_1}{\mathcal{G}} \leq \tcexp{f_2}{\mathcal{G}} \quad \mathrm{a.s.}
+					\{\ x \in \Omega\quad |\quad f_n(x) < 0\ \} \quad\subset\quad \{\ x \in \Omega\quad |\quad f(x) < 0\ \}
 				\end{align}
+				が成り立っているから，右辺が$\mu$-零集合と仮定すればC4により
+				\begin{align}
+					\tcexp{f_n}{\mathcal{G}} \geq 0\ \mathrm{a.s.} \quad (n = 1,2,3,\cdots)
+				\end{align}
+				となる．従って
+				\begin{align}
+					A_n &\coloneqq \left\{\ x \in \Omega\quad |\quad \tcexp{f_n}{\mathcal{G}}(x) < 0\ \right\} \quad (n=1,2,3,\cdots), \\
+					A &\coloneqq \bigcup_{n=1}^{\infty} A_n
+				\end{align}
+				とすれば$\mu(A) = 0$となり，
+				\begin{align}
+					B \coloneqq \left\{\ x \in \Omega\quad |\quad \tcexp{f}{\mathcal{G}}(x) < 0\ \right\}
+				\end{align}
+				に対して$\mu(B \cap A^c) = \mu(B) - \mu(B \cap A) = \mu(B)$が成り立つから，示せばよいのは$\mu(B \cap A^c) = 0$となることである．
+				$B \cap A^c$の上では全ての$n \in \N$に対して
+				\begin{align}
+					\left| \tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x) \right| 
+					= \tcexp{f_n}{\mathcal{G}}(x) - \tcexp{f}{\mathcal{G}}(x) \geq - \tcexp{f}{\mathcal{G}}(x) > 0
+				\end{align}
+				が成り立っていることから，
+				\begin{align}
+					C_k \coloneqq \left\{\ x \in B \cap A^c\quad |\quad \left| \tcexp{f}{\mathcal{G}}(x)\right| > 1/k\ \right\} \quad (k = 1,2,3,\cdots)
+				\end{align}
+				とおけば
+				\begin{align}
+					B \cap A^c = \bigcup_{k=1}^{\infty} C_k
+				\end{align}
+				が成り立つ．全ての$k \in \N$に対して
+				\begin{align}
+					\Norm{\tcexp{f}{\mathcal{G}} - \tcexp{f_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}}
+					&= \int_\Omega \left| \tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x) \right|\ \mu(dx) \\
+					&\geq \int_{C_k} \left| \tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x) \right|\ \mu(dx) \\
+					&> \mu(C_k)/k
+				\end{align}
+				が成り立つことから，$C_k$が$n$に無関係なことと左辺が$n \longrightarrow \infty$で0に収束することから
+				$\mu(C_k) = 0 \ (\forall k = 1,2,3,\cdots)$でなくてはならず，
+				\begin{align}
+					\mu(B) = \mu(B \cap A^c) \leq \sum_{k=1}^{\infty} \mu(C_k) = 0
+				\end{align}
+				となり$\tcexp{f}{\mathcal{G}} \geq 0\ $a.s.が示された．
+				
+			\item[$\tilde{\mathrm{C}}$5]
+				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				$f_n$についてはC5より
+				\begin{align}
+					\tcexp{gf_n}{\mathcal{G}} = g\tcexp{f_n}{\mathcal{G}} \label{eq:conditional_exp_L1}
+				\end{align}
+				が成り立っている．
+				\begin{align}
+					E \coloneqq \left\{\ x \in \Omega\quad |\quad |g(x)| > \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}}\ \right\}
+				\end{align}
+				とおけば$\mu(E) = 0$であって，
+				拡張が作用素ノルムを変えないことと補助定理\ref{lem:conditional_exp_bound}，またLebesgueの収束定理を適用すれば
+				\begin{align}
+					&\Norm{\tcexp{gf}{\mathcal{G}} - \tcexp{gf_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}}
+					\leq \Norm{gf - gf_n}{\Lp{1}{\mathcal{F},\mu}} 
+					\leq \int_\Omega |g(x)||f(x) - f_n(x)|\ \mu(dx) \\
+					&\qquad = \int_{\Omega \backslash E} |g(x)||f(x) - f_n(x)|\ \mu(dx) \leq \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}}\Norm{f - f_n}{\Lp{1}{\mathcal{F},\mu}}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つ．同様にして
+				\begin{align}
+					&\Norm{g\tcexp{f}{\mathcal{G}} - g\tcexp{f_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}}
+					= \int_\Omega |g(x)\tcexp{f}{\mathcal{G}}(x) - g(x)\tcexp{f_n}{\mathcal{G}}(x)|\ \mu(dx) \\
+					&\qquad \leq \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega \backslash E} |\tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x)|\ \mu(dx) \\
+					&\qquad= \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega} |\tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x)|\ \mu(dx) \\
+					&\qquad\leq \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}}\Norm{f - f_n}{\Lp{1}{\mathcal{F},\mu}} \\
+					&\qquad \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				も成り立つから，式(\refeq{eq:conditional_exp_L1})と併せて
+				\begin{align}
+					\Norm{\tcexp{gf}{\mathcal{G}} - g\tcexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}}
+					&\leq \Norm{\tcexp{gf}{\mathcal{G}} - \tcexp{gf_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}}
+						+ \Norm{g\tcexp{f_n}{\mathcal{G}} - g\tcexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}} \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となり$\tcexp{gf}{\mathcal{G}} = g\tcexp{f}{\mathcal{G}}$が示された．
 			
-			\item[$\tilde{\mathrm{C}}$5]	$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu},\ \forall g \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$
+			\item[$\tilde{\mathrm{C}}$6]
+				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
+				$f_n$についてはC6より
 				\begin{align}
-					\tcexp{gf}{\mathcal{G}} = g\tcexp{f}{\mathcal{G}}
+					\tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f_n}{\mathcal{H}}
 				\end{align}
-			
-			\item[$\tilde{\mathrm{C}}$6]	$\mathcal{H}$が$\mathcal{G}$の部分$\sigma$-加法族ならば$\forall f \in \Lp{1}{\Omega, \mathcal{F},\mu}$
+				が成り立っている．
 				\begin{align}
-					\tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f}{\mathcal{H}}
+					\Norm{ \tcexp{f}{\mathcal{H}} -  \tcexp{f_n}{\mathcal{H}}}{\Lp{1}{\mathcal{F},\mu}}
+					&\leq \Norm{f -  f_n}{\Lp{1}{\mathcal{F},\mu}}, \\
+					\Norm{ \tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} -  \tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}}}{\Lp{1}{\mathcal{F},\mu}}
+					&\leq \Norm{ \tcexp{f}{\mathcal{G}} -  \tcexp{f_n}{\mathcal{G}} }{\Lp{1}{\mathcal{F},\mu}}
+					\leq \Norm{f -  f_n}{\Lp{1}{\mathcal{F},\mu}}
 				\end{align}
+				が成り立つこととLebesgueの収束定理より
+				\begin{align}
+					&\Norm{ \tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}} - \tcexp{f_n}{\mathcal{H}} }{\Lp{1}{\mathcal{F},\mu}} \\
+					&\qquad\leq \Norm{ \tcexp{f}{\mathcal{H}} -  \tcexp{f_n}{\mathcal{H}}}{\Lp{1}{\mathcal{F},\mu}}
+						+ \Norm{ \tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} -  \tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}}}{\Lp{1}{\mathcal{F},\mu}} \\
+					&\qquad \leq 2 \Norm{f -  f_n}{\Lp{1}{\mathcal{F},\mu}} \qquad \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となり$\tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f_n}{\mathcal{H}}$が示された．
 		\end{description}
+		\QED
 	\end{prf}
+	
+	\begin{dfn}[条件付き期待値の再定義]
+		定理\ref{thm:conditional_exp_expansion}で定義された$\Lp{1}{\Omega,\mathcal{F},\mu}$から
+		$\Lp{1}{\Omega,\mathcal{G},\mu}\ $(実際は$\Lp{1}{\Omega,\mathcal{F},\mu}$に埋め込まれた部分空間の意味)
+		への有界線型作用素$\tcexp{\cdot}{\mathcal{G}}$を$\cexp{\cdot}{\mathcal{G}}$
+		と表記し直し，$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して
+		\begin{align}
+			\cexp{f}{\mathcal{G}}
+		\end{align}
+		を$\mathcal{G}$で条件付けた$f$の条件付き期待値と呼ぶ．$\mathcal{G} = \{\emptyset, \Omega\}$の場合は特別に
+		\begin{align}
+			\cexp{f}{\mathcal{G}} = \Exp{f}
+		\end{align}
+		と書いて$f$の期待値と呼ぶ．
+	\end{dfn}
