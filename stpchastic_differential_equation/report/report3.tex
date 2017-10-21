@@ -1,7 +1,7 @@
 \section{10/17}
 	基礎におく確率空間を$(\Omega,\mathcal{F},\operatorname{P})$とする．
 	任意の有界実連続関数$h:\R \rightarrow \R$と任意の可測$\mathcal{F}/\borel{\R}$関数$X$に対して，
-	その合成$h(X)$が$(\Omega,\mathcal{F},\operatorname{P})$で二乗可積分であることに注意すれば
+	その合成$h(X)$が$(\Omega,\mathcal{F},\operatorname{P})$で可積分であることに注意すれば
 	その条件付き期待値を考えることができ，これを用いて独立性を次で定義する．
 	
 	\begin{dfn}[独立性]
@@ -68,14 +68,19 @@
 					h_n : \R \ni x \longmapsto \frac{1}{1 + nd(x,E)} \quad (n=1,2,3,\cdots)
 				\end{align}
 				は有界実連続関数となる．$E$が閉集合であるから$\lim\limits_{n \to \infty} h_n(x) = \defunc_E(x) \ (\forall x \in \R)$であり，また
-				$h_n$の有界連続性から$h_n \circ X \in \Lp{2}{\mathcal{F},\mu}\ (n=1,2,3,\cdots)$であることに注意すれば，任意の$A \in \mathcal{G}$に対して
+				$h_n$の有界連続性から$h_n \circ X \in \Lp{1}{\mathcal{F},\mu}\ (n=1,2,3,\cdots)$であることに注意すれば，任意の$A \in \mathcal{G}$に対して
 				\begin{align}
 					\prob{X^{-1}(E) \cap A} &= \int_{\Omega} \defunc_E(X(\omega)) \defunc_A(\omega)\ \prob{d\omega} \\
-					&= \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega)) \defunc_A(\omega)\ \prob{d\omega} && (\scriptsize \because \mbox{Lebesgueの収束定理})\\
-					&= \lim_{n \to \infty} \int_{\Omega} \cexp{h_n(X)}{\mathcal{G}}(\omega) \defunc_A(\omega)\ \prob{d\omega} && (\scriptsize\because \mbox{レポート問題2[C2]}) \\
-					&= \lim_{n \to \infty} \Exp{h_n(X)} \int_{\Omega} \defunc_A(\omega)\ \prob{d\omega} && (\scriptsize\because \mbox{(1)より．$\cexp{h_n(X)}{\mathcal{G}}\neq\Exp{h_n(X)}$の部分は積分に影響しない．}) \\
-					&= \prob{A}  \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{レポート問題2[C1]}) \\
-					&= \prob{A} \int_{\Omega} \defunc_E(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{Lebesgueの収束定理})\\
+					&= \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega)) \defunc_A(\omega)\ \prob{d\omega} 
+						&& (\scriptsize \because \mbox{Lebesgueの収束定理})\\
+					&= \lim_{n \to \infty} \int_{\Omega} \cexp{h_n(X)}{\mathcal{G}}(\omega) \defunc_A(\omega)\ \prob{d\omega} 
+						&& (\scriptsize\because \mbox{定理\ref{conditional_exp_expansion}[$\tilde{\rm{C}}$2]}) \\
+					&= \lim_{n \to \infty} \Exp{h_n(X)} \int_{\Omega} \defunc_A(\omega)\ \prob{d\omega} 
+						&& (\scriptsize\because \mbox{(1)より．$\cexp{h_n(X)}{\mathcal{G}}\neq\Exp{h_n(X)}$の部分は積分に影響しない．}) \\
+					&= \prob{A}  \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega))\ \prob{d\omega} 
+						&& (\scriptsize\because \mbox{定理\ref{conditional_exp_expansion}[$\tilde{\rm{C}}$1]}) \\
+					&= \prob{A} \int_{\Omega} \defunc_E(X(\omega))\ \prob{d\omega} 
+						&& (\scriptsize\because \mbox{Lebesgueの収束定理})\\
 					&= \prob{X^{-1}(E)}\prob{A}
 				\end{align}
 				が成り立ち，$\R$の閉集合系が$\mathscr{D}$に含まれることが示された．閉集合系は乗法族であり$\borel{\R}$を生成するから(2)が成り立つと判明する．
@@ -97,11 +102,14 @@
 				とおけば，$h$が可測$\borel{\R}/\borel{\R}$であるから$E_n^j$は全てBorel集合であり，任意の$A \in \mathcal{G}$に対して
 				\begin{align}
 					\int_{\Omega} \defunc_A(\omega) \cexp{h(X)}{\mathcal{G}}(\omega)\ \prob{d\omega}
-					&= \int_{\Omega} \defunc_A(\omega) h(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{レポート問題2[C2]}) \\
-					&= \lim_{n \to \infty} \int_{\Omega} \defunc_A(\omega) h_n(X(\omega))\ \prob{d\omega} && (\scriptsize\because \mbox{積分の定義}) \\
+					&= \int_{\Omega} \defunc_A(\omega) h(X(\omega))\ \prob{d\omega} 
+						&& (\scriptsize\because \mbox{定理\ref{conditional_exp_expansion}[$\tilde{\rm{C}}$2]}) \\
+					&= \lim_{n \to \infty} \int_{\Omega} \defunc_A(\omega) h_n(X(\omega))\ \prob{d\omega} 
+						&& (\scriptsize\because \mbox{積分の定義}) \\
 					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \int_{\Omega} \defunc_A(\omega) \defunc_{X^{-1}(E_n^j)}(\omega)\ \prob{d\omega} \\
 					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \prob{X^{-1}(E_n^j) \cap A} \\
-					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \prob{X^{-1}(E_n^j)}\prob{A} && (\scriptsize\because \mbox{(2)より．}) \\
+					&= \lim_{n \to \infty} \sum_{j=1}^{n3^n} \prob{X^{-1}(E_n^j)}\prob{A} 
+						&& (\scriptsize\because \mbox{(2)より．}) \\
 					&= \prob{A} \lim_{n \to \infty} \sum_{j=1}^{n3^n} \int_{\Omega} \defunc_{X^{-1}(E_n^j)}(\omega)\ \prob{d\omega} \\
 					&= \prob{A} \lim_{n \to \infty} \int_{\Omega} h_n(X(\omega))\ \prob{d\omega} \\
 					&= \prob{A} \int_{\Omega} h(X(\omega))\ \prob{d\omega} \\
