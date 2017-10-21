@@ -296,7 +296,7 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 	上で定義したノルム空間$\Lp{p}{X,\mathcal{F},m}$はBanach空間である．$(1 \leq p \leq \infty)$
 \end{prp}
 \begin{prf}
-	随意に$\Lp{p}{X,\mathcal{F},m}$のCauchy列$[f_n] \in \Lp{p}{X,\mathcal{F},m}\ (n=1,2,3,\cdots)$を取る．
+	任意に$\Lp{p}{X,\mathcal{F},m}$のCauchy列$[f_n] \in \Lp{p}{X,\mathcal{F},m}\ (n=1,2,3,\cdots)$を取る．
 	Cauchy列であるから$1/2$に対して或る$N_1 \in \N$が取れて，$n>m \geq N_1$ならば
 	$\Norm{[f_n]-[f_m]}{\mathrm{L}^p} = \Norm{[f_n - f_m]}{\mathrm{L}^p} < 1/2$となる．
 	ここで$m = n_1$と表記することにする．
@@ -304,66 +304,70 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 	$\Norm{[f_{n'} - f_{m'}]}{\mathrm{L}^p} < 1/2^2$となる．
 	先ほどの$n$について，$n > N_2$となるように取れるからこれを$n = n_2$と表記し，更に$m' = n_2$ともしておく．今のところ
 	\begin{align}
-		\Norm{[f_{n_2} - f_{n_1}]}{\mathrm{L}^p} < 1/2
+		\Norm{[f_{n_1} - f_{n_2}]}{\mathrm{L}^p} < 1/2
 	\end{align}
 	と表示できる．再び同様に$1/2^3$に対して或る$N_3 \in \N\ (N_3 > N_2)$が取れて，$n''>m'' \geq N_2$ならば
 	$\Norm{[f_{n''} - f_{m''}]}{\mathrm{L}^p} < 1/2^3$となる．
 	先ほどの$n'$について$n' > N_3$となるように取れるからこれを$n' = n_3$と表記し，更に$m'' = n_3$ともしておく．今までのところで
 	\begin{align}
-		&\Norm{[f_{n_2} - f_{n_1}]}{\mathrm{L}^p} < 1/2 \\
-		&\Norm{[f_{n_3} - f_{n_2}]}{\mathrm{L}^p} < 1/2^2
+		&\Norm{[f_{n_1} - f_{n_2}]}{\mathrm{L}^p} < 1/2 \\
+		&\Norm{[f_{n_2} - f_{n_3}]}{\mathrm{L}^p} < 1/2^2
 	\end{align}
 	が成り立っている．数学的帰納法により
 	\begin{align}
-		\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^p} < 1/2^k \quad (n_{k+1} > n_k,\ k=1,2,3,\cdots) \label{ineq:Lp_banach_2}
+		\Norm{[f_{n_k} - f_{n_{k+1}}]}{\mathrm{L}^p} < 1/2^k \quad (n_{k+1} > n_k,\ k=1,2,3,\cdots) \label{ineq:Lp_banach_2}
 	\end{align}
 	が成り立つように自然数の部分列$(n_k)_{k=1}^{\infty}$を取ることができる．
 	\begin{description}
 		\item[$p = \infty$の場合]\mbox{}\\
-			$[f_n]$の代表元$f_n$について，
+			$[f_{n_k}]$の代表元$f_{n_k}$について，
 			\begin{align}
-				A_n \coloneqq \left\{\ x \in X\quad |\quad |f_n(x)| > \Norm{f_n}{\mathscr{L}^\infty} \right\}
+				A_k &\coloneqq \left\{\ x \in X\quad |\quad |f_{n_k}(x)| > \Norm{f_{n_k}}{\mathscr{L}^\infty} \right\}, \\
+				A^k &\coloneqq \left\{\ x \in X\quad |\quad |f_{n_k}(x) - f_{n_{k+1}}(x)| > \Norm{f_{n_k} - f_{n_{k+1}}}{\mathscr{L}^\infty} \right\}
 			\end{align}
-			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(A_n) = 0$であり，
+			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(A_k) = m(A^k) = 0$であり，
 			\begin{align}
-				A \coloneqq \bigcup_{n=1}^{\infty} A_n
+				A \coloneqq \left( \bigcup_{k=1}^{\infty} A_k \right) \bigcup \left( \bigcup_{k=1}^{\infty} A^k \right)
 			\end{align}
 			として$m$-零集合を定め
 			\begin{align}
-				\hat{f}_n(x) =
+				\hat{f}_{n_k}(x) =
 				\begin{cases}
-					f_n(x) & (x \notin A) \\
+					f_{n_k}(x) & (x \notin A) \\
 					0 & (x \in A)
 				\end{cases}
 				\quad (\forall x \in X)
 			\end{align}
-			と定義した$\hat{f}_n$もまた$[f_n]$の元となる．代表元を$f_n$に替えて$\hat{f}_n$とすれば，
-			$\hat{f}_n$は$X$上の有界可測関数であり
+			と定義した$\hat{f}_{n_k}$もまた$[f_{n_k}]$の元となる．代表元を$f_{n_k}$に替えて$\hat{f}_{n_k}$とすれば，
+			$\hat{f}_{n_k}$は$X$上の有界可測関数であり
 			\begin{align}
-				\Norm{[f_{n_{k+1}} - f_{n_k}]}{\mathrm{L}^\infty} = \Norm{[\hat{f}_{n_{k+1}} - \hat{f}_{n_k}]}{\mathrm{L}^\infty}
-				= \Norm{\hat{f}_{n_{k+1}} - \hat{f}_{n_k}}{\mathscr{L}^\infty} < 1/2^k \quad (k=1,2,3,\cdots) \label{ineq:Lp_banach_1}
-			\end{align}
-			を満たしている．すなわち
-			\begin{align}
-				\sup{x \in X}{|\hat{f}_{n_{k+1}}(x) - \hat{f}_{n_k}(x)|} < 1/2^k \quad (k=1,2,3,\cdots) 
+				\Norm{\hat{f}_{n_k} - \hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} = \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}_{n_{k+1}}(x)|} < 1/2^k \quad (k=1,2,3,\cdots) 
+				\label{ineq:Lp_banach_1}
 			\end{align}
 			が成り立っていることになるから，各点$x \in X$で$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\K$のCauchy列となる．
 			(これは$\sum_{k > N} 1/2^k = 1/2^N \longrightarrow 0\ (N \longrightarrow \infty)$による．)従って各点$x \in X$
 			で極限が存在するからこれを$\hat{f}(x)$として表す．一般に距離空間に値を取る可測関数列の各点収束の極限関数は可測関数であるから
 			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．また$\hat{f}$は有界である．これは次のように示される．
-			式(\refeq{ineq:Lp_banach_1})から
+			式(\refeq{ineq:Lp_banach_1})から任意の$l > k$に対し
 			\begin{align}
-				\left|\ \Norm{\hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} - \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty} \right| 
-				\leq \Norm{\hat{f}_{n_{k+1}} - \hat{f}_{n_k}}{\mathscr{L}^\infty} < 1/2^k \quad (k=1,2,3,\cdots)
+				|\hat{f}_{n_k}(x) - \hat{f}_{n_l}(x)| \leq \sum_{j=k}^{l-1} |\hat{f}_{n_{j}}(x) - \hat{f}_{n_{j+1}}(x)| 
+				\leq \sum_{j=k}^{l-1} \sup{x \in X}{|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)|} < 1/2^{k-1}
 			\end{align}
-			となるから，$\left( \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty} \right)_{k=1}^{\infty}$は実数のCauchy列となり有界となる．
+			が成り立つから，極限関数$\hat{f}(x)$も
 			\begin{align}
-				\sup{k \in \N}{\Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty}} < \alpha
+				\sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|} \leq 1/2^{k-1} \label{ineq:Lp_banach_3}
 			\end{align}
-			となるように実数$\alpha > 0$を取れば，各点$x \in X$で収束数列$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は
-			絶対値が開区間$(-\alpha,\alpha)$の範囲内に収まっているのだから，その収束先は$|\hat{f}(x)| \in (-\alpha,\alpha)$であり$\hat{f}$が$X$上で有界であると判る．
-			以上で$\hat{f}$が有界可測関数であることが示された．
-			$\hat{f}$を代表元とする$[\hat{f}] \in \Lp{\infty}{X,\mathcal{F},m}$に対し
+			を満たすことになる．なぜなら，もし或る$x \in X$で$\alpha \coloneqq |\hat{f}_{n_k}(x) - \hat{f}(x)| > 1/2^{k-1}$となる場合，
+			任意の$l > k$に対し
+			\begin{align}
+				0 < \alpha - 1/2^{k-1} < |\hat{f}_{n_k}(x) - \hat{f}(x)| - |\hat{f}_{n_k}(x) - \hat{f}_{n_l}(x)| \leq |\hat{f}_{n_l}(x) - \hat{f}(x)|
+			\end{align}
+			となり各点収束に反するからである．不等式(\refeq{ineq:Lp_banach_3})により任意の$x \in X$において
+			\begin{align}
+				|\hat{f}(x)| < |\hat{f}_{n_k}(x)| + 1/2^{k-1} \leq \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty} + 1/2^{k-1}
+			\end{align}
+			が成り立ち$\hat{f}$の有界性が判る．以上で極限関数$\hat{f}$が有界可測関数であると示された．
+			$\hat{f}$を代表元とする$[\hat{f}] \in \Lp{\infty}{X,\mathcal{F},m}$に対し，不等式(\refeq{ineq:Lp_banach_3})により
 			\begin{align}
 				\Norm{[f_{n_k}] - [\hat{f}]}{\mathrm{L}^\infty} = \Norm{\hat{f}_{n_k} - \hat{f}}{\mathscr{L}^\infty} 
 				= \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
@@ -373,7 +377,7 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 			Cauchy列の部分列が収束すれば，元のCauchy列はその部分列と同じ収束先に収束するから$\Lp{\infty}{X,\mathcal{F},m}$はBanach空間である．
 			
 		\item[$1 \leq p < \infty$の場合]\mbox{}\\
-			$k=1,2,3,\cdots$に対して
+			$[f_{n_k}]$の代表元$f_{n_k}$に対して
 			\begin{align}	
 				f_{n_k}(x) &\coloneqq f_{n_1}(x) + \sum_{j=1}^{k}(f_{n_j}(x) - f_{n_{j-1}}(x)) \label{eq:Lp_banach_3}
 			\end{align}
@@ -419,4 +423,64 @@ $\semiLp{p}{X,\mathcal{F},m}$に代わって
 	\QED
 \end{prf}
 
+次節への準備として，ノルム空間における線型作用素の拡張定理とHilbert空間における射影定理を載せておく．
+\begin{thm}[線型作用素の拡張]
+	係数体を$\K$とする．$X,Y$をBanach空間とし，ノルムをそれぞれ$\Norm{\cdot}{X},\ \Norm{\cdot}{Y}$と表記する．
+	$X$の部分空間$X_0$が$X$で稠密なら，$X$から$Y$への任意の有界線型作用素$T\ $($T$の定義域は$X_0$)に対し，
+	作用素ノルムを変えない$T$の拡張$\tilde{T}\ $(定義域$X$)で，$X$から$Y$への有界線型作用素となるものが一意に存在する．
+\end{thm}
+\begin{prf}
+		作用素ノルムは$\Norm{\cdot}{}$と表記する．$X_0$が$X$で稠密であるということにより，任意の$x \in X$に対して
+		$x_n \in X_0 \ (n=1,2,\cdots)$で$\Norm{x_n - x}{X} \longrightarrow 0\ (k \longrightarrow +\infty)$
+		となるものを取ることができる．任意の$m,n \in \N$に対して
+		\begin{align}
+			\Norm{Tx_m - Tx_n}{Y} \leq \Norm{T}{} \Norm{x_m - x_n}{X}
+		\end{align}
+		が成り立つから，右辺が$X_0$のCauchy列をなすことにより$(Tx_n)_{n=1}^{+\infty}$も$Y$のCauchy列となる．
+		$Y$の完備性から$(Tx_n)_{n=1}^{+\infty}$は或る$y \in Y$に収束し，$y$は$x \in X$に対して一意に定まる．
+		なぜならば，$x$への別の収束列$z_n \in X_0 \ (n=1,2,\cdots)$を取った場合の$(Tz_n)_{n=1}^{+\infty}$の収束先が
+		$u \in \C$であるとして，任意の$n,m \in \N$に対して
+		\begin{align}
+			\Norm{y - u}{Y} &= \Norm{y - Tx_n + Tx_n - Tz_m + Tz_m - u}{Y} \\
+			&\leq \Norm{y - Tx_n}{Y} + \Norm{Tx_n - Tz_m}{Y} + \Norm{Tz_m - u}{Y} \\
+			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\Norm{x_n - z_m}{X} + \Norm{Tz_m - u}{Y} \\
+			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\left(\Norm{x_n - x}{X} + \Norm{x - z_m}{X}\right)+ \Norm{Tz_m - u}{Y}
+		\end{align}
+		となるから$n,m \longrightarrow +\infty$で右辺は0に収束し，$y = u$が示されるためである．
+		つまり$x$に$y$を対応させる関係は$X \longmapsto Y$の写像となり，この写像を$\tilde{T}$と表すことにする．$T$の線型性も次のように示される．
+		任意の$x,\ z \in X,\ \alpha,\ \beta \in \K$に対して，$x,z$への収束列$(x_n)_{n=1}^{+\infty},\ (z_n)_{n=1}^{+\infty} \subset X_0$
+		を取れば$(\alpha x_n + \beta z_n)_{n=1}^{+\infty}$が$\alpha x+ \beta z$への収束列となるから
+		\begin{align}
+			\Norm{\tilde{T}(\alpha x + \beta z) - \alpha \tilde{T}x - \beta \tilde{T}z}{Y}
+			&= \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n) + \alpha Tx_n + \beta Tz_n - \alpha \tilde{T}x - \beta \tilde{T}z}{Y} \\
+			&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
+				+ \Norm{\alpha Tx_n - \alpha \tilde{T}x}{Y} + \Norm{\beta Tz_n - \beta \tilde{T}z}{Y} \\
+			&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
+				+ |\alpha| \Norm{Tx_n - \tilde{T}x}{Y} + |\beta| \Norm{Tz_n - \tilde{T}z}{Y} \\
+			&\longrightarrow 0\quad (n \longrightarrow +\infty)
+		\end{align}
+		が成り立つ．ゆえに$\tilde{T}(\alpha x + \beta z) = \alpha \tilde{T}x + \beta \tilde{T}z\ (\forall x,\ z \in X,\ \alpha,\ \beta \in \K)$である．
+		また$\tilde{T}$は有界な線型作用素である．なぜなら，任意に$x \in X$と$x$への収束列$x_n \in X_0\ (n = 1,2,\cdots)$を取れば，
+		任意の$\epsilon > 0$に対し或る$K \in \N$が存在して全ての$k > K$について
+		\begin{align}
+			\Norm{\tilde{T}x}{Y} < \Norm{Tx_n}{Y} + \epsilon, \quad \Norm{x}{X} < \Norm{x_n}{X} + \epsilon/\Norm{T}{}
+		\end{align}
+		が成り立つようにできるから，この下で
+		\begin{align}
+			\Norm{\tilde{T}x}{Y} < \Norm{Tx}{Y} + \epsilon < \Norm{T}{} \Norm{x}{X} + 2\epsilon
+		\end{align}
+		となり$\Norm{\tilde{T}}{} \leq \Norm{T}{}$が判るからである．さらに
+		\begin{align}
+			\Norm{\tilde{T}}{} = \sup{\substack{x \in X \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
+			\geq \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
+			= \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{Tx}{Y}} = \Norm{T}{}
+		\end{align}
+		も成り立つから結局$\Norm{\tilde{T}}{} = \Norm{T}{}$であると判る．以上より
+		任意の有界線型作用素$T$がノルムを変えないまま或る有界線型作用素$\tilde{T}$に拡張されることが示された．
+		拡張が一意であることは$X_0$が$X$で稠密であることと$T$の連続性による．
+		\QED
+\end{prf}
+
+\begin{thm}[射影定理]
+\end{thm}
 \end{qst}

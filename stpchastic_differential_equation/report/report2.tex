@@ -1,5 +1,5 @@
 \section{10/11}
-	基礎の確率空間を$(\Omega,\mathcal{F},\mu)$とする．係数体を$\R$として考えると，
+	基礎におく確率空間を$(\Omega,\mathcal{F},\mu)$とする．係数体を$\R$として考えると，
 	ノルム空間$\Lp{2}{\Omega,\mathcal{F},\mu}$は
 	\begin{align}
 		\inprod<[f],[g]>_{\Lp{2}{\mathcal{F},\mu}} \coloneqq \int_{\Omega} f(x)g(x)\ \mu(dx) \quad \left( [f],[g] \in \Lp{2}{\Omega,\mathcal{F},\mu} \right)
@@ -14,7 +14,8 @@
 		\int_{\Omega} f(x)g(x)\ \mu(dx) = \int_{\Omega \backslash (E \cup F)} f(x)g(x)\ \mu(dx)
 		= \int_{\Omega \backslash (E \cup F)} f'(x)g'(x)\ \mu(dx) = \int_{\Omega} f'(x)g'(x)\ \mu(dx)
 	\end{align}
-	が成り立つからである．また内積の公理を満たすことも次のように示される．
+	が成り立つからである．二乗可積分な関数を扱っているから上式中の積分は全て有限確定であり，つまり$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F},\mu}}$
+	が実数値として確定している．また内積の公理を満たすことも次のように示される．
 	\begin{description}
 		\item[正値性] 
 			任意の$[f] \in \Lp{2}{\Omega,\mathcal{F},\mu}$に対して，ノルム$\Norm{[f]}{\Lp{2}{\mathcal{F},\mu}}$との対応から
@@ -32,7 +33,7 @@
 			\begin{align}
 				\inprod<[f],[g] + [h]>_{\Lp{2}{\mathcal{F},\mu}} &= \inprod<[f],[g + h]>_{\Lp{2}{\mathcal{F},\mu}} \\
 				&= \int_{\Omega} f(x)(g(x) + h(x))\ \mu(dx) \\
-				&= \int_{\Omega} f(x)g(x)\ \mu(dx) + \int_{\Omega} f(x)h(x)\ \mu(dx) \\
+				&= \int_{\Omega} f(x)g(x)\ \mu(dx) + \int_{\Omega} f(x)h(x)\ \mu(dx) && (\scriptsize\because \mbox{$fg$も$fh$も可積分である．}) \\
 				&= \inprod<[f],[g]>_{\Lp{2}{\mathcal{F},\mu}} + \inprod<[f],[h]>_{\Lp{2}{\mathcal{F},\mu}}, \\
 				\inprod<\alpha [f],[g]>_{\Lp{2}{\mathcal{F},\mu}} 
 				&= \inprod<[\alpha f],[g]>_{\Lp{2}{\mathcal{F},\mu}} \\
@@ -52,7 +53,7 @@
 	\begin{align}
 		\Lp{2}{\Omega, \mathcal{G},\mu} \ni \inprod<g> \longmapsto [g] \in \Lp{2}{\Omega, \mathcal{F},\mu}
 	\end{align}
-	によって$\Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に埋め込まれ，
+	によって$\Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に等長に埋め込まれ，
 	$\Lp{2}{\Omega, \mathcal{G},\mu}$の完備性から埋め込まれた部分集合は$\Lp{2}{\Omega, \mathcal{F},\mu}$の閉部分空間となる．
 	この部分集合を$\Lp{2}{\Omega, \mathcal{G},\mu}$と同一視し，
 	\begin{align}
@@ -278,4 +279,55 @@
 				ということになるので$\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} = \cexp{f}{\mathcal{H}}$であることが示された.
 		\end{description}
 		\QED
+	\end{prf}
+	
+	レポート問題2[C3]と[C4]中の命題より，条件付き期待値が$\Lp{2}{\Omega,\mathcal{F},\mu}$からその部分空間($\Lp{2}{\Omega,\mathcal{G},\mu}$と同一視)への
+	線型作用素であることが示された．H\Ddot{o}lderの不等式の不等式により$f \in \Lp{2}{\Omega,\mathcal{F},\mu}$は(代表元の関数が)可積分関数であるから
+	$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$であり，すなわち$\Lp{2}{\Omega,\mathcal{F},\mu}$は$\Lp{1}{\Omega,\mathcal{F},\mu}$の部分空間であると判る．
+	同様に$\Lp{2}{\Omega,\mathcal{G},\mu}$は$\Lp{1}{\Omega,\mathcal{G},\mu}$の部分空間であるから，条件付き期待値は
+	$\Lp{1}{\Omega,\mathcal{F},\mu}$から$\Lp{1}{\Omega,\mathcal{G},\mu}\ $(埋め込まれた部分空間と同一視している)への線型作用素と見ることができる．
+	次に考えることは，線型作用素として見た条件付き期待値の拡張である．
+	条件付き期待値が$\Lp{1}{\Omega,\mathcal{F},\mu}$から$\Lp{1}{\Omega,\mathcal{G},\mu}$への作用素として有界であり，更に
+	定義域$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$において稠密であるならば拡張は可能となる．
+	
+	\begin{lem}[条件付き期待値の有界性]
+		条件付き期待値について次が成り立つ:
+		\begin{align}
+			\sup{\substack{f \in \Lp{2}{\Omega,\mathcal{G},\mu} \\ f \neq 0}}{\frac{ \Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}} }{ \Norm{f}{\Lp{1}{\mathcal{F},\mu}} }} \leq 1.
+		\end{align}
+	\end{lem}
+	\begin{prf}
+		$f,\  \cexp{f}{\mathcal{G}}$を代表元の関数として扱えば次のように計算できる．
+		\begin{align}
+			\Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F},\mu}} &= \int_\Omega \cexp{f}{\mathcal{G}}(\omega)\ \mu(dx) \\
+			&= \int_\Omega \cexp{f}{\mathcal{G}}(\omega) \defunc_{\left(\cexp{f}{\mathcal{G}} \geq 0\right)}(\omega) 
+				+ \cexp{f}{\mathcal{G}}(\omega) \defunc_{\left(\cexp{f}{\mathcal{G}} < 0\right)}(\omega)\ \mu(dx) \\
+			&= \int_\Omega f(\omega) \defunc_{\left(\cexp{f}{\mathcal{G}} \geq 0\right)}(\omega) + f(\omega) \defunc_{\left(\cexp{f}{\mathcal{G}} < 0\right)}(\omega)\ \mu(dx) 
+				&& (\scriptsize\because \mbox{レポート問題2[C2]}) \\
+			&\leq \int_\Omega |f(\omega)| \defunc_{\left(\cexp{f}{\mathcal{G}} \geq 0\right)}(\omega) + |f(\omega)| \defunc_{\left(\cexp{f}{\mathcal{G}} < 0\right)}(\omega)\ \mu(dx) \\
+			&= \Norm{f}{\Lp{1}{\mathcal{F},\mu}}.
+		\end{align}
+		\QED
+	\end{prf}
+	
+	\begin{thm}[条件付き期待値の拡張]
+		定義域を$\Lp{2}{\Omega,\mathcal{F},\mu}$としている条件付き期待値を，$\Lp{1}{\Omega,\mathcal{F},\mu}$を定義域とする有界線型作用素に
+		(作用素ノルムを変えずに)一意に拡張することができる．つまりこの拡張された作用素を$\tcexp{\cdot}{\mathcal{G}}$と表示すれば
+		\begin{align}
+			\Lp{1}{\Omega,\mathcal{F},\mu} \ni f \longmapsto \tcexp{f}{\mathcal{G}} \in \Lp{1}{\Omega,\mathcal{G},\mu}
+		\end{align}
+		が有界な線型作用素となり，更にC1$\sim$C6が$\mathrm{L}^2$を$\mathrm{L}^1$に置き換えて成り立つ．
+	\end{thm}
+	\begin{prf}	
+		定理の主張する拡張が可能であることを示すには，$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密なことをいえばよい．
+		任意の$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して，
+		\begin{align}
+			f_n(x) \coloneqq f(x) \defunc_{|f| \leq n} (x) \quad (\forall x \in \Omega,\ n=1,2,3,\cdots)
+		\end{align}
+		とおけば$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$となり，
+		関数列として$f$に各点収束しているから，Lebesgueの収束定理より
+		\begin{align}
+			\lim_{n \to \infty} \Norm{f_n - f}{\Lp{1}{\mathcal{F},\mu}} = 0
+		\end{align}
+		が成り立つ．従って$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密であることが示された．
 	\end{prf}
