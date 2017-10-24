@@ -493,4 +493,76 @@ $M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加�
 
 \begin{thm}[射影定理]
 \end{thm}
+
+\begin{prf}\mbox{}\\
+	\begin{description}
+	\item[射影の存在]
+	$f \in H \backslash C$として
+	\begin{align}
+		\delta \coloneqq \inf{h \in C}{\Norm{f - h}{}}
+	\end{align}
+	とおく．$C$が閉集合で$f$が$C$の外にあるから$\delta > 0$となる．
+	下限の性質から$h_n \in C\ (n = 1,2,3,\cdots)$を取って
+	\begin{align}
+		\delta = \lim_{n \to \infty}\Norm{f - h_n}{}
+	\end{align}
+	となるようにできるから，任意の$\epsilon > 0$に対して或る$N \in \N$が存在して
+	$n> N$ならば$\Norm{f - h_n}{}^2 < \delta + \epsilon/4$が成り立つ．この$N$に対し
+	$n,m > N$ならば，内積空間の中線定理と$(h_n + h_m)/2 \in C$であることにより
+	\begin{align}
+		\Norm{h_n - h_m}{}^2 &= 2\left( \Norm{f - h_m}{}^2 + \Norm{f - h_n}{}^2 \right) - \Norm{2f - (h_n + h_m)}{}^2 \\
+		&= 2\left( \Norm{f - h_m}{}^2 + \Norm{f - h_n}{}^2 \right) - 4\Norm{f - \frac{h_n + h_m}{2}}{}^2 \\
+		&< 2\delta + \epsilon - 4\delta = \epsilon
+	\end{align}
+	とできるから$(h_n)_{n=1}^{\infty}$は$C$のCauchy列であると判る．$H$がHilbert空間であり$C$が$H$で閉だから，
+	$(h_n)_{n=1}^{\infty}$の極限$y \in H$が存在し$y \in C$である．
+	\begin{align}
+		\left| \delta - \Norm{f - y}{} \right| 
+		\leq \left| \delta - \Norm{f - h_n}{} \right| + \left| \Norm{f - h_n}{} - \Norm{f - y}{} \right|
+		\leq \left| \delta - \Norm{f - h_n}{} \right| + \Norm{h_n - y}{}
+		\longrightarrow 0 \quad (n \longrightarrow \infty)
+	\end{align}
+	によって$\delta = \Norm{f - y}{}$が成り立つこと，すなわち射影の存在が示された．
+	$f \in C$の場合は$f$が自身の射影である．
+
+	\item[射影の一意性]
+		$z \in C$もまた$\delta = \Norm{f - z}{}$を満たすとすれば，$C$の凸性により
+		\begin{align}
+			2 \delta \leq 2\Norm{f - \frac{y + z}{2}}{} \leq \Norm{f - y}{} + \Norm{f - z}{} = 2\delta
+		\end{align}
+		が成り立つから，中線定理より
+		\begin{align}
+			\Norm{y - z}{}^2 = 2\left( \Norm{f - z}{}^2 + \Norm{f - y}{}^2 \right) - 4\Norm{f - \frac{y + z}{2}}{}^2 = 0
+		\end{align}
+		となって$y = z$が判る．すなわち$f$の射影はただ一つに決まる．
+	
+	\item[$C$が閉部分空間の場合]
+		$f \in H \backslash C$に対して$f$の$C$への射影を$y \in C\ $(存在は$C$が凸の場合と全く同様に示される．)
+		とする．($f \in C$の場合は$y = f$である．)或る$h \in C$に対して
+		\begin{align}
+			\inprod<f -y,\ h> \neq 0
+		\end{align}
+		となると仮定すれば($f \neq y$より$h \neq 0$)，$C$の元$\hat{y} \coloneqq y + \left(\inprod<f - g,h>/\Norm{h}{}^2\right)h$
+		に対して
+		\begin{align}
+			\Norm{f - \hat{y}}{}^2 
+			&= \inprod<f - y - \frac{\inprod<f - g,h>}{\Norm{h}{}^2}h,\ f - y - \frac{\inprod<f - g,h>}{\Norm{h}{}^2}h> \\
+			&= \Norm{f-y}{}^2 - \frac{|\inprod<f - g,h>|^2}{\Norm{h}{}^2}
+			&< \Norm{f-y}{}^2
+		\end{align}
+		が成り立つから$y$が射影であることに反する．従って射影$y$に対しては
+		\begin{align}
+			\inprod<f -y,\ h> \neq 0 \quad (\forall h \in C) \label{eq:projection}
+		\end{align}
+		が成り立つ．逆に$y \in C$に対して式(\refeq{eq:projection})が成り立っているとすれば
+		$y$が$f$の射影であることも示される．任意の$h \in C$に対して
+		\begin{align}
+			\Norm{f - h}{}^2 &= \inprod<f - y + y - h,\ f - y + y - h> \\
+			&= \Norm{f - y}{}^2 + 2 \Re{\inprod<f - y,\ y - h>} + \Norm{y - h}{}^2 \\
+			&= \Norm{f - y}{}^2 + \Norm{y - h}{}^2 \\
+			&\geq \Norm{f - y}{}^2
+		\end{align}
+		となることにより$\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}$であることが示された．
+	\end{description}
+\end{prf}
 \end{qst}
