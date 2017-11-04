@@ -1,0 +1,327 @@
+\section{10/25}
+	確率空間を$(\Omega,\mathcal{F},\operatorname{P})$とし，以下でマルチンゲールを定義する．集合$I$によって確率過程の時点を表現し，
+	以降でこれは$[0,\infty)$や$\{0,,1,\cdots,n\}$など実数の区間や高々可算集合を指すものと考え，
+	$I$が高々可算集合の場合は離散位相，$\R$の区間の場合は相対位相を考える．また扱う確率変数は全て実数値で考える．
+	\begin{itembox}[l]{}
+		\begin{dfn}[フィルトレーション]
+			$\mathcal{F}$の部分$\sigma$-加法族の部分系$\left\{\ \mathcal{F}_\alpha\quad |\quad \alpha \in I\ \right\}$
+			がフィルトレーション(filtration)であるとは，任意の$\alpha,\beta \in I$に対して$\alpha \leq \beta$ならば
+			$\mathcal{F}_\alpha \subset \mathcal{F}_\beta$の関係をもつことで定義する．
+		\end{dfn}
+	\end{itembox}
+	
+	マルチンゲールを定義する前に同値類に対して順序を定める．
+	$(\Omega,\mathcal{F},\operatorname{P})$上の可測$\mathcal{F}/\borel{\R}$関数の全体を$\mathcal{M}$，
+	$\mathcal{M}$をa.s.で等しいものにまとめた商空間を$M$と表す．$[f],[g] \in M$に対して
+	\begin{align}
+		\mbox{$f \leq g\ $P-a.s.かつそのときに限り$[f] \leq [g]$}
+	\end{align}
+	として関係''$\leq$''(記号は$\mathcal{M}$におけるものと同じであるが)を定義すればこれは$M$において順序となる．
+	この定義がwell-defined，つまり代表元の取り方に依存しないことは
+	$(f' > g') \subset (f \neq f') \cup (f > g) \cup (g \neq g')$
+	\footnote{$(f > g) \coloneqq \left\{\ x \in \Omega\quad |\quad f(x) > g(x)\ \right\}$}
+	かつ右辺が零集合であることにより明確であるが，順序関係としての定義を満たしていることは以下で判る．
+	\begin{itemize}
+		\item $f=f$により$[f] \leq [f]$，
+		\item $[f] \leq [g]$かつ$[g] \leq [f]$なら$(f > g)$と$(g > f)$はP-零集合だから$[f]=[g]$，
+		\item $[f] \leq [g]$かつ$[g] \leq [h]$なら$(f > h) \subset (f > g) \cup (g > h)$により$[f]\leq[h]$.
+	\end{itemize}
+	
+	次にマルチンゲールを定義する．確率変数とその同値類の表記は区別しないが，大体は文脈から判断するべきことであると留意しておく．
+	\begin{itembox}[l]{}
+		\begin{dfn}[マルチンゲール]
+			$(\Omega,\mathcal{F},\operatorname{P})$上の実確率変数の族
+			$(M_\alpha)_{\alpha \in I} \subset \semiLp{p}{\mathcal{F},\operatorname{P}}\ (p \geq 1)$が
+			次の四条件を満たすとき，これを$\mathrm{L}^p$-劣マルチンゲール($\mathrm{L}^p$-submartingale)という．
+			\begin{description}
+				\item[(M.1)] $\forall \alpha \in I$に対し$M_\alpha$は可測$\mathcal{F}_\alpha/\borel{\R}$である．
+				\item[(M.2)] 任意の$\alpha \leq \beta\ (\alpha,\beta \in I)$に対し$\cexp{M_\beta}{\mathcal{F}_\alpha} \geq M_\alpha\ $({\scriptsize 同値類に対する順序関係})が成り立つ．
+				\item[(M.3)] 各$\omega \in \Omega$において，任意の$\alpha \in I$で左極限が存在する：$\exists \lim\limits_{\beta \uparrow \alpha} M_\beta(\omega) \in \R.$
+				\item[(M.4)] 各$\omega \in \Omega$において，任意の$\alpha \in I$で右連続である：$M_\alpha(\omega) = \lim\limits_{\beta \downarrow \alpha} M_\beta(\omega).$
+			\end{description}
+			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_\alpha)_{\alpha \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
+			劣かつ優マルチンゲールであるものをマルチンゲールという．
+		\end{dfn}
+	\end{itembox}
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[停止時刻]
+			$\Omega$上の関数で次を満たすものを($(\mathcal{F}_\alpha)$-)停止時刻(stopping time)という:
+			\begin{align}
+				\tau:\Omega \longrightarrow I\quad \mathrm{s.t.}\quad \forall \alpha \in I,\ (\tau \leq \alpha) \in \mathcal{F}_\alpha.
+			\end{align}
+		\end{dfn}
+	\end{itembox}
+	
+	\begin{itembox}[l]{}
+		\begin{rem}[停止時刻は可測]
+			上で定義した$\tau$は可測$\mathcal{F}/\borel{I}$である．
+		\end{rem}
+	\end{itembox}
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$I$が$\R$の区間である場合]
+				任意の$\alpha \in I$に対して$I_\alpha \coloneqq (-\infty,\alpha) \cap I$は$I$における(相対の)開集合であり
+				$\tau^{-1}(I_\alpha) = (\tau \leq \alpha) \in \mathcal{F}_\alpha \subset \mathcal{F}$が成り立つ．
+				つまり
+				\begin{align}
+					\left\{\ I_\alpha\quad |\quad \alpha \in I\ \right\} \subset \left\{\ A \in \borel{I}\quad |\quad \tau^{-1}(A) \in \mathcal{F}\ \right\}
+					\label{eq:stopping_time_mble}
+				\end{align}
+				が成り立ち，左辺の$I_\alpha$の形の全体は$\borel{I}$を生成するから$\tau$の可測性が証明された．
+				
+			\item[$I$が高々可算集合である場合]
+				先ず$\alpha \in I$に対して$(\tau < \alpha)$が$\mathcal{F}_\alpha$に属することを示す．
+				$\alpha$に対して直前の元$\beta \in I$が存在するか$\alpha$が$I$の最小限である場合，前者なら$(\tau < \alpha) = (\tau \leq \beta)$
+				となり後者なら$(\tau < \alpha) = \emptyset$となるからどちらも$\mathcal{F}_\alpha$に属する．
+				そうでない場合は$\alpha - 1/n < x < \alpha$を満たす点列$x_n \in I\ (n=1,2,3,\cdots)$を取れば，
+				$(\tau < \alpha) = \cap_{n=1}^{\infty}(\tau \leq \alpha - 1/n)$
+				により$(\tau < \alpha) \in \mathcal{F}_\alpha$が判る．以上の準備の下で
+				任意の$\alpha \in I$に対して$\tau^{-1}(\{\alpha\}) = (\tau \leq \alpha) - (\tau < \alpha) \in \mathcal{F}_\alpha$が成り立ち，
+				更に可算集合$I$には離散位相が入っているから任意の$A \in \borel{I}$は
+				一点集合の可算和で表現できて，$\tau^{-1}(A) \in \mathcal{F}$であると証明された．		
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[停止時刻の再定義]
+			今$\tau$の終集合は$I$であるが，$I \rightarrow \R$の単射$i$を用いて$\tau^* \coloneqq i \circ \tau$とすれば，
+			\begin{align}
+				\borel{I}=\left\{\ A \cap I\quad |\quad A \in \borel{\R}\ \right\} = \left\{\ i^{-1}(A)\quad |\quad A \in \borel{\R}\ \right\}
+			\end{align}
+			により$i$が可測$\borel{I}/\borel{\R}$であるから合成写像$\tau^*$は可測$\mathcal{F}/\borel{\R}$となる．以降は
+			この$\tau^*$を停止時刻$\tau$と表記して扱うことにする．
+		\end{dfn}
+	\end{itembox}
+	
+	定数関数は停止時刻となる．$\tau$が$\Omega$上の定数関数なら$(\tau \leq \alpha)$は空集合か全体集合にしかならないからである．
+	また$\sigma,\tau$を$I$に値を取る停止時刻とすると
+	$\sigma \vee \tau$と$\sigma \wedge \tau$も停止時刻となる．
+	\begin{align}
+		\begin{cases}
+			(\sigma \wedge \tau \leq \alpha) = (\sigma \leq \alpha) \cup (\tau \leq \alpha), \\
+			(\sigma \vee \tau \leq \alpha) = (\sigma \leq \alpha) \cap (\tau \leq \alpha)
+		\end{cases}
+		\quad ,(\forall \alpha \in I)
+	\end{align}
+	が成り立つからである．
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[停止時刻の前に決まっている事象系]
+			$\tau$を$I$に値を取る停止時刻とする．$\tau$に対し次の集合系を定義する．
+			\begin{align}
+				\mathcal{F}_\tau \coloneqq \left\{\ A \in \mathcal{F}\quad |\quad (\tau \leq \alpha) \cap A \in \mathcal{F}_\alpha,\ \forall \alpha \in I\ \right\}.
+			\end{align}
+		\end{dfn}
+	\end{itembox}
+	\begin{itembox}[l]{}
+		\begin{prp}[停止時刻の性質]
+			$\sigma, \tau$を$I$に値を取る停止時刻であるとする．
+			\begin{description}
+				\item[(1)] $\mathcal{F}_\tau$は$\sigma$-加法族である．
+				\item[(2)] 或る$\alpha \in I$に対して$\tau(\omega) = \alpha\ (\forall \omega \in \Omega)$なら$\mathcal{F}_\alpha = \mathcal{F}_\tau$.
+				\item[(3)] $\sigma(\omega) \leq \tau(\omega)\ (\forall \omega \in \Omega)$ならば$\mathcal{F}_\sigma \subset \mathcal{F}_\tau$.
+				\item[(4)] $\mathcal{F}_{\sigma \wedge \tau} = \mathcal{F}_\sigma \cap \mathcal{F}_\tau$.
+				\item[(5)] $\mathcal{F}_{\sigma \vee \tau} = \mathcal{F}_\sigma \vee \mathcal{F}_\tau$.
+			\end{description}
+		\end{prp}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 停止時刻の定義より$\Omega \in \mathcal{F}_\tau$である．また$A \in \mathcal{F}_\tau$なら
+				$A^c \cap (\tau \leq \alpha) = (\tau \leq \alpha) - A \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha$より
+				$A^c \in \mathcal{F}_\tau$となる．可算個の$A_n \in \mathcal{F}_\tau$については
+				$\cup_{n=1}^{\infty} A_n \cap (\tau \leq \alpha) = \cup_{n=1}^{\infty} \left(A_n \cap (\tau \leq \alpha)\right) \in \mathcal{F}_\alpha$
+				により$\cup_{n=1}^{\infty} A_n \in \mathcal{F}_\tau$が成り立つ．
+			
+			\item[(2)] $A \in \mathcal{F}_\alpha$なら任意の$\beta \in I$に対して
+				\begin{align}
+					A \cap (\tau \leq \beta) =
+					\begin{cases}
+						A & \alpha \leq \beta \\
+						\emptyset & \alpha > \beta
+					\end{cases}
+				\end{align}
+				が成り立つから，いずれの場合も$A \in \mathcal{F}_\beta$となり$A \subset \mathcal{F}_\tau$が成り立つ．
+				逆に$A \in \mathcal{F}_\tau$のとき，$A = A \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha$
+				が成り立ち$\mathcal{F}_\alpha = \mathcal{F}_\tau$が示された．
+				
+			\item[(3)] $A \in \mathcal{F}_\sigma$なら任意の$\alpha \in I$に対して
+				\begin{align}
+					A \cap (\tau \leq \alpha) = A \cap (\sigma \leq \alpha) \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha
+				\end{align}
+				が成り立つから$A \in \mathcal{F}_\tau$となる．
+			
+			\item[(4)] $\sigma \wedge \tau$が停止時刻であることと(3)より
+				$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\sigma$と$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\tau$が判る．
+				また$A \in \mathcal{F}_\sigma \cap \mathcal{F}_\tau$に対し
+				\begin{align}
+					A \cap (\sigma \wedge \tau \leq \alpha) = [A \cap (\sigma \leq \alpha)] \bigcup [A \cap (\tau \leq \alpha)] \in \mathcal{F}_\alpha \quad (\forall \alpha \in I)
+				\end{align}
+				より$A \in \mathcal{F}_{\sigma \wedge \tau}$も成り立つ．
+			
+			\item[(5)] 
+				先ず$\sigma \vee \tau$が停止時刻であることと(3)より
+				$\mathcal{F}_\sigma \subset \mathcal{F}_{\sigma \wedge \tau}$と$\mathcal{F}_\tau \subset \mathcal{F}_{\sigma \wedge \tau}$が判る．
+				逆に$A \in \mathcal{F}_{\sigma \wedge \tau}$に対して
+				
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{prp}[停止時刻と条件付き期待値]
+			$X \in \Lp{1}{\mathcal{F},\operatorname{P}}$と
+			$I$に値を取る停止時刻$\sigma, \tau$に対し以下が成立する．
+			\begin{description}
+				\item[(1)] $\cexp{\defunc_{(\sigma > \tau)} X}{\mathcal{F}_\tau} = \cexp{\defunc_{(\sigma > \tau)} X}{\mathcal{F}_{\sigma \wedge \tau}}$.
+				\item[(2)] $\cexp{\defunc_{(\sigma \geq \tau)} X}{\mathcal{F}_\tau} = \cexp{\defunc_{(\sigma \geq \tau)} X}{\mathcal{F}_{\sigma \wedge \tau}}$.
+				\item[(3)] $\cexp{\cexp{X}{\mathcal{F}_\tau}}{\mathcal{F}_\sigma} = \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}$.
+			\end{description}
+		\end{prp}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $\defunc_{(\sigma > \tau)}$が可測$\mathcal{F}_{\sigma \wedge \tau}/\borel{\R}$であることを示す．
+				$A \in \borel{\R}$に対し
+				\begin{align}
+					\defunc_{(\sigma > \tau)}^{-1}(A) = 
+					\begin{cases}
+						\Omega & (0 \in A,\ 1 \in A) \\
+						(\sigma > \tau) & (0 \notin A,\ 1 \in A) \\
+						(\sigma > \tau)^c & (0 \in A,\ 1 \notin A) \\
+						\emptyset & (0 \notin A,\ 1 \notin A)
+					\end{cases}
+				\end{align}
+				と表現できるから，示すことは任意の$\alpha \in I$に対して
+				\begin{align}
+					(\sigma > \tau) \cap (\sigma \wedge \tau \leq \alpha) \in \mathcal{F}_\alpha
+				\end{align}
+				が成立することである．これが示されれば
+				\begin{align}
+					(\sigma > \tau)^c \cap (\sigma \wedge \tau \leq \alpha)
+					= (\sigma \wedge \tau \leq \alpha) \backslash \left[(\sigma > \tau) \cap (\sigma \wedge \tau \leq \alpha)\right] \in \mathcal{F}_\alpha
+				\end{align}
+				も成り立ち，更に$(\sigma > \tau)^c = (\sigma \leq \tau)$であることと$\sigma,\tau$の対等性により$\defunc_{(\sigma \geq \tau)}$もまた
+				可測$\mathcal{F}_{\sigma \wedge \tau}/\borel{\R}$であることが判る．目的の式は次が成り立つことにより示される．
+				\begin{align}
+					(\sigma > \tau) \cap (\sigma \wedge \tau \leq \alpha)
+					&= (\sigma > \tau) \cap (\sigma \leq \alpha) + (\sigma > \tau) \cap (\sigma > \alpha) \cap (\tau \leq \alpha) \\
+					&= \left[\bigcup_{\substack{\beta \in \Q \cap I \\ \beta \leq \alpha}} (\sigma > \beta)\cap(\tau \leq \beta)\right]\cap(\sigma \leq \alpha) + (\sigma > \alpha) \cap (\tau \leq \alpha)
+					\label{eq:stopping_time_conditional_expectation_1} \\
+					&\in \mathcal{F}_\alpha.
+				\end{align}
+			
+			\item[第二段] 一般の実確率変数$Y$と停止時刻$\tau$に対して
+				\begin{itemize}
+					\item $Y$が可測$\mathcal{F}_\tau/\borel{\R}$$\quad \Leftrightarrow \quad$任意の$\alpha \in I$に対し$Y \defunc_{\tau \leq \alpha}$が可測$\mathcal{F}_\alpha/\borel{\R}$
+				\end{itemize}
+				が成り立つことを示す．
+				\begin{description}
+					\item[$\Rightarrow$について]
+						$Y$の単関数近似列$(Y_n)_{n=1}^{\infty}$の一つ一つは$Y_n = \sum_{j=1}^{N_n}a_{j,n}\defunc_{A_{j,n}}\ (A_{j,n} \in \mathcal{F}_\tau)$
+						の形で表現できる．$\alpha \in I$と$A \in \mathcal{F}_\tau$の指示関数$\defunc_{A}$に対し
+						\begin{align}
+							\left( \defunc_A\defunc_{(\tau \leq \alpha)} \right)^{-1}(E) =
+							\begin{cases}
+								\Omega & (0 \in E,\ 1 \in E) \\
+								A \cap (\tau \leq \alpha) & (0 \notin E,\ 1 \in E) \\
+								[A \cap (\tau \leq \alpha)]^c & (0 \in E,\ 1 \notin E) \\
+								\emptyset & (0 \notin E,\ 1 \notin E)
+							\end{cases}
+							\quad (\forall E \in \borel{\R})
+						\end{align}
+						となり，$A \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha$より$\defunc_A\defunc_{(\tau \leq \alpha)}$が
+						可測$\mathcal{F}_\alpha/\borel{\R}$であると判る．$(Y_n)_{n=1}^{\infty}$は$Y$に各点収束していくから
+						$Y$も可測$\mathcal{F}_\alpha/\borel{\R}$となり，$\alpha \in I$の任意性から''$\Rightarrow$''が示された．
+						
+					\item[$\Leftarrow$について]
+						任意の$E \in \borel{\R}$に対して
+						\begin{align}
+							\left\{\ \omega \in \Omega\quad |\quad Y(\omega)\defunc_{(\tau \leq \alpha)}(\omega) \in E\ \right\}
+							= \begin{cases}
+								Y^{-1}(E) \cap (\tau \leq \alpha) & (0 \notin E) \\
+								Y^{-1}(E) \cap (\tau \leq \alpha) + (\tau \leq \alpha)^c & (0 \in E)
+							\end{cases}
+						\end{align}
+						がいずれも$\mathcal{F}_\alpha$に属する．特に下段について$(\tau \leq \alpha)^c \in \mathcal{F}_\alpha$
+						より$Y^{-1}(E) \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha$となるから，結局
+						$Y^{-1}(E) \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha \ (\forall E \in \borel{\R})$が成り立つ．
+						$\alpha \in I$の任意性から$Y^{-1}(E) \in \mathcal{F}_\tau\ (\forall E \in \borel{\R})$が示された．
+				\end{description}
+			
+			\item[第三段]
+				(1)の式を示す．第一段と性質$\tilde{\mathrm{C}}$5より
+				\begin{align}
+					\cexp{\defunc_{(\sigma > \tau)}X}{\mathcal{F}_\tau} = \defunc_{(\sigma > \tau)} \cexp{X}{\mathcal{F}_\tau}
+				\end{align}
+				が成り立つから，あとは右辺が(関数とみて)可測$\mathcal{F}_{\sigma \wedge \tau}/\borel{\R}$であればよく，このためには
+				第二段の結果より任意の$\alpha \in I$に対して$\cexp{X}{\mathcal{F}_\tau}\defunc_{(\sigma > \tau)}\defunc_{(\sigma \wedge \tau \leq \alpha)}$が
+				可測$\mathcal{F}_\alpha/\borel{\R}$であることを示せばよい．
+				式(\refeq{eq:stopping_time_conditional_expectation_1})を使えば
+				\begin{align}
+					\defunc_{(\sigma > \tau)}\defunc_{(\sigma \wedge \tau \leq \alpha)}
+					= \sup{\substack{\beta \in \Q \cap I \\ \beta \leq \alpha}}{\defunc_{(\sigma > \beta)}\defunc_{(\tau \leq \beta)}\defunc_{(\sigma \leq \alpha)}}
+						+ \defunc_{(\sigma > \alpha)} \defunc_{(\tau \leq \alpha)}
+				\end{align}
+				が成り立つ．$\beta \leq \alpha$ならば，$\cexp{X}{\mathcal{F}_\tau}$が可測$\mathcal{F}_\tau/\borel{\R}$であることと第二段の結果より
+				$\cexp{X}{\mathcal{F}_\tau}\defunc_{(\tau \leq \beta)}$が可測$\mathcal{F}_\beta/\borel{\R}$すなわち可測$\mathcal{F}_\alpha/\borel{\R}$
+				となるから，これで$\cexp{X}{\mathcal{F}_\tau}\defunc_{(\sigma > \tau)}\defunc_{(\sigma \wedge \tau \leq \alpha)}$が可測$\mathcal{F}_\alpha/\borel{\R}$
+				であると判り$\defunc_{(\sigma > \tau)} \cexp{X}{\mathcal{F}_\tau}$が可測$\mathcal{F}_{\sigma \wedge \tau}/\borel{\R}$であることが示された．
+				以上で
+				\begin{align}
+					\cexp{\cexp{\defunc_{(\sigma > \tau)}X}{\mathcal{F}_\tau}}{\mathcal{F}_{\sigma \wedge \tau}}
+					= \cexp{\defunc_{(\sigma > \tau)} \cexp{X}{\mathcal{F}_\tau}}{\mathcal{F}_{\sigma \wedge \tau}}
+					= \defunc_{(\sigma > \tau)} \cexp{X}{\mathcal{F}_\tau}
+					= \cexp{\defunc_{(\sigma > \tau)}X}{\mathcal{F}_\tau}
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\cexp{\cexp{\defunc_{(\sigma > \tau)}X}{\mathcal{F}_\tau}}{\mathcal{F}_{\sigma \wedge \tau}}
+					= \defunc_{(\sigma > \tau)} \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}
+					= \cexp{\defunc_{(\sigma > \tau)}X}{\mathcal{F}_{\sigma \wedge \tau}}
+				\end{align}
+				と併せて(1)の式を得る．(2)の式も以上と同じ理由で成り立つ．
+				
+			\item[第四段]
+				(3)の式を示す．
+				\begin{align}
+					\cexp{\cexp{X}{\mathcal{F}_\tau}}{\mathcal{F}_\sigma}
+					&= \cexp{\cexp{X}{\mathcal{F}_\tau}\defunc_{(\sigma > \tau)}}{\mathcal{F}_\sigma}
+						+ \cexp{\cexp{X}{\mathcal{F}_\tau}\defunc_{(\sigma \leq \tau)}}{\mathcal{F}_\sigma} \\
+					&= \cexp{\cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}\defunc_{(\sigma > \tau)}}{\mathcal{F}_\sigma}
+						+ \cexp{\cexp{X}{\mathcal{F}_\tau}\defunc_{(\sigma \leq \tau)}}{\mathcal{F}_\sigma} && (\scriptsize\because\mbox{(1)}) \\
+					&= \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}\defunc_{(\sigma > \tau)}
+						+ \cexp{\cexp{X}{\mathcal{F}_\tau}\defunc_{(\sigma \leq \tau)}}{\mathcal{F}_{\sigma \wedge \tau}} && (\scriptsize\because\mbox{(2)}) \\
+					&= \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}\defunc_{(\sigma > \tau)} + \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}\defunc_{(\sigma \leq \tau)} \\
+					&= \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}.
+				\end{align}
+				(2)式を使った箇所では$X$を$\cexp{X}{\mathcal{F}_\tau}$に置き換え$\tau$と$\sigma$を入れ替えて適用した．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	$\tau$を停止時刻とし，$\tau(\Omega)$が高々可算集合である場合，実確率変数の族$(M_\alpha)_{\alpha \in I}$
+	に対して
+	\begin{align}
+		M_\tau \coloneqq \sum_{\alpha \in \tau(\Omega)}M_\alpha
+	\end{align}
+	とおく．全ての$\alpha \in \tau(\Omega)$について$M_\alpha$が可測$\mathcal{F}_\alpha/\borel{\R}$であるとき，
+	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$となる．なぜならば任意の$\alpha \in I$と$A \in \borel{\R}$に対して
+	\begin{align}
+		(M_\tau \in A) \cap (\tau \leq \alpha)
+		= \bigcup_{\substack{\beta \in \tau(\Omega) \\ \beta \leq \alpha}}(M_\beta \in A) \cap (\tau = \beta) \in \mathcal{F}_\alpha 
+	\end{align}
+	が成り立つからである．$M_\tau$の可測性を確認したところで次の定理を証明する．
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[任意抽出定理(その1)]
+			$I = \{\ 1,2,\cdots,n\ \}$とし，実確率変数の族$(M_\alpha)_{\alpha \in I}$が$\mathrm{L}^p$-劣マルチンゲールであるとする．
+			このとき$I$に値を取る停止時刻$\sigma$と$\tau$について次が成立する:
+			\begin{align}
+				\cexp{M_\tau}{\mathcal{F}_\sigma} \geq M_{\sigma \wedge \tau}.
+			\end{align}
+		\end{thm}
+	\end{itembox}
