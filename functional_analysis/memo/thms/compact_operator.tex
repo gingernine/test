@@ -1,0 +1,123 @@
+\section{コンパクト作用素}
+	係数体を$\C$，$X,Y$をノルム空間，$K$を$X \rightarrow Y$の線型写像($\mathscr{D}(K) = X$)とする．
+	以下では$X,Y$におけるノルムを$\Norm{\cdot}{X},\ \Norm{\cdot}{Y}$と表記し，
+	位相はこれらのノルムにより導入されるものと考える．
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[コンパクト作用素]
+			任意の有界部分集合$B \subset X$に対して$KB$が相対コンパクトとなるとき，
+			つまり$KB$の閉包$\closure{KB}$がコンパクトとなるとき，
+			$K$をコンパクト作用素(compact operator)という．
+		\end{dfn}
+	\end{itembox}
+	
+	\begin{itembox}[l]{}
+		\begin{lem}[コンパクト作用素となるための十分条件の一つ]
+			$B_1 \coloneqq \left\{\ x \in X\quad |\quad \Norm{x}{X} < 1\ \right\}$に対して$\closure{KB_1}$が
+			コンパクトであるなら$K$はコンパクト作用素となる．
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}
+		任意の有界集合$B \subset X$に対しては或る$\lambda$が取れて$B \subset \lambda B_1\ (= \left\{\ \lambda x\quad |\quad x \in B_1\ \right\})$
+		となるようにできる．$K(\lambda B_1)$の閉包がコンパクトとなるなら$KB$の閉包もコンパクトとなる(コンパクト集合の閉部分集合はコンパクトとなる)から，
+		$\closure{K(\lambda B_1)}$がコンパクトとなることを示せばよい．先ず
+		\begin{align}
+			\closure{K(\lambda B_1)} = \lambda \closure{KB_1}
+		\end{align}
+		が成り立つことを示す．$x \in \closure{K(\lambda B_1)}$に対しては点列$(x_n)_{n=1}^{\infty} \subset K(\lambda B_1)$が取れて
+		$\Norm{x_n - x}{X} \longrightarrow 0\ (n \longrightarrow \infty)$が成り立つ．
+		$y_n \coloneqq x_n/\lambda$とおけば$K$の線型性により$y_n \in KB_1$となり，
+		$\Norm{y_n - x/\lambda}{X}= \Norm{x_n - x}{X}/\lambda \longrightarrow 0\ (n \longrightarrow \infty)$
+		となるから$x/\lambda \in \closure{KB_1}$すなわち$x \in \lambda\closure{KB_1}$が判る．
+		逆に$x \in \lambda \closure{KB_1}$に対しては$x/\lambda \in \closure{KB_1}$となるから，
+		或る点列$(t_n)_{n=1}^{\infty} \subset KB_1$が存在して$\Norm{t_n - x/\lambda}{X} \longrightarrow 0\ (n \longrightarrow \infty)$
+		が成り立つ．$s_n = \lambda t_n$とおけば$K$の線型性により$s_n \in K(\lambda B_1)$となり，
+		$\Norm{s_n - x}{X}= \lambda \Norm{t_n - x/\lambda}{X} \longrightarrow 0\ (n \longrightarrow \infty)$
+		が成り立つから$x \in \closure{K(\lambda B_1)}$が判る．以上で$\closure{K(\lambda B_1)} = \lambda \closure{KB_1}$が示された．
+		$\closure{K(\lambda B_1)}$を覆う任意の開被覆$\cup_{\mu \in M}O_\mu\ $($M$は任意濃度)に対し
+		\begin{align}
+			\closure{KB_1} \subset \bigcup_{\mu \in M} \tfrac{1}{\lambda}O_\mu
+		\end{align}
+		が成り立ち\footnote{開集合$O_\mu$は$1/\lambda$でスケールを変えてもまた開集合となる．}，仮定より$\closure{KB_1}$はコンパクトであるから$M$から有限個の$\mu_i\ (i=1,\cdots,n)$を取り出して
+		\begin{align}
+			\closure{KB_1} \subset \bigcup_{i=1}^{n} \tfrac{1}{\lambda}O_{\mu_i}
+		\end{align}
+		とできる．従って$\closure{K(\lambda B_1)}$は$O_{\mu_1}\cup \cdots \cup O_{\mu_n}$で覆われることになるからコンパクトであると示された．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{lem}[コンパクト作用素であることの同値条件]
+			(1)$K$がコンパクトであることと，(2)$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対し点列$(Tx_n)_{n=1}^{\infty}$が
+				$\closure{(Tx_n)_{n=1}^{\infty}}$で収束する部分列を含むことは同値である．
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)$\Rightarrow$(2)]
+				$B = (x_n)_{n=1}^{\infty}$とおけば$B$は$X$において有界集合となるから$KB$は相対コンパクトである．
+				点列$(x_n)_{n=1}^{\infty}$は$\closure{KB}$の点列でもあるから，コンパクト性の一般論により
+				$(x_n)_{n=1}^{\infty}$は点列コンパクト，つまり収束部分列を持つ．
+			\item[(2)$\Rightarrow$(1)]
+				一般論より任意の有界集合$B \subset X$に対して$\closure{TB}$がコンパクトとなるための同値条件は
+				$\closure{TB}$が点列コンパクトとなることである．
+				このためには「$TB$が点列コンパクトなら$\closure{TB}$も点列コンパクトとなる」---(※)を示せばよい．
+				(※)が示されたとして，(2)を仮定すれば$TB$の任意の点列は$(x_n)_{n=1}^{\infty} \subset B$(有界)によって
+				$(Tx_n)_{n=1}^{\infty}$と表現できるから収束する部分列を持ち，(※)の主張と上の一般論により$\closure{TB}$はコンパクトとなる．
+				これより(※)を示す．$\closure{TB}$の任意の点列$(y_n)_{n=1}^{\infty}$に対して
+				$\Norm{y_n - z_n}{Y} < 1/n\ (n=1,2,\cdots)$を満たす$(z_n)_{n=1}^{\infty} \subset TB$が存在する．
+				部分列$(z_{n_k})_{k=1}^{\infty}$が$z \in TB$に収束するなら，任意の$\epsilon > 0$に対し
+				或る$K_1 \in \N$が取れて$k \geq K_1$ならば$\Norm{z - z_{n_k}}{Y} < \epsilon/2$を満たす．
+				更に或る$K_2 \in \N$が取れて$k \geq K_2$なら$1/n_k < \epsilon/2$も満たされ，$\forall k \geq \max{}{\{K_1,K_2\}}$
+				に対して
+				\begin{align}
+					\Norm{z - y_{n_k}}{Y} \leq \Norm{z - z_{n_k}}{Y} + \Norm{z_{n_k} - y_{n_k}}{Y} < \epsilon
+				\end{align}
+				が成り立つ．これで$(y_n)_{n=1}^{\infty}$が収束部分列$(y_{n_k})_{k=1}^{\infty}$を持つと示された．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{prp}[コンパクト作用素の空間・作用素の合成がコンパクトとなるための十分条件]\mbox{}
+			\begin{description}
+				\item[(1)] $B_c(X,Y) \coloneqq \left\{\ K:X \rightarrow Y\quad |\quad \mbox{$K$:コンパクト作用素}\ \right\}$
+					とおけば$B_c(X,Y)$は$B(X,Y)$の線型部分空間となる．
+				\item[(2)] $Z$をノルム空間とする．$A \in B(X,Y)$と$B \in B(Y,Z)$に対して$A$又は$B$がコンパクト作用素なら$BA$もまたコンパクト作用素となる．
+			\end{description}
+		\end{prp}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $B_1 \coloneqq \left\{\ x \in X \quad |\quad \Norm{x}{X} \leq 1\ \right\}$とおけば
+				任意の$K \in B_c(X,Y)$に対して$\closure{TB_1}$はコンパクトとなる．従って$TB_1$は有界で
+				\begin{align}
+					\infty > \sup{x \in B_1 \backslash \{0\}}{\Norm{Kx}{Y}} = \sup{0 < \Norm{x} \leq 1}{\Norm{Kx}{Y}}
+				\end{align}
+				が成り立ち，$K \in B(X,Y)$であると示された．次に$B_c(X,Y)$が線形空間であることを示す．
+				$K_1, K_2 \in B_c(X,Y)$と$\alpha \in \C$を任意に取り，前補助定理を使う．
+				補助定理によれば，任意の有界点列$(x_n)_{n=1}^{\infty} \subset X$に対して$(K_1x_n)_{n=1}^{\infty}$
+				は収束部分列$(K_1x_{n_k})_{k=1}^{\infty}$を持つ．この部分列$(n_k)_{k=1}^{\infty}$
+				に対して$(K_2x_{n_k})_{k=1}^{\infty}$もまた収束部分列$(K_2x_{n_{kl}})_{l=1}^{\infty}$
+				を持ち，$(K_1x_{n_{kl}})_{l=1}^{\infty}$もまた収束列であることに注意すれば
+				$\left( (K_1 + K_2)(x_{n_{kl}}) \right)_{l=1}^{\infty}$が収束部分列となるから
+				前補助定理より$K_1 + K_2$もコンパクト作用素となる．$K_1$に対して，$(\alpha K_1x_{n_k})_{k=1}^{\infty}$
+				もまた収束列であるから$\alpha K_1$もコンパクト作用素となる．以上で$B_c(X,Y)$が線形空間であると示された．
+			
+			\item[(2)]\mbox{}
+				\begin{description}
+					\item[$A$がコンパクト作用素である場合]
+						補助定理により，$X$の任意の点列$(x_n)_{n=1}^{\infty}$に対し$(Ax_n)_{n=1}^{\infty}$は収束部分列
+						$(Ax_{n_k})_{k=1}^{\infty}$を持つ．$B$の連続性により$(BAx_{n_k})_{k=1}^{\infty}$も
+						収束列となるから，再び補助定理を適用して$BA$がコンパクト作用素であると示される．
+					
+					\item[$B$がコンパクト作用素である場合]
+						任意の有界集合$S \subset X$に対して，$A$の有界性と併せて$AS$は有界となる．従って$\closure{BAS}$がコンパクトとなり
+						$BA$はコンパクト作用素であると示された．
+				\end{description}
+		\end{description}
+		\QED
+	\end{prf}
