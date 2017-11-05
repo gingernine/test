@@ -41,6 +41,7 @@
 			\end{description}
 			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_\alpha)_{\alpha \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
 			劣かつ優マルチンゲールであるものをマルチンゲールという．
+			\label{dfn:martingale}
 		\end{dfn}
 	\end{itembox}
 	
@@ -325,3 +326,43 @@
 			\end{align}
 		\end{thm}
 	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$\sigma \leq \tau$の場合]
+				$F_\alpha \coloneqq \defunc_{\sigma < \alpha \leq \tau}\ (\alpha \in I)$とおくと，
+				\begin{align}
+					(\sigma < \alpha \leq \tau) = (\sigma < \alpha) \cap (\alpha \leq \tau) = (\sigma \leq \alpha-1) \cap (\tau \leq \alpha-1)^c
+				\end{align}
+				より$F_\alpha$は可測$\mathcal{F}_{\alpha-1}/\borel{\R}$となる．$F_\alpha$を用いて
+				\begin{align}
+					N_\beta \coloneqq \sum_{\alpha=0}^{\beta-1} F_{\alpha+1}(M_{\alpha+1} - M_\alpha) \quad (\beta \in I)
+				\end{align}
+				として$(N_\beta)_{\beta \in I}$を定義すれば，これもまた$\mathrm{L}^p$-劣マルチンゲールとなる．今$I$は有限集合であるから
+				定義\ref{dfn:martingale}の条件(M.1)(M.2)を満たすことを確認すればよい．
+				\begin{description}
+					\item[(M.1)] 先ず$N_\beta$が可測$\mathcal{F}_\beta/\borel{\R}$であることを示す．
+						$N_\beta$を構成する級数の項のうち最も可測性が厳しいものは最終項$F_{\beta}(M_{\beta} - M_{\beta-1})$であり，
+						$M_\beta$も$F_{\beta}$も可測$\mathcal{F}_\beta/\borel{\R}$であるから$N_\beta$の可測性も判明する．可積分性については，
+						$M_\alpha\ (\alpha \in I)$が$p$乗可積分であるからその有限個の結合で表現される$(N_\beta)_{\beta \in I}$もまた$p$乗可積分となる．
+					\item[(M.2)]	
+						$\alpha \leq \beta\ (\alpha,\beta \in I)$に対して
+						\begin{align}
+							N_{\beta} - N_{\alpha} = \sum_{\gamma=\alpha}^{\beta-1} F_{\gamma+1}(M_{\gamma+1} - M_\gamma)
+						\end{align}
+						と表せるから，(関数の同値類を同様に表記して)$\mathcal{F}_{\alpha}$で条件付ければ，
+						性質$\tilde{\mathrm{C}}$5，$\tilde{\mathrm{C}}$6と$F_\alpha$の可測性事情，そして$(M_\alpha)_{\alpha \in I}$が劣マルチンゲールであることにより
+						\begin{align}
+							\cexp{N_{\beta} - N_{\alpha}}{\mathcal{F}_\alpha}
+							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{F_{\gamma+1}(M_{\gamma+1} - M_\gamma)}{\mathcal{F}_\alpha} \\
+							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{\cexp{F_{\gamma+1}(M_{\gamma+1} - M_\gamma)}{\mathcal{F}_\gamma}}{\mathcal{F}_\alpha} \\
+							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{F_{\gamma+1}\cexp{M_{\gamma+1} - M_\gamma}{\mathcal{F}_\gamma}}{\mathcal{F}_\alpha}
+							\geq 0\quad (\mbox{P-a.s.})
+						\end{align}
+						が成り立つ\footnote{同値類ではなく代表元の関数と見做している．}．
+						従って$\cexp{N_{\beta}}{\mathcal{F}_\alpha} \geq \cexp{N_{\alpha}}{\mathcal{F}_\alpha} = N_\alpha$
+						\footnote{こちらは同値類に対する順序記号を使っている．等号は性質$\tilde{\mathrm{C}}$5による．}が成り立つ．
+				\end{description}
+				
+		\end{description}
+	\end{prf}
