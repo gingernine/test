@@ -51,6 +51,7 @@
 		\begin{lem}[コンパクト作用素であることの同値条件]
 			(1)$K$がコンパクトであることと，(2)$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対し点列$(Tx_n)_{n=1}^{\infty}$が
 				$\closure{(Tx_n)_{n=1}^{\infty}}$で収束する部分列を含むことは同値である．
+				\label{lem:compact_operator_equiv_cond}
 		\end{lem}
 	\end{itembox}
 	
@@ -81,10 +82,18 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{}
+		\begin{dfn}[コンパクト作用素の空間]
+			ここで新しく次の表記を導入する:
+			\begin{align}
+				B_c(X,Y) \coloneqq \left\{\ K:X \rightarrow Y\quad |\quad \mbox{$K$:コンパクト作用素}\ \right\}.
+			\end{align}
+		\end{dfn}
+	\end{itembox}
+	
+	\begin{itembox}[l]{}
 		\begin{prp}[コンパクト作用素の空間・作用素の合成がコンパクトとなるための十分条件]\mbox{}
 			\begin{description}
-				\item[(1)] $B_c(X,Y) \coloneqq \left\{\ K:X \rightarrow Y\quad |\quad \mbox{$K$:コンパクト作用素}\ \right\}$
-					とおけば$B_c(X,Y)$は$B(X,Y)$の線型部分空間となる．
+				\item[(1)] $B_c(X,Y)$は$B(X,Y)$の線型部分空間となる．
 				\item[(2)] $Z$をノルム空間とする．$A \in B(X,Y)$と$B \in B(Y,Z)$に対して$A$又は$B$がコンパクト作用素なら$BA$もまたコンパクト作用素となる．
 			\end{description}
 		\end{prp}
@@ -120,4 +129,106 @@
 				\end{description}
 		\end{description}
 		\QED
+	\end{prf}
+	
+	
+	\begin{itembox}[l]{}
+		\begin{prp}[$B_c(X,Y)$は閉]
+			$X$をノルム空間，$Y$をBanach空間とする．このとき$B_c(X,Y)$は$B(X,Y)$の閉部分空間である．
+		\end{prp}
+	\end{itembox}
+	
+	\begin{prf}
+		，$B(X,Y)$が作用素ノルムについてBanach空間である．
+		補助定理\ref{lem:compact_operator_equiv_cond}により，次のことを示せばよい．
+		\begin{itemize}
+			\item $A_n \in B_c(X,Y)\ (n=1,2,\cdots)$かつ$A_n \rightarrow A \in B(X,Y)$のとき
+			\footnote{$Y$がBanach空間であるから$B(X,Y)$は作用素ノルムについてBanach空間である．従ってこの表記でも$A$の存在は保証されている．}，
+			任意の有界点列$(x_n)_{n=1}^{\infty} \subset X$に対して$(Ax_n)_{n=1}^{\infty}$が$Y$で収束する部分列を持つ．
+		\end{itemize}
+		証明には対角線論法を使う．先ず$A_1$について，これはコンパクト作用素であるから補助定理\ref{lem:compact_operator_equiv_cond}により
+		$\left(A_1x_n\right)_{n=1}^{\infty}$の或る部分列$\left(A_1x_{k(1,j)}\right)_{j=1}^{\infty}$は収束する．$A_2$についても
+		$\left(A_2x_{k(1,j)}\right)_{j=1}^{\infty}$から部分列$\left(A_2x_{k(2,j)}\right)_{j=1}^{\infty}$を取って収束するようにできる．
+		以下同様にして，一般の$A_n$に対しても$\left(A_nx_{k(n-1,j)}\right)_{j=1}^{\infty}$の部分列$\left(A_nx_{k(n,j)}\right)_{j=1}^{\infty}$
+		が収束するように部分列を取ることができる．$(x_n)_{n=1}^{\infty}$から適当な部分列$\left(x_{k(n,j)}\right)_{j=1}^{\infty}\ (n=1,2,\cdots)$
+		を選び取る操作を繰り返したのであるが，ここで$x_{k_j} \coloneqq x_{k(j,j)}\ (j=1,2,\cdots)$として更に新しく点列$(x_{k_j})_{j=1}^{\infty}$
+		を用意すれば，全ての$A_n\ (n=1,2,\cdots)$に対して$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列となる．
+		これは$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列$\left(A_nx_{k(n,j)}\right)_{j=1}^{\infty}$の部分列となっているためである．
+		以上対角線論法により抜き取った$(x_{k_j})_{j=1}^{\infty}$に対して，次に示すことは$\left(Ax_{k_j}\right)_{j=1}^{\infty}$が
+		Cauchy列となることである\footnote{$Y$がBanach空間であるからCauchy列であることと収束列であることは同値．}．
+		$A_n$の取り方により任意の$\epsilon > 0$に対して或る$N = N(\epsilon) \in \N$が存在し，$n > N$なら$\Norm{A_n - A}{B(X,Y)} < \epsilon$となる．
+		また$> N$のうちから$n$を一つ取って(どれでもよい)，$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列であるから或る$J=J(n,\epsilon) \in \N$が存在して
+		$j_1,j_2 > J$なる限り$\Norm{A_nx_{k_{j_1}} - A_nx_{k_{j_2}}}{Y} < \epsilon$となる．
+		$M \coloneqq \sup{n\in\N}{\Norm{x_n}{X}} < \infty\ $(有界点列)として以上のことをまとめれば，$j_1,j_2 > J$なる限り
+		\begin{align}
+			\Norm{Ax_{k_{j_1}} - Ax_{k_{j_2}}}{Y} \leq M\Norm{A- A_n}{B(X,Y)} + \Norm{A_nx_{k_{j_1}} - A_nx_{k_{j_2}}}{Y} + M\Norm{A- A_n}{B(X,Y)} < (2M+1)\epsilon
+		\end{align}
+		が成り立つから，$\left(Ax_{k_j}\right)_{j=1}^{\infty}$がCauchy列すなわち収束列であることが示された．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[有界線型作用素がコンパクトであることと共役作用素が有界かつコンパクトであることは同値]\mbox{}\\
+			$X,Y$をBanach空間とする．$A \in B(X,Y)$に対して次が成り立つ:
+			\begin{align}
+				A \in B_c(X,Y) \quad \Leftrightarrow \quad A^* \in B_c(Y^*,X^*).
+			\end{align}
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$\Rightarrow$について]
+				$A \in B(X,Y)$なら$A^* \in B(Y^*,X^*)$が成り立っていることに注意しておく．
+				任意に有界点列$(y_n^*)_{n=1}^{\infty} \subset Y^*$を取る．
+				\begin{align}
+					S_1 \coloneqq \left\{\ x \in X\quad |\quad 0 < \Norm{x}{X} \leq 1\ \right\}
+				\end{align}
+				とすれば，$A$がコンパクトであるから$K \coloneqq \closure{A(S)}$は$Y$のコンパクト部分集合である．
+				各$y_n^*$に対し
+				\begin{align}
+					f_n:K \ni y \longmapsto y_n^*(y) \in \C
+				\end{align}
+				として写像を定めれば，関数族$(f_n)_{n=1}^{\infty}$は同等連続かつ$K$の各点で有界となり(後述)，
+				Ascoli-Arzelaの定理の適用される条件を満たす．これにより$(f_n)_{n=1}^{\infty}$はsup-normで相対コンパクトとなり，
+				$K$上の連続関数の全体$C(K)$における収束部分列$\left(f_{n_k}\right)_{k=1}^{\infty}$を持つ．これに対し
+				\begin{align}
+					\Norm{A^*y_{n_k}^* - A^*y_{n_j}^*}{X^*} &= \sup{x \in S_1}{\inprod<A^*y_{n_k}^* - A^*y_{n_j}^*,x>_{X^*,X}} && (\scriptsize\because \mbox{$0 \neq x \in X$の範囲で上限を取っている．}) \\
+					&= \sup{x \in S_1}{\inprod<y_{n_k}^* - y_{n_j}^*, Ax>_{Y^*,Y}} && (\scriptsize\because \mbox{$\mathscr{D}(A)=X$であることと共役作用素の定義より．}) \\
+					&= \sup{y \in A(S_1)}{\inprod<y_{n_k}^* - y_{n_j}^*, y>_{Y^*,Y}} \\
+					&= \sup{y \in K}{\inprod<y_{n_k}^* - y_{n_j}^*, y>_{Y^*,Y}} && (\scriptsize\because \mbox{連続性から閉包で上限を取ってもノルムは変わらない．}) \\
+					&= \Norm{f_{n_k} - f_{n_j}}{C(K)} && (\scriptsize\because \mbox{$C(K)$におけるsup-normを表す．})
+				\end{align}
+				が成り立つ．ただし山括弧の表示は双線型形式の意味である．$\left(f_{n_k}\right)_{k=1}^{\infty}$がCauchy列であるから
+				$\left(A^*y_{n_k}^*\right)_{k=1}^{\infty}$もCauchy列となり，$X^*$の完備性からこれは収束列となる．
+				これで$A^* \in B_c(Y^*,X^*)$が示された．
+				
+				最後に，後述としていた関数族$(f_n)_{n=1}^{\infty}$の同等連続性と$K$の各点での有界性を示す．
+				$(y_n^*)_{n=1}^{\infty}$は有界であるから$M \coloneqq \sup{n\in\N}{\Norm{y_n^*}{Y^*}}$とおいて，
+				\begin{align}
+					|f_n(y_1) - f_n(y_2)| = |y_n^*(y_1) - y_n^*(y_2)| \leq M\Norm{y_1 - y_2}{Y} \quad (\forall y_1,y_2 \in K,\ n=1,2,\cdots)
+				\end{align}
+				により同等連続性が判り，
+				\begin{align}
+					|f_n(y_0)| \leq M \Norm{y_0}{Y} \quad (\forall y_0 \in K,\ n=1,2,\cdots)
+				\end{align}
+				により各点での有界性が判る．
+			
+			\item[$\Leftarrow$について]\mbox{}
+				\begin{description}
+					\item[証明1]
+						$J_X:X \longrightarrow X^{**},\ J_Y:Y \longrightarrow Y^{**}$を自然な等長埋め込みとする．
+						$\mathscr{D}(A^*)=Y^*$であるから$A^{**}$が定義できることに注意しておき，双線型形式を用いれば，
+						\begin{align}
+							\inprod<J_X(u),A^*y^*>_{X^{**},X^*} = \inprod<A^*y^*,u>_{X^{*},X} = \inprod<y^*,Au>_{Y^{*},Y} = \inprod<J_Y(Au),y^*>_{Y^{**},Y^*} \quad (\forall u \in X=\mathscr{D}(A))
+						\end{align}
+						が成り立つ．ただし第1と第3の等号は$u \in X$と$f \in X^*$に対し$J_Xu(f)=f(u)$となることにより，そして第2の等号は共役作用素の定義による．
+						前段の結果より$A^*$がコンパクトなら$A^{**}$もコンパクトとなり，今$X$から任意に有界点列$(x_n)_{n=1}^{\infty}$を取れば，
+						等長性から$\left(J_Xx_n\right)_{n=1}^{\infty}$も有界点列となるから或る部分列$\left(A^{**}J_Xx_{n_k}\right)_{k=1}^{\infty}$
+						は$Y^{**}$において収束列となる．$J_YA = A^{**}J_X$の関係より，同じ添数について$\left(J_YAx_{n_k}\right)_{k=1}^{\infty}$もまた収束列
+						となるから，$J_Y$の等長性より$\left(Ax_{n_k}\right)_{k=1}^{\infty}$が収束列となる．以上で$A \in B_c(X,Y)$が示された．
+					\item[証明2]
+						
+				\end{description}
+		\end{description}
 	\end{prf}
