@@ -218,7 +218,7 @@
 				\begin{description}
 					\item[証明1]
 						$J_X:X \longrightarrow X^{**},\ J_Y:Y \longrightarrow Y^{**}$を自然な等長埋め込みとする．
-						$\mathscr{D}(A^*)=Y^*$であるから$A^{**}$が定義できることに注意しておき，双線型形式を用いれば，
+						$\mathscr{D}(A^*)=Y^*$であるから$A^{**}$が定義できることに注意しておき，双線型形式を用いれば
 						\begin{align}
 							\inprod<J_X(u),A^*y^*>_{X^{**},X^*} = \inprod<A^*y^*,u>_{X^{*},X} = \inprod<y^*,Au>_{Y^{*},Y} = \inprod<J_Y(Au),y^*>_{Y^{**},Y^*} \quad (\forall u \in X=\mathscr{D}(A))
 						\end{align}
@@ -228,7 +228,33 @@
 						は$Y^{**}$において収束列となる．$J_YA = A^{**}J_X$の関係より，同じ添数について$\left(J_YAx_{n_k}\right)_{k=1}^{\infty}$もまた収束列
 						となるから，$J_Y$の等長性より$\left(Ax_{n_k}\right)_{k=1}^{\infty}$が収束列となる．以上で$A \in B_c(X,Y)$が示された．
 					\item[証明2]
-						
+						$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対して
+						\begin{align}
+							\Norm{Ax_n}{Y} = \sup{\Norm{y^*}{Y^*} \leq 1}{|y^*(Ax_n)|}
+							= \sup{\Norm{y^*}{Y^*} \leq 1}{|\inprod<y^*,Ax_n>_{Y^*,Y}|}
+							= \sup{\Norm{y^*}{Y^*} \leq 1}{|\inprod<A^*y^*,x_n>_{X^*,X}|}
+							= \sup{x^* \in V}{|\inprod<x^*,x_n>_{X^*,X}|}
+						\end{align}
+						が成り立つ．ただし$V \coloneqq \closure{\left\{\ A^*y^*\quad |\quad \Norm{y^*}{Y^*} \leq 1\ \right\}}$としていて，
+						また第1の等号は
+						\begin{align}
+							\Norm{y}{Y} = \sup{\substack{0 \neq g \in Y^* \\ \Norm{g}{Y^*}\leq1}}{\frac{|g(y)|}{\Norm{g}{Y^*}}} 
+							= \sup{\Norm{g}{Y^*}=1}{|g(y)|} = \sup{\Norm{g}{Y^*} \leq 1}{|g(y)|}
+						\end{align}
+						の関係を使った\footnote{Hahn-Banachの定理の系を参照．始めのsupは$\Norm{g}{Y^*}\leq1$の範囲で制限しているが，等号成立する$g$のノルムが1であるから問題ない．}．
+						$A^*$がコンパクトだから$V$が$X^*$のコンパクト集合となるから$M \coloneqq \sup{x^* \in V}{\Norm{x^*}{X^*}}$とおけば$M < \infty$
+						である．また$\left(\Norm{x_n}{X}\right)_{n=1}^{\infty}$は$\R$において有界列となるから
+						収束する部分列$\left(\Norm{x_{n_k}}{X}\right)_{k=1}^{\infty}$を取ることができる．
+						この部分列と全ての$x^* \in V$に対して
+						\begin{align}
+							|x^*(x_{n_k}) - x^*(x_{n_j})| \leq M\Norm{x_{n_k} - x_{n_j}}{X} \longrightarrow 0 \quad (k,j \longrightarrow \infty)
+						\end{align}
+						が成り立つから，
+						\begin{align}
+							\Norm{Ax_{n_k} - Ax_{n_j}}{Y} = \sup{x^* \in V}{\left|\inprod<x^*,x_{n_k} - x_{n_j}>_{X^*,X}\right|} \longrightarrow 0 \quad (k,j \longrightarrow \infty)
+						\end{align}
+						が従い$A \in B_c(X,Y)$が判明する．
 				\end{description}
+				\QED
 		\end{description}
 	\end{prf}
