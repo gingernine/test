@@ -1,0 +1,154 @@
+\section{二次変分}
+	確率空間を$(\Omega,\mathcal{F},\mu)$と表し，この空間は完備であると仮定する．
+	$I \coloneqq [0,T]\ (T>0)$とし，$(\mathcal{F}_t)_{t \in I}$をフィルトレーションとする．
+	このフィルトレーションは次の仮定を満たすものとする．
+	\begin{align}
+		\mathcal{F}_0 \supset \mathcal{N} \coloneqq \left\{\ N \in \mathcal{F}\quad |\quad \mu(N) = 0 \ \right\}
+	\end{align}
+	
+	以下，いくつか集合を定義する．
+	\begin{description}
+		\item[$\mathrm{(1)}\ \mathcal{A}^+$] 
+			$\mathcal{A}^+$は以下を満たす$(\Omega,\mathcal{F},\mu)$上の可測関数族$A = (A_t)_{t \in I}$の全体である．
+			\begin{description}
+				\item[適合性] 任意の$t \in I$に対し，写像$\Omega \ni \omega \longmapsto A_t(\omega) \in \R$は可測$\mathcal{F}_t/\borel{\R}$である．
+				\item[連続性] $A$に対し或る$\mu$-零集合$N$が存在し，$\omega \in \Omega \backslash N$については写像$I \ni t \longmapsto A_t(\omega) \in \R$が連続である．
+				\item[単調非減少性]　$A$に対し或る$\mu$-零集合$N'$が存在し，$\omega \in \Omega \backslash N'$については写像$I \ni t \longmapsto A_t(\omega) \in \R$が単調非減少である．
+			\end{description}
+		
+		\item[$\mathrm{(2)}\ \mathcal{A}$]
+			$\mathcal{A} \coloneqq \left\{\ A^1 - A^2\quad |\quad A^1,A^2 \in \mathcal{A}^+\ \right\}$
+			と定義する．$A^1 - A^2 \in \mathcal{A}$に対し或る$\mu$-零集合$N_1,N_2$が存在して，$\omega \in \Omega \backslash (N_1 \cup N_2)$
+			なら写像$t \longmapsto A^1_t(\omega)$と$t \longmapsto A^2_t(\omega)$が連続かつ単調非減少となる．
+			すなわちこの$\omega$について写像$t \longmapsto A^1_t(\omega) - A^2_t(\omega)$は有界連続となっている．
+			
+		\item[$\mathrm{(3)}\ \mathcal{M}_{p,c}\ (p \geq 1)$]
+			$\mathcal{M}_{p,c}$は以下を満たす可測関数族$M = (M_t)_{t \in I} \subset \semiLp{p}{\mathcal{F},\mu}$の全体である．
+			\begin{description}
+				\item[$\mathrm{L}^p$-マルチンゲール] $M = (M_t)_{t \in I}$は$\mathrm{L}^p$-マルチンゲールである．
+				\item[連続性] $M$に対し或る$\mu$-零集合$N$が存在し，$\omega \in \Omega \backslash N$については写像$I \ni t \longmapsto M_t(\omega) \in \R$が連続である．
+			\end{description}
+		
+		\item[$\mathrm{(4)}\ \mathcal{M}_{b,c}$]
+			$\mathcal{M}_{b,c}$はa.s.に連続で一様有界な$\mathrm{L}^1$-マルチンゲールの全体とする．つまり
+			\begin{align}
+				\mathcal{M}_{b,c} \coloneqq \left\{\ M = (M_t)_{t \in I} \in \mathcal{M}_{1,c}\quad |\quad \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty\ \right\}
+			\end{align}
+			として定義されている．
+			
+		\item[$\mathrm{(5)}\ \mathcal{T}$]
+			$\mathcal{T}$は以下を満たすような，$I$に値を取る停止時刻の列$(\tau_j)_{j=1}^{\infty}$の全体とする．
+			\begin{description}
+				\item[a)] $(\tau_j)_{j=1}^{\infty}$に対し或る$\mu$-零集合$N_0$が存在し，$\tau_0(\omega) = 0\ (\forall \omega \notin N_0)$となる．
+				\item[b)] $(\tau_j)_{j=1}^{\infty}$の各$j$に対し或る$\mu$-零集合$N_j$が存在し，$\tau_j(\omega) \leq \tau_{j+1}(\omega)\ (\forall \omega \notin N_j)$となる．
+				\item[c)] $(\tau_j)_{j=1}^{\infty}$に対し或る$\mu$-零集合$N_T$が存在し，任意の$\omega \in \Omega \backslash N_T$に或る$n = n(\omega) \in \N$が存在して$\tau_n(\omega)=T$が成り立つ．
+			\end{description}
+			例えば$\tau_j = jT/2^n$なら$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$となる．
+			上の条件において$N \coloneqq N_0 \cup N_T \cup (\cup_{j=1}^{\infty}N_j)$とすればこれも$\mu$-零集合で，$\omega \in \Omega \backslash N$なら
+			\begin{align}
+				&\tau_0(\omega) = 0,\qquad \tau_j(\omega) \leq \tau_{j+1}(\omega)\ (j=1,2,\cdots),\\
+				&\tau_{n_\omega}(\omega) = T\ (\exists n_\omega \in \N)
+			\end{align}
+			が成立することになる．
+			
+		\item[$\mathrm{(4)}\ \mathcal{M}_{c,loc}$]
+			$\mathcal{M}_{c,loc} \coloneqq 
+			\left\{\ M = (M_t)_{t \in I} \subset \semiLp{1}{\mathcal{F},\mu} \quad |\quad \exists (\tau_j)_{j=1}^{\infty} \in \mathcal{T}\ \mathrm{s.t.}\ M^j = (M_{\tau_j \wedge t})_{t \in I} \in \mathcal{M}_{b,c}\ (\forall j \in \N) \ \right\}$
+			として定義される．(連続な局所マルチンゲールの全体)
+	\end{description}
+	
+	以下で$\mathcal{M}_{2,c}$に適当な処置を施してこれがHilbert空間と見做せるようにする．
+	次の手順に沿う．
+	\begin{description}
+		\item[$\mathrm{(i)}$] $\mathcal{M}_{p,c}$に線型演算を定義して線形空間(係数体は$\R$)となることを示す．
+		\item[$\mathrm{(ii)}$] $\mathcal{M}_{p,c}$の或る同値関係により商空間を定義する．
+		\item[$\mathrm{(iii)}$] 特に$p=2$のとき，$\mathcal{M}_{2,c}$の商空間に内積を導入してHilbert空間となることを示す．
+	\end{description}
+	
+	\begin{description}
+		\item[$\mathrm{(i)}$について] 
+			任意の$M=(M_t)_{t \in I},\ N=(N_t)_{t \in I} \in \mathcal{M}_{p,c}$と$\alpha \in \R$に対して，加法とスカラ倍を
+			\begin{align}
+				M + N \coloneqq (M_t + N_t)_{t \in I}, \qquad \alpha M \coloneqq (\alpha M_t)_{t \in I}
+			\end{align}
+			として定義し，零元を$0$\footnote{全ての$t,\omega$に対し$0 \in \R$を取るもの．}と表す．また二元$M$と$N$が等しいということを
+			\begin{align}
+				M_t(\omega) = N_t(\omega) \quad (\forall t \in I,\ \omega \in \Omega)
+			\end{align}
+			が成り立っているということで定義する．$\mathcal{M}_{p,c}$が上の演算について閉じていることが示されれば，
+			線形空間であるための条件を満たすことは$t \longmapsto M_t(\omega) (\forall \omega \in \Omega)$が全て実数値であることにより判ることである．
+			加法とスカラ倍について閉じていることを示す．
+			\begin{description}
+				\item[加法について]
+					任意の$0 \leq s \leq t \leq T$に対し，条件付き期待値の線型性(性質$\tilde{\mathrm{C}}3$)により
+					\begin{align}
+						\cexp{M_t + N_t}{\mathcal{F}_s} = \cexp{M_t}{\mathcal{F}_s} + \cexp{N_t}{\mathcal{F}_s} = M_s + N_s
+					\end{align}
+					が成り立つ\footnote{式の$M_t$などは代表元を$M_t$とする関数類の意味で使っている．}．
+					また$M+N$は各$t \in I$について和を取っただけであるから，$(\mathcal{F}_t)$-適合であること，そして任意の$\omega \in \Omega$について
+					左極限が存在しかつ右連続となっていることが判り，更にMinkowskiの不等式から各$t \in I$について$M_t + N_t \in \semiLp{p}{\mathcal{F},\mu}$
+					となる．以上で$M+N = (M_t + N_t)_{t \in I}$もまた$\mathrm{L}^p$-マルチンゲールであることが示された．
+					写像$I \ni t \longmapsto M_t(\omega) + N_t(\omega) \in \R$の連続性については，
+					$M,N$それぞれに対して或る$\mu$-零集合$E_1,E_2$が存在して，$\omega \notin E_1$なら$t \longmapsto M_t(\omega)$は連続，
+					$\omega \notin E_2$なら$t \longmapsto N_t(\omega)$は連続となるのだから，従って$\omega \notin E_1 \cup E_2$なら
+					$t \longmapsto M_t(\omega) + N_t(\omega)$が連続($\mu$-a.s.に連続)となる．以上で$M+N \in \mathcal{M}_{p,c}$が示された．
+				
+				\item[スカラ倍について]
+					任意の$0 \leq s \leq t \leq T$に対し，条件付き期待値の線型性(性質$\tilde{\mathrm{C}}3$)により
+					\begin{align}
+						\cexp{\alpha M_t}{\mathcal{F}_s} = \alpha \cexp{M_t}{\mathcal{F}_s} = \alpha M_s
+					\end{align}
+					が成り立つ．定数倍しているだけであるから，$(\alpha M_t)_{t \in I}$が$(\mathcal{F}_t)$-適合であること，そして任意の$\omega \in \Omega$について
+					左極限が存在しかつ右連続となっていることが判り，更に各$t \in I$について$\alpha M_t \in \semiLp{p}{\mathcal{F},\mu}$
+					となる．以上で$\alpha M = (\alpha M_t)_{t \in I}$もまた$\mathrm{L}^p$-マルチンゲールであることが示された．
+					連続性については，写像$t \longmapsto M_t(\omega)$が連続となる$\omega$ならば
+					写像$t \longmapsto \alpha M_t(\omega)$も連続($\mu$-a.s.に連続)となる．
+					以上で$\alpha M \in \mathcal{M}_{p,c}$が示された．
+			\end{description}
+		
+		\item[$\mathrm{(ii)}$について]
+			任意の$M=(M_t)_{t \in I},\ N=(N_t)_{t \in I} \in \mathcal{M}_{p,c}$に対して，関係$R$を
+			\begin{align}
+				M\ R\ N &\coloneqq \left\{\ \omega \in \Omega\quad|\quad \sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}\ \right\}\mbox{が$\mu$-零集合} \\
+				&\Leftrightarrow \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}}\mbox{が$\mu$-零集合}
+			\end{align}
+			として定義すれば，関係$R$は同値関係となる．反射律と対称律は上式より成立しているから推移律について確認する．$M,N$とは別に$U=(U_t)_{t \in I} \in \mathcal{M}_{p,c}$
+			を取って$M\ R\ N$かつ$N\ R\ U$となっているとすれば，各$r \in (I \cap \Q) \cup \{ T \}$にて
+			\begin{align}
+				\left(\ \left|M_r - U_r\right| > 0\ \right)\ \subset\ 
+				\left(\ \left|M_r - N_r\right| > 0\ \right) \cup \left(\ \left|N_r - U_r\right| > 0\ \right)
+			\end{align}
+			の関係が成り立っているから$M\ R\ U$が従う．
+			\footnote{$\left(\ \left|M_r - N_r\right| > 0\ \right) = \left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}.$}
+			
+			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\overline{M}$と表記し，商空間を$\mathfrak{M}_{p,c} \coloneqq \mathcal{M}_{p,c}/R$と表記すれば
+			$\mathfrak{M}_{p,c}$において
+			\begin{align}
+				\overline{M} + \overline{N} \coloneqq \overline{M+N}, \quad \alpha \overline{M} \coloneqq \overline{\alpha M} \label{eq:mart_linear_arithmetic}
+			\end{align}
+			として演算を定義すれば，これは代表元の選び方に依らない(well-defined)．つまり$M' \in \overline{M},\ N' \in \overline{N}$に対して
+			\begin{align}
+				\overline{M+N} = \overline{M'+N'}, \quad \overline{\alpha M} = \overline{\alpha M'}
+			\end{align}
+			が成り立つ．これは
+			\begin{align}
+				\left(\ \left|M_r + N_r - M'_r - N'_r \right| > 0\ \right) &\subset \left(\ \left|M_r - M'_r \right| > 0\ \right) \cup \left(\ \left|N_r - N'_r \right| > 0\ \right) \\
+				\left(\ \left|\alpha M_r - \alpha M'_r \right| > 0\ \right) &= \left(\ \left|M_r - M'_r \right| > 0\ \right)
+			\end{align}
+			により$(M+N)\ R\ (M'+N'),\ (\alpha M)\ R\ (\alpha M')$が成り立つからである．以上の事柄に注意すれば，(\refeq{eq:mart_linear_arithmetic})で定義した算法を加法とスカラ倍として
+			$\mathfrak{M}_{p,c}$は$\R$上の線形空間となる．
+		
+		\item[$\mathrm{(iii)}$について]
+			先ずは$\mathfrak{M}_{2,c}$において内積を定義し，それから$\mathfrak{M}_{2,c}$がその内積によってHilbert空間となることを示す．
+			\begin{itembox}[l]{内積の定義}
+				$\mathfrak{M}_{2,c} \times \mathfrak{M}_{2,c}$上の実数値写像$\inprod<\cdot,\cdot>$を次で定義すれば，これは$\mathfrak{M}_{2,c}$において内積となる．
+				\begin{align}
+					\inprod<\overline{M},\overline{N}> \coloneqq \Exp{M_TN_T} = \int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega), \quad (\overline{M},\overline{N} \in \mathfrak{M}_{2,c}).
+				\end{align}
+			\end{itembox}
+	\end{description}
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[]
+		\end{thm}
+	\end{itembox}

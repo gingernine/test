@@ -1,0 +1,42 @@
+%有限次元空間における有界点列の収束
+\begin{itembox}[l]{}
+	\begin{thm}[有限次元空間における有界点列の収束(局所コンパクト性)]\mbox{}\\
+		$X$を$\K (=\R\ \mathrm{or, }\ \C)$上のノルム空間とする．$\Dim{X} < \infty$ならば$X$の任意の有界点列は
+		収束部分列を持つ．
+	\end{thm}
+\end{itembox}
+
+\begin{prf}\mbox{}
+	次元数$n$による帰納法で証明する．
+	\begin{description}
+		\item[$n=1$のとき]
+			$X$の基底を$u_1$として取る．$X$の任意の有界点列は
+			$\alpha_m \in \K\ (m=1,2,\cdots)$によって$( \alpha_m u_1)_{m=1}^{\infty}$と表現できるが，
+			$\left( \alpha_mu_1 \right)_{m=1}^{\infty}$が有界だから$\left( \alpha_m \right)_{m=1}^{\infty}$も有界となる．
+			Bolzano-Weierstrassの定理より$\K$において収束する\footnote{以降出てくる点列も収束先は$X$に含まれる．これは有限次元空間が完備であることによる．}
+			部分列$\left( \alpha_{m_k} \right)_{k=1}^{\infty}$が存在し，
+			同じ添数で$\left( \alpha_{m_k}u_1 \right)_{k=1}^{\infty}$も収束列となる．
+		
+		\item[一般の$n$について]
+			$n=k$のとき定理の主張が正しいと仮定する．$n=k+1$のとき$X$の基底を$u_1,\cdots,u_{k+1}$
+			として取ると，$X$から任意に有界列$(x_j)_{j=1}^{\infty}$を取れば各$x_j$は
+			\begin{align}
+				x_j = y_j + \alpha_j u_{k+1} \quad (y_j \in \LH{u_1,\cdots,u_k},\ \alpha_j \in \K)
+			\end{align}
+			として一意に表示される．もし$(\alpha_j)_{j=1}^{\infty}$が有界でないとすれば，
+			$\alpha_{j_s} \geq s\ (s=1,2,\cdots)$となるように部分列を抜き出すことができて，$(x_j)_{j=1}^{\infty}$の有界性から
+			\begin{align}
+				\Norm{u_{k+1} - \tfrac{1}{\alpha_{j_s}}y_{j_s}}{X}
+				\leq \Norm{u_{k+1} - \left(\tfrac{1}{\alpha_{j_s}}x_{j_s} - \tfrac{1}{\alpha_{j_s}}y_{j_s}\right)}{X}
+					+ \Norm{\tfrac{1}{\alpha_{j_s}}x_{j_s}}{X}
+				= \Norm{\tfrac{1}{\alpha_{j_s}}x_{j_s}}{X} \longrightarrow 0 \quad (s \longrightarrow \infty)
+			\end{align}
+			が成り立つ．有限次元空間は閉であることに注意すれば，$u_{k+1}$が$\LH{u_1,\cdots,u_k}$の列
+			$\left(\tfrac{1}{\alpha_{j_s}}y_{j_s}\right)_{s=1}^{\infty}$の極限となっているから
+			$u_{k+1} \in \LH{u_1,\cdots,u_k}$となり矛盾ができた．背理法により$(\alpha_j)_{j=1}^{\infty}$は
+			$\K$の有界列と判り，Bolzano-Weierstrassの定理より部分列$(\alpha_{j(1,t)})_{t=1}^{\infty}$が収束列となる．
+			帰納法の仮定から$(y_{j(1,t)})_{t=1}^{\infty}$から収束する部分列$(y_{j(2,t)})_{t=1}^{\infty}$を取ることができて，
+			これと同じ添数について$x_{j(2,t)} = y_{j(2,t)} + \alpha_{j(2,t)}u_{k+1}\ (t=1,2,\cdots)$は収束列となる．
+	\end{description}
+	\QED
+\end{prf}
