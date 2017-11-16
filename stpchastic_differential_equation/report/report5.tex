@@ -120,6 +120,19 @@
 			\end{align}
 			の関係が成り立っているから$M\ R\ U$が従う．
 			\footnote{$\left(\ \left|M_r - N_r\right| > 0\ \right) = \left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}.$}
+			また$M,N \in \mathcal{M}_{p,c}$に対し，$M\ R\ N$となることと$\mu$-a.s.にパスが一致することは同じである．
+			\footnote{
+					これを証明する．$M,N$に対し或る零集合$E$が存在して，$E^c$上で$M$と$N$のパスは連続となっている．$M\ R\ N$とする．
+					\begin{align}
+						F \coloneqq \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}}
+					\end{align}
+					に対して$F^c \cap E^c$上で$M$と$N$のパスは一致する．$F \cup E$が零集合であるから$\mu$-a.s.にパスが一致しているということになる．
+					逆に$\mu$-a.s.にパスが一致しているとする．或る零集合$G$が存在して$G^c$上でパスが一致している．
+					\begin{align}
+						G^c \subset F^c
+					\end{align}
+					の関係から$F \subset G$となり$F$が零集合である，つまり$M\ R\ N$となっている．
+			}
 			
 			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\overline{M}$と表記し，商空間を$\mathfrak{M}_{p,c} \coloneqq \mathcal{M}_{p,c}/R$と表記すれば
 			$\mathfrak{M}_{p,c}$において
@@ -249,20 +262,23 @@
 				= \Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 \quad (\forall \lambda > 0)
 			\end{align}
 			が成り立つ．この不等式と$(\overline{M^{(n)}})_{n=1}^{\infty}$がCauchy列であることを併せれば，
-			適当な添数の部分列$(n_k)_{k=1}^{\infty}$を抜き出して
 			\begin{align}
-				\mu(\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t| > 1/2^k}) < 1/2^k \quad (k=1,2,\cdots)
+				\Norm{\overline{M^{(n_k)}} - \overline{M^{(n_{k+1})}}}{} < 1/4^k, \quad (k = 1,2,\cdots) \label{eq:mart_hilbert_1}
+			\end{align}
+			となるように添数の部分列$(n_k)_{k=1}^{\infty}$を抜き出して
+			\begin{align}
+				\mu(\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t| > 1/2^k}) < 1/2^k, \quad (k=1,2,\cdots)
 			\end{align}
 			が成り立つようにできる．
 			\begin{align}
 				F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} \left\{\ \omega \in \Omega \quad|\quad \sup{t \in I}{|N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega)|} \leq 1/2^k\ \right\}
 			\end{align}
-			とおけば，Borel-Cantelliの補題により$F^c$は$\mu$-零集合であって，$\omega \in F$なら全ての$t \in I$について数列$(N^{n_k}_t(\omega))_{k=1}^{\infty}$はCauchy列となる．
-			実数の完備性から数列$(N^{n_k}_t(\omega))_{k=1}^{\infty}\ (\omega \in F)$に極限$N^*_t(\omega)$が存在し，
+			とおけば，Borel-Cantelliの補題により$F^c$は$\mu$-零集合であって，$\omega \in F$なら全ての$t \in I$について数列$(N^{(n_k)}_t(\omega))_{k=1}^{\infty}$はCauchy列となる．
+			実数の完備性から数列$(N^{(n_k)}_t(\omega))_{k=1}^{\infty}\ (\omega \in F)$に極限$N^*_t(\omega)$が存在し，
 			この収束は$t$に関して一様である
 			\footnote{
-				$\left| N^{n_k}_t(\omega) - N^*_t(\omega) \right| \leq \sum_{j=k}^{\infty} \left| N^{n_j}_t(\omega) - N^{n_{j+1}}_t(\omega) \right|
-				\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{n_j}_t(\omega) - N^{n_{j+1}}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in T)$
+				$\left| N^{(n_k)}_t(\omega) - N^*_t(\omega) \right| \leq \sum_{j=k}^{\infty} \left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|
+				\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in T)$
 				による．
 			}から写像$t \longmapsto N^*_t(\omega)$は連続で，
 			\begin{align}
@@ -273,11 +289,11 @@
 				\end{cases}
 			\end{align}
 			として$N = (N_t)_{t \in I}$を定義すればこれは$\mathcal{M}_{2,c}$の元たる資格を持つ．つまり(1)$\mu$-a.s.にパスが連続で(2)$\mathrm{L}^2$-マルチンゲールとなっている．
-			(1)は既に示されているから(2)を示す．全ての$\omega \in \Omega$についてパス$t \longmapsto N_t(\omega)$上の各点で右連続かつ左極限が存在することは
-			パスの連続性により従うことであるから，後は以下の事柄を証明すればよい．
+			(1)は既に示されているから(実際は全てのパスが連続)，(2)を示す．全ての$\omega \in \Omega$についてパス$t \longmapsto N_t(\omega)$上の各点で右連続かつ左極限が存在することは
+			パスの連続性により従うことであるから，後はマルチンゲールの定義の条件(M.1)(M.2)を証明すればよい．
 			\begin{description}
-				\item[適合過程であることについて]
-					$\omega$の関数として，$N^*_t$は関数列$(N^{n_k}_t)_{k=1}^{\infty}$の$F$上での各点収束先の関数として定義されている．
+				\item[(M.1)適合性について]
+					$\omega$の関数として，$N^*_t$は関数列$(N^{(n_k)}_t)_{k=1}^{\infty}$の$F$上での各点収束先の関数として定義されている．
 					$N^*_t$の定義域は$F$であるから，これに合わせて$N^{n_k}_t$の定義域を$F$に制限した写像を$N^{F(k)}_t$と表記し，
 					\begin{align}
 						\mathcal{F}^F_t \coloneqq \left\{\ F \cap B\quad |\quad B \in \mathcal{F}_t\ \right\}
@@ -294,16 +310,70 @@
 					\end{align}
 					が成り立ち，先ほどの注意と併せれば，任意の$t \in I$に対し$N_t$が可測$\mathcal{F}_t/\borel{\R}$であると判明する．
 				
-				\item[二乗可積分であることについて]
-					各$t \in I$について，$N^{F(k)}_t$の定義域を$\Omega$に拡張する($F^c$の部分では0を取るようにする)．
-					$\Norm{N_t}{\semiLp{2}{}} \leq \Norm{N_t - N^{F(k)}_t}{\semiLp{2}{}} + \Norm{N^{F(k)}_t}{\semiLp{2}{}}$
-					と書けることとLebesgueの収束定理より$\Norm{N_t - N^{F(k)}_t}{\semiLp{2}{}}\ (k=1,2,\cdots)$が有界列となることから，右辺が$< \infty$となることが従う．
+				\item[(M.1)二乗可積分性について]
+					各$t \in I$について，$N^{(n_k)}_t\ (k=1,2,\cdots)$は二乗可積分関数$M^{(n_k)}_t$と零集合$E$を除いて一致するよう構成され，
+					そして$N_t$に概収束する関数列であった．また添数列$(n_k)_{k=1}^{\infty}$の抜き出し方(式(\refeq{eq:mart_hilbert_1}))とDoobの不等式
+					\footnote{各$k \in \N$において$(N^{(n_k)}_t)_{t \in I}$は$(M^{(n_k)}_t)_{t \in I}$と$\mu$-a.s.にパスが一致するからこれも$\mathrm{L}^2$-マルチンゲールである．}より
+					\begin{align}
+						\Exp{\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t|^2}} \leq 4 \Exp{|N^{(n_k)}_T - N^{(n_{k+1})}_T|^2} < 4/8^k
+					\end{align}
+					が成り立つから，全ての$t \in I$に対して$\Norm{N^{(n_k)}_t - N^{(n_{k+1})}_t}{\mathscr{L}^2} < 2/4^k \leq 1/2^k \ (k=1,2,\cdots)$となる．
+					特に全ての$k = 1,2,\cdots$に対して$\Norm{N^{(n_k)}_t - N^{(n_1)}_t}{\mathscr{L}^2} < 1/2$となるから
+					\begin{align}
+						\Norm{N^{(n_k)}_t}{\mathscr{L}^2} < \Norm{N^{(n_1)}_t}{\mathscr{L}^2} + 1/2 \quad (k = 1,2,\cdots)
+					\end{align}
+					とできる．つまり$\mu$-a.s.に$|N^{(n_k)}_t|^2 < \Norm{N^{(n_1)}_t}{\mathscr{L}^2} + 1/2$となり，以上により
+					各$t \in I$について関数列$(N^{(n_k)}_t)_{k=1}^{\infty}$に対しLebesgueの収束定理を適用できる根拠を得た．Minkowskiの不等式から
+					\begin{align}
+						\Norm{N_t}{\mathscr{L}^2} \leq \Norm{N_t - N^{F(k)}_t}{\mathscr{L}^2} + \Norm{N^{F(k)}_t}{\mathscr{L}^2}
+					\end{align}
+					が成り立ち，Lebesgueの収束定理より$\Norm{N_t - N^{F(k)}_t}{\mathscr{L}^2}\ (k=1,2,\cdots)$が有界列で第二項も有限確定するから右辺全体が$< \infty$となることが従う．
 				
-				\item[]
+				\item[(M.2)について]
+					各$t \in I,\ k \in \N$について$N^{(n_k)}_t$と$M^{(n_k)}_t$が同じ関数類に属するから，$(M^{(n_k)}_t)_{t \in I}$が$\mathrm{L}^2$-マルチンゲールであるということを利用すればよい．
+					任意の$0 \leq s \leq t \leq T$と$A \in \mathcal{F}_s$に対し，条件付き期待値の性質$\tilde{\mathrm{C}}2$から
+					\begin{align}
+						\int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) &= \int_{A} \cexp{M^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \\
+						&= \int_{A} M^{(n_k)}_s(\omega)\ \mu(d\omega) = \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
+					\end{align}
+					が全ての$k = 1,2,\cdots$で成り立つ．後述の補助定理とLebesgueの収束定理より
+					\begin{align}
+						\int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega)
+						&= \lim_{k \to \infty} \int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \\
+						&= \lim_{k \to \infty} \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
+						= \int_{A} N_s(\omega)\ \mu(d\omega)
+					\end{align}
+					が成り立ち，従って関数として見て$\cexp{N_t}{\mathcal{F}_s}$と$N_s$は同じ関数類に属するから$\Lp{2}{\mathcal{F},\mu}$の元として一致する．
 			\end{description}
-				
 			
+			最後に，$N=(N_t)_{t \in I}$の$\mathfrak{M}_{2,c}$における同値類$\overline{N}$がCauchy列$(\overline{M^{(n)}})_{n=1}^{\infty}$の極限であるということを明示して証明を完全に終える．
+			部分列$(\overline{M^{(n_k)}})_{k=1}^{\infty}$に対して，Lebesgueの収束定理より
+			\begin{align}
+				\Norm{\overline{N} - \overline{M^{(n_k)}}}{}^2 = \int_{\Omega} \left| N_T(\omega) - M^{(n_k)}_T(\omega) \right|^2\ \mu(d\omega) \longrightarrow 0 \quad (k \longrightarrow \infty)
+			\end{align}
+			が成り立ち，部分列が収束することはCauchy列が収束することになるから，以上で$\mathfrak{M}_{2,c}$がHilbert空間であることが証明された．
+			\QED
 	\end{description}
 	
+	\begin{itembox}[l]{}
+		\begin{lem}[条件付き期待値の収束定理]\mbox{}\\
+			$X,X_n \in \Lp{1}{\mathcal{F},\mu}\ (n=1,2,\cdots)$と部分$\sigma$-加法族$\mathcal{G} \subset \mathcal{F}$に対し，
+			代表元の関数が$X_n \longrightarrow X\ (n \longrightarrow \infty)\ \mu$-a.s.を満たし，かつ
+			$n$に無関係な可積分関数$Y$が存在して$X_n \leq Y\ \mu$-a.s.となっているとき次が成り立つ:
+			\begin{align}
+				\int_A \cexp{X}{\mathcal{G}}(\omega)\ \mu(d\omega) = \lim_{n \to \infty} \int_A \cexp{X^n}{\mathcal{G}}(\omega)\ \mu(d\omega) , \quad (\forall A \in \mathcal{G}) .
+			\end{align}
+		\end{lem}
+	\end{itembox}
 	
+	\begin{prf}
+		条件付き期待値の性質$\tilde{\mathrm{C}}2$とLebesgueの収束定理より，任意の$A \in \mathcal{G}$に対して
+		\begin{align}
+			\int_A \cexp{X}{\mathcal{G}}(\omega)\ \mu(d\omega)
+			= \int_A X(\omega)\ \mu(d\omega) = \lim_{n \to \infty} \int_A X_n(\omega)\ \mu(d\omega)
+			= \lim_{n \to \infty} \int_A \cexp{X^n}{\mathcal{G}}(\omega)\ \mu(d\omega)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
 	
