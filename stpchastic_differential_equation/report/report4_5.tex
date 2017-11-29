@@ -273,6 +273,66 @@
 		\end{align}
 		により$\mathcal{F}_\sigma \subset \mathcal{F}_{\sigma_n}$となる．前定理により任意の$A \in \mathcal{F}_\sigma$に対して
 		\begin{align}
-			\int_A \M_{\tau_n(\omega)}(\omega)\ \mu(d\omega) = \int_A \M_{\tau_n(\omega)\wedge \sigma_n(\omega)}(\omega)\ \mu(d\omega) 
+			\int_A M_{\tau_n(\omega)}(\omega)\ \mu(d\omega) = \int_A M_{\tau_n(\omega)\wedge \sigma_n(\omega)}(\omega)\ \mu(d\omega) 
 		\end{align}
+		が成り立ち，$(|M_t|)_{t \in I}$が$\mathrm{L}^p$-劣マルチンゲールであることからDoobの不等式により
+		$\sup{t \in I}{M_t}$は可積分である
+		\footnote{
+			$\sup{t \in I}{|M_t|^p} = \left( \sup{t \in I}{|M_t|} \right)^p$である．
+		}．
+		従って$\lim_{n \to \infty} \tau_n = \tau$と$M$の右連続性から，Lebesgueの収束定理より
+		\begin{align}
+			&\int_A M_{\tau(\omega)}(\omega)\ \mu(d\omega) = \lim_{n \to \infty} \int_A M_{\tau_n(\omega)}(\omega)\ \mu(d\omega) \\
+			&\quad = \lim_{n \to \infty} \int_A M_{\tau_n(\omega)\wedge \sigma_n(\omega)}(\omega)\ \mu(d\omega)
+			= \int_A M_{\tau(\omega)\wedge \sigma(\omega)}(\omega)\ \mu(d\omega)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[閉集合と停止時刻]
+			$I = [0,T] \subset \R$，$(X_t)_{t \in I}$を$d$次元確率変数の族とし，
+			全ての$\omega \in \Omega$に対し$t \longmapsto X_t(\omega)$が右連続で，
+			かつ$(X_t)_{t \in I}$が$(\mathcal{F}_t)$-適合であるとする．閉集合$F \subset \R^d$に対し
+			\begin{align}
+				\tau(\omega) \coloneqq
+				\begin{cases}
+					\inf{}{\left\{\ t \in I\ ;\ X_t(\omega) \in F\ \right\}} & (\left\{\ t \in I\ ;\ X_t(\omega) \in F \right\} \neq \emptyset)\\
+					T & (\mathrm{otherwise.})
+				\end{cases}
+			\end{align}
+			として$\tau:\Omega \rightarrow \R$を定めれば$\tau$は停止時刻となる．
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}
+		$d:\R^d \times \R^d \rightarrow \R$をEuclid距離関数とし
+		\begin{align}
+			D_t(\omega) \coloneqq \inf{}{\left\{\ d(X_r(\omega),F)\ ;\ r \in [0,t] \cap \Q\ \right\}}
+		\end{align}
+		とおいて，$\{ \tau \leq t \} = \{ D_t = 0 \}$が成り立つことを示す． 
+		$X(0,\omega) \in F$なら$\tau(\omega) = 0$である．
+		$s = \tau(\omega)$の場合，もし
+		$X(s,\omega) \notin F$であるなら，右連続性から或る$\delta > 0$が存在して
+		$\forall 0 < h < \delta$に対し$X(s+h,\omega) \notin F$となるから
+		$s$が下限であることに反する．従って$X(s,\omega) \in F$である．
+		ゆえに$s \leq t$ならば$D_t(\omega) = 0$が成り立つ．
+		もし$b \coloneqq D_t(\omega) > 0$であるとすれば
+		全ての$r \in [0,t] \cap \Q$で$d(X_r(\omega),F) \geq b$となる．
+		右連続性より$s$のある近傍から有理点$r \in [0,t] \cap \Q$を取り
+		\begin{align}
+			|X_s(\omega) - X_r(\omega)| < b/2
+		\end{align}
+		とできるから，$X_s(\omega) > b/2$となり矛盾が出るからである．
+		
+		一方で$D_t(\omega) = 0$であるなら
+		\begin{align}
+			d(X_{s_n}(\omega),F) < 1/n
+		\end{align}
+		となるように$s_n \in [0,t] \cap \Q$を取ることができる．$(s_n)_{n=1}^{\infty}$は
+		集積点$s$を持ち$s \in [0,t]\ $(閉区間)となるから$d(X_s(\omega),F)=0$となる．従って
+		$\tau(\omega) \leq s$が成り立つ．
+		\QED
 	\end{prf}
