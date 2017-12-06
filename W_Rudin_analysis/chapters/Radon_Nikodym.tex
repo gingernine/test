@@ -1,0 +1,370 @@
+\section{複素測度}
+	$(X,\mathcal{M})$を可測空間，$\lambda$を$\mathcal{M}$上の複素測度(complex measure)とする．
+	$\lambda$は複素数値であるから，任意の$E \in \mathcal{M}$に対して
+	$|\lambda(E)| < \infty$となっていることに注意する．
+	測度としての性質から，どの二つも互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$と
+	\begin{align}
+		E \coloneqq \sum_{i=1}^{\infty} E_i
+	\end{align}
+	に対して
+	\begin{align}
+		\lambda(E) = \sum_{i=1}^{\infty} \lambda(E_i)
+	\end{align}
+	が成り立つが，左辺が$\C$値であるから右辺の級数は収束していなくてはならない．
+	$\sigma:\N \rightarrow \N$を任意の並び替え
+	\footnote{
+		$\sigma$は$\N$から$\N$への全単射である．
+	}として，$(E_i)_{i=1}^{\infty}$に対して
+	\begin{align}
+		E = \sum_{i=1}^{\infty}E_{\sigma(i)}
+	\end{align}
+	が成り立つから，測度の性質を持つ$\lambda$は
+	\begin{align}
+		\lambda(E) = \sum_{i=1}^{\infty} \lambda(E_{\sigma(i)})
+	\end{align}
+	を満たす．つまり複素数列$\left( \lambda(E_i) \right)_{i=1}^{\infty}$
+	は任意の並び替えに対し総和が不変で収束していることになり，Riemannの級数定理より
+	この列は絶対収束している:
+	\begin{align}
+		\sum_{i=1}^{\infty} |\lambda(E_i)| < \infty.
+	\end{align}
+	$\lambda$に対し，或る$\mathcal{M}$上の測度$\mu$で$\lambda$を支配する，つまり
+	\begin{align}
+		|\lambda(E)| \leq \mu(E) \quad (\forall E \in \mathcal{M})
+		\label{radon_nikodym_1}
+	\end{align}
+	を満たすものを，できるだけ小さいものとして取ろうと考える
+	\footnote{
+		つまり(\refeq{radon_nikodym_1})を満たす$\mu$のうちから，
+		同様に(\refeq{radon_nikodym_1})を満たす任意の測度$\mu'$に対し
+		\begin{align}
+			\mu(E) \leq \mu'(E) \quad (\forall E \in \mathcal{M})
+		\end{align}
+		を満たすものを選べるかどうかを考える．
+	}．
+	このような$\mu$は次を満たすことになる:
+	\begin{align}
+		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) = \mu(E)
+	\end{align}
+	を満たすことになり，ゆえに
+	\begin{align}
+		\mu(E) \geq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} 
+		\label{radon_nikodym_2}
+	\end{align}
+	でなくてはならず(上限は$E$のあらゆる分割$E = \sum_{i}E_i$に対して取るものである)，
+	ここで$\mathcal{M}$上の関数として$|\lambda|$を
+	\begin{align}
+		|\lambda|(E) \coloneqq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} \quad (\forall E \in \mathcal{M})
+		\label{radon_nikodym_3}
+	\end{align}
+	として置いてみるとよさそうである．$E$に対し$E$自体を一つの分割と見做せば，(\refeq{radon_nikodym_3})より$|\lambda|$は$\lambda$を支配していることになり，
+	更に$|\lambda|$は$\mathcal{M}$上の測度となる(後述)から，(\refeq{radon_nikodym_2})と併せて当座の問題の解となる．
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[総変動・総変動測度]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，上で定めた
+			測度$|\lambda|:\mathcal{M} \longrightarrow [0,\infty)$を
+			$\lambda$の総変動測度(total variation measure)といい，$|\lambda|(X)$を
+			$\lambda$の総変動(total variation)という．
+			特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．\footnotemark
+		\end{dfn}
+	\end{itembox}
+	\footnotetext{
+		複素測度の虚部が0であるものとして考えれば$0 \leq \lambda(E) \leq \lambda(X) < \infty\ (\forall E \in \mathcal{M})$が成り立つ．
+		また実際任意の$E \in \mathcal{M}$とその分割$(E_i)_{i=1}^{\infty}$に対して
+		\begin{align}
+			|\lambda|(E) = \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} = \sup{}{\sum_{i=1}^{\infty} \lambda(E_i)} = \sup{}{\lambda(E)} = \lambda(E)
+		\end{align}
+		が成り立つ．
+	}
+	
+	以降で$|\lambda|$の性質
+	\begin{description}
+		\item[(1)] $|\lambda|$は測度である．
+		\item[(2)] $|\lambda|(X) < \infty$が成り立つ．
+	\end{description}
+	を証明する．特に(2)により任意の$E \in \mathcal{M}$に対し
+	\begin{align}
+		|\lambda(E)| \leq |\lambda|(E) \leq |\lambda|(X) < \infty
+	\end{align}
+	が従うから，複素測度は有界であると判明する．
+
+	\begin{itembox}[l]{}
+		\begin{thm}[$|\lambda|$は測度となる]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し(\refeq{radon_nikodym_3})で定義する$|\lambda|$は
+			$(X,\mathcal{M})$において測度となる．
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}
+		(\refeq{radon_nikodym_3})により$|\lambda|$は正値であるから，ここで示すことは$|\lambda|$が完全加法的であるということである．
+		任意に$\epsilon > 0$とどの二つも互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$を取る．
+		示すことは$E \coloneqq \sum_{i=1}^{\infty} E_i$に対して
+		\begin{align}
+			|\lambda|(E) = \sum_{i=1}^{\infty} |\lambda|(E_i)
+		\end{align}
+		が成り立つことである．(\refeq{radon_nikodym_3})により$E_i$の分割$(A_{ij})_{j=1}^{\infty} \subset \mathcal{M}$を
+		\begin{align}
+			|\lambda|(E_i) \geq \sum_{j=1}^{\infty} |\lambda(A_{ij})| > |\lambda|(E_i) - \epsilon/2^i
+		\end{align}
+		となるように取ることができる．また$E = \sum_{i,j=1}^{\infty} A_{ij}$でもあるから
+		\begin{align}
+			|\lambda|(E) \geq \sum_{i,j=1}^{\infty} |\lambda(A_{ij})| \geq \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} |\lambda(A_{ij})| > \sum_{i=1}^{\infty} |\lambda|(E_i) - \epsilon
+		\end{align}
+		が成り立つ．$\epsilon > 0$は任意であるから
+		\begin{align}
+			|\lambda|(E) \geq \sum_{j=1}^{\infty} |\lambda|(E_j)
+		\end{align}
+		が従う．逆向きの不等号について，$E$の任意の分割$(A_j)_{j=1}^{\infty} \subset \mathcal{M}$に対し
+		\begin{align}
+			\sum_{j=1}^{\infty} |\lambda(A_j)| 
+			= \sum_{j=1}^{\infty} \left| \sum_{i=1}^{\infty} \lambda(A_j \cap E_i) \right|
+			\leq \sum_{j=1}^{\infty} \sum_{i=1}^{\infty} |\lambda(A_j \cap E_i)|
+			\leq \sum_{i=1}^{\infty} |\lambda|(E_i)
+			\footnotemark
+		\end{align}
+		\footnotetext{
+			正項級数は和の順序に依らないから
+			\begin{align}
+				\sum_{j=1}^{\infty} \sum_{i=1}^{\infty} |\lambda(A_j \cap E_i)|
+				= \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} |\lambda(A_j \cap E_i)|
+			\end{align}
+			が成り立つ．これと(\refeq{radon_nikodym_3})を併せれば最後の不等号が従う．
+		}
+		が成り立つから，左辺の上限を取って
+		\begin{align}
+			|\lambda|(E) \leq \sum_{i=1} |\lambda|(E_i)
+		\end{align}
+		を得る．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}	
+		\begin{thm}[総変動測度は有界]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$の総変動測度$|\lambda|$について次が成り立つ:
+			\begin{align}
+				|\lambda|(X) < \infty.
+			\end{align}
+			\label{thm:total_variation_measure_bounded}
+		\end{thm}
+	\end{itembox}
+	
+	先ずは次の補題を示す．
+	
+	\begin{itembox}[l]{}
+		\begin{lem}
+			$z_1,\cdots,z_N$を複素数とする．これらの添数集合の或る部分$S \subset \{1,\cdots,N\}$を抜き取れば次が成り立つ:
+			\begin{align}
+				\left| \sum_{k \in S} z_k \right| \geq \frac{1}{2\pi} \sum_{k=1}^{N} |z_k|.
+			\end{align}
+			\label{lem:total_variation_measure_bounded}
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}[補題]
+		$z_k = |z_k|\exp{i \alpha_k}\ (-\pi \leq \alpha_k < \pi,\ k=1,\cdots,N)$となるように$\alpha_1,\cdots,\alpha_N$を取る．
+		ここで$i$は虚数単位である．また$-\pi \leq \theta \leq \pi$に対し
+		\begin{align}
+			S(\theta) \coloneqq \Set{k \in \{1,\cdots,N\}}{\cos{(\alpha_k - \theta)}{} > 0}
+		\end{align}
+		とおく．このとき
+		\begin{align}
+			\left| \sum_{k \in S(\theta)} z_k \right| &= |\exp{-i\theta}|\left| \sum_{k \in S(\theta)} z_k \right| = \left| \sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)} \right| \\
+			&\geq \Re{\sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)}} = \sum_{k \in S(\theta)} |z_k| \cos{(\alpha_k - \theta)}{} = \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
+			\footnotemark
+		\end{align}
+		\footnotetext{$\cos{x}{+} = 0 \vee \cos{x}{}\ (x \in \R)$である．}
+		が成り立ち，最右辺は$\theta$に関して連続となるから$[-\pi,\pi]$上で式を最大にする$\theta_0$が存在する．$S \coloneqq S(\theta_0)$とおき，$\theta_0$と任意の$\theta \in [-\pi,\pi]$に対して
+		\begin{align}
+			\left| \sum_{k \in S} z_k \right| \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta_0)}{+} \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
+		\end{align}
+		が成り立つから，左辺右辺を積分して
+		\begin{align}
+			\left| \sum_{k \in S} z_k \right| \geq \sum_{k=1}^{N} |z_k| \frac{1}{2\pi} \int_{[-\pi,\pi]} \cos{(\alpha_k - \theta)}{+}\ d\theta
+			= \frac{1}{2\pi} \sum_{k=1}^{N} |z_k|
+		\end{align}
+		が成り立つ\footnote{
+			最後の積分について，実際三角関数の周期性を使えば任意の$\alpha \in \R$に対して
+			\begin{align}
+				\int_{[-\pi,\pi]} \cos{(\alpha - \theta)}{+}\ d\theta = \int_{[\alpha-\pi,\alpha+\pi]} \cos{\theta}{+}\ d\theta = \int_{[-\pi,\pi]} \cos{\theta}{+}\ d\theta = 1
+			\end{align}
+			が成り立つ．
+		}．
+		\QED
+	\end{prf}
+	
+	\begin{prf}[定理\ref{thm:total_variation_measure_bounded}]\mbox{}
+		\begin{description}
+		\item[第一段]
+			或る$E \in \mathcal{M}$に対し$|\lambda|(E) = \infty$が成り立っていると仮定する．
+			$t \coloneqq 2\pi(1 + |\lambda(E)|)$とおけば({\scriptsize 複素測度であるから$|\lambda(E)| < \infty$})
+			$|\lambda|(E) > t$となるから，(\refeq{radon_nikodym_3})より$E$の分割$(E_i)_{i=1}^{\infty}$を
+			\begin{align}
+				\sum_{i=1}^{\infty} |\lambda(E_i)| > t
+			\end{align}
+			となるように取ることができる．従って或る$N \in \N$を取れば
+			\begin{align}
+				\sum_{i=1}^{N} |\lambda(E_i)| > t
+			\end{align}
+			が成り立つ．$z_i \coloneqq \lambda(E_i)\ (i=1,\cdots,N)$として補題\ref{lem:total_variation_measure_bounded}を使えば，
+			或る$S \subset \{1,\cdots,N\}$に対し
+			\begin{align}
+				\left| \sum_{k \in S} \lambda(E_k) \right| \geq \frac{1}{2\pi} \sum_{k=1}^{N} |\lambda(E_k)| > \frac{t}{2\pi} > 1
+			\end{align}
+			となる．$A \coloneqq \sum_{k \in S} E_k$とおいて$B \coloneqq E - A$とすれば
+			\begin{align}
+				|\lambda(B)| = |\lambda(E)-\lambda(A)| \geq |\lambda(A)| - |\lambda(E)| > \frac{t}{2\pi} - |\lambda(E)| = 1
+			\end{align}
+			が成り立つから，つまり$|\lambda|(E) = \infty$の場合，$E$の直和分割$A,B$で
+			\begin{align}	
+				|\lambda(A)| > 1, \quad |\lambda(B)| > 1
+			\end{align}
+			を満たすものが取れると示された．そして$|\lambda|$の加法性から
+			\begin{align}
+				|\lambda|(E) = |\lambda|(A) + |\lambda|(B)
+			\end{align}
+			も成り立つから，この場合右辺の少なくとも一方は$\infty$となる．
+		
+		\item[第二段]
+			背理法により定理の主張することを証明する．今$|\lambda|(X) = \infty$と仮定すると，前段の結果より$X$の或る直和分割$A_1,B_1$で
+			\begin{align}
+				|\lambda|(B_1) = \infty, \quad |\lambda(A_1)| > 1, \quad |\lambda(B_1)| > 1
+			\end{align}
+			を満たすものが取れる．$B_1$についてもその直和分割$A_2,B_2$で
+			\begin{align}
+				|\lambda|(B_2) = \infty, \quad |\lambda(A_2)| > 1, \quad |\lambda(B_2)| > 1
+			\end{align}
+			を満たすものが取れる．この操作を繰り返せば，どの二つも互いに素な集合列$(A_j)_{j=1}^{\infty}$で$|\lambda(A_j)| > 1\ (j=1,2,\cdots)$
+			を満たすものを構成できる．$A \coloneqq \sum_{j=1}^{\infty}$について，$|\lambda(A)| < \infty$でなくてはならないから，
+			Riemannの級数定理より
+			\begin{align}
+				\lambda(A) = \sum_{j=1}^{\infty} \lambda(A_j)
+			\end{align}
+			の右辺は絶対収束する．従って$0 < \epsilon < 1$に対し或る$N \in \N$が存在して$n > N$なら$|\lambda(A_n)| < \epsilon$
+			が成り立つはずであるが，これは$|\lambda(A_n)| > 1$であることに矛盾する．
+			背理法により$|\lambda|(X) < \infty$であることが示された．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[複素測度の空間・ノルムの定義]
+			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM$と表す．$\lambda,\mu \in \CM,\ c \in \C,\ E \in \mathcal{M}$に対し
+			\begin{align}
+				&(\lambda + \mu)(E) \coloneqq \lambda(E) + \mu(E), \\
+				&(c\lambda)(E) \coloneqq c\lambda(E)
+				\label{complex_measure_linear}
+			\end{align}
+			を線型演算として$\CM$は線形空間となり，特に定理\ref{thm:total_variation_measure_bounded}により
+			$\lambda \in \CM$に対して$|\lambda| \in \CM$が成り立つ．
+			また$\Norm{\cdot}{}:\CM \rightarrow \R$を
+			\begin{align}
+				\Norm{\lambda}{} \coloneqq |\lambda|(X) \quad (\lambda \in \CM)
+			\end{align}
+			と定義すればこれは$\CM$においてノルムとなる．
+		\end{dfn}
+	\end{itembox}
+	
+	上で定義した$\Norm{\cdot}{}$がノルムとなることを証明する．総変動の正値性からノルムの正値性が従うから，以下示すのは
+	同次性と三角不等式である．
+	\begin{description}
+		\item[同次性]
+			総変動測度の定義(\refeq{radon_nikodym_3})とスカラ倍の定義(\refeq{complex_measure_linear})より，任意の$\lambda \in \CM$と$c \in \C$に対し
+			\begin{align}
+				\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
+			\end{align}
+			が成り立つ．
+			
+		\item[三角不等式]
+			任意の$\lambda,\mu \in \CM$に対し
+			\begin{align}
+				\Norm{\lambda + \mu}{} = |\lambda + \mu|(X) = \sup{}{\sum_{i} |(\lambda + \mu)(E_i)|} = \sup{}{\sum_{i} |\lambda(E_i) + \mu(E_i)|}
+			\end{align}
+			となるが，ここで
+			\begin{align}
+				\sum_{i} |\lambda(E_i) + \mu(E_i)| \leq \sum_{i} |\lambda(E_i)| + \sum_{i} |\mu(E_i)| \leq \Norm{\lambda}{} + \Norm{\mu}{}
+			\end{align}
+			が成り立つから
+			\begin{align}
+				\Norm{\lambda + \mu}{} = \sup{}{\sum_{i} |\lambda(E_i) + \mu(E_i)|} \leq \Norm{\lambda}{} + \Norm{\mu}{}
+			\end{align}
+			が従う．
+	\end{description}
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[正変動と負変動・Jordanの分解]
+			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM$とし，
+			実数値の$\mu \in \CM$を取る({\scriptsize このような$\mu$を符号付き測度(signed measure)という})．
+			\begin{align}
+				\mu^+ \coloneqq \frac{1}{2}(|\mu| + \mu) , \quad \mu^- \coloneqq \frac{1}{2}(|\mu| - \mu)
+			\end{align}
+			とおけば$\mu^+,\mu^-$はどちらも正値有限測度となる\footnotemark
+			．$\mu^+$を$\mu$の正変動(positive variation)といい$\mu^-$を$\mu$の負変動(negative variation)という．
+			また
+			\begin{align}
+				\mu = \mu^+ - \mu^-, \quad |\mu| = \mu^+ + \mu^-
+			\end{align}
+			が成り立ち，ここで示した符号付き測度の正変動と負変動による表現をJordanの分解という．
+		\end{dfn}
+	\end{itembox}
+	
+	\footnotetext{
+		$\mathcal{M}$上で$|\mu|(E) \geq |\mu(E)|$であることと定理\ref{thm:total_variation_measure_bounded}による．
+	}
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[絶対連続・特異]
+			$(X,\mathcal{M})$を可測空間，
+			$\mu$を$\mathcal{M}$上の正値測度\footnotemark
+			，$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の任意の測度({\scriptsize 正値測度或は複素測度})とする．
+			\begin{itemize}
+				\item $\lambda$が$\mu$に関して絶対連続である(absolutely continuous)ということを
+					\begin{align}
+						\lambda \ll \mu
+					\end{align}
+					と書き，その意味は，「$\mu(E)=0$となる全ての$E \in \mathcal{M}$について$\lambda(E)=0$」である．
+				
+				\item 或る$A \in \mathcal{M}$があって$\lambda(E) = \lambda(A \cap E)\ (\forall E \in \mathcal{M})$
+					が成り立っているとき，$\lambda$は$A$に集中している(concentrated on A)という．
+					$\lambda_1,\lambda_2$に対し或る$A_1,A_2 \in \mathcal{M}$があって，
+					$\lambda_1$が$A_1$に集中，$\lambda_2$が$A_2$に集中しかつ
+					$A_1 \cap A_2 = \emptyset$を満たしているとき，これを互いに特異である(mutually singular)といい
+					\begin{align}
+						\lambda_1 \perp \lambda_2
+					\end{align}
+					と書く．
+			\end{itemize}
+		\end{dfn}
+	\end{itembox}
+	
+	\footnotetext{
+		正値測度という場合は$\infty$も取りうる．従って正値測度は複素測度の範疇にはない．$\mu$として例えば$k$次元Lebesgue測度を想定している．
+	}
+	
+	\begin{itembox}[l]{}
+		\begin{prp}[絶対連続性と特異性に関する性質]
+			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の正値測度，
+			$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の複素測度とする．このとき以下に羅列する事柄が成り立つ．
+			\begin{description}
+				\item[(1)] $\lambda$が$A \in \mathcal{M}$に集中しているなら$|\lambda|$も$A$に集中している．
+				\item[(2)] $\lambda_1 \perp \lambda_2$ならば$|\lambda_1| \perp |\lambda_2|$．
+				\item[(3)] $\lambda_1 \perp \mu$かつ$\lambda_2 \perp \mu$ならば$\lambda_1 + \lambda_2 \perp \mu$．
+				\item[(4)] $\lambda_1 \ll \mu$かつ$\lambda_2 \ll \mu$ならば$\lambda_1 + \lambda_2 \ll \mu$．
+				\item[(5)] $\lambda \ll \mu$ならば$|\lambda| \ll \mu$．
+				\item[(6)] $\lambda_1 \ll \mu$かつ$\lambda_2 \perp \mu$ならば$\lambda_1 \perp \lambda_2$．
+				\item[(7)] $\lambda \ll \mu$かつ$\lambda \perp \mu$ならば$\lambda = 0$．
+			\end{description}
+		\end{prp}
+	\end{itembox}
+	
+\section{Lebesgue-Radon-Nikodymの定理}
+	\begin{itembox}[l]{}
+		\begin{lem}
+			
+		\end{lem}
+	\end{itembox}
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[Lebesgue-Radon-Nikodym]
+		\end{thm}
+	\end{itembox}
