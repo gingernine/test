@@ -1,49 +1,56 @@
-\section{10/4講義ノート}
-\begin{qst}
-係数体を$\K$，$\K = \R$或は$\K = \C$と考える．測度空間を$(X,\mathcal{F},m)$とし，
+\section{$\mathscr{L}^p$と$\mathrm{L}^p$}
+
+$\K$を$\K = \R$或は$\K = \C$とおく．測度空間を$(X,\mathcal{F},m)$とし，
 可測$\mathcal{F}/\borel{\K}$関数$f$に対して
 \begin{align}
 	\Norm{f}{\mathscr{L}^p} \coloneqq
 	\begin{cases}
-		\inf{}{\{\ r \in \R\quad |\quad |f(x)| \leq r,\ \mathrm{a.e.}x \in X\ \}} & (p = \infty) \\
+		\inf{}{\Set{r \in \R}{|f(x)| \leq r,\ \mathrm{a.e.}x \in X}} & (p = \infty) \\
 		\left( \int_{X} |f(x)|^p\ m(dx) \right)^{\frac{1}{p}} & (0 < p < \infty)
 	\end{cases}
 \end{align}
 と定め，
 \begin{align}
-	\semiLp{p}{X,\mathcal{F},m} \coloneqq \{\ f:X \rightarrow \K \quad |\quad f:\mbox{可測}\mathcal{F}/\borel{\K},\ \Norm{f}{\mathscr{L}^p} < \infty \ \} \quad (1 \leq p \leq \infty)
+	\semiLp{p}{X,\mathcal{F},m} \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K},\ \Norm{f}{\mathscr{L}^p} < \infty} \quad (1 \leq p \leq \infty)
 \end{align}
 として空間$\semiLp{p}{X,\mathcal{F},m}$を定義する．この空間は$\K$上の線形空間となるが，そのことを保証するために
 次の二つの不等式が成り立つことを証明する．
-\begin{thm}[H\Ddot{o}lderの不等式]
-	$1 \leq p, q \leq \infty$，$p + q = pq\ (p = \infty$なら$q = 1)$とする．このとき
-	任意の可測$\mathcal{F}/\borel{\K}$関数$f,g$に対して次が成り立つ:
-	\begin{align}
-		\int_{X} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^p} \Norm{g}{\mathscr{L}^q}. \label{ineq:holder}
-	\end{align} 
-\end{thm}
-\begin{prf}
-	まず次の補助定理を証明する．
+
+\begin{itembox}[l]{}
+	\begin{thm}[H\Ddot{o}lderの不等式]
+		$1 \leq p, q \leq \infty$，$p + q = pq\ (p = \infty$なら$q = 1)$とする．このとき
+		任意の可測$\mathcal{F}/\borel{\K}$関数$f,g$に対して次が成り立つ:
+		\begin{align}
+			\int_{X} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^p} \Norm{g}{\mathscr{L}^q}. \label{ineq:holder}
+		\end{align}
+		\label{thm:holder_inequality}
+	\end{thm}
+\end{itembox}
+
+まず次の補助定理を証明する．
+\begin{itembox}[l]{}
 	\begin{lem}
 		$f \in \semiLp{\infty}{X,\mathcal{F},m}$ならば
 		\begin{align}
 			|f(x)| \leq \Norm{f}{\mathscr{L}^\infty} \quad (\mathrm{a.e.}x \in X).
 		\end{align}
+		\label{lem:holder_inequality}
 	\end{lem}
-	\begin{prf}
-		$\semiLp{\infty}{X,\mathcal{F},m}$の定義により，任意の実数$\alpha > \Norm{f}{\mathscr{L}^\infty}$に対して
-		\begin{align}
-			m(\{\ x \in X\quad |\quad |f(x)| > \alpha\ \}) = 0
-		\end{align}
-		である．これにより
-		\begin{align}
-			\{\ x \in X\quad |\quad |f(x)| > \Norm{f}{\mathscr{L}^\infty}\ \} = \bigcup_{n =1}^{\infty} \{\ x \in X\quad |\quad |f(x)| > \Norm{f}{\mathscr{L}^\infty} + 1/n\ \}
-		\end{align}
-		の右辺は$m$-零集合となり補題が証明された．
-		\QED
-	\end{prf}
-	
-	定理の証明に入る．\mbox{}\\
+\end{itembox}
+\begin{prf}[補題\ref{lem:holder_inequality}]
+	$\semiLp{\infty}{X,\mathcal{F},m}$の定義により，任意の実数$\alpha > \Norm{f}{\mathscr{L}^\infty}$に対して
+	\begin{align}
+		m(\Set{x \in X}{|f(x)| > \alpha}) = 0
+	\end{align}
+	である．これにより
+	\begin{align}
+		\Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} = \bigcup_{n =1}^{\infty} \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty} + 1/n}
+	\end{align}
+	の右辺は$m$-零集合となり補題が証明された．
+	\QED
+\end{prf}
+\begin{prf}[定理\ref{thm:holder_inequality}]	
+	定理の証明に入る．
 	\begin{description}
 		\item[$p = \infty,\ q = 1$の場合]
 			$\Norm{f}{\mathscr{L}^\infty} = \infty$又は$\Norm{g}{\mathscr{L}^1} = \infty$の場合は明らかに不等式(\refeq{ineq:holder})
@@ -565,4 +572,3 @@ $M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加�
 		となることにより$\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}$であることが示された．
 	\end{description}
 \end{prf}
-\end{qst}
