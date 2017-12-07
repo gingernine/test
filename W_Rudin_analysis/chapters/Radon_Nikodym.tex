@@ -360,11 +360,98 @@
 \section{Lebesgue-Radon-Nikodymの定理}
 	\begin{itembox}[l]{}
 		\begin{lem}
-			
+			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の$\sigma$-有限な正値測度とする．
+			この$\mu$に対し次を満たす$w \in \semiLp{1}{\mu}$\footnotemark
+			が存在する:
+			\begin{align}
+				0 < w(x) < 1 \quad (\forall x \in X).
+			\end{align}
 		\end{lem}
 	\end{itembox}
 	
+	\footnotetext{
+		以後測度が定義されている空間は同じだから
+		$\semiLp{1}{\mu} = \semiLp{1}{X,\mathcal{M},\mu}$と略記する．
+		$\mathrm{L}^p$についても同様に略記する．
+	}
+	
+	\begin{prf}
+		$\mu$は$(X,\mathcal{M})$において$\sigma$-有限であるから，
+		$\mu(E_n) < \infty$かつ$X = \cup_{n=1}^\infty E_n$を満たす
+		集合の系$(E_n)_{n=1}^\infty \subset \mathcal{M}$が存在する．
+		\begin{align}
+			w_n(x) \coloneqq
+			\begin{cases}
+				0 & (x \in X - E_n) \\
+				\frac{1}{2^n(1+\mu(E_n))} & (x \in E_n)
+			\end{cases}
+			\quad (n=1,2,\cdots)
+		\end{align}
+		として定義した関数$w_n$はどれも可測$\mathcal{M}/\borel{\R}$であり，そして
+		\begin{align}
+			w(x) \coloneqq \sum_{n=1}^{\infty} w_n(x) \quad (\forall x \in X)
+		\end{align}
+		として$w$を定義すれば，これもまた可測$\mathcal{M}/\borel{\R}$であり$0 < w < 1$を満たす．
+		実際
+		\begin{align}
+			\sum_{n=1}^\infty w_n(x) < \sum_{n=1}^\infty \frac{1}{2^n} = 1
+		\end{align}
+		となるから級数は各点$x \in X$で収束し，従って$w$の可測性が従う．また任意の$x \in X$は
+		或る$E_n$に属しているから$w(x) \geq w_n(x) > 0$となり，ゆえに$0 < w < 1$も従う．
+		最後に$w$が$\mu$について可積分であることを示す．これは単調収束定理より
+		\begin{align}
+			\int_X w(x)\ \mu(dx) = \sum_{n=1}^{\infty} \int_X w_n(x)\ \mu(dx) = \sum_{n=1}^{\infty} \frac{\mu(E_n)}{2^n(1+\mu(E_n))} < 1
+		\end{align}
+		が成り立つことによる．
+		\QED
+	\end{prf}
+	
 	\begin{itembox}[l]{}
 		\begin{thm}[Lebesgue-Radon-Nikodym]
+			$(X,\mathcal{M})$を可測空間，$\lambda$を$\mathcal{M}$上の複素測度，
+			そして$\mu$を$\mathcal{M}$上の$\sigma$-有限な正値測度とする．
+			このとき次の二つの主張が成り立つ:
+			\begin{description}
+				\item[(1)Lebesgueの分解] $\lambda$に対して或る複素測度$\lambda_a,\lambda_s$が存在し，
+					\begin{align}
+						\lambda(E) = \lambda_a(E) + \lambda_s(E) \quad (\forall E \in \mathcal{M})
+					\end{align}
+					かつ$\lambda_a \ll \mu,\ \lambda_s \perp \mu$を満たす．これをLebesgueの分解といい，
+					分解は一意である．
+					
+				\item[(2)密度関数の存在] (1)の$\lambda_a$に対し或る$[h] \in \Lp{1}{\mu}$がただ一つだけ存在し
+					\begin{align}
+						\lambda_a(E) = \int_E h(x)\ \mu(dx) \quad (\forall E \in \mathcal{M})
+					\end{align}
+					を満たす．$\lambda_a$に対する上の関数$h$をRadon-Nikodymの密度関数という．
+			\end{description}
 		\end{thm}
 	\end{itembox}
+	
+	\begin{prf}
+		\begin{align}
+			\lambda_1(E) \coloneqq \Re{\lambda(E)}, \quad \lambda_2(E) \coloneqq \Im{\lambda(E)} \quad (\forall E \in \mathcal{M})
+		\end{align}
+		として$\lambda$の実部と虚部を表す．Jordanの分解により$\lambda_1,\lambda_2$は更に正変動$\lambda_1^+,\lambda_2^+$と
+		負変動$\lambda_1^-,\lambda_2^-$に分けらる．Lebesgueの分解と密度関数の存在の一意性を利用すれば，以下では
+		正値有限測度に対して定理の主張が成り立つことを示せば十分である
+		\footnote{
+			これが示されれば，$\lambda_1^+,\lambda_2^+,\lambda_1^-,\lambda_2^-$のそれぞれに対しLebesgue分解と密度関数が存在する:
+			それらを$\lambda_{1,a}^+,\lambda_{1,s}^+,\lambda_{2,a}^+,\lambda_{2,s}^+,\lambda_{1,a}^-,\lambda_{1,s}^-,\lambda_{1,a}^-,\lambda_{1,s}^-$，
+			$h_1^+,h_2^+,h_1^-,h_2^-$と表せば，
+			\begin{align}
+				\lambda(E) 
+				&= \lambda_1^+(E) - \lambda_1^-(E) + i\left( \lambda_2^+(E) - \lambda_2^-(E) \right) \\
+				&= \lambda_{1,a}^+(E) - \lambda_{1,a}^-(E) + \lambda_{1,s}^+(E) - \lambda_{1,s}^-(E) 
+					+ i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) + \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right) \\
+				&= \left\{ \lambda_{1,a}^+(E) - \lambda_{1,a}^-(E) + i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) \right) \right\}
+					+ \left\{ \lambda_{1,s}^+(E) - \lambda_{1,s}^-(E) + i\left( \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right) \right\}
+			\end{align}
+			\begin{align}
+				\lambda(E) 
+				&= \lambda_1^+(E) - \lambda_1^-(E) + i\left( \lambda_2^+(E) - \lambda_2^-(E) \right) \\
+				&= \lambda_{1,a}^+(E) - \lambda_{1,a}^-(E) + \lambda_{1,s}^+(E) - \lambda_{1,s}^-(E) 
+					+ i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) + \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right)
+			\end{align}
+		}．
+	\end{prf}
