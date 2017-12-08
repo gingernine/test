@@ -432,20 +432,35 @@
 	
 	\begin{prf}\mbox{}
 	\begin{description}
-	\item[分解と密度関数の存在の一意性]
-		
+	\item[分解と密度関数の一意性]
+		まずはLebesgue分解について証明する．$\lambda$の分解が$\lambda_a,\lambda_s$の組と$\tilde{\lambda}_a,\tilde{\lambda}_s$
+		の組の二つあるとして($\lambda_a,\tilde{\lambda}_a \ll \mu,\ \lambda_s,\tilde{\lambda}_s \perp \mu$)，
+		\begin{align}
+			\lambda_a - \tilde{\lambda}_a = \tilde{\lambda}_s - \lambda_s
+		\end{align}
+		とできるから，命題\ref{prp:absolute_continuous_singular}により両辺とも$\ll \mu$かつ$\perp \mu$を満たす．
+		命題\ref{prp:absolute_continuous_singular}により絶対連続性と特異性を両方持つ場合は零写像となるのだから
+		\begin{align}
+			\lambda_a = \tilde{\lambda}_a, \quad \lambda_s = \tilde{\lambda}_s
+		\end{align}
+		となる．密度関数の一意性についても，$\lambda_a$に対し$[h],[\tilde{h}] \in \Lp{1}{\mu}$が存在して
+		\begin{align}
+			\int_E h\ d\mu = \int_E \tilde{h}\ d\mu \quad (\forall E \in \mathcal{M})
+		\end{align}
+		が成り立つなら，$\mathcal{M}$の元$\{h > \tilde{h}\},\{h < \tilde{h}\}$はいずれも$\mu$測度0であるから
+		$h = \tilde{h}\ \mu$-a.e.が従い$[h] = [\tilde{h}]$となる．
 	\item[分解と密度関数の存在]
-		正値有限測度に対して定理の主張が成り立つことを示せば十分である
+		正値有限測度に対して示せば十分である
 		\footnote{
 			Lebesgueの分解と密度関数の存在の一意性を利用すれば，正値測度の場合に示すので十分である:
 			\begin{align}
 				\lambda_1(E) \coloneqq \Re{\lambda(E)}, \quad \lambda_2(E) \coloneqq \Im{\lambda(E)} \quad (\forall E \in \mathcal{M})
 			\end{align}
-			として$\lambda$の実部と虚部を表す．$\lambda_1,\lambda_2$は更に正変動$\lambda_1^+,\lambda_2^+$と
-			負変動$\lambda_1^-,\lambda_2^-$にJordan分解できる．
+			として$\lambda$の実部と虚部を表し，$\lambda_1,\lambda_2$をそれぞれ正変動$\lambda_1^+,\lambda_2^+$と
+			負変動$\lambda_1^-,\lambda_2^-$にJordan分解する．
 			$\lambda_1^+,\lambda_2^+,\lambda_1^-,\lambda_2^-$のそれぞれに対しLebesgue分解と密度関数が存在するとして，
 			分解を$\lambda_{1,a}^+,\lambda_{1,s}^+,\lambda_{2,a}^+,\lambda_{2,s}^+,\lambda_{1,a}^-,\lambda_{1,s}^-,\lambda_{1,a}^-,\lambda_{1,s}^-$，
-			密度関数を$h_1^+,h_2^+,h_1^-,h_2^-$と表す．測度に対して
+			密度関数を$h_1^+,h_2^+,h_1^-,h_2^-$と表す．$\lambda$の分解について，
 			\begin{align}
 				\lambda
 				&= \lambda_1^+ - \lambda_1^- + i\left( \lambda_2^+ - \lambda_2^- \right) \\
@@ -457,13 +472,15 @@
 			と表現できて，命題\ref{prp:absolute_continuous_singular}により
 			$\lambda_{1,a}^+ - \lambda_{1,a}^- + i\left( \lambda_{2,a}^+ - \lambda_{2,a}^- \right) \ll \mu$かつ
 			$\lambda_{1,s}^+ - \lambda_{1,s}^- + i\left( \lambda_{2,s}^+ - \lambda_{2,s}^- \right) \perp \mu$が成り立つから
-			
+			これは$\lambda$のLebesgue分解である．また密度関数に対しても
 			\begin{align}
-				\lambda(E) 
-				&= \lambda_1^+(E) - \lambda_1^-(E) + i\left( \lambda_2^+(E) - \lambda_2^-(E) \right) \\
-				&= \lambda_{1,a}^+(E) - \lambda_{1,a}^-(E) + \lambda_{1,s}^+(E) - \lambda_{1,s}^-(E) 
-					+ i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) + \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right)
+				h = h_1^+ - h_1^- + i \left( h_2^+ - h_2^- \right)
 			\end{align}
+			とおけば$[h] \in \Lp{1}{\mu}$であり，
+			\begin{align}
+				\int h\ d\mu = \int h_1^+ - h_1^- + i \left( h_2^+ - h_2^- \right)\ d\mu = \lambda_{1,a}^+ - \lambda_{1,a}^- + i \left( \lambda_{2,a}^+ - \lambda_{2,a}^- \right) = \lambda_a
+			\end{align}
+			が成り立つ．
 		}．
 		$\lambda$を正値有限測度とする．$\mu$に対し補題(\ref{lem:lebesgue-radon-nikodym})の通りに関数$w$を構成し，
 		\begin{align}
