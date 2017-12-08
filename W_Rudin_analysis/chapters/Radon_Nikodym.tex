@@ -1,8 +1,8 @@
 \section{複素測度}
 	$(X,\mathcal{M})$を可測空間，$\lambda$を$\mathcal{M}$上の複素測度(complex measure)とする．
-	$\lambda$は複素数値であるから，任意の$E \in \mathcal{M}$に対して
-	$|\lambda(E)| < \infty$となっていることに注意する．
-	測度としての性質から，どの二つも互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$と
+	$\lambda$は複素数値であるから任意の$E \in \mathcal{M}$に対して
+	$|\lambda(E)| < \infty$が成り立つ．
+	また測度としての性質から，どの互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$と
 	\begin{align}
 		E \coloneqq \sum_{i=1}^{\infty} E_i
 	\end{align}
@@ -23,12 +23,12 @@
 		\lambda(E) = \sum_{i=1}^{\infty} \lambda(E_{\sigma(i)})
 	\end{align}
 	を満たす．つまり複素数列$\left( \lambda(E_i) \right)_{i=1}^{\infty}$
-	は任意の並び替えに対し総和が不変で収束していることになり，Riemannの級数定理より
-	この列は絶対収束している:
+	は無条件に$\lambda(E)$に収束していることになり，Riemannの級数定理より
+	この列は絶対収束する:
 	\begin{align}
 		\sum_{i=1}^{\infty} |\lambda(E_i)| < \infty.
 	\end{align}
-	$\lambda$に対し，或る$\mathcal{M}$上の測度$\mu$で$\lambda$を支配する，つまり
+	今，$\lambda$を支配するような或る$\mathcal{M}$上の測度$\mu$，つまり
 	\begin{align}
 		|\lambda(E)| \leq \mu(E) \quad (\forall E \in \mathcal{M})
 		\label{radon_nikodym_1}
@@ -44,21 +44,21 @@
 	}．
 	このような$\mu$は次を満たすことになる:
 	\begin{align}
-		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) = \mu(E)
+		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) = \mu(E).
 	\end{align}
-	を満たすことになり，ゆえに
+	ゆえに
 	\begin{align}
 		\mu(E) \geq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} 
 		\label{radon_nikodym_2}
 	\end{align}
 	でなくてはならず(上限は$E$のあらゆる分割$E = \sum_{i}E_i$に対して取るものである)，
-	ここで$\mathcal{M}$上の関数として$|\lambda|$を
+	ここで$\mathcal{M}$上の関数を
 	\begin{align}
 		|\lambda|(E) \coloneqq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} \quad (\forall E \in \mathcal{M})
 		\label{radon_nikodym_3}
 	\end{align}
-	として置いてみるとよさそうである．$E$に対し$E$自体を一つの分割と見做せば，(\refeq{radon_nikodym_3})より$|\lambda|$は$\lambda$を支配していることになり，
-	更に$|\lambda|$は$\mathcal{M}$上の測度となる(後述)から，(\refeq{radon_nikodym_2})と併せて当座の問題の解となる．
+	として定義してみれば，$E$自体が$E$の一つの分割であるから(\refeq{radon_nikodym_3})より$|\lambda|$は$\lambda$を支配し，
+	更に，後述することであるが，$|\lambda|$は$\mathcal{M}$上の測度でもあり(\refeq{radon_nikodym_2})と併せて当座の問題の解となる．
 	
 	\begin{itembox}[l]{}
 		\begin{dfn}[総変動・総変動測度]
@@ -354,6 +354,7 @@
 				\item[(6)] $\lambda_1 \ll \mu$かつ$\lambda_2 \perp \mu$ならば$\lambda_1 \perp \lambda_2$．
 				\item[(7)] $\lambda \ll \mu$かつ$\lambda \perp \mu$ならば$\lambda = 0$．
 			\end{description}
+			\label{prp:absolute_continuous_singular}
 		\end{prp}
 	\end{itembox}
 	
@@ -364,8 +365,9 @@
 			この$\mu$に対し次を満たす$w \in \semiLp{1}{\mu}$\footnotemark
 			が存在する:
 			\begin{align}
-				0 < w(x) < 1 \quad (\forall x \in X).
+				0 < w(x) < 1 \quad (\forall x \in X), \quad \int_X w(x)\ \mu(dx) < 1.
 			\end{align}
+			\label{lem:lebesgue-radon-nikodym}
 		\end{lem}
 	\end{itembox}
 	
@@ -428,25 +430,34 @@
 		\end{thm}
 	\end{itembox}
 	
-	\begin{prf}
-		\begin{align}
-			\lambda_1(E) \coloneqq \Re{\lambda(E)}, \quad \lambda_2(E) \coloneqq \Im{\lambda(E)} \quad (\forall E \in \mathcal{M})
-		\end{align}
-		として$\lambda$の実部と虚部を表す．Jordanの分解により$\lambda_1,\lambda_2$は更に正変動$\lambda_1^+,\lambda_2^+$と
-		負変動$\lambda_1^-,\lambda_2^-$に分けらる．Lebesgueの分解と密度関数の存在の一意性を利用すれば，以下では
+	\begin{prf}\mbox{}
+	\begin{description}
+	\item[分解と密度関数の存在の一意性]
+		
+	\item[分解と密度関数の存在]
 		正値有限測度に対して定理の主張が成り立つことを示せば十分である
 		\footnote{
-			これが示されれば，$\lambda_1^+,\lambda_2^+,\lambda_1^-,\lambda_2^-$のそれぞれに対しLebesgue分解と密度関数が存在する:
-			それらを$\lambda_{1,a}^+,\lambda_{1,s}^+,\lambda_{2,a}^+,\lambda_{2,s}^+,\lambda_{1,a}^-,\lambda_{1,s}^-,\lambda_{1,a}^-,\lambda_{1,s}^-$，
-			$h_1^+,h_2^+,h_1^-,h_2^-$と表せば，
+			Lebesgueの分解と密度関数の存在の一意性を利用すれば，正値測度の場合に示すので十分である:
 			\begin{align}
-				\lambda(E) 
-				&= \lambda_1^+(E) - \lambda_1^-(E) + i\left( \lambda_2^+(E) - \lambda_2^-(E) \right) \\
-				&= \lambda_{1,a}^+(E) - \lambda_{1,a}^-(E) + \lambda_{1,s}^+(E) - \lambda_{1,s}^-(E) 
-					+ i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) + \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right) \\
-				&= \left\{ \lambda_{1,a}^+(E) - \lambda_{1,a}^-(E) + i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) \right) \right\}
-					+ \left\{ \lambda_{1,s}^+(E) - \lambda_{1,s}^-(E) + i\left( \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right) \right\}
+				\lambda_1(E) \coloneqq \Re{\lambda(E)}, \quad \lambda_2(E) \coloneqq \Im{\lambda(E)} \quad (\forall E \in \mathcal{M})
 			\end{align}
+			として$\lambda$の実部と虚部を表す．$\lambda_1,\lambda_2$は更に正変動$\lambda_1^+,\lambda_2^+$と
+			負変動$\lambda_1^-,\lambda_2^-$にJordan分解できる．
+			$\lambda_1^+,\lambda_2^+,\lambda_1^-,\lambda_2^-$のそれぞれに対しLebesgue分解と密度関数が存在するとして，
+			分解を$\lambda_{1,a}^+,\lambda_{1,s}^+,\lambda_{2,a}^+,\lambda_{2,s}^+,\lambda_{1,a}^-,\lambda_{1,s}^-,\lambda_{1,a}^-,\lambda_{1,s}^-$，
+			密度関数を$h_1^+,h_2^+,h_1^-,h_2^-$と表す．測度に対して
+			\begin{align}
+				\lambda
+				&= \lambda_1^+ - \lambda_1^- + i\left( \lambda_2^+ - \lambda_2^- \right) \\
+				&= \lambda_{1,a}^+ - \lambda_{1,a}^- + \lambda_{1,s}^+ - \lambda_{1,s}^-
+					+ i\left( \lambda_{2,a}^+ - \lambda_{2,a}^- + \lambda_{2,s}^+ - \lambda_{2,s}^- \right) \\
+				&= \left\{ \lambda_{1,a}^+ - \lambda_{1,a}^- + i\left( \lambda_{2,a}^+ - \lambda_{2,a}^- \right) \right\}
+					+ \left\{ \lambda_{1,s}^+ - \lambda_{1,s}^- + i\left( \lambda_{2,s}^+ - \lambda_{2,s}^- \right) \right\}
+			\end{align}
+			と表現できて，命題\ref{prp:absolute_continuous_singular}により
+			$\lambda_{1,a}^+ - \lambda_{1,a}^- + i\left( \lambda_{2,a}^+ - \lambda_{2,a}^- \right) \ll \mu$かつ
+			$\lambda_{1,s}^+ - \lambda_{1,s}^- + i\left( \lambda_{2,s}^+ - \lambda_{2,s}^- \right) \perp \mu$が成り立つから
+			
 			\begin{align}
 				\lambda(E) 
 				&= \lambda_1^+(E) - \lambda_1^-(E) + i\left( \lambda_2^+(E) - \lambda_2^-(E) \right) \\
@@ -454,4 +465,83 @@
 					+ i\left( \lambda_{2,a}^+(E) - \lambda_{2,a}^-(E) + \lambda_{2,s}^+(E) - \lambda_{2,s}^-(E) \right)
 			\end{align}
 		}．
+		$\lambda$を正値有限測度とする．$\mu$に対し補題(\ref{lem:lebesgue-radon-nikodym})の通りに関数$w$を構成し，
+		\begin{align}
+			\varphi(E) \coloneqq \lambda(E) + \int_E w(x)\ \mu(dx) \quad (\forall E \in \mathcal{M})
+		\end{align}
+		として$(X,\mathcal{M})$上の正値有限測度$\varphi$を作る．このとき任意の可測$\mathcal{M}/\borel{\R}$関数$f \geq 0$に対し
+		\begin{align}
+			\int f(x)\ \varphi(dx) = \int f(x)\ \lambda(dx) + \int f(x)w(x)\ \mu(dx)
+			\label{eq:lebesgue_radon_nikodym}
+		\end{align}
+		が成り立つから，特に$[f] \in \Lp{2}{\varphi}$に対してはH\Ddot{o}lderの不等式より
+		\begin{align}
+			\left| \int_X f(x)\ \lambda(dx) \right| \leq \int_X |f(x)|\ \lambda(dx) \leq \Norm{[f]}{\Lp{2}{\varphi}}^{\frac{1}{2}} \varphi(X)^{\frac{1}{2}} < \infty
+		\end{align}
+		となり，写像
+		\begin{align}
+			F:\Lp{2}{\varphi} \ni [f] \longmapsto \int_X f(x)\ \lambda(dx)
+		\end{align}
+		は連続線型である．従ってReiszの表現定理より$[f]$に対し唯一つの$[g] \in \Lp{2}{\varphi}$が存在して
+		\begin{align}
+			F([f]) = \int_X f(x)\ \lambda(dx) = \int_X f(x)g(x)\ \varphi(dx) \quad (\forall [f] \in \Lp{2}{\varphi})
+			\label{eq:lebesgue_radon_nikodym_2}
+		\end{align}
+		を満たす．(\refeq{eq:lebesgue_radon_nikodym_2})より$f = \defunc_E\ (E \in \mathcal{M})$とおけば
+		\begin{align}
+			\lambda(E) = \int_E g(x)\ \varphi(dx)
+		\end{align}
+		となるから，$\varphi(E) > 0$となる$E \in \mathcal{M}$に対し
+		\begin{align}
+			0 \leq \frac{1}{\varphi(E)} \int_E g\ d\varphi = \frac{\lambda(E)}{\varphi(E)} \leq 1
+		\end{align}
+		が成り立つ．書き直せば
+		\begin{align}
+			0 \leq \int_E g\ d\varphi \leq \varphi(E) \quad (\forall E \in \mathcal{M})
+		\end{align}
+		が成り立つ
+		\footnote{
+			$g$の$\varphi$に関する可積分性より，この関係は$\varphi(E) > 0$の場合に限らず成り立つ．
+		}．
+		これより$0 \leq g \leq 1\ \varphi-1.a.e.$が成り立つから，
+		$g$を零集合上で修正して$0 \leq g(x) \leq 1\ (\forall x \in X)$とする．
+		
+		ここで式(\refeq{eq:lebesgue_radon_nikodym_2})を式(\refeq{eq:lebesgue_radon_nikodym})に適用すれば
+		\begin{align}
+			&\int f(x)\ \varphi(dx) = \int f(x)g(x)\ \varphi(dx) + \int f(x)w(x)\ \mu(dx) \\
+			\Rightarrow &\int f(x)(1-g(x))\ \varphi(dx) = \int f(x)w(x)\ \mu(dx)
+		\end{align}
+		が成り立ち，$f = \defunc_E\ (E \in \mathcal{M})$として
+		\begin{align}
+			\int_E 1-g(x)\ \varphi(dx) = \int_E w(x)\ \mu(dx)
+		\end{align}
+		と表せる．
+		\begin{align}
+			A \coloneqq \{0 \leq g < 1\}, \quad B \coloneqq \{g = 1\}
+		\end{align}
+		に対して
+		\begin{align}
+			\lambda_a(E) \coloneqq \lambda(E \cap A), \quad \lambda_s(E) \coloneqq \lambda(E \cap B), \quad (\forall E \in \mathcal{M})
+		\end{align}
+		として$\lambda_a,\lambda_s$を定義すると，$\lambda_a$は$A$に，$\lambda_s$は$B$に集中し，
+		また$A+B=X$より$\lambda = \lambda_a + \lambda_s$となる．
+		\begin{align}
+			0 = \int_B 1-g(x)\ \varphi(dx) = \int_B w(x)\ \mu(dx)
+		\end{align}
+		であることと$w > 0$により$\mu(B) = 0$となり$\lambda_s \perp \mu$が従う．また
+		\begin{align}
+			h(x) \coloneqq
+			\begin{cases}
+				w(x)/(1-g(x)) & (x \in A) \\
+				0 & (x \in B)
+			\end{cases}
+		\end{align}
+		とおけば，Lebesgueの収束定理より任意の$E \in \mathcal{M}$に対して
+		\begin{align}
+			\lambda_a(E) = \lambda(E \cap A) = \lim_{n \to \infty} \int_{E \cap A} (1 - g^{n+1})\ d\varphi 
+			= \lim_{n \to \infty} \int_{E \cap A} (1 + g + \cdots + g^n)w\ d\mu = \int_E h\ d\mu 
+		\end{align}
+		が成り立つ．$\lambda_a(X) < \infty$であるから$h$の可積分性が従い，さらに$\lambda_a \ll \mu$であることも判る．
+	\end{description}
+	\QED
 	\end{prf}
