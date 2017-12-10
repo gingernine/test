@@ -238,7 +238,7 @@ $1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満�
 	f,g \in \mathcal{M},\quad f \sim g \DEF f(x) = g(x)\quad \mathrm{a.e.}x \in X
 \end{align}
 と定義した関係$\sim$は$\mathcal{M}$における同値関係となり，この関係で$\mathcal{M}$を割った商集合を$ M \coloneqq \mathcal{M}/\sim$と表す．
-$M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加法とスカラ倍を次のように定義すれば$M$は$\K$上の線形空間となる
+$M$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と表し，$M$における加法とスカラ倍を次のように定義すれば$M$は$\K$上の線形空間となる
 \footnote{
 	この表現はwell-defined，つまり代表元に依らずに値がただ一つに定まる．
 	任意の$f' \in [f]$と$g' \in [g]$に対して
@@ -255,12 +255,31 @@ $M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加�
 		&\{ \alpha f \neq \alpha f' \} = \{ f \neq f' \}
 	\end{align}
 	と表現でき，どれも右辺は$m$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$が成り立つ．
-	\QED
 }:
 \begin{align}
 	&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in M),\\
 	&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in M,\ \alpha \in \K).
 \end{align}
+また乗法も次のように定義できる:
+\begin{align}
+	[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in M).
+\end{align}
+この乗法は可換であり，加法と併せて$M$は可換環をなす．従って関数類に対して加減乗算が自由にできるようになった
+\footnote{
+	加法乗法が可換であることと結合則は代表元の関数の空間が加法乗法について可換であることと結合則を満たすことによる．
+	また分配測は
+	\begin{align}
+		&([f]+[g])[h] = [f+g][h] = [(f+g)h] = [fh + gh] = [fh] + [gh] = [f][h] + [g][h], \\
+		&[h]([f]+[g]) = [h][f+g] = [h(f+g)] = [hf + hg] = [hf] + [hg] = [h][f] + [h][g]
+	\end{align}
+	により成り立つ．そして零元は零写像の関数類で[0]と表し，単位元は恒等的に$1$を取る関数の関数類で[1]と表す．
+	また$-[f] = [-f]$であるから減法は
+	\begin{align}
+		[f] - [g] \coloneqq [f] + (-[g]) = [f] + [-g] = [f - g]
+	\end{align}
+	で定義される．
+}．
+また$[f][f]=[f^2]$を$[f]^2$と表記し，$[f]^n \coloneqq [f]^{n-1}[f]$と帰納的に定義すれば$[f]^n=[f^n]$となる．
 
 次に商線型空間$M$におけるノルムを定義する．
 \begin{itembox}[l]{}
@@ -308,10 +327,8 @@ $M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加�
 			任意に$[f],[g] \in \Lp{p}{X,\mathcal{F},m}$と$\alpha \in \K$を取る．
 			$\Norm{[f]}{\mathrm{L}^p}$の正値性は$\Norm{\cdot}{\mathscr{L}^p}$の正値性から従う．
 			また$m(f \neq 0) > 0$なら$\Norm{f}{\mathscr{L}^p} > 0$となるから，
-			対偶により$\Norm{[f]}{\mathrm{L}^p} = 0$なら$[f]$は零元$[0]$
-			\footnote{
-				零写像を$0$と表している．
-			}，逆に$[f] = [0]$なら$\Norm{[f]}{\mathrm{L}^p} = \Norm{0}{\mathscr{L}^p} = 0$となる．
+			対偶により$\Norm{[f]}{\mathrm{L}^p} = 0$なら$[f]$は零元$[0]$，
+			逆に$[f] = [0]$なら$\Norm{[f]}{\mathrm{L}^p} = \Norm{0}{\mathscr{L}^p} = 0$となる．
 			$\Norm{\cdot}{\mathscr{L}^p}$の同次性とMinkowskiの不等式から
 			\begin{align}
 				&\Norm{\alpha[f]}{\mathrm{L}^p} = \Norm{[\alpha f]}{\mathrm{L}^p} = \Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p} = |\alpha|\Norm{[f]}{\mathrm{L}^p} \\
@@ -440,7 +457,7 @@ $M$の元を$[f]\ $($f$は同値類の代表元)と表し，$M$における加�
 				\end{cases}
 			\end{align}
 			として可測$\mathcal{F}/\borel{\R}$関数$f$を定義すれば，$|f(x)| \leq g(x)\ (\forall x \in X)$と
-			$g^p$が可積分であることから$f$を代表元とする同値類$[f]$は$\Lp{p}{X,\mathcal{F},m}$の元となる．
+			$g^p$が可積分であることから$f$を代表元とする関数類$[f]$は$\Lp{p}{X,\mathcal{F},m}$の元となる．
 			関数列$(\left( f_{n_k} \right)_{k=1}^{\infty})$は$f$に概収束し，
 			$|f_{n_k}(x) - f(x)|^p \leq 2^p(|f_{n_k}(x)|^p + |f(x)|^p) \leq 2^{p+1} g(x)^p\ (\forall x \in X)$となるから
 			Lebesgueの収束定理により

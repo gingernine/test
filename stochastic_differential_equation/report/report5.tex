@@ -1,9 +1,10 @@
 \section{二次変分}
 	確率空間を$(\Omega,\mathcal{F},\mu)$と表す．
 	$I \coloneqq [0,T]\ (T>0)$とし，$(\mathcal{F}_t)_{t \in I}$をフィルトレーションとする．
-	このフィルトレーションは次の仮定を満たすものとする．
+	このフィルトレーションは次の仮定を満たすものとする:
 	\begin{align}
-		\mathcal{F}_0 \supset \mathcal{N} \coloneqq \left\{\ N \in \mathcal{F}\quad |\quad \mu(N) = 0 \ \right\}
+		\mathcal{N} \coloneqq \Set{N \in \mathcal{F}}{\mu(N) = 0}
+		\subset \mathcal{F}_0.
 	\end{align}
 	
 	以下，いくつか集合を定義する．
@@ -12,36 +13,35 @@
 			$\mathcal{A}^+$は以下を満たす$(\Omega,\mathcal{F},\mu)$上の可測関数族$A = (A_t)_{t \in I}$の全体である．
 			\begin{description}
 				\item[適合性] 任意の$t \in I$に対し，写像$\Omega \ni \omega \longmapsto A_t(\omega) \in \R$は可測$\mathcal{F}_t/\borel{\R}$である．
-				\item[連続性] $A$に対し或る$\mu$-零集合$N$が存在し，$\omega \in \Omega \backslash N$については写像$I \ni t \longmapsto A_t(\omega) \in \R$が連続である．
-				\item[単調非減少性]　$A$に対し或る$\mu$-零集合$N'$が存在し，$\omega \in \Omega \backslash N'$については写像$I \ni t \longmapsto A_t(\omega) \in \R$が単調非減少である．
+				\item[連続性] $\mu$-a.s.に写像$I \ni t \longmapsto A_t(\omega) \in \R$が連続である．
+				\item[単調非減少性]　$\mu$-a.s.に写像$I \ni t \longmapsto A_t(\omega) \in \R$が単調非減少である．
 			\end{description}
 		
 		\item[$\mathrm{(2)}\ \mathcal{A}$]
-			$\mathcal{A} \coloneqq \left\{\ A^1 - A^2\quad |\quad A^1,A^2 \in \mathcal{A}^+\ \right\}$
-			と定義する．$A^1 - A^2 \in \mathcal{A}$に対し或る$\mu$-零集合$N_1,N_2$が存在して，$\omega \in \Omega \backslash (N_1 \cup N_2)$
-			なら写像$t \longmapsto A^1_t(\omega)$と$t \longmapsto A^2_t(\omega)$が連続かつ単調非減少となる．
-			すなわちこの$\omega$について写像$t \longmapsto A^1_t(\omega) - A^2_t(\omega)$は有界連続となっている．
+			$\mathcal{A} \coloneqq \Set{A^1 - A^2}{A^1,A^2 \in \mathcal{A}^+}$
+			と定義する．$\mu$-a.s.に写像$t \longmapsto A^1_t(\omega)$と$t \longmapsto A^2_t(\omega)$が連続かつ単調非減少となるから
+			すなわち$\mu$-a.s.に写像$t \longmapsto A^1_t(\omega) - A^2_t(\omega)$は有界連続となっている．
 			
 		\item[$\mathrm{(3)}\ \mathcal{M}_{p,c}\ (p \geq 1)$]
 			$\mathcal{M}_{p,c}$は以下を満たす可測関数族$M = (M_t)_{t \in I} \subset \semiLp{p}{\mathcal{F},\mu}$の全体である．
 			\begin{description}
 				\item[$\mathrm{L}^p$-マルチンゲール] $M = (M_t)_{t \in I}$は$\mathrm{L}^p$-マルチンゲールである．
-				\item[連続性] $M$に対し或る$\mu$-零集合$N$が存在し，$\omega \in \Omega \backslash N$については写像$I \ni t \longmapsto M_t(\omega) \in \R$が連続である．
+				\item[連続性] $\mu$-a.s.に写像$I \ni t \longmapsto M_t(\omega) \in \R$が連続である．
 			\end{description}
 		
 		\item[$\mathrm{(4)}\ \mathcal{M}_{b,c}$]
-			$\mathcal{M}_{b,c}$はa.s.に連続で一様有界な$\mathrm{L}^1$-マルチンゲールの全体とする．つまり
+			$\mathcal{M}_{b,c}$は$\mu$-a.s.に連続で一様有界な$\mathrm{L}^1$-マルチンゲールの全体とする．つまり
 			\begin{align}
-				\mathcal{M}_{b,c} \coloneqq \left\{\ M = (M_t)_{t \in I} \in \mathcal{M}_{1,c}\quad |\quad \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty\ \right\}
+				\mathcal{M}_{b,c} \coloneqq \Set{M = (M_t)_{t \in I} \in \mathcal{M}_{1,c}}{\sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty}
 			\end{align}
 			として定義されている．
 			
 		\item[$\mathrm{(5)}\ \mathcal{T}$]
 			$\mathcal{T}$は以下を満たすような，$I$に値を取る停止時刻の列$(\tau_j)_{j=1}^{\infty}$の全体とする．
 			\begin{description}
-				\item[a)] $(\tau_j)_{j=1}^{\infty}$に対し或る$\mu$-零集合$N_0$が存在し，$\tau_0(\omega) = 0\ (\forall \omega \notin N_0)$となる．
-				\item[b)] $(\tau_j)_{j=1}^{\infty}$の各$j$に対し或る$\mu$-零集合$N_j$が存在し，$\tau_j(\omega) \leq \tau_{j+1}(\omega)\ (\forall \omega \notin N_j)$となる．
-				\item[c)] $(\tau_j)_{j=1}^{\infty}$に対し或る$\mu$-零集合$N_T$が存在し，任意の$\omega \in \Omega \backslash N_T$に或る$n = n(\omega) \in \N$が存在して$\tau_n(\omega)=T$が成り立つ．
+				\item[a)] $\tau_0 = 0 \quad \mbox{$\mu$-a.s.}$
+				\item[b)] $\tau_j \leq \tau_{j+1} \quad \mbox{$\mu$-a.s.}\ (j=1,2,\cdots).$
+				\item[c)] $(\tau_j)_{j=1}^{\infty}$に対し或る$\mu$-零集合$N_T$が存在し，任意の$\omega \in \Omega \backslash N_T$に対し或る$n = n(\omega) \in \N$が存在して$\tau_n(\omega)=T$が成り立つ．
 			\end{description}
 			例えば$\tau_j = jT/2^n$なら$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$となる．
 			上の条件において$N \coloneqq N_0 \cup N_T \cup (\cup_{j=1}^{\infty}N_j)$とすればこれも$\mu$-零集合で，$\omega \in \Omega \backslash N$なら
@@ -52,9 +52,11 @@
 			が成立することになる．
 			
 		\item[$\mathrm{(4)}\ \mathcal{M}_{c,loc}$]
-			$\mathcal{M}_{c,loc} \coloneqq 
-			\left\{\ M = (M_t)_{t \in I} \subset \semiLp{1}{\mathcal{F},\mu} \quad |\quad \exists (\tau_j)_{j=1}^{\infty} \in \mathcal{T}\ \mathrm{s.t.}\ M^j = (M_{\tau_j \wedge t})_{t \in I} \in \mathcal{M}_{b,c}\ (\forall j \in \N) \ \right\}$
-			として定義される．(連続な局所マルチンゲールの全体)
+			$\mathcal{M}_{c,loc}$の元を「連続な局所マルチンゲール」という．$\mathcal{M}_{c,loc}$は次で定義される:
+			\begin{align}
+				\mathcal{M}_{c,loc} \coloneqq 
+				\Set{M = (M_t)_{t \in I} \subset \semiLp{1}{\mathcal{F},\mu}}{\exists (\tau_j)_{j=1}^{\infty} \in \mathcal{T}\ \mathrm{s.t.}\ M^j = (M_{\tau_j \wedge t})_{t \in I} \in \mathcal{M}_{b,c}\ (\forall j \in \N)}.
+			\end{align}
 	\end{description}
 	
 	以下で$\mathcal{M}_{2,c}$に適当な処置を施してこれがHilbert空間と見做せるようにする．
@@ -109,22 +111,24 @@
 		\item[$\mathrm{(ii)}$について]
 			任意の$M=(M_t)_{t \in I},\ N=(N_t)_{t \in I} \in \mathcal{M}_{p,c}$に対して，関係$R$を
 			\begin{align}
-				M\ R\ N &\coloneqq \left\{\ \omega \in \Omega\quad|\quad \sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}\ \right\}\mbox{が$\mu$-零集合} \\
-				&\Leftrightarrow \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}}\mbox{が$\mu$-零集合}
+				M\ R\ N &\coloneqq \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\mbox{が$\mu$-零集合} \\
+				&\Leftrightarrow \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\mbox{が$\mu$-零集合}
 			\end{align}
 			として定義すれば，関係$R$は同値関係となる．反射律と対称律は$R$の定義式より判然しているから推移律について確認する．$M,N$とは別に$U=(U_t)_{t \in I} \in \mathcal{M}_{p,c}$
 			を取って$M\ R\ N$かつ$N\ R\ U$となっているとすれば，各$r \in (I \cap \Q) \cup \{ T \}$にて
 			\begin{align}
-				\left(\ \left|M_r - U_r\right| > 0\ \right)\ \subset\ 
-				\left(\ \left|M_r - N_r\right| > 0\ \right) \cup \left(\ \left|N_r - U_r\right| > 0\ \right)
+				\left\{\ \left|M_r - U_r\right| > 0\ \right\}\ \subset\ 
+				\left\{\ \left|M_r - N_r\right| > 0\ \right\} \cup \left\{\ \left|N_r - U_r\right| > 0\ \right\}
 			\end{align}
 			の関係が成り立っているから$M\ R\ U$が従う．
-			\footnote{$\left(\ \left|M_r - N_r\right| > 0\ \right) = \left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}.$}
+			\footnote{
+				$\left\{\ \left|M_r - N_r\right| > 0\ \right\} = \Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}.$
+			}
 			また$M,N \in \mathcal{M}_{p,c}$に対し，$M\ R\ N$となることと$\mu$-a.s.にパスが一致することは同じである．
 			\footnote{
 					これを証明する．$M,N$に対し或る零集合$E$が存在して，$E^c$上で$M$と$N$のパスは連続となっている．$M\ R\ N$とする．
 					\begin{align}
-						F \coloneqq \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\left\{\ \omega \in \Omega\quad|\quad \left|M_r(\omega) - N_r(\omega)\right| > 0\ \right\}}
+						F \coloneqq \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}
 					\end{align}
 					に対して$F^c \cap E^c$上で$M$と$N$のパスは一致する．$F \cup E$が零集合であるから$\mu$-a.s.にパスが一致しているということになる．
 					逆に$\mu$-a.s.にパスが一致しているとする．或る零集合$G$が存在して$G^c$上でパスが一致している．
@@ -145,8 +149,8 @@
 			\end{align}
 			が成り立つ．これは
 			\begin{align}
-				\left(\ \left|M_r + N_r - M'_r - N'_r \right| > 0\ \right) &\subset \left(\ \left|M_r - M'_r \right| > 0\ \right) \cup \left(\ \left|N_r - N'_r \right| > 0\ \right) \\
-				\left(\ \left|\alpha M_r - \alpha M'_r \right| > 0\ \right) &= \left(\ \left|M_r - M'_r \right| > 0\ \right)
+				\left\{\ \left|M_r + N_r - M'_r - N'_r \right| > 0\ \right\} &\subset \left\{\ \left|M_r - M'_r \right| > 0\ \right\} \cup \left\{\ \left|N_r - N'_r \right| > 0\ \right\} \\
+				\left\{\ \left|\alpha M_r - \alpha M'_r \right| > 0\ \right\} &= \left\{\ \left|M_r - M'_r \right| > 0\ \right\}
 			\end{align}
 			により$(M+N)\ R\ (M'+N'),\ (\alpha M)\ R\ (\alpha M')$が成り立つからである．以上の事柄に注意すれば，(\refeq{eq:mart_linear_arithmetic})で定義した算法を加法とスカラ倍として
 			$\mathfrak{M}_{p,c}$は$\R$上の線形空間となる．
@@ -184,7 +188,7 @@
 						\end{align}
 						が成り立ち，$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\} = \left\{\ \sup{t \in I}{|M_t|^2} > 0\ \right\} = \left\{\ [\sup{t \in I}{|M_t(\omega)|}]^2 > 0\ \right\}$
 						\footnote{
-							$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\}$は$\left\{\ \omega \in \Omega\quad |\quad \sup{t \in I}{|M_t(\omega)|} > 0\ \right\}$の略記(他も同様)であるが，
+							$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\}$は$\Set{\omega \in \Omega}{\sup{t \in I}{|M_t(\omega)|} > 0}$の略記(他も同様)であるが，
 							ここの等号は次の関係が成立することにより正当化される:
 							\begin{align}
 								[\sup{t \in I}{|M_t(\omega)|}]^2 = \sup{t \in I}{[M_t(\omega)]^2},\ (\forall \omega \in \Omega).
@@ -271,7 +275,7 @@
 			\end{align}
 			が成り立つようにできる．
 			\begin{align}
-				F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} \left\{\ \omega \in \Omega \quad|\quad \sup{t \in I}{|N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega)|} \leq 1/2^k\ \right\}
+				F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} \Set{\omega \in \Omega}{\sup{t \in I}{|N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega)|} \leq 1/2^k}
 			\end{align}
 			とおけば，Borel-Cantelliの補題により$F^c$は$\mu$-零集合であって，$\omega \in F$なら全ての$t \in I$について数列$(N^{(n_k)}_t(\omega))_{k=1}^{\infty}$はCauchy列となる．
 			実数の完備性から数列$(N^{(n_k)}_t(\omega))_{k=1}^{\infty}\ (\omega \in F)$に極限$N^*_t(\omega)$が存在し，
@@ -296,7 +300,7 @@
 					$\omega$の関数として，$N^*_t$は関数列$(N^{(n_k)}_t)_{k=1}^{\infty}$の$F$上での各点収束先の関数として定義されている．
 					$N^*_t$の定義域は$F$であるから，これに合わせて$N^{n_k}_t$の定義域を$F$に制限した写像を$N^{F(k)}_t$と表記し，
 					\begin{align}
-						\mathcal{F}^F_t \coloneqq \left\{\ F \cap B\quad |\quad B \in \mathcal{F}_t\ \right\}
+						\mathcal{F}^F_t \coloneqq \Set{F \cap B}{B \in \mathcal{F}_t}
 					\end{align}
 					として$N^{F(k)}_t$は可測$\mathcal{F}^F_t/\borel{\R}$ということになる．従って各点極限の関数$N^*_t$もまた可測$\mathcal{F}^F_t/\borel{\R}$と判る($\forall t \in I$)．
 					フィルトレーションの仮定から$F \in \mathcal{F}_0$であり，全ての$t \in I$について$\mathcal{F}^F_t$は$\mathcal{F}_t$の部分$\sigma$-加法族となっていることに注意しておく．
@@ -379,10 +383,308 @@
 	
 	\begin{itembox}[l]{}
 		\begin{prp}
-			任意の$p > 1$に対し$\mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$が成り立つ．
+			任意の$p \geq 1$に対し$\mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$が成り立つ．
+			\label{prp:M_pc_M_cloc}
+		\end{prp}
+	\end{itembox}
+	個の証明には次の補題を使う．
+	
+	\begin{itembox}[l]{}
+		\begin{lem}[各点で右連続であり左極限を持つ関数は閉区間上で有界]\mbox{}\\
+			$(E,\rho)$を距離空間，$J = [a,b] \subset \R$とする．$f:J \rightarrow E$が各点$x \in J$で
+			右連続且つ左極限を持つ\footnotemark
+			なら$f$は$J$上で有界である．
+			\label{lem:rcll_bounded}
+		\end{lem}
+	\end{itembox}
+	\footnotetext{
+		左端点では左極限を考えず，右端点では右連続性を考えない．
+	}
+	\begin{prf}[補題]
+		任意に$\epsilon > 0$を取り固定する．$f$は各点$x \in [a,b)$で右連続であるから，$0 < \delta_x < b-x$を
+		$0 < \forall h < \delta_x$が$\rho(f(x), f(x+h)) < \epsilon$を満たすように取り，
+		\begin{align}
+			V_x \coloneqq [x,x+\delta_x) \quad (\forall x \in [a,b))
+		\end{align}
+		とおく．また$f$は各点$x \in (a,b]$で左極限も持つから，左極限を$f(x-)$と表して
+		$0 < \gamma_x < x-a$を$0 < \forall h < \gamma_x$が$\rho(f(x-),f(x-h)) < \epsilon$を満たすように取り，
+		\begin{align}
+			U_x \coloneqq (x-\gamma_x,x] \quad (\forall x \in (a,b])
+		\end{align}
+		とおく．特に$U_a \coloneqq (-\infty,a],\ V_b \coloneqq [b,\infty)$とおけば
+		\begin{align}
+			J \subset \bigcup_{x \in J}U_x \cup V_x
+		\end{align}
+		が成り立つが，$J$は$\R$のコンパクト部分集合であるから，このうち有限個を選び
+		\begin{align}
+			J = \bigcup_{i=1}^n \left( U_{x_i} \cup V_{x_i}\right) \cap J
+		\end{align}
+		とできる．$U_{x_i} \cap J,\ V_{x_i} \cap J$での$f$の挙動の振れ幅は$2\epsilon$で抑えられるから
+		$J$全体での挙動の振れ幅は$2n\epsilon$より小さい
+		\footnote{
+			$x_1 < x_2 < \cdots < x_n$と仮定し，区間$U_{x_i} \cup V_{x_i}$と$U_{x_{i+1}} \cup V_{x_{i+1}}$の共通点を一つ取り$z_i$と表す．
+			$\rho(f(x),f(y))\ (x,y \in J)$の上界を知りたいから$x \in U_{x_1} \cup V_{x_1},\ y \in U_{x_n} \cup V_{x_n}$の場合を調べればよい．このとき
+			\begin{align}
+				\rho(f(x),f(y)) &\leq \rho(f(x),f(x_1)) + \rho(f(x_1),f(x_2)) + \cdots + \rho(f(x_{n-1}),f(x_n)) + \rho(f(x_n),f(y)) \\
+				&\leq \rho(f(x),f(x_1)) + \rho(f(x_1),f(z_1)) + \rho(f(z_1),f(x_2)) + \cdots + \rho(f(z_{n-1}),f(x_n)) + \rho(f(x_n),f(y)) \\
+				& < 2n\epsilon
+			\end{align}
+			が成り立つ．
+		}．
+		ゆえに有界である．
+		\QED
+	\end{prf}
+	
+	\begin{prf}
+		任意に$M \in \mathcal{M}_{p,c}$を取る．全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
+		は右連続且つ左極限を持つから，定理\ref{thm:closed_set_stopping_time}より
+		\begin{align}
+			\tau_j(\omega) \coloneqq \inf{}{\Set{t \in I}{|M_t(\omega)| \geq j}} \wedge T \quad (\forall \omega \in \Omega,\ j=1,2,\cdots)
+		\end{align}
+		として$\tau_j$は停止時刻となり，かつ$t \longmapsto M_t(\omega)$が連続となる$\omega$に対しては
+		\begin{align}
+			\sup{t \in I}{\left| M_{t \wedge \tau_j(\omega)}(\omega) \right|} \leq j
+			\label{eq:M_pc_M_cloc}
+		\end{align}
+		が成り立つ．また$t \longmapsto M_t(\omega)$の右連続性から$\tau_j \leq \tau_{j+1}\ (j=1,2,\cdots)$となり，
+		更に補題\ref{lem:rcll_bounded}より$\sup{t \in I}{|M_t(\omega)|} < \infty\ (\forall \omega \in \Omega)$も成り立つから
+		$j_\omega > \sup{t \in I}{|M_t(\omega)|}$となるような$j_\omega$に対し$\tau_j(\omega) = T\ (\forall j \geq j_\omega)$を満たす．従って$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$である．
+		後は$M^j$が$\mathcal{M}_{b,c}$に属することを示せばよい．先ずDoobの不等式(定理\ref{thm:Doob_inequality_2})より
+		$\sup{t \in I}{|M_t|}$が$p$乗可積分となることから$M_t^j = M_{t \wedge \tau_j}$の可積分性が判明する．
+		また式(\refeq{eq:M_pc_M_cloc})より
+		\begin{align}
+			\Norm{M_t^j}{\mathscr{L}^\infty} \leq j \quad (\forall t \in I)
+		\end{align}
+		が成り立ち，$t \longmapsto M_t(\omega)$が連続となる$\omega$に対しては$I \ni t \longmapsto M_t^j(\omega)$もまた連続，そして
+		任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
+		\begin{align}
+			\cexp{M_t^j}{\mathcal{F}_s} = M_{t \wedge \tau_j \wedge s} = M_s^j \quad (\forall 0 \leq s < t \leq T)
+		\end{align}
+		を得る．以上より$M^j \in \mathcal{M}_{b,c}\ (j=1,2,\cdots)$，すなわち$M \in \mathcal{M}_{c,loc}$である．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{lem}
+			$X \in \mathcal{M}_{2,c}$と停止時刻$\tau \geq \sigma$に対し，$\Norm{M_\sigma}{\mathscr{L}^\infty} < \infty$ならば次が成り立つ:
+			\begin{description}
+				\item[(1)] $\Exp{(X_{\tau} - X_{\sigma})^2} = \Exp{X_{\tau}^2 - X_{\sigma}^2}$，
+				\item[(2)] $\cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{F}_\sigma} = \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{F}_\sigma}$．
+			\end{description}
+			\label{lem:stopping_time_telescopic_sum}
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		以下の式中では関数ではなく関数類を扱う．
+		\begin{description}
+			\item[(1)] 
+				$\mathcal{G} = \{\Omega,\emptyset\}$とおく．条件付き期待値の性質(定理\ref{thm:conditional_exp_expansion})を使えば
+				\begin{align}
+					\Exp{(X_{\tau} - X_{\sigma})^2} &= \cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{G}} \\
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{X_{\tau}X_{\sigma}}{\mathcal{G}} \\
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma}}{\mathcal{G}} \\
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{X_{\sigma}\cexp{X_{\tau}}{\mathcal{F}_\sigma}}{\mathcal{G}} 
+						&& (\because\mbox{\scriptsize 定理\ref{thm:measurability_of_stopping_time}}) \\
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{X_{\sigma}^2}{\mathcal{G}} 
+						&& (\because\mbox{\scriptsize 定理\ref{thm:optional_sampling_theorem_2}}) \\
+					&= \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{G}} \\
+					&= \Exp{X_{\tau}^2 - X_{\sigma}^2}
+				\end{align}
+				が成り立つ．
+			
+			\item[(2)]
+				(1)と同様に
+				\begin{align}
+					\cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{F}_\sigma}
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma} \\
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2X_{\sigma}^2 \\
+					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2\cexp{X_{\sigma}^2}{\mathcal{F}_\sigma} \\
+					&= \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{F}_\sigma}
+				\end{align}
+				が成り立つ．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{prp}[有界変動かつ連続な二乗可積分マルチンゲールのパスは定数となる]\mbox{}\\
+			$A \in \mathcal{A} \cap \mathcal{M}_{2,c}$に対し，$\Norm{A_0}{\mathscr{L}^\infty} < \infty$ならば$A_t = A_0\ (\forall t \in I)\ $$\mu$-a.s.が成り立つ．
 		\end{prp}
 	\end{itembox}
 	
 	\begin{prf}
-		
+		$A \in \mathcal{A}$であるから，$A$に対し或る$A^{(1)},A^{(2)} \in \mathcal{A}^+$が存在して
+		\begin{align}
+			A = A^{(1)} - A^{(2)}
+		\end{align}
+		と表現できる．或る$\mu$-零集合$E$を取れば，全ての$\omega \in \Omega \backslash E$に対し写像$I \ni t \longmapsto A_t^{(1)}(\omega)$と
+		$I \ni t \longmapsto A_t^{(2)}(\omega)$が連続且つ単調非減少となるようにできるから，
+		\begin{align}
+			\tau_m(\omega) \coloneqq
+			\begin{cases}
+				0 & (\omega \in E) \\
+				\inf{}{\Set{t \in I}{\left( A_t^{(1)}(\omega) - A_0^{(1)} \right) \vee \left( A_t^{(2)}(\omega) - A_0^{(2)} \right) \geq m}} & (\omega \in \Omega \backslash E)
+			\end{cases}
+			\quad (m=1,2,\cdots)
+		\end{align}
+		と定義すれば，定理\ref{thm:closed_set_stopping_time}よりこれは停止時刻となる．また連続性から$\tau_m \leq \tau_{m+1}$となり
+		更に$\lim_{m \to \infty}\tau_m(\omega) = T\ (\forall \omega \in \Omega \backslash E)も成り立つ．
+		$今$t \in I,\ n,m \in \N$を任意に取って固定する．
+		\begin{align}
+			\sigma_j^n \coloneqq \tau_m \wedge \frac{tj}{2^n} \quad (j = 0,1,\cdots, 2^n)
+		\end{align}
+		とおけば，補題\ref{lem:stopping_time_telescopic_sum}により
+		\footnote{
+			補題の有界性の仮定を満たしていることを確認する．任意の$j \in \N$番目の$\sigma_j^n$を取る．
+			$\omega \in \Omega \backslash E$に対し写像$t \longmapsto A_t(\omega)$は連続であるから
+			\begin{align}
+				\left| A_{\sigma_j^n(\omega)}(\omega) - A_0(\omega) \right| 
+				\leq \left| A^{(1)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) - A^{(1)}_0(\omega) \right| + \left| A^{(2)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) - A^{(2)}_0(\omega) \right|
+				\leq 2m
+			\end{align}
+			が成り立つ．また補題\ref{lem:holder_inequality}より或る零集合$E'$を除いて$|A_0| \leq \Norm{A_0}{\mathscr{L}^\infty}$が成り立っているから，
+			\begin{align}
+				\left| A_{\sigma_j^n(\omega)}(\omega) \right| \leq 2m + \Norm{A_0}{\mathscr{L}^\infty} \quad (\forall \omega \in \Omega \backslash (E \cup E'))
+			\end{align}
+			となり$\Norm{A_{\sigma_j^n}}{\mathscr{L}^\infty} \leq 2m + \Norm{A_0}{\mathscr{L}^\infty}$であると判る．
+		}
+		\begin{align}
+			\Exp{\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2}
+			= \sum_{j=0}^{2^n-1} \Exp{A_{\sigma_{j+1}^n}^2 - A_{\sigma_j^n}^2}
+			= \Exp{A_{\tau_m \wedge t}^2 - A_{0}^2}
+			= \Exp{\left( A_{\tau_m \wedge t} - A_{0} \right)^2}
+		\end{align}
+		が成り立つ．左辺の中の式は
+		\begin{align}
+			\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2
+			\leq \sup{j}{\left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|} \sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|
+		\end{align}
+		となり，全ての$\omega \in \Omega \backslash E$に対して$I \ni t \longmapsto A_t(\omega)$は(一様)連続だから
+		\begin{align}
+			\sup{j}{\left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|} \longrightarrow 0 \quad (n \longrightarrow \infty).
+		\end{align}
+		また定理\ref{thm:closed_set_stopping_time}より全ての$\omega \in \Omega \backslash E$と$t \in I$に対して
+		\begin{align}
+			\left( A^{(1)}_{\tau_m \wedge t}(\omega) - A^{(1)}_0(\omega) \right) \vee \left( A^{(2)}_{\tau_m \wedge t}(\omega) - A^{(2)}_0(\omega) \right) \leq m
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|
+			&\leq \sum_{j=0}^{2^n-1} \left( A^{(1)}_{\sigma_{j+1}^n}(\omega) - A^{(1)}_{\sigma_j^n}(\omega) + A^{(2)}_{\sigma_{j+1}^n}(\omega) - A^{(2)}_{\sigma_j^n}(\omega) \right) \\
+			&= \left( A^{(1)}_{\tau_m \wedge t}(\omega) - A^{(1)}_0(\omega) \right) + \left( A^{(2)}_{\tau_m \wedge t}(\omega) - A^{(2)}_0(\omega) \right) \leq 2m
+		\end{align}
+		となり，Lebesgueの収束定理により
+		\begin{align}
+			\int_\Omega \sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n(\omega)}(\omega) - A_{\sigma_j^n(\omega)}(\omega) \right)^2\ \mu(d\omega) \longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		を得る．ゆえに
+		\begin{align}
+			\int_\Omega \left( A_{\tau_m(\omega) \wedge t}(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) = 0 \quad (m=1,2,\cdots)
+		\end{align}
+		が成り立ち，更にDoobの不等式より$|A_{\tau_m \wedge t} - A_{0}| \leq \sup{t \in I}{|A_t - A_{0}|} \in \mathscr{L}^2$であるから，
+		再びLebesgueの収束定理を適用して
+		\begin{align}
+			\int_\Omega \left( A_{\tau_m(\omega) \wedge t}(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega)
+			\longrightarrow \int_\Omega \left( A_t(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) \quad (n \longrightarrow \infty)
+		\end{align}
+		を得る．$t \in I$は任意に取っていたからつまり
+		\begin{align}
+			A_t = A_0 \quad \mbox{$\mu$-a.s.} \quad (\forall t \in I)
+		\end{align}
+		が示されたが，実際$\omega \in \Omega \backslash E$に対しパスは連続であるから
+		\begin{align}
+			\Set{\omega \in \Omega \backslash E}{A_t(\omega) = A_0(\omega)\ (\forall t \in I)}
+			= \bigcap_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) = A_0(\omega)}
+		\end{align}
+		と表せる．
+		\begin{align}
+			\Set{\omega \in \Omega \backslash E}{A_t(\omega) \neq A_0(\omega)\ (\exists t \in I)}
+			\subset E + \bigcup_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) \neq A_0(\omega)}
+		\end{align}
+		の右辺は零集合であるから$A_t = A_0\ (\forall t \in I)\ $$\mu$-a.s.が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{lem}[二次変分補題]
+			任意に$n \in \N$と$M \in \mathcal{M}_{b,c}$を取る．$\tau_j^n = jT/2^n\ (j=0,1,\cdots,2^n)$に対し
+			\begin{align}
+				Q_t^n \coloneqq \sum_{j=0}^{2^n-1} \left( M_{t \wedge \tau_{j+1}^n} - M_{t \wedge \tau_j^n} \right)^2 \quad (\forall t \in I)
+			\end{align}
+			とおけば$M^2 - Q^n \in \mathcal{M}_{b,c}$となり，さらに次が成り立つ:
+			\begin{align}
+				\Norm{M_T - M_0 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}.
+			\end{align}
+			\label{lem:quadratic_variation}
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}
+		先ず$Q^n$は$\mathcal{F}_t$-適合である．これは任意の停止時刻$\tau$に対し$M_{t \wedge \tau}$が可測$\mathcal{F}_t/\borel{\R}$であることによる．
+		今任意に$0 \leq s < t \leq T$を取り固定する．$\tau_k^n \leq s < \tau_{k+1}^n$となる$k$を選べば，
+		補題\ref{lem:stopping_time_telescopic_sum}と任意抽出定理\ref{thm:optional_sampling_theorem_2}を使って次のように式変形できる:
+		\begin{align}
+			\cexp{Q_t^n - Q_s^n}{\mathcal{F}_s} 
+			&= \cexp{\sum_{j=0}^{2^n-1}\left( M_{t\wedge\tau_{j+1}^n} - M_{t\wedge\tau_j^n} \right)^2 - \sum_{j=0}^{2^n-1}\left( M_{s\wedge\tau_{j+1}^n} - M_{s\wedge\tau_j^n} \right)^2}{\mathcal{F}_s} \\
+			&= \cexp{\sum_{j=k}^{2^n-1}\left\{ \left( M_{t\wedge\tau_{j+1}^n} - M_{t\wedge\tau_j^n} \right)^2 - \left( M_{s\wedge\tau_{j+1}^n} - M_{s\wedge\tau_j^n} \right)^2 \right\}}{\mathcal{F}_s} \\
+			&= \sum_{j=k+1}^{2^n-1} \cexp{\left( M_{t\wedge\tau_{j+1}^n} - M_{t\wedge\tau_j^n} \right)^2}{\mathcal{F}_s}
+				+ \cexp{\left( M_{t\wedge\tau_{k+1}^n} - M_{t\wedge\tau_k^n} \right)^2}{\mathcal{F}_s} - \cexp{\left( M_s - M_{\tau_k^n} \right)^2}{\mathcal{F}_s} \\
+			&= \sum_{j=k+1}^{2^n-1} \cexp{ M_{t\wedge\tau_{j+1}^n}^2 - M_{t\wedge\tau_j^n}^2}{\mathcal{F}_s}
+				+ \cexp{\left( M_{t\wedge\tau_{k+1}^n} - M_{\tau_k^n} \right)^2}{\mathcal{F}_s} - \left( M_s - M_{\tau_k^n} \right)^2 \\
+			&= \cexp{ M_t^2 - M_{t\wedge\tau_{k+1}^n}^2}{\mathcal{F}_s} + \cexp{\left( M_{t\wedge\tau_{k+1}^n} - M_{\tau_k^n} \right)^2}{\mathcal{F}_s} - \left( M_s - M_{\tau_k^n} \right)^2 \\
+			&= \cexp{M_t^2}{\mathcal{F}_s} - 2\cexp{M_{t\wedge\tau_{k+1}^n}M_{\tau_k^n}}{\mathcal{F}_s} + \cexp{M_{\tau_k^n}^2}{\mathcal{F}_s} - M_s^2 + 2M_sM_{\tau_k^n} - M_{\tau_k^n}^2 \\
+			&= \cexp{M_t^2}{\mathcal{F}_s} - 2M_{\tau_k^n}\cexp{M_{t\wedge\tau_{k+1}^n}}{\mathcal{F}_s} + M_{\tau_k^n}^2 - M_s^2 + 2M_sM_{\tau_k^n} - M_{\tau_k^n}^2 \\
+			&= \cexp{M_t^2}{\mathcal{F}_s} - M_s^2.
+		\end{align}
+		従って次を得た:
+		\begin{align}
+			\cexp{M_t^2 - Q_t^n}{\mathcal{F}_s} = M_s^2 - Q_s^n, \quad (\forall 0 \leq s < t \leq T).
+			\label{eq:lem_quadratic_variation_1}
+		\end{align}
+		ここで
+		\begin{align}
+			N \coloneqq M^2 - Q^n
+		\end{align}
+		とおけば$N \in \mathcal{M}_{b,c}$であり
+		\footnote{
+			$M \in \mathcal{M}_{b,c}$より全ての$\omega \in \Omega$において写像$t \longmapsto M_t(\omega)$は各点で右連続かつ左極限を持つ．
+			$Q^n$についてもGauss記号を用いて$Q_t^n = \sum_{j=0}^{[2^nt]/T} \left( M_t^n - M_{\tau_j^n} \right)^2$
+			と表せば，$t \longmapsto Q_t^n(\omega)\ (\forall \omega \in \Omega)$が各点で右連続かつ左極限を持つことが明確になる．
+			よって全ての$\omega \in \Omega$において$t \longmapsto N_t(\omega)$は各点で右連続かつ左極限を持つ．
+			また同じ理由で$t \longmapsto M_t(\omega)$が連続となる点で$t \longmapsto N_t(\omega)$も連続となるから
+			つまり$\mu$-a.s.に$t \longmapsto N_t$は連続．
+			一様有界性については，$\sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty$であるから，任意の$t \in I$に対し
+			或る零集合$E_t$が存在して$\omega \notin E_t$なら$|M_t(\omega)| \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}$が成り立つ．
+			同様に$Q_t^n$についても$\omega \notin E_t \cup \bigcup_{j=0}^{[2^nt]/T}E_{\tau_j^n}$なら
+			\begin{align}
+				\left| Q_t^n(\omega) \right| \leq \sum_{j=0}^{[2^nt]/T} \left( 2\sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \right)^2 \leq 2^{n+1} \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2}.
+			\end{align}
+			ゆえに
+			\begin{align}
+				\left| N_t(\omega) \right| \leq \left|{M_t(\omega)}^2\right| + \left|Q_t^n(\omega)\right| \leq \left( 2^{n+1}+1 \right) \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2}
+				,\quad \left( \forall \omega \notin E_t \cup \cup_{j=0}^{[2^nt]/T}E_{\tau_j^n} \right).
+			\end{align}
+			この右辺は
+			$t$に依らないから
+			\begin{align}
+				\sup{t \in I}{\Norm{N_t}{\mathscr{L}^\infty}} \leq \left( 2^{n+1}+1 \right) \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2}
+			\end{align}
+			を得る．以上の結果と(\refeq{eq:lem_quadratic_variation_1})を併せて$N \in \mathcal{M}_{b,c}$となる．
+		}，
+		\begin{align}
+			\Exp{(N_T - N_0)^2} = \Exp{N_T^2 - N_0^2} &= \Exp{\sum_{j=0}^{2^n-1}\left( N_{\tau_{j+1}^n}^2 - N_{\tau_j^n}^2 \right)} \\
+			&= \sum_{j=0}^{2^n-1}\Exp{\left( N_{\tau_{j+1}^n} - N_{\tau_j^n} \right)^2} \\
+			&= \sum_{j=0}^{2^n-1}\Exp{\left\{ M_{\tau_{j+1}^n}^2 - M_{\tau_j^n}^2 - \left( Q_{\tau_{j+1}^n}^n - Q_{\tau_j^n}^n \right) \right\}^2} \\
+			&= \sum_{j=0}^{2^n-1}\Exp{\left\{ M_{\tau_{j+1}^n}^2 - M_{\tau_j^n}^2 - \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 \right\}^2} \\
+			&= \sum_{j=0}^{2^n-1}\Exp{\left\{ -2M_{\tau_j^n} \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right) \right\}^2} \\
+			&= 4 \Exp{ \sum_{j=0}^{2^n-1} M_{\tau_j^n}^2 \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 } \\
+			&\leq 4 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2} \Exp{\sum_{j=0}^{2^n-1} \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 } \\
+			&= 4 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2} \Exp{M_T^2 - M_0^2}
+		\end{align}
+		が成り立つ．これより
+		\begin{align}
+			\Norm{M_T - M_0 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}．
+		\end{align}
+		\QED
 	\end{prf}
