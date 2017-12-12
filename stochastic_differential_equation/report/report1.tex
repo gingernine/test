@@ -1,5 +1,4 @@
 \section{H\Ddot{o}lderの不等式とMinkowskiの不等式}
-
 $\K$を$\K = \R$或は$\K = \C$とおく．測度空間を$(X,\mathcal{F},m)$とし，
 可測$\mathcal{F}/\borel{\K}$関数$f$に対して
 \begin{align}
@@ -231,14 +230,14 @@ $f$が零写像であるとは限らず，実際$m$-零集合の上で
 $1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満たすからである．
 ここで可測関数全体の集合を
 \begin{align}
-	\mathcal{M} \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K}}
+	\mathscr{L}^0 \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K}}
 \end{align}
 とおく．
 \begin{align}
-	f,g \in \mathcal{M},\quad f \sim g \DEF f(x) = g(x)\quad \mathrm{a.e.}x \in X
+	f,g \in \mathscr{L}^0 ,\quad f \sim g \DEF f(x) = g(x)\quad \mathrm{a.e.}x \in X
 \end{align}
-と定義した関係$\sim$は$\mathcal{M}$における同値関係となり，この関係で$\mathcal{M}$を割った商集合を$ M \coloneqq \mathcal{M}/\sim$と表す．
-$M$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と表し，$M$における加法とスカラ倍を次のように定義すれば$M$は$\K$上の線形空間となる
+と定義した関係$\sim$は$\mathscr{L}^0 $における同値関係となり，この関係で$\mathscr{L}^0 $を割った商集合を$\mathrm{L}^0  \coloneqq \mathscr{L}^0 /\sim$と表す．
+$\mathrm{L}^0$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と表し，$\mathrm{L}^0$における加法とスカラ倍を次のように定義すれば$\mathrm{L}^0$は$\K$上の線形空間となる
 \footnote{
 	この表現はwell-defined，つまり代表元に依らずに値がただ一つに定まる．
 	任意の$f' \in [f]$と$g' \in [g]$に対して
@@ -257,14 +256,14 @@ $M$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と
 	と表現でき，どれも右辺は$m$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$が成り立つ．
 }:
 \begin{align}
-	&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in M),\\
-	&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in M,\ \alpha \in \K).
+	&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in \mathrm{L}^0),\\
+	&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in \mathrm{L}^0,\ \alpha \in \K).
 \end{align}
 また乗法も次のように定義できる:
 \begin{align}
-	[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in M).
+	[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in \mathrm{L}^0).
 \end{align}
-この乗法は可換であり，加法と併せて$M$は可換環をなす．従って関数類に対して加減乗算が自由にできるようになった
+この乗法は可換であり，加法と併せて$\mathrm{L}^0$は可換環をなす．従って関数類に対して加減乗算が自由にできるようになった
 \footnote{
 	加法乗法が可換であることと結合則は代表元の関数の空間が加法乗法について可換であることと結合則を満たすことによる．
 	また分配測は
@@ -281,16 +280,34 @@ $M$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と
 }．
 また$[f][f]=[f^2]$を$[f]^2$と表記し，$[f]^n \coloneqq [f]^{n-1}[f]$と帰納的に定義すれば$[f]^n=[f^n]$となる．
 
-次に商線型空間$M$におけるノルムを定義する．
+次に$\mathrm{L}^0$における順序を定める．
+$[f],[g] \in \mathrm{L}^0$に対して
+\begin{align}
+	[f] \leq [g] \quad \DEF \quad f \leq g \quad \mbox{$m$-a.s.} 
+\end{align}
+として関係''$\leq$''(記号は$\mathscr{L}^0$におけるものと同じであるが)を定義すればこれは$\mathrm{L}^0$において順序となる．
+この定義が代表元の取り方に依存しないことは
+$\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g \right\} \cup \left\{ g \neq g' \right\}$
+\footnote{
+	$\left\{ f > g \right\} \coloneqq \Set{x \in X}{f(x) > g(x)}$
+}
+の右辺が零集合であることにより明確であり，また順序関係としての定義を満たしていることは以下で判る:
+\begin{itemize}
+	\item $f=f$により$[f] \leq [f]$，
+	\item $[f] \leq [g]$かつ$[g] \leq [f]$なら$\{ f > g \}$と$\{ g > f \}$は$m$-零集合だから$[f]=[g]$，
+	\item $[f] \leq [g]$かつ$[g] \leq [h]$なら$\{ f > h \} \subset \{ f > g \} \cup \{ g > h \}$により$[f]\leq[h]$.
+\end{itemize}
+	
+次に商線型空間$\mathrm{L}^0$におけるノルムを定義する．
 \begin{itembox}[l]{}
 	\begin{lem}[商空間$\mathrm{L}^p$におけるノルムの定義]
 		\begin{align}
 			\Norm{[f]}{\mathrm{L}^p} \coloneqq \Norm{f}{\mathscr{L}^p} \quad (1 \leq p \leq \infty,\ f \in \semiLp{p}{X,\mathcal{F},m})
 		\end{align}
-		として$\Norm{\cdot}{\mathrm{L}^p}:M \rightarrow \R$を定義すればこれはwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
+		として$\Norm{\cdot}{\mathrm{L}^p}:\mathrm{L}^0 \rightarrow \R$を定義すればこれはwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
 		更に次で定義する空間
 		\begin{align}
-			\Lp{p}{X,\mathcal{F},m} \coloneqq \Set{[f] \in M}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
+			\Lp{p}{X,\mathcal{F},m} \coloneqq \Set{[f] \in \mathrm{L}^0}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
 		\end{align}
 		は$\Norm{\cdot}{\mathrm{L}^p}$をノルムとしてノルム空間となる．
 	\end{lem}

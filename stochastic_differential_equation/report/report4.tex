@@ -1,47 +1,12 @@
-\section{10/25}
-	確率空間を$(\Omega,\mathcal{F},\operatorname{P})$とし，以下でマルチンゲールを定義する．集合$I$によって確率過程の時点を表現し，
+\section{停止時刻}
+	確率空間を$(\Omega,\mathcal{F},\mu)$とする．集合$I$によって確率過程の時点を表現し，
 	以降でこれは$[0,\infty)$や$\{0,,1,\cdots,n\}$など実数の区間や高々可算集合を指すものと考え，
 	$I$が高々可算集合の場合は離散位相，$\R$の区間の場合は相対位相を考える．また扱う確率変数は全て実数値で考える．
 	\begin{itembox}[l]{}
 		\begin{dfn}[フィルトレーション]
-			$\mathcal{F}$の部分$\sigma$-加法族の部分系$\left\{\ \mathcal{F}_\alpha\quad |\quad \alpha \in I\ \right\}$
+			$\mathcal{F}$の部分$\sigma$-加法族の部分系$\Set{\mathcal{F}_\alpha}{\alpha \in I}$
 			がフィルトレーション(filtration)であるとは，任意の$\alpha,\beta \in I$に対して$\alpha \leq \beta$ならば
 			$\mathcal{F}_\alpha \subset \mathcal{F}_\beta$の関係をもつことで定義する．
-		\end{dfn}
-	\end{itembox}
-	
-	マルチンゲールを定義する前に同値類に対して順序を定める．
-	$(\Omega,\mathcal{F},\operatorname{P})$上の可測$\mathcal{F}/\borel{\R}$関数の全体を$\mathcal{M}$，
-	$\mathcal{M}$をa.s.で等しいものにまとめた商空間を$M$と表す．$[f],[g] \in M$に対して
-	\begin{align}
-		\mbox{$f \leq g\ $P-a.s.かつそのときに限り$[f] \leq [g]$}
-	\end{align}
-	として関係''$\leq$''(記号は$\mathcal{M}$におけるものと同じであるが)を定義すればこれは$M$において順序となる．
-	この定義がwell-defined，つまり代表元の取り方に依存しないことは
-	$(f' > g') \subset (f \neq f') \cup (f > g) \cup (g \neq g')$
-	\footnote{$(f > g) \coloneqq \left\{\ x \in \Omega\quad |\quad f(x) > g(x)\ \right\}$}
-	かつ右辺が零集合であることにより明確であるが，順序関係としての定義を満たしていることは以下で判る．
-	\begin{itemize}
-		\item $f=f$により$[f] \leq [f]$，
-		\item $[f] \leq [g]$かつ$[g] \leq [f]$なら$(f > g)$と$(g > f)$はP-零集合だから$[f]=[g]$，
-		\item $[f] \leq [g]$かつ$[g] \leq [h]$なら$(f > h) \subset (f > g) \cup (g > h)$により$[f]\leq[h]$.
-	\end{itemize}
-	
-	次にマルチンゲールを定義する．確率変数とその同値類の表記は区別しないが，大体は文脈から判断するべきことであると留意しておく．
-	\begin{itembox}[l]{}
-		\begin{dfn}[マルチンゲール]
-			フィルトレーションが付随した確率空間$(\Omega,\mathcal{F},\operatorname{P},(\mathcal{F}_\alpha)_{\alpha \in I})$上の実確率変数の族
-			$(M_\alpha)_{\alpha \in I} \subset \semiLp{p}{\mathcal{F},\operatorname{P}}\ (p \geq 1)$が
-			次の四条件を満たすとき，これを$\mathrm{L}^p$-劣マルチンゲール($\mathrm{L}^p$-submartingale)という．
-			\begin{description}
-				\item[(M.1)] $\forall \alpha \in I$に対し$M_\alpha$は可測$\mathcal{F}_\alpha/\borel{\R}$である．
-				\item[(M.2)] 任意の$\alpha \leq \beta\ (\alpha,\beta \in I)$に対し$\cexp{M_\beta}{\mathcal{F}_\alpha} \geq M_\alpha\ $({\scriptsize 同値類に対する順序関係})が成り立つ．
-				\item[(M.3)] 各$\omega \in \Omega$において，任意の$\alpha \in I$で左極限が存在する：$\exists \lim\limits_{\beta \uparrow \alpha} M_\beta(\omega) \in \R.$
-				\item[(M.4)] 各$\omega \in \Omega$において，任意の$\alpha \in I$で右連続である：$M_\alpha(\omega) = \lim\limits_{\beta \downarrow \alpha} M_\beta(\omega).$
-			\end{description}
-			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_\alpha)_{\alpha \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
-			劣かつ優マルチンゲールであるものをマルチンゲールという．
-			\label{dfn:martingale}
 		\end{dfn}
 	\end{itembox}
 	
@@ -49,7 +14,7 @@
 		\begin{dfn}[停止時刻]
 			$\Omega$上の関数で次を満たすものを($(\mathcal{F}_\alpha)$-)停止時刻(stopping time)という:
 			\begin{align}
-				\tau:\Omega \longrightarrow I\quad \mathrm{s.t.}\quad \forall \alpha \in I,\ (\tau \leq \alpha) \in \mathcal{F}_\alpha.
+				\tau:\Omega \longrightarrow I\quad \mathrm{s.t.}\quad \forall \alpha \in I,\ \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha.
 			\end{align}
 		\end{dfn}
 	\end{itembox}
@@ -63,22 +28,22 @@
 		\begin{description}
 			\item[$I$が$\R$の区間である場合]
 				任意の$\alpha \in I$に対して$I_\alpha \coloneqq (-\infty,\alpha) \cap I$は$I$における(相対の)開集合であり
-				$\tau^{-1}(I_\alpha) = (\tau \leq \alpha) \in \mathcal{F}_\alpha \subset \mathcal{F}$が成り立つ．
+				$\tau^{-1}(I_\alpha) = \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha \subset \mathcal{F}$が成り立つ．
 				つまり
 				\begin{align}
-					\left\{\ I_\alpha\quad |\quad \alpha \in I\ \right\} \subset \left\{\ A \in \borel{I}\quad |\quad \tau^{-1}(A) \in \mathcal{F}\ \right\}
+					\Set{I_\alpha}{\alpha \in I} \subset \Set{A \in \borel{I}}{\tau^{-1}(A) \in \mathcal{F}}
 					\label{eq:stopping_time_mble}
 				\end{align}
 				が成り立ち，左辺の$I_\alpha$の形の全体は$\borel{I}$を生成するから$\tau$の可測性が証明された．
 				
 			\item[$I$が高々可算集合である場合]
-				先ず$\alpha \in I$に対して$(\tau < \alpha)$が$\mathcal{F}_\alpha$に属することを示す．
-				$\alpha$に対して直前の元$\beta \in I$が存在するか$\alpha$が$I$の最小限である場合，前者なら$(\tau < \alpha) = (\tau \leq \beta)$
-				となり後者なら$(\tau < \alpha) = \emptyset$となるからどちらも$\mathcal{F}_\alpha$に属する．
+				先ず$\alpha \in I$に対して$\{ \tau < \alpha \}$が$\mathcal{F}_\alpha$に属することを示す．
+				$\alpha$に対して直前の元$\beta \in I$が存在するか$\alpha$が$I$の最小限である場合，前者なら$\{ \tau < \alpha \} = \{ \tau \leq \beta \}$
+				となり後者なら$\{ \tau < \alpha \} = \emptyset$となるからどちらも$\mathcal{F}_\alpha$に属する．
 				そうでない場合は$\alpha - 1/n < x < \alpha$を満たす点列$x_n \in I\ (n=1,2,3,\cdots)$を取れば，
-				$(\tau < \alpha) = \cap_{n=1}^{\infty}(\tau \leq \alpha - 1/n)$
-				により$(\tau < \alpha) \in \mathcal{F}_\alpha$が判る．以上の準備の下で
-				任意の$\alpha \in I$に対して$\tau^{-1}(\{\alpha\}) = (\tau \leq \alpha) - (\tau < \alpha) \in \mathcal{F}_\alpha$が成り立ち，
+				$\{ \tau < \alpha \} = \cap_{n=1}^{\infty}\{ \tau \leq \alpha - 1/n \}$
+				により$\{ \tau < \alpha \} \in \mathcal{F}_\alpha$が判る．以上の準備の下で
+				任意の$\alpha \in I$に対して$\tau^{-1}(\{\alpha\}) = \{ \tau \leq \alpha \} - \{ \tau < \alpha \} \in \mathcal{F}_\alpha$が成り立ち，
 				更に可算集合$I$には離散位相が入っているから任意の$A \in \borel{I}$は
 				一点集合の可算和で表現できて，$\tau^{-1}(A) \in \mathcal{F}$であると証明された．		
 		\end{description}
@@ -89,7 +54,7 @@
 		\begin{dfn}[停止時刻の再定義]
 			今$\tau$の終集合は$I$であるが，$I \rightarrow \R$の恒等写像$i$を用いて$\tau^* \coloneqq i \circ \tau$とすれば，
 			\begin{align}
-				\borel{I}=\left\{\ A \cap I\quad |\quad A \in \borel{\R}\ \right\} = \left\{\ i^{-1}(A)\quad |\quad A \in \borel{\R}\ \right\}
+				\borel{I}=\Set{A \cap I}{A \in \borel{\R}} = \Set{i^{-1}(A)}{A \in \borel{\R}}
 			\end{align}
 			により($i$が可測$\borel{I}/\borel{\R}$であるから)合成写像$\tau^*$は可測$\mathcal{F}/\borel{\R}$となる．以降は
 			この$\tau^*$を停止時刻$\tau$と表記して扱うことにする．
@@ -98,11 +63,11 @@
 	
 	定数関数は停止時刻となる．$\tau$が$\Omega$上の定数関数なら$(\tau \leq \alpha)$は空集合か全体集合にしかならないからである．
 	また$\sigma,\tau$を$I$に値を取る停止時刻とすると
-	$\sigma \vee \tau$と$\sigma \wedge \tau$も停止時刻となる．
+	$\sigma \vee \tau$と$\sigma \wedge \tau$も停止時刻となる．実際
 	\begin{align}
 		\begin{cases}
-			(\sigma \wedge \tau \leq \alpha) = (\sigma \leq \alpha) \cup (\tau \leq \alpha), \\
-			(\sigma \vee \tau \leq \alpha) = (\sigma \leq \alpha) \cap (\tau \leq \alpha)
+			\{ \sigma \wedge \tau \leq \alpha \} = \{ \sigma \leq \alpha \} \cup \{ \tau \leq \alpha \}, \\
+			\{ \sigma \vee \tau \leq \alpha \} = \{ \sigma \leq \alpha \} \cap \{ \tau \leq \alpha \}
 		\end{cases}
 		\quad ,(\forall \alpha \in I)
 	\end{align}
@@ -112,13 +77,13 @@
 		\begin{dfn}[停止時刻の前に決まっている事象系]
 			$\tau$を$I$に値を取る停止時刻とする．$\tau$に対し次の集合系を定義する．
 			\begin{align}
-				\mathcal{F}_\tau \coloneqq \left\{\ A \in \mathcal{F}\quad |\quad (\tau \leq \alpha) \cap A \in \mathcal{F}_\alpha,\ \forall \alpha \in I\ \right\}.
+				\mathcal{F}_\tau \coloneqq \Set{A \in \mathcal{F}}{\{ \tau \leq \alpha \} \cap A \in \mathcal{F}_\alpha,\ \forall \alpha \in I}.
 			\end{align}
 		\end{dfn}
 	\end{itembox}
 	\begin{itembox}[l]{}
 		\begin{prp}[停止時刻の性質]
-			$\sigma, \tau$を$I$に値を取る停止時刻であるとする．
+			$I \subset \R$に値を取る停止時刻$\sigma, \tau$に対し次が成り立つ．
 			\begin{description}
 				\item[(1)] $\mathcal{F}_\tau$は$\sigma$-加法族である．
 				\item[(2)] 或る$\alpha \in I$に対して$\tau(\omega) = \alpha\ (\forall \omega \in \Omega)$なら$\mathcal{F}_\alpha = \mathcal{F}_\tau$.
@@ -132,26 +97,26 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(1)] 停止時刻の定義より$\Omega \in \mathcal{F}_\tau$である．また$A \in \mathcal{F}_\tau$なら
-				$A^c \cap (\tau \leq \alpha) = (\tau \leq \alpha) - A \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha$より
+				$A^c \cap \{ \tau \leq \alpha \} = \{ \tau \leq \alpha \} - A \cap \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha$より
 				$A^c \in \mathcal{F}_\tau$となる．可算個の$A_n \in \mathcal{F}_\tau$については
-				$\cup_{n=1}^{\infty} A_n \cap (\tau \leq \alpha) = \cup_{n=1}^{\infty} \left(A_n \cap (\tau \leq \alpha)\right) \in \mathcal{F}_\alpha$
+				$\cup_{n=1}^{\infty} A_n \cap \{ \tau \leq \alpha \} = \cup_{n=1}^{\infty} \left( A_n \cap \{ \tau \leq \alpha \} \right) \in \mathcal{F}_\alpha$
 				により$\cup_{n=1}^{\infty} A_n \in \mathcal{F}_\tau$が成り立つ．
 			
 			\item[(2)] $A \in \mathcal{F}_\alpha$なら任意の$\beta \in I$に対して
 				\begin{align}
-					A \cap (\tau \leq \beta) =
+					A \cap \{ \tau \leq \beta \} =
 					\begin{cases}
 						A & \alpha \leq \beta \\
 						\emptyset & \alpha > \beta
 					\end{cases}
 				\end{align}
 				が成り立つから，いずれの場合も$A \in \mathcal{F}_\beta$となり$A \subset \mathcal{F}_\tau$が成り立つ．
-				逆に$A \in \mathcal{F}_\tau$のとき，$A = A \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha$
+				逆に$A \in \mathcal{F}_\tau$のとき，$A = A \cap \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha$
 				が成り立ち$\mathcal{F}_\alpha = \mathcal{F}_\tau$が示された．
 				
 			\item[(3)] $A \in \mathcal{F}_\sigma$なら任意の$\alpha \in I$に対して
 				\begin{align}
-					A \cap (\tau \leq \alpha) = A \cap (\sigma \leq \alpha) \cap (\tau \leq \alpha) \in \mathcal{F}_\alpha
+					A \cap \{ \tau \leq \alpha \} = A \cap \{ \sigma \leq \alpha \} \cap \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha
 				\end{align}
 				が成り立つから$A \in \mathcal{F}_\tau$となる．
 			
@@ -159,7 +124,8 @@
 				$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\sigma$と$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\tau$が判る．
 				また$A \in \mathcal{F}_\sigma \cap \mathcal{F}_\tau$に対し
 				\begin{align}
-					A \cap (\sigma \wedge \tau \leq \alpha) = [A \cap (\sigma \leq \alpha)] \bigcup [A \cap (\tau \leq \alpha)] \in \mathcal{F}_\alpha \quad (\forall \alpha \in I)
+					A \cap \{ \sigma \wedge \tau \leq \alpha \} 
+					= \left( A \cap \{ \sigma \leq \alpha \} \right) \cup \left( A \cap \{ \tau \leq \alpha \} \right) \in \mathcal{F}_\alpha \quad (\forall \alpha \in I)
 				\end{align}
 				より$A \in \mathcal{F}_{\sigma \wedge \tau}$も成り立つ．
 			
@@ -304,65 +270,176 @@
 		\QED
 	\end{prf}
 	
-	$\tau$を停止時刻とし，$\tau(\Omega)$が高々可算集合である場合，実確率変数の族$(M_\alpha)_{\alpha \in I}$
-	に対して
-	\begin{align}
-		M_\tau \coloneqq \sum_{\alpha \in \tau(\Omega)}M_\alpha
-	\end{align}
-	とおく．全ての$\alpha \in \tau(\Omega)$について$M_\alpha$が可測$\mathcal{F}_\alpha/\borel{\R}$であるとき，
-	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$となる．なぜならば任意の$\alpha \in I$と$A \in \borel{\R}$に対して
-	\begin{align}
-		(M_\tau \in A) \cap (\tau \leq \alpha)
-		= \bigcup_{\substack{\beta \in \tau(\Omega) \\ \beta \leq \alpha}}(M_\beta \in A) \cap (\tau = \beta) \in \mathcal{F}_\alpha 
-	\end{align}
-	が成り立つからである．$M_\tau$の可測性を確認したところで次の定理を証明する．
-	
 	\begin{itembox}[l]{}
-		\begin{thm}[任意抽出定理(その1)]
-			$I = \{\ 1,2,\cdots,n\ \}$とし，実確率変数の族$(M_\alpha)_{\alpha \in I}$が$\mathrm{L}^p$-劣マルチンゲールであるとする．
-			このとき$I$に値を取る停止時刻$\sigma$と$\tau$について次が成立する:
-			\begin{align}
-				\cexp{M_\tau}{\mathcal{F}_\sigma} \geq M_{\sigma \wedge \tau}.
-			\end{align}
+		\begin{thm}[停止時刻との合成写像の可測性]
+			$I = [0,T]$，フィルトレーションを$(\mathcal{F}_t)_{t \in I}$，$\tau$を停止時刻とし，
+			$M$を$I \times \Omega$上の$\R$値関数とする．全ての$\omega \in \Omega$に対し
+			$I \ni t \longmapsto M(t,\omega)$が右連続でかつ$(\mathcal{F}_t)$-適合ならば，
+			写像$\omega \longmapsto M(\tau(\omega),\omega)$は可測$\mathcal{F}_\tau/\borel{\R}$となる．
+			\label{thm:measurability_of_stopping_time}
 		\end{thm}
 	\end{itembox}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[$\sigma \leq \tau$の場合]
-				$F_\alpha \coloneqq \defunc_{\sigma < \alpha \leq \tau}\ (\alpha \in I)$とおくと，
-				\begin{align}
-					(\sigma < \alpha \leq \tau) = (\sigma < \alpha) \cap (\alpha \leq \tau) = (\sigma \leq \alpha-1) \cap (\tau \leq \alpha-1)^c
-				\end{align}
-				より$F_\alpha$は可測$\mathcal{F}_{\alpha-1}/\borel{\R}$となる．$F_\alpha$を用いて
-				\begin{align}
-					N_\beta \coloneqq \sum_{\alpha=0}^{\beta-1} F_{\alpha+1}(M_{\alpha+1} - M_\alpha) \quad (\beta \in I)
-				\end{align}
-				として$(N_\beta)_{\beta \in I}$を定義すれば，これもまた$\mathrm{L}^p$-劣マルチンゲールとなる．今$I$は有限集合であるから
-				定義\ref{dfn:martingale}の条件(M.1)(M.2)を満たすことを確認すればよい．
-				\begin{description}
-					\item[(M.1)] 先ず$N_\beta$が可測$\mathcal{F}_\beta/\borel{\R}$であることを示す．
-						$N_\beta$を構成する級数の項のうち最も可測性が厳しいものは最終項$F_{\beta}(M_{\beta} - M_{\beta-1})$であり，
-						$M_\beta$も$F_{\beta}$も可測$\mathcal{F}_\beta/\borel{\R}$であるから$N_\beta$の可測性も判明する．可積分性については，
-						$M_\alpha\ (\alpha \in I)$が$p$乗可積分であるからその有限個の結合で表現される$(N_\beta)_{\beta \in I}$もまた$p$乗可積分となる．
-					\item[(M.2)]	
-						$\alpha \leq \beta\ (\alpha,\beta \in I)$に対して
-						\begin{align}
-							N_{\beta} - N_{\alpha} = \sum_{\gamma=\alpha}^{\beta-1} F_{\gamma+1}(M_{\gamma+1} - M_\gamma)
-						\end{align}
-						と表せるから，(関数の同値類を同様に表記して)$\mathcal{F}_{\alpha}$で条件付ければ，
-						性質$\tilde{\mathrm{C}}$5，$\tilde{\mathrm{C}}$6と$F_\alpha$の可測性事情，そして$(M_\alpha)_{\alpha \in I}$が劣マルチンゲールであることにより
-						\begin{align}
-							\cexp{N_{\beta} - N_{\alpha}}{\mathcal{F}_\alpha}
-							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{F_{\gamma+1}(M_{\gamma+1} - M_\gamma)}{\mathcal{F}_\alpha} \\
-							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{\cexp{F_{\gamma+1}(M_{\gamma+1} - M_\gamma)}{\mathcal{F}_\gamma}}{\mathcal{F}_\alpha} \\
-							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{F_{\gamma+1}\cexp{M_{\gamma+1} - M_\gamma}{\mathcal{F}_\gamma}}{\mathcal{F}_\alpha}
-							\geq 0\quad (\mbox{P-a.s.})
-						\end{align}
-						が成り立つ\footnote{同値類ではなく代表元の関数と見做している．}．
-						従って$\cexp{N_{\beta}}{\mathcal{F}_\alpha} \geq \cexp{N_{\alpha}}{\mathcal{F}_\alpha} = N_\alpha$
-						\footnote{こちらは同値類に対する順序記号を使っている．等号は性質$\tilde{\mathrm{C}}$5による．}が成り立つ．
-				\end{description}
-				
-		\end{description}
+	\begin{prf}
+		任意に$t \in I$を取り$t_j^n \coloneqq jt/2^n\ (j=0,1,\cdots,2^n,\ n=1,2,\cdots)$とおくと，
+		右連続性により任意の$s \in [0,t]$に対して
+		\begin{align}
+			M(s,\omega) = \lim_{n \to \infty} \sum_{j=1}^{2^n} M_{t_j^n}(\omega) \defunc_{(t_{j-1}^n,t_j^n]}(s) \quad (\omega \in \Omega)
+			\label{eq:stopping_time_measurability}
+		\end{align}
+		が成り立つ．右辺は各$n$で可測$\borel{[0,t]} \times \mathcal{F}_t/\borel{\R}$であるから
+		$M$も可測$\borel{[0,t]} \times \mathcal{F}_t/\borel{\R}$となる．($t$の任意性から$M$は$(\mathcal{F}_t)$-発展的可測である．)
+		一方停止時刻$\tau$について，$\tau \wedge t$が可測$\mathcal{F}_t/\borel{\R}$であるから
+		\begin{align}
+			\Omega \ni \omega \longmapsto (\tau(\omega) \wedge t, \omega) \in [0,t] \times \Omega
+		\end{align}
+		は可測$\mathcal{F}_t/\borel{[0,t]} \times \mathcal{F}_t$である．従って合成写像
+		\begin{align}
+			\Omega \ni \omega \longmapsto M(\tau(\omega) \wedge t,\omega) \in \R
+		\end{align}
+		は可測$\mathcal{F}_t/\borel{\R}$となる．任意の$A \in \borel{\R}$に対して
+		\begin{align}
+			\Set{\omega \in \Omega}{M(\tau(\omega),\omega) \in A} \cap \left\{ \tau \leq t \right\}
+			= \Set{\omega \in \Omega}{M(\tau(\omega) \wedge t,\omega) \in A} \cap \left\{ \tau \leq t \right\}
+			\in \mathcal{F}_t
+		\end{align}
+		が成り立つから，写像$\omega \longmapsto M(\tau(\omega),\omega)$は可測$\mathcal{F}_\tau/\borel{\R}$である
+		\footnote{
+			写像$\omega \longmapsto M(\tau(\omega),\omega)$が可測$\mathcal{F}/\borel{\R}$となっていないことにはこの結論が従わない．
+			この点を確認すれば，式(\refeq{eq:stopping_time_measurability})より$M$が可測$\borel{I} \times \mathcal{F}/\borel{\R}$
+			であることは慥かであるから，$\omega \longmapsto (\tau(\omega),\omega)$が可測$\mathcal{F}/\borel{I}\times\mathcal{F}$であることと
+			併せて写像$\omega \longmapsto M(\tau(\omega),\omega)$が可測$\mathcal{F}/\borel{\R}$であることが判明する．
+		}．
+		\QED
 	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[閉集合と停止時刻]
+			$I = [0,T] \subset \R$，$(E,\rho)$を距離空間，$(X_t)_{t \in I}$を$E$値確率変数の族とし，
+			$\mathcal{F}_0$が$\mu$-零集合を全て含んでいると仮定する．
+			$\mu$-零集合$N$を除いて$I \ni t \longmapsto X_t(\omega)$が右連続で，
+			かつ$(X_t)_{t \in I}$が$(\mathcal{F}_t)$-適合であるなら，任意の閉集合$F \subset E$に対し
+			\begin{align}
+				\tau(\omega) \coloneqq
+				\begin{cases}
+					0 & (\omega \in N) \\
+					\inf{}{\Set{t \in I}{X_t(\omega) \in F}} \wedge T & (\omega \in \Omega \backslash N)
+				\end{cases}
+			\end{align}
+			として$\tau:\Omega \rightarrow \R$を定めれば$\tau$は停止時刻となる．
+			また$N'\ (N \subset N')$を除いて$I \ni t \longmapsto X_t(\omega)$が連続であるなら
+			\begin{align}
+				X_{t \wedge \tau(\omega)}(\omega) \in F^{ic} \quad (\forall \omega \in N',\ t \in I)
+			\end{align}
+			が成り立つ．ただし$F^i$は$F$の内核を表し$F^{ic}$は$F^i$の補集合を表す．
+			\label{thm:closed_set_stopping_time}
+		\end{thm}
+	\end{itembox}
+	確率空間が完備である場合は
+	\begin{align}
+		\tau(\omega) \coloneqq \inf{}{\Set{t \in I}{X_t(\omega) \in F}} \wedge T
+		\quad (\forall \omega \in \Omega)
+	\end{align}
+	として$\tau$は停止時刻となる．実際任意の$t \in I$に対して，
+	\begin{align}
+		\{\tau \leq t\} = \{\tau \leq t\} \cap N + \Set{\omega \in \Omega \backslash N}{\tau(\omega) \leq t}
+	\end{align}
+	の右辺第一項は完備性より$\mu$-零集合，第二項は以下で$\mathcal{F}_t$に属すると証明される．
+
+	\begin{prf}
+		\begin{align}
+			D_t(\omega) \coloneqq 
+			\begin{cases}
+				1 & (\omega \in N) \\
+				\inf{}{\Set{\rho(X_r(\omega),F)}{r \in ([0,t] \cap \Q) \cup \{t\}}} & (\omega \in \Omega \backslash N)
+			\end{cases}
+		\end{align}
+		とおけば
+		\footnote{
+			$\rho(X_r(\omega),F) = \inf{y \in F}{\rho(X_r(\omega),y)}$である．
+		}，
+		$D_t$は可測$\mathcal{F}_t/\borel{\R}$となる
+		\footnote{
+			写像$E \ni x \longmapsto \rho(x,F) \in \R$は連続であるから，合成写像
+			\begin{align}
+				\Omega \ni \omega \longmapsto \rho(X_t(\omega),F)
+			\end{align}
+			は可測$\mathcal{F}_t/\borel{\R}$となる．任意の$\lambda \in \R$に対し
+			\begin{align}
+				\left\{ \inf{}{\Set{\rho(X_r,F)}{r \in ([0,t] \cap \Q) \cup \{t\}}} \geq \lambda \right\}
+				= \bigcap_{r \in ([0,t] \cap \Q) \cup \{t\}} \left\{ \rho(X_r,F) \geq \lambda \right\}
+			\end{align}
+			となり右辺の各集合は$\in \mathcal{F}_t$であるから
+			写像$\Omega \ni \omega \longmapsto \inf{}{\Set{\rho(X_r(\omega),F)}{r \in ([0,t] \cap \Q) \cup \{t\}}}$
+			も可測$\mathcal{F}_t/\borel{\R}$となる．任意の$A \in \borel{\R}$に対し
+			\begin{align}
+				D_t^{-1}(A) = 
+				\begin{cases}
+					N \cup \left\{ \inf{}{\Set{\rho(X_r,F)}{r \in ([0,t] \cap \Q) \cup \{t\}}} \in A \right\} & (1 \in A) \\
+					\left\{ \inf{}{\Set{\rho(X_r,F)}{r \in ([0,t] \cap \Q) \cup \{t\}}} \in A \right\} & (1 \notin A)
+				\end{cases}
+			\end{align}
+			となるが，$N \in \mathcal{F}_0$であるから$D_t$もまた可測$\mathcal{F}_t/\borel{\R}$となる．
+		}．
+		ここでは任意の$t \in [0,T)$に対して
+		\begin{align}
+			\Set{\omega \in \Omega \backslash N}{\tau(\omega) \leq t} = \Set{\omega \in \Omega \backslash N}{D_t(\omega) = 0}
+			\label{eq:closed_set_stopping_time_1}
+		\end{align}
+		が成り立つことを示す．実際これが示されれば任意の$t \in I$に対し
+		\begin{align}
+			\{\tau \leq t\} =
+			\begin{cases}
+ 				\Omega & (t = T) \\
+				N + \Set{\omega \in \Omega \backslash N}{D_t(\omega) = 0} & (t < T)
+ 			\end{cases}
+		\end{align}
+		となるから$\tau$は停止時刻となる．式(\refeq{eq:closed_set_stopping_time_1})が成立することを示すには
+		包含関係$\subset,\supset$のそれぞれを満たすことを確認すればよい．
+		\begin{description}
+			\item[$\subset$について]
+				任意に$t \in [0,T)$を固定する．$\tau(\omega) \leq t$となる$\omega \in \Omega \backslash N$に対し
+				$s \coloneqq \tau(\omega)$とおくと$X_s(\omega) \in F$となる．もし$X_s(\omega) \notin F$であるとすれば，
+				$F$が閉集合であることと$s \longmapsto X_s(\omega)$の右連続性から
+				或る$\delta > 0$が存在し，任意の$0 < h < \delta$に対して
+				$X_{s+h}(\omega) \notin F$となり$s = \tau(\omega)$であることに矛盾する．
+				今$\rho(X_s(\omega),F) = 0$が示されたが，$D_t(\omega) = 0$も成り立っている．
+				実際もし$D_t(\omega) > 0$であるとすれば，$a \coloneqq D_t(\omega)$に対して
+				\begin{align}
+					\rho(X_s(\omega), X_r(\omega)) < a/2
+				\end{align}
+				を満たす$r \in ((s,t] \cap \Q) \cup \{t\}$が存在するから
+				\begin{align}
+					\rho(X_s(\omega),F) \geq \rho(X_r(\omega),F) - \rho(X_s(\omega), X_r(\omega)) > a - a/2 = a/2
+				\end{align}
+				となり矛盾が生じてしまう．
+			
+			\item[$\supset$について]
+				任意に$t \in [0,T)$を固定する．$D_t(\omega) = 0$となる$\omega \in \Omega \backslash N$について
+				\begin{align}
+					\rho(X_{s_n}(\omega),F) < 1/n
+				\end{align}
+				となるように$s_n \in ([0,t] \cap \Q) \cup \{t\}$を取ることができる．$(s_n)_{n=1}^{\infty}$は
+				$[0,t]$に集積点$s$を持ち，$F$が閉であるから$X_s(\omega) \in F$となる．従って
+				$\tau(\omega) \leq s \leq t$が成り立つ．
+		\end{description}
+		以上で$\tau$が停止時刻であることが示されたから，次に定理の後半の主張を示す．
+		$N'$を除いて$I \ni t \longmapsto X_t(\omega)$が連続である場合，
+		$t < \tau(\omega)\ (\omega \in \Omega \backslash N')$に対しては$X_t(\omega) \in F^c$が成り立っているから，示せばよいのは
+		\begin{align}
+			X_{\tau(\omega)}(\omega) \in F^{ic}
+			\label{eq:closed_set_stopping_time_2}
+		\end{align}
+		が成り立つことである．$s = \tau(\omega)$とおく．もし$X_s(\omega) \in F^i$であるとすれば
+		連続性から或る$\delta$が存在し，$0 < h < \delta$を満たす任意の$h$に対し
+		\begin{align}
+			X_{s - h}(\omega) \in F^i
+		\end{align}
+		となるが，
+		\begin{align}
+			s > s - h \geq \inf{}{\Set{t \in I}{X_t(\omega) \in F}}
+		\end{align}
+		が従い矛盾が生じる．よって(\refeq{eq:closed_set_stopping_time_2})が示された．
+		\QED
+	\end{prf}
+	

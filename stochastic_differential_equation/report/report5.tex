@@ -1,7 +1,6 @@
 \section{二次変分}
-	確率空間を$(\Omega,\mathcal{F},\mu)$と表す．
-	$I \coloneqq [0,T]\ (T>0)$とし，$(\mathcal{F}_t)_{t \in I}$をフィルトレーションとする．
-	このフィルトレーションは次の仮定を満たすものとする:
+	以降では$I \coloneqq [0,T]\ (T>0)$とし，
+	このフィルトレーション$(\mathcal{F}_t)_{t \in I}$が次の仮定を満たすものとする:
 	\begin{align}
 		\mathcal{N} \coloneqq \Set{N \in \mathcal{F}}{\mu(N) = 0}
 		\subset \mathcal{F}_0.
@@ -59,325 +58,337 @@
 			\end{align}
 	\end{description}
 	
-	以下で$\mathcal{M}_{2,c}$に適当な処置を施してこれがHilbert空間と見做せるようにする．
-	次の手順に沿う．
-	\begin{description}
-		\item[$\mathrm{(i)}$] $\mathcal{M}_{p,c}$に線型演算を定義して線形空間(係数体は$\R$)となることを示す．
-		\item[$\mathrm{(ii)}$] $\mathcal{M}_{p,c}$の或る同値関係により商空間を定義する．
-		\item[$\mathrm{(iii)}$] 特に$p=2$のとき，$\mathcal{M}_{2,c}$の商空間に内積を導入してHilbert空間となることを示す．
-	\end{description}
-	
-	\begin{description}
-		\item[$\mathrm{(i)}$について] 
-			任意の$M=(M_t)_{t \in I},\ N=(N_t)_{t \in I} \in \mathcal{M}_{p,c}$と$\alpha \in \R$に対して，加法とスカラ倍を
+	\begin{itembox}[l]{}
+		\begin{lem}[$\mathcal{M}_{p,c}$は線形空間となる]\mbox{}\\
+			任意の$M,N \in \mathcal{M}_{p,c}$と$\alpha \in \R$に対して線型演算を
 			\begin{align}
 				M + N \coloneqq (M_t + N_t)_{t \in I}, \qquad \alpha M \coloneqq (\alpha M_t)_{t \in I}
+				\label{eq:mart_linear_arithmetic_0}
 			\end{align}
-			として定義し，零元を$0$\footnote{全ての$t,\omega$に対し$0 \in \R$を取るもの．}と表す．また二元$M$と$N$が等しいということを
-			\begin{align}
-				M_t(\omega) = N_t(\omega) \quad (\forall t \in I,\ \omega \in \Omega)
-			\end{align}
-			が成り立っているということで定義する．$\mathcal{M}_{p,c}$が上の演算について閉じていることが示されれば，
-			線形空間であるための条件を満たすことは$t \longmapsto M_t(\omega) (\forall \omega \in \Omega)$が全て実数値であることにより判ることである．
-			加法とスカラ倍について閉じていることを示す．
-			\begin{description}
-				\item[加法について]
-					任意の$0 \leq s \leq t \leq T$に対し，条件付き期待値の線型性(性質$\tilde{\mathrm{C}}3$)により
-					\begin{align}
-						\cexp{M_t + N_t}{\mathcal{F}_s} = \cexp{M_t}{\mathcal{F}_s} + \cexp{N_t}{\mathcal{F}_s} = M_s + N_s
-					\end{align}
-					が成り立つ\footnote{式の$M_t$などは代表元を$M_t$とする関数類の意味で使っている．}．
-					また$M+N$は各$t \in I$について和を取っただけであるから，$(\mathcal{F}_t)$-適合であること，そして任意の$\omega \in \Omega$について
-					左極限が存在しかつ右連続となっていることが判り，更にMinkowskiの不等式から各$t \in I$について$M_t + N_t \in \semiLp{p}{\mathcal{F},\mu}$
-					となる．以上で$M+N = (M_t + N_t)_{t \in I}$もまた$\mathrm{L}^p$-マルチンゲールであることが示された．
-					写像$I \ni t \longmapsto M_t(\omega) + N_t(\omega) \in \R$の連続性については，
-					$M,N$それぞれに対して或る$\mu$-零集合$E_1,E_2$が存在して，$\omega \notin E_1$なら$t \longmapsto M_t(\omega)$は連続，
-					$\omega \notin E_2$なら$t \longmapsto N_t(\omega)$は連続となるのだから，従って$\omega \notin E_1 \cup E_2$なら
-					$t \longmapsto M_t(\omega) + N_t(\omega)$が連続($\mu$-a.s.に連続)となる．以上で$M+N \in \mathcal{M}_{p,c}$が示された．
-				
-				\item[スカラ倍について]
-					任意の$0 \leq s \leq t \leq T$に対し，条件付き期待値の線型性(性質$\tilde{\mathrm{C}}3$)により
-					\begin{align}
-						\cexp{\alpha M_t}{\mathcal{F}_s} = \alpha \cexp{M_t}{\mathcal{F}_s} = \alpha M_s
-					\end{align}
-					が成り立つ．定数倍しているだけであるから，$(\alpha M_t)_{t \in I}$が$(\mathcal{F}_t)$-適合であること，そして任意の$\omega \in \Omega$について
-					左極限が存在しかつ右連続となっていることが判り，更に各$t \in I$について$\alpha M_t \in \semiLp{p}{\mathcal{F},\mu}$
-					となる．以上で$\alpha M = (\alpha M_t)_{t \in I}$もまた$\mathrm{L}^p$-マルチンゲールであることが示された．
-					連続性については，写像$t \longmapsto M_t(\omega)$が連続となる$\omega$ならば
-					写像$t \longmapsto \alpha M_t(\omega)$も連続($\mu$-a.s.に連続)となる．
-					以上で$\alpha M \in \mathcal{M}_{p,c}$が示された．
-			\end{description}
-		
-		\item[$\mathrm{(ii)}$について]
-			任意の$M=(M_t)_{t \in I},\ N=(N_t)_{t \in I} \in \mathcal{M}_{p,c}$に対して，関係$R$を
-			\begin{align}
-				M\ R\ N &\coloneqq \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\mbox{が$\mu$-零集合} \\
-				&\Leftrightarrow \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\mbox{が$\mu$-零集合}
-			\end{align}
-			として定義すれば，関係$R$は同値関係となる．反射律と対称律は$R$の定義式より判然しているから推移律について確認する．$M,N$とは別に$U=(U_t)_{t \in I} \in \mathcal{M}_{p,c}$
-			を取って$M\ R\ N$かつ$N\ R\ U$となっているとすれば，各$r \in (I \cap \Q) \cup \{ T \}$にて
-			\begin{align}
-				\left\{\ \left|M_r - U_r\right| > 0\ \right\}\ \subset\ 
-				\left\{\ \left|M_r - N_r\right| > 0\ \right\} \cup \left\{\ \left|N_r - U_r\right| > 0\ \right\}
-			\end{align}
-			の関係が成り立っているから$M\ R\ U$が従う．
-			\footnote{
-				$\left\{\ \left|M_r - N_r\right| > 0\ \right\} = \Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}.$
-			}
-			また$M,N \in \mathcal{M}_{p,c}$に対し，$M\ R\ N$となることと$\mu$-a.s.にパスが一致することは同じである．
-			\footnote{
-					これを証明する．$M,N$に対し或る零集合$E$が存在して，$E^c$上で$M$と$N$のパスは連続となっている．$M\ R\ N$とする．
-					\begin{align}
-						F \coloneqq \bigcup_{r \in (I \cap \Q) \cup \{ T \}}{\Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}
-					\end{align}
-					に対して$F^c \cap E^c$上で$M$と$N$のパスは一致する．$F \cup E$が零集合であるから$\mu$-a.s.にパスが一致しているということになる．
-					逆に$\mu$-a.s.にパスが一致しているとする．或る零集合$G$が存在して$G^c$上でパスが一致している．
-					\begin{align}
-						G^c \subset F^c
-					\end{align}
-					の関係から$F \subset G$となり$F$が零集合である，つまり$M\ R\ N$となっている．
-			}
-			
-			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\overline{M}$と表記し，商空間を$\mathfrak{M}_{p,c} \coloneqq \mathcal{M}_{p,c}/R$と表記すれば
-			$\mathfrak{M}_{p,c}$において
-			\begin{align}
-				\overline{M} + \overline{N} \coloneqq \overline{M+N}, \quad \alpha \overline{M} \coloneqq \overline{\alpha M} \label{eq:mart_linear_arithmetic}
-			\end{align}
-			として演算を定義すれば，これは代表元の選び方に依らない(well-defined)．つまり$M' \in \overline{M},\ N' \in \overline{N}$に対して
-			\begin{align}
-				\overline{M+N} = \overline{M'+N'}, \quad \overline{\alpha M} = \overline{\alpha M'}
-			\end{align}
-			が成り立つ．これは
-			\begin{align}
-				\left\{\ \left|M_r + N_r - M'_r - N'_r \right| > 0\ \right\} &\subset \left\{\ \left|M_r - M'_r \right| > 0\ \right\} \cup \left\{\ \left|N_r - N'_r \right| > 0\ \right\} \\
-				\left\{\ \left|\alpha M_r - \alpha M'_r \right| > 0\ \right\} &= \left\{\ \left|M_r - M'_r \right| > 0\ \right\}
-			\end{align}
-			により$(M+N)\ R\ (M'+N'),\ (\alpha M)\ R\ (\alpha M')$が成り立つからである．以上の事柄に注意すれば，(\refeq{eq:mart_linear_arithmetic})で定義した算法を加法とスカラ倍として
-			$\mathfrak{M}_{p,c}$は$\R$上の線形空間となる．
-		
-		\item[$\mathrm{(iii)}$について]
-			先ずは$\mathfrak{M}_{2,c}$において内積を定義し，それから$\mathfrak{M}_{2,c}$がその内積によってHilbert空間となることを示す．
-			\begin{itembox}[l]{内積の定義}
-				$\mathfrak{M}_{2,c} \times \mathfrak{M}_{2,c}$上の実数値写像$\inprod<\cdot,\cdot>$を次で定義すれば，これは$\mathfrak{M}_{2,c}$において内積となる．
-				\begin{align}
-					\inprod<\overline{M},\overline{N}> \coloneqq \int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega), \quad (\overline{M},\overline{N} \in \mathfrak{M}_{2,c}).
-				\end{align}
-				(※{\scriptsize 右辺が実数値であることは，$M_T,N_T$が共に二乗可積分であることとH\Ddot{o}lderの不等式による．})
-			\end{itembox}
+			として定義すれば，$\mathcal{M}_{p,c}$は$\R$上の線形空間となる．
+		\end{lem}
+	\end{itembox}
 	
-			\begin{prf}\mbox{}
-				\begin{description}
-					\item[well-definedであること]
-						先ずは上の$\inprod<\cdot,\cdot>$の定義が代表元の取り方に依らないことを確認する．
-						$M' = (M'_t)_{t \in I} \in \overline{M}$と$N' = (N'_t)_{t \in I} \in \overline{N}$に対して，
-						同値関係の定義から$\mu$-a.s.の$\omega$で$M'_T(\omega) = M_T(\omega),\ N'_T(\omega) = N_T(\omega)$
-						が成り立つ．従って
-						\begin{align}
-							\int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega) = \int_{\Omega} M'_T(\omega)N'_T(\omega)\ \mu(d\omega)
-						\end{align}
-						が成り立つから，$\inprod<\cdot,\cdot>$は同じ元の組に対してはその元の表示に依らない一つの値が確定していることが示された．
-						次に$\inprod<\cdot,\cdot>$が内積であることを証明する．
-			
-					\item[正値性]
-						任意の$\overline{M} \in \mathfrak{M}_{2,c}$に対して$\inprod<\overline{M},\overline{M}> = 0 \quad \Leftrightarrow \quad \overline{M} = \overline{0}$
-						が成り立つことを示す．$\inprod<\cdot,\cdot>$の定義により$\Leftarrow$は判然しているから，$\Rightarrow$について示す．
-						$M = (M_t)_{t \in I}$は$\mathrm{L}^2$-マルチンゲールであるから，Jensenの不等式より
-						$(|M_t|)_{t \in I}$が$\mathrm{L}^2$-劣マルチンゲールとなる．Doobの不等式を適用すれば
-						\begin{align}
-							0 \leq \int_{\Omega} [\sup{t \in I}{|M_t(\omega)|}]^2\ \mu(d\omega) \leq 4 \int_{\Omega} {M_T(\omega)}^2\ \mu(d\omega) = 0
-						\end{align}
-						が成り立ち，$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\} = \left\{\ \sup{t \in I}{|M_t|^2} > 0\ \right\} = \left\{\ [\sup{t \in I}{|M_t(\omega)|}]^2 > 0\ \right\}$
-						\footnote{
-							$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\}$は$\Set{\omega \in \Omega}{\sup{t \in I}{|M_t(\omega)|} > 0}$の略記(他も同様)であるが，
-							ここの等号は次の関係が成立することにより正当化される:
-							\begin{align}
-								[\sup{t \in I}{|M_t(\omega)|}]^2 = \sup{t \in I}{[M_t(\omega)]^2},\ (\forall \omega \in \Omega).
-							\end{align}
-							もし$[\sup{t \in I}{|M_t(\omega)|}]^2 > \sup{t \in I}{[M_t(\omega)]^2} \eqqcolon \beta$
-							とすると，$\sup{t \in I}{|M_t(\omega)|} > \beta^{1/2}$より或る$s \in I$について
-							$|M_s(\omega)| > \beta^{1/2}$が成り立つから，$[M_s(\omega)]^2 > \beta$となり$\beta = \sup{t \in I}{[M_t(\omega)]^2}$に矛盾する．
-							逆の場合，つまり$\alpha \coloneqq [\sup{t \in I}{|M_t(\omega)|}]^2 < \sup{t \in I}{[M_t(\omega)]^2}$
-							が成り立っているとしても，或る$z \in I$が存在して$\alpha^{1/2} < |M_z(\omega)| \leq \sup{t \in I}{|M_t(\omega)|}$が成り立ち，
-							$\alpha < [\sup{t \in I}{|M_t(\omega)|}]^2 = \alpha$となり矛盾ができた．
-						}
-						の関係から
-						\begin{align}
-							\mu(\sup{t \in I}{|M_t|} > 0) = 0
-						\end{align}
-						が従う．よって$\overline{M} = \overline{0}$となる．
-			
-					\item[双線型性]
-						双線型性は積分の線型性による．
-				\end{description}
-				\QED
-			\end{prf}
-		
-			\begin{itembox}[l]{Hilbert空間になること}
-				$\mathfrak{M}_{2,c}$は$\inprod<\cdot,\cdot>$を内積としてHilbert空間となる．
-			\end{itembox}
-			
-			\begin{prf}
-				内積$\inprod<\cdot,\cdot>$により導入されるノルムを$\Norm{\cdot}{}$と表記する．
-				$\overline{M^{(n)}} \in \mathfrak{M}_{2,c}\ (n=1,2,\cdots)$をCauchy列として取れば，
-				各代表元$M^{(n)}$に対し或る$\mu$-零集合$E_n$が存在して，$\omega \in \Omega \backslash E_n$なら
-				写像$I \ni t \longmapsto M^{(n)}_t(\omega) \in \R$が連続となる．後で連続関数列の一様収束を扱うから次の処理を行う．
+	\footnotetext{
+		全ての$t,\omega$に対し$0 \in \R$を取るもの．
+	}
+	
+	\begin{prf}
+		$\mathcal{M}_{p,c}$が(\refeq{eq:mart_linear_arithmetic_0})の演算について閉じていることを示す．
+		\begin{description}
+			\item[加法について]
+				先ず$M+N$が$\mathrm{L}^p$-マルチンゲールの定義を満たすことを確認する．
+				適合性について，各$t \in I$について$M_t,N_t$は$\mathcal{F}_t$-可測であるから
+				$M_t + N_t$も$\mathcal{F}_t$-可測であり，またMinkowskiの不等式より$M_t + N_t \in \semiLp{p}{\mu}$であることも従う．
+				任意の$\omega \in \Omega$でパス$I \ni t \longmapsto M_t(\omega) + N_t(\omega)$が右連続且つ左極限を持つ
+				ことも$M,N$のパスが右連続且つ左極限を持つことにより従い，さらに
+				任意に$0 \leq s \leq t \leq T$を取れば，条件付き期待値の線型性より
 				\begin{align}
-					E \coloneqq \bigcup_{n=1}^{\infty} E_n
+					\cexp{M_t + N_t}{\mathcal{F}_s} = \cexp{M_t}{\mathcal{F}_s} + \cexp{N_t}{\mathcal{F}_s} = M_s + N_s
 				\end{align}
-				として，$M^{(n)} = (M^{(n)}_t)_{t \in I}$を零集合$E$上で修正した過程$(N^{(n)}_t)_{t \in I}$を
-				\begin{align}
-					N^{(n)}_t(\omega) \coloneqq
-					\begin{cases}
-						M^{(n)}_t(\omega) & (\omega \in \Omega \backslash E) \\
-						0 & (\omega \in E)
-					\end{cases}
-					,\quad (\forall n = 1,2,\cdots,\ t \in I)
-				\end{align}
-			\end{prf}
-			として定義すれば，$(N^{(n)}_t)_{t \in I}$は$\Omega$全体でパスが連続，かつ$\mathrm{L}^2$-マルチンゲールであるから
-			\footnote{
-				$\mathrm{L}^2$-マルチンゲールとなることについて仔細を書いておく．
-				パスの右連続性と左極限の存在は連続性により成り立つことである．適合性については，フィルトレーションの仮定より$E \in \mathcal{F}_0$であることに注意すれば，
-				$N^{(n)}_t = M^{(n)}_t \defunc_{\Omega \backslash E}$
-				の表現と$M^{(n)}_t$が適合過程であることから$N^{(n)}_t$もまた可測$\mathcal{F}_t/\borel{\R}$であると判る．
-				任意の$0 \leq s \leq t \leq T$に対し
-				\begin{align}
-					\cexp{N^{(n)}_t}{\mathcal{F}_s} = N^{(n)}_s
-				\end{align}
-				となることは，関数として$N^{(n)}_s$と$M^{(n)}_s$は同値(a.s.で等しいとき同値であるとして関数類を作ったのであった)であることと
-				条件付き期待値を関数類に対して定義したことと併せれば
-				\begin{align}
-					\cexp{N^{(n)}_t}{\mathcal{F}_s} = \cexp{M^{(n)}_t}{\mathcal{F}_s} = M^{(n)}_s = N^{(n)}_s
-				\end{align}
-				により成り立つ．
-			}
-			$\mathcal{M}_{2,c}$の元となる．加えて，零集合$E$を除いて$(M^{(n)}_t)_{t \in I}$とパスが一致するから$\overline{N^{(n)}} = \overline{M^{(n)}}\ (n=1,2,\cdots)$
-			が成立し，従って
-			\begin{align}
-				\Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 = \Norm{\overline{N^{(n)}} - \overline{N^{(m)}}}{}^2 
-				=  \Norm{\overline{N^{(n)} - N^{(m)}}}{}^2
-				= \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
-			\end{align}
-			と表現できる．
-			任意に$n,m \in N$の組を取っても，$(|N^{(n)}_t - N^{(m)}_t|)_{t \in T}$は連続な$\mathrm{L}^2$-劣マルチンゲールとなるから
-			Doobの不等式を適用して
-			\begin{align}
-				\lambda^2 \mu(\sup{t \in I}{|N^{(n)}_t - N^{(m)}_t| > \lambda}) \leq \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
-				= \Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 \quad (\forall \lambda > 0)
-			\end{align}
-			が成り立つ．この不等式と$(\overline{M^{(n)}})_{n=1}^{\infty}$がCauchy列であることを併せれば，
-			\begin{align}
-				\Norm{\overline{M^{(n_k)}} - \overline{M^{(n_{k+1})}}}{} < 1/4^k, \quad (k = 1,2,\cdots) \label{eq:mart_hilbert_1}
-			\end{align}
-			となるように添数の部分列$(n_k)_{k=1}^{\infty}$を抜き出して
-			\begin{align}
-				\mu(\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t| > 1/2^k}) < 1/2^k, \quad (k=1,2,\cdots)
-			\end{align}
-			が成り立つようにできる．
-			\begin{align}
-				F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} \Set{\omega \in \Omega}{\sup{t \in I}{|N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega)|} \leq 1/2^k}
-			\end{align}
-			とおけば，Borel-Cantelliの補題により$F^c$は$\mu$-零集合であって，$\omega \in F$なら全ての$t \in I$について数列$(N^{(n_k)}_t(\omega))_{k=1}^{\infty}$はCauchy列となる．
-			実数の完備性から数列$(N^{(n_k)}_t(\omega))_{k=1}^{\infty}\ (\omega \in F)$に極限$N^*_t(\omega)$が存在し，
-			この収束は$t$に関して一様である
-			\footnote{
-				$\left| N^{(n_k)}_t(\omega) - N^*_t(\omega) \right| \leq \sum_{j=k}^{\infty} \left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|
-				\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in T)$
-				による．
-			}から写像$t \longmapsto N^*_t(\omega)$は連続で，
-			\begin{align}
-				N_t(\omega) \coloneqq 
-				\begin{cases}
-					N^*_t(\omega) & (\omega \in F) \\
-					0 & (\omega \in \Omega \backslash F)
-				\end{cases}
-			\end{align}
-			として$N = (N_t)_{t \in I}$を定義すればこれは$\mathcal{M}_{2,c}$の元たる資格を持つ．つまり(1)$\mu$-a.s.にパスが連続で(2)$\mathrm{L}^2$-マルチンゲールとなっている．
-			(1)は既に示されているから(実際は全てのパスが連続)，(2)を示す．全ての$\omega \in \Omega$についてパス$t \longmapsto N_t(\omega)$上の各点で右連続かつ左極限が存在することは
-			パスの連続性により従うことであるから，後はマルチンゲールの定義の条件(M.1)(M.2)を証明すればよい．
-			\begin{description}
-				\item[(M.1)適合性について]
-					$\omega$の関数として，$N^*_t$は関数列$(N^{(n_k)}_t)_{k=1}^{\infty}$の$F$上での各点収束先の関数として定義されている．
-					$N^*_t$の定義域は$F$であるから，これに合わせて$N^{n_k}_t$の定義域を$F$に制限した写像を$N^{F(k)}_t$と表記し，
-					\begin{align}
-						\mathcal{F}^F_t \coloneqq \Set{F \cap B}{B \in \mathcal{F}_t}
-					\end{align}
-					として$N^{F(k)}_t$は可測$\mathcal{F}^F_t/\borel{\R}$ということになる．従って各点極限の関数$N^*_t$もまた可測$\mathcal{F}^F_t/\borel{\R}$と判る($\forall t \in I$)．
-					フィルトレーションの仮定から$F \in \mathcal{F}_0$であり，全ての$t \in I$について$\mathcal{F}^F_t$は$\mathcal{F}_t$の部分$\sigma$-加法族となっていることに注意しておく．
-					任意の$C \in \borel{\R}$に対して
-					\begin{align}
-						N^{-1}_t(C) = 
-						\begin{cases}
-							(\Omega \backslash F) \cup {N^*}^{-1}_t(C) & (0 \in C) \\
-							{N^*}^{-1}_t(C) & (0 \notin C)
-						\end{cases}
-					\end{align}
-					が成り立ち，先ほどの注意と併せれば，任意の$t \in I$に対し$N_t$が可測$\mathcal{F}_t/\borel{\R}$であると判明する．
-				
-				\item[(M.1)二乗可積分性について]
-					各$t \in I$について，$N^{(n_k)}_t\ (k=1,2,\cdots)$は二乗可積分関数$M^{(n_k)}_t$と零集合$E$を除いて一致するよう構成され，
-					そして$N_t$に概収束する関数列であった．また添数列$(n_k)_{k=1}^{\infty}$の抜き出し方(式(\refeq{eq:mart_hilbert_1}))とDoobの不等式
-					\footnote{各$k \in \N$において$(N^{(n_k)}_t)_{t \in I}$は$(M^{(n_k)}_t)_{t \in I}$と$\mu$-a.s.にパスが一致するからこれも$\mathrm{L}^2$-マルチンゲールである．}より
-					\begin{align}
-						\Exp{\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t|^2}} \leq 4 \Exp{|N^{(n_k)}_T - N^{(n_{k+1})}_T|^2} < 4/8^k
-					\end{align}
-					が成り立つから，全ての$t \in I$に対して$\Norm{N^{(n_k)}_t - N^{(n_{k+1})}_t}{\mathscr{L}^2} < 2/4^k \leq 1/2^k \ (k=1,2,\cdots)$となる．
-					特に全ての$k = 1,2,\cdots$に対して$\Norm{N^{(n_k)}_t - N^{(n_1)}_t}{\mathscr{L}^2} < 1/2$となるから
-					\begin{align}
-						\Norm{N^{(n_k)}_t}{\mathscr{L}^2} < \Norm{N^{(n_1)}_t}{\mathscr{L}^2} + 1/2 \quad (k = 1,2,\cdots)
-					\end{align}
-					とできる．つまり$\mu$-a.s.に$|N^{(n_k)}_t|^2 < \Norm{N^{(n_1)}_t}{\mathscr{L}^2} + 1/2$となり，以上により
-					各$t \in I$について関数列$(N^{(n_k)}_t)_{k=1}^{\infty}$に対しLebesgueの収束定理を適用できる根拠を得た．Minkowskiの不等式から
-					\begin{align}
-						\Norm{N_t}{\mathscr{L}^2} \leq \Norm{N_t - N^{F(k)}_t}{\mathscr{L}^2} + \Norm{N^{F(k)}_t}{\mathscr{L}^2}
-					\end{align}
-					が成り立ち，Lebesgueの収束定理より$\Norm{N_t - N^{F(k)}_t}{\mathscr{L}^2}\ (k=1,2,\cdots)$が有界列で第二項も有限確定するから右辺全体が$< \infty$となることが従う．
-				
-				\item[(M.2)について]
-					各$t \in I,\ k \in \N$について$N^{(n_k)}_t$と$M^{(n_k)}_t$が同じ関数類に属するから，$(M^{(n_k)}_t)_{t \in I}$が$\mathrm{L}^2$-マルチンゲールであるということを利用すればよい．
-					任意の$0 \leq s \leq t \leq T$と$A \in \mathcal{F}_s$に対し，条件付き期待値の性質$\tilde{\mathrm{C}}2$から
-					\begin{align}
-						\int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) &= \int_{A} \cexp{M^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \\
-						&= \int_{A} M^{(n_k)}_s(\omega)\ \mu(d\omega) = \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
-					\end{align}
-					が全ての$k = 1,2,\cdots$で成り立つ．後述の補助定理とLebesgueの収束定理より
-					\begin{align}
-						\int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega)
-						&= \lim_{k \to \infty} \int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \\
-						&= \lim_{k \to \infty} \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
-						= \int_{A} N_s(\omega)\ \mu(d\omega)
-					\end{align}
-					が成り立ち，従って関数として見て$\cexp{N_t}{\mathcal{F}_s}$と$N_s$は同じ関数類に属するから$\Lp{2}{\mathcal{F},\mu}$の元として一致する．
-			\end{description}
+				も成り立つ．以上より$M+N = (M_t + N_t)_{t \in I}$は$\mathrm{L}^p$-マルチンゲールである．
+				次に写像$I \ni t \longmapsto M_t(\omega) + N_t(\omega) \in \R$の連続性を示す．
+				$M,N$に対して或る$\mu$-零集合$E$が存在し，$\omega \notin E$について
+				$t \longmapsto M_t(\omega)$と$t \longmapsto N_t(\omega)$が共に連続となるから
+				$t \longmapsto M_t(\omega) + N_t(\omega)$も連続となる．以上で$M+N \in \mathcal{M}_{p,c}$が示された．
 			
-			最後に，$N=(N_t)_{t \in I}$の$\mathfrak{M}_{2,c}$における同値類$\overline{N}$がCauchy列$(\overline{M^{(n)}})_{n=1}^{\infty}$の極限であるということを明示して証明を完全に終える．
-			部分列$(\overline{M^{(n_k)}})_{k=1}^{\infty}$に対して，Lebesgueの収束定理より
-			\begin{align}
-				\Norm{\overline{N} - \overline{M^{(n_k)}}}{}^2 = \int_{\Omega} \left| N_T(\omega) - M^{(n_k)}_T(\omega) \right|^2\ \mu(d\omega) \longrightarrow 0 \quad (k \longrightarrow \infty)
-			\end{align}
-			が成り立ち，部分列が収束することはCauchy列が収束することになるから，以上で$\mathfrak{M}_{2,c}$がHilbert空間であることが証明された．
-			\QED
-	\end{description}
+			\item[スカラ倍について]
+				任意の$0 \leq s \leq t \leq T$に対し，条件付き期待値の線型性(性質$\tilde{\mathrm{C}}3$)により
+				\begin{align}
+					\cexp{\alpha M_t}{\mathcal{F}_s} = \alpha \cexp{M_t}{\mathcal{F}_s} = \alpha M_s
+				\end{align}
+				が成り立つ．定数倍しているだけであるから，$\alpha M$が
+				$\mathrm{L}^p$-マルチンゲールであるためのその他の条件，及び$\mu$-a.s.にパスが連続であることも成り立ち，
+				$\alpha M \in \mathcal{M}_{p,c}$となる．
+		\end{description}
+		\QED
+	\end{prf}
 	
 	\begin{itembox}[l]{}
-		\begin{lem}[条件付き期待値の収束定理]\mbox{}\\
-			$X,X_n \in \Lp{1}{\mathcal{F},\mu}\ (n=1,2,\cdots)$と部分$\sigma$-加法族$\mathcal{G} \subset \mathcal{F}$に対し，
-			代表元の関数が$X_n \longrightarrow X\ (n \longrightarrow \infty)\ \mu$-a.s.を満たし，かつ
-			$n$に無関係な可積分関数$Y$が存在して$X_n \leq Y\ \mu$-a.s.となっているとき次が成り立つ:
+		\begin{lem}[$\mathcal{M}_{p,c}$における同値関係の導入]\mbox{}\\
+			任意の$M,N \in \mathcal{M}_{p,c}\ (p \geq 1)$に対して，関係$R$を
 			\begin{align}
-				\int_A \cexp{X}{\mathcal{G}}(\omega)\ \mu(d\omega) = \lim_{n \to \infty} \int_A \cexp{X^n}{\mathcal{G}}(\omega)\ \mu(d\omega) , \quad (\forall A \in \mathcal{G}) .
+				M\ R\ N \DEF \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\mbox{が$\mu$-零集合}
 			\end{align}
+			として定義すれば，関係$R$は同値関係となる．そして$M\ R\ N$となることと$\mu$-a.s.にパスが一致することは同値である．
+			\label{lem:M_2c_hilbert}
 		\end{lem}
 	\end{itembox}
 	
 	\begin{prf}
-		条件付き期待値の性質$\tilde{\mathrm{C}}2$とLebesgueの収束定理より，任意の$A \in \mathcal{G}$に対して
+		反射律と対称律は$R$の定義式より判然しているから推移律について確認する．$M,N$とは別に$U=(U_t)_{t \in I} \in \mathcal{M}_{p,c}$
+		を取って$M\ R\ N$かつ$N\ R\ U$となっているとすれば，各$r \in (I \cap \Q) \cup \{ T \}$にて
 		\begin{align}
-			\int_A \cexp{X}{\mathcal{G}}(\omega)\ \mu(d\omega)
-			= \int_A X(\omega)\ \mu(d\omega) = \lim_{n \to \infty} \int_A X_n(\omega)\ \mu(d\omega)
-			= \lim_{n \to \infty} \int_A \cexp{X^n}{\mathcal{G}}(\omega)\ \mu(d\omega)
+			\left\{\ \left|M_r - U_r\right| > 0\ \right\}\ \subset\ 
+			\left\{\ \left|M_r - N_r\right| > 0\ \right\} \cup \left\{\ \left|N_r - U_r\right| > 0\ \right\}
 		\end{align}
-		が成り立つ．
+		の関係が成り立っているから$M\ R\ U$が従う．
+		\footnote{
+			$\left\{\ \left|M_r - N_r\right| > 0\ \right\} = \Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}.$
+		}
+		後半の主張を示す．
+		$M,N$に対し或る零集合$E$が存在して，$\omega \in \Omega \backslash E$に対し
+		$I \ni t \longmapsto M_t(\omega)$と$I \ni t \longmapsto N_t(\omega)$は共に連続写像となっている．
+		今$M\ R\ N$であるとする．
+		\begin{align}
+			F \coloneqq \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}
+		\end{align}
+		とおけば$F^c \cap E^c$上で$M$と$N$のパスは完全に一致し，また$F \cup E$が零集合であるから$\mu$-a.s.にパスが一致しているということになる．
+		逆に$\mu$-a.s.にパスが一致しているとすれば，或る零集合$G$が存在して$G^c$上でパスが一致している．
+		\begin{align}
+			G^c \subset F^c
+		\end{align}
+		の関係から$F \subset G$となり$F$が零集合となるから$M\ R\ N$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{lem}[$\mathcal{M}_{p,c}$の商空間の定義]
+			補題\ref{lem:M_2c_hilbert}で導入した同値関係$R$による$\mathcal{M}_{p,c}\ (p \geq 1)$の商集合を$\mathfrak{M}_{p,c}$と表記する．
+			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\overline{M}$と表記し，
+			$\mathfrak{M}_{p,c}$において
+			\begin{align}
+				\overline{M} + \overline{N} \coloneqq \overline{M+N}, \quad \alpha \overline{M} \coloneqq \overline{\alpha M} \label{eq:mart_linear_arithmetic}
+			\end{align}
+			として演算を定義すれば，これは代表元の選び方に依らない(well-defined)．そして(\refeq{eq:mart_linear_arithmetic})で定義した算法を加法とスカラ倍として
+			$\mathfrak{M}_{p,c}$は$\R$上の線形空間となる．
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}
+		$M' \in \overline{M},\ N' \in \overline{N}$を任意に選べば，
+		\begin{align}
+			\left\{\ \left|M_r + N_r - M'_r - N'_r \right| > 0\ \right\} &\subset \left\{\ \left|M_r - M'_r \right| > 0\ \right\} \cup \left\{\ \left|N_r - N'_r \right| > 0\ \right\} \\
+			\left\{\ \left|\alpha M_r - \alpha M'_r \right| > 0\ \right\} &= \left\{\ \left|M_r - M'_r \right| > 0\ \right\}
+		\end{align}
+		により$(M+N)\ R\ (M'+N'),\ (\alpha M)\ R\ (\alpha M')$が成り立ち
+		\begin{align}
+			\overline{M+N} = \overline{M'+N'}, \quad \overline{\alpha M} = \overline{\alpha M'}
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{lem}[$\mathfrak{M}_{2,c}$における内積の定義]
+			写像\footnotemark
+			$\inprod<\cdot,\cdot>:\mathfrak{M}_{2,c} \times \mathfrak{M}_{2,c} \rightarrow \R$
+			を次で定義すれば，これは$\mathfrak{M}_{2,c}$において内積となる:
+			\begin{align}
+				\inprod<\overline{M},\overline{N}> \coloneqq \int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega), \quad (\overline{M},\overline{N} \in \mathfrak{M}_{2,c}).
+				\label{eq:M_2c_inner_product}
+			\end{align}
+			\label{lem:M_2c_hilbert_inner_product}
+		\end{lem}
+	\end{itembox}
+			
+	\footnotetext{
+		実数値として確定することは，$M_T,N_T$が共に二乗可積分であることとH\Ddot{o}lderの不等式による．
+	}
+			
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[well-definedであること]
+				先ずは上の$\inprod<\cdot,\cdot>$の定義が代表元の取り方に依らないことを確認する．
+				$M' \in \overline{M}$と$N' \in \overline{N}$に対して，
+				同値関係の定義から$\mu$-a.s.に$M'_T = M_T,\ N'_T = N_T$であり
+				\begin{align}
+					\int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega) = \int_{\Omega} M'_T(\omega)N'_T(\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立つから，$\inprod<\overline{M},\overline{N}>$は一つの値に確定している．
+				次に$\inprod<\cdot,\cdot>$が内積であることを証明する．
+	
+			\item[正値性]
+				先ず任意の$\overline{M} \in \mathfrak{M}_{2,c}$に対して$\inprod<\overline{M},\overline{M}> = \Norm{M_T}{\mathscr{L}^2}^2 \geq 0$が成り立つ．
+				次に$\inprod<\overline{M},\overline{M}> = 0 \quad \Leftrightarrow \quad \overline{M} = \overline{0}$
+				が成り立つことを示す．$\inprod<\cdot,\cdot>$の定義により$\Leftarrow$は判然しているから，$\Rightarrow$について示す．
+				$M$は$\mathrm{L}^2$-マルチンゲールであるから，Jensenの不等式より
+				$(|M_t|)_{t \in I}$が$\mathrm{L}^2$-劣マルチンゲールとなる．Doobの不等式を適用すれば
+				\begin{align}
+					\int_{\Omega} \left( \sup{t \in I}{|M_t(\omega)|} \right)^2\ \mu(d\omega) \leq 4 \int_{\Omega} {M_T(\omega)}^2\ \mu(d\omega) = 0
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\} = \left\{\ \sup{t \in I}{|M_t|^2} > 0\ \right\} = \left\{\ \left(\sup{t \in I}{|M_t(\omega)|}\right)^2 > 0\ \right\}
+				\end{align}
+				%\footnote{
+				%	$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\}$は$\Set{\omega \in \Omega}{\sup{t \in I}{|M_t(\omega)|} > 0}$の略記(他も同様)であるが，
+				%	ここの等号は次の関係が成立することにより正当化される:
+				%	\begin{align}
+				%		[\sup{t \in I}{|M_t(\omega)|}]^2 = \sup{t \in I}{[M_t(\omega)]^2},\ (\forall \omega \in \Omega).
+				%	\end{align}
+				%	もし$[\sup{t \in I}{|M_t(\omega)|}]^2 > \sup{t \in I}{[M_t(\omega)]^2} \eqqcolon \beta$
+				%	とすると，$\sup{t \in I}{|M_t(\omega)|} > \beta^{1/2}$より或る$s \in I$について
+				%	$|M_s(\omega)| > \beta^{1/2}$が成り立つから，$[M_s(\omega)]^2 > \beta$となり$\beta = \sup{t \in I}{[M_t(\omega)]^2}$に矛盾する．
+				%	逆の場合，つまり$\alpha \coloneqq [\sup{t \in I}{|M_t(\omega)|}]^2 < \sup{t \in I}{[M_t(\omega)]^2}$
+				%	が成り立っているとしても，或る$z \in I$が存在して$\alpha^{1/2} < |M_z(\omega)| \leq \sup{t \in I}{|M_t(\omega)|}$が成り立ち，
+				%	$\alpha < [\sup{t \in I}{|M_t(\omega)|}]^2 = \alpha$となり矛盾ができた．
+				%}
+				であるから
+				\begin{align}
+					\mu\left( \sup{t \in I}{|M_t|} > 0 \right) = 0
+				\end{align}
+				が従う．よって$\overline{M} = \overline{0}$となる．
+	
+			\item[双線型性]
+				双線型性は積分の線型性による．
+			\end{description}
+		\QED
+	\end{prf}
+		
+	\begin{itembox}[l]{}
+		\begin{prp}[$\mathfrak{M}_{2,c}$はHilbert空間である]
+			$\mathfrak{M}_{2,c}$は補題\ref{lem:M_2c_hilbert_inner_product}で導入した$\inprod<\cdot,\cdot>$を内積としてHilbert空間となる．
+		\end{prp}
+	\end{itembox}
+			
+	\begin{prf}
+			内積$\inprod<\cdot,\cdot>$により導入されるノルムを$\Norm{\cdot}{}$と表記する．
+			$\overline{M^{(n)}} \in \mathfrak{M}_{2,c}\ (n=1,2,\cdots)$をCauchy列として取れば，
+			各代表元$M^{(n)}$に対し或る$\mu$-零集合$E_n$が存在して，$\omega \in \Omega \backslash E_n$なら
+			写像$I \ni t \longmapsto M^{(n)}_t(\omega) \in \R$が連続となる．後で連続関数列の一様収束を扱うからここで次の処理を行う:
+			\begin{align}
+				E \coloneqq \bigcup_{n=1}^{\infty} E_n
+			\end{align}
+			として，$M^{(n)} = (M^{(n)}_t)_{t \in I}$を零集合$E$上で修正した過程$(N^{(n)}_t)_{t \in I}$を
+			\begin{align}
+				N^{(n)}_t(\omega) \coloneqq
+				\begin{cases}
+					M^{(n)}_t(\omega) & (\omega \in \Omega \backslash E) \\
+					0 & (\omega \in E)
+				\end{cases}
+				,\quad (\forall n = 1,2,\cdots,\ t \in I)
+			\end{align}
+		として定義すれば，$N^{(n)}$は$\Omega$全体でパスが連続，かつ$\mathrm{L}^2$-マルチンゲールであるから
+		\footnote{
+			$\mathrm{L}^2$-マルチンゲールとなることを証明する．
+			パスの右連続性と左極限の存在は連続性により成り立つことである．適合性については，フィルトレーションの仮定より$E \in \mathcal{F}_0$であることに注意すれば，
+			$N^{(n)}_t = M^{(n)}_t \defunc_{\Omega \backslash E}$
+			であることと$M^{(n)}_t$が適合過程であることから$N^{(n)}_t$も可測$\mathcal{F}_t/\borel{\R}$となる．
+			また各$t \in I$に対し$N^{(n)}_t$と$M^{(n)}_t$の関数類は一致するから，任意に$0 \leq s \leq t \leq T$を取って
+			\begin{align}
+				\cexp{N^{(n)}_t}{\mathcal{F}_s} = \cexp{M^{(n)}_t}{\mathcal{F}_s} = M^{(n)}_s = N^{(n)}_s
+			\end{align}
+			が成り立つ．$N^{(n)}_t = M^{(n)}_t \defunc_{\Omega \backslash E}$の二乗可積分性は$M^{(n)}_t$の二乗可積分性から従う．
+		}
+		$\mathcal{M}_{2,c}$の元となる．加えて，零集合$E$を除いて$(M^{(n)}_t)_{t \in I}$とパスが一致するから$\overline{N^{(n)}} = \overline{M^{(n)}}\ (n=1,2,\cdots)$
+		が成立し，従って
+		\begin{align}
+			\Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 = \Norm{\overline{N^{(n)}} - \overline{N^{(m)}}}{}^2 
+			=  \Norm{\overline{N^{(n)} - N^{(m)}}}{}^2
+			= \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
+		\end{align}
+		と表現できる．
+		任意の$n,m \in N$の組に対し，$\mathcal{M}_{2,c}$が線形空間であるから
+		$\left(\left|N^{(n)}_t - N^{(m)}_t\right|\right)_{t \in T}$は連続な$\mathrm{L}^2$-劣マルチンゲールとなり，
+		Doobの不等式を適用して
+		\begin{align}
+			\lambda^2 \mu\left(\sup{t \in I}{|N^{(n)}_t - N^{(m)}_t| > \lambda}\right) \leq \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
+			= \Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 \quad (\forall \lambda > 0)
+		\end{align}
+		が成り立つ．この不等式と$\left(\overline{M^{(n)}}\right)_{n=1}^{\infty}$がCauchy列であることを併せれば，
+		\begin{align}
+			\Norm{\overline{M^{(n_k)}} - \overline{M^{(n_{k+1})}}}{} < 1/4^k, \quad (k = 1,2,\cdots) \label{eq:mart_hilbert_1}
+		\end{align}
+		となるように添数の部分列$(n_k)_{k=1}^{\infty}$を抜き出して
+		\begin{align}
+			\mu\left(\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t| > 1/2^k}\right) < 1/2^k, \quad (k=1,2,\cdots)
+		\end{align}
+		が成り立つようにできる．
+		\begin{align}
+			F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} \Set{\omega \in \Omega}{\sup{t \in I}{|N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega)|} \leq 1/2^k}
+		\end{align}
+		とおけば，Borel-Cantelliの補題により$F^c$は$\mu$-零集合であって，$\omega \in F$なら全ての$t \in I$について数列$\left(N^{(n_k)}_t(\omega)\right)_{k=1}^{\infty}$はCauchy列となる．
+		実数の完備性から数列$\left(N^{(n_k)}_t(\omega)\right)_{k=1}^{\infty}\ (\omega \in F)$に極限$N^*_t(\omega)$が存在し，
+		この収束は$t$に関して一様である
+		\footnote{
+			$\left| N^{(n_k)}_t(\omega) - N^*_t(\omega) \right| \leq \sum_{j=k}^{\infty} \left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|
+			\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in T)$
+			による．
+		}から写像$t \longmapsto N^*_t(\omega)$は連続で，
+		\begin{align}
+			N_t(\omega) \coloneqq 
+			\begin{cases}
+				N^*_t(\omega) & (\omega \in F) \\
+				0 & (\omega \in \Omega \backslash F)
+			\end{cases}
+		\end{align}
+		として$N$を定義すればこれは$\mathcal{M}_{2,c}$の元となる．$N$は全てのパスが連続であるから$\mathrm{L}^2$-マルチンゲールとなっていることを示す．
+		マルチンゲールの定義の(M.3)(M.4)はパスの連続性により従うことであるから，後は(M.1)と(M.2)を証明すればよい．
+		\begin{description}
+			\item[(M.1)適合性について]
+				今任意に$t \in I$を取り固定する．
+				$N^{n_k}_t$の定義域を$F$に制限した写像を$N^{F(k)}_t$と表記し
+				\begin{align}
+					\mathcal{F}^F_t \coloneqq \Set{F \cap B}{B \in \mathcal{F}_t}
+				\end{align}
+				とおけば，$N^{F(k)}_t$は可測$\mathcal{F}^F_t/\borel{\R}$となる．従って各点収束先の関数である$N^*_t$もまた可測$\mathcal{F}^F_t/\borel{\R}$となる．
+				任意の$C \in \borel{\R}$に対して
+				\begin{align}
+					N^{-1}_t(C) = 
+					\begin{cases}
+						(\Omega \backslash F) \cup {N^*}^{-1}_t(C) & (0 \in C) \\
+						{N^*}^{-1}_t(C) & (0 \notin C)
+					\end{cases}
+				\end{align}
+				が成り立ち，フィルトレーションの仮定から$F \in \mathcal{F}_0$であり$\mathcal{F}^F_t \subset \mathcal{F}_t$が従うから，
+				$N_t$は可測$\mathcal{F}_t/\borel{\R}$である．
+			
+			\item[(M.1)二乗可積分性について]
+				任意に$t \in I$を取り固定する．$N^{(n_k)}_t\ (k=1,2,\cdots)$は二乗可積分関数$M^{(n_k)}_t$と零集合$E$を除いて一致し，
+				$N_t$に概収束する．また添数列$(n_k)_{k=1}^{\infty}$の抜き出し方(\refeq{eq:mart_hilbert_1})とDoobの不等式より
+				\begin{align}
+					\Norm{\sup{t \in I}{\left|N^{(n_k)}_t - N^{(n_{k+1})}_t\right|}}{\mathscr{L}^2} \leq 2 \Norm{\left|N^{(n_k)}_T - N^{(n_{k+1})}_T\right|}{\mathscr{L}^2} < 2/4^k
+				\end{align}
+				が成り立つから$\Norm{N^{(n_k)}_t - N^{(n_{k+1})}_t}{\mathscr{L}^2} < 2/4^k \leq 1/2^k \ (k=1,2,\cdots)$を得る．
+				特に$j \in \N$を固定すれば全ての$k > j$に対して$\Norm{N^{(n_j)}_t - N^{(n_k)}_t}{\mathscr{L}^2} < 1/2^j$となるから，Fatouの補題より
+				\begin{align}
+					\Norm{N^{(n_j)}_t - N_t}{\mathscr{L}^2}^2 = \int_{\Omega \backslash F} \liminf_{k \to \infty} \left| N^{(n_j)}_t(\omega) - N^{(n_k)}_t(\omega) \right|^2\ \mu(d\omega)
+					< 1/4^j
+					\label{eq:M_c2_hilbert_2}
+				\end{align}
+				が従い，Minkowskiの不等式より
+				\begin{align}
+					\Norm{N_t}{\mathscr{L}^2} \leq \Norm{N_t - N^{(n_j)}_t}{\mathscr{L}^2} + \Norm{N^{(n_j)}_t}{\mathscr{L}^2} < \infty
+				\end{align}
+				が成り立つ．
+			
+			\item[(M.2)について]
+				各$t \in I,\ k \in \N$について$(M^{(n_k)}_t)_{t \in I}$が$\mathrm{L}^2$-マルチンゲールであるということを利用すればよい．
+				任意の$0 \leq s \leq t \leq T$と$A \in \mathcal{F}_s$に対して
+				\begin{align}
+					\int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) &= \int_{A} \cexp{M^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \\
+					&= \int_{A} M^{(n_k)}_s(\omega)\ \mu(d\omega) = \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
+				\end{align}
+				が全ての$k = 1,2,\cdots$で成り立つから，H\Ddot{o}lderの不等式及び(\refeq{eq:M_c2_hilbert_2})より
+				\begin{align}
+					&\left| \int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) - \int_{A} N_s(\omega)\ \mu(d\omega) \right| \\
+					&\leq \left| \int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) - \int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \right| \\
+						&\qquad+ \left| \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega) - \int_{A} N_s(\omega)\ \mu(d\omega) \right| \\
+					&= \left| \int_{A} N_t(\omega) - N^{(n_k)}_t(\omega)\ \mu(d\omega) \right|
+						+ \left| \int_{A} N^{(n_k)}_s(\omega) - N_s(\omega)\ \mu(d\omega) \right| \\
+					&\leq \int_{A} \left| N_t(\omega) - N^{(n_k)}_t(\omega) \right|\ \mu(d\omega)
+						+ \int_{A} \left| N^{(n_k)}_s(\omega) - N_s(\omega) \right|\ \mu(d\omega) \\
+					&\leq \Norm{N_t - N^{(n_k)}_t}{\mathscr{L}^2} + \Norm{N^{(n_k)}_s - N_s}{\mathscr{L}^2} \\
+					&\leq 1/2^{k-1}
+				\end{align}
+				が全ての$k = 1,2,\cdots$で成り立つ．$k$の任意性から
+				\begin{align}
+					\int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega)
+					= \int_{A} N_s(\omega)\ \mu(d\omega)
+				\end{align}
+				が従い，$\cexp{N_t}{\mathcal{F}_s} = N_s \quad \mbox{in $\Lp{2}{\mathcal{F},\mu}$}$となる．
+		\end{description}
+	
+		最後に，$N$の$\mathfrak{M}_{2,c}$における同値類$\overline{N}$がCauchy列$\left(\overline{M^{(n)}}\right)_{n=1}^{\infty}$の極限であるということを明示して証明を完全に終える．
+		部分列$\left(\overline{M^{(n_k)}}\right)_{k=1}^{\infty}$に対して，(\refeq{eq:M_c2_hilbert_2})より
+		\begin{align}
+				\Norm{\overline{N} - \overline{M^{(n_k)}}}{} 
+				= \Norm{\overline{N} - \overline{N^{(n_k)}}}{}
+				= \Norm{N_T - N^{(n_k)}_T}{\mathscr{L}^2} \longrightarrow 0 \quad (k \longrightarrow \infty)
+		\end{align}
+		が成り立つ．部分列が収束することはCauchy列が収束することになるから$\Norm{\overline{N} - \overline{M^{(n)}}}{} \longrightarrow 0$が従い，
+		$\mathfrak{M}_{2,c}$がHilbert空間であることが証明された．
 		\QED
 	\end{prf}
 	
@@ -435,7 +446,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{prf}
+	\begin{prf}[命題\ref{prp:M_pc_M_cloc}]
 		任意に$M \in \mathcal{M}_{p,c}$を取る．全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
 		は右連続且つ左極限を持つから，定理\ref{thm:closed_set_stopping_time}より
 		\begin{align}
@@ -696,7 +707,7 @@
 			任意の$M \in \mathcal{M}_{c,loc}$に対し或る$A \in \mathcal{A}^+$が一意的に存在して\footnotemark
 			次を満たす:
 			\begin{itemize}
-				\item $A_0 = 0\ \mbox{$\mu$-a.s.},$
+				\item $A_0 = 0\quad \mbox{$\mu$-a.s.}$
 				\item $M^2 - A \in \mathcal{M}_{c,loc}.$
 			\end{itemize}
 		\end{thm}
@@ -711,7 +722,7 @@
 		\begin{description}
 			\item[第一段]
 				補題\ref{lem:quadratic_variation}に従って$Q^n\ (n=1,2,\cdots)$を構成し
-				$N^n \coloneqq M^2 - Q^n \in \mathcal{M}_{b,c}\ (n=1,2,\cdots)$とおけば，補題の結果より
+				$N^n \coloneqq M^2 - Q^n \in \mathcal{M}_{b,c}$とおけば
 				\begin{align}
 					\Norm{N_T^n - N_0^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
 				\end{align}
@@ -720,7 +731,11 @@
 					\Norm{N_T^n}{\mathscr{L}^2} 
 					\leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} + \Norm{M^2_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
 				\end{align}
-				が成り立ち，従って$N^n$の同値類$\overline{N^n}$の列$(\overline{N^n})_{n=1}^{\infty}$はHilbert空間$\mathfrak{M}_{2,c}$において有界列となる．
+				が成り立ち，従って$N^n$の同値類
+				\footnote{
+					補題\ref{lem:M_2c_hilbert}で導入した同値関係$R$による同値類．
+				}
+				$\overline{N^n}$の列$(\overline{N^n})_{n=1}^{\infty}$はHilbert空間$\mathfrak{M}_{2,c}$において有界列となる．
 				Kolmosの補題より$\overline{N^n}$の線型結合の列$\hat{\overline{N^n}}\ (n=1,2,\cdots)$が存在して$\mathfrak{M}_{2,c}$においてCauchy列となるから，
 				その極限を$\overline{N} \in \mathfrak{M}_{2,c}$と表す．線型結合を
 				\begin{align}
@@ -737,15 +752,18 @@
 				\begin{align}
 					A \coloneqq M^2 - N \label{eq:thm_quadratic_variation_0}
 				\end{align}
-				とおけば
+				とおけば，Doobの不等式(定理\ref{thm:Doob_inequality_2})により
 				\begin{align}
 					\Norm{\sup{t \in I}{\left| \hat{Q}_t^n - A_t \right|}}{\mathscr{L}^2}
 					&= \Norm{\sup{t \in I}{\left| N_t - \hat{N}_t^n \right|}}{\mathscr{L}^2} \\
-					&\leq \Norm{N_T - \hat{N}_T^n}{\mathscr{L}^2} \\
-					&= \Norm{\overline{N} - \hat{\overline{N^n}}}{\mathfrak{M}_{2,c}} \longrightarrow 0 \quad (n \longrightarrow \infty) 
-						&& (\scriptsize\because \mbox{Doobの不等式(定理\ref{thm:Doob_inequality_2})}) 
+					&\leq \Norm{N_T - \hat{N}_T^n}{\mathscr{L}^2}
+					= \Norm{\overline{N} - \hat{\overline{N^n}}}{\mathfrak{M}_{2,c}} \longrightarrow 0 \quad (n \longrightarrow \infty) 
 				\end{align}
-				が成り立つ．これよりFatouの補題を使えば
+				が成り立つ
+				\footnote{
+					$\Norm{\cdot}{\mathfrak{M}_{2,c}}$は(\refeq{eq:M_2c_inner_product})で定義される内積により導入されるノルムを表す．
+				}
+				．これよりFatouの補題を使えば
 				\begin{align}
 					\Norm{\liminf_{n \to \infty}\sup{t \in I}{\left| \hat{Q}_t^n - A_t \right|}}{\mathscr{L}^2} = 0
 				\end{align}
@@ -808,7 +826,7 @@
 				写像$I \ni t \longmapsto A_t(\omega)\ (\forall \omega \in \Omega \backslash (E \cup E'))$は連続且つ単調非減少である．
 				$A$の適合性は(\refeq{eq:thm_quadratic_variation_0})より判明しているから，以上で$A \in \mathcal{A}^+$であることが示された．
 				$A_0(\omega) = 0\ (\forall \omega \in \Omega \backslash E)$であることも脚注\ref{footnote:thm_quadratic_variation}
-				で証明したから，$N = M^2 - A \in \mathcal{M}_{2,c} \subset \mathcal{M}_{c,loc}$(命題\ref{prp:M_pc_M_cloc})
+				で証明したから，$N = M^2 - A \in \mathcal{M}_{b,c} \subset \mathcal{M}_{c,loc}$(命題\ref{prp:M_pc_M_cloc})
 				より定理の主張を満たす$A$の存在が言えた．
 				
 				存在の一意性は命題\ref{prp:bounded_continuous_M_2c_path}による．
@@ -820,6 +838,98 @@
 				となり$A_t - A'_t = 0\ (\forall t \in I)\quad \mbox{$\mu$-a.s.}$が従う．
 				
 			\item[第二段]
-				
+				$M \in \mathcal{M}_{c,loc}$を任意に取る．或る$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$が存在して
+				$M^n \in \mathcal{M}_{b,c}\ (\forall t \in I,\ M_t^n = M_{t \wedge \tau_n})$となるから，
+				前段の結果より或る$A^n \in \mathcal{A}^+$が存在して
+				\begin{align}
+					N^n \coloneqq (M^n)^2 - A^n \in \mathcal{M}_{b,c}
+				\end{align}
+				を満たす．或る$\mu$-零集合$E_1$が存在して
+				\footnote{
+					或る零集合$E_1^{(1)}$があり$\tau_0(\omega) = 0\ (\forall \omega \in \Omega \backslash E_1^{(1)})$，
+					また或る零集合$E_1^j$があり$\tau_j(\omega) \leq \tau_{j+1}(\omega)\ (\forall \omega \in \Omega \backslash E_1^j)$，
+					更に或る零集合$E_1^{(T)}$を取れば，各$\omega \in \Omega \backslash E_1^{(T)}$について
+					或る$n(\omega)$番目以降は$\tau_n(\omega) = T\ (\forall n \geq n(\omega))$
+					が成り立つ．
+					\begin{align}
+						E_1 = \left( \cup_{j=1}^{\infty} E_1^j \right) \cup E_1^{(1)} \cup E_1^{(T)}
+					\end{align}
+					とおけばよい．
+				}
+				全ての$\omega \in \Omega \backslash E_1$で$(\tau_n(\omega))_{n=1}^{\infty}$は$0$出発，単調非減少かつ或る$n(\omega)$番目以降は$T$に一致する．
+				今任意に$n \leq m,\ n,m \in \N$を取って固定する．$\omega \in \Omega \backslash E_1$に対しては
+				\begin{align}
+					M_{t \wedge \tau_n(\omega)}^m(\omega) = M_{t \wedge \tau_n(\omega) \wedge \tau_m(\omega)}(\omega) = M_t^n(\omega) \quad (\forall t \in I)
+				\end{align}
+				となり関数類として$[M_{t \wedge \tau_n}^m] = [M_t^n]\ (\forall t \in I)$が成り立つから，任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
+				\begin{align}
+					\cexp{(M_t^m)^2 - A_t^m}{\mathcal{F}_{\tau_n}} = (M_{t \wedge \tau_n}^m)^2 - A_{t \wedge \tau_n}^m = (M_t^n)^2 - A_{t \wedge \tau_n}^m
+					\quad (\forall t \in I)
+				\end{align}
+				を得る．一方で$N^m \in \mathcal{M}_{2,c}$であるから
+				\begin{align}
+					\cexp{(M_t^m)^2 - A_t^m}{\mathcal{F}_{\tau_n}} = \cexp{N_t^m}{\mathcal{F}_{\tau_n}} = N_{t \wedge \tau_n}^m \quad (\forall t \in I)
+				\end{align}
+				も成り立ち，任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より$\tau_n$で停めた過程も二乗可積分マルチンゲールとなる．
+				関数類としての意味を強調すれば$[(M_t^n)^2 - A_{t \wedge \tau_n}^m] = [N_{t \wedge \tau_n}^m]\ (\forall t \in I)$が成り立っているから
+				$\left( (M_t^n)^2 - A_{t \wedge \tau_n}^m \right)_{t \in I}$が二乗可積分マルチンゲールであることになり，前段の一意性から
+				或る$\mu$-零集合$E^{n,m}$が存在して
+				\begin{align}
+					A_{t \wedge \tau_n(\omega)}^m(\omega) = A_t^n(\omega) \quad (\forall t \in I,\ \omega \in \Omega \backslash E^{n,m})
+				\end{align}
+				が従う．特に$\omega \in \Omega \backslash (E_1 \cup E^{n,m})$なら
+				\begin{align}
+					A_t^n(\omega) = A_{t \wedge \tau_n(\omega)}^m(\omega) = A_t^m(\omega) \quad (t \leq \tau_n(\omega))
+				\end{align}
+				となる．
+				\begin{align}
+					E_2 \coloneqq \bigcup_{n \in \N} E^{n,n+1}
+				\end{align}
+				とおき
+				\begin{align}
+					A_t(\omega) \coloneqq
+					\begin{cases}
+						\lim_{n \to \infty} A_t^n(\omega) & (\omega \in \Omega \backslash (E_1 \cup E_2)) \\
+						0 & (\omega \in E_1 \cup E_2)
+					\end{cases}
+					\quad (\forall t \in I)
+				\end{align}
+				として$A$を定めれば$A \in \mathcal{A}^+$を満たす
+				\footnote{
+					\begin{description}
+						\item[連続性・単調非減少性]
+							$\omega \in \Omega \backslash (E_1 \cup E_2)$の場合に確認する．任意に$s,u \in I,\ (s < u)$を取れば
+							$u \leq \tau_n(\omega)$となる$n$が存在し$A_t(\omega) = A_t^n(\omega)\ (\forall t \leq \tau_n(\omega))$を満たす．
+							写像$I \ni t \longmapsto A_t^n(\omega)$は連続且つ単調非減少であるから
+							$t \longmapsto A_t(\omega)$も$t = s,u$において連続であり，且つ$A_s(\omega) = A_s^n(\omega) \leq A_u^n(\omega) = A_u(\omega)$
+							により単調非減少である．
+						
+						\item[適合性]
+							各$n \in \N$に対し$A^n$は$(\mathcal{F}_t)$-適合である．$t \in I$を固定し
+							\begin{align}
+								\tilde{\mathcal{F}}_t \coloneqq \Set{B \cap (E_1 \cup E_2)^c}{B \in \mathcal{F}_t}
+							\end{align}
+							とおく．写像$\Omega \ni \omega \longmapsto A_t^n(\omega)$を
+							$\Omega \backslash (E_1 \cup E_2)$に制限した$\tilde{A}_t^n \coloneqq A_t^n|_{\Omega \backslash (E_1 \cup E_2)}$は可測$\tilde{\mathcal{F}}_t/\borel{\R}$
+							であり，各点収束先の$\tilde{A}_t \coloneqq A_t|_{\Omega \backslash (E_1 \cup E_2)}$もまた可測$\tilde{\mathcal{F}}_t/\borel{\R}$となる．
+							任意の$C \in \borel{\R}$に対して
+							\begin{align}
+								A_t^{-1}(C) =
+								\begin{cases}
+									\tilde{A}_t^{-1}(C) & (0 \notin C) \\
+									(E_1 \cup E_2) \cup \tilde{A}_t^{-1}(C) & (0 \in C)
+								\end{cases}
+							\end{align}
+							となり，$E_1 \cup E_2 \in \mathcal{F}_0$により$\tilde{\mathcal{F}}_t \subset \mathcal{F}_t$であるから
+							$A_t$は可測$\mathcal{F}_t/\borel{\R}$となる．
+					\end{description}
+				}
+				．そして$N \coloneqq M^2 - A$とおけば$\Omega \backslash (E_1 \cup E_2)$上で
+				\begin{align}
+					N_{t \wedge \tau_n} = M_{t \wedge \tau_n}^2 - A_{t \wedge \tau_n} 
+					= \left( M_{t \wedge \tau_n}^n \right)^2 - A_{t \wedge \tau_n}^n
+					= N_{t \wedge \tau_n}^n \quad (\forall t \in I,\ n \in \N)
+				\end{align}
+				が成り立つから$N \in \mathcal{M}_{c,loc}$となる．$A$の一意性について，
 		\end{description}
 	\end{prf}
