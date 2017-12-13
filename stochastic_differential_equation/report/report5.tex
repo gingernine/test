@@ -394,7 +394,8 @@
 	
 	\begin{itembox}[l]{}
 		\begin{prp}
-			任意の$p \geq 1$に対し$\mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$が成り立つ．
+			任意の$p \geq 1$に対し，$M \in \mathcal{M}_{p,c}$が
+			$\Norm{M_0}{\mathscr{L}^\infty} < \infty$を満たすなら$M \in \mathcal{M}_{c,loc}$が成り立つ．
 			\label{prp:M_pc_M_cloc}
 		\end{prp}
 	\end{itembox}
@@ -447,24 +448,28 @@
 	\end{prf}
 	
 	\begin{prf}[命題\ref{prp:M_pc_M_cloc}]
-		任意に$M \in \mathcal{M}_{p,c}$を取る．全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
+		$M \in \mathcal{M}_{p,c}$が
+		\begin{align}
+			K \coloneqq \Norm{M_0}{\mathscr{L}^\infty} < \infty
+		\end{align}
+		を満たすと仮定する．全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
 		は右連続且つ左極限を持つから，定理\ref{thm:closed_set_stopping_time}より
 		\begin{align}
 			\tau_j(\omega) \coloneqq \inf{}{\Set{t \in I}{|M_t(\omega)| \geq j}} \wedge T \quad (\forall \omega \in \Omega,\ j=1,2,\cdots)
 		\end{align}
 		として$\tau_j$は停止時刻となり，かつ$t \longmapsto M_t(\omega)$が連続となる$\omega$に対しては
 		\begin{align}
-			\sup{t \in I}{\left| M_{t \wedge \tau_j(\omega)}(\omega) \right|} \leq j
+			\sup{t \in I}{\left| M_{t \wedge \tau_j(\omega)}(\omega) \right|} \leq j \vee K
 			\label{eq:M_pc_M_cloc}
 		\end{align}
 		が成り立つ．また$t \longmapsto M_t(\omega)$の右連続性から$\tau_j \leq \tau_{j+1}\ (j=1,2,\cdots)$となり，
 		更に補題\ref{lem:rcll_bounded}より$\sup{t \in I}{|M_t(\omega)|} < \infty\ (\forall \omega \in \Omega)$も成り立つから
 		$j_\omega > \sup{t \in I}{|M_t(\omega)|}$となるような$j_\omega$に対し$\tau_j(\omega) = T\ (\forall j \geq j_\omega)$を満たす．従って$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$である．
 		後は$M^j$が$\mathcal{M}_{b,c}$に属することを示せばよい．先ずDoobの不等式(定理\ref{thm:Doob_inequality_2})より
-		$\sup{t \in I}{|M_t|}$が$p$乗可積分となることから$M_t^j = M_{t \wedge \tau_j}$の可積分性が判明する．
+		$\sup{t \in I}{|M_t|}$が$p$乗可積分となることから$M_t^j = M_{t \wedge \tau_j}$の可積分性が従う．
 		また式(\refeq{eq:M_pc_M_cloc})より
 		\begin{align}
-			\Norm{M_t^j}{\mathscr{L}^\infty} \leq j \quad (\forall t \in I)
+			\Norm{M_t^j}{\mathscr{L}^\infty} \leq j \vee K \quad (\forall t \in I)
 		\end{align}
 		が成り立ち，$t \longmapsto M_t(\omega)$が連続となる$\omega$に対しては$I \ni t \longmapsto M_t^j(\omega)$もまた連続，そして
 		任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より

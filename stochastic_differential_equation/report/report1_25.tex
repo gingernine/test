@@ -1,5 +1,5 @@
-
-次節への準備として，ノルム空間における線型作用素の拡張定理とHilbert空間における射影定理を載せておく．
+\section{補助定理}
+以後の準備として，線型作用素の拡張定理，射影定理，kolmosの補題を証明する．
 \begin{itembox}[l]{}
 	\begin{thm}[線型作用素の拡張]
 		係数体を$\K$とする．$X,Y$をBanach空間とし，ノルムをそれぞれ$\Norm{\cdot}{X},\ \Norm{\cdot}{Y}$と表記する．
@@ -133,4 +133,71 @@
 		\end{align}
 		となることにより$\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}$であることが示された．
 	\end{description}
+\end{prf}
+
+\begin{itembox}[l]{}
+	\begin{thm}[Kolmosの補題]
+		$H$をHilbert空間，$\Norm{\cdot}{}$を$H$の内積により
+		導入されるノルムとする．$f_n \in H\ (n=1,2,\cdots)$が$\sup{n \in \N}{\Norm{f_n}{}} < \infty$
+		を満たすとき，
+		\begin{align}
+			\exists g_n \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}\footnotemark \quad (n=1,2,\cdots)
+		\end{align}
+		が取れて$(g_n)_{n=1}^{\infty}$は$H$のCauchy列となる．
+	\end{thm}
+\end{itembox}
+
+\footnotetext{
+	$\Conv{f_n,f_{n+1},f_{n+2} \cdots}$は$f_n,f_{n+1},f_{n+2} \cdots$を含む最小の凸集合である．
+	すなわち
+	\begin{align}
+		\Conv{f_n,f_{n+1},f_{n+2} \cdots} = \Set{\sum_{i=0}^{\infty}c_i f_{n+i}}{ 0 \leq c_i \leq 1,\ \exists j \in \N,\ c_i=0\ (\forall i \geq j),\ \sum_{i=0}^{\infty} c_i = 1}
+	\end{align}
+	で定義される．
+}
+
+\begin{prf}
+	$F \coloneqq \sup{n \in \N}{\Norm{f_n}{}} < \infty$とし
+	\begin{align}
+		A \coloneqq \sup{n \geq 1}{\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}}}
+	\end{align}
+	とおけば$A \leq F$となる．実際各$n \in \N$について任意に$g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$を取れば
+	\begin{align}
+		g = \sum_{i=0}^{N}c_i f_{n+i} \quad \left( 0 \leq c_i \leq 1,\ \sum_{i=0}^{N} c_i = 1 \right)
+	\end{align}
+	と表現できるから，
+	\begin{align}
+		\Norm{g}{} = \Norm{\sum_{i=0}^{N}c_i f_{n+i}}{} \leq \sum_{i=0}^{N}c_i \Norm{f_n}{} \leq F
+	\end{align}
+	が成り立ち，
+	\begin{align}
+		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \leq F \quad (\forall n \in \N)
+	\end{align}
+	が従い$A \leq F$を得る．また全ての$n \in \N$に対して
+	\begin{align}
+		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \leq A
+	\end{align}
+	が成り立つから，或る$g_n \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$を
+	\begin{align}
+		\Norm{g_n}{} \leq A + \frac{1}{n} \quad (n=1,2,\cdots) \label{eq:thm_kolmos_1}
+	\end{align}
+	を満たすよう取ることができる．一方で
+	\begin{align}
+		\left( \inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \right)_{n=1}^\infty
+	\end{align}
+	が単調増大列である(下限を取る範囲が縮小していく)から，任意に$m \in \N$を取れば或る$N(m) \in \N\ (N(m) > m)$が存在し，
+	全ての$n \geq N(m)$に対して
+	\begin{align}
+		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \geq A - \frac{1}{m}
+	\end{align}
+	が成り立つ．任意の$l,k \geq N(m)$に対し$(g_l + g_k) / 2 \in \Conv{f_{N(m)},f_{N(m)+1},f_{N(m)+2} \cdots}$となるから
+	\begin{align}
+		\Norm{\frac{g_l + g_k}{2}}{} \geq A - \frac{1}{m}
+	\end{align}
+	が従い，中線定理と(\refeq{eq:thm_kolmos_1})を併せれば
+	\begin{align}
+		\Norm{g_l - g_k}{}^2 = 2\Norm{g_l}{} + 2\Norm{g_k}{} + \Norm{g_l + g_k}{}^2 \leq 4\left( A + \frac{1}{N(m)} \right)^2 - 4\left( A - \frac{1}{m} \right)^2 \leq \frac{16A}{m}
+	\end{align}
+	が成り立つ．$A \leq F < \infty$であったから，これは$(g_n)_{n=1}^{\infty}$がCauchy列をなしていることを表現している．
+	\QED
 \end{prf}
