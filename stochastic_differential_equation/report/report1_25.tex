@@ -2,96 +2,119 @@
 以後の準備として，線型作用素の拡張定理，射影定理，kolmosの補題を証明する．
 \begin{itembox}[l]{}
 	\begin{thm}[線型作用素の拡張]
-		係数体を$\K$とする．$X,Y$をBanach空間とし，ノルムをそれぞれ$\Norm{\cdot}{X},\ \Norm{\cdot}{Y}$と表記する．
-		$X$の部分空間$X_0$が$X$で稠密なら，$X$から$Y$への任意の有界線型作用素$T\ $($T$の定義域は$X_0$)に対し，
-		作用素ノルムを変えない$T$の拡張$\tilde{T}\ $(定義域$X$)で，$X$から$Y$への有界線型作用素となるものが一意に存在する．
+		$X,Y$を$\K$上のBanach空間とし，ノルムをそれぞれ$\Norm{\cdot}{X},\ \Norm{\cdot}{Y}$と表記する．
+		$X$の部分空間$X_0$が$X$で稠密なら，$X_0$を定義域とする任意の有界線型作用素$T:X \rightarrow Y$に対し，
+		定義域を$X$とする$T$の拡張$\tilde{T}:X \rightarrow Y$で，作用素ノルムを変えず，かつ有界線型作用素となるものが一意に存在する．
+		\label{thm:linear_operator_expansion}
 	\end{thm}
 \end{itembox}
 \begin{prf}
-		作用素ノルムは$\Norm{\cdot}{}$と表記する．$X_0$が$X$で稠密であるということにより，任意の$x \in X$に対して
-		$x_n \in X_0 \ (n=1,2,\cdots)$で$\Norm{x_n - x}{X} \longrightarrow 0\ (k \longrightarrow +\infty)$
-		となるものを取ることができる．任意の$m,n \in \N$に対して
+		作用素ノルムを$\Norm{\cdot}{}$と表記する．$X_0$が$X$で稠密であるから，任意の$x \in X$に対して
+		$\Norm{x_n - x}{X} \longrightarrow 0\ (k \longrightarrow +\infty)$
+		を満たす$x_n \in X_0 \ (n=1,2,\cdots)$を取れる．任意の$m,n \in \N$に対して
 		\begin{align}
 			\Norm{Tx_m - Tx_n}{Y} \leq \Norm{T}{} \Norm{x_m - x_n}{X}
 		\end{align}
-		が成り立つから，右辺が$X_0$のCauchy列をなすことにより$(Tx_n)_{n=1}^{+\infty}$も$Y$のCauchy列となる．
+		が成り立ち，右辺が$X_0$のCauchy列をなしているから$(Tx_n)_{n=1}^{+\infty}$も$Y$のCauchy列となる．
 		$Y$の完備性から$(Tx_n)_{n=1}^{+\infty}$は或る$y \in Y$に収束し，$y$は$x \in X$に対して一意に定まる．
-		なぜならば，$x$への別の収束列$z_n \in X_0 \ (n=1,2,\cdots)$を取った場合の$(Tz_n)_{n=1}^{+\infty}$の収束先が
-		$u \in \C$であるとして，任意の$n,m \in \N$に対して
+		実際$x$への別の収束列$z_n \in X_0 \ (n=1,2,\cdots)$を取った場合，$(Tz_n)_{n=1}^{+\infty}$の収束先を
+		$u \in \C$として，任意の$n,m \in \N$に対して
 		\begin{align}
 			\Norm{y - u}{Y} &= \Norm{y - Tx_n + Tx_n - Tz_m + Tz_m - u}{Y} \\
 			&\leq \Norm{y - Tx_n}{Y} + \Norm{Tx_n - Tz_m}{Y} + \Norm{Tz_m - u}{Y} \\
 			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\Norm{x_n - z_m}{X} + \Norm{Tz_m - u}{Y} \\
 			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\left(\Norm{x_n - x}{X} + \Norm{x - z_m}{X}\right)+ \Norm{Tz_m - u}{Y}
 		\end{align}
-		となるから$n,m \longrightarrow +\infty$で右辺は0に収束し，$y = u$が示されるためである．
-		つまり$x$に$y$を対応させる関係は$X \longmapsto Y$の写像となり，この写像を$\tilde{T}$と表すことにする．$T$の線型性も次のように示される．
-		任意の$x,\ z \in X,\ \alpha,\ \beta \in \K$に対して，$x,z$への収束列$(x_n)_{n=1}^{+\infty},\ (z_n)_{n=1}^{+\infty} \subset X_0$
-		を取れば$(\alpha x_n + \beta z_n)_{n=1}^{+\infty}$が$\alpha x+ \beta z$への収束列となるから
-		\begin{align}
-			\Norm{\tilde{T}(\alpha x + \beta z) - \alpha \tilde{T}x - \beta \tilde{T}z}{Y}
-			&= \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n) + \alpha Tx_n + \beta Tz_n - \alpha \tilde{T}x - \beta \tilde{T}z}{Y} \\
-			&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
-				+ \Norm{\alpha Tx_n - \alpha \tilde{T}x}{Y} + \Norm{\beta Tz_n - \beta \tilde{T}z}{Y} \\
-			&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
-				+ |\alpha| \Norm{Tx_n - \tilde{T}x}{Y} + |\beta| \Norm{Tz_n - \tilde{T}z}{Y} \\
-			&\longrightarrow 0\quad (n \longrightarrow +\infty)
-		\end{align}
-		が成り立つ．ゆえに$\tilde{T}(\alpha x + \beta z) = \alpha \tilde{T}x + \beta \tilde{T}z\ (\forall x,\ z \in X,\ \alpha,\ \beta \in \K)$である．
-		また$\tilde{T}$は有界な線型作用素である．なぜなら，任意に$x \in X$と$x$への収束列$x_n \in X_0\ (n = 1,2,\cdots)$を取れば，
-		任意の$\epsilon > 0$に対し或る$K \in \N$が存在して全ての$k > K$について
-		\begin{align}
-			\Norm{\tilde{T}x}{Y} < \Norm{Tx_n}{Y} + \epsilon, \quad \Norm{x}{X} < \Norm{x_n}{X} + \epsilon/\Norm{T}{}
-		\end{align}
-		が成り立つようにできるから，この下で
-		\begin{align}
-			\Norm{\tilde{T}x}{Y} < \Norm{Tx}{Y} + \epsilon < \Norm{T}{} \Norm{x}{X} + 2\epsilon
-		\end{align}
-		となり$\Norm{\tilde{T}}{} \leq \Norm{T}{}$が判るからである．さらに
+		となるから$n,m \longrightarrow +\infty$で右辺は0に収束し$y = u$が成り立つ．
+		ゆえに$x$に$y$を対応させる関係は$X \longmapsto Y$の写像となり，この写像を$\tilde{T}$と表す．この$\tilde{T}$が有界な線型作用素であることを示す．
+		\begin{description}
+			\item[線型性]
+				任意に$x,\ z \in X,\ \alpha,\ \beta \in \K$と$x,z$への収束列$(x_n)_{n=1}^{+\infty},\ (z_n)_{n=1}^{+\infty} \subset X_0$
+				を取れば$(\alpha x_n + \beta z_n)_{n=1}^{+\infty}$が$\alpha x+ \beta z$への収束列となるから
+				\begin{align}
+					\Norm{\tilde{T}(\alpha x + \beta z) - \alpha \tilde{T}x - \beta \tilde{T}z}{Y}
+					&= \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n) + \alpha Tx_n + \beta Tz_n - \alpha \tilde{T}x - \beta \tilde{T}z}{Y} \\
+					&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
+						+ \Norm{\alpha Tx_n - \alpha \tilde{T}x}{Y} + \Norm{\beta Tz_n - \beta \tilde{T}z}{Y} \\
+					&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
+						+ |\alpha| \Norm{Tx_n - \tilde{T}x}{Y} + |\beta| \Norm{Tz_n - \tilde{T}z}{Y} \\
+					&\longrightarrow 0\quad (n \longrightarrow +\infty)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\tilde{T}(\alpha x + \beta z) = \alpha \tilde{T}x + \beta \tilde{T}z \quad (\forall x,\ z \in X,\ \alpha,\ \beta \in \K)
+				\end{align}
+				が従う．
+			\item[有界性] 任意に$x \in X$と$x$への収束列$x_n \in X_0\ (n = 1,2,\cdots)$を取る．
+				任意の$\epsilon > 0$に対し或る$K \in \N$が存在して全ての$k > K$について
+				\begin{align}
+					\Norm{\tilde{T}x}{Y} < \Norm{Tx_n}{Y} + \epsilon, \quad \Norm{x}{X} < \Norm{x_n}{X} + \epsilon/\Norm{T}{}
+				\end{align}
+				が成り立つようにできるから
+				\begin{align}
+					\Norm{\tilde{T}x}{Y} < \Norm{Tx}{Y} + \epsilon < \Norm{T}{} \Norm{x}{X} + 2\epsilon
+				\end{align}
+				となり$\Norm{\tilde{T}}{} \leq \Norm{T}{}$が成り立つ．
+		\end{description}
+		さらに
 		\begin{align}
 			\Norm{\tilde{T}}{} = \sup{\substack{x \in X \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
 			\geq \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
 			= \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{Tx}{Y}} = \Norm{T}{}
 		\end{align}
-		も成り立つから結局$\Norm{\tilde{T}}{} = \Norm{T}{}$であると判る．以上より
-		任意の有界線型作用素$T$がノルムを変えないまま或る有界線型作用素$\tilde{T}$に拡張されることが示された．
-		拡張が一意であることは$X_0$が$X$で稠密であることと$T$の連続性による．
+		も成り立つから$\Norm{\tilde{T}}{} = \Norm{T}{}$が従い，$\tilde{T}$が作用素ノルムを変えない拡張であると示された．
+		拡張が一意であることは$X_0$が$X$で稠密であることと有界作用素の連続性による．
 		\QED
 \end{prf}
 
 \begin{itembox}[l]{}
 	\begin{thm}[射影定理]
+		$H$を$\K$上のHilbert空間とし，内積とノルムをそれぞれ
+		$\inprod<\cdot,\cdot>,\Norm{\cdot}{}$と表記する．
+		$C \subset H$が閉凸集合なら，$f \in H$に対し
+		或る$y \in C$がただ一つ存在して
+		\begin{align}
+			\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}
+		\end{align}
+		を満たす．また$C$が$H$の閉部分空間なら，
+		$y \in C$が$f$の射影であることと
+		\begin{align}
+			\inprod<f-y,h> = 0 \quad (\forall h \in C)
+		\end{align}
+		が成り立つことは同値になる．
 	\end{thm}
 \end{itembox}
-\begin{prf}\mbox{}\\
+\begin{prf}\mbox{}
 	\begin{description}
 	\item[射影の存在]
-	$f \in H \backslash C$として
+	$C$が凸集合であるとする．$f \in H \backslash C$として
 	\begin{align}
 		\delta \coloneqq \inf{h \in C}{\Norm{f - h}{}}
 	\end{align}
-	とおく．$C$が閉集合で$f$が$C$の外にあるから$\delta > 0$となる．
-	下限の性質から$h_n \in C\ (n = 1,2,3,\cdots)$を取って
+	とおけば，$C$が閉であるから$\delta > 0$となる．
+	$h_n \in C\ (n = 1,2,3,\cdots)$を
 	\begin{align}
 		\delta = \lim_{n \to \infty}\Norm{f - h_n}{}
 	\end{align}
-	となるようにできるから，任意の$\epsilon > 0$に対して或る$N \in \N$が存在して
-	$n> N$ならば$\Norm{f - h_n}{}^2 < \delta + \epsilon/4$が成り立つ．この$N$に対し
-	$n,m > N$ならば，内積空間の中線定理と$(h_n + h_m)/2 \in C$であることにより
+	となるように取れば，任意の$\epsilon > 0$に対して或る$N \in \N$が存在し
+	\begin{align}
+		\Norm{f - h_n}{}^2 < \delta^2 + \epsilon/4 \quad (\forall n > N)
+	\end{align}
+	が成り立つ．$n,m > N$ならば，内積空間の中線定理と$(h_n + h_m)/2 \in C$により
 	\begin{align}
 		\Norm{h_n - h_m}{}^2 &= 2\left( \Norm{f - h_m}{}^2 + \Norm{f - h_n}{}^2 \right) - \Norm{2f - (h_n + h_m)}{}^2 \\
 		&= 2\left( \Norm{f - h_m}{}^2 + \Norm{f - h_n}{}^2 \right) - 4\Norm{f - \frac{h_n + h_m}{2}}{}^2 \\
-		&< 2\delta + \epsilon - 4\delta = \epsilon
+		&< 2\delta^2 + \epsilon - 4\delta^2 = \epsilon
 	\end{align}
-	とできるから$(h_n)_{n=1}^{\infty}$は$C$のCauchy列であると判る．$H$がHilbert空間であり$C$が$H$で閉だから，
-	$(h_n)_{n=1}^{\infty}$の極限$y \in H$が存在し$y \in C$である．
+	が成り立ち$(h_n)_{n=1}^{\infty}$は$H$のCauchy列となり，$H$がHilbert空間で$C$が$H$で閉だから
+	極限$y \in H$が存在して$y \in C$が従う．
 	\begin{align}
 		\left| \delta - \Norm{f - y}{} \right| 
-		\leq \left| \delta - \Norm{f - h_n}{} \right| + \left| \Norm{f - h_n}{} - \Norm{f - y}{} \right|
-		\leq \left| \delta - \Norm{f - h_n}{} \right| + \Norm{h_n - y}{}
+		&\leq \left| \delta - \Norm{f - h_n}{} \right| + \left| \Norm{f - h_n}{} - \Norm{f - y}{} \right| \\
+		&\leq \left| \delta - \Norm{f - h_n}{} \right| + \Norm{h_n - y}{}
 		\longrightarrow 0 \quad (n \longrightarrow \infty)
 	\end{align}
-	によって$\delta = \Norm{f - y}{}$が成り立つこと，すなわち射影の存在が示された．
+	より$\delta = \Norm{f - y}{}$となり射影の存在が示された．
 	$f \in C$の場合は$f$が自身の射影である．
 
 	\item[射影の一意性]
@@ -103,36 +126,47 @@
 		\begin{align}
 			\Norm{y - z}{}^2 = 2\left( \Norm{f - z}{}^2 + \Norm{f - y}{}^2 \right) - 4\Norm{f - \frac{y + z}{2}}{}^2 = 0
 		\end{align}
-		となって$y = z$が判る．すなわち$f$の射影はただ一つに決まる．
+		となって$y = z$が従う．
 	
 	\item[$C$が閉部分空間の場合]
-		$f \in H \backslash C$に対して$f$の$C$への射影を$y \in C\ $(存在は$C$が凸の場合と全く同様に示される．)
-		とする．($f \in C$の場合は$y = f$である．)或る$h \in C$に対して
+		$f \in H \backslash C$に対して$f$の$C$への射影を$y \in C$
+		とする．($f \in C$の場合は$y = f$．)或る$h \in C$に対して
 		\begin{align}
 			\inprod<f -y,\ h> \neq 0
 		\end{align}
-		となると仮定すれば($f \neq y$より$h \neq 0$)，$C$の元$\hat{y} \coloneqq y + \left(\inprod<f - g,h>/\Norm{h}{}^2\right)h$
+		となると仮定すれば($f \neq y$より$h \neq 0$)，
+		\begin{align}
+			\hat{y} \coloneqq y + \left( \frac{\inprod<f - g,h>}{\Norm{h}{}^2} \right)h \in C
+		\end{align}
 		に対して
+		\footnote{
+			$\hat{y} \in C$となるためには$C$が部分空間である必要がある．凸性だけではこれが成り立たない．
+		}
 		\begin{align}
 			\Norm{f - \hat{y}}{}^2 
 			&= \inprod<f - y - \frac{\inprod<f - g,h>}{\Norm{h}{}^2}h,\ f - y - \frac{\inprod<f - g,h>}{\Norm{h}{}^2}h> \\
-			&= \Norm{f-y}{}^2 - \frac{|\inprod<f - g,h>|^2}{\Norm{h}{}^2}
+			&= \Norm{f-y}{}^2 - \frac{|\inprod<f - g,h>|^2}{\Norm{h}{}^2} \\
 			&< \Norm{f-y}{}^2
 		\end{align}
-		が成り立つから$y$が射影であることに反する．従って射影$y$に対しては
+		が成り立つから$y$が射影であることに反する．従って射影$y$は
 		\begin{align}
-			\inprod<f -y,\ h> \neq 0 \quad (\forall h \in C) \label{eq:projection}
+			\inprod<f -y,\ h> = 0 \quad (\forall h \in C) \label{eq:projection}
 		\end{align}
-		が成り立つ．逆に$y \in C$に対して式(\refeq{eq:projection})が成り立っているとすれば
-		$y$が$f$の射影であることも示される．任意の$h \in C$に対して
+		を満たす．逆に$y \in C$に対して式(\refeq{eq:projection})が成り立っているとすれば
+		$y$は$f$の射影となる．実際任意の$h \in C$に対して
 		\begin{align}
 			\Norm{f - h}{}^2 &= \inprod<f - y + y - h,\ f - y + y - h> \\
 			&= \Norm{f - y}{}^2 + 2 \Re{\inprod<f - y,\ y - h>} + \Norm{y - h}{}^2 \\
 			&= \Norm{f - y}{}^2 + \Norm{y - h}{}^2 \\
 			&\geq \Norm{f - y}{}^2
 		\end{align}
-		となることにより$\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}$であることが示された．
+		となり
+		\begin{align}
+			\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}
+		\end{align}
+		が成り立つ．
 	\end{description}
+	\QED
 \end{prf}
 
 \begin{itembox}[l]{}

@@ -48,8 +48,7 @@ $\K$を$\K = \R$或は$\K = \C$とおく．測度空間を$(X,\mathcal{F},m)$と
 	の右辺は$m$-零集合となる．
 	\QED
 \end{prf}
-\begin{prf}[定理\ref{thm:holder_inequality}]	
-	定理の証明に入る．
+\begin{prf}[定理\ref{thm:holder_inequality}]
 	\begin{description}
 		\item[$p = \infty,\ q = 1$の場合]
 			$\Norm{f}{\mathscr{L}^\infty} = \infty$又は$\Norm{g}{\mathscr{L}^1} = \infty$なら不等式(\refeq{ineq:holder})
@@ -225,89 +224,94 @@ $\K$を$\K = \R$或は$\K = \C$とおく．測度空間を$(X,\mathcal{F},m)$と
 \end{prf}
 
 \section{空間$\mathrm{L}^p$}
-$\Norm{\cdot}{\mathscr{L}^p}$は$\semiLp{p}{X,\mathcal{F},m}$のノルムとはならない．$\Norm{f}{\mathscr{L}^p} = 0$であっても
-$f$が零写像であるとは限らず，実際$m$-零集合の上で
-$1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満たすからである．
-ここで可測関数全体の集合を
-\begin{align}
-	\mathscr{L}^0 \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K}}
-\end{align}
-とおく．
-\begin{align}
-	f,g \in \mathscr{L}^0 ,\quad f \sim g \DEF f(x) = g(x)\quad \mathrm{a.e.}x \in X
-\end{align}
-と定義した関係$\sim$は$\mathscr{L}^0 $における同値関係となり，この関係で$\mathscr{L}^0 $を割った商集合を$\mathrm{L}^0  \coloneqq \mathscr{L}^0 /\sim$と表す．
-$\mathrm{L}^0$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と表し，$\mathrm{L}^0$における加法とスカラ倍を次のように定義すれば$\mathrm{L}^0$は$\K$上の線形空間となる
-\footnote{
-	この表現はwell-defined，つまり代表元に依らずに値がただ一つに定まる．
-	任意の$f' \in [f]$と$g' \in [g]$に対して
-	\begin{align}
-		[f + g] = [f' + g'],\quad [\alpha f'] = [\alpha f]
-	\end{align}
-	となるからである．実際
-	\begin{align}
-		\{ f \neq g \} \coloneqq \Set{x \in X}{f(x) \neq g(x)}
-	\end{align}
-	と簡略した表記を使えば
-	\begin{align}
-		&\{ f+g \neq f'+g' \} \subset \{ f \neq f' \} \cup \{ g \neq g' \}, \\
-		&\{ \alpha f \neq \alpha f' \} = \{ f \neq f' \}
-	\end{align}
-	と表現でき，どれも右辺は$m$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$が成り立つ．
-}:
-\begin{align}
-	&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in \mathrm{L}^0),\\
-	&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in \mathrm{L}^0,\ \alpha \in \K).
-\end{align}
-また乗法も次のように定義できる:
-\begin{align}
-	[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in \mathrm{L}^0).
-\end{align}
-この乗法は可換であり，加法と併せて$\mathrm{L}^0$は可換環をなす．従って関数類に対して加減乗算が自由にできるようになった
-\footnote{
-	加法乗法が可換であることと結合則は代表元の関数の空間が加法乗法について可換であることと結合則を満たすことによる．
-	また分配測は
-	\begin{align}
-		&([f]+[g])[h] = [f+g][h] = [(f+g)h] = [fh + gh] = [fh] + [gh] = [f][h] + [g][h], \\
-		&[h]([f]+[g]) = [h][f+g] = [h(f+g)] = [hf + hg] = [hf] + [hg] = [h][f] + [h][g]
-	\end{align}
-	により成り立つ．そして零元は零写像の関数類で[0]と表し，単位元は恒等的に$1$を取る関数の関数類で[1]と表す．
-	また$-[f] = [-f]$であるから減法は
-	\begin{align}
-		[f] - [g] \coloneqq [f] + (-[g]) = [f] + [-g] = [f - g]
-	\end{align}
-	で定義される．
-}．
-また$[f][f]=[f^2]$を$[f]^2$と表記し，$[f]^n \coloneqq [f]^{n-1}[f]$と帰納的に定義すれば$[f]^n=[f^n]$となる．
-
-次に$\mathrm{L}^0$における順序を定める．
-$[f],[g] \in \mathrm{L}^0$に対して
-\begin{align}
-	[f] \leq [g] \quad \DEF \quad f \leq g \quad \mbox{$m$-a.s.} 
-\end{align}
-として関係''$\leq$''(記号は$\mathscr{L}^0$におけるものと同じであるが)を定義すればこれは$\mathrm{L}^0$において順序となる．
-この定義が代表元の取り方に依存しないことは
-$\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g \right\} \cup \left\{ g \neq g' \right\}$
-\footnote{
-	$\left\{ f > g \right\} \coloneqq \Set{x \in X}{f(x) > g(x)}$
-}
-の右辺が零集合であることにより明確であり，また順序関係としての定義を満たしていることは以下で判る:
-\begin{itemize}
-	\item $f=f$により$[f] \leq [f]$，
-	\item $[f] \leq [g]$かつ$[g] \leq [f]$なら$\{ f > g \}$と$\{ g > f \}$は$m$-零集合だから$[f]=[g]$，
-	\item $[f] \leq [g]$かつ$[g] \leq [h]$なら$\{ f > h \} \subset \{ f > g \} \cup \{ g > h \}$により$[f]\leq[h]$.
-\end{itemize}
+\begin{description}
+	\item[可測関数全体の商集合]
+		$\Norm{\cdot}{\mathscr{L}^p}$は$\semiLp{p}{X,\mathcal{F},m}$のノルムとはならない．$\Norm{f}{\mathscr{L}^p} = 0$であっても
+		$f$が零写像であるとは限らず，実際$m$-零集合の上で
+		$1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満たすからである．
+		ここで可測関数全体の集合を
+		\begin{align}
+			\semiLp{0}{X,\mathcal{F},m} \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K}}
+		\end{align}
+		とおく．
+		\begin{align}
+			f,g \in \semiLp{0}{X,\mathcal{F},m} ,\quad f \sim g \DEF f(x) = g(x)\quad \mathrm{a.e.}x \in X
+		\end{align}
+		と定義した関係$\sim$は$\semiLp{0}{X,\mathcal{F},m}$における同値関係となり，この関係で$\semiLp{0}{X,\mathcal{F},m}$を割った商集合を$\Lp{0}{X,\mathcal{F},m}$と表す．
 	
-次に商線型空間$\mathrm{L}^0$におけるノルムを定義する．
+	\item[商集合における算法]
+		$\Lp{0}{X,\mathcal{F},m}$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と表し，
+		$\Lp{0}{X,\mathcal{F},m}$における加法とスカラ倍を次のように定義すれば$\Lp{0}{X,\mathcal{F},m}$は$\K$上の線形空間となる
+		\footnote{
+			この表現はwell-defined，つまり代表元に依らずに値がただ一つに定まる．
+			任意の$f' \in [f]$と$g' \in [g]$に対して
+			\begin{align}
+				[f + g] = [f' + g'],\quad [\alpha f'] = [\alpha f]
+			\end{align}
+			となるからである．実際
+			\begin{align}
+				\{ f \neq g \} \coloneqq \Set{x \in X}{f(x) \neq g(x)}
+			\end{align}
+			と略記して
+			\begin{align}
+				&\{ f+g \neq f'+g' \} \subset \{ f \neq f' \} \cup \{ g \neq g' \}, \\
+				&\{ \alpha f \neq \alpha f' \} = \{ f \neq f' \}
+			\end{align}
+			と表現でき，どれも右辺は$m$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$が成り立つ．
+		}:
+		\begin{align}
+			&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in \Lp{0}{X,\mathcal{F},m}),\\
+			&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in \Lp{0}{X,\mathcal{F},m},\ \alpha \in \K).
+		\end{align}
+		また乗法も次のように定義できる:
+		\begin{align}
+			[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in \Lp{0}{X,\mathcal{F},m}).
+		\end{align}
+		この乗法は可換であり，加法と併せて$\Lp{0}{X,\mathcal{F},m}$は可換環をなす．従って関数類に対して加減乗算が自由にできるようになった
+		\footnote{
+			加法乗法が可換であることと結合則は代表元の関数の空間が加法乗法について可換であることと結合則を満たすことによる．
+			また分配測は
+			\begin{align}
+				&([f]+[g])[h] = [f+g][h] = [(f+g)h] = [fh + gh] = [fh] + [gh] = [f][h] + [g][h], \\
+				&[h]([f]+[g]) = [h][f+g] = [h(f+g)] = [hf + hg] = [hf] + [hg] = [h][f] + [h][g]
+			\end{align}
+			により成り立つ．そして零元は零写像の関数類で[0]と表し，単位元は恒等的に$1$を取る関数の関数類で[1]と表す．
+			また$-[f] = [-f]$であるから減法は
+			\begin{align}
+				[f] - [g] \coloneqq [f] + (-[g]) = [f] + [-g] = [f - g]
+			\end{align}
+			で定義される．
+		}．
+		また$[f][f]=[f^2]$を$[f]^2$と表記し，$[f]^n \coloneqq [f]^{n-1}[f]$と帰納的に定義すれば$[f]^n=[f^n]$となる．
+	
+	\item[商集合における順序]
+		次に$\Lp{0}{X,\mathcal{F},m}$における順序を定める．
+		$[f],[g] \in \Lp{0}{X,\mathcal{F},m}$に対して
+		\begin{align}
+			[f] \leq [g] \quad \DEF \quad f \leq g \quad \mbox{$m$-a.s.} \label{dfn:equiv_class_order}
+		\end{align}
+		として関係''$\leq$''(記号は$\semiLp{0}{X,\mathcal{F},m}$におけるものと同じであるが)を定義すればこれは$\Lp{0}{X,\mathcal{F},m}$において順序となる．
+		この定義が代表元の取り方に依存しないことは
+		\begin{align}
+			\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g \right\} \cup \left\{ g \neq g' \right\}
+		\end{align}
+		の右辺が零集合であることにより，また次に示すように順序の定義を満たしている:
+		\begin{itemize}
+			\item $f=f$により$[f] \leq [f]$，
+			\item $[f] \leq [g]$かつ$[g] \leq [f]$なら$\{ f > g \}$と$\{ g > f \}$は$m$-零集合だから$[f]=[g]$，
+			\item $[f] \leq [g]$かつ$[g] \leq [h]$なら$\{ f > h \} \subset \{ f > g \} \cup \{ g > h \}$により$[f]\leq[h]$.
+		\end{itemize}
+\end{description}
+
 \begin{itembox}[l]{}
-	\begin{lem}[商空間$\mathrm{L}^p$におけるノルムの定義]
+	\begin{lem}[商空間におけるノルムの定義]
 		\begin{align}
 			\Norm{[f]}{\mathrm{L}^p} \coloneqq \Norm{f}{\mathscr{L}^p} \quad (1 \leq p \leq \infty,\ f \in \semiLp{p}{X,\mathcal{F},m})
 		\end{align}
-		として$\Norm{\cdot}{\mathrm{L}^p}:\mathrm{L}^0 \rightarrow \R$を定義すればこれはwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
+		として$\Norm{\cdot}{\mathrm{L}^p}:\Lp{0}{X,\mathcal{F},m} \rightarrow \R$を定義すればこれはwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
 		更に次で定義する空間
 		\begin{align}
-			\Lp{p}{X,\mathcal{F},m} \coloneqq \Set{[f] \in \mathrm{L}^0}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
+			\Lp{p}{X,\mathcal{F},m} \coloneqq \Set{[f] \in \Lp{0}{X,\mathcal{F},m}}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
 		\end{align}
 		は$\Norm{\cdot}{\mathrm{L}^p}$をノルムとしてノルム空間となる．
 	\end{lem}
@@ -320,7 +324,7 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 			\begin{align}
 				A \coloneqq \Set{x \in X}{f(x) \neq g(x)} \quad \in \mathcal{F}
 			\end{align}
-			として$m$-零集合を用意する．
+			とおく．$A$は$m(A)=0$を満たす．
 			\begin{description}
 				\item[$p = \infty$の場合]
 					$A^c$の上で$f(x)=g(x)$となるから
@@ -393,7 +397,7 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 			\end{align}
 			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(A_k) = m(A^k) = 0$であり，
 			\begin{align}
-				A \coloneqq \left( \bigcup_{k=1}^{\infty} A_k \right) \bigcup \left( \bigcup_{k=1}^{\infty} A^k \right)
+				A \coloneqq \left( \cup_{k=1}^{\infty} A_k \right) \cup \left( \cup_{k=1}^{\infty} A^k \right)
 			\end{align}
 			として$m$-零集合を定め
 			\begin{align}
@@ -404,16 +408,22 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 				\end{cases}
 				\quad (\forall x \in X)
 			\end{align}
-			と定義した$\hat{f}_{n_k}$もまた$[f_{n_k}]$の元となる．代表元を$f_{n_k}$に替えて$\hat{f}_{n_k}$とすれば，
+			と定義した$\hat{f}_{n_k}$もまた$[f_{n_k}]$の元となる．
 			$\hat{f}_{n_k}$は$X$上の有界可測関数であり
 			\begin{align}
-				\Norm{\hat{f}_{n_k} - \hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} = \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}_{n_{k+1}}(x)|} < 1/2^k \quad (k=1,2,3,\cdots) 
+				\Norm{\hat{f}_{n_k} - \hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} = \sup{x \in X}{\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{l}}(x)\right|} < 1/2^k \quad (k=1,2,3,\cdots) 
 				\label{ineq:Lp_banach_1}
 			\end{align}
-			が成り立っていることになるから，各点$x \in X$で$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\K$のCauchy列となる．
-			(これは$\sum_{k > N} 1/2^k = 1/2^N \longrightarrow 0\ (N \longrightarrow \infty)$による．)従って各点$x \in X$
-			で極限が存在するからこれを$\hat{f}(x)$として表す．一般に距離空間に値を取る可測関数列の各点収束の極限関数は可測関数であるから
-			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．また$\hat{f}$は有界である．これは次のように示される．
+			が成り立つから，各点$x \in X$で$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\K$のCauchy列となり
+			\footnote{
+				任意の$\epsilon > 0$に対し$1/2^N < \epsilon$を満たす$N \in \N$を取れば，全ての$l > k > N$に対して
+				\begin{align}
+					\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{l}}(x)\right| \leq \sum_{j=k}^{l-1}\left|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)\right| < \sum_{k > N} 1/2^k = 1/2^N < \epsilon
+				\end{align}
+				が成り立つ．
+			}
+			各点$x \in X$での極限を$\hat{f}(x)$と表す．一般に距離空間に値を取る可測関数列の各点収束の極限関数は可測関数であるから
+			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．また$\hat{f}$は有界である．実際
 			式(\refeq{ineq:Lp_banach_1})から任意の$l > k$に対し
 			\begin{align}
 				|\hat{f}_{n_k}(x) - \hat{f}_{n_l}(x)| \leq \sum_{j=k}^{l-1} |\hat{f}_{n_{j}}(x) - \hat{f}_{n_{j+1}}(x)| 
@@ -439,8 +449,8 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 				= \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
 				\longrightarrow 0 \ (k \longrightarrow \infty)
 			\end{align}
-			が成り立つから，Cauchy列$\left( [f_{n}] \right)_{n=1}^{\infty}$の部分列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$が$[\hat{f}]$に収束すると示された．
-			Cauchy列の部分列が収束すれば，元のCauchy列はその部分列と同じ収束先に収束するから$\Lp{\infty}{X,\mathcal{F},m}$はBanach空間である．
+			となりCauchy列$\left( [f_{n}] \right)_{n=1}^{\infty}$の部分列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$は$[\hat{f}]$に収束する．
+			元のCauchy列も$[\hat{f}]$に収束するから$\Lp{\infty}{X,\mathcal{F},m}$はBanach空間である．
 			
 		\item[$1 \leq p < \infty$の場合]\mbox{}\\
 			$[f_{n_k}]$の代表元$f_{n_k}$に対して
@@ -451,7 +461,7 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 			\begin{align}
 				g_k(x) &\coloneqq |f_{n_1}(x)| + \sum_{j=1}^{k}|f_{n_j}(x) - f_{n_{j-1}}(x)|
 			\end{align}
-			として可測関数列$(g_k)_{k=1}^{\infty}$を用意する．Minkowskiの不等式と式(\refeq{ineq:Lp_banach_2})より
+			として可測関数列$(g_k)_{k=1}^{\infty}$を定める．Minkowskiの不等式と式(\refeq{ineq:Lp_banach_2})より
 			\begin{align}
 				\Norm{g_k}{\mathscr{L}^p} \leq \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k}\Norm{f_{n_j} - f_{n_{j-1}}}{\mathscr{L}^p}
 				< \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k} 1/2^j < \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
@@ -474,9 +484,9 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 				\end{cases}
 			\end{align}
 			として可測$\mathcal{F}/\borel{\R}$関数$f$を定義すれば，$|f(x)| \leq g(x)\ (\forall x \in X)$と
-			$g^p$が可積分であることから$f$を代表元とする関数類$[f]$は$\Lp{p}{X,\mathcal{F},m}$の元となる．
+			$g^p$の可積性から$f$の関数類$[f]$は$\Lp{p}{X,\mathcal{F},m}$の元となる．
 			関数列$(\left( f_{n_k} \right)_{k=1}^{\infty})$は$f$に概収束し，
-			$|f_{n_k}(x) - f(x)|^p \leq 2^p(|f_{n_k}(x)|^p + |f(x)|^p) \leq 2^{p+1} g(x)^p\ (\forall x \in X)$となるから
+			また$|f_{n_k}(x) - f(x)|^p \leq 2^p(|f_{n_k}(x)|^p + |f(x)|^p) \leq 2^{p+1} g(x)^p\ (\forall x \in X)$となるから，
 			Lebesgueの収束定理により
 			\begin{align}
 				\lim_{k \to \infty}\Norm{[f_{n_k}] - [f]}{\mathrm{L}^p}^p
@@ -484,7 +494,7 @@ $\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g 
 				= \lim_{k \to \infty} \int_X |f_{n_k}(x) - f(x)|^p\ m(dx) = 0
 			\end{align}
 			が成り立ち，Cauchy列$\left( [f_{n}] \right)_{n=1}^{\infty}$の部分列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$が$[f]$に収束すると示された．
-			Cauchy列の部分列が収束すれば，元のCauchy列はその部分列と同じ収束先に収束するから$\Lp{p}{X,\mathcal{F},m}$はBanach空間である．
+			従って元のCauchy列も$[f]$に収束するから$\Lp{p}{X,\mathcal{F},m}$はBanach空間である．
 	\end{description}
 	\QED
 \end{prf}
