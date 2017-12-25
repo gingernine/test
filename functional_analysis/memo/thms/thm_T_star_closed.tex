@@ -4,12 +4,10 @@
 	$\Norm{\cdot}{X},\ \Norm{\cdot}{Y},\ \Norm{\cdot}{X^*},\ \Norm{\cdot}{Y^*}$と表記し，
 	位相は全てこれらのノルムにより導入されるものと考える．
 	$T$の定義域$\mathscr{D}(T)$が$X$で稠密であるときは$T$の共役作用素$T^*$
-	が定義される．この共役作用素について，本節の目標は次の定理の証明である．
-	\footnote{関数解析の教科書では証明が略されていたので簡単に証明できると思い試みたが，$T$が有界とは限らない場合にどうもうまくいかなかった．
-	土居先生の講義ノートを基に電子化しておく．}
+	が定義される．
 	\begin{itembox}[l]{}
-		\begin{thm}
-			$T^*$は閉作用素である．\label{thm:T_star_closed}
+		\begin{thm}[共役作用素は閉線型]
+			$T^*$は閉線型作用素である．\label{thm:T_star_closed}
 		\end{thm}
 	\end{itembox}
 
@@ -29,21 +27,33 @@
 		\begin{lem}
 			$A \subset X$に対し
 			\begin{align}
-				A^{\perp} \coloneqq \left\{\ f \in X^*\quad |\quad \forall x \in A,\ \inprod<x,f>_{X,X^*} = 0\ \right\}
+				A^{\perp} \coloneqq \Set{f \in X^*}{\forall x \in A,\ \inprod<x,f>_{X,X^*} = 0}
 			\end{align}
-			とおけば，$A^{\perp}$は$X^*$において閉となる．
+			とおけば，$A^{\perp}$は$X^*$において閉部分空間となる．
 			\label{lem:T_star_closed_1}
 		\end{lem}
 	\end{itembox}
 	
 	\begin{prf}
-		$A^{\perp}$が$X^*$において完備部分集合であることを示せばよい．
-		$f_n \in A^{\perp}$が収束列であるとすれば$X^*$の完備性から$(f_n)_{n=1}^{\infty}$は或る$f \in X^*$
-		に(作用素ノルムで)収束する．任意の$x \in A$に対して
-		\begin{align}
-			|f(x)| = |f(x) - f_n(x)| \leq \Norm{f-f_n}{X^*}\Norm{x}{X} \longrightarrow 0 \quad (n \longrightarrow \infty)
-		\end{align}
-		が成り立ち$f \in A^{\perp}$となるから$A^{\perp}$は完備であると示された．
+		$A^{\perp}$が$X^*$において完備部分空間であることを示せばよい．
+		\begin{description}
+			\item[線型性]
+				任意の$f_1,f_2 \in A^{\perp}$と$\alpha \in \K$に対し
+				\begin{align}
+					(f_1 + f_2)(x) = f_1(x) + f_2(x) = 0, \quad (\alpha f_1)(x) = \alpha f_1(x) = 0
+					,\quad (\forall x \in A)
+				\end{align}
+				が成り立つ．
+				
+			\item[完備性]
+				$f_n \in A^{\perp}$が収束列であるとすれば$X^*$の完備性から$(f_n)_{n=1}^{\infty}$は或る$f \in X^*$
+				に(作用素ノルムで)収束する．任意の$x \in A$に対して
+				\begin{align}
+					|f(x)| = |f(x) - f_n(x)| \leq \Norm{f-f_n}{X^*}\Norm{x}{X} \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立ち$f \in A^{\perp}$となる．
+		\end{description}
+		
 		\QED
 	\end{prf}
 	
@@ -53,9 +63,10 @@
 			\begin{align}
 				(A^{\perp})^{\perp} = \overline{\LH{A}}
 			\end{align}
-			となることが証明される．ここで$(A^{\perp})^{\perp} = \left\{\ x \in X\quad |\quad \forall f \in A^{\perp},\ \inprod<x,f>_{X,X^*} = 0\ \right\}$
-			と表現している．$A \subset (A^{\perp})^{\perp}$により$(A^{\perp})^{\perp} \supset \overline{\LH{A}}$が先ず判る．
-			逆向きの包含関係について，$X = \overline{\LH{A}}$の場合は成り立つからそうでない場合を考える．
+			となることが証明される．ここで$(A^{\perp})^{\perp} = \Set{x \in X}{\forall f \in A^{\perp},\ \inprod<x,f>_{X,X^*} = 0}$
+			である．$A \subset (A^{\perp})^{\perp}$かつ$(A^{\perp})^{\perp}$は$X$の閉部分空間であるから
+			$\overline{\LH{A}} \subset (A^{\perp})^{\perp}$が先ず判る．
+			逆向きの包含関係について，$X = \overline{\LH{A}}$の場合は成り立つが，そうでない場合は次のように考える．
 			Hahn-Banachの定理の系によれば任意の$x_0 \in X \backslash \overline{\LH{A}}$を一つ取って
 			\begin{align}
 				f_0(x) = 
@@ -64,8 +75,8 @@
 					f_0(x_0) \neq 0 & (x = x_0)
 				\end{cases}
 			\end{align}
-			を満たす$f_0 \in X^*$が存在する．$f_0 \in A^{\perp}$ではあるが$x_0 \notin (A^{\perp})^{\perp}$となり，
-			$(A^{\perp})^{\perp} \subset \overline{\LH{A}}$が示されたことになる．
+			を満たす$f_0 \in X^*$が存在する．$f_0 \in A^{\perp}$であるが$x_0 \notin (A^{\perp})^{\perp}$となり
+			$(A^{\perp})^{\perp} \subset \overline{\LH{A}}$が従う．
 			\QED
 	\end{description}
 	
@@ -83,13 +94,13 @@
 	\begin{align}
 		F[y,x] = g(y) + f(x) \quad (\forall [y,x] \in Y \times X)
 	\end{align}
-	と定義すれば$F \in (Y \times X)^*$となり，対応$(Y \times X)^* \ni F \longmapsto [F_Y,F_X] \in Y^* \times X^*$
-	が全単射であると判る．これについて次の事実を定理として載せておく．
+	と定義すれば$F \in (Y \times X)^*$となり，従って対応$(Y \times X)^* \ni F \longmapsto [F_Y,F_X] \in Y^* \times X^*$
+	は全単射である．
 	\begin{itembox}[l]{}
 		\begin{lem}
 			次の写像
 			\begin{align}
-				\phi : (Y \times X)^* \ni F \longmapsto [F_Y,F_X] \in Y^* \times X^*
+				\varphi : (Y \times X)^* \ni F \longmapsto [F_Y,F_X] \in Y^* \times X^*
 			\end{align}
 			は線形，同相である．\label{lem:T_star_closed_2}
 		\end{lem}
@@ -101,49 +112,50 @@
 				対応のさせ方(\refeq{eq:thm_T_star_closed_1})に基づけば，任意の$[y,x] \in Y \times X$と
 				$F_1,F_2 \in (Y \times X)^*$，$\alpha \in \K$に対して
 				\begin{align}
-					\phi(F_1 + F_2)[y,x] &= (F_1 + F_2)[y,0] + (F_1 + F_2)[0,x] = \phi(F_1)[y,x] + \phi(F_2)[y,x]　\\
-					\phi(\alpha F_1)[y,x] &= (\alpha F_1)[y,0] + (\alpha F_1)[0,x] = \alpha \phi(F_1)[y,x]
+					\varphi(F_1 + F_2)[y,x] &= (F_1 + F_2)[y,0] + (F_1 + F_2)[0,x] = \varphi(F_1)[y,x] + \varphi(F_2)[y,x]　\\
+					\varphi(\alpha F_1)[y,x] &= (\alpha F_1)[y,0] + (\alpha F_1)[0,x] = \alpha \varphi(F_1)[y,x]
 				\end{align}
-				が成り立つから$\phi$が線型であることが判る．
+				が成り立つ．
 			
-			\item[同相] $\phi$がBanach空間からBanach空間への線型全単射であることが示されたから，
-				$\phi$が有界であるなら値域定理より逆写像$\phi^{-1}$も線型有界となり，従って$\phi$が同相写像であると判る．
+			\item[同相] $\varphi$はBanach空間からBanach空間への線型全単射であるから，
+				$\varphi^{-1}$が有界であるなら値域定理より$\varphi$も線型有界となり，従って$\varphi$は同相写像となる．
+				実際
 				\begin{align}
-					\Norm{\phi(F)}{Y^* \times X^*} = \Norm{[F_Y,F_X]}{Y^* \times X^*} = \Norm{F_Y}{Y^*} + \Norm{F_X}{X^*}
+					\Norm{[F_Y,F_X]}{Y^* \times X^*} = \Norm{F_Y}{Y^*} + \Norm{F_X}{X^*}
 				\end{align}
 				であることと
 				\begin{align}
-					\Norm{F}{(Y \times X)^*}
+					\Norm{\varphi^{-1}[F_Y,F_X]}{(Y \times X)^*}
 					= \sup{\substack{[y,x] \in Y \times X \\ [y,x] \neq [0,0]}}{\frac{|F_Y(y) + F_X(x)|}{\Norm{[y,x]}{Y \times X}}}
 					\leq \Norm{F_Y}{Y^*} + \Norm{F_X}{X^*}
 				\end{align}
 				により
 				\begin{align}
-					\sup{\substack{F \in (Y \times X)^* \\ F \neq 0}}{\frac{\Norm{\phi(F)}{Y^* \times X^*}}{\Norm{F}{(Y \times X)^*}}}
-					= \sup{\substack{F \in (Y \times X)^* \\ F \neq 0}}{\frac{\Norm{[F_Y,F_X]}{Y^* \times X^*}}{\Norm{F}{(Y \times X)^*}}} \leq 1
+					\sup{\substack{[F_Y,F_X] \in Y^* \times X^* \\ [F_Y,F_X] \neq [0,0]}}{\frac{\Norm{\varphi^{-1}[F_Y,F_X]}{(Y \times X)^*}}{\Norm{[F_Y,F_X]}{Y^* \times X^*}}}
+					\leq 1
 				\end{align}
-				が成り立つから$\phi$は有界である．
+				が成り立つ．
 		\end{description}
 		\QED
 	\end{prf}
 	
-	以上の準備の下定理の証明に入る．
 	\begin{prf}[定理\ref{thm:T_star_closed}]
 		\begin{align}
 			U : X \times Y \ni [x,y] \longmapsto [y,-x] \in Y \times X
 		\end{align}
 		として写像$U$(等長，全単射)を定義する．$T^*$のグラフ$\mathscr{G}(T^*)$は
 		\begin{align}
-			\mathscr{G}(T^*) = \left\{\ [g,T^*g] \in Y^* \times X^*\quad |\quad \forall [x,Tx] \in \mathscr{G}(T),\quad g(Tx) + T^*g(-x) = 0\ \right\}
+			\mathscr{G}(T^*) = \Set{[g,T^*g] \in Y^* \times X^*}{\forall [x,Tx] \in \mathscr{G}(T),\quad \inprod<Tx,g>_{Y,Y^*} = \inprod<x,T^*g>_{X,X^*}}
 		\end{align}
 		で表される．補助定理\ref{lem:T_star_closed_2}により$[g,T^*g]$に対応する$F_g \in (Y \times X)^*$がただ一つ存在して
-		$g(Tx) + T^*g(-x) = F_g[Tx,-x] = F_gU[x,Tx]\ ([x,Tx] \in \mathscr{G}(T))$と書き直せるから，
-		補助定理\ref{lem:T_star_closed_2}の同相写像$\phi$により$\mathscr{G}(T^*)$に対して
+		$\inprod<Tx,g>_{Y,Y^*} - \inprod<x,T^*g>_{X,X^*} = F_g[Tx,-x] = F_gU[x,Tx]\ ([x,Tx] \in \mathscr{G}(T))$と書き直せるから，
+		補助定理\ref{lem:T_star_closed_2}の同相写像$\varphi$により
 		\begin{align}
-			\left[U\mathscr{G}(T) \right]^{\perp} = \left\{\ F \in (Y \times X)^*\quad |\quad F[Tx,-x] = 0\ \right\}
+			\left[U\mathscr{G}(T) \right]^{\perp} = \Set{F \in (Y \times X)^*}{\forall [x,Tx] \in \mathscr{G}(T),\quad FU[x,Tx] = 0}
+			= \varphi^{-1}\mathscr{G}(T^*)
 		\end{align}
-		という表現が対応する．補助定理\ref{lem:T_star_closed_1}より$\left[U\mathscr{G}(T) \right]^{\perp}$が$Y^* \times X^*$で閉となるから
-		$\mathscr{G}(T^*) = \phi \left[U\mathscr{G}(T) \right]^{\perp}$は$(Y \times X)^*$において閉となり，以上で$T^*$が閉作用素であると示された．
+		が成り立つ．補助定理\ref{lem:T_star_closed_1}より$\left[U\mathscr{G}(T) \right]^{\perp}$が$Y^* \times X^*$の閉部分空間であるから，
+		$\mathscr{G}(T^*) = \varphi \left[U\mathscr{G}(T) \right]^{\perp}$は$(Y \times X)^*$において閉部分空間となり，従って$T^*$が閉線型作用素であると示された．
 		\QED
 	\end{prf}
 	
