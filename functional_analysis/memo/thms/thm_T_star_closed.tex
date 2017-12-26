@@ -1,38 +1,74 @@
-\section{共役作用素は閉作用素}
-	係数体を$\K$，$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
-	以下では$X,Y$及びその共役空間$X^*,Y^*$におけるノルムを
-	$\Norm{\cdot}{X},\ \Norm{\cdot}{Y},\ \Norm{\cdot}{X^*},\ \Norm{\cdot}{Y^*}$と表記し，
-	位相は全てこれらのノルムにより導入されるものと考える．
-	$T$の定義域$\mathscr{D}(T)$が$X$で稠密であるときは$T$の共役作用素$T^*$
-	が定義される．
-	\begin{itembox}[l]{}
-		\begin{thm}[共役作用素は閉線型]
-			$T^*$は閉線型作用素である．\label{thm:T_star_closed}
-		\end{thm}
-	\end{itembox}
-
-	この定理を証明するために以下にいくつか準備をする．
+\chapter{共役作用素}
+\section{ノルム空間の共役作用素}
+	係数体を$\K$とする．
+	以下ではノルム空間$X$におけるノルムを
+	$\Norm{\cdot}{X}$と表記し，
+	位相はこのノルムにより導入されるものと考える．
 	
-	$x \in X$と$f \in X^*$に対して$f(x)$を次の形式で表現する:
+	\begin{screen}
+		\begin{dfn}[共役作用素]
+			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
+			$T$の定義域$\mathscr{D}(T)$が$X$で稠密であるとき，$g \in Y^*$に対し
+			\begin{align}
+				f(x) = g(Tx) \quad (\forall x \in \mathscr{D}(T)) \label{eq:dfn_dual_operator}
+			\end{align}
+			を満たす$f \in X^*$が存在すれば，$f$の存在は$g$に対して唯一つであり\footnotemark
+			この対応を
+			\begin{align}
+				T^*:g \longmapsto f
+			\end{align}
+			で表す．$T^*:Y^* \rightarrow X^*$を$T$の共役作用素という．
+		\end{dfn}
+	\end{screen}
+	
+	\footnotetext{
+		$g$に対し$f$とは別に(\refeq{eq:dfn_dual_operator})を満たす$f' \in X^*$
+		が存在すれば
+		\begin{align}
+			f(x) = f'(x) \quad (\forall x \in \mathscr{D}(T))
+		\end{align}
+		が成り立つ．$\mathscr{D}(T)$は$X$で稠密であるから
+		$f,f'$の連続性より$f = f'$が従う．
+	}
+	
+	上の定義で$T$が零作用素の場合，$T$の定義域は$X$全体であるが
+	(\refeq{eq:dfn_dual_operator})を満たすような$f$は零作用素のみであり，
+	一方で$g$としては何を取っても成り立つから，共役作用素もまた零作用素となる．
+	
+	\begin{screen}
+		\begin{thm}[共役作用素は閉線型]
+			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
+			$\mathscr{D}(T)$が$X$で稠密であるとき，
+			$T^*$は閉線型作用素である．
+			\label{thm:T_star_closed}
+		\end{thm}
+	\end{screen}
+
+	この定理を証明するために以下にいくつか準備をする．$x \in X$と$f \in X^*$に対して$f(x)$を次の形式で表現する:
 	\begin{align}
 		f(x) = \inprod<x,f>_{X,X^*}.
 	\end{align}
 	これは双線型形式，つまり
-	$\inprod<\alpha x_1 + \beta x_2,f>_{X,X^*} = \alpha \inprod<x_1,f>_{X,X^*} + \beta\inprod<x_2,f>_{X,X^*}$と$\inprod<x,\alpha f_1 + \beta f_2>_{X,X^*} = \alpha \inprod<x,f_1>_{X,X^*} + \beta\inprod<x,f_2>_{X,X^*}$を満たす．これは$f$の線型性と$X^*$における線型演算の定義による．
+	$\inprod<\alpha x_1 + \beta x_2,f>_{X,X^*} = \alpha \inprod<x_1,f>_{X,X^*} + \beta\inprod<x_2,f>_{X,X^*}$
+	と$\inprod<x,\alpha f_1 + \beta f_2>_{X,X^*} = \alpha \inprod<x,f_1>_{X,X^*} + \beta\inprod<x,f_2>_{X,X^*}$を満たす．
 	双線型形式で表現することで内積空間を扱っているように捉えることができ，
-	例えば，$A \subset X$に対し全ての$x \in A$で$\inprod<x,f>_{X,X^*} = 0$となるような
-	$f \in X^*$の全体は$A$の直交空間である様に見做すことができる．
+	例えば(\refeq{eq:dfn_dual_operator})は
+	\begin{align}
+		\inprod<x,f>_{X,X^*} = \inprod<Tx,g>_{Y,Y^*} \quad (\forall x \in \mathscr{D}(T))
+	\end{align}
+	と表現できる．また$A \subset X,\ B \subset X^*$に対して
+	\begin{align}
+		A^{\perp} \coloneqq \Set{f \in X^*}{\forall x \in A,\ \inprod<x,f>_{X,X^*} = 0}, \quad 
+		{}^{\perp}B \coloneqq \Set{x \in X}{\forall f \in B,\ \inprod<x,f>_{X,X^*} = 0}
+	\end{align}
+	と表記を定める．例えば$B$に対して$B^{\perp}$と書いたらこれは$X^{**}$の部分集合を表す．
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}
-			$A \subset X$に対し
-			\begin{align}
-				A^{\perp} \coloneqq \Set{f \in X^*}{\forall x \in A,\ \inprod<x,f>_{X,X^*} = 0}
-			\end{align}
-			とおけば，$A^{\perp}$は$X^*$において閉部分空間となる．
+			$A \subset X$に対し$A^{\perp}$は$X^*$において閉部分空間となる．
 			\label{lem:T_star_closed_1}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		$A^{\perp}$が$X^*$において完備部分空間であることを示せばよい．
@@ -53,7 +89,6 @@
 				\end{align}
 				が成り立ち$f \in A^{\perp}$となる．
 		\end{description}
-		
 		\QED
 	\end{prf}
 	
@@ -61,11 +96,10 @@
 		\item[補助定理について補足]
 			実際はさらに
 			\begin{align}
-				(A^{\perp})^{\perp} = \overline{\LH{A}}
+				{}^{\perp}(A^{\perp}) = \overline{\LH{A}}
 			\end{align}
-			となることが証明される．ここで$(A^{\perp})^{\perp} = \Set{x \in X}{\forall f \in A^{\perp},\ \inprod<x,f>_{X,X^*} = 0}$
-			である．$A \subset (A^{\perp})^{\perp}$かつ$(A^{\perp})^{\perp}$は$X$の閉部分空間であるから
-			$\overline{\LH{A}} \subset (A^{\perp})^{\perp}$が先ず判る．
+			が成り立つ．$A \subset {}^{\perp}(A^{\perp})$かつ${}^{\perp}(A^{\perp})$は$X$の閉部分空間であるから
+			$\overline{\LH{A}} \subset {}^{\perp}(A^{\perp})$が先ず判る．
 			逆向きの包含関係について，$X = \overline{\LH{A}}$の場合は成り立つが，そうでない場合は次のように考える．
 			Hahn-Banachの定理の系によれば任意の$x_0 \in X \backslash \overline{\LH{A}}$を一つ取って
 			\begin{align}
@@ -75,8 +109,8 @@
 					f_0(x_0) \neq 0 & (x = x_0)
 				\end{cases}
 			\end{align}
-			を満たす$f_0 \in X^*$が存在する．$f_0 \in A^{\perp}$であるが$x_0 \notin (A^{\perp})^{\perp}$となり
-			$(A^{\perp})^{\perp} \subset \overline{\LH{A}}$が従う．
+			を満たす$f_0 \in X^*$が存在する．$f_0 \in A^{\perp}$であるが$x_0 \notin {}^{\perp}(A^{\perp})$となり
+			${}^{\perp}(A^{\perp}) \subset \overline{\LH{A}}$が従う．
 			\QED
 	\end{description}
 	
@@ -96,7 +130,7 @@
 	\end{align}
 	と定義すれば$F \in (Y \times X)^*$となり，従って対応$(Y \times X)^* \ni F \longmapsto [F_Y,F_X] \in Y^* \times X^*$
 	は全単射である．
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}
 			次の写像
 			\begin{align}
@@ -104,7 +138,7 @@
 			\end{align}
 			は線形，同相である．\label{lem:T_star_closed_2}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
@@ -148,14 +182,314 @@
 			\mathscr{G}(T^*) = \Set{[g,T^*g] \in Y^* \times X^*}{\forall [x,Tx] \in \mathscr{G}(T),\quad \inprod<Tx,g>_{Y,Y^*} = \inprod<x,T^*g>_{X,X^*}}
 		\end{align}
 		で表される．補助定理\ref{lem:T_star_closed_2}により$[g,T^*g]$に対応する$F_g \in (Y \times X)^*$がただ一つ存在して
-		$\inprod<Tx,g>_{Y,Y^*} - \inprod<x,T^*g>_{X,X^*} = F_g[Tx,-x] = F_gU[x,Tx]\ ([x,Tx] \in \mathscr{G}(T))$と書き直せるから，
-		補助定理\ref{lem:T_star_closed_2}の同相写像$\varphi$により
+		\begin{align}
+			\inprod<Tx,g>_{Y,Y^*} - \inprod<x,T^*g>_{X,X^*} = F_g[Tx,-x] = F_gU[x,Tx], \quad ([x,Tx] \in \mathscr{G}(T))
+		\end{align}
+		と書き直せるから，補助定理\ref{lem:T_star_closed_2}の同相写像$\varphi$により
 		\begin{align}
 			\left[U\mathscr{G}(T) \right]^{\perp} = \Set{F \in (Y \times X)^*}{\forall [x,Tx] \in \mathscr{G}(T),\quad FU[x,Tx] = 0}
 			= \varphi^{-1}\mathscr{G}(T^*)
+			\label{eq:thm_T_star_closed}
 		\end{align}
 		が成り立つ．補助定理\ref{lem:T_star_closed_1}より$\left[U\mathscr{G}(T) \right]^{\perp}$が$Y^* \times X^*$の閉部分空間であるから，
 		$\mathscr{G}(T^*) = \varphi \left[U\mathscr{G}(T) \right]^{\perp}$は$(Y \times X)^*$において閉部分空間となり，従って$T^*$が閉線型作用素であると示された．
 		\QED
 	\end{prf}
 	
+	\begin{screen}
+		\begin{thm}[閉拡張の共役作用素は元の共役作用素に一致する]\mbox{}\\
+			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とし，
+			$\mathscr{D}(T)$が$X$で稠密でかつ$T$が可閉であるとする．このとき次が成り立つ:
+			\begin{align}
+				\mathscr{G}( \closure{T}^* ) = \mathscr{G}(T^*).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		(\refeq{eq:thm_T_star_closed})より$\mathscr{G}\left( \closure{T}^* \right) = \varphi\left[U\mathscr{G}(\closure{T}) \right]^{\perp}$
+		が成り立っているから，
+		\begin{align}
+			\left[U\mathscr{G}(\closure{T}) \right]^{\perp} = \left[U\mathscr{G}(T) \right]^{\perp}
+		\end{align}
+		を示せばよい．
+		\begin{description}
+			\item[$\subset$について]
+				任意の$[g,f] \in \left[U\mathscr{G}(\closure{T}) \right]^{\perp}$に対して
+				\begin{align}
+					\inprod<\closure{T}x, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,\closure{T}x] \in \mathscr{G}(\closure{T}))
+				\end{align}
+				が成り立っている．
+				\begin{align}
+					\mathscr{G}(T) \subset \closure{\mathscr{G}(T)} = \mathscr{G}(\closure{T})
+				\end{align}
+				より
+				\begin{align}
+					\inprod<Tx, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,Tx] \in \mathscr{G}(T))
+				\end{align}
+				が従い$[g,f] \in \left[U\mathscr{G}(T) \right]^{\perp}$が成り立つ．
+			
+			\item[$\supset$について]
+				任意に$[g,f] \in \left[U\mathscr{G}(T) \right]^{\perp}$を取る．
+				任意の$[x,y] \in \mathscr{G}(\closure{T})$に対して
+				$[x_n,Tx_n] \in \mathscr{G}(T)$を取り
+				\begin{align}
+					\Norm{x_n - x}{X} \longrightarrow 0, \quad
+					\Norm{Tx_n - y}{Y} \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つようにできるから，
+				\begin{align}
+					\left| \inprod<y,g>_{Y,Y^*} - \inprod<x,f>_{X,X^*} \right|
+					\leq \left| \inprod<y,g>_{Y,Y^*} - \inprod<Tx_n,g>_{Y,Y^*} \right|
+						+ \left| \inprod<x_n,f>_{X,X^*} - \inprod<x,f>_{X,X^*} \right|
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立ち
+				\begin{align}
+					[g,f] \in \left[U\mathscr{G}(\closure{T}) \right]^{\perp}
+				\end{align}
+				が従う．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[定義域が稠密となるための条件]
+			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．このとき
+			$\mathscr{D}(T)$が$X$で稠密であるための必要十分条件は，
+			$[0,f] \in \varphi\left[U\mathscr{G}(T) \right]^{\perp}$ならば$f = 0$となることである．
+		\end{lem}
+	\end{screen}
+		
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[必要性]
+				(\refeq{eq:thm_T_star_closed})より，$\closure{\mathscr{D}(T)}  = X$ならば
+				$T^*$が存在して$\mathscr{G}(T^*) = \varphi\left[U\mathscr{G}(T) \right]^{\perp}$
+				を満たすから$f = 0$となる．
+			
+			\item[十分性]
+				$\varphi[0,f] \in \left[U\mathscr{G}(T) \right]^{\perp}$なら
+				\begin{align}
+					\left( \varphi[0,f] \right)[Tx,-x] = -f(x) = 0 \quad (\forall [x,Tx] \in \mathscr{G}(T))
+				\end{align}
+				が成り立つ．そして
+				\begin{align}
+					f(x) = 0 \quad (\forall x \in \mathscr{D}(T)) \mbox{ならば$f=0$} \quad \Leftrightarrow \quad \closure{\mathscr{D}(T)} = X
+				\end{align}
+				により$\closure{\mathscr{D}(T)}  = X$となる．実際$\closure{\mathscr{D}(T)} \subsetneq X$である場合，
+				Hahn-Banachの定理の系より$f \neq 0$なる$f \in X^*$で$f(x) = 0 \quad (\forall x \in \mathscr{D}(T))$
+				を満たすものが存在する．逆に$\closure{\mathscr{D}(T)} = X$であるなら，$f \in X^*$の連続性より
+				$f(x) = 0 \quad (\forall x \in \mathscr{D}(T))\ $ならば$f=0$が従う．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	ノルム空間$X,Y$の第二共役空間$X^{**},Y^{**}$への自然な単射を$J_X,J_Y$と表す．そして
+	\begin{align}
+		J:[X,Y] \ni [x,y] \longmapsto [J_Xx,J_Yy] \in [X^{**},Y^{**}]
+	\end{align}
+	として$J$を定めれば$J$は等長かつ線型単射となる．
+	
+	\begin{screen}
+		\begin{thm}
+			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とし
+			$\mathscr{D}(T)$が$X$で稠密であるとする．
+			\begin{description}
+				\item[(1)]
+					$\closure{\mathscr{D}(T^*)} = Y^*$ならば$T$は可閉であり
+					\begin{align}
+						J\mathscr{G}(\closure{T}) \subset \mathscr{G}(T^{**})
+					\end{align}
+					が成り立つ．
+				\item[(2)]
+					$Y$が反射的Banach空間なら，
+					$T$が可閉であることと$\closure{D}(T^*) = Y^*$であることは同値となり
+					\begin{align}
+						T^{**}J_X = J_Y \closure{T}
+					\end{align}
+					が成り立つ．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{description}
+			\item[(1)]
+				$\closure{\mathscr{D}(T^*)} = Y^*$ならば$T^*$の共役作用素$T^{**}:X^{**} \rightarrow Y^{**}$が定義される．
+				任意の$x \in \mathscr{D}$に対し
+				\begin{align}
+					\inprod<T^*g,J_Xx>_{X^*,X^{**}} = \inprod<x,T^*g>_{X,X^*} 
+					= \inprod<Tx,g>_{Y,Y^*} = \inprod<g,J_YTx>_{Y^*,Y^{**}}
+					\quad (\forall [g,T^*g] \in \mathscr{G}(T^*))
+				\end{align}
+				が成り立つから，$J_Xx \in \mathscr{D}(T^{**})$かつ
+				\begin{align}
+					T^{**}J_Xx = J_YTx \quad (\forall [x,Tx] \in \mathscr{G}(T))
+				\end{align}
+				が従う．すなわち
+				\begin{align}
+					J \mathscr{G}(T) \subset \mathscr{G}(T^{**})
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					J \closure{\mathscr{G}(T)} \subset \closure{J \mathscr{G}(T)} \subset \mathscr{G}(T^{**})
+					\label{eq:thm_closablility_and_second_dual_operator_1}
+				\end{align}
+				が成り立つ．実際定理\ref{thm:T_star_closed}より$T^{**}$は閉線型であるから二番目の不等式は成り立つ．
+				だから初めの不等式を示せばよい．
+				任意に$[J_Xx,J_Yy] \in J \closure{\mathscr{G}(T)}$を取れば，
+				$[x_n,Tx_n] \in \mathscr{G}(T)$を取り
+				\begin{align}
+					\Norm{x_n - x}{X} \longrightarrow 0, \quad
+					\Norm{Tx_n - y}{Y} \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つようにできる．$J_X,J_Y$の等長性より
+				\begin{align}
+					\Norm{J_Xx_n - J_Xx}{X^{**}} \longrightarrow 0, \quad
+					\Norm{J_YTx_n - J_Yy}{Y^{**}} \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となり$[J_Xx,J_Yy] \in \closure{J \mathscr{G}(T)}$が判る．
+				(\refeq{eq:thm_closablility_and_second_dual_operator_1})より
+				$[0,y] \in \closure{\mathscr{G}(T)}$ならば
+				$[0,J_Yy] \in \mathscr{G}(T^{**})$が従い$J_Yy = 0$となる．$J_Y$は単射であるから$y = 0$となり
+				$\closure{\mathscr{G}(T)}$がグラフとなるから$T$は可閉である．
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[共役作用素の有界性]
+			$X,Y$をノルム空間，$T:X \rightarrow Y$を線型作用素とし
+			$\Dom{T} $が$X$で稠密であるとする．$T$が有界なら
+			$T^*$も有界で
+			\begin{align}
+				\Norm{T^*}{\Dom{T^*} } \leq \Norm{T}{\Dom{T} }
+			\end{align}
+			が成り立ち，特に$T \in \Bop{X}{Y} $ならば$T^* \in \Bop{Y^*}{X^*} $かつ
+			$\Norm{T^*}{\Bop{Y^*}{X^*} } = \Norm{T}{\Bop{X}{Y} }$を満たす．\footnotemark
+			\label{thm:dual_operator_bounded}
+		\end{thm}
+	\end{screen}
+	
+	\footnotetext{
+		$\Norm{\cdot}{\Dom{T} },\Norm{\cdot}{\Dom{T^*} }$および$\Norm{\cdot}{\Bop{X}{Y} },\Norm{\cdot}{\Bop{Y^*}{X^*} }$は作用素ノルムを表す．
+	}
+	
+	\begin{prf}
+		任意の$[x,Tx] \in \Graph{T} $と$[g,T^*g] \in \Graph{T^*} $に対して
+		\begin{align}
+			\left| \inprod<x,T^*g>_{X,X^*} \right| = \left| \inprod<Tx,g>_{Y,Y^*} \right| \leq \Norm{T}{\Dom{T} } \Norm{g}{Y^*} \Norm{x}{X}
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\Norm{T^*g}{X^*} = \sup{0 \neq x \in X}{\frac{\left| \inprod<x,T^*g>_{X,X^*} \right|}{\Norm{x}{X}}} \leq \Norm{T}{\Dom{T} } \Norm{g}{Y^*}
+		\end{align}
+		となる．従って$\Norm{T^*}{\Dom{T^*} } \leq \Norm{T}{\Dom{T} }$を得る．
+		$T \in \Bop{X}{Y} $である場合，任意の$g \in Y^*$に対して
+		\begin{align}
+			f:X \ni x \longmapsto g(Tx) 
+		\end{align}
+		と定義すれば，$f \in X^*$となり(\refeq{eq:dfn_dual_operator})を満たすから
+		$T^* \in \Bop{Y^*}{X^*} $が成り立つ．また
+		\begin{align}
+			\Norm{Tx}{Y} = \sup{\substack{g \in Y^* \\ \Norm{g}{Y^*} = 1}}{|g(Tx)|} 
+			= \sup{\substack{g \in Y^* \\ \Norm{g}{Y^*} = 1}}{|T^*g(x)|} 
+			\leq \sup{\substack{g \in Y^* \\ \Norm{g}{Y^*} = 1}}{\Norm{T^*g}{X^*} \Norm{x}{X} }
+			\leq \Norm{T^*}{\Bop{Y^*}{X^*} } \Norm{x}{X}
+		\end{align}
+		が成り立つから$\Norm{T^*}{\Bop{Y^*}{X^*} } = \Norm{T}{\Bop{X}{Y} }$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[共役作用素の合成]
+			$X,Y,Z$をノルム空間，$T:X \rightarrow Y,\ U:Y \rightarrow Z$を線型作用素とし
+			$\closure{\mathscr{D}(T)} = X,\ \closure{\mathscr{D}(U)} = Y,\ \closure{\mathscr{D}(UT)} = X$を満たすとする．このとき
+			\begin{align}
+				T^*U^* \subset (UT)^*
+			\end{align}
+			が成り立ち，特に$U \in \Bop{Y}{Z} $である場合は$T^*U^* = (UT)^*$となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$h \in \mathscr{D}(T^*U^*)$に対して
+		\begin{align}
+			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<Tx,U^*h>_{Y,Y^*} = \inprod<x,T^*U^*h>_{X,X^*} \quad (\forall [x,Tx] \in \mathscr{G}(UT))
+		\end{align}
+		が成り立つから，$h \in \mathscr{D}((UT)^*)$かつ$(UT)^*h = T^*U^*h$を満たす
+		\footnote{
+			$\mathscr{G}(UT)$は$X$で稠密であるから$(UT)^*h = T^*U^*h$でなくてはならない．
+		}．
+		ゆえに
+		\begin{align}
+			T^*U^* \subset (UT)^*
+		\end{align}
+		となる．$U \in \Bop{Y}{Z} $の場合，
+		$\mathscr{D}(UT) = \mathscr{D}(T)$と$U^* \in \Bop{Z^*}{Y^*} $(定理\ref{thm:dual_operator_bounded})が従うから，
+		任意の$h \in \mathscr{D}((UT)^*)$に対して
+		\begin{align}
+			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<x,(UT)^*h>_{X,X^*} \quad (\forall x \in \mathscr{G}(T))
+		\end{align}
+		かつ
+		\begin{align}
+			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<Tx, U^*h>_{Y,Y^*} \quad (\forall x \in \mathscr{G}(T))
+		\end{align}
+		より$U^*h \in \mathscr{D}(T^*)$となり$T^*U^*h = (UT)^*h$を満たす．従って$(UT)^* \subset T^* U^*$が成り立ち
+		\begin{align}
+			(UT)^* = T^* U^*
+		\end{align}
+		を得る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[共役作用素の和]
+			$X,Y$をノルム空間，$T:X \rightarrow Y,\ U:X \rightarrow Y$を線型作用素とし
+			$\closure{\mathscr{D}(T)} = X,\ \closure{\mathscr{D}(U)} = X,\ \closure{\mathscr{D}(T + U)} = X$を満たすとする．このとき
+			\begin{align}
+				T^* + U^* \subset (T + U)^*
+			\end{align}
+			が成り立ち，特に$T,U \in \Bop{X}{Y} $である場合は$T^* + U^* = (T + U)^*$となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$g \in \mathscr{D}(T^* + U^*)$に対し，
+		\begin{align}
+			\inprod<(T + U)x,g>_{Y,Y^*} = \inprod<Tx,g>_{Y,Y^*} + \inprod<Ux,g>_{Y,Y^*}
+			= \inprod<x,T^*g>_{X,X^*} + \inprod<x,U^*g>_{X,X^*}\ \footnotemark
+			= \inprod<x,(T^* + U^*)g>_{X,X^*}
+			\quad (\forall x \in \mathscr{D}(T + U))
+		\end{align}
+		が成り立つ
+		\footnotetext{
+			$\mathscr{D}(T + U) \subset \mathscr{D}(T),\mathscr{D}(U)$である．
+		}
+		．従って$g \in \mathscr{D}((T + U)^*)$かつ$(T + U)^*g = (T^* + U^*)g$を満たす．
+		特に$T,U \in \Bop{X}{Y} $のとき，任意の$g \in \mathscr{D}((T + U)^*)$に対し
+		\begin{align}
+			\inprod<(T + U)x,g>_{Y,Y^*} = \inprod<x,(T + U)^*g>_{X,X^*} \quad (\forall x \in X) 
+		\end{align}
+		かつ
+		\begin{align}
+			\inprod<(T + U)x,g>_{Y,Y^*} = \inprod<Tx,g>_{Y,Y^*} + \inprod<Ux,g>_{Y,Y^*} = \inprod<x,(T^* + U^*)g>_{X,X^*} \quad (\forall x \in X)
+		\end{align}
+		が成り立つから$g \in \mathscr{D}(T^* + U^*)$かつ$(T + U)^* = (T^* + U^*)$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[共役作用素のスカラ倍]
+			$X,Y$をノルム空間，$T:X \rightarrow Y$を線型作用素とし$\closure{\mathscr{D}(T)} = X$を満たすとする．
+			任意の$\lambda \in \K$に対し次が成り立つ．
+			\begin{align}
+				(\lambda T)^* = \lambda T^*.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\lambda = 0$の場合，零作用素の共役作用素もまた零作用素となるから$(\lambda T)^* = \lambda T^*$が成り立つ．
+		$\lambda \neq 0$の場合，任意の$g \in \mathscr{D}(())$
+	\end{prf}
