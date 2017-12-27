@@ -1,0 +1,231 @@
+	\begin{itembox}[l]{}
+		\begin{thm}[二次変分の存在]\mbox{}\\
+			任意の$M \in \mathcal{M}_{c,loc}$に対し或る$A \in \mathcal{A}^+$が一意的に存在して\footnotemark
+			次を満たす:
+			\begin{itemize}
+				\item $A_0 = 0\quad \mbox{$\mu$-a.s.}$
+				\item $M^2 - A \in \mathcal{M}_{c,loc}.$
+			\end{itemize}
+		\end{thm}
+	\end{itembox}
+	
+	\footnotetext{
+		$A,A' \in \mathcal{A}^+$が主張の二条件を満たすときは$\mu$-a.s.にパスが一致する，という意味で存在が一意的である．
+	}
+	
+	\begin{prf}
+		証明は二段階ある．まず$M \in \mathcal{M}_{b,c}$に対し$A$の存在を証明し，その結果を$\mathcal{M}_{c,loc}$に拡張する．
+		\begin{description}
+			\item[第一段]
+				補題\ref{lem:quadratic_variation}に従って$Q^n\ (n=1,2,\cdots)$を構成し
+				$N^n \coloneqq M^2 - Q^n \in \mathcal{M}_{b,c}$とおけば
+				\begin{align}
+					\Norm{N_T^n - N_0^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
+				\end{align}
+				を満たす．$Q^n$の構成方法(\refeq{eq:lem_quadratic_variation_0})より$N_0^n(\omega) = M^2_0(\omega)\ (\forall \omega \in \Omega,\ n=1,2,\cdots)$となるから
+				\begin{align}
+					\Norm{N_T^n}{\mathscr{L}^2} 
+					\leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} + \Norm{M^2_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
+				\end{align}
+				が成り立ち，従って$N^n$の同値類
+				\footnote{
+					補題\ref{lem:M_2c_hilbert}で導入した同値関係$R$による同値類．
+				}
+				$\overline{N^n}$の列$(\overline{N^n})_{n=1}^{\infty}$はHilbert空間$\mathfrak{M}_{2,c}$において有界列となる．
+				Kolmosの補題より$\overline{N^n}$の線型結合の列$\hat{\overline{N^n}}\ (n=1,2,\cdots)$が存在して$\mathfrak{M}_{2,c}$においてCauchy列となるから，
+				その極限を$\overline{N} \in \mathfrak{M}_{2,c}$と表す．線型結合を
+				\begin{align}
+					\hat{\overline{N^n}} = \sum_{j=0}^{\infty} c^n_j \overline{N^{n+j}}, \quad
+					\hat{N}^n \coloneqq \sum_{j=0}^{\infty} c^n_j N^{n+j}, \quad
+					\hat{Q}^n \coloneqq \sum_{j=0}^{\infty} c^n_j Q^{n+j}
+				\end{align}
+				と表せば$\hat{N}^n = M^2 - \hat{Q}^n$となり
+				\footnote{
+					任意の$n \in \N$に対して$(c^n_j)_{j=0}^{\infty}$は
+					$\sum_{j=0}^{\infty} c^n_j = 1$を満たし，且つ$\neq 0$であるのは有限個である．
+				}
+				，任意に$N \in \overline{N}$を取り
+				\begin{align}
+					A \coloneqq M^2 - N \label{eq:thm_quadratic_variation_0}
+				\end{align}
+				とおけば，Doobの不等式(定理\ref{thm:Doob_inequality_2})により
+				\begin{align}
+					\Norm{\sup{t \in I}{\left| \hat{Q}_t^n - A_t \right|}}{\mathscr{L}^2}
+					&= \Norm{\sup{t \in I}{\left| N_t - \hat{N}_t^n \right|}}{\mathscr{L}^2} \\
+					&\leq \Norm{N_T - \hat{N}_T^n}{\mathscr{L}^2}
+					= \Norm{\overline{N} - \hat{\overline{N^n}}}{\mathfrak{M}_{2,c}} \longrightarrow 0 \quad (n \longrightarrow \infty) 
+				\end{align}
+				が成り立つ
+				\footnote{
+					$\Norm{\cdot}{\mathfrak{M}_{2,c}}$は(\refeq{eq:M_2c_inner_product})で定義される内積により導入されるノルムを表す．
+				}
+				．これよりFatouの補題を使えば
+				\begin{align}
+					\Norm{\liminf_{n \to \infty}\sup{t \in I}{\left| \hat{Q}_t^n - A_t \right|}}{\mathscr{L}^2} = 0
+				\end{align}
+				が成り立つから，或る$\mu$-零集合$E$が存在して
+				\begin{align}
+					\liminf_{n \to \infty}\sup{t \in I}{\left| \hat{Q}_t^n(\omega) - A_t(\omega) \right|} = 0 
+					\quad (\forall \omega \in \Omega \backslash E)
+					\label{eq:thm_quadratic_variation_1}
+				\end{align}
+				となる．
+				\begin{align}
+					D_n \coloneqq \Set{\frac{j}{2^n}T}{ j = 0,1,\cdots,2^n } \quad (n=1,2,\cdots)
+				\end{align}
+				とおけば，(\refeq{eq:lem_quadratic_variation_0})より全ての$m \geq n,\ \omega \in \Omega$に対して
+				$t \longmapsto Q_t^m(\omega)$は$D_n$上で単調非減少となるから，
+				その線型結合である$\hat{Q}_t^m$も$D_n$上で単調非減少となり，
+				(\refeq{eq:thm_quadratic_variation_1})より
+				$\omega \in \Omega \backslash E$に対しては$t \longmapsto A_t(\omega)$も$D_n$上で単調非減少となる
+				\footnote{
+					或る$j$と$u \in \Omega \backslash E$で$A_{\frac{j}{2^n}T}(u) > A_{\frac{j+1}{2^n}T}(u)$が成り立っているとする．
+					式(\refeq{eq:thm_quadratic_variation_1})を詳しく書けば
+					\begin{align}
+						\sup{n \geq 1}{\inf{\nu \geq n}{\sup{t \in I}{\left| \hat{Q}_t^\nu(\omega) - A_t(\omega) \right|}}} = 0 
+						\quad (\forall \omega \in \Omega \backslash E)
+					\end{align}
+					ということになるから
+					\begin{align}
+						\inf{\nu \geq n}{\sup{t \in I}{\left| \hat{Q}_t^\nu(\omega) - A_t(\omega) \right|}} = 0 \quad (\forall n \in \N,\ \omega \in \Omega \backslash E)
+					\end{align}
+					を得る．従って任意の$\epsilon > 0$に対し必ず或る$\nu \geq 1$が存在して
+					\begin{align}
+						\sup{t \in I}{\left| \hat{Q}_t^\nu(\omega) - A_t(\omega) \right|} < \epsilon \quad (\forall \omega \in \Omega \backslash E)
+						\label{eq:thm_quadratic_variation_2}
+					\end{align}
+					を満たすから，
+					\begin{align}
+						\alpha \coloneqq A_{\frac{j}{2^n}T}(u),
+						\quad \beta \coloneqq A_{\frac{j+1}{2^n}T}(u)
+					\end{align}
+					とおけば或る$\nu \geq 1$に対し
+					\begin{align}
+						\left| \hat{Q}_{\frac{j}{2^n}T}^\nu(u) - A_{\frac{j}{2^n}T}(u) \right| < \frac{\alpha - \beta}{2},
+						\quad \left| \hat{Q}_{\frac{j+1}{2^n}T}^\nu(u) - A_{\frac{j+1}{2^n}T}(u) \right| < \frac{\alpha - \beta}{2}
+					\end{align}
+					を同時に満たすが，
+					\begin{align}
+						\hat{Q}_{\frac{j}{2^n}T}^\nu(u) > \frac{\alpha + \beta}{2} > \hat{Q}_{\frac{j+1}{2^n}T}^\nu(u)
+					\end{align}
+					が従うので$t \longmapsto \hat{Q}_t^\nu(u)$の単調増大性に矛盾する．
+					同様にして$A_0(\omega) = 0\ (\forall \omega \in \Omega \backslash E)$も成り立つ．
+					或る$\upsilon \in \Omega \backslash E$で$A_0(\upsilon) \neq 0$であるとすれば，
+					$Q^n_0(\upsilon) = 0\ (\forall n)$であるから(\refeq{eq:thm_quadratic_variation_2})に矛盾する．
+					\label{footnote:thm_quadratic_variation}
+				}．
+				$D \coloneqq \cup_{n=1}^{\infty} D_n$とおけば$D$は$I$で稠密であり，更に$A$は或る零集合$E'$を除いてパスが連続となるから
+				\footnote{
+					$M \in \mathcal{M}_{b,c},\ N \in \mathcal{M}_{2,c}$より$M,N$のパスが連続でない$\omega$の全体は或る零集合に含まれる．それを$E'$とおけばよい．
+				}
+				，
+				写像$I \ni t \longmapsto A_t(\omega)\ (\forall \omega \in \Omega \backslash (E \cup E'))$は連続且つ単調非減少である．
+				$A$の適合性は(\refeq{eq:thm_quadratic_variation_0})より判明しているから，以上で$A \in \mathcal{A}^+$であることが示された．
+				$A_0(\omega) = 0\ (\forall \omega \in \Omega \backslash E)$であることも脚注\ref{footnote:thm_quadratic_variation}
+				で証明したから，$N = M^2 - A \in \mathcal{M}_{b,c} \subset \mathcal{M}_{c,loc}$(命題\ref{prp:M_pc_M_cloc})
+				より定理の主張を満たす$A$の存在が言えた．
+				
+				存在の一意性は命題\ref{prp:bounded_continuous_M_2c_path}による．
+				今$A' \in \mathcal{A}^+$もまた定理の主張を満たしているなら，
+				$N' = M^2 - A'$として，$A - A' \in \mathcal{A}$かつ
+				\begin{align}
+					A - A' = N' - N \in \mathcal{M}_{2,c}
+				\end{align}
+				となり$A_t - A'_t = 0\ (\forall t \in I)\quad \mbox{$\mu$-a.s.}$が従う．
+				
+			\item[第二段]
+				$M \in \mathcal{M}_{c,loc}$を任意に取る．或る$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$が存在して
+				$M^n \in \mathcal{M}_{b,c}\ (\forall t \in I,\ M_t^n = M_{t \wedge \tau_n})$となるから，
+				前段の結果より或る$A^n \in \mathcal{A}^+$が存在して
+				\begin{align}
+					N^n \coloneqq (M^n)^2 - A^n \in \mathcal{M}_{b,c}
+				\end{align}
+				を満たす．或る$\mu$-零集合$E_1$が存在して
+				\footnote{
+					或る零集合$E_1^{(1)}$があり$\tau_0(\omega) = 0\ (\forall \omega \in \Omega \backslash E_1^{(1)})$，
+					また或る零集合$E_1^j$があり$\tau_j(\omega) \leq \tau_{j+1}(\omega)\ (\forall \omega \in \Omega \backslash E_1^j)$，
+					更に或る零集合$E_1^{(T)}$を取れば，各$\omega \in \Omega \backslash E_1^{(T)}$について
+					或る$n(\omega)$番目以降は$\tau_n(\omega) = T\ (\forall n \geq n(\omega))$
+					が成り立つ．
+					\begin{align}
+						E_1 = \left( \cup_{j=1}^{\infty} E_1^j \right) \cup E_1^{(1)} \cup E_1^{(T)}
+					\end{align}
+					とおけばよい．
+				}
+				全ての$\omega \in \Omega \backslash E_1$で$(\tau_n(\omega))_{n=1}^{\infty}$は$0$出発，単調非減少かつ或る$n(\omega)$番目以降は$T$に一致する．
+				今任意に$n \leq m,\ n,m \in \N$を取って固定する．$\omega \in \Omega \backslash E_1$に対しては
+				\begin{align}
+					M_{t \wedge \tau_n(\omega)}^m(\omega) = M_{t \wedge \tau_n(\omega) \wedge \tau_m(\omega)}(\omega) = M_t^n(\omega) \quad (\forall t \in I)
+				\end{align}
+				となり関数類として$[M_{t \wedge \tau_n}^m] = [M_t^n]\ (\forall t \in I)$が成り立つから，任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
+				\begin{align}
+					\cexp{(M_t^m)^2 - A_t^m}{\mathcal{F}_{\tau_n}} = (M_{t \wedge \tau_n}^m)^2 - A_{t \wedge \tau_n}^m = (M_t^n)^2 - A_{t \wedge \tau_n}^m
+					\quad (\forall t \in I)
+				\end{align}
+				を得る．一方で$N^m \in \mathcal{M}_{2,c}$であるから
+				\begin{align}
+					\cexp{(M_t^m)^2 - A_t^m}{\mathcal{F}_{\tau_n}} = \cexp{N_t^m}{\mathcal{F}_{\tau_n}} = N_{t \wedge \tau_n}^m \quad (\forall t \in I)
+				\end{align}
+				も成り立ち，任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より$\tau_n$で停めた過程も二乗可積分マルチンゲールとなる．
+				関数類としての意味を強調すれば$[(M_t^n)^2 - A_{t \wedge \tau_n}^m] = [N_{t \wedge \tau_n}^m]\ (\forall t \in I)$が成り立っているから
+				$\left( (M_t^n)^2 - A_{t \wedge \tau_n}^m \right)_{t \in I}$が二乗可積分マルチンゲールであることになり，前段の一意性から
+				或る$\mu$-零集合$E^{n,m}$が存在して
+				\begin{align}
+					A_{t \wedge \tau_n(\omega)}^m(\omega) = A_t^n(\omega) \quad (\forall t \in I,\ \omega \in \Omega \backslash E^{n,m})
+				\end{align}
+				が従う．特に$\omega \in \Omega \backslash (E_1 \cup E^{n,m})$なら
+				\begin{align}
+					A_t^n(\omega) = A_{t \wedge \tau_n(\omega)}^m(\omega) = A_t^m(\omega) \quad (t \leq \tau_n(\omega))
+				\end{align}
+				となる．
+				\begin{align}
+					E_2 \coloneqq \bigcup_{n \in \N} E^{n,n+1}
+				\end{align}
+				とおき
+				\begin{align}
+					A_t(\omega) \coloneqq
+					\begin{cases}
+						\lim_{n \to \infty} A_t^n(\omega) & (\omega \in \Omega \backslash (E_1 \cup E_2)) \\
+						0 & (\omega \in E_1 \cup E_2)
+					\end{cases}
+					\quad (\forall t \in I)
+				\end{align}
+				として$A$を定めれば$A \in \mathcal{A}^+$を満たす
+				\footnote{
+					\begin{description}
+						\item[連続性・単調非減少性]
+							$\omega \in \Omega \backslash (E_1 \cup E_2)$の場合に確認する．任意に$s,u \in I,\ (s < u)$を取れば
+							$u \leq \tau_n(\omega)$となる$n$が存在し$A_t(\omega) = A_t^n(\omega)\ (\forall t \leq \tau_n(\omega))$を満たす．
+							写像$I \ni t \longmapsto A_t^n(\omega)$は連続且つ単調非減少であるから
+							$t \longmapsto A_t(\omega)$も$t = s,u$において連続であり，且つ$A_s(\omega) = A_s^n(\omega) \leq A_u^n(\omega) = A_u(\omega)$
+							により単調非減少である．
+						
+						\item[適合性]
+							各$n \in \N$に対し$A^n$は$(\mathcal{F}_t)$-適合である．$t \in I$を固定し
+							\begin{align}
+								\tilde{\mathcal{F}}_t \coloneqq \Set{B \cap (E_1 \cup E_2)^c}{B \in \mathcal{F}_t}
+							\end{align}
+							とおく．写像$\Omega \ni \omega \longmapsto A_t^n(\omega)$を
+							$\Omega \backslash (E_1 \cup E_2)$に制限した$\tilde{A}_t^n \coloneqq A_t^n|_{\Omega \backslash (E_1 \cup E_2)}$は可測$\tilde{\mathcal{F}}_t/\borel{\R}$
+							であり，各点収束先の$\tilde{A}_t \coloneqq A_t|_{\Omega \backslash (E_1 \cup E_2)}$もまた可測$\tilde{\mathcal{F}}_t/\borel{\R}$となる．
+							任意の$C \in \borel{\R}$に対して
+							\begin{align}
+								A_t^{-1}(C) =
+								\begin{cases}
+									\tilde{A}_t^{-1}(C) & (0 \notin C) \\
+									(E_1 \cup E_2) \cup \tilde{A}_t^{-1}(C) & (0 \in C)
+								\end{cases}
+							\end{align}
+							となり，$E_1 \cup E_2 \in \mathcal{F}_0$により$\tilde{\mathcal{F}}_t \subset \mathcal{F}_t$であるから
+							$A_t$は可測$\mathcal{F}_t/\borel{\R}$となる．
+					\end{description}
+				}
+				．そして$N \coloneqq M^2 - A$とおけば$\Omega \backslash (E_1 \cup E_2)$上で
+				\begin{align}
+					N_{t \wedge \tau_n} = M_{t \wedge \tau_n}^2 - A_{t \wedge \tau_n} 
+					= \left( M_{t \wedge \tau_n}^n \right)^2 - A_{t \wedge \tau_n}^n
+					= N_{t \wedge \tau_n}^n \quad (\forall t \in I,\ n \in \N)
+				\end{align}
+				が成り立つから$N \in \mathcal{M}_{c,loc}$となる．$A$の一意性について，
+		\end{description}
+	\end{prf}
