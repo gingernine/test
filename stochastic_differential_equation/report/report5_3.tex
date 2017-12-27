@@ -1,20 +1,20 @@
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{prp}
-			任意の$p \geq 1$に対し，$\mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$が成り立つ．
+			任意の$p \geq 1$に対し，$\mathcal{M}_{b,c} \subset \mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$が成り立つ．
 			\label{prp:M_pc_M_cloc}
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 	この証明には次の補題を使う．
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[各点で右連続であり左極限を持つ関数は閉区間上で有界]\mbox{}\\
 			$(E,\rho)$を距離空間，$J = [a,b] \subset \R$とする．$f:J \rightarrow E$が各点$x \in J$で
 			右連続且つ左極限を持つ\footnotemark
 			なら$f$は$J$上で有界である．
 			\label{lem:rcll_bounded}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	\footnotetext{
 		左端点では左極限を考えず，右端点では右連続性を考えない．
 	}
@@ -54,12 +54,13 @@
 	\end{prf}
 	
 	\begin{prf}[命題\ref{prp:M_pc_M_cloc}]
-		任意に$M \in \mathcal{M}_{p,c}$を取る．
-		或る零集合$E$が存在し，全ての$\omega \in \Omega \backslash E$に対して
+		a.s.に有界な関数は$p$乗して可積分であるから$\mathcal{M}_{b,c} \subset \mathcal{M}_{p,c}$である．
+		$\mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$を示す．任意に$M \in \mathcal{M}_{p,c}$を取れば，
+		或る零集合$E$が存在して全ての$\omega \in \Omega \backslash E$に対し
 		\begin{align}
 			M_0(\omega) = 0
 		\end{align}
-		を満たし且つ$I \ni t \longmapsto M_t(\omega)$が連続となる．
+		となり，且つ$I \ni t \longmapsto M_t(\omega)$が連続となる．
 		全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
 		は右連続且つ左極限を持つから，定理\ref{thm:closed_set_stopping_time}より
 		\begin{align}
@@ -68,7 +69,7 @@
 		として$\tau_j$は停止時刻となり$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が成り立つ．
 		実際全ての$\omega \in \Omega$について$\tau_0(\omega) = 0$であり，
 		また$t \longmapsto M_t(\omega)$の右連続性から$\tau_j \leq \tau_{j+1}\ (j=1,2,\cdots)$も成り立つ．
-		更に補題\ref{lem:rcll_bounded}より$\sup{t \in I}{|M_t(\omega)|} < \infty\ (\forall \omega \in \Omega)$であるから
+		更に補題\ref{lem:rcll_bounded}より$\sup{t \in I}{|M_t(\omega)|} < \infty\ (\forall \omega \in \Omega)$であるから，
 		$J > \sup{t \in I}{|M_t(\omega)|}$を満たす$J = J(\omega)$に対して$\tau_j(\omega) = T\ (\forall j \geq J)$となる．
 		後は$M^{\tau_j} \in \mathcal{M}_{b,c}$が成立することを示せばよい．先ずDoobの不等式(定理\ref{thm:Doob_inequality_2})より
 		$\sup{t \in I}{|M_t|}$が$p$乗可積分となるから$M_t^{\tau_j} = M_{t \wedge \tau_j}\ (\forall t \in I)$は可積分である．
@@ -90,7 +91,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}
 			$X \in \mathcal{M}_{2,c}$と停止時刻$\tau \geq \sigma$に対し，$\Norm{M_\sigma}{\mathscr{L}^\infty} < \infty$ならば次が成り立つ:
 			\begin{description}
@@ -99,46 +100,47 @@
 			\end{description}
 			\label{lem:stopping_time_telescopic_sum}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
-		以下の式中では関数ではなく関数類を扱う．
-		\begin{description}
-			\item[(1)] 
-				$\mathcal{G} = \{\Omega,\emptyset\}$とおく．条件付き期待値の性質(定理\ref{thm:conditional_exp_expansion})を使えば
-				\begin{align}
-					\Exp{(X_{\tau} - X_{\sigma})^2} &= \cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{G}} \\
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{X_{\tau}X_{\sigma}}{\mathcal{G}} \\
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma}}{\mathcal{G}} \\
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{X_{\sigma}\cexp{X_{\tau}}{\mathcal{F}_\sigma}}{\mathcal{G}} 
-						&& (\because\mbox{\scriptsize 定理\ref{thm:measurability_of_stopping_time}}) \\
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{G}} - 2\cexp{X_{\sigma}^2}{\mathcal{G}} 
-						&& (\because\mbox{\scriptsize 定理\ref{thm:optional_sampling_theorem_2}}) \\
-					&= \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{G}} \\
-					&= \Exp{X_{\tau}^2 - X_{\sigma}^2}
-				\end{align}
-				が成り立つ．
+	\begin{description}
+		\item[(1)] 
+			$X \in \mathcal{M}_{2,c}$であるからDoobの不等式(定理\ref{thm:Doob_inequality_2})により$X_\tau,X_\sigma$は二乗可積分である．
+			また定理\ref{thm:measurability_of_stopping_time}より$X_\sigma$は可測$\mathcal{F}_\sigma/\borel{\R}$であり，
+			任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})と$\tau \geq \sigma$の仮定より
+			\begin{align}
+				\cexp{X_{\tau}}{\mathcal{F}_\sigma} = X_{\tau \wedge \sigma} = X_\sigma
+			\end{align}
+			も成り立つ．これらを用いれば
+			\begin{align}
+				\Exp{(X_{\tau} - X_{\sigma})^2}
+				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{X_{\tau}X_{\sigma}} \\
+				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma}} \\
+				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{X_{\sigma}\cexp{X_{\tau}}{\mathcal{F}_\sigma}} \\
+				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{X_{\sigma}^2} \\
+				&= \Exp{X_{\tau}^2 - X_{\sigma}^2}
+			\end{align}
+			が成り立つ．
 			
-			\item[(2)]
-				(1)と同様に
-				\begin{align}
-					\cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{F}_\sigma}
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma} \\
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2X_{\sigma}^2 \\
-					&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2\cexp{X_{\sigma}^2}{\mathcal{F}_\sigma} \\
-					&= \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{F}_\sigma}
-				\end{align}
-				が成り立つ．
+		\item[(2)]
+			(1)と同様にして
+			\begin{align}
+				\cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{F}_\sigma}
+				&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma} \\
+				&= \cexp{X_{\tau}^2 + X_{\sigma}^2}{\mathcal{F}_\sigma} - 2X_{\sigma}^2 \\
+				&= \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{F}_\sigma}
+			\end{align}
+			が成り立つ．
 		\end{description}
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
-		\begin{prp}[有界変動かつ連続な二乗可積分マルチンゲールのパスは定数となる]\mbox{}\\
-			$A \in \mathcal{A} \cap \mathcal{M}_{2,c}$に対し，$\Norm{A_0}{\mathscr{L}^\infty} < \infty$ならば$A_t = A_0\ (\forall t \in I)\ $$\mu$-a.s.が成り立つ．
+	\begin{screen}
+		\begin{prp}[有界変動な連続二乗可積分マルチンゲールのパスは定数]\mbox{}\\
+			$A \in \mathcal{A} \cap \mathcal{M}_{2,c}$に対し$A_t = 0\ (\forall t \in I)\quad \mbox{$\mu$-a.s.}$が成り立つ．
 			\label{prp:bounded_continuous_M_2c_path}
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		$A \in \mathcal{A}$であるから，$A$に対し或る$A^{(1)},A^{(2)} \in \mathcal{A}^+$が存在して
@@ -233,7 +235,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[二次変分補題]
 			任意に$n \in \N$と$M \in \mathcal{M}_{b,c}$を取る．$\tau_j^n = jT/2^n\ (j=0,1,\cdots,2^n)$に対し
 			\begin{align}
@@ -242,11 +244,11 @@
 			\end{align}
 			とおけば$M^2 - Q^n \in \mathcal{M}_{b,c}$となり，さらに次が成り立つ:
 			\begin{align}
-				\Norm{M_T - M_0 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}.
+				\Norm{M_T^2 - M_0^2 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}.
 			\end{align}
 			\label{lem:quadratic_variation}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		先ず$Q^n$は$\mathcal{F}_t$-適合である．これは任意の停止時刻$\tau$に対し$M_{t \wedge \tau}$が可測$\mathcal{F}_t/\borel{\R}$であることによる．
@@ -310,9 +312,6 @@
 			&\leq 4 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2} \Exp{\sum_{j=0}^{2^n-1} \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 } \\
 			&= 4 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2} \Exp{M_T^2 - M_0^2}
 		\end{align}
-		が成り立つ．これより
-		\begin{align}
-			\Norm{M_T - M_0 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}．
-		\end{align}
+		が成り立つ．
 		\QED
 	\end{prf}
