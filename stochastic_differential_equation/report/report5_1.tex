@@ -1,85 +1,149 @@
 \section{Doobの不等式・任意抽出定理}
 	
-	$I$を$[0,\infty)$の部分集合として基礎に置フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_\alpha)_{\alpha \in I})$と表す．
+	$I$を$[0,\infty)$の部分集合として基礎に置フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_t)_{t \in I})$と表す．
 	
 	\begin{itembox}[l]{}
 		\begin{dfn}[マルチンゲール]
-			フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_\alpha)_{\alpha \in I})$上の実確率変数の族
-			$(M_\alpha)_{\alpha \in I} \subset \semiLp{p}{\mathcal{F},\mu}\ (p \geq 1)$が
+			フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_t)_{t \in I})$上の実確率変数の族
+			$(M_t)_{t \in I} \subset \semiLp{p}{\mathcal{F},\mu}\ (p \geq 1)$が
 			次の四条件を満たすとき，これを$\mathrm{L}^p$-劣マルチンゲール($\mathrm{L}^p$-submartingale)という．
 			\begin{description}
-				\item[(M.1)] $\forall \alpha \in I$に対し$M_\alpha$は可測$\mathcal{F}_\alpha/\borel{\R}$である．
-				\item[(M.2)] 任意の$\alpha \leq \beta\ (\alpha,\beta \in I)$に対し$\cexp{M_\beta}{\mathcal{F}_\alpha} \geq M_\alpha\ $({\scriptsize 同値類に対する順序関係})が成り立つ．
-				\item[(M.3)] 各$\omega \in \Omega$において，任意の$\alpha \in I$で左極限が存在する：$\exists \lim\limits_{\beta \uparrow \alpha} M_\beta(\omega) \in \R.$
-				\item[(M.4)] 各$\omega \in \Omega$において，任意の$\alpha \in I$で右連続である：$M_\alpha(\omega) = \lim\limits_{\beta \downarrow \alpha} M_\beta(\omega).$
+				\item[(M.1)] $\forall t \in I$に対し$M_t$は可測$\mathcal{F}_t/\borel{\R}$である．
+				\item[(M.2)] 任意の$s \leq t\ (s,t \in I)$に対し$\cexp{M_t}{\mathcal{F}_s} \geq M_s\ $({\scriptsize 同値類に対する順序関係})が成り立つ．
+				\item[(M.3)] 各$\omega \in \Omega$において，任意の$t \in I$で左極限が存在する：$\exists \lim\limits_{s \uparrow t} M_s(\omega) \in \R.$
+				\item[(M.4)] 各$\omega \in \Omega$において，任意の$t \in I$で右連続である：$M_t(\omega) = \lim\limits_{s \downarrow t} M_s(\omega).$
 			\end{description}
-			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_\alpha)_{\alpha \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
+			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_t)_{t \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
 			劣かつ優マルチンゲールであるものをマルチンゲールという．
 			\label{dfn:martingale}
 		\end{dfn}
 	\end{itembox}
 	
-	$\tau$を停止時刻とし，$\tau(\Omega)$が高々可算集合である場合，実確率変数の族$(M_\alpha)_{\alpha \in I}$
-	に対して
+	$\tau$を停止時刻，$(M_t)_{t \in I}$を実確率変数の族とする．$\tau(\Omega)$が高々可算集合である場合，
+	$t$に関する停止時刻との合成関数は
 	\begin{align}
-		M_\tau \coloneqq \sum_{\alpha \in \tau(\Omega)}M_\alpha
+		M_\tau = \sum_{t \in \tau(\Omega)}M_t \defunc_{\{\, \tau = t\, \}}
 	\end{align}
-	とおく．全ての$\alpha \in \tau(\Omega)$について$M_\alpha$が可測$\mathcal{F}_\alpha/\borel{\R}$であるとき，
-	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$となる．なぜならば任意の$\alpha \in I$と$A \in \borel{\R}$に対して
+	と表される．全ての$t \in \tau(\Omega)$について$M_t$が可測$\mathcal{F}_t/\borel{\R}$であるなら
+	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$である．なぜならば任意の$t \in I$と$A \in \borel{\R}$に対して
 	\begin{align}
-		(M_\tau \in A) \cap (\tau \leq \alpha)
-		= \bigcup_{\substack{\beta \in \tau(\Omega) \\ \beta \leq \alpha}}(M_\beta \in A) \cap (\tau = \beta) \in \mathcal{F}_\alpha 
+		\{\, M_\tau \in A\, \} \cap \{\, \tau \leq t\, \}
+		= \bigcup_{\substack{s \in \tau(\Omega) \\ s \leq t}}\{\, M_s \in A\, \} \cap \{\, \tau = s\, \} \in \mathcal{F}_t 
 	\end{align}
 	が成り立つからである．$M_\tau$の可測性を確認したところで次の定理を証明する．
 	
 	\begin{itembox}[l]{}
-		\begin{thm}[任意抽出定理(その1)]
-			$I = \{\ 1,2,\cdots,n\ \}$とし，実確率変数の族$(M_\alpha)_{\alpha \in I}$が$\mathrm{L}^p$-劣マルチンゲールであるとする．
+		\begin{thm}[任意抽出定理(1)]
+			$I = \{\ 0,1,\cdots,n\ \}$とし，実確率変数の族$(M_t)_{t \in I}$が$\mathrm{L}^p$-劣マルチンゲールであるとする．
 			このとき$I$に値を取る停止時刻$\sigma$と$\tau$について次が成立する:
 			\begin{align}
 				\cexp{M_\tau}{\mathcal{F}_\sigma} \geq M_{\sigma \wedge \tau}.
+				\label{eq:thm_optional_sampling_theorem_1}
 			\end{align}
+			$(M_t)_{t \in I}$が$\mathrm{L}^p$-マルチンゲールなら(\refeq{eq:thm_optional_sampling_theorem_1})は等号で成立する．
+			\label{thm:optional_sampling_theorem_1}
 		\end{thm}
 	\end{itembox}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[$\sigma \leq \tau$の場合]
-				$F_\alpha \coloneqq \defunc_{\sigma < \alpha \leq \tau}\ (\alpha \in I)$とおくと，
+				$F_t \coloneqq \defunc_{\{\, \sigma < t \leq \tau\, \}}\ (t \in I)$とおくと，
 				\begin{align}
-					(\sigma < \alpha \leq \tau) = (\sigma < \alpha) \cap (\alpha \leq \tau) = (\sigma \leq \alpha-1) \cap (\tau \leq \alpha-1)^c
+					\{\, \sigma < t \leq \tau\, \} = \{\, \sigma < t\, \} \cap \{\, t \leq \tau\, \} = \{\, \sigma \leq t-1\, \} \cap \{\, \tau \leq t-1\, \}^c
 				\end{align}
-				より$F_\alpha$は可測$\mathcal{F}_{\alpha-1}/\borel{\R}$となる．$F_\alpha$を用いて
+				より$F_t$は可測$\mathcal{F}_{t-1}/\borel{\R}$となる．
 				\begin{align}
-					N_\beta \coloneqq \sum_{\alpha=0}^{\beta-1} F_{\alpha+1}(M_{\alpha+1} - M_\alpha) \quad (\beta \in I)
+					N_0 = 0,\quad N_t \coloneqq \sum_{s=0}^{t-1} F_{s+1}(M_{s+1} - M_s) \quad (t \in I \backslash \{0\})
 				\end{align}
-				として$(N_\beta)_{\beta \in I}$を定義すれば，これもまた$\mathrm{L}^p$-劣マルチンゲールとなる．今$I$は有限集合であるから
-				定義\ref{dfn:martingale}の条件(M.1)(M.2)を満たすことを確認すればよい．
-				\begin{description}
-					\item[(M.1)] 先ず$N_\beta$が可測$\mathcal{F}_\beta/\borel{\R}$であることを示す．
-						$N_\beta$を構成する級数の項のうち最も可測性が厳しいものは最終項$F_{\beta}(M_{\beta} - M_{\beta-1})$であり，
-						$M_\beta$も$F_{\beta}$も可測$\mathcal{F}_\beta/\borel{\R}$であるから$N_\beta$の可測性も判明する．可積分性については，
-						$M_\alpha\ (\alpha \in I)$が$p$乗可積分であるからその有限個の結合で表現される$(N_\beta)_{\beta \in I}$もまた$p$乗可積分となる．
-					\item[(M.2)]	
-						$\alpha \leq \beta\ (\alpha,\beta \in I)$に対して
-						\begin{align}
-							N_{\beta} - N_{\alpha} = \sum_{\gamma=\alpha}^{\beta-1} F_{\gamma+1}(M_{\gamma+1} - M_\gamma)
-						\end{align}
-						と表せるから，(関数の同値類を同様に表記して)$\mathcal{F}_{\alpha}$で条件付ければ，
-						性質$\tilde{\mathrm{C}}$5，$\tilde{\mathrm{C}}$6と$F_\alpha$の可測性事情，そして$(M_\alpha)_{\alpha \in I}$が劣マルチンゲールであることにより
-						\begin{align}
-							\cexp{N_{\beta} - N_{\alpha}}{\mathcal{F}_\alpha}
-							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{F_{\gamma+1}(M_{\gamma+1} - M_\gamma)}{\mathcal{F}_\alpha} \\
-							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{\cexp{F_{\gamma+1}(M_{\gamma+1} - M_\gamma)}{\mathcal{F}_\gamma}}{\mathcal{F}_\alpha} \\
-							&= \sum_{\gamma=\alpha}^{\beta-1} \cexp{F_{\gamma+1}\cexp{M_{\gamma+1} - M_\gamma}{\mathcal{F}_\gamma}}{\mathcal{F}_\alpha}
-							\geq 0\quad (\mbox{P-a.s.})
-						\end{align}
-						が成り立つ\footnote{同値類ではなく代表元の関数と見做している．}．
-						従って$\cexp{N_{\beta}}{\mathcal{F}_\alpha} \geq \cexp{N_{\alpha}}{\mathcal{F}_\alpha} = N_\alpha$
-						\footnote{こちらは同値類に対する順序記号を使っている．等号は性質$\tilde{\mathrm{C}}$5による．}が成り立つ．
-				\end{description}
-				
+				として$N$を定めれば，$N$もまた$\mathrm{L}^p$-劣マルチンゲールとなる．実際
+				$N_t$の右辺の最終項$F_t(M_t - M_{t-1})$が可測$\mathcal{F}_t/\borel{\R}$であるから
+				$N_t$も可測$\mathcal{F}_t/\borel{\R}$であり，また
+				$M_t\ (t \in I)$が$p$乗可積分であるからその有限個の結合で表現される$N_t\ (t \in I)$もまた$p$乗可積分となる．
+				更に$s \leq t\ (s,t \in I)$に対して
+				\begin{align}
+					N_t - N_s = \sum_{u=s}^{t-1} F_{u+1}(M_{u+1} - M_u)
+				\end{align}
+				となるから，命題\ref{prp:properties_of_expanded_conditional_expectation}の
+				$\tilde{\mathrm{C}}$5，$\tilde{\mathrm{C}}$6，そして$(M_t)_{t \in I}$の劣マルチンゲール性より
+				\begin{align}
+					&\cexp{N_t - N_s}{\mathcal{F}_s}
+					= \sum_{u=s}^{t-1} \cexp{F_{u+1}(M_{u+1} - M_u)}{\mathcal{F}_s} \\
+					&\qquad= \sum_{u=s}^{t-1} \cexp{F_{u+1}\cexp{M_{u+1} - M_u}{\mathcal{F}_u}}{\mathcal{F}_s}
+					\geq 0\ \footnotemark
+				\end{align}
+				が成り立ち$(N_t)_{t \in I}$の劣マルチンゲール性が従う．
+				\footnotetext{
+					順序は関数類に対する順序であり，0は関数類の零元を表す．
+				}
+				\begin{align}
+					N_n = \sum_{s=\sigma}^{\tau-1} (M_{s+1} - M_s) = M_\tau - M_\sigma
+				\end{align}
+				と表現すれば，$\mathcal{G} = \{\, \emptyset, \Omega\, \}$として
+				\begin{align}
+					\Exp{M_\tau - M_\sigma} = \Exp{N_n} = \cexp{\cexp{N_n}{\mathcal{F}_0}}{\mathcal{G}} \geq \Exp{N_0} = 0
+					\label{eq:thm_optional_sampling_theorem_1_1}
+				\end{align}
+				が成り立つ．特に任意の$E \in \mathcal{F}_\sigma$に対して
+				\begin{align}
+					\sigma_E(\omega) \coloneqq
+					\begin{cases}
+						\sigma(\omega) & (\omega \in E) \\
+						n & (\omega \in \Omega \backslash E) 
+					\end{cases}
+					,\quad \tau_E(\omega) \coloneqq
+					\begin{cases}
+						\tau(\omega) & (\omega \in E) \\
+						n & (\omega \in \Omega \backslash E) 
+					\end{cases}
+				\end{align}
+				と定めれば$\sigma_E,\tau_E$も停止時刻となり
+				\footnote{
+					任意の$t \in I$に対し
+					\begin{align}
+						\{\, \tau_E \leq t\, \} 
+						= \{\, \tau_E \leq t\, \} \cap E + \{\, \tau_E \leq t\, \} \cap (\Omega \backslash E)
+						=\begin{cases}
+							\{\, \tau \leq t\, \} \cap E & (t < n) \\
+							\Omega & (t = n)
+						\end{cases}
+					\end{align}
+					が成り立つ．$\mathcal{F}_\sigma$の定義より$\{\, \tau \leq t\, \} \cap E \in \mathcal{F}_t$である．
+				}
+				，$\sigma_E \leq \tau_E$を満たすから(\refeq{eq:thm_optional_sampling_theorem_1_1})より
+				\begin{align}
+					\int_\Omega M(\tau_E(\omega),\omega)\ \mu(d\omega) \geq \int_\Omega M(\sigma_E(\omega),\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立つ．$\tau_E$の定め方より
+				\begin{align}
+					\int_\Omega M(\tau_E(\omega),\omega)\ \mu(d\omega) = \int_E M(\tau(\omega),\omega)\ \mu(d\omega) + \int_{\Omega \backslash E} M(n,\omega)\ \mu(d\omega)
+				\end{align}
+				とでき，$\sigma_E$についても同じ表現ができるから
+				\begin{align}
+					\int_E M(\tau(\omega),\omega)\ \mu(d\omega) \geq \int_E M(\sigma(\omega),\omega)\ \mu(d\omega)
+				\end{align}
+				が従う．よって命題\ref{prp:properties_of_expanded_conditional_expectation}の$\tilde{\mathrm{C}}$2より
+				\begin{align}
+					\int_E \cexp{M_\tau}{\mathcal{F}_\sigma}(\omega)\ \mu(d\omega) \geq \int_E M(\sigma(\omega),\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立ち，$E \in \mathcal{F}_\sigma$の任意性により
+				\begin{align}
+					\cexp{M_\tau}{\mathcal{F}_\sigma} \geq M_\sigma = M_{\sigma \wedge \tau}
+				\end{align}
+				を得る．
+			
+			\item[一般の場合]
+				$\sigma,\tau$を一般の停止時刻とする．命題\ref{prp:stopping_time_and_conditional_expectation}より
+				\begin{align}
+					\cexp{M_\tau}{\mathcal{F}_\sigma}
+					&= \cexp{M_\tau \defunc_{\{\, \tau > \sigma \, \}}}{\mathcal{F}_\sigma} + \cexp{M_\tau \defunc_{\{\, \tau \leq \sigma \, \}}}{\mathcal{F}_\sigma} \\
+					&= \cexp{M_{\tau \vee \sigma} \defunc_{\{\, \tau > \sigma \, \}}}{\mathcal{F}_\sigma} + \cexp{M_{\tau \wedge \sigma} \defunc_{\{\, \tau \leq \sigma \, \}}}{\mathcal{F}_\sigma} \\
+					&\geq M_{\sigma} \defunc_{\{\, \tau > \sigma \, \}} + M_{\tau \wedge \sigma} \defunc_{\{\, \tau \leq \sigma \, \}}
+					= M_{\tau \wedge \sigma}
+				\end{align}
+				が成り立つ．
 		\end{description}
+		\QED
 	\end{prf}
 
 	\begin{itembox}[l]{}
