@@ -64,8 +64,13 @@
 		全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
 		は右連続且つ左極限を持つから，定理\ref{thm:closed_set_stopping_time}より
 		\begin{align}
-			\tau_j(\omega) \coloneqq \inf{}{\Set{t \in I}{|M_t(\omega)| \geq j}} \wedge T \quad (\forall \omega \in \Omega,\ j=0,1,2,\cdots)
+			\tau_j(\omega) \coloneqq \inf{}{\Set{t \in I}{|M_t(\omega)| \geq j}} \wedge T \quad (\forall \omega \in \Omega,\ j=0,1,2,\cdots) \footnotemark
 		\end{align}
+		\footnotetext{
+			定理\ref{thm:closed_set_stopping_time}の脚注に書いた通り
+			$\Set{t \in I}{|M_t(\omega)| \geq j} = \emptyset$の場合は
+			$\tau(\omega) = T$とする．
+		}
 		として$\tau_j$は停止時刻となり$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が成り立つ．
 		実際全ての$\omega \in \Omega$について$\tau_0(\omega) = 0$であり，
 		また$t \longmapsto M_t(\omega)$の右連続性から$\tau_j \leq \tau_{j+1}\ (j=1,2,\cdots)$も成り立つ．
@@ -143,41 +148,53 @@
 	\end{screen}
 	
 	\begin{prf}
-		$A \in \mathcal{A}$であるから，$A$に対し或る$A^{(1)},A^{(2)} \in \mathcal{A}^+$が存在して
+		$A$に対し或る$A^{(1)},A^{(2)} \in \mathcal{A}^+$が存在して
 		\begin{align}
 			A = A^{(1)} - A^{(2)}
 		\end{align}
-		と表現できる．或る$\mu$-零集合$E$を取れば，全ての$\omega \in \Omega \backslash E$に対し写像$I \ni t \longmapsto A_t^{(1)}(\omega)$と
-		$I \ni t \longmapsto A_t^{(2)}(\omega)$が連続且つ単調非減少となるようにできるから，
+		と表現できる．また或る$\mu$-零集合$E$が存在し，全ての$\omega \in \Omega \backslash E$に対して
+		\begin{align}
+			A_0^{(1)}(\omega) = A_0^{(2)}(\omega) = 0
+		\end{align}
+		且つ$I \ni t \longmapsto A_t^{(1)}(\omega)$と$I \ni t \longmapsto A_t^{(2)}(\omega)$が共に連続，単調非減少となるから，
 		\begin{align}
 			\tau_m(\omega) \coloneqq
 			\begin{cases}
 				0 & (\omega \in E) \\
-				\inf{}{\Set{t \in I}{\left( A_t^{(1)}(\omega) - A_0^{(1)} \right) \vee \left( A_t^{(2)}(\omega) - A_0^{(2)} \right) \geq m}} & (\omega \in \Omega \backslash E)
+				\inf{}{\Set{t \in I}{A_t^{(1)}(\omega) \vee A_t^{(2)}(\omega) \geq m}} \wedge T & (\omega \in \Omega \backslash E)
 			\end{cases}
 			\quad (m=1,2,\cdots)
 		\end{align}
-		と定義すれば，定理\ref{thm:closed_set_stopping_time}よりこれは停止時刻となる．また連続性から$\tau_m \leq \tau_{m+1}$となり
-		更に$\lim_{m \to \infty}\tau_m(\omega) = T\ (\forall \omega \in \Omega \backslash E)も成り立つ．
-		$今$t \in I,\ n,m \in \N$を任意に取って固定する．
+		は定理\ref{thm:closed_set_stopping_time}より停止時刻となる．そして
+		$\omega \in \Omega \backslash E$に対する$A^{(1)},A^{(2)}$のパスの連続性から
+		\begin{align}
+			\tau_i(\omega) = T \quad (\exists i = i(\omega) \in \N,\ \forall \omega \in \Omega \backslash E)
+		\end{align}
+		が成り立ち，かつ$\tau_m \leq \tau_{m+1}\ (m=1,2,\cdots)$も満たされている．
+		今$t \in I,\ n,m \in \N$を固定する．
 		\begin{align}
 			\sigma_j^n \coloneqq \tau_m \wedge \frac{tj}{2^n} \quad (j = 0,1,\cdots, 2^n)
 		\end{align}
-		とおけば，補題\ref{lem:stopping_time_telescopic_sum}により
+		とおけば，$\sigma_j^n \leq \sigma_{j+1}^n\ (j = 0,1,\cdots, 2^n-1)$と
+		\begin{align}
+			\Norm{A_{\sigma_j^n}}{\mathscr{L}^\infty} \leq 2m \quad (j = 0,1,\cdots, 2^n)
+		\end{align}
+		を満たすから
 		\footnote{
-			補題の有界性の仮定を満たしていることを確認する．任意の$j \in \N$番目の$\sigma_j^n$を取る．
-			$\omega \in \Omega \backslash E$に対し写像$t \longmapsto A_t(\omega)$は連続であるから
+			$\omega \in \Omega \backslash E$に対する$A^{(1)},A^{(2)}$のパスが連続であるから，定理\ref{thm:closed_set_stopping_time}より
 			\begin{align}
-				\left| A_{\sigma_j^n(\omega)}(\omega) - A_0(\omega) \right| 
-				\leq \left| A^{(1)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) - A^{(1)}_0(\omega) \right| + \left| A^{(2)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) - A^{(2)}_0(\omega) \right|
+				A_t^{(1)}(\omega) \vee A_t^{(2)}(\omega) \leq m \quad (\forall t \leq \tau_m(\omega),\ \omega \in \Omega \backslash E)
+			\end{align}
+			が成り立ち
+			\begin{align}
+				\left| A_{\sigma_j^n(\omega)}(\omega) \right| 
+				\leq \left| A^{(1)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) \right| + \left| A^{(2)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) \right|
 				\leq 2m
+				\quad (\forall \omega \in \Omega \backslash E)
 			\end{align}
-			が成り立つ．また補題\ref{lem:holder_inequality}より或る零集合$E'$を除いて$|A_0| \leq \Norm{A_0}{\mathscr{L}^\infty}$が成り立っているから，
-			\begin{align}
-				\left| A_{\sigma_j^n(\omega)}(\omega) \right| \leq 2m + \Norm{A_0}{\mathscr{L}^\infty} \quad (\forall \omega \in \Omega \backslash (E \cup E'))
-			\end{align}
-			となり$\Norm{A_{\sigma_j^n}}{\mathscr{L}^\infty} \leq 2m + \Norm{A_0}{\mathscr{L}^\infty}$であると判る．
+			が従う．
 		}
+		補題\ref{lem:stopping_time_telescopic_sum}により
 		\begin{align}
 			\Exp{\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2}
 			= \sum_{j=0}^{2^n-1} \Exp{A_{\sigma_{j+1}^n}^2 - A_{\sigma_j^n}^2}
@@ -189,49 +206,45 @@
 			\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2
 			\leq \sup{j}{\left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|} \sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|
 		\end{align}
-		となり，全ての$\omega \in \Omega \backslash E$に対して$I \ni t \longmapsto A_t(\omega)$は(一様)連続だから
+		となり，特に$\omega \in \Omega \backslash E$に対しては$I \ni t \longmapsto A_t(\omega)$の連続性から
 		\begin{align}
-			\sup{j}{\left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|} \longrightarrow 0 \quad (n \longrightarrow \infty).
+			\sup{j}{\left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|} \longrightarrow 0 \quad (n \longrightarrow \infty)
 		\end{align}
-		また定理\ref{thm:closed_set_stopping_time}より全ての$\omega \in \Omega \backslash E$と$t \in I$に対して
-		\begin{align}
-			\left( A^{(1)}_{\tau_m \wedge t}(\omega) - A^{(1)}_0(\omega) \right) \vee \left( A^{(2)}_{\tau_m \wedge t}(\omega) - A^{(2)}_0(\omega) \right) \leq m
-		\end{align}
-		が成り立つから
+		(概収束)と
 		\begin{align}
 			\sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|
 			&\leq \sum_{j=0}^{2^n-1} \left( A^{(1)}_{\sigma_{j+1}^n}(\omega) - A^{(1)}_{\sigma_j^n}(\omega) + A^{(2)}_{\sigma_{j+1}^n}(\omega) - A^{(2)}_{\sigma_j^n}(\omega) \right) \\
-			&= \left( A^{(1)}_{\tau_m \wedge t}(\omega) - A^{(1)}_0(\omega) \right) + \left( A^{(2)}_{\tau_m \wedge t}(\omega) - A^{(2)}_0(\omega) \right) \leq 2m
+			&= A^{(1)}_{\tau_m \wedge t}(\omega) + A^{(2)}_{\tau_m \wedge t}(\omega) \leq 2m
 		\end{align}
-		となり，Lebesgueの収束定理により
+		が満たされるから，Lebesgueの収束定理を適用できて
 		\begin{align}
 			\int_\Omega \sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n(\omega)}(\omega) - A_{\sigma_j^n(\omega)}(\omega) \right)^2\ \mu(d\omega) \longrightarrow 0 \quad (n \longrightarrow \infty)
 		\end{align}
-		を得る．ゆえに
+		が従う．ゆえに
 		\begin{align}
 			\int_\Omega \left( A_{\tau_m(\omega) \wedge t}(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) = 0 \quad (m=1,2,\cdots)
 		\end{align}
-		が成り立ち，更にDoobの不等式より$|A_{\tau_m \wedge t} - A_{0}| \leq \sup{t \in I}{|A_t - A_{0}|} \in \mathscr{L}^2$であるから，
-		再びLebesgueの収束定理を適用して
+		が成り立ち，Doobの不等式より$|A_{\tau_m \wedge t} - A_{0}| \leq \sup{t \in I}{|A_t - A_{0}|} \in \mathscr{L}^2$であるからLebesgueの収束定理を適用して
 		\begin{align}
-			\int_\Omega \left( A_{\tau_m(\omega) \wedge t}(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega)
-			\longrightarrow \int_\Omega \left( A_t(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) \quad (n \longrightarrow \infty)
+			\int_\Omega \left( A_t(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) 
+			= \int_{\Omega \backslash E} \left( A_t(\omega) \right)^2\ \mu(d\omega)
+			= 0
 		\end{align}
-		を得る．$t \in I$は任意に取っていたからつまり
+		を得る．$t \in I$は任意に取っていたから，
 		\begin{align}
-			A_t = A_0 \quad \mbox{$\mu$-a.s.} \quad (\forall t \in I)
+			A_t = 0 \quad \mbox{$\mu$-a.s.} \quad (\forall t \in I)
 		\end{align}
-		が示されたが，実際$\omega \in \Omega \backslash E$に対しパスは連続であるから
+		が従い，また$\omega \in \Omega \backslash E$に対する$A$のパスの連続性により
 		\begin{align}
-			\Set{\omega \in \Omega \backslash E}{A_t(\omega) = A_0(\omega)\ (\forall t \in I)}
-			= \bigcap_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) = A_0(\omega)}
+			\Set{\omega \in \Omega \backslash E}{A_t(\omega) = 0\ (\forall t \in I)}
+			= \bigcap_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) = 0}
 		\end{align}
-		と表せる．
+		と表すことができる．従って
 		\begin{align}
-			\Set{\omega \in \Omega \backslash E}{A_t(\omega) \neq A_0(\omega)\ (\exists t \in I)}
-			\subset E + \bigcup_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) \neq A_0(\omega)}
+			\Set{\omega \in \Omega}{A_t(\omega) \neq 0\ (\exists t \in I)}
+			\subset E + \bigcup_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) \neq 0}
 		\end{align}
-		の右辺は零集合であるから$A_t = A_0\ (\forall t \in I)\ $$\mu$-a.s.が成り立つ．
+		が成り立ち，右辺が零集合であるから$\mu$-a.s.に$A_t = 0\ (\forall t \in I)$となる．
 		\QED
 	\end{prf}
 	
