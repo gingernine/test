@@ -1,232 +1,270 @@
 \chapter{コンパクト作用素}
-	係数体を$\C$，$X,Y$をノルム空間，$K$を$X \rightarrow Y$の線型写像($\mathscr{D}(K) = X$)とする．
-	以下では$X,Y$におけるノルムを$\Norm{\cdot}{X},\ \Norm{\cdot}{Y}$と表記し，
-	位相はこれらのノルムにより導入されるものと考える．
 	
-	\begin{itembox}[l]{}
+	係数体を$\C$，$X,Y$をノルム空間とし，$K$を$X$から$Y$への線型作用素とする．
+	また$X,Y$及び共役空間$X^*,Y^*$におけるノルムを
+	$\Norm{\cdot}{X},\ \Norm{\cdot}{Y},\ \Norm{\cdot}{X^*},\ \Norm{\cdot}{Y^*}$と表記し，
+	位相はこれらのノルムにより導入する．
+	
+	\begin{screen}
 		\begin{dfn}[コンパクト作用素]
-			任意の有界部分集合$B \subset X$に対して$KB$が相対コンパクトとなるとき，
-			つまり$KB$の閉包$\closure{KB}$がコンパクトとなるとき，
-			$K$をコンパクト作用素(compact operator)という．
+			$K$がコンパクト作用素(compact operator)であるということを次で定義する:
+			\begin{itemize}
+				\item $\Dom{K} = X$を満たし，かつ$X$の任意の有界部分集合$B$に対して$KB$が相対コンパクト
+					($KB$の閉包$\closure{KB}$がコンパクト)となる．
+			\end{itemize}
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[コンパクト作用素となるための十分条件の一つ]
-			$B_1 \coloneqq \left\{\ x \in X\quad |\quad \Norm{x}{X} < 1\ \right\}$に対して$\closure{KB_1}$が
+			$\Dom{K} = X$とする．$B_1 \coloneqq \Set{x \in X}{\Norm{x}{X} < 1}$に対して$\closure{KB_1}$が
 			コンパクトであるなら$K$はコンパクト作用素となる．
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
-		任意の有界集合$B \subset X$に対しては或る$\lambda$が取れて$B \subset \lambda B_1\ (= \left\{\ \lambda x\quad |\quad x \in B_1\ \right\})$
-		となるようにできる．$K(\lambda B_1)$の閉包がコンパクトとなるなら$KB$の閉包もコンパクトとなる(コンパクト集合の閉部分集合はコンパクトとなる)から，
+		$B \subset X$が有界集合なら或る$\lambda > 0$が存在して$B \subset \lambda B_1\ (= \Set{\lambda x}{x \in B_1})$
+		が成り立つ．$\closure{K(\lambda B_1)}$がコンパクトとなるならその閉部分集合である$\closure{KB}$もコンパクトとなるから，
 		$\closure{K(\lambda B_1)}$がコンパクトとなることを示せばよい．先ず
 		\begin{align}
 			\closure{K(\lambda B_1)} = \lambda \closure{KB_1}
 		\end{align}
 		が成り立つことを示す．$x \in \closure{K(\lambda B_1)}$に対しては点列$(x_n)_{n=1}^{\infty} \subset K(\lambda B_1)$が取れて
-		$\Norm{x_n - x}{X} \longrightarrow 0\ (n \longrightarrow \infty)$が成り立つ．
+		$\Norm{x_n - x}{X} \longrightarrow 0\ (n \longrightarrow \infty)$を満たす．
 		$y_n \coloneqq x_n/\lambda$とおけば$K$の線型性により$y_n \in KB_1$となり，
 		$\Norm{y_n - x/\lambda}{X}= \Norm{x_n - x}{X}/\lambda \longrightarrow 0\ (n \longrightarrow \infty)$
-		となるから$x/\lambda \in \closure{KB_1}$すなわち$x \in \lambda\closure{KB_1}$が判る．
+		となるから$x/\lambda \in \closure{KB_1}$，すなわち$x \in \lambda\closure{KB_1}$である．
 		逆に$x \in \lambda \closure{KB_1}$に対しては$x/\lambda \in \closure{KB_1}$となるから，
 		或る点列$(t_n)_{n=1}^{\infty} \subset KB_1$が存在して$\Norm{t_n - x/\lambda}{X} \longrightarrow 0\ (n \longrightarrow \infty)$
-		が成り立つ．$s_n = \lambda t_n$とおけば$K$の線型性により$s_n \in K(\lambda B_1)$となり，
+		を満たす．$s_n = \lambda t_n$とおけば$K$の線型性により$s_n \in K(\lambda B_1)$となり，
 		$\Norm{s_n - x}{X}= \lambda \Norm{t_n - x/\lambda}{X} \longrightarrow 0\ (n \longrightarrow \infty)$
-		が成り立つから$x \in \closure{K(\lambda B_1)}$が判る．以上で$\closure{K(\lambda B_1)} = \lambda \closure{KB_1}$が示された．
+		が成り立つから$x \in \closure{K(\lambda B_1)}$である．以上で$\closure{K(\lambda B_1)} = \lambda \closure{KB_1}$が示された．
 		$\closure{K(\lambda B_1)}$を覆う任意の開被覆$\cup_{\mu \in M}O_\mu\ $($M$は任意濃度)に対し
 		\begin{align}
 			\closure{KB_1} \subset \bigcup_{\mu \in M} \tfrac{1}{\lambda}O_\mu
 		\end{align}
-		が成り立ち\footnote{開集合$O_\mu$は$1/\lambda$でスケールを変えてもまた開集合となる．}，仮定より$\closure{KB_1}$はコンパクトであるから$M$から有限個の$\mu_i\ (i=1,\cdots,n)$を取り出して
+		が成り立ち\footnote{開集合$O_\mu$は$1/\lambda$でスケールを変えてもまた開集合となる．}，仮定より$\closure{KB_1}$はコンパクトであるから，$M$から有限個の添数$\mu_i\ (i=1,\cdots,n)$を取り出して
 		\begin{align}
 			\closure{KB_1} \subset \bigcup_{i=1}^{n} \tfrac{1}{\lambda}O_{\mu_i}
 		\end{align}
-		とできる．従って$\closure{K(\lambda B_1)}$は$O_{\mu_1}\cup \cdots \cup O_{\mu_n}$で覆われることになるからコンパクトであると示された．
+		となる．
+		\begin{align}
+			\closure{K(\lambda B_1)} = \lambda \closure{KB_1} \subset \bigcup_{i=1}^{n} O_{\mu_i}
+		\end{align}
+		が従うから$\closure{K(\lambda B_1)}$はコンパクトである．
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[コンパクト作用素であることの同値条件]
-			(1)$K$がコンパクトであることと，(2)$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対し点列$(Tx_n)_{n=1}^{\infty}$が
-				$\closure{(Tx_n)_{n=1}^{\infty}}$で収束する部分列を含むことは同値である．
-				\label{lem:compact_operator_equiv_cond}
+			$\Dom{K} = X$とする．(1)$K$がコンパクトであることと，(2)$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対し点列$(Tx_n)_{n=1}^{\infty}$が
+			$\closure{(Tx_n)_{n=1}^{\infty}}$で収束する部分列を含むことは同値である．
+			\label{lem:compact_operator_equiv_cond}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(1)$\Rightarrow$(2)]
-				$B = (x_n)_{n=1}^{\infty}$とおけば$B$は$X$において有界集合となるから$KB$は相対コンパクトである．
-				点列$(x_n)_{n=1}^{\infty}$は$\closure{KB}$の点列でもあるから，コンパクト性の一般論により
-				$(x_n)_{n=1}^{\infty}$は点列コンパクト，つまり収束部分列を持つ．
+				$(x_n)_{n=1}^{\infty}$は$X$において有界集合であるから$(Kx_n)_{n=1}^{\infty}$は相対コンパクトである．
+				距離空間におけるコンパクト性の一般論により$\closure{(Kx_n)_{n=1}^{\infty}}$は点列コンパクトとなり(2)が従う．
 			\item[(2)$\Rightarrow$(1)]
-				一般論より任意の有界集合$B \subset X$に対して$\closure{TB}$がコンパクトとなるための同値条件は
-				$\closure{TB}$が点列コンパクトとなることである．
-				このためには「$TB$が点列コンパクトなら$\closure{TB}$も点列コンパクトとなる」---(※)を示せばよい．
-				(※)が示されたとして，(2)を仮定すれば$TB$の任意の点列は$(x_n)_{n=1}^{\infty} \subset B$(有界)によって
-				$(Tx_n)_{n=1}^{\infty}$と表現できるから収束する部分列を持ち，(※)の主張と上の一般論により$\closure{TB}$はコンパクトとなる．
-				これより(※)を示す．$\closure{TB}$の任意の点列$(y_n)_{n=1}^{\infty}$に対して
+				距離空間の一般論より，任意の有界集合$B \subset X$に対して$\closure{TB}$がコンパクトとなることと
+				$\closure{TB}$が点列コンパクトとなることは同値である．従って次の主張
+				\begin{itembox}[l]{主張(※)}
+					$TB$の任意の点列が$\closure{TB}$で収束する部分列を含むなら$\closure{TB}$は点列コンパクトである．
+				\end{itembox}
+				を示せばよい．実際(※)が示されたとする．
+				$TB$から任意に点列$(y_n)_{n=1}^{\infty}$を取れば，これに対し或る$(x_n)_{n=1}^{\infty} \subset B$が対応して
+				$y_n = Tx_n\ (n=1,2,\cdots)$と表現され，(2)の仮定より$(y_n)_{n=1}^{\infty}$は
+				$\closure{(y_n)_{n=1}^{\infty}}$で収束する部分列を持つ．
+				よって(※)と上の一般論により$\closure{TB}$はコンパクトとなる．
+				(※)を示す．$\closure{TB}$の任意の点列$(y_n)_{n=1}^{\infty}$に対して
 				$\Norm{y_n - z_n}{Y} < 1/n\ (n=1,2,\cdots)$を満たす$(z_n)_{n=1}^{\infty} \subset TB$が存在する．
-				部分列$(z_{n_k})_{k=1}^{\infty}$が$z \in TB$に収束するなら，任意の$\epsilon > 0$に対し
-				或る$K_1 \in \N$が取れて$k \geq K_1$ならば$\Norm{z - z_{n_k}}{Y} < \epsilon/2$を満たす．
-				更に或る$K_2 \in \N$が取れて$k \geq K_2$なら$1/n_k < \epsilon/2$も満たされ，$\forall k \geq \max{}{\{K_1,K_2\}}$
+				部分列$(z_{n_k})_{k=1}^{\infty}$が$y \in \closure{TB}$に収束するなら，任意の$\epsilon > 0$に対し
+				或る$K_1 \in \N$が取れて$k \geq K_1$ならば$\Norm{y - z_{n_k}}{Y} < \epsilon/2$を満たす．
+				更に或る$K_2 \in \N$が取れて$k \geq K_2$なら$1/n_k < \epsilon/2$も満たされるから，全ての$k \geq \max{}{\{K_1,K_2\}}$
 				に対して
 				\begin{align}
-					\Norm{z - y_{n_k}}{Y} \leq \Norm{z - z_{n_k}}{Y} + \Norm{z_{n_k} - y_{n_k}}{Y} < \epsilon
+					\Norm{y - y_{n_k}}{Y} \leq \Norm{y - z_{n_k}}{Y} + \Norm{z_{n_k} - y_{n_k}}{Y} < \epsilon
 				\end{align}
-				が成り立つ．これで$(y_n)_{n=1}^{\infty}$が収束部分列$(y_{n_k})_{k=1}^{\infty}$を持つと示された．
+				が成り立つ．
 		\end{description}
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{dfn}[コンパクト作用素の空間]
 			ここで新しく次の表記を導入する:
 			\begin{align}
-				B_c(X,Y) \coloneqq \left\{\ K:X \rightarrow Y\quad |\quad \mbox{$K$:コンパクト作用素}\ \right\}.
+				\Cop{X}{Y} \coloneqq \Set{K:X \rightarrow Y}{\mbox{$K$はコンパクト作用素}}.
 			\end{align}
+			有界作用素の空間に似た表記をしているが，定義右辺では作用素の有界性を要件に入れていない．しかし実際コンパクト作用素は有界である(命題\ref{prp:compact_operator_bounded_composition_of_compact_operators})．
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	\begin{itembox}[l]{}
-		\begin{prp}[コンパクト作用素の空間・作用素の合成がコンパクトとなるための十分条件]\mbox{}
+	\begin{screen}
+		\begin{prp}[コンパクト作用素の有界性・コンパクト作用素の合成のコンパクト性]\mbox{}
 			\begin{description}
-				\item[(1)] $B_c(X,Y)$は$B(X,Y)$の線型部分空間となる．
-				\item[(2)] $Z$をノルム空間とする．$A \in B(X,Y)$と$B \in B(Y,Z)$に対して$A$又は$B$がコンパクト作用素なら$BA$もまたコンパクト作用素となる．
+				\item[(1)] $\Cop{X}{Y} $は$\Bop{X}{Y} $の線型部分空間となる．
+				\item[(2)] $Z$をノルム空間とする．$A \in \Bop{X}{Y} $と$B \in \Bop{Y}{Z} $に対して$A$又は$B$がコンパクト作用素なら$BA$もまたコンパクト作用素となる．
 			\end{description}
+			\label{prp:compact_operator_bounded_composition_of_compact_operators}
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(1)] $B_1 \coloneqq \left\{\ x \in X \quad |\quad \Norm{x}{X} \leq 1\ \right\}$とおけば
-				任意の$K \in B_c(X,Y)$に対して$\closure{TB_1}$はコンパクトとなる．従って$TB_1$は有界で
+			\item[(1)] 
+				任意に$K \in \Cop{X}{Y} $を取れば，コンパクト作用素の定義より$\Dom{K} = X$が満たされている．
+				また$B_1 \coloneqq \Set{x \in X}{\Norm{x}{X} \leq 1}$とおけば，
+				$\closure{KB_1}$のコンパクト性により$KB_1$は有界であるから
 				\begin{align}
-					\infty > \sup{x \in B_1 \backslash \{0\}}{\Norm{Kx}{Y}} = \sup{0 < \Norm{x} \leq 1}{\Norm{Kx}{Y}}
+					\sup{0 < \Norm{x}{X} \leq 1}{\Norm{Kx}{Y}} = \sup{x \in B_1 \backslash \{0\}}{\Norm{Kx}{Y}} < \infty
 				\end{align}
-				が成り立ち，$K \in B(X,Y)$であると示された．次に$B_c(X,Y)$が線形空間であることを示す．
-				$K_1, K_2 \in B_c(X,Y)$と$\alpha \in \C$を任意に取り，前補助定理を使う．
-				補助定理によれば，任意の有界点列$(x_n)_{n=1}^{\infty} \subset X$に対して$(K_1x_n)_{n=1}^{\infty}$
-				は収束部分列$(K_1x_{n_k})_{k=1}^{\infty}$を持つ．この部分列$(n_k)_{k=1}^{\infty}$
-				に対して$(K_2x_{n_k})_{k=1}^{\infty}$もまた収束部分列$(K_2x_{n_{kl}})_{l=1}^{\infty}$
-				を持ち，$(K_1x_{n_{kl}})_{l=1}^{\infty}$もまた収束列であることに注意すれば
-				$\left( (K_1 + K_2)(x_{n_{kl}}) \right)_{l=1}^{\infty}$が収束部分列となるから
-				前補助定理より$K_1 + K_2$もコンパクト作用素となる．$K_1$に対して，$(\alpha K_1x_{n_k})_{k=1}^{\infty}$
-				もまた収束列であるから$\alpha K_1$もコンパクト作用素となる．以上で$B_c(X,Y)$が線形空間であると示された．
+				となり$K \in \Bop{X}{Y} $が従う．次に$\Cop{X}{Y} $が線形空間であることを示す．
+				$K_1, K_2 \in \Cop{X}{Y} $と$\alpha \in \C$を任意に取る．
+				補助定理\ref{lem:compact_operator_equiv_cond}より，
+				$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対して$\left( (K_1 + K_2)\left(x_n\right) \right)_{n=1}^{\infty}$
+				と$\left( (\alpha K_1)\left(x_n\right) \right)_{n=1}^{\infty}$が収束部分列を含むことを示せばよい．
+				補助定理\ref{lem:compact_operator_equiv_cond}により，$(K_1x_n)_{n=1}^{\infty}$
+				は$\closure{(K_1x_n)_{n=1}^{\infty}}$で収束する部分列$\left(K_1x_{n(1,k)}\right)_{k=1}^{\infty}$を持つ．
+				また$\left(K_2x_{n(1,k)}\right)_{k=1}^{\infty}$も$\closure{\left(K_2x_{n(1,k)}\right)_{k=1}^{\infty}}$で
+				収束する部分列$\left(K_2x_{n(2,k)}\right)_{k=1}^{\infty}$を持ち，
+				更に$\left(K_1x_{n(2,k)}\right)_{k=1}^{\infty}$は収束列$\left(K_1x_{n(1,k)}\right)_{k=1}^{\infty}$の部分列となるから，
+				$\left( (K_1 + K_2)\left(x_{n(2,k)}\right) \right)_{k=1}^{\infty}$が収束列となり
+				$K_1 + K_2 \in \Cop{X}{Y} $が従う．$(\alpha K_1x_{n(1,k)})_{k=1}^{\infty}$
+				もまた収束列であるから$\alpha K_1 \in \Cop{X}{Y} $も従う．以上より$\Cop{X}{Y} $は線形空間である．
 			
-			\item[(2)]\mbox{}
+			\item[(2)]
 				\begin{description}
 					\item[$A$がコンパクト作用素である場合]
-						補助定理により，$X$の任意の点列$(x_n)_{n=1}^{\infty}$に対し$(Ax_n)_{n=1}^{\infty}$は収束部分列
-						$(Ax_{n_k})_{k=1}^{\infty}$を持つ．$B$の連続性により$(BAx_{n_k})_{k=1}^{\infty}$も
-						収束列となるから，再び補助定理を適用して$BA$がコンパクト作用素であると示される．
+						補助定理\ref{lem:compact_operator_equiv_cond}により，$X$の任意の点列$(x_n)_{n=1}^{\infty}$に対し$(Ax_n)_{n=1}^{\infty}$は収束部分列
+						$\left(Ax_{n_k}\right)_{k=1}^{\infty}$を持つ．$B$の連続性により$\left(BAx_{n_k}\right)_{k=1}^{\infty}$も
+						収束列となるから，補助定理\ref{lem:compact_operator_equiv_cond}より$BA$はコンパクト作用素である．
 					
 					\item[$B$がコンパクト作用素である場合]
-						任意の有界集合$S \subset X$に対して，$A$の有界性と併せて$AS$は有界となる．従って$\closure{BAS}$がコンパクトとなり
-						$BA$はコンパクト作用素であると示された．
+						任意の有界集合$S \subset X$に対して，$A$の有界性と併せて$AS$は有界となる．従って$\closure{BAS}$がコンパクトとなるから
+						$BA$はコンパクト作用素である．
 				\end{description}
 		\end{description}
 		\QED
 	\end{prf}
 	
 	
-	\begin{itembox}[l]{}
-		\begin{prp}[$B_c(X,Y)$は閉]
-			$X$をノルム空間，$Y$をBanach空間とする．このとき$B_c(X,Y)$は$B(X,Y)$の閉部分空間である．
+	\begin{screen}
+		\begin{prp}[$\Cop{X}{Y} $の位相]
+			$Y$がBanach空間ならば$\Cop{X}{Y} $は$\Bop{X}{Y} $の閉部分空間である．
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
-		，$B(X,Y)$が作用素ノルムについてBanach空間である．
+		$Y$がBanach空間ならば$\Bop{X}{Y} $は作用素ノルム$\Norm{\cdot}{\Bop{X}{Y} }$についてBanach空間となる．従って
+		$\Cop{X}{Y} $の任意のCauchy列は少なくとも$\Bop{X}{Y} $で収束する．
 		補助定理\ref{lem:compact_operator_equiv_cond}により，次のことを示せばよい．
 		\begin{itemize}
-			\item $A_n \in B_c(X,Y)\ (n=1,2,\cdots)$かつ$A_n \rightarrow A \in B(X,Y)$のとき
-			\footnote{$Y$がBanach空間であるから$B(X,Y)$は作用素ノルムについてBanach空間である．従ってこの表記でも$A$の存在は保証されている．}，
-			任意の有界点列$(x_n)_{n=1}^{\infty} \subset X$に対して$(Ax_n)_{n=1}^{\infty}$が$Y$で収束する部分列を持つ．
+			\item $A_n \in \Cop{X}{Y} \ (n=1,2,\cdots)$がCauchy列をなし$A \in \Bop{X}{Y} $に収束するとき，
+			$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対して$(Ax_n)_{n=1}^{\infty}$が$Y$で収束する部分列を持つ．
 		\end{itemize}
-		証明には対角線論法を使う．先ず$A_1$について，これはコンパクト作用素であるから補助定理\ref{lem:compact_operator_equiv_cond}により
+		証明には対角線論法を使う．先ず$A_1$について，補助定理\ref{lem:compact_operator_equiv_cond}により
 		$\left(A_1x_n\right)_{n=1}^{\infty}$の或る部分列$\left(A_1x_{k(1,j)}\right)_{j=1}^{\infty}$は収束する．$A_2$についても
-		$\left(A_2x_{k(1,j)}\right)_{j=1}^{\infty}$から部分列$\left(A_2x_{k(2,j)}\right)_{j=1}^{\infty}$を取って収束するようにできる．
-		以下同様にして，一般の$A_n$に対しても$\left(A_nx_{k(n-1,j)}\right)_{j=1}^{\infty}$の部分列$\left(A_nx_{k(n,j)}\right)_{j=1}^{\infty}$
-		が収束するように部分列を取ることができる．$(x_n)_{n=1}^{\infty}$から適当な部分列$\left(x_{k(n,j)}\right)_{j=1}^{\infty}\ (n=1,2,\cdots)$
-		を選び取る操作を繰り返したのであるが，ここで$x_{k_j} \coloneqq x_{k(j,j)}\ (j=1,2,\cdots)$として更に新しく点列$(x_{k_j})_{j=1}^{\infty}$
-		を用意すれば，全ての$A_n\ (n=1,2,\cdots)$に対して$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列となる．
-		これは$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列$\left(A_nx_{k(n,j)}\right)_{j=1}^{\infty}$の部分列となっているためである．
-		以上対角線論法により抜き取った$(x_{k_j})_{j=1}^{\infty}$に対して，次に示すことは$\left(Ax_{k_j}\right)_{j=1}^{\infty}$が
-		Cauchy列となることである\footnote{$Y$がBanach空間であるからCauchy列であることと収束列であることは同値．}．
-		$A_n$の取り方により任意の$\epsilon > 0$に対して或る$N = N(\epsilon) \in \N$が存在し，$n > N$なら$\Norm{A_n - A}{B(X,Y)} < \epsilon$となる．
-		また$> N$のうちから$n$を一つ取って(どれでもよい)，$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列であるから或る$J=J(n,\epsilon) \in \N$が存在して
-		$j_1,j_2 > J$なる限り$\Norm{A_nx_{k_{j_1}} - A_nx_{k_{j_2}}}{Y} < \epsilon$となる．
-		$M \coloneqq \sup{n\in\N}{\Norm{x_n}{X}} < \infty\ $(有界点列)として以上のことをまとめれば，$j_1,j_2 > J$なる限り
+		$\left(A_2x_{k(1,j)}\right)_{j=1}^{\infty}$の或る部分列$\left(A_2x_{k(2,j)}\right)_{j=1}^{\infty}$は収束する．
+		以下収束部分列を抜き取る操作を繰り返し，一般の$A_n$に対して$\left(A_nx_{k(n,j)}\right)_{j=1}^{\infty}$
+		が収束列となるようにできる．ここで$x_{k_j} \coloneqq x_{k(j,j)}\ (j=1,2,\cdots)$として点列$(x_{k_j})_{j=1}^{\infty}$
+		を定めれば，これは$(x_n)_{n=1}^{\infty}$の部分列であり，また全ての$n=1,2,\cdots$に対して
+		$\left(A_nx_{k_j}\right)_{j=n}^{\infty}$は収束列$\left(A_nx_{k(n,j)}\right)_{j=1}^{\infty}$の部分列となるから
+		$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列である．
+		この$(x_{k_j})_{j=1}^{\infty}$に対して$\left(Ax_{k_j}\right)_{j=1}^{\infty}$が
+		Cauchy列をなすならば$A$のコンパクト性が従う
+		\footnote{
+			$Y$がBanach空間であるからCauchy列であることと収束列であることは同値である．
+		}
+		．$A_n \rightarrow A$を書き直せば，任意の$\epsilon > 0$に対して或る$N = N(\epsilon) \in \N$が存在し，$n > N$なら$\Norm{A_n - A}{\Bop{X}{Y} } < \epsilon$となる．
+		また$n > N$を満たす$n$を一つ取れば，$\left(A_nx_{k_j}\right)_{j=1}^{\infty}$は収束列であるから或る$J=J(n,\epsilon) \in \N$が存在し
+		全ての$j_1,j_2 > J$に対して$\Norm{A_nx_{k_{j_1}} - A_nx_{k_{j_2}}}{Y} < \epsilon$が成り立つ．
+		$M \coloneqq \sup{n\in\N}{\Norm{x_n}{X}} < \infty$とおけば，全ての$j_1,j_2 > J$に対して
 		\begin{align}
-			\Norm{Ax_{k_{j_1}} - Ax_{k_{j_2}}}{Y} \leq M\Norm{A- A_n}{B(X,Y)} + \Norm{A_nx_{k_{j_1}} - A_nx_{k_{j_2}}}{Y} + M\Norm{A- A_n}{B(X,Y)} < (2M+1)\epsilon
+			\Norm{Ax_{k_{j_1}} - Ax_{k_{j_2}}}{Y} \leq M\Norm{A- A_n}{\Bop{X}{Y} } + \Norm{A_nx_{k_{j_1}} - A_nx_{k_{j_2}}}{Y} + M\Norm{A- A_n}{\Bop{X}{Y} } < (2M+1)\epsilon
 		\end{align}
-		が成り立つから，$\left(Ax_{k_j}\right)_{j=1}^{\infty}$がCauchy列すなわち収束列であることが示された．
+		が従うから，$\left(Ax_{k_j}\right)_{j=1}^{\infty}$はCauchy列すなわち収束列である．
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
-		\begin{thm}[有界線型作用素がコンパクトであることと共役作用素が有界かつコンパクトであることは同値]\mbox{}\\
-			$X,Y$をBanach空間とする．$A \in B(X,Y)$に対して次が成り立つ:
+	\begin{screen}
+		\begin{thm}[コンパクト作用素の共役作用素のコンパクト性]
+			$X,Y$がBanach空間ならば次が成り立つ:
 			\begin{align}
-				A \in B_c(X,Y) \quad \Leftrightarrow \quad A^* \in B_c(Y^*,X^*).
+				A \in \Cop{X}{Y}  \quad \Leftrightarrow \quad A^* \in \Cop{Y^*}{X^*} .
 			\end{align}
+			\label{thm:dual_operator_of_compact_operators}
 		\end{thm}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[$\Rightarrow$について]
-				$A \in B(X,Y)$なら$A^* \in B(Y^*,X^*)$が成り立っていることに注意しておく．
-				任意に有界点列$(y_n^*)_{n=1}^{\infty} \subset Y^*$を取る．
+				定理\ref{thm:dual_operator_bounded}より$A \in \Bop{X}{Y} $なら$A^* \in \Bop{Y^*}{X^*} $が成り立つ．
 				\begin{align}
-					S_1 \coloneqq \left\{\ x \in X\quad |\quad 0 < \Norm{x}{X} \leq 1\ \right\}
+					S_1 \coloneqq \Set{x \in X}{0 < \Norm{x}{X} \leq 1}
 				\end{align}
-				とすれば，$A$がコンパクトであるから$K \coloneqq \closure{A(S)}$は$Y$のコンパクト部分集合である．
-				各$y_n^*$に対し
+				とおけば仮定より$L \coloneqq \closure{AS}$は$Y$のコンパクト部分集合であり，
+				任意に有界点列$(y_n^*)_{n=1}^{\infty} \subset Y^*$を取り
 				\begin{align}
-					f_n:K \ni y \longmapsto y_n^*(y) \in \C
+					f_n:L \ni y \longmapsto y_n^*(y) \in \C
+					\quad (n=1,2,\cdots)
 				\end{align}
-				として写像を定めれば，関数族$(f_n)_{n=1}^{\infty}$は同等連続かつ$K$の各点で有界となり(後述)，
-				Ascoli-Arzelaの定理の適用される条件を満たす．これにより$(f_n)_{n=1}^{\infty}$はsup-normで相対コンパクトとなり，
-				$K$上の連続関数の全体$C(K)$における収束部分列$\left(f_{n_k}\right)_{k=1}^{\infty}$を持つ．これに対し
+				と定める．関数族$(f_n)_{n=1}^{\infty}$は正規族となる
+				\footnote{
+					関数族$(f_n)_{n=1}^{\infty}$の同等連続性と各点での有界性を示す．
+					\begin{description}
+						\item[同等連続性]
+							$(y_n^*)_{n=1}^{\infty}$は有界であるから，$M \coloneqq \sup{n\in\N}{\Norm{y_n^*}{Y^*}}$とおけば
+							\begin{align}
+								|f_n(y_1) - f_n(y_2)| = |y_n^*(y_1) - y_n^*(y_2)| \leq M\Norm{y_1 - y_2}{Y} \quad (\forall y_1,y_2 \in L,\ n=1,2,\cdots)
+							\end{align}
+							が成り立ち同等連続性が従う．
+						
+						\item[各点で有界]
+							上で定めた$M$に対し
+							\begin{align}
+								|f_n(y)| \leq M \Norm{y}{Y} \quad (\forall y \in L,\ n=1,2,\cdots)
+							\end{align}
+							が成り立つ．
+					\end{description}
+				}
+				から，
+				Ascoli-Arzelaの定理により$L$上の連続関数の全体$C(L)$において収束する部分列$\left(f_{n_k}\right)_{k=1}^{\infty}$を含む．
 				\begin{align}
-					\Norm{A^*y_{n_k}^* - A^*y_{n_j}^*}{X^*} &= \sup{x \in S_1}{\inprod<A^*y_{n_k}^* - A^*y_{n_j}^*,x>_{X^*,X}} && (\scriptsize\because \mbox{$0 \neq x \in X$の範囲で上限を取っている．}) \\
-					&= \sup{x \in S_1}{\inprod<y_{n_k}^* - y_{n_j}^*, Ax>_{Y^*,Y}} && (\scriptsize\because \mbox{$\mathscr{D}(A)=X$であることと共役作用素の定義より．}) \\
-					&= \sup{y \in A(S_1)}{\inprod<y_{n_k}^* - y_{n_j}^*, y>_{Y^*,Y}} \\
-					&= \sup{y \in K}{\inprod<y_{n_k}^* - y_{n_j}^*, y>_{Y^*,Y}} && (\scriptsize\because \mbox{連続性から閉包で上限を取ってもノルムは変わらない．}) \\
-					&= \Norm{f_{n_k} - f_{n_j}}{C(K)} && (\scriptsize\because \mbox{$C(K)$におけるsup-normを表す．})
+					\Norm{A^*y_{n_k}^* - A^*y_{n_j}^*}{X^*} &= \sup{x \in S_1}{\left| \inprod<x,A^*y_{n_k}^* - A^*y_{n_j}^*>_{X,X^*} \right|} && (\scriptsize\because \mbox{作用素ノルムの定義より．}) \\
+					&= \sup{x \in S_1}{\left| \inprod<Ax, y_{n_k}^* - y_{n_j}^*>_{Y,Y^*} \right|} && (\scriptsize\because \mbox{$\Dom{A^*} =Y^*$より．}) \\
+					&= \sup{y \in AS_1}{\left| \inprod<y, y_{n_k}^* - y_{n_j}^*>_{Y,Y^*} \right|} \\
+					&= \sup{y \in L}{\left| \inprod<y, y_{n_k}^* - y_{n_j}^*>_{Y,Y^*} \right|} && (\scriptsize\because \mbox{$y_{n_k}^* - y_{n_j}^*$の連続性より．}) \\
+					&= \Norm{f_{n_k} - f_{n_j}}{C(L)} && (\scriptsize\because \mbox{$C(L)$におけるsup-normを表す．})
 				\end{align}
-				が成り立つ．ただし山括弧の表示は双線型形式の意味である．$\left(f_{n_k}\right)_{k=1}^{\infty}$がCauchy列であるから
-				$\left(A^*y_{n_k}^*\right)_{k=1}^{\infty}$もCauchy列となり，$X^*$の完備性からこれは収束列となる．
-				これで$A^* \in B_c(Y^*,X^*)$が示された．
+				が成り立つ．$\left(f_{n_k}\right)_{k=1}^{\infty}$がsup-normについてCauchy列をなすから
+				$\left(A^*y_{n_k}^*\right)_{k=1}^{\infty}$もCauchy列となり，$X^*$の完備性と
+				補助定理\ref{lem:compact_operator_equiv_cond}より$A^* \in \Cop{Y^*}{X^*} $が従う．
 				
-				最後に，後述としていた関数族$(f_n)_{n=1}^{\infty}$の同等連続性と$K$の各点での有界性を示す．
-				$(y_n^*)_{n=1}^{\infty}$は有界であるから$M \coloneqq \sup{n\in\N}{\Norm{y_n^*}{Y^*}}$とおいて，
-				\begin{align}
-					|f_n(y_1) - f_n(y_2)| = |y_n^*(y_1) - y_n^*(y_2)| \leq M\Norm{y_1 - y_2}{Y} \quad (\forall y_1,y_2 \in K,\ n=1,2,\cdots)
-				\end{align}
-				により同等連続性が判り，
-				\begin{align}
-					|f_n(y_0)| \leq M \Norm{y_0}{Y} \quad (\forall y_0 \in K,\ n=1,2,\cdots)
-				\end{align}
-				により各点での有界性が判る．
-			
 			\item[$\Leftarrow$について]\mbox{}
 				\begin{description}
 					\item[証明1]
-						$J_X:X \longrightarrow X^{**},\ J_Y:Y \longrightarrow Y^{**}$を自然な等長埋め込みとする．
-						$\mathscr{D}(A^*)=Y^*$であるから$A^{**}$が定義できることに注意しておき，双線型形式を用いれば
+						$J_X:X \longrightarrow X^{**},\ J_Y:Y \longrightarrow Y^{**}$を自然な等長埋め込みとする．任意に$x \in X$を取れば
 						\begin{align}
-							\inprod<J_X(u),A^*y^*>_{X^{**},X^*} = \inprod<A^*y^*,u>_{X^{*},X} = \inprod<y^*,Au>_{Y^{*},Y} = \inprod<J_Y(Au),y^*>_{Y^{**},Y^*} \quad (\forall u \in X=\mathscr{D}(A))
+							\inprod<A^*y^*, J_Xx>_{X^*,X^{**}} = \inprod<x,A^*y^*>_{X,X^*} = \inprod<Ax,y^*>_{Y,Y^*} = \inprod<y^*,J_YAx>_{Y^*,Y^{**}} \quad (\forall y^* \in Y^*=\Dom{A^*} )
 						\end{align}
-						が成り立つ．ただし第1と第3の等号は$u \in X$と$f \in X^*$に対し$J_Xu(f)=f(u)$となることにより，そして第2の等号は共役作用素の定義による．
-						前段の結果より$A^*$がコンパクトなら$A^{**}$もコンパクトとなり，今$X$から任意に有界点列$(x_n)_{n=1}^{\infty}$を取れば，
-						等長性から$\left(J_Xx_n\right)_{n=1}^{\infty}$も有界点列となるから或る部分列$\left(A^{**}J_Xx_{n_k}\right)_{k=1}^{\infty}$
-						は$Y^{**}$において収束列となる．$J_YA = A^{**}J_X$の関係より，同じ添数について$\left(J_YAx_{n_k}\right)_{k=1}^{\infty}$もまた収束列
-						となるから，$J_Y$の等長性より$\left(Ax_{n_k}\right)_{k=1}^{\infty}$が収束列となる．以上で$A \in B_c(X,Y)$が示された．
+						が成り立ち，$\mathscr{D}(A^*)=Y^*$であるから$A^{**}$が定義され
+						\begin{align}
+							A^{**} J_X x = J_Y A x \quad (\forall x \in X)
+							\label{eq:thm_dual_operator_of_compact_operators}
+						\end{align}
+						が従う．また前段の結果と$A^*$のコンパクト性から$A^{**}$もコンパクト作用素となる．
+						$X$から任意に有界点列$(x_n)_{n=1}^{\infty}$を取れば，
+						$J_X$の等長性より$\left(J_Xx_n\right)_{n=1}^{\infty}$も$X^{**}$において有界となり，
+						補助定理\ref{lem:compact_operator_equiv_cond}により
+						$\left(A^{**}J_Xx_n\right)_{n=1}^{\infty}$の或る部分列$\left(A^{**}J_Xx_{n_k}\right)_{k=1}^{\infty}$
+						はCauchy列となる．(\refeq{eq:thm_dual_operator_of_compact_operators})より
+						$\left(J_YAx_{n_k}\right)_{k=1}^{\infty}$もCauchy列となるから，
+						$J_Y$の等長性より$\left(Ax_{n_k}\right)_{k=1}^{\infty}$はBanach空間$Y$で収束し$A \in \Cop{X}{Y} $が従う．
 					\item[証明2]
 						$X$の任意の有界点列$(x_n)_{n=1}^{\infty}$に対して
 						\begin{align}
@@ -259,19 +297,19 @@
 		\end{description}
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{thm}[反射的Banach空間の弱点列コンパクト性]\mbox{}\\
 			$X$が反射的Banach空間なら，$X$の任意の有界点列は弱収束する部分列を含む．
 			\label{thm:weak_seq_compact}
 		\end{thm}
-	\end{itembox}
+	\end{screen}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{thm}[有限次元空間における有界点列の収束]
 			$X,Y$をノルム空間とし$A \in B(X,Y)$とする．このとき
 			$\Rank{A} = \Dim{\Ran{A}} < \infty$ならば$A \in B_c(X,Y)$となる．\footnote{$X,Y$がHilbert空間であるなら逆が成立する．}
 		\end{thm}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		$A$の線型性と有界性から$\Ran{A} = AX$は有界な有限次元空間となるから，後の結論までは次の定理による．
@@ -279,7 +317,7 @@
 	\end{prf}
 	\input{appendixes/finite_dim_converge}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{thm}[反射的Banach空間上のコンパクト作用素は弱収束列を強収束列に写す]\mbox{}\\
 			$X$を反射的Banach空間，$Y$をBanach空間，そして$A \in B(X,Y)$とする．このとき次が成り立つ．
 			\begin{description}
@@ -287,7 +325,7 @@
 				\item[(2)] 逆に$A$が$X$の任意の弱収束列を強収束列に写すなら$A \in B_c(X,Y)$である．
 			\end{description}
 		\end{thm}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		\begin{description}
