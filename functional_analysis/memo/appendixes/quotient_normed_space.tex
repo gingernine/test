@@ -1,7 +1,7 @@
 \chapter{商ノルム空間}
 	$\K$を$\R$又は$\C$として$X$を$\K$上のノルム空間とする．
 	$X$のノルムを$\Norm{\cdot}{X}$と表記し$X$にノルム位相を導入する．
-	$X$の閉部分空間$Y$に対し
+	また$X$の閉部分空間$Y$に対し
 	\begin{align}
 		x \sim y \DEF x - y \in Y \quad (\forall x,y \in X)
 	\end{align}
@@ -13,7 +13,7 @@
 		$x \sim y$かつ$y \sim z$が満たされているなら
 		$x - z = (x - y) + (y - z) \in Y$が成り立ち$x \sim z$が従う．
 	}
-	．また$\sim$による$x \in X$の同値類を$[x]$と表し，商集合を$X/Y$と表す．
+	．以降，関係$\sim$による$x \in X$の同値類を$[x]$と表し，商集合を$X/Y$と表す．
 	
 	\begin{screen}
 		\begin{thm}[商集合における線型演算]
@@ -119,6 +119,50 @@
 				であるから，補助定理\ref{lem:equivalence_class_closed}により$0 \in [x]$が成り立ち$[x] = [0]$が従う．
 				
 			\item[同次性]
-				
+				任意に$[x] \in X/Y$と$\alpha \in \K$を取る．$\alpha = 0$の場合は
+				\begin{align}
+					\Norm{0 [x]}{X/Y} = \Norm{[0]}{X/Y} = 0 = 0 \Norm{[x]}{X/Y}
+				\end{align}
+				が成り立つ．$\alpha \neq 0$の場合は
+				\begin{align}
+					u \in [\alpha x] \quad \Leftrightarrow \quad \frac{1}{\alpha} u \in [x]
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\Norm{\alpha [x]}{X/Y} = \Norm{[\alpha x]}{X/Y} = \inf{u \in [\alpha x]}{\Norm{u}{X}}
+					= |\alpha| \inf{u \in [\alpha x]}{\Norm{(1/\alpha)u}{X}}
+					= |\alpha| \inf{v \in [x]}{\Norm{v}{X}}
+					= |\alpha |\Norm{[x]}{X/Y}
+				\end{align}
+				が従う．
+			
+			\item[劣加法性]
+				任意に$[x],[y] \in X/Y$を取り
+				\begin{align}
+					L \coloneqq \Set{u + v}{u \in [x],\ v \in [y]}
+				\end{align}
+				とおけば，任意の$u+v \in L$に対し$(u+v) - (x+y) \in Y$となるから$L \subset [x+y]$が成り立つ．また
+				\begin{align}
+					\Norm{u + v}{X} \leq \Norm{u}{X} + \Norm{v}{X}
+				\end{align}
+				により
+				\begin{align}
+					\inf{u'+v' \in L}{\Norm{u' + v'}{X}} \leq \Norm{u}{X} + \Norm{v}{X} \quad (\forall u \in [x],\ v \in [y])
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\inf{u'+v' \in L}{\Norm{u' + v'}{X}} 
+					\leq \inf{u \in [x]}{\Norm{u}{X}} + \inf{v \in [y]}{\Norm{v}{X}}
+					= \Norm{[x]}{X/Y} + \Norm{[y]}{X/Y}
+				\end{align}
+				が従い
+				\begin{align}
+					\Norm{[x] + [y]}{X/Y} = \Norm{[x+y]}{X/Y} 
+					= \inf{w \in [x+y]}{\Norm{w}{X}} 
+					\leq \inf{u+v \in L}{\Norm{u + v}{X}}
+					\leq \Norm{[x]}{X/Y} + \Norm{[y]}{X/Y}
+				\end{align}
+				を得る．
 		\end{description}
+		\QED
 	\end{prf}
