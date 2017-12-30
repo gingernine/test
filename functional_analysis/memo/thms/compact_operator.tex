@@ -332,9 +332,49 @@
 	
 	\begin{prf}
 		\begin{description}
-			\item[(1)] $(x_n)_{n=1}^{\infty}$を$X$の任意の弱収束列とする．$\wlim x_n = x$として，示すべきことは(i)$(Ax_n)_{n=1}^{\infty}$
-				の任意の部分列が収束部分列を含み，(ii)収束先は全て$Ax$である，の二つである．この二つが示されれば，距離空間における
-				点列の収束の一般論より(1)の主張が従う．(i)について，一般にノルム空間の弱収束列は有界であるから
+			\item[(1)] $X$から任意に弱収束列$(x_n)_{n=1}^{\infty}$を取り弱極限を$x \in X$とする．
+				このとき$(Ax_n)_{n=1}^{\infty}$の任意の部分列が強収束する部分列を含み，
+				且つその収束先が全て$Ax$であるならば，距離空間における点列の収束の一般論
+				\footnote{
+					$(S,d)$を距離空間とし，$S$の点$s$と点列$(s_n)_{n=1}^{\infty}$を取る．
+					このとき$(s_n)_{n=1}^{\infty}$任意の部分列が$s$に収束する部分列を含むなら，
+					$(s_n)_{n=1}^{\infty}$は$s$に収束する．実際もし$(s_n)_{n=1}^{\infty}$が$s$に収束しないとすれば，
+					或る$\epsilon > 0$に対し部分列$\left( s_{n_k} \right)_{k=1}^{\infty}$が存在して
+					\begin{align}
+						d\left( s_{n_k},s \right) \geq \epsilon \quad (\forall k=1,2,\cdots)
+					\end{align}
+					を満たすから，$\left( s_{n_k} \right)_{k=1}^{\infty}$のいかなる部分列も$s$には収束し得ない．
+				}
+				により(1)の主張が従う．
+				$(Ax_n)_{n=1}^{\infty}$から任意に部分列$\left( Ax_{n(1,k)} \right)_{k=1}^{\infty}$
+				を取る．定理\ref{thm:weak_convergence_bounded}より$\left( x_{n(1,k)} \right)_{k=1}^{\infty}$
+				は有界列であるから，定理\ref{lem:compact_operator_equiv_cond}より部分列$\left( Ax_{n(2,k)} \right)_{k=1}^{\infty}$が或る
+				$y \in \closure{\left( Ax_{n(1,k)} \right)_{k=1}^{\infty}}$に強収束する．
+				定理\ref{thm:dual_operator_bounded}より$A^*$が存在して$Y^* = \Dom{Y^*} $を満たすから，
+				任意に$g \in Y^*$を取れば
+				\begin{align}
+					\inprod<x_{n(2,k)}, A^*g>_{X,X^*} = \inprod<A x_{n(2,k)}, g>_{Y,Y^*}
+				\end{align}
+				が成り立つ．左辺は$\wlim_{n \to \infty} x_n = x$の仮定より
+				\begin{align}
+					\inprod<x_{n(2,k)}, A^*g>_{X,X^*} \longrightarrow \inprod<x, A^*g>_{X,X^*} = \inprod<A x, g>_{Y,Y^*}
+					\quad (k \longrightarrow \infty)
+				\end{align}
+				を満たし，一方で右辺は$\lim_{k \to \infty} Ax_{n(2,k)} = y$より
+				\begin{align}
+					\inprod<A x_{n(2,k)}, g>_{Y,Y^*} \longrightarrow \inprod<y, g>_{Y,Y^*}
+					\quad (k \longrightarrow \infty)
+				\end{align}
+				を満たすから
+				\begin{align}
+					\inprod<A x, g>_{Y,Y^*} = \inprod<y, g>_{Y,Y^*} \quad (\forall g \in Y^*)
+				\end{align}
+				が成り立ち$Ax = y$が従う．
+				
 			\item[(2)]
+				$X$が反射的Banach空間ならば$X$の任意の有界点列は弱収束する部分列を含む．
+				(2)の仮定よりその部分列を$A$で写せば$Y$で強収束するから，
+				定理\ref{lem:compact_operator_equiv_cond}より$A$のコンパクト性が従う．
 		\end{description}
+		\QED
 	\end{prf}
