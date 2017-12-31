@@ -4,7 +4,7 @@
 	
 	\begin{screen}
 		\begin{lem}[商空間のコンパクト作用素]
-			$X$をノルム空間，$Y$を$X$の閉部分空間とする．
+			$X$を複素ノルム空間，$Y$を$X$の閉部分空間とする．
 			$A \in \selfCop{X} $が$AY \subset Y$を満たすとき次が成り立つ:
 			\begin{description}
 				\item[(1)] $A_1:Y \ni y \longmapsto A y \in Y$として$A_1$を定めれば$A_1 \in \selfCop{Y} $が成り立つ．
@@ -59,3 +59,97 @@
 			
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Fredholmの交代定理]
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}
+			$E$を複素ノルム空間，$E_1,E_2$を$E$の線型部分空間とし
+			$E = E_1 + E_2$が成り立っているとする\footnotemark．
+			また$E,E_1 \times E_2$におけるノルムをそれぞれ$\Norm{\cdot}{E},\Norm{\cdot}{E_1 \times E_2}$としてノルム位相を導入し
+			\begin{align}
+				\Phi:E \ni x \longmapsto [x_1,x_2] \in E_1 \times E_2
+				\quad (x = x_1 + x_2)
+			\end{align}
+			を定める．このとき次が成り立つ:
+			\begin{description}
+				\item[(1)] $\Phi$は全単射かつ閉線型である．
+				\item[(2)] $\Phi^{-1}$は連続である．
+				\item[(3)] $\Phi$が連続ならば$E_1,E_2$は閉部分空間である．
+				\item[(4)] $E$がBanach空間で$E_1,E_2$が閉部分空間ならば$\Phi$は線型同型かつ同相である．
+				\item[(5)] $\Dim{E_1} < \infty$かつ$E_2$が閉ならば$\Phi$は線型同型かつ同相である．
+			\end{description}
+		\end{lem}
+	\end{screen}
+	
+	\footnotetext{
+		つまり$E_1 \cap E_2 = \{0\}$であり，かつ$E$の任意の元$x$は
+		或る$x_1 \in E_1,x_2 \in E_2$によって$x = x_1 + x_2$と一意に表される．
+		一意性について，$x = y_1 + y_2\ (y_1 \in E_1,y_2 \in E_2)$が同時に成り立っているとすれば
+		\begin{align}
+			E_1 \ni x_1 - y_1 = y_2 - x_2 \in E_2
+		\end{align}
+		となるから$ x_1 - y_1 = y_2 - x_2 = 0$が従う．
+	}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 
+				\begin{description}
+					\item[全単射であること]
+						任意に$[x_1,x_2] \in E_1 \times E_2$を取れば
+						$x_1 + x_2 \in E$を満たすから$\Phi$は全射である．
+						また$E_1 \times E_2$の二元が$[x_1,x_2] = [y_1,y_2]$を満たせば
+						$x_1 = y_1$かつ$x_2 = y_2$となるから$\Phi$は単射である．
+						
+					\item[閉線型であること]
+						$x,y \in E,\alpha \in \C$を任意に取り$\Phi x = [x_1,x_2], \Phi y = [y_1,y_2]$とすれば，
+						\begin{align}
+							\Phi(x + y) &= [x_1 + y_1, x_2 + y_2] = [x_1,x_2] + [y_1,y_2] = \Phi x + \Phi y, \\
+							\Phi(\alpha x) &= [\alpha x_1, \alpha x_2] = \alpha [x_1,x_2] = \alpha \Phi x
+						\end{align}
+						より$\Phi$の線型性が従う．
+						また$(x_n)_{n=1}^{\infty} \subset E$が$x_n \rightarrow u \in X$かつ
+						$\Phi x_n \rightarrow [u_1,u_2] \in E_1 \times E_2$を満たす場合，
+						\begin{align}
+							\Norm{u - (u_1 + u_2)}{E} \leq \Norm{u - x_n}{E} + \Norm{\Phi x_n - [u_1,u_2]}{E_1 \times E_2}
+							\longrightarrow 0 \quad (n \longrightarrow \infty)
+						\end{align}
+						が成り立ち$\Phi u = [u_1,u_2]$が従うから$\Phi$は閉作用素である．
+				\end{description}
+				
+			\item[(2)] (1)より逆写像$\Phi^{-1}:E_1 \times E_2 \rightarrow E\ $(線形全単射)が存在し，任意の$[0,0] \neq [x_1,x_2] \in E_1 \times E_2$に対して
+				\begin{align}
+					\frac{\Norm{\Phi^{-1}[x_1, x_2]}{E}}{\Norm{[x_1, x_2]}{E_1 \times E_2}} 
+					= \frac{\Norm{x_1 + x_2}{E}}{\Norm{x_1}{E} + \Norm{x_2}{E}} \leq 1
+				\end{align}
+				を満たす．
+				
+			\item[(3)] ノルム空間において一点集合$\{0\}$は閉であるから，直積位相において$E_1 \times \{0\}$及び$\{0\} \times E_2$は閉集合である．
+				従って$\Phi$の連続性と$E_1 = \Phi^{-1}(E_1 \times \{0\})$及び$E_2 = \Phi^{-1}(\{0\} \times E_2)$が成り立つことから
+				$E_1,E_2$は閉集合となる．
+			
+			\item[(4)] $E,E_1 \times E_2$はBanach空間でありかつ
+				$\Dom{\Phi} = E$が満たされているから，閉グラフ定理より$\Phi$は有界となる．
+				(1)(2)と併せれば$\Phi,\Phi^{-1}$は共に連続且つ線型全単射であるから主張が従う．
+			
+			\item[(5)] 
+				$E_2$が閉部分空間であるから，
+				(\refeq{eq:thm_quotient_space_norm})をノルムとする商ノルム空間$E/E_2$を定義することができる．
+				\begin{align}
+					p_1:E \ni x \longmapsto [x] \in E/E_2,
+					\quad p_2:E/E_2 \ni [x] \longmapsto x \in E_1
+				\end{align}
+				と定めれば$p_1$は線型連続であり$p_2$は線型同型である．
+				\begin{description}
+					\item[$p_1$について]
+						$p_1$の線型性は
+					\item[$p_2$について]
+				\end{description}
+				
+		\end{description}
+	\end{prf}
