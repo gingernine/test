@@ -8,9 +8,9 @@
 	\begin{screen}
 		\begin{dfn}[共役作用素]
 			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
-			$T$の定義域$\mathscr{D}(T)$が$X$で稠密であるとき，$g \in Y^*$に対し
+			$T$の定義域$\Dom{T} $が$X$で稠密であるとき，$g \in Y^*$に対し
 			\begin{align}
-				f(x) = g(Tx) \quad (\forall x \in \mathscr{D}(T)) \label{eq:dfn_dual_operator}
+				f(x) = g(Tx) \quad (\forall x \in \Dom{T} ) \label{eq:dfn_dual_operator}
 			\end{align}
 			を満たす$f \in X^*$が存在すれば，$f$の存在は$g$に対して唯一つであり\footnotemark
 			この対応を
@@ -25,9 +25,9 @@
 		$g$に対し$f$とは別に(\refeq{eq:dfn_dual_operator})を満たす$f' \in X^*$
 		が存在すれば
 		\begin{align}
-			f(x) = f'(x) \quad (\forall x \in \mathscr{D}(T))
+			f(x) = f'(x) \quad (\forall x \in \Dom{T} )
 		\end{align}
-		が成り立つ．$\mathscr{D}(T)$は$X$で稠密であるから
+		が成り立つ．$\Dom{T} $は$X$で稠密であるから
 		$f,f'$の連続性より$f = f'$が従う．
 	}
 	
@@ -38,7 +38,7 @@
 	\begin{screen}
 		\begin{thm}[共役作用素は閉線型]
 			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
-			$\mathscr{D}(T)$が$X$で稠密であるとき，
+			$\Dom{T} $が$X$で稠密であるとき，
 			$T^*$は閉線型作用素である．
 			\label{thm:T_star_closed}
 		\end{thm}
@@ -54,7 +54,7 @@
 	双線型形式で表現することで内積空間を扱っているように捉えることができ，
 	例えば(\refeq{eq:dfn_dual_operator})は
 	\begin{align}
-		\inprod<x,f>_{X,X^*} = \inprod<Tx,g>_{Y,Y^*} \quad (\forall x \in \mathscr{D}(T))
+		\inprod<x,f>_{X,X^*} = \inprod<Tx,g>_{Y,Y^*} \quad (\forall x \in \Dom{T} )
 	\end{align}
 	と表現できる．また$A \subset X,\ B \subset X^*$に対して
 	\begin{align}
@@ -177,62 +177,62 @@
 		\begin{align}
 			U : X \times Y \ni [x,y] \longmapsto [y,-x] \in Y \times X
 		\end{align}
-		として写像$U$(等長，全単射)を定義する．$T^*$のグラフ$\mathscr{G}(T^*)$は
+		として写像$U$(等長，全単射)を定義する．$T^*$のグラフ$\Graph{T^*} $は
 		\begin{align}
-			\mathscr{G}(T^*) = \Set{[g,T^*g] \in Y^* \times X^*}{\forall [x,Tx] \in \mathscr{G}(T),\quad \inprod<Tx,g>_{Y,Y^*} = \inprod<x,T^*g>_{X,X^*}}
+			\Graph{T^*} = \Set{[g,T^*g] \in Y^* \times X^*}{\forall [x,Tx] \in \Graph{T} ,\quad \inprod<Tx,g>_{Y,Y^*} = \inprod<x,T^*g>_{X,X^*}}
 		\end{align}
 		で表される．補助定理\ref{lem:T_star_closed_2}により$[g,T^*g]$に対応する$F_g \in (Y \times X)^*$がただ一つ存在して
 		\begin{align}
-			\inprod<Tx,g>_{Y,Y^*} - \inprod<x,T^*g>_{X,X^*} = F_g[Tx,-x] = F_gU[x,Tx], \quad ([x,Tx] \in \mathscr{G}(T))
+			\inprod<Tx,g>_{Y,Y^*} - \inprod<x,T^*g>_{X,X^*} = F_g[Tx,-x] = F_gU[x,Tx], \quad ([x,Tx] \in \Graph{T} )
 		\end{align}
 		と書き直せるから，補助定理\ref{lem:T_star_closed_2}の同相写像$\varphi$により
 		\begin{align}
-			\left[U\mathscr{G}(T) \right]^{\perp} = \Set{F \in (Y \times X)^*}{\forall [x,Tx] \in \mathscr{G}(T),\quad FU[x,Tx] = 0}
-			= \varphi^{-1}\mathscr{G}(T^*)
+			\left[U\Graph{T} \right]^{\perp} = \Set{F \in (Y \times X)^*}{\forall [x,Tx] \in \Graph{T} ,\quad FU[x,Tx] = 0}
+			= \varphi^{-1}\Graph{T^*}
 			\label{eq:thm_T_star_closed}
 		\end{align}
-		が成り立つ．補助定理\ref{lem:T_star_closed_1}より$\left[U\mathscr{G}(T) \right]^{\perp}$が$Y^* \times X^*$の閉部分空間であるから，
-		$\mathscr{G}(T^*) = \varphi \left[U\mathscr{G}(T) \right]^{\perp}$は$(Y \times X)^*$において閉部分空間となり，従って$T^*$が閉線型作用素であると示された．
+		が成り立つ．補助定理\ref{lem:T_star_closed_1}より$\left[U\Graph{T} \right]^{\perp}$が$Y^* \times X^*$の閉部分空間であるから，
+		$\Graph{T^*} = \varphi \left[U\Graph{T} \right]^{\perp}$は$(Y \times X)^*$において閉部分空間となり，従って$T^*$が閉線型作用素であると示された．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[閉拡張の共役作用素は元の共役作用素に一致する]\mbox{}\\
 			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とし，
-			$\mathscr{D}(T)$が$X$で稠密でかつ$T$が可閉であるとする．このとき次が成り立つ:
+			$\Dom{T} $が$X$で稠密でかつ$T$が可閉であるとする．このとき次が成り立つ:
 			\begin{align}
-				\mathscr{G}( \closure{T}^* ) = \mathscr{G}(T^*).
+				\Graph{ \closure{T}^*}  = \Graph{T^*} .
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		(\refeq{eq:thm_T_star_closed})より$\mathscr{G}\left( \closure{T}^* \right) = \varphi\left[U\mathscr{G}(\closure{T}) \right]^{\perp}$
+		(\refeq{eq:thm_T_star_closed})より$\Graph{ \closure{T}^* } = \varphi\left[U\Graph{\closure{T}} \right]^{\perp}$
 		が成り立っているから，
 		\begin{align}
-			\left[U\mathscr{G}(\closure{T}) \right]^{\perp} = \left[U\mathscr{G}(T) \right]^{\perp}
+			\left[U\Graph{\closure{T}} \right]^{\perp} = \left[U\Graph{T} \right]^{\perp}
 		\end{align}
 		を示せばよい．
 		\begin{description}
 			\item[$\subset$について]
-				任意の$[g,f] \in \left[U\mathscr{G}(\closure{T}) \right]^{\perp}$に対して
+				任意の$[g,f] \in \left[U\Graph{\closure{T}} \right]^{\perp}$に対して
 				\begin{align}
-					\inprod<\closure{T}x, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,\closure{T}x] \in \mathscr{G}(\closure{T}))
+					\inprod<\closure{T}x, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,\closure{T}x] \in \Graph{\closure{T}})
 				\end{align}
 				が成り立っている．
 				\begin{align}
-					\mathscr{G}(T) \subset \closure{\mathscr{G}(T)} = \mathscr{G}(\closure{T})
+					\Graph{T} \subset \closure{\Graph{T} } = \Graph{\closure{T}}
 				\end{align}
 				より
 				\begin{align}
-					\inprod<Tx, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,Tx] \in \mathscr{G}(T))
+					\inprod<Tx, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,Tx] \in \Graph{T} )
 				\end{align}
-				が従い$[g,f] \in \left[U\mathscr{G}(T) \right]^{\perp}$が成り立つ．
+				が従い$[g,f] \in \left[U\Graph{T} \right]^{\perp}$が成り立つ．
 			
 			\item[$\supset$について]
-				任意に$[g,f] \in \left[U\mathscr{G}(T) \right]^{\perp}$を取る．
-				任意の$[x,y] \in \mathscr{G}(\closure{T})$に対して
-				$[x_n,Tx_n] \in \mathscr{G}(T)$を取り
+				任意に$[g,f] \in \left[U\Graph{T} \right]^{\perp}$を取る．
+				任意の$[x,y] \in \Graph{\closure{T}} $に対して
+				$[x_n,Tx_n] \in \Graph{T} $を取り
 				\begin{align}
 					\Norm{x_n - x}{X} \longrightarrow 0, \quad
 					\Norm{Tx_n - y}{Y} \longrightarrow 0 \quad (n \longrightarrow \infty)
@@ -246,7 +246,7 @@
 				\end{align}
 				が成り立ち
 				\begin{align}
-					[g,f] \in \left[U\mathscr{G}(\closure{T}) \right]^{\perp}
+					[g,f] \in \left[U\Graph{\closure{T}} \right]^{\perp}
 				\end{align}
 				が従う．
 		\end{description}
@@ -256,31 +256,31 @@
 	\begin{screen}
 		\begin{lem}[定義域が稠密となるための条件]
 			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．このとき
-			$\mathscr{D}(T)$が$X$で稠密であるための必要十分条件は，
-			$[0,f] \in \varphi\left[U\mathscr{G}(T) \right]^{\perp}$ならば$f = 0$となることである．
+			$\Dom{T} $が$X$で稠密であるための必要十分条件は，
+			$[0,f] \in \varphi\left[U\Graph{T} \right]^{\perp}$ならば$f = 0$となることである．
 		\end{lem}
 	\end{screen}
 		
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[必要性]
-				(\refeq{eq:thm_T_star_closed})より，$\closure{\mathscr{D}(T)}  = X$ならば
-				$T^*$が存在して$\mathscr{G}(T^*) = \varphi\left[U\mathscr{G}(T) \right]^{\perp}$
+				(\refeq{eq:thm_T_star_closed})より，$\closure{\Dom{T} }  = X$ならば
+				$T^*$が存在して$\Graph{T^*} = \varphi\left[U\Graph{T} \right]^{\perp}$
 				を満たすから$f = 0$となる．
 			
 			\item[十分性]
-				$\varphi[0,f] \in \left[U\mathscr{G}(T) \right]^{\perp}$なら
+				$\varphi[0,f] \in \left[U\Graph{T} \right]^{\perp}$なら
 				\begin{align}
-					\left( \varphi[0,f] \right)[Tx,-x] = -f(x) = 0 \quad (\forall [x,Tx] \in \mathscr{G}(T))
+					\left( \varphi[0,f] \right)[Tx,-x] = -f(x) = 0 \quad (\forall [x,Tx] \in \Graph{T} )
 				\end{align}
 				が成り立つ．そして
 				\begin{align}
-					f(x) = 0 \quad (\forall x \in \mathscr{D}(T)) \mbox{ならば$f=0$} \quad \Leftrightarrow \quad \closure{\mathscr{D}(T)} = X
+					f(x) = 0 \quad (\forall x \in \Dom{T} ) \mbox{ならば$f=0$} \quad \Leftrightarrow \quad \closure{\Dom{T} } = X
 				\end{align}
-				により$\closure{\mathscr{D}(T)}  = X$となる．実際$\closure{\mathscr{D}(T)} \subsetneq X$である場合，
-				Hahn-Banachの定理の系より$f \neq 0$なる$f \in X^*$で$f(x) = 0 \quad (\forall x \in \mathscr{D}(T))$
-				を満たすものが存在する．逆に$\closure{\mathscr{D}(T)} = X$であるなら，$f \in X^*$の連続性より
-				$f(x) = 0 \quad (\forall x \in \mathscr{D}(T))\ $ならば$f=0$が従う．
+				により$\closure{\Dom{T} }  = X$となる．実際$\closure{\Dom{T} } \subsetneq X$である場合，
+				Hahn-Banachの定理の系より$f \neq 0$なる$f \in X^*$で$f(x) = 0 \quad (\forall x \in \Dom{T} )$
+				を満たすものが存在する．逆に$\closure{\Dom{T} } = X$であるなら，$f \in X^*$の連続性より
+				$f(x) = 0 \quad (\forall x \in \Dom{T} )\ $ならば$f=0$が従う．
 		\end{description}
 		\QED
 	\end{prf}
@@ -294,12 +294,12 @@
 	\begin{screen}
 		\begin{thm}
 			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とし
-			$\mathscr{D}(T)$が$X$で稠密であるとする．
+			$\Dom{T} $が$X$で稠密であるとする．
 			\begin{description}
 				\item[(1)]
-					$\closure{\mathscr{D}(T^*)} = Y^*$ならば$T$は可閉であり
+					$\closure{\Dom{T^*} } = Y^*$ならば$T$は可閉であり
 					\begin{align}
-						J\mathscr{G}(\closure{T}) \subset \mathscr{G}(T^{**})
+						J\Graph{\closure{T}} \subset \Graph{T^{**}}
 					\end{align}
 					が成り立つ．
 				\item[(2)]
@@ -316,30 +316,30 @@
 	\begin{prf}
 		\begin{description}
 			\item[(1)]
-				$\closure{\mathscr{D}(T^*)} = Y^*$ならば$T^*$の共役作用素$T^{**}:X^{**} \rightarrow Y^{**}$が定義される．
-				任意の$x \in \mathscr{D}$に対し
+				$\closure{\Dom{T^*} } = Y^*$ならば$T^*$の共役作用素$T^{**}:X^{**} \rightarrow Y^{**}$が定義される．
+				任意の$x \in \Dom{T} $に対し
 				\begin{align}
 					\inprod<T^*g,J_Xx>_{X^*,X^{**}} = \inprod<x,T^*g>_{X,X^*} 
 					= \inprod<Tx,g>_{Y,Y^*} = \inprod<g,J_YTx>_{Y^*,Y^{**}}
-					\quad (\forall [g,T^*g] \in \mathscr{G}(T^*))
+					\quad (\forall [g,T^*g] \in \Graph{T^*} )
 				\end{align}
-				が成り立つから，$J_Xx \in \mathscr{D}(T^{**})$かつ
+				が成り立つから，$J_Xx \in \Dom{T^{**}} )$かつ
 				\begin{align}
-					T^{**}J_Xx = J_YTx \quad (\forall [x,Tx] \in \mathscr{G}(T))
+					T^{**}J_Xx = J_YTx \quad (\forall [x,Tx] \in \Graph{T} )
 				\end{align}
 				が従う．すなわち
 				\begin{align}
-					J \mathscr{G}(T) \subset \mathscr{G}(T^{**})
+					J \Graph{T} \subset \Graph{T^{**}}
 				\end{align}
 				が成り立つ．また
 				\begin{align}
-					J \closure{\mathscr{G}(T)} \subset \closure{J \mathscr{G}(T)} \subset \mathscr{G}(T^{**})
+					J \closure{\Graph{T} } \subset \closure{J \Graph{T} } \subset \Graph{T^{**}}
 					\label{eq:thm_closablility_and_second_dual_operator_1}
 				\end{align}
 				が成り立つ．実際定理\ref{thm:T_star_closed}より$T^{**}$は閉線型であるから二番目の不等式は成り立つ．
 				だから初めの不等式を示せばよい．
-				任意に$[J_Xx,J_Yy] \in J \closure{\mathscr{G}(T)}$を取れば，
-				$[x_n,Tx_n] \in \mathscr{G}(T)$を取り
+				任意に$[J_Xx,J_Yy] \in J \closure{\Graph{T} }$を取れば，
+				$[x_n,Tx_n] \in \Graph{T} $を取り
 				\begin{align}
 					\Norm{x_n - x}{X} \longrightarrow 0, \quad
 					\Norm{Tx_n - y}{Y} \longrightarrow 0 \quad (n \longrightarrow \infty)
@@ -349,11 +349,11 @@
 					\Norm{J_Xx_n - J_Xx}{X^{**}} \longrightarrow 0, \quad
 					\Norm{J_YTx_n - J_Yy}{Y^{**}} \longrightarrow 0 \quad (n \longrightarrow \infty)
 				\end{align}
-				となり$[J_Xx,J_Yy] \in \closure{J \mathscr{G}(T)}$が判る．
+				となり$[J_Xx,J_Yy] \in \closure{J \Graph{T} }$が判る．
 				(\refeq{eq:thm_closablility_and_second_dual_operator_1})より
-				$[0,y] \in \closure{\mathscr{G}(T)}$ならば
-				$[0,J_Yy] \in \mathscr{G}(T^{**})$が従い$J_Yy = 0$となる．$J_Y$は単射であるから$y = 0$となり
-				$\closure{\mathscr{G}(T)}$がグラフとなるから$T$は可閉である．
+				$[0,y] \in \closure{\Graph{T} }$ならば
+				$[0,J_Yy] \in \Graph{T^{**}} $が従い$J_Yy = 0$となる．$J_Y$は単射であるから$y = 0$となり
+				$\closure{\Graph{T} }$がグラフとなるから$T$は可閉である．
 		\end{description}
 	\end{prf}
 	
@@ -404,7 +404,7 @@
 	\begin{screen}
 		\begin{thm}[共役作用素の合成]
 			$X,Y,Z$をノルム空間，$T:X \rightarrow Y,\ U:Y \rightarrow Z$を線型作用素とし
-			$\closure{\mathscr{D}(T)} = X,\ \closure{\mathscr{D}(U)} = Y,\ \closure{\mathscr{D}(UT)} = X$を満たすとする．このとき
+			$\closure{\Dom{T} } = X,\ \closure{\Dom{U} } = Y,\ \closure{\Dom{UT} } = X$を満たすとする．このとき
 			\begin{align}
 				T^*U^* \subset (UT)^*
 			\end{align}
@@ -413,29 +413,29 @@
 	\end{screen}
 	
 	\begin{prf}
-		任意の$h \in \mathscr{D}(T^*U^*)$に対して
+		任意の$h \in \Dom{T^*U^*} )$に対して
 		\begin{align}
-			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<Tx,U^*h>_{Y,Y^*} = \inprod<x,T^*U^*h>_{X,X^*} \quad (\forall [x,Tx] \in \mathscr{G}(UT))
+			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<Tx,U^*h>_{Y,Y^*} = \inprod<x,T^*U^*h>_{X,X^*} \quad (\forall [x,Tx] \in \Graph{UT} )
 		\end{align}
-		が成り立つから，$h \in \mathscr{D}((UT)^*)$かつ$(UT)^*h = T^*U^*h$を満たす
+		が成り立つから，$h \in \Dom{(UT)^*} $かつ$(UT)^*h = T^*U^*h$を満たす
 		\footnote{
-			$\mathscr{G}(UT)$は$X$で稠密であるから$(UT)^*h = T^*U^*h$でなくてはならない．
+			$\Graph{UT} $は$X$で稠密であるから$(UT)^*h = T^*U^*h$でなくてはならない．
 		}．
 		ゆえに
 		\begin{align}
 			T^*U^* \subset (UT)^*
 		\end{align}
 		となる．$U \in \Bop{Y}{Z} $の場合，
-		$\mathscr{D}(UT) = \mathscr{D}(T)$と$U^* \in \Bop{Z^*}{Y^*} $(定理\ref{thm:dual_operator_bounded})が従うから，
-		任意の$h \in \mathscr{D}((UT)^*)$に対して
+		$\Dom{UT} = \Dom{T} $と$U^* \in \Bop{Z^*}{Y^*} $(定理\ref{thm:dual_operator_bounded})が従うから，
+		任意の$h \in \Dom{(UT)^*} $に対して
 		\begin{align}
-			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<x,(UT)^*h>_{X,X^*} \quad (\forall x \in \mathscr{G}(T))
+			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<x,(UT)^*h>_{X,X^*} \quad (\forall x \in \Graph{T} )
 		\end{align}
 		かつ
 		\begin{align}
-			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<Tx, U^*h>_{Y,Y^*} \quad (\forall x \in \mathscr{G}(T))
+			\inprod<(UT)x,h>_{Z,Z^*} = \inprod<Tx, U^*h>_{Y,Y^*} \quad (\forall x \in \Graph{T} )
 		\end{align}
-		より$U^*h \in \mathscr{D}(T^*)$となり$T^*U^*h = (UT)^*h$を満たす．従って$(UT)^* \subset T^* U^*$が成り立ち
+		より$U^*h \in \Dom{T^*} $となり$T^*U^*h = (UT)^*h$を満たす．従って$(UT)^* \subset T^* U^*$が成り立ち
 		\begin{align}
 			(UT)^* = T^* U^*
 		\end{align}
@@ -446,7 +446,7 @@
 	\begin{screen}
 		\begin{thm}[共役作用素の和]
 			$X,Y$をノルム空間，$T:X \rightarrow Y,\ U:X \rightarrow Y$を線型作用素とし
-			$\closure{\mathscr{D}(T)} = X,\ \closure{\mathscr{D}(U)} = X,\ \closure{\mathscr{D}(T + U)} = X$を満たすとする．このとき
+			$\closure{\Dom{T} } = X,\ \closure{\Dom{U} } = X,\ \closure{\Dom{T + U} } = X$を満たすとする．このとき
 			\begin{align}
 				T^* + U^* \subset (T + U)^*
 			\end{align}
@@ -455,19 +455,19 @@
 	\end{screen}
 	
 	\begin{prf}
-		任意の$g \in \mathscr{D}(T^* + U^*)$に対し，
+		任意の$g \in \Dom{T^* + U^*} $に対し，
 		\begin{align}
 			\inprod<(T + U)x,g>_{Y,Y^*} = \inprod<Tx,g>_{Y,Y^*} + \inprod<Ux,g>_{Y,Y^*}
 			= \inprod<x,T^*g>_{X,X^*} + \inprod<x,U^*g>_{X,X^*}\ \footnotemark
 			= \inprod<x,(T^* + U^*)g>_{X,X^*}
-			\quad (\forall x \in \mathscr{D}(T + U))
+			\quad (\forall x \in \Dom{T + U} )
 		\end{align}
 		が成り立つ
 		\footnotetext{
-			$\mathscr{D}(T + U) \subset \mathscr{D}(T),\mathscr{D}(U)$である．
+			$\Dom{T + U} \subset \Dom{T} ,\Dom{U} $である．
 		}
-		．従って$g \in \mathscr{D}((T + U)^*)$かつ$(T + U)^*g = (T^* + U^*)g$を満たす．
-		特に$T,U \in \Bop{X}{Y} $のとき，任意の$g \in \mathscr{D}((T + U)^*)$に対し
+		．従って$g \in \Dom{(T + U)^*} $かつ$(T + U)^*g = (T^* + U^*)g$を満たす．
+		特に$T,U \in \Bop{X}{Y} $のとき，任意の$g \in \Dom{(T + U)^*} $に対し
 		\begin{align}
 			\inprod<(T + U)x,g>_{Y,Y^*} = \inprod<x,(T + U)^*g>_{X,X^*} \quad (\forall x \in X) 
 		\end{align}
@@ -475,13 +475,13 @@
 		\begin{align}
 			\inprod<(T + U)x,g>_{Y,Y^*} = \inprod<Tx,g>_{Y,Y^*} + \inprod<Ux,g>_{Y,Y^*} = \inprod<x,(T^* + U^*)g>_{X,X^*} \quad (\forall x \in X)
 		\end{align}
-		が成り立つから$g \in \mathscr{D}(T^* + U^*)$かつ$(T + U)^* = (T^* + U^*)$が従う．
+		が成り立つから$g \in \Dom{T^* + U^*} $かつ$(T + U)^* = (T^* + U^*)$が従う．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[共役作用素のスカラ倍]
-			$X,Y$をノルム空間，$T:X \rightarrow Y$を線型作用素とし$\closure{\mathscr{D}(T)} = X$を満たすとする．
+			$X,Y$をノルム空間，$T:X \rightarrow Y$を線型作用素とし$\closure{\Dom{T} } = X$を満たすとする．
 			任意の$\lambda \in \K$に対し次が成り立つ．
 			\begin{align}
 				(\lambda T)^* = \lambda T^*.
@@ -491,21 +491,21 @@
 	
 	\begin{prf}
 		$\lambda = 0$の場合，零作用素の共役作用素もまた零作用素となるから$(\lambda T)^* = \lambda T^*$が成り立つ．
-		$\lambda \neq 0$の場合，任意の$g \in \mathscr{D}((\lambda T)^*)$に対して
+		$\lambda \neq 0$の場合，任意の$g \in \Dom{(\lambda T)^*} $に対して
 		\begin{align}
 			\inprod<x,(\lambda T)^*g>_{X,X^*} = \inprod<(\lambda T)x,g>_{Y,Y^*}
 			= \lambda \inprod<Tx,g>_{Y,Y^*} = \lambda \inprod<x,T^*g>_{X,X^*}
-			\quad (\forall x \in \mathscr{D}(T))
+			\quad (\forall x \in \Dom{T} )
 		\end{align}
-		が成り立つから$g \in \mathscr{D}(T^*)$かつ
+		が成り立つから$g \in \Dom{T^*} $かつ
 		\begin{align}
 			(\lambda T)^*g = \lambda T^*g
 		\end{align}
-		が成り立つ．一方$g \in \mathscr{D}(T^*)$に対して
+		が成り立つ．一方$g \in \Dom{T^*} $に対して
 		\begin{align}
-			\inprod<(\lambda T)x,g>_{Y,Y^*} = \lambda \inprod<x,T^*>_{X,X^*} \quad (\forall x \in \mathscr{D}(T))
+			\inprod<(\lambda T)x,g>_{Y,Y^*} = \lambda \inprod<x,T^*>_{X,X^*} \quad (\forall x \in \Dom{T} )
 		\end{align}
-		も成り立ち，$g \in \mathscr{D}((\lambda T)^*)$かつ
+		も成り立ち，$g \in \Dom{(\lambda T)^*} $かつ
 		\begin{align}
 			(\lambda T)^*g = \lambda T^*g
 		\end{align}
