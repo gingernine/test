@@ -55,11 +55,16 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[複素Banach空間上のコンパクト作用素の値域，核の次元]
-			
+		\begin{thm}[複素Banach空間上のコンパクト作用素の値域の余次元，核の次元]\mbox{}\\
+			$X$を複素Banach空間，$I$を$X$上の恒等写像とし，$0 \neq \lambda \in \C$と$A \in \selfCop{X} $に対して
+			$T \coloneqq \lambda I - A$とおく．このとき
+			$\Ran{T}$は$X$の閉部分空間であり，$\Dim{\Kar{T}} < \infty$かつ$\Codim{\Ran{T}} < \infty$\footnotemark
+			が成り立つ．
 		\end{thm}
 	\end{screen}
-	
+	\footnotetext{
+		$\Codim{\Ran{T}} = \Dim{X/\Ran{T}}$である．
+	}
 	\begin{screen}
 		\begin{thm}[Fredholmの交代定理]
 			
@@ -137,19 +142,73 @@
 				$\Dom{\Phi} = E$が満たされているから，閉グラフ定理より$\Phi$は有界となる．
 				(1)(2)と併せれば$\Phi,\Phi^{-1}$は共に連続且つ線型全単射であるから主張が従う．
 			
-			\item[(5)] 
-				$E_2$が閉部分空間であるから，
-				(\refeq{eq:thm_quotient_space_norm})をノルムとする商ノルム空間$E/E_2$を定義することができる．
+			\item[(5)] $E \rightarrow E$の恒等写像を$I$と表す．また
 				\begin{align}
 					p_1:E \ni x \longmapsto [x] \in E/E_2,
-					\quad p_2:E/E_2 \ni [x] \longmapsto x \in E_1
+					\quad p_2:E/E_2 \ni [x] \longmapsto x_1 \in E_1 \quad (x = x_1 + x_2,\ x_1 \in E_1,\ x_2 \in E_2)
 				\end{align}
-				と定めれば$p_1$は線型連続であり$p_2$は線型同型である．
+				と定めれば$p_1$は線型連続であり$p_2$は線型同型かつ連続である:
 				\begin{description}
-					\item[$p_1$について]
-						$p_1$の線型性は
-					\item[$p_2$について]
+					\item[$p_1$について] 任意に$x,y \in E$と$\alpha, \beta \in \C$を取れば
+						\begin{align}
+							p_1(\alpha x + \beta y) = [\alpha x + \beta y] = [\alpha x] + [\beta y] 
+							= \alpha [x] + \beta [y] = \alpha p_1 x + \beta p_1 y
+						\end{align}
+						が成り立ち$p_1$の線型性が従う．また$x \in E,\ x \neq 0$に対して
+						\begin{align}
+							\frac{\Norm{p_1 x}{E/E_2}}{\Norm{x}{E}} = \frac{\Norm{[x]}{E/E_2}}{\Norm{x}{E}} \leq \frac{\Norm{x}{E}}{\Norm{x}{E}} = 1
+						\end{align}
+						となるから$p_1$は連続である．
+						
+					\item[$p_2$について] $E$から$E_1$への線型準同型を
+						\begin{align}
+							p:E \ni x \longmapsto x_1 \in E_1 \quad (x = x_1 + x_2,\ x_1 \in E_1,\ x_2 \in E_2)
+						\end{align}
+						で定める．$\Ran{p} = E_1$かつ$\Kar{p} = E_2$であるから，準同型定理より$p_2$は線型同型となる．また
+						$\Dim{E_1} < \infty$であるから$\Dim{E/E_2} = \Dim{E_1} < \infty$となり
+						\footnote{
+							一般の線形空間$X,Y$に対し，$\Dim{X} = k < \infty$且つ線型同型$f:X \rightarrow Y$が存在するなら
+							$\Dim{Y} = k$が成り立つ．実際
+							$X$の基底を$x_1,\cdots,x_k$とすれば
+							$f(x_1),\cdots,f(x_k)$は$Y$の基底となる．
+							$\alpha_1,\cdots,\alpha_k \in \C$に対し
+							\begin{align}
+								\alpha_1 f(x_1) + \cdots + \alpha_k f(x_k) = 0
+							\end{align}
+							が成り立っている場合，$f$が線型かつ単射であるから
+							\begin{align}
+								\alpha_1 x_1 + \cdots + \alpha_k x_k = 0
+							\end{align}
+							となり$f(x_1),\cdots,f(x_k)$の線型独立性が従う．また任意に$y \in Y$を取れば或る$x \in X$が対応し$f(x) = y$を満たすから，
+							\begin{align}
+								y = f(x) = f(\alpha_1 x_1 + \cdots + \alpha_k x_k) = \alpha f(x_1) + \cdots + \alpha f(x_k)
+							\end{align}
+							が成り立ち$Y = \LH{\left\{\, f(x_1),\cdots,f(x_k)\, \right\}}$が従う．
+						}
+						$p_2$の連続性が従う．
 				\end{description}
-				
+				$\Phi$は$p_1,p_2$を用いて
+				\begin{align}
+					\Phi x = [p_2 p_1 x, (I - p_2 p_1) x] \quad (\forall x \in E)
+				\end{align}
+				と表現できるから
+				\begin{align}
+					\Norm{\Phi x}{E_1 \times E_2} = \Norm{p_2 p_1 x}{E} + \Norm{(I - p_2 p_1) x}{E} 
+				\end{align}
+				により$\Phi$の連続性が従い，(1)(2)と併せて主張を得る．
+				\QED
 		\end{description}
 	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[$T$が単射なら全射]\mbox{}
+			\begin{description}
+				\item[(1)]	或る$n_0 \in \N$が存在して次を満たす:
+					\begin{align}
+						\Ran{T} \supset \Ran{T^2} \supset \cdots \supset \Ran{T^{n_0}} = \Ran{T^{n_0 + 1}} = \Ran{T^{n_0 + 2}} = \cdots.
+ 					\end{align}
+
+				\item[(2)] $T$が単射の場合$T$は全射である．
+			\end{description}
+		\end{lem}
+	\end{screen}
