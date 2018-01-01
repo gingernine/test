@@ -1,7 +1,5 @@
 \section{Fredholm性}
-	
-	以降ノルム空間の商空間は付録\ref{chap:quotient_normed_space}章に従って定義する．
-	
+
 	\begin{screen}
 		\begin{lem}[商空間のコンパクト作用素]
 			$X$を複素ノルム空間，$Y$を$X$の閉部分空間とする．
@@ -10,6 +8,7 @@
 				\item[(1)] $A_1:Y \ni y \longmapsto A y \in Y$として$A_1$を定めれば$A_1 \in \selfCop{Y} $が成り立つ．
 				\item[(2)] $A_2:X/Y \ni [x] \longmapsto [Ax] \in X/Y$として$A_2$を定めれば$A_2 \in \selfCop{X/Y} $が成り立つ．
 			\end{description}
+			\label{thm:compact_operator_on_quotient_normed_space}
 		\end{lem}
 	\end{screen}
 	
@@ -58,8 +57,9 @@
 		\begin{thm}[複素Banach空間上のコンパクト作用素の値域の余次元，核の次元]\mbox{}\\
 			$X$を複素Banach空間，$I$を$X$上の恒等写像とし，$0 \neq \lambda \in \C$と$A \in \selfCop{X} $に対して
 			$T \coloneqq \lambda I - A$とおく．このとき
-			$\Ran{T}$は$X$の閉部分空間であり，$\Dim{\Kar{T}} < \infty$かつ$\Codim{\Ran{T}} < \infty$\footnotemark
+			$\Ran{T}$は$X$の閉部分空間であり，$\Dim{\Ker{T}} < \infty$かつ$\Codim{\Ran{T}} < \infty$\footnotemark
 			が成り立つ．
+			\label{thm:Banach_space_compact_operator_kernel_dimension}
 		\end{thm}
 	\end{screen}
 	
@@ -71,17 +71,139 @@
 		\begin{description}
 			\item[$\Ran{T}$が閉となること]
 				\begin{align}
-					\hat{T}:X/\Kar{T} \ni [x] \longmapsto Tx \in \Ran{T}
+					\hat{T}:X/\Ker{T} \ni [x] \longmapsto Tx \in \Ran{T}
 				\end{align}
-				と定めれば$\hat{T}$は線型同型かつ連続となる．$\hat{T}$が単射であることは，$T[x] = T[x']$ならば$x - x' \in \Kar{T}$より
-				$[x] = [x']$が従い，また任意の$y \in \Ran{T}$に対して，$y = Tx$を満たす$x \in X$の
-				同値類$[x] \in X/\Kar{T}$が$\hat{T}[x] = y$を満たすから$\hat{T}$は全射である．
-				連続性は
+				と定めれば$\hat{T}$は線型同型かつ連続となる:
+				\begin{description}
+					\item[全単射]
+						$\hat{T}$が単射であることは，$T[x] = T[x']$ならば$x - x' \in \Ker{T}$より
+						$[x] = [x']$が従い，また任意の$y \in \Ran{T}$に対して，$y = Tx$を満たす$x \in X$の
+						同値類$[x] \in X/\Ker{T}$が$\hat{T}[x] = y$を満たすから$\hat{T}$は全射である．
+					
+					\item[線型性]
+						任意に$[x],[y] \in X/\Ker{T}$と$\alpha,\beta \in \C$を取れば
+						\begin{align}
+							\hat{T}\left( \alpha[x] + \beta[y] \right)
+							= \hat{T}\left( [\alpha x] + [\beta y] \right)
+							= T(\alpha x + \beta y)
+							= \alpha T x + \beta T y
+							= \alpha \hat{T} [x] + \beta \hat{T} [y]
+						\end{align}
+						が成立する．
+						
+					\item[連続性]
+						定理\ref{prp:compact_operator_bounded_composition_of_compact_operators}より$A$は有界であるから
+						\begin{align}
+							\Norm{T}{\selfBop{X}} = \Norm{\lambda I - A}{\selfBop{X}} \leq |\lambda| + \Norm{A}{\selfBop{X}} < \infty
+						\end{align}
+						が成り立ち，任意の$[x] \in X/\Ker{T}$に対して
+						\begin{align}
+							\Norm{\hat{T}[x]}{X} = \Norm{Tx}{X} \leq \Norm{T}{\selfBop{X}} \Norm{x}{X}
+						\end{align}
+						が従うから$\hat{T}$は連続である．
+				\end{description}		
+				$\Ran{T} = \Ran{\hat{T}}$であるから$\Ran{\hat{T}}$が$X$の閉部分空間となることを示せばよい．
+				まず或る$C > 0$が存在して
 				\begin{align}
-					\Norm{\hat{T}[x]}{X} = \Norm{Tx}{X} \leq \Norm{T}{\selfBop{X}} \Norm{x}{X}
+					C \Norm{\hat{T}[x]}{X} \geq \Norm{[x]}{X/\Ker{T}} \quad (\forall x \in X)
+					\label{eq:thm_Banach_space_compact_operator_kernel_dimension_3}
 				\end{align}
-				による．従って$\Ran{\hat{T}}$が$X$の閉部分空間となることを示せばよい．
+				を満たすことを示す．
+				\begin{description}
+					\item[(\refeq{eq:thm_Banach_space_compact_operator_kernel_dimension_3})の証明]
+						このような$C$が存在しないなら
+						\begin{align}
+							\Norm{\hat{T}[x_n]}{X} < \frac{1}{n} \Norm{[x_n]}{X/\Ker{T}}
+							\quad (n=1,2,\cdots) 
+							\label{eq:thm_Banach_space_compact_operator_kernel_dimension}
+						\end{align}
+						を満たす$X/\Ker{T}$の点列$\left( [x_n] \right)_{n=1}^{\infty}$が存在する．
+						\begin{align}
+							[y_n] \coloneqq \frac{1}{\Norm{[x_n]}{X/\Ker{T}}} [x_n] \quad (n=1,2,\cdots)
+						\end{align}
+						とおけば$\left( [y_n] \right)_{n=1}^{\infty}$も(\refeq{eq:thm_Banach_space_compact_operator_kernel_dimension})
+						を満たし，かつ$\hat{T}[y_n] = \hat{T}[u_n] = T u_n$であるから
+						\begin{align}
+							\Norm{Tu_n}{X} = \Norm{\hat{T}[y_n]}{X} < \frac{1}{n} \longrightarrow 0
+							\quad (n \longrightarrow \infty)
+							\label{eq:thm_Banach_space_compact_operator_kernel_dimension_2}
+						\end{align}
+						が成立する．$\Norm{[y_n]}{X/\Ker{T}} = 1$であるから
+						ノルムの定義(\refeq{eq:thm_quotient_space_norm})より$\Norm{u_n}{X} \leq 2$となる$u_n \in [y_n]$が存在し，
+						定理\ref{lem:compact_operator_equiv_cond}より
+						$\left( Au_n \right)_{n=1}^{\infty}$の或る部分列$\left( Au_{n_k} \right)_{k=1}^{\infty}$は
+						或る$y \in X$に収束するから
+						\begin{align}
+							\Norm{y - \lambda u_{n_k}}{X} = \Norm{y - Au_{n_k} - Tu_{n_k}}{X} \leq \Norm{y - Au_{n_k}}{X} + \Norm{Tu_{n_k}}{X}
+							\longrightarrow 0 \quad (k \longrightarrow \infty)
+						\end{align}
+						が成り立ち，更に$T$の有界性と(\refeq{eq:thm_Banach_space_compact_operator_kernel_dimension_2})より
+						\begin{align}
+							\Norm{Ty}{X} \leq \Norm{Ty - \lambda Tu_{n_k}}{X} + |\lambda| \Norm{Tu_{n_k}}{X} \longrightarrow 0
+							\quad (k \longrightarrow \infty)
+						\end{align}
+						となり$y \in \Ker{T}$が従う．一方で
+						\begin{align}
+							\left|\, \Norm{[y]}{X/\Ker{T}} - \Norm{\lambda \left[y_{n_k}\right]}{X/\Ker{T}}\, \right| 
+							\leq \Norm{[y] - \lambda \left[y_{n_k}\right]}{X/\Ker{T}} %= \Norm{\left[y - \lambda u_{n_k}\right]}{X/\Ker{T}}
+							\leq \Norm{y - \lambda u_{n_k}}{X} \longrightarrow 0 \quad (k \longrightarrow \infty)
+						\end{align}
+						が成り立つから$\Norm{[y]}{X/\Ker{T}} = |\lambda| > 0$が従い$y \in \Ker{T}$に矛盾する．
+				\end{description}
+				$\Ran{\hat{T}}$の点列$\left( \hat{T}[v_n] \right)_{n=1}^{\infty}$が
+				$\hat{T}[v_n] \rightarrow x \in X$を満たすなら，(\refeq{eq:thm_Banach_space_compact_operator_kernel_dimension_3})より
+				\begin{align}
+					\Norm{[v_n] - [v_m]}{X/\Ker{T}} \leq C \Norm{\hat{T}[v_n] - \hat{T}[v_m]}{X} \longrightarrow 0
+					\quad (n,m \longrightarrow \infty)
+				\end{align}
+				が成り立ち，定理\ref{thm:quotient_normed_space_Banach}より$\left( [v_n] \right)_{n=1}^{\infty}$は或る$[v] \in X/\Ker{T}$に収束する．
+				よって$\hat{T}$の連続性から
+				\begin{align}
+					\Norm{x - \hat{T}[v]}{X} 
+					%\leq \Norm{x - \hat{T}[v_n]}{X} + \Norm{\hat{T}[v_n] - \hat{T}[v]}{X}
+					\leq \Norm{x - \hat{T}[v_n]}{X} + \Norm{\hat{T}}{\selfBop{\hat{T}}} \Norm{[v_n] - [v]}{X}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立ち$x = \hat{T}[v] \in \Ran{\hat{T}}$が従う．
+			
+			\item[$\Dim{\Ker{T}} < \infty$となること]	
+				$T = \lambda I - A$より
+				\begin{align}
+					\lambda x = A x \quad (\forall x \in \Ker{T})
+					\label{eq:thm_Banach_space_compact_operator_kernel_dimension_4}
+				\end{align}
+				が成り立つから
+				\begin{align}
+					T A x = T \lambda x = \lambda T x = 0 \quad (\forall x \in \Ker{T})
+				\end{align}
+				となり$A \Ker{T} \subset \Ker{T}$が従う．
+				よって$\Ker{T}$から任意に有界点列$(x_n)_{n=1}^{\infty}$を取れば
+				$\left(A x_n \right)_{n=1}^{\infty}$は閉部分空間$\Ker{T}$に含まれ，
+				定理\ref{lem:compact_operator_equiv_cond}より或る部分列
+				$\left(A x_{n_k} \right)_{k=1}^{\infty}$は或る$x \in \Ker{T}$に収束する．
+				そして(\refeq{eq:thm_Banach_space_compact_operator_kernel_dimension_4})より
+				\begin{align}
+					\Norm{\frac{1}{\lambda}x - x_{n_k}}{X}
+					= \frac{1}{|\lambda|} \Norm{x - \lambda x_{n_k}}{X}
+					= \frac{1}{|\lambda|} \Norm{x - A x_{n_k}}{X}
+					\longrightarrow 0 \quad (k \longrightarrow \infty)
+				\end{align}
+				が成り立つから，定理\ref{thm:compact_identity_operator_and_dimension}より
+				$\Dim{X} < \infty$が従う．
 				
+			\item[$\Codim{\Ran{T}} < \infty$となること]
+				$\Ran{T}$は$X$の閉部分空間であるから商ノルム空間$X/\Ran{T}$を定義できる．
+				\begin{align}
+					U:X/\Ran{T} \ni [x] \longmapsto [Ax] \in X/\Ran{T}
+				\end{align}
+				と定めれば定理\ref{thm:compact_operator_on_quotient_normed_space}より
+				$U$はコンパクト作用素である．
+				\begin{align}
+					[0] = [Tx] = [\lambda x - Ax] = \lambda [x] - [Ax] = \lambda [x] - U[x] \quad (\forall x \in X)
+				\end{align}
+				が成り立つから，定理\ref{thm:compact_identity_operator_and_dimension}より
+				$\Dim{X/\Ran{T}} < \infty$が従う．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -184,7 +306,7 @@
 						\begin{align}
 							p:E \ni x \longmapsto x_1 \in E_1 \quad (x = x_1 + x_2,\ x_1 \in E_1,\ x_2 \in E_2)
 						\end{align}
-						で定める．$\Ran{p} = E_1$かつ$\Kar{p} = E_2$であるから，準同型定理より$p_2$は線型同型となる．また
+						で定める．$\Ran{p} = E_1$かつ$\Ker{p} = E_2$であるから，準同型定理より$p_2$は線型同型となる．また
 						$\Dim{E_1} < \infty$であるから$\Dim{E/E_2} = \Dim{E_1} < \infty$となり
 						\footnote{
 							一般の線形空間$X,Y$に対し，$\Dim{X} = k < \infty$且つ線型同型$f:X \rightarrow Y$が存在するなら
@@ -221,14 +343,43 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{lem}[$T$が単射なら全射]\mbox{}
-			\begin{description}
-				\item[(1)]	或る$n_0 \in \N$が存在して次を満たす:
-					\begin{align}
-						\Ran{T} \supset \Ran{T^2} \supset \cdots \supset \Ran{T^{n_0}} = \Ran{T^{n_0 + 1}} = \Ran{T^{n_0 + 2}} = \cdots.
- 					\end{align}
-
-				\item[(2)] $T$が単射の場合$T$は全射である．
-			\end{description}
+		\begin{lem}[$T$が単射なら全射]	$X$を複素Banach空間，$I$を$X$上の恒等写像とし，$0 \neq \lambda \in \C$と$A \in \selfCop{X} $に対して
+			$T \coloneqq \lambda I - A$とおく．このとき$T$が単射のならば$T$は全射である．
+			\label{lem:T_injective_then_surjective}
 		\end{lem}
 	\end{screen}
+	
+	\begin{prf}
+		背理法で示す．今$T$が単射であり全射ではないとする．このとき
+		\begin{align}
+			\Ran{T^k} \supsetneq \Ran{T^{k+1}} \quad (k = 1,2,\cdots)
+		\end{align}
+		が成り立つ．実際或る$k \in \N$で$\Ran{T^k} = \Ran{T^{k+1}}$が成り立つなら，
+		任意の$y \in X$に対し或る$x \in X$が存在して
+		\begin{align}
+			T^{k} y = T^{k+1} x = T^k T x
+		\end{align}
+		を満たすが，$T^k$が単射であるから$y = T x$が従い$T$が全射でないという仮定に反する．
+		\begin{align}
+			X_k \coloneqq \Ran{T^k} \quad (k = 1,2,\cdots)
+		\end{align}
+		と簡単に表せば，定理\ref{thm:Banach_space_compact_operator_kernel_dimension}より
+		$X_k$は$X$の閉部分空間であり，定理\ref{thm:closed_subspace_distance}より
+		\begin{align}
+			\Norm{x_k}{X} = 1,
+			\quad \inf{x \in X_k}{\Norm{x_k - x}{X}} > \frac{1}{2}
+			\label{eq:lem_T_injective_then_surjective}
+		\end{align}
+		を満たす$x_k \in X_k \backslash X_{k+1}\ (k=1,2,\cdots)$が存在する．
+		$n < m$となる$n,m \in \N$を取れば
+		\begin{align}
+			T x_n + A x_m = T x_n + \lambda x_m - T x_m \in X_{n+1}
+		\end{align}
+		が成り立つから，(\refeq{eq:lem_T_injective_then_surjective})より
+		\begin{align}
+			\Norm{A x_n - A x_m}{X} = \Norm{\lambda x_n - T x_n - A x_m}{X} > \frac{|\lambda|}{2}
+		\end{align}
+		が従い$\left( A x_k \right)_{k=1}^{\infty}$
+		は収束部分列を含み得ないが，これは定理\ref{lem:compact_operator_equiv_cond}に矛盾する．
+		\QED
+	\end{prf}

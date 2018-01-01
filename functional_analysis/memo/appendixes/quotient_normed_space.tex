@@ -1,8 +1,6 @@
-\chapter{商ノルム空間}
-\label{chap:quotient_normed_space}
-	$\K$を$\R$又は$\C$として$X$を$\K$上のノルム空間とする．
-	$X$のノルムを$\Norm{\cdot}{X}$と表記し$X$にノルム位相を導入する．
-	また$X$の閉部分空間$Y$に対し
+\section{商ノルム空間}
+\label{sec:quotient_normed_space}
+	ノルム空間$X$の閉部分空間$Y$に対し
 	\begin{align}
 		x \sim y \DEF x - y \in Y \quad (\forall x,y \in X)
 	\end{align}
@@ -167,4 +165,47 @@
 				を得る．
 				\QED
 		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[商空間の完備性]
+			$X$がBanach空間ならば$X/Y$もBanach空間である．
+			\label{thm:quotient_normed_space_Banach}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$X/Y$からCauchy列$\left( [x_n] \right)_{n=1}^{\infty}$を取る．
+		\begin{align}
+			\Norm{\left[ x_{n_k} \right] - \left[ x_{n_{k+1}} \right]}{X/Y} < \frac{1}{2^k} \quad (k=1,2,\cdots)
+		\end{align}
+		を満たす部分列$\left( [x_{n_k}] \right)_{k=1}^{\infty}$を抜き取り，
+		また$u_k \in \left[ x_{n_{k+1}} - x_{n_k} \right]\ (k=1,2,\cdots)$を
+		\begin{align}
+			\Norm{u_k}{X} \leq \Norm{\left[ x_{n_{k+1}} - x_{n_k} \right]}{X/Y} + \frac{1}{2^k}
+		\end{align}
+		を満たすように取り
+		\begin{align}
+			S_0 = 0, \quad S_v \coloneqq \sum_{k=1}^{v} u_k \quad (v=1,2,\cdots)
+		\end{align}
+		とおく．$X$がBanach空間であるから$(S_v)_{v=1}^{\infty}$は$X$で収束し，かつ
+		\begin{align}
+			\left[ x_{n_k} \right] = [x_{n_1}] + \sum_{j=1}^{k-1} \left[ x_{n_{j+1}}  - x_{n_j} \right]
+				= [x_{n_1}] + \sum_{j=1}^{k-1} [u_j]
+				= [x_{n_1}] + \left[ S_{k-1} \right]
+				\quad (k=1,2,\cdots)
+		\end{align}
+		を満たすから，
+		\begin{align}
+			S \coloneqq \lim_{v \to \infty} S_v \in X
+		\end{align}
+		とおけば
+		\begin{align}
+			\Norm{[x_{n_1} + S] - \left[ x_{n_k} \right]}{X/Y}
+			= \Norm{\left[ S - S_{k-1} \right]}{X/Y}
+			\leq \Norm{S - S_{k-1}}{X}
+			\longrightarrow 0 \quad (k \longrightarrow \infty)
+		\end{align}
+		が成り立つ．部分列の収束により$[x_n] \longrightarrow [x_{n_1} + S]\ (n \longrightarrow \infty)$が従う．
+		\QED
 	\end{prf}
