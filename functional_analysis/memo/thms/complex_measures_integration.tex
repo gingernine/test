@@ -1,1 +1,187 @@
 \section{積分の定義}
+	
+	\begin{screen}
+		\begin{dfn}[複素測度に関する積分]
+			$(X,\mathcal{M})$を可測空間とし，$\mu$を$(X,\mathcal{M})$上の複素測度とする．
+			$\mu$の総変動測度$|\mu|$に関して可積分となる関数$f:X \rightarrow \C$について
+			，$f$の$\mu$に関する積分を次で定める:
+			\begin{description}
+				\item[$f$が可測単関数の場合]
+					有限個の複素数$\alpha_1,\cdots,\alpha_k$と集合$A_1,\cdots,A_k \in \mathcal{M}$によって
+					\begin{align}
+						f = \sum_{i=1}^{k} \alpha_i \defunc_{A_i}
+						\label{eq:expression_simple_function}
+					\end{align}
+					と表されるとき\footnotemark
+					，$f$の$\mu$に関する積分を
+					\begin{align}
+						\int_X f(x)\ \mu(dx) \coloneqq \sum_{i=1}^{k} \alpha_i \mu(A_i)
+						\label{eq:complex_measures_integration_simple_function}
+					\end{align}
+					で定める．
+					
+				\item[$f$が一般の可測関数の場合]
+					\begin{align}
+						\int_X f_n(x)\ |\mu|(dx) \longrightarrow \int_X f(x)\ |\mu|(dx)
+						\label{eq:integration_simple_function_approximation}
+					\end{align}
+					を満たす$f$の可測単関数近似列$(f_n)_{n=1}^{\infty}$を取り，
+					$f$の$\mu$に関する積分を
+					\begin{align}
+						\int_X f(x)\ \mu(dx) \coloneqq \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx)
+						\label{eq:complex_measures_integration_measurable_function}
+					\end{align}
+					で定める．
+					
+			\end{description}
+			\label{dfn:complex_measures_integration}
+		\end{dfn}
+	\end{screen}
+	
+	\footnotetext{
+		$A_1,\cdots,A_k$は互いに素であり$X = \sum_{i=1}^{k} A_i$を満たす．
+	}
+	
+	\begin{screen}
+		\begin{thm}[積分の定義はwell-defined]
+			定義\ref{dfn:complex_measures_integration}で定めた積分はwell-defined
+			である．つまり(\refeq{eq:complex_measures_integration_simple_function})
+			は(\refeq{eq:expression_simple_function})の表示の仕方に依らずに定まり，
+			(\refeq{eq:complex_measures_integration_measurable_function})
+			も(\refeq{eq:integration_simple_function_approximation})を満たす単関数近似列の選び方に
+			依らずに定まる．
+			\label{thm:complex_measure_integration_well_defined}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$f$が可測単関数の場合]
+				$f$が(\refeq{eq:expression_simple_function})の表示とは別に
+				\begin{align}
+					f = \sum_{j=1}^{m} \beta_j \defunc_{B_j}
+					\quad (\beta_j \in \C,\ B_j \in \mathcal{M},\ \mbox{$X=\sum_{j=1}^{m} B_j$})
+				\end{align}
+				と表現できるとしても
+				\begin{align}
+					\sum_{i=1}^{k} \alpha_i \mu(A_i)
+					= \sum_{i=1}^{k} \sum_{j=1}^{m} \alpha_i \mu(A_i \cap B_j)
+					= \sum_{j=1}^{m} \sum_{i=1}^{k} \beta_j \mu(A_i \cap B_j)
+					= \sum_{j=1}^{m} \beta_j \mu(B_j)
+				\end{align}
+				が成り立つ．また(\refeq{radon_nikodym_3})より
+				\begin{align}
+					\left| \int_X f(x)\ \mu(dx) \right|
+					= \left| \sum_{i=1}^{k} \alpha_i \mu(A_i) \right|
+					\leq \sum_{i=1}^{k} \left| \alpha_i \right| |\mu|(A_i)
+					= \int_X |f(x)|\ |\mu|(dx)
+					\label{eq:thm_complex_measure_integration_well_defined}
+				\end{align}
+				も成り立つ．
+				
+			\item[$f$が一般の可測関数の場合]
+				(\refeq{eq:complex_measures_integration_measurable_function})
+				は有限確定している．実際
+				(\refeq{eq:integration_simple_function_approximation})を
+				満たす単関数近似列$(f_n)_{n=1}^{\infty}$に対して
+				(\refeq{eq:thm_complex_measure_integration_well_defined})より
+				\begin{align}
+					\left| \int_X f_n(x)\ \mu(dx) - \int_X f_m(x)\ \mu(dx) \right|
+					\leq \int_X \left| f_n(x) - f_m(x) \right|\ |\mu|(dx)
+					\quad (\forall n,m \in \N)
+				\end{align}
+				が成り立つから，$\left( \int_X f_n(x)\ \mu(dx) \right)_{n=1}^{\infty}$
+				は$\C$においてCauchy列をなし極限が存在する．
+				$(f_n)_{n=1}^{\infty}$とは別に(\refeq{eq:integration_simple_function_approximation})
+				を満たす$f$の単関数近似列$(g_n)_{n=1}^{\infty}$が存在しても
+				\begin{align}
+					&\left| \int_X f_n(x)\ \mu(dx) - \int_X g_m(x)\ \mu(dx) \right|
+					\leq \int_X \left| f_n(x) - g_m(x) \right|\ |\mu|(dx) \\
+					&\qquad \leq \int_X \left| f_n(x) - f(x) \right|\ |\mu|(dx)
+						+ \int_X \left| f(x) - g_m(x) \right|\ |\mu|(dx)
+					\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\alpha \coloneqq \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx),
+					\quad \beta \coloneqq \lim_{n \to \infty} \int_X g_n(x)\ \mu(dx)
+				\end{align}
+				とおけば
+				\begin{align}
+					|\alpha - \beta|
+					&\leq \left| \alpha - \int_X f_n(x)\ \mu(dx) \right|
+						+ \left| \int_X f_n(x)\ \mu(dx) - \int_X g_m(x)\ \mu(dx) \right|
+						+ \left| \int_X g_m(x)\ \mu(dx) - \beta \right| \\
+					&\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+				\end{align}
+				が従い$\alpha = \beta$を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	定義\ref{dfn:complex_measures_integration}において，
+	(\refeq{eq:complex_measures_integration_measurable_function})は
+	(\refeq{eq:complex_measures_integration_simple_function})の拡張となっている．
+	実際$f$が可測単関数の場合，(\refeq{eq:integration_simple_function_approximation})を満たす単関数近似列
+	として$f$自身を選べばよい．定理\ref{thm:complex_measure_integration_well_defined}より
+	(\refeq{eq:complex_measures_integration_measurable_function})による$f$の積分は一意に確定し
+	(\refeq{eq:complex_measures_integration_simple_function})の左辺に一致する．
+	
+	\begin{screen}
+		\begin{thm}[積分の線型性]
+			定義\ref{dfn:complex_measures_integration}で定めた積分について，
+			任意の$f,g \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$と
+			$\alpha,\beta \in \C$に対し
+			\begin{align}
+				\int_X \alpha f(x) + \beta g(x)\ \mu(dx)
+				= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X g(x)\ \mu(dx)
+			\end{align}
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$f,g$が可測単関数の場合，(\refeq{eq:complex_measures_integration_simple_function})で定める積分が線型性を持つことを示す．
+				$u_1,\cdots,u_k,v_1,\cdots,v_r \in \C$と$A_1,\cdots,A_k,B_1,\cdots,B_r \in \mathcal{M}\ (X = \sum_{i=1}^{k} A_i = \sum_{j=1}^{r} B_j)$によって
+				\begin{align}
+					f = \sum_{i=1}^{k} u_i \defunc_{A_i},
+					\quad g = \sum_{j=1}^{r} v_j \defunc_{B_j}
+				\end{align}
+				と表示されているとき，
+				\begin{align}
+					\alpha f + \beta g = \sum_{i=1}^{k} \sum_{j=1}^{r} (\alpha u_i + \beta v_j) \defunc_{A_i \cap B_j}
+				\end{align}
+				と表現できるから
+				\begin{align}
+					&\int_X \alpha f(x) + \beta g(x)\ \mu(dx) 
+					= \sum_{i=1}^{k} \sum_{j=1}^{r} (\alpha u_i + \beta v_j) \mu(A_i \cap B_j) \\
+					&\qquad = \alpha \sum_{i=1}^{k} u_i \mu(A_i) + \beta \sum_{j=1}^{r} v_j \mu(B_j)
+					= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X g(x)\ \mu(dx)
+				\end{align}
+				が成り立つ．
+			\item[第二段]
+				$f,g$を一般の可測関数とし，$f,g$それぞれについて(\refeq{eq:integration_simple_function_approximation})を満たす
+				単関数近似列$(f_n)_{n=1}^{\infty},(g_n)_{n=1}^{\infty}$を一つ選ぶ．
+				\begin{align}
+					&\int_X \left|(\alpha f_n(x) + \beta g_n(x)) - (\alpha f(x) + \beta g(x)) \right|\ |\mu|(dx) \\
+					&\qquad \leq |\alpha| \int_X \left| f_n(x) - f(x) \right|\ |\mu|(dx)
+						+ |\beta| \int_X \left| g_n(x) - g(x) \right|\ |\mu|(dx)
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つから$\alpha f + \beta g$の$\mu$に関する積分は
+				\begin{align}
+					\int_X \alpha f(x) + \beta g(x)\ \mu(dx) \coloneqq \lim_{n \to \infty} \int_X \alpha f_n(x) + \beta g_n(x)\ \mu(dx)
+				\end{align}
+				で定義され，前段の結果より
+				\begin{align}
+					&\left| \int_X \alpha f(x) + \beta g(x)\ \mu(dx) - \alpha \int_X f(x)\ \mu(dx) - \beta \int_X g(x)\ \mu(dx) \right| \\
+					&\quad\leq \left| \int_X \alpha f(x) + \beta g(x)\ \mu(dx) - \int_X \alpha f_n(x) + \beta g_n(x)\ \mu(dx) \right| \\
+						&\qquad+ \left| \alpha \int_X f_n(x)\ \mu(dx) + \beta \int_X g_n(x)\ \mu(dx) - \alpha \int_X f(x)\ \mu(dx) - \beta \int_X g(x)\ \mu(dx) \right| \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{prf}
