@@ -68,8 +68,8 @@
 	
 	\begin{itembox}[l]{}
 		\begin{dfn}[総変動・総変動測度]
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，上で定めた
-			測度$|\lambda|:\mathcal{M} \longrightarrow [0,\infty)$を
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，(\refeq{radon_nikodym_3})で定めた
+			$|\lambda|:\mathcal{M} \longrightarrow [0,\infty)$を
 			$\lambda$の総変動測度(total variation measure)といい，$|\lambda|(X)$を
 			$\lambda$の総変動(total variation)という．
 			特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．\footnotemark
@@ -96,14 +96,13 @@
 	が従うから，複素測度は有界であると判明する．
 
 	\begin{itembox}[l]{}
-		\begin{thm}[$|\lambda|$は測度となる]
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し(\refeq{radon_nikodym_3})で定義する$|\lambda|$は
-			$(X,\mathcal{M})$において測度となる．
+		\begin{thm}[$|\lambda|$は測度]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対して，(\refeq{radon_nikodym_3})で定義する$|\lambda|$は測度である．
 		\end{thm}
 	\end{itembox}
 	
 	\begin{prf}
-		(\refeq{radon_nikodym_3})により$|\lambda|$は正値であるから，ここで示すことは$|\lambda|$が完全加法的であるということである．
+		(\refeq{radon_nikodym_3})により$|\lambda|$は正値であるから，以下では$|\lambda|$の完全加法性を示す．
 		任意に$\epsilon > 0$とどの二つも互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$を取る．
 		示すことは$E \coloneqq \sum_{i=1}^{\infty} E_i$に対して
 		\begin{align}
@@ -113,7 +112,7 @@
 		\begin{align}
 			|\lambda|(E_i) \geq \sum_{j=1}^{\infty} |\lambda(A_{ij})| > |\lambda|(E_i) - \epsilon/2^i
 		\end{align}
-		となるように取ることができる．また$E = \sum_{i,j=1}^{\infty} A_{ij}$でもあるから
+		を満たすように取ることができる．また$E = \sum_{i,j=1}^{\infty} A_{ij}$でもあるから
 		\begin{align}
 			|\lambda|(E) \geq \sum_{i,j=1}^{\infty} |\lambda(A_{ij})| \geq \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} |\lambda(A_{ij})| > \sum_{i=1}^{\infty} |\lambda|(E_i) - \epsilon
 		\end{align}
@@ -121,13 +120,13 @@
 		\begin{align}
 			|\lambda|(E) \geq \sum_{j=1}^{\infty} |\lambda|(E_j)
 		\end{align}
-		が従う．逆向きの不等号について，$E$の任意の分割$(A_j)_{j=1}^{\infty} \subset \mathcal{M}$に対し
+		が従う．一方で$E$の任意の分割$(A_j)_{j=1}^{\infty} \subset \mathcal{M}$に対し
 		\begin{align}
 			\sum_{j=1}^{\infty} |\lambda(A_j)| 
 			= \sum_{j=1}^{\infty} \left| \sum_{i=1}^{\infty} \lambda(A_j \cap E_i) \right|
 			\leq \sum_{j=1}^{\infty} \sum_{i=1}^{\infty} |\lambda(A_j \cap E_i)|
 			\leq \sum_{i=1}^{\infty} |\lambda|(E_i)
-			\footnotemark
+			\ \footnotemark
 		\end{align}
 		\footnotetext{
 			正項級数は和の順序に依らないから
@@ -159,7 +158,7 @@
 	
 	\begin{itembox}[l]{}
 		\begin{lem}
-			$z_1,\cdots,z_N$を複素数とする．これらの添数集合の或る部分$S \subset \{1,\cdots,N\}$を抜き取れば次が成り立つ:
+			$z_1,\cdots,z_N$を複素数とする．添数集合の或る部分$S \subset \{1,\cdots,N\}$を抜き取れば次が成り立つ:
 			\begin{align}
 				\left| \sum_{k \in S} z_k \right| \geq \frac{1}{2\pi} \sum_{k=1}^{N} |z_k|.
 			\end{align}
@@ -177,12 +176,13 @@
 		\begin{align}
 			\left| \sum_{k \in S(\theta)} z_k \right| &= |\exp{-i\theta}|\left| \sum_{k \in S(\theta)} z_k \right| = \left| \sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)} \right| \\
 			&\geq \Re{\sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)}} = \sum_{k \in S(\theta)} |z_k| \cos{(\alpha_k - \theta)}{} = \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
-			\footnotemark
+			\ \footnotemark
 		\end{align}
 		\footnotetext{$\cos{x}{+} = 0 \vee \cos{x}{}\ (x \in \R)$である．}
-		が成り立ち，最右辺は$\theta$に関して連続となるから$[-\pi,\pi]$上で式を最大にする$\theta_0$が存在する．$S \coloneqq S(\theta_0)$とおき，$\theta_0$と任意の$\theta \in [-\pi,\pi]$に対して
+		が成り立ち，最右辺は$\theta$に関して連続となるから$[-\pi,\pi]$上で最大値を達成する$\theta_0$が存在する．$S \coloneqq S(\theta_0)$とすれば
 		\begin{align}
 			\left| \sum_{k \in S} z_k \right| \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta_0)}{+} \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
+			\quad (\forall \theta \in [-\pi, \pi])
 		\end{align}
 		が成り立つから，左辺右辺を積分して
 		\begin{align}
@@ -190,7 +190,7 @@
 			= \frac{1}{2\pi} \sum_{k=1}^{N} |z_k|
 		\end{align}
 		が成り立つ\footnote{
-			最後の積分について，実際三角関数の周期性を使えば任意の$\alpha \in \R$に対して
+			三角関数の周期性を使えば任意の$\alpha \in \R$に対して
 			\begin{align}
 				\int_{[-\pi,\pi]} \cos{(\alpha - \theta)}{+}\ d\theta = \int_{[\alpha-\pi,\alpha+\pi]} \cos{\theta}{+}\ d\theta = \int_{[-\pi,\pi]} \cos{\theta}{+}\ d\theta = 1
 			\end{align}
@@ -254,7 +254,7 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{}
-		\begin{dfn}[複素測度の空間・ノルムの定義]
+		\begin{thm}[複素測度の空間・ノルムの定義]
 			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM$と表す．$\lambda,\mu \in \CM,\ c \in \C,\ E \in \mathcal{M}$に対し
 			\begin{align}
 				&(\lambda + \mu)(E) \coloneqq \lambda(E) + \mu(E), \\
@@ -267,12 +267,13 @@
 			\begin{align}
 				\Norm{\lambda}{} \coloneqq |\lambda|(X) \quad (\lambda \in \CM)
 			\end{align}
-			と定義すればこれは$\CM$においてノルムとなる．
-		\end{dfn}
+			と定義すればこれは$\CM$においてノルムとなり，$\left( \CM,\Norm{\cdot}{} \right)$はBanach空間となる．
+		\end{thm}
 	\end{itembox}
 	
-	上で定義した$\Norm{\cdot}{}$がノルムとなることを証明する．総変動の正値性からノルムの正値性が従うから，以下示すのは
-	同次性と三角不等式である．
+	\begin{prf}
+	総変動の正値性からノルムの正値性が従うから，以下では
+	同次性と三角不等式が成り立つことを示す．
 	\begin{description}
 		\item[同次性]
 			総変動測度の定義(\refeq{radon_nikodym_3})とスカラ倍の定義(\refeq{complex_measure_linear})より，任意の$\lambda \in \CM$と$c \in \C$に対し
@@ -296,21 +297,23 @@
 			\end{align}
 			が従う．
 	\end{description}
+	\QED
+	\end{prf}
 	
+	可測空間$(X,\mathcal{M})$において，実数にしか値を取らない複素測度を符号付き測度(signed measure)という．
 	\begin{itembox}[l]{}
 		\begin{dfn}[正変動と負変動・Jordanの分解]
-			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM$とし，
-			実数値の$\mu \in \CM$を取る({\scriptsize このような$\mu$を符号付き測度(signed measure)という})．
+			$(X,\mathcal{M})$を可測空間とする．$(X,\mathcal{M})$上の符号付き測度$\mu$を取り
 			\begin{align}
 				\mu^+ \coloneqq \frac{1}{2}(|\mu| + \mu) , \quad \mu^- \coloneqq \frac{1}{2}(|\mu| - \mu)
 			\end{align}
-			とおけば$\mu^+,\mu^-$はどちらも正値有限測度となる\footnotemark
-			．$\mu^+$を$\mu$の正変動(positive variation)といい$\mu^-$を$\mu$の負変動(negative variation)という．
+			として$\mu^+,\mu^-$を定めれば，どちらも正値有限測度となる\footnotemark
+			．この$\mu^+$を$\mu$の正変動(positive variation)といい$\mu^-$を$\mu$の負変動(negative variation)という．
 			また
 			\begin{align}
 				\mu = \mu^+ - \mu^-, \quad |\mu| = \mu^+ + \mu^-
 			\end{align}
-			が成り立ち，ここで示した符号付き測度の正変動と負変動による表現をJordanの分解という．
+			が成り立ち，上の表現を符号付き測度$\mu$のJordan分解という．
 		\end{dfn}
 	\end{itembox}
 	
@@ -322,23 +325,24 @@
 		\begin{dfn}[絶対連続・特異]
 			$(X,\mathcal{M})$を可測空間，
 			$\mu$を$\mathcal{M}$上の正値測度\footnotemark
-			，$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の任意の測度({\scriptsize 正値測度或は複素測度})とする．
+			，$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の任意の測度とする．
 			\begin{itemize}
-				\item $\lambda$が$\mu$に関して絶対連続である(absolutely continuous)ということを
+				\item $\lambda$が$\mu$に関して絶対連続である(absolutely continuous)とは
+					$\mu(E)=0$となる全ての$E \in \mathcal{M}$について$\lambda(E)=0$が成り立つことを指し，
 					\begin{align}
 						\lambda \ll \mu
 					\end{align}
-					と書き，その意味は，「$\mu(E)=0$となる全ての$E \in \mathcal{M}$について$\lambda(E)=0$」である．
+					と表記する．
 				
-				\item 或る$A \in \mathcal{M}$があって$\lambda(E) = \lambda(A \cap E)\ (\forall E \in \mathcal{M})$
-					が成り立っているとき，$\lambda$は$A$に集中している(concentrated on A)という．
-					$\lambda_1,\lambda_2$に対し或る$A_1,A_2 \in \mathcal{M}$があって，
-					$\lambda_1$が$A_1$に集中，$\lambda_2$が$A_2$に集中しかつ
-					$A_1 \cap A_2 = \emptyset$を満たしているとき，これを互いに特異である(mutually singular)といい
+				\item 或る$A \in \mathcal{M}$が存在して$\lambda(E) = \lambda(A \cap E)\ (\forall E \in \mathcal{M})$
+					が成り立つとき，$\lambda$は$A$に集中している(concentrated on A)という．
+					$\lambda_1,\lambda_2$に対し或る$A_1,A_2 \in \mathcal{M}$が存在し，
+					$\lambda_1$が$A_1$に，$\lambda_2$が$A_2$に集中しかつ
+					$A_1 \cap A_2 = \emptyset$が満たされているとき，$\lambda_1,\lambda_2$は互いに特異である(mutually singular)といい
 					\begin{align}
 						\lambda_1 \perp \lambda_2
 					\end{align}
-					と書く．
+					と表記する．
 			\end{itemize}
 		\end{dfn}
 	\end{itembox}
