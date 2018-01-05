@@ -1,9 +1,9 @@
 \section{可予測過程}
 	\begin{screen}
 		\begin{dfn}[可予測$\sigma$-加法族・可予測過程]
-			$A \times \{0\}\ (A \in \mathcal{F}_0)$の形，或は
-			$A \times (s,t]\ \left( (s,t] \subset I,\ A \in \mathcal{F}_s \right)$
-			の形の$\Omega \times I$の部分集合の全体を$\Pi$とおく．
+			$\{0\} \times A\ (A \in \mathcal{F}_0)$の形，或は
+			$(s,t] \times A\ \left( (s,t] \subset I,\ A \in \mathcal{F}_s \right)$
+			の形の$I \times \Omega$の部分集合の全体を$\Pi$とおく．
 			そして$\Pi$の生成する$\sigma$-加法族を$\mathcal{P}$と表し，
 			これを可予測$\sigma$-加法族(predictable $\sigma$-algebra)と呼ぶ．
 			また$\mathcal{P}/\borel{\R}$可測の関数を可予測過程(predictable process)という．
@@ -20,14 +20,14 @@
 	
 	\begin{prf}
 		任意に$B_1,B_2 \in \Pi$を取り，
-		$B_1 = A_1 \times (s_1,t_1],B_2 = A_2 \times (s_2,t_2]\ (A_1 \in \mathcal{F}_{s_1},A_2 \in \mathcal{F}_{s_2},s_1 \leq s_2)$
+		$B_1 = (s_1,t_1] \times A_1,B_2 = (s_2,t_2] \times A_2\ (A_1 \in \mathcal{F}_{s_1},A_2 \in \mathcal{F}_{s_2},s_1 \leq s_2)$
 		と仮定する．$t_1 \leq s_2$なら$B_1 \cap B_2 = \emptyset$であり，
 		$s_2 < t_1$とすれば$A_1 \in \mathcal{F}_{s_2}$であるから
 		\begin{align}
-			B_1 \cap B_2 = \left(A_1 \cap A_2\right) \times (s_2, t_1 \wedge t_2] \in \Pi
+			B_1 \cap B_2 =  (s_2, t_1 \wedge t_2] \times \left(A_1 \cap A_2\right) \in \Pi
 		\end{align}
-		が成り立つ．$B_1 = A_1 \times \{0\}\ (A_1 \in \mathcal{F}_0)$の場合，$B_2 = A_2 \times \{0\}\ (A_2 \in \mathcal{F}_0)$の形であれば
-		$B_1 \cap B_2 = \left(A_1 \cap A_2\right) \times \{0\}$，そうでなければ
+		が成り立つ．$B_1 = \{0\} \times A_1\ (A_1 \in \mathcal{F}_0)$の場合，$B_2 = \{0\} \times A_2\ (A_2 \in \mathcal{F}_0)$の形であれば
+		$B_1 \cap B_2 = \{0\} \times \left(A_1 \cap A_2\right)$，そうでなければ
 		$B_1 \cap B_2 = \emptyset$となり，いずれの場合も交演算で閉じている．
 		\QED
 		\end{prf}
@@ -47,13 +47,13 @@
 		\end{align}
 		とおけば$\mathcal{D}$はDynkin族である．実際次が成り立つ:
 		\begin{itemize}
-			\item $B = \Omega \times I$なら$f_B^{-1}(C) = I$又は$\emptyset$であるから$\Omega \times I \in \mathcal{D}$である．
+			\item $B = I \times \Omega$なら$f_B^{-1}(C) = I$又は$\emptyset$であるから$I \times \Omega \in \mathcal{D}$である．
 			\item $B_1,B_2 \in \mathcal{D},\ B_1 \subset B_2$に対して，$f_{B_2 \backslash B_1} = f_{B_2} - f_{B_1}$より$B_2 \backslash B_1 \in \mathcal{D}$が成り立つ．
 			\item 互いに素な列$B_n \in \mathcal{D}\ (n\in\N)$に対して，$f_{\sum_{n=1}^{\infty} B_n} = \sum_{n=1}^{\infty} f_{B_n}$より$\sum_{n=1}^{\infty} B_n \in \mathcal{D}$が成り立つ．
 		\end{itemize}
 		補題\ref{lem:predictable_Pi_pi_system}より$\Pi$は乗法族であるから，
 		$\Pi \subset \mathcal{D}$ならばDynkin族定理により補題の主張が従う．
-		$B = A \times (s,t]\ \left( (s,t] \subset I,\ A \in \mathcal{F}_s \right)$と表されるとすれば，
+		$B = (s,t] \times A\ \left( (s,t] \subset I,\ A \in \mathcal{F}_s \right)$と表されるとすれば，
 		$\omega \in A$のとき
 		\begin{align}
 			f_B^{-1}(C) = 
@@ -72,18 +72,18 @@
 				\emptyset & (0 \notin C) \\
 			\end{cases}
 		\end{align}
-		が成り立つ．$B = A \times \{0\}$の場合も同様であるから，いずれの場合も$f_B^{-1}(C) \in \borel{I}$を満たす．
+		が成り立つ．$B = \{0\} \times A$の場合も同様であるから，いずれの場合も$f_B^{-1}(C) \in \borel{I}$を満たす．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[$(\Omega \times I,\mathcal{P})$における測度の構成]
-			任意の$B \in \mathcal{P}$に対して
+			任意の$M \in \mathcal{M}_{2,c},B \in \mathcal{P}$に対して
 			\begin{align}
 				\mu_M(B) \coloneqq \int_\Omega \int_I \defunc_B(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
 				\label{eq:thm_composition_of_predictable_space_measure_0}
 			\end{align}
-			と定めれば，$\mu_M$は可測空間$(\Omega \times I,\mathcal{P})$上の測度となる．
+			と定めれば，$\mu_M$は可測空間$(I \times \Omega,\mathcal{P})$上の測度となる．
 			\label{thm:composition_of_predictable_space_measure}
 		\end{thm}
 	\end{screen}
@@ -115,7 +115,7 @@
 				\end{align}
 				とおけば$\mathcal{D}$はDynkin族である．実際以下が成り立つ:
 				\begin{itemize}
-					\item $B = \Omega \times I$の場合，(\refeq{eq:thm_composition_of_predictable_space_measure_2})と
+					\item $B = I \times \Omega$の場合，(\refeq{eq:thm_composition_of_predictable_space_measure_2})と
 						$\inprod<M>$の適合性より(\refeq{eq:thm_composition_of_predictable_space_measure_1})は可測$\mathcal{F}_t/\borel{\R}$となる．
 					\item $B_1,B_2 \in \mathcal{P},\ B_1 \subset B_2$に対して，(\refeq{eq:thm_composition_of_predictable_space_measure_1})の積分は可積分であるから線型性より
 						\begin{align}
@@ -132,17 +132,17 @@
 						が成り立つ．(\refeq{eq:thm_composition_of_predictable_space_measure_2})より$\omega$ごとに右辺の級数は有限確定し$\sum_{n=1}^{\infty}B_n \in \mathcal{P}$が従う．
 				\end{itemize}
 				補題\ref{lem:measurability_of_predictable_simple_functions}と同様に$\Pi \subset \mathcal{D}$となることを示せば，Dynkin族定理より第一段の主張が従う．
-				$B = A \times (\alpha,\beta]\ (A \in \mathcal{F}_\alpha)$として，全ての$\omega \in \Omega$に対し
+				$B = (\alpha,\beta] \times A\ (A \in \mathcal{F}_\alpha)$として，全ての$\omega \in \Omega$に対し
 				\begin{align}
 					\int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega) 
-					&= \defunc_A(\omega) \int_{[0,t]} \defunc_{(\alpha,\beta]}(s,\omega)\ d\inprod<M>_s(\omega) \\
+					&= \defunc_A(\omega) \int_{[0,t]} \defunc_{(\alpha,\beta]}(s)\ d\inprod<M>_s(\omega) \\
 					&= \begin{cases}
 						0 & (t \leq \alpha) \\
 						\defunc_A(\omega)\left( \inprod<M>_{t \wedge \beta}(\omega) - \inprod<M>_\alpha(\omega) \right) & (t > \alpha)
 					\end{cases}
 				\end{align}
-				が成り立つから，$A \in \mathcal{F}_t$であることと$\inprod<M>$の適合性から$A \times (\alpha,\beta] \in \mathcal{D}$が従う．
-				$B = A \times \{0\}\ (A \in \mathcal{F}_0)$の場合は積分は常に0になる．
+				が成り立つから，$A \in \mathcal{F}_t$であることと$\inprod<M>$の適合性から$(\alpha,\beta] \times A \in \mathcal{D}$が従う．
+				$B = \{0\} \times A\ (A \in \mathcal{F}_0)$の場合は積分は常に0になる．
 				
 			\item[第二段]
 				前段の結果より(\refeq{eq:thm_composition_of_predictable_space_measure_0})右辺の積分が定義される．
@@ -164,18 +164,156 @@
 			$F \in \semiLp{\infty}{\Omega,\mathcal{F}_0,\mu},F_i \in \semiLp{\infty}{\Omega,\mathcal{F}_{t_i},\mu}\ (i=0,\cdots,n-1)$
 			を任意に取り構成する次の過程
 			\begin{align}
-				X(t,\omega) \coloneqq F(\omega)\defunc_{\{0\}}(t) + \sum_{i=0}^{n-1} F_i(\omega) \defunc_{\left(t_i,t_{i+1}\right]}(t)
+				X(t,\omega) \coloneqq  \defunc_{\left(t_i,t_{i+1}\right]}(t)
 				\quad (\forall \omega \in \Omega,t \in I)
+				\label{eq:dfn_simple_predictable_process}
 			\end{align}
 			を単純可予測過程(simple predictable process)という．単純可予測過程の全体を$\mathcal{S}$と表す．
+			\label{dfn:predictable_simple_process}
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{lem}[単純可予測過程の性質]\mbox{}
 			\begin{description}
-				\item[(1)] 任意の$X \in \mathcal{S}$は可測$\mathcal{P}/\borel{\R}$である．
-				\item[(2)] $\mathcal{S}$は$\semiLp{2}{\Omega \times I,\mathcal{P},\mu_M}$の稠密な部分集合である．
+				\item[(1)] $\mathcal{S}$は$\R$上の線形空間をなす．
+				\item[(2)] 任意の$X \in \mathcal{S}$は可測$\mathcal{P}/\borel{\R}$である．
+				\item[(3)] $\mathcal{S}$は$\semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$の稠密な部分集合である．
 			\end{description}
 		\end{lem}
 	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $\mathcal{S}$が線型演算について閉じていることを示す．
+				\begin{description}
+					\item[加法]
+						$S_1,S_2 \in \mathcal{S}$を取れば，定義\ref{dfn:predictable_simple_process}に従って
+						\begin{align}
+							S_1 = F \defunc_{\{0\}} + \sum_{i=0}^{n-1} F_i \defunc_{\left(t_i,t_{i+1}\right]}, \quad
+							S_2 = G \defunc_{\{0\}} + \sum_{j=0}^{m-1} G_j \defunc_{\left(s_j,s_{j+1}\right]}
+						\end{align}
+						と表現できる．今，時点の分点の合併が$0 = u_0 < u_1 < \cdots < u_r = T$であるとする．
+						\begin{align}
+							\tilde{F}_k &\coloneqq F_i \quad (t_i \leq u_k < t_{i+1},\ i=0,\cdots,n-1), \\
+							\tilde{G}_k &\coloneqq G_j \quad (s_j \leq u_k < s_{j+1},\ j=0,\cdots,m-1)
+						\end{align}
+						とおけば，全ての$k = 0,\cdots,r-1$に対し$\tilde{F}_k,\tilde{G}_k \in \semiLp{\infty}{\Omega,\mathcal{F}_{u_k},\mu}$であり，また
+						\begin{align}
+							S_1 = F \defunc_{\{0\}} + \sum_{k=0}^{r-1} \tilde{F}_k \defunc_{\left(u_k,u_{k+1}\right]}, \quad
+							S_2 = G \defunc_{\{0\}} + \sum_{k=0}^{r-1} \tilde{G}_k \defunc_{\left(u_k,u_{k+1}\right]}
+						\end{align}
+						と表現しなおせば
+						\begin{align}
+							S_1 + S_2 = (F+G) \defunc_{\{0\}} + \sum_{k=0}^{r-1} \left( \tilde{F}_k + \tilde{G}_k \right) \defunc_{\left(u_k,u_{k+1}\right]}
+						\end{align}
+						が成り立つ．$\mathscr{L}^{\infty}$の線型性より$S_1 + S_2 \in \mathcal{S}$が従う．
+						
+					\item[スカラ倍]
+						$S \in \mathcal{S}$と$\alpha \in \R$を取れば，
+						\begin{align}
+							S = F \defunc_{\{0\}} + \sum_{i=0}^{n-1} F_i \defunc_{\left(t_i,t_{i+1}\right]}
+						\end{align}
+						と表されているとして
+						\begin{align}
+							\alpha S = \alpha F \defunc_{\{0\}} + \sum_{i=0}^{n-1} \alpha F_i \defunc_{\left(t_i,t_{i+1}\right]}
+						\end{align}
+						となる．$\mathscr{L}^{\infty}$の線型性より$\alpha S \in \mathcal{S}$が従う．
+				\end{description}
+				
+			\item[(2)] 
+				(\refeq{eq:dfn_simple_predictable_process})の各項が可測$\mathcal{P}/\borel{\R}$であることを示せばよい．
+				$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取る．$F$の単関数近似列$(F_n)_{n=1}^{\infty}$
+				を取れば，一つ一つは
+				\begin{align}
+					F_n = \sum_{j=1}^{N_n} \alpha_j^n \defunc_{A_j^n} \quad \left( \alpha_j^n \in \R,\ A_j^n \in \mathcal{F}_s,\ \mbox{$\sum_{j=1}^{N_n}A_j^n = \Omega$} \right)
+				\end{align}
+				と表現される．各$j=1,\cdots,N_n$について
+				\begin{align}
+					I \times \Omega \ni (u,\omega) \longmapsto \defunc_{A_j^n}(\omega) \defunc_{(s,t]}(u)
+				\end{align}
+				が可測$\mathcal{P}/\borel{\R}$であるから，$F_n \defunc_{(s,t]}$及び
+				その各点極限の$F \defunc_{(s,t]}$も可測$\mathcal{P}/\borel{\R}$である．
+			
+			\item[(3)]
+				まず$\mathcal{S} \subset \semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$であることを示す．
+				(\refeq{eq:dfn_simple_predictable_process})の各項が二乗可積分であればよいから，任意に
+				$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取り$F \defunc{(s,t]}$の二乗可積分性を示す．
+				\begin{align}
+					E \coloneqq \left\{\, \Norm{F}{\semiLp{\infty}{\mu}} < F\, \right\}
+				\end{align}
+				とおけば補題\ref{lem:holder_inequality}より$\mu(E) = 0$となるから，$\mu_M(I \times E) = 0$が従い
+				\begin{align}
+					\int_{I \times \Omega} |F(\omega)|^2 \defunc_{(s,t]}(u)\ \mu_M(d(u,\omega)) 
+					\leq \Norm{F}{\semiLp{\infty}{\mu}}^2 \mu_M\left((s,t] \times (\Omega \backslash E)\right) 
+				\end{align}
+				が成り立つ．また$M \in \mathcal{M}_{2,c}$であるから$t$ごとに$\inprod<M>_t$は可積分であり
+				\begin{align}
+					\mu_M\left((s,t] \times (\Omega \backslash E)\right) = \int_{\Omega} \inprod<M>_t(\omega) - \inprod<M>_s(\omega)\ \mu(d\omega) < \infty
+				\end{align}
+				が得られる．
+				次に$\mathcal{S}$が$\semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$で稠密であることを示す．
+				\begin{align}
+					\mathcal{D} \coloneqq \Set{B \in \mathcal{P}}{\mbox{$\forall \epsilon > 0,\ \exists S \in \mathcal{S},\ \mbox{s.t.}\ \Norm{\defunc_B - S}{\semiLp{2}{\mu_M}} < \epsilon.$}}
+				\end{align}
+				とおけば$\Pi \subset \mathcal{D}$を満たす．実際任意の$B \in \Pi$は$B = (s,t] \times A\ (A \in \mathcal{F}_s)$或は$B = \{0\} \times A\ (A \in \mathcal{F}_0)$
+				と表現され，$\defunc_A \in \semiLp{\infty}{\mu}$を満たすから$\defunc_{(s,t] \times A} = \defunc_{(s,t]} \defunc_A \in \mathcal{S}$が成り立つ．
+				そしてまた，以下に示すように$\mathcal{D}$はDynkin族である．
+				\begin{itemize}
+					\item $B = I \times \Omega$に対し$S = \defunc_{(0,T] \times \Omega}$とすれば
+						\begin{align}
+							\Norm{\defunc_B - S}{\semiLp{2}{\mu_M}}^2
+							= \mu_M(\{0\} \times \Omega)
+							= 0
+						\end{align}
+						が成り立ち$I \times \Omega \in \mathcal{D}$が従う．
+					
+					\item $B_1,B_2 \in \mathcal{D},\ B_1 \subset B_2$と$\epsilon > 0$を任意に取る．
+						\begin{align}
+							\Norm{\defunc_{B_1} - S_1}{\semiLp{2}{\mu_M}} < \frac{\epsilon}{2}, \quad
+							\Norm{\defunc_{B_2} - S_2}{\semiLp{2}{\mu_M}} < \frac{\epsilon}{2}
+						\end{align}
+						を満たす$S_1,S_2 \in \mathcal{S}$を選べば，(1)より$S_2 - S_1 \in \mathcal{S}$であり，かつ
+						\begin{align}
+							\Norm{\defunc_{B_2} - \defunc_{B_1} - \left(S_2 - S_1\right)}{\semiLp{2}{\mu_M}} < \epsilon
+						\end{align}
+						が成り立つから$B_2 \backslash B_1 \in \mathcal{D}$が従う．
+						
+					\item 互いに素な列$B_n \in \mathcal{D}\ (n=1,2,\cdots)$と$\epsilon > 0$を任意に取る．
+						各$B_n$に対し
+						\begin{align}
+							\Norm{\defunc_{B_n} - S_n}{\semiLp{2}{\mu_M}} < \frac{\epsilon}{2^n}
+						\end{align}
+						を満たす$S_n \in \mathcal{S}$を選ぶ．任意の$N \in \N$に対し
+						\begin{align}
+							\Norm{\defunc_{\sum_{n=1}^{\infty}B_n} - \sum_{n=1}^{N}S_n}{\semiLp{2}{\mu_M}}
+							&= \Norm{\sum_{n=1}^{\infty}\defunc_{B_n} - \sum_{n=1}^{N}S_n}{\semiLp{2}{\mu_M}} \\
+							&\leq \Norm{\sum_{n=N+1}^{\infty}\defunc_{B_n}}{\semiLp{2}{\mu_M}} + \Norm{\sum_{n=1}^{N}\defunc_{B_n} - \sum_{n=1}^{N}S_n}{\semiLp{2}{\mu_M}} \\
+							&\leq \Norm{\sum_{n=N+1}^{\infty}\defunc_{B_n}}{\semiLp{2}{\mu_M}} + \sum_{n=1}^{N} \Norm{\defunc_{B_n} - S_n}{\semiLp{2}{\mu_M}} \\
+							&< \Norm{\sum_{n=N+1}^{\infty}\defunc_{B_n}}{\semiLp{2}{\mu_M}} + \frac{\epsilon}{2}
+						\end{align}
+						が成り立つ．$\sum_{n=N+1}^{\infty}\defunc_{B_n}$は可積分関数1で抑えられ，かつ各点$(t,\omega) \in I \times \Omega$において
+						\begin{align}
+							\sum_{n=N+1}^{\infty}\defunc_{B_n}(t,\omega) \longrightarrow 0
+							\quad (N \longrightarrow \infty)
+						\end{align}
+						となるからLebesgueの収束定理より
+						\begin{align}
+							\Norm{\sum_{n=N+1}^{\infty}\defunc_{B_n}}{\semiLp{2}{\mu_M}} \longrightarrow 0
+							\quad (N \longrightarrow \infty)
+						\end{align}
+						が成り立つ．従って
+						\begin{align}
+							\Norm{\sum_{n=N+1}^{\infty}\defunc_{B_n}}{\semiLp{2}{\mu_M}} < \frac{\epsilon}{2}
+						\end{align}
+						を満たすように$N \in \N$を選べば，(1)より$\sum_{n=1}^{N}S_n \in \mathcal{S}$が成り立ち，かつ
+						\begin{align}
+							\Norm{\defunc_{\sum_{n=1}^{\infty}B_n} - \sum_{n=1}^{N}S_n}{\semiLp{2}{\mu_M}} < \epsilon
+						\end{align}
+						も得られ$\sum_{n=1}^{\infty} B_n \in \mathcal{D}$が従う．
+				\end{itemize}
+				以上で$\mathcal{P} = \mathcal{D}$が示された．つまり$S$は$\mathcal{P}$-可測の単関数を近似できるから
+				主張が従う．
+				\QED
+		\end{description}
+	\end{prf}
