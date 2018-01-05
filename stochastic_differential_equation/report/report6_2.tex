@@ -1,0 +1,181 @@
+\section{可予測過程}
+	\begin{screen}
+		\begin{dfn}[可予測$\sigma$-加法族・可予測過程]
+			$A \times \{0\}\ (A \in \mathcal{F}_0)$の形，或は
+			$A \times (s,t]\ \left( (s,t] \subset I,\ A \in \mathcal{F}_s \right)$
+			の形の$\Omega \times I$の部分集合の全体を$\Pi$とおく．
+			そして$\Pi$の生成する$\sigma$-加法族を$\mathcal{P}$と表し，
+			これを可予測$\sigma$-加法族(predictable $\sigma$-algebra)と呼ぶ．
+			また$\mathcal{P}/\borel{\R}$可測の関数を可予測過程(predictable process)という．
+			\label{dfn:predictable_sigma_algebra}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[$\Pi$は乗法族]
+			定義\ref{dfn:predictable_sigma_algebra}の$\Pi$は乗法族である．
+			\label{lem:predictable_Pi_pi_system}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$B_1,B_2 \in \Pi$を取り，
+		$B_1 = A_1 \times (s_1,t_1],B_2 = A_2 \times (s_2,t_2]\ (A_1 \in \mathcal{F}_{s_1},A_2 \in \mathcal{F}_{s_2},s_1 \leq s_2)$
+		と仮定する．$t_1 \leq s_2$なら$B_1 \cap B_2 = \emptyset$であり，
+		$s_2 < t_1$とすれば$A_1 \in \mathcal{F}_{s_2}$であるから
+		\begin{align}
+			B_1 \cap B_2 = \left(A_1 \cap A_2\right) \times (s_2, t_1 \wedge t_2] \in \Pi
+		\end{align}
+		が成り立つ．$B_1 = A_1 \times \{0\}\ (A_1 \in \mathcal{F}_0)$の場合，$B_2 = A_2 \times \{0\}\ (A_2 \in \mathcal{F}_0)$の形であれば
+		$B_1 \cap B_2 = \left(A_1 \cap A_2\right) \times \{0\}$，そうでなければ
+		$B_1 \cap B_2 = \emptyset$となり，いずれの場合も交演算で閉じている．
+		\QED
+		\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[可予測単関数の時間に関する可測性]
+			任意の$B \in \mathcal{P}$と任意の$\omega \in \Omega$に対し
+			$f_B:I \ni t \longmapsto \defunc_B(t,\omega)$は可測$\borel{I}/\borel{\R}$である．
+			\label{lem:measurability_of_predictable_simple_functions}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$C \in \borel{\R}$を取り固定する．
+		\begin{align}
+			\mathcal{D} \coloneqq \Set{B \in \mathcal{P}}{\mbox{$f_B$が可測$\borel{I}/\borel{\R}$．}}
+		\end{align}
+		とおけば$\mathcal{D}$はDynkin族である．実際次が成り立つ:
+		\begin{itemize}
+			\item $B = \Omega \times I$なら$f_B^{-1}(C) = I$又は$\emptyset$であるから$\Omega \times I \in \mathcal{D}$である．
+			\item $B_1,B_2 \in \mathcal{D},\ B_1 \subset B_2$に対して，$f_{B_2 \backslash B_1} = f_{B_2} - f_{B_1}$より$B_2 \backslash B_1 \in \mathcal{D}$が成り立つ．
+			\item 互いに素な列$B_n \in \mathcal{D}\ (n\in\N)$に対して，$f_{\sum_{n=1}^{\infty} B_n} = \sum_{n=1}^{\infty} f_{B_n}$より$\sum_{n=1}^{\infty} B_n \in \mathcal{D}$が成り立つ．
+		\end{itemize}
+		補題\ref{lem:predictable_Pi_pi_system}より$\Pi$は乗法族であるから，
+		$\Pi \subset \mathcal{D}$ならばDynkin族定理により補題の主張が従う．
+		$B = A \times (s,t]\ \left( (s,t] \subset I,\ A \in \mathcal{F}_s \right)$と表されるとすれば，
+		$\omega \in A$のとき
+		\begin{align}
+			f_B^{-1}(C) = 
+			\begin{cases}
+				I & (0 \in C,1 \in C) \\
+				(s,t] & (0 \notin C,1 \in C) \\
+				I \backslash (s,t] & (0 \in C,1 \notin C) \\
+				\emptyset & (0 \notin C,1 \notin C) \\
+			\end{cases}
+		\end{align}
+		が成り立ち，$\omega \notin A$のとき
+		\begin{align}
+			f_B^{-1}(C) = 
+			\begin{cases}
+				I & (0 \in C) \\
+				\emptyset & (0 \notin C) \\
+			\end{cases}
+		\end{align}
+		が成り立つ．$B = A \times \{0\}$の場合も同様であるから，いずれの場合も$f_B^{-1}(C) \in \borel{I}$を満たす．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$(\Omega \times I,\mathcal{P})$における測度の構成]
+			任意の$B \in \mathcal{P}$に対して
+			\begin{align}
+				\mu_M(B) \coloneqq \int_\Omega \int_I \defunc_B(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
+				\label{eq:thm_composition_of_predictable_space_measure_0}
+			\end{align}
+			と定めれば，$\mu_M$は可測空間$(\Omega \times I,\mathcal{P})$上の測度となる．
+			\label{thm:composition_of_predictable_space_measure}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				任意の$B \in \mathcal{P},t \in I$に対して
+				\begin{align}
+					\Omega \ni \omega \longmapsto \int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega)
+					\label{eq:thm_composition_of_predictable_space_measure_1}
+				\end{align}
+				が可測$\mathcal{F}_t/\borel{\R}$であることを示す
+				\footnote{
+					補題\ref{lem:measurability_of_predictable_simple_functions}より可測性が保証されているから，
+					(\refeq{eq:thm_composition_of_predictable_space_measure_1})の積分はLebesgue-Stieltjes積分として定義される．
+				}
+				．
+				今，$I \ni t \longmapsto \inprod<M>_t$の単調非減少性より
+				\begin{align}
+					0 &\leq \int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega) \\
+					&\leq \int_{[0,t]}\ d\inprod<M>_s(\omega) = \inprod<M>_t(\omega) < \infty
+					\quad (\forall t \in I,B \in \mathcal{P},\omega \in \Omega)
+					\label{eq:thm_composition_of_predictable_space_measure_2}
+				\end{align}
+				が成り立ち，いかなる場合も可積分性は保証される．
+				\begin{align}
+					\mathcal{D} \coloneqq \Set{B \in \mathcal{P}}{\mbox{任意の$t \in I$に対し(\refeq{eq:thm_composition_of_predictable_space_measure_1})が可測$\mathcal{F}_t/\borel{\R}$．}}
+				\end{align}
+				とおけば$\mathcal{D}$はDynkin族である．実際以下が成り立つ:
+				\begin{itemize}
+					\item $B = \Omega \times I$の場合，(\refeq{eq:thm_composition_of_predictable_space_measure_2})と
+						$\inprod<M>$の適合性より(\refeq{eq:thm_composition_of_predictable_space_measure_1})は可測$\mathcal{F}_t/\borel{\R}$となる．
+					\item $B_1,B_2 \in \mathcal{P},\ B_1 \subset B_2$に対して，(\refeq{eq:thm_composition_of_predictable_space_measure_1})の積分は可積分であるから線型性より
+						\begin{align}
+							\int_{[0,t]} \defunc_{B_2 \backslash B_1}(s,\omega)\ d\inprod<M>_s(\omega) 
+							= \int_{[0,t]} \defunc_{B_2}(s,\omega)\ d\inprod<M>_s(\omega) - \int_{[0,t]} \defunc_{B_1}(s,\omega)\ d\inprod<M>_s(\omega) 
+						\end{align}
+						が成り立ち$B_2 \backslash B_1 \in \mathcal{P}$が従う．
+					\item 互いに素な列$B_n \in \mathcal{P}\ (n \in \N)$に対して，単調収束定理より
+						\begin{align}
+							\int_{[0,t]} \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ d\inprod<M>_s(\omega) 
+							= \sum_{n=1}^{\infty} \int_{[0,t]} \defunc_{B_n}(s,\omega)\ d\inprod<M>_s(\omega)
+							\label{eq:thm_composition_of_predictable_space_measure_3}
+						\end{align}
+						が成り立つ．(\refeq{eq:thm_composition_of_predictable_space_measure_2})より$\omega$ごとに右辺の級数は有限確定し$\sum_{n=1}^{\infty}B_n \in \mathcal{P}$が従う．
+				\end{itemize}
+				補題\ref{lem:measurability_of_predictable_simple_functions}と同様に$\Pi \subset \mathcal{D}$となることを示せば，Dynkin族定理より第一段の主張が従う．
+				$B = A \times (\alpha,\beta]\ (A \in \mathcal{F}_\alpha)$として，全ての$\omega \in \Omega$に対し
+				\begin{align}
+					\int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega) 
+					&= \defunc_A(\omega) \int_{[0,t]} \defunc_{(\alpha,\beta]}(s,\omega)\ d\inprod<M>_s(\omega) \\
+					&= \begin{cases}
+						0 & (t \leq \alpha) \\
+						\defunc_A(\omega)\left( \inprod<M>_{t \wedge \beta}(\omega) - \inprod<M>_\alpha(\omega) \right) & (t > \alpha)
+					\end{cases}
+				\end{align}
+				が成り立つから，$A \in \mathcal{F}_t$であることと$\inprod<M>$の適合性から$A \times (\alpha,\beta] \in \mathcal{D}$が従う．
+				$B = A \times \{0\}\ (A \in \mathcal{F}_0)$の場合は積分は常に0になる．
+				
+			\item[第二段]
+				前段の結果より(\refeq{eq:thm_composition_of_predictable_space_measure_0})右辺の積分が定義される．
+				この段では(\refeq{eq:thm_composition_of_predictable_space_measure_0})で定める$\mu_M$が測度となることを示す．
+				先ず$\mu_M$の正値性は(\refeq{eq:thm_composition_of_predictable_space_measure_2})より従う．
+				また互いに素な列$B_n \in \mathcal{P}$を取れば，(\refeq{eq:thm_composition_of_predictable_space_measure_3})と単調収束定理より
+				\begin{align}
+					\int_\Omega \int_I \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
+					= \sum_{n=1}^{\infty} \int_\Omega \int_I \defunc_{B_n}(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立ち$\mu_M$の完全加法性が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[単純可予測過程]
+			$n \in \N$，$0=t_0 < t_1 < \cdots < t_n = T$，
+			$F \in \semiLp{\infty}{\Omega,\mathcal{F}_0,\mu},F_i \in \semiLp{\infty}{\Omega,\mathcal{F}_{t_i},\mu}\ (i=0,\cdots,n-1)$
+			を任意に取り構成する次の過程
+			\begin{align}
+				X(t,\omega) \coloneqq F(\omega)\defunc_{\{0\}}(t) + \sum_{i=0}^{n-1} F_i(\omega) \defunc_{\left(t_i,t_{i+1}\right]}(t)
+				\quad (\forall \omega \in \Omega,t \in I)
+			\end{align}
+			を単純可予測過程(simple predictable process)という．単純可予測過程の全体を$\mathcal{S}$と表す．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[単純可予測過程の性質]\mbox{}
+			\begin{description}
+				\item[(1)] 任意の$X \in \mathcal{S}$は可測$\mathcal{P}/\borel{\R}$である．
+				\item[(2)] $\mathcal{S}$は$\semiLp{2}{\Omega \times I,\mathcal{P},\mu_M}$の稠密な部分集合である．
+			\end{description}
+		\end{lem}
+	\end{screen}
