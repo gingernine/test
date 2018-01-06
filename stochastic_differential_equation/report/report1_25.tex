@@ -192,19 +192,19 @@
 }
 
 \begin{prf}
-	$F \coloneqq \sup{n \in \N}{\Norm{f_n}{}} < \infty$とし
+	$F \coloneqq \sup{n \in \N}{\Norm{f_n}{}} < \infty$とおく．
 	\begin{align}
 		A \coloneqq \sup{n \geq 1}{\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}}}
 	\end{align}
-	とおけば$A \leq F$となる．実際各$n \in \N$について任意に$g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$を取れば
+	とおけば$A \leq F$が成り立つ．実際各$n \in \N$について任意に$g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$を取れば
 	\begin{align}
-		g = \sum_{i=0}^{N}c_i f_{n+i} \quad \left( 0 \leq c_i \leq 1,\ \sum_{i=0}^{N} c_i = 1 \right)
+		g = \sum_{i=0}^{N}c_i f_{n+i} \quad \left( 0 \leq c_i \leq 1,\ \mbox{$\sum_{i=0}^{N} c_i = 1$} \right)
 	\end{align}
 	と表現できるから，
 	\begin{align}
 		\Norm{g}{} = \Norm{\sum_{i=0}^{N}c_i f_{n+i}}{} \leq \sum_{i=0}^{N}c_i \Norm{f_n}{} \leq F
 	\end{align}
-	が成り立ち，
+	より
 	\begin{align}
 		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \leq F \quad (\forall n \in \N)
 	\end{align}
@@ -212,27 +212,27 @@
 	\begin{align}
 		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \leq A
 	\end{align}
-	が成り立つから，或る$g_n \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$を
+	が成り立つから，各$n \in \N$について
 	\begin{align}
-		\Norm{g_n}{} \leq A + \frac{1}{n} \quad (n=1,2,\cdots) \label{eq:thm_kolmos_1}
+		\Norm{g_n}{} \leq A + \frac{1}{n} \label{eq:thm_kolmos_1}
 	\end{align}
-	を満たすよう取ることができる．一方で
+	を満たす$g_n \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$が存在する．一方で，下限を取る範囲が縮小していくから
 	\begin{align}
 		\left( \inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \right)_{n=1}^\infty
 	\end{align}
-	が単調増大列である(下限を取る範囲が縮小していく)から，任意に$m \in \N$を取れば或る$N(m) \in \N\ (N(m) > m)$が存在し，
-	全ての$n \geq N(m)$に対して
+	は単調増大列であり，任意に$m \in \N$を取れば或る$N(m) \in \N\ (N(m) > m)$が存在して
 	\begin{align}
 		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \geq A - \frac{1}{m}
+		\quad (\forall n \geq N(m))
 	\end{align}
 	が成り立つ．任意の$l,k \geq N(m)$に対し$(g_l + g_k) / 2 \in \Conv{f_{N(m)},f_{N(m)+1},f_{N(m)+2} \cdots}$となるから
 	\begin{align}
 		\Norm{\frac{g_l + g_k}{2}}{} \geq A - \frac{1}{m}
 	\end{align}
-	が従い，中線定理と(\refeq{eq:thm_kolmos_1})を併せれば
+	が従い，中線定理と(\refeq{eq:thm_kolmos_1})を併せて
 	\begin{align}
 		\Norm{g_l - g_k}{}^2 = 2\Norm{g_l}{} + 2\Norm{g_k}{} + \Norm{g_l + g_k}{}^2 \leq 4\left( A + \frac{1}{N(m)} \right)^2 - 4\left( A - \frac{1}{m} \right)^2 \leq \frac{16A}{m}
 	\end{align}
-	が成り立つ．$A \leq F < \infty$であったから，これは$(g_n)_{n=1}^{\infty}$がCauchy列をなしていることを表現している．
+	が成り立つ．$A \leq F < \infty$より右辺は$m \longrightarrow \infty$で0に収束するから$(g_n)_{n=1}^{\infty}$はCauchy列である．
 	\QED
 \end{prf}

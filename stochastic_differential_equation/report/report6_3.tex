@@ -1,0 +1,83 @@
+\section{伊藤積分}
+	
+	\begin{screen}
+		\begin{dfn}[単純可予測過程に対する伊藤積分]
+			任意の$X \in \mathcal{S}$は(\refeq{eq:dfn_simple_predictable_process})に倣って
+			\begin{align}
+				X = F \defunc_{\{0\}} + \sum_{i=0}^{n-1} F_i \defunc_{\left(t_i,t_{i+1}\right]}
+				\label{eq:dfn_Ito_integral_simple_predictable_process}
+			\end{align}
+			と表現される．$X$に対し$M \in \mathcal{M}_{2,c}$を取り
+			\begin{align}
+				I_M(X)(t,\omega) \coloneqq \sum_{i=0}^{n-1} F_i(\omega) \left(M_{t \wedge t_{i+1}}(\omega) - M_{t \wedge t_i}(\omega)\right)
+				\quad (\forall t \in I,\omega \in \Omega)
+			\end{align}
+			として定める$I_M$を単純可予測過程に対する伊藤積分作用素(It\Hat{o} integral operator)とする．
+			\label{dfn:Ito_integral_simple_predictable_process}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[伊藤積分の連続線型性]
+			定義\ref{dfn:Ito_integral_simple_predictable_process}の$I_M$は
+			$\mathcal{S}$から$\mathcal{M}_{2,c}$への線型作用素であり，次の意味で等長である:
+			\begin{align}
+				\Norm{X}{\semiLp{2}{\mu_M}} = \Norm{I_M(X)}{\mathcal{M}_{2,c}}
+				\quad (X \in \mathcal{S}).
+			\end{align}
+			ただし，$f \in \mathcal{M}_{2,c}$に対して$\Norm{f}{\mathcal{M}_{2,c}}$を
+			\begin{align}
+				\Norm{f}{\mathcal{M}_{2,c}}^2 \coloneqq \int_\Omega |f(T,\omega)|^2\ \mu(d\omega)
+			\end{align}
+			と定める．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[線型性]
+				任意に$X_1,X_2 \in \mathcal{S}$と$\alpha \in \R$を取る．
+				\begin{description}
+					\item[加法]
+						$X_1,X_2$の表示を
+						\begin{align}
+							X_1 = F \defunc_{\{0\}} + \sum_{i=0}^{n-1} F_i \defunc_{\left(t_i,t_{i+1}\right]},
+							\quad X_2 = G \defunc_{\{0\}} + \sum_{j=0}^{m-1} G_j \defunc_{\left(s_j,s_{j+1}\right]}
+						\end{align}
+						として，時点の分点の合併を$0=u_0 < u_1 < \cdots < u_r = T$と表し
+						\begin{align}
+							\tilde{F}_k &\coloneqq F_i \quad (t_i \leq u_k < t_{i+1},\ i=0,\cdots,n-1), \\
+							\tilde{G}_k &\coloneqq G_j \quad (s_j \leq u_k < s_{j+1},\ j=0,\cdots,m-1)
+						\end{align}
+						とおく．$\sum_{\alpha \leq u_k < \beta}^{(k)}$と表記して$\alpha \leq u_k < \beta$を満たす$k$についての総和記号を定めれば
+						\begin{align}
+							\sum_{k=0}^{r-1} \tilde{F}_k(\omega) \left( M_{t \wedge u_{k+1}}(\omega) - M_{t \wedge u_k}(\omega) \right)
+							&= \sum_{i=0}^{n-1} \sum_{t_i \leq u_k < t_{i+1}}^{(k)} F_i(\omega) \left( M_{t \wedge u_{k+1}}(\omega) - M_{t \wedge u_k}(\omega) \right) \\
+							&= \sum_{i=0}^{n-1} F_i(\omega) \left( M_{t \wedge t_{i+1}}(\omega) - M_{t \wedge t_i}(\omega) \right)
+						\end{align}
+						が成り立つから，(\refeq{eq:lem_properties_of_simple_predictable_processes})と併せて
+						\begin{align}
+							I_M(X_1 + X_2)(t,\omega)
+							&= \sum_{k=0}^{r-1} \left( \tilde{F}_k(\omega) + \tilde{G}_k(\omega) \right) \left( M_{t \wedge u_{k+1}}(\omega) - M_{t \wedge u_k}(\omega) \right) \\
+							&= I_M(X_1) + I_M(X_2)(t,\omega)
+							\quad (\forall t \in I,\omega \in \Omega)
+						\end{align}
+						が得られる．
+					\item[スカラ倍]
+						$X_1$と$\alpha$に対して次が成り立つ:
+						\begin{align}
+							&I_M(\alpha X_1)(t,\omega)
+							= \sum_{i=0}^{n-1} \alpha F_i(\omega) \left(M_{t \wedge t_{i+1}}(\omega) - M_{t \wedge t_i}(\omega)\right) \\
+							&\qquad= \alpha \sum_{i=0}^{n-1} F_i(\omega) \left(M_{t \wedge t_{i+1}}(\omega) - M_{t \wedge t_i}(\omega)\right)
+							= \alpha I_M(X_1)(t,\omega)
+							\quad (\forall t \in I,\omega \in \Omega).
+						\end{align}
+					
+				\end{description}
+			\item[等長性]
+				任意に$X \in \mathcal{S}$を取り，(\refeq{eq:dfn_Ito_integral_simple_predictable_process})を$X$の表示とする．
+				\begin{align}
+					d
+				\end{align}
+		\end{description}
+	\end{prf}

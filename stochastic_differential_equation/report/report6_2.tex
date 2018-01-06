@@ -80,7 +80,7 @@
 		\begin{thm}[$(\Omega \times I,\mathcal{P})$における測度の構成]
 			任意の$M \in \mathcal{M}_{2,c},B \in \mathcal{P}$に対して
 			\begin{align}
-				\mu_M(B) \coloneqq \int_\Omega \int_I \defunc_B(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
+				\mu_M(B) \coloneqq \int_\Omega \int_I \defunc_B(s,\omega)\ \inprod<M>(ds,\omega)\ \mu(d\omega)
 				\label{eq:thm_composition_of_predictable_space_measure_0}
 			\end{align}
 			と定めれば，$\mu_M$は可測空間$(I \times \Omega,\mathcal{P})$上の測度となる．
@@ -93,7 +93,7 @@
 			\item[第一段]
 				任意の$B \in \mathcal{P},t \in I$に対して
 				\begin{align}
-					\Omega \ni \omega \longmapsto \int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega)
+					\Omega \ni \omega \longmapsto \int_{[0,t]} \defunc_B(s,\omega)\ \inprod<M>(ds,\omega)
 					\label{eq:thm_composition_of_predictable_space_measure_1}
 				\end{align}
 				が可測$\mathcal{F}_t/\borel{\R}$であることを示す
@@ -104,8 +104,8 @@
 				．
 				今，$I \ni t \longmapsto \inprod<M>_t$の単調非減少性より
 				\begin{align}
-					0 &\leq \int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega) \\
-					&\leq \int_{[0,t]}\ d\inprod<M>_s(\omega) = \inprod<M>_t(\omega) < \infty
+					0 &\leq \int_{[0,t]} \defunc_B(s,\omega)\ \inprod<M>(ds,\omega) \\
+					&\leq \int_{[0,t]}\ \inprod<M>(ds,\omega) = \inprod<M>(t,\omega) < \infty
 					\quad (\forall t \in I,B \in \mathcal{P},\omega \in \Omega)
 					\label{eq:thm_composition_of_predictable_space_measure_2}
 				\end{align}
@@ -119,14 +119,14 @@
 						$\inprod<M>$の適合性より(\refeq{eq:thm_composition_of_predictable_space_measure_1})は可測$\mathcal{F}_t/\borel{\R}$となる．
 					\item $B_1,B_2 \in \mathcal{P},\ B_1 \subset B_2$に対して，(\refeq{eq:thm_composition_of_predictable_space_measure_1})の積分は可積分であるから線型性より
 						\begin{align}
-							\int_{[0,t]} \defunc_{B_2 \backslash B_1}(s,\omega)\ d\inprod<M>_s(\omega) 
-							= \int_{[0,t]} \defunc_{B_2}(s,\omega)\ d\inprod<M>_s(\omega) - \int_{[0,t]} \defunc_{B_1}(s,\omega)\ d\inprod<M>_s(\omega) 
+							&\int_{[0,t]} \defunc_{B_2 \backslash B_1}(s,\omega)\ \inprod<M>(ds,\omega) \\
+							&\qquad= \int_{[0,t]} \defunc_{B_2}(s,\omega)\ \inprod<M>(ds,\omega) - \int_{[0,t]} \defunc_{B_1}(s,\omega)\ \inprod<M>(ds,\omega)
 						\end{align}
 						が成り立ち$B_2 \backslash B_1 \in \mathcal{P}$が従う．
 					\item 互いに素な列$B_n \in \mathcal{P}\ (n \in \N)$に対して，単調収束定理より
 						\begin{align}
-							\int_{[0,t]} \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ d\inprod<M>_s(\omega) 
-							= \sum_{n=1}^{\infty} \int_{[0,t]} \defunc_{B_n}(s,\omega)\ d\inprod<M>_s(\omega)
+							\int_{[0,t]} \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ \inprod<M>(ds,\omega)
+							= \sum_{n=1}^{\infty} \int_{[0,t]} \defunc_{B_n}(s,\omega)\ \inprod<M>(ds,\omega)
 							\label{eq:thm_composition_of_predictable_space_measure_3}
 						\end{align}
 						が成り立つ．(\refeq{eq:thm_composition_of_predictable_space_measure_2})より$\omega$ごとに右辺の級数は有限確定し$\sum_{n=1}^{\infty}B_n \in \mathcal{P}$が従う．
@@ -134,11 +134,11 @@
 				補題\ref{lem:measurability_of_predictable_simple_functions}と同様に$\Pi \subset \mathcal{D}$となることを示せば，Dynkin族定理より第一段の主張が従う．
 				$B = (\alpha,\beta] \times A\ (A \in \mathcal{F}_\alpha)$として，全ての$\omega \in \Omega$に対し
 				\begin{align}
-					\int_{[0,t]} \defunc_B(s,\omega)\ d\inprod<M>_s(\omega) 
-					&= \defunc_A(\omega) \int_{[0,t]} \defunc_{(\alpha,\beta]}(s)\ d\inprod<M>_s(\omega) \\
+					\int_{[0,t]} \defunc_B(s,\omega)\ \inprod<M>(ds,\omega)
+					&= \defunc_A(\omega) \int_{[0,t]} \defunc_{(\alpha,\beta]}(s)\ \inprod<M>(ds,\omega) \\
 					&= \begin{cases}
 						0 & (t \leq \alpha) \\
-						\defunc_A(\omega)\left( \inprod<M>_{t \wedge \beta}(\omega) - \inprod<M>_\alpha(\omega) \right) & (t > \alpha)
+						\defunc_A(\omega)\left( \inprod<M>(t \wedge \beta,\omega) - \inprod<M>(\alpha,\omega) \right) & (t > \alpha)
 					\end{cases}
 				\end{align}
 				が成り立つから，$A \in \mathcal{F}_t$であることと$\inprod<M>$の適合性から$(\alpha,\beta] \times A \in \mathcal{D}$が従う．
@@ -150,8 +150,8 @@
 				先ず$\mu_M$の正値性は(\refeq{eq:thm_composition_of_predictable_space_measure_2})より従う．
 				また互いに素な列$B_n \in \mathcal{P}$を取れば，(\refeq{eq:thm_composition_of_predictable_space_measure_3})と単調収束定理より
 				\begin{align}
-					\int_\Omega \int_I \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
-					= \sum_{n=1}^{\infty} \int_\Omega \int_I \defunc_{B_n}(s,\omega)\ d\inprod<M>_s(\omega)\ \mu(d\omega)
+					\int_\Omega \int_I \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ \inprod<M>(ds,\omega)\ \mu(d\omega)
+					= \sum_{n=1}^{\infty} \int_\Omega \int_I \defunc_{B_n}(s,\omega)\ \inprod<M>(ds,\omega)\ \mu(d\omega)
 				\end{align}
 				が成り立ち$\mu_M$の完全加法性が従う．
 				\QED
@@ -164,7 +164,7 @@
 			$F \in \semiLp{\infty}{\Omega,\mathcal{F}_0,\mu},F_i \in \semiLp{\infty}{\Omega,\mathcal{F}_{t_i},\mu}\ (i=0,\cdots,n-1)$
 			を任意に取り構成する次の過程
 			\begin{align}
-				X(t,\omega) \coloneqq  \defunc_{\left(t_i,t_{i+1}\right]}(t)
+				X(t,\omega) \coloneqq F(\omega) \defunc_{\{0\}} (t) + \sum_{i=0}^{n-1} F_i(\omega) \defunc_{\left(t_i,t_{i+1}\right]}(t)
 				\quad (\forall \omega \in \Omega,t \in I)
 				\label{eq:dfn_simple_predictable_process}
 			\end{align}
@@ -180,6 +180,7 @@
 				\item[(2)] 任意の$X \in \mathcal{S}$は可測$\mathcal{P}/\borel{\R}$である．
 				\item[(3)] $\mathcal{S}$は$\semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$の稠密な部分集合である．
 			\end{description}
+			\label{lem:properties_of_simple_predictable_processes}
 		\end{lem}
 	\end{screen}
 	
@@ -206,6 +207,7 @@
 						と表現しなおせば
 						\begin{align}
 							S_1 + S_2 = (F+G) \defunc_{\{0\}} + \sum_{k=0}^{r-1} \left( \tilde{F}_k + \tilde{G}_k \right) \defunc_{\left(u_k,u_{k+1}\right]}
+							\label{eq:lem_properties_of_simple_predictable_processes}
 						\end{align}
 						が成り立つ．$\mathscr{L}^{\infty}$の線型性より$S_1 + S_2 \in \mathcal{S}$が従う．
 						
