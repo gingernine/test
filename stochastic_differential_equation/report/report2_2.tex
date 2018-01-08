@@ -63,14 +63,14 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{lem}[凸関数の可測性]
-			$\R$から$\R$への凸関数は可測$\borel{\R}/\borel{\R}$である．
+		\begin{lem}[凸関数は片側微分可能]
+			$\R$から$\R$への凸関数は各点で左右の微係数が存在する．
 			\label{lem:convex_function_measurability}
 		\end{lem}
 	\end{screen}
 	
 	\begin{prf}
-		$\varphi:\R \rightarrow \R$を凸関数とし，$\varphi$の連続性を示す．先ず凸性から
+		$\varphi:\R \rightarrow \R$を凸関数とする．先ず凸性から
 		\begin{align}
 			\frac{\varphi(y) - \varphi(x)}{y - x} 
 			\leq \frac{\varphi(z) - \varphi(x)}{z - x}
@@ -88,12 +88,12 @@
 		 \begin{align}
 		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \frac{f(x_n)-f(x)}{x_n-x} \quad (n=1,2,\cdots)
 		 \end{align}
-		 が成り立ち
+		 となるから
 		 \begin{align}
 		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \inf{n \in \N}{\frac{f(x_n)-f(x)}{x_n-x}}
 		 \end{align}
-		 が従う．逆向きの不等号も同様にして成り立つから，極限は点列の選び方に依らず確定し$\varphi$は$x$で右側微係数を持つ．
-		 同様の理由で左側微係数も存在し，$x$の任意性から$\varphi$の連続性が従う．
+		 が成り立つ．逆向きの不等号も同様に成り立つから，極限は取る点列に依らず確定し$\varphi$は$x$で右側微係数を持つ．
+		 同様の理由で左側微係数も存在し，特に$\varphi$の連続性及びBorel可測性が従う．
 		 \QED
 	\end{prf}
 	
@@ -122,7 +122,7 @@
 					f_1 \leq f_2 \quad \mathrm{a.s.} \quad \Rightarrow \quad \tcexp{f_1}{\mathcal{G}} \leq \tcexp{f_2}{\mathcal{G}} \quad \mathrm{a.s.}
 				\end{align}
 			
-			\item[$\tilde{\mathrm{C}}$5] 任意の$f \in \Lp{p}{\Omega, \mathcal{F},\mu}$と凸関数$\varphi:\R \rightarrow \R$に対して次が成り立つ:
+			\item[$\tilde{\mathrm{C}}$5] $\varphi:\R \rightarrow \R$を凸関数とする．$f,\varphi(f) \in \Lp{1}{\Omega, \mathcal{F},\mu}$ならば次が成り立つ:
 				\begin{align}
 					\varphi\left( \cexp{f}{\mathcal{G}} \right) \leq \cexp{\varphi(f)}{\mathcal{G}}.
 				\end{align}
@@ -238,6 +238,59 @@
 				が従う．
 				
 			\item[$\tilde{\mathrm{C}}$5]
+				補題\ref{lem:convex_function_measurability}より$\varphi$は各点$x \in \R$で右側接線を持つから，
+				それを$t \longmapsto a_x t + b_x$と表せば
+				\begin{align}
+					\varphi(x) = \sup{r \in \Q}{\left\{ a_r x + b_r \right\}} \quad (\forall x \in \R)
+					\label{eq:prp_properties_of_expanded_conditional_expectation_1}
+				\end{align}
+				が成り立つ．実際或る点$x_0 \in \R$で
+				\begin{align}
+					\varphi(x_0) > \epsilon \coloneqq \sup{r \in \Q}{\left\{ a_r x_0 + b_r \right\}}
+					\label{eq:prp_properties_of_expanded_conditional_expectation_2}
+				\end{align}
+				が成り立つとする．
+				任意に$\delta_1 > 0$を取り
+				\begin{align}
+					\alpha \coloneqq \left| a_{x_0 - \delta_1} \right| \vee \left| a_{x_0 + \delta_1} \right|
+				\end{align}
+				とおけば，(\refeq{ineq:lem:convex_function_measurability_1})より$x \longmapsto a_x$は単調非減少であるから，
+				$|x_0 - r| < \delta_1$を満たす$r \in \Q$に対し
+				\begin{align}
+					|a_r| \leq \alpha
+				\end{align}
+				が成り立つ．また$\varphi$の連続性より或る$\delta_2 > 0$が存在して，$|x_0 - r| < \delta_2$となる限り
+				\begin{align}
+					\left| \varphi(x_0) - \varphi(r) \right| < \frac{\epsilon}{2}
+				\end{align}
+				が満たされる．従って
+				\begin{align}
+					\delta_3 \coloneqq \delta_1 \wedge \delta_2 \wedge \frac{\epsilon}{2 \alpha}\ \footnotemark
+				\end{align}
+				\footnotetext{
+					$\alpha = 0$の場合は$\delta_3 = \delta_1 \wedge \delta_2$とおけばよい．
+				}
+				とおけば，$|x_0 - r| < \delta_3$を満たす$r \in \Q$に対して
+				\begin{align}
+					\left| \varphi(x_0) - \left( a_r x_0 + b_r \right) \right| 
+					\leq \left| \varphi(x_0) - \varphi(r) \right| + |a_r| \left| x_0 - r \right| < \epsilon
+				\end{align}
+				となり(\refeq{eq:prp_properties_of_expanded_conditional_expectation_2})に矛盾する．
+				今，(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より任意の$a_r,b_r\ (r \in \Q)$に対して
+				\begin{align}
+					\varphi(f(\omega)) \geq a_r f(\omega) + b_r \quad (\forall \omega \in \Omega)
+				\end{align}
+				が成り立つから，$\tilde{\mathrm{C}}$3と$\tilde{\mathrm{C}}$4より
+				\begin{align}
+					\cexp{\varphi(f)}{\mathcal{G}} \geq a_r \cexp{f}{\mathcal{G}} + b_r \quad (\forall r \in \Q)
+				\end{align}
+				が従い
+				\begin{align}
+					\cexp{\varphi(f)}{\mathcal{G}} \geq \varphi\left( \cexp{f}{\mathcal{G}} \right)
+				\end{align}
+				を得る．
+				
+			\item[$\tilde{\mathrm{C}}$6]
 				$f,g$に対して，(\ref{conditional_exp_expansion})と同じように$(f_n)_{n=1}^{\infty},(g_n)_{n=1}^{\infty}$を作る．
 				\begin{description}
 					\item[$p=1$の場合]
@@ -296,7 +349,7 @@
 						が従う．
 				\end{description}
 				
-			\item[$\tilde{\mathrm{C}}$6]
+			\item[$\tilde{\mathrm{C}}$7]
 				$f$に対して，(\ref{conditional_exp_expansion})と同じように$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
 				命題\ref{prp:L2_conditional_expectation}のC6より
 				\begin{align}

@@ -250,12 +250,12 @@
 	
 	\begin{screen}
 		\begin{lem}[二次変分補題]
-			任意に$n \in \N$と$M \in \mathcal{M}_{b,c}$を取る．$\tau_j^n = jT/2^n\ (j=0,1,\cdots,2^n)$に対し
+			$n \in \N$と$M \in \mathcal{M}_{b,c}$を取り，$\tau_j^n = jT/2^n\ (j=0,1,\cdots,2^n)$に対し
 			\begin{align}
 				Q_t^n \coloneqq \sum_{j=0}^{2^n-1} \left( M_{t \wedge \tau_{j+1}^n} - M_{t \wedge \tau_j^n} \right)^2 \quad (\forall t \in I)
 				\label{eq:lem_quadratic_variation_0}
 			\end{align}
-			とおけば$M^2 - Q^n \in \mathcal{M}_{b,c}$となり，さらに次が成り立つ:
+			とおけば，$M^2 - Q^n \in \mathcal{M}_{b,c}$かつ次が成り立つ:
 			\begin{align}
 				\Norm{M_T^2 - M_0^2 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}.
 			\end{align}
@@ -264,15 +264,13 @@
 	\end{screen}
 	
 	\begin{prf}
-		先ず$Q^n$は$\mathcal{F}_t$-適合である．これは任意の停止時刻$\tau$に対し$M_{t \wedge \tau}$が可測$\mathcal{F}_t/\borel{\R}$であることによる．
-		今任意に$0 \leq s < t \leq T$を取り固定する．$\tau_k^n \leq s < \tau_{k+1}^n$となる$k$を選べば，
-		補題\ref{lem:stopping_time_telescopic_sum}と任意抽出定理\ref{thm:optional_sampling_theorem_2}を使って次のように式変形できる:
+		任意の停止時刻$\tau$に対し$M_{t \wedge \tau}$が可測$\mathcal{F}_t/\borel{\R}$であるから
+		$Q^n$は$\mathcal{F}_t$-適合である．
+		今任意に$s,t \in I,\ (s < t)$を取り固定する．$\tau_k^n \leq s < \tau_{k+1}^n$となる$k$を選べば，
+		補題\ref{lem:stopping_time_telescopic_sum}と任意抽出定理\ref{thm:optional_sampling_theorem_2}より
 		\begin{align}
 			\cexp{Q_t^n - Q_s^n}{\mathcal{F}_s} 
-			&= \cexp{\sum_{j=0}^{2^n-1}\left( M_{t\wedge\tau_{j+1}^n} - M_{t\wedge\tau_j^n} \right)^2 - \sum_{j=0}^{2^n-1}\left( M_{s\wedge\tau_{j+1}^n} - M_{s\wedge\tau_j^n} \right)^2}{\mathcal{F}_s} \\
 			&= \cexp{\sum_{j=k}^{2^n-1}\left\{ \left( M_{t\wedge\tau_{j+1}^n} - M_{t\wedge\tau_j^n} \right)^2 - \left( M_{s\wedge\tau_{j+1}^n} - M_{s\wedge\tau_j^n} \right)^2 \right\}}{\mathcal{F}_s} \\
-			&= \sum_{j=k+1}^{2^n-1} \cexp{\left( M_{t\wedge\tau_{j+1}^n} - M_{t\wedge\tau_j^n} \right)^2}{\mathcal{F}_s}
-				+ \cexp{\left( M_{t\wedge\tau_{k+1}^n} - M_{t\wedge\tau_k^n} \right)^2}{\mathcal{F}_s} - \cexp{\left( M_s - M_{\tau_k^n} \right)^2}{\mathcal{F}_s} \\
 			&= \sum_{j=k+1}^{2^n-1} \cexp{ M_{t\wedge\tau_{j+1}^n}^2 - M_{t\wedge\tau_j^n}^2}{\mathcal{F}_s}
 				+ \cexp{\left( M_{t\wedge\tau_{k+1}^n} - M_{\tau_k^n} \right)^2}{\mathcal{F}_s} - \left( M_s - M_{\tau_k^n} \right)^2 \\
 			&= \cexp{ M_t^2 - M_{t\wedge\tau_{k+1}^n}^2}{\mathcal{F}_s} + \cexp{\left( M_{t\wedge\tau_{k+1}^n} - M_{\tau_k^n} \right)^2}{\mathcal{F}_s} - \left( M_s - M_{\tau_k^n} \right)^2 \\
@@ -280,7 +278,7 @@
 			&= \cexp{M_t^2}{\mathcal{F}_s} - 2M_{\tau_k^n}\cexp{M_{t\wedge\tau_{k+1}^n}}{\mathcal{F}_s} + M_{\tau_k^n}^2 - M_s^2 + 2M_sM_{\tau_k^n} - M_{\tau_k^n}^2 \\
 			&= \cexp{M_t^2}{\mathcal{F}_s} - M_s^2.
 		\end{align}
-		従って次を得た:
+		が成り立ち次を得る:
 		\begin{align}
 			\cexp{M_t^2 - Q_t^n}{\mathcal{F}_s} = M_s^2 - Q_s^n, \quad (\forall 0 \leq s < t \leq T).
 			\label{eq:lem_quadratic_variation_1}
@@ -316,12 +314,10 @@
 			を得る．以上の結果と(\refeq{eq:lem_quadratic_variation_1})を併せて$N \in \mathcal{M}_{b,c}$となる．
 		}，
 		\begin{align}
-			\Exp{(N_T - N_0)^2} = \Exp{N_T^2 - N_0^2} &= \Exp{\sum_{j=0}^{2^n-1}\left( N_{\tau_{j+1}^n}^2 - N_{\tau_j^n}^2 \right)} \\
-			&= \sum_{j=0}^{2^n-1}\Exp{\left( N_{\tau_{j+1}^n} - N_{\tau_j^n} \right)^2} \\
+			\Exp{(N_T - N_0)^2} = \Exp{N_T^2 - N_0^2} 
+			&= \Exp{\sum_{j=0}^{2^n-1}\left( N_{\tau_{j+1}^n}^2 - N_{\tau_j^n}^2 \right)} \\
 			&= \sum_{j=0}^{2^n-1}\Exp{\left\{ M_{\tau_{j+1}^n}^2 - M_{\tau_j^n}^2 - \left( Q_{\tau_{j+1}^n}^n - Q_{\tau_j^n}^n \right) \right\}^2} \\
 			&= \sum_{j=0}^{2^n-1}\Exp{\left\{ M_{\tau_{j+1}^n}^2 - M_{\tau_j^n}^2 - \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 \right\}^2} \\
-			&= \sum_{j=0}^{2^n-1}\Exp{\left\{ -2M_{\tau_j^n} \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right) \right\}^2} \\
-			&= 4 \Exp{ \sum_{j=0}^{2^n-1} M_{\tau_j^n}^2 \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 } \\
 			&\leq 4 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2} \Exp{\sum_{j=0}^{2^n-1} \left( M_{\tau_{j+1}^n} - M_{\tau_j^n} \right)^2 } \\
 			&= 4 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}^2} \Exp{M_T^2 - M_0^2}
 		\end{align}

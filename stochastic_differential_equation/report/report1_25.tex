@@ -11,51 +11,46 @@
 \end{itembox}
 \begin{prf}
 		作用素ノルムを$\Norm{\cdot}{}$と表記する．$X_0$が$X$で稠密であるから，任意の$x \in X$に対して
-		$\Norm{x_n - x}{X} \longrightarrow 0\ (k \longrightarrow +\infty)$
-		を満たす$x_n \in X_0 \ (n=1,2,\cdots)$を取れる．任意の$m,n \in \N$に対して
+		$\Norm{x_n - x}{X} \longrightarrow 0\ (k \longrightarrow \infty)$
+		を満たす$(x_n)_{n=1}^{\infty}$が存在する．$T$の有界性から
 		\begin{align}
 			\Norm{Tx_m - Tx_n}{Y} \leq \Norm{T}{} \Norm{x_m - x_n}{X}
+			\quad (\forall n,m \in \N)
 		\end{align}
-		が成り立ち，右辺が$X_0$のCauchy列をなしているから$(Tx_n)_{n=1}^{+\infty}$も$Y$のCauchy列となる．
-		$Y$の完備性から$(Tx_n)_{n=1}^{+\infty}$は或る$y \in Y$に収束し，$y$は$x \in X$に対して一意に定まる．
-		実際$x$への別の収束列$z_n \in X_0 \ (n=1,2,\cdots)$を取り$(Tz_n)_{n=1}^{+\infty}$の収束先を
-		$u \in \C$とすれば，任意の$n,m \in \N$に対して
+		が成り立ち，$(x_n)_{n=1}^{\infty}$がCauchy列であることと
+		$Y$の完備性から$(Tx_n)_{n=1}^{\infty}$は或る$y \in Y$に収束する．$y$は$x \in X$に対して一意である．
+		実際$x$への別の収束列$(z_n)_{n=1}^{\infty}$を取り$Tz_n \longrightarrow u \in Y$とすれば，
 		\begin{align}
 			\Norm{y - u}{Y} &= \Norm{y - Tx_n + Tx_n - Tz_m + Tz_m - u}{Y} \\
 			&\leq \Norm{y - Tx_n}{Y} + \Norm{Tx_n - Tz_m}{Y} + \Norm{Tz_m - u}{Y} \\
-			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\Norm{x_n - z_m}{X} + \Norm{Tz_m - u}{Y} \\
 			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\left(\Norm{x_n - x}{X} + \Norm{x - z_m}{X}\right)+ \Norm{Tz_m - u}{Y}
+			\longrightarrow 0 \quad (n,m \longrightarrow \infty)
 		\end{align}
-		となるから$n,m \longrightarrow +\infty$で右辺は0に収束し$y = u$が成り立つ．
-		ゆえに$x$に$y$を対応させる関係は$X \longmapsto Y$の写像となり，この写像を$\tilde{T}$と表す．この$\tilde{T}$が有界な線型作用素であることを示す．
+		より$y = u$が従う．
+		$x$に$y$を対応させる関係を$\tilde{T}$と表せば，これは有界かつ線型である．
 		\begin{description}
 			\item[線型性]
-				任意に$x,\ z \in X,\ \alpha,\ \beta \in \K$と$x,z$への収束列$(x_n)_{n=1}^{+\infty},\ (z_n)_{n=1}^{+\infty} \subset X_0$
-				を取れば$(\alpha x_n + \beta z_n)_{n=1}^{+\infty}$が$\alpha x+ \beta z$への収束列となるから
+				任意に$x,\ z \in X,\ \alpha,\ \beta \in \K$と$x,z$への収束列$(x_n)_{n=1}^{\infty},\ (z_n)_{n=1}^{\infty} \subset X_0$
+				を取れば
 				\begin{align}
 					\Norm{\tilde{T}(\alpha x + \beta z) - \alpha \tilde{T}x - \beta \tilde{T}z}{Y}
 					&= \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n) + \alpha Tx_n + \beta Tz_n - \alpha \tilde{T}x - \beta \tilde{T}z}{Y} \\
 					&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
-						+ \Norm{\alpha Tx_n - \alpha \tilde{T}x}{Y} + \Norm{\beta Tz_n - \beta \tilde{T}z}{Y} \\
-					&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
 						+ |\alpha| \Norm{Tx_n - \tilde{T}x}{Y} + |\beta| \Norm{Tz_n - \tilde{T}z}{Y} \\
 					&\longrightarrow 0\quad (n \longrightarrow +\infty)
 				\end{align}
-				が成り立つから
+				が成り立つ．
+			\item[有界性] 任意に$x \in X$と$x$への収束列$(x_n)_{n=1}^{\infty}$を取る．
+				任意の$\epsilon > 0$に対し或る$K \in \N$が存在して
 				\begin{align}
-					\tilde{T}(\alpha x + \beta z) = \alpha \tilde{T}x + \beta \tilde{T}z \quad (\forall x,\ z \in X,\ \alpha,\ \beta \in \K)
+					\Norm{\tilde{T}x}{Y} < \Norm{Tx_k}{Y} + \epsilon, \quad \Norm{x}{X} < \Norm{x_k}{X} + \frac{\epsilon}{\Norm{T}{}}
+					\quad (\forall k \geq K)
 				\end{align}
-				が従う．
-			\item[有界性] 任意に$x \in X$と$x$への収束列$x_n \in X_0\ (n = 1,2,\cdots)$を取る．
-				任意の$\epsilon > 0$に対し或る$K \in \N$が存在して全ての$k > K$について
-				\begin{align}
-					\Norm{\tilde{T}x}{Y} < \Norm{Tx_n}{Y} + \epsilon, \quad \Norm{x}{X} < \Norm{x_n}{X} + \epsilon/\Norm{T}{}
-				\end{align}
-				が成り立つようにできるから
+				が成り立つから，
 				\begin{align}
 					\Norm{\tilde{T}x}{Y} < \Norm{Tx}{Y} + \epsilon < \Norm{T}{} \Norm{x}{X} + 2\epsilon
 				\end{align}
-				となり$\Norm{\tilde{T}}{} \leq \Norm{T}{}$が成り立つ．
+				となり$\Norm{\tilde{T}}{} \leq \Norm{T}{}$を得る．
 		\end{description}
 		さらに
 		\begin{align}
@@ -63,8 +58,8 @@
 			\geq \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
 			= \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{Tx}{Y}} = \Norm{T}{}
 		\end{align}
-		も成り立つから$\Norm{\tilde{T}}{} = \Norm{T}{}$が従い，$\tilde{T}$が作用素ノルムを変えない拡張であると示された．
-		拡張が一意であることは$X_0$が$X$で稠密であることと有界作用素の連続性による．
+		より$\Norm{\tilde{T}}{} = \Norm{T}{}$が得られる．
+		拡張の一意性は$X_0$の稠密性と有界作用素の連続性による．
 		\QED
 \end{prf}
 
