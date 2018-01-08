@@ -3,32 +3,31 @@
 	
 	\begin{description}
 	\item[$\mathrm{L}^2$における内積]
-		ノルム空間$\Lp{2}{\Omega,\mathcal{F},\mu}$は
+		ノルム空間$\Lp{2}{\Omega,\mathcal{F},\mu}$は次の$\inprod<\cdot,\cdot>$を内積としてHilbert空間となる:
 		\begin{align}
 			\inprod<[f],[g]>_{\Lp{2}{\mathcal{F}}} \coloneqq \int_{\Omega} f(x)g(x)\ \mu(dx) \quad \left( [f],[g] \in \Lp{2}{\Omega,\mathcal{F},\mu} \right)
 			\label{eq:L2_inner_product}
 		\end{align}
-		を内積としてHilbert空間となる．まず左辺は代表元の選び方に依らない．実際任意に$f' \in [f]$と$g' \in [g]$を取っても，
+		まず(\refeq{eq:L2_inner_product})はwell-definedである．実際任意の$f' \in [f]$と$g' \in [g]$に対して
 		\begin{align}
 			E \coloneqq \Set{x \in \Omega}{f(x) \neq f'(x)}, \quad
 			F \coloneqq \Set{x \in \Omega}{g(x) \neq g'(x)}
 		\end{align}
-		は$\mu$-零集合であって
+		は$\mu$-零集合であるから
 		\begin{align}
-			&\int_{\Omega} f(x)g(x)\ \mu(dx) = \int_{\Omega \backslash (E \cup F)} f(x)g(x)\ \mu(dx) \\
-			&\qquad = \int_{\Omega \backslash (E \cup F)} f'(x)g'(x)\ \mu(dx) = \int_{\Omega} f'(x)g'(x)\ \mu(dx)
+			\int_{\Omega} f(x)g(x)\ \mu(dx) = \int_{\Omega} f'(x)g'(x)\ \mu(dx)
 		\end{align}
-		が成り立ち，H\Ddot{o}lderの不等式から$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F}}}$
+		が成り立ち，H\Ddot{o}lderの不等式より$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F}}}$
 		は実数値として確定する．また次に示すように内積の公理を満たす:
 		\begin{description}
 			\item[正値性] 
 				ノルムとの対応
 				$\Norm{[f]}{\Lp{2}{\mathcal{F}}}^2 = \inprod<[f],[f]>_{\Lp{2}{\mathcal{F}}} \quad \left(\forall [f] \in \Lp{2}{\Omega,\mathcal{F},\mu} \right)$
-				による．
+				により従う．
 			\item[対称性] 
-				(\refeq{eq:L2_inner_product})において被積分関数を$gf$にしても積分値は変わらない．
+				(\refeq{eq:L2_inner_product})において被積分関数を$gf$としても積分値は変わらない．
 			\item[双線型性] 
-				任意の$[f],[g],[h] \in \Lp{2}{\Omega,\mathcal{F},\mu}$と$a \in \R$に対して
+				対称性があるから片側の線型性を示せばよい．今，任意に$[f],[g],[h] \in \Lp{2}{\Omega,\mathcal{F},\mu}$と$a \in \R$を取れば
 				\begin{align}
 					&\inprod<[f],[g] + [h]>_{\Lp{2}{\mathcal{F}}} 
 					= \inprod<[f],[g + h]>_{\Lp{2}{\mathcal{F}}}
@@ -41,23 +40,23 @@
 					= \alpha \int_{\Omega} f(x)g(x)\ \mu(dx)
 					= \alpha \inprod<[f],[g]>_{\Lp{2}{\mathcal{F}}}
 				\end{align}
-				が成り立つことと対称性による．
+				が成り立つ．
 		\end{description}
 		そしてノルム空間としての完備性から$\Lp{2}{\Omega,\mathcal{F},\mu}$はHilbert空間となる．
 	
 	\item[条件付き期待値の存在]
-		$\mathcal{F}$の部分$\sigma$-加法族$\mathcal{G}$
-		についてのHilbert空間$\Lp{2}{\Omega, \mathcal{G},\mu}$を考えれば，
-		任意の$\inprod<g> \in \Lp{2}{\Omega, \mathcal{G},\mu}$
+		$\mathcal{G}$を$\mathcal{F}$の部分$\sigma$-加法族
+		としてHilbert空間$\Lp{2}{\Omega, \mathcal{G},\mu}$を考える．
+		任意の$[g]_{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$
 		\footnote{
 			$\Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$
 			とは空間が違うから関数類の表示を変えた．
 		}
 		に対し$g$は可測$\mathcal{F}/\borel{\R}$
-		であるから，対応する$[g] \in \Lp{2}{\Omega, \mathcal{F},\mu}$が存在する．$\mathcal{G} \subset \mathcal{F}$より
-		$\inprod<g> \subset [g]$であり必ずしも$\inprod<g> = [g]$とはならないが，次の線型単射
+		であるから，$g$を代表とする$[g]_{\mathcal{F}} \in \Lp{2}{\Omega, \mathcal{F},\mu}$が存在するから，
+		次の線型単射
 		\begin{align}
-			J:\Lp{0}{\Omega, \mathcal{G},\mu} \ni \inprod<g> \longmapsto [g] \in \Lp{0}{\Omega, \mathcal{F},\mu}
+			J_{\mathcal{G}}:\Lp{0}{\Omega, \mathcal{G},\mu} \ni [g]_{\mathcal{G}} \longmapsto [g]_{\mathcal{F}} \in \Lp{0}{\Omega, \mathcal{F},\mu}
 			\label{eq:Lp_sp_embedding}
 		\end{align}
 		によって$\Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に等長に埋め込まれ
@@ -65,37 +64,45 @@
 			任意の$1 \leq p \leq \infty$に対し$\mathrm{L}^{p}$は$\mathrm{L}^{0}$の部分集合であるから，
 			実際この単射は$\Lp{p}{\Omega, \mathcal{G},\mu}$を$\Lp{p}{\Omega, \mathcal{F},\mu}$に等長に埋め込む．
 		}，
-		$\Lp{2}{\Omega, \mathcal{G},\mu}$の完備性から埋め込まれた部分集合
-		$J\Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$の閉部分空間となる．
-		従って射影定理により任意の$[f] \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して
-		射影$[g] \in J\Lp{2}{\Omega, \mathcal{G},\mu}$がただ一つ決まる．
-		$J$の値域を$J\Lp{2}{\Omega, \mathcal{G},\mu}$に制限したものを$J'$とすれば$J'$は全単射となり，
-		$[f]$に対して${J'}^{-1}[g] \in \Lp{2}{\Omega, \mathcal{G},\mu}$がただ一つ決まる．
-		以上で定まる$\Lp{2}{\Omega, \mathcal{F},\mu}$から$\Lp{2}{\Omega, \mathcal{G},\mu}$への対応が条件付き期待値作用素となる．
+		$\Lp{2}{\Omega, \mathcal{G},\mu}$の完備性より
+		$J_{\mathcal{G}} \Lp{2}{\Omega, \mathcal{G},\mu}$は$\Lp{2}{\Omega, \mathcal{F},\mu}$の閉部分空間となる．
+		任意の$[f]_{\mathcal{F}} \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して
+		$J_{\mathcal{G}} \Lp{2}{\Omega, \mathcal{G},\mu}$への射影を対応させる写像を$P_\mathcal{G}$と表し，
+		また単射$J_{\mathcal{G}}$の値域を$J_{\mathcal{G}} \Lp{2}{\Omega, \mathcal{G},\mu}$に制限した全単射を$T_{\mathcal{G}}$と表す．
+		この$P_{\mathcal{G}}$と$T_{\mathcal{G}}^{-1}$の合成写像
+		\begin{align}
+			T_{\mathcal{G}}^{-1} P_{\mathcal{G}}:\Lp{2}{\Omega, \mathcal{F},\mu} \longrightarrow \Lp{2}{\Omega, \mathcal{G},\mu}
+			\label{eq:composition_L2_conditional_expectation}
+		\end{align}
+		が条件付き期待値作用素となる．
 		
 	\item[関数類と関数の表記]
 		以降は関数類と関数は表記上で区別することはあまりせず，
-		状況に応じて$f$を関数類$[f]$の意味で使ったり
-		関数$f$として扱ったりする．ただし主に$f(x)$と表記しているときや計算中は関数として扱っていて，
-		以下に定義する条件付き期待値を作用させる場合は関数類として扱っている．
+		状況に応じて$f$を関数類$[f]$，或は関数$f$の意味で扱う．
+		またどの空間の関数類であるかを明示することもあまりない．
+		例えば関数$f$が$\mathcal{G}$-可測，
+		$\mathcal{G} \subset \mathcal{F}$の場合，関数類として書く$f$を
+		$\Lp{0}{\mathcal{G}}$の元として扱っているか
+		$\Lp{0}{\mathcal{F}}$の元として扱っているかは文脈による．
+		ただし主に$f(x)$と表記しているときや計算中は関数として，
+		条件付き期待値を作用させる場合は関数類として扱う．
 	\end{description}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{dfn}[$\mathrm{L}^2$における条件付き期待値作用素]
-			$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，
-			射影定理により一意に定まる射影$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$を
+			(\refeq{eq:composition_L2_conditional_expectation})で定めた$T_{\mathcal{G}}^{-1} P_{\mathcal{G}}$を
 			\begin{align}
-				g = \cexp{f}{\mathcal{G}}
+				\cexp{\cdot}{\mathcal{G}}:\Lp{2}{\Omega, \mathcal{F},\mu} \ni f \longrightarrow \cexp{f}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}
+				\label{eq:dfn_L2_conditional_expectation}
 			\end{align}
-			と表現し，これを$\mathcal{G}$で条件付けた$f$の条件付き期待値と呼ぶ．$\mathcal{G} = \{\emptyset, \Omega\}$の場合は特別に
-			\begin{align}
-				\cexp{f}{\mathcal{G}} = \Exp{f}
-			\end{align}
-			と書いて$f$の期待値と呼ぶ．
+			と表現し，$\mathcal{G}$で条件付けた条件付き期待値(conditional expectation)と呼ぶ．
+			$\mathcal{G} = \{\emptyset, \Omega\}$の場合は特別に
+			$\Exp{\cdot} \coloneqq \cexp{\cdot}{\mathcal{G}}$
+			と書いて期待値と呼ぶ．
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 	\begin{prp}[条件付き期待値作用素の性質]
 		Hilbert空間$\Lp{2}{\Omega, \mathcal{F},\mu}$における内積を$\inprod<\cdot,\cdot>_{\Lp{2}{\mathcal{F}}}$，ノルムを$\Norm{\cdot}{\Lp{2}{\mathcal{F}}}$と表記し，
 		$\mathcal{G},\mathcal{H}$を$\mathcal{F}$の部分$\sigma$-加法族とする．
@@ -133,7 +140,7 @@
 		\end{description}
 		\label{prp:L2_conditional_expectation}
 	\end{prp}
-	\end{itembox}
+	\end{screen}
 	
 	\footnotetext{
 		関数類に対する順序(式(\refeq{dfn:equiv_class_order}))を表している．
@@ -141,107 +148,105 @@
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[C1] $\mathcal{M} = \{\emptyset, \Omega\}$とすれば，
-				$\Lp{2}{\Omega, \mathcal{M},\mu}$の関数類の代表は$\mathcal{M}$-可測でなくてはならないから$\Omega$上定数である．
-				従って各$g \in \Lp{2}{\Omega, \mathcal{M},\mu}$には定数$\alpha \in \R$が対応して$g(x)=\alpha\ (\forall x \in \Omega)$と表せる．
-				射影定理より$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対する$\cexp{f}{\mathcal{M}} = \Exp{f}$は，
-				(\refeq{eq:Lp_sp_embedding})の埋め込み$J$を用いて，ノルム$\Norm{f-Jg}{\Lp{2}{\mathcal{F}}}$を
-				最小にする$g \in \Lp{2}{\Omega, \mathcal{M},\mu}$のことである．
-				$g(x)=\alpha\ (\forall x \in \Omega)$としてノルムを直接計算すれば，
+			\item[C1] 
+				(\refeq{eq:Lp_sp_embedding})で定めた単射$J_{\mathcal{G}}$を$J$と表す．
+				$\mathcal{G} = \{\emptyset, \Omega\}$とすれば，
+				$\Lp{2}{\Omega, \mathcal{G},\mu}$の元の代表は$\mathcal{G}$-可測でなくてはならないから定数関数である．
+				従って各$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$にはただ一つの定数$\alpha \in \R$が対応して$g(x)=\alpha\ (\forall x \in \Omega)$と表すことができ，
+				かつ関数$g$を代表とする$\Lp{2}{\Omega, \mathcal{G},\mu}$の関数類は関数$g$のみからなる．
+				射影定理よりノルム$\Norm{f-J g}{\Lp{2}{\mathcal{F}}}$を
+				最小にする$g \in \Lp{2}{\Omega, \mathcal{G},\mu}$が$\Exp{f}$である．
+				今$g(x)=\alpha\ (\forall x \in \Omega)$であるとして
 				\begin{align}
-					\Norm{f-Jg}{\Lp{2}{\mathcal{F}}}^2 &= \int_{\Omega} |f(x) - \alpha|^2\ \mu(dx) \\
-					&= \int_{\Omega} |f(x)|^2 - 2 \alpha f(x) + |\alpha|^2\ \mu(dx) \\
-					&= \int_{\Omega} |f(x)|^2\ \mu(dx) - 2 \alpha \int_{\Omega} f(x)\ \mu(dx) + |\alpha|^2 \\
-					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 - \left| \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} |f(x)|^2\ \mu(dx) \\
-					&= \left| \alpha - \int_{\Omega} f(x)\ \mu(dx) \right|^2 + \int_{\Omega} \left| f(x) - \beta \right|^2\ \mu(dx) \qquad (\beta \coloneqq \int_{\Omega} f(x)\ \mu(dx))
+					\beta \coloneqq \int_{\Omega} f(x)\ \mu(dx)
 				\end{align}
-				と表現できて最終式は$\alpha = \int_{\Omega} f(x)\ \mu(dx)$で最小となる．すなわち
+				とおけば，
 				\begin{align}
-					\Exp{f} = \cexp{f}{\mathcal{M}} = \int_{\Omega} f(x)\ \mu(dx)\footnotemark
-					.
+					\Norm{f-J g}{\Lp{2}{\mathcal{F}}}^2 
+					&= \int_{\Omega} |f(x) - \alpha|^2\ \mu(dx) \\
+					&= \int_{\Omega} |f(x)|^2\ \mu(dx) - 2 \alpha \beta + |\alpha|^2 \\
+					&= \left| \alpha - \beta \right|^2 + \int_{\Omega} \left| f(x) - \beta \right|^2\ \mu(dx)
+				\end{align}
+				が成り立ち，最終式は$\alpha = \int_{\Omega} f(x)\ \mu(dx)$のとき最小となる．従って
+				\begin{align}
+					\Exp{f} = \int_{\Omega} f(x)\ \mu(dx)\footnotemark
 				\end{align}
 				\footnotetext{
-					本来恒等的に$\int_{\Omega} f(x)\ \mu(dx)$を取るような関数を代表とする関数類が$\Exp{f}$となるが，
-					$\Lp{2}{\Omega, \mathcal{M},\mu}$と$\R$は一対一に対応しているから
-					$\Exp{f}$が実数と対応していると見做すことができる．
+					本来恒等的に$\int_{\Omega} f(x)\ \mu(dx)$のみを取る定数関数を代表とする関数類が$\Exp{f}$である．
+					ただ実際$\Lp{2}{\Omega, \mathcal{G},\mu}$と$\R$は一対一に対応しているから
+					このように表記する．
 				}
-			\item[C2] 
-				射影定理により，$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$の$\Lp{2}{\Omega, \mathcal{G},\mu}$への射影$\cexp{f}{\mathcal{G}}$は
-				\begin{align}
-					\inprod<f - J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0 \quad (\forall h \in J\Lp{2}{\Omega, \mathcal{G},\mu})
-				\end{align}
-				を満たし，内積の線型性から
-				\begin{align}
-					\inprod<f, h>_{\Lp{2}{\mathcal{F}}} = \inprod<J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} \quad (\forall h \in J\Lp{2}{\Omega, \mathcal{G},\mu})
-				\end{align}
-				が成り立つ．積分の形式で表示すれば
-				\begin{align}
-					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \cexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \quad (\forall h \in J\Lp{2}{\Omega, \mathcal{G},\mu})
-				\end{align}
 				を得る．
 				
-			\item[C3]\mbox{}
+			\item[C2] 
+				(\refeq{eq:Lp_sp_embedding})で定めた単射$J_{\mathcal{G}}$を$J$と表す．
+				射影定理により，$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対する$\cexp{f}{\mathcal{G}}$は
+				\begin{align}
+					\inprod<f - J \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0 \quad (\forall h \in J \Lp{2}{\Omega, \mathcal{G},\mu})
+				\end{align}
+				を満たすから，内積の線型性より任意の$h \in J \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+				\begin{align}
+					&\int_{\Omega} f(x)h(x)\ \mu(dx) = \inprod<f, h>_{\Lp{2}{\mathcal{F}}} \\
+					&\qquad = \inprod<J \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = \int_{\Omega} \cexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx)
+				\end{align}
+				が成り立つ．
+				
+			\item[C3] (\refeq{eq:Lp_sp_embedding})で定めた単射$J_{\mathcal{G}}$を$J$と表す．
 				\begin{description}
 					\item[加法について]
-						射影定理により任意の$h \in J\Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+						射影定理により任意の$h \in J \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 						\begin{align}
 							&\inprod<(f_1 + f_2) - J\cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0, \\
-							&\inprod<f_1 - J\cexp{f_1}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0, \\
-							&\inprod<f_2 - J\cexp{f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0
+							&\inprod<f_1 - J\cexp{f_1}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0
+							,\quad \inprod<f_2 - J\cexp{f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0
 						\end{align}
-						が成り立っている．従って任意の$h \in J\Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+						が成り立つから，任意の$h \in J\Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 						\begin{align}
 							0 &= \inprod<(f_1 + f_2) - J\cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} \\
 								&\qquad- \inprod<f_1 - J\cexp{f_1}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} - \inprod<f_2 - J\cexp{f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} \\
 							&= \inprod<J\cexp{f_1}{\mathcal{G}} + J\cexp{f_2}{\mathcal{G}} - J\cexp{f_1 + f_2}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}}
 						\end{align}
-						となり，特に$h = J\cexp{f_1}{\mathcal{G}} + J\cexp{f_2}{\mathcal{G}} - J\cexp{f_1 + f_2}{\mathcal{G}} \in \Lp{2}{\Omega, \mathcal{G},\mu}$とすれば
+						となり，特に$h = J\cexp{f_1}{\mathcal{G}} + J\cexp{f_2}{\mathcal{G}} - J\cexp{f_1 + f_2}{\mathcal{G}} \in J\Lp{2}{\Omega, \mathcal{G},\mu}$として
 						\begin{align}
 							\Norm{J\cexp{f_1}{\mathcal{G}} + J\cexp{f_2}{\mathcal{G}} - J\cexp{f_1 + f_2}{\mathcal{G}}}{\Lp{2}{\mathcal{F}}}^2 = 0
 						\end{align}
-						が成り立つ．$J$の線型性と等長性により
-						\begin{align}
-							0 &= \Norm{J\cexp{f_1}{\mathcal{G}} + J\cexp{f_2}{\mathcal{G}} - J\cexp{f_1 + f_2}{\mathcal{G}}}{\Lp{2}{\mathcal{F}}} \\
-							&= \Norm{\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} - \cexp{f_1 + f_2}{\mathcal{G}}}{\Lp{2}{\mathcal{G}}}
-						\end{align}
-						が従うから
+						を得る．$J$の線型単射性により
 						\begin{align}
 							\cexp{f_1}{\mathcal{G}} + \cexp{f_2}{\mathcal{G}} = \cexp{f_1 + f_2}{\mathcal{G}}
 						\end{align}
-						となる．
+						が従う．
+						
 					\item[スカラ倍について]
-						射影定理より
+							射影定理より任意の$h \in J\Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 							\begin{align}
-								\inprod<f - J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0, \quad \inprod<\alpha f - J\cexp{\alpha f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0,
-								\quad (\forall h \in J\Lp{2}{\Omega, \mathcal{G},\mu})
+								\inprod<f - J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0, \quad \inprod<\alpha f - J\cexp{\alpha f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} = 0
 							\end{align}
-							が成り立っているから，任意の$h \in J\Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+							が成り立つから
 							\begin{align}
-								&\inprod<J\cexp{\alpha f}{\mathcal{G}} - \alpha J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}}
-								= \inprod<J\cexp{\alpha f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F}}} - \inprod<\alpha J\cexp{f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F}}} \\
-								&\qquad= \inprod<J\cexp{\alpha f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F}}} - \alpha \inprod<f - J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}}
+								&\inprod<J\cexp{\alpha f}{\mathcal{G}} - \alpha J\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} \\
+								&\qquad = \inprod<J\cexp{\alpha f}{\mathcal{G}} - \alpha f, h>_{\Lp{2}{\mathcal{F}}} - \alpha \inprod<J\cexp{f}{\mathcal{G}} - f, h>_{\Lp{2}{\mathcal{F}}}
 								= 0
 							\end{align}
 							となる．特に$h = J\cexp{\alpha f}{\mathcal{G}} - \alpha J\cexp{f}{\mathcal{G}} \in J\Lp{2}{\Omega, \mathcal{G},\mu}$として
 							\begin{align}
 								\Norm{J\cexp{\alpha f}{\mathcal{G}} - \alpha J\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F}}}^2 = 0
 							\end{align}
-							を満たすから$J$の線型性と等長性より$\cexp{\alpha f}{\mathcal{G}} = \alpha \cexp{f}{\mathcal{G}}$が従う．
+							が得られ，$J$の線型単射性より$\cexp{\alpha f}{\mathcal{G}} = \alpha \cexp{f}{\mathcal{G}}$が従う．
 				\end{description}
 				
 				
-			\item[C4] 「任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，$f \geq 0$ならば$\cexp{f}{\mathcal{G}} \geq 0$」---(※)を示せばよい．
-				これが示されれば，$f_1,f_2 \in \Lp{2}{\Omega, \mathcal{F},\mu}$が$f_1 \leq f_2$となるなら
+			\item[C4] (\refeq{eq:Lp_sp_embedding})で定めた単射$J_{\mathcal{G}}$を$J$と表す．
+				任意の$f \in \Lp{2}{\Omega, \mathcal{F},\mu}$に対して，$f \geq 0$ならば$\cexp{f}{\mathcal{G}} \geq 0$となることを示す．
+				実際これが示されれば，$f_1,f_2 \in \Lp{2}{\Omega, \mathcal{F},\mu}$が$f_1 \leq f_2$を満たすとき
 				\begin{align}
 					0 \leq f_2 - f_1 \quad \Rightarrow \quad 0 \leq \cexp{f_2 - f_1}{\mathcal{G}} = \cexp{f_2}{\mathcal{G}} - \cexp{f_1}{\mathcal{G}}
 				\end{align}
-				が従う．ここで$0$は零写像の関数類である．$A \in \mathcal{F}$と$B \in \mathcal{G}$を
+				が従う．証明は背理法を使う．
 				\begin{align}
 					A \coloneqq \Set{x \in \Omega}{f(x) < 0}, \quad
 					B \coloneqq \Set{x \in \Omega}{\cexp{f}{\mathcal{G}}(x) < 0}
 				\end{align}
-				として$\mu(A)=0$ならば$\mu(B)=0$が成り立つと言えばよいから，$\mu(A) = 0$，$\mu(B) > 0$
-				と仮定して矛盾を導く．
+				とおき，$\mu(A)=0$の下で$\mu(B) > 0$が成り立つと仮定して矛盾を導く．
 				\begin{align}
 					h(x) \coloneqq
 					\begin{cases}
@@ -249,15 +254,15 @@
 						0 & (x \in B)
 					\end{cases}
 				\end{align}
-				として$\mathcal{G}/\borel{\R}$-可測関数を定義すると
+				として$\mathcal{G}/\borel{\R}$-可測関数を定義すれば
 				\begin{align}
-					\Norm{f - Jh}{\Lp{2}{\mathcal{F}}}^2 &= \int_{\Omega} |f(x) - h(x)|^2\ \mu(dx) \\
-					&= \int_{A^c \cap B^c} |f(x) - h(x)|^2\ \mu(dx) + \int_{A^c \cap B} |f(x) - h(x)|^2\ \mu(dx) \\
+					\Norm{f - Jh}{\Lp{2}{\mathcal{F}}}^2 
+					&= \int_{\Omega} |f(x) - h(x)|^2\ \mu(dx) \\
 					&= \int_{A^c \cap B^c} \left|f(x) - \cexp{f}{\mathcal{G}}(x)\right|^2\ \mu(dx) + \int_{A^c \cap B} |f(x)|^2\ \mu(dx) \\
 					&< \int_{A^c \cap B^c} \left|f(x) - \cexp{f}{\mathcal{G}}(x)\right|^2\ \mu(dx) + \int_{A^c \cap B} \left|f(x) - \cexp{f}{\mathcal{G}}(x)\right|^2\ \mu(dx) \\
 					&= \Norm{f - J\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F}}}^2
 				\end{align}
-				が成り立つ．不等号$<$は$\mu(A^c \cap B) = \mu(B) - \mu(A \cap B) = \mu(B) > 0$であることと
+				が成り立つ．途中の不等号$<$は，$\mu(A^c \cap B) = \mu(B) - \mu(A \cap B) = \mu(B) > 0$であることと
 				\begin{align}
 					0 \leq f(x) < f(x) - \cexp{f}{\mathcal{G}}(x) \quad (\forall x \in A^c \cap B)
 				\end{align}
@@ -266,13 +271,14 @@
 					\Norm{f - Jh}{\Lp{2}{\mathcal{F}}} < \Norm{f - J\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F}}}
 				\end{align}
 				を満たす$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$が存在することは
-				$J\cexp{f}{\mathcal{G}}$が$f$の射影であることに矛盾する．従って$\mu(B) = 0$でなくてはならず，(※)が示された．
+				$J\cexp{f}{\mathcal{G}}$が$f$の射影であることに矛盾する．よって$\mu(A) = 0$の下では$\mu(B) = 0$でなくてはならず，冒頭の主張が従う．
 			
-			\item[C5] $\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{F}}} = 0$
-				が成り立つことを示す．任意の$h \in \Lp{2}{\Omega, \mathcal{G},\mu}$に対して
+			\item[C5] (\refeq{eq:Lp_sp_embedding})で定めた単射$J_{\mathcal{G}}$を$J$と表す．
+				$\Norm{\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}}{\Lp{2}{\mathcal{G}}} = 0$
+				が成り立つことを示す．任意の$h \in J\Lp{2}{\Omega, \mathcal{G},\mu}$に対して
 				\begin{align}
-					\inprod<\cexp{gf}{\mathcal{G}} - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} 
-					= \inprod<\cexp{gf}{\mathcal{G}} - gf, h>_{\Lp{2}{\mathcal{F}}} + \inprod<gf - g\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}}
+					\inprod<J\cexp{gf}{\mathcal{G}} - Jg\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} 
+					= \inprod<J\cexp{gf}{\mathcal{G}} - gf, h>_{\Lp{2}{\mathcal{F}}} + \inprod<gf - Jg\cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}}
 				\end{align}
 				を考えると，右辺が0になることが次のように証明される．先ず右辺第一項について，
 				$gf$は$\Lp{2}{\Omega, \mathcal{F},\mu}$に入る．
@@ -304,304 +310,24 @@
 				\end{align}
 				となることから$\cexp{gf}{\mathcal{G}} = g\cexp{f}{\mathcal{G}}$が示された．
 			
-			\item[C6] 任意の$h \in \Lp{2}{\Omega, \mathcal{H},\mu} \subset \Lp{2}{\Omega, \mathcal{G},\mu}$に対し，射影定理より
+			\item[C6] 
+				(\refeq{eq:Lp_sp_embedding})で定めた単射$J_{\mathcal{G}}$を$J_1$と表し，同様に$J_{\mathcal{H}}$を$J_2$と表す．今
 				\begin{align}
-					&\inprod<\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{H}}, h>_{\Lp{2}{\mathcal{F}}} \\
-					&\qquad = \inprod<\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} \\
-						&\qquad \qquad + \inprod<\cexp{f}{\mathcal{G}} - f, h>_{\Lp{2}{\mathcal{F}}} + \inprod<f - \cexp{f}{\mathcal{H}}, h>_{\Lp{2}{\mathcal{F}}}
+					J_2 \Lp{2}{\Omega, \mathcal{H},\mu} \subset J_1 \Lp{2}{\Omega, \mathcal{G},\mu}
+				\end{align}
+				が満たされているから，
+				射影定理より任意の$h \in J_2 \Lp{2}{\Omega, \mathcal{H},\mu}$に対して
+				\begin{align}
+					&\inprod<J_2 \cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - J_2 \cexp{f}{\mathcal{H}}, h>_{\Lp{2}{\mathcal{F}}} \\
+					&\qquad = \inprod<J_2 \cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - J_1 \cexp{f}{\mathcal{G}}, h>_{\Lp{2}{\mathcal{F}}} \\
+						&\qquad \qquad + \inprod<J_1 \cexp{f}{\mathcal{G}} - f, h>_{\Lp{2}{\mathcal{F}}} + \inprod<f - J_2 \cexp{f}{\mathcal{H}}, h>_{\Lp{2}{\mathcal{F}}}
 					= 0
 				\end{align}
-				が成り立つ．特に$h = \cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{H}} \in \Lp{2}{\Omega, \mathcal{H},\mu}$とすれば
+				が成り立つ．特に$h = J_2 \cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - J_2 \cexp{f}{\mathcal{H}} \in J_2 \Lp{2}{\Omega, \mathcal{H},\mu}$とすれば
 				\begin{align}
-					\Norm{\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - \cexp{f}{\mathcal{H}}}{\Lp{2}{\mathcal{F}}}^2 = 0
+					\Norm{J_2 \cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} - J_2 \cexp{f}{\mathcal{H}}}{\Lp{2}{\mathcal{F}}}^2 = 0
 				\end{align}
-				ということになるので$\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} = \cexp{f}{\mathcal{H}}$であることが示された.
+				が得られ，$J_2$の線型単射性より$\cexp{\cexp{f}{\mathcal{G}}}{\mathcal{H}} = \cexp{f}{\mathcal{H}}$が従う.
+				\QED
 		\end{description}
-		\QED
 	\end{prf}
-	
-\section{条件付き期待値作用素の拡張}
-	命題\ref{prp:L2_conditional_expectation}[C3]より，条件付き期待値が$\Lp{2}{\Omega,\mathcal{F},\mu}$から$J\Lp{2}{\Omega,\mathcal{G},\mu}$への
-	線型作用素(写像)であることが示された．H\Ddot{o}lderの不等式より$\Lp{2}{\Omega,\mathcal{G},\mu}$は$\Lp{1}{\Omega,\mathcal{F},\mu}$の部分空間であり，
-	同様に$\Lp{2}{\Omega,\mathcal{G},\mu}$も$\Lp{1}{\Omega,\mathcal{F},\mu}$の部分空間であるから，条件付き期待値は
-	$\Lp{1}{\Omega,\mathcal{F},\mu}$から$\Lp{1}{\Omega,\mathcal{G},\mu}$への線型作用素と見做すことができる．
-	条件付き期待値が有界な線型作用素であり，且つ
-	定義域$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$において稠密であるならば，
-	定理\ref{thm:linear_operator_expansion}より条件付き期待値作用素は$\Lp{1}{\Omega,\mathcal{F},\mu}$上の線型写像に拡張可能となる．
-	
-	\begin{itembox}[l]{}
-		\begin{lem}[条件付き期待値作用素の有界性]\mbox{}\\
-			条件付き期待値を$\Lp{1}{\Omega,\mathcal{F},\mu}$から$\Lp{1}{\Omega,\mathcal{G},\mu}$への線型作用素と考えたとき，
-			作用素ノルムは1以下である:
-			\begin{align}
-				\sup{\substack{f \in \Lp{2}{\Omega,\mathcal{F},\mu} \\ f \neq 0}}{\frac{ \Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{G}}} }{ \Norm{f}{\Lp{1}{\mathcal{F}}} }} \leq 1.
-			\end{align}
-			\label{lem:conditional_exp_bound}
-		\end{lem}
-	\end{itembox}
-	
-	\begin{prf}
-		\begin{align}
-			\Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}} 
-			&= \int_\Omega \left| \cexp{f}{\mathcal{G}}(x) \right|\ \mu(dx) \\
-			&= \int_\Omega \cexp{f}{\mathcal{G}}(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right \}}(x) 
-				- \cexp{f}{\mathcal{G}}(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
-			&= \int_\Omega f(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right\} }(x) - f(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) 
-				&& (\scriptsize\because \mbox{命題\ref{prp:L2_conditional_expectation}[C2]}) \\
-			&\leq \int_\Omega |f(x)| \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right\} }(x) + |f(x)| \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
-			&= \Norm{f}{\Lp{1}{\mathcal{F}}}.
-		\end{align}
-		\QED
-	\end{prf}
-	
-	\begin{itembox}[l]{}
-		\begin{thm}[条件付き期待値作用素の拡張]
-			定義域を$\Lp{2}{\Omega,\mathcal{F},\mu}$としている条件付き期待値$\cexp{\cdot}{\mathcal{G}}$に対して，
-			作用素ノルムを変えない拡張である$\Lp{1}{\Omega,\mathcal{F},\mu}$上の有界線型作用素
-			\begin{align}
-				\tcexp{\cdot}{\mathcal{G}}:\Lp{1}{\Omega,\mathcal{F},\mu} \ni f \longmapsto \tcexp{f}{\mathcal{G}} \in \Lp{1}{\Omega,\mathcal{G},\mu}
-			\end{align}
-			が一意に存在する．
-			\label{thm:conditional_exp_expansion}
-		\end{thm}
-	\end{itembox}
-	$\mathcal{G} = \{\emptyset,\ \Omega\}$である場合は$\tcexp{f}{\mathcal{G}} = \tExp{f}$と表示することにする．
-	
-	\begin{prf}	
-		定理\ref{thm:linear_operator_expansion}と補題\ref{lem:conditional_exp_bound}より，拡張可能性を示すには$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密なことをいえばよい．
-		任意の$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して，
-		\begin{align}
-			f_n(x) \coloneqq f(x) \defunc_{|f| \leq n} (x) \quad (\forall x \in \Omega,\ n=1,2,3,\cdots) \label{conditional_exp_expansion}
-		\end{align}
-		とおけば$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$となり，
-		また関数列は$f$に各点収束しているからLebesgueの収束定理より
-		\begin{align}
-			\lim_{n \to \infty} \Norm{f_n - f}{\Lp{1}{\mathcal{F}}} = 0
-		\end{align}
-		が成り立つ．
-		\QED
-	\end{prf}
-	
-	\begin{itembox}[l]{}
-		\begin{prp}[拡張された条件付き期待値作用素の性質]
-		$\tcexp{\cdot}{\mathcal{G}}$について，命題\ref{prp:L2_conditional_expectation}のC1$\sim$6に対応する次の$\tilde{\mathrm{C}}$1$\sim$6が成り立つ:
-		\begin{description}
-			\item[$\tilde{\mathrm{C}}$1] 任意の$f \in \Lp{1}{\Omega, \mathcal{F},\mu}$に対して次が成り立つ:
-				\begin{align}
-					\tExp{f} = \int_{\Omega} f(x)\ \mu(dx).
-				\end{align}
-				
-			\item[$\tilde{\mathrm{C}}$2]	任意の$f \in \Lp{1}{\Omega, \mathcal{F},\mu}$と$h \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$に対して次が成り立つ:
-				\begin{align}
-					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx).
-				\end{align}
-				
-			\item[$\tilde{\mathrm{C}}$3]	任意の$f,f_1,f_2 \in \Lp{1}{\Omega, \mathcal{F},\mu}$と$\alpha \in \R$に対して次が成り立つ:
-				\begin{align}
-					\tcexp{f_1 + f_2}{\mathcal{G}} = \tcexp{f_1}{\mathcal{G}} + \tcexp{f_2}{\mathcal{G}},
-					\quad \tcexp{\alpha f}{\mathcal{G}} = \alpha \tcexp{f}{\mathcal{G}}.
-				\end{align}
-
-			\item[$\tilde{\mathrm{C}}$4]	任意の$f_1,f_2 \in \Lp{1}{\Omega, \mathcal{F},\mu}$に対して次が成り立つ:
-				\begin{align}
-					f_1 \leq f_2 \quad \mathrm{a.s.} \quad \Rightarrow \quad \tcexp{f_1}{\mathcal{G}} \leq \tcexp{f_2}{\mathcal{G}} \quad \mathrm{a.s.}
-				\end{align}
-			
-			\item[$\tilde{\mathrm{C}}$5]	任意の$f \in \Lp{1}{\Omega, \mathcal{F},\mu}$と$g \in \Lp{\infty}{\Omega, \mathcal{G},\mu}$に対して次が成り立つ:
-				\begin{align}
-					\tcexp{gf}{\mathcal{G}} = g\tcexp{f}{\mathcal{G}}.
-				\end{align}
-			
-			\item[$\tilde{\mathrm{C}}$6]	$\mathcal{H}$が$\mathcal{G}$の部分$\sigma$-加法族ならば，任意の$f \in \Lp{1}{\Omega, \mathcal{F},\mu}$に対して次が成り立つ:
-				\begin{align}
-					\tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f}{\mathcal{H}}.
-				\end{align}
-		\end{description}
-		\label{prp:properties_of_expanded_conditional_expectation}
-		\end{prp}
-	\end{itembox}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[$\tilde{\mathrm{C}}$1]
-				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
-				C1により全ての$n \in \N$に対して
-				\begin{align}
-					\tExp{f_n} = \int_{\Omega} f_n(x)\ \mu(dx)
-				\end{align}
-				が成り立っているから，Lebesgueの収束定理と作用素の有界性により
-				\begin{align}
-					\left| \tExp{f} - \int_{\Omega} f(x)\ \mu(dx) \right|
-					\leq \left| \tExp{f} - \tExp{f_n} \right| + \left| \int_{\Omega} f_n(x)\ \mu(dx) - \int_{\Omega} f(x)\ \mu(dx) \right|
-					\longrightarrow 0\ (n \longrightarrow \infty)
-				\end{align}
-				が成り立つ．ゆえに
-				\begin{align}
-					\tExp{f} = \int_{\Omega} f(x)\ \mu(dx)
-				\end{align}
-				が示された．
-				
-			\item[$\tilde{\mathrm{C}}$2]	
-				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
-				$h \in \Lp{\infty}{\Omega,\mathcal{F},\mu}$であることに注意すれば，
-				C2により全ての$n \in \N$に対して
-				\begin{align}
-					\int_{\Omega} f_n(x)h(x)\ \mu(dx) = \int_{\Omega} \tcexp{f_n}{\mathcal{G}}(x)h(x)\ \mu(dx)
-				\end{align}
-				が成り立つ．
-				\begin{align}
-					A \coloneqq \left\{\ x \in \Omega\quad |\quad |h(x)| > \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}}\ \right\}
-				\end{align}
-				とおけば$\mu(A) = 0$であり，拡張が作用素ノルムを変えないことと補助定理\ref{lem:conditional_exp_bound}の結果より
-				\begin{align}
-					&\left| \int_{\Omega} f(x)h(x)\ \mu(dx) - \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \right| \\
-					&\qquad \leq \left| \int_{\Omega} f(x)h(x)\ \mu(dx) - \int_{\Omega} f_n(x)h(x)\ \mu(dx) \right| \\
-						&\qquad \qquad+ \left| \int_{\Omega} \tcexp{f_n}{\mathcal{G}}(x)h(x)\ \mu(dx) - \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \right| \\
-					%&\qquad = \left| \int_{\Omega \backslash A} f(x)h(x)\ \mu(dx) - \int_{\Omega \backslash A} f_n(x)h(x)\ \mu(dx) \right| 
-					%	+ \left| \int_{\Omega \backslash A} \tcexp{f_n}{\mathcal{G}}(x)h(x)\ \mu(dx) - \int_{\Omega \backslash A} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx) \right| \\
-					&\qquad \leq \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega \backslash A} |f(x) - f_n(x)|\ \mu(dx) 
-						+ \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega \backslash A} \left| \tcexp{f_n}{\mathcal{G}}(x) - \tcexp{f}{\mathcal{G}}(x) \right|\ \mu(dx) \\
-					&\qquad = \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \Norm{f - f_n}{\Lp{1}{\mathcal{F}}}
-						+ \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \Norm{\tcexp{f}{\mathcal{G}} - \tcexp{f_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}} \\
-					&\qquad \leq 2 \Norm{h}{\Lp{\infty}{\mathcal{F},\mu}} \Norm{f - f_n}{\Lp{1}{\mathcal{F}}} \quad (\scriptsize\because \mbox{補助定理}\ref{lem:conditional_exp_bound})
-				\end{align}
-				が成り立つ．$(f_n)_{n=1}^{\infty}$の作り方からLebesgueの収束定理が適用されて
-				\begin{align}
-					\Norm{f - f_n}{\Lp{1}{\mathcal{F}}} \longrightarrow 0\ (n \longrightarrow \infty)
-				\end{align}
-				となるから
-				\begin{align}
-					\int_{\Omega} f(x)h(x)\ \mu(dx) = \int_{\Omega} \tcexp{f}{\mathcal{G}}(x)h(x)\ \mu(dx)
-				\end{align}
-				が示された．
-				
-			\item[$\tilde{\mathrm{C}}$3]	
-				作用素$\tcexp{\cdot}{\mathcal{G}}$の線型性による．
-
-			\item[$\tilde{\mathrm{C}}$4]	
-				作用素の線型性から，C4の証明と同様に「任意の$f \in \Lp{1}{\Omega, \mathcal{F},\mu}$に対して，$f \geq 0\ $a.s.ならば$\tcexp{f}{\mathcal{G}} \geq 0\ $a.s.」を示せばよい．
-				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
-				全ての$n \in \N$に対して
-				\begin{align}
-					\{\ x \in \Omega\quad |\quad f_n(x) < 0\ \} \quad\subset\quad \{\ x \in \Omega\quad |\quad f(x) < 0\ \}
-				\end{align}
-				が成り立っているから，右辺が$\mu$-零集合と仮定すればC4により
-				\begin{align}
-					\tcexp{f_n}{\mathcal{G}} \geq 0\ \mathrm{a.s.} \quad (n = 1,2,3,\cdots)
-				\end{align}
-				となる．従って
-				\begin{align}
-					A_n &\coloneqq \left\{\ x \in \Omega\quad |\quad \tcexp{f_n}{\mathcal{G}}(x) < 0\ \right\} \quad (n=1,2,3,\cdots), \\
-					A &\coloneqq \bigcup_{n=1}^{\infty} A_n
-				\end{align}
-				とすれば$\mu(A) = 0$となり，
-				\begin{align}
-					B \coloneqq \left\{\ x \in \Omega\quad |\quad \tcexp{f}{\mathcal{G}}(x) < 0\ \right\}
-				\end{align}
-				に対して$\mu(B \cap A^c) = \mu(B) - \mu(B \cap A) = \mu(B)$が成り立つから，示せばよいのは$\mu(B \cap A^c) = 0$となることである．
-				$B \cap A^c$の上では全ての$n \in \N$に対して
-				\begin{align}
-					\left| \tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x) \right| 
-					= \tcexp{f_n}{\mathcal{G}}(x) - \tcexp{f}{\mathcal{G}}(x) \geq - \tcexp{f}{\mathcal{G}}(x) > 0
-				\end{align}
-				が成り立っていることから，
-				\begin{align}
-					C_k \coloneqq \left\{\ x \in B \cap A^c\quad |\quad \left| \tcexp{f}{\mathcal{G}}(x)\right| > 1/k\ \right\} \quad (k = 1,2,3,\cdots)
-				\end{align}
-				とおけば
-				\begin{align}
-					B \cap A^c = \bigcup_{k=1}^{\infty} C_k
-				\end{align}
-				が成り立つ．全ての$k \in \N$に対して
-				\begin{align}
-					\Norm{\tcexp{f}{\mathcal{G}} - \tcexp{f_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}}
-					&= \int_\Omega \left| \tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x) \right|\ \mu(dx) \\
-					&\geq \int_{C_k} \left| \tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x) \right|\ \mu(dx) \\
-					&> \mu(C_k)/k
-				\end{align}
-				が成り立つことから，$C_k$が$n$に無関係なことと左辺が$n \longrightarrow \infty$で0に収束することから
-				$\mu(C_k) = 0 \ (\forall k = 1,2,3,\cdots)$でなくてはならず，
-				\begin{align}
-					\mu(B) = \mu(B \cap A^c) \leq \sum_{k=1}^{\infty} \mu(C_k) = 0
-				\end{align}
-				となり$\tcexp{f}{\mathcal{G}} \geq 0\ $a.s.が示された．
-				
-			\item[$\tilde{\mathrm{C}}$5]
-				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
-				$f_n$についてはC5より
-				\begin{align}
-					\tcexp{gf_n}{\mathcal{G}} = g\tcexp{f_n}{\mathcal{G}} \label{eq:conditional_exp_L1}
-				\end{align}
-				が成り立っている．
-				\begin{align}
-					E \coloneqq \left\{\ x \in \Omega\quad |\quad |g(x)| > \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}}\ \right\}
-				\end{align}
-				とおけば$\mu(E) = 0$であって，
-				拡張が作用素ノルムを変えないことと補助定理\ref{lem:conditional_exp_bound}，またLebesgueの収束定理を適用すれば
-				\begin{align}
-					&\Norm{\tcexp{gf}{\mathcal{G}} - \tcexp{gf_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}}
-					\leq \Norm{gf - gf_n}{\Lp{1}{\mathcal{F}}} 
-					\leq \int_\Omega |g(x)||f(x) - f_n(x)|\ \mu(dx) \\
-					&\qquad = \int_{\Omega \backslash E} |g(x)||f(x) - f_n(x)|\ \mu(dx) \leq \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}}\Norm{f - f_n}{\Lp{1}{\mathcal{F}}}
-					\longrightarrow 0 \quad (n \longrightarrow \infty)
-				\end{align}
-				が成り立つ．同様にして
-				\begin{align}
-					&\Norm{g\tcexp{f}{\mathcal{G}} - g\tcexp{f_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}}
-					= \int_\Omega |g(x)\tcexp{f}{\mathcal{G}}(x) - g(x)\tcexp{f_n}{\mathcal{G}}(x)|\ \mu(dx) \\
-					&\qquad \leq \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega \backslash E} |\tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x)|\ \mu(dx) \\
-					&\qquad= \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}} \int_{\Omega} |\tcexp{f}{\mathcal{G}}(x) - \tcexp{f_n}{\mathcal{G}}(x)|\ \mu(dx) \\
-					&\qquad\leq \Norm{g}{\Lp{\infty}{\mathcal{F},\mu}}\Norm{f - f_n}{\Lp{1}{\mathcal{F}}} \\
-					&\qquad \longrightarrow 0 \quad (n \longrightarrow \infty)
-				\end{align}
-				も成り立つから，式(\refeq{eq:conditional_exp_L1})と併せて
-				\begin{align}
-					\Norm{\tcexp{gf}{\mathcal{G}} - g\tcexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}}
-					&\leq \Norm{\tcexp{gf}{\mathcal{G}} - \tcexp{gf_n}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}}
-						+ \Norm{g\tcexp{f_n}{\mathcal{G}} - g\tcexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{F}}} \\
-					&\longrightarrow 0 \quad (n \longrightarrow \infty)
-				\end{align}
-				となり$\tcexp{gf}{\mathcal{G}} = g\tcexp{f}{\mathcal{G}}$が示された．
-			
-			\item[$\tilde{\mathrm{C}}$6]
-				$f$に対して，先の(\ref{conditional_exp_expansion})と同じように関数列$(f_n)_{n=1}^{\infty} \subset \Lp{2}{\Omega,\mathcal{F},\mu}$を作る．
-				$f_n$についてはC6より
-				\begin{align}
-					\tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f_n}{\mathcal{H}}
-				\end{align}
-				が成り立っている．
-				\begin{align}
-					\Norm{ \tcexp{f}{\mathcal{H}} -  \tcexp{f_n}{\mathcal{H}}}{\Lp{1}{\mathcal{F}}}
-					&\leq \Norm{f -  f_n}{\Lp{1}{\mathcal{F}}}, \\
-					\Norm{ \tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} -  \tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}}}{\Lp{1}{\mathcal{F}}}
-					&\leq \Norm{ \tcexp{f}{\mathcal{G}} -  \tcexp{f_n}{\mathcal{G}} }{\Lp{1}{\mathcal{F}}}
-					\leq \Norm{f -  f_n}{\Lp{1}{\mathcal{F}}}
-				\end{align}
-				が成り立つこととLebesgueの収束定理より
-				\begin{align}
-					&\Norm{ \tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}} - \tcexp{f_n}{\mathcal{H}} }{\Lp{1}{\mathcal{F}}} \\
-					&\qquad\leq \Norm{ \tcexp{f}{\mathcal{H}} -  \tcexp{f_n}{\mathcal{H}}}{\Lp{1}{\mathcal{F}}}
-						+ \Norm{ \tcexp{\tcexp{f}{\mathcal{G}}}{\mathcal{H}} -  \tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}}}{\Lp{1}{\mathcal{F}}} \\
-					&\qquad \leq 2 \Norm{f -  f_n}{\Lp{1}{\mathcal{F}}} \qquad \longrightarrow 0 \quad (n \longrightarrow \infty)
-				\end{align}
-				となり$\tcexp{\tcexp{f_n}{\mathcal{G}}}{\mathcal{H}} = \tcexp{f_n}{\mathcal{H}}$が示された．
-		\end{description}
-		\QED
-	\end{prf}
-	
-	\begin{itembox}[l]{}
-		\begin{dfn}[条件付き期待値の再定義]
-			定理\ref{thm:conditional_exp_expansion}で定義された$\Lp{1}{\Omega,\mathcal{F},\mu}$から
-			$\Lp{1}{\Omega,\mathcal{G},\mu}$
-			への有界線型作用素$\tcexp{\cdot}{\mathcal{G}}$を$\cexp{\cdot}{\mathcal{G}}$
-			と表記し直し，$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して
-			\begin{align}
-				\cexp{f}{\mathcal{G}}
-			\end{align}
-			を$\mathcal{G}$で条件付けた$f$の条件付き期待値と呼ぶ．$\mathcal{G} = \{\emptyset, \Omega\}$の場合は特別に
-			\begin{align}
-				\cexp{f}{\mathcal{G}} = \Exp{f}
-			\end{align}
-			と書いて$f$の期待値と呼ぶ．
-		\end{dfn}
-	\end{itembox}
