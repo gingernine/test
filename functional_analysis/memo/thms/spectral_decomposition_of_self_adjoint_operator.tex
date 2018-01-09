@@ -1,1 +1,370 @@
-\chapter{自己共役作用素のスペクトル分解}
+\section{スペクトル測度}
+	$H$を複素Hilbert空間，その上の直交射影全体を$\Oproj{H}$とし，$H$における内積とノルムをそれぞれ$\inprod<\cdot,\cdot>,\Norm{\cdot}{}$で表す．
+	また$(X,\mathcal{M})$を可測空間とする．
+	
+	\begin{screen}
+		\begin{dfn}[スペクトル測度]
+			$I$を$H$上の恒等写像とする．$E:\mathcal{M} \rightarrow \Oproj{H}$がスペクトル測度(spectral measure)であるとは，
+			$E(X) = I$かつ，互いに素な列$A_n \in \mathcal{M}\ (n=1,2,\cdots)$に対して次を満たすことをいう:
+			\begin{align}
+				E(A_n) \neq E(A_m) \quad (n \neq m,\ A_n,A_m \neq \emptyset), \quad
+				\sum_{n=1}^{\infty} E(A_n)u = E(\sum_{n=1}^{\infty} A_n)u \quad (\forall u \in H).
+				\label{eq:sigma_additivity_spectral_measures}
+			\end{align}
+			\label{dfn:spectral_measure}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[スペクトル測度の積]
+			$\mathcal{M}$から$\Oproj{H}$へのスペクトル測度$H$は次を満たす:
+			\begin{description}
+				\item[(1)] $E(\emptyset) = 0.$
+				\item[(2)] $A,B \in \mathcal{M}$に対し$E(A) E(B) = E(A \cap B)$.
+			\end{description}
+			\label{lem:product_of_spectral_measure}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] (\refeq{eq:sigma_additivity_spectral_measures})において$A_n = \emptyset\ (n=1,2,\cdots)$とすれば
+				\begin{align}
+					E(\emptyset) = \sum_{n=1}^{\infty} E(\emptyset) = E(\emptyset) + \sum_{n=2}^{\infty} E(\emptyset)
+				\end{align}
+				が成り立ち
+				\footnote{
+					\begin{align}
+						a \coloneqq \sum_{n=1}^{\infty} E(\emptyset),\quad a' \coloneqq \sum_{n=2}^{\infty} E(\emptyset),
+						\quad a_N \coloneqq \sum_{n=1}^{N} E(\emptyset),\quad a'_N \coloneqq \sum_{n=2}^{N} E(\emptyset)
+					\end{align}
+					とおけば
+					\begin{align}
+						\Norm{a - \left( E(\emptyset) - a' \right)}{}
+						\leq \Norm{a - a_N}{} + \Norm{a_N - \left( E(\emptyset) - a'_N \right)}{} + \Norm{a'_N - a'}{}
+						\longrightarrow 0 \quad (N \longrightarrow \infty)
+					\end{align}
+					が成り立つ．
+				}
+				\begin{align}
+					\sum_{n=2}^{\infty} E(\emptyset) = 0
+				\end{align}
+				が従う．
+				\begin{align}
+					S \coloneqq \sum_{n=2}^{\infty} E(\emptyset),
+					\quad S_N \coloneqq \sum_{n=2}^{N} E(\emptyset) \quad (N=1,2,\cdots)
+				\end{align}
+				とおけば，$(S_N)_{N=2}^{\infty}$は$S$にノルム収束するからCauchy列であり，
+				\begin{align}
+					\Norm{S_{N+1} - S_{N}}{} \longrightarrow 0 \quad (N \longrightarrow \infty)
+				\end{align}
+				より$E(\emptyset) = 0$が得られる．
+			
+			\item[(2)]
+				(\refeq{eq:sigma_additivity_spectral_measures})より
+				$F,G \in \mathcal{M}$が$F \cap G = \emptyset$を満たせば，$E(F) \neq E(G)$かつ
+				\begin{align}
+					E(F) + E(G) = E(F + G) \in \Oproj{H}
+				\end{align}
+				が成り立ち，命題\ref{prp:orthogonal_projection_product_sum}より$E(F)E(G) = 0$が従う．
+				これと命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}より，$A,B \in \mathcal{M}$に対し
+				\begin{align}
+					E(A)E(B) = \left( E(A \cap B) + E(A \cap B^c) \right)\left( E(A \cap B) + E(B \cap A^c) \right) = E(A \cap B)
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[スペクトル測度で導入する複素測度]
+			$E:\mathcal{M} \rightarrow \Oproj{H}$をスペクトル測度とする．各$u,v \in H$に対し
+			$\mu_{u,v}:\mathcal{M} \rightarrow \C$と$\mu_u:\mathcal{M} \rightarrow [0,\infty)$を次で定める:
+			\begin{align}
+				\mu_{u,v}(\Lambda) \coloneqq \inprod<E(\Lambda)u,v> \quad (\forall \Lambda \in \mathcal{M}),
+				\quad \mu_u \coloneqq \mu_{u,u}
+				\label{eq:lem_complex_measure_introduced_by_spectral_measure_1}
+			\end{align}
+			\begin{description}
+				\item[(1)] $\mu_{u,v}$は$(X,\mathcal{M})$上の複素測度であり，$\mu_u$は$(X,\mathcal{M})$上の実数値有限測度である．
+				\item[(2)] 任意の$\Lambda \in \mathcal{M}$に対し次が成り立つ:
+					\begin{align}
+						|\mu_{u.v}(\Lambda)| \leq \mu_u(\Lambda)^{\frac{1}{2}} \mu_v(\Lambda)^{\frac{1}{2}}.
+						\label{eq:lem_complex_measure_introduced_by_spectral_measure_3}
+					\end{align}
+				\item[(3)] $\mathcal{M}/\borel{[0,\infty)}$-可測関数$f,g$に対して次が成り立つ:
+					\begin{align}
+						\int_X f(x)g(x)\ |\mu_{u,v}|(dx) \leq \left( \int_X |f(x)|^2\ \mu_u(dx) \right)^{\frac{1}{2}} \left( \int_X |g(x)|^2\ \mu_v(dx) \right)^{\frac{1}{2}}.
+					\end{align}
+			\end{description}
+			\label{lem:complex_measure_introduced_by_spectral_measure}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] (\refeq{eq:lem_complex_measure_introduced_by_spectral_measure_1})より$\mu_{u,v}$は複素数値である．
+				また命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}より
+				\begin{align}
+					\inprod<E(\Lambda)u,u> = \inprod<E(\Lambda)^2u,u> = \inprod<E(\Lambda)u,E(\Lambda)^*u> = \Norm{E(\Lambda)u}{}^2
+					\label{eq:lem_complex_measure_introduced_by_spectral_measure_2}
+				\end{align}
+				が成り立つから$\mu_u$は非負実数値である．また互いに素な列$A_1,A_2,\cdots \in \mathcal{M}$を取れば，$A \coloneqq \sum_{n=1}^{\infty}A_n$として
+				\begin{align}
+					\inprod<E(A)u,v> = \inprod<\sum_{n=1}^{\infty}E(A_n)u,v> = \sum_{n=1}^{\infty}\inprod<E(A_n)u,v>
+				\end{align}
+				となる．左側の等号はスペクトル測度の定義に依るから左側の等号を示す．実際(\refeq{eq:sigma_additivity_spectral_measures})より
+				\begin{align}
+					\left| \inprod<\sum_{n=1}^{\infty}E(A_n)u,v> - \inprod<\sum_{n=1}^{N}E(A_n)u,v> \right|
+					\leq \Norm{\sum_{n=1}^{\infty}E(A_n)u - \sum_{n=1}^{N}E(A_n)u}{} \Norm{v}{}
+					\longrightarrow 0 \quad (N \longrightarrow \infty)
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\inprod<\sum_{n=1}^{N}E(A_n)u,v>= \sum_{n=1}^{N} \inprod<E(A_n)u,v> 
+				\end{align}
+				の左辺も収束し
+				\begin{align}
+					\inprod<\sum_{n=1}^{\infty}E(A_n)u,v> = \sum_{n=1}^{\infty}\inprod<E(A_n)u,v>
+				\end{align}
+				が得られる．よって$\mu_{u,v}$の完全加法性が従う．
+				
+			\item[(2)] 任意に$\Lambda \in \mathcal{M}$を取る．$\Lambda$の有限分割$\Lambda = \sum_{i=1}^{n} A_i\ (A_i \in \mathcal{M})$に対し，
+				(\refeq{eq:lem_complex_measure_introduced_by_spectral_measure_2})より
+				\begin{align}
+					\left| \mu_{u,v}(A_i) \right| = \left| \inprod<E(A_i)u,E(A_i)v> \right|
+					\leq \Norm{E(A_i)u}{}\Norm{E(A_i)v}{} \quad (i=1,\cdots,n)
+				\end{align}
+				が成り立つから，H\Ddot{o}lderの不等式より
+				\begin{align}
+					\sum_{i=1}^{n} \left| \mu_{u,v}(A_i) \right|
+					\leq \sum_{i=1}^{n} \Norm{E(A_i)u}{}\Norm{E(A_i)v}{}
+					\leq \left( \sum_{i=1}^{n} \Norm{E(A_i)u}{}^2 \right)^{\frac{1}{2}} \left( \sum_{i=1}^{n} \Norm{E(A_i)v}{}^2 \right)^{\frac{1}{2}}
+					= \mu_u(\Lambda)^{\frac{1}{2}} \mu_v(\Lambda)^{\frac{1}{2}}
+				\end{align}
+				が得られ，左辺で分割の取り方の上限を取り(\refeq{eq:lem_complex_measure_introduced_by_spectral_measure_3})が従う．
+			
+			\item[(3)] $f,g$が可測単関数の場合，
+				\begin{align}
+					f = \sum_{i=1}^{n} \alpha_i \defunc_{A_i},\quad g = \sum_{i=1}^{n} \beta_i \defunc_{A_i}
+					\quad (\alpha_i,\beta_i \in [0,\infty),\ \sum_{i=1}^{n} A_i = X)
+				\end{align}
+				と表されているとして
+				\begin{align}
+					&\int_X f(x)g(x)\ |\mu_{u,v}|(dx) 
+					= \sum_{i=1}^{n} \alpha_i \beta_i |\mu_{u,v}|(A_i) \\
+					&\qquad \leq \sum_{i=1}^{n} \alpha_i \mu_u(A_i)^{\frac{1}{2}} \beta_i \mu_v(A_i)^{\frac{1}{2}}
+					= \left( \int_X f(x)\ \mu_u(dx) \right)^{\frac{1}{2}} \left( \int_X g(x)\ \mu_v(dx) \right)^{\frac{1}{2}}
+				\end{align}
+				が成り立つ．一般の可測関数については，単関数近似と単調収束定理より主張が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	以後は$E:\mathcal{M} \rightarrow \Oproj{H}$をスペクトル測度とし，次の記号を定める:
+	\begin{align}
+		MF = MF(X,\mathcal{M}) &\coloneqq \Set{f:X \rightarrow \C}{\mbox{$f$は$\mathcal{M}/\borel{\C}$-可測関数．}}, \\
+		MSF = MSF(X,\mathcal{M}) &\coloneqq \Set{f:X \rightarrow \C}{\mbox{$f$は$\mathcal{M}/\borel{\C}$-可測単関数．}}
+	\end{align}
+	\begin{screen}
+		\begin{dfn}[単調近似列]
+			$f \in MF$に対し$\lim_{n \to \infty} f_n(x) = f(x)\ (\forall x \in X)$かつ
+			$|f_n| \leq |f_{n+1}|\ (n=1,2,\cdots)$を満たす$f_n \in MSF\ (n=1,2,\cdots)$を
+			$f$の$MSF$-単調近似列と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[可測関数で導入する作用素]
+			$f \in MF$に対し，$H$上の作用素$T_f$を次で定義する:
+			\begin{description}
+				\item[$f$が可測単関数の場合]
+					$\alpha_i \in \C$と$A_i \in \mathcal{M},\ \sum_{i=1}^{n} A_i = X$によって
+					\begin{align}
+						f = \sum_{i=1}^{n} \alpha_i \defunc_{A_i}
+					\end{align}
+					と表示されているとき，
+					\begin{align}
+						\Dom{T_f} \coloneqq H,\quad T_f \coloneqq \sum_{i=1}^{n} \alpha_i E(A_i)
+						\label{eq:dfn_operator_introduced_by_measurable_functions}
+					\end{align}
+					と定める．
+				
+				\item[$f$が一般の可測関数の場合]
+					$f$の$MSF$-近似列$(f_n)_{n=1}^{\infty}$を一つ取り
+					\begin{align}
+						\Dom{T_f} &\coloneqq \Set{u \in H}{\int_X |f(x)|^2\ \mu_u(dx) < \infty}, \label{eq:dfn_operator_introduced_by_measurable_functions_3} \\
+						T_f u &\coloneqq \lim_{n \to \infty} T_{f_n} u \quad (\forall u \in \Dom{T_f} )
+						\label{eq:dfn_operator_introduced_by_measurable_functions_2}
+					\end{align}
+					と定める．
+			\end{description}
+			\label{dfn:operator_introduced_by_measurable_functions}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[(\refeq{eq:dfn_operator_introduced_by_measurable_functions})はwell-defined]
+			(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による$T_f$の定義は$f$の表示に依らない．
+		\end{lem}	
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}
+			$f,g \in MSF,\ \alpha,\beta \in \C,\ u,v \in H$に対して次が成り立つ:
+			\begin{description}
+				\item[(1)] 
+					\begin{align}
+						T_{\alpha f + \beta g} = \alpha T_f + \beta T_f,
+						\quad T_f T_g = T_{fg},
+						\quad T_f^* = T_{\conj{f}},
+						\quad T_{\defunc_A} = E(A) \quad (\forall A \in \mathcal{M}).
+					\end{align}
+				
+				\item[(2)] 
+					\begin{align}
+						\inprod<T_f u, T_g v> = \int_X f(x) \conj{g(x)}\ \mu_{u,v}(dx), 
+						\quad \Norm{T_f u}{}^2 = \int_X |f(x)|^2\ \mu_u(dx).
+					\end{align}
+			\end{description}
+			\label{lem:MSF_properties_of_T_f}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $a_i,b_i \in \C,\ A_i \in \mathcal{M}\ \sum_{i=1}^{n} A_i = X$によって
+				\begin{align}
+					f = \sum_{i=1}^{n} a_i \defunc_{A_i},
+					\quad g = \sum_{i=1}^{n} b_i \defunc_{A_i}
+				\end{align}
+				と表示されているとする．先ず
+				\begin{align}
+					T_{\alpha f + \beta g} = \sum_{i=1}^{n} (\alpha a_i + \beta b_i) E(A_i) = \alpha \sum_{i=1}^{n} a_i E(A_i) + \beta \sum_{i=1}^{n} b_i E(A_i) = \alpha T_f + \beta T_f
+				\end{align}
+				が成り立つ．また補題\ref{lem:product_of_spectral_measure}より
+				\begin{align}
+					T_f T_g = \sum_{i=1} a_i b_i E(A_i) = T_{fg}
+				\end{align}
+				が従い，また命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}より
+				\begin{align}
+					T_f^* = \left( \sum_{i=1} a_i E(A_i) \right)^* = \sum_{i=1} \conj{a_i} E(A_i)^* = T_{\conj{f}}
+				\end{align}
+				も得られる．$T_{\defunc_A} = E(A)$は$f \longmapsto T_f$の定義による．
+			
+			\item[(2)] 命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}と命題\ref{lem:product_of_spectral_measure}より
+				$\Ran{E(A_j)} \perp \Ran{E(A_k)}\ (j \neq k)$が成り立つから，
+				(\refeq{eq:lem_complex_measure_introduced_by_spectral_measure_2})より
+				\begin{align}
+					\inprod<T_f u, T_g v> 
+					= \sum_{i=1}^{n} a_i \conj{b_i} \inprod<E(A_i) u, E(A_i) v> 
+					= \sum_{i=1}^{n} a_i \conj{b_i} \inprod<E(A_i) u, v>
+					= \int_X f(x) \conj{g(x)}\ \mu_{u,v}(dx)
+				\end{align}
+				を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[(\refeq{eq:dfn_operator_introduced_by_measurable_functions_2})はwell-defined]
+			(\refeq{eq:dfn_operator_introduced_by_measurable_functions})で定める$T_f$は$f$の$MSF$-近似列の取り方に依らない．
+			特に(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による定義は
+			(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による定義の拡張となっている．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[$\Dom{T_f} $の線型性・稠密性]
+			(\refeq{eq:dfn_operator_introduced_by_measurable_functions_3})で定めた$\Dom{T_f} $は$H$の線型部分空間で$\closure{\Dom{T_f} }=H$を満たす．
+			\label{lem:domain_T_f_linear_dense}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[線型性]
+				$u,v \in \Dom{T_f} $に対して
+				\begin{align}
+					\int_X |f(x)|^2\ \mu_u(dx) < \infty,\quad \int_X |f(x)|^2\ \mu_v(dx) < \infty
+				\end{align}
+				が満たされている．(\refeq{eq:lem_complex_measure_introduced_by_spectral_measure_2})より任意の$\Lambda \in \mathcal{M}$に対して
+				\begin{align}
+					\mu_{u+v}(\Lambda) = \Norm{E(\Lambda)(u+v)}{}^2 \leq 2 \Norm{E(\Lambda)u}{}^2 + 2 \Norm{E(\Lambda)v}{}^2 = 2 \mu_u(\Lambda) + 2 \mu_v(\Lambda)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\int_X |f(x)|^2\ \mu_{u+v}(dx) \leq 2 \int_X |f(x)|^2\ \mu_u(dx) + 2 \int_X |f(x)|^2\ \mu_v(dx) < \infty 
+				\end{align}
+				が従い$u+v \in \Dom{T_f} $を得る．また任意に$\lambda \in \C$を取れば
+				\begin{align}
+					\mu_{\lambda u}(\Lambda) = \Norm{\lambda E(\Lambda)u}{}^2 = |\lambda|^2 \mu_{u}(\Lambda)
+				\end{align}
+				が成り立ち$\lambda u \in \Dom{T_f} $も従う．
+				
+			\item[稠密性]
+				任意に$u \in H$を取る．
+				\begin{align}
+					A_k \coloneqq \Set{x \in X}{|f(x)| \leq k} \quad (k=1,2,\cdots)
+				\end{align}
+				に対して$u_k \coloneqq E(A_k)u$とおけば
+				\begin{align}
+					\Norm{u_k - u}{} \longrightarrow 0 \quad (k \longrightarrow \infty)
+					\label{eq:lem_domain_T_f_linear_dense}
+				\end{align}
+				が成り立つ．一方で任意の$\Lambda \in \mathcal{M}$に対して，
+				命題\ref{lem:product_of_spectral_measure}と(\refeq{eq:lem_complex_measure_introduced_by_spectral_measure_2})より
+				\begin{align}
+					\mu_{u_k}(\Lambda) = \inprod<E(\Lambda)E(A_k)u, E(A_k)u> = \inprod<E(\Lambda \cap A_k)u,u> = \mu_u(\Lambda \cap A_k)
+				\end{align}
+				が成り立つから$\mu_{u_k}$は$A_k$に集中している．よって
+				\begin{align}
+					\int_X |f(x)|^2\ \mu_{u_k}(dx) = \int_{A_k} |f(x)|^2\ \mu_{u_k}(dx) \leq k^2 \mu_u(A_k) < \infty
+				\end{align}
+				となり$u_k \in \Dom{T_f} $が従い，(\refeq{eq:lem_domain_T_f_linear_dense})より主張を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+			$f,g \in MF$とする．
+			\begin{description}
+				\item[(1)] $T_f$は線型作用素である．
+				\item[(2)] $u \in \Dom{T_f} ,\ v \in \Dom{T_g} $ならば次が成り立つ:
+					\begin{align}
+						\int_X \left| f(x) \conj{g(x)} \right|\ |\mu_{u,v}|(dx) \leq \Norm{f}{\Lp{2}{\mu_u}} \Norm{g}{\Lp{2}{\mu_v}}, \quad 
+						\int_X f(x) \conj{g(x)}\ \mu_{u,v}(dx) = \inprod<T_f u, T_g v>.
+					\end{align}
+				\item[(3)] $T_f T_g \subset T_{fg}$が成り立ち，特に$g$が有界なら等号が成立する．
+				\item[(4)] $T_f + T_g \subset T_{f+g}$が成り立ち，特に$g$が有界なら等号が成立する．
+				\item[(5)] $T_f^* = T_{\conj{f}}$が成り立ち，特に$T_f$は閉作用素である．
+				\item[(6)] $\lambda \in \C$が$\lambda = 0$なら$T_{\lambda f} = \lambda T_f$が成り立つ．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]	$f$の$MSF$-近似列$(f_n)_{n=1}^{\infty}$に対し$T_{f_n}$は線型であるから．
+			\item[(2)] $f,g \in MSF$のとき，任意の$u,v \in H$に対して
+				\begin{align}
+					\int_X \left| f(x) \conj{g(x)} \right|\ |\mu_{u,v}|(dx) \leq \Norm{f}{\Lp{2}{\mu_u}} \Norm{g}{\Lp{2}{\mu_v}},
+					\quad \inprod<T_f u, T_g v> = \int_X f(x) \conj{g(x)}\ \mu_{u,v}(dx)
+				\end{align}
+				が成り立つ．第二式は補題(\ref{lem:MSF_properties_of_T_f})による．第一式について，
+				\begin{align}
+					f = \sum_{i=1}^{n} \alpha_i \defunc_{A_i},\quad 
+					g = \sum_{i=1}^{n} \beta_i \defunc_{A_i}
+				\end{align}
+				と表示されているとして
+				\begin{align}
+					\int_X \left| f(x) \conj{g(x)} \right|\ |\mu_{u,v}|(dx)
+					= \sum_{i=1}^{n} |\alpha_i||\beta_i| |\mu_{u,v}|(A_i)
+					\leq \sum_{i=1}^{n} |\alpha_i||\beta_i| \mu_u(A_i)^{\frac{1}{2}} \mu_v(A_i)^{\frac{1}{2}}
+					\leq \left( \int_X \left| f(x) \right|^2\ \mu_u(dx) \right)^{\frac{1}{2}} \left( \int_X \left| g(x) \right|^2\ \mu_v(dx) \right)^{\frac{1}{2}}
+				\end{align}
+				が成り立つ．
+				一般の$f,g \in MF$については，$MSF$-近似列とFatouの補題より従う．
+		\end{description}
+	\end{prf}
