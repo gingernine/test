@@ -113,7 +113,7 @@
 		\end{align}
 		が成り立ち
 		\begin{align}
-			\Norm{M_t^{\tau_j}}{\mathscr{L}^\infty} \leq j \quad (\forall t \in I)
+			\sup{t \in I}{\Norm{M_t^{\tau_j}}{\mathscr{L}^\infty}} \leq j \quad (j=0,1,2,\cdots)
 		\end{align}
 		を得る．そして任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
 		\begin{align}
@@ -167,7 +167,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{prp}[有界変動な連続二乗可積分マルチンゲールのパスは定数]\mbox{}\\
+		\begin{prp}[有界変動な連続二乗可積分マルチンゲールは0]\mbox{}\\
 			$A \in \mathcal{A} \cap \mathcal{M}_{2,c}$に対し$A_t = 0\ (\forall t \in I)\quad \mbox{$\mu$-a.s.}$が成り立つ．
 			\label{prp:bounded_continuous_M_2c_path}
 		\end{prp}
@@ -178,80 +178,77 @@
 		\begin{align}
 			A = A^{(1)} - A^{(2)}
 		\end{align}
-		と表現できる．また或る$\mu$-零集合$E$が存在し，全ての$\omega \in \Omega \backslash E$に対して
+		と表現できる．また或る$\mu$-零集合$E$が存在し，全ての$\omega \in \Omega \backslash E$に対して$A_0(\omega) = 0$
+		且つ$I \ni t \longmapsto A_t^{(1)}(\omega)$と$I \ni t \longmapsto A_t^{(2)}(\omega)$が共に連続，単調非減少となる．
+		従って補題\ref{lem:right_continuous_stopping_time_monotonous}より
 		\begin{align}
-			A_0^{(1)}(\omega) = A_0^{(2)}(\omega) = 0
-		\end{align}
-		且つ$I \ni t \longmapsto A_t^{(1)}(\omega)$と$I \ni t \longmapsto A_t^{(2)}(\omega)$が共に連続，単調非減少となるから，
-		\begin{align}
-			\tau_m(\omega) \coloneqq
+			\tau_m(\omega) &\coloneqq
 			\begin{cases}
 				0 & (\omega \in E) \\
-				\inf{}{\Set{t \in I}{A_t^{(1)}(\omega) \vee A_t^{(2)}(\omega) \geq m}} \wedge T & (\omega \in \Omega \backslash E)
+				\inf{}{\Set{t \in I}{\sup{s \leq t}{\tilde{A}_s^{(1)}(\omega) \vee \tilde{A}_s^{(2)}(\omega)} \geq m}} \wedge T & (\omega \in \Omega \backslash E)
 			\end{cases}
 			\quad (m=1,2,\cdots)
 		\end{align}
-		は定理\ref{thm:closed_set_stopping_time}より停止時刻となる．そして
-		補題\ref{lem:right_continuous_stopping_time_monotonous}より
+		として停止時刻列を定めれば，各$\omega \in \Omega \backslash E$に対し或る$i = i(\omega) \in \N$が存在して
 		\begin{align}
-			0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \cdots \leq \tau_i(\omega) = T \quad (\exists i = i(\omega) \in \N,\ \forall \omega \in \Omega \backslash E)
+			\tau_1(\omega) \leq \tau_2(\omega) \leq \cdots \leq \tau_i(\omega) = T
 		\end{align}
-		が満たされている．今任意に$t \in I,\ n,m \in \N$を取り固定する．
+		が成り立つ．但し$\tilde{A}_t^{(i)} \coloneqq A^{(i)}_t - A^{(i)}_0,\ (i=1,2)$とした．
+		今任意に$t \in I,\ n,m \in \N$を取り固定する．
 		\begin{align}
 			\sigma_j^n \coloneqq \tau_m \wedge \frac{tj}{2^n} \quad (j = 0,1,\cdots, 2^n)
 		\end{align}
-		とおけば，$\sigma_j^n \leq \sigma_{j+1}^n\ (j = 0,1,\cdots, 2^n-1)$が成り立つから
-		補題\ref{lem:stopping_time_telescopic_sum}により
+		とおけば，$\left( \sigma_j^n \right)_{j=0}^{2^n}$は単調増加で
+		\begin{align}
+			\sigma_{j+1}^n - \sigma_j^n \leq \frac{t}{2^n} \quad (j=0,1,\cdots,2^n)
+			\label{eq:prp_bounded_continuous_M_2c_path_1}
+		\end{align}
+		を満たすから，補題\ref{lem:stopping_time_telescopic_sum}により
 		\begin{align}
 			\Exp{\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2}
 			= \sum_{j=0}^{2^n-1} \Exp{A_{\sigma_{j+1}^n}^2 - A_{\sigma_j^n}^2}
-			= \Exp{A_{\tau_m \wedge t}^2 - A_{0}^2}
-			= \Exp{\left( A_{\tau_m \wedge t} - A_{0} \right)^2}
+			= \Exp{A_{\tau_m \wedge t}^2}
+			\label{eq:prp_bounded_continuous_M_2c_path_2}
 		\end{align}
-		を得る．左辺の中の式は
+		が成り立つ．左辺の被積分関数について，
 		\begin{align}
 			\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2
 			\leq \sup{j}{\left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|} \sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|
 		\end{align}
-		となり，特に$\omega \in \Omega \backslash E$に対しては$I \ni t \longmapsto A_t(\omega)$の連続性から
+		とできる．特に$\omega \in \Omega \backslash E$に対しては，$I \ni t \longmapsto A_t(\omega)$の連続性と
+		(\refeq{eq:prp_bounded_continuous_M_2c_path_1})より
 		\begin{align}
-			\sup{j}{\left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|} \longrightarrow 0 \quad (n \longrightarrow \infty)
+			\sup{j}{\left| A_{\sigma_{j+1}^n(\omega)}(\omega) - A_{\sigma_j^n(\omega)}(\omega) \right|} \longrightarrow 0 \quad (n \longrightarrow \infty)
 		\end{align}
-		(概収束)と
+		且つ
 		\begin{align}
-			\sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n}(\omega) - A_{\sigma_j^n}(\omega) \right|
-			&\leq \sum_{j=0}^{2^n-1} \left( A^{(1)}_{\sigma_{j+1}^n}(\omega) - A^{(1)}_{\sigma_j^n}(\omega) + A^{(2)}_{\sigma_{j+1}^n}(\omega) - A^{(2)}_{\sigma_j^n}(\omega) \right) \\
-			&= A^{(1)}_{\tau_m \wedge t}(\omega) + A^{(2)}_{\tau_m \wedge t}(\omega) \leq 2m
+			\sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n(\omega)}(\omega) - A_{\sigma_j^n(\omega)}(\omega) \right|
+			&\leq \sum_{j=0}^{2^n-1} \left( A^{(1)}_{\sigma_{j+1}^n(\omega)}(\omega) - A^{(1)}_{\sigma_j^n(\omega)}(\omega) + A^{(2)}_{\sigma_{j+1}^n(\omega)}(\omega) - A^{(2)}_{\sigma_j^n(\omega)}(\omega) \right) \\
+			&= A^{(1)}_{\tau_m(\omega) \wedge t}(\omega) - A_0^{(1)}(\omega) + A^{(2)}_{\tau_m(\omega) \wedge t}(\omega) - A_0^{(2)}(\omega) \leq 2m
 		\end{align}
-		が満たされるから，Lebesgueの収束定理を適用できて
+		が満たされるから，Lebesgueの収束定理より
 		\begin{align}
 			\int_\Omega \sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n(\omega)}(\omega) - A_{\sigma_j^n(\omega)}(\omega) \right)^2\ \mu(d\omega) \longrightarrow 0 \quad (n \longrightarrow \infty)
 		\end{align}
-		が従う．ゆえに
+		が成り立ち，(\refeq{eq:prp_bounded_continuous_M_2c_path_2})より
 		\begin{align}
-			\int_\Omega \left( A_{\tau_m(\omega) \wedge t}(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) = 0 \quad (m=1,2,\cdots)
+			\int_\Omega \left( A_{\tau_m(\omega) \wedge t} \right)^2\ \mu(d\omega) = 0 \quad (m=1,2,\cdots)
 		\end{align}
-		が成り立ち，Doobの不等式より$|A_{\tau_m \wedge t} - A_{0}| \leq \sup{t \in I}{|A_t - A_{0}|} \in \mathscr{L}^2$であるからLebesgueの収束定理を適用して
+		が従う．Doobの不等式より$|A_{\tau_m \wedge t}| \leq \sup{t \in I}{|A_t|} \in \mathscr{L}^2$が成り立つから，Lebesgueの収束定理より
 		\begin{align}
-			\int_\Omega \left( A_t(\omega) - A_{0}(\omega) \right)^2\ \mu(d\omega) 
-			= \int_{\Omega \backslash E} \left( A_t(\omega) \right)^2\ \mu(d\omega)
-			= 0
+			\int_\Omega \left( A_t(\omega) \right)^2\ \mu(d\omega)= 0
 		\end{align}
-		を得る．$t \in I$は任意に取っていたから，
-		\begin{align}
-			A_t = 0 \quad \mbox{$\mu$-a.s.} \quad (\forall t \in I)
-		\end{align}
-		が従い，また$\omega \in \Omega \backslash E$に対する$A$のパスの連続性により
+		となり$A_t = 0\ \mbox{$\mu$-a.s.}$を得る．$\omega \in \Omega \backslash E$に対する$A$のパスの連続性により
 		\begin{align}
 			\Set{\omega \in \Omega \backslash E}{A_t(\omega) = 0\ (\forall t \in I)}
 			= \bigcap_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) = 0}
 		\end{align}
-		と表すことができる．従って
+		と表せるから，
 		\begin{align}
 			\Set{\omega \in \Omega}{A_t(\omega) \neq 0\ (\exists t \in I)}
 			\subset E + \bigcup_{r \in I \cap \Q} \Set{\omega \in \Omega \backslash E}{A_r(\omega) \neq 0}
 		\end{align}
-		が成り立ち，右辺が零集合であるから$\mu$-a.s.に$A_t = 0\ (\forall t \in I)$となる．
+		が成り立ち命題の主張が従う．
 		\QED
 	\end{prf}
 	
@@ -264,14 +261,14 @@
 			\end{align}
 			とおけば，$M^2 - Q^n \in \mathcal{M}_{b,c}$かつ次が成り立つ:
 			\begin{align}
-				\Norm{M_T^2 - M_0^2 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2}.
+				\Norm{M_T^2 - Q_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T}{\mathscr{L}^2}.
 			\end{align}
 			\label{lem:quadratic_variation}
 		\end{lem}
 	\end{screen}
 	
 	\begin{prf}
-		任意の停止時刻$\tau$に対し$M_{t \wedge \tau}$が可測$\mathcal{F}_t/\borel{\R}$であるから
+		各$j$に対し$M_{t \wedge \tau_{j+1}^n}$が可測$\mathcal{F}_t/\borel{\R}$であるから
 		$Q^n$は$\mathcal{F}_t$-適合である．
 		今任意に$s,t \in I,\ (s < t)$を取り固定する．$\tau_k^n \leq s < \tau_{k+1}^n$となる$k$を選べば，
 		補題\ref{lem:stopping_time_telescopic_sum}と任意抽出定理\ref{thm:optional_sampling_theorem_2}より
