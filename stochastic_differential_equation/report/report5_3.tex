@@ -8,17 +8,15 @@
 	この証明には次の補題を使う．
 	
 	\begin{screen}
-		\begin{lem}[各点で右連続であり左極限を持つ関数は閉区間上で有界]\mbox{}\\
-			$(E,\rho)$を距離空間，$J = [a,b] \subset \R$とする．$f:J \rightarrow E$が各点$x \in J$で
-			右連続且つ左極限を持つ\footnotemark
-			なら$f$は$J$上で有界である．
+		\begin{lem}[右連続で左極限を持つ関数は閉区間上で有界]\mbox{}\\
+			$(E,\rho)$を距離空間，$J = [a,b] \subset \R$とする．$f:J \rightarrow E$が各点で
+			右連続且つ左極限を持つなら$f$は$J$上で有界である．
+			ただし左端点では左極限を考えず，右端点では右連続性を考えない．
 			\label{lem:rcll_bounded}
 		\end{lem}
 	\end{screen}
-	\footnotetext{
-		左端点では左極限を考えず，右端点では右連続性を考えない．
-	}
-	\begin{prf}[補題]
+	
+	\begin{prf}[補題\ref{lem:rcll_bounded}]
 		任意に$\epsilon > 0$を取り固定する．$f$は各点$x \in [a,b)$で右連続であるから，$0 < \delta_x < b-x$を
 		$0 < \forall h < \delta_x$が$\rho(f(x), f(x+h)) < \epsilon$を満たすように取り，
 		\begin{align}
@@ -53,52 +51,81 @@
 		\QED
 	\end{prf}
 	
+	\begin{screen}
+		\begin{lem}[右連続関数で導入する停止時刻の単調性]
+			或る零集合$N$が存在し，全ての$\omega \in \Omega \backslash N$に対して
+			$I \ni t \longmapsto X_t(\omega)$が右連続なら，
+			\begin{align}
+				\tau_n(\omega) \coloneqq
+				\begin{cases}
+					0 & (\omega \in N) \\
+					\inf{}{\Set{t \in I}{|X_t(\omega)| \geq n}} \wedge T & (\omega \in \Omega \backslash N) \footnotemark
+				\end{cases}
+				\quad (n=0,1,2,\cdots)
+			\end{align}
+			で定める停止時刻は$0 = \tau_0 \leq \tau_1 \leq \cdots$を満たし，
+			特に，$\omega \in \Omega \backslash N$に対して
+			$I \ni t \longmapsto X_t(\omega)$が各点で左極限を持つなら，或る$n = n(\omega) \in \N$が存在して
+			$\tau_n(\omega) = T$を満たす．
+			\label{lem:right_continuous_stopping_time_monotonous}
+		\end{lem}
+	\end{screen}
+	\footnotetext{
+		定理\ref{thm:closed_set_stopping_time}の脚注に書いた通り
+		$\Set{t \in I}{|X_t(\omega)| \geq n} = \emptyset$の場合は$\tau_n(\omega) = T$とする．
+	}
+	\begin{prf}[補題\ref{lem:right_continuous_stopping_time_monotonous}]
+		定理\ref{thm:closed_set_stopping_time}より$\tau_n$は停止時刻である．
+		絶対値の非負性より$\tau_0 = 0$が従い，
+		また
+		\begin{align}
+			\tau_{n}(\omega) \leq \inf{}{\Set{t \in I}{|X_t(\omega)| \geq n+1}} = \tau_{n+1}(\omega)
+			\quad (\forall \omega \in \Omega \backslash N,\ n=0,1,2,\cdots)
+		\end{align}
+		が成り立つから$0 = \tau_0 \leq \tau_1 \leq \cdots$が得られる．
+		或る$\omega \in \Omega \backslash N$に対してパスが各点で左極限を持つ場合，
+		補題\ref{lem:rcll_bounded}より$n > \sup{t \in I}{|X_t(\omega)|}$を満たす
+		$n = n(\omega)$が存在して$\tau_n(\omega) = T$が得られる．
+		\QED
+	\end{prf}
+	
 	\begin{prf}[命題\ref{prp:M_pc_M_cloc}]
-		a.s.に有界な関数は$p$乗して可積分であるから$\mathcal{M}_{b,c} \subset \mathcal{M}_{p,c}$である．
+		a.s.に有界な関数は$p$乗して可積分であるから$\mathcal{M}_{b,c} \subset \mathcal{M}_{p,c}$を得る．
 		$\mathcal{M}_{p,c} \subset \mathcal{M}_{c,loc}$を示す．任意に$M \in \mathcal{M}_{p,c}$を取れば，
-		或る零集合$E$が存在して全ての$\omega \in \Omega \backslash E$に対し
+		或る零集合$E$が存在して
 		\begin{align}
-			M_0(\omega) = 0
+			M_0(\omega) = 0 \quad (\forall \omega \in \Omega \backslash E)
 		\end{align}
-		となり，且つ$I \ni t \longmapsto M_t(\omega)$が連続となる．
-		全ての$\omega \in \Omega$に対し写像$I \ni t \longmapsto M_t(\omega)$
-		は右連続且つ左極限を持つから，定理\ref{thm:closed_set_stopping_time}より
+		を満たし，$t \longmapsto M_t(\omega)$が連続となる．
+		全てのパスは右連続で左極限を持つから，補題\ref{lem:right_continuous_stopping_time_monotonous}より
 		\begin{align}
-			\tau_j(\omega) \coloneqq \inf{}{\Set{t \in I}{|M_t(\omega)| \geq j}} \wedge T \quad (\forall \omega \in \Omega,\ j=0,1,2,\cdots) \footnotemark
+			\tau_j(\omega) \coloneqq \inf{}{\Set{t \in I}{|M_t(\omega)| \geq j}} \wedge T \quad (\forall \omega \in \Omega,\ j=0,1,2,\cdots)
 		\end{align}
-		\footnotetext{
-			定理\ref{thm:closed_set_stopping_time}の脚注に書いた通り
-			$\Set{t \in I}{|M_t(\omega)| \geq j} = \emptyset$の場合は
-			$\tau(\omega) = T$とする．
-		}
-		として$\tau_j$は停止時刻となり$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が成り立つ．
-		実際全ての$\omega \in \Omega$について$\tau_0(\omega) = 0$であり，
-		また$t \longmapsto M_t(\omega)$の右連続性から$\tau_j \leq \tau_{j+1}\ (j=1,2,\cdots)$も成り立つ．
-		更に補題\ref{lem:rcll_bounded}より$\sup{t \in I}{|M_t(\omega)|} < \infty\ (\forall \omega \in \Omega)$であるから，
-		$J > \sup{t \in I}{|M_t(\omega)|}$を満たす$J = J(\omega)$に対して$\tau_j(\omega) = T\ (\forall j \geq J)$となる．
-		後は$M^{\tau_j} \in \mathcal{M}_{b,c}$が成立することを示せばよい．先ずDoobの不等式(定理\ref{thm:Doob_inequality_2})より
+		で定める停止時刻列は$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$を満たす．
+		Doobの不等式(定理\ref{thm:Doob_inequality_2})より
 		$\sup{t \in I}{|M_t|}$が$p$乗可積分となるから$M_t^{\tau_j} = M_{t \wedge \tau_j}\ (\forall t \in I)$は可積分である．
-		また$\omega \in \Omega \backslash E$なら$t \longmapsto M_t(\omega)$が連続であるから
-		$I \ni t \longmapsto M_t^{\tau_j}(\omega)$もまた連続であり，かつ
+		また$\omega \in \Omega \backslash E$については$t \longmapsto M_t(\omega)$の連続性から
+		$I \ni t \longmapsto M_t^{\tau_j}(\omega)$の連続性が従い，かつ定理\ref{thm:closed_set_stopping_time}より
 		\begin{align}
 			\sup{t \in I}{\left| M_{t \wedge \tau_j(\omega)}(\omega) \right|} \leq j
+			\quad (\forall \omega \in \Omega \backslash E)
 			\label{eq:M_pc_M_cloc}
 		\end{align}
-		が成り立つから
+		が成り立ち
 		\begin{align}
 			\Norm{M_t^{\tau_j}}{\mathscr{L}^\infty} \leq j \quad (\forall t \in I)
 		\end{align}
-		が従う．そして任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
+		を得る．そして任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
 		\begin{align}
-			\cexp{M_t^{\tau_j}}{\mathcal{F}_s} = M_{t \wedge \tau_j \wedge s} = M_s^{\tau_j} \quad (0 \leq s < t \leq T)
+			\cexp{M_t^{\tau_j}}{\mathcal{F}_s} = M_{t \wedge \tau_j \wedge s} = M_s^{\tau_j} \quad (s,t \in I,\ s < t)
 		\end{align}
-		を得る．以上より$M^{\tau_j} \in \mathcal{M}_{b,c}\ (j=1,2,\cdots)$，すなわち$M \in \mathcal{M}_{c,loc}$である．
+		が成り立つから．$M^{\tau_j} \in \mathcal{M}_{b,c}\ (j=1,2,\cdots)$，すなわち$M \in \mathcal{M}_{c,loc}$となる．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{lem}
-			$X \in \mathcal{M}_{2,c}$と停止時刻$\tau \geq \sigma$に対し，$\Norm{M_\sigma}{\mathscr{L}^\infty} < \infty$ならば次が成り立つ:
+			$X \in \mathcal{M}_{2,c}$と停止時刻$\tau \geq \sigma$に対し次が成り立つ:
 			\begin{description}
 				\item[(1)] $\Exp{(X_{\tau} - X_{\sigma})^2} = \Exp{X_{\tau}^2 - X_{\sigma}^2}$，
 				\item[(2)] $\cexp{(X_{\tau} - X_{\sigma})^2}{\mathcal{F}_\sigma} = \cexp{X_{\tau}^2 - X_{\sigma}^2}{\mathcal{F}_\sigma}$．
@@ -116,16 +143,15 @@
 			\begin{align}
 				\cexp{X_{\tau}}{\mathcal{F}_\sigma} = X_{\tau \wedge \sigma} = X_\sigma
 			\end{align}
-			も成り立つ．これらを用いれば
+			も成り立つ．命題\ref{prp:properties_of_expanded_conditional_expectation}の$\tilde{\mathrm{C}}$2と$\tilde{\mathrm{C}}$6を併せて
 			\begin{align}
 				\Exp{(X_{\tau} - X_{\sigma})^2}
 				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{X_{\tau}X_{\sigma}} \\
 				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{\cexp{X_{\tau}X_{\sigma}}{\mathcal{F}_\sigma}} \\
 				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{X_{\sigma}\cexp{X_{\tau}}{\mathcal{F}_\sigma}} \\
-				&= \Exp{X_{\tau}^2 + X_{\sigma}^2} - 2\Exp{X_{\sigma}^2} \\
 				&= \Exp{X_{\tau}^2 - X_{\sigma}^2}
 			\end{align}
-			が成り立つ．
+			を得る．
 			
 		\item[(2)]
 			(1)と同様にして
@@ -166,34 +192,15 @@
 			\quad (m=1,2,\cdots)
 		\end{align}
 		は定理\ref{thm:closed_set_stopping_time}より停止時刻となる．そして
-		$\omega \in \Omega \backslash E$に対する$A^{(1)},A^{(2)}$のパスの連続性から
+		補題\ref{lem:right_continuous_stopping_time_monotonous}より
 		\begin{align}
-			\tau_i(\omega) = T \quad (\exists i = i(\omega) \in \N,\ \forall \omega \in \Omega \backslash E)
+			0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \cdots \leq \tau_i(\omega) = T \quad (\exists i = i(\omega) \in \N,\ \forall \omega \in \Omega \backslash E)
 		\end{align}
-		が成り立ち，かつ$\tau_m \leq \tau_{m+1}\ (m=1,2,\cdots)$も満たされている．
-		今$t \in I,\ n,m \in \N$を固定する．
+		が満たされている．今任意に$t \in I,\ n,m \in \N$を取り固定する．
 		\begin{align}
 			\sigma_j^n \coloneqq \tau_m \wedge \frac{tj}{2^n} \quad (j = 0,1,\cdots, 2^n)
 		\end{align}
-		とおけば，$\sigma_j^n \leq \sigma_{j+1}^n\ (j = 0,1,\cdots, 2^n-1)$と
-		\begin{align}
-			\Norm{A_{\sigma_j^n}}{\mathscr{L}^\infty} \leq 2m \quad (j = 0,1,\cdots, 2^n)
-		\end{align}
-		を満たすから
-		\footnote{
-			$\omega \in \Omega \backslash E$に対する$A^{(1)},A^{(2)}$のパスが連続であるから，定理\ref{thm:closed_set_stopping_time}より
-			\begin{align}
-				A_t^{(1)}(\omega) \vee A_t^{(2)}(\omega) \leq m \quad (\forall t \leq \tau_m(\omega),\ \omega \in \Omega \backslash E)
-			\end{align}
-			が成り立ち
-			\begin{align}
-				\left| A_{\sigma_j^n(\omega)}(\omega) \right| 
-				\leq \left| A^{(1)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) \right| + \left| A^{(2)}_{\tau_m(\omega)\wedge \frac{tj}{2^n}}(\omega) \right|
-				\leq 2m
-				\quad (\forall \omega \in \Omega \backslash E)
-			\end{align}
-			が従う．
-		}
+		とおけば，$\sigma_j^n \leq \sigma_{j+1}^n\ (j = 0,1,\cdots, 2^n-1)$が成り立つから
 		補題\ref{lem:stopping_time_telescopic_sum}により
 		\begin{align}
 			\Exp{\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2}
@@ -201,7 +208,7 @@
 			= \Exp{A_{\tau_m \wedge t}^2 - A_{0}^2}
 			= \Exp{\left( A_{\tau_m \wedge t} - A_{0} \right)^2}
 		\end{align}
-		が成り立つ．左辺の中の式は
+		を得る．左辺の中の式は
 		\begin{align}
 			\sum_{j=0}^{2^n-1} \left( A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right)^2
 			\leq \sup{j}{\left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|} \sum_{j=0}^{2^n-1} \left| A_{\sigma_{j+1}^n} - A_{\sigma_j^n} \right|
