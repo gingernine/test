@@ -17,15 +17,15 @@
 		まず$M \in \mathcal{M}_{b,c}$に対し$A$の存在を証明し，次にその結果を$\mathcal{M}_{c,loc}$に拡張する．
 		\begin{description}
 			\item[第一段]
-				$M \in \mathcal{M}_{b,c}$とする．補題\ref{lem:quadratic_variation}に従って$Q^n\ (n=1,2,\cdots)$を構成し
+				$M \in \mathcal{M}_{b,c}$とする．(\refeq{eq:lem_quadratic_variation_0})の$Q^n$を構成し
 				$N^n \coloneqq M^2 - Q^n \in \mathcal{M}_{b,c}$とおけば
 				\begin{align}
 					\Norm{N_T^n - N_0^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
 				\end{align}
-				を満たす．(\refeq{eq:lem_quadratic_variation_0})より$N_0^n(\omega) = M^2_0(\omega)\ (\forall \omega \in \Omega,\ n=1,2,\cdots)$となるから
+				を満たす．(\refeq{eq:lem_quadratic_variation_0})より$N_0^n = M^2_0$となるから
 				\begin{align}
 					\Norm{N_T^n}{\mathscr{L}^2} 
-					\leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} + \Norm{M^2_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
+					\leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T - M_0}{\mathscr{L}^2} \quad (n=1,2,\cdots)
 				\end{align}
 				が成り立ち，$N^n$の同値類
 				\footnote{
@@ -41,7 +41,7 @@
 				\end{align}
 				と表せば$\hat{N}^n = M^2 - \hat{Q}^n$を満たし
 				\footnote{
-					任意の$n \in \N$に対して$(c^n_j)_{j=0}^{\infty}$は
+					各$n \in \N$に対して$(c^n_j)_{j=0}^{\infty}$は
 					$\sum_{j=0}^{\infty} c^n_j = 1$を満たし，且つ$\neq 0$であるのは有限個である．
 				}
 				，$N \in \overline{N}$を一つ取り
@@ -59,13 +59,24 @@
 				\footnote{
 					$\Norm{\cdot}{\mathfrak{M}_{2,c}}$は(\refeq{eq:M_2c_inner_product})で定義される内積により導入されるノルムを表す．
 				}
-				よってBorel-Cantelliの補題より部分列$(n_k)_{k=1}^{\infty}$と$\mu$-零集合$E$を取れば
+				\begin{align}
+					\Norm{\sup{t \in I}{\left| \hat{Q}_t^{n_k} - A_t \right|}}{\mathscr{L}^2} < \frac{1}{4^k} \quad (k=1,2,\cdots)
+				\end{align}
+				を満たすように部分列$(n_k)_{k=1}^{\infty}$を取り
+				\begin{align}
+					E_k \coloneqq \left\{\, \sup{t \in I}{\left| \hat{Q}_t^{n_k} - A_t \right|} \geq \frac{1}{2^k} \, \right\} \quad (k=1,2,\cdots)
+				\end{align}
+				とすると，Chebyshevの不等式より$\mu(E_k) < 1/2^k$を得る．
+				\begin{align}
+					E \coloneqq \bigcap_{N \in \N} \bigcup_{k \geq N} E_k
+				\end{align}
+				と定めればBorel-Cantelliの補題より$E$は$\mu$-零集合であり，
 				\begin{align}
 					\lim_{k \to \infty}\sup{t \in I}{\left| \hat{Q}_t^{n_k}(\omega) - A_t(\omega) \right|} = 0 
 					\quad (\forall \omega \in \Omega \backslash E)
 					\label{eq:thm_quadratic_variation_1}
 				\end{align}
-				が従い，まず$A_0(\omega) = 0 \ (\forall \omega \in \Omega \backslash E)$が成り立つ．
+				が成り立ち，$A_0(\omega) = 0 \ (\forall \omega \in \Omega \backslash E)$が従う．
 				\begin{align}
 					D_k \coloneqq \Set{\frac{j}{2^{n_k}}T}{ j = 0,1,\cdots,2^{n_k} } \quad (k=1,2,\cdots)
 				\end{align}
