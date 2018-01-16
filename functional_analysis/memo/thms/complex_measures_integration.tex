@@ -1,4 +1,16 @@
 \section{複素測度に関する積分}
+	\begin{screen}
+		\begin{thm}[複素数値可測関数]
+			$(X,\mathcal{M})$を可測空間とする．$f:X \rightarrow \C$について次が成り立つ:
+			\begin{description}
+				\item[(1)] $f$が可測$\mathcal{M}/\borel{\C}$であることと
+					$f$の実部虚部がそれぞれ可測$\mathcal{M}/\borel{\R}$であることは同値である．
+					
+				\item[(2)] $\mathcal{M}/\borel{\C}$-可測関数列$(f_n)_{n=1}^{\infty}$が$f$に各点収束するなら
+					$f$もまた可測$\mathcal{M}/\borel{\C}$となる．
+			\end{description}
+		\end{thm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{dfn}[積分の定義]
@@ -44,12 +56,16 @@
 	
 	\begin{screen}
 		\begin{thm}[積分の定義はwell-defined]
-			定義\ref{dfn:complex_measures_integration}で定めた積分はwell-defined
-			である．つまり(\refeq{eq:complex_measures_integration_simple_function})
+			定義\ref{dfn:complex_measures_integration}において，
+			(\refeq{eq:complex_measures_integration_simple_function})
 			は(\refeq{eq:expression_simple_function})の表示の仕方に依らずに定まり，
 			(\refeq{eq:complex_measures_integration_measurable_function})
 			も(\refeq{eq:integration_simple_function_approximation})を満たす単関数近似列の選び方に
-			依らずに定まる．
+			依らずに定まる．更に次が成り立つ:
+			\begin{align}
+				\left| \int_X f(x)\ \mu(dx) \right| \leq \int_X |f(x)|\ |\mu|(dx).
+				\label{eq:thm_complex_measure_integration_well_defined_2}
+			\end{align}
 			\label{thm:complex_measure_integration_well_defined}
 		\end{thm}
 	\end{screen}
@@ -114,7 +130,11 @@
 						+ \left| \int_X g_m(x)\ \mu(dx) - \beta \right| \\
 					&\longrightarrow 0 \quad (n,m \longrightarrow \infty)
 				\end{align}
-				が従い$\alpha = \beta$を得る．
+				が従い$\alpha = \beta$を得る．また(\refeq{eq:thm_complex_measure_integration_well_defined})より
+				\begin{align}
+					\left| \int_X f_n(x)\ \mu(dx) \right| \leq \int_X |f_n(x)|\ |\mu|(dx) \quad (n = 1,2,\cdots)
+				\end{align}
+				が満たされているから，両辺で$n \longrightarrow \infty$として(\refeq{eq:thm_complex_measure_integration_well_defined_2})を得る．
 				\QED
 		\end{description}
 	\end{prf}
@@ -137,6 +157,7 @@
 				= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X g(x)\ \mu(dx)
 			\end{align}
 			が成り立つ．
+			\label{thm:complex_measure_integral_linearity}
 		\end{thm}
 	\end{screen}
 	
@@ -184,4 +205,66 @@
 				が従う．
 				\QED
 		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[収束定理]
+			$(X,\mathcal{M})$を可測空間，$\mu$をこの上の複素測度とする．$\mathcal{M}/\borel{C}$-可測関数列$(f_n)_{n=1}^{\infty}$
+			が各点で収束し，かつ或る$g \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$が存在して$|f_n| \leq |g|\ (n=1,2,\cdots)$
+			を満たすとき，次が成り立つ:
+			\begin{align}
+				\int_X\lim_{n \to \infty} f_n(x)\ \mu(dx) = \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			f(x) \coloneqq \lim_{n \to \infty} f_n(x) \quad (\forall x \in X)
+		\end{align}
+		とおく．Lebesgueの収束定理より$f \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$かつ
+		\begin{align}
+			\int_X f(x)\ |\mu|(dx) = \lim_{n \to \infty} \int_X f_n(x)\ |\mu|(dx)
+		\end{align}
+		が成り立つから，定理\ref{thm:complex_measure_integral_linearity}及び定理\ref{thm:complex_measure_integration_well_defined}より
+		\begin{align}
+			\left| \int_X f(x)\ \mu(dx) - \int_X f_n(x)\ \mu(dx) \right| \leq \int_X \left| f(x) - f_n(x) \right|\ |\mu|(dx) \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[順序交換定理]
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$|\mu| \times |\nu| \leq |\mu \times \nu|$より$|\mu|,|\nu|,|\mu \times \nu|$にFubiniの定理を適用．
+		\begin{align}
+			\int_X \int_Y f_n(x,y)\ \nu(dy)\ \mu(dx) = \int_{X \times Y} f_n(x,y)\ (\mu \times \nu)(dx \times dy)
+			= \int_Y \int_X f_n(x,y)\ \mu(dy)\ \nu(dx)
+		\end{align}
+		$f$が$|\mu \times \nu|$に関して可積分なら
+		\begin{align}
+			\int_{X \times Y} f(x,y)\ (\mu \times \nu)(dx \times dy)
+		\end{align}
+		が定義され，更に
+		\begin{align}
+			\int_Y |f(x,y)|\ |\nu|(dy) < \infty
+		\end{align}
+		だから
+		\begin{align}
+			\int_Y f(x,y)\ \nu(dy)
+		\end{align}
+		も定義される．
+		\begin{align}
+			\left| \int_Y f(x,y)\ \nu(dy) \right| \leq \int_Y |f(x,y)|\ |\nu|(dy)
+		\end{align}
+		が$|\mu|$について可積分であるから
+		\begin{align}
+			\int_X \int_Y f(x,y)\ \nu(dy)\ \mu(dx)
+		\end{align}
+		も定義される．
 	\end{prf}
