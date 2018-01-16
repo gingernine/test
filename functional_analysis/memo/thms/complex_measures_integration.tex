@@ -208,6 +208,59 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[積分の測度に関する線型性]
+			$(X,\mathcal{M})$を可測空間，$\mu,\nu$をこの上の複素測度とする．$f:X \rightarrow \C$が$|\mu|$と$|\nu|$について可積分であるなら，
+			$\alpha,\beta \in \C$に対し$|\alpha \mu|, |\beta \nu|, |\alpha \mu + \beta \nu|$についても可積分であり，更に次が成り立つ:
+			\begin{align}
+				\int_X f(x)\ (\alpha\mu + \beta\nu)(dx) = \alpha \int_X f(x)\ \mu(dx) + \beta \int_X f(x)\ \nu(dx).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{description}
+			\item[第一段]
+				$f$が可測単関数の場合について証明する．
+				$a_i \in \C,\ A_i \in \mathcal{M}\ (i=1,\cdots,n,\ \sum_{i=1}^{n} A_i = X)$を用いて
+				\begin{align}
+					f = \sum_{i=1}^{n} a_i \defunc_{A_i}
+				\end{align}
+				と表されている場合，
+				\begin{align}
+					&\int_X f(x)\ (\alpha\mu + \beta\nu)(dx)
+					= \sum_{i=1}^{n} a_i (\alpha\mu + \beta\nu)(A_i) \\
+					&\qquad = \alpha \sum_{i=1}^{n} a_i \mu(A_i) + \beta \sum_{i=1}^{n} a_i \nu(A_i)
+					= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X f(x)\ \nu(dx)
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段]
+			$f$が一般の可測関数の場合について証明する．任意の$A \in \mathcal{M}$に対して
+			\begin{align}
+				\left| (\alpha \mu + \beta \nu)(A) \right| \leq |\alpha||\mu(A)| + |\beta||\nu(A)| \leq |\alpha||\mu|(A) + |\beta||\nu|(A)
+ 			\end{align}
+ 			が成り立つから，左辺で$A$を任意に分割しても右辺との大小関係は変わらず
+ 			\begin{align}
+ 				|\alpha \mu + \beta \nu|(A) \leq |\alpha||\mu|(A) + |\beta||\nu|(A)
+ 			\end{align}
+ 			となる．従って$f$が$|\mu|$と$|\nu|$について可積分であるなら
+ 			\begin{align}
+ 				\int_X |f(x)|\ |\alpha \mu + \beta \nu|(dx) \leq |\alpha| \int_X |f(x)|\ |\mu|(dx) + |\beta| \int_X |f(x)|\ |\nu|(dx) < \infty
+ 			\end{align}
+ 			が成り立ち前半の主張を得る．$f$の単関数近似列$(f_n)_{n=1}^{\infty}$を取れば，前段の結果と積分の定義より
+ 			\begin{align}
+ 				&\left| \int_X f(x)\ (\alpha\mu + \beta\nu)(dx) - \alpha \int_X f(x)\ \mu(dx) - \beta \int_X f(x)\ \nu(dx) \right| \\
+ 					&\qquad \leq \left| \int_X f(x)\ (\alpha\mu + \beta\nu)(dx) - \int_X f_n(x)\ (\alpha\mu + \beta\nu)(dx) \right| \\
+ 					&\qquad \quad + |\alpha| \left| \int_X f(x)\ \mu(dx) - \int_X f_n(x)\ \mu(dx) \right|
+ 					+ |\beta| \left| \int_X f(x)\ \nu(dx) - \int_X f_n(x)\ \nu(dx) \right| \\
+ 				&\qquad \longrightarrow 0 \quad (n \longrightarrow \infty)
+ 			\end{align}
+ 			が成り立ち後半の主張が従う．
+ 			\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
 		\begin{thm}[収束定理]
 			$(X,\mathcal{M})$を可測空間，$\mu$をこの上の複素測度とする．$\mathcal{M}/\borel{C}$-可測関数列$(f_n)_{n=1}^{\infty}$
 			が各点で収束し，かつ或る$g \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$が存在して$|f_n| \leq |g|\ (n=1,2,\cdots)$
