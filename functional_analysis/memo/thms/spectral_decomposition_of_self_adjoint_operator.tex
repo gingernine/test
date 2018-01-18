@@ -160,18 +160,49 @@
 		\end{description}
 	\end{prf}
 	
-	以後は$E:\mathcal{M} \rightarrow \Oproj{H}$をスペクトル測度とし，次の記号を定める:
+	以後は$(X,\mathcal{M})$を可測空間，$E:\mathcal{M} \rightarrow \Oproj{H}$をスペクトル測度とし，次の記号を定める:
 	\begin{align}
 		MF = MF(X,\mathcal{M}) &\coloneqq \Set{f:X \rightarrow \C}{\mbox{$f$は$\mathcal{M}/\borel{\C}$-可測関数．}}, \\
 		MSF = MSF(X,\mathcal{M}) &\coloneqq \Set{f:X \rightarrow \C}{\mbox{$f$は$\mathcal{M}/\borel{\C}$-可測単関数．}}
 	\end{align}
 	\begin{screen}
-		\begin{dfn}[単調近似列]
+		\begin{dfn}[$MSF$-近似列]
 			$f \in MF$に対し$\lim_{n \to \infty} f_n(x) = f(x)\ (\forall x \in X)$かつ
-			$|f_n| \leq |f_{n+1}|\ (n=1,2,\cdots)$を満たす$f_n \in MSF\ (n=1,2,\cdots)$を
-			$f$の$MSF$-単調近似列と呼ぶ．
+			$|f_n| \leq |f|\ (n=1,2,\cdots)$を満たす$f_n \in MSF\ (n=1,2,\cdots)$を
+			$f$の$MSF$-近似列と呼び，特に$\left( |f_n| \right)_{n=1}^{\infty}$が単調増加なら$MSF$-単調近似列と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{prp}[$MSF$-単調近似列の存在]
+			任意の$f \in MF$に対して$MSF$-単調近似列が存在する．
+		\end{prp}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$f \in MF$を取り，$f$の実部と虚部をそれぞれ$g,h$と表す．
+		$g^+ \coloneqq g \defunc_{\{g \geq 0\}},\ g^- \coloneqq g^+ - g$と定め，同様に
+		$h^+,h^-$を定めれば，$g^+,g^-,h^+,h^-$はそれぞれ非負で可測$\mathcal{M}/\borel{\R}$であるから
+		$MSF$-単調近似列$\left( g^+_n \right)_{n=1}^{\infty}$が存在する．
+		\begin{align}
+			\left| g_n \right|^2 = \left| g^+_n \right|^2 + \left| g^-_n \right|^2
+			\leq \left| g^+ \right|^2 + \left| g^- \right|^2
+			= |g|^2
+		\end{align}
+		が成り立つから，
+		\begin{align}
+			f_n \coloneqq g^+_n - g^-_n + i\left( h^+_n - h^-_n \right)
+			\quad (n=1,2,\cdots)
+		\end{align}
+		とおけば
+		\begin{align}
+			|f_n|^2 = \left| g^+_n - g^-_n \right|^2 + \left| h^+_n - h^-_n \right|^2
+			\leq |g|^2 + |h|^2
+			= |f|^2
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[可測関数で導入する作用素]
@@ -203,28 +234,40 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{lem}[(\refeq{eq:dfn_operator_introduced_by_measurable_functions})はwell-defined]
+		\begin{lem}
 			(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による$T_f$の定義は$f$の表示に依らない．
 		\end{lem}	
 	\end{screen}
+	
+	\begin{prf}
+			$\alpha_i ,\beta_j \in \C$と$A_i,B_j \in \mathcal{M},\ \sum_{i=1}^{n} A_i = \sum_{j=1}^{m} B_j = X$によって
+			\begin{align}
+				f = \sum_{i=1}^{n} \alpha_i \defunc_{A_i} = \sum_{j=1}^{m} \beta_i \defunc_{B_i}
+			\end{align}
+			と表示されているとき，
+			\begin{align}
+				\sum_{i=1}^{n} \alpha_i E(A_i)
+				= \sum_{i=1}^{n} \sum_{j=1}^{m} \alpha_i E(A_i \cap B_j)
+				= \sum_{j=1}^{m} \sum_{i=1}^{n} \beta_j E(A_i \cap B_j)
+				= \sum_{j=1}^{m} \beta_j E(B_j)
+			\end{align}
+			が成り立つ．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{lem}
 			$f,g \in MSF,\ \alpha,\beta \in \C,\ u,v \in H$に対して次が成り立つ:
 			\begin{description}
 				\item[(1)] 
-					\begin{align}
-						T_{\alpha f + \beta g} = \alpha T_f + \beta T_f,
+					$T_{\alpha f + \beta g} = \alpha T_f + \beta T_f,
 						\quad T_f T_g = T_{fg},
 						\quad T_f^* = T_{\conj{f}},
-						\quad T_{\defunc_A} = E(A) \quad (\forall A \in \mathcal{M}).
-					\end{align}
+						\quad T_{\defunc_A} = E(A) \quad (\forall A \in \mathcal{M}).$
 				
 				\item[(2)] 
-					\begin{align}
-						\inprod<T_f u, T_g v> = \int_X f(x) \conj{g(x)}\ \mu_{u,v}(dx), 
-						\quad \Norm{T_f u}{}^2 = \int_X |f(x)|^2\ \mu_u(dx).
-					\end{align}
+					$\inprod<T_f u, T_g v> = \int_X f(x) \conj{g(x)}\ \mu_{u,v}(dx), 
+						\quad \Norm{T_f u}{}^2 = \int_X |f(x)|^2\ \mu_u(dx).$
 			\end{description}
 			\label{lem:MSF_properties_of_T_f}
 		\end{lem}
@@ -247,9 +290,9 @@
 				\end{align}
 				が従い，また命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}より
 				\begin{align}
-					T_f^* = \left( \sum_{i=1} a_i E(A_i) \right)^* = \sum_{i=1} \conj{a_i} E(A_i)^* = T_{\conj{f}}
+					T_f^* = \left( \sum_{i=1}^n a_i E(A_i) \right)^* = \sum_{i=1}^n \conj{a_i} E(A_i)^* = T_{\conj{f}}
 				\end{align}
-				も得られる．$T_{\defunc_A} = E(A)$は$f \longmapsto T_f$の定義による．
+				も得られる．$T_{\defunc_A} = E(A)$は(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による．
 			
 			\item[(2)] 命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}と命題\ref{lem:product_of_spectral_measure}より
 				$\Ran{E(A_j)} \perp \Ran{E(A_k)}\ (j \neq k)$が成り立つから，
@@ -266,12 +309,59 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[(\refeq{eq:dfn_operator_introduced_by_measurable_functions_2})はwell-defined]
-			(\refeq{eq:dfn_operator_introduced_by_measurable_functions})で定める$T_f$は$f$の$MSF$-近似列の取り方に依らない．
-			特に(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による定義は
-			(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による定義の拡張となっている．
+		\begin{thm}
+			(\refeq{eq:dfn_operator_introduced_by_measurable_functions_2})で定める$T_f$はwell-definedであり，
+			特に(\refeq{eq:dfn_operator_introduced_by_measurable_functions})による定義の拡張となっている．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				(\refeq{eq:dfn_operator_introduced_by_measurable_functions_2})の極限が存在することを示す．
+				$f \in MF$に対し$MSF$-近似列$(f_n)_{n=1}^{\infty}$を取れば
+				\begin{align}
+					\Norm{T_{f_n}u - T_{f_m}u}{}
+					= \Norm{T_{f_n - f_m}u}{}
+					= \int_X |f_n(x) - f_m(x)|^2\ \mu_u(dx)
+					\quad \left( \forall u \in \Dom{T_f} \right)
+				\end{align}
+				が成り立つ．$|f_n - f| \leq 2|f|$かつ各点で$|f_n(x) - f(x)| \longrightarrow 0$となるから，
+				Lebesgueの収束定理より
+				\begin{align}
+					\int_X |f_n(x) - f_m(x)|^2\ \mu_u(dx)
+					\leq 2 \int_X |f_n(x) - f(x)|^2\ \mu_u(dx)
+						+ 2 \int_X |f_m(x) - f(x)|^2\ \mu_u(dx)
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が得られる．従って$\left( T_{f_n}u \right)_{n=1}^{\infty}$はHilbert空間$H$においてCauchy列であり極限が存在する．
+				
+			\item[第二段]
+				(\refeq{eq:dfn_operator_introduced_by_measurable_functions_2})の極限が近似列に依存しないことを示す．
+				前段の$f$に対し別の$MSF$-近似列$(g_m)_{m=1}^{\infty}$を取り
+				\begin{align}
+					T_1 u \coloneqq \lim_{n \to \infty} T_{f_n} u,
+					\quad T_2 u \coloneqq \lim_{m \to \infty} T_{g_m} u
+					\quad \left( \forall u \in \Dom{T_f} \right)
+				\end{align}
+				とおく．各$u \in \Dom{T_f} $に対し 
+				\begin{align}
+					&\Norm{T_{f_n} u - T_{g_m} u}{}^2
+					= \int_X \left| f_n(x) - g_m(x) \right|^2\ \mu_u(dx) \\
+					&\qquad \leq 2 \int_X \left| f_n(x) - f(x) \right|^2\ \mu_u(dx)
+						+ 2 \int_X \left| f(x) - g_m(x) \right|^2\ \mu_u(dx)
+					\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\Norm{T_1 u - T_2 u}{} 
+					\leq \Norm{T_1 u - T_{f_n} u}{} + \Norm{T_{f_n} u - T_{g_m} u}{} + \Norm{T_{g_m} u - T_2 u}{}
+					\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+				\end{align}
+				が従い$T_1 u = T_2 u$を得る．
+				\QED
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{lem}[$\Dom{T_f} $の線型性・稠密性]
