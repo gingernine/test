@@ -73,7 +73,7 @@
 					\end{align}
 				\item[(3)] $T_f + T_g \subset T_{f+g}$が成り立ち，特に$g$が有界なら等号が成立する．
 				\item[(4)] $T_f T_g \subset T_{fg}$が成り立ち，特に$g$が有界なら等号が成立する．
-				\item[(5)] $T_f^* = T_{\conj{f}}$が成り立ち，特に$T_f$は閉作用素であり，また$f$が$\R$値なら$T_f$は自己共役である．
+				\item[(5)] $T_f^* = T_{\conj{f}}$が成り立つ．特に$T_f$は閉作用素であり，また$f$が$\R$値なら$T_f$は自己共役である．
 				\item[(6)] $\lambda \in \C$が$\lambda \neq 0$なら$T_{\lambda f} = \lambda T_f$が成り立つ．
 			\end{description}
 			\label{thm:properties_of_T_f}
@@ -187,7 +187,8 @@
 				\begin{align}
 					\int_X |f(x)|^2\ \mu_v(dx) \leq \Norm{T_f^* v}{}^2
 				\end{align}
-				となり$v \in \Dom{T_f} $を得る．
+				となり$v \in \Dom{T_f} $が得られる．
+				特に$T_f = T_{\conj{f}}^*$が従い，共役作用素が閉線型であるから$T_f$も閉作用素である．
 				
 			\item[(6)]
 				$\lambda = 0$の場合は，$\Dom{T_{\lambda f}} = \Dom{T_0} = H$であるが$\Dom{T_f} = H$とは限らないから主張が従わない．
@@ -223,7 +224,7 @@
 						\Norm{T_f}{\selfBop{H}} = \inf{}{\Set{L > 0}{E\left( \Set{x \in X}{|f(x)| > L} \right) = 0}}.
 					\end{align}
 				\item[(4)] $\lambda \in \C,\epsilon > 0$に対し$U_\epsilon(\lambda) \coloneqq \Set{z \in \C}{|z-\lambda| < \epsilon}$とおく．
-					$T_f$のレゾルベント集合は
+					$T_f$のレゾルベント集合\footnotemark は
 					\begin{align}
 						\Res{T_f} = \Set{\lambda \in \C}{\mbox{或る$\epsilon > 0$が存在して$E\left(f^{-1}(U_\epsilon(\lambda))\right) = 0$を満たす．}}
 					\end{align}
@@ -236,6 +237,10 @@
 			\label{cor:properties_of_T_f}
 		\end{cor}
 	\end{screen}
+	
+	\footnotetext{
+		定理\ref{thm:properties_of_T_f}より$T_f$は閉作用素であるからレゾルベントを考察できる．
+	}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
@@ -281,6 +286,47 @@
 				\begin{description}
 					\item[第一段] $E(V_\epsilon) = 0$を満たす$\epsilon$が存在しない場合，
 				\end{description}
-				
 		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{cor}
+			$(X,\mathcal{M}) = \left( \R^d,\borel{\R^d} \right)$の場合，
+			\begin{align}
+				\supp{E} \coloneqq \Set{x \in \R^d}{\mbox{$x$の任意の開近傍$V$に対して$E(V)=0$が成り立つ．}}
+			\end{align}
+			として$E$の台を定める．このとき任意の連続写像$f:\R^d \rightarrow \C$について
+			\begin{align}
+				\Spctr{T_f} = \closure{f(\supp{E})}
+			\end{align}
+			が成り立つ．特に$\supp{E}$がコンパクトなら$\Spctr{T_f} = f(\supp{E})$となる．
+		\end{cor}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$x \in \supp{E}$を取る．$f(x)$の任意の$\epsilon$近傍$U_\epsilon = U_\epsilon(f(x))$に対し，
+		$f$の連続性から$f^{-1}(U_\epsilon)$は$x$の開近傍となるから，
+		$E(f^{-1}(U_\epsilon)) = 0$が成り立ち$f(x) \in \Spctr{T_f}$が従う．$\Spctr{T_f}$は閉集合であるから
+		$\closure{f(\supp{E})} \subset \Spctr{T_f}$を得る．
+		逆に任意に$\lambda \in \closure{f(\supp{E})}$を取れば，或る$\epsilon > 0$が存在して
+		$U_\epsilon(\lambda) \cap \closure{f(\supp{E})} = \emptyset$を満たすから
+		$f^{-1}(U_\epsilon(\lambda)) \cap \supp{E} = \emptyset$が成り立つ．
+		$f^{-1}(U_\epsilon(\lambda))$に属する$\R^d$の有理点全体を$\Q_f$と表せば，
+		各$r \in \Q_f$に対し或る開近傍$V_r$が存在して$E(V_r) = 0$を満たすから
+		$E\left( V_r \cap f^{-1}(U_\epsilon(\lambda)) \right) = 0\ (\forall r \in \Q_f)$が従う．
+		$\Q_f$は可付番だから添数を変えれば
+		\begin{align}
+			f^{-1}(U_\epsilon(\lambda)) = \bigcup_{n \in \N} V_n \cap f^{-1}(U_\epsilon(\lambda))
+		\end{align}
+		と表され
+		\footnote{
+			もし或る$x \in f^{-1}(U_\epsilon(\lambda))$が$x \notin \bigcup_{n \in \N} V_n \cap f^{-1}(U_\epsilon(\lambda))$
+			を満たすとすれば，$x$に近づく有理点列$(x_n)_{n=1}^{\infty} \subset \Q_f$に対し
+			$(\epsilon_n)_{n=1}^{\infty}$が存在して
+			\begin{align}
+				x \notin \bigcup_{n=1}^{\infty} U_{\epsilon_n}(x_n)
+			\end{align}
+			を満たすことになり$x_n \longrightarrow x$に反する．
+		}
+		，
 	\end{prf}
