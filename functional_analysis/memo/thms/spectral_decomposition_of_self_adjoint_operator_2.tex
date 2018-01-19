@@ -227,12 +227,13 @@
 					$T_f$のレゾルベント集合\footnotemark は
 					\begin{align}
 						\Res{T_f} = \Set{\lambda \in \C}{\mbox{或る$\epsilon > 0$が存在して$E\left(f^{-1}(U_\epsilon(\lambda))\right) = 0$を満たす．}}
+						\label{eq:cor_properties_of_T_f_resolvent}
 					\end{align}
 					で与えられ，さらに$\lambda \in \Res{T_f} $に対して$\epsilon > 0$が$E\left(f^{-1}(U_\epsilon(\lambda))\right) = 0$を満たすとすれば
 					\begin{align}
 						\left( \lambda I - T_f \right)^{-1} = T_{\frac{1}{\lambda - f} \defunc_{X \backslash f^{-1}(U_\epsilon(\lambda))}}
 					\end{align}
-					が成り立つ．
+					が成り立つ．ただし$I$は$H$上の恒等写像を表す．
 			\end{description}
 			\label{cor:properties_of_T_f}
 		\end{cor}
@@ -282,10 +283,74 @@
 				\begin{align}
 					x \in V_\epsilon \quad \Leftrightarrow \quad |\lambda - f(x)| < \epsilon
 				\end{align}
-				が成り立つから，$X \backslash V_\epsilon$上で$1/(\lambda - f) \leq 1/\epsilon$が満たされる．
+				が成り立つから，$X \backslash V_\epsilon$上で$1/|\lambda - f| \leq 1/\epsilon$が満たされる．
 				\begin{description}
 					\item[第一段] $E(V_\epsilon) = 0$を満たす$\epsilon$が存在しない場合，
+						任意に$\epsilon > 0$を取り固定する．$E(V_\epsilon) \neq 0$であるから
+						$\Norm{u_\epsilon}{}^2 = 1$である$u_\epsilon \in \Ran{E(V_\epsilon)} $が存在し，
+						或る$v_\epsilon \in H$が対応し$E(V_\epsilon)v_\epsilon = u_\epsilon$を満たす．
+						任意に$\Lambda \in \mathcal{M}$を取れば
+						\begin{align}
+							\mu_{u_\epsilon}(\Lambda) = \inprod<E(\Lambda)u_\epsilon, E(\Lambda)u_\epsilon>
+							= \inprod<E(\Lambda \cap V_\epsilon)v_\epsilon, E(\Lambda \cap V_\epsilon)v_\epsilon>
+							= \mu_{v_\epsilon}(\Lambda \cap V_\epsilon)
+						\end{align}
+						が成り立つから$\mu_{u_\epsilon}$は$V_\epsilon$に集中し，従って
+						\begin{align}
+							\int_X |f(x)|^2\ \mu_{u_\epsilon}(dx) = \int_{V_\epsilon} |f(x)|^2\ \mu_{u_\epsilon}(dx)
+							\leq \left( \epsilon + |\lambda| \right)^2 \mu_{u_\epsilon}(V_\epsilon) < \infty
+						\end{align}
+						となり$u_\epsilon \in \Dom{T_f} $を得る．定理\ref{thm:properties_of_T_f}より
+						\begin{align}
+							\left( \lambda I - T_f \right)u = \left( \lambda T_1 - T_f \right)u = T_{\lambda - f}u
+							\quad \left( \forall u \in \Dom{T_f} \right)
+						\end{align}
+						が成り立ち，特に$u_\epsilon \in \Dom{T_f} $であるから次を得る:
+						\begin{align}
+							\Norm{\left( \lambda I - T_f \right) u_{\epsilon} }{}^2
+							= \int_{V_\epsilon} |\lambda - f(x)|^2\ \mu_{u_\epsilon}(dx)
+							\leq \epsilon^2 \mu_{u_\epsilon}(X)
+							= \epsilon^2 \Norm{u_{\epsilon}}{}^2.
+						\end{align}
+						ここで逆作用素$\left( \lambda I - T_f \right)^{-1}$が存在する場合，
+						或る$w_\epsilon \in H$が存在して$u_\epsilon = \left( \lambda I - T_f \right)^{-1}w_\epsilon$を満たすから
+						\begin{align}
+							\Norm{w_{\epsilon}}{} \leq \epsilon \Norm{\left( \lambda I - T_f \right)^{-1}w_\epsilon}{}
+						\end{align}
+						が従い
+						\begin{align}
+							\frac{1}{\epsilon} \leq \frac{\Norm{\left( \lambda I - T_f \right)^{-1}w_\epsilon}{}}{\Norm{w_{\epsilon}}{}}
+							\leq \Norm{\left( \lambda I - T_f \right)^{-1}}{\selfBop{H} }
+						\end{align}
+						が成り立つが，$\epsilon > 0$の任意性より$\left( \lambda I - T_f \right)^{-1}$は有界ではない．
+						よって$\lambda \notin \Res{T_f} $が得られる．
 						
+					\item[第二段]
+						前段の結果より(\refeq{eq:cor_properties_of_T_f_resolvent})の等号を$\subset$に置き換えたものは真である．
+						次は逆向きの包含関係を示す．今，或る$\epsilon > 0$が存在して$E(V_\epsilon) = 0$を満たすとする．
+						\begin{align}
+							\left| \frac{1}{\lambda - f} \defunc_{X \backslash V_\epsilon} \right| \leq \frac{1}{\epsilon}
+						\end{align}
+						が成り立つから$\left( 1/(\lambda - f) \right) \defunc_{X \backslash V_\epsilon}$は有界であり，
+						定理\ref{thm:properties_of_T_f}より
+						\begin{align}
+							\left( \lambda I - T_f \right) T_{\frac{1}{\lambda - f} \defunc_{X \backslash V_\epsilon}}
+							= T_{\lambda - f} T_{\frac{1}{\lambda - f} \defunc_{X \backslash V_\epsilon}}
+							= T_{\defunc_{X \backslash V_\epsilon}}
+							= E(X) - E(V_\epsilon)
+							= I
+						\end{align}
+						が成り立つ．同様に
+						\begin{align}
+							T_{\frac{1}{\lambda - f} \defunc_{X \backslash V_\epsilon}} \left( \lambda I - T_f \right) = I
+						\end{align}
+						も得られ，写像の性質の一般論より
+						\begin{align}
+							\left( \lambda I - T_f \right)^{-1} = T_{\frac{1}{\lambda - f} \defunc_{X \backslash V_\epsilon}}
+						\end{align}
+						が従う．(2)の結果より$T_{\frac{1}{\lambda - f} \defunc_{X \backslash V_\epsilon}} \in \selfBop{H} $であるから
+						$\lambda \in \Res{T_f} $となる．
+						\QED
 				\end{description}
 		\end{description}
 	\end{prf}
@@ -315,7 +380,7 @@
 		$f^{-1}(U_\epsilon(\lambda))$に属する$\R^d$の有理点全体を$\Q_f$と表せば，
 		各$r \in \Q_f$に対し或る開近傍$V_r$が存在して$E(V_r) = 0$を満たすから
 		$E\left( V_r \cap f^{-1}(U_\epsilon(\lambda)) \right) = 0\ (\forall r \in \Q_f)$が従う．
-		$\Q_f$は可付番だから添数を変えれば
+		$\Q_f$は可付番であり添数を変えれば
 		\begin{align}
 			f^{-1}(U_\epsilon(\lambda)) = \bigcup_{n \in \N} V_n \cap f^{-1}(U_\epsilon(\lambda))
 		\end{align}
@@ -323,7 +388,7 @@
 		\begin{align}
 			E\left( f^{-1}(U_\epsilon(\lambda)) \right)u = \lim_{N \to \infty} E\left( \cup_{n=1}^{N} V_n \cap f^{-1}(U_\epsilon(\lambda)) \right)u = 0
 		\end{align}
-		が成り立ち$\lambda \in \Res{E}$となる．
+		が成り立ち$\lambda \in \Res{E}$となる．連続写像によるコンパクト集合の像はコンパクトであるから後半の主張を得る．
 		\QED
 	\end{prf}
 	
