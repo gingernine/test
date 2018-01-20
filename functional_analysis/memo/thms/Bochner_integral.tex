@@ -1,14 +1,119 @@
-\section{Bochner積分の定義}
-	本章では$(X,\mathcal{M},\mu)$を測度空間，$(B,\Norm{\cdot}{})$を複素Banach空間とする．
+	本章を通じて係数体を$\C$とし，ノルム空間$E$におけるノルムを$\Norm{\cdot}{E}$と書きノルム位相を導入する．
+	また$(X,\mathcal{M},\mu)$を$\sigma$-有限な測度空間($\mu$:正値測度)，$B$を複素Banach空間とする．
+
+\section{ノーミング}
+	\begin{screen}
+		\begin{thm}[Hahn-Banachの拡張定理]
+			$E$を線形空間，$F$を$E$の線型部分空間とし，
+			或る$p:E \rightarrow \C$が存在して
+			\begin{align}
+				p(x + y) \leq p(x) + p(y),
+				\quad p(\lambda x) = |\lambda|p(x)
+				\quad (\forall x,y \in E,\ \lambda \in \C)
+				\label{eq:thm_hahn_banach_extension}
+			\end{align}
+			が成り立つとする．このとき$F$上の線型汎関数$f$が
+			\begin{align}
+				|f(x)| \leq p(x) \quad (\forall x \in F)
+			\end{align}
+			を満たすなら，次の関係を持つ$f$の拡張線型汎関数$\tilde{f}:E \rightarrow \C$が存在する:
+			\begin{align}
+				\left| \tilde{f}(x) \right| \leq p(x) \quad (\forall x \in E).
+			\end{align}
+			\label{thm:hahn_banach_extension}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		see Kreyszig.
+	\end{prf}
 	
 	\begin{screen}
-		\begin{lem}[距離空間値の可測関数列の極限は可測]
+		\begin{cor}[ノルム空間における拡張定理]
+			$E$をノルム空間，$F$を$E$の部分ノルム空間とする．
+			\begin{description}
+				\item[(1)]
+					任意の$f^* \in F^*$に対し，$f^*$の拡張である$g^* \in E^*$が存在して
+					$\Norm{g^*}{E^*} = \Norm{f^*}{F^*}$を満たす．
+				
+				\item[(2)]
+					任意の$x \in E$に対し$\Norm{x}{E} = \sup{}{\Set{\left| g^*(x) \right|}{g^* \in E^*,\ \Norm{g^*}{E^*} = 1}}$が成り立つ．
+			\end{description}
+			\label{cor:hahn_banach_extension}
+		\end{cor}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				$f^*$は有界であるから
+				\begin{align}
+					\left| f^*(x) \right| \leq \Norm{f^*}{F^*} \Norm{x}{E} \quad (\forall x \in F)
+				\end{align}
+				が成り立つ．$E \ni x \longmapsto \Norm{f^*}{F^*} \Norm{x}{E}$は(\refeq{eq:thm_hahn_banach_extension})
+				を満たすから，定理\refeq{thm:hahn_banach_extension}より或る$f^*$の拡張$g^* \in E^*$が存在して
+				\begin{align}
+					\left| g^*(x) \right| \leq \Norm{f^*}{F^*} \Norm{x}{E} \quad (\forall x \in E)
+				\end{align}
+				となり$\Norm{g^*}{E^*} \leq \Norm{f^*}{F^*}$が従う．また$\left. g^* \right|_F = f^*$であるから
+				\begin{align}
+					\Norm{f^*}{F^*} = \sup{\substack{x \in F \\ \Norm{x}{E} \leq 1}}{\left| f^*(x) \right|}
+					= \sup{\substack{x \in F \\ \Norm{x}{E} \leq 1}}{\left| g^*(x) \right|}
+					\leq \sup{\substack{x \in E \\ \Norm{x}{E} \leq 1}}{\left| g^*(x) \right|}
+					= \Norm{g^*}{E^*}
+				\end{align}
+				も成り立ち$\Norm{g^*}{E^*} = \Norm{f^*}{F^*}$を得る．
+			
+			\item[(2)]
+				$x = 0$の場合は全ての$g^* \in E^*$に対して$g^*(x) = 0$となるから主張が得られる．
+				$x \neq 0$の場合，まずは
+				\begin{align}
+					h^*(x) = \Norm{x}{E},
+					\quad \Norm{h^*}{E^*} = 1
+					\label{eq:cor_hahn_banach_extension}
+				\end{align}
+				を満たす$h^* \in E^*$が存在することを示す．実際
+				\begin{align}
+					F \coloneqq \Set{\lambda x}{\lambda \in \C}
+				\end{align}
+				として$E$の部分ノルム空間を構成し
+				\begin{align}
+					f^*:F \ni \lambda x \longrightarrow \lambda \Norm{x}{E}
+				\end{align}
+				として等長作用素$f^* \in F^*$を定めれば，
+				\begin{align}
+					f^*(x) = \Norm{x}{E},
+					\quad \Norm{f^*}{F^*} = 1
+				\end{align}
+				が成り立ち，(1)より(\refeq{eq:cor_hahn_banach_extension})を満たす$f^*$の拡張$h^* \in E^*$が存在する．
+				今，任意の$g^* \in E^*$に対して
+				\begin{align}
+					\frac{\left| g^*(x) \right|}{\Norm{g^*}{E^*}} \leq \Norm{x}{E}
+				\end{align}
+				が成り立っているが，$g^* = h^*$とすれば等号が成立するから
+				\begin{align}
+					\sup{\substack{g^* \in E^* \\ \Norm{g^*}{E^*} = 1}}{\left| g^*(x) \right|} = \Norm{x}{E}
+				\end{align}
+				を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[ノーミング]
+			$E$をノルム空間，$E_0$を$E$の部分集合とする．或る$E^*$の線型部分空間$\tilde{E^*}$が存在して
+			\begin{align}
+				\Norm{x}{E} = \sup{\substack{g^* \in \tilde{E^*} \\ \Norm{g^*}{E^*} = 1}}{\left| g^*(x) \right|}
+				\quad (\forall x \in E_0)
+			\end{align}
+			を満たすとき，$\tilde{E^*}$を$E_0$のノーミング(norming)と呼ぶ．
+			系\ref{cor:hahn_banach_extension}より$E^*$はノーミングの一つである．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[単位球面上にノーミングが存在する] 
 			
 		\end{lem}
 	\end{screen}
 	
-	\begin{screen}
-		\begin{dfn}[Bochner積分]
-			e
-		\end{dfn}
-	\end{screen}
