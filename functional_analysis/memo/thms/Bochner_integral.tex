@@ -101,10 +101,11 @@
 	
 	\begin{screen}
 		\begin{dfn}[ノーミング]
-			$E$をノルム空間，$E_0$を$E$の部分集合とする．或る$E^*$の線型部分空間$\tilde{E^*}$が存在して
+			$E$をノルム空間，$E_0$を$E$の部分集合とする．或る$E^*$の部分集合$\tilde{E^*}$が存在して
 			\begin{align}
 				\Norm{x}{E} = \sup{\substack{g^* \in \tilde{E^*} \\ \Norm{g^*}{E^*} = 1}}{\left| g^*(x) \right|}
 				\quad (\forall x \in E_0)
+				\label{eq:dfn_norming}
 			\end{align}
 			を満たすとき，$\tilde{E^*}$を$E_0$のノーミング(norming)と呼ぶ．
 			系\ref{cor:hahn_banach_extension}より$E^*$はノーミングの一つである．
@@ -113,7 +114,92 @@
 	
 	\begin{screen}
 		\begin{lem}[単位球面上にノーミングが存在する] 
-			
+			$E$をノルム空間とし，$E$の部分集合$E_0$が可分であるとする．
+			$E^*$の部分集合$\tilde{E^*}$が$E_0$のノーミングであるなら，
+			$E_0$のノーミングとなる単位点列$\left( g^*_n \right)_{n=1}^{\infty} \subset \tilde{E^*}$が存在する．
 		\end{lem}
 	\end{screen}
+	
+	\begin{prf}
+		$(x_n)_{n=1}^{\infty}$が$E_0$において稠密であるとし，$\delta_n \coloneqq 1/2^n$とおく．
+		(\refeq{eq:dfn_norming})より各$n \in \N$に対し或る$g^*_n \in \tilde{E^*}$が存在して
+		\begin{align}
+			\Norm{g^*_n}{E^*} = 1,
+			\quad (1 - \delta_n) \Norm{x_n}{E} \leq \left| g^*_n(x_n) \right|
+		\end{align}
+		を満たす．任意に$x \in E_0,\ \epsilon > 0$を取れば，$(x_n)_{n=1}^{\infty}$
+		の稠密性と$\delta_n \longrightarrow 0$より或る$n_0 \in \N$が存在して
+		\begin{align}
+			\Norm{x - x_{n_0}}{E} < \epsilon,
+			\quad \delta_{n_0} < \epsilon
+		\end{align}
+		を同時に満たす．$\Norm{g^*_n}{E^*} = 1$より
+		\begin{align}
+			\left| g^*_{n_0}(x_{n_0}) \right| \leq \left| g^*_{n_0}(x_{n_0}) - g^*_{n_0}(x) \right| + \left| g^*_{n_0}(x) \right|
+			< \epsilon + \left| g^*_{n_0}(x) \right|
+		\end{align}
+		が成り立つから
+		\begin{align}
+			(1 - \epsilon) \Norm{x}{E}
+			\leq (1 - \delta_{n_0}) \Norm{x}{E}
+			\leq \left| g^*_n(x_{n_0}) \right|
+			< \epsilon + \left| g^*_{n_0}(x) \right|
+		\end{align}
+		が従い，$\epsilon > 0$の任意性から
+		\begin{align}
+			\Norm{x}{E} \leq \sup{n \in \N}{\left| g^*_n(x) \right|}
+		\end{align}
+		を得る．系\ref{cor:hahn_banach_extension}と併せれば
+		\begin{align}
+			\Norm{x}{E} \leq \sup{n \in \N}{\left| g^*_n(x) \right|}
+			\leq \sup{\substack{g^* \in E^* \\ \Norm{g^*}{E^*} = 1}}{\left| g^*(x) \right|}
+			= \Norm{x}{E}
+		\end{align}
+		が成り立つから，$\left( g^*_n \right)_{n=1}^{\infty}$は$E_0$のノーミングである．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[分離]
+			$E$をノルム空間，$E_0$を$E$の部分集合とする．
+			或る$E^*$の部分集合$\tilde{E^*}$が存在して，
+			任意に二点$x,y \in E_0,\ x \neq y$を選んでも
+			$g^*(x) \neq g^*(y)$を満たす$g^* \in \tilde{E^*}$が取れるとき，
+			$\tilde{E^*}$は$E_0$を分離するという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[ノーミングは分離する]
+			$E$をノルム空間，$E_0$を$E$の部分集合とする．$E^*$の部分集合$\tilde{E^*}$が
+			$E_0$のノーミングであるなら，$\tilde{E^*}$は$E_0$を分離する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		背理法で証明する．$\tilde{E^*}$が$E_0$のノーミングであるとき，$x \neq y$を満たす或る組$x,y \in E_0$に対して
+		\begin{align}
+			g^*(x) = g^*(y) \quad \left( \forall g^* \in \tilde{E^*} \right)
+		\end{align}
+		が成り立つとすると，(\refeq{eq:dfn_norming})より
+		\begin{align}
+			\Norm{x - y}{E} = \sup{\substack{g^* \in \tilde{E^*} \\ \Norm{g^*}{E^*} = 1}}{\left| g^*(x - y) \right|} = 0
+		\end{align}
+		が従い$x \neq y$に矛盾する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[可分な集合は可算列により分離される]
+			$E$をノルム空間，$E_0$を$E$の可分な部分集合とする．
+			$E^*$の部分集合$\tilde{E^*}$が$E_0$を分離するとき，
+			$E_0$を分離する可算列$\left( g^*_n \right)_{n=1}^{\infty} \subset \tilde{E^*}$が存在する．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		$\tilde{E^*}$が$E_0$を分離するとき，
+		任意の$x \in E_0 \backslash \{0\}$に対し或る$g^*_x \in \tilde{E^*}$が存在して
+		$g^*_x(x) \neq 0$を満たす．
+	\end{prf}
 	
