@@ -1,22 +1,25 @@
 \section{ノルム空間の共役作用素}
-	係数体を$\K$とする．
+	係数体を$\C$とする．
 	以下ではノルム空間$X$におけるノルムを
 	$\Norm{\cdot}{X}$と表記し，
 	位相はこのノルムにより導入する．
 	
 	\begin{screen}
 		\begin{dfn}[共役作用素]
-			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
-			$T$の定義域$\Dom{T} $が$X$で稠密であるとき，$g \in Y^*$に対し
+			$X,Y$をノルム空間，$T:X \oparrow Y$を線型作用素とし，
+			$\closure{\Dom{T} } = X$を満たすとする．
 			\begin{align}
-				f(x) = g(Tx) \quad (\forall x \in \Dom{T} ) \label{eq:dfn_dual_operator}
+				\mathcal{D} \coloneqq \Set{g \in Y^*}{\mbox{或る$f \in X^*$が存在して$f(x) = g(Tx) \quad (\forall x \in \Dom{T} ) $を満たす．}}
+				\label{eq:dfn_dual_operator}
 			\end{align}
-			を満たす$f \in X^*$が存在すれば，$f$の存在は$g$に対して唯一つであり\footnotemark
+			と定めれば，$g \in \mathcal{D}$に対して
+			(\refeq{eq:dfn_dual_operator})の関係を満たす
+			$f$の存在は一意的であり\footnotemark
 			この対応を
 			\begin{align}
-				T^*:g \longmapsto f
+				T^*: \mathcal{D} \ni g \longmapsto f
 			\end{align}
-			で表す．$T^*:Y^* \rightarrow X^*$を$T$の共役作用素という．
+			で表し$\Dom{T^*} \coloneqq \mathcal{D}$とおく．この$T^*:Y^* \oparrow X^*$を$T$の共役作用素という．
 		\end{dfn}
 	\end{screen}
 	
@@ -36,22 +39,19 @@
 	
 	\begin{screen}
 		\begin{thm}[共役作用素は閉線型]
-			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．
-			$\Dom{T} $が$X$で稠密であるとき，
-			$T^*$は閉線型作用素である．
+			$X,Y$をノルム空間，$T:X \oparrow Y$を線型作用素とし，
+			$\closure{\Dom{T} } = X$を満たすとする．
+			このとき$T^*$は閉線型作用素である．
 			\label{thm:T_star_closed}
 		\end{thm}
 	\end{screen}
 
-	この定理を証明するために以下にいくつか準備をする．$x \in X$と$f \in X^*$に対して$f(x)$を次の形式で表現する:
+	この定理を証明するために以下にいくつか準備をする．$x \in X$と$f \in X^*$に対して$f(x)$を次の双線型形式で表現する:
 	\begin{align}
-		f(x) = \inprod<x,f>_{X,X^*}.
+		\inprod<x,f>_{X,X^*} \coloneqq f(x).
 	\end{align}
-	これは双線型形式，つまり
-	$\inprod<\alpha x_1 + \beta x_2,f>_{X,X^*} = \alpha \inprod<x_1,f>_{X,X^*} + \beta\inprod<x_2,f>_{X,X^*}$
-	と$\inprod<x,\alpha f_1 + \beta f_2>_{X,X^*} = \alpha \inprod<x,f_1>_{X,X^*} + \beta\inprod<x,f_2>_{X,X^*}$を満たす．
 	双線型形式で表現することで内積空間を扱っているように捉えることができ，
-	例えば(\refeq{eq:dfn_dual_operator})は
+	例えば(\refeq{eq:dfn_dual_operator})において
 	\begin{align}
 		\inprod<x,f>_{X,X^*} = \inprod<Tx,g>_{Y,Y^*} \quad (\forall x \in \Dom{T} )
 	\end{align}
@@ -117,13 +117,12 @@
 	\begin{align}
 		\Norm{[x,y]}{X \times Y} = \Norm{x}{X} + \Norm{y}{Y} \quad (\forall [x,y] \in X \times Y)
 	\end{align}
-	と表すことにする．$Y \times X$の共役空間$(Y \times X)^*$の任意の元$F$に対し
+	で定める．$Y \times X$の共役空間$(Y \times X)^*$の任意の元$F$に対し
 	\begin{align}
 		F_Y(y) &\coloneqq F[y,0] \quad (y \in Y) \\
 		F_X(x) &\coloneqq F[0,x] \quad (x \in X) \label{eq:thm_T_star_closed_1}
 	\end{align}
-	として$F_Y, F_X$を定義すれば，$F$の線型性，有界性から$F_Y \in Y^*,\ F_X \in X^*$となり，
-	特に$F[y,x] = F_Y(y) + F_X(x)$が成り立つ．逆に$g \in Y^*$と$f \in X^*$に対し
+	と定めれば$F_Y \in Y^*,\ F_X \in X^*$かつ$F[y,x] = F_Y(y) + F_X(x)$が成り立つ．逆に$g \in Y^*$と$f \in X^*$に対し
 	\begin{align}
 		F[y,x] = g(y) + f(x) \quad (\forall [y,x] \in Y \times X)
 	\end{align}
@@ -190,15 +189,15 @@
 			= \varphi^{-1}\Graph{T^*}
 			\label{eq:thm_T_star_closed}
 		\end{align}
-		が成り立つ．補助定理\ref{lem:T_star_closed_1}より$\left[U\Graph{T} \right]^{\perp}$が$Y^* \times X^*$の閉部分空間であるから，
-		$\Graph{T^*} = \varphi \left[U\Graph{T} \right]^{\perp}$は$(Y \times X)^*$において閉部分空間となり，従って$T^*$が閉線型作用素であると示された．
+		が成り立つ．補助定理\ref{lem:T_star_closed_1}より$\left[U\Graph{T} \right]^{\perp}$が$Y^* \times X^*$の閉部分空間であるから
+		$\Graph{T^*} = \varphi \left[U\Graph{T} \right]^{\perp}$も$(Y \times X)^*$の閉部分空間であり，従って$T^*$は閉線型である．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[閉拡張の共役作用素は元の共役作用素に一致する]\mbox{}\\
-			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とし，
-			$\Dom{T} $が$X$で稠密でかつ$T$が可閉であるとする．このとき次が成り立つ:
+		\begin{thm}[閉拡張の共役作用素は元の共役作用素に一致する]
+			$X,Y$をノルム空間，$T:X \oparrow Y$を線型作用素とする．
+			$\closure{\Dom{T} } = X$かつ$T$が可閉であるとき次が成り立つ:
 			\begin{align}
 				\Graph{ \closure{T}^*}  = \Graph{T^*} .
 			\end{align}
@@ -209,12 +208,12 @@
 		(\refeq{eq:thm_T_star_closed})より$\Graph{ \closure{T}^* } = \varphi\left[U\Graph{\closure{T}} \right]^{\perp}$
 		が成り立っているから，
 		\begin{align}
-			\left[U\Graph{\closure{T}} \right]^{\perp} = \left[U\Graph{T} \right]^{\perp}
+			\varphi \left[U\Graph{\closure{T}} \right]^{\perp} = \varphi \left[U\Graph{T} \right]^{\perp}
 		\end{align}
 		を示せばよい．
 		\begin{description}
 			\item[$\subset$について]
-				任意の$[g,f] \in \left[U\Graph{\closure{T}} \right]^{\perp}$に対して
+				任意の$[g,f] \in \varphi \left[U\Graph{\closure{T}} \right]^{\perp}$に対して
 				\begin{align}
 					\inprod<\closure{T}x, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,\closure{T}x] \in \Graph{\closure{T}})
 				\end{align}
@@ -226,10 +225,10 @@
 				\begin{align}
 					\inprod<Tx, g>_{Y,Y^*} = \inprod<x,f>_{X,X^*} \quad (\forall [x,Tx] \in \Graph{T} )
 				\end{align}
-				が従い$[g,f] \in \left[U\Graph{T} \right]^{\perp}$が成り立つ．
+				が従い$[g,f] \in \varphi \left[U\Graph{T} \right]^{\perp}$が成り立つ．
 			
 			\item[$\supset$について]
-				任意に$[g,f] \in \left[U\Graph{T} \right]^{\perp}$を取る．
+				任意に$[g,f] \in \varphi \left[U\Graph{T} \right]^{\perp}$を取る．
 				任意の$[x,y] \in \Graph{\closure{T}} $に対して
 				$[x_n,Tx_n] \in \Graph{T} $を取り
 				\begin{align}
@@ -245,7 +244,7 @@
 				\end{align}
 				が成り立ち
 				\begin{align}
-					[g,f] \in \left[U\Graph{\closure{T}} \right]^{\perp}
+					[g,f] \in \varphi \left[U\Graph{\closure{T}} \right]^{\perp}
 				\end{align}
 				が従う．
 		\end{description}
@@ -254,7 +253,7 @@
 	
 	\begin{screen}
 		\begin{lem}[定義域が稠密となるための条件]
-			$X,Y$をノルム空間，$T$を$X \rightarrow Y$の線型作用素とする．このとき
+			$X,Y$をノルム空間，$T:X \oparrow Y$の線型作用素とする．このとき
 			$\Dom{T} $が$X$で稠密であるための必要十分条件は，
 			$[0,f] \in \varphi\left[U\Graph{T} \right]^{\perp}$ならば$f = 0$となることである．
 		\end{lem}
@@ -280,8 +279,8 @@
 				Hahn-Banachの定理の系より$f \neq 0$なる$f \in X^*$で$f(x) = 0 \quad (\forall x \in \Dom{T} )$
 				を満たすものが存在する．逆に$\closure{\Dom{T} } = X$であるなら，$f \in X^*$の連続性より
 				$f(x) = 0 \quad (\forall x \in \Dom{T} )\ $ならば$f=0$が従う．
+				\QED
 		\end{description}
-		\QED
 	\end{prf}
 	
 	ノルム空間$X,Y$の第二共役空間$X^{**},Y^{**}$への自然な単射を$J_X,J_Y$と表す．そして
@@ -544,3 +543,49 @@
 			が成り立ち，さらに一方が成立すれば$\left( T^{-1} \right)^* = \left( T^* \right)^{-1}$が成り立つ．
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			$X$をノルム空間，$T:X \oparrow X$を線型作用素，
+			$I$を$X$上の恒等写像とする．$\closure{\Dom{T} } = X$が満たされていれば
+			$(\lambda I - T)^* = \lambda I - T^*\ (\forall \lambda \in \C)$が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$\lambda \in \C$を取り固定する．
+		$\Dom{\lambda I - T} = \Dom{T} $が成り立つから$(\lambda I - T)^*$が定義され
+		\begin{align}
+			\inprod<(\lambda I - T)x, g>_{X,X^*} = \inprod<x, (\lambda I - T)^*g>_{X,X^*}
+			\quad \left( \forall x \in \Dom{T} , \ g \in \Dom{(\lambda I - T)^*} \right)
+		\end{align}
+		が満たされる．一方で任意の$x \in \Dom{T} , \ g \in \Dom{(\lambda I - T)^*} $に対し
+		\begin{align}
+			\inprod<(\lambda I - T)x, g>_{X,X^*}
+			= \inprod<x, \lambda g>_{X,X^*} - \inprod<T x, g>_{X,X^*}
+		\end{align}
+		が成り立つから，
+		\begin{align}
+			\inprod<T x, g>_{X,X^*} = \inprod<x, \lambda g>_{X,X^*} - \inprod<x, (\lambda I - T)^*g>_{X,X^*}
+			\quad \left( \forall x \in \Dom{T} \right)
+		\end{align}
+		となり$g \in \Dom{T^*} = \Dom{\lambda I - T^*} $かつ
+		\begin{align}
+			(\lambda I - T)^*g = \left( \lambda I - T^* \right)g \quad \left( g \in \Dom{(\lambda I - T)^*} \right)
+		\end{align}
+		が従う．後は$\Dom{\lambda I - T^*} \subset \Dom{(\lambda I - T)^*} $を示せば主張が得られる．
+		実際任意に$g \in \Dom{\lambda I - T^*} $を取れば，
+		\begin{align}
+			\inprod<T x, g>_{X,X^*} = \inprod<x, T^*g>_{X,X^*}
+			\quad \left( \forall x \in \Dom{T} \right)
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\inprod<(\lambda I - T) x, g>_{X,X^*}
+			= \inprod<\lambda x, g>_{X,X^*} - \inprod<T x, g>_{X,X^*}
+			= \inprod<x, \left( \lambda I - T^* \right) g>_{X,X^*}
+			\quad \left( \forall x \in \Dom{T} \right)
+		\end{align}
+		が従い$g \in \Dom{(\lambda I - T)^*} $を得る．
+		\QED
+	\end{prf}
