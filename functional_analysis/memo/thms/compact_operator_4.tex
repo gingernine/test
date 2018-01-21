@@ -48,6 +48,64 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{lem}[一様有界な作用素の極限は有界]
+			$X$をノルム空間，$Y$をBanach空間とし，ノルムをそれぞれ$\Norm{\cdot}{X},\Norm{\cdot}{Y}$で表す．
+			$A_n \in \Bop{X}{Y} \ (n=1,2,\cdots)$が
+			\begin{align}
+				\sup{n \in \N}{\Norm{A_n}{\Bop{X}{Y} }} < \infty
+			\end{align}
+			を満たし，かつ或る$X$で稠密な部分集合$S$が存在して全ての$x \in S$に対し
+			$\left( A_n x \right)_{n=1}^{\infty}$が$Y$で収束するとき，
+			\begin{align}
+				\lim_{n \to \infty} A_n x = A x \quad (\forall x \in X)
+			\end{align}
+			を満たす$A \in \Bop{X}{Y} $が一意に存在する．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		先ず任意の$x \in X$に対し$\left( A_n x \right)_{n=1}^{\infty}$が$Y$で収束することを示す．
+		任意に$\epsilon > 0$を取る．
+		\begin{align}
+			a \coloneqq \sup{n \in \N}{\Norm{A_n}{\Bop{X}{Y} }}
+		\end{align}
+		とおき$\Norm{x - z}{X} < \epsilon/a$を満たす$z \in S$を一つ選べば，仮定より或る$N \in \N$が存在して
+		\begin{align}
+			\Norm{A_n z - A_m z}{Y} < \epsilon \quad (\forall n > m \geq N)
+		\end{align}
+		が成り立つから，
+		\begin{align}
+			\Norm{A_n x - A_m x}{Y} \leq a \Norm{x - z}{X} + \Norm{A_n z - A_m z}{Y} + a \Norm{x - z}{X} < 3\epsilon
+		\end{align}
+		が従う．よって$\left( A_n x \right)_{n=1}^{\infty}$は$Y$のCauchy列であり，$Y$の完備性より収束する．
+		\begin{align}
+			A x \coloneqq \lim_{n \to \infty} A_n x \quad (\forall x \in X)
+		\end{align}
+		として$A$を定めれば，任意の$x,y \in X$と$\alpha, \beta \in \C$に対し
+		\begin{align}
+			&\Norm{A(\alpha x + \beta y) - \alpha A x - \beta A y}{Y} \\
+			&\qquad \leq \Norm{A(\alpha x + \beta y) - A_n(\alpha x + \beta y)}{Y}
+				+ |\alpha| \Norm{A x - A_n x}{Y} + |\beta| \Norm{A x - A_n x}{Y}
+			\longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		が満たされるから$A$は線形作用素であり，かつ任意の$x \in X$に対して
+		\begin{align}
+			\Norm{A x}{Y} \leq \Norm{A x - A_n x}{Y} + \Norm{A_n x}{Y}
+			\leq \Norm{A x - A_n x}{Y} + \Norm{A_n}{\Bop{X}{Y} } \Norm{x}{X}
+		\end{align}
+		が成り立ち，右辺で下極限を取れば
+		\begin{align}
+			\Norm{A x}{Y} \leq \liminf_{n \to \infty} \Norm{A_n}{\Bop{X}{Y} } \Norm{x}{X}
+		\end{align}
+		が従う．
+		\begin{align}
+			\Norm{A}{\Bop{X}{Y} } \leq \liminf_{n \to \infty} \Norm{A_n}{\Bop{X}{Y} } = \sup{n \in \N}{\inf{\nu \geq n}{\Norm{A_\nu}{\Bop{X}{Y} }}} \leq \sup{n \in \N}{\Norm{A_n}{\Bop{X}{Y} }}
+		\end{align}
+		より$A \in \Bop{X}{Y} $を得る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{prp}[直交射影の積・和の性質]
 			$H$を複素Hilbert空間とする．
 			\begin{description}
