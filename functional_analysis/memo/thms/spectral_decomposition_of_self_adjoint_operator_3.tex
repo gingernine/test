@@ -20,6 +20,7 @@
 			このとき次の表現を持つスペクトル測度$E:\borel{\R^d} \rightarrow \Oproj{H}$が唯一つ存在する:
 			\begin{align}
 				T_f = \int_{\R^d} f(x)\ E(dx) \quad (\forall f \in \cvan{\R^d}).
+				\label{eq:thm_pectral_decomposition_of_bounded_linear_operators_0}
 			\end{align}
 			\label{thm:spectral_decomposition_of_bounded_linear_operators}
 		\end{thm}
@@ -193,8 +194,120 @@
 					\quad (\forall u,v \in H)
 				\end{align}
 				となり$E(\Lambda)^* = E(\Lambda)$が得られる．
+				次に$\Lambda$が開集合であるとする．
+				$0 \leq f_1 \leq f_2 \leq \cdots \leq 1$かつ$\defunc_\Lambda$に各点収束する
+				関数列$(f_n)_{n=1}^{\infty} \subset \cvan{\R^d}$を取れば，
+				(\refeq{eq:thm_spectral_decomposition_of_bounded_linear_operators_3})と
+				(\refeq{eq:thm_spectral_decomposition_of_bounded_linear_operators_6})より
+				\begin{align}
+					\inprod<T_{f_n}u,u> = \int_{\R^d} f_n(x)\ \mu_u(dx)
+					\leq \int_{\R^d} \defunc_\Lambda(x)\ \mu_u(dx) = \inprod<E(\Lambda)u,u>
+					\quad (\forall u \in H,\ n=1,2,\cdots)
+				\end{align}
+				が成り立ち，更に$\mu_u(\Lambda) < \infty\ (\forall u \in H)$であるからLebesgueの収束定理より
+				\begin{align}
+					\inprod<\left( E(\Lambda) - T_{f_n} \right)u,u>
+					= \int_{\R^d} \defunc_{\Lambda}(x) - f_n(x)\ \mu_u(dx) 
+					\longrightarrow 0 \quad (n \longrightarrow \infty,\ \forall u \in H)
+				\end{align}
+				となる．$\Norm{T_{f_n} u}{} \leq \Norm{T}{\Bop{\cvan{\R^d}}{\selfBop{H} } } \Norm{u}{}$より
+				\begin{align}
+					\Norm{E(\Lambda) - T_{f_n}}{\selfBop{H} }
+					\leq \Norm{E(\Lambda)}{\selfBop{H} } + \Norm{T}{\Bop{\cvan{\R^d}}{\selfBop{H} } }
+					\quad (\forall n=1,2,\cdots)
+				\end{align}
+				が成り立つから，$C \coloneqq \Norm{E(\Lambda)}{\selfBop{H} } + \Norm{T}{\Bop{\cvan{\R^d}}{\selfBop{H} } }$とおけば
+				\begin{align}
+					\Norm{\left( E(\Lambda) - T_{f_n} \right)u}{}
+					\leq \sqrt{C\inprod<\left( E(\Lambda) - T_{f_n} \right)u,u>}
+					\longrightarrow 0 \quad (n \longrightarrow \infty,\ \forall u \in H)
+				\end{align}
+				が従う．またこれは$g_n \coloneqq f_n^2$に対しても成り立つ．ゆえに
+				\begin{align}
+					\left| \inprod<E(\Lambda)u,E(\Lambda)u> - \inprod<E(\Lambda)u,u> \right|
+					\leq \left| \inprod<E(\Lambda)u,E(\Lambda)u> - \inprod<T_{f_n} u,T_{f_n} u> \right|
+						+ \left| \inprod<T_{f_n^2} u,u> - \inprod<E(\Lambda)u,u> \right|
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となり$E(\Lambda)^* = E(\Lambda)$と併せて$E(\Lambda)^2 = E(\Lambda)$が得られる．
 				
+			\item[第三段] $E(\R^d) = I$を示す．任意の$n \in \N$に対して
+				\begin{align}
+					\inprod<\phi_n u,v> = \int_{\R^d} \phi_n(x)\ \mu_{u,v}(dx)
+				\end{align}
+				が成り立つ．また仮定より任意の$u \in H$に対して
+				\begin{align}
+					\left| \inprod<\phi_n u,v> - \inprod<u,v> \right|
+					\leq \Norm{\phi_n u - u}{} \Norm{v}{}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				かつ
+				\begin{align}
+					\int_{\R^d} \phi_n(x)\ \mu_{u,v}(dx) \longrightarrow \mu_{u,v}(\R^d) = \inprod<E(\R^d)u,v>
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\left| \inprod<u,v> - \inprod<E(\R^d)u,v> \right|
+					\leq \left| \inprod<u,v> - \inprod<\phi_n u,v> \right|
+						+ \left| \int_{\R^d} \phi_n(x)\ \mu_{u,v}(dx) - \inprod<E(\R^d)u,v> \right|
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となり$\inprod<u,v> = \inprod<E(\R^d)u,v>\ (\forall u,v \in H)$が成り立つ．特に$v = u - E(\R^d)u$とすれば
+				$u = E(\R^d)u\ (\forall u \in H)$が従い$E(\R^d) = I$を得る．
 				
+			\item[第四段] $E$の完全加法性を示す．
+				任意の$A,B \in \borel{\R^d},\ u,v \in H$に対し
+				\begin{align}
+					\inprod<\left(E(A+B) - E(A) - E(B) \right)u,v>
+					&= \inprod<E(A+B)u,v> - \inprod<E(Au,v> - \inprod<E(B)u,v> \\
+					&= \mu_{u,v}(A+B) - \mu_{u,v}(A) - \mu_{u,v}(B)
+					= 0
+				\end{align}
+				が成り立つから
+				\begin{align}
+					E(A+B)u = E(A)u + E(B)u 
+					\quad (\forall u \in H)
+				\end{align}
+				が得られる．次に任意に互いに素な列$\Lambda_1,\Lambda_2,\cdots \in \borel{\R^d}$を取り
+				$\Lambda = \sum_{n=1}^{\infty} \Lambda_n,\ \Lambda_N \coloneqq \sum_{n=1}^{N} \Lambda_n$とおけば，
+				\begin{align}
+					\Norm{\left( E(\Lambda) - E(\Lambda_N) \right)u}{}
+					\leq \sqrt{\inprod<\left( E(\Lambda) - E(\Lambda_N) \right)u, u>}
+					= \leq \sqrt{\mu_u(\Lambda) - \mu_u(\Lambda_N)}
+					\longrightarrow 0 \quad (N \longrightarrow \infty,\ \forall u \in H)
+				\end{align}
+				が成り立ち，一方で
+				\begin{align}
+					E(\Lambda_N) u = \sum_{n=1}^{N} E(\Lambda_n) u \quad (\forall N \in \N,\ u \in H)
+				\end{align}
+				となるから，命題\ref{prp:orthogonal_projection_product_sum}より
+				任意の$i,j \in \N$に対して$E(\Lambda_i)E(\Lambda_j) = \delta_{ij}E(\Lambda_i)$が成り立ち
+				$\sum_{n=1}^{\infty} E(\Lambda_n) u$は絶対収束する．
+				\begin{align}
+					E(\Lambda) u = \sum_{n=1}^{\infty} E(\Lambda_n) u \quad (\forall u \in H)
+				\end{align}
+				が得られる．
+			
+			\item[第五段]
+				(\refeq{eq:thm_pectral_decomposition_of_bounded_linear_operators_0})を示す．
+				$f \in \cvan{\R^d}$が単関数の場合は
+				\begin{align}
+					\int_{\R^d} f_n(x)\ \mu_{u,v}(dx) = \inprod<\int_{\R^d} f_n(x)\ E(dx) u, v>
+					\quad (\forall u,v \in H)
+				\end{align}
+				が成り立つ．一般の$f \in \cvan{\R^d}$に対しては，$MSF$-単調近似列$(f_n)_{n=1}^{\infty}$を取れば
+				\begin{align}
+					&\left| \inprod<T_f u,v> - \inprod<\int_{\R^d} f(x)\ E(dx)\ u, v> \right|
+					= \left| \int_{\R^d} f(x)\ \mu_{u,v}(dx) - \inprod<\int_{\R^d} f(x)\ E(dx)\ u, v> \right| \\
+					&\qquad \leq \left| \int_{\R^d} f(x)\ \mu_{u,v}(dx) - \int_{\R^d} f_n(x)\ \mu_{u,v}(dx) \right| 
+						+ \Norm{\int_{\R^d} f_n(x)\ E(dx) u - \int_{\R^d} f(x)\ E(dx) u}{} \Norm{v}{}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つ．
+				
+			\item[第六段]
+				$E$の一意性を示す．開集合の上で$E$は一意．一致の定理より$E$は一意．
+			\QED
 		\end{description}
 	\end{prf}
 	
