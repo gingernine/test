@@ -39,6 +39,70 @@
 					\inprod<u,M_a^* v> = \inprod<M_a u,v> = \inprod<u,M_{\conj{a}}v>
 				\end{align}
 				となり$M_a^* v = M_{\conj{a}}v\ \left(\forall v \in \Dom{M_a^*} \right)$が従う．
+			
+			\item[(3)]
+				$\lambda \in \C$を任意に取り固定し，任意の$\epsilon > 0$に対して
+				$V_\epsilon \coloneqq a^{-1}(U_\epsilon(\lambda))$とおく．
+			 	或る$\epsilon > 0$が存在して$\mu(V_\epsilon) = 0$が成り立つ場合，
+			 	\begin{align}
+			 		b(x) \coloneqq 
+			 		\begin{cases}
+			 			\frac{1}{\lambda - a(x)} & (x \in X \backslash V_\epsilon) \\
+			 			0 & (x \in V_\epsilon)
+			 		\end{cases}
+			 	\end{align}
+				と定めれば，任意の$u \in H$に対して
+				\begin{align}
+					\int_X |b(x)u(x)|^2\ \mu(dx)
+					= \int_{X \backslash V_\epsilon} \frac{1}{|\lambda - a(x)|^2} |u(x)|^2\ \mu(dx)
+					\leq \frac{1}{\epsilon^2} \int_X |u(x)|^2\ \mu(dx) < \infty 
+				\end{align}
+				が成り立つから$\Dom{M_b} = H$である．更に
+				\begin{align}
+					b (\lambda - a) u &= u \quad (\mbox{$\mu$-a.e.},\ \forall u \in \Dom{M_a} ), \\
+					(\lambda - a) b u &= u \quad (\mbox{$\mu$-a.e.},\ \forall u \in H )
+				\end{align}
+				が成り立つから$M_b = (\lambda I - M_a)^{-1}$であり，$M_b \in \selfBop{H} $であるから
+				$\lambda \in \Res{M_a} $が成り立つ．
+				一方任意の$\epsilon > 0$に対して$\mu(V_\epsilon)  = 0$となる場合，
+				任意に$\epsilon > 0$を取り固定する．
+				\begin{align}
+					\mu(V_\epsilon) = \lim_{n \to \infty} \mu(V_\epsilon \cap X_n)
+				\end{align}
+				が成り立つから，或る$N \in \N$が存在して$\mu(V_\epsilon \cap X_N) > 0$を満たす．
+				\begin{align}
+					u_\epsilon(x) \coloneqq
+					\begin{cases}
+						1 & (x \in V_\epsilon \cap X_N) \\
+						0 & (x \notin V_\epsilon \cap X_N)
+					\end{cases}
+				\end{align}
+				と定めれば，$u_\epsilon$は二乗可積分であり
+				\begin{align}
+					\int_X |a(x)u_\epsilon(x)|^2\ \mu(dx)
+					= \int_{V_\epsilon \cap X_N} |a(x)u_\epsilon(x)|^2\ \mu(dx)
+					< \infty
+				\end{align}
+				を満たすから$u_\epsilon \in \Dom{M_a} $である．また
+				\begin{align}
+					\Norm{(\lambda I- M_a)u_\epsilon}{}^2
+					= \int_X |\lambda - a(x)|^2|u_\epsilon(x)|^2\ \mu(dx)
+					= \int_{V_\epsilon \cap X_N} |\lambda - a(x)|^2|u_\epsilon(x)|^2\ \mu(dx)
+					\leq \epsilon^2 \int_X |u_\epsilon(x)|^2\ \mu(dx)
+					= \epsilon^2 \Norm{u_\epsilon}{}^2
+				\end{align}
+				を満たす．つまり任意の$\epsilon$に対し或る$u_\epsilon \in \Dom{M_a} $が存在し
+				\begin{align}
+					\frac{1}{\epsilon} \leq \frac{\Norm{u_\epsilon}{}}{\Norm{(\lambda I- M_a)u_\epsilon}{}}
+				\end{align}
+				を満たす．ここで$(\lambda I- M_a)$に対し逆作用素$(\lambda I- M_a)^{-1}$が存在するとしても，
+				$u_\epsilon \in \Dom{M_a} $に対して或る$v_\epsilon \in \Dom{(\lambda I- M_a)^{-1}} $が存在して
+				$u_\epsilon = (\lambda I- M_a)^{-1}v_\epsilon$を満たすが，
+				\begin{align}
+					\frac{1}{\epsilon} \leq \frac{\Norm{(\lambda I- M_a)^{-1}v_\epsilon}{}}{\Norm{v_\epsilon}{}}
+				\end{align}
+				が従い，$\epsilon$の任意性より$(\lambda I- M_a)^{-1}$の作用素ノルムは非有界である．
+				従ってこの場合$\lambda \in \Spctr{M_a} $が成り立つ．
 				
 			\item[(4)] 
 				先ず$\pSpctr{M_a} \subset \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$が成り立つことを示す．
