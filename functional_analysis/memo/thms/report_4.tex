@@ -5,19 +5,76 @@
 				$(\lambda I - T) u = 0$を満たす$\lambda$に対し，微分方程式を解けば
 				\begin{align}
 					u(x) = C\exp{\lambda x}
-					\quad (x \in I,\ \exists C \ni \C)
+					\quad (x \in I,\ C \in \C)
 				\end{align}
-				と表せる．$u(0) + u(a) = 0$が満たされているから，
+				と表せる．今$u(0) + u(a) = 0$が仮定されているから，
 				\begin{align}
 					C + C\exp{\lambda a} = 0
 				\end{align}
-				が成り立つ．従って$C = 0$或は，複素対数を用いて
-				$\lambda = \frac{1}{a} \log{(-1)}$となる．
-				$C = 0$の場合は$u = 0$となり固有ベクトルになりえないから
+				が成り立つ．これは$C = 0$或は
+				$\lambda = \frac{1}{a} \log{(-1)}$の場合に実現する．
+				$\lambda = \frac{1}{a} \log{(-1)}$でなければ$C = 0$でなくてはならないが，
+				このとき$u = 0$となり固有ベクトルにならないから$\lambda = \frac{1}{a} \log{(-1)}$
+				でなくてはならない．従って
 				\begin{align}
-					\pSpctr{T} = \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}
+					\pSpctr{T} \subset \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}
 				\end{align}
+				が得られる．逆に或る$n \in \Z$に対して$\lambda = (2 n + 1)\pi/a$と表されているとき，
+				任意の$C \in \C$に対して$u(x) = C\exp{\lambda x}\ (x \in I)$とおけば
+				\begin{align}
+					\lambda u(x) - T u(x) = 0 \quad (\forall x \in I),
+					\quad u(0) + u(a) = 0
+				\end{align}
+				が満たされるから
+				\begin{align}
+					\pSpctr{T} \supset \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}
+				\end{align}
+				が成り立ち，$\pSpctr{T} = \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}$が得られる．
 				
 			\item[スペクトルについて]
+				$\Res{T} = \C \backslash \pSpctr{T} $が成り立つことを示す．これにより
+				$\Spctr{T} = \pSpctr{T} $が従う．
+				$\lambda \in \C \backslash \pSpctr{T} $を任意に取る．$f \in \c{I}$に対し
+				\begin{align}
+					\begin{cases}
+						u'(x) - \lambda u(x) = f(x) \\
+						u(0) + u(a) = 0
+					\end{cases}
+					\quad (x \in I)
+				\end{align}
+				を満たす$u$を考えれば，
+				\begin{align}
+					&\begin{cases}
+						u'(x) - \lambda u(x) = f(x) \\
+						u(0) + u(a) = 0
+					\end{cases}
+					\quad (x \in I) \\
+					&\quad \Leftrightarrow 
+					\begin{cases}
+						u(x) = \exp{\lambda x}u_0 + \int_0^x \exp{\lambda (x-s)} f(s)\ ds \\
+						u(0) + u(a) = 0
+					\end{cases}
+					\quad (x \in I) \\
+					&\quad \Leftrightarrow 
+					\begin{cases}
+						u(x) = \exp{\lambda x}u_0 + \int_0^x \exp{\lambda (x-s)} f(s)\ ds \\
+						u(0) + \exp{\lambda a}u_0 + \int_0^a \exp{\lambda (a-s)} f(s)\ ds = 0
+					\end{cases}
+					\quad (x \in I) \\
+					&\quad \Leftrightarrow 
+					u(x) = -\frac{\exp{\lambda x}}{1 + \exp{\lambda a}} \int_0^a \exp{\lambda (a-s)} f(s)\ ds + \int_0^x \exp{\lambda (x-s)} f(s)\ ds
+					\quad (x \in I)
+				\end{align}
+				より$f$に対して$u$は唯一つ定まる．この対応を$R_\lambda:\c{I} \oparrow \c{I}$と表せば，$\Dom{R_\lambda} = \c{I}$且つ
+				積分の線型性より$R_\lambda$線型写像である．また
+				\begin{align}
+					\Norm{R_\lambda f}{} \leq \Norm{f}{}
+				\end{align}
+				を満たすから$R_\lambda$は有界で，さらに
+				\begin{align}
+					R_\lambda (\lambda - T) u &= u \quad (\forall u \in \Dom{T} ), \\
+					(\lambda - T) R_\lambda f &= f \quad (\forall f \in \c{I})
+				\end{align}
+				が成り立つから$R_\lambda = (\lambda - T)^{-1}$が従い$\lambda \in \Res{T} $を得る．
 		\end{description}
 	\end{prf}
