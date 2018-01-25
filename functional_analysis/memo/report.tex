@@ -11,6 +11,52 @@
 	\input{thms/report_4}
 	
 	\begin{screen}
+		[6] $a \in \cbound{\R^d}, \lambda > d$とする．$f \in \mathrm{L}^2(\R^d)$に対し，
+		\begin{align}
+			T_a f(x) = \int_{|x - y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy
+			\quad (\mbox{a.e.}x \in \R^d)
+		\end{align}
+		により$T_a:\mathrm{L}^2(\R^d) \rightarrow \mathrm{L}^2(\R^d)$を定める．
+		\begin{description}
+			\item[(1)] $T_a$は連続であることを示せ．
+		\end{description}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 
+				任意の$f \in \mathrm{L}^2(\R^d)$に対し$T_a f$が二乗可積分であることと$T_a$の連続性を同時に示す．
+				以下，$\mathrm{L}^2(\R^d)$のノルムを$\Norm{\cdot}{}$と書き，$M \coloneqq \sup{x \in \R^d}{|a(x)|} < \infty$とおく．
+				$f \in \mathrm{L}^2(\R^d)$に対し，H\Ddot{o}lderの不等式より
+				\begin{align}
+					\int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)f(y)|}{|x-y|^\lambda}\ dy
+					&= \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|}{|x-y|^{\frac{\lambda}{2}}} \defunc_{|x-y| > 1} \frac{|f(y)|}{|x-y|^{\frac{\lambda}{2}}}\ dy \\
+					&\leq \left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy \right)^{\frac{1}{2}}
+						\left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy \right)^{\frac{1}{2}}
+				\end{align}
+				が任意の$x \in \R^d$で成立する．右辺第一項について，$\lambda > d \geq 1$であるから，変数変換を用いて
+				\begin{align}
+					\int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy
+					\leq M^2 \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dy
+					= M^2 \int_{\R^d} \defunc_{|u| > 1} \frac{1}{|u|^\lambda}\ du < \infty
+				\end{align}
+				が満たされる．従って$U \coloneqq \int_{\R^d} \defunc_{|x - y| > 1} \frac{1}{|x-y|^{\lambda}}\ dy$とおけば$U$は$x$に依らない定数であり，
+				Fubiniの定理より
+				\begin{align}
+					\Norm{T_a f}{}^2
+					&= \int_{\R^d} \left| \int_{|x-y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy \right|^2\ dx \\
+					&\leq \int_{\R^d} \left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy \right)
+						\left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy \right)\ dx \\
+					&\leq M^2 U \int_{\R^d} \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy\ dx \\
+					&= M^2 U \int_{\R^d} |f(y)|^2\ dy \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dx \\
+					&= M^2 U^2 \Norm{f}{}^2
+ 				\end{align}
+ 				が得られる．$T_a$が線型性を持てば有界性と連続性は一致するから，
+ 				あとは$T_a$が線型性を持つことを示せばよい．
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
 		[8]$(X,\mathcal{M},\mu)$を$\sigma$-有限な測度空間，$H = \mathrm{L}^2(X,\mathcal{M},\mu) = \mathrm{L}^2(\mu)$とする．
 			$\mathcal{M}$-可測関数$a:X \rightarrow \C$に対して，$H$から$H$へのかけ算作用素$M_a$を次で定める:
 			\begin{align}
