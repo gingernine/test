@@ -6,6 +6,17 @@
 		\subset \mathcal{F}_0.
 	\end{align}
 	
+	\begin{screen}
+		\begin{dfn}[停止時刻で停めた過程]
+			任意の停止時刻$\tau$と確率過程$M$に対し
+			\begin{align}
+				M^\tau_t \coloneqq M_{t \wedge \tau}
+				\quad (\forall t \in I)
+			\end{align}
+			として定義する$M^\tau$を，停止時刻$\tau$で停めた過程という．
+		\end{dfn}
+	\end{screen}
+	
 	以下，いくつか集合を定義する．
 	\begin{description}
 		\item[$\mathrm{(1)}\ \mathcal{A}^+$] 
@@ -56,20 +67,65 @@
 			$\mathcal{M}_{c,loc}$の元を「連続な局所マルチンゲール」という．$\mathcal{M}_{c,loc}$は次で定義される:
 			\begin{align}
 				\mathcal{M}_{c,loc} \coloneqq 
-				\Set{M = (M_t)_{t \in I} \subset \semiLp{1}{\mathcal{F},\mu}}{\exists (\tau_j)_{j=1}^{\infty} \in \mathcal{T}\ \mathrm{s.t.}\ M^{\tau_j} = (M_{\tau_j \wedge t})_{t \in I} \in \mathcal{M}_{b,c}\ (\forall j \in \N)}.
+				\Set{M = (M_t)_{t \in I} \subset \semiLp{1}{\mathcal{F},\mu}}{\exists (\tau_j)_{j=1}^{\infty} \in \mathcal{T}\ \mathrm{s.t.}\ M^{\tau_j} \in \mathcal{M}_{b,c}\ (\forall j \in \N)}.
 			\end{align}
 	\end{description}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
+		\begin{thm}[有界なマルチンゲールを停止時刻で停めた過程の有界性]
+			$\tau$を任意の停止時刻とする．任意の$M \in \mathcal{M}_{b,c}$と$s \in I$に対し
+			$M_{s \wedge \tau} \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}\ \mu-$a.s.
+			が成り立つ．
+			\label{thm:boundedness_of_stopped_process_of_bounded_martingale}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$s \in I$を取り固定する．
+		$|M_{s \wedge \tau(\omega)}(\omega)| \leq \sup{t \in I}{|M_t(\omega)|}\ (\forall \omega \in \Omega)$より
+		\begin{align}
+			\sup{t \in I}{|M_t|} \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}
+			\quad \mbox{$\mu$-a.s.}
+		\end{align}
+		が成り立つことを示せばよい．$M \in \mathcal{M}_{b,c}$であるから，
+		或る零集合$A$が存在して全ての$\omega \in \Omega \backslash A$に対し
+		$I \ni t \longmapsto M_t(\omega)$が連続である．
+		また補題\ref{lem:holder_inequality}より
+		\begin{align}
+			B_r \coloneqq \Set{\omega \in \Omega}{|M_r(\omega)| > \Norm{M_r}{\mathscr{L}^\infty}},
+			\quad (r \in \Q \cap I)
+		\end{align}
+		は全て零集合であるから，
+		\begin{align}
+			B \coloneqq \bigcup_{r \in \Q \cap I} B_r
+		\end{align}
+		に対し$C \coloneqq A \cup B$として零集合を定める．
+		任意の$\omega \in \Omega \backslash C$に対し
+		$t \longmapsto M_t(\omega)$が連続であるから
+		\begin{align}
+			|M_u(\omega)| \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}
+			\quad (\forall u \in I)
+		\end{align}
+		が成り立ち
+		\begin{align}
+			\sup{t \in I}{|M_t(\omega)|} \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}
+			\quad (\forall \omega \in \Omega \backslash C)
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{lem}[$\mathcal{M}_{p,c}$は線形空間となる]\mbox{}\\
 			任意の$M,N \in \mathcal{M}_{p,c}$と$\alpha \in \R$に対して線型演算を
 			\begin{align}
-				M + N \coloneqq (M_t + N_t)_{t \in I}, \qquad \alpha M \coloneqq (\alpha M_t)_{t \in I}
+				(M + N)_t \coloneqq (M_t + N_t)_{t \in I}, 
+				\quad (\alpha M)_t \coloneqq (\alpha M_t)_{t \in I}
 				\label{eq:mart_linear_arithmetic_0}
 			\end{align}
 			として定義すれば，$\mathcal{M}_{p,c}$は$\R$上の線形空間となる．
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\footnotetext{
 		全ての$t,\omega$に対し$0 \in \R$を取るもの．
@@ -106,7 +162,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[$\mathcal{M}_{p,c}$における同値関係の導入]\mbox{}\\
 			任意の$M,N \in \mathcal{M}_{p,c}\ (p \geq 1)$に対して，関係$R$を
 			\begin{align}
@@ -115,7 +171,7 @@
 			として定義すれば，関係$R$は同値関係となる．そして$M\ R\ N$となることと$\mu$-a.s.にパスが一致することは同値である．
 			\label{lem:M_2c_hilbert}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		反射律と対称律は$R$の定義式より判然しているから推移律について確認する．$M,N$とは別に$U=(U_t)_{t \in I} \in \mathcal{M}_{p,c}$
@@ -144,7 +200,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[$\mathcal{M}_{p,c}$の商空間の定義]
 			補題\ref{lem:M_2c_hilbert}で導入した同値関係$R$による$\mathcal{M}_{p,c}\ (p \geq 1)$の商集合を$\mathfrak{M}_{p,c}$と表記する．
 			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\overline{M}$と表記し，
@@ -155,7 +211,7 @@
 			として演算を定義すれば，これは代表元の選び方に依らない(well-defined)．そして(\refeq{eq:mart_linear_arithmetic})で定義した算法を加法とスカラ倍として
 			$\mathfrak{M}_{p,c}$は$\R$上の線形空間となる．
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
 		$M' \in \overline{M},\ N' \in \overline{N}$を任意に選べば，
@@ -171,7 +227,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{lem}[$\mathfrak{M}_{2,c}$における内積の定義]
 			写像\footnotemark
 			$\inprod<\cdot,\cdot>:\mathfrak{M}_{2,c} \times \mathfrak{M}_{2,c} \rightarrow \R$
@@ -182,7 +238,7 @@
 			\end{align}
 			\label{lem:M_2c_hilbert_inner_product}
 		\end{lem}
-	\end{itembox}
+	\end{screen}
 			
 	\footnotetext{
 		実数値として確定することは，$M_T,N_T$が共に二乗可積分であることとH\Ddot{o}lderの不等式による．
@@ -238,11 +294,11 @@
 		\QED
 	\end{prf}
 		
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{prp}[$\mathfrak{M}_{2,c}$はHilbert空間である]
 			$\mathfrak{M}_{2,c}$は補題\ref{lem:M_2c_hilbert_inner_product}で導入した$\inprod<\cdot,\cdot>$を内積としてHilbert空間となる．
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 			
 	\begin{prf}
 			内積$\inprod<\cdot,\cdot>$により導入されるノルムを$\Norm{\cdot}{}$と表記する．

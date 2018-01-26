@@ -1,0 +1,105 @@
+	\begin{screen}
+		\begin{lem}[停止時刻で停めた二次変分]
+			$\sigma,\tau$を停止時刻とし，$\sigma \geq \tau$を満たしていると仮定する．
+			このとき任意の$M \in \mathcal{M}_{c,loc}$に対し$N \coloneqq M^\sigma - M^\tau$
+			と定めれば，$N \in \mathcal{M}_{c,loc}$かつ
+			\begin{align}
+				\inprod<N>_t = \inprod<M>_{t\wedge\sigma} - \inprod<M>_{t \wedge \tau}
+				\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+			\end{align}
+			が成り立つ．特に$\tau = 0$の場合，任意の停止時刻$\sigma$に対し
+			\begin{align}
+				\inprod<M^\sigma>_t = \inprod<M>_{t \wedge \sigma}
+				\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+			\end{align}
+			の関係が得られる．
+			\label{lem:stopped_quadratic_variation}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $M \in \mathcal{M}_{b,c}$の場合を考える．
+				まず$N \in \mathcal{M}_{b,c}$が成り立つことを示す．実際
+				$M$がマルチンゲールであるから任意の$\omega \in \Omega$に対し
+				$t \longmapsto N_t(\omega)$
+				は各点で右連続且つ左極限を持ち，
+				さらに定理\ref{thm:boundedness_of_stopped_process_of_bounded_martingale}より
+				$|N_t| \leq |M_{t\wedge\sigma}| + |M_{t\wedge\tau}| \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}\ \mu$-a.s.
+				が成り立つから
+				\begin{align}
+					\sup{t \in I}{\Norm{N_t}{\mathscr{L}^\infty}}
+					\leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty
+				\end{align}
+				が満たされる．そして任意に$s,t \in I\ (s < t)$を取れば，
+				命題\ref{prp:properties_of_expanded_conditional_expectation}と
+				任意抽出定理より
+				\begin{align}
+					\cexp{N_t}{\mathcal{F}_s}
+					= \cexp{M_{t \wedge \sigma} - M_{t \wedge \tau}}{\mathcal{F}_s}
+					= M_{s \wedge \sigma} - M_{s \wedge \tau}
+					= N_s
+				\end{align}
+				が成り立つ．補題\ref{lem:quadratic_variation}の$(\tau^n_j)_{j=0}^{2^n}$と
+				任意の$\omega \in \Omega$に対し或る$i,k\ (i \leq k)$が存在して
+				\begin{align}
+					&\tau_i^n \leq \tau(\omega) \leq \tau_{i+1}^n \leq \sigma(\omega) \leq \tau_{i+2}^n, \label{eq:stopped_quadratic_variation_1} \\
+					&\tau_i^n \leq \tau(\omega) \leq \tau_{i+1}^n < \tau^n_k \leq \sigma(\omega) \leq \tau_{k+1}^n, \label{eq:stopped_quadratic_variation_2} \\
+					&\tau_i^n \leq \tau(\omega) \leq \sigma(\omega) \leq \tau_{i+1}^n, \label{eq:stopped_quadratic_variation_3}
+				\end{align}
+				のいずれかを満たす．
+				\begin{align}
+					Q^n_t(N) \coloneqq \sum_{j=0}^{2^n-1} \left( N_{t \wedge \tau_{j+1}^n} - N_{t \wedge \tau_j^n} \right)^2 \quad (\forall t \in I)
+				\end{align}
+				とおき，同様に$Q^n(M)$も定める．$\omega$が(\refeq{eq:stopped_quadratic_variation_1})を満たしている場合，
+				\begin{align}
+					Q^n_t(N)(\omega) &= \sum_{j=0}^{2^n-1} \left( N_{t \wedge \tau_{j+1}^n}(\omega) - N_{t \wedge \tau_j^n}(\omega) \right)^2 \\
+					&= \sum_{j=0}^{2^n-1} \left( M_{t \wedge \sigma(\omega) \wedge \tau_{j+1}^n}(\omega) - M_{t \wedge \tau(\omega) \wedge \tau_{j+1}^n}(\omega) - M_{t \wedge \sigma(\omega) \wedge \tau_j^n}(\omega) + M_{t \wedge \tau(\omega) \wedge \tau_j^n}(\omega)  \right)^2 \\
+					&= \left( M_{t \wedge \sigma(\omega)}(\omega) - M_{t \wedge \tau_{i+1}^n}(\omega) \right)^2
+						+ \left( M_{t \wedge \tau_{i+1}^n}(\omega) - M_{t \wedge \tau(\omega)}(\omega) \right)^2, \\
+					Q^n_{t \wedge \sigma(\omega)}(M)(\omega) &= \sum_{j=0}^{2^n-1} \left( M_{t \wedge \sigma(\omega) \wedge \tau_{j+1}^n}(\omega) - M_{t \wedge \sigma(\omega) \wedge \tau_j^n}(\omega) \right)^2 \\
+					&= \sum_{j=0}^{i} \left( M_{t \wedge \tau_{j+1}^n}(\omega) - M_{t \wedge \tau_j^n}(\omega) \right)^2 + \left( M_{t \wedge \sigma(\omega)}(\omega) - M_{t \wedge \tau_{i+1}^n}(\omega) \right)^2, \\
+					Q^n_{t \wedge \tau(\omega)}(M)(\omega) &= \sum_{j=0}^{2^n-1} \left( M_{t \wedge \tau(\omega) \wedge \tau_{j+1}^n}(\omega) - M_{t \wedge \tau(\omega) \wedge \tau_j^n}(\omega) \right)^2 \\
+					&= \sum_{j=0}^{i-1} \left( M_{t \wedge \tau_{j+1}^n}(\omega) - M_{t \wedge \tau_j^n}(\omega) \right)^2 + \left( M_{t \wedge \tau(\omega)}(\omega) - M_{t \wedge \tau_{i}^n}(\omega) \right)^2
+				\end{align}
+				と表せるから
+				\begin{align}
+					&\left| Q^n_t(N)(\omega) - \left( Q^n_{t\wedge\sigma(\omega)}(M)(\omega) - Q^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right| \\
+					&\qquad \leq 
+						\left( M_{t \wedge \tau_{i+1}^n}(\omega) - M_{t \wedge \tau(\omega)}(\omega) \right)^2
+						+ \left( M_{t \wedge \tau_{i+1}^n}(\omega) - M_{t \wedge \tau_i^n}(\omega) \right)^2 
+						+ \left( M_{t \wedge \tau(\omega)}(\omega) - M_{t \wedge \tau_{i}^n}(\omega) \right)^2 \\
+					&\qquad \leq 3 \sup{|t - s| \leq T/2^n}{|M_t(\omega) - M_s(\omega)|^2}
+				\end{align}
+				が成り立つ．同様にして$\omega$が(\refeq{eq:stopped_quadratic_variation_2})或は
+				(\refeq{eq:stopped_quadratic_variation_3})を満たしている場合も
+				\begin{align}
+					\left| Q^n_t(N)(\omega) - \left( Q^n_{t\wedge\sigma(\omega)}(M)(\omega) - Q^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right|
+					\leq 3 \sup{|t - s| \leq T/2^n}{|M_t(\omega) - M_s(\omega)|^2}
+				\end{align}
+				が成り立つから，つまり全ての$\omega \in \Omega$に対し
+				\begin{align}
+					\left| Q^n_t(N)(\omega) - \left( Q^n_{t\wedge\sigma(\omega)}(M)(\omega) - Q^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right|
+					\leq 3 \sup{|t - s| \leq T/2^n}{|M_t(\omega) - M_s(\omega)|^2}
+				\end{align}
+				が満たされる．更に$t \longmapsto M_t$が$\mu$-a.s.に一様連続であるから，或る零集合$A$が存在して
+				\begin{align}
+					\left| Q^n_t(N)(\omega) - \left( Q^n_{t\wedge\sigma(\omega)}(M)(\omega) - Q^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right|
+					\longrightarrow 0 \quad (n \longrightarrow \infty,\ \omega \in \Omega \backslash A)
+				\end{align}
+				が従う．
+				
+				\begin{align}
+					\left| Q^n_t(N) - \left( Q^n_{t\wedge\sigma}(M) - Q^n_{t\wedge\tau}(M) \right) \right|
+					= 
+				\end{align}
+				定理\ref{thm:existence_of_quadratic_variation}の証明中の
+				(\refeq{eq:thm_quadratic_variation_1})より$\left( Q^n(N) \right)_{n=1}^{\infty}$の或る凸結合列
+				$\left( \hat{Q}^n(N) \right)_{n=1}^{\infty}$，或る零集合$A$及び或る部分添数列$(n_k)_{k=1}^{\infty}$
+				が存在して，全ての$t \in I$と$\omega \in \Omega \backslash A$に対し
+				\begin{align}
+					\hat{Q}^{n_k}_t(N)(\omega) \longrightarrow \inprod<N>_t(\omega) \quad (k \longrightarrow \infty)
+				\end{align}
+				を満たす．
+		\end{description}
+	\end{prf}
