@@ -91,7 +91,7 @@
  				
 			\item[(2)] $\mathrm{L}^2(\R^d)$がBanach空間であるから，
 				$\selfCop{\mathrm{L}^2} $は
-				$\selfBop{\mathrm{L}^2} $の閉部分空間である．従って
+				$\selfBop{\mathrm{L}^2} $の閉部分空間であり，
 				$T_a$に作用素ノルムで収束する$\selfCop{\mathrm{L}^2} $の列が存在すれば
 				$T_a \in \selfCop{\mathrm{L}^2} $が従う．
 				今，任意に$\epsilon > 0$を取れば，仮定より或る$N = N(\epsilon) \in \N$が存在して
@@ -148,18 +148,49 @@
 						同様に部分列を取る操作を繰り返し，任意の$n \in \N$に対し
 						$\left( x^{\nu(k,n)}_n \right)_{k=1}^{\infty}$が$\C$のCauchy列となる
 						ようにできる．$\nu(k) \coloneqq \nu(k,k)\ (k=1,2,\cdots)$として$(\nu(k))_{k=1}^{\infty}$を定めればよい．
-						
+						\begin{align}
+							M \coloneqq \sup{\nu \in \N}{\Norm{x^\nu}{\ell^2}} < \infty
+						\end{align}
+						とおき，任意に$\epsilon > 0$を取る．$\lim_{n \to \infty} a_n = 0$より或る$N = N(\epsilon) \in \N$が存在して
+						\begin{align}
+							|a_n| \leq \frac{\epsilon}{2 M} \quad (\forall n > N)
+						\end{align}
+						を満たすから，任意の$k,m \in \N$に対して
+						\begin{align}
+							&\Norm{T x^{\nu(k)} - T x^{\nu(m)}}{\ell^2}^2
+							= \sum_{n=1}^{\infty} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2 \\
+							&\qquad \leq \sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2 
+								+ 2 \frac{\epsilon^2}{4 M^2} \sum_{n = N+1}^{\infty} \left( \left|x_n^{\nu(k)} \right|^2 + \left|x_n^{\nu(m)} \right|^2 \right) \\
+							&\qquad \leq \sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2 + \epsilon^2
+						\end{align}
+						が成り立つ．ここで$A \coloneqq \max{1 \leq n \leq N}{|a_n|}$とおけば，或る$N_j = N_j(\epsilon) \in \N\ (j=1,\cdots,N)$が存在して
+						\begin{align}
+							\left|x_j^{\nu(k)} - x_j^{\nu(m)} \right| < \frac{\epsilon}{\sqrt{N} A}
+							\quad (\forall k,m > N_j,\ j=1,\cdots,N)
+						\end{align}
+						が成り立つ．$N' \coloneqq \max{1 \leq j \leq N}{N_j}$とおけば
+						\begin{align}
+							\sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2
+							\leq A^2 N \frac{\epsilon^2}{N A^2} = \epsilon^2
+							\quad (\forall k,m > N')
+						\end{align}
+						が従うから，
+						\begin{align}
+							\Norm{T x^{\nu(k)} - T x^{\nu(m)}}{\ell^2}^2 \leq 2 \epsilon^2 \quad (\forall k,m > N')
+						\end{align}
+						が成り立つ．$\epsilon$の任意性より$\left(T x_n^{\nu(k)} \right)_{k=1}^{\infty}$は収束列であり，
+						$T$はコンパクト作用素である．
 						
 					\item[必要性]
-						$\lim_{n \to \infty} a_n = 0$が満たされない場合に
-						或る$\ell^2$の有界点列$(x^k)_{k=1}^{\infty}$が存在して，
-						$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しえないことを示す．
-						或る$\epsilon > 0$が存在して，$(a_n)_{n=1}^{\infty}$の
-						或る部分列$\left(a_{n_k}\right)_{k=1}^{\infty}$は
+						対偶，つまり$\lim_{n \to \infty} a_n = 0$が満たされない場合に
+						或る有界点列$(x^k)_{k=1}^{\infty} \subset \ell^2$が存在して，
+						$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しないことを示す．
+						今，或る$\epsilon > 0$に対し$(a_n)_{n=1}^{\infty}$の
+						或る部分列$\left(a_{n_k}\right)_{k=1}^{\infty}$が
 						\begin{align}
 							\left| a_{n_k} \right| \geq \epsilon
 						\end{align}
-						を満たすと仮定する．
+						を満たす．
 						\begin{align}
 							x^k_n \coloneqq
 							\begin{cases}
