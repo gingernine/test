@@ -400,3 +400,85 @@
 				\QED
 		\end{description}
 	\end{prf}
+	
+	\begin{screen}
+		\begin{e.g.}[Hilbert-Schmidt型積分作用素]
+			$(X,\mathcal{M},\mu),(Y,\mathcal{N},\nu)$を$\sigma$-有限な測度空間，
+			$1 \leq p,q \leq \infty$とする．ただし$p+q = pq$を満たし，また$p=1$のとき$q = \infty$，$p=\infty$のとき$q = 1$とする．
+			そして$\mathrm{L}^p(\mu) \coloneqq \mathrm{L}^p(X,\mathcal{M},\mu),\ \mathrm{L}^p(\nu) \coloneqq \mathrm{L}^p(Y,\mathcal{N},\nu),
+			\ \mathrm{L}^q(\mu \times \nu) \coloneqq \mathrm{L}^q(X \times Y,\mathcal{M} \times \mathcal{N},\mu \times \nu)$とおく．
+			このとき$K \in \mathrm{L}^q(\mu \times \nu)$に対し
+			\begin{align}
+				T: \mathrm{L}^p(\nu) \ni f \longmapsto \int_{Y} K(x,y) f(y)\ \nu(dy) \in \mathrm{L}^p(\mu)
+			\end{align}
+			と定める$T$はコンパクト作用素である．
+			特に$p=q=2$の場合，$T$をHilbert-Schmidt型の積分作用素という．
+		\end{e.g.}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathrm{L}^p(\mu)$のノルムを$\Norm{\cdot}{\mathrm{L}^p(\mu)}$とし，他の空間のノルムも同様に書く．
+		ただし$T$の作用素ノルムは$\Norm{T}{}$と書く．
+		\begin{description}
+			\item[第一段] $T$が$\mathrm{L}^p(\nu)$から$\mathrm{L}^p(\mu)$への有界線型作用素であることを示す．
+				H\Ddot{o}lderの不等式より任意の$f \in \mathrm{L}^p(\nu)$に対し
+				\begin{align}
+					\left| \int_Y K(x,y) f(y)\ \nu(dy) \right|
+					\leq \left( \int_Y |K(x,y)|^q\ \nu(dy) \right)^{\frac{1}{q}}
+						\left( \int_Y |f(y)|^p\ \nu(dy) \right)^{\frac{1}{p}}
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\Norm{Tf}{\mathrm{L}^p(\mu)}^p
+					= \int_X \left| \int_Y K(x,y) f(y)\ \nu(dy) \right|^p\ \mu(dx)
+					\leq \Norm{K}{\mathrm{L}^q(\mu \times \nu)}^{\frac{p}{q}} \Norm{f}{\mathrm{L}^(\nu)}^p
+				\end{align}
+				が従い$Tf \in \mathrm{L}^p(\mu)$且つ$T$の有界性が得られる．
+				次に$T$の線型性を示す．
+				\begin{align}
+					\int_X \int_Y |K(x,y)|\ \nu(dy)\ \mu(dx) < \infty
+				\end{align}
+				であるから，
+				\begin{align}
+					A \coloneqq \Set{x \in X}{\int_Y |K(x,y)|\ \nu(dy) = \infty}
+				\end{align}
+				は$\mu$-零集合である
+				\footnote{
+					Fubiniの定理より$A \in \mathcal{M}$である．
+				}
+				．$x \in X \backslash A$の場合，$f,g \in \mathrm{L}^p(\nu),\ \alpha,\beta \in \C$に対し
+				\begin{align}
+					|T(\alpha f + \beta g)(x)| 
+					\leq \int_Y |K(x,y)| |\alpha f(y) + \beta g(y)|\ \nu(dy)
+					\leq \left( \int_Y |K(x,y)|^q\ \nu(dy) \right)^{\frac{1}{q}}
+						\left( |\alpha| \Norm{f}{\mathrm{L}^p(\nu)} + |\beta| \Norm{g}{\mathrm{L}^p(\nu)} \right) < \infty
+				\end{align}
+				が成り立つから，$T$により定まる積分は線型性を持ち
+				\begin{align}
+					T(\alpha f + \beta g)(x) = (\alpha T f + \beta T g)(x)
+					\quad (\forall x \in X \backslash A)
+				\end{align}
+				が従い，$\mu(A) = 0$であるから関数類として$T(\alpha f + \beta g) = \alpha T f + \beta T g$となる．
+			
+			\item[第二段] $K$を単関数で近似できることを示す．
+				仮定より単調増大列$X_1 \subset X_2 \subset \cdots \in \mathcal{M},\ Y_1 \subset Y_2 \subset \cdots \in \mathcal{N}$が存在して
+				$\mu(X_n) < \infty,\ \nu(Y_n) < \infty\ (n=1,2,\cdots)$且つ$\cup_{n=1}^{\infty} X_n = X,\ \cup_{n=1}^{\infty} Y_n = Y$が成り立つ．
+				よって$(X_n \times Y_n)_{n=1}^{\infty}$は$\mu \times \nu(X_n \times Y_n) = \mu(X_n)\nu(Y_n) < \infty\ (n=1,2,\cdots)$
+				と$\cup_{n=1}^{\infty} X_n \times Y_n = X \times Y$を満たすから，測度空間$(X \times Y,\mathcal{M} \times \mathcal{N},\mu \times \nu)$
+				もまた$\sigma$-有限である．$K_n \coloneqq K \defunc_{X_n \times Y_n}\ (n=1,2,\cdots)$
+				として関数列$(K_n)_{n=1}^{\infty}$を定めれば，Lebesgueの収束定理より
+				\begin{align}
+					\int_X \int_Y |k_n(x,y) - K(x,y)|^q\ \nu(dy)\ \mu(dx) 
+					= \int_{X \times Y} |k_n(x,y) - K(x,y)|^q\ \mu \times \nu(dxdy)
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つから，任意に$\epsilon > 0$を取れば或る$N$が存在して
+				\begin{align}
+					\Norm{K_N - K}{\mathrm{L}^q(\mu \times \nu)} 
+					%= \left( \int_X \int_Y |k_N(x,y) - K(x,y)|^q\ \nu(dy)\ \mu(dx) \right)^{\frac{1}{q}} 
+					< \frac{\epsilon}{3}
+				\end{align}
+				を満たす．
+		\end{description}
+	\end{prf}
+	

@@ -19,6 +19,7 @@
 		により$T_a:\mathrm{L}^2(\R^d) \rightarrow \mathrm{L}^2(\R^d)$を定める．
 		\begin{description}
 			\item[(1)] $T_a$は連続であることを示せ．
+			\item[(2)] $\lim_{|x| \to \infty} a(x) = 0$のとき$T_a$がコンパクト作用素であることを示せ．
 		\end{description}
 	\end{screen}
 	
@@ -54,6 +55,7 @@
 					&\leq M^2 U \int_{\R^d} \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy\ dx \\
 					&= M^2 U \int_{\R^d} |f(y)|^2\ dy \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dx \\
 					&= M^2 U^2 \Norm{f}{}^2
+					\label{eq:report_6_1}
  				\end{align}
  				が得られる．$T_a$が線型性を持てば有界性と連続性は一致するから，
  				あとは$T_a$が線型性を持つことを示せばよい．
@@ -63,21 +65,32 @@
 				$\selfBop{\mathrm{L}^2} $の閉部分空間である．従って
 				$T_a$に作用素ノルムで収束する$\selfCop{\mathrm{L}^2} $の列が存在すれば
 				$T_a \in \selfCop{\mathrm{L}^2} $が従う．
+				今，任意に$\epsilon > 0$を取れば，仮定より或る$N = N(\epsilon) \in \N$が存在して
+				\begin{align}
+					|a(x)| < \epsilon \quad (|x| > N)
+					\label{eq:report_6_2}
+				\end{align}
+				が成り立つ．また
 				\begin{align}
 					a_n(x) \coloneqq a(x)\defunc_{|x| \leq n}
 					\quad (\forall x \in \R^d,\ n=1,2,\cdots)
 				\end{align}
 				により$(a_n)_{n=1}^{\infty}$を定めれば，各$n$に対し
 				\begin{align}
-					\defunc_{|x - y| > 1} \frac{|a(x) - a_n(x)||f(y)|}{|x-y|^\lambda}
-					\leq \defunc_{|x - y| > 1} \frac{2|a(x)||f(y)|}{|x-y|^\lambda}
-					\quad (\forall (x,y) \in \R^d \times \R^d)
+					\R^2 \ni (x,y) \longmapsto \defunc_{|x - y| > 1} \frac{a_n(x)}{|x-y|^\lambda}
 				\end{align}
-				が成り立ち，右辺の関数は(1)の結果より$\R^d \times \R^d$で二乗まで可積分である．従ってFubiniの定理とLebesgueの収束定理より
+				は二乗可積分であるから
+				$T_{a_n}$はHilbert-Schmidt型積分作用素であり，従ってコンパクト作用素である．(\refeq{eq:report_6_1})より
 				\begin{align}
-					\Norm{T_a f - T_{a_n}f}{}^2
-					\leq \int_{\R^d} \int_{\R^d} \defunc_{|x - y| > 1} \frac{|a(x) - a_n(x)|^2|f(y)|^2}{|x-y|^\lambda}\ dy\ dx
+					\Norm{T_a - T_{a_n}}{} \leq \sup{x \in \R^d}{|a(x) - a_n(x)|} U
 				\end{align}
+				が成り立ち，(\refeq{eq:report_6_2})より$n > N$ならば$\sup{x \in \R^d}{|a(x) - a_n(x)|} < \epsilon$となるから，
+				$\epsilon$の任意性より
+				\begin{align}
+					\Norm{T_a - T_{a_n}}{} \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が従う．冒頭に書いた理由により$T_a$はコンパクト作用素である．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -92,7 +105,7 @@
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(1)] 求める必要十分条件が，或る$n_0 \in \N$が存在して$a_n = 0\ (\forall n > n_0)$が満たされていること，であることを示す．
+			\item[(1)] 求める必要十分条件が$\lim_{n \to \infty} a_n = 0$であることを示す．
 				\begin{description}
 					\item[十分性] 任意に$\ell^2$の有界列
 						$\left( x^{\nu} \right)_{\nu=1}^{\infty}\ \left(x^{\nu} = \left( x^{\nu}_n \right)_{n=1}^{\infty} \right)$
@@ -109,6 +122,30 @@
 						
 						
 					\item[必要性]
+						$\lim_{n \to \infty} a_n = 0$が満たされない場合に
+						或る$\ell^2$の有界点列$(x^k)_{k=1}^{\infty}$が存在して，
+						$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しえないことを示す．
+						或る$\epsilon > 0$が存在して，$(a_n)_{n=1}^{\infty}$の
+						或る部分列$\left(a_{n_k}\right)_{k=1}^{\infty}$は
+						\begin{align}
+							\left| a_{n_k} \right| \geq \epsilon
+						\end{align}
+						を満たすと仮定する．
+						\begin{align}
+							x^k_n \coloneqq
+							\begin{cases}
+								1 & (n=n_k) \\
+								0 & (n \neq n_k)
+							\end{cases}
+							\quad (n,k=1,2,\cdots)
+						\end{align}
+						として$\ell^2$の点列$(x^k)_{k=1}^{\infty}$を定めれば，$k \neq m$なら
+						\begin{align}
+							\Norm{T x^k - T x^m}{}^2
+							= |a_{n_k}|^2 + |a_{n_m}|^2
+							\geq 2 \epsilon^2
+						\end{align}
+						を満たすから$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しえない．
 				\end{description}
 			\item[(2)]
 		\end{description}

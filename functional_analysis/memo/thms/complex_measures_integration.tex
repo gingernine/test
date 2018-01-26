@@ -1,16 +1,44 @@
 \section{複素測度に関する積分}
 	\begin{screen}
-		\begin{thm}[複素数値可測関数]
+		\begin{thm}[複素数値関数の可測性]
 			$(X,\mathcal{M})$を可測空間とする．$f:X \rightarrow \C$について次が成り立つ:
 			\begin{description}
 				\item[(1)] $f$が可測$\mathcal{M}/\borel{\C}$であることと
-					$f$の実部虚部がそれぞれ可測$\mathcal{M}/\borel{\R}$であることは同値である．
+					$f$の実部$u$虚部$v$がそれぞれ可測$\mathcal{M}/\borel{\R}$であることは同値である．
 					
 				\item[(2)] $\mathcal{M}/\borel{\C}$-可測関数列$(f_n)_{n=1}^{\infty}$が$f$に各点収束するなら
 					$f$もまた可測$\mathcal{M}/\borel{\C}$となる．
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\item[(1)] $z \in \C$に対し$x,y \in \C$の組が唯一つ対応し$z = x + i y$と表される．この対応関係により定める写像
+			\begin{align}
+				\varphi:\C \ni z \longmapsto (x,y) \in \R^2
+			\end{align}
+			は位相同型であり，従ってBorel同型である．射影を$p_1:\R^2 \ni (x,y) \longmapsto x,
+			\ p_2:\R^2 \ni (x,y) \longmapsto y$とすれば
+			\begin{align}
+				u = p_1 \circ \varphi \circ f,
+				\quad v = p_2 \circ \varphi \circ f
+			\end{align}
+			と表せるから，$f$が可測$\mathcal{M}/\borel{\C}$であると仮定すれば，
+			$p_1,p_2,\varphi$の連続性により任意の$A \in \borel{R}$に対して
+			\begin{align}
+				u^{-1}(A) = f^{-1} \circ \varphi^{-1} \circ p_1^{-1}(A) \in \mathcal{M},
+				\quad v^{-1}(A) = f^{-1} \circ \varphi^{-1} \circ p_2^{-1}(A) \in \mathcal{M}
+			\end{align}
+			が成り立ち$u,v$の可測性が従う．逆に$u,v$が共に可測$\mathcal{M}/\borel{\R}$であるとき，
+			任意の$B \in \borel{\C}$に対し
+			\begin{align}
+				f^{-1}(B) = \Set{x \in X}{(u(x),v(x)) \in \varphi(B)} \in \mathcal{M}
+			\end{align}
+			が成り立つから$f$の可測性が得られる．
+		
+		\item[(2)] 補題\ref{lem:measurability_metric_space}による．
+			\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[積分の定義]
