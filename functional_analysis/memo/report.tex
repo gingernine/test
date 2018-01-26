@@ -11,6 +11,35 @@
 	\input{thms/report_4}
 	
 	\begin{screen}
+		[5] $X,Y$をそれぞれ$\R^m,\R^n$の空でないコンパクト部分集合とし，$K \in \c{X \times Y}$とするとき
+		\begin{align}
+			T:\c{Y} \rightarrow \c{X},
+			\quad T f(x) = \int_Y K(x,y) f(y)\ dy \quad (f \in \c{Y})
+		\end{align}
+		はコンパクト作用素であることを示せ．
+	\end{screen}
+	
+	\begin{prf}
+		$m$次元Lebesgue測度を$\mu_m$，$n$次元Lebesgue測度を$\mu_n$と表す．
+		講義中の例より
+		\begin{align}
+			\tilde{T}:\mathrm{L}^\infty(\mu_n) \ni f \longmapsto \int_Y K(x,y) f(y)\ \mu_n(dy)
+		\end{align}
+		により定める$\tilde{T}$は$\mathrm{L}^\infty(\mu_n)$から$\mathrm{L}^\infty(\mu_m)$への
+		コンパクト作用素である．そして$\c{Y} \subset \mathrm{L}^\infty(\mu_n),\ \c{X} \subset \mathrm{L}^\infty(\mu_m)$
+		より$\tilde{T}$は$T$の拡張となっている．$\c{Y}$から任意に有界列$(f_n)_{n=1}^{\infty}$を取れば，
+		$\left( \tilde{T} f_n \right)_{n=1}^{\infty}$の或る部分列$\left( \tilde{T} f_{n_k} \right)_{k=1}^{\infty}$
+		はBanach空間$\mathrm{L}^\infty(\mu_m)$で収束する．今$T f_n = \tilde{T} f_n\ (n=1,2,\cdots)$且つ
+		\begin{align}
+			\Norm{T f}{\infty} = \Norm{\tilde{T}f}{\mathrm{L}^\infty(\mu_m)} \quad (\forall f \in \c{Y})
+		\end{align}
+		が満たされているから，$\left( T f_{n_k} \right)_{k=1}^{\infty}$もまた$\c{X}$でsup-normによりCauchy列をなしていて，
+		$(\c{X},sup-norm)$がBanach空間であるから$\left( T f_{n_k} \right)_{k=1}^{\infty}$は連続関数に強収束する．
+		ゆえに$T$はコンパクト作用素である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		[6] $a \in \cbound{\R^d}, \lambda > d$とする．$f \in \mathrm{L}^2(\R^d)$に対し，
 		\begin{align}
 			T_a f(x) = \int_{|x - y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy
@@ -19,7 +48,7 @@
 		により$T_a:\mathrm{L}^2(\R^d) \rightarrow \mathrm{L}^2(\R^d)$を定める．
 		\begin{description}
 			\item[(1)] $T_a$は連続であることを示せ．
-			\item[(2)] $\lim_{|x| \to \infty} a(x) = 0$のとき$T_a$がコンパクト作用素であることを示せ．
+			\item[(2)] $\lim_{|x| \to \infty} a(x) = 0$ならば$T_a$はコンパクト作用素であることを示せ．
 		\end{description}
 	\end{screen}
 	
