@@ -81,25 +81,56 @@
 				\begin{align}
 					\left| Q^n_t(N)(\omega) - \left( Q^n_{t\wedge\sigma(\omega)}(M)(\omega) - Q^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right|
 					\leq 3 \sup{|t - s| \leq T/2^n}{|M_t(\omega) - M_s(\omega)|^2}
+					\label{eq:stopped_quadratic_variation_4}
 				\end{align}
-				が満たされる．更に$t \longmapsto M_t$が$\mu$-a.s.に一様連続であるから，或る零集合$A$が存在して
+				が満たされる．更に$t \longmapsto M_t$が$\mu$-a.s.に一様連続であるから，或る零集合$A_1$が存在して
 				\begin{align}
-					\left| Q^n_t(N)(\omega) - \left( Q^n_{t\wedge\sigma(\omega)}(M)(\omega) - Q^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right|
-					\longrightarrow 0 \quad (n \longrightarrow \infty,\ \omega \in \Omega \backslash A)
+					3 \sup{|t - s| \leq T/2^n}{|M_t(\omega) - M_s(\omega)|^2}
+					\longrightarrow 0 \quad (n \longrightarrow \infty,\ \omega \in \Omega \backslash A_1)
+					\label{eq:stopped_quadratic_variation_5}
 				\end{align}
-				が従う．
-				
+				が従う．また定理\ref{thm:existence_of_quadratic_variation}の証明中の
+				(\refeq{eq:thm_quadratic_variation_1})より，$\left( Q^n(M) \right)_{n=1}^{\infty}$の或る凸結合列
+				$\left( \hat{Q}^n(M) \right)_{n=1}^{\infty}$，或る零集合$A_2$及び或る部分添数列$(n_k)_{k=1}^{\infty}$
+				が存在して，全ての$t \in I$と$\omega \in \Omega \backslash A_2$に対し
 				\begin{align}
-					\left| Q^n_t(N) - \left( Q^n_{t\wedge\sigma}(M) - Q^n_{t\wedge\tau}(M) \right) \right|
-					= 
+					\hat{Q}^{n_k}_t(M)(\omega) \longrightarrow \inprod<M>_t(\omega) \quad (k \longrightarrow \infty)
 				\end{align}
-				定理\ref{thm:existence_of_quadratic_variation}の証明中の
-				(\refeq{eq:thm_quadratic_variation_1})より$\left( Q^n(N) \right)_{n=1}^{\infty}$の或る凸結合列
-				$\left( \hat{Q}^n(N) \right)_{n=1}^{\infty}$，或る零集合$A$及び或る部分添数列$(n_k)_{k=1}^{\infty}$
-				が存在して，全ての$t \in I$と$\omega \in \Omega \backslash A$に対し
+				を満たす．従って全ての$t \in I,\ \omega \in \Omega \backslash A_2$に対し
 				\begin{align}
-					\hat{Q}^{n_k}_t(N)(\omega) \longrightarrow \inprod<N>_t(\omega) \quad (k \longrightarrow \infty)
+					\hat{Q}^{n_k}_{t\wedge\sigma(\omega)}(M)(\omega) \longrightarrow \inprod<M>_{t\wedge\sigma(\omega)}(\omega),
+					\quad \hat{Q}^{n_k}_{t\wedge\tau(\omega)}(M)(\omega) \longrightarrow \inprod<M>_{t\wedge\tau(\omega)}(\omega) 
+					\quad (k \longrightarrow \infty)
+					\label{eq:stopped_quadratic_variation_6}
 				\end{align}
-				を満たす．
+				も成り立つ．各$n \in \N$についての凸結合を
+				\begin{align}
+					\hat{Q}^n(M) = \sum_{j=0}^{\infty} c_j^n Q^{n+j}(M),
+					\quad (\sum_{j=0}^{\infty} c_j^n = 1)
+				\end{align}
+				と表し，
+				\begin{align}
+					\hat{Q}^n(N) \coloneqq \sum_{j=0}^{\infty} c_j^n Q^{n+j}(N)
+				\end{align}
+				とおけば，(\refeq{eq:stopped_quadratic_variation_4})より全ての$\omega \in \Omega$に対し
+				\begin{align}
+					&\left| \hat{Q}^n_t(N)(\omega) - \left( \hat{Q}^n_{t\wedge\sigma(\omega)}(M)(\omega) - \hat{Q}^n_{t\wedge\tau(\omega)}(M)(\omega) \right) \right| \\
+					&\qquad = \left| \sum_{j=0}^{\infty} c_j^n Q^{n+j}_t(N)(\omega) - \left( Q^{n+j}_{t\wedge\sigma(\omega)}(M)(\omega) - Q^{n+j}_{t\wedge\tau(\omega)}(M)(\omega) \right) \right| \\
+					&\qquad \leq \sum_{j=0}^{\infty} c_j^n \left| Q^{n+j}_t(N)(\omega) - \left( Q^{n+j}_{t\wedge\sigma(\omega)}(M)(\omega) - Q^{n+j}_{t\wedge\tau(\omega)}(M)(\omega) \right) \right| \\
+					&\qquad \leq 3 \sup{|t - s| \leq T/2^n}{|M_t(\omega) - M_s(\omega)|^2}
+					\quad (n=1,2,\cdots)
+				\end{align}
+				が成り立つから，(\refeq{eq:stopped_quadratic_variation_5})と(\refeq{eq:stopped_quadratic_variation_6})より
+				全ての$t \in I,\ \omega \in \Omega \backslash (A_1 \cup A_2)$に対して
+				\begin{align}
+					\left| \inprod<M>_{t\wedge\sigma(\omega)}(\omega) - \inprod<M>_{t\wedge\tau(\omega)}(\omega) - \hat{Q}^{n_k}_t(N)(\omega) \right|
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つ．このとき
+				\begin{align}
+					\inprod<N>_t = \inprod<M>_{t\wedge\sigma} - \inprod<M>_{t\wedge\tau}
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+				\end{align}
+				が成立する．
 		\end{description}
 	\end{prf}
