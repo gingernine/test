@@ -14,8 +14,27 @@
 				\quad (\forall t \in I)
 			\end{align}
 			として定義する$M^\tau$を，停止時刻$\tau$で停めた過程という．
+			
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{prp}[停めた過程の適合性]
+			確率過程$M$の全てのパスが右連続且つ$(\mathcal{F}_t)$-適合のとき，任意の停止時刻$\tau$に対し
+			$M^\tau$もまた右連続且つ$(\mathcal{F}_t)$-適合である．
+		\end{prp}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$\omega \in \Omega$を取り固定する．
+		写像$t \longmapsto M_t^\tau(\omega) = M_{t \wedge \tau(\omega)}(\omega)$
+		について，$t < \tau(\omega)$なら$t \longmapsto M_t(\omega)$の右連続性により，
+		$t \geq \tau(\omega)$なら右側で定数関数となるから右連続性が従う．また
+		定理\ref{thm:measurability_of_stopping_time}より
+		$M_t^{\tau}$は可測$\mathcal{F}_{t \wedge \tau}/\borel{\R}$
+		であるから，$\mathcal{F}_{t\wedge \tau} \subset \mathcal{F}_t$より$M^\tau$の適合性が従う．
+		\QED
+	\end{prf}
 	
 	以下，いくつか集合を定義する．
 	\begin{description}
@@ -73,8 +92,8 @@
 	
 	\begin{screen}
 		\begin{thm}[有界なマルチンゲールを停止時刻で停めた過程の有界性]
-			$\tau$を任意の停止時刻とする．任意の$M \in \mathcal{M}_{b,c}$と$s \in I$に対し
-			$M_{s \wedge \tau} \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}\ \mu-$a.s.
+			$\tau$を任意の停止時刻とする．任意の$M \in \mathcal{M}_{b,c}$に対し
+			$\sup{t \in I}{\Norm{M_t^\tau}{\mathscr{L}^\infty}} \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}$
 			が成り立つ．
 			\label{thm:boundedness_of_stopped_process_of_bounded_martingale}
 		\end{thm}
@@ -110,6 +129,31 @@
 		\begin{align}
 			\sup{t \in I}{|M_t(\omega)|} \leq \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}}
 			\quad (\forall \omega \in \Omega \backslash C)
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[停止時刻で停めてもマルチンゲール]
+			$p > 1$とする．任意の$M \in \mathcal{M}_{p,c}$と停止時刻$\tau$に対し，
+			$M$を$\tau$で停めた過程について$M^\tau \in \mathcal{M}_{p,c}$が成り立つ．
+			\label{thm:stopped_process_martingale}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$\omega \in \Omega$に対し$I \ni t \longmapsto M_t(\omega)$は各点で右連続且つ左極限を持つから
+		$I \ni t \longmapsto M^{\tau}_t(\omega)$も各点で右連続且つ左極限を持ち，
+		特に$I \ni t \longmapsto M_t(\omega)$が連続となる$\omega$に対しては
+		$I \ni t \longmapsto M^{\tau}_t(\omega)$も連続である．
+		また$M_0 = M^{\tau}_0$より$M^{\tau}_0 = 0\ \mu$-a.s.が従う．あとは$M^{\tau}$の
+		$p$乗可積分性と$\cexp{M^\tau_t}{\mathcal{F}_s} = M^\tau_s\ (s < t)$を示せばよい．
+		実際Doobの不等式(定理\ref{thm:Doob_inequality_2})より$\sup{t \in I}{|M_t|^p}$
+		が可積分であるから，全ての$t \in I$に対し$\left| M^\tau_t \right|$は$p$乗可積分であり，
+		更に任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
+		\begin{align}
+			\cexp{M^\tau_t}{\mathcal{F}_s} = M_{t \wedge \tau \wedge s} = M^\tau_s \quad (s < t)
 		\end{align}
 		が従う．
 		\QED

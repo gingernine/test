@@ -108,7 +108,7 @@
 				}
 				，写像$I \ni t \longmapsto A_t(\omega)\ (\forall \omega \in \Omega \backslash (E \cup E'))$は連続且つ単調非減少である．
 				また(\refeq{eq:thm_quadratic_variation_0})より$A$は$(\mathcal{F}_t)$-適合でもあるから，以上より$A \in \mathcal{A}^+$である．
-				$N = M^2 - A \in \mathcal{M}_{b,c} \subset \mathcal{M}_{c,loc}$(命題\ref{prp:M_pc_M_cloc})
+				$N = M^2 - A \in \mathcal{M}_{2,c} \subset \mathcal{M}_{c,loc}$(命題\ref{prp:M_pc_M_cloc})
 				より$A$は定理の主張を満たす．
 				存在の一意性は命題\ref{prp:bounded_continuous_M_2c_path}による．
 				今$A' \in \mathcal{A}^+$もまた定理の主張を満たしているなら，
@@ -120,57 +120,59 @@
 				
 			\item[第二段]
 				$M \in \mathcal{M}_{c,loc}$を任意に取る．或る$(\tau_j)_{j=1}^{\infty} \in \mathcal{T}$が存在して
-				$M^n \in \mathcal{M}_{b,c}\ (\forall t \in I,\ M_t^n = M_{t \wedge \tau_n})$となるから，
-				前段の結果より或る$A^n \in \mathcal{A}^+$が存在して
+				$M^{\tau_j} \in \mathcal{M}_{b,c}$を満たすから，
+				前段の結果より或る$A^j \in \mathcal{A}^+$が存在して
 				\begin{align}
-					N^n \coloneqq (M^n)^2 - A^n \in \mathcal{M}_{b,c}
+					N^j \coloneqq \left( M^{\tau_j} \right)^2 - A^j \in \mathcal{M}_{2,c}
 				\end{align}
-				を満たす．或る$\mu$-零集合$E_1$が存在して
+				が成り立つ．或る$\mu$-零集合$E_1$が存在して
 				\footnote{
 					或る零集合$E_1^{(1)}$があり$\tau_0(\omega) = 0\ (\forall \omega \in \Omega \backslash E_1^{(1)})$，
 					また或る零集合$E_1^j$があり$\tau_j(\omega) \leq \tau_{j+1}(\omega)\ (\forall \omega \in \Omega \backslash E_1^j)$，
 					更に或る零集合$E_1^{(T)}$を取れば，各$\omega \in \Omega \backslash E_1^{(T)}$について
-					或る$n(\omega)$番目以降は$\tau_n(\omega) = T\ (\forall n \geq n(\omega))$
-					が成り立つ．
+					或る$J(\omega)$番目以降は$\tau_j(\omega) = T\ (\forall j \geq J(\omega))$
+					が成り立つ．よって
 					\begin{align}
 						E_1 = \left( \cup_{j=1}^{\infty} E_1^j \right) \cup E_1^{(1)} \cup E_1^{(T)}
 					\end{align}
 					とおけばよい．
 				}
-				全ての$\omega \in \Omega \backslash E_1$で$(\tau_n(\omega))_{n=1}^{\infty}$は$0$出発，単調非減少かつ或る$n(\omega)$番目以降は$T$に一致する．
-				今任意に$n \leq m,\ n,m \in \N$を取って固定する．$\omega \in \Omega \backslash E_1$に対しては
+				，全ての$\omega \in \Omega \backslash E_1$に対し$(\tau_j(\omega))_{j=1}^{\infty}$は$0$出発，
+				単調非減少かつ或る$J=J(\omega)$番目以降は$\tau_j(\omega) = T\ (\forall j \geq J)$を満たす．
+				$n \leq m$となるように任意に$n,m \in \N$を取って固定すれば，全ての$\omega \in \Omega \backslash E_1$に対して
 				\begin{align}
-					M_{t \wedge \tau_n(\omega)}^m(\omega) = M_{t \wedge \tau_n(\omega) \wedge \tau_m(\omega)}(\omega) = M_t^n(\omega) \quad (\forall t \in I)
-				\end{align}
-				となり関数類として$[M_{t \wedge \tau_n}^m] = [M_t^n]\ (\forall t \in I)$が成り立つから，任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
-				\begin{align}
-					\cexp{(M_t^m)^2 - A_t^m}{\mathcal{F}_{\tau_n}} = (M_{t \wedge \tau_n}^m)^2 - A_{t \wedge \tau_n}^m = (M_t^n)^2 - A_{t \wedge \tau_n}^m
+					M_{t \wedge \tau_n(\omega)}^{\tau_m}(\omega) = M_{t \wedge \tau_n(\omega) \wedge \tau_m(\omega)}(\omega) = M_t^{\tau_n}(\omega) 
 					\quad (\forall t \in I)
 				\end{align}
-				を得る．一方で$N^m \in \mathcal{M}_{2,c}$であるから
+				が従うから，各$t \in I$で$M_{t \wedge \tau_n}^m$と$M_t^n$の関数類が一致し，
+				任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より
 				\begin{align}
-					\cexp{(M_t^m)^2 - A_t^m}{\mathcal{F}_{\tau_n}} = \cexp{N_t^m}{\mathcal{F}_{\tau_n}} = N_{t \wedge \tau_n}^m \quad (\forall t \in I)
+					\cexp{\left(M_t^{\tau_m}\right)^2 - A_t^m}{\mathcal{F}_{\tau_n}} 
+					= \left(M_{t \wedge \tau_n}^{\tau_m}\right)^2 - A_{t \wedge \tau_n}^m 
+					= \left(M_t^{\tau_n}\right)^2 - A_{t \wedge \tau_n}^m
+					\quad (\forall t \in I)
 				\end{align}
-				も成り立ち，任意抽出定理(定理\ref{thm:optional_sampling_theorem_2})より$\tau_n$で停めた過程も二乗可積分マルチンゲールとなる．
-				関数類としての意味を強調すれば$[(M_t^n)^2 - A_{t \wedge \tau_n}^m] = [N_{t \wedge \tau_n}^m]\ (\forall t \in I)$が成り立っているから
-				$\left( (M_t^n)^2 - A_{t \wedge \tau_n}^m \right)_{t \in I}$が二乗可積分マルチンゲールであることになり，前段の一意性から
-				或る$\mu$-零集合$E^{n,m}$が存在して
+				が得られる．定理\ref{thm:stopped_process_martingale}より
+				$\left(N_{t \wedge \tau_n}^m \right)_{t \in I} \in \mathcal{M}_{2,c}$
+				となるから$\left(M^{\tau_n}\right)^2 - (A^m)^{\tau_n} \in \mathcal{M}_{2,c}$
+				が従い，一方$N^n = \left(M^{\tau_n}\right)^2 - A^n \in \mathcal{M}_{2,c}$であるから，
+				前段の考察より或る$\mu$-零集合$E^{n,m}$が存在して
 				\begin{align}
-					A_{t \wedge \tau_n(\omega)}^m(\omega) = A_t^n(\omega) \quad (\forall t \in I,\ \omega \in \Omega \backslash E^{n,m})
+					A_t^n(\omega) = A_{t \wedge \tau_n(\omega)}^m(\omega) \quad (\forall t \in I,\ \omega \in \Omega \backslash E^{n,m})
 				\end{align}
-				が従う．特に$\omega \in \Omega \backslash (E_1 \cup E^{n,m})$なら
+				が得られ，特に
 				\begin{align}
-					A_t^n(\omega) = A_{t \wedge \tau_n(\omega)}^m(\omega) = A_t^m(\omega) \quad (t \leq \tau_n(\omega))
+					A_{t \wedge \tau_n(\omega)}^n(\omega) = A_{t \wedge \tau_n(\omega)}^m(\omega) \quad (\forall t \in I,\ \omega \in \Omega \backslash E^{n,m})
 				\end{align}
-				となる．
+				が成り立つ．
 				\begin{align}
-					E_2 \coloneqq \bigcup_{n \in \N} E^{n,n+1}
+					E_2 \coloneqq \bigcup_{\substack{n,m \in \N \\ n \leq m}} E^{n,m}
 				\end{align}
-				とおき
+				に対し
 				\begin{align}
 					A_t(\omega) \coloneqq
 					\begin{cases}
-						\lim_{n \to \infty} A_t^n(\omega) & (\omega \in \Omega \backslash (E_1 \cup E_2)) \\
+						\lim_{n \to \infty} A_{t \wedge \tau_n(\omega)}^n(\omega) & (\omega \in \Omega \backslash (E_1 \cup E_2)) \\
 						0 & (\omega \in E_1 \cup E_2)
 					\end{cases}
 					\quad (\forall t \in I)
@@ -208,7 +210,7 @@
 				．そして$N \coloneqq M^2 - A$とおけば$\Omega \backslash (E_1 \cup E_2)$上で
 				\begin{align}
 					N_{t \wedge \tau_n} = M_{t \wedge \tau_n}^2 - A_{t \wedge \tau_n} 
-					= \left( M_{t \wedge \tau_n}^n \right)^2 - A_{t \wedge \tau_n}^n
+					= \left( M_t^{\tau_n} \right)^2 - A_{t \wedge \tau_n}^n
 					= N_{t \wedge \tau_n}^n \quad (\forall t \in I,\ n \in \N)
 				\end{align}
 				が成り立つから$N \in \mathcal{M}_{c,loc}$となる．$A$の一意性について，
