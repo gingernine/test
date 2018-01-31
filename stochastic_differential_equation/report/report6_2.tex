@@ -83,7 +83,7 @@
 				\mu_M(B) \coloneqq \int_\Omega \int_I \defunc_B(s,\omega)\ \inprod<M>(ds,\omega)\ \mu(d\omega)
 				\label{eq:thm_composition_of_predictable_space_measure_0}
 			\end{align}
-			と定めれば，$\mu_M$は可測空間$(I \times \Omega,\mathcal{P})$上の測度となる．
+			と定めれば，$\mu_M$は可測空間$(I \times \Omega,\mathcal{P})$上の有限測度となる．
 			\label{thm:composition_of_predictable_space_measure}
 		\end{thm}
 	\end{screen}
@@ -143,17 +143,23 @@
 				\end{align}
 				が成り立つから，$A \in \mathcal{F}_t$であることと$\inprod<M>$の適合性から$(\alpha,\beta] \times A \in \mathcal{D}$が従う．
 				$B = \{0\} \times A\ (A \in \mathcal{F}_0)$の場合は積分は常に0になる．
+				以上で(\refeq{eq:thm_composition_of_predictable_space_measure_0})右辺の積分が定義される．
 				
 			\item[第二段]
-				前段の結果より(\refeq{eq:thm_composition_of_predictable_space_measure_0})右辺の積分が定義される．
-				この段では(\refeq{eq:thm_composition_of_predictable_space_measure_0})で定める$\mu_M$が測度となることを示す．
+				(\refeq{eq:thm_composition_of_predictable_space_measure_0})で定める$\mu_M$が測度となることを示す．
 				先ず$\mu_M$の正値性は(\refeq{eq:thm_composition_of_predictable_space_measure_2})より従う．
 				また互いに素な列$B_n \in \mathcal{P}$を取れば，(\refeq{eq:thm_composition_of_predictable_space_measure_3})と単調収束定理より
 				\begin{align}
 					\int_\Omega \int_I \defunc_{\sum_{n=1}^{\infty}B_n}(s,\omega)\ \inprod<M>(ds,\omega)\ \mu(d\omega)
 					= \sum_{n=1}^{\infty} \int_\Omega \int_I \defunc_{B_n}(s,\omega)\ \inprod<M>(ds,\omega)\ \mu(d\omega)
 				\end{align}
-				が成り立ち$\mu_M$の完全加法性が従う．
+				が成り立ち$\mu_M$の完全加法性が従う．また定理\ref{thm:existence_of_quadratic_variation}より$\inprod<M>_T$は可積分であるから，
+				\begin{align}
+					\mu_M(I \times \Omega) = \int_\Omega \int_I \inprod<M>(ds,\omega)\ \mu(d\omega)
+					= \int_\Omega \inprod<M>_T(\omega)\ \mu(d\omega)
+					< \infty
+				\end{align}
+				より$\mu_M$の有限性を得る．
 				\QED
 		\end{description}
 	\end{prf}
@@ -246,10 +252,10 @@
 				\end{align}
 				とおけば補題\ref{lem:holder_inequality}より$\mu(E) = 0$となるから，$\mu_M(I \times E) = 0$が従い
 				\begin{align}
-					\int_{I \times \Omega} |F(\omega)|^2 \defunc_{(s,t]}(u)\ \mu_M(d(u,\omega)) 
+					\int_{I \times \Omega} |F(\omega)|^2 \defunc_{(s,t]}(u)\ \mu_M(dud\omega) 
 					\leq \Norm{F}{\semiLp{\infty}{\mu}}^2 \mu_M\left((s,t] \times (\Omega \backslash E)\right) 
 				\end{align}
-				が成り立つ．また$M \in \mathcal{M}_{2,c}$であるから$t$ごとに$\inprod<M>_t$は可積分であり
+				が成り立つ．また$M \in \mathcal{M}_{2,c}$であるから，定理\ref{thm:existence_of_quadratic_variation}より$\inprod<M>_t\ (\forall t \in I)$は可積分であり
 				\begin{align}
 					\mu_M\left((s,t] \times (\Omega \backslash E)\right) = \int_{\Omega} \inprod<M>_t(\omega) - \inprod<M>_s(\omega)\ \mu(d\omega) < \infty
 				\end{align}

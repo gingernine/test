@@ -6,13 +6,11 @@
 				A_0 = 0\quad \mbox{$\mu$-a.s.},
 				\quad M^2 - A \in \mathcal{M}_{c,loc}.
 			\end{align}
-			特に$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$に対し$M^{\tau_j} \in \mathcal{M}_{b,c}\ (j=0,1,\cdots)$
-			となるとき，$\left( M^{\tau_j} \right)^2 - A^{\tau_j}  \in \mathcal{M}_{b,c}\ (j=0,1,\cdots)$が満たされる．
 			$A' \in \mathcal{A}^+$もまた上の主張を満たすときは$A$と$A'$は$\mu$-a.s.にパスが一致し，
 			逆に$A,A' \in \mathcal{A}^+$が$\mu$-a.s.にパスが一致するならば$A'$も主張を満たす．
-			また$M \in \mathcal{M}_{b,c}$の場合は$A_0 = 0\ \mbox{$\mu$-a.s.}$且つ
-			$M^2 - A \in \mathcal{M}_{b,c}$を満たす
-			$A \in \mathcal{A}^+$が存在する．
+			また$M,M' \in \mathcal{M}_{c,loc}$が$\mu$-a.s.にパスが一致するなら，
+			それぞれに対応する$A,A' \in \mathcal{A}^+$も$\mu$-a.s.にパスが一致する．
+			特に$M \in \mathcal{M}_{p,c}\ (p \geq 2)$に対しては，対応する$A \in \mathcal{A}^+$は可積分である．
 			\label{thm:existence_of_quadratic_variation}
 		\end{thm}
 	\end{screen}
@@ -214,6 +212,31 @@
 					= N_{t \wedge \tau_n}^n \quad (\forall t \in I,\ n \in \N)
 				\end{align}
 				が成り立つから$N \in \mathcal{M}_{c,loc}$となる．$A$の一意性について，
+				
+			\item[第三段]
+				後半の主張を示す．$M \in \mathcal{M}_{p,c}\ (p \geq 2)$の場合，
+				命題\ref{prp:M_pc_M_cloc}より$M \in \mathcal{M}_{c,loc}$であるから，
+				或る$A \in \mathcal{A}^+$が存在して$M^2 - A \in \mathcal{M}_{c,loc}$となる．
+				従って或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
+				$\left(M^{\tau_j} \right)^2 - A^{\tau_j} \in \mathcal{M}_{b,c}\ (j=0,1,\cdots)$
+				を満たすから，任意に$t \in I$を固定すれば
+				\begin{align}
+					\int_{\Omega} \left( M_{t \wedge \tau_j(\omega)}(\omega) \right)^2\ \mu(d\omega)
+					= \int_{\Omega} A_{t \wedge \tau_j(\omega)}(\omega)\ \mu(d\omega)
+					\quad (\forall j=0,1,\cdots)
+				\end{align}
+				が成り立つ．或る零集合$E$が存在して，$\omega \in \Omega \backslash E$なら
+				$A_0(\omega) = 0$，$I \ni t \longmapsto A_t(\omega)$は連続且つ単調非減少，
+				更に$0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \cdots \leq \tau_{J}(\omega) = T\ (\exists J = J(\omega))$
+				が満たされるから，$\left(A_{t \wedge \tau_j(\omega)}(\omega)\right)_{j=0}^{\infty}$は単調増大列である．
+				またDoobの不等式により
+				$\left| M_{t \wedge \tau_j} \right| \leq \sup{t \in I}{|M_t|} \in \mathscr{L}^p \subset \mathscr{L}^2$
+				も満たされているから，Lebesgueの収束定理と単調収束定理より
+				\begin{align}
+					\int_{\Omega} \left( M_t(\omega) \right)^2\ \mu(d\omega)
+					= \int_{\Omega} A_t(\omega)\ \mu(d\omega) < \infty
+				\end{align}
+				が得られる．
 		\end{description}
 	\end{prf}
 	
@@ -230,3 +253,94 @@
 		\end{dfn}
 	\end{screen}
 	
+	\begin{screen}
+		\begin{thm}[二次変分が有界な局所マルチンゲールは二乗可積分マルチンゲール]
+			$M \in \mathcal{M}_{c,loc}$かつ$\Norm{\inprod<M>_T}{\mathscr{L}^{\infty}} < \infty$
+			であるならば，$M \in \mathcal{M}_{2,c}$が成り立つ．
+			\label{thm:quadratic_variation_bounded_then_M_2c}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} マルチンゲール性の定義に従い，以下三段階に分けて証明する．
+		\begin{description}
+			\item[第一段] 任意の$t \in I$に対し$M_t$が二乗可積分であることを示す．
+				定理\ref{thm:existence_of_quadratic_variation}より，或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
+				$\left(M^{\tau_j} \right)^2 - \inprod<M>^{\tau_j} \in \mathcal{M}_{b,c}\ (j=0,1,\cdots)$を満たす．
+				そして$M^2_0 - \inprod<M>_0 = 0\ \mu$-a.s.も満たされているから，マルチンゲール性より任意の$t \in I,\ j=0,1,\cdots$に対し
+				\begin{align}
+					\int_\Omega \left( M_{t \wedge \tau_j(\omega)}(\omega) \right)^2\ \mu(d\omega)
+					= \int_\Omega \inprod<M>_{t \wedge \tau_j(\omega)}(\omega)\ \mu(d\omega)
+					\label{thm:thm_quadratic_variation_bounded_then_M_2c_1}
+				\end{align}
+				が成り立つ．$(\tau_j)_{j=0}^{\infty}$に対して或る零集合$E$が存在し，$\omega \in \Omega \backslash E$なら
+				$0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \cdots \leq \tau_{J}(\omega) = T = \tau_{J+1}(\omega) = \tau_{J+2}(\omega) = \cdots\ (\exists J = J(\omega))$
+				が満たされる．また全ての$\omega \in \Omega$に対し$I \ni t \longmapsto \inprod<M>_t(\omega)$が
+				非負・連続・単調非減少であるから，任意の$t \in I$に対し
+				\begin{align}
+					\inprod<M>_{t \wedge \tau_j(\omega)}(\omega) \leq \inprod<M>_T(\omega)
+					\quad (\forall \omega \in \Omega \backslash E,\ j=0,1,\cdots)
+				\end{align}
+				が成り立つ．$\inprod<M>_T$が可積分であるからLebesgueの収束定理より
+				\begin{align}
+					\int_\Omega \inprod<M>_t(\omega)\ \mu(d\omega)
+					= \lim_{j \to \infty} \int_\Omega \inprod<M>_{t \wedge \tau_j(\omega)}(\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立ち，(\refeq{thm:thm_quadratic_variation_bounded_then_M_2c_1})においてFatouの補題を使えば
+				\begin{align}
+					&\int_\Omega \left( M_t(\omega) \right)^2\ \mu(d\omega)
+					= \int_\Omega \liminf_{j \to \infty} \left( M_{t \wedge \tau_j(\omega)}(\omega) \right)^2\ \mu(d\omega) \\
+					&\qquad \leq \liminf_{j \to \infty} \int_\Omega \inprod<M>_{t \wedge \tau_j(\omega)}(\omega)\ \mu(d\omega)
+					= \int_\Omega \inprod<M>_t(\omega)\ \mu(d\omega)
+					\leq \Norm{\inprod<M>_T}{\mathscr{L}^{\infty}}
+				\end{align}
+				が得られ$M_t$の二乗可積分性が従う．
+			
+			\item[第二段] $I \ni t \longmapsto M_t(\omega)$について，定義より
+				\footnote{
+					講義中の$\mathcal{M}_{c,loc}$定義には，「全ての$\omega \in \Omega$に対し
+					$I \ni t \longmapsto M_t(\omega)$が
+					各点$t$で右連続且つ左極限を持つ」とは定められていませんでしたが，
+					マルチンゲールの定義にはパスが右連続且つ左極限を持つことが含まれています．
+					講義中の$\mathcal{M}_{c,loc}$の定義だとこのことが示せなかったので，
+					勝手に自分の方で定義に入れました．
+				}
+				任意の$\omega \in \Omega$に対し
+				各点$t$で右連続且つ左極限を持つから，以降は$\mbox{$\mu$-a.s.}\omega \in \Omega$に対し連続且つ0出発であることを示す．
+				$M$に対し或る$\left( \sigma_k \right)_{k=0}^{\infty} \in \mathcal{T}$が存在して
+				$M^{\sigma_k} \in \mathcal{M}_{b,c}\ (k=0,1,\cdots)$を満たすから，
+				先ず$M_0 = M^{\sigma_k}_0 = 0\ \mu$-a.s.が従う．
+				また或る零集合$E'$が存在して$\omega \in \Omega \backslash E'$なら
+				$0 = \sigma_0(\omega) \leq \sigma_1(\omega) \leq \cdots \leq \sigma_{K}(\omega) = T = \sigma_{K+1}(\omega) = \sigma_{K+2}(\omega) = \cdots\ (\exists K = K(\omega))$
+				が成り立ち，一方で各$k =0,1,\cdots$に対し或る零集合$E_k^{''}$が存在し，$\omega \in \Omega \backslash E_k^{''}$ならば
+				$I \longmapsto M^{\hat{\sigma}_k}_t(\omega)$が連続となる．
+				\begin{align}
+					E^{''} \coloneqq \bigcup_{k=0}^{\infty} E_k^{''}
+				\end{align}
+				とおけば，$\omega \in \Omega \backslash (E' \cup E'')$ならば
+				必ず或る$K = K(\omega)$が存在して$\sigma_K(\omega) = T$を満たし，
+				$I \ni t \longmapsto M_t(\omega)$は$I \ni t \longmapsto M^{\sigma_K}_t(\omega)$
+				に一致する．$I \ni t \longmapsto M^{\sigma_K}_t(\omega)$が連続であるから
+				$I \ni t \longmapsto M_t(\omega)$の連続性が従い，
+				よって$\mu$-a.s.に$I \ni t \longmapsto M_t$は連続である．
+				
+			\item[第三段] 任意の$s,t \in I\ (s < t)$に対し
+				\begin{align}
+					\int_A M_t(\omega)\ \mu(d\omega) = \int_A M_s(\omega)\ \mu(d\omega)
+					\quad (\forall A \in \mathcal{F}_s)
+					\label{thm:thm_quadratic_variation_bounded_then_M_2c_2}
+				\end{align}
+				が成り立つことを示す．前段の$\left( \sigma_k \right)_{k=0}^{\infty} \in \mathcal{T}$を取れば
+				$M_{t \wedge \sigma_k} \longrightarrow M_t\ (k \longrightarrow \infty,\ \mbox{$\mu$-a.s.})$かつ
+				$M^{\sigma_k} \in \mathcal{M}_{b,c}\ (k=0,1,\cdots)$が満たされるから，任意の$k =0,1,\cdots$に対して
+				\begin{align}
+					\int_A M_{t \wedge \sigma_k(\omega)}(\omega)\ \mu(d\omega) 
+					= \int_A M_{s \wedge \sigma_k(\omega)}(\omega)\ \mu(d\omega)
+					\quad (\forall A \in \mathcal{F}_s)
+				\end{align}
+				が成り立つ．第一段の結果とDoobの不等式より
+				$\left| M_{t \wedge \sigma_k} \right| \leq \sup{t \in I}{\left| M_t \right|} \in \mathscr{L}^2 \subset \mathscr{L}^1$
+				が満たされるから，
+				Lebesgueの収束定理より(\refeq{thm:thm_quadratic_variation_bounded_then_M_2c_2})が得られる．
+				\QED
+		\end{description}
+	\end{prf}
