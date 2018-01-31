@@ -238,13 +238,13 @@
 				\end{description}
 				
 			\item[(2)] 
-				(\refeq{eq:dfn_simple_predictable_process})の各項が可測$\mathcal{P}/\borel{\R}$であることを示せばよい．
-				$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取る．$F$の単関数近似列$(F_n)_{n=1}^{\infty}$
-				を取れば，一つ一つは
+				(\refeq{eq:dfn_simple_predictable_process})の各項が可測$\mathcal{P}/\borel{\R}$であることを示す．
+				任意に$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取る．
+				$F$の単関数近似列$(F_n)_{n=1}^{\infty}$の一つ一つは
 				\begin{align}
 					F_n = \sum_{j=1}^{N_n} \alpha_j^n \defunc_{A_j^n} \quad \left( \alpha_j^n \in \R,\ A_j^n \in \mathcal{F}_s,\ \mbox{$\sum_{j=1}^{N_n}A_j^n = \Omega$} \right)
 				\end{align}
-				と表現される．各$j=1,\cdots,N_n$について
+				と表現され，各$j=1,\cdots,N_n$について
 				\begin{align}
 					I \times \Omega \ni (u,\omega) \longmapsto \defunc_{A_j^n}(\omega) \defunc_{(s,t]}(u)
 				\end{align}
@@ -252,6 +252,23 @@
 				その各点極限の$F \defunc_{(s,t]}$も可測$\mathcal{P}/\borel{\R}$である．
 			
 			\item[(3)]
+				$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取り，
+				$F$の単関数近似列$(F_n)_{n=1}^{\infty}$を各$n \in \N$で$|F_n| \leq |F|$を満たすように構成する．
+				$F_n$が(2)と同じ形で表現されているとすれば，各$n \in \N$で
+				\begin{align}
+					&\int_{I \times \Omega} F_n(\omega) \defunc_{(s,t]}(u)\ \mu_M(dud\omega)
+					= \sum_{j=1}^{N_n} \alpha_j^n \mu_M((s,t] \times A_j^n) \\
+					&\qquad = \sum_{j=1}^{N_n} \alpha_j^n \int_{A_j^n} \inprod<M>_t(\omega) - \inprod<M>_s(\omega)\ \mu(d\omega)
+					= \int_\Omega F_n(\omega) \left(\inprod<M>_t(\omega) - \inprod<M>_s(\omega)\right)\ \mu(d\omega)
+				\end{align}
+				が成り立つ．$\mu_M$の有限性，二次変分の可積分性より，Lebesgueの収束定理を適用して
+				\begin{align}
+					\int_{I \times \Omega} F(\omega) \defunc_{(s,t]}(u)\ \mu_M(dud\omega)
+					= \int_\Omega F(\omega) \left(\inprod<M>_t(\omega) - \inprod<M>_s(\omega)\right)\ \mu(d\omega)
+				\end{align}
+				が得られる．
+				
+			\item[(4)]
 				まず$\mathcal{S} \subset \semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$であることを示す．
 				(\refeq{eq:dfn_simple_predictable_process})の各項が二乗可積分であればよいから，任意に
 				$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取り$F \defunc{(s,t]}$の二乗可積分性を示す．
