@@ -183,20 +183,25 @@
 			\begin{description}
 				\item[(1)] $\mathcal{S}$は$\R$上の線形空間をなす．
 				\item[(2)] 任意の$X \in \mathcal{S}$は可測$\mathcal{P}/\borel{\R}$である．
-				\item[(3)] 任意の$\mathcal{P}/\borel{\R}$-可測関数$Y$に対し次が成り立つ:
+				\item[(3)] 任意の$\mathcal{P}/\borel{\R}$-可測可積分関数$Y$に対し次が成り立つ:
 					\begin{align}
-						\int_{I \times \Omega} Y(t,\omega)\ \mu_M(dud\omega)
-						= \int_\Omega Y(t,\omega)\ \inprod<M>(dt,\omega)\ \mu(d\omega).
+						\int_{I \times \Omega} Y(t,\omega)\ \mu_M(dtd\omega)
+						= \int_\Omega \int_I Y(t,\omega)\ \inprod<M>(dt,\omega)\ \mu(d\omega).
 						\label{eq:lem_properties_of_simple_predictable_processes_0}
 					\end{align}
 				\item[(4)] $\mathcal{S}$は$\semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$の部分集合である．
 					また$\mathcal{S}$を$\mu_M$-a.s.に等しい関数類$\equiv{\cdot}{\mathfrak{S}}$でまとめたものを$\mathfrak{S}$と表し，
-					$\mathfrak{S}$から$\Lp{2}{I \times \Omega,\mathcal{P},\mu_M}$への等長埋め込みを$J$と表すとき，
+					$\mathfrak{S}$から$\Lp{2}{I \times \Omega,\mathcal{P},\mu_M}$への等長\footnotemark
+					埋め込みを$J$と表すとき，
 					$J\mathfrak{S}$は$\Lp{2}{I \times \Omega,\mathcal{P},\mu_M}$において稠密である．
 			\end{description}
 			\label{lem:properties_of_simple_predictable_processes}
 		\end{lem}
 	\end{screen}
+	
+	\footnotetext{
+		ノルム$\Norm{\cdot}{\Lp{2}{\mu_M}}$に関する等長性を指す．
+	}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
@@ -251,20 +256,23 @@
 				が可測$\mathcal{P}/\borel{\R}$であるから，$F_n \defunc_{(s,t]}$及び
 				その各点極限の$F \defunc_{(s,t]}$も可測$\mathcal{P}/\borel{\R}$である．
 			
-			\item[(3)]
-				$(s,t] \in I$と$F \in \semiLp{\infty}{\Omega,\mathcal{F}_s,\mu}$を取り，
-				$F$の単関数近似列$(F_n)_{n=1}^{\infty}$を各$n \in \N$で$|F_n| \leq |F|$を満たすように構成する．
-				$F_n$が(2)と同じ形で表現されているとすれば，各$n \in \N$で
+			\item[(3)] $\mathcal{P}/\borel{\R}$-可測可積分関数$Y$が非負値の場合，
+				$Y$の単関数近似列$(Y_n)_{n=1}^{\infty}$を$0 \leq Y_n \leq Y_{n+1} \leq Y$を満たすように取る．
+				各$Y_n$については，$\alpha_i^n \in \R,\ A_i^n \in \mathcal{P}\ (\sum_{i=1}^{N_n} A_i^n = I \times \Omega)$により
 				\begin{align}
-					&\int_{I \times \Omega} F_n(\omega) \defunc_{(s,t]}(u)\ \mu_M(dud\omega)
-					= \sum_{j=1}^{N_n} \alpha_j^n \mu_M((s,t] \times A_j^n) \\
-					&\qquad = \sum_{j=1}^{N_n} \alpha_j^n \int_{A_j^n} \inprod<M>_t(\omega) - \inprod<M>_s(\omega)\ \mu(d\omega)
-					= \int_\Omega F_n(\omega) \left(\inprod<M>_t(\omega) - \inprod<M>_s(\omega)\right)\ \mu(d\omega)
+					Y_n = \sum_{i=1}^{N_n} \alpha_i^n \defunc_{A_i^n}
 				\end{align}
-				が成り立つ．$\mu_M$の有限性，二次変分の可積分性より，Lebesgueの収束定理を適用して
+				の形で表現できるから
 				\begin{align}
-					\int_{I \times \Omega} F(\omega) \defunc_{(s,t]}(u)\ \mu_M(dud\omega)
-					= \int_\Omega F(\omega) \left(\inprod<M>_t(\omega) - \inprod<M>_s(\omega)\right)\ \mu(d\omega)
+					&\int_{I \times \Omega} Y_n(t,\omega)\ \mu_M(dt d\omega)
+					= \sum_{i=1}^{N_n} \alpha_i^n \mu_M(A_i^n) \\
+					&\qquad = \sum_{i=1}^{N_n} \alpha_i^n \int_\Omega \int_I \defunc_{A_i^n} \inprod<M>(dt,\omega)\ \mu(d\omega)
+					= \int_\Omega \int_I Y_n(\omega)\ \inprod<M>(dt,\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立つ．従って単調収束定理より
+				\begin{align}
+					\int_{I \times \Omega} Y(t,\omega)\ \mu_M(dt d\omega)
+					= \int_\Omega \int_I Y(t,\omega)\ \inprod<M>(dt,\omega)\ \mu(d\omega)
 				\end{align}
 				が得られる．
 				
@@ -350,3 +358,28 @@
 				\QED
 		\end{description}
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[左連続適合過程は$\mathcal{P}/\borel{\R}$-可測]
+			確率過程$X$が左連続且つ$(\mathcal{F}_t)$-適合なら可測$\mathcal{P}/\borel{\R}$である．
+			\label{thm:left_continuous_adapted_then_predictable}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			X^n_t \coloneqq X_0 \defunc_{\{0\}} + \sum_{k=0}^{2^n-1} X_{\frac{kT}{2^n}} \defunc_{\left( \frac{kT}{2^n}, \frac{(k+1)T}{2^n}\right]}(t)
+			\quad (\forall t \in I)
+		\end{align}
+		として単純過程の列$\left( X^n \right)_{n=1}^{\infty}$を構成する．
+		この表現より$X^n \in \mathcal{S}\ (n=1,2,\cdots)$が満たされ，また全ての$\omega \in \Omega$について
+		$I \ni t \longmapsto X_t(\omega)$が左連続であるから，任意の$t \in I,\omega \in \Omega$に対して
+		\begin{align}
+			\left| X^n_t(\omega) - X_t(\omega) \right| \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		が成り立つ．補題\ref{lem:properties_of_simple_predictable_processes}より
+		$X^n$は可測$\mathcal{P}/\borel{\R}$であり，各点収束先にも可測性は保たれる．
+		\QED
+	\end{prf}
+	

@@ -18,13 +18,20 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[伊藤積分の線型等長性]
-			任意の$M \in \mathcal{M}_{2,c}$に対し$I_M$は線型であり，次を満たす:
+		\begin{thm}[単純可予測過程に対する伊藤積分の線型等長性]
+			任意の$M \in \mathcal{M}_{2,c}$に対し$I_M$は線型であり，任意の停止時刻$\tau$に対して次を満たす:
+			\begin{align}
+				\int_{I \times \Omega} \left| X(t,\omega) \right|^2 \defunc_{[0,\tau(\omega)]}(t)\ \mu_M(dtd\omega)
+				= \int_\Omega \left| I_M(X)(\tau(\omega),\omega) \right|^2\ \mu(d\omega)
+				\quad (X \in \mathcal{S}).
+				\label{eq:thm_Ito_integral_linearity_isometric}
+			\end{align}
+			特に$\tau = T$の場合次を得る:
 			\begin{align}
 				\int_{I \times \Omega} \left| X(t,\omega) \right|^2\ \mu_M(dtd\omega)
 				= \int_\Omega \left| I_M(X)_T(\omega) \right|^2\ \mu(d\omega)
 				\quad (X \in \mathcal{S}).
-				\label{eq:thm_Ito_integral_linearity_isometric}
+				\label{eq:thm_Ito_integral_linearity_isometric_3}
 			\end{align}
 			\label{thm:Ito_integral_linearity_isometric}
 		\end{thm}
@@ -62,10 +69,44 @@
 				\end{description}
 				
 			\item[等長性]
-				任意に$X \in \mathcal{S}$を取り，(\refeq{eq:dfn_Ito_integral_simple_predictable_process})を$X$の表示とする．
+				$B \coloneqq \Set{(t,\omega) \in I \times \Omega}{t \leq \tau(\omega)}$とおけば，
+				$\defunc_B$は
 				\begin{align}
-					d
+					\defunc_{[0,\tau(\omega)]}(t) = \defunc_B(t,\omega)
+					\quad (\forall (t,\omega) \in I \times \Omega)
 				\end{align}
+				を満たし，かつ左連続な適合過程であるから定理\ref{thm:left_continuous_adapted_then_predictable}により可測$\mathcal{P}/\borel{\R}$であるから
+				(\refeq{eq:thm_Ito_integral_linearity_isometric})左辺の積分を考察できる．
+				今，$X \in \mathcal{S}$が(\refeq{eq:dfn_simple_predictable_process})により表示されているとすれば，
+				\begin{align}
+					&\int_\Omega \left| I_M(X)(\tau(\omega),\omega) \right|^2\ \mu(d\omega) \\
+					&\qquad = \int_\Omega \left| \sum_{i=0}^{n-1} F_i(\omega) \left( M^\tau_{t_{i+1}}(\omega) - M^\tau_{t_i}(\omega) \right) \right|^2\ \mu(d\omega) \\
+					&\qquad = \sum_{i=0}^{n-1} \int_\Omega \left| F_i(\omega) \left( M^\tau_{t_{i+1}}(\omega) - M^\tau_{t_i}(\omega) \right) \right|^2\ \mu(d\omega) \\
+						&\quad\qquad + 2 \sum_{i<j} \int_\Omega F_i(\omega) F_j(\omega) \left( M^\tau_{t_{i+1}}(\omega) - M^\tau_{t_i}(\omega) \right) 
+							\left( M^\tau_{t_{j+1}}(\omega) - M^\tau_{t_j}(\omega) \right)\ \mu(d\omega)
+					\label{eq:thm_Ito_integral_linearity_isometric_2}
+				\end{align}
+				が成り立つ．右辺第二項についてはマルチンゲール性より
+				\begin{align}
+					&\int_\Omega F_i(\omega) F_j(\omega) \left( M^\tau_{t_{i+1}}(\omega) - M^\tau_{t_i}(\omega) \right) 
+							\left( M^\tau_{t_{j+1}}(\omega) - M^\tau_{t_j}(\omega) \right)\ \mu(d\omega) \\
+					&= \int_\Omega F_i(\omega) F_j(\omega) \left( M^\tau_{t_{i+1}}(\omega) - M^\tau_{t_i}(\omega) \right) 
+							\cexp{M^\tau_{t_{j+1}}(\omega) - M^\tau_{t_j}(\omega)}{\mathcal{F}_{t_j}}(\omega)\ \mu(d\omega)
+							= 0
+				\end{align}
+				が従い，右辺第一項についても
+				\begin{align}
+					\int_\Omega \left| F_i(\omega) \left( M^\tau_{t_{i+1}}(\omega) - M^\tau_{t_i}(\omega) \right) \right|^2\ \mu(d\omega)
+					= \int_\Omega |F_i(\omega)|^2 \left( \inprod<M^\tau>_{t_{i+1}}(\omega) - \inprod<M^\tau>_{t_i}(\omega) \right)\ \mu(d\omega)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\mbox{(\refeq{eq:thm_Ito_integral_linearity_isometric_2})}
+					&= \sum_{i=0}^{n-1} \int_\Omega |F_i(\omega)|^2 \left( \inprod<M>^\tau_{t_{i+1}}(\omega) - \inprod<M>^\tau_{t_i}(\omega) \right)\ \mu(d\omega) \\
+					&= \int_\Omega \int_I |X(t,\omega)|^2 \defunc_B(t,\omega)\ \inprod<M>(dt,\omega)\ \mu(d\omega)
+				\end{align}
+				が導かれ，(\refeq{eq:lem_properties_of_simple_predictable_processes_0})により主張を得る．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -100,7 +141,7 @@
 		が成り立つ．これにより$\equiv{X_1}{\mathfrak{S}} = \equiv{X_2}{\mathfrak{S}}$のとき
 		$\equiv{I_M(X_1)}{2,c} = \equiv{I_M(X_2)}{2,c}$が従う．
 		(\refeq{eq:thm_Ito_integral_equiv_class_linearity_isometric})は
-		(\refeq{eq:thm_Ito_integral_linearity_isometric})より得られ，
+		(\refeq{eq:thm_Ito_integral_linearity_isometric_3})より得られ，
 		また任意に$\equiv{X_1}{\mathfrak{S}},\equiv{X_2}{\mathfrak{S}} \in \mathfrak{S},\ \alpha,\beta \in \R$を取れば，
 		$I_M$及び$\equiv{\cdot}{\mathfrak{S}},\equiv{\cdot}{2,c}$の線型性より
 		\begin{align}
@@ -111,26 +152,25 @@
 			= \alpha \tilde{I}\left( \equiv{X_1}{\mathfrak{S}} \right) + \beta \tilde{I}\left( \equiv{X_2}{\mathfrak{S}} \right)
 		\end{align}
 		が成り立つ．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[伊藤積分の拡張]
+		\begin{thm}[同値類に対する伊藤積分の拡張]
 			$M \in \mathcal{M}_{2,c}$とする．
 			定理\ref{thm:Ito_integral_equiv_class_linearity_isometric}で定めた
 			$\tilde{I}_M$は$\Lp{2}{I \times \Omega,\mathcal{P},\mu_M}$上の線型作用素に
-			拡張可能である．この拡張作用素も同様に$\tilde{I}_M$と表記し，伊藤積分$I_M$についても，
-			任意の$X \in \semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$に対し
-			或る$N \in \tilde{I}_M\left( \equiv{X}{\Lp{2}{\mu_M}} \right)$を対応させるものとして拡張し，
-			$N$を$I_M(X)$と表記しこれを伊藤積分として定義しなおす．
+			拡張可能である．
+			\label{thm:expansion_of_Ito_integral_equiv_class}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		拡張可能性について，等長単射
+		補題\ref{lem:properties_of_simple_predictable_processes}の等長単射
 		\begin{align}
 			J:\mathfrak{S} \ni \equiv{X}{\mathfrak{S}} \longmapsto \equiv{X}{\Lp{2}{\mu_M}} \in \Lp{2}{I \times \Omega,\mathcal{P},\mu_M}
 		\end{align}
-		の値域を$J\mathfrak{S}$に制限した線形全単射を$\tilde{J}$と表す．
+		に対し，値域を$J\mathfrak{S}$に制限した線形全単射を$\tilde{J}$と表す．
 		定理\ref{thm:Ito_integral_equiv_class_linearity_isometric}より$\tilde{I}_M$も線型性を持つから
 		\begin{align}
 			\tilde{I}_M \circ \tilde{J}^{-1}: J \mathfrak{S} \ni \equiv{X}{\Lp{2}{\mu_M}} \longmapsto \equiv{I_M(X)}{2,c} \in \mathfrak{M}_{2,c}
@@ -139,6 +179,29 @@
 		補題\ref{lem:properties_of_simple_predictable_processes}及び定理\ref{thm:linear_operator_expansion}により拡張すればよい．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[二乗可積分可予測過程に対する伊藤積分]
+			定理\ref{thm:expansion_of_Ito_integral_equiv_class}で拡張した作用素もまた$\tilde{I}_M$と書く．
+			任意の$X \in \semiLp{2}{\mathcal{P},\mu_M}$に対し
+			或る$N \in \tilde{I}_M\left( \equiv{X}{\Lp{2}{\mu_M}} \right)$を対応させる関係を
+			\begin{align}
+				I_M: \semiLp{2}{\mathcal{P},\mu_M} \ni X \longmapsto N \in \tilde{I}_M\left( \equiv{X}{\Lp{2}{\mu_M}} \right), \quad
+				I_M(X)_t = \int_0^t X_s\ d M_s \quad (t \in I)
+			\end{align}
+			と表記し，この$I_M$を伊藤積分として定義しなおす．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[停止時刻で停めた伊藤積分]
+			任意の停止時刻$\tau$に対し
+			\begin{align}
+				\int_\Omega \left| I_M(X)(\tau(\omega),\omega) \right|^2\ \mu(d\omega)
+				= \int_\Omega \int_I X(t,\omega) \defunc_{[0,\tau(\omega)]}(t)\ \inprod<M>(dt,\omega)\ \mu(d\omega).
+			\end{align}
+		\end{lem}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{prp}[伊藤積分の二次変分]

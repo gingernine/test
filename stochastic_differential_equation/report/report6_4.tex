@@ -23,24 +23,11 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
+	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段] $\sup{t \in I}{\Norm{X_t}{\mathscr{L}^\infty}} < \infty$かつ$\Norm{\inprod<M>_T}{\semiLp{\infty}{\mu}} < \infty$
 				なら$X \in \semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$が成り立つことを示す．すなわち，このとき$I_M(X)$が定義される．
-				\begin{align}
-					X^n_t \coloneqq X_0 \defunc_{\{0\}} + \sum_{k=0}^{2^n-1} X_{\frac{kT}{2^n}} \defunc_{\left( \frac{kT}{2^n}, \frac{(k+1)T}{2^n}\right]}(t)
-					\quad (\forall t \in I)
-				\end{align}
-				として単純過程の列$\left( X^n \right)_{n=1}^{\infty}$を構成する．
-				この表現より$X^n \in \mathcal{S}\ (n=1,2,\cdots)$が満たされ，また全ての$\omega \in \Omega$について
-				$I \ni t \longmapsto X_t(\omega)$が左連続であるから，任意の$t \in I,\omega \in \Omega$に対して
-				\begin{align}
-					\left| X^n_t(\omega) - X_t(\omega) \right| \longrightarrow 0
-					\quad (n \longrightarrow \infty)
-				\end{align}
-				が成り立つ．補題\ref{lem:properties_of_simple_predictable_processes}より
-				$X^n\ (n \in \N)$は全て可測$\mathcal{P}/\borel{\R}$であるから，その各点収束先の
-				$X$もまた可測$\mathcal{P}/\borel{\R}$である．
+				$X$は左連続であるから定理\ref{thm:left_continuous_adapted_then_predictable}により可測$\mathcal{P}/\borel{\R}$である．
 				また定理\ref{thm:quadratic_variation_bounded_then_M_2c}より$M \in \mathcal{M}_{2,c}$も満たされている．
 				従って$\mathcal{P}/\borel{\R}$-可測関数の関数類を$\equiv{\cdot}{\Lp{0}{\mu_M}}$と表せば，
 				(\refeq{eq:lem_properties_of_simple_predictable_processes_0})より
@@ -88,7 +75,42 @@
 				\end{align}
 				$(\sigma_j)_{j=0}^{\infty} \in \mathcal{T}$であるから，或る零集合$E$が存在して，$\omega \in \Omega \backslash E$なら
 				$0 = \sigma_0(\omega) \leq \sigma_1(\omega) \leq \cdots$且つ，或る$J = J(\omega) \in \N$が存在して
-				$\sigma_j(\omega) = T\ (j \geq J)$となる．
+				$\sigma_j(\omega) = T\ (j \geq J)$となる．今，任意に$j \in \N_0,k \in \N$を取り固定する
+				\footnote{
+					$\N_0 = \N \cup \{0\}.$
+				}
+				．任意の$Y \in \mathcal{S}$に対し，$Y$が時点$0=t_0 < t_1 < \cdots < t_n = T$と
+				$F \in \semiLp{\infty}{\Omega,\mathcal{F}_0,\mu},F_i \in \semiLp{\infty}{\Omega,\mathcal{F}_{t_i},\mu}\ (i=0,1,\cdots,n-1)$によって
+				\begin{align}
+					Y_t = F \defunc_{\{0\}}(t) + \sum_{i=0}^{n-1} F_i \defunc_{\left(t_i,t_{i+1}\right]}(t)
+					\quad (t \in I)
+				\end{align}
+				と表現されているとき，$\mathcal{M}_{2,c}$上の確率積分の定義より或る零集合$E_j$が存在して
+				\begin{align}
+					I_{M^{\sigma_j}}(Y)_t(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_j}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_j}_{t \wedge t_i}(\omega) \right)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_j)
+				\end{align}
+				が成り立つ．特に両辺を$\sigma_j$で停めても等号は保たれ
+				\begin{align}
+					I_{M^{\sigma_j}}(Y)_{t \wedge \sigma_j(\omega)}(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_j}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_j}_{t \wedge t_i}(\omega) \right)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_j)
+				\end{align}
+				を得る．一方$\sigma_{j+k}$についても或る零集合$E_{j+k}$が存在して
+				\begin{align}
+					I_{M^{\sigma_{j+k}}}(Y)_t(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_{j+k}}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_{j+k}}_{t \wedge t_i}(\omega) \right)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_{j+k})
+				\end{align}
+				が成り立ち，特に$\omega \in \Omega \backslash E$については$\sigma_j(\omega) \leq \sigma_{j+k}(\omega)$が満たされるから
+				\begin{align}
+					I_{M^{\sigma_{j+k}}}(Y)_{t \wedge \sigma_j(\omega)}(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_j}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_j}_{t \wedge t_i}(\omega) \right)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash (E_{j+k} \cup E))
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					I_{M^{\sigma_j}}(Y)_{t \wedge \sigma_j(\omega)}(\omega) = I_{M^{\sigma_{j+k}}}(Y)_{t \wedge \sigma_j(\omega)}(\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash (E_j \cup E_{j+k} \cup E))
+				\end{align}
+				が得られる．
 		\end{description}
 		\QED
 	\end{prf}
