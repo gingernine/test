@@ -195,13 +195,15 @@
 				I_M(X)_t = \int_0^t X_s\ d M_s \quad (t \in I)
 			\end{align}
 			と表記し，この$I_M$を伊藤積分として定義しなおす．
+			\label{dfn:expansion_of_Ito_integral}
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{lem}[停止時刻で停めた伊藤積分]
-			$M \in \mathcal{M}_{2,c}$による伊藤積分$I_M$について，
-			任意の停止時刻$\tau$と$X \in \semiLp{2}{\mathcal{P},\mu_M}$に対し次が成り立つ:
+		\begin{lem}[拡張された伊藤積分の線型等長性]
+			$M \in \mathcal{M}_{2,c}$とする．
+			$I_M:\semiLp{2}{\mathcal{P},\mu_M} \rightarrow \mathcal{M}_{2,c}$は線型性を持ち，
+			任意の停止時刻$\tau$と$X \in \semiLp{2}{\mathcal{P},\mu_M}$に対し次を満たす:
 			\begin{align}
 				\int_\Omega \left| I_M(X)(\tau(\omega),\omega) \right|^2\ \mu(d\omega)
 				= \int_\Omega \int_I \left| X(t,\omega) \right|^2 \defunc_{[0,\tau(\omega)]}(t)\ \inprod<M>(dt,\omega)\ \mu(d\omega).
@@ -218,12 +220,12 @@
 			\quad (n \longrightarrow \infty)
 			\label{eq:thm_stopped_Ito_integral}
 		\end{align}
-		を満たす．$B \coloneqq \Set{(t,\omega) \in I \times \Omega}{t \leq \tau(\omega)}$とし
+		を満たす．$B \coloneqq \Set{(t,\omega) \in I \times \Omega}{t \leq \tau(\omega)}$とおき，
 		\begin{align}
 			\Norm{Y}{\mathcal{M}_{2,c}}^2 \coloneqq \int_\Omega |Y_T(\omega)|^2\ \mu(d\omega)
 			\quad (\forall Y \in \mathcal{M}_{2,c})
 		\end{align}
-		とおけば，(\refeq{eq:thm_Ito_integral_equiv_class_linearity_isometric})により
+		によりセミノルムを定めれば，(\refeq{eq:thm_Ito_integral_equiv_class_linearity_isometric})により
 		\begin{align}
 			\Norm{X_n \defunc_B}{\semiLp{2}{\mu_M}} 
 			= \Norm{I_M(X_n)^\tau}{\mathcal{M}_{2,c}}
@@ -234,7 +236,7 @@
 			&\left| \Norm{X \defunc_B}{\semiLp{2}{\mu_M}} - \Norm{I_M(X)^\tau}{\mathcal{M}_{2,c}} \right| \\
 			&\qquad \leq \left| \Norm{X \defunc_B}{\semiLp{2}{\mu_M}} - \Norm{X_n \defunc_B}{\semiLp{2}{\mu_M}} \right| 
 				+ \left| \Norm{I_M(X_n)^\tau}{\mathcal{M}_{2,c}} - \Norm{I_M(X)^\tau}{\mathcal{M}_{2,c}} \right| \\
-			&\qquad =  \Norm{(X - X_n) \defunc_B}{\semiLp{2}{\mu_M}} 
+			&\qquad \leq  \Norm{(X - X_n) \defunc_B}{\semiLp{2}{\mu_M}} 
 				+ \Norm{I_M(X - X_n)^\tau}{\mathcal{M}_{2,c}} \\
 			&\qquad \leq 2 \Norm{X - X_n}{\semiLp{2}{\mu_M}} \longrightarrow 0 \quad (n \longrightarrow \infty)
 		\end{align}
