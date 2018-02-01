@@ -1,0 +1,235 @@
+\section{補助定理}
+以後の準備として，線型作用素の拡張定理，射影定理，kolmosの補題を証明する．
+\begin{screen}
+	\begin{thm}[線型作用素の拡張]
+		$\left( X,\Norm{\cdot}{X} \right),\left( Y,\Norm{\cdot}{Y} \right)$を$\K$上のノルム空間とし，
+		それぞれにノルム位相を導入する．$Y$がBanach空間であるなら，
+		$X$の稠密な部分空間$X_0$を定義域とする任意の有界線型作用素$T:X \rightarrow Y$に対し，
+		$T$の拡張となる線型作用素で，作用素ノルムを変えず，かつ定義域を$X$全体とするものが一意に存在する．
+		\label{thm:linear_operator_expansion}
+	\end{thm}
+\end{screen}
+
+\begin{prf}
+		作用素ノルムを$\Norm{\cdot}{}$と表記する．$X_0$が$X$で稠密であるから，任意の$x \in X$に対して
+		$\Norm{x_n - x}{X} \longrightarrow 0\ (k \longrightarrow \infty)$
+		を満たす$(x_n)_{n=1}^{\infty}$が存在する．$T$の有界性から
+		\begin{align}
+			\Norm{Tx_m - Tx_n}{Y} \leq \Norm{T}{} \Norm{x_m - x_n}{X}
+			\quad (\forall n,m \in \N)
+		\end{align}
+		が成り立ち，$(x_n)_{n=1}^{\infty}$がCauchy列であることと
+		$Y$の完備性から$(Tx_n)_{n=1}^{\infty}$は或る$y \in Y$に収束する．$y$は$x \in X$に対して一意である．
+		実際$x$への別の収束列$(z_n)_{n=1}^{\infty}$を取り$Tz_n \longrightarrow u \in Y$とすれば，
+		\begin{align}
+			\Norm{y - u}{Y} &= \Norm{y - Tx_n + Tx_n - Tz_m + Tz_m - u}{Y} \\
+			&\leq \Norm{y - Tx_n}{Y} + \Norm{Tx_n - Tz_m}{Y} + \Norm{Tz_m - u}{Y} \\
+			&\leq \Norm{y - Tx_n}{Y} + \Norm{T}{}\left(\Norm{x_n - x}{X} + \Norm{x - z_m}{X}\right)+ \Norm{Tz_m - u}{Y}
+			\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+		\end{align}
+		より$y = u$が従う．
+		$x$に$y$を対応させる関係を$\tilde{T}$と表せば，これは有界かつ線型である．
+		\begin{description}
+			\item[線型性]
+				任意に$x,\ z \in X,\ \alpha,\ \beta \in \K$と$x,z$への収束列$(x_n)_{n=1}^{\infty},\ (z_n)_{n=1}^{\infty} \subset X_0$
+				を取れば
+				\begin{align}
+					\Norm{\tilde{T}(\alpha x + \beta z) - \alpha \tilde{T}x - \beta \tilde{T}z}{Y}
+					&= \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n) + \alpha Tx_n + \beta Tz_n - \alpha \tilde{T}x - \beta \tilde{T}z}{Y} \\
+					&\leq \Norm{\tilde{T}(\alpha x + \beta z) - T(\alpha x_n + \beta z_n)}{Y}
+						+ |\alpha| \Norm{Tx_n - \tilde{T}x}{Y} + |\beta| \Norm{Tz_n - \tilde{T}z}{Y} \\
+					&\longrightarrow 0\quad (n \longrightarrow +\infty)
+				\end{align}
+				が成り立つ．
+			\item[有界性] 任意に$x \in X$と$x$への収束列$(x_n)_{n=1}^{\infty}$を取る．
+				任意の$\epsilon > 0$に対し或る$K \in \N$が存在して
+				\begin{align}
+					\Norm{\tilde{T}x}{Y} < \Norm{Tx_k}{Y} + \epsilon, \quad \Norm{x}{X} < \Norm{x_k}{X} + \frac{\epsilon}{\Norm{T}{}}
+					\quad (\forall k \geq K)
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\Norm{\tilde{T}x}{Y} < \Norm{Tx}{Y} + \epsilon < \Norm{T}{} \Norm{x}{X} + 2\epsilon
+				\end{align}
+				となり$\Norm{\tilde{T}}{} \leq \Norm{T}{}$を得る．
+		\end{description}
+		さらに
+		\begin{align}
+			\Norm{\tilde{T}}{} = \sup{\substack{x \in X \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
+			\geq \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{\tilde{T}x}{Y}} 
+			= \sup{\substack{x \in X_0 \\ \Norm{x}{X} = 1}}{\Norm{Tx}{Y}} = \Norm{T}{}
+		\end{align}
+		より$\Norm{\tilde{T}}{} = \Norm{T}{}$が得られる．
+		拡張の一意性は$X_0$の稠密性と有界作用素の連続性による．
+		\QED
+\end{prf}
+
+\begin{screen}
+	\begin{thm}[射影定理]
+		$H$を$\K$上のHilbert空間とし，内積とノルムをそれぞれ
+		$\inprod<\cdot,\cdot>,\Norm{\cdot}{}$と表記する．
+		$C \subset H$が閉凸集合なら，$f \in H$に対し
+		或る$y \in C$がただ一つ存在して
+		\begin{align}
+			\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}
+		\end{align}
+		を満たす．また$C$が$H$の閉部分空間なら，
+		$y \in C$が$f$の射影であることと
+		\begin{align}
+			\inprod<f-y,h> = 0 \quad (\forall h \in C)
+		\end{align}
+		が成り立つことは同値になる．
+	\end{thm}
+\end{screen}
+
+\begin{prf}\mbox{}
+	\begin{description}
+	\item[射影の存在]
+	$C$が凸集合であるとする．$f \in H \backslash C$として
+	\begin{align}
+		\delta \coloneqq \inf{h \in C}{\Norm{f - h}{}}
+	\end{align}
+	とおけば，$C$が閉であるから$\delta > 0$となる．
+	$h_n \in C\ (n = 1,2,3,\cdots)$を
+	\begin{align}
+		\delta = \lim_{n \to \infty}\Norm{f - h_n}{}
+	\end{align}
+	となるように取れば，任意の$\epsilon > 0$に対して或る$N \in \N$が存在し
+	\begin{align}
+		\Norm{f - h_n}{}^2 < \delta^2 + \epsilon/4 \quad (\forall n > N)
+	\end{align}
+	が成り立つ．$n,m > N$ならば，内積空間の中線定理と$(h_n + h_m)/2 \in C$により
+	\begin{align}
+		\Norm{h_n - h_m}{}^2 &= 2\left( \Norm{f - h_m}{}^2 + \Norm{f - h_n}{}^2 \right) - \Norm{2f - (h_n + h_m)}{}^2 \\
+		&= 2\left( \Norm{f - h_m}{}^2 + \Norm{f - h_n}{}^2 \right) - 4\Norm{f - \frac{h_n + h_m}{2}}{}^2 \\
+		&< 2\delta^2 + \epsilon - 4\delta^2 = \epsilon
+	\end{align}
+	が成り立ち$(h_n)_{n=1}^{\infty}$は$H$のCauchy列となり，$H$がHilbert空間で$C$が$H$で閉だから
+	極限$y \in H$が存在して$y \in C$が従う．
+	\begin{align}
+		\left| \delta - \Norm{f - y}{} \right| 
+		&\leq \left| \delta - \Norm{f - h_n}{} \right| + \left| \Norm{f - h_n}{} - \Norm{f - y}{} \right| \\
+		&\leq \left| \delta - \Norm{f - h_n}{} \right| + \Norm{h_n - y}{}
+		\longrightarrow 0 \quad (n \longrightarrow \infty)
+	\end{align}
+	より$\delta = \Norm{f - y}{}$となり射影の存在が示された．
+	$f \in C$の場合は$f$が自身の射影である．
+
+	\item[射影の一意性]
+		$z \in C$もまた$\delta = \Norm{f - z}{}$を満たすとすれば，$C$の凸性により
+		\begin{align}
+			2 \delta \leq 2\Norm{f - \frac{y + z}{2}}{} \leq \Norm{f - y}{} + \Norm{f - z}{} = 2\delta
+		\end{align}
+		が成り立つから，中線定理より
+		\begin{align}
+			\Norm{y - z}{}^2 = 2\left( \Norm{f - z}{}^2 + \Norm{f - y}{}^2 \right) - 4\Norm{f - \frac{y + z}{2}}{}^2 = 0
+		\end{align}
+		となって$y = z$が従う．
+	
+	\item[$C$が閉部分空間の場合]
+		$f \in H \backslash C$に対して$f$の$C$への射影を$y \in C$
+		とする．($f \in C$の場合は$y = f$．)或る$h \in C$に対して
+		\begin{align}
+			\inprod<f -y,\ h> \neq 0
+		\end{align}
+		となると仮定すれば($f \neq y$より$h \neq 0$)，
+		\begin{align}
+			\hat{y} \coloneqq y + \left( \frac{\inprod<f - g,h>}{\Norm{h}{}^2} \right)h \in C
+		\end{align}
+		に対して
+		\footnote{
+			$\hat{y} \in C$となるためには$C$が部分空間である必要がある．凸性だけではこれが成り立たない．
+		}
+		\begin{align}
+			\Norm{f - \hat{y}}{}^2 
+			&= \inprod<f - y - \frac{\inprod<f - g,h>}{\Norm{h}{}^2}h,\ f - y - \frac{\inprod<f - g,h>}{\Norm{h}{}^2}h> \\
+			&= \Norm{f-y}{}^2 - \frac{|\inprod<f - g,h>|^2}{\Norm{h}{}^2} \\
+			&< \Norm{f-y}{}^2
+		\end{align}
+		が成り立つから$y$が射影であることに反する．従って射影$y$は
+		\begin{align}
+			\inprod<f -y,\ h> = 0 \quad (\forall h \in C) \label{eq:projection}
+		\end{align}
+		を満たす．逆に$y \in C$に対して式(\refeq{eq:projection})が成り立っているとすれば
+		$y$は$f$の射影となる．実際任意の$h \in C$に対して
+		\begin{align}
+			\Norm{f - h}{}^2 &= \inprod<f - y + y - h,\ f - y + y - h> \\
+			&= \Norm{f - y}{}^2 + 2 \Re{\inprod<f - y,\ y - h>} + \Norm{y - h}{}^2 \\
+			&= \Norm{f - y}{}^2 + \Norm{y - h}{}^2 \\
+			&\geq \Norm{f - y}{}^2
+		\end{align}
+		となり
+		\begin{align}
+			\Norm{f - y}{} = \inf{h \in C}{\Norm{f - h}{}}
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{description}
+\end{prf}
+
+\begin{screen}
+	\begin{thm}[Kolmosの補題]
+		$H$をHilbert空間，$\Norm{\cdot}{}$を$H$の内積により
+		導入されるノルムとする．$f_n \in H\ (n=1,2,\cdots)$が$\sup{n \in \N}{\Norm{f_n}{}} < \infty$
+		を満たすとき，
+		\begin{align}
+			\exists g_n \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}\footnotemark \quad (n=1,2,\cdots)
+		\end{align}
+		が取れて$(g_n)_{n=1}^{\infty}$は$H$のCauchy列となる．
+	\end{thm}
+\end{screen}
+
+\footnotetext{
+	$\Conv{f_n,f_{n+1},f_{n+2} \cdots}$は$f_n,f_{n+1},f_{n+2} \cdots$を含む最小の凸集合である．
+	すなわち
+	\begin{align}
+		\Conv{f_n,f_{n+1},f_{n+2} \cdots} = \Set{\sum_{i=0}^{\infty}c_i f_{n+i}}{ 0 \leq c_i \leq 1,\ \exists j \in \N,\ c_i=0\ (\forall i \geq j),\ \sum_{i=0}^{\infty} c_i = 1}
+	\end{align}
+	で定義される．
+}
+
+\begin{prf}
+	$F \coloneqq \sup{n \in \N}{\Norm{f_n}{}} < \infty$とおく．
+	\begin{align}
+		A \coloneqq \sup{n \geq 1}{\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}}}
+	\end{align}
+	とおけば$A \leq F$が成り立つ．実際各$n \in \N$について任意に$g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$を取れば
+	\begin{align}
+		g = \sum_{i=0}^{N}c_i f_{n+i} \quad \left( 0 \leq c_i \leq 1,\ \mbox{$\sum_{i=0}^{N} c_i = 1$} \right)
+	\end{align}
+	と表現できるから，
+	\begin{align}
+		\Norm{g}{} = \Norm{\sum_{i=0}^{N}c_i f_{n+i}}{} \leq \sum_{i=0}^{N}c_i \Norm{f_{n+i}}{} \leq F
+	\end{align}
+	より
+	\begin{align}
+		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \leq F \quad (\forall n \in \N)
+	\end{align}
+	が従い$A \leq F$を得る．また全ての$n \in \N$に対して
+	\begin{align}
+		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \leq A
+	\end{align}
+	が成り立つから，各$n \in \N$について
+	\begin{align}
+		\Norm{g_n}{} \leq A + \frac{1}{n} \label{eq:thm_kolmos_1}
+	\end{align}
+	を満たす$g_n \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}$が存在する．一方で，下限を取る範囲が縮小していくから
+	\begin{align}
+		\left( \inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \right)_{n=1}^\infty
+	\end{align}
+	は単調増大列であり，任意に$m \in \N$を取れば或る$N(m) \in \N\ (N(m) > m)$が存在して
+	\begin{align}
+		\inf{}{\Set{\Norm{g}{}}{g \in \Conv{f_n,f_{n+1},f_{n+2} \cdots}}} \geq A - \frac{1}{m}
+		\quad (\forall n \geq N(m))
+	\end{align}
+	が成り立つ．任意の$l,k \geq N(m)$に対し$(g_l + g_k) / 2 \in \Conv{f_{N(m)},f_{N(m)+1},f_{N(m)+2} \cdots}$となるから
+	\begin{align}
+		\Norm{\frac{g_l + g_k}{2}}{} \geq A - \frac{1}{m}
+	\end{align}
+	が従い，中線定理と(\refeq{eq:thm_kolmos_1})を併せて
+	\begin{align}
+		\Norm{g_l - g_k}{}^2 = 2\Norm{g_l}{} + 2\Norm{g_k}{} + \Norm{g_l + g_k}{}^2 \leq 4\left( A + \frac{1}{N(m)} \right)^2 - 4\left( A - \frac{1}{m} \right)^2 \leq \frac{16A}{m}
+	\end{align}
+	が成り立つ．$A \leq F < \infty$より右辺は$m \longrightarrow \infty$で0に収束するから$(g_n)_{n=1}^{\infty}$はCauchy列である．
+	\QED
+\end{prf}

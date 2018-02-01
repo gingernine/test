@@ -1,0 +1,397 @@
+\section{Doobの不等式・任意抽出定理}
+	
+	$I$を$[0,\infty)$の部分集合として基礎に置フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_t)_{t \in I})$と表す．
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[マルチンゲール]
+			フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_t)_{t \in I})$上の実確率変数の族
+			$(M_t)_{t \in I} \subset \semiLp{p}{\mathcal{F},\mu}\ (p \geq 1)$が
+			次の四条件を満たすとき，これを$\mathrm{L}^p$-劣マルチンゲール($\mathrm{L}^p$-submartingale)という．
+			\begin{description}
+				\item[(M.1)] $\forall t \in I$に対し$M_t$は可測$\mathcal{F}_t/\borel{\R}$である．
+				\item[(M.2)] 任意の$s \leq t\ (s,t \in I)$に対し$\cexp{M_t}{\mathcal{F}_s} \geq M_s\ $({\scriptsize 同値類に対する順序関係})が成り立つ．
+				\item[(M.3)] 各$\omega \in \Omega$において，任意の$t \in I$で左極限が存在する：$\exists \lim\limits_{s \uparrow t} M_s(\omega) \in \R.$
+				\item[(M.4)] 各$\omega \in \Omega$において，任意の$t \in I$で右連続である：$M_t(\omega) = \lim\limits_{s \downarrow t} M_s(\omega).$
+			\end{description}
+			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_t)_{t \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
+			劣かつ優マルチンゲールであるものをマルチンゲールという．
+			\label{dfn:martingale}
+		\end{dfn}
+	\end{itembox}
+	
+	$\tau$を停止時刻，$(M_t)_{t \in I}$を実確率変数の族とする．$\tau(\Omega)$が高々可算集合である場合，
+	$t$に関する停止時刻との合成関数は
+	\begin{align}
+		M_\tau = \sum_{t \in \tau(\Omega)}M_t \defunc_{\{\, \tau = t\, \}}
+	\end{align}
+	と表される．全ての$t \in \tau(\Omega)$について$M_t$が可測$\mathcal{F}_t/\borel{\R}$であるなら
+	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$である．なぜならば任意の$t \in I$と$A \in \borel{\R}$に対して
+	\begin{align}
+		\{\, M_\tau \in A\, \} \cap \{\, \tau \leq t\, \}
+		= \bigcup_{\substack{s \in \tau(\Omega) \\ s \leq t}}\{\, M_s \in A\, \} \cap \{\, \tau = s\, \} \in \mathcal{F}_t 
+	\end{align}
+	が成り立つからである．$M_\tau$の可測性を確認したところで次の定理を証明する．
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[任意抽出定理(1)]
+			$I = \{\ 0,1,\cdots,n\ \}$とし，実確率変数の族$(M_t)_{t \in I}$が$\mathrm{L}^p$-劣マルチンゲールであるとする．
+			このとき$I$に値を取る停止時刻$\sigma$と$\tau$について次が成立する:
+			\begin{align}
+				\cexp{M_\tau}{\mathcal{F}_\sigma} \geq M_{\sigma \wedge \tau}.
+				\label{eq:thm_optional_sampling_theorem_1}
+			\end{align}
+			$(M_t)_{t \in I}$が$\mathrm{L}^p$-マルチンゲールなら(\refeq{eq:thm_optional_sampling_theorem_1})は等号で成立する．
+			\label{thm:optional_sampling_theorem_1}
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$\sigma \leq \tau$の場合]
+				$F_t \coloneqq \defunc_{\{\, \sigma < t \leq \tau\, \}}\ (t \in I)$とおくと，
+				\begin{align}
+					\{\, \sigma < t \leq \tau\, \} = \{\, \sigma < t\, \} \cap \{\, t \leq \tau\, \} = \{\, \sigma \leq t-1\, \} \cap \{\, \tau \leq t-1\, \}^c
+				\end{align}
+				より$F_t$は可測$\mathcal{F}_{t-1}/\borel{\R}$となる．
+				\begin{align}
+					N_0 = 0,\quad N_t \coloneqq \sum_{s=0}^{t-1} F_{s+1}(M_{s+1} - M_s) \quad (t \in I \backslash \{0\})
+				\end{align}
+				として$N$を定めれば，$N$もまた$\mathrm{L}^p$-劣マルチンゲールとなる．実際
+				$N_t$の右辺の最終項$F_t(M_t - M_{t-1})$が可測$\mathcal{F}_t/\borel{\R}$であるから
+				$N_t$も可測$\mathcal{F}_t/\borel{\R}$であり，また
+				$M_t\ (t \in I)$が$p$乗可積分であるからその有限個の結合で表現される$N_t\ (t \in I)$もまた$p$乗可積分となる．
+				更に$s \leq t\ (s,t \in I)$に対して
+				\begin{align}
+					N_t - N_s = \sum_{u=s}^{t-1} F_{u+1}(M_{u+1} - M_u)
+				\end{align}
+				となるから，命題\ref{prp:properties_of_expanded_conditional_expectation}の
+				$\tilde{\mathrm{C}}$5，$\tilde{\mathrm{C}}$6，そして$(M_t)_{t \in I}$の劣マルチンゲール性より
+				\begin{align}
+					&\cexp{N_t - N_s}{\mathcal{F}_s}
+					= \sum_{u=s}^{t-1} \cexp{F_{u+1}(M_{u+1} - M_u)}{\mathcal{F}_s} \\
+					&\qquad= \sum_{u=s}^{t-1} \cexp{F_{u+1}\cexp{M_{u+1} - M_u}{\mathcal{F}_u}}{\mathcal{F}_s}
+					\geq 0\ \footnotemark
+				\end{align}
+				が成り立ち$(N_t)_{t \in I}$の劣マルチンゲール性が従う．
+				\footnotetext{
+					順序は関数類に対する順序であり，0は関数類の零元を表す．
+				}
+				\begin{align}
+					N_n = \sum_{s=\sigma}^{\tau-1} (M_{s+1} - M_s) = M_\tau - M_\sigma
+				\end{align}
+				と表現すれば，$\mathcal{G} = \{\, \emptyset, \Omega\, \}$として
+				\begin{align}
+					\Exp{M_\tau - M_\sigma} = \Exp{N_n} = \cexp{\cexp{N_n}{\mathcal{F}_0}}{\mathcal{G}} \geq \Exp{N_0} = 0
+					\label{eq:thm_optional_sampling_theorem_1_1}
+				\end{align}
+				が成り立つ．特に任意の$E \in \mathcal{F}_\sigma$に対して
+				\begin{align}
+					\sigma_E(\omega) \coloneqq
+					\begin{cases}
+						\sigma(\omega) & (\omega \in E) \\
+						n & (\omega \in \Omega \backslash E) 
+					\end{cases}
+					,\quad \tau_E(\omega) \coloneqq
+					\begin{cases}
+						\tau(\omega) & (\omega \in E) \\
+						n & (\omega \in \Omega \backslash E) 
+					\end{cases}
+				\end{align}
+				と定めれば$\sigma_E,\tau_E$も停止時刻となり
+				\footnote{
+					任意の$t \in I$に対し
+					\begin{align}
+						\{\, \tau_E \leq t\, \} 
+						= \{\, \tau_E \leq t\, \} \cap E + \{\, \tau_E \leq t\, \} \cap (\Omega \backslash E)
+						=\begin{cases}
+							\{\, \tau \leq t\, \} \cap E & (t < n) \\
+							\Omega & (t = n)
+						\end{cases}
+					\end{align}
+					が成り立つ．$\mathcal{F}_\sigma$の定義より$\{\, \tau \leq t\, \} \cap E \in \mathcal{F}_t$である．
+				}
+				，$\sigma_E \leq \tau_E$を満たすから(\refeq{eq:thm_optional_sampling_theorem_1_1})より
+				\begin{align}
+					\int_\Omega M(\tau_E(\omega),\omega)\ \mu(d\omega) \geq \int_\Omega M(\sigma_E(\omega),\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立つ．$\tau_E$の定め方より
+				\begin{align}
+					\int_\Omega M(\tau_E(\omega),\omega)\ \mu(d\omega) = \int_E M(\tau(\omega),\omega)\ \mu(d\omega) + \int_{\Omega \backslash E} M(n,\omega)\ \mu(d\omega)
+				\end{align}
+				とでき，$\sigma_E$についても同じ表現ができるから
+				\begin{align}
+					\int_E M(\tau(\omega),\omega)\ \mu(d\omega) \geq \int_E M(\sigma(\omega),\omega)\ \mu(d\omega)
+				\end{align}
+				が従う．よって命題\ref{prp:properties_of_expanded_conditional_expectation}の$\tilde{\mathrm{C}}$2より
+				\begin{align}
+					\int_E \cexp{M_\tau}{\mathcal{F}_\sigma}(\omega)\ \mu(d\omega) \geq \int_E M(\sigma(\omega),\omega)\ \mu(d\omega)
+				\end{align}
+				が成り立ち，$E \in \mathcal{F}_\sigma$の任意性により
+				\begin{align}
+					\cexp{M_\tau}{\mathcal{F}_\sigma} \geq M_\sigma = M_{\sigma \wedge \tau}
+				\end{align}
+				を得る．
+			
+			\item[一般の場合]
+				$\sigma,\tau$を一般の停止時刻とする．命題\ref{prp:stopping_time_and_conditional_expectation}より
+				\begin{align}
+					\cexp{M_\tau}{\mathcal{F}_\sigma}
+					&= \cexp{M_\tau \defunc_{\{\, \tau > \sigma \, \}}}{\mathcal{F}_\sigma} + \cexp{M_\tau \defunc_{\{\, \tau \leq \sigma \, \}}}{\mathcal{F}_\sigma} \\
+					&= \cexp{M_{\tau \vee \sigma} \defunc_{\{\, \tau > \sigma \, \}}}{\mathcal{F}_\sigma} + \cexp{M_{\tau \wedge \sigma} \defunc_{\{\, \tau \leq \sigma \, \}}}{\mathcal{F}_\sigma} \\
+					&\geq M_{\sigma} \defunc_{\{\, \tau > \sigma \, \}} + M_{\tau \wedge \sigma} \defunc_{\{\, \tau \leq \sigma \, \}}
+					= M_{\tau \wedge \sigma}
+				\end{align}
+				が成り立つ．
+		\end{description}
+		\QED
+	\end{prf}
+
+	\begin{itembox}[l]{}
+		\begin{thm}[Doobの不等式(1)]
+			$I=\{0,1,\cdots,n\}$，
+			$(\mathcal{F}_t)_{t \in I}$をフィルトレーション，
+			$(M_t)_{t \in I}$を$\mathrm{L}^1$-劣マルチンゲールとし，
+			$M^* \coloneqq \max{t \in I}{M_t}$とおく．$(M_t)_{t \in I}$が非負値なら次が成り立つ:
+			\begin{description}
+				\item[(1)] 任意の$\lambda > 0$に対して
+					\begin{align}
+						\mu(M^* \geq \lambda) \leq \frac{1}{\lambda} \int_{\left\{\ M^* \geq \lambda\ \right\}} M_n(\omega)\ \mu(d\omega)
+						\leq \frac{1}{\lambda} \Norm{M_n}{\mathscr{L}^1}.
+					\end{align}
+				\item[(2)] 任意の$p > 1$に対して$M_t\ (\forall t \in I)$が$p$乗可積分なら
+					\begin{align}
+						\Norm{M^*}{\mathscr{L}^p} \leq \frac{p}{p-1} \Norm{M_n}{\mathscr{L}^p}.
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}
+		\begin{align}
+			\tau(\omega) \coloneqq \min{}{\Set{ i \in I}{M_i(\omega) \geq \lambda}} 
+			\quad (\forall \omega \in \Omega)
+		\end{align}
+		とおけば$\tau$は$I$に値を取る停止時刻となる．ただし全ての$i \in I$で$M_i(\omega) < \lambda$となるような$\omega$については
+		$\tau(\omega) = n$とする．実際停止時刻となることは
+		\begin{align}
+			\left\{\ \tau = i\ \right\} &= \bigcap_{j=0}^{i-1} \left\{\ M_j < \lambda\ \right\} \cap \left\{\ M_i \geq \lambda\ \right\} \in \mathcal{F}_i
+			,\quad (i=0,1,\cdots,n-1), \\
+			\left\{\ \tau = n\ \right\} &= \bigcap_{j=0}^{n-1} \left\{\ M_j < \lambda\ \right\} \in \mathcal{F}_n
+		\end{align}
+		により判る．任意抽出定理より
+		\begin{align}
+			\cexp{M_n}{\mathcal{F}_\tau} \geq M_{n \wedge \tau} = M_\tau \quad (\because \tau \leq n)
+		\end{align}
+		が成り立つから，期待値を取って
+		\begin{align}
+			\int_{\Omega} M_n(\omega)\ \mu(d\omega)
+			&\geq \int_{\Omega} M_\tau(\omega)\ \mu(d\omega) \footnotemark \\
+			&= \int_{\left\{\ M^* \geq \lambda\ \right\}} M_\tau(\omega)\ \mu(d\omega) 
+				+ \int_{\left\{\ M^* < \lambda\ \right\}} M_\tau(\omega)\ \mu(d\omega) \\
+			&\geq \lambda \mu( M^* \geq \lambda ) \footnotemark
+				+ \int_{\left\{\ M^* < \lambda\ \right\}} M_n(\omega)\ \mu(d\omega) 
+				&& (\scriptsize \because \mbox{$M^*(\omega) < \lambda$ならば$\tau(\omega) = n$である．})
+		\end{align}
+	\end{prf}
+	\footnotetext{
+		性質$\tilde{\mathrm{C}}2$より
+		\begin{align}
+			\int_{\Omega} M_n(\omega)\ \prob{d\omega} = \int_{\Omega} \cexp{M_n}{\mathcal{F}_\tau}(\omega)\ \mu(d\omega)
+			\geq \int_{\Omega} M_\tau(\omega)\ \mu(d\omega)
+		\end{align}
+		が成り立つ．
+	}
+	が成り立つ．
+	\footnotetext{
+		最後の不等式は次の理由で成り立つ:
+		\begin{align}
+			M_\tau \defunc_{\{ M^* \geq \lambda \}}  = \sum_{i=0}^{n-1}M_i \defunc_{\{ \tau = i \}} + M_n \defunc_{\{ \tau = n \}}\defunc_{\{ M^* \geq \lambda \}} \geq \lambda.
+		\end{align}
+	}
+	従って
+	\begin{align}
+		\lambda \mu( M^* \geq \lambda ) \leq 
+		\int_{\left\{\ M^* \geq \lambda\ \right\}} M_n(\omega)\ \mu(d\omega) \leq \Norm{M_n}{\mathscr{L}^1} \label{Doob_ineq_1}
+	\end{align}
+	を得る．これは
+	\begin{align}
+		\mu( M^* > \lambda ) \leq \int_{\left\{\ M^* > \lambda\ \right\}} M_n(\omega)\ \mu(d\omega) \label{Doob_ineq_2}
+	\end{align}
+	としても成り立つ
+	\footnote{
+		式(\refeq{Doob_ineq_1})により任意の$n \in \N$で
+		\begin{align}
+			\mu( M^* \geq \lambda+1/n ) \leq \int_{\left\{\ M^* \geq \lambda+1/n\ \right\}} M_n(\omega)\ \mu(d\omega)
+		\end{align}
+		が成り立っているから，$n \longrightarrow \infty$とすればよい．
+	}．
+	次に(2)を示す．$K \in \N$とする．
+	\begin{align}
+		\Norm{M^* \wedge K}{\mathscr{L}^p}^p &= \int_{\Omega} \left|M^*(\omega) \wedge K\right|^p\ \mu(d\omega) \\
+		&= p \int_{\Omega} \int_0^{M^*(\omega) \wedge K} t^{p-1}\ dt\ \mu(d\omega) \\
+		&= p \int_{\Omega} \int_0^K t^{p-1} \defunc_{\left\{ M^*(\omega) > t \right\}}\ dt\ \mu(d\omega) \footnotemark \\
+		&= p \int_0^K t^{p-1} \int_{\Omega} \defunc_{\left\{ M^*(\omega) > t \right\}}\ \mu(d\omega)\ dt & (\scriptsize\because \mbox{Fubiniの定理より}) \\
+		&= p \int_0^K t^{p-1} \mu( M^* > t )\ dt \\
+		&\leq p \int_0^K t^{p-2} \int_{\left\{\ M^* > t\ \right\}} M_n(\omega)\ \mu(d\omega) & (\scriptsize\because \mbox{式(\refeq{Doob_ineq_2})より}) \\
+		&= p \int_\Omega M_n(\omega) \int_0^K t^{p-2} \defunc_{\left\{ M^*(\omega) > t \right\}}\ dt\ \mu(d\omega) \\
+		&= \frac{p}{p-1} \int_\Omega M_n(\omega) \left| M^*(\omega) \wedge K \right|^{p-1}\ \mu(d\omega) \\
+		&\leq \frac{p}{p-1} \Norm{M_n}{\mathscr{L}^p} \Norm{M^*(\omega) \wedge K}{\mathscr{L}^p}^{p-1} 
+	\end{align}
+	となるから，
+	\begin{align}
+		\Norm{M^* \wedge K}{\mathscr{L}^p} \leq \frac{p}{p-1} \Norm{M_n}{\mathscr{L}^p}
+	\end{align}
+	が成り立つ．$K \longrightarrow \infty$として単調収束定理より
+	\begin{align}
+		\Norm{M^*}{\mathscr{L}^p} \leq \frac{p}{p-1} \Norm{M_n}{\mathscr{L}^p}
+	\end{align}
+	を得る．
+	\QED
+	\footnotetext{
+		写像$[0,K) \times \Omega \ni (t,\omega) \longmapsto \defunc_{\left\{ M^*(\omega) > t \right\}}$は可測$\borel{[0,K)}\times\mathcal{F}/\borel{\R}$である．
+		実際，
+		\begin{align}
+			f(t,\omega) \coloneqq \defunc_{\left\{ M^*(\omega) > t \right\}},
+			\quad f_n(t,\omega) \coloneqq \defunc_{\left\{ M^*(\omega) > (j+1)/2^n \right\}} \quad (t \in \left[ \tfrac{j}{2^n},\tfrac{j+1}{2^n} \right),\ j=0,1,\cdots,K2^n-1)
+		\end{align}
+		とおけば，任意の$A \in \borel{\R}$に対して
+		\begin{align}
+			f_n^{-1}(A) = \begin{cases}
+				\emptyset & (0 \notin A,\ 1 \notin A) \\
+				\bigcup_{j=0}^{K2^n-1} \left[ \tfrac{j}{2^n},\tfrac{j+1}{2^n} \right) \times \Set{\omega}{M^*(\omega) > \tfrac{j+1}{2^n}} & (0 \notin A,\ 1 \in A) \\
+				\bigcup_{j=0}^{K2^n-1} \left[ \tfrac{j}{2^n},\tfrac{j+1}{2^n} \right) \times \Set{\omega}{M^*(\omega) \leq \tfrac{j+1}{2^n}} & (0 \in A,\ 1 \notin A) \\
+				[0,n] \times \Omega & (0 \in A,\ 1 \in A)
+			\end{cases}
+		\end{align}
+		が成り立つから$f_n$は可測$\borel{[0,K)}\times\mathcal{F}/\borel{\R}$である．また各点$(t,\omega) \in [0,K) \times \Omega$において
+		\begin{align}
+			f(t,\omega) - f_n(t,\omega) = \defunc_{\left\{ t < M^*(\omega) \leq (j+1)/2^n \right\}} \longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		となり$f_n$は$f$に各点収束するから，可測性は保存され$f$も可測$\borel{[0,K)}\times\mathcal{F}/\borel{\R}$となる．
+		$t^{p-1}$も2変数関数として$g(t,\omega) \coloneqq t^{p-1}\defunc_{\Omega}(\omega)$と見做せば可測$\borel{[0,K)}\times\mathcal{F}/\borel{\R}$で，
+		よって$gf$に対しFubiniの定理を適用できる．
+	}
+	
+	$I = [0,T] \subset \R\ (T > 0)$を考える．$t \longmapsto M_t$は右連続であるから$\sup{t \in I}{M_t}$は確率変数となる．これは
+	\begin{align}
+		\sup{t \in I}{M_t(\omega)} = \sup{n \in \N}{\max{j=0,1,\cdots,2^n}{M_{\tfrac{j}{2^n}T}(\omega)}} \quad (\forall \omega \in \Omega)
+	\end{align}
+	が成り立つからである．実際各点$\omega \in \Omega$で
+	\begin{align}
+		\alpha = \alpha(\omega) \coloneqq \sup{t \in I}{M_t(\omega)},
+		\quad \beta = \beta(\omega) \coloneqq \sup{n \in \N}{\max{j=0,1,\cdots,2^n}{M_{\tfrac{j}{2^n}T}(\omega)}}
+	\end{align}
+	とおけば，$\alpha$の方が上限を取る範囲が広いから$\alpha \geq \beta$は成り立つ．
+	だがもし$\alpha > \beta$とすれば，或る$s \in I$が存在して
+	\begin{align}
+		M_s(\omega) > \frac{\alpha + \beta}{2}
+	\end{align}
+	を満たすから，右連続性により$s$の近傍から$jT/2^n$の形の点を取ることができて
+	\begin{align}
+		(\beta \geq)\ M_{\tfrac{j}{2^n}T}(\omega) > \frac{\alpha + \beta}{2}
+	\end{align}
+	となりこれは矛盾である．
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[Doobの不等式(2)]
+			$I=[0,T]$，$(\mathcal{F}_t)_{t \in I}$をフィルトレーション，
+			$(M_t)_{t \in I}$を$\mathrm{L}^p$-劣マルチンゲールとし，
+			$M^* \coloneqq \sup{t \in I}{M_t}$とおく．$(M_t)_{t \in I}$が非負値なら次が成り立つ:
+			\begin{description}
+				\item[(1)] 任意の$\lambda > 0$に対して
+					\begin{align}
+						\mu(M^* \geq \lambda) \leq \frac{1}{\lambda^p} \Norm{M_T}{\mathscr{L}^p}^p.
+					\end{align}
+				\item[(2)] $p > 1$なら
+					\begin{align}
+						\Norm{M^*}{\mathscr{L}^p} \leq \frac{p}{p-1} \Norm{M_T}{\mathscr{L}^p}.
+					\end{align}
+			\end{description}
+		\label{thm:Doob_inequality_2}	
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}
+		\begin{align}
+			D_n \coloneqq \Set{\tfrac{j}{2^n}T}{j=0,1,\cdots,2^n}
+		\end{align}
+		とおく．Jensenの不等式より，任意の$0 \leq s < t \leq T$に対して
+		\begin{align}
+			\cexp{M_t^p}{\mathcal{F}_s} \geq \cexp{M_t}{\mathcal{F}_s}^p \leq M_s^p
+		\end{align}
+		が成り立つ．従って$(M_t^p)_{t \in I}$は$\mathrm{L}^1$-劣マルチンゲールであり，前定理の結果を使えば
+		\begin{align}
+			\mu(\max{r \in D_n}{M_r^p} \geq \lambda^p) \leq \frac{1}{\lambda^p} \Norm{M_T}{\mathscr{L}^p}^p
+		\end{align}
+		が任意の$n \in \N$で成り立つ．非負性から$\max{r \in D_n}{M_r^p} = (\max{r \in D_n}{M_r})^p$となり
+		\begin{align}
+			\mu(\max{r \in D_n}{M_r} \geq \lambda) \leq \frac{1}{\lambda^p} \Norm{M_T}{\mathscr{L}^p}^p
+		\end{align}
+		と書き直すことができて，
+		\begin{align}
+			\mu(M^* \geq \lambda) 
+			= \mu(\sup{n \in \N}{\max{r \in D_n}{M_r}} \geq \lambda)
+			= \lim_{n \to \infty} \mu(\max{r \in D_n}{M_r} \geq \lambda) \leq \frac{1}{\lambda^p} \Norm{M_T}{\mathscr{L}^p}^p
+		\end{align}
+		が成り立つ．同じく前定理\footnote{$\mathrm{L}^p$-劣マルチンゲールなら$\mathrm{L}^1$-劣マルチンゲールであるから前定理の結果を適用できる．}を適用し，
+		\begin{align}
+			\Norm{\max{r \in D_n}{M_r}}{\mathscr{L}^p} \leq \frac{p}{p-1} \Norm{M_T}{\mathscr{L}^p}
+		\end{align}
+		を保って$n \longrightarrow \infty$とすれば単調収束定理より(2)を得る．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[任意抽出定理(2)]
+			$I = [0,T]$，$p > 1$，$(M_t)_{t \in I}$を$\mathrm{L}^p$-マルチンゲールとする．
+			このとき$I$に値を取る任意の停止時刻$\tau,\sigma$に対し次が成り立つ:
+			\begin{align}
+				\cexp{M_\tau}{\mathcal{F}_\sigma} = M_{\tau \wedge \sigma}.
+			\end{align}
+			\label{thm:optional_sampling_theorem_2}
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}
+		\begin{align}
+			\tau_n \coloneqq \min{}{\left\{\ T, \frac{1+[2^n \tau]}{2^n}\ \right\}},
+			\quad \sigma_n \coloneqq \min{}{\left\{\ T, \frac{1+[2^n \sigma]}{2^n}\ \right\}},
+			\quad (n=1,2,\cdots)
+		\end{align}
+		とおく．このとき$\tau_n,\sigma_n$は停止時刻で$\mathcal{F}_\sigma \subset \mathcal{F}_{\sigma_n}\ (n=1,2,\cdots)$
+		が成り立つ．実際任意の$0 \leq t < T$に対して
+		\begin{align}
+			\left\{ \tau_n \leq t \right\} = \left\{ 1 + [2^n \tau] \leq 2^n t \right\} = \left\{ \tau_n \leq [2^n t]/2^n \right\} \in \mathcal{F}_t
+		\end{align}
+		となり，$t = T$の時も
+		\begin{align}
+			\left\{ \tau_n \leq T \right\} = \left\{ 1 + [2^n \tau] > 2^n T \right\} + \left\{ 1 + [2^n \tau] \leq 2^n T \right\} \in \mathcal{F}_T
+		\end{align}
+		が成り立つから$\tau_n$は停止時刻
+		\footnote{
+			もとより$\tau_n$は可測関数である．$\R \ni x \longmapsto [x] \in \R$は可測$\borel{\R}/\borel{\R}$であるから
+			$[2^n \tau]$は可測$\mathcal{F}/\borel{\R}$であり，従って$\tau_n$も可測$\mathcal{F}/\borel{\R}$となっている．
+		}で，
+		\begin{align}
+			2^n \sigma_n \leq 1 + [2^n \sigma] 
+			\Rightarrow \sigma < \sigma_n
+		\end{align}
+		により$\mathcal{F}_\sigma \subset \mathcal{F}_{\sigma_n}$となる．前定理により任意の$A \in \mathcal{F}_\sigma$に対して
+		\begin{align}
+			\int_A M_{\tau_n(\omega)}(\omega)\ \mu(d\omega) = \int_A M_{\tau_n(\omega)\wedge \sigma_n(\omega)}(\omega)\ \mu(d\omega) 
+		\end{align}
+		が成り立ち，$(|M_t|)_{t \in I}$が$\mathrm{L}^p$-劣マルチンゲールであることからDoobの不等式により
+		$\sup{t \in I}{M_t}$は可積分である
+		\footnote{
+			$\sup{t \in I}{|M_t|^p} = \left( \sup{t \in I}{|M_t|} \right)^p$である．
+		}．
+		従って$\lim_{n \to \infty} \tau_n = \tau$と$M$の右連続性から，Lebesgueの収束定理より
+		\begin{align}
+			&\int_A M_{\tau(\omega)}(\omega)\ \mu(d\omega) = \lim_{n \to \infty} \int_A M_{\tau_n(\omega)}(\omega)\ \mu(d\omega) \\
+			&\quad = \lim_{n \to \infty} \int_A M_{\tau_n(\omega)\wedge \sigma_n(\omega)}(\omega)\ \mu(d\omega)
+			= \int_A M_{\tau(\omega)\wedge \sigma(\omega)}(\omega)\ \mu(d\omega)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	

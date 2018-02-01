@@ -1,0 +1,53 @@
+\section{Pettisの強可測性定理}
+	\begin{screen}
+		\begin{lem}[距離空間値の可測関数列の各点極限は可測]
+			$(S,d)$を距離空間，$(X,\mathcal{M})$を可測空間とする．
+			$\mathcal{M}/\borel{S}$-可測関数列$(f_n)_{n=1}^{\infty}$が
+			各点収束すれば，
+			$f \coloneqq \lim_{n \to \infty} f_n$で定める関数$f$もまた可測$\mathcal{M}/\borel{S}$となる．
+			\label{lem:measurability_metric_space}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$S$の閉集合$A$を取り，閉集合の系$(A_m)_{m=1}^{\infty}$を次で定める:
+		\begin{align}
+			A_m \coloneqq \Set{y \in S}{d(y,A) \leq \frac{1}{m}}, \quad (m=1,2,\cdots).\ \footnotemark
+		\end{align}
+		\footnotetext{
+			$S \ni y \longmapsto d(y,A) \in [0,\infty)$は連続であるから，
+			閉集合$[0,1/m]$は$S$の閉集合に引き戻される．
+		}
+		$f(x) \in A$を取れば$f_n(x) \longrightarrow f(x)$が満たされているから，任意の$m \in \N$に対し或る$N = N(x,m) \in \N$が対応して
+		\begin{align}
+			d\left( f_n(x),A \right) \leq d\left( f_n(x),f(x) \right) < \frac{1}{m}
+			\quad (\forall n \geq N)
+		\end{align}
+		が成り立ち
+		\begin{align}
+			f^{-1}(A) \subset \bigcap_{m \geq 1} \bigcup_{N \in \N} \bigcap_{n \geq N} f_n^{-1}(A_m)
+			\label{eq:lem_measurability_metric_space}
+		\end{align}
+		が従う．一方$f(x) \notin A$については，$0 < \epsilon < d(f(x),A)$を満たす$\epsilon$に対し
+		或る$N = N(x,\epsilon) \in \N$が存在して
+		\begin{align}
+			d\left( f_n(x), f(x) \right) < \epsilon
+			\quad (\forall n \geq N)
+		\end{align}
+		が成り立つから，$1/m < d(f(x),A) - \epsilon$を満たす$m \in \N$を取れば
+		\begin{align}
+			\frac{1}{m} < d(f(x),A) - d(f(x),f_n(x)) \leq d(f_n(x),A)
+			\quad (\forall n \geq N)
+		\end{align}
+		が従い
+		\begin{align}
+			f^{-1}(A^c) \subset \bigcup_{m \geq 1} \bigcup_{N \in \N} \bigcap_{n \geq N} f_n^{-1}(A_m^c)
+			\subset \bigcup_{m \geq 1} \bigcap_{N \in \N} \bigcup_{n \geq N} f_n^{-1}(A_m^c)
+		\end{align}
+		が得られる．(\refeq{eq:lem_measurability_metric_space})と併せれば
+		\begin{align}
+			f^{-1}(A) = \bigcap_{m \geq 1} \bigcup_{N \in \N} \bigcap_{n \geq N} f_n^{-1}(A_m)
+		\end{align}
+		が成り立つ．$S$の閉集合は$f$により$\mathcal{M}$の元に引き戻されるから$f$は可測$\mathcal{M}/\borel{S}$である．
+		\QED
+	\end{prf}

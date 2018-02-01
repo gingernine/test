@@ -1,0 +1,211 @@
+\section{商ノルム空間}
+\label{sec:quotient_normed_space}
+	ノルム空間$X$の閉部分空間$Y$に対し
+	\begin{align}
+		x \sim y \DEF x - y \in Y \quad (\forall x,y \in X)
+	\end{align}
+	として$X$における同値関係$\sim$を定める
+	\footnote{
+		$x,y,z \in X$を取る．$Y$は線形空間であるから，
+		反射率は$x - x = 0 \in Y$により従い，対称律は$x - y \in Y$なら
+		$y - x = -(x - y) \in Y$が成り立つことにより従う．推移律についても，
+		$x \sim y$かつ$y \sim z$が満たされているなら
+		$x - z = (x - y) + (y - z) \in Y$が成り立ち$x \sim z$が従う．
+	}
+	．以降，関係$\sim$による$x \in X$の同値類を$[x]$と表し，商集合を$X/Y$と表す．
+	
+	\begin{screen}
+		\begin{thm}[商集合における線型演算]
+			$X/Y$において
+			\begin{align}
+				[x] + [y] \coloneqq [x + y], \quad
+				\alpha [x] \coloneqq [\alpha x] \quad (\forall [x],[y] \in X/Y,\ \alpha \in \K)
+				\label{eq:quotient_set_linear_calculation_1}
+			\end{align}
+			として演算を定義すれば，$X/Y$はこれを線型演算として線形空間となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[well-defined]
+				先ず(\ref{eq:quotient_set_linear_calculation_1})の定義がwell-definedであることを示す．
+				任意に$u \in [x],v \in [y],\alpha \in \K$を取り
+				\begin{align}
+					[u + v] = [x + y], \quad [\alpha u] = [\alpha x]
+					\label{eq:quotient_set_linear_calculation_2}
+				\end{align}
+				が成り立つことをいえばよい．実際$x \sim u$かつ$y \sim v$であるから
+				\begin{align}
+					(x + y) - (u + v) = (x - u) + (y - v) \in Y,
+					\quad \alpha x - \alpha v = \alpha(x - u) \in Y
+					\end{align}
+				が成り立ち(\refeq{eq:quotient_set_linear_calculation_1})が従う．
+		\end{description}
+		$X$が線形空間であるから$X/Y$は(\ref{eq:quotient_set_linear_calculation_1})の演算で閉じている．
+		よってあとは以下の事項を確認すればよい．
+		\begin{description}
+			\item[加法]
+				$X/Y$が加法について可換群をなすことを示す．任意に$[x],[y],[z] \in X/Y$を取れば
+				\begin{align}
+					([x]+[y]) + [z] = [x+y] + [z] = [(x+y) + z] = [x + (y+z)] = [x] + [y+z] = [x] + ([y]+[z])
+				\end{align}
+				が成り立ち結合律が従う．可換性は
+				\begin{align}
+					[x] + [y] = [x + y] = [y + x] = [y] + [x]
+				\end{align}
+				により従い，また$[x]$の逆元は$(-1)[x]$
+				\footnote{
+					$[x] + (-1)[y]$は$[x] - [y]$と表す．
+				}
+				，$X/Y$の零元は$Y = [0]$である．
+				
+			\item[スカラ倍]
+				任意に$[x],[y] \in X/Y$と$\alpha,\beta \in \K$を取れば以下が成り立つ:
+				\begin{description}
+					\item[$(1)$] $(\alpha\beta)[x] = [(\alpha\beta)x] = [\alpha(\beta x)] = \alpha[\beta x] = \alpha(\beta [x]),$
+					\item[$(2)$] $(\alpha + \beta)[x] = [(\alpha + \beta)x] = [\alpha x + \beta x] = [\alpha x] + [\beta x] = \alpha [x] + \beta [x],$
+					\item[$(3)$] $\alpha ([x] + [y]) = \alpha [x+y] = [\alpha(x+y)] = [\alpha x + \alpha y] = [\alpha x] + [\alpha y] = \alpha [x] + \alpha [y],$
+					\item[$(4)$] $1 [x] = [x].$
+					\QED
+				\end{description}
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[同値類は閉集合]
+			任意の$[x] \in X/Y$は$X$において閉集合となる．
+			\label{lem:equivalence_class_closed}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$[x] \in X/Y$を取る．距離空間の一般論より$u_n \in [x]\ (n=1,2,\cdots)$が或る$u \in X$に収束するとき
+		$u \in [x]$が成り立つことを示せばよい．各$n \in \N$について$u_n - x \in Y$であり，かつ
+		\begin{align}
+			\Norm{(u_n - x) - (u - x)}{X} = \Norm{u_n - u}{X} \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		が成り立つから，$Y$が閉であることにより$u - x \in Y$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[商空間におけるノルムの定義]
+			$X/Y$において
+			\begin{align}
+				\Norm{[x]}{X/Y} \coloneqq \inf{u \in [x]}{\Norm{u}{X}} \quad (\forall [x] \in X/Y)
+				\label{eq:thm_quotient_space_norm}
+			\end{align}
+			として$\Norm{\cdot}{X/Y}:X/Y \rightarrow \R$を定めれば，これはノルムとなる．
+			\label{thm:quotient_linear_space_norm}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[正値性]
+				$\Norm{\cdot}{X/Y}$が非負値であることは定義式(\refeq{eq:thm_quotient_space_norm})右辺の非負性による．
+				また$[x] = [0]$である場合，
+				\begin{align}
+					\inf{u \in [x]}{\Norm{u}{X}} = \Norm{0}{X} = 0
+				\end{align}
+				が成り立ち$\Norm{[x]}{X/Y} = 0$が従う．逆に$\Norm{[x]}{X/Y} = 0$である場合，
+				\begin{align}
+					\Norm{u_n}{X} \leq \frac{1}{n} \quad (n=1,2,\cdots)
+				\end{align}
+				を満たす点列$u_n \in [x]\ (n=1,2,\cdots)$が存在する．
+				すなわち$u_n \longrightarrow 0 \quad (n \longrightarrow \infty)$
+				であるから，補助定理\ref{lem:equivalence_class_closed}により$0 \in [x]$が成り立ち$[x] = [0]$が従う．
+				
+			\item[同次性]
+				任意に$[x] \in X/Y$と$\alpha \in \K$を取る．$\alpha = 0$の場合は
+				\begin{align}
+					\Norm{0 [x]}{X/Y} = \Norm{[0]}{X/Y} = 0 = 0 \Norm{[x]}{X/Y}
+				\end{align}
+				が成り立つ．$\alpha \neq 0$の場合は
+				\begin{align}
+					u \in [\alpha x] \quad \Leftrightarrow \quad \frac{1}{\alpha} u \in [x]
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\Norm{\alpha [x]}{X/Y} = \Norm{[\alpha x]}{X/Y} = \inf{u \in [\alpha x]}{\Norm{u}{X}}
+					= |\alpha| \inf{u \in [\alpha x]}{\Norm{(1/\alpha)u}{X}}
+					= |\alpha| \inf{v \in [x]}{\Norm{v}{X}}
+					= |\alpha |\Norm{[x]}{X/Y}
+				\end{align}
+				が従う．
+			
+			\item[劣加法性]
+				任意に$[x],[y] \in X/Y$を取り
+				\begin{align}
+					L \coloneqq \Set{u + v}{u \in [x],\ v \in [y]}
+				\end{align}
+				とおけば，任意の$u+v \in L$に対し$(u+v) - (x+y) \in Y$となるから$L \subset [x+y]$が成り立つ．また
+				\begin{align}
+					\Norm{u + v}{X} \leq \Norm{u}{X} + \Norm{v}{X}
+				\end{align}
+				により
+				\begin{align}
+					\inf{u'+v' \in L}{\Norm{u' + v'}{X}} \leq \Norm{u}{X} + \Norm{v}{X} \quad (\forall u \in [x],\ v \in [y])
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\inf{u'+v' \in L}{\Norm{u' + v'}{X}} 
+					\leq \inf{u \in [x]}{\Norm{u}{X}} + \inf{v \in [y]}{\Norm{v}{X}}
+					= \Norm{[x]}{X/Y} + \Norm{[y]}{X/Y}
+				\end{align}
+				が従い
+				\begin{align}
+					\Norm{[x] + [y]}{X/Y} = \Norm{[x+y]}{X/Y} 
+					= \inf{w \in [x+y]}{\Norm{w}{X}} 
+					\leq \inf{u+v \in L}{\Norm{u + v}{X}}
+					\leq \Norm{[x]}{X/Y} + \Norm{[y]}{X/Y}
+				\end{align}
+				を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[商空間の完備性]
+			$X$がBanach空間ならば$X/Y$もBanach空間である．
+			\label{thm:quotient_normed_space_Banach}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$X/Y$からCauchy列$\left( [x_n] \right)_{n=1}^{\infty}$を取る．
+		\begin{align}
+			\Norm{\left[ x_{n_k} \right] - \left[ x_{n_{k+1}} \right]}{X/Y} < \frac{1}{2^k} \quad (k=1,2,\cdots)
+		\end{align}
+		を満たす部分列$\left( [x_{n_k}] \right)_{k=1}^{\infty}$を抜き取り，
+		また$u_k \in \left[ x_{n_{k+1}} - x_{n_k} \right]\ (k=1,2,\cdots)$を
+		\begin{align}
+			\Norm{u_k}{X} \leq \Norm{\left[ x_{n_{k+1}} - x_{n_k} \right]}{X/Y} + \frac{1}{2^k}
+		\end{align}
+		を満たすように取り
+		\begin{align}
+			S_0 = 0, \quad S_v \coloneqq \sum_{k=1}^{v} u_k \quad (v=1,2,\cdots)
+		\end{align}
+		とおく．$X$がBanach空間であるから$(S_v)_{v=1}^{\infty}$は$X$で収束し，かつ
+		\begin{align}
+			\left[ x_{n_k} \right] = [x_{n_1}] + \sum_{j=1}^{k-1} \left[ x_{n_{j+1}}  - x_{n_j} \right]
+				= [x_{n_1}] + \sum_{j=1}^{k-1} [u_j]
+				= [x_{n_1}] + \left[ S_{k-1} \right]
+				\quad (k=1,2,\cdots)
+		\end{align}
+		を満たすから，
+		\begin{align}
+			S \coloneqq \lim_{v \to \infty} S_v \in X
+		\end{align}
+		とおけば
+		\begin{align}
+			\Norm{[x_{n_1} + S] - \left[ x_{n_k} \right]}{X/Y}
+			= \Norm{\left[ S - S_{k-1} \right]}{X/Y}
+			\leq \Norm{S - S_{k-1}}{X}
+			\longrightarrow 0 \quad (k \longrightarrow \infty)
+		\end{align}
+		が成り立つ．部分列の収束により$[x_n] \longrightarrow [x_{n_1} + S]\ (n \longrightarrow \infty)$が従う．
+		\QED
+	\end{prf}

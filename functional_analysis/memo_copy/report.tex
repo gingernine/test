@@ -1,0 +1,250 @@
+	
+	\begin{screen}
+		[4]$a > 0,I = [0,a]$とおく．$\c{I}$から$\c{I}$への線型作用素$T$を次で定める:
+			\begin{align}
+				\Dom{T} \coloneqq \Set{u \in \cn{I}{1}}{u(0) + u(a) = 0},
+				\quad Tu(x) = u'(x) \quad (x \in I).
+			\end{align}
+			このとき，$\pSpctr{T} $及び$\Spctr{T} $を求めよ．
+	\end{screen}
+	
+	\input{thms/report_4}
+	
+	\begin{screen}
+		[5] $X,Y$をそれぞれ$\R^m,\R^n$の空でないコンパクト部分集合とし，$K \in \c{X \times Y}$とするとき
+		\begin{align}
+			T:\c{Y} \rightarrow \c{X},
+			\quad T f(x) = \int_Y K(x,y) f(y)\ dy \quad (f \in \c{Y})
+		\end{align}
+		はコンパクト作用素であることを示せ．
+	\end{screen}
+	
+	\begin{prf}
+		$m$次元Lebesgue測度を$\mu_m$，$n$次元Lebesgue測度を$\mu_n$と表す．
+		講義中の例より
+		\begin{align}
+			\tilde{T}:\mathrm{L}^\infty(\mu_n) \ni f \longmapsto \int_Y K(x,y) f(y)\ \mu_n(dy)
+		\end{align}
+		により定める$\tilde{T}$は$\mathrm{L}^\infty(\mu_n)$から$\mathrm{L}^\infty(\mu_m)$への
+		コンパクト作用素である．そして$\c{Y} \subset \mathrm{L}^\infty(\mu_n),\ \c{X} \subset \mathrm{L}^\infty(\mu_m)$
+		より$\tilde{T}$は$T$の拡張となっている．$\c{Y}$から任意に有界列$(f_n)_{n=1}^{\infty}$を取れば，
+		$\left( \tilde{T} f_n \right)_{n=1}^{\infty}$の或る部分列$\left( \tilde{T} f_{n_k} \right)_{k=1}^{\infty}$
+		はBanach空間$\mathrm{L}^\infty(\mu_m)$で収束する．今$T f_n = \tilde{T} f_n\ (n=1,2,\cdots)$且つ
+		\begin{align}
+			\Norm{T f}{\infty} = \Norm{\tilde{T}f}{\mathrm{L}^\infty(\mu_m)} \quad (\forall f \in \c{Y})
+		\end{align}
+		が満たされているから，$\left( T f_{n_k} \right)_{k=1}^{\infty}$もまた$\c{X}$でsup-normによりCauchy列をなしていて，
+		$(\c{X},sup-norm)$がBanach空間であるから$\left( T f_{n_k} \right)_{k=1}^{\infty}$は連続関数に強収束する．
+		ゆえに$T$はコンパクト作用素である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		[6] $a \in \cbound{\R^d}, \lambda > d$とする．$f \in \mathrm{L}^2(\R^d)$に対し，
+		\begin{align}
+			T_a f(x) = \int_{|x - y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy
+			\quad (\mbox{a.e.}x \in \R^d)
+		\end{align}
+		により$T_a:\mathrm{L}^2(\R^d) \rightarrow \mathrm{L}^2(\R^d)$を定める．
+		\begin{description}
+			\item[(1)] $T_a$は連続であることを示せ．
+			\item[(2)] $\lim_{|x| \to \infty} a(x) = 0$ならば$T_a$はコンパクト作用素であることを示せ．
+		\end{description}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 
+				任意の$f \in \mathrm{L}^2(\R^d)$に対し$T_a f$が二乗可積分であることと$T_a$の連続性を同時に示す．
+				以下，$\mathrm{L}^2(\R^d)$のノルムを$\Norm{\cdot}{}$と書き，$M \coloneqq \sup{x \in \R^d}{|a(x)|} < \infty$とおく．
+				$f \in \mathrm{L}^2(\R^d)$に対し，H\Ddot{o}lderの不等式より
+				\begin{align}
+					\int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)f(y)|}{|x-y|^\lambda}\ dy
+					&= \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|}{|x-y|^{\frac{\lambda}{2}}} \defunc_{|x-y| > 1} \frac{|f(y)|}{|x-y|^{\frac{\lambda}{2}}}\ dy \\
+					&\leq \left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy \right)^{\frac{1}{2}}
+						\left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy \right)^{\frac{1}{2}}
+				\end{align}
+				が任意の$x \in \R^d$で成立する．右辺第一項について，$\lambda > d \geq 1$であるから，変数変換を用いて
+				\begin{align}
+					\int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy
+					\leq M^2 \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dy
+					= M^2 \int_{\R^d} \defunc_{|u| > 1} \frac{1}{|u|^\lambda}\ du < \infty
+				\end{align}
+				が満たされる．従って$U \coloneqq \int_{\R^d} \defunc_{|x - y| > 1} \frac{1}{|x-y|^{\lambda}}\ dy$とおけば$U$は$x$に依らない定数である．
+				今，$\R^d \ni x \longmapsto (a(x)f(y))/|x-y|^\lambda$は各$y \in \R^d \backslash \{x\}$で連続，
+				$\R^d \ni y \longmapsto \defunc_{\left\{|x-y|>1\right\}}(a(x)f(y))/|x-y|^\lambda$は各$x \in \R^d$で$\borel{\R^d}/\borel{\C}$-可測より，
+				$\R^d \times \R^d \ni (x,y) \longmapsto \defunc_{\left\{|x-y|>1\right\}} (a(x)f(y))/|x-y|^\lambda$
+				は$\borel{\R^d} \times \borel{\R^d}/\borel{\C}$-可測であるから，
+				Fubiniの定理より
+				\begin{align}
+					\Norm{T_a f}{}^2
+					&= \int_{\R^d} \left| \int_{|x-y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy \right|^2\ dx \\
+					&\leq \int_{\R^d} \left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy \right)
+						\left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy \right)\ dx \\
+					&\leq M^2 U \int_{\R^d} \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy\ dx \\
+					&= M^2 U \int_{\R^d} |f(y)|^2\ dy \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dx \\
+					&= M^2 U^2 \Norm{f}{}^2
+					\label{eq:report_6_1}
+ 				\end{align}
+ 				が得られる．$T_a$が線型性を持てば有界性と連続性は一致するから，
+ 				あとは$T_a$が線型性を持つことを示せばよい．
+ 				
+			\item[(2)] $\mathrm{L}^2(\R^d)$がBanach空間であるから，
+				$\selfCop{\mathrm{L}^2} $は
+				$\selfBop{\mathrm{L}^2} $の閉部分空間であり，
+				$T_a$に作用素ノルムで収束する$\selfCop{\mathrm{L}^2} $の列が存在すれば
+				$T_a \in \selfCop{\mathrm{L}^2} $が従う．
+				今，任意に$\epsilon > 0$を取れば，仮定より或る$N = N(\epsilon) \in \N$が存在して
+				\begin{align}
+					|a(x)| < \epsilon \quad (|x| > N)
+					\label{eq:report_6_2}
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					a_n(x) \coloneqq a(x)\defunc_{|x| \leq n}
+					\quad (\forall x \in \R^d,\ n=1,2,\cdots)
+				\end{align}
+				により$(a_n)_{n=1}^{\infty}$を定めれば，各$n$に対し
+				\begin{align}
+					\R^2 \ni (x,y) \longmapsto \defunc_{|x - y| > 1} \frac{a_n(x)}{|x-y|^\lambda}
+				\end{align}
+				は二乗可積分であるから
+				$T_{a_n}$はHilbert-Schmidt型積分作用素であり，従ってコンパクト作用素である．(\refeq{eq:report_6_1})より
+				\begin{align}
+					\Norm{T_a - T_{a_n}}{} \leq \sup{x \in \R^d}{|a(x) - a_n(x)|} U
+				\end{align}
+				が成り立ち，(\refeq{eq:report_6_2})より$n > N$ならば$\sup{x \in \R^d}{|a(x) - a_n(x)|} < \epsilon$となるから，
+				$\epsilon$の任意性より
+				\begin{align}
+					\Norm{T_a - T_{a_n}}{} \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が従う．冒頭に書いた理由により$T_a$はコンパクト作用素である．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		[7] $a = (a_n)_{n=1}^{\infty} \in \ell^{\infty}$に対して$T:\ell^2 \rightarrow \ell^2$を
+		$Tx = (a_n x_n)_{n=1}^{\infty}\ (x = (x_n)_{n=1}^{\infty} \in \ell^2)$で定める．
+		\begin{description}
+			\item[(1)] $T$がコンパクト作用素であるための必要十分条件を求めよ．
+			\item[(2)] $T$がHilbert-Schmidt型作用素であるための必要十分条件を求めよ．
+		\end{description}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 求める必要十分条件が$\lim_{n \to \infty} a_n = 0$であることを示す．
+				\begin{description}
+					\item[十分性] 任意に$\ell^2$の有界列
+						$\left( x^{\nu} \right)_{\nu=1}^{\infty}\ \left(x^{\nu} = \left( x^{\nu}_n \right)_{n=1}^{\infty} \right)$
+						を取る．対角線論法により，或る部分添数列$(\nu(k))_{k=1}^{\infty}$が存在して，全ての$n \in \N$について
+						$\left(x_n^{\nu(k)} \right)_{k=1}^{\infty}$が$\C$のCauchy列となるようにできる．実際
+						$\left( x^{\nu}_1 \right)_{\nu=1}^{\infty}$は$\C$において有界列であるから，
+						Bolzano-Weierstrassの定理より或る部分列$\left( x^{\nu(k,1)}_1 \right)_{k=1}^{\infty}$は$\C$のCauchy列となる．
+						$\left( x^{\nu}_2 \right)_{\nu=1}^{\infty}$も$\C$において有界列であるから，
+						$(\nu(k,1))_{k=1}^{\infty}$の部分添数列$(\nu(k,2))_{k=1}^{\infty}$が存在し
+						$\left( x^{\nu(k,2)}_2 \right)_{k=1}^{\infty}$は$\C$のCauchy列となる．
+						同様に部分列を取る操作を繰り返し，任意の$n \in \N$に対し
+						$\left( x^{\nu(k,n)}_n \right)_{k=1}^{\infty}$が$\C$のCauchy列となる
+						ようにできる．$\nu(k) \coloneqq \nu(k,k)\ (k=1,2,\cdots)$として$(\nu(k))_{k=1}^{\infty}$を定めればよい．
+						\begin{align}
+							M \coloneqq \sup{\nu \in \N}{\Norm{x^\nu}{\ell^2}} < \infty
+						\end{align}
+						とおき，任意に$\epsilon > 0$を取る．$\lim_{n \to \infty} a_n = 0$より或る$N = N(\epsilon) \in \N$が存在して
+						\begin{align}
+							|a_n| \leq \frac{\epsilon}{2 M} \quad (\forall n > N)
+						\end{align}
+						を満たすから，任意の$k,m \in \N$に対して
+						\begin{align}
+							&\Norm{T x^{\nu(k)} - T x^{\nu(m)}}{\ell^2}^2
+							= \sum_{n=1}^{\infty} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2 \\
+							&\qquad \leq \sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2 
+								+ 2 \frac{\epsilon^2}{4 M^2} \sum_{n = N+1}^{\infty} \left( \left|x_n^{\nu(k)} \right|^2 + \left|x_n^{\nu(m)} \right|^2 \right) \\
+							&\qquad \leq \sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2 + \epsilon^2
+						\end{align}
+						が成り立つ．ここで$A \coloneqq \max{1 \leq n \leq N}{|a_n|}$とおけば，或る$N_j = N_j(\epsilon) \in \N\ (j=1,\cdots,N)$が存在して
+						\begin{align}
+							\left|x_j^{\nu(k)} - x_j^{\nu(m)} \right| < \frac{\epsilon}{\sqrt{N} A}
+							\quad (\forall k,m > N_j,\ j=1,\cdots,N)
+						\end{align}
+						が成り立つ．$N' \coloneqq \max{1 \leq j \leq N}{N_j}$とおけば
+						\begin{align}
+							\sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2
+							\leq A^2 N \frac{\epsilon^2}{N A^2} = \epsilon^2
+							\quad (\forall k,m > N')
+						\end{align}
+						が従うから，
+						\begin{align}
+							\Norm{T x^{\nu(k)} - T x^{\nu(m)}}{\ell^2}^2 \leq 2 \epsilon^2 \quad (\forall k,m > N')
+						\end{align}
+						が成り立つ．$\epsilon$の任意性より$\left(T x_n^{\nu(k)} \right)_{k=1}^{\infty}$は収束列であり，
+						$T$はコンパクト作用素である．
+						
+					\item[必要性]
+						対偶，つまり$\lim_{n \to \infty} a_n = 0$が満たされない場合に
+						或る有界点列$(x^k)_{k=1}^{\infty} \subset \ell^2$が存在して，
+						$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しないことを示す．
+						今，或る$\epsilon > 0$に対し$(a_n)_{n=1}^{\infty}$の
+						或る部分列$\left(a_{n_k}\right)_{k=1}^{\infty}$が
+						\begin{align}
+							\left| a_{n_k} \right| \geq \epsilon
+						\end{align}
+						を満たす．
+						\begin{align}
+							x^k_n \coloneqq
+							\begin{cases}
+								1 & (n=n_k) \\
+								0 & (n \neq n_k)
+							\end{cases}
+							\quad (n,k=1,2,\cdots)
+						\end{align}
+						として$\ell^2$の点列$(x^k)_{k=1}^{\infty}$を定めれば，$k \neq m$なら
+						\begin{align}
+							\Norm{T x^k - T x^m}{}^2
+							= |a_{n_k}|^2 + |a_{n_m}|^2
+							\geq 2 \epsilon^2
+						\end{align}
+						を満たすから$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しえない．
+				\end{description}
+			\item[(2)]
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		[8]$(X,\mathcal{M},\mu)$を$\sigma$-有限な測度空間，$H = \mathrm{L}^2(X,\mathcal{M},\mu) = \mathrm{L}^2(\mu)$とする．
+			$\mathcal{M}$-可測関数$a:X \rightarrow \C$に対して，$H$から$H$へのかけ算作用素$M_a$を次で定める:
+			\begin{align}
+				\Dom{M_a} = \Set{u \in H}{au \in H},
+				\quad (M_a u)(x) = a(x) u(x) \quad (x \in X).
+			\end{align}
+			\begin{description}
+				\item[(1)] $M_a$は線型作用素で，$\Dom{M_a} $は$H$で稠密なことを示せ．
+				\item[(2)] $M_a^* = M_{\conj{a}}$が成り立つことを示せ．
+				\item[(3)] $\Spctr{M_a} = \Set{\lambda \in \C}{\mbox{$\forall \epsilon > 0$に対し$\mu\left( a^{-1}(U_\epsilon(\lambda)) \right) > 0$}}$を示せ．
+					(ただし$U_\epsilon(\lambda)$は$\lambda$の$\epsilon$-近傍．)
+				\item[(4)] $\pSpctr{M_a} = \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$を示せ．
+			\end{description}
+	\end{screen}
+	
+	\input{thms/report_8}
+	
+	\begin{screen}
+		[9]$(\C,\borel{\C},\mu)$を$\sigma$-有限な測度空間，$H = \mathrm{L}^2(\C,\borel{\C},\mu) = \mathrm{L}^2(\mu)$とする．
+			Borel可測関数$a:\C \rightarrow \C$に対して，$H$から$H$へのかけ算作用素$M_a$を次で定める:
+			\begin{align}
+				\Dom{M_a} = \Set{u \in H}{au \in H},
+				\quad (M_a u)(z) = a(z) u(z) \quad (z \in \C).
+			\end{align}
+			また$E(A) = M_{\defunc_{a^{-1}(A)}}\ (A \in \borel{\C})$と定める．
+			\begin{description}
+				\item[(1)] $E$は，$\borel{\C}$で定義され，$H$上の直交射影を値とするスペクトル測度であることを示せ．
+				\item[(2)] Borel可測関数$f:\C \rightarrow \C$に対し，
+					\begin{align}
+						T_f \coloneqq \int_\C f(z)\ E(dxdy) \quad (z = x + iy,\ (x,y) \in \R^2)
+					\end{align}
+					と定める．このとき，$T_f = M_{f \circ a}$を示せ．
+			\end{description}
+	\end{screen}
+	
+	\input{thms/report_9}

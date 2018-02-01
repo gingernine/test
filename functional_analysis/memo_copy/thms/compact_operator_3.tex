@@ -1,0 +1,102 @@
+\section{コンパクト自己共役作用素のスペクトル分解}
+	$H$を複素Hilbert空間とし内積を$\inprod<\cdot,\cdot>$，ノルムを$\Norm{\cdot}{}$と表す．
+	
+	\begin{screen}
+		\begin{dfn}[自己共役作用素]
+			$H$上の線型作用素$A$が
+			$\closure{\Dom{A} } = H$かつ$A = A^*$を満たすとき，
+			$A$を自己共役作用素(self adjoint operator)という．
+			自己共役作用素は閉作用素である．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[自己共役作用素の二次形式は実数]
+			$H$上の線型作用素$A$が自己共役なら，
+			任意の$u \in \Dom{A} $に対し$\inprod<Au,u>$は実数値である．
+			\label{thm:quadratic_form_self_adjoint_real_valued}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$A = A^*$であるから$u \in \Dom{A} \Leftrightarrow u \in \Dom{A^*} $となり
+		\begin{align}
+			\inprod<Au,u> = \inprod<u,A^*u> = \inprod<u,Au> = \conj{\inprod<Au,u>}
+			\quad \left(\forall u \in \Dom{A} \right)
+			\label{eq:self_adjoint_1}
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{prp}[自己共役作用素のスペクトルは実数]
+			$A$を$H$上の自己共役作用素，$I$を$H$上の恒等写像とする．
+			\begin{description}
+				\item[(1)] $\Spctr{A} \subset \R$であり，かつ任意の$\lambda \in \C \backslash \R$に対し次が満たされる:
+					\begin{align}
+						\Norm{(\lambda I - A)^{-1}}{\selfBop{H} } \leq \frac{1}{\left| \Im{\lambda} \right|}.
+					\end{align}
+					
+				\item[(2)] $u,v \in H$を$A$の異なる固有値$\lambda,\mu$に対する固有ベクトルとすれば
+					$\inprod<u,v> = 0$が成り立つ．
+			\end{description}
+			\label{prp:spectral_of_self_adjoint_is_real_valued}
+		\end{prp}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				任意に$\lambda \in \C \backslash \R$を取る．
+				定理\ref{thm:quadratic_form_self_adjoint_real_valued}より
+				\begin{align}
+					\Im{\inprod<(\lambda I - A)u,u>} = \Im{\lambda \Norm{u}{}^2 - \inprod<Au,u>} = \Im{\lambda} \Norm{u}{}^2
+					\quad \left( \forall u \in \Dom{A} \right)
+				\end{align}
+				が成り立つから，Schwartzの不等式より
+				\begin{align}
+					\left| \Im{\lambda} \right| \Norm{u}{} \leq \Norm{(\lambda I - A)u}{}
+					\label{eq:prp_spectral_of_self_adjoint_is_real_valued}
+				\end{align}
+				が従う．ゆえに$(\lambda I - A)$は単射であり$(\lambda I - A)^{-1}$が定義され，
+				(\refeq{eq:prp_spectral_of_self_adjoint_is_real_valued})より
+				\begin{align}
+					\left| \Im{\lambda} \right| \Norm{(\lambda I - A)^{-1}v}{} \leq \Norm{v}{}
+					\quad \left( \forall v \in \Dom{(\lambda I - A)^{-1}} \right)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\Norm{(\lambda I - A)^{-1}}{\selfBop{H} } 
+					= \sup{\substack{v \in \Dom{(\lambda I - A)^{-1}} \\ v \neq 0}}{\frac{\Norm{(\lambda I - A)^{-1}v}{}}{\Norm{v}{}}}
+					\leq \frac{1}{\left| \Im{\lambda} \right|}
+					\label{eq:prp_spectral_of_self_adjoint_is_real_valued_2}
+				\end{align}
+				を得る．後は$\Dom{(\lambda I - A)^{-1}} = \Ran{\lambda I - A} = H$を示せば主張が得られる．
+				$A$は閉作用素であるから補題\ref{lem:resolvent_is_closed}より$(\lambda I - A)^{-1}$も閉作用素であり，
+				従って定理\ref{thm:domain_of_banach_valued_closed_op_is_closed}より$\Dom{(\lambda I - A)^{-1}} $は$H$の閉部分空間である．
+				\begin{align}
+					\Ran{\lambda I - A} = \closure{\Ran{\lambda I - A} }
+					= \Ker{\left( \lambda I - A \right)^*} {}^{\perp}
+					= \Ker{\conj{\lambda} I - A^*} {}^{\perp}
+					= \Ker{\conj{\lambda} I - A} {}^{\perp}
+				\end{align}
+				が成り立つ．$\conj{\lambda} \in \C \backslash \R$より(\refeq{eq:prp_spectral_of_self_adjoint_is_real_valued})
+				が$\lambda$を$\conj{\lambda}$に替えて成り立つから，$\conj{\lambda} I - A$は単射であり
+				\begin{align}
+					\Ran{\lambda I - A} = \Ker{\conj{\lambda} I - A} {}^{\perp} = \{0\}^\perp = H
+				\end{align}
+				を得る．(\refeq{eq:prp_spectral_of_self_adjoint_is_real_valued_2})と併せれば$\lambda \in \Res{A} $が成り立ち主張を得る．
+				
+			\item[(2)]
+				今$Au = \lambda u,\ Av = \mu v$が満たされているから，(\refeq{eq:self_adjoint_1})と同様にして
+				\begin{align}
+					\lambda \inprod<u,v> = \inprod<Au,v> = \inprod<u,Av> = \conj{\mu} \inprod<u,v>
+				\end{align}
+				が成り立つ．(1)より$\mu \in \R$であるから$(\lambda - \mu) \inprod<u,v> = 0$
+				が得られ，$\lambda \neq \mu$の仮定より$\inprod<u,v> = 0$が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	

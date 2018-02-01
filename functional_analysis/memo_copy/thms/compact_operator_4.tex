@@ -1,0 +1,302 @@
+	\begin{screen}
+		\begin{dfn}[直交射影]
+			$H$を複素Hilbert空間とする．
+			線型写像$p:H \rightarrow H$が直交射影であるとは，
+			或る$H$の閉部分空間$H_0$が存在し，
+			$x \in H$とその直交分解$x = x_1 + x_2\ (x_1 \in H_0, x_2 \in H_0^{\perp})$
+			に対し次を満たすことをいう\footnotemark:
+			\begin{align}
+				p:H \ni x \longmapsto x_1 \in H_0.
+			\end{align}
+			また$H$上の直交射影全体を$\Oproj{H}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\footnotetext{
+		射影定理より$x \in H$の直交分解は一意に定まるから，
+		$p$は写像としてwell-definedである．
+	}
+	
+	\begin{screen}
+		\begin{prp}[直交射影の存在]
+			$H$を複素Hilbert空間とする．$H$の任意の閉部分空間$L$に対し
+			或る$p \in \Oproj{H}$が存在して$p:H \rightarrow L$を満たす．
+			特に$\Ran{p} = L$が成り立つ．
+		\end{prp}
+	\end{screen}
+	
+	\begin{prf}
+		Hilbert空間の射影定理により，任意の$x \in H$は
+		$x = x_1 + x_2\ (x_1 \in L,x_2 \in L^\perp)$の形に一意に分解されるから
+		\begin{align}
+			p:H \ni x \longmapsto x_1 \in L
+		\end{align}
+		として線型写像を定めれば
+		$p \in \Oproj{H}$が従う．特に任意の$u \in L$に対しては$p u = u$が満たされる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{prp}[直交射影は冪等・自己共役]
+			$H$を複素Hilbert空間とする．任意の$p:H \rightarrow H$に対し次は同値である:
+			\begin{description}
+				\item[(1)] $p \in \Oproj{H}$．
+				\item[(2)] $p$は$p \in \selfBop{H} ,\ p^2 = p,\ p^* = p$を満たす．
+			\end{description}
+			\label{prp:orthogonal_projection_idempotent_self_adjoint}
+		\end{prp}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $p \in \Oproj{H}$ならば或る$H$の閉部分空間$L$が存在して
+				\begin{align}
+					p: H \ni x \longmapsto x_1 \quad (x = x_1 + x_2,\ x_1 \in L,\ x_2 \in L^\perp)
+				\end{align}
+				を満たすから$\Norm{p}{\selfBop{H} } \leq 1$が従う．また$p u = u\ (\forall u \in L)$より
+				$p^2 = p$が成り立ち，更に任意に$x,y \in H$を取れば
+				\begin{align}
+					x = x_1 + x_2, \quad y = y_1 + y_2 \quad (x_1,y_1 \in L,\ x_2,y_2 \in L^\perp)
+				\end{align}
+				と分解されるから，直交性より
+				\begin{align}
+					\inprod<p x, y>
+					= \inprod<x_1, y_1 + y_2>
+					= \inprod<x_1, y_1>
+					= \inprod<x_1 + x_2, y_1>
+					= \inprod<x, p y>
+				\end{align}
+				が成り立ち$y \in \Dom{p^*} $及び$p^* = p$を得る．
+			
+			\item[(2)] 仮定を満たす$p$について，$\Ran{p} \perp \Ran{I - p} $が成り立つことを示す．
+				任意に$x \in \Ran{p} , y \in \Ran{I - p} $を取れば，
+				$x = p x',\ y = (I - p) y'$を満たす$x',y' \in H$が存在する．
+				$p^* = p$より$\Dom{p^*} = \Dom{p} $であるから，
+				\begin{align}
+					\inprod<x,y> = \inprod<p x', (I - p) y'>
+					= \inprod<x', p^* (I - p) y'>
+					= \inprod<x', p (I - p) y'>
+					= \inprod<x', (p - p^2) y'>
+					= 0
+				\end{align}
+				が成り立ち$\Ran{p} \perp \Ran{I - p} $が従う．
+				\begin{align}
+					\Ran{p} = \Ran{I - p} {}^\perp = \left( \Ran{p} {}^\perp \right)^\perp
+				\end{align}
+				となるから$\Ran{p} $は$H$の閉部分空間であり$p \in \Oproj{H}$が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[一様有界な作用素の極限は有界]
+			$X$をノルム空間，$Y$をBanach空間とし，ノルムをそれぞれ$\Norm{\cdot}{X},\Norm{\cdot}{Y}$で表す．
+			$A_n \in \Bop{X}{Y} \ (n=1,2,\cdots)$が
+			\begin{align}
+				\sup{n \in \N}{\Norm{A_n}{\Bop{X}{Y} }} < \infty
+			\end{align}
+			を満たし，かつ或る$X$で稠密な部分集合$S$が存在して全ての$x \in S$に対し
+			$\left( A_n x \right)_{n=1}^{\infty}$が$Y$で収束するとき，
+			\begin{align}
+				\lim_{n \to \infty} A_n x = A x \quad (\forall x \in X)
+			\end{align}
+			を満たす$A \in \Bop{X}{Y} $が一意に存在する．
+			\label{lem:limit_operator_of_uniformly_bounded_operators}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		先ず任意の$x \in X$に対し$\left( A_n x \right)_{n=1}^{\infty}$が$Y$で収束することを示す．
+		任意に$\epsilon > 0$を取る．
+		\begin{align}
+			a \coloneqq \sup{n \in \N}{\Norm{A_n}{\Bop{X}{Y} }}
+		\end{align}
+		とおき$\Norm{x - z}{X} < \epsilon/a$を満たす$z \in S$を一つ選べば，仮定より或る$N \in \N$が存在して
+		\begin{align}
+			\Norm{A_n z - A_m z}{Y} < \epsilon \quad (\forall n > m \geq N)
+		\end{align}
+		が成り立つから，
+		\begin{align}
+			\Norm{A_n x - A_m x}{Y} \leq a \Norm{x - z}{X} + \Norm{A_n z - A_m z}{Y} + a \Norm{x - z}{X} < 3\epsilon
+		\end{align}
+		が従う．よって$\left( A_n x \right)_{n=1}^{\infty}$は$Y$のCauchy列であり，$Y$の完備性より収束する．
+		\begin{align}
+			A x \coloneqq \lim_{n \to \infty} A_n x \quad (\forall x \in X)
+		\end{align}
+		として$A$を定めれば，任意の$x,y \in X$と$\alpha, \beta \in \C$に対し
+		\begin{align}
+			&\Norm{A(\alpha x + \beta y) - \alpha A x - \beta A y}{Y} \\
+			&\qquad \leq \Norm{A(\alpha x + \beta y) - A_n(\alpha x + \beta y)}{Y}
+				+ |\alpha| \Norm{A x - A_n x}{Y} + |\beta| \Norm{A x - A_n x}{Y}
+			\longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		が満たされるから$A$は線形作用素であり，かつ任意の$x \in X$に対して
+		\begin{align}
+			\Norm{A x}{Y} \leq \Norm{A x - A_n x}{Y} + \Norm{A_n x}{Y}
+			\leq \Norm{A x - A_n x}{Y} + \Norm{A_n}{\Bop{X}{Y} } \Norm{x}{X}
+		\end{align}
+		が成り立ち，右辺で下極限を取れば
+		\begin{align}
+			\Norm{A x}{Y} \leq \liminf_{n \to \infty} \Norm{A_n}{\Bop{X}{Y} } \Norm{x}{X}
+		\end{align}
+		が従う．
+		\begin{align}
+			\Norm{A}{\Bop{X}{Y} } \leq \liminf_{n \to \infty} \Norm{A_n}{\Bop{X}{Y} } = \sup{n \in \N}{\inf{\nu \geq n}{\Norm{A_\nu}{\Bop{X}{Y} }}} \leq \sup{n \in \N}{\Norm{A_n}{\Bop{X}{Y} }}
+		\end{align}
+		より$A \in \Bop{X}{Y} $を得る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{prp}[直交射影の積・和の性質]
+			$H$を複素Hilbert空間とする．
+			\begin{description}
+				\item[(1)] $P,Q \in \Oproj{H}$に対し次が成り立つ:
+					\begin{align}
+						\Ran{P} \perp \Ran{Q}
+						\quad \Leftrightarrow \quad  PQ = 0
+						\quad \Leftrightarrow \quad  QP = 0.
+					\end{align}
+				
+				\item[(2)] 
+					$P_1,\cdots,P_n \in \Oproj{H}$に対し
+					$P \coloneqq \sum_{i=1}^{n} P_i$とおけば次が成り立つ:
+					\begin{align}
+						P \in \Oproj{H}
+						\quad \Leftrightarrow \quad P_i P_j = \delta_{ij} P_j \quad (i,j = 1,\cdots,n).
+					\end{align}
+					ただし$\delta_{ij}$はKroneckerのデルタである．
+				
+				\item[(3)] 
+					$P_1,P_2,\cdots \in \Oproj{H}$が
+					$P_i P_j = \delta_{ij} P_j \ (\forall i,j \in \N)$を満たしているとする．
+					\begin{align}
+						H_0 \coloneqq \closure{\LH{\cup_{i=1}^{\infty}\Ran{P_i}}}
+					\end{align}
+					に対して，$P \in \Oproj{H}$が$\Ran{P} = H_0$を満たすとき次が成り立つ:
+					\begin{align}
+						Px = \sum_{i=1}^{\infty} P_i x \quad (\forall x \in H).
+					\end{align}
+			\end{description}
+			\label{prp:orthogonal_projection_product_sum}
+		\end{prp}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $\Ran{P} \perp \Ran{Q}$なら，命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}より
+				任意の$x,y \in H$に対し
+				\begin{align}
+					0 = \inprod<P x,Q y> = \inprod<x, P^*Q y> = \inprod<x, PQ y>
+				\end{align}
+				が成り立つ．特に$x = PQy$とすれば
+				\begin{align}
+					\Norm{PQ y}{} = 0 \quad (\forall y \in H)
+				\end{align}
+				が従い$PQ = 0$を得る．逆に$PQ = 0$ならば
+				\begin{align}
+					\inprod<P x,Q y> = 0 \quad (\forall x,y \in H)
+				\end{align}
+				が成り立つから$\Ran{P} \perp \Ran{Q}$が得られる．
+				同様にして$\Ran{P} \perp \Ran{Q} \Leftrightarrow QP = 0$も成り立つ．
+				
+			\item[(2)] 
+				\begin{description}
+					\item[$\Leftarrow$]
+						命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}を使う．
+						$\selfBop{H} $は線形空間であるから先ず$P \in \selfBop{H} $が成り立つ．
+						また$P_i P_j = \delta_{ij} P_j$より
+						\begin{align}
+							P^2 = \sum_{i=1}^n P_i^2 = \sum_{i=1}^n P_i = P
+						\end{align}
+						が従い，更に任意の$x,y \in H$に対して
+						\begin{align}
+							\inprod<Px,y> = \sum_{i=1}^n \inprod<P_i x,y> 
+							= \sum_{i=1}^n \inprod<x,P_i y> 
+							= \inprod<x,P y>
+						\end{align}
+						が成り立つから$P^* = P$が得られる．
+						
+					\item[$\Rightarrow$] 
+						$(P_i)_{i=1}^{n} \in \Oproj{H}$であるから，$i = j$なら
+						命題\ref{prp:orthogonal_projection_idempotent_self_adjoint}より$P_i P_j = P_i$が成り立つ．また
+						任意の$x \in H$に対し
+						\begin{align}
+							&\sum_{i,j=1}^{n} \Norm{P_i P_j x}{}^2
+							= \sum_{i=1}^{n} \sum_{j=1}^{n} \inprod<P_i P_j x, P_i P_j x>
+							= \sum_{i=1}^{n} \sum_{j=1}^{n} \inprod<P_i P_j x, P_j x> \\
+							&\qquad = \sum_{j=1}^{n} \inprod<\sum_{i=1}^{n} P_i P_j x, P_j x>
+							= \sum_{j=1}^{n} \inprod<P P_j x, P_j x>
+							= \sum_{j=1}^{n} \Norm{P P_j x}{}^2
+							\leq \sum_{j=1}^{n} \Norm{P_j x}{}^2
+						\end{align}
+						が成り立ち，一方で
+						\begin{align}
+							\sum_{i,j=1}^{n} \Norm{P_i P_j x}{}^2
+							= \sum_{\substack{i,j=1 \\ i \neq j}}^{n} \Norm{P_i P_j x}{}^2
+								+ \sum_{j=1}^{n} \Norm{P_j^2 x}{}^2
+							= \sum_{\substack{i,j=1 \\ i \neq j}}^{n} \Norm{P_i P_j x}{}^2
+								+ \sum_{j=1}^{n} \Norm{P_j x}{}^2
+						\end{align}
+						も成り立つから，
+						\begin{align}
+							\sum_{\substack{i,j=1 \\ i \neq j}}^{n} \Norm{P_i P_j x}{}^2 = 0
+							\quad (\forall x \in H)
+						\end{align}
+						が従い$P_i P_j = 0\ (i \neq j)$を得る．
+						\QED
+				\end{description}
+			\item[(3)] 
+				$P_i P_j = \delta_{ij} P_j \ (\forall i,j \in \N)$が満たされているから，任意の$x \in H$と$N \in \N$に対し
+				\begin{align}
+					\Norm{\sum_{n=1}^{N} P_n x}{}^2 
+					= \inprod<\sum_{n=1}^{N} P_n x, \sum_{n=1}^{N} P_n x>
+					= \sum_{n=1}^{N} \inprod<P_n x, P_n x> + \sum_{\substack{n,m=1 \\ n \neq m}}^{N} \inprod<P_m P_n x, x>
+					= \sum_{n=1}^{N} \Norm{P_n x}{}^2
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					x = \sum_{n=1}^{N} P_n x + \left( x - \sum_{n=1}^{N} P_n x \right)
+				\end{align}
+				とすれば，(2)より$\sum_{n=1}^{N} P_n \in \Oproj{H}$であるから
+				\begin{align}
+					\inprod<\sum_{n=1}^{N} P_n x, x - \sum_{n=1}^{N} P_n x> = 0
+				\end{align}
+				が満たされ，
+				\begin{align}
+					\Norm{x}{}^2 = \Norm{\sum_{n=1}^{N} P_n x}{}^2 + \Norm{x - \sum_{n=1}^{N} P_n x}{}^2
+					\leq \sum_{n=1}^{N} \Norm{P_n x}{}^2
+				\end{align}
+				を得る．ゆえに
+				\begin{align}
+					\sum_{n=1}^{\infty} \Norm{P_n x}{}^2 \leq \Norm{x}{}^2 \quad (\forall x \in H)
+				\end{align}
+				かつ
+				\begin{align}
+					\Norm{\sum_{n=1}^{N} P_n}{\selfBop{H} } \leq 1 \quad (\forall N \in \N)
+				\end{align}
+				が成り立つ．
+				\begin{align}
+					 \Norm{\sum_{n=p}^{q} P_n x}{}^2 = \sum_{n=p}^{q} \Norm{P_n x}{}^2
+				\end{align}
+				が成り立つから$\sum_{n=1}^{\infty} P_n x$は$H$で収束する．
+				補題\ref{lem:limit_operator_of_uniformly_bounded_operators}より
+				\begin{align}
+					Q x \coloneqq \sum_{n=1}^{\infty} P_n x \quad (\forall x \in H)
+				\end{align}
+				として$Q$を定めれば$Q \in \selfBop{H} $となる．$Q = P$となることを示す．
+				任意の$x \in \Ran{P_n} $に対しては，$P_i P_j = \delta_{ij} P_j \ (\forall i,j \in \N)$より
+				\begin{align}
+					x = P x = Q x
+				\end{align}
+				が成り立つから$P,Q$は$\LH{\cup_{i=1}^{\infty}\Ran{P_i}}$で一致し，
+				連続性から$H_0$上で一致する．
+				また$x \in H_0^\perp$に対しても，$P_n x = 0\ (n=1,2,\cdots)$より
+				\begin{align}
+					0 = P x = Q x
+				\end{align}
+				が成り立つ．任意の$x \in X$は$x = x_1 + x_2\ (x_1 \in H_0,\ x_2 \in H_0^\perp)$
+				と分解されるから$H$上で$P = Q$が成り立つ．
+				\QED
+		\end{description}
+	\end{prf}

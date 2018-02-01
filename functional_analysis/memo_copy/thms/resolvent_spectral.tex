@@ -1,0 +1,199 @@
+本章を通じて$X$を複素Banach空間とし，ノルムを$\Norm{\cdot}{}$で表す．
+
+\section{レゾルベントとスペクトル}
+	\begin{screen}
+		\begin{e.g.}[微分作用素のスペクトル]
+			$I \coloneqq [0,a]\ (a > 0),\ X \coloneqq \c{I}$とし，
+			$X$上の作用素$T_0,\cdots,T_4$を次で定める:
+			\begin{align}
+				\Dom{T_0} &\coloneqq \Set{u \in \cn{I}{1}}{u(0) = u(a) = 0}, \\
+				\Dom{T_1} &\coloneqq \Set{u \in \cn{I}{1}}{u(0) = 0}, \\
+				\Dom{T_2} &\coloneqq \Set{u \in \cn{I}{1}}{u(0) = u(a)}, \\
+				\Dom{T_3} &\coloneqq \cn{I}{1}, \\
+				\Dom{T_4} &\coloneqq \Set{u \in \cn{I}{1}}{u(0) + u(a) = 0}
+			\end{align}
+			$u \in \Dom{T_j} $に対し$T_j u = u'\ (j=0,\cdots,4)$．
+			この下で$\pSpctr{T_j} $及び$\Spctr{T_j} \ (j=0,\cdots,4)$を求める．
+			\label{ex:spectral_of_differential_operator}
+		\end{e.g.}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[微分方程式の解]
+			$I \coloneqq [0,a]\ (a > 0),\ X \coloneqq \c{I}$とおく．
+			任意の$f \in \cn{I}{1},\ \lambda,u_0 \in \C$に対し
+			\begin{align}
+				\begin{cases}
+					u'(x) - \lambda u(x) = f(x) \\
+					u(0) = u_0
+				\end{cases}
+				\quad (x \in I)
+				\label{eq:lem_solution_of_differential_equation_2}
+			\end{align}
+			は$\cn{I}{1}$において唯一つの解
+			\begin{align}
+				u(x) = \exp{\lambda x}u_0 + \int_0^x \exp{\lambda (x-s)} f(s)\ ds
+				\quad (x \in I)
+				\label{eq:lem_solution_of_differential_equation_1}
+			\end{align}
+			を持つ．
+			\label{lem:solution_of_differential_equation}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}[補題\ref{lem:solution_of_differential_equation}]
+		(\refeq{eq:lem_solution_of_differential_equation_1})で与えられる$u \in \cn{I}{1}$は
+		\begin{align}
+			u'(x) = \lambda u_0 \exp{\lambda x} + \lambda \exp{\lambda x} \int_0^x \exp{-\lambda s} f(s)\ ds + f(x) 
+			= \lambda u(x) + f(x)
+			\quad (\forall x \in I)
+		\end{align}
+		を満たすから微分方程式(\refeq{eq:lem_solution_of_differential_equation_2})の解であるから，あとは
+		解の一意性を示せばよい．$v \in \cn{I}{1}$が(\refeq{eq:lem_solution_of_differential_equation_2})の解であるとき，
+		\begin{align}
+			u'(x) - \lambda u(x) = v'(x) - \lambda v(x) \quad (\forall x \in I),
+			\quad u(0) - v(0) = 0
+		\end{align}
+		が成り立つから，$w \coloneqq u - v \in \cn{I}{1}$は次の確率微分方程式を満たす:
+		\begin{align}
+			\begin{cases}
+				w'(x) = \lambda w(x) \\
+				w(0) = 0
+			\end{cases}
+			\quad (\forall x \in I).
+		\end{align}
+		これを満たす$w$は$w = 0$のみであるから$u = v$が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{prf}[例\ref{ex:spectral_of_differential_operator}]
+		先ず各$T_j$が閉作用素であることを示す．
+		$u_n \in \Dom{T_j} \ (n=1,2,\cdots)$に対し或る$u,v \in \c{I}$が存在して，$\Norm{u_n - u}{} \longrightarrow 0$
+		かつ$\Norm{T_j u_n - v}{} \longrightarrow 0$が成り立つとき，任意の$x \in I$に対して
+		\begin{align}
+			\left| u(x) - \int_0^x v(t)\ dt \right|
+			&\leq \left| u(x) - u_n(x) \right| + \left| \int_0^x T_j u_n(t)\ dt - \int_0^x v(t)\ dt \right| \\
+			&\leq \Norm{u - u_n}{} + a \Norm{T_j u_n - v}{}
+			\longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		が成り立つから
+		\begin{align}
+			u(x) = \int_0^x v(t)\ dt \quad (\forall x \in I)
+		\end{align}
+		となり，$u \in \cn{I}{1}$かつ$u' = v$が得られる．後は$u \in \Dom{T_j} $を満たせばよい．
+		$j = 0,1$の場合は
+		\begin{align}
+			\left| u(x) \right| = \left| u(x) - u_n(x) \right| \leq \Norm{u - u_n}{} \longrightarrow 0 \quad (n \longrightarrow \infty,\ x=0,a)
+		\end{align}
+		により，$j=2$の場合は
+		\begin{align}
+			\left| u(0) - u(a) \right| \leq \left| u(0) - u_n(0) \right| 
+				+ \left| u_n(a) - u(a) \right|
+			\leq 2 \Norm{u - u_n}{}
+			\longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		により，$j=4$の場合は
+		\begin{align}
+			\left| u(0) + u(a) \right| \leq \left| u(0) - u_n(0) \right| 
+				+ \left| u_n(a) - u(a) \right|
+			\leq 2 \Norm{u - u_n}{}
+			\longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		により，いずれの場合も$u \in \Dom{T_j} $が成り立つ．
+		次に$\pSpctr{T_j} $と$\Spctr{T_j} $を考察する．
+		\begin{description}
+			\item[$j=0$の場合]
+			\item[$j=1$の場合]
+			\item[$j=4$の場合]
+				\input{thms/report_4}
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[レゾルベントは閉作用素]
+			$T$を$X$上の線型作用素，$\lambda$を複素数とするとき，次は同値である:
+			\begin{description}
+				\item[(1)] $T$は閉作用素である．
+				\item[(2)] $\lambda I - T$は閉作用素である．
+				\item[(3)] $(\lambda I - T)^{-1}$が存在すれば，これは閉作用素である．
+			\end{description}
+			\label{lem:resolvent_is_closed}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)$\Rightarrow$(2)]
+				$[u_n,(\lambda I - T) u_n] \in \Graph{(\lambda I - T)} \ (n=1,2,\cdots)$が
+				$u_n \longrightarrow u \in X,\ (\lambda I - T) u_n \longrightarrow v \in X$を満たすとき，
+				\begin{align}
+					\Norm{(\lambda u - v) - T u_n}{}
+					\leq \Norm{(\lambda I - T) u_n - v}{} + \Norm{\lambda u_n - \lambda u}{}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				より$T u_n \longrightarrow \lambda u - v$が成り立つ．$T$が閉作用素なら
+				$T u = \lambda u - v$が従い$v = (\lambda I - T) u$を得る．
+				
+			\item[(2)$\Rightarrow$(1)]
+				$[u_n,T u_n] \in \Graph{T} \ (n=1,2,\cdots)$が
+				$u_n \longrightarrow u \in X,\ T u_n \longrightarrow v \in X$を満たすとき，
+				\begin{align}
+					\Norm{(\lambda I - T)u_n - (\lambda u - v)}{}
+					\leq \Norm{\lambda u_n - \lambda u}{} + \Norm{v - T u_n}{}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				より$(\lambda I - T)u_n \longrightarrow \lambda u - v$が成り立つ．
+				$(\lambda I - T)$が閉作用素なら$(\lambda I - T)u = \lambda u - v$が従い
+				$T u = v$を得る．
+				
+			\item[(2)$\Leftrightarrow$(3)]
+				定理\ref{thm:closed_linear_op_inverse}による．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[レゾルベントの共役]
+			$X$を複素banach空間，$T:X \oparrow X$を閉線型作用素，
+			$I$を$X$上の恒等写像とする．$\closure{\Dom{T} } = X$が満たされていれば，$\Res{T^*} = \Res{T} $かつ
+			$\left( \lambda I - T^* \right)^{-1} = \left((\lambda I - T)^{-1}\right)^*\ (\forall \lambda \in \Res{T^*})$
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				
+			\item[(2)]
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[レゾルベントの共役]
+			$H$を複素Hilbert空間，$T:H \oparrow H$を閉線型作用素，
+			$I$を$H$上の恒等写像とする．$\closure{\Dom{T} } = H$が満たされていれば，$\Res{T^*} = \Res{T} $かつ
+			$\left( \lambda I - T^* \right)^{-1} = \left((\lambda I - T)^{-1}\right)^*\ (\forall \lambda \in \Res{T^*})$
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{e.g.}
+			$(X,\mathcal{M},\mu)$を$\sigma$-有限な測度空間，$H = \mathrm{L}^2(X,\mathcal{M},\mu) = \mathrm{L}^2(\mu)$とする．
+			$\mathcal{M}$-可測関数$a:X \rightarrow \C$に対して，$H$から$H$へのかけ算作用素$M_a$を次で定める:
+			\begin{align}
+				\Dom{M_a} = \Set{u \in H}{au \in H},
+				\quad (M_a u)(x) = a(x) u(x) \quad (x \in X).
+			\end{align}
+			\begin{description}
+				\item[(1)] $M_a$は線型作用素で，$\Dom{M_a} $は$H$で稠密なことを示せ．
+				\item[(2)] $M_a^* = M_{\conj{a}}$が成り立つことを示せ．
+				\item[(3)] $\Spctr{M_a} = \Set{\lambda \in \C}{\mbox{$\forall \epsilon > 0$に対し$\mu\left( a^{-1}(U_\epsilon(\lambda)) \right) > 0$}}$を示せ．
+					(ただし$U_\epsilon(\lambda)$は$\lambda$の$\epsilon$-近傍．)
+				\item[(4)] $\pSpctr{M_a} = \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$を示せ．
+			\end{description}
+		\end{e.g.}
+	\end{screen}
+	
+	\input{thms/report_8}
