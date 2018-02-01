@@ -275,198 +275,233 @@ $\semiLp{p}{X,\mathcal{F},\mu}$は$\R$上の線形空間となる．
 		$[f]^p \coloneqq [f^p]$により冪乗を定める．また$|[f]| \coloneqq [|f|]$として絶対値$|\cdot|$を定める．
 \end{description}
 
-\begin{itembox}[l]{}
+\begin{screen}
 	\begin{lem}[商空間におけるノルムの定義]
 		\begin{align}
-			\Norm{[f]}{\mathrm{L}^p} \coloneqq \Norm{f}{\mathscr{L}^p} \quad (1 \leq p \leq \infty,\ f \in \semiLp{p}{X,\mathcal{F},m})
+			\Norm{[f]}{\mathrm{L}^p} \coloneqq \Norm{f}{\mathscr{L}^p} \quad (f \in \semiLp{p}{X,\mathcal{F},\mu},\ 1 \leq p \leq \infty)
 		\end{align}
-		として$\Norm{\cdot}{\mathrm{L}^p}:\Lp{0}{X,\mathcal{F},m} \rightarrow \R$を定義すればこれはwell-definedである．つまり代表元に依らずに値がただ一つに定まる．
-		更に次で定義する空間
+		により定める$\Norm{\cdot}{\mathrm{L}^p}:\Lp{0}{X,\mathcal{F},\mu} \rightarrow \R$は関数類の代表に依らずに値が確定する．
+		そして
 		\begin{align}
-			\Lp{p}{X,\mathcal{F},m} \coloneqq \Set{[f] \in \Lp{0}{X,\mathcal{F},m}}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
+			\Lp{p}{X,\mathcal{F},\mu} \coloneqq \Set{[f] \in \Lp{0}{X,\mathcal{F},\mu}}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
 		\end{align}
-		は$\Norm{\cdot}{\mathrm{L}^p}$をノルムとしてノルム空間となる．
+		として定める空間は$\Norm{\cdot}{\mathrm{L}^p}$をノルムとしてノルム空間となる．
 	\end{lem}
-\end{itembox}
+\end{screen}
+
 \begin{prf}\mbox{}
 	\begin{description}
-		\item[well-definedであること]
-			$f \in \semiLp{p}{X,\mathcal{F},m}$に対し，任意に$g \in [f]$を選ぶ．
-			示すことは$\Norm{f}{\mathscr{L}^p}^p = \Norm{g}{\mathscr{L}^p}^p$が成り立つことである．
+		\item[第一段]
+			任意の$f,g \in \semiLp{p}{X,\mathcal{F},\mu}$に対し，$[f] = [g]$なら
+			$\Norm{f}{\mathscr{L}^p}^p = \Norm{g}{\mathscr{L}^p}^p$となることを示す．
 			\begin{align}
-				A \coloneqq \Set{x \in X}{f(x) \neq g(x)} \quad \in \mathcal{F}
+				A \coloneqq \Set{x \in X}{f(x) \neq g(x)}
 			\end{align}
-			とおく．$A$は$m(A)=0$を満たす．
+			として零集合を定める．
 			\begin{description}
 				\item[$p = \infty$の場合]
-					$A^c$の上で$f(x)=g(x)$となるから
+					$A^c$の上では$f(x)=g(x)$が満たされているから
 					\begin{align}
-						\Set{x \in X}{|g(x)| > \Norm{f}{\mathscr{L}^\infty}} 
-						&\subset A + A^c \cap \Set{x \in X}{|g(x)| > \Norm{f}{\mathscr{L}^\infty}} \\
-						&= A + A^c \cap \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} \\
-						&\subset A + \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}}
+						&\Set{x \in X}{|g(x)| > \Norm{f}{\mathscr{L}^\infty}} \\
+						&\qquad = A \cap \Set{x \in X}{|g(x)| > \Norm{f}{\mathscr{L}^\infty}} + A^c \cap \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}}
 					\end{align}
-					が成り立ち，最右辺は2項とも$m$-零集合であるから$\Norm{g}{\mathscr{L}^\infty} \leq \Norm{f}{\mathscr{L}^\infty}$が従う．
-					逆向きの不等号も同様に示されて$\Norm{g}{\mathscr{L}^\infty} = \Norm{f}{\mathscr{L}^\infty}$を得る．
+					が成り立ち，右辺はどちらも零集合であるから$\Norm{g}{\mathscr{L}^\infty} \leq \Norm{f}{\mathscr{L}^\infty}$が従う．
+					$f,g$を入れ替えれば$\Norm{f}{\mathscr{L}^\infty} \leq \Norm{g}{\mathscr{L}^\infty}$も示されて
+					$\Norm{g}{\mathscr{L}^\infty} = \Norm{f}{\mathscr{L}^\infty}$を得る．
+					
 				\item[$1 \leq p < \infty$の場合]
-					$m(A)=0$により
 					\begin{align}
-						\Norm{f}{\mathscr{L}^p}^p = \int_X f(x)\ m(dx) = \int_{A^c} f(x)\ m(dx) = \int_{A^c} g(x)\ m(dx) = \int_X g(x)\ m(dx) = \Norm{g}{\mathscr{L}^p}^p
+						\Norm{f}{\mathscr{L}^p}^p = \int_{X \backslash A} |f(x)|^p\ \mu(dx) 
+						= \int_{X \backslash A} |g(x)|^p\ \mu(dx) = \Norm{g}{\mathscr{L}^p}^p
 					\end{align}
 					が成り立つ．
 			\end{description}
 		
-		\item[ノルムとなること]
-			任意に$[f],[g] \in \Lp{p}{X,\mathcal{F},m}$と$\alpha \in \K$を取る．
-			$\Norm{[f]}{\mathrm{L}^p}$の正値性は$\Norm{\cdot}{\mathscr{L}^p}$の正値性から従う．
-			また$m(f \neq 0) > 0$なら$\Norm{f}{\mathscr{L}^p} > 0$となるから，
-			対偶により$\Norm{[f]}{\mathrm{L}^p} = 0$なら$[f]$は零元$[0]$，
-			逆に$[f] = [0]$なら$\Norm{[f]}{\mathrm{L}^p} = \Norm{0}{\mathscr{L}^p} = 0$となる．
-			$\Norm{\cdot}{\mathscr{L}^p}$の同次性とMinkowskiの不等式から
+		\item[第二段]
+			$\Norm{\cdot}{\mathrm{L}^p}$がノルムの公理を満たすことを示す．
+			任意に$[f],[g] \in \Lp{p}{X,\mathcal{F},\mu}$と$\alpha \in \R$を取る．
+			$\Norm{[f]}{\mathrm{L}^p}$が正値であることは$\Norm{\cdot}{\mathscr{L}^p}$が正値であることから従う．
+			また$\mu(f \neq 0) > 0 \Rightarrow \Norm{f}{\mathscr{L}^p} > 0$の
+			対偶により$\Norm{[f]}{\mathrm{L}^p} = 0 \Rightarrow [f] = [0]$が成り立ち，
+			逆に$[f] = [0]$ならば$\Norm{[f]}{\mathrm{L}^p} = \Norm{0}{\mathscr{L}^p} = 0$が成り立つ．
+			更に$\Norm{\cdot}{\mathscr{L}^p}$の同次性とMinkowskiの不等式より
 			\begin{align}
-				&\Norm{\alpha[f]}{\mathrm{L}^p} = \Norm{[\alpha f]}{\mathrm{L}^p} = \Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p} = |\alpha|\Norm{[f]}{\mathrm{L}^p} \\
-				&\Norm{[f] + [g]}{\mathrm{L}^p} = \Norm{[f + g]}{\mathrm{L}^p} = \Norm{f + g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} = \Norm{[f]}{\mathrm{L}^p} + \Norm{[g]}{\mathrm{L}^p}
+				&\Norm{\alpha[f]}{\mathrm{L}^p} = \Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p} = |\alpha|\Norm{[f]}{\mathrm{L}^p}, \\
+				&\Norm{[f] + [g]}{\mathrm{L}^p} = \Norm{f + g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} = \Norm{[f]}{\mathrm{L}^p} + \Norm{[g]}{\mathrm{L}^p}
 			\end{align}
-			も成り立ち，$\Norm{\cdot}{\mathrm{L}^p}$が$\Lp{p}{X,\mathcal{F},m}$においてノルムとなると示された．
+			が得られ，$\Norm{\cdot}{\mathrm{L}^p}$の同次性と劣加法性が導かれる．
 			\QED
 	\end{description}
 \end{prf}
 
-\begin{itembox}[l]{}
+\begin{screen}
 	\begin{prp}[$\mathrm{L}^p$の完備性]
-		ノルム空間$\Lp{p}{X,\mathcal{F},m}\ (1 \leq p \leq \infty)$はBanach空間である．
+		ノルム空間$\Lp{p}{X,\mathcal{F},\mu}\ (1 \leq p \leq \infty)$はBanach空間である．
 	\end{prp}
-\end{itembox}
+\end{screen}
+
 \begin{prf}
-	任意に$\Lp{p}{X,\mathcal{F},m}$のCauchy列$[f_n] \in \Lp{p}{X,\mathcal{F},m}\ (n=1,2,3,\cdots)$を取る．
-	Cauchy列であるから$1/2$に対して或る$N_1 \in \N$が取れて，$n>m \geq N_1$ならば
-	$\Norm{[f_n]-[f_m]}{\mathrm{L}^p} = \Norm{[f_n - f_m]}{\mathrm{L}^p} < 1/2$となる．
-	ここで$m = n_1$と表記することにする．
-	同様に$1/2^2$に対して或る$N_2 \in \N\ (N_2 > N_1)$が取れて，$n'>m' \geq N_2$ならば
-	$\Norm{[f_{n'} - f_{m'}]}{\mathrm{L}^p} < 1/2^2$となる．
-	先ほどの$n$について，$n > N_2$となるように取れるからこれを$n = n_2$と表記し，更に$m' = n_2$ともしておく．今のところ
+	任意にCauchy列$[f_n] \in \Lp{p}{X,\mathcal{F},m}\ (n=1,2,3,\cdots)$を取れば，
+	或る$N_1 \in \N$が存在して
 	\begin{align}
-		\Norm{[f_{n_1} - f_{n_2}]}{\mathrm{L}^p} < 1/2
+		\Norm{[f_n]-[f_m]}{\mathrm{L}^p} < \frac{1}{2}
+		\quad (\forall n > m \geq N_1)
 	\end{align}
-	と表示できる．再び同様に$1/2^3$に対して或る$N_3 \in \N\ (N_3 > N_2)$が取れて，$n''>m'' \geq N_2$ならば
-	$\Norm{[f_{n''} - f_{m''}]}{\mathrm{L}^p} < 1/2^3$となる．
-	先ほどの$n'$について$n' > N_3$となるように取れるからこれを$n' = n_3$と表記し，更に$m'' = n_3$ともしておく．今までのところで
+	を満たす．ここで$m > N_1$を一つ選び$n_1$とおく．
+	同様に$N_2 > N_1$を満たす$N_2 \in \N$が存在して
 	\begin{align}
-		&\Norm{[f_{n_1} - f_{n_2}]}{\mathrm{L}^p} < 1/2 \\
-		&\Norm{[f_{n_2} - f_{n_3}]}{\mathrm{L}^p} < 1/2^2
+		\Norm{[f_n]-[f_m]}{\mathrm{L}^p} < \frac{1}{2^2}
+		\quad (\forall n > m \geq N_2)
 	\end{align}
-	が成り立っている．数学的帰納法により
+	を満たすから，$m > N_2$を一つ選び$n_2$とおけば
 	\begin{align}
-		\Norm{[f_{n_k} - f_{n_{k+1}}]}{\mathrm{L}^p} < 1/2^k \quad (n_{k+1} > n_k,\ k=1,2,3,\cdots) \label{ineq:Lp_banach_2}
+		\Norm{\equiv{f_{n_1}}{} - \equiv{f_{n_2}}{}}{\mathrm{L}^p} < \frac{1}{2}
 	\end{align}
-	が成り立つように自然数の部分列$(n_k)_{k=1}^{\infty}$を取ることができる．
+	が成り立つ．同様の操作を繰り返して
+	\begin{align}
+		\Norm{\equiv{f_{n_k}}{} - \equiv{f_{n_{k+1}}}{}}{\mathrm{L}^p} < \frac{1}{2^k} 
+		\quad (n_k < n_{k+1},\ k=1,2,3,\cdots) \label{ineq:Lp_banach_2}
+	\end{align}
+	を満たす部分添数列$(n_k)_{k=1}^{\infty}$を構成する．
 	\begin{description}
-		\item[$p = \infty$の場合]\mbox{}\\
-			$[f_{n_k}]$の代表元$f_{n_k}$について，
+		\item[$p = \infty$の場合]
+			$\equiv{f_{n_k}}{}$の代表$f_{n_k}\ (k=1,2,\cdots)$に対して
 			\begin{align}
-				A_k &\coloneqq \Set{x \in X}{|f_{n_k}(x)| > \Norm{f_{n_k}}{\mathscr{L}^\infty}}, \\
-				A^k &\coloneqq \Set{x \in X}{|f_{n_k}(x) - f_{n_{k+1}}(x)| > \Norm{f_{n_k} - f_{n_{k+1}}}{\mathscr{L}^\infty}}
+				A_k &\coloneqq \Set{x \in X}{\left| f_{n_k}(x) \right| > \Norm{f_{n_k}}{\mathscr{L}^\infty}}, \\
+				A^k &\coloneqq \Set{x \in X}{\left| f_{n_k}(x) - f_{n_{k+1}}(x) \right| > \Norm{f_{n_k} - f_{n_{k+1}}}{\mathscr{L}^\infty}}
 			\end{align}
-			とおけばH\Ddot{o}lderの不等式の証明中の補助定理より$m(A_k) = m(A^k) = 0$であり，
+			とおけば，補題\ref{lem:holder_inequality}より$\mu(A_k) = \mu(A^k) = 0\ (k=1,2,\cdots)$が成り立つ．
 			\begin{align}
-				A \coloneqq \left( \cup_{k=1}^{\infty} A_k \right) \cup \left( \cup_{k=1}^{\infty} A^k \right)
+				A_\circ \coloneqq \bigcup_{k=1}^{\infty} A_k,
+				\quad A^\circ \coloneqq \bigcup_{k=1}^{\infty}A^k,
+				\quad A \coloneqq A_\circ \cup A^\circ
 			\end{align}
-			として$m$-零集合を定め
+			として$\mu$-零集合$A$を定めて
 			\begin{align}
-				\hat{f}_{n_k}(x) =
+				\hat{f}_{n_k}(x) \coloneqq
 				\begin{cases}
-					f_{n_k}(x) & (x \notin A) \\
+					f_{n_k}(x) & (x \in X \backslash A) \\
 					0 & (x \in A)
 				\end{cases}
-				\quad (\forall x \in X)
+				\quad (\forall x \in X,\ k=1,2,\cdots)
 			\end{align}
-			と定義した$\hat{f}_{n_k}$もまた$[f_{n_k}]$の元となる．
-			$\hat{f}_{n_k}$は$X$上の有界可測関数であり
+			により$\left( \hat{f}_{n_k} \right)_{k=1}^{\infty}$を構成すれば，
+			各$\hat{f}_{n_k}$は$\equiv{\hat{f}_{n_k}}{} = \equiv{f_{n_k}}{}$を満たす有界可測関数であり，
+			(\refeq{ineq:Lp_banach_2})より
 			\begin{align}
-				\Norm{\hat{f}_{n_k} - \hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} = \sup{x \in X}{\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{l}}(x)\right|} < 1/2^k \quad (k=1,2,3,\cdots) 
+				\sup{x \in X}{\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{k+1}}(x)\right|}
+				\leq \Norm{\hat{f}_{n_k} - \hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} < \frac{1}{2^k} \quad (k=1,2,3,\cdots) 
 				\label{ineq:Lp_banach_1}
 			\end{align}
-			が成り立つから，各点$x \in X$で$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\K$のCauchy列となり
+			が成り立つ．従って各点$x \in X$に対し$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\R$のCauchy列をなし
 			\footnote{
-				任意の$\epsilon > 0$に対し$1/2^N < \epsilon$を満たす$N \in \N$を取れば，全ての$l > k > N$に対して
+				任意の$\epsilon > 0$に対し$1/2^N < \epsilon$を満たす$N \in \N$を取れば，全ての$\ell > k > N$に対して
 				\begin{align}
-					\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{l}}(x)\right| \leq \sum_{j=k}^{l-1}\left|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)\right| < \sum_{k > N} 1/2^k = 1/2^N < \epsilon
+					\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{\ell}}(x)\right| 
+					\leq \sum_{j=k}^{\ell-1}\left|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)\right| 
+					< \sum_{k > N} \frac{1}{2^k} = \frac{1}{2^N} < \epsilon
+					\quad (\forall x \in X)
 				\end{align}
 				が成り立つ．
 			}
-			各点$x \in X$での極限を$\hat{f}(x)$と表す．一般に距離空間に値を取る可測関数列の各点収束の極限関数は可測関数であるから
-			$\hat{f}$もまた可測$\mathcal{F}/\borel{\K}$である．また$\hat{f}$は有界である．実際
-			式(\refeq{ineq:Lp_banach_1})から任意の$l > k$に対し
+			収束する．
 			\begin{align}
-				|\hat{f}_{n_k}(x) - \hat{f}_{n_l}(x)| \leq \sum_{j=k}^{l-1} |\hat{f}_{n_{j}}(x) - \hat{f}_{n_{j+1}}(x)| 
-				\leq \sum_{j=k}^{l-1} \sup{x \in X}{|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)|} < 1/2^{k-1}
+				\hat{f}(x) \coloneqq \lim_{k \to \infty} \hat{f}_{n_k}(x)
+				\quad (\forall x \in X)
 			\end{align}
-			が成り立つから，極限関数$\hat{f}(x)$も
+			として$\hat{f}$を定めれば，$\hat{f}$は可測$\mathcal{F}/\borel{\R}$であり，且つ任意に$k \in \N$を取れば
 			\begin{align}
 				\sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|} \leq 1/2^{k-1} \label{ineq:Lp_banach_3}
 			\end{align}
-			を満たすことになる．なぜなら，もし或る$x \in X$で$\alpha \coloneqq |\hat{f}_{n_k}(x) - \hat{f}(x)| > 1/2^{k-1}$となる場合，
-			任意の$l > k$に対し
+			を満たす．実際或る$y \in X$で$\alpha \coloneqq |\hat{f}_{n_k}(y) - \hat{f}(y)| > 1/2^{k-1}$が成り立つと仮定すれば，
 			\begin{align}
-				0 < \alpha - 1/2^{k-1} < |\hat{f}_{n_k}(x) - \hat{f}(x)| - |\hat{f}_{n_k}(x) - \hat{f}_{n_l}(x)| \leq |\hat{f}_{n_l}(x) - \hat{f}(x)|
+				\left| \hat{f}_{n_k}(y) - \hat{f}_{n_\ell}(y) \right|
+				\leq \sum_{j=k}^{\ell-1} \sup{x \in X}{\left|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)\right|}
+				< \sum_{j=k}^{\infty} \frac{1}{2^j}
+				= \frac{1}{2^{k-1}}
+				\quad (\forall \ell > k)
 			\end{align}
-			となり各点収束に反するからである．不等式(\refeq{ineq:Lp_banach_3})により任意の$x \in X$において
+			より
 			\begin{align}
-				|\hat{f}(x)| < |\hat{f}_{n_k}(x)| + 1/2^{k-1} \leq \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty} + 1/2^{k-1}
+				0 < \alpha - 1/2^{k-1} < \left| \hat{f}_{n_k}(y) - \hat{f}(y) \right| - \left| \hat{f}_{n_k}(y) - \hat{f}_{n_\ell}(y) \right|
+				\leq \left| \hat{f}(y) - \hat{f}_{n_\ell}(y) \right|
+				\quad (\forall \ell > k)
 			\end{align}
-			が成り立ち$\hat{f}$の有界性が判る．以上で極限関数$\hat{f}$が有界可測関数であると示された．
-			$\hat{f}$を代表元とする$[\hat{f}] \in \Lp{\infty}{X,\mathcal{F},m}$に対し，不等式(\refeq{ineq:Lp_banach_3})により
+			が従い各点収束に反する．不等式(\refeq{ineq:Lp_banach_3})により
 			\begin{align}
-				\Norm{[f_{n_k}] - [\hat{f}]}{\mathrm{L}^\infty} = \Norm{\hat{f}_{n_k} - \hat{f}}{\mathscr{L}^\infty} 
-				= \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
-				\longrightarrow 0 \ (k \longrightarrow \infty)
+				\sup{x \in X}{\left| \hat{f}(x) \right|} 
+				< \sup{x \in X}{\left| \hat{f}(x) - \hat{f}_{n_k}(x) \right|} + \sup{x \in X}{\left| \hat{f}_{n_k}(x) \right|} 
+				\leq \frac{1}{2^{k-1}} + \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty}
 			\end{align}
-			となりCauchy列$\left( [f_{n}] \right)_{n=1}^{\infty}$の部分列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$は$[\hat{f}]$に収束する．
-			元のCauchy列も$[\hat{f}]$に収束するから$\Lp{\infty}{X,\mathcal{F},m}$はBanach空間である．
+			が成り立ち$\hat{f}$の有界性が得られるから，$\hat{f}$は$\semiLp{\infty}{\Omega,\mathcal{F},\mu}$に属している．
+			\begin{align}
+				\Norm{\equiv{f_{n_k}}{} - \equiv{\hat{f}}{}}{\mathrm{L}^\infty}
+				= \Norm{\equiv{\hat{f}_{n_k}}{} - \equiv{\hat{f}}{}}{\mathrm{L}^\infty}
+				\leq \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
+				\longrightarrow 0 \quad (k \longrightarrow \infty)
+			\end{align}
+			により部分列$\left( \equiv{f_{n_k}}{} \right)_{k=1}^{\infty}$が$\equiv{\hat{f}}{}$に収束するから
+			元のCauchy列も$\equiv{\hat{f}}{}$に収束する．
 			
-		\item[$1 \leq p < \infty$の場合]\mbox{}\\
-			$[f_{n_k}]$の代表元$f_{n_k}$に対して
+		\item[$1 \leq p < \infty$の場合]
+			$\equiv{f_{n_k}}{}$の代表$f_{n_k}\ (k=1,2,\cdots)$は
 			\begin{align}	
-				f_{n_k}(x) &\coloneqq f_{n_1}(x) + \sum_{j=1}^{k}(f_{n_j}(x) - f_{n_{j-1}}(x)) \label{eq:Lp_banach_3}
+				f_{n_k}(x) = f_{n_1}(x) + \sum_{j=1}^{k}\left( f_{n_j}(x) - f_{n_{j-1}}(x) \right) \quad (\forall x \in X)
+				\label{eq:Lp_banach_3}
 			\end{align}
-			と表現できるから，これに対して
+			を満たし，これに対して
 			\begin{align}
-				g_k(x) &\coloneqq |f_{n_1}(x)| + \sum_{j=1}^{k}|f_{n_j}(x) - f_{n_{j-1}}(x)|
+				g_k(x) &\coloneqq \left| f_{n_1}(x) \right| + \sum_{j=1}^{k} \left| f_{n_j}(x) - f_{n_{j-1}}(x) \right|
+				\quad (\forall x \in X,\ k=1,2,\cdots)
 			\end{align}
-			として可測関数列$(g_k)_{k=1}^{\infty}$を定める．Minkowskiの不等式と式(\refeq{ineq:Lp_banach_2})より
+			により単調非減少な可測関数列$(g_k)_{k=1}^{\infty}$を定めれば，Minkowskiの不等式と(\refeq{ineq:Lp_banach_2})により
 			\begin{align}
 				\Norm{g_k}{\mathscr{L}^p} \leq \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k}\Norm{f_{n_j} - f_{n_{j-1}}}{\mathscr{L}^p}
-				< \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k} 1/2^j < \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
+				< \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
+				\quad (k = 1,2,\cdots)
+				\label{eq:thm_Lp_banach_1}
 			\end{align}
-			が成り立つ．各点$x \in X$で$g_k(x)$は$k$について単調増大であるから，単調収束定理より
+			が成り立つ．ここで
 			\begin{align}
-				\Norm{g}{\mathscr{L}^p}^p = \lim_{k \to \infty} \Norm{g_k}{\mathscr{L}^p}^p < \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
+				B_N \coloneqq \bigcap_{k=1}^{\infty} \Set{x \in X}{g_k(x) \leq N},
+				\quad B \coloneqq \bigcup_{N=1}^{\infty} B_N
 			\end{align}
-			となるので$g \in \Lp{p}{X,\mathcal{F},m}$である．従って
+			とおけば$(g_k)_{k=1}^{\infty}$は$B$上で各点収束し$X \backslash B$上では発散するが，
+			$X \backslash B$は零集合である．実際
 			\begin{align}
-				B_n &\coloneqq \Set{x \in X}{g(x) \leq n} \in \mathcal{F}, \\
-				B &\coloneqq \bigcup_{n=1}^{\infty} B_n
+				\int_X |g_k(x)|^p\ \mu(dx)
+				&= \int_B |g_k(x)|^p\ \mu(dx) + \int_{X \backslash B} |g_k(x)|^p\ \mu(dx) \\
+				&\leq \left( \Norm{f_{n_1}}{\mathscr{L}^p} + 1 \right)^p
+				\quad (k=1,2,\cdots)
 			\end{align}
-			とおけば$m(X \backslash B) = 0$であり，式(\refeq{eq:Lp_banach_3})の級数は$B$上で絶対収束する(各点)．
+			が満たされているから，単調収束定理より
 			\begin{align}
+				\int_B \lim_{k \to \infty}|g_k(x)|^p\ \mu(dx) + \int_{X \backslash B} \lim_{k \to \infty}|g_k(x)|^p\ \mu(dx)
+				\leq \left( \Norm{f_{n_1}}{\mathscr{L}^p} + 1 \right)^p
+			\end{align}
+			が成り立ち$\mu(X \backslash B) = 0$が従う．
+			\begin{align}
+				g(x) \coloneqq
+				\begin{cases}
+					\lim\limits_{k \to \infty} g_k(x) & (x \in B) \\
+					0 & (x \in X \backslash B)
+				\end{cases}
+				,\quad
 				f(x) \coloneqq
 				\begin{cases}
 					\lim\limits_{k \to \infty} f_{n_k}(x) & (x \in B) \\
 					0 & (x \in X \backslash B)
 				\end{cases}
 			\end{align}
-			として可測$\mathcal{F}/\borel{\R}$関数$f$を定義すれば，$|f(x)| \leq g(x)\ (\forall x \in X)$と
-			$g^p$の可積性から$f$の関数類$[f]$は$\Lp{p}{X,\mathcal{F},m}$の元となる．
-			関数列$(\left( f_{n_k} \right)_{k=1}^{\infty})$は$f$に概収束し，
-			また$|f_{n_k}(x) - f(x)|^p \leq 2^p(|f_{n_k}(x)|^p + |f(x)|^p) \leq 2^{p+1} g(x)^p\ (\forall x \in X)$となるから，
+			として$g,f$を定義すれば$g,f$は共に$\mathcal{F}/\borel{\R}$-可測であり，また$|f(x)| \leq g(x)\ (\forall x \in X)$と
+			$g^p$の可積分性により$\equiv{f}{} \in \Lp{p}{X,\mathcal{F},\mu}$が成り立つ．
+			今$\left|f_{n_k}(x) - f(x)\right|^p \leq 2^p g(x)^p\ (\forall x \in B,\ k=1,2,\cdots)$が満たされているから，
 			Lebesgueの収束定理により
 			\begin{align}
-				\lim_{k \to \infty}\Norm{[f_{n_k}] - [f]}{\mathrm{L}^p}^p
-				= \lim_{k \to \infty}\Norm{f_{n_k} - f}{\mathscr{L}^p}^p
-				= \lim_{k \to \infty} \int_X |f_{n_k}(x) - f(x)|^p\ m(dx) = 0
+				\lim_{k \to \infty}\Norm{\equiv{f_{n_k}}{} - \equiv{f}{}}{\mathrm{L}^p}^p
+				= \lim_{k \to \infty} \int_X \left| f_{n_k}(x) - f(x) \right|^p\ \mu(dx) = 0
 			\end{align}
-			が成り立ち，Cauchy列$\left( [f_{n}] \right)_{n=1}^{\infty}$の部分列$\left( [f_{n_k}] \right)_{k=1}^{\infty}$が$[f]$に収束すると示された．
-			従って元のCauchy列も$[f]$に収束するから$\Lp{p}{X,\mathcal{F},m}$はBanach空間である．
+			が得られ，部分列の収束により元のCauchy列も$\equiv{f}{}$に収束する．
 			\QED
 	\end{description}
 \end{prf}
