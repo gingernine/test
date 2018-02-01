@@ -163,7 +163,7 @@
 		\begin{thm}[同値類に対する伊藤積分の拡張]
 			$M \in \mathcal{M}_{2,c}$とする．
 			任意の停止時刻$\tau$に対し，定理\ref{thm:Ito_integral_equiv_class_linearity_isometric}で定めた
-			$\tilde{I}^\tau_M$は$\Lp{2}{I \times \Omega,\mathcal{P},\mu_M}$上の等長線型作用素に
+			$\tilde{I}^\tau_M$は$\Lp{2}{\mathcal{P},\mu_M}$上の等長線型作用素に
 			拡張可能である．
 			\label{thm:expansion_of_Ito_integral_equiv_class}
 		\end{thm}
@@ -172,7 +172,7 @@
 	\begin{prf}
 		補題\ref{lem:properties_of_simple_predictable_processes}の等長単射
 		\begin{align}
-			J:\mathfrak{S} \ni \equiv{X}{\mathfrak{S}} \longmapsto \equiv{X}{\Lp{2}{\mu_M}} \in \Lp{2}{I \times \Omega,\mathcal{P},\mu_M}
+			J:\mathfrak{S} \ni \equiv{X}{\mathfrak{S}} \longmapsto \equiv{X}{\Lp{2}{\mu_M}} \in \Lp{2}{\mathcal{P},\mu_M}
 		\end{align}
 		に対し，値域を$J\mathfrak{S}$に制限した線形全単射を$\tilde{J}$と表す．
 		定理\ref{thm:Ito_integral_equiv_class_linearity_isometric}より$\tilde{I}^\tau_M$も線型性を持つから
@@ -200,17 +200,51 @@
 	
 	\begin{screen}
 		\begin{lem}[停止時刻で停めた伊藤積分]
-			任意の停止時刻$\tau$に対し
+			$M \in \mathcal{M}_{2,c}$による伊藤積分$I_M$について，
+			任意の停止時刻$\tau$と$X \in \semiLp{2}{\mathcal{P},\mu_M}$に対し次が成り立つ:
 			\begin{align}
 				\int_\Omega \left| I_M(X)(\tau(\omega),\omega) \right|^2\ \mu(d\omega)
 				= \int_\Omega \int_I \left| X(t,\omega) \right|^2 \defunc_{[0,\tau(\omega)]}(t)\ \inprod<M>(dt,\omega)\ \mu(d\omega).
 			\end{align}
+			\label{thm:stopped_Ito_integral}
 		\end{lem}
 	\end{screen}
 	
+	\begin{prf}
+		補題\ref{lem:properties_of_simple_predictable_processes}により
+		$X \in \semiLp{2}{\mathcal{P},\mu_M}$に対し或る$X_n \in \mathcal{S}\ (n=1,2,\cdots)$が存在して
+		\begin{align}
+			\Norm{X - X_n}{\semiLp{2}{\mu_M}} \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+			\label{eq:thm_stopped_Ito_integral}
+		\end{align}
+		を満たす．$B \coloneqq \Set{(t,\omega) \in I \times \Omega}{t \leq \tau(\omega)}$とし
+		\begin{align}
+			\Norm{Y}{\mathcal{M}_{2,c}}^2 \coloneqq \int_\Omega |Y_T(\omega)|^2\ \mu(d\omega)
+			\quad (\forall Y \in \mathcal{M}_{2,c})
+		\end{align}
+		とおけば，(\refeq{eq:thm_Ito_integral_equiv_class_linearity_isometric})により
+		\begin{align}
+			\Norm{X_n \defunc_B}{\semiLp{2}{\mu_M}} 
+			= \Norm{I_M(X_n)^\tau}{\mathcal{M}_{2,c}}
+			\quad (n=1,2,\cdots)
+		\end{align}
+		が成り立ち，$\tilde{I}^\tau_M$の線型等長性と(\refeq{eq:thm_stopped_Ito_integral})より
+		\begin{align}
+			&\left| \Norm{X \defunc_B}{\semiLp{2}{\mu_M}} - \Norm{I_M(X)^\tau}{\mathcal{M}_{2,c}} \right| \\
+			&\qquad \leq \left| \Norm{X \defunc_B}{\semiLp{2}{\mu_M}} - \Norm{X_n \defunc_B}{\semiLp{2}{\mu_M}} \right| 
+				+ \left| \Norm{I_M(X_n)^\tau}{\mathcal{M}_{2,c}} - \Norm{I_M(X)^\tau}{\mathcal{M}_{2,c}} \right| \\
+			&\qquad =  \Norm{(X - X_n) \defunc_B}{\semiLp{2}{\mu_M}} 
+				+ \Norm{I_M(X - X_n)^\tau}{\mathcal{M}_{2,c}} \\
+			&\qquad \leq 2 \Norm{X - X_n}{\semiLp{2}{\mu_M}} \longrightarrow 0 \quad (n \longrightarrow \infty)
+		\end{align}
+		が従い主張を得る．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
 		\begin{prp}[伊藤積分の二次変分]
-			$M \in \mathcal{M}_{2,c},\ X \in \semiLp{2}{I \times \Omega,\mathcal{P},\mu_M}$に対し次が成り立つ:
+			$M \in \mathcal{M}_{2,c},\ X \in \semiLp{2}{\mathcal{P},\mu_M}$に対し次が成り立つ:
 			\begin{align}
 				\inprod<I_M(X)>_t = \int_0^t X_s^2\ \inprod<M>(ds)
 				\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
