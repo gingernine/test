@@ -1,224 +1,206 @@
+係数体を$\R$，測度空間を$(X,\mathcal{F},\mu)$とする．
+
 \section{H\Ddot{o}lderの不等式とMinkowskiの不等式}
-$\K$を$\K = \R$或は$\K = \C$とおく．測度空間を$(X,\mathcal{F},m)$とし，
-可測$\mathcal{F}/\borel{\K}$関数$f$に対して
+$\mathcal{F}/\borel{\R}$-可測関数$f$に対して
 \begin{align}
 	\Norm{f}{\mathscr{L}^p} \coloneqq
 	\begin{cases}
-		\inf{}{\Set{r \in \R}{|f(x)| \leq r,\ \mathrm{a.e.}x \in X}} & (p = \infty) \\
-		\left( \int_{X} |f(x)|^p\ m(dx) \right)^{\frac{1}{p}} & (0 < p < \infty)
+		\inf{}{\Set{r \in \R}{|f(x)| \leq r\quad \mbox{$\mu$-a.e.}x \in X}} & (p = \infty) \\
+		\left( \int_{X} |f(x)|^p\ \mu(dx) \right)^{\frac{1}{p}} & (0 < p < \infty)
 	\end{cases}
 \end{align}
-と定め，
+により$\Norm{\cdot}{\mathscr{L}^p}$を定め，以降$\Norm{\cdot}{\semiLp{p}{\Omega,\mathcal{F},\mu}}$
+或は$\Norm{\cdot}{\semiLp{p}{\mu}}$と表記することもある．
 \begin{align}
-	\semiLp{p}{X,\mathcal{F},m} \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K},\ \Norm{f}{\mathscr{L}^p} < \infty} \quad (1 \leq p \leq \infty)
+	\semiLp{p}{X,\mathcal{F},\mu} \coloneqq \Set{f:X \rightarrow \R}{f:\mbox{可測}\mathcal{F}/\borel{\R},\ \Norm{f}{\mathscr{L}^p} < \infty} \quad (1 \leq p \leq \infty)
 \end{align}
-として空間$\semiLp{p}{X,\mathcal{F},m}$を定義し，以降$\semiLp{p}{m},\semiLp{p}{\mathcal{F},m},
-\semiLp{p}{\mathcal{F}}$などと略記することもある．この空間は$\K$上の線形空間となるが，そのことを保証するために
-次の二つの不等式が成り立つことを証明する．
+として空間$\semiLp{p}{X,\mathcal{F},\mu}$を定義し，$\semiLp{p}{\mu},\semiLp{p}{\mathcal{F},\mu},
+\semiLp{p}{\mathcal{F}}$などと略記することもある．以下に示す不等式により
+$\semiLp{p}{X,\mathcal{F},\mu}$は$\R$上の線形空間となる．
 
-\begin{itembox}[l]{}
-	\begin{thm}[H\Ddot{o}lderの不等式]
-		$1 \leq p, q \leq \infty$，$p + q = pq\ (p = \infty$なら$q = 1)$とする．このとき
-		任意の可測$\mathcal{F}/\borel{\K}$関数$f,g$に対して次が成り立つ:
-		\begin{align}
-			\int_{X} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^p} \Norm{g}{\mathscr{L}^q}. \label{ineq:holder}
-		\end{align}
-		\label{thm:holder_inequality}
-	\end{thm}
-\end{itembox}
-
-まず次の補助定理を証明する．
-\begin{itembox}[l]{}
+\begin{screen}
 	\begin{lem}
-		$f \in \semiLp{\infty}{X,\mathcal{F},m}$ならば
+		任意の$f \in \semiLp{\infty}{X,\mathcal{F},\mu}$に対して次が成り立つ:
 		\begin{align}
-			|f(x)| \leq \Norm{f}{\mathscr{L}^\infty} \quad (\mathrm{a.e.}x \in X).
+			|f(x)| \leq \Norm{f}{\mathscr{L}^\infty} \quad \mbox{$\mu$-a.e.}x \in X.
 		\end{align}
 		\label{lem:holder_inequality}
 	\end{lem}
-\end{itembox}
-\begin{prf}[補題\ref{lem:holder_inequality}]
-	$\semiLp{\infty}{X,\mathcal{F},m}$の定義により任意の実数$\alpha > \Norm{f}{\mathscr{L}^\infty}$に対して
+\end{screen}
+
+\begin{prf}
+	$\semiLp{\infty}{X,\mathcal{F},\mu}$の定義より任意の実数$\alpha > \Norm{f}{\mathscr{L}^\infty}$に対して
 	\begin{align}
-		m(\Set{x \in X}{|f(x)| > \alpha}) = 0
+		\mu\left( \Set{x \in X}{|f(x)| > \alpha} \right) = 0
 	\end{align}
 	が成り立つから，
 	\begin{align}
 		\Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} = \bigcup_{n =1}^{\infty} \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty} + 1/n}
 	\end{align}
-	の右辺は$m$-零集合となる．
+	の右辺は$\mu$-零集合であり主張が従う．
 	\QED
 \end{prf}
-\begin{prf}[定理\ref{thm:holder_inequality}]
+
+\begin{screen}
+	\begin{thm}[H\Ddot{o}lderの不等式]
+		$1 \leq p, q \leq \infty$，$p + q = pq\ (p = \infty$なら$q = 1)$とする．このとき
+		任意の$\mathcal{F}/\borel{\R}$-可測関数$f,g$に対して次が成り立つ:
+		\begin{align}
+			\int_{X} |f(x)g(x)|\ \mu(dx) \leq \Norm{f}{\mathscr{L}^p} \Norm{g}{\mathscr{L}^q}. \label{ineq:holder}
+		\end{align}
+		\label{thm:holder_inequality}
+	\end{thm}
+\end{screen}
+
+\begin{prf}
+	$\Norm{f}{\mathscr{L}^p} = \infty$又は$\Norm{g}{\mathscr{L}^q} = \infty$のとき不等式(\refeq{ineq:holder})
+		は成り立つから，以下では$\Norm{f}{\mathscr{L}^p} < \infty$かつ$\Norm{g}{\mathscr{L}^q} < \infty$の場合を考える．
 	\begin{description}
 		\item[$p = \infty,\ q = 1$の場合]
-			$\Norm{f}{\mathscr{L}^\infty} = \infty$又は$\Norm{g}{\mathscr{L}^1} = \infty$なら不等式(\refeq{ineq:holder})
-			は成り立つから，以下では$\Norm{f}{\mathscr{L}^\infty} < \infty$かつ$\Norm{g}{\mathscr{L}^1} < \infty$の場合を考える．
-			補助定理により或る$m$-零集合$A \in \mathcal{F}$を除いて$|f(x)| \leq \Norm{f}{\mathscr{L}^\infty}$が成り立つから
+			補題\ref{lem:holder_inequality}により或る零集合$A$が存在して
 			\begin{align}
 				|f(x)g(x)| \leq \Norm{f}{\mathscr{L}^\infty}|g(x)| \quad (\forall x \in X \backslash A).
 			\end{align}
-			とでき，従って
+			が成り立つから，
 			\begin{align}
-				\int_{X} |f(x)g(x)|\ m(dx) = \int_{X \backslash A} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^\infty} \int_{X \backslash A} |g(x)|\ m(dx) 
+				&\int_{X} |f(x)g(x)|\ \mu(dx) = \int_{X \backslash A} |f(x)g(x)|\ \mu(dx) \\
+				&\qquad \leq \Norm{f}{\mathscr{L}^\infty} \int_{X \backslash A} |g(x)|\ \mu(dx) 
 				= \Norm{f}{\mathscr{L}^\infty} \Norm{g}{\mathscr{L}^1}
 			\end{align}
-			となり不等式(\refeq{ineq:holder})が成り立つ．
+			が従い不等式(\refeq{ineq:holder})を得る．
 		
 		\item[$1 < p,q < \infty$の場合]
-			$\Norm{f}{\mathscr{L}^p} = \infty$又は$\Norm{g}{\mathscr{L}^q} = \infty$なら不等式(\refeq{ineq:holder})
-			は成り立つから，以下では$\Norm{f}{\mathscr{L}^p} < \infty$かつ$\Norm{g}{\mathscr{L}^q} < \infty$の場合を考える．
-			$\Norm{f}{\mathscr{L}^p} = 0$であるとすると
+			$\Norm{f}{\mathscr{L}^p} = 0$のとき
 			\begin{align}
 				B \coloneqq \Set{x \in X}{|f(x)| > 0}
 			\end{align}
-			は$m$-零集合となるから，
+			は零集合であるから，
 			\begin{align}
-				\int_{X} |f(x)g(x)|\ m(dx) = \int_{B} |f(x)g(x)|\ m(dx) + \int_{X \backslash B} |f(x)g(x)|\ m(dx) = 0
+				\int_{X} |f(x)g(x)|\ \mu(dx) = \int_{X \backslash B} |f(x)g(x)|\ \mu(dx) = 0
 			\end{align}
-			となり不等式(\refeq{ineq:holder})が成り立つ．$\Norm{g}{\mathscr{L}^q} = 0$の場合も同じである．
-			
-			最後に$0 < \Norm{f}{\mathscr{L}^p},\Norm{g}{\mathscr{L}^q} < \infty$の場合を示す．
-			$-\Log{t} \quad (t > 0)$は凸関数であるから，$1/p + 1/q = 1$に対して
+			となり(\refeq{ineq:holder})を得る．$\Norm{g}{\mathscr{L}^q} = 0$の場合も同じである．
+			次に$0 < \Norm{f}{\mathscr{L}^p},\Norm{g}{\mathscr{L}^q} < \infty$の場合を示す．
+			実数値対数関数$(0,\infty) \ni t \longmapsto -\Log{t}$は凸であるから，$1/p + 1/q = 1$に対して
 			\begin{align}
 				-\Log{\left( \frac{s}{p} + \frac{t}{q} \right)} \leq \frac{1}{p}(-\Log{s}) + \frac{1}{q}(-\Log{t}) \quad (\forall s,t > 0)
 			\end{align}
-			が成り立ち，従って
+			を満たし
 			\begin{align}
-				s^{1/p}t^{1/q} \leq \frac{s}{p} + \frac{t}{q} \quad (\forall s,t > 0)
+				s^{\frac{1}{p}}t^{\frac{1}{q}} \leq \frac{s}{p} + \frac{t}{q} \quad (\forall s,t > 0)
 			\end{align}
-			を得る．この不等式を用いれば
+			が従う．ここで
 			\begin{align}
-				F(x) \coloneqq |f(x)|^p/ \Norm{f}{\mathscr{L}^p}^p,\quad G(x) \coloneqq |g(x)|^q/ \Norm{g}{\mathscr{L}^q}^q \quad (\forall x \in X)
+				F(x) \coloneqq \frac{|f(x)|^p}{\Norm{f}{\mathscr{L}^p}^p},
+				\quad G(x) \coloneqq \frac{|g(x)|^q}{\Norm{g}{\mathscr{L}^q}^q} \quad (\forall x \in X)
 			\end{align}
-			とした可積分関数$F,G$に対し
+			により可積分関数$F,G$を定めれば，
 			\begin{align}
-				F(x)^{1/p}G(x)^{1/q} \leq \frac{1}{p}F(x) + \frac{1}{q}G(x) \quad (\forall x \in X)
+				F(x)^{\frac{1}{p}}G(x)^{\frac{1}{q}} \leq \frac{1}{p}F(x) + \frac{1}{q}G(x) \quad (\forall x \in X)
 			\end{align}
-			となるから，両辺を積分して
+			が成り立つから
 			\begin{align}
-				\int_{X} F(x)^{1/p}G(x)^{1/q}\ m(dx) &\leq \frac{1}{p} \int_{X} F(x)\ m(dx) + \frac{1}{q} \int_{X} G(x)\ m(dx) \\
-				&= \frac{1}{p} \frac{1}{\Norm{f}{\mathscr{L}^p}^p} \int_{X} |f(x)|^p\ m(dx) + \frac{1}{q} \frac{1}{\Norm{g}{\mathscr{L}^q}^q} \int_{X} |g(x)|^q\ m(dx) \\
-				&= \frac{1}{p} + \frac{1}{q} = 1
+				&\int_{X} \frac{|f(x)|}{\Norm{f}{\mathscr{L}^p}} \frac{|g(x)|}{\Norm{g}{\mathscr{L}^q}}\ \mu(dx)
+				= \int_{X} F(x)^{\frac{1}{p}}G(x)^{\frac{1}{q}}\ \mu(dx) \\
+				&\qquad \leq \frac{1}{p} \int_{X} F(x)\ \mu(dx) + \frac{1}{q} \int_{X} G(x)\ \mu(dx)
+				= \frac{1}{p} + \frac{1}{q} = 1
 			\end{align}
-			が成り立つ．最左辺と最右辺を比べて
-			\begin{align}
-				\int_{X} \frac{|f(x)|}{\Norm{f}{\mathscr{L}^p}} \frac{|g(x)|}{\Norm{g}{\mathscr{L}^q}}\ m(dx) = \int_{X} F(x)^{1/p}G(x)^{1/q}\ m(dx) \leq 1
-			\end{align}
-			となるから不等式
-			\begin{align}
-				\int_{X} |f(x)g(x)|\ m(dx) \leq \Norm{f}{\mathscr{L}^p}\Norm{g}{\mathscr{L}^q}
-			\end{align}
-			が示された．
+			が従い，$\Norm{f}{\mathscr{L}^p}\Norm{g}{\mathscr{L}^q}$を移項して不等式(\refeq{ineq:holder})を得る．
 			\QED
 	\end{description}
 \end{prf}
 
-\begin{itembox}[l]{}
+\begin{screen}
 	\begin{thm}[Minkowskiの不等式]
 		$1 \leq p \leq \infty$とする．このとき
-		任意の可測$\mathcal{F}/\borel{\K}$関数$f,g$に対して次が成り立つ:
+		任意の$\mathcal{F}/\borel{\R}$-可測関数$f,g$に対して次が成り立つ:
 		\begin{align}
 			\Norm{f+g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p}. \label{ineq:minkowski}
 		\end{align}
 	\end{thm}
-\end{itembox}
-\begin{prf}\mbox{}
+\end{screen}
+
+\begin{prf}
+	$\Norm{f+g}{\mathscr{L}^p} = 0,\ \Norm{f}{\mathscr{L}^p} = \infty,\ \Norm{g}{\mathscr{L}^p} = \infty$
+	のいずれかが満たされているとき不等式(\refeq{ineq:minkowski})は成り立つから，以下では
+	$\Norm{f+g}{\mathscr{L}^p} > 0,\ \Norm{f}{\mathscr{L}^p} < \infty,\ \Norm{g}{\mathscr{L}^p} < \infty$
+	の場合を考える．
 	\begin{description}
 		\item[$p = \infty$の場合]
-			各点$x \in X$で
+			補題\ref{lem:holder_inequality}により
 			\begin{align}
-				|f(x) + g(x)| \leq |f(x)| + |g(x)|
+				C \coloneqq \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} \cup \Set{x \in X}{|g(x)| > \Norm{g}{\mathscr{L}^\infty}}
 			\end{align}
-			となるから，$\Norm{f}{\mathscr{L}^\infty} = \infty$又は$\Norm{g}{\mathscr{L}^\infty} = \infty$なら不等式
-			(\refeq{ineq:minkowski})は成り立つ．$\Norm{f}{\mathscr{L}^\infty} < \infty$かつ$\Norm{g}{\mathscr{L}^\infty} < \infty$
-			の場合は
+			は零集合であり，
 			\begin{align}
-				C \coloneqq \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} \bigcup \Set{x \in X}{|g(x)| > \Norm{g}{\mathscr{L}^\infty}}
+				|f(x) + g(x)| \leq |f(x)| + |g(x)| \leq \Norm{f}{\mathscr{L}^\infty} + \Norm{g}{\mathscr{L}^\infty} \quad (\forall x \in X \backslash C)
 			\end{align}
-			が$m$-零集合となり
-			\begin{align}
-				|f(x) + g(x)| \leq \Norm{f}{\mathscr{L}^\infty} + \Norm{g}{\mathscr{L}^\infty} \quad (\forall x \in X \backslash C)
-			\end{align}
-			を得て$\Norm{\cdot}{\mathscr{L}^\infty}$の定義と併せて不等式(\refeq{ineq:minkowski})が成り立つ．
+			が成り立つ．$\Norm{\cdot}{\mathscr{L}^\infty}$の定義より不等式(\refeq{ineq:minkowski})を得る．
 		
 		\item[$p = 1$の場合]
 			\begin{align}
 				|f(x) + g(x)| \leq |f(x)| + |g(x)| \quad (\forall x \in X)
 			\end{align}
-			の両辺を積分することにより不等式(\refeq{ineq:minkowski})が成り立つ．
+			の両辺を積分して不等式(\refeq{ineq:minkowski})を得る．
 		
 		\item[$1 < p < \infty$の場合]
-			$p + q = pq$が成り立つように$q > 1$を取る．
+			$p + q = pq$が成り立つように$q > 1$を取る．各点$x \in X$で
 			\begin{align}
 				|f(x) + g(x)|^p = |f(x) + g(x)||f(x) + g(x)|^{p-1} \leq |f(x)||f(x) + g(x)|^{p-1} + |g(x)||f(x) + g(x)|^{p-1}
 			\end{align}
-			の両辺を積分すれば，H\Ddot{o}lderの不等式により
+			が成り立つから，両辺を積分すればH\Ddot{o}lderの不等式により
 			\begin{align}
-				\Norm{f+g}{\mathscr{L}^p}^p &= \int_{X} |f(x) + g(x)|^p\ m(dx) \\
-				&\leq \int_{X} |f(x)||f(x) + g(x)|^{p-1}\ m(dx) + \int_{X} |g(x)||f(x) + g(x)|^{p-1}\ m(dx) \\
-				&\leq \left( \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^{q(p-1)}\ m(dx) \right)^{1/q} \\
-					&\qquad + \left( \int_{X} |g(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^{q(p-1)}\ m(dx) \right)^{1/q} \\
-				&= \left( \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^p\ m(dx) \right)^{1/q} \\
-					&\qquad + \left( \int_{X} |g(x)|^p\ m(dx) \right)^{1/p} \left( \int_{X} |f(x) + g(x)|^p\ m(dx) \right)^{1/q} \\
-				&= \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p/q} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p/q} \\
-				&= \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1}
+				\Norm{f+g}{\mathscr{L}^p}^p &= \int_{X} |f(x) + g(x)|^p\ \mu(dx) \\
+				&\leq \int_{X} |f(x)||f(x) + g(x)|^{p-1}\ \mu(dx) + \int_{X} |g(x)||f(x) + g(x)|^{p-1}\ \mu(dx) \\
+				&\leq \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1}
 				\label{Minkowski_1}
 			\end{align}
-			となる．$\Norm{f+g}{\mathscr{L}^p} = 0$の場合は不等式(\refeq{ineq:minkowski})が成り立つからそうでない場合を考える．
-			$\Norm{f+g}{\mathscr{L}^p} = \infty$の場合，
+			が得られる．また$|f|^p,|g|^p$の可積性と
 			\begin{align}
-				|f(x) + g(x)| \leq |f(x)| + |g(x)| \leq 2 \max{}{\left\{ |f(x)|,|g(x)| \right\}} \quad (\forall x \in X)
+				|f(x) + g(x)|^p \leq \left(|f(x)| + |g(x)|\right)^p \leq 2^p \left( |f(x)|^p + |g(x)|^p \right) \quad (\forall x \in X)
 			\end{align}
-			より
-			\begin{align}
-				|f(x) + g(x)|^p \leq 2^p \max{}{\left\{ |f(x)|,|g(x)| \right\}} \leq 2^p \left( |f(x)|^p + |g(x)|^p \right) \quad (\forall x \in X)
-			\end{align}
-			の両辺を積分して
-			\begin{align}
-				\Norm{f+g}{\mathscr{L}^p}^p \leq 2^p \left( \Norm{f}{\mathscr{L}^p}^p + \Norm{g}{\mathscr{L}^p}^p \right)
-			\end{align}
-			という関係が出るから，$\Norm{f}{\mathscr{L}^p}$か$\Norm{g}{\mathscr{L}^p}$の一方は$\infty$となり不等式(\refeq{ineq:minkowski})が成り立つ．
-			$0 < \Norm{f+g}{\mathscr{L}^p} < \infty$の場合，$\Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} = \infty$
-			なら不等式(\refeq{ineq:minkowski})は成り立ち，$\Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} < \infty$
-			の場合でも上式(\refeq{Minkowski_1})より得る
-			\begin{align}
-				\Norm{f+g}{\mathscr{L}^p}^p \leq \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1}
-			\end{align}
-			の両辺を$\Norm{f+g}{\mathscr{L}^p}^{p-1}$で割って不等式(\refeq{ineq:minkowski})が成り立つ．
+			により$\Norm{f+g}{\mathscr{L}^p} < \infty$が従うから，
+			(\refeq{Minkowski_1})の両辺を$\Norm{f+g}{\mathscr{L}^p}^{p-1}$で割って(\refeq{ineq:minkowski})を得る．
 			\QED
 	\end{description}
 \end{prf}
 
-以上の結果より$\semiLp{p}{X,\mathcal{F},m}$は線形空間となる．実際加法とスカラ倍は
+以上の結果より$\semiLp{p}{X,\mathcal{F},\mu}$は線形空間となる．実際線型演算は
 \begin{align}
-	(f+g)(x) \coloneqq f(x) + g(x), \quad (\alpha f)(x) \coloneqq \alpha f(x), \quad (\forall x \in X,\ f,g \in \semiLp{p}{X,\mathcal{F},m},\ \alpha \in \C)
+	(f+g)(x) \coloneqq f(x) + g(x), \quad (\alpha f)(x) \coloneqq \alpha f(x), \quad (\forall x \in X,\ f,g \in \semiLp{p}{X,\mathcal{F},\mu},\ \alpha \in \C)
 \end{align}
 により定義され，Minkowskiの不等式により加法について閉じている．
 
 \begin{itembox}[l]{}
-	\begin{lem}[$\mathscr{L}^p$のセミノルム]
-		$\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\semiLp{p}{X,\mathcal{F},m}$においてセミノルムとなる．
+	\begin{lem}
+		$1 \leq p \leq \infty$に対し，$\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\semiLp{p}{X,\mathcal{F},\mu}$のセミノルムである．
 	\end{lem}
 \end{itembox}
 \begin{prf}\mbox{}
 	\begin{description}
-	\item[正値性] 定義の仕方による．
+	\item[半正値性] $\Norm{\cdot}{\mathscr{L}^p}$が正値であることは定義による．
+		しかし$\Norm{f}{\mathscr{L}^p} = 0$であっても$f$が零写像であるとは限らず，実際$\mu$-零集合$E$を取り
+		\begin{align}
+			f(x) \coloneqq
+			\begin{cases}
+				1 & (x \in E) \\
+				0 & (x \in \Omega \backslash E)
+			\end{cases}
+		\end{align}
+		により$f$を定めれば$\Norm{f}{\mathscr{L}^p} = 0$が成り立つ．
+		
 	\item[同次性] 
-		$1 \leq p < \infty$なら
+		任意に$\alpha \in \R,\ f \in \semiLp{p}{X,\mathcal{F},\mu}$を取る．
+		$1 \leq p < \infty$の場合は
 		\begin{align}
-			\left( \int_{X} |\alpha f(x)|^p\ m(dx) \right)^{1/p} = \left( |\alpha|^p \int_{X} |f(x)|^p\ m(dx) \right)^{1/p} 
-			= |\alpha| \left( \int_{X} |f(x)|^p\ m(dx) \right)^{1/p}
+			\left( \int_{X} |\alpha f(x)|^p\ \mu(dx) \right)^{1/p} = \left( |\alpha|^p \int_{X} |f(x)|^p\ \mu(dx) \right)^{1/p} 
+			= |\alpha| \left( \int_{X} |f(x)|^p\ \mu(dx) \right)^{1/p}
 		\end{align}
-		により，また$p = \infty$なら
+		により，$p = \infty$の場合は
 		\begin{align}
-			\inf{}{\Set{r \in \R}{|\alpha f(x)| \leq r,\ \mathrm{a.e.}x \in X}} = |\alpha|\inf{}{\Set{r \in \R}{|f(x)| \leq r,\ \mathrm{a.e.}x \in X}}
+			\inf{}{\Set{r \in \R}{|\alpha f(x)| \leq r \quad \mbox{$\mu$-a.e.}x \in X}} = |\alpha|\inf{}{\Set{r \in \R}{|f(x)|  \leq r \quad \mbox{$\mu$-a.e.}x \in X}}
 		\end{align}
-		により，任意の$\alpha \in \K$と任意の$f \in \semiLp{p}{X,\mathcal{F},m}\ (1 \leq p \leq \infty)$に対して
-		\begin{align}
-			\Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p}
-		\end{align}
-		が成り立つ．
+		により$\Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p}$が成り立つ．
+		
 	\item[三角不等式] Minkowskiの不等式による．
 	\QED
 	\end{description}
@@ -227,78 +209,70 @@ $\K$を$\K = \R$或は$\K = \C$とおく．測度空間を$(X,\mathcal{F},m)$と
 \section{空間$\mathrm{L}^p$}
 \begin{description}
 	\item[可測関数全体の商集合]
-		$\Norm{\cdot}{\mathscr{L}^p}$は$\semiLp{p}{X,\mathcal{F},m}$のノルムとはならない．$\Norm{f}{\mathscr{L}^p} = 0$であっても
-		$f$が零写像であるとは限らず，実際$m$-零集合の上で
-		$1 \in \K$を取るような関数$g$でも$\Norm{g}{\mathscr{L}^p} = 0$を満たすからである．
-		ここで可測関数全体の集合を
+		$\mathcal{F}/\borel{R}$-可測関数全体の集合を
 		\begin{align}
-			\semiLp{0}{X,\mathcal{F},m} \coloneqq \Set{f:X \rightarrow \K}{f:\mbox{可測}\mathcal{F}/\borel{\K}}
+			\semiLp{0}{X,\mathcal{F},\mu} \coloneqq \Set{f:X \rightarrow \R}{f:\mbox{可測}\mathcal{F}/\borel{\R}}
 		\end{align}
-		とおく．$f,g \in \semiLp{0}{X,\mathcal{F},m}$に対し
+		とおく．二元$f,g \in \semiLp{0}{X,\mathcal{F},\mu}$に対し
 		\begin{align}
-			 f \sim g \quad \DEF \quad f(x) = g(x)\quad \mathrm{a.e.}x \in X
+			 f \sim g \quad \DEF \quad f = g \quad \mbox{$\mu$-a.e.}
 		\end{align}
-		で定める関係$\sim$は同値関係であり，$\sim$による$\semiLp{0}{X,\mathcal{F},m}$の商集合を$\Lp{0}{X,\mathcal{F},m}$と表す．
+		により定める$\sim$は同値関係であり，$\sim$による$\semiLp{0}{X,\mathcal{F},\mu}$の商集合を$\Lp{0}{X,\mathcal{F},\mu}$と表す．
 	
 	\item[商集合における算法]
-		$\Lp{0}{X,\mathcal{F},m}$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表元)と表す．
-		$\Lp{0}{X,\mathcal{F},m}$における線型演算を次で定義すれば，$\Lp{0}{X,\mathcal{F},m}$は$\K$上の線形空間となる
-		\footnote{
-			この表現はwell-definedである．
-			実際任意の$f' \in [f]$と$g' \in [g]$に対して，
-			\begin{align}
-				\{ f \neq g \} \coloneqq \Set{x \in X}{f(x) \neq g(x)}
-			\end{align}
-			と略記して
-			\begin{align}
-				\{ f+g \neq f'+g' \} \subset \{ f \neq f' \} \cup \{ g \neq g' \}, \quad
-				\{ \alpha f \neq \alpha f' \} = \{ f \neq f' \}
-			\end{align}
-			が成り立ち，どれも右辺は$m$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$を得る．
-		}:
+		$\Lp{0}{X,\mathcal{F},\mu}$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表)と表す．
+		$\Lp{0}{X,\mathcal{F},\mu}$における線型演算を次で定義すれば，$\Lp{0}{X,\mathcal{F},\mu}$は$\R$上の線形空間となる:
 		\begin{align}
-			&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in \Lp{0}{X,\mathcal{F},m}),\\
-			&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in \Lp{0}{X,\mathcal{F},m},\ \alpha \in \K).
+			&[f] + [g] \coloneqq [f+g] && (\forall [f],[g] \in \Lp{0}{X,\mathcal{F},\mu}),\\
+			&\alpha [f] \coloneqq [\alpha f] && (\forall [f] \in \Lp{0}{X,\mathcal{F},\mu},\ \alpha \in \R).
 		\end{align}
-		また乗法も次のように定義できる:
+		この演算はwell-definedである．実際任意の$f' \in [f]$と$g' \in [g]$に対して
 		\begin{align}
-			[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in \Lp{0}{X,\mathcal{F},m}).
+			\{ f+g \neq f'+g' \} \subset \{ f \neq f' \} \cup \{ g \neq g' \}, \quad
+			\{ \alpha f \neq \alpha f' \} = \{ f \neq f' \}
 		\end{align}
-		この乗法と線型演算を併せて$\Lp{0}{X,\mathcal{F},m}$は多元環となる．
+		が成り立ち
 		\footnote{
-			元の関数空間が多元環をなすから，関数類の空間も多元環となる．
-			零元は零写像の関数類で[0]と表し，単位元は恒等的に$1$を取る関数の関数類で[1]と表す．
-			また減法を
-			\begin{align}
-				[f] - [g] \coloneqq [f] + (-[g]) = [f] + [-g] = [f - g]
-			\end{align}
-			で定義する．
-		}．
+			$\{ f \neq g \} \coloneqq \Set{x \in X}{f(x) \neq g(x)}.$
+		}
+		，どちらの右辺も$\mu$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$が従う．
+		更に乗法を次により定義すれば$\Lp{0}{X,\mathcal{F},\mu}$は可換環にもなる:
+		\begin{align}
+			[f][g] \coloneqq [fg] \quad (\forall [f],[g] \in \Lp{0}{X,\mathcal{F},\mu}).
+		\end{align}
+		$\Lp{0}{X,\mathcal{F},\mu}$における零元は零写像の関数類でありこれを[0]と表す．また
+		単位元は恒等的に$1$を取る関数の関数類でありこれを[1]と表す．
+		また減法を
+		\begin{align}
+			[f] - [g] \coloneqq [f] + (-[g]) = [f] + [-g] = [f - g]
+		\end{align}
+		により定める．
 	
 	\item[関数類の順序]
-		$[f],[g] \in \Lp{0}{X,\mathcal{F},m}$に対して次の関係$<(>)$を定める:
+		$[f],[g] \in \Lp{0}{X,\mathcal{F},\mu}$に対して次の関係$<(>)$を定める:
 		\begin{align}
-			[f] < [g]\ \left( [g] > [f] \right) \quad \coloneqq \quad f < g \quad \mbox{$m$-a.s.} \label{dfn:equiv_class_order}
+			[f] < [g]\ \left( [g] > [f] \right) \quad \DEF \quad f < g \quad \mbox{$\mu$-a.s.} \label{dfn:equiv_class_order}
 		\end{align}
-		この定義はwell-definedである．実際任意の$f' \in [f],g' \in [g]$に対し，
+		この定義はwell-definedである．実際任意の$f' \in [f],g' \in [g]$に対して
 		\begin{align}
-			\left\{ f' > g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f > g \right\} \cup \left\{ g \neq g' \right\}
+			\left\{ f' \geq g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f \geq g \right\} \cup \left\{ g \neq g' \right\}
 		\end{align}
-		の右辺が零集合となり
+		の右辺は零集合であるから
 		\begin{align}
 			[f] < [g] \Leftrightarrow [f'] < [g']
 		\end{align}
-		が従う．$<$または$=$であることを$\leq$と表記し，同様に$\geq$を定める．
-		この関係は次に示すように順序の定義を満たし，$\Lp{0}{X,\mathcal{F},m}$はこれを順序として順序環となる．
+		が従う．$<$または$=$であることを$\leq$と表し，同様に$\geq$を定める．
+		この関係$\leq$は次に示す規則を満たし，$\Lp{0}{X,\mathcal{F},\mu}$における順序となる:
+		\ 任意の$[f],[g],[h] \in \Lp{0}{X,\mathcal{F},\mu}$に対し，
 		\begin{itemize}
-			\item $[f] \leq [f]$.
-			\item $[f] \leq [g],\ [g] \leq [f] \quad \Rightarrow \quad m(f > g) =0,\ m(g > f) = 0 \quad \Rightarrow \quad [f]=[g]$.
-			\item $[f] \leq [g],\ [g] \leq [h] \quad \Rightarrow \quad m(f > h) \leq m(f > g) + m(g > h) = 0 \quad \Rightarrow \quad [f]\leq[h]$.
+			\item $[f] \leq [f]$が成り立つ.
+			\item $[f] \leq [g]$かつ$[g] \leq [f]$ならば$[f] = [g]$が成り立つ．
+			\item $[f] \leq [g],\ [g] \leq [h]$ならば$[f] \leq [h]$が成り立つ.
 		\end{itemize}
 		
 	\item[関数類の冪・絶対値]
-		$[f] \in \Lp{0}{X,\mathcal{F},m}$が$[f] \geq [0]$を満たすとき，$p \geq 0$に対し
-		$[f]^p \coloneqq [f^p]$と定める．また$|[f]| \coloneqq [|f|]$として絶対値$|\cdot|$を定める．
+		$[f] \in \Lp{0}{X,\mathcal{F},\mu}$が$[f] \geq [0]$を満たすとき，$p \geq 0$に対し
+		$[f]^p \coloneqq [f^p]$により冪乗を定める．また$|[f]| \coloneqq [|f|]$として絶対値$|\cdot|$を定める．
 \end{description}
 
 \begin{itembox}[l]{}
