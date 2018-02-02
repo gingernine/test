@@ -29,16 +29,16 @@
 				なら$X \in \semiLp{2}{\mathcal{P},\mu_M}$が成り立つことを示す．すなわち，このとき$I_M(X)$が定義される．
 				$X$は左連続であるから定理\ref{thm:left_continuous_adapted_then_predictable}により可測$\mathcal{P}/\borel{\R}$である．
 				また定理\ref{thm:quadratic_variation_bounded_then_M_2c}より$M \in \mathcal{M}_{2,c}$も満たされている．
-				従って$\mathcal{P}/\borel{\R}$-可測関数の関数類を$\equiv{\cdot}{\Lp{0}{\mu_M}}$と表せば，
-				(\refeq{eq:lem_properties_of_simple_predictable_processes_0})より
+				$X$に対し(\refeq{eq:thm_left_continuous_adapted_then_predictable})で定義される単純可予測過程列$(X^n)_{n=1}^{\infty}$を取れば
+				Lebesgueの収束定理より
 				\begin{align}
-					\Norm{\equiv{X}{\Lp{0}{\mu_M}} - \equiv{X^n}{\Lp{0}{\mu_M}}}{\Lp{2}{\mu_M}}^2
-					= \int_\Omega \int_I \left| X(t,\omega) - X^n(t,\omega) \right|^2\ \inprod<M>(dt,\omega)\ \mu(d\omega)
+					\Norm{X - X^n}{\semiLp{2}{\mu_M}}^2 \longrightarrow 0 
+					\quad (n \longrightarrow \infty)
 				\end{align}
-				が成り立ち，Lebesgueの収束定理より右辺は$n \longrightarrow \infty$で0に収束する．
+				が成り立つ．
 				補題\ref{lem:properties_of_simple_predictable_processes}より$\mathfrak{S}$は
 				$\Lp{2}{\mathcal{P},\mu_M}$で稠密であるから
-				$\equiv{X}{\Lp{0}{\mu_M}} \in \Lp{2}{\mathcal{P},\mu_M}$が従う．
+				$X \in \semiLp{2}{\mathcal{P},\mu_M}$が従う．
 				
 			\item[第二段]
 				前段の仮定を外す．$X$が局所有界過程であるから，或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
@@ -113,11 +113,41 @@
 				が得られる．一般の$Y \in \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_j}}} \cap \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_{j+k}}}}$に対しては
 				或る$Y_n \in \mathcal{S}\ (n=1,2,\cdots)$が存在して
 				\begin{align}
-					\int_{I \times \Omega} \left| Y(t,\omega) - Y_n(t,\omega) \right|\ \mu_{M^{\sigma_j}}(dtd\omega)
+					\int_{I \times \Omega} \left| Y(t,\omega) - Y_n(t,\omega) \right|^2\ \mu_{M^{\sigma_j}}(dtd\omega)
 					\longrightarrow 0
 					\quad (n \longrightarrow \infty)
 				\end{align}
 				を満たすから
+				\begin{align}
+					\Norm{I_{M^{\sigma_j}}(Y)^{\sigma_j} - I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}}{\mathcal{M}_{2,c}}
+					&\leq \Norm{I_{M^{\sigma_j}}(Y)^{\sigma_j} - I_{M^{\sigma_j}}(Y_n)^{\sigma_j}}{\mathcal{M}_{2,c}}
+						+ \Norm{I_{M^{\sigma_{j+k}}}(Y_n)^{\sigma_j} - I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}}{\mathcal{M}_{2,c}} \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立ち，或る零集合$E_{j,k}$が存在して
+				\begin{align}
+					I_{M^{\sigma_j}}(Y)^{\sigma_j}_t(\omega) = I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}_t(\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_{j,k})
+				\end{align}
+				が成り立つ．
+				\begin{align}
+					E \coloneqq \bigcup_{j \geq 0,k \geq 1} E_{j,k}
+				\end{align}
+				とおけば，$n \leq m$を満たす任意の$n,m \in \N_0$に対し
+				\begin{align}
+					I_{M^{\sigma_n}}(X^{\sigma_n})^{\sigma_n}_t(\omega) = I_{M^{\sigma_m}}(X^{\sigma_m})^{\sigma_n}_t(\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash E)
+				\end{align}
+				となる．
+				\begin{align}
+					I_M(X)(t,\omega) \coloneqq 
+					\begin{cases}
+						\lim\limits_{n \to \infty} I_{M^{\sigma_n}}(X^{\sigma_n})^{\sigma_n}(t,\omega) & (\omega \in \Omega \backslash E) \\
+						0 & (\omega \in E)
+					\end{cases}
+					\quad (t \in I)
+				\end{align}
+				により$I_M(X)$を定めれば右連続かつ左極限を持ち，適合である．
 		\end{description}
 		\QED
 	\end{prf}
