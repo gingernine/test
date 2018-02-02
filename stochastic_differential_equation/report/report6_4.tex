@@ -20,30 +20,31 @@
 				\int_0^t X_s\ dM_s \quad (t \in I)
 			\end{align}
 			が定義される．
+			\label{thm:Ito_integral_on_M_c_loc_and_left_cont_locally_bounded}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[第一段] $\sup{t \in I}{\Norm{X_t}{\mathscr{L}^\infty}} < \infty$かつ$\Norm{\inprod<M>_T}{\semiLp{\infty}{\mu}} < \infty$
-				なら$X \in \semiLp{2}{\mathcal{P},\mu_M}$が成り立つことを示す．すなわち，このとき$I_M(X)$が定義される．
+			\item[第一段] $\sup{t \in I}{\Norm{X_t}{\semiLp{\infty}{\mu}}} < \infty$かつ$\Norm{\inprod<M>_T}{\semiLp{\infty}{\mu}} < \infty$
+				が満たされている場合$X \in \semiLp{2}{\mathcal{P},\mu_M}$が成り立つことを示す．%すなわち，このとき$I_M(X)$が定義される．
 				$X$は左連続であるから定理\ref{thm:left_continuous_adapted_then_predictable}により可測$\mathcal{P}/\borel{\R}$である．
 				また定理\ref{thm:quadratic_variation_bounded_then_M_2c}より$M \in \mathcal{M}_{2,c}$も満たされている．
-				$X$に対し(\refeq{eq:thm_left_continuous_adapted_then_predictable})で定義される単純可予測過程列$(X^n)_{n=1}^{\infty}$を取れば
-				Lebesgueの収束定理より
+				$X$に対し(\refeq{eq:thm_left_continuous_adapted_then_predictable})で定義される単純可予測過程の列$(X^n)_{n=1}^{\infty}$を取れば，
+				$X$の有界性及び$\mu_M$の有限性によりLebesgueの収束定理を適用できて
 				\begin{align}
-					\Norm{X - X^n}{\semiLp{2}{\mu_M}}^2 \longrightarrow 0 
+					\Norm{X - X^n}{\semiLp{2}{\mu_M}} \longrightarrow 0 
 					\quad (n \longrightarrow \infty)
 				\end{align}
 				が成り立つ．
-				補題\ref{lem:properties_of_simple_predictable_processes}より$\mathfrak{S}$は
-				$\Lp{2}{\mathcal{P},\mu_M}$で稠密であるから
+				補題\ref{lem:properties_of_simple_predictable_processes}より$\mathcal{S}$は
+				$\semiLp{2}{\mathcal{P},\mu_M}$で稠密であるから
 				$X \in \semiLp{2}{\mathcal{P},\mu_M}$が従う．
 				
 			\item[第二段]
 				前段の仮定を外す．$X$が局所有界過程であるから，或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
 				\begin{align}
-					\sup{t \in I}{\Norm{X_{t \wedge \tau_j}}{\mathscr{L}^\infty}} < \infty
+					\sup{t \in I}{\Norm{X_{t \wedge \tau_j}}{\semiLp{\infty}{\mu}}} < \infty
 					\quad (j=0,1,\cdots)
 				\end{align}
 				が満たされる．また
@@ -62,8 +63,8 @@
 				\end{align}
 				とおけば，$(\sigma_j)_{j=0}^{\infty} \in \mathcal{T}$且つ
 				\begin{align}
-					\Norm{X_{t \wedge \sigma_j}}{\mathscr{L}^\infty} \leq \Norm{X_{t \wedge \tau_j}}{\mathscr{L}^\infty},
-					\quad \Norm{\inprod<M>_{t \wedge \sigma_j}}{\mathscr{L}^\infty} \leq j
+					\Norm{X^{\sigma_j}_t}{\semiLp{\infty}{\mu}} \leq \Norm{X^{\tau_j}_t}{\semiLp{\infty}{\mu}},
+					\quad \Norm{\inprod<M>^{\sigma_j}_t}{\semiLp{\infty}{\mu}} \leq j
 					\quad (\forall t \in I,\ j=0,1,\cdots)
 				\end{align}
 				が成り立つ．従って前段の結果より$I_{M^{\sigma_j}}(X^{\sigma_j})\ (j=0,1,\cdots)$が定義される．
@@ -71,46 +72,50 @@
 			\item[第三段]
 				次の極限が$\mu$-a.s.に確定することを示す:
 				\begin{align}
-					\lim_{j \to \infty} \lim_{k \to \infty} I_{M^{\sigma_k}}(X^{\sigma_k})_{t \wedge \sigma_j}.
+					\lim_{j \to \infty} I_{M^{\sigma_j}}(X^{\sigma_j})_{t \wedge \sigma_j}
+					\quad (\forall t \in I).
 				\end{align}
-				$(\sigma_j)_{j=0}^{\infty} \in \mathcal{T}$であるから，或る零集合$E$が存在して，$\omega \in \Omega \backslash E$なら
+				$(\sigma_j)_{j=0}^{\infty} \in \mathcal{T}$より或る$\mu$-零集合$E$が存在して，$\omega \in \Omega \backslash E$なら
 				$0 = \sigma_0(\omega) \leq \sigma_1(\omega) \leq \cdots$且つ，或る$J = J(\omega) \in \N$が存在して
-				$\sigma_j(\omega) = T\ (j \geq J)$が満たされる．今，任意に$j \in \N_0,k \in \N$を取り固定する
+				$\sigma_j(\omega) = T\ (j \geq J)$が満たされる．今，$j \leq k$を満たす$j,k \in \N_0$を任意に取り固定する
 				\footnote{
 					$\N_0 = \N \cup \{0\}.$
 				}
-				．任意の$Y \in \mathcal{S}$に対し，$Y$が時点$0=t_0 < t_1 < \cdots < t_n = T$と
+				．任意に$Y \in \mathcal{S}$を取り，$Y$が時点$0=t_0 < t_1 < \cdots < t_n = T$と
 				$F \in \semiLp{\infty}{\Omega,\mathcal{F}_0,\mu},F_i \in \semiLp{\infty}{\Omega,\mathcal{F}_{t_i},\mu}\ (i=0,1,\cdots,n-1)$によって
 				\begin{align}
 					Y_t = F \defunc_{\{0\}}(t) + \sum_{i=0}^{n-1} F_i \defunc_{\left(t_i,t_{i+1}\right]}(t)
 					\quad (t \in I)
 				\end{align}
-				と表現されているとき，$\mathcal{M}_{2,c}$上の確率積分の定義より或る零集合$E_j$が存在して
+				と表現されているとすれば，$\mathcal{M}_{2,c}$上の確率積分の定義より
 				\begin{align}
-					I_{M^{\sigma_j}}(Y)_t(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_j}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_j}_{t \wedge t_i}(\omega) \right)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_j)
+					I_{M^{\sigma_j}}(Y)_t = \sum_{i=0}^{n-1} F_i \left( M^{\sigma_j}_{t \wedge t_{i+1}} - M^{\sigma_j}_{t \wedge t_i} \right)
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
 				\end{align}
 				が成り立つ．特に両辺を$\sigma_j$で停めても等号は保たれ
 				\begin{align}
-					I_{M^{\sigma_j}}(Y)_{t \wedge \sigma_j(\omega)}(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_j}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_j}_{t \wedge t_i}(\omega) \right)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_j)
+					I_{M^{\sigma_j}}(Y)^{\sigma_j}_t = \sum_{i=0}^{n-1} F_i \left( M^{\sigma_j}_{t \wedge t_{i+1}} - M^{\sigma_j}_{t \wedge t_i} \right)
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+					\label{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_1}
 				\end{align}
-				を得る．一方$\sigma_{j+k}$についても或る零集合$E_{j+k}$が存在して
+				を得る．$\sigma_{j+k}$についても同様に
 				\begin{align}
-					I_{M^{\sigma_{j+k}}}(Y)_t(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_{j+k}}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_{j+k}}_{t \wedge t_i}(\omega) \right)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_{j+k})
+					I_{M^{\sigma_{j+k}}}(Y)_t = \sum_{i=0}^{n-1} F_i \left( M^{\sigma_{j+k}}_{t \wedge t_{i+1}} - M^{\sigma_{j+k}}_{t \wedge t_i} \right)
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
 				\end{align}
-				が成り立ち，特に$\omega \in \Omega \backslash E$については$\sigma_j(\omega) \leq \sigma_{j+k}(\omega)$が満たされるから
+				が成り立ち，特に$\Omega \backslash E$上では$\sigma_j \leq \sigma_{j+k}$が満たされるから，両辺を$\sigma_j$で停めて
 				\begin{align}
-					I_{M^{\sigma_{j+k}}}(Y)_{t \wedge \sigma_j(\omega)}(\omega) = \sum_{i=0}^{n-1} F_i(\omega) \left( M^{\sigma_j}_{t \wedge t_{i+1}}(\omega) - M^{\sigma_j}_{t \wedge t_i}(\omega) \right)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash (E_{j+k} \cup E))
+					I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}_t = \sum_{i=0}^{n-1} F_i \left( M^{\sigma_j}_{t \wedge t_{i+1}} - M^{\sigma_j}_{t \wedge t_i} \right)
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+					\label{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_2}
 				\end{align}
-				が従う．ゆえに
+				が得られ，(\refeq{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_1})と
+				(\refeq{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_2})を併せれば
 				\begin{align}
-					I_{M^{\sigma_j}}(Y)_{t \wedge \sigma_j(\omega)}(\omega) = I_{M^{\sigma_{j+k}}}(Y)_{t \wedge \sigma_j(\omega)}(\omega)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash (E_j \cup E_{j+k} \cup E))
+					I_{M^{\sigma_j}}(Y)^{\sigma_j}_t = I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}_t
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
 				\end{align}
-				が得られる．一般の$Y \in \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_j}}} \cap \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_{j+k}}}}$に対しては
+				が従う．一般の$Y \in \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_j}}} \cap \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_{j+k}}}}$に対しては
 				或る$Y_n \in \mathcal{S}\ (n=1,2,\cdots)$が存在して
 				\begin{align}
 					\int_{I \times \Omega} \left| Y(t,\omega) - Y_n(t,\omega) \right|^2\ \mu_{M^{\sigma_j}}(dtd\omega)
@@ -119,36 +124,80 @@
 				\end{align}
 				を満たすから
 				\begin{align}
-					\Norm{I_{M^{\sigma_j}}(Y)^{\sigma_j} - I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}}{\mathcal{M}_{2,c}}
-					&\leq \Norm{I_{M^{\sigma_j}}(Y)^{\sigma_j} - I_{M^{\sigma_j}}(Y_n)^{\sigma_j}}{\mathcal{M}_{2,c}}
+					&\Norm{I_{M^{\sigma_j}}(Y)^{\sigma_j} - I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}}{\mathcal{M}_{2,c}} \\
+					&\qquad \leq \Norm{I_{M^{\sigma_j}}(Y)^{\sigma_j} - I_{M^{\sigma_j}}(Y_n)^{\sigma_j}}{\mathcal{M}_{2,c}}
 						+ \Norm{I_{M^{\sigma_{j+k}}}(Y_n)^{\sigma_j} - I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}}{\mathcal{M}_{2,c}} \\
-					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+					&\qquad \leq \Norm{Y - Y_n}{\semiLp{2}{\mu_{M^{\sigma_j}}}} + \Norm{Y - Y_n}{\semiLp{2}{\mu_{M^{\sigma_{j+k}}}}}
+					\quad \longrightarrow 0 \quad (n \longrightarrow \infty)
 				\end{align}
-				が成り立ち，或る零集合$E_{j,k}$が存在して
+				が成り立ち
 				\begin{align}
-					I_{M^{\sigma_j}}(Y)^{\sigma_j}_t(\omega) = I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}_t(\omega)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash E_{j,k})
+					I_{M^{\sigma_j}}(Y)^{\sigma_j}_t = I_{M^{\sigma_{j+k}}}(Y)^{\sigma_j}_t
+					\quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+					\label{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_3}
 				\end{align}
-				が成り立つ．
+				が従う．特に$X^{\sigma_j}$は$\Norm{\cdot}{\semiLp{\infty}{\mu}}$について一様有界であるから
+				第一段より$X^{\sigma_j} \in \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_j}}} \cap \semiLp{2}{\mathcal{P},\mu_{M^{\sigma_{j+k}}}}$
+				が満たされ，(\refeq{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_3})より
+				或る$\mu$-零集合$A_{j,k}$が存在して
 				\begin{align}
-					E \coloneqq \bigcup_{j \geq 0,k \geq 1} E_{j,k}
+					I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}_t(\omega) = I_{M^{\sigma_{j+k}}}(X^{\sigma_j})^{\sigma_j}_t(\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash A_{j,k})
+					\label{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_4}
 				\end{align}
-				とおけば，$n \leq m$を満たす任意の$n,m \in \N_0$に対し
+				が成り立つ．一方で定理\ref{thm:stopped_Ito_integral}より
 				\begin{align}
-					I_{M^{\sigma_n}}(X^{\sigma_n})^{\sigma_n}_t(\omega) = I_{M^{\sigma_m}}(X^{\sigma_m})^{\sigma_n}_t(\omega)
-					\quad (\forall t \in I,\ \omega \in \Omega \backslash E)
+					&\Norm{I_{M^{\sigma_{j+k}}}(X^{\sigma_j})^{\sigma_j} - I_{M^{\sigma_{j+k}}}(X^{\sigma_{j+k}})^{\sigma_j}}{\mathcal{M}_{2,c}}^2 \\
+					&\qquad = \int_\Omega \int_I \left| X^{\sigma_j}(t,\omega) - X^{\sigma_{j+k}}(t,\omega) \right|^2 
+						\defunc_{\left[0,\sigma_j(\omega)\right]}(t)\ \inprod<M^{\sigma_{j+k}}>(dt,\omega)\ \mu(d\omega)
 				\end{align}
-				となる．
+				が成り立つが，$\Omega \backslash E$上では$\sigma_j \leq \sigma_{j+k}$により
+				$X^{\sigma_j}(t) \defunc_{\left[0,\sigma_j\right]}(t) = X^{\sigma_{j+k}}(t) \defunc_{\left[0,\sigma_j\right]}(t)$
+				が満たされているから右辺の積分は0であり，或る$\mu$-零集合$B_{j,k}$が存在して
+				\begin{align}
+					I_{M^{\sigma_{j+k}}}(X^{\sigma_j})^{\sigma_j}_t(\omega) = I_{M^{\sigma_{j+k}}}(X^{\sigma_{j+k}})^{\sigma_j}_t(\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash B_{j,k})
+					\label{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_5}
+				\end{align}
+				が成り立つ．(\refeq{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_4})と
+				(\refeq{eq:thm_Ito_integral_on_M_c_loc_and_left_cont_locally_bounded_5})を併せれば
+				\begin{align}
+					I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}_t(\omega) = I_{M^{\sigma_{j+k}}}(X^{\sigma_{j+k}})^{\sigma_j}_t(\omega)
+					\quad \left( \forall t \in I,\ \omega \in \Omega \backslash \left( A_{j,k} \cup B_{j,k} \right) \right)
+				\end{align}
+				が従う．$j,k$は任意に選んでいたから，
+				\begin{align}
+					A \coloneqq \bigcup_{\substack{j,k \in \N_0\\j \leq k}} A_{j,k},
+					\quad B \coloneqq \bigcup_{\substack{j,k \in \N_0\\j \leq k}} B_{j,k},
+					\quad C \coloneqq A \cup B \cup E
+				\end{align}
+				により定める$C$は$\mu$-零集合である．
+				任意の$\omega \in \Omega \backslash C$に対し或る$J = J(\omega)$が存在して
+				$0 = \sigma_0(\omega) \leq \sigma_1(\omega) \leq \cdots \leq \sigma_J(\omega) = T$が満たされ，
+				且つ任意の$j,k \in \N_0,\ j \leq k$に対し
+				\begin{align}
+					I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}_t(\omega) = I_{M^{\sigma_k}}(X^{\sigma_k})^{\sigma_j}_t(\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash C)
+				\end{align}
+				も成り立つから，$\Omega \backslash C$上で$\lim_{j \to \infty} I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}_t\ (\forall t \in I)$
+				が確定する．
 				\begin{align}
 					I_M(X)(t,\omega) \coloneqq 
 					\begin{cases}
-						\lim\limits_{n \to \infty} I_{M^{\sigma_n}}(X^{\sigma_n})^{\sigma_n}(t,\omega) & (\omega \in \Omega \backslash E) \\
-						0 & (\omega \in E)
+						\lim\limits_{j \to \infty} I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}(t,\omega) & (\omega \in \Omega \backslash C) \\
+						0 & (\omega \in C)
 					\end{cases}
 					\quad (t \in I)
 				\end{align}
-				により$I_M(X)$を定めれば右連続かつ左極限を持ち，適合である．
+				により$I_M(X)$を定めれば，$I_M(X)$は適合過程であり，
+				且つ任意の$\omega \in \Omega$に対し$I \ni t \longmapsto I_M(X)_t(\omega)$は各点$t$で右連続かつ左極限を持つ．
+				そして任意の$j \in \N_0$に対し
+				\begin{align}
+					I_M(X)^{\sigma_j}(t,\omega) = I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}(t,\omega)
+					\quad (\forall t \in I,\ \omega \in \Omega \backslash C)
+				\end{align}
+				が満たされる．
+				\QED
 		\end{description}
-		\QED
 	\end{prf}
 	
