@@ -159,7 +159,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{lem}[$\mathcal{M}_{p,c}$は線形空間]\mbox{}\\
+		\begin{lem}[$\mathcal{M}_{p,c}$は線形空間]
 			任意の$M,N \in \mathcal{M}_{p,c}$と$\alpha \in \R$に対して線型演算を
 			\begin{align}
 				(M + N)_t \coloneqq (M_t + N_t)_{t \in I}, 
@@ -175,213 +175,177 @@
 	}
 	
 	\begin{prf}
-		$\mathcal{M}_{p,c}$が(\refeq{eq:mart_linear_arithmetic_0})の演算について閉じていることを示す．
+		$\mathcal{M}_{p,c}$が(\refeq{eq:mart_linear_arithmetic_0})の演算で閉じていることを示す．
+		任意に$M,N \in \mathcal{M}_{p,c}$と$\alpha, \beta \in \R$を取る．
 		\begin{description}
-			\item[加法について]
-				先ず$M+N$が$\mathrm{L}^p$-マルチンゲールの定義を満たすことを示す．
-				各$t \in I$について$M_t,N_t$が$\mathcal{F}_t$-可測であるから
-				$M_t + N_t$も$\mathcal{F}_t$-可測であり$M+N$の適合性が従う．
-				またMinkowskiの不等式より$M_t + N_t \in \semiLp{p}{\mu}\ (\forall t \in I)$も従う．
+			\item[第一段]
+				先ず$\alpha M + \beta N$が$\mathrm{L}^p$-マルチンゲールであることを示す．
+				各$t \in I$に対し$M_t,N_t$が$\mathcal{F}_t$-可測であるから
+				$\alpha M_t + \beta N_t$も$\mathcal{F}_t$-可測であり$\alpha M + \beta N$の適合性が従う．
+				またMinkowskiの不等式より$\alpha M_t + \beta N_t \in \semiLp{p}{\mu}\ (\forall t \in I)$も従う．
 				そして全ての$\omega \in \Omega$に対し$t \longmapsto M_t(\omega)$と
 				$t \longmapsto N_t(\omega)$は各点で右連続且つ左極限を持つから
-				$t \longmapsto M_t(\omega) + N_t(\omega)$も各点で右連続且つ左極限を持ち，
+				$t \longmapsto \alpha M_t(\omega) + \beta N_t(\omega)$も各点で右連続且つ左極限を持ち，
 				更に任意の$s,t \in I,\ s \leq t$に対して，条件付き期待値の線型性により
 				\begin{align}
-					\cexp{M_t + M_t}{\mathcal{F}_s} = \cexp{M_t}{\mathcal{F}_s} + \cexp{N_t}{\mathcal{F}_s} = M_s + N_s
+					\cexp{\alpha M_t + \beta M_t}{\mathcal{F}_s} 
+					= \alpha \cexp{M_t}{\mathcal{F}_s} + \beta \cexp{N_t}{\mathcal{F}_s} 
+					= \alpha M_s + \beta N_s
 				\end{align}
-				も成り立つ．以上より$\left( (M + N)_t \right)_{t \in I}$は$\mathrm{L}^p$-マルチンゲールである．
-				次に写像$I \ni t \longmapsto M_t(\omega) + N_t(\omega) \in \R$の連続性を示す．
-				$M,N$に対して或る$\mu$-零集合$E$が存在し，$\omega \notin E$について
-				$t \longmapsto M_t(\omega)$と$t \longmapsto N_t(\omega)$が共に連続となるから
-				$t \longmapsto M_t(\omega) + N_t(\omega)$も連続となる．以上で$M+N \in \mathcal{M}_{p,c}$が示された．
+				も成り立つ．以上より$\left( (\alpha M + \beta N)_t \right)_{t \in I}$は$\mathrm{L}^p$-マルチンゲールである．
 			
-			\item[スカラ倍について]
-				任意の$0 \leq s \leq t \leq T$に対し，条件付き期待値の線型性(性質$\tilde{\mathrm{C}}3$)により
-				\begin{align}
-					\cexp{\alpha M_t}{\mathcal{F}_s} = \alpha \cexp{M_t}{\mathcal{F}_s} = \alpha M_s
-				\end{align}
-				が成り立つ．定数倍しているだけであるから，$\alpha M$が
-				$\mathrm{L}^p$-マルチンゲールであるためのその他の条件，及び$\mu$-a.s.にパスが連続であることも成り立ち，
-				$\alpha M \in \mathcal{M}_{p,c}$となる．
-		\end{description}
-		\QED
+			\item[第二段]
+				$\alpha M + \beta N \in \mathcal{M}_{p,c}$を示す．
+				実際，$\mu$-a.s.に$M_0 = N_0 = 0$であるから$\alpha M_0 + \beta N_0 = 0\ \mu$-a.s.が従い，
+				同様に$\mu$-a.s.に$I \ni t \longmapsto M_t,\ I \ni t \longmapsto N_t$が連続であるから
+				$\mu$-a.s.に$I \ni t \longmapsto (\alpha M + \beta N)_t$も連続である．
+				第一段の結果と併せて$\alpha M + \beta N \in \mathcal{M}_{p,c}$を得る．
+				\QED
+		\end{description}		
 	\end{prf}
 	
 	\begin{screen}
-		\begin{lem}[$\mathcal{M}_{p,c}$における同値関係の導入]\mbox{}\\
+		\begin{lem}[$\mathcal{M}_{p,c}$における同値関係]
 			任意の$M,N \in \mathcal{M}_{p,c}\ (p \geq 1)$に対して，関係$R$を
 			\begin{align}
-				M\ R\ N \DEF \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\mbox{が$\mu$-零集合}
+				M\ R\ N \DEF M_t = N_t \quad (\forall t \in I),\quad \mbox{$\mu$-a.s.}
 			\end{align}
-			として定義すれば，関係$R$は同値関係となる．そして$M\ R\ N$となることと$\mu$-a.s.にパスが一致することは同値である．
+			により定めれば，これは$\mathcal{M}_{p,c}$における同値関係である．また関係$R$は次を満たす:
+			\begin{align}
+				M\ R\ N \Leftrightarrow \mu\left( \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}\right) = 0.
+			\end{align}
 			\label{lem:M_2c_hilbert}
 		\end{lem}
 	\end{screen}
 	
 	\begin{prf}
-		反射律と対称律は$R$の定義式より判然しているから推移律について確認する．$M,N$とは別に$U=(U_t)_{t \in I} \in \mathcal{M}_{p,c}$
-		を取って$M\ R\ N$かつ$N\ R\ U$となっているとすれば，各$r \in (I \cap \Q) \cup \{ T \}$にて
-		\begin{align}
-			\left\{\ \left|M_r - U_r\right| > 0\ \right\}\ \subset\ 
-			\left\{\ \left|M_r - N_r\right| > 0\ \right\} \cup \left\{\ \left|N_r - U_r\right| > 0\ \right\}
-		\end{align}
-		の関係が成り立っているから$M\ R\ U$が従う．
-		\footnote{
-			$\left\{\ \left|M_r - N_r\right| > 0\ \right\} = \Set{\omega \in \Omega}{\left|M_r(\omega) - N_r(\omega)\right| > 0}.$
-		}
+		反射律と対称律は$R$の定義より従うから推移律について示す．$M,N,U \in \mathcal{M}_{p,c}$
+		が$M\ R\ N$かつ$N\ R\ U$を満たしているなら，$M,N$のパスが一致しない$\omega$の全体$E_1$と
+		$N,U$のパスが一致しない$\omega$の全体$E_2$は零集合に含まれるから$M\ R\ U$が従う．
 		後半の主張を示す．
-		$M,N$に対し或る零集合$E$が存在して，$\omega \in \Omega \backslash E$に対し
-		$I \ni t \longmapsto M_t(\omega)$と$I \ni t \longmapsto N_t(\omega)$は共に連続写像となっている．
-		今$M\ R\ N$であるとする．
+		$M,N$に対し或る零集合$E$が存在して，$\Omega \backslash E$上で
+		$I \ni t \longmapsto M_t(\omega)$と$I \ni t \longmapsto N_t(\omega)$は共に連続である．
 		\begin{align}
 			F \coloneqq \Set{\omega \in \Omega}{\sup{r \in (I \cap \Q) \cup \{ T \}}{\left|M_r(\omega) - N_r(\omega)\right| > 0}}
 		\end{align}
-		とおけば$F^c \cap E^c$上で$M$と$N$のパスは完全に一致し，また$F \cup E$が零集合であるから$\mu$-a.s.にパスが一致しているということになる．
-		逆に$\mu$-a.s.にパスが一致しているとすれば，或る零集合$G$が存在して$G^c$上でパスが一致している．
+		とおけば，連続性により$F^c \cap E^c$上で$M$と$N$のパスが一致するから，$\mu(F) = 0$ならば
+		$M\ R\ N$が成り立つ．逆に$M\ R\ N$ならば，或る零集合$G$が存在して$G^c$上で$M$と$N$のパスが一致する．
 		\begin{align}
 			G^c \subset F^c
 		\end{align}
-		の関係から$F \subset G$となり$F$が零集合となるから$M\ R\ N$が従う．
+		が満たされているから$F \subset G$が従い$\mu(F) = 0$が成り立つ．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{lem}[$\mathcal{M}_{p,c}$の商空間の定義]
-			補題\ref{lem:M_2c_hilbert}で導入した同値関係$R$による$\mathcal{M}_{p,c}\ (p \geq 1)$の商集合を$\mathfrak{M}_{p,c}$と表記する．
-			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\overline{M}$と表記し，
+		\begin{dfn}[$\mathcal{M}_{p,c}$の商空間]
+			補題\ref{lem:M_2c_hilbert}で導入した同値関係$R$による$\mathcal{M}_{p,c}$の商集合を$\mathfrak{M}_{p,c}$と表す．
+			$M \in \mathcal{M}_{p,c}$の関係$R$による同値類を$\equiv{M}{2,c}$と表記し，
 			$\mathfrak{M}_{p,c}$において
 			\begin{align}
-				\overline{M} + \overline{N} \coloneqq \overline{M+N}, \quad \alpha \overline{M} \coloneqq \overline{\alpha M} \label{eq:mart_linear_arithmetic}
+				\equiv{M}{2,c} + \equiv{N}{2,c} \coloneqq \equiv{M+N}{2,c}, 
+				\quad \alpha \equiv{M}{2,c} \coloneqq \equiv{\alpha M}{2,c} \label{eq:mart_linear_arithmetic}
 			\end{align}
-			として演算を定義すれば，これは代表元の選び方に依らない(well-defined)．そして(\refeq{eq:mart_linear_arithmetic})で定義した算法を加法とスカラ倍として
+			として線型演算を定めれば，これは代表の選び方に依存せず，
 			$\mathfrak{M}_{p,c}$は$\R$上の線形空間となる．
-		\end{lem}
+		\end{dfn}
 	\end{screen}
-	
-	\begin{prf}
-		$M' \in \overline{M},\ N' \in \overline{N}$を任意に選べば，
-		\begin{align}
-			\left\{\ \left|M_r + N_r - M'_r - N'_r \right| > 0\ \right\} &\subset \left\{\ \left|M_r - M'_r \right| > 0\ \right\} \cup \left\{\ \left|N_r - N'_r \right| > 0\ \right\} \\
-			\left\{\ \left|\alpha M_r - \alpha M'_r \right| > 0\ \right\} &= \left\{\ \left|M_r - M'_r \right| > 0\ \right\}
-		\end{align}
-		により$(M+N)\ R\ (M'+N'),\ (\alpha M)\ R\ (\alpha M')$が成り立ち
-		\begin{align}
-			\overline{M+N} = \overline{M'+N'}, \quad \overline{\alpha M} = \overline{\alpha M'}
-		\end{align}
-		が従う．
-		\QED
-	\end{prf}
 	
 	\begin{screen}
 		\begin{lem}[$\mathfrak{M}_{2,c}$における内積の定義]
-			写像\footnotemark
-			$\inprod<\cdot,\cdot>:\mathfrak{M}_{2,c} \times \mathfrak{M}_{2,c} \rightarrow \R$
-			を次で定義すれば，これは$\mathfrak{M}_{2,c}$において内積となる:
 			\begin{align}
-				\inprod<\overline{M},\overline{N}> \coloneqq \int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega), \quad (\overline{M},\overline{N} \in \mathfrak{M}_{2,c}).
+				\inprod<\equiv{M}{2,c},\equiv{N}{2,c}>_{2,c} \coloneqq \int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega), \quad (\equiv{M}{2,c},\equiv{N}{2,c} \in \mathfrak{M}_{2,c}).
 				\label{eq:M_2c_inner_product}
 			\end{align}
+			により$\inprod<\cdot,\cdot>_{2,c}$を定めれば，右辺は代表に無関係に確定し，
+			$\mathfrak{M}_{2,c}$において内積となる．
 			\label{lem:M_2c_hilbert_inner_product}
 		\end{lem}
 	\end{screen}
 			
 	\footnotetext{
-		実数値として確定することは，$M_T,N_T$が共に二乗可積分であることとH\Ddot{o}lderの不等式による．
+		
 	}
 			
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[well-definedであること]
-				先ずは上の$\inprod<\cdot,\cdot>$の定義が代表元の取り方に依らないことを確認する．
-				$M' \in \overline{M}$と$N' \in \overline{N}$に対して，
-				同値関係の定義から$\mu$-a.s.に$M'_T = M_T,\ N'_T = N_T$であり
+			\item[第一段]
+				先ず$\inprod<\cdot,\cdot>_{2,c}$の定義が代表の取り方に依らないことを示す．
+				任意の$\equiv{M}{2,c},\equiv{N}{2,c} \in \mathfrak{M}_{2,c}$に対し
+				(\refeq{eq:M_2c_inner_product})の積分が実数値で確定することは，
+				$M_T,N_T$の二乗可積分性とH\Ddot{o}lderの不等式による．
+				また任意の$M' \in \equiv{M}{2,c}$と$N' \in \equiv{N}{2,c}$に対しては，
+				$M_T = M'_T,\ N_T = N'_T\ \mu$-a.s.により
 				\begin{align}
 					\int_{\Omega} M_T(\omega)N_T(\omega)\ \mu(d\omega) = \int_{\Omega} M'_T(\omega)N'_T(\omega)\ \mu(d\omega)
 				\end{align}
-				が成り立つから，$\inprod<\overline{M},\overline{N}>$は一つの値に確定している．
-				次に$\inprod<\cdot,\cdot>$が内積であることを証明する．
+				が成り立つから，$\inprod<\equiv{M}{2,c},\equiv{N}{2,c}>_{2,c}$は代表に無関係に確定する．
 	
-			\item[正値性]
-				先ず任意の$\overline{M} \in \mathfrak{M}_{2,c}$に対して$\inprod<\overline{M},\overline{M}> = \Norm{M_T}{\mathscr{L}^2}^2 \geq 0$が成り立つ．
-				次に$\inprod<\overline{M},\overline{M}> = 0 \quad \Leftrightarrow \quad \overline{M} = \overline{0}$
-				が成り立つことを示す．$\inprod<\cdot,\cdot>$の定義により$\Leftarrow$は判然しているから，$\Rightarrow$について示す．
-				$M$は$\mathrm{L}^2$-マルチンゲールであるから，Jensenの不等式より
-				$(|M_t|)_{t \in I}$が$\mathrm{L}^2$-劣マルチンゲールとなる．Doobの不等式を適用すれば
+			\item[第二段]
+				$\inprod<\cdot,\cdot>_{2,c}:\mathfrak{M}_{2,c} \times \mathfrak{M}_{2,c} \rightarrow \R$が内積であることを示す．
+				先ず任意の$\equiv{M}{2,c} \in \mathfrak{M}_{2,c}$に対して(\refeq{eq:M_2c_inner_product})より
+				$\inprod<\equiv{M}{2,c},\equiv{M}{2,c}>_{2,c} \geq 0$が満たされる．
+				また$\inprod<\equiv{M}{2,c},\equiv{M}{2,c}>_{2,c} = 0 \Leftrightarrow \equiv{M}{2,c} = \equiv{0}{2,c}$
+				も成り立つ．実際$\Leftarrow$は(\refeq{eq:M_2c_inner_product})より従う．$\Rightarrow$については，
+				$M$が$\mathrm{L}^2$-マルチンゲールであるからJensenの不等式より
+				$(|M_t|)_{t \in I}$は$\mathrm{L}^2$-劣マルチンゲールであり，Doobの不等式により
 				\begin{align}
 					\int_{\Omega} \left( \sup{t \in I}{|M_t(\omega)|} \right)^2\ \mu(d\omega) \leq 4 \int_{\Omega} {M_T(\omega)}^2\ \mu(d\omega) = 0
 				\end{align}
-				が成り立ち，
-				\begin{align}
-					\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\} = \left\{\ \sup{t \in I}{|M_t|^2} > 0\ \right\} = \left\{\ \left(\sup{t \in I}{|M_t(\omega)|}\right)^2 > 0\ \right\}
-				\end{align}
-				%\footnote{
-				%	$\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\}$は$\Set{\omega \in \Omega}{\sup{t \in I}{|M_t(\omega)|} > 0}$の略記(他も同様)であるが，
-				%	ここの等号は次の関係が成立することにより正当化される:
-				%	\begin{align}
-				%		[\sup{t \in I}{|M_t(\omega)|}]^2 = \sup{t \in I}{[M_t(\omega)]^2},\ (\forall \omega \in \Omega).
-				%	\end{align}
-				%	もし$[\sup{t \in I}{|M_t(\omega)|}]^2 > \sup{t \in I}{[M_t(\omega)]^2} \eqqcolon \beta$
-				%	とすると，$\sup{t \in I}{|M_t(\omega)|} > \beta^{1/2}$より或る$s \in I$について
-				%	$|M_s(\omega)| > \beta^{1/2}$が成り立つから，$[M_s(\omega)]^2 > \beta$となり$\beta = \sup{t \in I}{[M_t(\omega)]^2}$に矛盾する．
-				%	逆の場合，つまり$\alpha \coloneqq [\sup{t \in I}{|M_t(\omega)|}]^2 < \sup{t \in I}{[M_t(\omega)]^2}$
-				%	が成り立っているとしても，或る$z \in I$が存在して$\alpha^{1/2} < |M_z(\omega)| \leq \sup{t \in I}{|M_t(\omega)|}$が成り立ち，
-				%	$\alpha < [\sup{t \in I}{|M_t(\omega)|}]^2 = \alpha$となり矛盾ができた．
-				%}
-				であるから
+				が成り立つから
+				%\begin{align}
+				%	\left\{\ \sup{t \in I}{|M_t|} > 0\ \right\} = \left\{\ \sup{t \in I}{|M_t|^2} > 0\ \right\} = \left\{\ \left(\sup{t \in I}{|M_t(\omega)|}\right)^2 > 0\ \right\}
+				%\end{align}
+				%により
 				\begin{align}
 					\mu\left( \sup{t \in I}{|M_t|} > 0 \right) = 0
 				\end{align}
-				が従う．よって$\overline{M} = \overline{0}$となる．
-	
-			\item[双線型性]
-				双線型性は積分の線型性による．
-			\end{description}
-		\QED
+				が従い$\equiv{M}{2,c} = \equiv{0}{2,c}$が得られる．
+				$\inprod<\cdot,\cdot>_{2,c}$の双線型性は積分の線型性より従う．
+				\QED
+		\end{description}
 	\end{prf}
 		
 	\begin{screen}
-		\begin{prp}[$\mathfrak{M}_{2,c}$はHilbert空間である]
-			$\mathfrak{M}_{2,c}$は補題\ref{lem:M_2c_hilbert_inner_product}で導入した$\inprod<\cdot,\cdot>$を内積としてHilbert空間となる．
+		\begin{prp}[$\mathfrak{M}_{2,c}$はHilbert空間]
+			$\mathfrak{M}_{2,c}$は$\inprod<\cdot,\cdot>_{2,c}$を内積としてHilbert空間となる．
 		\end{prp}
 	\end{screen}
 			
 	\begin{prf}
-			内積$\inprod<\cdot,\cdot>$により導入されるノルムを$\Norm{\cdot}{}$と表記する．
-			$\overline{M^{(n)}} \in \mathfrak{M}_{2,c}\ (n=1,2,\cdots)$をCauchy列として取れば，
-			各代表元$M^{(n)}$に対し或る$\mu$-零集合$E_n$が存在して，$\omega \in \Omega \backslash E_n$なら
-			写像$I \ni t \longmapsto M^{(n)}_t(\omega) \in \R$が連続となる．後で連続関数列の一様収束を扱うからここで次の処理を行う:
-			\begin{align}
-				E \coloneqq \bigcup_{n=1}^{\infty} E_n
-			\end{align}
-			として，$M^{(n)} = (M^{(n)}_t)_{t \in I}$を零集合$E$上で修正した過程$(N^{(n)}_t)_{t \in I}$を
+			内積$\inprod<\cdot,\cdot>_{2,c}$により導入されるノルムを$\Norm{\cdot}{\mathfrak{M}_{2,c}}$と表記する．
+			任意にCauchy列$\equiv{M^{(n)}}{2,c} \in \mathfrak{M}_{2,c}\ (n=1,2,\cdots)$を取れば，
+			各代表$M^{(n)}$に対し或る$\mu$-零集合$E_n$が存在して，$\Omega \backslash E_n$上で
+			$I \ni t \longmapsto M^{(n)}_t(\omega) \in \R$が連続となる．
+			$E \coloneqq \bigcup_{n=1}^{\infty} E_n$により零集合を定め
 			\begin{align}
 				N^{(n)}_t(\omega) \coloneqq
 				\begin{cases}
 					M^{(n)}_t(\omega) & (\omega \in \Omega \backslash E) \\
 					0 & (\omega \in E)
 				\end{cases}
-				,\quad (\forall n = 1,2,\cdots,\ t \in I)
+				,\quad (\forall t \in I,\ n = 1,2,\cdots)
 			\end{align}
-		として定義すれば，$N^{(n)}$は$\Omega$全体でパスが連続，かつ$\mathrm{L}^2$-マルチンゲールであるから
+		として$\left( N^{(n)} \right)_{n=1}^{\infty}$を定義すれば，$N^{(n)}$は全てのパスが連続な$\mathrm{L}^2$-マルチンゲールであるから
 		\footnote{
-			$\mathrm{L}^2$-マルチンゲールとなることを証明する．
-			パスの右連続性と左極限の存在は連続性により成り立つことである．適合性については，フィルトレーションの仮定より$E \in \mathcal{F}_0$であることに注意すれば，
-			$N^{(n)}_t = M^{(n)}_t \defunc_{\Omega \backslash E}$
-			であることと$M^{(n)}_t$が適合過程であることから$N^{(n)}_t$も可測$\mathcal{F}_t/\borel{\R}$となる．
-			また各$t \in I$に対し$N^{(n)}_t$と$M^{(n)}_t$の関数類は一致するから，任意に$0 \leq s \leq t \leq T$を取って
+			パスの連続性より右連続性と左極限の存在は満たされる．
+			また$E \in \mathcal{F}_0$であることと
+			$M^{(n)}$の適合性から$N^{(n)}$の適合性が従う．
+			更に$N^{(n)}_t = M^{(n)}_t\ \mbox{$\mu$-a.s.}\ (\forall t \in I)$が満たされているから，
+			任意の$s,t \in I,\ s \leq t$に対して
 			\begin{align}
 				\cexp{N^{(n)}_t}{\mathcal{F}_s} = \cexp{M^{(n)}_t}{\mathcal{F}_s} = M^{(n)}_s = N^{(n)}_s
 			\end{align}
-			が成り立つ．$N^{(n)}_t = M^{(n)}_t \defunc_{\Omega \backslash E}$の二乗可積分性は$M^{(n)}_t$の二乗可積分性から従う．
+			が成り立つ．$N^{(n)}_t$の二乗可積分性は$M^{(n)}_t$の二乗可積分性から従う．
 		}
-		$\mathcal{M}_{2,c}$の元となる．また零集合$E$を除いて$M^{(n)}$とパスが一致するから，
-		$\overline{N^{(n)}} = \overline{M^{(n)}}\ (n=1,2,\cdots)$が成立し
+		$N^{(n)} \in \mathcal{M}_{2,c}$を満たし，かつ
+		$\equiv{N^{(n)}}{2,c} = \equiv{M^{(n)}}{2,c}\ (n=1,2,\cdots)$も満たすから任意の$n,m \in \N$に対し
 		\begin{align}
-			\Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 = \Norm{\overline{N^{(n)}} - \overline{N^{(m)}}}{}^2 
-			=  \Norm{\overline{N^{(n)} - N^{(m)}}}{}^2
+			\Norm{\equiv{M^{(n)}}{2,c} - \equiv{M^{(m)}}{2,c}}{\mathfrak{M}_{2,c}}^2 
+			= \Norm{\equiv{N^{(n)}}{2,c} - \equiv{N^{(m)}}{2,c}}{\mathfrak{M}_{2,c}}^2
 			= \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
 		\end{align}
-		と表現できる．
+		が成り立つ．
 		任意の$n,m \in N$の組に対し，$\mathcal{M}_{2,c}$が線形空間であるから
 		$\left(\left|N^{(n)}_t - N^{(m)}_t\right|\right)_{t \in T}$は連続な$\mathrm{L}^2$-劣マルチンゲールとなり，
 		Doobの不等式を適用して
