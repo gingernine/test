@@ -1,40 +1,62 @@
 %レポート問題4
-	\begin{prf}\mbox{}
+	\begin{prf} sup-normを$\Norm{\cdot}{}$，$\c{I}$上の恒等写像をI$(\neq I)$と表す．
 		\begin{description}
+			\item[$T$が閉作用素であること]
+				先ず$T$が閉作用素であることを示す．
+				$u_n \in \Dom{T} \ (n=1,2,\cdots)$に対し或る$u,v \in \c{I}$が存在して，$\Norm{u_n - u}{} \longrightarrow 0$
+				かつ$\Norm{T u_n - v}{} \longrightarrow 0$が成り立つとき，任意の$x \in I$に対して
+				\begin{align}
+					\left| u(x) - \int_0^x v(t)\ dt \right|
+					&\leq \left| u(x) - u_n(x) \right| + \left| \int_0^x T u_n(t)\ dt - \int_0^x v(t)\ dt \right| \\
+					&\leq \Norm{u - u_n}{} + a \Norm{T u_n - v}{}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					u(x) = \int_0^x v(t)\ dt \quad (\forall x \in I)
+				\end{align}
+				となり，$u \in \cn{I}{1}$かつ$Tu = v$が従う．そして
+				\begin{align}
+					\left| u(0) + u(a) \right| \leq \left| u(0) - u_n(0) \right| 
+						+ \left| u_n(a) - u(a) \right|
+					\leq 2 \Norm{u - u_n}{}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				により，$u \in \Dom{T} $が成り立つ．これにより$T$は閉作用素である．
+				
 			\item[点スペクトルについて]
-				$(\lambda I - T) u = 0$を満たす$\lambda$に対し，微分方程式を解けば
+				$u \in \Dom{T} $とする．$\lambda u - T u = 0$を満たす$\lambda \in \C$に対し，微分方程式を解けば
 				\begin{align}
 					u(x) = C\exp{\lambda x}
 					\quad (x \in I,\ C \in \C)
 				\end{align}
-				と表せる．今$u(0) + u(a) = 0$が仮定されているから，
+				と表せる．今$u(0) + u(a) = 0$が満たされているから，
 				\begin{align}
 					C + C\exp{\lambda a} = 0
 				\end{align}
 				が成り立つ．これは$C = 0$或は
 				$\lambda = \frac{1}{a} \log{(-1)}$の場合に実現する．
 				$\lambda = \frac{1}{a} \log{(-1)}$でなければ$C = 0$でなくてはならないが，
-				このとき$u = 0$となり固有ベクトルにならないから$\lambda = \frac{1}{a} \log{(-1)}$
-				でなくてはならない．従って
+				このとき$u = 0$となり固有ベクトルにならないから
 				\begin{align}
 					\pSpctr{T} \subset \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}
 				\end{align}
-				が得られる．逆に或る$n \in \Z$に対して$\lambda = (2 n + 1)\pi/a$と表されているとき，
-				任意の$C \in \C$に対して$u(x) = C\exp{\lambda x}\ (x \in I)$とおけば
+				が従う．逆に$n \in \Z$を取り$\lambda = (2 n + 1)\pi/a$とおけば，
+				任意の$0 \neq C \in \C$に対して$u(x) = C\exp{\lambda x}\ (x \in I)$は
 				\begin{align}
 					\lambda u(x) - T u(x) = 0 \quad (\forall x \in I),
 					\quad u(0) + u(a) = 0
 				\end{align}
-				が満たされるから
+				を満たすから
 				\begin{align}
 					\pSpctr{T} \supset \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}
 				\end{align}
-				が成り立ち，$\pSpctr{T} = \Set{\sqrt{-1} \frac{(2 n + 1)\pi}{a}}{n \in \Z}$が得られる．
+				が成り立ち，$\pSpctr{T} = \Set{\sqrt{-1} (2 n + 1)\pi/a}{n \in \Z}$が得られる．
 				
 			\item[スペクトルについて]
-				$\Res{T} = \C \backslash \pSpctr{T} $が成り立つことを示す．これにより
+				レゾルベント集合が$\Res{T} = \C \backslash \pSpctr{T} $を満たすことを示す．これにより
 				$\Spctr{T} = \pSpctr{T} $が従う．
-				$\lambda \in \C \backslash \pSpctr{T} $を任意に取る．$f \in \c{I}$に対し
+				$\lambda \in \C \backslash \pSpctr{T} ,f \in \c{I}$を任意に取り
 				\begin{align}
 					\begin{cases}
 						u'(x) - \lambda u(x) = f(x) \\
@@ -51,30 +73,39 @@
 					\quad (x \in I) \\
 					&\quad \Leftrightarrow 
 					\begin{cases}
-						u(x) = \exp{\lambda x}u_0 + \int_0^x \exp{\lambda (x-s)} f(s)\ ds \\
+						u(x) = \exp{\lambda x}u(0) + \int_0^x \exp{\lambda (x-s)} f(s)\ ds \\
 						u(0) + u(a) = 0
 					\end{cases}
 					\quad (x \in I) \\
 					&\quad \Leftrightarrow 
 					\begin{cases}
-						u(x) = \exp{\lambda x}u_0 + \int_0^x \exp{\lambda (x-s)} f(s)\ ds \\
-						u(0) + \exp{\lambda a}u_0 + \int_0^a \exp{\lambda (a-s)} f(s)\ ds = 0
+						u(x) = \exp{\lambda x}u(0) + \int_0^x \exp{\lambda (x-s)} f(s)\ ds \\
+						u(0) + \exp{\lambda a}u(0) + \int_0^a \exp{\lambda (a-s)} f(s)\ ds = 0
 					\end{cases}
 					\quad (x \in I) \\
 					&\quad \Leftrightarrow 
 					u(x) = -\frac{\exp{\lambda x}}{1 + \exp{\lambda a}} \int_0^a \exp{\lambda (a-s)} f(s)\ ds + \int_0^x \exp{\lambda (x-s)} f(s)\ ds
-					\quad (x \in I)
+					\quad (x \in I) \footnotemark
+					\label{eq:report_4_1}
 				\end{align}
-				より$f$に対して$u$は唯一つ定まる．この対応を$R_\lambda:\c{I} \oparrow \c{I}$と表せば，$\Dom{R_\lambda} = \c{I}$且つ
-				積分の線型性より$R_\lambda$線型写像である．また
+				より$f$に対して$u \in \Dom{T} $は唯一つ定まる
+				\footnotetext{
+					$\lambda \in \C \backslash \pSpctr{T} $より$1 + \exp{\lambda a} \neq 0$である．
+				}
+				．この$f$から$u$への単射対応を$R_\lambda:\c{I} \oparrow \Dom{T} $と表せば，
+				$f$の任意性より$\Dom{R_\lambda} = \c{I}$が成り立ち，且つ
+				積分の線型性により$R_\lambda$も線型性を持つ．また(\refeq{eq:report_4_1})の最終式より
 				\begin{align}
-					\Norm{R_\lambda f}{} \leq \Norm{f}{}
+					\Norm{R_\lambda f}{} 
+					\leq \left(\frac{\sup{x \in I}{\left| \exp{\lambda x} \right|}}{\left| 1 + \exp{\lambda a} \right|} \int_0^a \left| \exp{\lambda (a-s)} \right|\ ds + \sup{x \in I}{\left| \exp{\lambda x} \right|} \int_0^a \left| \exp{- \lambda s} \right|\ ds \right) \Norm{f}{}
 				\end{align}
-				を満たすから$R_\lambda$は有界で，さらに
+				が成り立つから$R_\lambda$は有界であり，さらに$R_\lambda$の定め方と(\refeq{eq:report_4_1})より
 				\begin{align}
-					R_\lambda (\lambda - T) u &= u \quad (\forall u \in \Dom{T} ), \\
-					(\lambda - T) R_\lambda f &= f \quad (\forall f \in \c{I})
+					-R_\lambda (\lambda \mathrm{I} - T) u &= u \quad (\forall u \in \Dom{T} ), \\
+					-(\lambda \mathrm{I} - T) R_\lambda f &= f \quad (\forall f \in \c{I})
 				\end{align}
-				が成り立つから$R_\lambda = (\lambda - T)^{-1}$が従い$\lambda \in \Res{T} $を得る．
+				が満たされるから$-R_\lambda = (\lambda \mathrm{I} - T)^{-1}$が成り立ち$\lambda \in \Res{T} $が従う．
+				これにより$\Res{T} = \C \backslash \pSpctr{T} $が得られる．
+				\QED
 		\end{description}
 	\end{prf}

@@ -1,40 +1,58 @@
-	
-	\begin{screen}
-		[4]$a > 0,I = [0,a]$とおく．$\c{I}$から$\c{I}$への線型作用素$T$を次で定める:
+約束引用:以下，係数体を$\C$とする．位相空間$X$上の有界な複素数値連続関数全体のなす空間
+$\cbound{X}$は，sup-normによりBanach空間とみなす．
+
+	\begin{itembox}[l]{[4]}
+		$a > 0,I = [0,a]$とおく．$\c{I}$から$\c{I}$への線型作用素$T$を次で定める:
 			\begin{align}
 				\Dom{T} \coloneqq \Set{u \in \cn{I}{1}}{u(0) + u(a) = 0},
 				\quad Tu(x) = u'(x) \quad (x \in I).
 			\end{align}
 			このとき，$\pSpctr{T} $及び$\Spctr{T} $を求めよ．
-	\end{screen}
+	\end{itembox}
 	
 	\input{thms/report_4}
 	
-	\begin{screen}
-		[5] $X,Y$をそれぞれ$\R^m,\R^n$の空でないコンパクト部分集合とし，$K \in \c{X \times Y}$とするとき
+\newpage
+	\begin{itembox}[l]{[5]}
+		$X,Y$をそれぞれ$\R^m,\R^n$の空でないコンパクト部分集合とし，$K \in \c{X \times Y}$とするとき
 		\begin{align}
 			T:\c{Y} \rightarrow \c{X},
 			\quad T f(x) = \int_Y K(x,y) f(y)\ dy \quad (f \in \c{Y})
 		\end{align}
 		はコンパクト作用素であることを示せ．
-	\end{screen}
+	\end{itembox}
 	
 	\begin{prf}
-		$m$次元Lebesgue測度を$\mu_m$，$n$次元Lebesgue測度を$\mu_n$と表す．
+		$m\ (n)$次元Lebesgue測度を$\mu_m\ (\mu_n)$と表す．
+		また$\mathrm{L}^\infty(\mu_m) = \mathrm{L}^\infty(X,\borel{X},\mu_m),\ 
+		\mathrm{L}^\infty(\mu_n) = \mathrm{L}^\infty(Y,\borel{Y},\mu_n)$とおき，
+		関数と関数類は表記上区別しない．$\c{X}$と$\mathrm{L}^\infty(\mu_m)$のノルムをそれぞれ
+		$\Norm{\cdot}{\c{X}},\Norm{\cdot}{\mathrm{L}^\infty(\mu_m)}$と表す．
 		講義中の例より
 		\begin{align}
-			\tilde{T}:\mathrm{L}^\infty(\mu_n) \ni f \longmapsto \int_Y K(x,y) f(y)\ \mu_n(dy)
+			\tilde{T}f (x) = \int_Y K(x,y) f(y)\ \mu_n(dy),
+			\quad \left( f \in \mathrm{L}^\infty(\mu_n) \right)
 		\end{align}
 		により定める$\tilde{T}$は$\mathrm{L}^\infty(\mu_n)$から$\mathrm{L}^\infty(\mu_m)$への
-		コンパクト作用素である．そして$\c{Y} \subset \mathrm{L}^\infty(\mu_n),\ \c{X} \subset \mathrm{L}^\infty(\mu_m)$
-		より$\tilde{T}$は$T$の拡張となっている．$\c{Y}$から任意に有界列$(f_n)_{n=1}^{\infty}$を取れば，
-		$\left( \tilde{T} f_n \right)_{n=1}^{\infty}$の或る部分列$\left( \tilde{T} f_{n_k} \right)_{k=1}^{\infty}$
-		はBanach空間$\mathrm{L}^\infty(\mu_m)$で収束する．今$T f_n = \tilde{T} f_n\ (n=1,2,\cdots)$且つ
+		コンパクト作用素である．そして$\c{Y} \subset \mathscr{L}^\infty(\mu_n),\ \c{X} \subset \mathscr{L}^\infty(\mu_m)$
+		より$\tilde{T}$は$T$の拡張となっている
+		\footnote{
+			任意の$f \in \c{Y}$に対し，$f$を代表とする関数類$[f]$が$\mathrm{L}^\infty$に存在する．
+			そして$T$と$\tilde{T}$は次の関係を満たしている:
+			\begin{align}
+				[Tf] = \tilde{T}[f]
+				\quad (\forall f \in \c{Y})
+			\end{align}
+		}
+		．$\c{Y}$から任意に有界列$(f_n)_{n=1}^{\infty}$を取れば，
+		$\tilde{T}$がコンパクト作用素であるから$\left( \tilde{T} f_n \right)_{n=1}^{\infty}$の或る部分列$\left( \tilde{T} f_{n_k} \right)_{k=1}^{\infty}$
+		はBanach空間$\mathrm{L}^\infty(\mu_m)$で強収束する．今$T f_n = \tilde{T} f_n\ (n=1,2,\cdots)$且つ
 		\begin{align}
-			\Norm{T f}{\infty} = \Norm{\tilde{T}f}{\mathrm{L}^\infty(\mu_m)} \quad (\forall f \in \c{Y})
+			\Norm{T f_n}{\c{X}} = \Norm{\tilde{T}f_n}{\mathrm{L}^\infty(\mu_m)} 
+			\quad (\forall n \in \N)
 		\end{align}
-		が満たされているから，$\left( T f_{n_k} \right)_{k=1}^{\infty}$もまた$\c{X}$でsup-normによりCauchy列をなしていて，
-		$(\c{X},sup-norm)$がBanach空間であるから$\left( T f_{n_k} \right)_{k=1}^{\infty}$は連続関数に強収束する．
+		が満たされているから，$\left( T f_{n_k} \right)_{k=1}^{\infty}$もまた$\c{X}$で$\Norm{\cdot}{\c{X}}$によりCauchy列をなしていて，
+		$(\c{X},\Norm{\cdot}{\c{X}})$がBanach空間であるから$\left( T f_{n_k} \right)_{k=1}^{\infty}$は$\c{X}$で強収束する．
 		ゆえに$T$はコンパクト作用素である．
 		\QED
 	\end{prf}
