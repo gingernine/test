@@ -375,7 +375,7 @@
 		数列は$t$に関して一様に収束するから
 		\footnote{
 			$\left| N^{(n_k)}_t(\omega) - N^*_t(\omega) \right| \leq \sum_{j=k}^{\infty} \left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|
-			\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in T)$
+			\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in I)$
 			による．
 		}
 		$I \ni t \longmapsto N^*_t(\omega)$は連続であり，
@@ -436,40 +436,32 @@
 				が成り立つ．
 			
 			\item[(3)]
-				各$t \in I,\ k \in \N$について$(M^{(n_k)}_t)_{t \in I}$が$\mathrm{L}^2$-マルチンゲールであるということを利用すればよい．
-				任意の$0 \leq s \leq t \leq T$と$A \in \mathcal{F}_s$に対して
+				$N^{(n)} \in \mathcal{M}_{2,c}\ (n=1,2,\cdots)$より
+				任意の$s \leq t,\ s,t \in I$と$A \in \mathcal{F}_s$に対して
 				\begin{align}
-					\int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) &= \int_{A} \cexp{M^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \\
-					&= \int_{A} M^{(n_k)}_s(\omega)\ \mu(d\omega) = \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
+					\int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) 
+					= \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega)
+					\quad (k=1,2,\cdots)
 				\end{align}
-				が全ての$k = 1,2,\cdots$で成り立つから，H\Ddot{o}lderの不等式及び(\refeq{eq:M_c2_hilbert_2})より
+				が成り立つから，H\Ddot{o}lderの不等式及び(\refeq{eq:M_c2_hilbert_2})より
 				\begin{align}
 					&\left| \int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) - \int_{A} N_s(\omega)\ \mu(d\omega) \right| \\
-					&\leq \left| \int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) - \int_{A} \cexp{N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \right| \\
-						&\qquad+ \left| \int_{A} N^{(n_k)}_s(\omega)\ \mu(d\omega) - \int_{A} N_s(\omega)\ \mu(d\omega) \right| \\
-					&= \left| \int_{A} N_t(\omega) - N^{(n_k)}_t(\omega)\ \mu(d\omega) \right|
+					&\qquad \leq \left| \int_{A} \cexp{N_t - N^{(n_k)}_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega) \right|
 						+ \left| \int_{A} N^{(n_k)}_s(\omega) - N_s(\omega)\ \mu(d\omega) \right| \\
-					&\leq \int_{A} \left| N_t(\omega) - N^{(n_k)}_t(\omega) \right|\ \mu(d\omega)
-						+ \int_{A} \left| N^{(n_k)}_s(\omega) - N_s(\omega) \right|\ \mu(d\omega) \\
-					&\leq \Norm{N_t - N^{(n_k)}_t}{\mathscr{L}^2} + \Norm{N^{(n_k)}_s - N_s}{\mathscr{L}^2} \\
-					&\leq 1/2^{k-1}
+					&\qquad = \left| \int_{A} N_t(\omega) - N^{(n_k)}_t(\omega)\ \mu(d\omega) \right|
+						+ \left| \int_{A} N^{(n_k)}_s(\omega) - N_s(\omega)\ \mu(d\omega) \right| \\
+					&\qquad \leq \Norm{N_t - N^{(n_k)}_t}{\mathscr{L}^2} + \Norm{N^{(n_k)}_s - N_s}{\mathscr{L}^2}
+					\longrightarrow 0 \quad (k \longrightarrow \infty)
 				\end{align}
-				が全ての$k = 1,2,\cdots$で成り立つ．$k$の任意性から
-				\begin{align}
-					\int_{A} \cexp{N_t}{\mathcal{F}_s}(\omega)\ \mu(d\omega)
-					= \int_{A} N_s(\omega)\ \mu(d\omega)
-				\end{align}
-				が従い，$\cexp{N_t}{\mathcal{F}_s} = N_s \quad \mbox{in $\Lp{2}{\mathcal{F},\mu}$}$となる．
+				が従い$\cexp{N_t}{\mathcal{F}_s} = N_s$が得られる．
 		\end{description}
-	
-		最後に，$N$の$\mathfrak{M}_{2,c}$における同値類$\overline{N}$がCauchy列$\left(\overline{M^{(n)}}\right)_{n=1}^{\infty}$の極限であるということを明示して証明を完全に終える．
-		部分列$\left(\overline{M^{(n_k)}}\right)_{k=1}^{\infty}$に対して，(\refeq{eq:M_c2_hilbert_2})より
+		以上より$N$の同値類$\equiv{N}{2,c}$は$\mathfrak{M}_{2,c}$に属する．そして(\refeq{eq:M_c2_hilbert_2})より
 		\begin{align}
-				\Norm{\overline{N} - \overline{M^{(n_k)}}}{} 
-				= \Norm{\overline{N} - \overline{N^{(n_k)}}}{}
+				\Norm{\equiv{N}{2,c} - \equiv{M^{(n_k)}}{2,c}}{\mathfrak{M}_{2,c}} 
+				= \Norm{\equiv{N}{2,c} - \equiv{N^{(n_k)}}{2,c}}{\mathfrak{M}_{2,c}} 
 				= \Norm{N_T - N^{(n_k)}_T}{\mathscr{L}^2} \longrightarrow 0 \quad (k \longrightarrow \infty)
 		\end{align}
-		が成り立つ．部分列が収束することはCauchy列が収束することになるから$\Norm{\overline{N} - \overline{M^{(n)}}}{} \longrightarrow 0$が従い，
-		$\mathfrak{M}_{2,c}$がHilbert空間であることが証明された．
+		が成り立つから元のCauchy列も$\equiv{N}{2,c}$に収束する．従って
+		$\mathfrak{M}_{2,c}$はHilbert空間である．
 		\QED
 	\end{prf}
