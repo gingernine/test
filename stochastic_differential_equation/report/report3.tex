@@ -12,9 +12,11 @@
 			\end{align}
 		\end{dfn}
 	\end{screen}
-	
+
+\newpage
+	基礎におく確率空間を$(\Omega,\mathcal{F},\mu)$とする．
 	\begin{screen}
-		\begin{prp}[独立性の同値条件]
+		\begin{thm}[独立性の同値条件]
 			任意の有界実連続関数$h:\R \rightarrow \R$に対し
 			\begin{align}
 				\cexp{h(X)}{\mathcal{G}}(\omega) = \int_\Omega h(X(x))\ \mu(dx)
@@ -28,7 +30,7 @@
 			\end{align}
 			が成り立つことは同値である．
 			\label{prp:equivalent_condition_of_independence}
-		\end{prp}
+		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
@@ -134,15 +136,19 @@
 		\end{description}
 	\end{prf}
 	
-	\begin{qst}
-		$A,B \in \mathcal{F}$に対し，$X = \defunc_A$，$\mathcal{G} = \{ \emptyset,\ \Omega,\ B,\ B^c\}$とする．この時
-		\begin{align}
-			\mbox{$X$と$\mathcal{G}$が独立}\quad \Leftrightarrow\quad \prob{A \cap B} = \prob{A}\prob{B}.
-		\end{align}
-	\end{qst}
+	\begin{screen}
+		\begin{thm}
+			$A,B \in \mathcal{F}$に対し，$X = \defunc_A$，$\mathcal{G} = \{ \emptyset,\ \Omega,\ B,\ B^c\}$とすれば次が成り立つ:
+			\begin{align}
+				\mbox{$X$と$\mathcal{G}$が独立}\quad \Leftrightarrow\quad \mu(A \cap B) = \mu(A)\mu(B).
+			\end{align}
+			\label{thm:report_3}
+		\end{thm}
+	\end{screen}
 	
 	\begin{prf}
-		$\forall E \in \borel{\R}$に対して
+		$\Rightarrow$については定理\ref{prp:equivalent_condition_of_independence}より従う．
+		また任意の$E \in \borel{\R}$に対して
 		\begin{align}
 			X^{-1}(E) =
 			\begin{cases}
@@ -152,14 +158,23 @@
 				\Omega & (0, 1 \in E)
 			\end{cases}
 		\end{align}
-		であることに注意する．$\Rightarrow$については前命題より成り立ち，$\Leftarrow$については
+		が成り立つから，
 		\begin{align}
-			\prob{A \cap B} = \prob{A}\prob{B}
+			\mu(A \cap B) = \mu(A)\mu(B)
 		\end{align}
-		ならば
+		の下で
 		\begin{align}
-			\prob{A^c \cap B} = \prob{B} -\prob{A}\prob{B}  = (1 - \prob{A})\prob{B} = \prob{A^c}\prob{B}
+			\mu\left( X^{-1}(E) \cap B \right) = \mu\left( X^{-1}(E) \right)\mu(B)
+			\quad \left( \forall E \in \borel{\R} \right)
 		\end{align}
-		も成り立ち，$A$を$\Omega,\ \emptyset$にしても上の等式は成り立つから，前命題により$X$と$\mathcal{G}$が独立であると判る．
+		が従い
+		\footnote{
+			$X^{-1}(E) = A^c$の場合
+			\begin{align}
+				\mu(A^c \cap B) = \mu(B) - \mu(A)\mu(B)  = (1 - \mu(A))\mu(B) = \mu(A^c)\mu(B)
+			\end{align}
+			が成り立つ．
+		}
+		，定理\ref{prp:equivalent_condition_of_independence}により$\Leftarrow$が成り立つ．
 		\QED
 	\end{prf}

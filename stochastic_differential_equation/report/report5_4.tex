@@ -253,6 +253,9 @@
 		\end{dfn}
 	\end{screen}
 	
+\newpage
+	$M \in \mathcal{M}_{c,loc}$に対する二次変分を，
+	全てのパスが$0$出発・連続・単調非減少であるものとして取る．
 	\begin{screen}
 		\begin{thm}[二次変分が有界な局所マルチンゲールは二乗可積分マルチンゲール]
 			$M \in \mathcal{M}_{c,loc}$かつ$\Norm{\inprod<M>_T}{\mathscr{L}^{\infty}} < \infty$
@@ -264,28 +267,30 @@
 	\begin{prf} マルチンゲール性の定義に従い，以下三段階に分けて証明する．
 		\begin{description}
 			\item[第一段] 任意の$t \in I$に対し$M_t$が二乗可積分であることを示す．
-				定理\ref{thm:existence_of_quadratic_variation}より，或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
-				$\left(M^{\tau_j} \right)^2 - \inprod<M>^{\tau_j} \in \mathcal{M}_{b,c}\ (j=0,1,\cdots)$を満たす．
-				そして$M^2_0 - \inprod<M>_0 = 0\ \mu$-a.s.も満たされているから，マルチンゲール性より任意の$t \in I,\ j=0,1,\cdots$に対し
+				%定理\ref{thm:existence_of_quadratic_variation}より，
+				或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
+				$\left(M^{\tau_j} \right)^2 - \inprod<M>^{\tau_j} \in \mathcal{M}_{b,c}\ (j=0,1,\cdots)$を満たし，
+				そして$M^2_0 - \inprod<M>_0 = 0\ \mu$-a.s.も満たされているから，マルチンゲール性により任意の$t \in I,\ j=0,1,\cdots$に対し
 				\begin{align}
 					\int_\Omega \left( M_{t \wedge \tau_j(\omega)}(\omega) \right)^2\ \mu(d\omega)
 					= \int_\Omega \inprod<M>_{t \wedge \tau_j(\omega)}(\omega)\ \mu(d\omega)
 					\label{thm:thm_quadratic_variation_bounded_then_M_2c_1}
 				\end{align}
-				が成り立つ．$(\tau_j)_{j=0}^{\infty}$に対して或る零集合$E$が存在し，$\omega \in \Omega \backslash E$なら
-				$0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \cdots \leq \tau_{J}(\omega) = T = \tau_{J+1}(\omega) = \tau_{J+2}(\omega) = \cdots\ (\exists J = J(\omega))$
-				が満たされる．また全ての$\omega \in \Omega$に対し$I \ni t \longmapsto \inprod<M>_t(\omega)$が
+				が成り立つ．また$(\tau_j)_{j=0}^{\infty}$に対して或る零集合$E$が存在し，任意の$\omega \in \Omega \backslash E$に対し
+				或る$J = J(\omega) \in \N$が存在して
+				$0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \cdots \leq \tau_{J}(\omega) = T$
+				が満たされる．全ての$\omega \in \Omega$に対し$I \ni t \longmapsto \inprod<M>_t(\omega)$が
 				非負・連続・単調非減少であるから，任意の$t \in I$に対し
 				\begin{align}
 					\inprod<M>_{t \wedge \tau_j(\omega)}(\omega) \leq \inprod<M>_T(\omega)
 					\quad (\forall \omega \in \Omega \backslash E,\ j=0,1,\cdots)
 				\end{align}
-				が成り立つ．$\inprod<M>_T$が可積分であるからLebesgueの収束定理より
+				が成り立ち，更に仮定より$\inprod<M>_T$が可積分であるから，Lebesgueの収束定理により
 				\begin{align}
 					\int_\Omega \inprod<M>_t(\omega)\ \mu(d\omega)
 					= \lim_{j \to \infty} \int_\Omega \inprod<M>_{t \wedge \tau_j(\omega)}(\omega)\ \mu(d\omega)
 				\end{align}
-				が成り立ち，(\refeq{thm:thm_quadratic_variation_bounded_then_M_2c_1})においてFatouの補題を使えば
+				が成立する．よって(\refeq{thm:thm_quadratic_variation_bounded_then_M_2c_1})においてFatouの補題を使えば
 				\begin{align}
 					&\int_\Omega \left( M_t(\omega) \right)^2\ \mu(d\omega)
 					= \int_\Omega \liminf_{j \to \infty} \left( M_{t \wedge \tau_j(\omega)}(\omega) \right)^2\ \mu(d\omega) \\
@@ -312,12 +317,12 @@
 				また或る零集合$E'$が存在して$\omega \in \Omega \backslash E'$なら
 				$0 = \sigma_0(\omega) \leq \sigma_1(\omega) \leq \cdots \leq \sigma_{K}(\omega) = T = \sigma_{K+1}(\omega) = \sigma_{K+2}(\omega) = \cdots\ (\exists K = K(\omega))$
 				が成り立ち，一方で各$k =0,1,\cdots$に対し或る零集合$E_k^{''}$が存在し，$\omega \in \Omega \backslash E_k^{''}$ならば
-				$I \longmapsto M^{\hat{\sigma}_k}_t(\omega)$が連続となる．
+				$I \ni t \longmapsto M^{\hat{\sigma}_k}_t(\omega)$が連続となる．
 				\begin{align}
 					E^{''} \coloneqq \bigcup_{k=0}^{\infty} E_k^{''}
 				\end{align}
-				とおけば，$\omega \in \Omega \backslash (E' \cup E'')$ならば
-				必ず或る$K = K(\omega)$が存在して$\sigma_K(\omega) = T$を満たし，
+				とおけば，$\omega \in \Omega \backslash (E' \cup E'')$に対しては
+				或る$K = K(\omega)$が存在して$\sigma_K(\omega) = T$を満たし，
 				$I \ni t \longmapsto M_t(\omega)$は$I \ni t \longmapsto M^{\sigma_K}_t(\omega)$
 				に一致する．$I \ni t \longmapsto M^{\sigma_K}_t(\omega)$が連続であるから
 				$I \ni t \longmapsto M_t(\omega)$の連続性が従い，
@@ -330,8 +335,9 @@
 					\label{thm:thm_quadratic_variation_bounded_then_M_2c_2}
 				\end{align}
 				が成り立つことを示す．前段の$\left( \sigma_k \right)_{k=0}^{\infty} \in \mathcal{T}$を取れば
-				$M_{t \wedge \sigma_k} \longrightarrow M_t\ (k \longrightarrow \infty,\ \mbox{$\mu$-a.s.})$かつ
-				$M^{\sigma_k} \in \mathcal{M}_{b,c}\ (k=0,1,\cdots)$が満たされるから，任意の$k =0,1,\cdots$に対して
+				$M_{t \wedge \sigma_k} \longrightarrow M_t\ (k \longrightarrow \infty,\ \mbox{$\mu$-a.s.})$
+				が満たされ，かつ
+				$M^{\sigma_k} \in \mathcal{M}_{b,c}\ (k=0,1,\cdots)$であるから任意の$k =0,1,\cdots$に対して
 				\begin{align}
 					\int_A M_{t \wedge \sigma_k(\omega)}(\omega)\ \mu(d\omega) 
 					= \int_A M_{s \wedge \sigma_k(\omega)}(\omega)\ \mu(d\omega)
@@ -344,3 +350,5 @@
 				\QED
 		\end{description}
 	\end{prf}
+	
+\newpage
