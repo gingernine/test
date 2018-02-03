@@ -1,31 +1,34 @@
 %レポート問題8
 	\begin{prf}
-		$\sigma$-有限であるから或る系$(X_n)_{n=1}^{\infty} \subset \mathcal{M}$
-		が存在して$X_1 \subset X_2 \subset \cdots,\ \mu(X_n) < \infty\ (\forall n \in \N),\ \cup_{n \in \infty} X_n = X$を満たす．
+		$\sigma$-有限の仮定により，或る集合の系$(X_n)_{n=1}^{\infty} \subset \mathcal{M}$
+		が存在して$X_1 \subset X_2 \subset \cdots,\ \mu(X_n) < \infty\ (\forall n \in \N),\ \cup_{n \in \N} X_n = X$を満たす．また$H$におけるノルムと内積をそれぞれ$\Norm{\cdot}{},\inprod<\cdot,\cdot>$と表し，
+		$H$上の恒等写像を$I$とする．
+		
 		\begin{description}
 			\item[(1)] 
 				任意に$v \in H$を取り$v_n \coloneqq v\defunc_{\{|a| \leq n\}}\ (n=1,2,3,\cdots)$として関数列$(v_n)_{n=1}^{\infty}$を作る．
-				全ての$x \in S$で$|v_n(x)| \leq |v(x)|$が満たされているから
+				全ての$x \in X$で$|v_n(x)| \leq |v(x)|$が満たされているから
 				$(v_n)_{n \in \N} \subset H$である．また全ての$n \in \N$について
 				\begin{align}
-					\int_{S} |a(x)v_n(x)|^2 \mu(dx) = \int_{\{|a| \leq n\}} |a(x)v(x)|^2 \mu(dx) \leq n^2  \int_{S} |v(x)|^2 \mu(dx)
+					\int_X |a(x)v_n(x)|^2 \mu(dx) = \int_{\{|a| \leq n\}} |a(x)v(x)|^2 \mu(dx) \leq n^2  \int_X |v(x)|^2 \mu(dx) < \infty
 				\end{align}
-				が成り立つから$(v_n)_{n \in \N} \subset D(M_a)$も満たされる．
+				が成り立つから$(v_n)_{n \in \N} \subset D(M_a)$が従う．
 				\begin{align}
-					\Norm{v - v_n}{}^2 = \int_{S} |v(x) - v_n(x)|^2\, \mu(dx) = \int_{S} \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
+					\Norm{v - v_n}{}^2 = \int_X |v(x) - v_n(x)|^2\, \mu(dx) = \int_X \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
 					\label{eq:func_report_Q9_1}
 				\end{align}
-				となり，右辺の被積分関数は各点で$0$に収束し，かつ$n$に関係なく可積分関数$|v|^2$で抑えられるから，
+				の右辺の被積分関数は各点で$0$に収束し，かつ可積分関数$|v|^2$で抑えられるから，
 				Lebesgueの収束定理より
 				\begin{align}
-					\lim_{n \to \infty} \Norm{v - v_n}{\Lp{2}{\mu}}^2 
-					= \lim_{n \to \infty} \int_{S} \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
-					= \int_{S} \lim_{n \to \infty} \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
+					\lim_{n \to \infty} \Norm{v - v_n}{}^2 
+					= \lim_{n \to \infty} \int_X \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
+					= \int_X \lim_{n \to \infty} \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
 					= 0
 				\end{align}
 				が得られる．$v$は任意に選んでいたから$D(M_a)$は$X$において稠密である．
 				
 			\item[(2)]
+				$\Dom{M_a} $が$H$で稠密であるから$M_a$の共役作用素を定義できる．
 				任意の$u,v \in \Dom{M_a} = \Dom{M_{\conj{a}}} $に対して
 				\begin{align}
 					\inprod<M_a u,v> 
@@ -33,38 +36,45 @@
 					= \int_X u(x) \conj{\conj{a(x)} v(x)}\ \mu(dx)
 					= \inprod<u,M_{\conj{a}}v>
 				\end{align}
-				が成り立つから，$v \in \Dom{M_a^*} $且つ$M_a^* v = M_{\conj{a}} v\ \left(\forall v \in \Dom{M_{\conj{a}}} \right)$が従う．
-				逆に任意に$u \in \Dom{M_a} , v \in \Dom{M_a^*} $を取れば，
+				が成り立つから$v \in \Dom{M_a^*} $且つ$M_a^* v = M_{\conj{a}} v\ \left(\forall v \in \Dom{M_{\conj{a}}} \right)$が従う．
+				逆に任意の$u \in \Dom{M_a} , v \in \Dom{M_a^*} $に対し
 				\begin{align}
 					\inprod<u,M_a^* v> = \inprod<M_a u,v> = \inprod<u,M_{\conj{a}}v>
 				\end{align}
-				となり$M_a^* v = M_{\conj{a}}v\ \left(\forall v \in \Dom{M_a^*} \right)$が従う．
-			
+				が成り立つから，$\Dom{M_a} $の稠密性により$M_a^* v = M_{\conj{a}}v\ \left(\forall v \in \Dom{M_a^*} \right)$が従う．
+				以上より$M_a^* = M_{\conj{a}}$を得る．
+				
 			\item[(3)]
-				$\lambda \in \C$を任意に取り固定し，任意の$\epsilon > 0$に対して
-				$V_\epsilon \coloneqq a^{-1}(U_\epsilon(\lambda))$とおく．
+				$\lambda \in \C$を任意に取り固定し，
+				$V_\epsilon \coloneqq a^{-1}(U_\epsilon(\lambda))\ (\forall \epsilon > 0)$とおく．
 			 	或る$\epsilon > 0$が存在して$\mu(V_\epsilon) = 0$が成り立つ場合，
 			 	\begin{align}
 			 		b(x) \coloneqq 
 			 		\begin{cases}
-			 			\frac{1}{\lambda - a(x)} & (x \in X \backslash V_\epsilon) \\
+			 			1/\left( \lambda - a(x) \right) & (x \in X \backslash V_\epsilon) \\
 			 			0 & (x \in V_\epsilon)
 			 		\end{cases}
 			 	\end{align}
-				と定めれば，任意の$u \in H$に対して
+				として$b$を定めれば，任意の$u \in H$に対して
 				\begin{align}
 					\int_X |b(x)u(x)|^2\ \mu(dx)
 					= \int_{X \backslash V_\epsilon} \frac{1}{|\lambda - a(x)|^2} |u(x)|^2\ \mu(dx)
 					\leq \frac{1}{\epsilon^2} \int_X |u(x)|^2\ \mu(dx) < \infty 
 				\end{align}
-				が成り立つから$\Dom{M_b} = H$である．更に
+				が成り立つから，$M_b$は$\Dom{M_b} = H$を満たす有界線型作用素である．更に$b(x) \left( \lambda - a(x) \right) = 1\ (\forall x \in V_\epsilon)$により
 				\begin{align}
-					b (\lambda - a) u &= u \quad (\mbox{$\mu$-a.e.},\ \forall u \in \Dom{M_a} ), \\
-					(\lambda - a) b u &= u \quad (\mbox{$\mu$-a.e.},\ \forall u \in H )
+					b(x) \left( \lambda - a(x) \right) u(x) &= u(x) \quad (\mbox{$\mu$-a.e.}x \in X,\ \forall u \in \Dom{M_a} ), \\
+					\left( \lambda - a(x) \right) b(x) u(x) &= u(x) \quad (\mbox{$\mu$-a.e.}x \in X,\ \forall u \in H )
 				\end{align}
-				が成り立つから$M_b = (\lambda I - M_a)^{-1}$であり，$M_b \in \selfBop{H} $であるから
-				$\lambda \in \Res{M_a} $が成り立つ．
-				一方任意の$\epsilon > 0$に対して$\mu(V_\epsilon)  = 0$となる場合，
+				が成り立つから，$M_b = (\lambda I - M_a)^{-1}$となり
+				$\lambda \in \Res{M_a} $が従う．
+				以上より
+				\begin{align}
+					\Spctr{M_a} \subset \Set{\lambda \in \C}{\mbox{$\forall \epsilon > 0$に対し$\mu\left( a^{-1}(U_\epsilon(\lambda)) \right) > 0$}}
+					\label{eq:report_8_1}
+				\end{align}
+				が成立する．
+				次に逆の包含関係を示す．$\mu(V_\epsilon) > 0\ (\forall \epsilon > 0)$が満たされている時，
 				任意に$\epsilon > 0$を取り固定する．
 				\begin{align}
 					\mu(V_\epsilon) = \lim_{n \to \infty} \mu(V_\epsilon \cap X_n)
@@ -77,63 +87,70 @@
 						0 & (x \notin V_\epsilon \cap X_N)
 					\end{cases}
 				\end{align}
-				と定めれば，$u_\epsilon$は二乗可積分であり
+				として$u_\epsilon$を定めれば，$u_\epsilon$は二乗可積分であり
 				\begin{align}
 					\int_X |a(x)u_\epsilon(x)|^2\ \mu(dx)
 					= \int_{V_\epsilon \cap X_N} |a(x)u_\epsilon(x)|^2\ \mu(dx)
+					\leq \left( \epsilon + |\lambda| \right)^2 \mu\left( V_\epsilon \cap X_N \right)
 					< \infty
 				\end{align}
-				を満たすから$u_\epsilon \in \Dom{M_a} $である．また
+				を満たすから$u_\epsilon \in \Dom{M_a} $が従う．また
 				\begin{align}
-					\Norm{(\lambda I- M_a)u_\epsilon}{}^2
-					= \int_X |\lambda - a(x)|^2|u_\epsilon(x)|^2\ \mu(dx)
-					= \int_{V_\epsilon \cap X_N} |\lambda - a(x)|^2|u_\epsilon(x)|^2\ \mu(dx)
+					&\Norm{(\lambda I- M_a)u_\epsilon}{}^2
+					= \int_X |\lambda - a(x)|^2|u_\epsilon(x)|^2\ \mu(dx) \\
+					&\qquad = \int_{V_\epsilon \cap X_N} |\lambda - a(x)|^2|u_\epsilon(x)|^2\ \mu(dx)
 					\leq \epsilon^2 \int_X |u_\epsilon(x)|^2\ \mu(dx)
 					= \epsilon^2 \Norm{u_\epsilon}{}^2
 				\end{align}
-				を満たす．つまり任意の$\epsilon$に対し或る$u_\epsilon \in \Dom{M_a} $が存在し
+				を満たす．$\epsilon > 0$は任意に選んでいたから，任意の$\epsilon > 0$に対し或る$u_\epsilon \in \Dom{M_a} $が存在して
 				\begin{align}
-					\frac{1}{\epsilon} \leq \frac{\Norm{u_\epsilon}{}}{\Norm{(\lambda I- M_a)u_\epsilon}{}}
+					\Norm{(\lambda I- M_a)u_\epsilon}{} \leq \epsilon \Norm{u_\epsilon}{}
 				\end{align}
-				を満たす．ここで$(\lambda I- M_a)$に対し逆作用素$(\lambda I- M_a)^{-1}$が存在するとしても，
-				$u_\epsilon \in \Dom{M_a} $に対して或る$v_\epsilon \in \Dom{(\lambda I- M_a)^{-1}} $が存在して
-				$u_\epsilon = (\lambda I- M_a)^{-1}v_\epsilon$を満たすが，
+				が成り立つ．この場合$(\lambda I- M_a)^{-1}$が存在しても，
+				$u_\epsilon = (\lambda I- M_a)^{-1}v_\epsilon$を満たす
+				$v_\epsilon \in \Dom{(\lambda I- M_a)^{-1}} $に対して
 				\begin{align}
 					\frac{1}{\epsilon} \leq \frac{\Norm{(\lambda I- M_a)^{-1}v_\epsilon}{}}{\Norm{v_\epsilon}{}}
 				\end{align}
 				が従い，$\epsilon$の任意性より$(\lambda I- M_a)^{-1}$の作用素ノルムは非有界である．
-				従ってこの場合$\lambda \in \Spctr{M_a} $が成り立つ．
+				ゆえに$\lambda \in \Spctr{M_a} $が成立し，(\refeq{eq:report_8_1})と併せて
+				\begin{align}
+					\Spctr{M_a} = \Set{\lambda \in \C}{\mbox{$\forall \epsilon > 0$に対し$\mu\left( a^{-1}(U_\epsilon(\lambda)) \right) > 0$}}
+				\end{align}
+				が得られる．
 				
 			\item[(4)] 
-				先ず$\pSpctr{M_a} \subset \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$が成り立つことを示す．
-				任意の$\lambda \in \pSpctr{M_a}$に対して固有ベクトル$u \in H$が存在する．$u \neq 0\ $(関数類の意味で)より
+				先ず$\pSpctr{M_a} \subset \Set{z \in \C}{\mu\left( a^{-1}(\{z\}) \right) > 0}$が成り立つことを示す．
+				任意の$\lambda \in \pSpctr{M_a}$に対しては固有ベクトル$u \in H$が存在し，
+				固有ベクトルは$u \neq 0$を満たすから
 				\begin{align}
 					N \coloneqq \Set{x \in X}{u(x) \neq 0}
 				\end{align}
-				とおけば$\mu(N) > 0$が満たされる．一方で点スペクトルの定義より$(\lambda I - M_a)u = 0$が成り立つから
+				とおけば$\mu(N) > 0$が成り立つ．一方で点スペクトルの定義より$u$は$(\lambda I - M_a)u = 0$を満たすから，
 				\begin{align}
 					0 = \Norm{(\lambda I - M_a)u}{}^2 = \int_X |\lambda - a(x)|^2 |u(x)|^2\ \mu(dx)
 					= \int_{N} |\lambda - a(x)|^2 |u(x)|^2\ \mu(dx)
 				\end{align}
-				となり
+				が成り立ち
 				\begin{align}
 					\mu\left( \Set{x \in N}{|\lambda - a(x)| > 0} \right) = 0
 				\end{align}
-				が従う．$\mu(N) > 0$であるから
+				が従う．よって
 				\begin{align}
 					\mu\left( a^{-1}(\{\lambda\}) \right)
 					\geq \mu\left( \Set{x \in N}{|\lambda - a(x)| = 0} \right)
+					= \mu(N)
 					> 0
 				\end{align}
-				が成り立ち$\lambda \in \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$を得る．
-				次に$\pSpctr{M_a} \supset \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$が成り立つことを示す．
-				任意の$\lambda \in \Set{\lambda \in \C}{\mu\left( a^{-1}(\{\lambda\}) \right) > 0}$に対して
+				となり$\lambda \in \Set{z \in \C}{\mu\left( a^{-1}(\{z\}) \right) > 0}$が成り立つ．
+				次に$\pSpctr{M_a} \supset \Set{z \in \C}{\mu\left( a^{-1}(\{z\}) \right) > 0}$が成り立つことを示す．
+				任意に$\lambda \in \Set{z \in \C}{\mu\left( a^{-1}(\{z\}) \right) > 0}$を取り
 				\begin{align}
 					\Lambda \coloneqq a^{-1}(\{\lambda\})
 				\end{align}
-				とおけば$\mu(\Lambda) > 0$が満たされている．
+				とおく．
 				\begin{align}
-					\mu(\Lambda) = \lim_{n \to \infty} \mu(\Lambda \cap X_n)
+					0 < \mu(\Lambda) = \lim_{n \to \infty} \mu(\Lambda \cap X_n)
 				\end{align}
 				が成り立つから，或る$n \in \N$が存在して$\mu(\Lambda \cap X_n) > 0$を満たす．
 				\begin{align}
@@ -143,13 +160,14 @@
 						0 & (x \notin \Lambda \cap X_n)
 					\end{cases}
 				\end{align}
-				として$u$を定めれば$u$は二乗可積分であり，$\mu(\Lambda \cap X_n) > 0$であるから関数類として$u \neq 0$を満たす．また
+				として$u$を定めれば$u$は二乗可積分であり，$\mu(\Lambda \cap X_n) > 0$であるから$u \neq 0$を満たす．また
 				\begin{align}
 					\Norm{(\lambda I - M_a)u}{}^2
 					= \int_X |\lambda - a(x)|^2 |u(x)|^2\ \mu(dx)
 					= \int_{\Lambda \cap X_n} |\lambda - a(x)|^2 |u(x)|^2\ \mu(dx)
 					= 0
 				\end{align}
-				が成り立ち$(\lambda I - M_a)u = 0$が従うから$u$は$\lambda$の固有ベクトルであり，$\lambda \in \pSpctr{M_a}$を得る．
+				により$(\lambda I - M_a)u = 0$が従うから$u$は$\lambda$の固有ベクトルであり，$\lambda \in \pSpctr{M_a}$が成立する．
+				\QED
 		\end{description}
 	\end{prf}
