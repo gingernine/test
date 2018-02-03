@@ -1,18 +1,14 @@
 	
 \section{条件付き期待値の拡張}
-	命題\ref{prp:L2_conditional_expectation}のC3で示した通り，
-	(\refeq{eq:dfn_L2_conditional_expectation})で定めた条件付き期待値は$\Lp{2}{\Omega,\mathcal{F},\mu}$から$J\Lp{2}{\Omega,\mathcal{G},\mu}$への
-	線型作用素(写像)である．$\Lp{2}{\Omega,\mathcal{F},\mu}$は$\Lp{1}{\Omega,\mathcal{F},\mu}$の部分空間であり，
-	同様に$\Lp{2}{\Omega,\mathcal{G},\mu}$も$\Lp{1}{\Omega,\mathcal{G},\mu}$の部分空間であるから，条件付き期待値は
-	$\Lp{1}{\Omega,\mathcal{F},\mu}$から$\Lp{1}{\Omega,\mathcal{G},\mu}$への線型作用素でもある．
-	条件付き期待値が有界で，且つ
-	定義域$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$において稠密ならば，
-	定理\ref{thm:linear_operator_expansion}より条件付き期待値は$\Lp{1}{\Omega,\mathcal{F},\mu}$上の線型写像に拡張可能となる．
+	$\mu$の有限性とG\Ddot{o}lderの不等式より$\Lp{2}{\Omega,\mathcal{F},\mu} \subset \Lp{1}{\Omega,\mathcal{F},\mu}$且つ
+	$\Lp{2}{\Omega,\mathcal{G},\mu} \subset \Lp{1}{\Omega,\mathcal{G},\mu}$が成り立つから，
+	条件付き期待値が有界で
+	$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$において稠密ならば，
+	定理\ref{thm:linear_operator_expansion}より条件付き期待値は$\Lp{1}{\Omega,\mathcal{F},\mu}$上の線型写像に拡張可能である．
 	
 	\begin{screen}
-		\begin{lem}[条件付き期待値の有界性]\mbox{}\\
-			$\Lp{1}{\Omega,\mathcal{F},\mu}$から$\Lp{1}{\Omega,\mathcal{G},\mu}$への線型作用素$\cexp{\cdot}{\mathcal{G}}$の
-			作用素ノルムは1以下である:
+		\begin{lem}[条件付き期待値の有界性]
+			線型作用素$\cexp{\cdot}{\mathcal{G}}$の作用素ノルムは1以下である:
 			\begin{align}
 				\sup{\substack{f \in \Lp{2}{\Omega,\mathcal{F},\mu} \\ f \neq 0}}{\frac{ \Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{G}}} }{ \Norm{f}{\Lp{1}{\mathcal{F}}} }} \leq 1.
 			\end{align}
@@ -21,17 +17,24 @@
 	\end{screen}
 	
 	\begin{prf}
-		命題\ref{prp:L2_conditional_expectation}のC2より，任意の$0 \neq f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して
-		\begin{align}
-			\Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{G}}} 
-			&= \int_\Omega \left| \cexp{f}{\mathcal{G}}(x) \right|\ \mu(dx) \\
-			&= \int_\Omega \cexp{f}{\mathcal{G}}(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right \}}(x) 
-				- \cexp{f}{\mathcal{G}}(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
-			&= \int_\Omega f(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right\} }(x) - f(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
-			&\leq \int_\Omega |f(x)| \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right\} }(x) + |f(x)| \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
-			&= \Norm{f}{\Lp{1}{\mathcal{F}}}.
-		\end{align}
-		が成り立つ．
+		(\refeq{eq:composition_L2_conditional_expectation})において$P_{\mathcal{G}}$の作用素ノルムは1以下，
+		${J'_{\mathcal{G}}}$の作用素ノルムは1である．
+		\footnote{
+			$\Lp{2}{\Omega,\mathcal{G},\mu}$が零元のみで構成される場合を除く．
+		}
+		\begin{comment}
+			命題\ref{prp:L2_conditional_expectation}のC2より，任意の$0 \neq f \in \Lp{1}{\Omega,\mathcal{F},\mu}$に対して
+			\begin{align}
+				\Norm{\cexp{f}{\mathcal{G}}}{\Lp{1}{\mathcal{G}}} 
+				&= \int_\Omega \left| \cexp{f}{\mathcal{G}}(x) \right|\ \mu(dx) \\
+				&= \int_\Omega \cexp{f}{\mathcal{G}}(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right \}}(x) 
+					- \cexp{f}{\mathcal{G}}(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
+				&= \int_\Omega f(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right\} }(x) - f(x) \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
+				&\leq \int_\Omega |f(x)| \defunc_{\left\{ \cexp{f}{\mathcal{G}} \geq 0\right\} }(x) + |f(x)| \defunc_{\left\{ \cexp{f}{\mathcal{G}} < 0\right\} }(x)\ \mu(dx) \\
+				&= \Norm{f}{\Lp{1}{\mathcal{F}}}.
+			\end{align}
+			が成り立つ．
+		\end{comment}
 		\QED
 	\end{prf}
 	
@@ -380,10 +383,9 @@
 	
 	\begin{screen}
 		\begin{dfn}[条件付き期待値の再定義]
-			定理\ref{thm:conditional_exp_expansion}で定義した
 			有界線型作用素$\tcexp{\cdot}{\mathcal{G}}$
-			を$\cexp{\cdot}{\mathcal{G}}$と表記し直し，$\mathcal{G}$で条件付けた条件付き期待値と呼ぶ．
-			$\mathcal{G} = \{\emptyset, \Omega\}$の場合は特別に$\Exp{\cdot} \coloneqq \cexp{\cdot}{\mathcal{G}}$
+			を$\cexp{\cdot}{\mathcal{G}}$と表記し直し，$\mathcal{G}$の下での条件付き期待値と呼ぶ．
+			$\mathcal{G} = \{\emptyset, \Omega\}$の場合は$\Exp{\cdot} \coloneqq \cexp{\cdot}{\mathcal{G}}$
 			と書いて期待値と呼ぶ．
 		\end{dfn}
 	\end{screen}
