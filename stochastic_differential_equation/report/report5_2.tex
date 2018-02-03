@@ -309,6 +309,7 @@
 	\begin{screen}
 		\begin{prp}[$\mathfrak{M}_{2,c}$はHilbert空間]
 			$\mathfrak{M}_{2,c}$は$\inprod<\cdot,\cdot>_{2,c}$を内積としてHilbert空間となる．
+			\label{prp:M_2_c_hilbert}
 		\end{prp}
 	\end{screen}
 			
@@ -344,35 +345,40 @@
 			\Norm{\equiv{M^{(n)}}{2,c} - \equiv{M^{(m)}}{2,c}}{\mathfrak{M}_{2,c}}^2 
 			= \Norm{\equiv{N^{(n)}}{2,c} - \equiv{N^{(m)}}{2,c}}{\mathfrak{M}_{2,c}}^2
 			= \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
+			\label{eq:prp_M_2_c_hilbert_1}
 		\end{align}
-		が成り立つ．
-		任意の$n,m \in N$の組に対し，$\mathcal{M}_{2,c}$が線形空間であるから
-		$\left(\left|N^{(n)}_t - N^{(m)}_t\right|\right)_{t \in T}$は連続な$\mathrm{L}^2$-劣マルチンゲールとなり，
-		Doobの不等式を適用して
+		が成り立つ．一方，$\left(\left|N^{(n)}_t - N^{(m)}_t\right|\right)_{t \in T}$は連続な$\mathrm{L}^2$-劣マルチンゲールであるから
+		Doobの不等式より
 		\begin{align}
-			\lambda^2 \mu\left(\sup{t \in I}{|N^{(n)}_t - N^{(m)}_t| > \lambda}\right) \leq \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
-			= \Norm{\overline{M^{(n)}} - \overline{M^{(m)}}}{}^2 \quad (\forall \lambda > 0)
+			\lambda^2 \mu\left(\sup{t \in I}{\left| N^{(n)}_t - N^{(m)}_t \right| \geq \lambda}\right) 
+			\leq \int_{\Omega} \left| N^{(n)}_T(\omega) - N^{(m)}_T(\omega) \right|^2\ \mu(d\omega)
+			\quad (\forall \lambda > 0)
+			\label{eq:prp_M_2_c_hilbert_2}
 		\end{align}
-		が成り立つ．この不等式と$\left(\overline{M^{(n)}}\right)_{n=1}^{\infty}$がCauchy列であることを併せれば，
+		が成り立つ．$\left(\equiv{M^{(n)}}{2,c}\right)_{n=1}^{\infty}$はCauchy列であるから
 		\begin{align}
-			\Norm{\overline{M^{(n_k)}} - \overline{M^{(n_{k+1})}}}{} < 1/4^k, \quad (k = 1,2,\cdots) \label{eq:mart_hilbert_1}
+			\Norm{\equiv{M^{(n_k)}}{2,c} - \equiv{M^{(n_{k+1})}}{2,c}}{} < \frac{1}{4^k}, \quad (k = 1,2,\cdots) \label{eq:mart_hilbert_1}
 		\end{align}
-		となるように添数の部分列$(n_k)_{k=1}^{\infty}$を抜き出して
+		を満たす部分添数列$(n_k)_{k=1}^{\infty}$が存在して，(\refeq{eq:prp_M_2_c_hilbert_1})(\refeq{eq:prp_M_2_c_hilbert_2})より
 		\begin{align}
-			\mu\left(\sup{t \in I}{|N^{(n_k)}_t - N^{(n_{k+1})}_t| > 1/2^k}\right) < 1/2^k, \quad (k=1,2,\cdots)
+			\mu\left(\sup{t \in I}{\left| N^{(n_k)}_t - N^{(n_{k+1})}_t \right| \geq \frac{1}{2^k}}\right) < \frac{1}{2^k}, \quad (k=1,2,\cdots)
 		\end{align}
-		が成り立つようにできる．
+		が成立する．
 		\begin{align}
-			F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} \Set{\omega \in \Omega}{\sup{t \in I}{|N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega)|} \leq 1/2^k}
+			F \coloneqq \bigcup_{N=1}^{\infty} \bigcap_{k \geq N} 
+				\Set{\omega \in \Omega}{\sup{t \in I}{\left| N^{(n_k)}_t(\omega) - N^{(n_{k+1})}_t(\omega) \right|} < \frac{1}{2^k}}
 		\end{align}
-		とおけば，Borel-Cantelliの補題により$F^c$は$\mu$-零集合であって，$\omega \in F$なら全ての$t \in I$について数列$\left(N^{(n_k)}_t(\omega)\right)_{k=1}^{\infty}$はCauchy列となる．
-		実数の完備性から数列$\left(N^{(n_k)}_t(\omega)\right)_{k=1}^{\infty}\ (\omega \in F)$に極限$N^*_t(\omega)$が存在し，
-		この収束は$t$に関して一様である
+		とおけば，Borel-Cantelliの補題より$F^c$は$\mu$-零集合であり，
+		任意の$\omega \in F$については全ての$t \in I$に対して数列
+		$\left(N^{(n_k)}_t(\omega)\right)_{k=1}^{\infty}$が$\R$のCauchy列となる．
+		数列$\left(N^{(n_k)}_t(\omega)\right)_{k=1}^{\infty}\ (\omega \in F)$の極限を$N^*_t(\omega)$と表せば，
+		数列は$t$に関して一様に収束するから
 		\footnote{
 			$\left| N^{(n_k)}_t(\omega) - N^*_t(\omega) \right| \leq \sum_{j=k}^{\infty} \left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|
 			\leq \sum_{j=k}^{\infty} \sup{t \in I}{\left| N^{(n_j)}_t(\omega) - N^{(n_{j+1})}_t(\omega) \right|} < 1/2^k, \quad (\forall t \in T)$
 			による．
-		}から写像$t \longmapsto N^*_t(\omega)$は連続で，
+		}
+		$I \ni t \longmapsto N^*_t(\omega)$は連続であり，
 		\begin{align}
 			N_t(\omega) \coloneqq 
 			\begin{cases}
@@ -380,47 +386,56 @@
 				0 & (\omega \in \Omega \backslash F)
 			\end{cases}
 		\end{align}
-		として$N$を定義すればこれは$\mathcal{M}_{2,c}$の元となる．$N$は全てのパスが連続であるから$\mathrm{L}^2$-マルチンゲールとなっていることを示す．
-		マルチンゲールの定義の(M.3)(M.4)はパスの連続性により従うことであるから，後は(M.1)と(M.2)を証明すればよい．
+		により$N$を定義すれば$N \in \mathcal{M}_{2,c}$が成り立つ:
+		$N$は全てのパスが連続で$N_0 = 0$を満たすから，以下では$N$が$\mathrm{L}^2$-マルチンゲールであることを示す．
+		全てのパスが各点で右連続性かつ左極限を持つことはパスの連続性により満たされているから，
+		(1)適合性(2)二乗可積分性及び
+		\begin{align}
+			\mbox{(3)}:\cexp{N_t}{\mathcal{F}_s} = N_s
+			\quad (\forall s \leq t,\ s,t \in I)
+		\end{align}
+		を証明すればよい．
 		\begin{description}
-			\item[(M.1)適合性について]
-				今任意に$t \in I$を取り固定する．
-				$N^{n_k}_t$の定義域を$F$に制限した写像を$N^{F(k)}_t$と表記し
+			\item[(1)]
+				任意に$t \in I$を取り固定する．
+				$N^{(n_k)}_t$の定義域を$F$に制限した写像を$N^{F(k)}_t$として
 				\begin{align}
 					\mathcal{F}^F_t \coloneqq \Set{F \cap B}{B \in \mathcal{F}_t}
 				\end{align}
-				とおけば，$N^{F(k)}_t$は可測$\mathcal{F}^F_t/\borel{\R}$となる．従って各点収束先の関数である$N^*_t$もまた可測$\mathcal{F}^F_t/\borel{\R}$となる．
-				任意の$C \in \borel{\R}$に対して
+				とおけば，$N^{F(k)}_t$は$\mathcal{F}^F_t/\borel{\R}$-可測であるから
+				各点収束先の$N^*_t$も可測$\mathcal{F}^F_t/\borel{\R}$である．
 				\begin{align}
 					N^{-1}_t(C) = 
 					\begin{cases}
 						(\Omega \backslash F) \cup {N^*}^{-1}_t(C) & (0 \in C) \\
 						{N^*}^{-1}_t(C) & (0 \notin C)
 					\end{cases}
+					\quad (\forall C \in \borel{\R})
 				\end{align}
-				が成り立ち，フィルトレーションの仮定から$F \in \mathcal{F}_0$であり$\mathcal{F}^F_t \subset \mathcal{F}_t$が従うから，
-				$N_t$は可測$\mathcal{F}_t/\borel{\R}$である．
+				が成り立ち，また$F \in \mathcal{F}_0$により$\mathcal{F}^F_t \subset \mathcal{F}_t$が従うから，
+				$N_t$は$\mathcal{F}_t/\borel{\R}$-可測である．
 			
-			\item[(M.1)二乗可積分性について]
-				任意に$t \in I$を取り固定する．$N^{(n_k)}_t\ (k=1,2,\cdots)$は二乗可積分関数$M^{(n_k)}_t$と零集合$E$を除いて一致し，
-				$N_t$に概収束する．また添数列$(n_k)_{k=1}^{\infty}$の抜き出し方(\refeq{eq:mart_hilbert_1})とDoobの不等式より
+			\item[(2)]
+				任意に$t \in I$を取り固定する．(\refeq{eq:mart_hilbert_1})とDoobの不等式より
 				\begin{align}
-					\Norm{\sup{t \in I}{\left|N^{(n_k)}_t - N^{(n_{k+1})}_t\right|}}{\mathscr{L}^2} \leq 2 \Norm{\left|N^{(n_k)}_T - N^{(n_{k+1})}_T\right|}{\mathscr{L}^2} < 2/4^k
+					\Norm{\sup{t \in I}{\left|N^{(n_k)}_t - N^{(n_{k+1})}_t\right|}}{\mathscr{L}^2} 
+					\leq 2 \Norm{N^{(n_k)}_T - N^{(n_{k+1})}_T}{\mathscr{L}^2} < \frac{2}{4^k} \leq \frac{1}{2^k}
+					\quad (k=1,2,\cdots)
 				\end{align}
-				が成り立つから$\Norm{N^{(n_k)}_t - N^{(n_{k+1})}_t}{\mathscr{L}^2} < 2/4^k \leq 1/2^k \ (k=1,2,\cdots)$を得る．
-				特に$j \in \N$を固定すれば全ての$k > j$に対して$\Norm{N^{(n_j)}_t - N^{(n_k)}_t}{\mathscr{L}^2} < 1/2^j$となるから，Fatouの補題より
+				が成り立つから$\Norm{N^{(n_k)}_t - N^{(n_{k+1})}_t}{\mathscr{L}^2} < 1/2^k \ (k=1,2,\cdots)$が従う．
+				特に$j \in \N$を固定すれば全ての$k > j$に対して$\Norm{N^{(n_j)}_t - N^{(n_k)}_t}{\mathscr{L}^2} < 1/2^j$が満たされるから，Fatouの補題により
 				\begin{align}
-					\Norm{N^{(n_j)}_t - N_t}{\mathscr{L}^2}^2 = \int_{\Omega \backslash F} \liminf_{k \to \infty} \left| N^{(n_j)}_t(\omega) - N^{(n_k)}_t(\omega) \right|^2\ \mu(d\omega)
-					< 1/4^j
+					\Norm{N^{(n_j)}_t - N_t}{\mathscr{L}^2}^2 = \int_{\Omega \backslash F} \lim_{k \to \infty} \left| N^{(n_j)}_t(\omega) - N^{(n_k)}_t(\omega) \right|^2\ \mu(d\omega)
+					< \frac{1}{4^j}
 					\label{eq:M_c2_hilbert_2}
 				\end{align}
-				が従い，Minkowskiの不等式より
+				が得られ，Minkowskiの不等式より
 				\begin{align}
 					\Norm{N_t}{\mathscr{L}^2} \leq \Norm{N_t - N^{(n_j)}_t}{\mathscr{L}^2} + \Norm{N^{(n_j)}_t}{\mathscr{L}^2} < \infty
 				\end{align}
 				が成り立つ．
 			
-			\item[(M.2)について]
+			\item[(3)]
 				各$t \in I,\ k \in \N$について$(M^{(n_k)}_t)_{t \in I}$が$\mathrm{L}^2$-マルチンゲールであるということを利用すればよい．
 				任意の$0 \leq s \leq t \leq T$と$A \in \mathcal{F}_s$に対して
 				\begin{align}
