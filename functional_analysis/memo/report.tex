@@ -37,97 +37,133 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 		コンパクト作用素である．そして$\c{Y} \subset \mathscr{L}^\infty(\mu_n),\ \c{X} \subset \mathscr{L}^\infty(\mu_m)$
 		より$\tilde{T}$は$T$の拡張となっている
 		\footnote{
-			任意の$f \in \c{Y}$に対し，$f$を代表とする関数類$[f]$が$\mathrm{L}^\infty$に存在する．
+			任意の$f \in \c{Y}$に対し，$f$を代表とする関数類$[f]$が$\mathrm{L}^\infty(\mu_m)$に存在する．
 			そして$T$と$\tilde{T}$は次の関係を満たしている:
 			\begin{align}
 				[Tf] = \tilde{T}[f]
-				\quad (\forall f \in \c{Y})
+				\quad (\forall f \in \c{Y}).
 			\end{align}
 		}
 		．$\c{Y}$から任意に有界列$(f_n)_{n=1}^{\infty}$を取れば，
-		$\tilde{T}$がコンパクト作用素であるから$\left( \tilde{T} f_n \right)_{n=1}^{\infty}$の或る部分列$\left( \tilde{T} f_{n_k} \right)_{k=1}^{\infty}$
-		はBanach空間$\mathrm{L}^\infty(\mu_m)$で強収束する．今$T f_n = \tilde{T} f_n\ (n=1,2,\cdots)$且つ
+		$\tilde{T}$がコンパクト作用素であるから$\left( \tilde{T} f_n \right)_{n=1}^{\infty}$の或る部分列
+		$\left( \tilde{T} f_{n_k} \right)_{k=1}^{\infty}$はBanach空間$\mathrm{L}^\infty(\mu_m)$で強収束する．
+		今$T f_n = \tilde{T} f_n\ (n=1,2,\cdots)$且つ$f_n$の連続性により
 		\begin{align}
 			\Norm{T f_n}{\c{X}} = \Norm{\tilde{T}f_n}{\mathrm{L}^\infty(\mu_m)} 
 			\quad (\forall n \in \N)
+			\label{eq:report_5}
 		\end{align}
-		が満たされているから，$\left( T f_{n_k} \right)_{k=1}^{\infty}$もまた$\c{X}$で$\Norm{\cdot}{\c{X}}$によりCauchy列をなしていて，
+		が満たされる．実際，ess.supの定義より$\Norm{T f_n}{\c{X}} \geq \Norm{\tilde{T}f_n}{\mathrm{L}^\infty(\mu_m)}$
+		は成り立つが，等号が成り立たないと仮定すると，
+		$\tilde{T}f_n$の代表$T f_n$の連続性より$T f_n(x) = \Norm{T f_n}{\c{X}}$を達成する
+		$x$の或る$\epsilon$近傍$B_\epsilon$上でも$Tf_n > \Norm{\tilde{T}f_n}{\mathrm{L}^\infty(\mu_m)}$が満たされ，
+		\begin{align}
+			0 < \mu_m(B_\epsilon) \leq \mu_m \left( \Set{x \in X}{\left| Tf_n(x) \right| > \Norm{\tilde{T}f_n}{\mathrm{L}^\infty(\mu_m)}} \right) = 0
+		\end{align}
+		が成り立ち矛盾が生じる．(\refeq{eq:report_5})により
+		$\left( T f_{n_k} \right)_{k=1}^{\infty}$は$\Norm{\cdot}{\c{X}}$に関してCauchy列をなし，
 		$(\c{X},\Norm{\cdot}{\c{X}})$がBanach空間であるから$\left( T f_{n_k} \right)_{k=1}^{\infty}$は$\c{X}$で強収束する．
 		ゆえに$T$はコンパクト作用素である．
 		\QED
 	\end{prf}
 	
-	\begin{screen}
-		[6] $a \in \cbound{\R^d}, \lambda > d$とする．$f \in \mathrm{L}^2(\R^d)$に対し，
+\newpage
+	\begin{itembox}[l]{[6]}
+		$a \in \cbound{\R^d}, \lambda > d$とする．$f \in \mathrm{L}^2(\R^d)$に対し，
 		\begin{align}
 			T_a f(x) = \int_{|x - y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy
 			\quad (\mbox{a.e.}x \in \R^d)
+			\label{eq:report_6_0}
 		\end{align}
 		により$T_a:\mathrm{L}^2(\R^d) \rightarrow \mathrm{L}^2(\R^d)$を定める．
 		\begin{description}
 			\item[(1)] $T_a$は連続であることを示せ．
 			\item[(2)] $\lim_{|x| \to \infty} a(x) = 0$ならば$T_a$はコンパクト作用素であることを示せ．
 		\end{description}
-	\end{screen}
+	\end{itembox}
 	
-	\begin{prf}\mbox{}
+	\begin{prf} $\mathrm{L}^2(\R^d)$のノルムを$\Norm{\cdot}{2}$，$\selfBop{\mathrm{L}^2(\R^d)} $の作用素ノルムを$\Norm{\cdot}{}$と表し，
+		$M \coloneqq \sup{x \in \R^d}{|a(x)|} < \infty$とおく．
 		\begin{description}
 			\item[(1)] 
 				任意の$f \in \mathrm{L}^2(\R^d)$に対し$T_a f$が二乗可積分であることと$T_a$の連続性を同時に示す．
-				以下，$\mathrm{L}^2(\R^d)$のノルムを$\Norm{\cdot}{}$と書き，$M \coloneqq \sup{x \in \R^d}{|a(x)|} < \infty$とおく．
-				$f \in \mathrm{L}^2(\R^d)$に対し，H\Ddot{o}lderの不等式より
+				H\Ddot{o}lderの不等式より
 				\begin{align}
-					\int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)f(y)|}{|x-y|^\lambda}\ dy
+					\int_{|x-y| > 1} \frac{|a(x)f(y)|}{|x-y|^\lambda}\ dy
 					&= \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|}{|x-y|^{\frac{\lambda}{2}}} \defunc_{|x-y| > 1} \frac{|f(y)|}{|x-y|^{\frac{\lambda}{2}}}\ dy \\
 					&\leq \left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy \right)^{\frac{1}{2}}
 						\left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy \right)^{\frac{1}{2}}
+					\label{eq:report_6_4}
 				\end{align}
-				が任意の$x \in \R^d$で成立する．右辺第一項について，$\lambda > d \geq 1$であるから，変数変換を用いて
+				が任意の$x \in \R^d$で成立する．右辺第一項について，$\lambda > d$であるから，変数変換を用いて
 				\begin{align}
 					\int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy
 					\leq M^2 \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dy
 					= M^2 \int_{\R^d} \defunc_{|u| > 1} \frac{1}{|u|^\lambda}\ du < \infty
 				\end{align}
-				が満たされる．従って$U \coloneqq \int_{\R^d} \defunc_{|x - y| > 1} \frac{1}{|x-y|^{\lambda}}\ dy$とおけば$U$は$x$に依らない定数である．
-				今，$\R^d \ni x \longmapsto (a(x)f(y))/|x-y|^\lambda$は各$y \in \R^d \backslash \{x\}$で連続，
-				$\R^d \ni y \longmapsto \defunc_{\left\{|x-y|>1\right\}}(a(x)f(y))/|x-y|^\lambda$は各$x \in \R^d$で$\borel{\R^d}/\borel{\C}$-可測より，
-				$\R^d \times \R^d \ni (x,y) \longmapsto \defunc_{\left\{|x-y|>1\right\}} (a(x)f(y))/|x-y|^\lambda$
+				が満たされる
+				\footnote{
+					$u = (u_1,\cdots,u_d) \in \R^d$に対して$|u|^\lambda \geq |u_1|^{\lambda/d} \cdots |u_d|^{\lambda/d}$が満たされているから，
+					$\lambda/d > 1$なら
+					\begin{align}
+						\int_{|u| > 1} \frac{1}{|u|^\lambda}\ du
+						\leq \left( \int_{|u_1| > 1/\sqrt{d}} \frac{1}{|u_1|^{\lambda/d}}\ du_1 \right)^d
+						< \infty
+					\end{align}
+					が成り立つ．
+				}
+				．従って$U \coloneqq \int_{|x - y| > 1} 1/|x-y|^{\lambda}\ dy$とおけば$U$は$x$に依らない定数である．
+				$\R^d \times \R^d \ni (x,y) \longmapsto \defunc_{\left\{|x-y|>1\right\}} f(y)/|x-y|^\lambda$
 				は$\borel{\R^d} \times \borel{\R^d}/\borel{\C}$-可測であるから，
 				Fubiniの定理より
 				\begin{align}
-					\Norm{T_a f}{}^2
+					\Norm{T_a f}{2}^2
 					&= \int_{\R^d} \left| \int_{|x-y| > 1} \frac{a(x)f(y)}{|x-y|^\lambda}\ dy \right|^2\ dx \\
 					&\leq \int_{\R^d} \left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|a(x)|^2}{|x-y|^{\lambda}}\ dy \right)
 						\left( \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy \right)\ dx \\
 					&\leq M^2 U \int_{\R^d} \int_{\R^d} \defunc_{|x-y| > 1} \frac{|f(y)|^2}{|x-y|^{\lambda}}\ dy\ dx \\
 					&= M^2 U \int_{\R^d} |f(y)|^2\ dy \int_{\R^d} \defunc_{|x-y| > 1} \frac{1}{|x-y|^{\lambda}}\ dx \\
-					&= M^2 U^2 \Norm{f}{}^2
+					&= M^2 U^2 \Norm{f}{2}^2
 					\label{eq:report_6_1}
  				\end{align}
  				が得られる．$T_a$が線型性を持てば有界性と連続性は一致するから，
  				あとは$T_a$が線型性を持つことを示せばよい．
+ 				実際，任意の$f \in \mathrm{L}^2(\R^d)$に対して(\refeq{eq:report_6_4})が満たされているから，
+ 				任意の$f,g \in \mathrm{L}^2(\R^d),\ \alpha, \beta \in \C$に対して
+ 				\begin{align}
+ 					&T_a (\alpha f + \beta g)
+ 					= \int_{|x - y| > 1} \frac{a(x)\left( \alpha f(y) + \beta g(y) \right)}{|x-y|^\lambda}\ dy \\
+ 					&\qquad = \alpha \int_{|x - y| > 1} \frac{a(x) f(y)}{|x-y|^\lambda}\ dy
+ 						+ \beta \int_{|x - y| > 1} \frac{a(x) g(y)}{|x-y|^\lambda}\ dy
+ 					= \alpha T_a f + \beta T_a g
+ 				\end{align}
+ 				が成立する．
  				
-			\item[(2)] $\mathrm{L}^2(\R^d)$がBanach空間であるから，
-				$\selfCop{\mathrm{L}^2} $は
-				$\selfBop{\mathrm{L}^2} $の閉部分空間であり，
-				$T_a$に作用素ノルムで収束する$\selfCop{\mathrm{L}^2} $の列が存在すれば
-				$T_a \in \selfCop{\mathrm{L}^2} $が従う．
-				今，任意に$\epsilon > 0$を取れば，仮定より或る$N = N(\epsilon) \in \N$が存在して
+			\item[(2)] $\mathrm{L}^2(\R^d)$がBanach空間であるから
+				$\selfCop{\mathrm{L}^2(\R^d)} $は
+				$\selfBop{\mathrm{L}^2(\R^d)} $の閉部分空間であり，
+				$T_a$に作用素ノルムで収束する$\selfCop{\mathrm{L}^2(\R^d)} $の列が存在すれば
+				$T_a \in \selfCop{\mathrm{L}^2(\R^d)} $が従う．
+				任意に$\epsilon > 0$を取れば，仮定より或る$N \in \N$が存在して
 				\begin{align}
 					|a(x)| < \epsilon \quad (|x| > N)
 					\label{eq:report_6_2}
 				\end{align}
-				が成り立つ．また
+				を満たす．また
 				\begin{align}
 					a_n(x) \coloneqq a(x)\defunc_{|x| \leq n}
 					\quad (\forall x \in \R^d,\ n=1,2,\cdots)
 				\end{align}
 				により$(a_n)_{n=1}^{\infty}$を定めれば，各$n$に対し
 				\begin{align}
-					\R^2 \ni (x,y) \longmapsto \defunc_{|x - y| > 1} \frac{a_n(x)}{|x-y|^\lambda}
+					\int_{\R^d \times \R^d} \defunc_{|x - y| > 1} \frac{|a_n(x)|^2}{|x-y|^{2\lambda}}\ dx dy < \infty
 				\end{align}
-				は二乗可積分であるから
-				$T_{a_n}$はHilbert-Schmidt型積分作用素であり，従ってコンパクト作用素である．(\refeq{eq:report_6_1})より
+				が成り立つから，
+				\begin{align}
+					T_{a_n} f(x) = \int_{|x - y| > 1} \frac{a_n(x)f(y)}{|x-y|^\lambda}\ dy
+					\quad \left( \mbox{a.e.}x \in \R^d,\ \forall f \in \mathrm{L}^2(\R^d) \right)
+				\end{align}
+				により定める$T_{a_n}$はHilbert-Schmidt型積分作用素であり，従ってコンパクト作用素である．(\refeq{eq:report_6_1})より
 				\begin{align}
 					\Norm{T_a - T_{a_n}}{} \leq \sup{x \in \R^d}{|a(x) - a_n(x)|} U
 				\end{align}
@@ -141,6 +177,7 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 		\end{description}
 	\end{prf}
 	
+\newpage
 	\begin{screen}
 		[7] $a = (a_n)_{n=1}^{\infty} \in \ell^{\infty}$に対して$T:\ell^2 \rightarrow \ell^2$を
 		$Tx = (a_n x_n)_{n=1}^{\infty}\ (x = (x_n)_{n=1}^{\infty} \in \ell^2)$で定める．
@@ -156,11 +193,11 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 				\begin{description}
 					\item[十分性] 任意に$\ell^2$の有界列
 						$\left( x^{\nu} \right)_{\nu=1}^{\infty}\ \left(x^{\nu} = \left( x^{\nu}_n \right)_{n=1}^{\infty} \right)$
-						を取る．対角線論法により，或る部分添数列$(\nu(k))_{k=1}^{\infty}$が存在して，全ての$n \in \N$について
+						を取る．対角線論法により，或る部分添数列$(\nu(k))_{k=1}^{\infty}$が存在して，全ての$n \in \N$に対し
 						$\left(x_n^{\nu(k)} \right)_{k=1}^{\infty}$が$\C$のCauchy列となるようにできる．実際
-						$\left( x^{\nu}_1 \right)_{\nu=1}^{\infty}$は$\C$において有界列であるから，
+						$\left( x^{\nu}_1 \right)_{\nu=1}^{\infty}$は$\C$の有界列であるから，
 						Bolzano-Weierstrassの定理より或る部分列$\left( x^{\nu(k,1)}_1 \right)_{k=1}^{\infty}$は$\C$のCauchy列となる．
-						$\left( x^{\nu}_2 \right)_{\nu=1}^{\infty}$も$\C$において有界列であるから，
+						$\left( x^{\nu(k,1)}_2 \right)_{\nu=1}^{\infty}$も$\C$の有界列であるから，
 						$(\nu(k,1))_{k=1}^{\infty}$の部分添数列$(\nu(k,2))_{k=1}^{\infty}$が存在し
 						$\left( x^{\nu(k,2)}_2 \right)_{k=1}^{\infty}$は$\C$のCauchy列となる．
 						同様に部分列を取る操作を繰り返し，任意の$n \in \N$に対し
@@ -186,7 +223,7 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 							\left|x_j^{\nu(k)} - x_j^{\nu(m)} \right| < \frac{\epsilon}{\sqrt{N} A}
 							\quad (\forall k,m > N_j,\ j=1,\cdots,N)
 						\end{align}
-						が成り立つ．$N' \coloneqq \max{1 \leq j \leq N}{N_j}$とおけば
+						を満たす．$N' \coloneqq \max{1 \leq j \leq N}{N_j}$とおけば
 						\begin{align}
 							\sum_{n=1}^{N} |a_n|^2 \left|x_n^{\nu(k)} - x_n^{\nu(m)} \right|^2
 							\leq A^2 N \frac{\epsilon^2}{N A^2} = \epsilon^2
@@ -196,19 +233,20 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 						\begin{align}
 							\Norm{T x^{\nu(k)} - T x^{\nu(m)}}{\ell^2}^2 \leq 2 \epsilon^2 \quad (\forall k,m > N')
 						\end{align}
-						が成り立つ．$\epsilon$の任意性より$\left(T x_n^{\nu(k)} \right)_{k=1}^{\infty}$は収束列であり，
+						が成り立つ．$\ell^2$の完備性により$\left(T x_n^{\nu(k)} \right)_{k=1}^{\infty}$は収束するから，
 						$T$はコンパクト作用素である．
 						
 					\item[必要性]
-						対偶，つまり$\lim_{n \to \infty} a_n = 0$が満たされない場合に
+						対偶を示す．つまり$\lim_{n \to \infty} a_n = 0$が満たされないとき
 						或る有界点列$(x^k)_{k=1}^{\infty} \subset \ell^2$が存在して，
 						$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しないことを示す．
-						今，或る$\epsilon > 0$に対し$(a_n)_{n=1}^{\infty}$の
-						或る部分列$\left(a_{n_k}\right)_{k=1}^{\infty}$が
+						或る$\epsilon > 0$に対し$(a_n)_{n=1}^{\infty}$の
+						或る部分列$\left(a_{n_k}\right)_{k=1}^{\infty}$が存在して
 						\begin{align}
 							\left| a_{n_k} \right| \geq \epsilon
+							\quad (k=1,2,\cdots)
 						\end{align}
-						を満たす．
+						を満たすとき，
 						\begin{align}
 							x^k_n \coloneqq
 							\begin{cases}
@@ -229,6 +267,7 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 		\end{description}
 	\end{prf}
 	
+\newpage
 	\begin{screen}
 		[8]$(X,\mathcal{M},\mu)$を$\sigma$-有限な測度空間，$H = \mathrm{L}^2(X,\mathcal{M},\mu) = \mathrm{L}^2(\mu)$とする．
 			$\mathcal{M}$-可測関数$a:X \rightarrow \C$に対して，$H$から$H$へのかけ算作用素$M_a$を次で定める:
@@ -247,6 +286,7 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 	
 	\input{thms/report_8}
 	
+\newpage
 	\begin{screen}
 		[9]$(\C,\borel{\C},\mu)$を$\sigma$-有限な測度空間，$H = \mathrm{L}^2(\C,\borel{\C},\mu) = \mathrm{L}^2(\mu)$とする．
 			Borel可測関数$a:\C \rightarrow \C$に対して，$H$から$H$へのかけ算作用素$M_a$を次で定める:
