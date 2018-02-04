@@ -187,7 +187,7 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 		\end{description}
 	\end{itembox}
 	
-	\begin{prf}\mbox{}
+	\begin{prf} $\ell^2$におけるノルムを$\Norm{\cdot}{\ell^2}$と表す．
 		\begin{description}
 			\item[(1)] 求める必要十分条件が$\lim_{n \to \infty} a_n = 0$であることを示す．
 				\begin{description}
@@ -257,13 +257,71 @@ $\cbound{X}$は，sup-normによりBanach空間とみなす．
 						\end{align}
 						として$\ell^2$の点列$(x^k)_{k=1}^{\infty}$を定めれば，$k \neq m$なら
 						\begin{align}
-							\Norm{T x^k - T x^m}{}^2
+							\Norm{T x^k - T x^m}{\ell^2}^2
 							= |a_{n_k}|^2 + |a_{n_m}|^2
 							\geq 2 \epsilon^2
 						\end{align}
 						を満たすから$(T x^k)_{k=1}^{\infty}$のいかなる部分列も収束しえない．
 				\end{description}
 			\item[(2)]
+				Hilbert-Schmidt型作用素について講義では紹介されなかったので
+				参考文献\cite{key1}の定義に基づいて証明する．
+				
+				\begin{itembox}[l]{Hilbert-Schmidt型作用素}
+					Hilbert空間$X$が可分であるとし，ノルムを$\Norm{\cdot}{X}$と表す．
+					$X$における有界作用素$T$が$X$の完全正規直交系$(\varphi^j)$に対し
+					次を満たすとき，$T$をHilbert-Schmidt型作用素と呼ぶ:
+					\begin{align}
+						\Norm{T}{} \coloneqq \left\{ \sum_{j=1}^{\infty} \Norm{T \varphi^j}{X}^2 \right\}^{1/2} < \infty.
+						\label{eq:report_7_1}
+					\end{align}
+				\end{itembox}
+				
+				求める必要十分条件が$a \in \ell^2$であることを示す．
+				任意の可分無限次元Hilbert空間は$\ell^2$と同型になるから，
+				$\ell^2$は可分Hilbert空間である．従って可算個の元からなる完全正規直交系が存在する．
+				\begin{description}
+					\item[必要性]
+						\begin{align}
+							\varphi^j_n \coloneqq 
+							\begin{cases}
+								1 & (n = j) \\
+								0 & (n \neq j)
+							\end{cases}
+							\quad (n,j=1,2,\cdots)
+						\end{align}
+						により$\ell^2$の完全正規直交系$(\varphi^j)_{j=1}^{\infty}$を定める．
+						このとき(\refeq{eq:report_7_1})の$\Norm{T}{}$について
+						\begin{align}
+							\Norm{T}{}
+							= \left\{ \sum_{j=1}^{\infty} \Norm{T \varphi^j}{\ell^2}^2 \right\}^{1/2}
+							= \left\{ \sum_{j=1}^{\infty} \sum_{n=1}^{\infty} \left| a_n \varphi^j_n \right|^2 \right\}^{1/2}
+							= \left\{ \sum_{j=1}^{\infty} \left| a_j \right|^2 \right\}^{1/2}
+							= \Norm{a}{\ell^2}
+							\label{eq:report_7_2}
+						\end{align}
+						が成り立つから，$T$がHilbert-Schmidt型作用素ならば$a \in \ell^2$が従う．
+						
+					\item[十分性]
+						(\refeq{eq:report_7_1})で定義される$\Norm{T}{}$が完全正規直交系の取り方に依らずに確定することを示す．これが示されれば，
+						(\refeq{eq:report_7_2})より$\Norm{T}{} = \Norm{a}{\ell^2} < \infty$が従い十分性が得られる．
+						実際，$T \in \selfBop{\ell^2} $により共役作用素$T^*$が定義され$T^* \in \selfBop{\ell^2} $が満たされるから，
+						任意に$\ell^2$の完全正規直交系$(\psi^k)_{k=1}^{\infty}$を取ればParsevalの等式より
+						\begin{align}
+							\Norm{T \psi^k}{\ell^2}^2 
+							= \sum_{j=1}^{\infty} \left| \inprod<T \psi^k, \varphi^j> \right|^2
+							= \sum_{j=1}^{\infty} \left| \inprod<\psi^k, T^*\varphi^j> \right|^2
+						\end{align}
+						が成り立ち
+						\begin{align}
+							\sum_{k=1}^{\infty} \Norm{T \psi^k}{\ell^2}^2
+							= \sum_{k=1}^{\infty} \sum_{j=1}^{\infty} \left| \inprod<\psi^k, T^*\varphi^j> \right|^2
+							= \sum_{j=1}^{\infty} \sum_{k=1}^{\infty} \left| \inprod<\psi^k, T^*\varphi^j> \right|^2
+							= \sum_{j=1}^{\infty} \Norm{T^*\varphi^j}{}^2
+						\end{align}
+						が従う．右辺は完全正規直交系$(\psi^k)_{k=1}^{\infty}$に依らずに確定しているから冒頭の主張を得る．
+						\QED
+				\end{description}
 		\end{description}
 	\end{prf}
 	
