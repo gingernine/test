@@ -1,12 +1,12 @@
 %レポート問題9
-	\begin{prf}\mbox{}
+	\begin{prf} $H$のノルムを$\Norm{\cdot}{}$と表す．
 		\begin{description}
 			\item[(1)] 
 				任意の$A \in \borel{\C}$に対し
 				$\defunc_{a^{-1}(A)}$は有界であるから，
 				春学期のレポート問題より
 				$M_{\defunc_{a^{-1}(A)}} \in \selfBop{H} $が成り立つ．
-				ゆえに$E$は$\borel{\C}$全体で定義される．次に任意に$A \in \borel{\C}$を取り
+				ゆえに$E$は$\borel{\C}$全体で定義される．次に任意の$A \in \borel{\C}$に対し
 				$E(A)$が$H$上の直交射影であることを示す．
 				実際
 				\begin{align}
@@ -16,24 +16,59 @@
 					= E(A) u
 					\quad (\forall u \in H)
 				\end{align}
-				が成り立ち$E(A)^2 = E(A)$が得られ，また$\defunc_{a^{-1}(A)}$は実数値であるから
+				により$E(A)^2 = E(A)$が成り立ち，また前問[8]の(2)により
 				\begin{align}
 					E(A)^* = M_{\defunc_{a^{-1}(A)}}^* = M_{\defunc_{a^{-1}(A)}} = E(A)
 				\end{align}
-				が成り立ち，$E(A)$は自己共役である．
+				が成り立つから$E(A)$は自己共役である．従って$E(A)$は
+				$H$上の直交射影である．
 				最後に$E$がスペクトル測度であることを示す．
-				先ず
+				先ず$a^{-1}(\C) = X$より
 				\begin{align}
-					E(\R^d)u = M_{\defunc_{\C}}u = u
+					\left( E(\C)u \right)(x) = \left( M_{\defunc_X}u \right)(x) 
+					= \defunc_X(x) u(x) = u(x)
+					\quad (\mbox{$\mu$-a.e.}x \in X,\ \forall u \in H)
 				\end{align}
-				より$E(\R^d) = I$を得る．また任意の互いに素な集合列
-				$A_1,A_2,\cdots \in \borel{\C}$を取れば
+				が成り立ち$E(\C) = I$を得る．後は任意の互いに素な集合列
+				$A_1,A_2,\cdots \in \borel{\C}$に対して，$A \coloneqq \sum_{n=1}^{\infty}A_n$として
 				\begin{align}
-					E(\sum_{n=1}^{\infty}A_n)u
-					= \sum_{n=1}^{\infty} E(A_n) u
-					\quad (\forall u \in H)
+					E(A) u = \sum_{n=1}^{\infty} E(A_n) u \quad (\forall u \in H)
+					\label{eq:report_9_1}
 				\end{align}
-				が成り立つ．
+				が成立することを示せばよい:
+				\begin{description}
+					\item[第一段]
+						先ず(\refeq{eq:report_9_1})の右辺の級数が$H$で収束することを示す．
+						任意に$u \in H$を取り
+						\begin{align}
+							v_n \coloneqq \sum_{i=1}^{n} E(A_i) u
+							\quad (n=1,2,\cdots)
+						\end{align}
+						として$(v_n)_{n=1}^{\infty} \subset H$を定める．任意の$n \in \N$に対し
+						\begin{align}
+							&\sum_{i=1}^{n} \Norm{E(A_i) u}{}^2
+							= \sum_{i=1}^{n} \int_X \defunc_{a^{-1}(A_i)}(x) \left| u(x) \right|^2\ \mu(dx) \\
+							&\qquad = \int_X \defunc_{a^{-1}\left( \sum_{i=1}^{n}A_i \right)}(x) \left| u(x) \right|^2\ \mu(dx)
+							\leq \int_X |u(x)|^2\ \mu(dx)
+							= \Norm{u}{}^2
+						\end{align}
+						が満たされるから
+						\begin{align}
+							\sum_{i=1}^{\infty} \Norm{E(A_i) u}{}^2 \leq \Norm{u}{}^2 < \infty
+							\label{eq:report_9_2}
+						\end{align}
+						が従い，一方で任意の$p,q \in \N,\ p < q$に対し
+						\begin{align}
+							\Norm{v_q - v_p}{}^2
+							= \int_X \left| \sum_{i=p+1}^{q} \defunc_{a^{-1}(A_i)}(x) u(x) \right|^2\ \mu(dx)
+							= \int_X \sum_{i=p+1}^{q} \defunc_{a^{-1}(A_i)}(x) |u(x)|^2\ \mu(dx)
+							= \sum_{i=p+1}^{q} \Norm{E(A_i) u}{}^2
+						\end{align}
+						が成り立つから，(\refeq{eq:report_9_2})より$(v_n)_{n=1}^{\infty}$は
+						$H$でCauchy列をなし，$H$の完備性により或る$v \in H$に強収束する．
+					\item[第二段]
+						$v = E(A)u$が成り立つことを示す．
+				\end{description}
 				
 			\item[(2)]
 				$\Dom{T_f} = \Dom{M_{f \circ a}} $を示さなくてはいけない．
