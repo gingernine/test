@@ -1,5 +1,5 @@
 %レポート問題9
-	\begin{prf} $H$のノルムを$\Norm{\cdot}{}$と表す．
+	\begin{prf} $H$のノルムと内積をそれぞれ$\Norm{\cdot}{},\inprod<\cdot,\cdot>$と表す．
 		\begin{description}
 			\item[(1)] 
 				任意の$A \in \borel{\C}$に対し
@@ -67,34 +67,71 @@
 						が成り立つから，(\refeq{eq:report_9_2})より$(v_n)_{n=1}^{\infty}$は
 						$H$でCauchy列をなし，$H$の完備性により或る$v \in H$に強収束する．
 					\item[第二段]
-						$v = E(A)u$が成り立つことを示す．
+						$E(A)u = v$が成り立つことを示す．
+						任意の$n \in \N$に対し
+						\begin{align}
+							\left| v_n(x) - \left( E(A)u \right)(x) \right| \leq 2|u(x)|
+							\quad (\forall x \in X)
+						\end{align}
+						が満たされ，かつ
+						\begin{align}
+							v_n(x) \longrightarrow \left( E(A)u \right)(x)
+							\quad (n \longrightarrow \infty,\ \forall x \in X)
+						\end{align}
+						が成り立つからLebesgueの収束定理より
+						\begin{align}
+							\Norm{E(A)u - v_n}{}^2
+							= \int_X \left| \left( E(A)u \right)(x) - v_n(x) \right|^2\ \mu(dx)
+							\longrightarrow 0 \quad (n \longrightarrow \infty)
+						\end{align}
+						が従う．前段の結果と併せれば
+						\begin{align}
+							\Norm{E(A)u - v}{}
+							\leq \Norm{E(A)u - v_n}{} + \Norm{v_n - v}{}
+							\longrightarrow 0 \quad (n \longrightarrow \infty)
+						\end{align}
+						により$E(A)u = v$が成立する．$u$の任意性により(\refeq{eq:report_9_1})が得られる．
 				\end{description}
 				
 			\item[(2)]
-				$\Dom{T_f} = \Dom{M_{f \circ a}} $を示さなくてはいけない．
+				先ず$\Dom{T_f} = \Dom{M_{f \circ a}} $が成り立つことを示す．
 				$f$が可測単関数の場合，
 				\begin{align}
 					f = \sum_{i=1}^{n} \alpha_i \defunc_{A_i}
+					\quad \left( \alpha_i \in \C,\ A_i \in \borel{\C}\ (i=1,\cdots,n),\ 
+					\C = \sum_{i=1}^{n} A_i \right)
 				\end{align}
-				として
+				と表せば，任意の$u \in H$に対して
 				\begin{align}
-					\int_\C |f(x)|^2\ \mu_u(dx)
+					\int_\C |f(z)|^2\ \mu_u(dz)
 					= \sum_{i=1}^{n} |\alpha_i|^2 \inprod<E(A_i)u,u>
-					= \sum_{i=1}^{n} |\alpha_i|^2 \int_\C \defunc_{a^{-1}(A_i)}|u(x)|^2\ \mu(dx)
-					= \int_\C |f(a(x))|^2 |u(x)|^2\ \mu(dx)
+					= \sum_{i=1}^{n} |\alpha_i|^2 \int_X \defunc_{a^{-1}(A_i)}|u(x)|^2\ \mu(dx)
+					= \int_X |f(a(x))|^2 |u(x)|^2\ \mu(dx)
 				\end{align}
-				が成り立つ．$f$が一般の可測関数の場合は$MSF$-単調近似列$(f_n)_{n=1}^{\infty}$を取れば
+				が成り立つ
+				\footnote{
+					$u \in H$に対する$\mu_u$は
+					\begin{align}
+						\mu_u(\Lambda) \coloneqq \inprod<E(\Lambda)u,u>
+						\quad (\Lambda \in \borel{\C})
+					\end{align}
+					により定められる有限正値測度を表す．
+				}
+				．$f$が一般の可測関数の場合は$f$の$MSF$-単調近似列$(f_n)_{n=1}^{\infty}$を取れば，
+				任意の$n \in \N$に対して
 				\begin{align}
-					\int_\C |f_n(x)|^2\ \mu_u(dx) = \int_\C |f_n(a(x))|^2 |u(x)|^2\ \mu(dx)
+					\int_\C |f_n(x)|^2\ \mu_u(dx) = \int_X |f_n(a(x))|^2 |u(x)|^2\ \mu(dx)
 					\quad (\forall n \in \N)
 				\end{align}
-				が従い，単調収束定理より両辺はそれぞれ
-				$\int_\C |f(x)|^2\ \mu_u(dx), \int_\C |f(a(x))|^2 |u(x)|^2\ \mu(dx)$
-				に収束する．従って
+				が満たされる．そして単調収束定理より
+				\begin{align}
+					\int_\C |f(x)|^2\ \mu_u(dx) = \int_X |f(a(x))|^2 |u(x)|^2\ \mu(dx)
+				\end{align}
+				が成り立つから
 				\begin{align}
 					u \in \Dom{T_f} \quad \Leftrightarrow \quad u \in \Dom{M_{f \circ a}} 
 				\end{align}
-				が成り立つ．次に$T_f u = M_{f \circ a} u\ (\forall u \in \Dom{T_f} )$を示す．
+				が従う．次に$T_f u = M_{f \circ a} u\ (\forall u \in \Dom{T_f} )$を示す．
 				$f$が可測単関数の場合，
 				\begin{align}
 					T_f u = \sum_{i=1}^n \alpha_i E(A_i) u
@@ -104,28 +141,30 @@
 					\quad (\forall u \in H)
 				\end{align}
 				が成り立つ．
-				一般の$f$に対しては，$MSF$-単調近似列$(f_n)_{n=1}^{\infty}$を取る．
+				一般の$f$に対しては，$MSF$-単調近似列$(f_n)_{n=1}^{\infty}$を取れば任意の$n \in \N$に対して
 				\begin{align}
 					\Norm{T_f u - M_{f \circ a} u}{}
 					\leq \Norm{T_f u - T_{f_n} u}{}
 						+ \Norm{M_{f_n \circ a} u - M_{f \circ a} u}{}
 				\end{align}
-				が成り立つ．スペクトル積分$T_f$の定義より
+				が成立する．スペクトル積分$T_f$の定義より
 				\begin{align}
 					\Norm{T_f u - T_{f_n} u}{}
 					\longrightarrow 0 \quad (n \longrightarrow \infty)
 				\end{align}
-				が成り立ち，またLebesgueの収束定理より
+				が満たされ，またLebesgueの収束定理より
 				\begin{align}
 					\Norm{M_{f_n \circ a} u - M_{f \circ a} u}{}^2
-					= \int_\C \left| f_n(a(x)) u(x) - f(a(x)) u(x) \right|^2\ \mu(dx)
+					= \int_X \left| f_n(a(x)) u(x) - f(a(x)) u(x) \right|^2\ \mu(dx)
 					\longrightarrow 0 
 					\quad (n \longrightarrow \infty)
 				\end{align}
-				を得る．ゆえに
+				も成り立つから
 				\begin{align}
 					\Norm{T_f u - M_{f \circ a} u}{} = 0
+					\quad (\forall u \in \Dom{T_f} )
 				\end{align}
-				が成り立つ．
+				が従い$T_f = M_{f \circ a}$が得られる．
+				\QED
 		\end{description}
 	\end{prf}
