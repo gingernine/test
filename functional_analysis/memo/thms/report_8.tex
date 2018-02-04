@@ -6,26 +6,50 @@
 		
 		\begin{description}
 			\item[(1)] 
-				任意に$v \in H$を取り$v_n \coloneqq v\defunc_{\{|a| \leq n\}}\ (n=1,2,3,\cdots)$として関数列$(v_n)_{n=1}^{\infty}$を作る．
-				全ての$x \in X$で$|v_n(x)| \leq |v(x)|$が満たされているから
-				$(v_n)_{n \in \N} \subset H$である．また全ての$n \in \N$について
-				\begin{align}
-					\int_X |a(x)v_n(x)|^2 \mu(dx) = \int_{\{|a| \leq n\}} |a(x)v(x)|^2 \mu(dx) \leq n^2  \int_X |v(x)|^2 \mu(dx) < \infty
-				\end{align}
-				が成り立つから$(v_n)_{n \in \N} \subset D(M_a)$が従う．
-				\begin{align}
-					\Norm{v - v_n}{}^2 = \int_X |v(x) - v_n(x)|^2\, \mu(dx) = \int_X \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
-					\label{eq:func_report_Q9_1}
-				\end{align}
-				の右辺の被積分関数は各点で$0$に収束し，かつ可積分関数$|v|^2$で抑えられるから，
-				Lebesgueの収束定理より
-				\begin{align}
-					\lim_{n \to \infty} \Norm{v - v_n}{}^2 
-					= \lim_{n \to \infty} \int_X \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
-					= \int_X \lim_{n \to \infty} \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
-					= 0
-				\end{align}
-				が得られる．$v$は任意に選んでいたから$D(M_a)$は$X$において稠密である．
+				\begin{description}
+					\item[$M_a$が線型作用素であること]
+						先ず$\Dom{M_a} $が$H$の線型部分空間であることを示す．
+						任意に$u,v \in \Dom{M_a} ,\ \alpha,\beta \in \C$を取れば，
+						$H$が線形空間であることにより$\alpha u + \beta v \in H$が満たされ，
+						且つ$a u, a v \in H$により
+						\begin{align}
+							a( \alpha u + \beta v)
+							= \alpha a u + \beta a v 
+							\in H
+						\end{align}
+						も成り立つから$\alpha u + \beta v \in \Dom{M_a} $が従う．
+						また任意の$u,v \in \Dom{M_a} ,\ \alpha,\beta \in \C$に対して
+						\begin{align}
+							&M_a(\alpha u + \beta v)(x)
+							= a(x)( \alpha u(x) + \beta v(x)) \\
+							&\qquad = \alpha a(x) u(x) + \beta a(x) v(x)
+							= \alpha (M_a u) (x) + \beta (M_a v) (x)
+							\quad (\mbox{$\mu$-a.e.} x \in X)
+						\end{align}
+						が満たされるから$M_a$は線型作用素である．
+						
+					\item[$\Dom{M_a} $が$H$で稠密なこと]
+						任意に$v \in H$を取り$v_n \coloneqq v\defunc_{\{|a| \leq n\}}\ (n=1,2,3,\cdots)$として関数列$(v_n)_{n=1}^{\infty}$を作る．
+						全ての$x \in X$で$|v_n(x)| \leq |v(x)|$が満たされているから
+						$(v_n)_{n \in \N} \subset H$である．また全ての$n \in \N$について
+						\begin{align}
+							\int_X |a(x)v_n(x)|^2 \mu(dx) = \int_{\{|a| \leq n\}} |a(x)v(x)|^2 \mu(dx) \leq n^2  \int_X |v(x)|^2 \mu(dx) < \infty
+						\end{align}
+						が成り立つから$(v_n)_{n \in \N} \subset \Dom{M_a} $が従う．
+						\begin{align}
+							\Norm{v - v_n}{}^2 = \int_X |v(x) - v_n(x)|^2\, \mu(dx) = \int_X \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
+							\label{eq:func_report_Q9_1}
+						\end{align}
+						の右辺の被積分関数は各点で$0$に収束し，かつ可積分関数$|v|^2$で抑えられるから，
+						Lebesgueの収束定理より
+						\begin{align}
+							\lim_{n \to \infty} \Norm{v - v_n}{}^2 
+							= \lim_{n \to \infty} \int_X \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
+							= \int_X \lim_{n \to \infty} \defunc_{\{|a| > n\}}(x)|v(x)|^2\, \mu(dx)
+							= 0
+						\end{align}
+						が得られる．$v$は任意に選んでいたから$\Dom{M_a} $の稠密性が従う．
+				\end{description}
 				
 			\item[(2)]
 				$\Dom{M_a} $が$H$で稠密であるから$M_a$の共役作用素を定義できる．
