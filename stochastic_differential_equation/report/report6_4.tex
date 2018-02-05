@@ -211,7 +211,7 @@
 				も成り立つから，$\Omega \backslash C$上で$\lim_{j \to \infty} I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}_t\ (\forall t \in I)$
 				が確定する．
 				\begin{align}
-					I_M(X)(t,\omega) \coloneqq 
+					N(t,\omega) \coloneqq 
 					\begin{cases}
 						\lim\limits_{j \to \infty} I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}(t,\omega) & (\omega \in \Omega \backslash C) \\
 						0 & (\omega \in C)
@@ -219,7 +219,7 @@
 					\quad (t \in I)
 					\label{eq:Ito-Integral_on_M_c_loc_limit}
 				\end{align}
-				により$I_M(X)$を定め，これを確率積分$\int_0^t X_s\ dM_s$と表す．
+				により$N$を定め，これを確率積分$\int_0^t X_s\ dM_s$と表す．
 				\QED
 		\end{description}
 	\end{prf}
@@ -241,48 +241,51 @@
 		であることを示せ．
 	\end{itembox}
 
-	\begin{prf}[レポート問題6の続き]
+	\begin{prf}[レポート問題6の続き] \mbox{}
 		\begin{description}
 			\item[第一段] $N \in \mathcal{M}_{c,loc}$を示す．
-				(\refeq{eq:Ito-Integral_on_M_c_loc_limit})により定めた$I_M(X)$は適合過程であり，
-				且つ任意の$\omega \in \Omega$に対し$I \ni t \longmapsto I_M(X)_t(\omega)$は各点$t$で右連続かつ左極限を持つ．
-				特に$\mu$-a.s.に$I \ni t \longmapsto I_M(X)_t$は連続である．
+				(\refeq{eq:Ito-Integral_on_M_c_loc_limit})により定めた$N$は適合過程であり，
+				且つ任意の$\omega \in \Omega$に対し$I \ni t \longmapsto N_t(\omega)$は各点$t$で右連続かつ左極限を持つ．
+				特に$\mu$-a.s.に$I \ni t \longmapsto N_t$は連続である．
 				そして任意の$\sigma_j\ (j \in \N_0)$について次が満たされる:
 				\begin{align}
-					I_M(X)^{\sigma_j}(t,\omega) = I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}(t,\omega)
+					N^{\sigma_j}(t,\omega) = I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}(t,\omega)
 					\quad (\forall t \in I,\ \omega \in \Omega \backslash C).
 					\label{eq:Ito-Integral_on_M_c_loc_localize}
 				\end{align}
 				\begin{description}
 					\item[(\refeq{eq:Ito-Integral_on_M_c_loc_localize})について]
 						定め方(\refeq{eq:Ito-Integral_on_M_c_loc_limit})による．
-					\item[適合性]
+					\item[適合性について]
 						$I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j}$は$\mathcal{M}_{2,c}$に属するから適合過程である．
-						その極限で$I_M(X)$が定義されるから$I_M(X)$も適合である．
-					\item[(右)連続性] $I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j} \in \mathcal{M}_{2,c}$であることと$I_M(X)$の定め方による．
-					\item[左極限] $I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j} \in \mathcal{M}_{2,c}$であることと$I_M(X)$の定め方による．
+						その各点収束極限で$N$が定義されるから$N$の適合性が出る．
+					\item[(右)連続性について] $I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j} \in \mathcal{M}_{2,c}$であることと$N$の定め方による．
+					\item[左極限について] $I_{M^{\sigma_j}}(X^{\sigma_j})^{\sigma_j} \in \mathcal{M}_{2,c}$であることと$N$の定め方による．
 				\end{description}
 				従って
 				\begin{align}
-					\tau_j \coloneqq \inf{}{\Set{t \in I}{|I_M(X)_t| \geq j}} \wedge T
+					\tau_j \coloneqq \inf{}{\Set{t \in I}{|N_t| \geq j}} \wedge T
 				\end{align}
 				により$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$を定めることができる．
 				\begin{align}
 					\hat{\sigma}_j \coloneqq \sigma_j \wedge \tau_j
 				\end{align}
-				として$\left( \hat{\sigma}_j \right)_{j=0}^{\infty} \in \mathcal{T}$を構成すれば
+				として$\left( \hat{\sigma}_j \right)_{j=0}^{\infty} \in \mathcal{T}$を構成すれば任意の$t \in I$に対して
 				\begin{align}
-					\left| I_M(X)^{\hat{\sigma}_j} \right| \leq j \quad \mbox{$\mu$-a.s.}
+					\left| N^{\hat{\sigma}_j}_t \right| \leq j \quad \mbox{$\mu$-a.s.}
 				\end{align}
-				かつ$\mathcal{M}_{2,c}$を停めた過程であるから$I_M(X)^{\hat{\sigma}_j} \in \mathcal{M}_{b,c}$を満たす．
-				ゆえに$N \in \mathcal{M}_{c,loc}$が従う．
+				が満たされ，且つ$\mathcal{M}_{2,c}$を停めた過程であるから$N^{\hat{\sigma}_j} \in \mathcal{M}_{b,c}$となり$N \in \mathcal{M}_{c,loc}$が従う．
 			
 			\item[第二段]
 				(\refeq{eq:Ito-Integral_on_M_c_loc_stopping_time})で構成した通り，或る停止時刻の列
-				$(\tau_j)_{j=0}^{\infty},(\sigma_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して，
+				$(\tau_j)_{j=0}^{\infty},(\hat{\tau}_j)_{j=0}^{\infty},(\sigma_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して，
 				\begin{align}
-					Y^{\tau_j},(YX)^{\sigma_j} \in \semiLp{2}{\mathcal{P},\mu_{M}}
-					\quad (\forall M \in \mathcal{M}_{2,c},\ j=0,1,2,\cdots)
+					&Y^{\tau_j},X^{\hat{\tau}_j},(YX)^{\sigma_j} \in \semiLp{2}{\mathcal{P},\mu_{M}}
+					\quad (\forall M \in \mathcal{M}_{2,c},\ j=0,1,2,\cdots), \\
+					&\sup{t \in I}{\Norm{Y^{\tau_j}_t}{\semiLp{\infty}{\mu}}} < \infty,
+					\quad \sup{t \in I}{\Norm{X^{\hat{\tau}_j}_t}{\semiLp{\infty}{\mu}}} < \infty,
+					\quad \sup{t \in I}{\Norm{(YX)^{\sigma_j}_t}{\semiLp{\infty}{\mu}}} < \infty
+					\label{eq:Ito-Integral_on_M_c_loc_report_7_6}
 				\end{align}
 				かつ(\refeq{eq:Ito-Integral_on_M_c_loc_limit})の収束の意味で
 				\begin{align}
@@ -294,7 +297,7 @@
 				\end{align}
 				を満たす．よって
 				\begin{align}
-					\upsilon_j \coloneqq \sigma_j \wedge \tau_j 
+					\upsilon_j \coloneqq \sigma_j \wedge \tau_j \wedge \hat{\tau}_j
 					\quad (j=0,1,2,\cdots)
 				\end{align}
 				により定める$(\upsilon_j)_{j=0}^{\infty} \in \mathcal{T}$に対して
@@ -310,8 +313,9 @@
 				$Y^j_n \in \mathcal{S}\ (n=1,2,\cdots)$を取れば，
 				Lebesgueの収束定理及びH\Ddot{o}lderの不等式により
 				\begin{align}
-					\Norm{Y^{\upsilon_j} - Y^j_n}{\semiLp{2}{\mu_{N^{\upsilon_j}}}} \longrightarrow 0, 
-					\quad \Norm{Y^{\upsilon_j}X^{\upsilon_j} - Y^j_n X^j_n}{\semiLp{2}{\mu_{M^{\upsilon_j}}}} \longrightarrow 0, 
+					&\Norm{Y^{\upsilon_j} - Y^j_n}{\semiLp{2}{\mu_{N^{\upsilon_j}}}} \longrightarrow 0, 
+					\quad \Norm{X^{\upsilon_j} - X^j_n}{\semiLp{2}{\mu_{M^{\upsilon_j}}}} \longrightarrow 0, \label{eq:Ito-Integral_on_M_c_loc_report_7_5} \\
+					&\Norm{Y^{\upsilon_j}X^{\upsilon_j} - Y^j_n X^j_n}{\semiLp{2}{\mu_{M^{\upsilon_j}}}} \longrightarrow 0, 
 				\end{align}
 				が成立する．従って，もし全ての$n \in \N$に対して
 				\begin{align}
@@ -329,7 +333,57 @@
 				が従い(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_2})を得る．
 			
 			\item[第三段]
-				(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_3})を示す．
+				任意に$n \in \N$を取り固定し，(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_3})を示す．
+				\begin{align}
+					Y_n \coloneqq Y_n^j,
+					\quad X_n \coloneqq X_n^j,
+					\quad N \coloneqq N^{\upsilon_j},
+					\quad M \coloneqq M^{\upsilon_j}
+				\end{align}
+				と表示しなおし，
+				\begin{align}
+					N^n_t \coloneqq \int_0^t X_n(s)\ d M_s
+					\quad (t \in I)
+				\end{align}
+				とおく．また$F^n \coloneqq X^{\upsilon_j}_0,\ G^n \coloneqq Y^{\upsilon_j}_0,\ 
+				F^n_k \coloneqq X^{\upsilon_j}_{kT/2^n},\ G^n_k \coloneqq Y^{\upsilon_j}_{kT/2^n},\ t_k \coloneqq kT/2^n$とおけば
+				\begin{align}
+					X_n = F^n \defunc_{\{0\}} + \sum_{k=0}^{2^n-1} F^n_k \defunc_{\left( t_k, t_{k+1} \right]},
+					\quad Y_n = G^n \defunc_{\{0\}} + \sum_{k=0}^{2^n-1} G^n_k \defunc_{\left( t_k, t_{k+1} \right]}
+				\end{align}
+				と表現でき，
+				\begin{align}
+					&I_{N} (Y_n)_t = \sum_{k=0}^{2^n-1} G^n_k \left( N_{t \wedge t_{k+1}} - N_{t \wedge t_k} \right) \quad (\forall t \in I,\ \mbox{$\mu$-a.s.}), \\
+					&I_{N^n} (Y_n)_t = \sum_{k=0}^{2^n-1} G^n_k \left( N^n_{t \wedge t_{k+1}} - N^n_{t \wedge t_k} \right) \quad (\forall t \in I,\ \mbox{$\mu$-a.s.}), \\
+					&I_{M} (Y_n X_n)_t = \sum_{k=0}^{2^n-1} F^n_k G^n_k \left( M_{t \wedge t_{k+1}} - M_{t \wedge t_k} \right) \quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+				\end{align}
+				と書ける．特に
+				\begin{align}
+					N^n_t = \sum_{k=0}^{2^n-1} F^n_k \left( M_{t \wedge t_{k+1}} - M_{t \wedge t_k} \right) \quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+				\end{align}
+				が成り立っているから
+				\begin{align}
+					I_{N^n} (Y_n)_t = I_{M} (Y_n X_n)_t \quad (\forall t \in I,\ \mbox{$\mu$-a.s.})
+					\label{eq:Ito-Integral_on_M_c_loc_report_7_4}
+				\end{align}
+				が従う．一方で
+				\begin{align}
+					I_{N} (Y_n)_T - I_{N^n} (Y_n)_T
+					= \sum_{k=0}^{2^n-1} G^n_k \left( N_{t_{k+1}} - N^n_{t_{k+1}} \right) -  \sum_{k=0}^{2^n-1} G^n_k \left( N_{t_k} - N^n_{t_k} \right) 
+					\quad \mbox{$\mu$-a.s.}
+				\end{align}
+				が成り立ち，また(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_6})と$\upsilon_j$の構成法より
+				$a \coloneqq \sup{t \in I}{\Norm{Y^{\upsilon_j}_t}{\semiLp{\infty}{\mu}}} < \infty$が満たされているから，
+				$G^n_k\ (\forall k,n)$は$\mu$-a.s.に$a$で抑えられる．従って伊藤積分の線型等長性より
+				\begin{align}
+					\Norm{I_{N} (Y_n) - I_{N^n} (Y_n)}{\mathcal{M}_{2,c}}
+					&\leq \sum_{k=0}^{2^n-1} \left\{ a\Norm{N_{t_{k+1}} - N^n_{t_{k+1}}}{\semiLp{2}{\mu}} + a\Norm{N_{t_k} - N^n_{t_k}}{\semiLp{2}{\mu}} \right\} \\
+					&= \sum_{k=0}^{2^n-1} \left\{ a\Norm{I_M(X^{\upsilon_j} - X_n)_{t_{k+1}}}{\semiLp{2}{\mu}} + a\Norm{I_M(X^{\upsilon_j} - X_n)_{t_k}}{\semiLp{2}{\mu}} \right\} \\
+					&\leq \sum_{k=0}^{2^n-1} 2a \Norm{X^{\upsilon_j} - X_n}{\semiLp{2}{\mathcal{P},\mu_M}}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つ．$n$の任意性と(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_5})及び(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_4})
+				を併せて(\refeq{eq:Ito-Integral_on_M_c_loc_report_7_3})が成立する．
 				\QED
 		\end{description}
 	\end{prf}
