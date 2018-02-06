@@ -1,6 +1,5 @@
-\newpage
 \section{条件付き期待値の拡張}
-	$\mu$の有限性とG\Ddot{o}lderの不等式より$\Lp{2}{\Omega,\mathcal{F},\mu} \subset \Lp{1}{\Omega,\mathcal{F},\mu}$且つ
+	$\mu$の有限性とH\Ddot{o}lderの不等式より$\Lp{2}{\Omega,\mathcal{F},\mu} \subset \Lp{1}{\Omega,\mathcal{F},\mu}$且つ
 	$\Lp{2}{\Omega,\mathcal{G},\mu} \subset \Lp{1}{\Omega,\mathcal{G},\mu}$が成り立つから，
 	条件付き期待値が有界で
 	$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$において稠密ならば，
@@ -51,9 +50,8 @@
 	\end{screen}
 	
 	\begin{prf}	
-		定理\ref{thm:linear_operator_expansion}より，$\Lp{2}{\Omega,\mathcal{F},\mu}$が$\Lp{1}{\Omega,\mathcal{F},\mu}$で稠密ならば
-		補題\ref{lem:conditional_exp_bound}と併せて拡張可能となる．
-		今任意に$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$を取り
+		$\Lp{2}{\Omega,\mathcal{F},\mu}$の$\Lp{1}{\Omega,\mathcal{F},\mu}$における稠密性を示す．
+		今，任意に$f \in \Lp{1}{\Omega,\mathcal{F},\mu}$を取り
 		\begin{align}
 			f_n(x) \coloneqq f(x) \defunc_{|f| \leq n} (x) \quad (\forall x \in \Omega,\ n=1,2,3,\cdots) \label{conditional_exp_expansion}
 		\end{align}
@@ -61,7 +59,9 @@
 		\begin{align}
 			\lim_{n \to \infty} \Norm{f_n - f}{\Lp{1}{\mathcal{F}}} = 0
 		\end{align}
-		が成り立つ．
+		が成り立つ．これにより$\Lp{2}{\Omega,\mathcal{F},\mu}$の稠密性が従い，
+		補題\ref{lem:conditional_exp_bound}と定理\ref{thm:linear_operator_expansion}より
+		主張を得る．
 		\QED
 	\end{prf}
 	
@@ -244,10 +244,12 @@
 				補題\ref{lem:convex_function_measurability}より$\varphi$は各点$x \in \R$で右側接線を持つから，
 				それを$t \longmapsto a_x t + b_x$と表せば
 				\begin{align}
-					\varphi(x) = \sup{r \in \Q}{\left\{ a_r x + b_r \right\}} \quad (\forall x \in \R)
+					\varphi(t) = \sup{x \in \Q}{\left\{ a_x t + b_x \right\}} \quad (\forall t \in \R)
 					\label{eq:prp_properties_of_expanded_conditional_expectation_1}
 				\end{align}
-				が成り立つ．実際或る点$x_0 \in \R$で
+				が成り立つ．
+				\begin{comment}
+				実際或る点$x_0 \in \R$で
 				\begin{align}
 					\varphi(x_0) > \epsilon \coloneqq \sup{r \in \Q}{\left\{ a_r x_0 + b_r \right\}}
 					\label{eq:prp_properties_of_expanded_conditional_expectation_2}
@@ -279,15 +281,16 @@
 					\leq \left| \varphi(x_0) - \varphi(r) \right| + |a_r| \left| x_0 - r \right| < \epsilon
 				\end{align}
 				となり(\refeq{eq:prp_properties_of_expanded_conditional_expectation_2})に矛盾する．
-				今，(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より任意の$a_r,b_r\ (r \in \Q)$に対して
+				\end{comment}
+				よって任意の$x \in \R$に対して
 				\begin{align}
-					\varphi(f(\omega)) \geq a_r f(\omega) + b_r \quad (\forall \omega \in \Omega)
+					\varphi(f(\omega)) \geq a_x f(\omega) + b_x \quad (\forall \omega \in \Omega)
 				\end{align}
-				が成り立つから，$\tilde{\mathrm{C}}$3と$\tilde{\mathrm{C}}$4より
+				が満たされるから，$\tilde{\mathrm{C}}$3と$\tilde{\mathrm{C}}$4より
 				\begin{align}
-					\cexp{\varphi(f)}{\mathcal{G}} \geq a_r \cexp{f}{\mathcal{G}} + b_r \quad (\forall r \in \Q)
+					\cexp{\varphi(f)}{\mathcal{G}} \geq a_x \cexp{f}{\mathcal{G}} + b_x \quad (\forall x \in \R)
 				\end{align}
-				が従い
+				が従い，(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
 				\begin{align}
 					\cexp{\varphi(f)}{\mathcal{G}} \geq \varphi\left( \cexp{f}{\mathcal{G}} \right)
 				\end{align}

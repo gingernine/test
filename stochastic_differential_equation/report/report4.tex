@@ -1,139 +1,146 @@
 \section{停止時刻}
-	確率空間を$(\Omega,\mathcal{F},\mu)$とする．集合$I$によって確率過程の時点を表現し，
-	以降でこれは$[0,\infty)$や$\{0,,1,\cdots,n\}$など実数の区間や高々可算集合を指すものと考え，
-	$I$が高々可算集合の場合は離散位相，$\R$の区間の場合は相対位相を考える．また扱う確率変数は全て実数値で考える．
-	\begin{itembox}[l]{}
+	基礎に置く確率空間を$(\Omega,\mathcal{F},\mu)$とする．また集合$I \subset \R$によって確率過程の時点全体を表現する．
+	$I$は$[0,T]\ (T > 0)$或は$\{0,,1,\cdots,n\}$などを指し，
+	$I$が$\R$の区間の場合は相対位相，$I$が高々可算集合の場合は離散位相を導入する．
+	また扱う確率変数は全て実数値とする．
+	\begin{screen}
 		\begin{dfn}[フィルトレーション]
-			$\mathcal{F}$の部分$\sigma$-加法族の部分系$\Set{\mathcal{F}_\alpha}{\alpha \in I}$
-			がフィルトレーション(filtration)であるとは，任意の$\alpha,\beta \in I$に対して$\alpha \leq \beta$ならば
-			$\mathcal{F}_\alpha \subset \mathcal{F}_\beta$の関係をもつことで定義する．
-		\end{dfn}
-	\end{itembox}
-	
-	\begin{itembox}[l]{}
-		\begin{dfn}[停止時刻]
-			$\Omega$上の関数で次を満たすものを($(\mathcal{F}_\alpha)$-)停止時刻(stopping time)という:
+			$\mathcal{F}$の部分$\sigma$-加法族の系$\Set{\mathcal{F}_t}{t \in I}$
+			が次を満たすとき，これをフィルトレーション(filtration)と呼ぶ:
 			\begin{align}
-				\tau:\Omega \longrightarrow I\quad \mathrm{s.t.}\quad \forall \alpha \in I,\ \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha.
+				\mathcal{F}_s \subset \mathcal{F}_t
+				\quad (\forall s \leq t,\ s,t \in I).
 			\end{align}
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	\begin{itembox}[l]{}
-		\begin{rem}[停止時刻は可測]
-			上で定義した$\tau$は可測$\mathcal{F}/\borel{I}$である．
+	\begin{screen}
+		\begin{dfn}[停止時刻]
+			次を満たす関数$\tau:\Omega \rightarrow I$を($(\mathcal{F}_t)$-)停止時刻(stopping time)という:
+			\begin{align}
+				\{ \tau \leq t \} \in \mathcal{F}_t \quad (\forall t \in I).
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{rem}[停止時刻は可測写像]
+			停止時刻は可測$\mathcal{F}/\borel{I}$である．
 		\end{rem}
-	\end{itembox}
-	\begin{prf}\mbox{}
+	\end{screen}
+	
+	\begin{prf} $\tau:\Omega \rightarrow I$を停止時刻とする．
 		\begin{description}
-			\item[$I$が$\R$の区間である場合]
-				任意の$\alpha \in I$に対して$I_\alpha \coloneqq (-\infty,\alpha) \cap I$は$I$における(相対の)開集合であり
-				$\tau^{-1}(I_\alpha) = \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha \subset \mathcal{F}$が成り立つ．
-				つまり
+			\item[$I$が区間のとき]
+				$t \in I$に対し$I_t \coloneqq (-\infty,t] \cap I$とおけば
+				$\tau^{-1}(I_t) = \{ \tau \leq t \} \in \mathcal{F}_t \subset \mathcal{F}$が成り立つから
 				\begin{align}
-					\Set{I_\alpha}{\alpha \in I} \subset \Set{A \in \borel{I}}{\tau^{-1}(A) \in \mathcal{F}}
+					\Set{I_t}{t \in I} \subset \Set{A \in \borel{I}}{\tau^{-1}(A) \in \mathcal{F}}
 					\label{eq:stopping_time_mble}
 				\end{align}
-				が成り立ち，左辺の$I_\alpha$の形の全体は$\borel{I}$を生成するから$\tau$の可測性が証明された．
+				が従う．左辺は$\borel{I}$を生成するから$\tau$の可測性が得られる．
 				
-			\item[$I$が高々可算集合である場合]
-				先ず$\alpha \in I$に対して$\{ \tau < \alpha \}$が$\mathcal{F}_\alpha$に属することを示す．
-				$\alpha$に対して直前の元$\beta \in I$が存在するか$\alpha$が$I$の最小限である場合，前者なら$\{ \tau < \alpha \} = \{ \tau \leq \beta \}$
-				となり後者なら$\{ \tau < \alpha \} = \emptyset$となるからどちらも$\mathcal{F}_\alpha$に属する．
-				そうでない場合は$\alpha - 1/n < x < \alpha$を満たす点列$x_n \in I\ (n=1,2,3,\cdots)$を取れば，
-				$\{ \tau < \alpha \} = \cap_{n=1}^{\infty}\{ \tau \leq \alpha - 1/n \}$
-				により$\{ \tau < \alpha \} \in \mathcal{F}_\alpha$が判る．以上の準備の下で
-				任意の$\alpha \in I$に対して$\tau^{-1}(\{\alpha\}) = \{ \tau \leq \alpha \} - \{ \tau < \alpha \} \in \mathcal{F}_\alpha$が成り立ち，
-				更に可算集合$I$には離散位相が入っているから任意の$A \in \borel{I}$は
-				一点集合の可算和で表現できて，$\tau^{-1}(A) \in \mathcal{F}$であると証明された．		
+			\item[$I$が高々可算集合のとき]
+				先ず任意の$t \in I$に対して$\{ \tau < t \} \in \mathcal{F}_t$が成り立つことを示す．
+				任意に$t \in I$を取り固定する．$t$に対して直前の元$s \in I$が存在する場合は
+				$\{ \tau < t \} = \{ \tau \leq s \} \in \mathcal{F}_s \subset \mathcal{F}_t$となり，
+				$t$が$I$の最小限である場合は$\{ \tau < t \} = \emptyset \in \mathcal{F}_t$が成り立つ．
+				いずれでもない場合，$t - 1/n < x_n < t$を満たす点列$x_n \in I\ (n=1,2,3,\cdots)$を取れば，
+				$\{ \tau < t \} = \cup_{n=1}^{\infty}\{ \tau \leq x_n \} \in \mathcal{F}_t$が成り立つ．
+				以上より任意の$t \in I$に対して$\tau^{-1}(\{t\}) = \{ \tau \leq t \} \backslash \{ \tau < t \} \in \mathcal{F}_t$が満たされ，
+				任意の$A \in \borel{I}$は
+				一点集合の可算和で表現できるから$\tau^{-1}(A) \in \mathcal{F}$が従う．
+				\QED
 		\end{description}
-		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{dfn}[停止時刻の再定義]
-			今$\tau$の終集合は$I$であるが，$I \rightarrow \R$の恒等写像$i$を用いて$\tau^* \coloneqq i \circ \tau$とすれば，
+			恒等写像$i:I \rightarrow \R$を用いて$\tau^* \coloneqq i \circ \tau$とおけば，
 			\begin{align}
 				\borel{I}=\Set{A \cap I}{A \in \borel{\R}} = \Set{i^{-1}(A)}{A \in \borel{\R}}
 			\end{align}
-			により($i$が可測$\borel{I}/\borel{\R}$であるから)合成写像$\tau^*$は可測$\mathcal{F}/\borel{\R}$となる．以降は
-			この$\tau^*$を停止時刻$\tau$と表記して扱うことにする．
+			により合成写像$\tau^*$は可測$\mathcal{F}/\borel{\R}$となる．
+			この$\tau^*$を停止時刻として再定義する．
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	定数関数は停止時刻となる．$\tau$が$\Omega$上の定数関数なら$(\tau \leq \alpha)$は空集合か全体集合にしかならないからである．
-	また$\sigma,\tau$を$I$に値を取る停止時刻とすると
-	$\sigma \vee \tau$と$\sigma \wedge \tau$も停止時刻となる．実際
+	$\tau:\Omega \rightarrow \R$が定数関数なら$\{\tau \leq t\}\ (t \in I)$は
+	$\emptyset$又は$\Omega$であるから，定数関数は停止時刻である．
+	また$I$に値を取る停止時刻$\sigma,\tau$に対し
+	$\sigma \vee \tau$と$\sigma \wedge \tau$も停止時刻である．実際次が満たされる:
 	\begin{align}
 		\begin{cases}
-			\{ \sigma \wedge \tau \leq \alpha \} = \{ \sigma \leq \alpha \} \cup \{ \tau \leq \alpha \}, \\
-			\{ \sigma \vee \tau \leq \alpha \} = \{ \sigma \leq \alpha \} \cap \{ \tau \leq \alpha \}
+			\{ \sigma \wedge \tau \leq t \} = \{ \sigma \leq t \} \cup \{ \tau \leq t \}, \\
+			\{ \sigma \vee \tau \leq t \} = \{ \sigma \leq t \} \cap \{ \tau \leq t \}
 		\end{cases}
-		\quad ,(\forall \alpha \in I)
+		\quad ,(\forall t \in I).
 	\end{align}
-	が成り立つからである．
 	
-	\begin{itembox}[l]{}
-		\begin{dfn}[停止時刻の前に決まっている事象系]
-			$\tau$を$I$に値を取る停止時刻とする．$\tau$に対し次の集合系を定義する．
+	\begin{screen}
+		\begin{dfn}[停止時刻で定まる事象系]
+			$I$に値を取る停止時刻$\tau$に対し次の集合系を定義する:
 			\begin{align}
-				\mathcal{F}_\tau \coloneqq \Set{A \in \mathcal{F}}{\{ \tau \leq \alpha \} \cap A \in \mathcal{F}_\alpha,\ \forall \alpha \in I}.
+				\mathcal{F}_\tau \coloneqq \Set{A \in \mathcal{F}}{\{ \tau \leq t \} \cap A \in \mathcal{F}_t,\ \forall t \in I}.
 			\end{align}
 		\end{dfn}
-	\end{itembox}
-	\begin{itembox}[l]{}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{prp}[停止時刻の性質]
 			$I \subset \R$に値を取る停止時刻$\sigma, \tau$に対し次が成り立つ．
 			\begin{description}
 				\item[(1)] $\mathcal{F}_\tau$は$\sigma$-加法族である．
-				\item[(2)] 或る$\alpha \in I$に対して$\tau(\omega) = \alpha\ (\forall \omega \in \Omega)$なら$\mathcal{F}_\alpha = \mathcal{F}_\tau$.
+				\item[(2)] 或る$t \in I$に対して$\tau(\omega) = t\ (\forall \omega \in \Omega)$なら$\mathcal{F}_t = \mathcal{F}_\tau$.
 				\item[(3)] $\sigma(\omega) \leq \tau(\omega)\ (\forall \omega \in \Omega)$ならば$\mathcal{F}_\sigma \subset \mathcal{F}_\tau$.
 				\item[(4)] $\mathcal{F}_{\sigma \wedge \tau} = \mathcal{F}_\sigma \cap \mathcal{F}_\tau$.
 				\item[(5)] $\mathcal{F}_{\sigma \vee \tau} = \mathcal{F}_\sigma \vee \mathcal{F}_\tau$.
 			\end{description}
 			\label{prp:properties_of_stopping_times}
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(1)] 停止時刻の定義より$\Omega \in \mathcal{F}_\tau$である．また$A \in \mathcal{F}_\tau$なら
-				$A^c \cap \{ \tau \leq \alpha \} = \{ \tau \leq \alpha \} - A \cap \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha$より
-				$A^c \in \mathcal{F}_\tau$となる．可算個の$A_n \in \mathcal{F}_\tau$については
-				$\cup_{n=1}^{\infty} A_n \cap \{ \tau \leq \alpha \} = \cup_{n=1}^{\infty} \left( A_n \cap \{ \tau \leq \alpha \} \right) \in \mathcal{F}_\alpha$
-				により$\cup_{n=1}^{\infty} A_n \in \mathcal{F}_\tau$が成り立つ．
+			\item[(1)] 停止時刻の定義より$\Omega \in \mathcal{F}_\tau$が満たされる．
+				また$A \in \mathcal{F}_\tau$に対して
+				$A^c \cap \{ \tau \leq t \} = \{ \tau \leq t \} \backslash \left( A \cap \{ \tau \leq t \} \right) \in \mathcal{F}_t$が成り立つから
+				$A^c \in \mathcal{F}_\tau$も従う．そして可算個の$A_n \in \mathcal{F}_\tau$を取れば
+				$\cup_{n=1}^{\infty} A_n \cap \{ \tau \leq t \} = \cup_{n=1}^{\infty} \left( A_n \cap \{ \tau \leq t \} \right) \in \mathcal{F}_t$
+				が成り立つから$\mathcal{F}_{\tau}$は可算和でも閉じている．
 			
-			\item[(2)] $A \in \mathcal{F}_\alpha$なら任意の$\beta \in I$に対して
+			\item[(2)] 任意の$A \in \mathcal{F}_t$に対して
 				\begin{align}
-					A \cap \{ \tau \leq \beta \} =
+					A \cap \{ \tau \leq s \} =
 					\begin{cases}
-						A & \alpha \leq \beta \\
-						\emptyset & \alpha > \beta
+						A & t \leq s \\
+						\emptyset & t > s
 					\end{cases}
+					\quad (\forall s \in I)
 				\end{align}
-				が成り立つから，いずれの場合も$A \in \mathcal{F}_\beta$となり$A \subset \mathcal{F}_\tau$が成り立つ．
-				逆に$A \in \mathcal{F}_\tau$のとき，$A = A \cap \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha$
-				が成り立ち$\mathcal{F}_\alpha = \mathcal{F}_\tau$が示された．
+				が成り立つから$A \in \mathcal{F}_\tau$が従う．
+				逆に$A \in \mathcal{F}_\tau$に対しては$A = A \cap \{ \tau \leq t \} \in \mathcal{F}_t$
+				が成り立つ．
 				
-			\item[(3)] $A \in \mathcal{F}_\sigma$なら任意の$\alpha \in I$に対して
+			\item[(3)] 任意の$A \in \mathcal{F}_\sigma$に対して
 				\begin{align}
-					A \cap \{ \tau \leq \alpha \} = A \cap \{ \sigma \leq \alpha \} \cap \{ \tau \leq \alpha \} \in \mathcal{F}_\alpha
+					A \cap \{ \tau \leq t \} = A \cap \{ \sigma \leq t \} \cap \{ \tau \leq t \} \in \mathcal{F}_t 
+					\quad (\forall t \in I)
 				\end{align}
 				が成り立つから$A \in \mathcal{F}_\tau$となる．
 			
-			\item[(4)] $\sigma \wedge \tau$が停止時刻であることと(3)より
-				$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\sigma$と$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\tau$が判る．
-				また$A \in \mathcal{F}_\sigma \cap \mathcal{F}_\tau$に対し
+			\item[(4)] 先ず(3)より$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\sigma$と
+				$\mathcal{F}_{\sigma \wedge \tau} \subset \mathcal{F}_\tau$が従う．
+				一方任意の$A \in \mathcal{F}_\sigma \cap \mathcal{F}_\tau$に対し
 				\begin{align}
-					A \cap \{ \sigma \wedge \tau \leq \alpha \} 
-					= \left( A \cap \{ \sigma \leq \alpha \} \right) \cup \left( A \cap \{ \tau \leq \alpha \} \right) \in \mathcal{F}_\alpha \quad (\forall \alpha \in I)
+					A \cap \{ \sigma \wedge \tau \leq t \} 
+					= \left( A \cap \{ \sigma \leq t \} \right) \cup \left( A \cap \{ \tau \leq t \} \right) \in \mathcal{F}_t \quad (\forall t \in I)
 				\end{align}
-				より$A \in \mathcal{F}_{\sigma \wedge \tau}$も成り立つ．
+				が成り立つから$A \in \mathcal{F}_{\sigma \wedge \tau}$を得る．
 			
 			\item[(5)] 
-				先ず$\sigma \vee \tau$が停止時刻であることと(3)より
-				$\mathcal{F}_\sigma \subset \mathcal{F}_{\sigma \wedge \tau}$と$\mathcal{F}_\tau \subset \mathcal{F}_{\sigma \wedge \tau}$が判る．
-				逆に$A \in \mathcal{F}_{\sigma \wedge \tau}$に対して
+				先ず(3)より$\mathcal{F}_\sigma \subset \mathcal{F}_{\sigma \wedge \tau}$と$\mathcal{F}_\tau \subset \mathcal{F}_{\sigma \wedge \tau}$が従う．
+				一方$A \in \mathcal{F}_{\sigma \wedge \tau}$に対して
 				
 		\end{description}
 	\end{prf}
