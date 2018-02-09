@@ -1,0 +1,45 @@
+\chapter{山崎君講義メモ}
+	\begin{screen}
+		\begin{thm}[Yamazaki]
+			$a:[0,\infty) \rightarrow \R$を$a(0) = 0$を満たす連続写像，
+			$\kappa:[0,\infty) \rightarrow \R$を
+			\begin{align}
+				\kappa(0) = 0,\quad 
+				\int_0^1 \frac{1}{\kappa(u)}\ du = \infty
+			\end{align}
+			を満たす単調非減少関数とする．
+			$a,\kappa$が次を満たすとき，$a(t) = 0\ (\forall t \geq 0)$が成り立つ:
+			\begin{align}
+				|a(t) - a(s)| \leq \int_s^t \kappa(a(u))\ du
+				\quad (\forall t \geq s \geq 0).
+				\label{eq:thm_yamazaki_1}
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$A(t)\ (t \geq 0)$を$a$の$[0,t]$上の総変動とすれば
+		\footnote{
+			条件(\refeq{eq:thm_yamazaki_1})より$a$は任意の閉区間上で有界変動である．
+		}
+		，$t \longmapsto A(t)$は連続且つ非減少である．$A$により定めるStieltjes測度を$A$と表せば
+		単調族定理より
+		\begin{align}
+			dA \leq \kappa(a(t))\ dt
+		\end{align}
+		が成り立つ．特に
+		\begin{align}
+			a(t) = a(t) - a(0) \leq A(t) \quad (\forall t \geq 0)
+		\end{align}
+		が満たされる．今，任意に$T > 0$を取り固定する．任意の$\epsilon > 0$に対し
+		\begin{align}
+			&\int_{A(0)}^{A(T)} \frac{1}{\kappa(u) + \epsilon}\ du
+			= \int_0^T \frac{1}{\kappa(A(u)) + \epsilon}\ dA(u) \\
+			&\qquad \leq \int_0^T \frac{1}{\kappa(a(u)) + \epsilon}\ dA(u)
+			\leq \int_0^T \frac{1}{\kappa(a(u)) + \epsilon} \kappa(a(u))\ du
+			\leq T
+		\end{align}
+		が成り立つ．$A(T) > 0$の場合，左辺は単調収束定理より$\epsilon \longrightarrow +0$で発散するから，
+		不等式と整合性を保つためには$A(T) = 0$でなくてはならない．これより主張を得る．
+		\QED
+	\end{prf}
