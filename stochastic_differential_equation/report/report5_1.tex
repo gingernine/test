@@ -2,35 +2,34 @@
 	
 	$I$を$[0,\infty)$の部分集合として基礎に置フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_t)_{t \in I})$と表す．
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{dfn}[マルチンゲール]
-			フィルター付き確率空間$(\Omega,\mathcal{F},\mu,(\mathcal{F}_t)_{t \in I})$上の実確率変数の族
+			実確率変数の族
 			$(M_t)_{t \in I} \subset \semiLp{p}{\mathcal{F},\mu}\ (p \geq 1)$が
-			次の四条件を満たすとき，これを$\mathrm{L}^p$-劣マルチンゲール($\mathrm{L}^p$-submartingale)という．
+			次の四条件を満たすとき，これを$\mathrm{L}^p$-劣マルチンゲール($\mathrm{L}^p$-submartingale)と呼ぶ:
 			\begin{description}
 				\item[(M.1)] $\forall t \in I$に対し$M_t$は可測$\mathcal{F}_t/\borel{\R}$である．
-				\item[(M.2)] 任意の$s \leq t\ (s,t \in I)$に対し$\cexp{M_t}{\mathcal{F}_s} \geq M_s\ $({\scriptsize 同値類に対する順序関係})が成り立つ．
-				\item[(M.3)] 各$\omega \in \Omega$において，任意の$t \in I$で左極限が存在する：$\exists \lim\limits_{s \uparrow t} M_s(\omega) \in \R.$
-				\item[(M.4)] 各$\omega \in \Omega$において，任意の$t \in I$で右連続である：$M_t(\omega) = \lim\limits_{s \downarrow t} M_s(\omega).$
+				\item[(M.2)] 任意の$s \leq t\ (s,t \in I)$に対し$\cexp{M_t}{\mathcal{F}_s} \geq M_s$が成り立つ．
+				\item[(M.3)] 任意の$\omega \in \Omega$に対し，各点$t \in I$で左極限が存在する：$\exists \lim\limits_{s \uparrow t} M_s(\omega) \in \R.$
+				\item[(M.4)] 任意の$\omega \in \Omega$に対し，各点$t \in I$で右連続である：$M_t(\omega) = \lim\limits_{s \downarrow t} M_s(\omega).$
 			\end{description}
-			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_t)_{t \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)といい，
-			劣かつ優マルチンゲールであるものをマルチンゲールという．
+			条件(M.2)の不等号が逆向き''$\leq$''の場合，$(M_t)_{t \in I}$を$\mathrm{L}^p$-優マルチンゲール($\mathrm{L}^p$-supermartingale)と呼び，
+			劣かつ優マルチンゲールであるものをマルチンゲールと呼ぶ．
 			\label{dfn:martingale}
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	$\tau$を停止時刻，$(M_t)_{t \in I}$を実確率変数の族とする．$\tau(\Omega)$が高々可算集合である場合，
-	$t$に関する停止時刻との合成関数は
+	$\tau$を停止時刻，$(M_t)_{t \in I}$を実確率変数の族とする．$\tau(\Omega)$が高々可算集合である場合
 	\begin{align}
 		M_\tau = \sum_{t \in \tau(\Omega)}M_t \defunc_{\{\, \tau = t\, \}}
 	\end{align}
-	と表される．全ての$t \in \tau(\Omega)$について$M_t$が可測$\mathcal{F}_t/\borel{\R}$であるなら
-	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$である．なぜならば任意の$t \in I$と$A \in \borel{\R}$に対して
+	と表現できる．このとき全ての$t \in \tau(\Omega)$について$M_t$が可測$\mathcal{F}_t/\borel{\R}$であるなら，
+	$M_\tau$は可測$\mathcal{F}_\tau/\borel{\R}$である．実際任意の$t \in I$と$A \in \borel{\R}$に対して
+	次が成り立つ:
 	\begin{align}
 		\{\, M_\tau \in A\, \} \cap \{\, \tau \leq t\, \}
 		= \bigcup_{\substack{s \in \tau(\Omega) \\ s \leq t}}\{\, M_s \in A\, \} \cap \{\, \tau = s\, \} \in \mathcal{F}_t 
 	\end{align}
-	が成り立つからである．$M_\tau$の可測性を確認したところで次の定理を証明する．
 	
 	\begin{itembox}[l]{}
 		\begin{thm}[任意抽出定理(1)]
