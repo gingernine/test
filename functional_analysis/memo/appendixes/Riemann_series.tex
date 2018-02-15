@@ -1,0 +1,168 @@
+\chapter{Riemannの級数定理}
+	複素数列$(a_n)_{n=1}^{\infty}$に対し，
+	$\N$から$\N$への全単射$\varphi$を用いて
+	\begin{align}
+		a'_n \coloneqq a_{\varphi(n)} \quad (n=1,2,\cdots)
+	\end{align}
+	により定める数列$\left( a'_n \right)_{n=1}^{\infty}$を
+	$(a_n)_{n=1}^{\infty}$の並び替え(rearrangement)という．
+	
+	\begin{screen}
+		\begin{thm}[Riemannの級数定理]
+			$(\alpha_n)_{n=1}^{\infty}$を実数列とする．
+			$\sum_{n=1}^{\infty} \alpha_n$が条件収束するとき，
+			任意の実数$\beta \in \R$に対して$(\alpha_n)_{n=1}^{\infty}$の
+			或る並び替え$(\alpha'_n)_{n=1}^{\infty}$が存在し$\beta = \sum_{n=1}^{\infty} \alpha'_n$を満たす．
+			\label{thm:Riemann_series}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			p_n \coloneqq \frac{|\alpha_n| + \alpha_n}{2},
+			\quad q_n \coloneqq \frac{|\alpha_n| - \alpha_n}{2}
+			\quad (n=1,2,\cdots)
+		\end{align}
+		とおけば，$(p_n)_{n=1}^{\infty},(q_n)_{n=1}^{\infty}$は全て非負項で構成され，仮定より
+		\begin{align}
+			p_n \longrightarrow 0,
+			\quad q_n \longrightarrow 0,
+			\quad \sum_{n=1}^{\infty} p_n = \infty,
+			\quad \sum_{n=1}^{\infty} q_n = \infty
+		\end{align}
+		が成り立つ．実際$\alpha_n \longrightarrow 0$により$p_n,q_n \longrightarrow 0$が満たされ，また
+		$\sum_{n=1}^{\infty} p_n$か$\sum_{n=1}^{\infty} q_n$の一方が収束すると
+		\begin{align}
+			\sum_{n=1}^N \alpha_n = \sum_{n=1}^N p_n - \sum_{n=1}^N q_n
+			\quad (\forall N \in \N)
+		\end{align}
+		よりもう一方の級数も収束するから，
+		$\infty = \sum_{n=1}^{\infty} |\alpha_n| = \sum_{n=1}^{\infty} (p_n + q_n) < \infty$が従い矛盾が生じる．
+		$\alpha_n\ (n=1,2,\cdots)$から添数の順に非負項を取り出し，取り出した順番に並べて$(P_n)_{n=1}^{\infty}$とおく．
+		同様に負値の項を取り出しその絶対値の列を$(Q_n)_{n=1}^{\infty}$とおく．このとき$(P_n)_{n=1}^{\infty},(Q_n)_{n=1}^{\infty}$はそれぞれ
+		$(p_n)_{n=1}^{\infty},(q_n)_{n=1}^{\infty}$と0の項を除いて一致するから
+		\begin{align}
+			P_n \longrightarrow 0,
+			\quad Q_n \longrightarrow 0,
+			\quad \sum_{n=1}^{\infty} P_n = \infty,
+			\quad \sum_{n=1}^{\infty} Q_n = \infty
+			\label{eq:thm_riemann_series_1}
+		\end{align}
+		が満たされる．今，任意に$\beta \in \R$を取り，
+		\begin{align}
+			P_1 + P_2 + \cdots + P_m > \beta
+		\end{align}
+		を満たす最小の$m$を$s_1$と決める．次に
+		\begin{align}
+			P_1 + \cdots + P_{s_1} - Q_1 - Q_2 - \cdots - Q_m < \beta
+		\end{align}
+		を満たす最小の$m$を$u_1$と決める．始めの要領で
+		\begin{align}
+			P_1 + \cdots + P_{s_1} - Q_1 - \cdots - Q_{u_1}
+			+ P_{s_1 + 1} + \cdots + P_m > \beta
+		\end{align}
+		を満たす最小の$m$を$s_2$とし，
+		\begin{align}
+			P_1 + \cdots + P_{s_1} - Q_1 - \cdots - Q_{u_1}
+			+ P_{s_1 + 1} + \cdots + P_{s_2} - Q_{u_1 + 1} - \cdots - Q_m < \beta
+		\end{align}
+		を満たす最小の$m$を$u_2$とする．(\refeq{eq:thm_riemann_series_1})より正項級数$\sum_{n=1}^{\infty} P_n,\ \sum_{n=1}^{\infty} Q_n$が発散するから
+		この操作は可能であり，
+		同様の操作を繰り返して$(s_n)_{n=1}^{\infty},(u_n)_{n=1}^{\infty}$を構成すれば
+		$(\alpha_n)_{n=1}^{\infty}$の並び替え$P_1,\cdots,P_{s_1},Q_1,\cdots,Q_{u_1},P_{s_1+1},\cdots,P_{s_2},Q_{u_1+1},\cdots$を得る．
+		この並び替えの部分和を$A_n\ (n=1,2,\cdots)$と表す．
+		(\refeq{eq:thm_riemann_series_1})より任意の$\epsilon > 0$に対し或る$K \in \N$が存在して
+		\begin{align}
+			P_m,\ Q_m < \epsilon
+			\quad ( \forall m \geq s_K + u_K )
+		\end{align}
+		を満たすから，$s_k \leq n < u_k\ (k > K)$なら
+		\begin{align}
+			A_n \geq \beta,
+			\quad A_n - Q_{u_k} < \beta
+		\end{align}
+		より
+		\begin{align}
+			0 \leq A_n - \beta < Q_{u_k} < \epsilon
+		\end{align}
+		が成立し，或は$u_k \leq n < s_{k+1}\ (k \geq K)$なら
+		\begin{align}
+			A_n \leq \beta,
+			\quad A_n + P_{s_{k+1}} > \beta
+		\end{align}
+		より
+		\begin{align}
+			0 \leq \beta - A_n < P_{s_{k+1}} < \epsilon
+		\end{align}
+		が成立するから，いずれの場合も
+		\begin{align}
+			|A_n - \beta| < \epsilon \quad ( \forall n \geq s_K + u_K )
+		\end{align}
+		が満たされ，$\epsilon > 0$の任意性より定理の主張が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{cor}[絶対収束と無条件収束は同値]
+			任意の複素数列$(a_n)_{n=1}^{\infty}$に対し次は同値である:
+			\begin{description}
+				\item[(1)] $\sum_{n=1}^{\infty} |a_n| < \infty$.
+				\item[(2)] 任意の全単射$\varphi:\N \rightarrow \N$に対し$\sum_{n=1}^{\infty} a_{\varphi(n)} = \sum_{n=1}^{\infty} a_n \in \C$.
+			\end{description}
+		\end{cor}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1) $\Rightarrow$ (2)]
+				$\sum_{n=1}^{\infty} |a_n| < \infty$が満たされている場合，任意の$N \in \N$に対し
+				\begin{align}
+					\left| \sum_{n=p}^{q} a_n \right| \leq \sum_{n=p}^{q} |a_n| \longrightarrow 0
+					\quad (p,q \longrightarrow \infty)
+				\end{align}
+				より$\sum_{n=1}^{\infty} a_n$は収束する．また$\varphi:\N \rightarrow \N$を全単射とすれば，
+				任意の$N \in \N$に対し或る$N' \in \N$が存在して
+				\begin{align}
+					\sum_{n=1}^{N} \left| a_{\varphi(n)} \right|
+					\leq \sum_{n=1}^{N'} \left| a_n \right|
+					\leq \sum_{n=1}^{\infty} \left| a_n \right|
+				\end{align}
+				が成り立つから$\sum_{n=1}^{\infty} \left| a_{\varphi(n)} \right|$及び$\sum_{n=1}^{\infty} a_{\varphi(n)}$も収束する．
+				任意に$\epsilon > 0$を取れば，或る$N \in \N$が存在して
+				\begin{align}
+					\sum_{n=p}^{q} |a_n| < \epsilon
+					\quad (p,q > N)
+				\end{align}
+				を満たすから，$\{1,\cdots,N\} \subset \{\varphi(1),\cdots,\varphi(K)\}$を満たす$K \in \N\ (K > N)$が存在して
+				\begin{align}
+					\left| \sum_{n=1}^{K} a_n - \sum_{n=1}^{K} a_{\varphi(n)} \right|
+					\leq \left| \sum_{n=N+1}^K a_n \right| + \left| \sum_{n \in \{\varphi(1),\cdots,\varphi(K)\} \backslash \{1,\cdots,N\}} a_n \right|
+					< 2 \epsilon
+				\end{align}
+				が成立し，
+				\begin{align}
+					\left| \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{\infty} a_{\varphi(n)} \right|
+					\leq \left| \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{K} a_n \right|
+						+ \left| \sum_{n=1}^{K} a_n - \sum_{n=1}^{K} a_{\varphi(n)} \right|
+						+ \left| \sum_{n=1}^{K} a_{\varphi(n)} - \sum_{n=1}^{\infty} a_{\varphi(n)} \right|
+					\longrightarrow 0
+					\quad (K \longrightarrow \infty)
+				\end{align}
+				が従う．
+				
+			\item[(2) $\Rightarrow$ (1)]
+				任意の$a_n$に対し或る$\alpha_n,\beta_n \in \R$が存在して$a_n = \alpha_n + i \beta_n$と表せる．
+				仮定より任意の$\varphi$に対し
+				\begin{align}
+					\sum_{n=1}^{\infty} \alpha_{\varphi(n)} = \sum_{n=1}^{\infty} \alpha_n,
+					\quad \sum_{n=1}^{\infty} \beta_{\varphi(n)} = \sum_{n=1}^{\infty} \beta_n
+				\end{align}
+				が満たされているから，定理\ref{thm:Riemann_series}より
+				\begin{align}
+					\sum_{n=1}^\infty |a_n| \leq \sum_{n=1}^{\infty} |\alpha_n| + \sum_{n=1}^{\infty} |\beta_n| < \infty
+				\end{align}
+				が従い(1)が出る．
+				\QED
+				
+		\end{description}
+	\end{prf}
