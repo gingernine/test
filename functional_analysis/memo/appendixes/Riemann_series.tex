@@ -1,4 +1,5 @@
-\chapter{Riemannの級数定理}
+\chapter{Riemannの級数定理\label{chap:Riemann_series}}
+
 	複素数列$(a_n)_{n=1}^{\infty}$に対し，
 	$\N$から$\N$への全単射$\varphi$を用いて
 	\begin{align}
@@ -79,20 +80,20 @@
 		を満たすから，$s_k \leq n < u_k\ (k > K)$なら
 		\begin{align}
 			A_n \geq \beta,
-			\quad A_n - Q_{u_k} < \beta
+			\quad A_n - P_{s_k} \leq \beta
 		\end{align}
 		より
 		\begin{align}
-			0 \leq A_n - \beta < Q_{u_k} < \epsilon
+			0 \leq A_n - \beta \leq P_{s_k} < \epsilon
 		\end{align}
 		が成立し，或は$u_k \leq n < s_{k+1}\ (k \geq K)$なら
 		\begin{align}
 			A_n \leq \beta,
-			\quad A_n + P_{s_{k+1}} > \beta
+			\quad A_n + Q_{u_k} \geq \beta
 		\end{align}
 		より
 		\begin{align}
-			0 \leq \beta - A_n < P_{s_{k+1}} < \epsilon
+			0 \leq \beta - A_n \leq Q_{u_k} < \epsilon
 		\end{align}
 		が成立するから，いずれの場合も
 		\begin{align}
@@ -109,37 +110,33 @@
 				\item[(1)] $\sum_{n=1}^{\infty} |a_n| < \infty$.
 				\item[(2)] 任意の全単射$\varphi:\N \rightarrow \N$に対し$\sum_{n=1}^{\infty} a_{\varphi(n)} = \sum_{n=1}^{\infty} a_n \in \C$.
 			\end{description}
+			\label{cor:Riemann_series}
 		\end{cor}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(1) $\Rightarrow$ (2)]
-				$\sum_{n=1}^{\infty} |a_n| < \infty$が満たされている場合，任意の$N \in \N$に対し
-				\begin{align}
-					\left| \sum_{n=p}^{q} a_n \right| \leq \sum_{n=p}^{q} |a_n| \longrightarrow 0
-					\quad (p,q \longrightarrow \infty)
-				\end{align}
-				より$\sum_{n=1}^{\infty} a_n$は収束する．また$\varphi:\N \rightarrow \N$を全単射とすれば，
-				任意の$N \in \N$に対し或る$N' \in \N$が存在して
+				$\varphi:\N \rightarrow \N$を任意の全単射とする．
+				任意の$N \in \N$に対し$N' \coloneqq \max{1 \leq n \leq N}{\varphi(n)}$とおけば
 				\begin{align}
 					\sum_{n=1}^{N} \left| a_{\varphi(n)} \right|
 					\leq \sum_{n=1}^{N'} \left| a_n \right|
 					\leq \sum_{n=1}^{\infty} \left| a_n \right|
 				\end{align}
-				が成り立つから$\sum_{n=1}^{\infty} \left| a_{\varphi(n)} \right|$及び$\sum_{n=1}^{\infty} a_{\varphi(n)}$も収束する．
-				任意に$\epsilon > 0$を取れば，或る$N \in \N$が存在して
+				より$\sum_{n=1}^{\infty} a_{\varphi(n)}$は収束する．
+				従って任意の$\epsilon > 0$に対し或る$N \in \N$が存在して
 				\begin{align}
 					\sum_{n=p}^{q} |a_n| < \epsilon
-					\quad (p,q > N)
+					\quad (\forall p,q > N)
 				\end{align}
-				を満たすから，$\{1,\cdots,N\} \subset \{\varphi(1),\cdots,\varphi(K)\}$を満たす$K \in \N\ (K > N)$が存在して
+				が成り立つから，$\{1,\cdots,N\} \subset \{\varphi(1),\cdots,\varphi(K)\}$を満たす$K \in \N\ (K > N)$を取れば
 				\begin{align}
 					\left| \sum_{n=1}^{K} a_n - \sum_{n=1}^{K} a_{\varphi(n)} \right|
 					\leq \left| \sum_{n=N+1}^K a_n \right| + \left| \sum_{n \in \{\varphi(1),\cdots,\varphi(K)\} \backslash \{1,\cdots,N\}} a_n \right|
 					< 2 \epsilon
 				\end{align}
-				が成立し，
+				となり
 				\begin{align}
 					\left| \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{\infty} a_{\varphi(n)} \right|
 					\leq \left| \sum_{n=1}^{\infty} a_n - \sum_{n=1}^{K} a_n \right|
@@ -157,7 +154,7 @@
 					\sum_{n=1}^{\infty} \alpha_{\varphi(n)} = \sum_{n=1}^{\infty} \alpha_n,
 					\quad \sum_{n=1}^{\infty} \beta_{\varphi(n)} = \sum_{n=1}^{\infty} \beta_n
 				\end{align}
-				が満たされているから，定理\ref{thm:Riemann_series}より
+				が満たされているから，定理\ref{thm:Riemann_series}の対偶により
 				\begin{align}
 					\sum_{n=1}^\infty |a_n| \leq \sum_{n=1}^{\infty} |\alpha_n| + \sum_{n=1}^{\infty} |\beta_n| < \infty
 				\end{align}

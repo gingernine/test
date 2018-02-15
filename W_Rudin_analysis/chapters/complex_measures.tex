@@ -4,119 +4,115 @@
 		\begin{dfn}[複素測度]
 			$(X,\mathcal{M})$を可測空間とする．
 			$\lambda: \mathcal{M} \rightarrow \C$が
-			任意の互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$と
-			$E \coloneqq \sum_{i=1}^{\infty} E_i$に対して
+			任意の互いに素な列$(E_i)_{i=1}^{\infty} \subset \mathcal{M}$に対し
 			\begin{align}
-				\lambda(E) = \sum_{i=1}^{\infty} \lambda(E_i)
+				\lambda\biggl( \sum_{i=1}^{\infty} E_i \biggr) = \sum_{i=1}^{\infty} \lambda(E_i)
 				\label{eq:dfn_complex_measure}
 			\end{align}
 			を満たすとき，$\lambda$を複素測度(complex measure)という．
 		\end{dfn}
 	\end{screen}
 	
-	$\lambda$は複素数値であるから任意の$E \in \mathcal{M}$に対して
-	$|\lambda(E)| < \infty$を満たす．
-	従って(\refeq{eq:dfn_complex_measure})において右辺の級数は収束していなくてはならない．
-	$\sigma:\N \rightarrow \N$を任意の並び替え
-	\footnote{
-		$\sigma$は$\N$から$\N$への全単射である．
-	}とすれば
+	任意の全単射$\sigma:\N \rightarrow \N$に対し
 	\begin{align}
-		E = \sum_{i=1}^{\infty}E_{\sigma(i)}
+		\sum_{i=1}^{\infty}E_i = \sum_{i=1}^{\infty}E_{\sigma(i)}
 	\end{align}
-	が成り立つから
+	が成り立つから(\refeq{eq:dfn_complex_measure})より
 	\begin{align}
-		\lambda(E) = \sum_{i=1}^{\infty} \lambda(E_{\sigma(i)})
+		\sum_{i=1}^{\infty} \lambda(E_i) = \sum_{i=1}^{\infty} \lambda(E_{\sigma(i)})
 	\end{align}
-	を得る．従って複素数列$\left( \lambda(E_i) \right)_{i=1}^{\infty}$
-	は無条件に$\lambda(E)$に収束し，Riemannの級数定理より
-	$\left( \lambda(E_i) \right)_{i=1}^{\infty}$は絶対収束する:
-	\begin{align}
-		\sum_{i=1}^{\infty} |\lambda(E_i)| < \infty.
-	\end{align}
-	今，$\lambda$を支配するような或る$\mathcal{M}$上の測度$\mu$，つまり
+	が従い，
+	Riemannの級数定理の系\ref{cor:Riemann_series}より
+	$\sum_{i=1}^{\infty} \lambda(E_i)$は絶対収束する．
+	今，$\lambda$を支配する，つまり
 	\begin{align}
 		|\lambda(E)| \leq \mu(E) \quad (\forall E \in \mathcal{M})
 		\label{radon_nikodym_1}
 	\end{align}
-	を満たすものを，できるだけ小さいものとして取ろうと考える
+	を満たす$(X,\mathcal{M})$上の或る測度$\mu$を，できるだけ小さいものとして取ろうと考える
 	\footnote{
 		つまり(\refeq{radon_nikodym_1})を満たす$\mu$のうちから，
 		同様に(\refeq{radon_nikodym_1})を満たす任意の測度$\mu'$に対し
 		\begin{align}
 			\mu(E) \leq \mu'(E) \quad (\forall E \in \mathcal{M})
 		\end{align}
-		を満たすものを選べるかどうかを考える．
+		を満たすものが存在するかどうかを考える．
 	}．
-	このような$\mu$は次を満たすことになる:
+	このような$\mu$は次を満たす:
 	\begin{align}
-		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) = \mu(E).
+		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) 
+		= \mu \biggl( \sum_{i=1}^{\infty} E_i \biggr).
 	\end{align}
-	ゆえに
+	ゆえに，任意の$E \in \mathcal{M}$に対し，
+	$E \coloneqq \sum_{i=1}^{\infty} E_i$を満たすあらゆる分割に対する上限を取れば
 	\begin{align}
-		\mu(E) \geq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} 
+		\sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} 
+		\leq \mu(E)
 		\label{radon_nikodym_2}
 	\end{align}
-	でなくてはならず(上限は$E$のあらゆる分割$E = \sum_{i}E_i$に対して取るものである)，
-	ここで$\mathcal{M}$上の関数を
+	が成立する．この場合(\refeq{radon_nikodym_1})を満たす最小の測度は
 	\begin{align}
 		|\lambda|(E) \coloneqq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} \quad (\forall E \in \mathcal{M})
 		\label{radon_nikodym_3}
 	\end{align}
-	として定義してみれば，$E$自体が$E$の一つの分割であるから(\refeq{radon_nikodym_3})より$|\lambda|$は$\lambda$を支配し，
-	更に，後述することであるが，$|\lambda|$は$\mathcal{M}$上の測度でもあり(\refeq{radon_nikodym_2})と併せて当座の問題の解となる．
+	で定まる．
+	実際，$E$自体が$E$の分割であるから$|\lambda|$は$\lambda$を支配し，
+	また$|\lambda|$は$(X,\mathcal{M})$上の測度である(定理\ref{thm:total_variation_measure})．
 	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{dfn}[総変動・総変動測度]
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，(\refeq{radon_nikodym_3})で定めた
-			$|\lambda|:\mathcal{M} \longrightarrow [0,\infty)$を
-			$\lambda$の総変動測度(total variation measure)といい，$|\lambda|(X)$を
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，(\refeq{radon_nikodym_3})で定める
+			$|\lambda|$を$\lambda$の総変動測度(total variation measure)といい，$|\lambda|(X)$を
 			$\lambda$の総変動(total variation)という．
-			特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．\footnotemark
 		\end{dfn}
-	\end{itembox}
-	\footnotetext{
-		複素測度の虚部が0であるものとして考えれば$0 \leq \lambda(E) \leq \lambda(X) < \infty\ (\forall E \in \mathcal{M})$が成り立つ．
-		また実際任意の$E \in \mathcal{M}$とその分割$(E_i)_{i=1}^{\infty}$に対して
-		\begin{align}
-			|\lambda|(E) = \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} = \sup{}{\sum_{i=1}^{\infty} \lambda(E_i)} = \sup{}{\lambda(E)} = \lambda(E)
-		\end{align}
-		が成り立つ．
-	}
-	
+	\end{screen}
+	特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．実際，
+	複素測度の虚部が0であるものとして考えれば
+	\begin{align}
+		0 \leq \lambda(E) \leq \lambda(X) < \infty
+		\quad (\forall E \in \mathcal{M})
+	\end{align}
+	が成り立ち，また任意の$E \in \mathcal{M}$とその分割$(E_i)_{i=1}^{\infty}$に対して
+	\begin{align}
+		|\lambda|(E) = \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} = \sup{}{\sum_{i=1}^{\infty} \lambda(E_i)} = \sup{}{\lambda(E)} = \lambda(E)
+	\end{align}
+	が満たされる．
 	以降で$|\lambda|$の性質
 	\begin{description}
-		\item[(1)] $|\lambda|$は測度である．
+		\item[(1)] $|\lambda|$は$(X,\mathcal{M})$上の測度である．
 		\item[(2)] $|\lambda|(X) < \infty$が成り立つ．
 	\end{description}
-	を証明する．特に(2)により任意の$E \in \mathcal{M}$に対し
+	を証明する．特に(2)より
 	\begin{align}
 		|\lambda(E)| \leq |\lambda|(E) \leq |\lambda|(X) < \infty
+		\quad (\forall E \in \mathcal{M})
 	\end{align}
-	が従うから，複素測度は有界であると判明する．
+	が従い複素測度の有界性が出る．
 
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{thm}[$|\lambda|$は測度]
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対して，(\refeq{radon_nikodym_3})で定義する$|\lambda|$は測度である．
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対して，
+			(\refeq{radon_nikodym_3})で定める$|\lambda|$は測度である．
+			\label{thm:total_variation_measure}
 		\end{thm}
-	\end{itembox}
+	\end{screen}
 	
 	\begin{prf}
-		(\refeq{radon_nikodym_3})により$|\lambda|$は正値であるから，以下では$|\lambda|$の完全加法性を示す．
-		任意に$\epsilon > 0$とどの二つも互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$を取る．
-		示すことは$E \coloneqq \sum_{i=1}^{\infty} E_i$に対して
+		(\refeq{radon_nikodym_3})より$|\lambda|$の正値性は出ているから，
+		以下では$|\lambda|$の完全加法性を示す．
+		互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$を取り
+		$E \coloneqq \sum_{i=1}^{\infty} E_i$とおく．
+		(\refeq{radon_nikodym_3})により，任意の$\epsilon > 0$に対して
+		$E_i$の或る分割$(A_{ij})_{j=1}^{\infty} \subset \mathcal{M}$が存在して
 		\begin{align}
-			|\lambda|(E) = \sum_{i=1}^{\infty} |\lambda|(E_i)
+			|\lambda|(E_i) \geq \sum_{j=1}^{\infty} |\lambda(A_{ij})| 
+			> |\lambda|(E_i) - \frac{\epsilon}{2^i}
 		\end{align}
-		が成り立つことである．(\refeq{radon_nikodym_3})により$E_i$の分割$(A_{ij})_{j=1}^{\infty} \subset \mathcal{M}$を
-		\begin{align}
-			|\lambda|(E_i) \geq \sum_{j=1}^{\infty} |\lambda(A_{ij})| > |\lambda|(E_i) - \epsilon/2^i
-		\end{align}
-		を満たすように取ることができる．また$E = \sum_{i,j=1}^{\infty} A_{ij}$でもあるから
+		を満たすから，$E = \sum_{i,j=1}^{\infty} A_{ij}$と併せて
 		\begin{align}
 			|\lambda|(E) \geq \sum_{i,j=1}^{\infty} |\lambda(A_{ij})| \geq \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} |\lambda(A_{ij})| > \sum_{i=1}^{\infty} |\lambda|(E_i) - \epsilon
 		\end{align}
-		が成り立つ．$\epsilon > 0$は任意であるから
+		が成り立ち，$\epsilon > 0$の任意性より
 		\begin{align}
 			|\lambda|(E) \geq \sum_{j=1}^{\infty} |\lambda|(E_j)
 		\end{align}
