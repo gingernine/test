@@ -4,13 +4,16 @@
 	$I$が$\R$の区間の場合は相対位相，$I$が高々可算集合の場合は離散位相を導入する．
 	また扱う確率変数は全て実数値とする．
 	\begin{screen}
-		\begin{dfn}[フィルトレーション]
+		\begin{dfn}[フィルトレーション・適合過程]
 			$\mathcal{F}$の部分$\sigma$-加法族の系$\Set{\mathcal{F}_t}{t \in I}$
 			が次を満たすとき，これをフィルトレーション(filtration)と呼ぶ:
 			\begin{align}
 				\mathcal{F}_s \subset \mathcal{F}_t
 				\quad (\forall s \leq t,\ s,t \in I).
 			\end{align}
+			また位相空間$S$に対し，$t \in I$ごとに
+			$\Omega \ni \omega \longmapsto X(t,\omega) \in S$が$\mathcal{F}_t/\borel{S}$-可測性を満たすとき，
+			$X:I \times \Omega \rightarrow S$を($(\mathcal{F}_t)$-)適合過程(adapted process)と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -293,10 +296,8 @@
 
 	\begin{screen}
 		\begin{thm}[閉集合と停止時刻]
-			$I = [0,T] \subset \R$，$(E,\rho)$を距離空間，$(X_t)_{t \in I}$を$E$値確率変数の族とし，
-			$\mathcal{F}_0$が$\mu$-零集合を全て含んでいると仮定する．
-			$\mu$-零集合$N$を除いて$I \ni t \longmapsto X_t(\omega)$が右連続で，
-			かつ$(X_t)_{t \in I}$が$(\mathcal{F}_t)$-適合であるなら，任意の閉集合$F \subset E$に対し
+			$I = [0,T]$，$(E,\rho)$を距離空間とし，$X:I \times \Omega \rightarrow E$を適合過程とする．
+			或る$N \in \mathcal{F}_0$を除いて$I \ni t \longmapsto X_t(\omega)$が右連続なら，任意の閉集合$F \subset E$に対し
 			\begin{align}
 				\tau(\omega) \coloneqq
 				\begin{cases}
@@ -304,12 +305,12 @@
 					\inf{}{\Set{t \in I}{X_t(\omega) \in F}} \wedge T & (\omega \in \Omega \backslash N) \footnotemark
 				\end{cases}
 			\end{align}
-			として$\tau:\Omega \rightarrow \R$を定めれば$\tau$は停止時刻となる．
-			また$N'\ (N \subset N')$を除いて$I \ni t \longmapsto X_t(\omega)$が連続であるなら
+			により定める$\tau:\Omega \rightarrow \R$は停止時刻である．
+			また$I \ni t \longmapsto X_t(\omega)$が連続となる$\omega$に対して
 			\begin{align}
-				X_{t \wedge \tau(\omega)}(\omega) \in \{ X_0(\omega) \} \cup F^{ic} \quad (\forall \omega \in N',\ t \in I)
+				X_{t \wedge \tau(\omega)}(\omega) \in \{ X_0(\omega) \} \cup F^{ic} \quad (\forall t \in I)
 			\end{align}
-			が成り立つ．ただし$F^i$は$F$の内核を表し$F^{ic}$は$F^i$の補集合を表す．
+			が満たされる．ただし$F^i$は$F$の内核を表し$F^{ic}$は$F^i$の補集合を表す．
 			\label{thm:closed_set_stopping_time}
 		\end{thm}
 	\end{screen}
