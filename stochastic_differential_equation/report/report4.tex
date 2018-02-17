@@ -241,44 +241,51 @@
 	
 	\begin{screen}
 		\begin{thm}[停止時刻との合成写像の可測性]
-			$I = [0,T]$，フィルトレーションを$(\mathcal{F}_t)_{t \in I}$，$\tau$を停止時刻とし，
-			$M$を$I \times \Omega$上の$\R$値関数とする．全ての$\omega \in \Omega$に対し
-			$I \ni t \longmapsto M(t,\omega)$が右連続でかつ$(\mathcal{F}_t)$-適合ならば，
-			写像$\omega \longmapsto M(\tau(\omega),\omega)$は可測$\mathcal{F}_\tau/\borel{\R}$となる．
+			$I = [0,T]$，フィルトレーションを$(\mathcal{F}_t)_{t \in I}$，$\tau$を停止時刻とする．
+			$M:I \times \Omega \rightarrow \R$が$(\mathcal{F}_t)$-適合で，かつ全ての$\omega \in \Omega$に対し
+			$I \ni t \longmapsto M(t,\omega)$が右連続ならば，
+			写像$\Omega \ni \omega \longmapsto M(\tau(\omega),\omega)$は可測$\mathcal{F}_\tau/\borel{\R}$である．
 			\label{thm:measurability_of_stopping_time}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		任意に$t \in I$を取り$t_j^n \coloneqq jt/2^n\ (j=0,1,\cdots,2^n,\ n=1,2,\cdots)$とおくと，
-		右連続性により任意の$s \in [0,t]$に対して
+		任意に$t \in I$を取り固定する．各$n \in \N$に対し$t_j^n \coloneqq jt/2^n\ (j=0,1,\cdots,2^n)$とおき
 		\begin{align}
-			M(s,\omega) = \lim_{n \to \infty} \sum_{j=1}^{2^n} M_{t_j^n}(\omega) \defunc_{(t_{j-1}^n,t_j^n]}(s) + M_0(\omega) \defunc_{\{0\}}(s) \quad (\omega \in \Omega)
+			\tilde{M} \coloneqq M|_{[0,t] \times \Omega},
+			\quad \tilde{M}^{n} \coloneqq \defunc_{\{0\}} M_0 + \sum_{j=1}^{2^n} \defunc_{(t_{j-1}^n,t_j^n]} M_{t_j^n}
+		\end{align}
+		として$\tilde{M},\tilde{M}^n:[0,t] \times \Omega \rightarrow \R$を定める．
+		$\tilde{M}^n$は可測$\borel{[0,t]} \times \mathcal{F}_t/\borel{\R}$であり，
+		右連続性により
+		\begin{align}
+			\tilde{M}(s,\omega) = \lim_{n \to \infty} \tilde{M}^n(s,\omega) \quad
+			\quad \left( \forall (s, \omega) \in [0,t] \times \Omega \right)
 			\label{eq:stopping_time_measurability}
 		\end{align}
-		が成り立つ．右辺は各$n$で可測$\borel{[0,t]} \times \mathcal{F}_t/\borel{\R}$であるから
-		$M$も可測$\borel{[0,t]} \times \mathcal{F}_t/\borel{\R}$となる．($t$の任意性から$M$は$(\mathcal{F}_t)$-発展的可測である．)
-		一方停止時刻$\tau$について，$\tau \wedge t$が可測$\mathcal{F}_t/\borel{\R}$であるから
+		が成り立つから$\tilde{M}$は可測$\borel{[0,t]} \times \mathcal{F}_t/\borel{\R}$である．
+		一方で$\tau \wedge t$が可測$\mathcal{F}_t/\borel{\R}$であるから
 		\begin{align}
 			\Omega \ni \omega \longmapsto (\tau(\omega) \wedge t, \omega) \in [0,t] \times \Omega
 		\end{align}
-		は可測$\mathcal{F}_t/\borel{[0,t]} \times \mathcal{F}_t$である．従って合成写像
+		は可測$\mathcal{F}_t/\borel{[0,t]} \times \mathcal{F}_t$であり，合成写像
 		\begin{align}
-			\Omega \ni \omega \longmapsto M(\tau(\omega) \wedge t,\omega) \in \R
+			\Omega \ni \omega \longmapsto \tilde{M}(\tau(\omega) \wedge t,\omega) \in \R
 		\end{align}
-		は可測$\mathcal{F}_t/\borel{\R}$となる．任意の$A \in \borel{\R}$に対して
+		の$\mathcal{F}_t/\borel{\R}$-可測性が従う．よって任意の$A \in \borel{\R}$に対して
 		\begin{align}
 			\Set{\omega \in \Omega}{M(\tau(\omega),\omega) \in A} \cap \left\{ \tau \leq t \right\}
-			= \Set{\omega \in \Omega}{M(\tau(\omega) \wedge t,\omega) \in A} \cap \left\{ \tau \leq t \right\}
+			= \Set{\omega \in \Omega}{\tilde{M}(\tau(\omega) \wedge t,\omega) \in A} \cap \left\{ \tau \leq t \right\}
 			\in \mathcal{F}_t
 		\end{align}
-		が成り立つから，写像$\omega \longmapsto M(\tau(\omega),\omega)$は可測$\mathcal{F}_\tau/\borel{\R}$である
+		が満たされ
 		\footnote{
-			写像$\omega \longmapsto M(\tau(\omega),\omega)$が可測$\mathcal{F}/\borel{\R}$となっていないことにはこの結論が従わない．
-			この点を確認すれば，式(\refeq{eq:stopping_time_measurability})より$M$が可測$\borel{I} \times \mathcal{F}/\borel{\R}$
-			であることは慥かであるから，$\omega \longmapsto (\tau(\omega),\omega)$が可測$\mathcal{F}/\borel{I}\times\mathcal{F}$であることと
-			併せて写像$\omega \longmapsto M(\tau(\omega),\omega)$が可測$\mathcal{F}/\borel{\R}$であることが判明する．
-		}．
+			(\refeq{eq:stopping_time_measurability})において$t = T$として$M = \tilde{M}$
+			の$\borel{I} \times \mathcal{F}/\borel{\R}$-可測性が得られ，
+			$\omega \longmapsto (\tau(\omega),\omega) \in \R$の$\mathcal{F}/\borel{I} \times \mathcal{F}$-可測性と併せて
+			$\Set{\omega \in \Omega}{M(\tau(\omega),\omega) \in A} \in \mathcal{F}$が従う．
+		}
+		，$t \in I$の任意性より写像$\Omega \ni \omega \longmapsto M(\tau(\omega),\omega)$の$\mathcal{F}_\tau/\borel{\R}$-可測性が出る．
 		\QED
 	\end{prf}
 
