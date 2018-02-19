@@ -16,6 +16,12 @@
 					各々に対し(\refeq{eq:thm_existence_of_quadratic_variation_0})を満たす$A,A' \in \mathcal{A}^+$も$\mu$-a.s.にパスが一致する．
 				\item[(3)]
 					$M \in \mathcal{M}_{p,c}\ (p \geq 2)$の場合，(\refeq{eq:thm_existence_of_quadratic_variation_0})を満たす$A \in \mathcal{A}^+$は可積分である．
+				
+				\item[(4)]
+					$M \in \mathcal{M}_{b,c}$の場合，(\refeq{eq:thm_existence_of_quadratic_variation_0})を満たす$A \in \mathcal{A}^+$により次の不等式が成り立つ:
+					\begin{align}
+						\Norm{M_T^2 - A_T}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T}{\mathscr{L}^2}.
+					\end{align}
 			\end{description}
 			\label{thm:existence_of_quadratic_variation}
 		\end{thm}
@@ -29,6 +35,7 @@
 				$N^n \coloneqq M^2 - Q^n \in \mathcal{M}_{b,c}$とおけば
 				\begin{align}
 					\Norm{N_T^n}{\mathscr{L}^2} \leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T}{\mathscr{L}^2} \quad (n=1,2,\cdots)
+					\label{eq:thm_existence_of_quadratic_variation_3}
 				\end{align}
 				が成り立つから，$N^n$の$\mathcal{M}_{2,c}$における同値類
 				$\equiv{N^n}{2,c}$の列$\left( \equiv{N^n}{2,c} \right)_{n=1}^{\infty}$はHilbert空間$\mathfrak{M}_{2,c}$において有界列である．
@@ -234,7 +241,7 @@
 				が従い$A$と$A'$は$\mu$-a.s.にパスが一致する．
 				
 			\item[第三段]
-				後半の主張を示す．$M \in \mathcal{M}_{p,c}\ (p \geq 2)$の場合，
+				(3)を示す．$M \in \mathcal{M}_{p,c}\ (p \geq 2)$の場合，
 				命題\ref{prp:M_pc_M_cloc}より$M \in \mathcal{M}_{c,loc}$であるから，
 				或る$A \in \mathcal{A}^+$が存在して$M^2 - A \in \mathcal{M}_{c,loc}$となる．
 				従って或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
@@ -259,13 +266,23 @@
 				が従う．
 			
 			\item[第四段]
+				(4)を示す．第一段において，(\refeq{eq:thm_quadratic_variation_1})とFatouの補題，
+				Minkowskiの不等式及び(\refeq{eq:thm_existence_of_quadratic_variation_3})より
+				\begin{align}
+					&\Norm{M_T^2 - A_T}{\mathscr{L}^2}
+					\leq \liminf_{k \to \infty} \Norm{M_T^2 - \hat{Q}_t^{n_k}}{\mathscr{L}^2} \\
+					&\qquad \leq \liminf_{k \to \infty} \sum_{j=0}^{\infty} c_j^{n_k} \Norm{M_T^2 - Q^{n_k+j}}{\mathscr{L}^2}
+					\leq 2 \sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} \Norm{M_T}{\mathscr{L}^2}
+				\end{align}
+				が成立する．
+				\QED
 		\end{description}
 	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[二次変分]
-			$M \in \mathcal{M}_{c,loc}$に対して定理\ref{thm:existence_of_quadratic_variation}より
-			存在する$A \in \mathcal{A}^+$のうち，全てのパスが$0$出発，連続，単調非減少であるものを
+			$M \in \mathcal{M}_{c,loc}$に対して(\refeq{eq:thm_existence_of_quadratic_variation_0})を満たす
+			$A \in \mathcal{A}^+$のうち，全てのパスが$0$出発，連続，単調非減少であるものを取り，これを
 			$M$の二次変分(quadratic variation)と呼び$\inprod<M>$と表す．また
 			$M,N \in \mathcal{M}_{c,loc}$に対して
 			\begin{align}
@@ -320,14 +337,6 @@
 				が得られ$M_t$の二乗可積分性が従う．
 			
 			\item[第二段] $I \ni t \longmapsto M_t(\omega)$について，定義より
-				\footnote{
-					講義中の$\mathcal{M}_{c,loc}$定義には，「全ての$\omega \in \Omega$に対し
-					$I \ni t \longmapsto M_t(\omega)$が
-					各点$t$で右連続且つ左極限を持つ」とは定められていませんでしたが，
-					マルチンゲールの定義にはパスが右連続且つ左極限を持つことが含まれています．
-					講義中の$\mathcal{M}_{c,loc}$の定義だとこのことが示せなかったので，
-					勝手に自分の方で定義に入れました．
-				}
 				任意の$\omega \in \Omega$に対し
 				各点$t$で右連続且つ左極限を持つから，以降は$\mbox{$\mu$-a.s.}\omega \in \Omega$に対し連続且つ0出発であることを示す．
 				$M$に対し或る$\left( \sigma_k \right)_{k=0}^{\infty} \in \mathcal{T}$が存在して
@@ -369,5 +378,3 @@
 				\QED
 		\end{description}
 	\end{prf}
-	
-\newpage
