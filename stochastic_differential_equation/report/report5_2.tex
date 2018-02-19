@@ -1,6 +1,6 @@
 \section{二次変分}
 	以降では$I \coloneqq [0,T]\ (T>0)$とし，
-	このフィルトレーション$(\mathcal{F}_t)_{t \in I}$が次の仮定を満たす:
+	フィルトレーション$(\mathcal{F}_t)_{t \in I}$は次の仮定を満たす:
 	\begin{align}
 		\mathcal{N} \coloneqq \Set{N \in \mathcal{F}}{\mu(N) = 0}
 		\subset \mathcal{F}_0.
@@ -20,7 +20,7 @@
 	
 	\begin{screen}
 		\begin{prp}[停めた過程の適合性]
-			確率過程$M$の全てのパスが右連続且つ$(\mathcal{F}_t)$-適合のとき，任意の停止時刻$\tau$に対し
+			確率過程$M$が右連続且つ$(\mathcal{F}_t)$-適合のとき，任意の停止時刻$\tau$に対し
 			$M^\tau$もまた右連続且つ$(\mathcal{F}_t)$-適合である．
 		\end{prp}
 	\end{screen}
@@ -39,7 +39,7 @@
 	以下，いくつか集合を定義する．
 	\begin{description}
 		\item[$\mathrm{(1)}\ \mathcal{A}^+$] 
-			$\mathcal{A}^+$は以下を満たす$(\Omega,\mathcal{F},\mu)$上の可測関数族$A = (A_t)_{t \in I}$の全体として定める:
+			$\mathcal{A}^+$は以下を満たす$A:I \times \Omega \rightarrow \R$の全体として定める:
 			\begin{description}
 				\item[適合性] 任意の$t \in I$に対し，写像$\Omega \ni \omega \longmapsto A_t(\omega) \in \R$は可測$\mathcal{F}_t/\borel{\R}$である．
 				\item[連続性] $\mu$-a.s.に写像$I \ni t \longmapsto A_t(\omega) \in \R$が連続である．
@@ -47,23 +47,21 @@
 			\end{description}
 		
 		\item[$\mathrm{(2)}\ \mathcal{A}$]
-			$\mathcal{A}$を$\mathcal{A} \coloneqq \Set{A^1 - A^2}{A^1,A^2 \in \mathcal{A}^+}$
-			により定める．任意の$A = A_1 - A_2 \in \mathcal{A}$に対し，$A$は適合過程であり
+			$\mathcal{A} \coloneqq \Set{A^1 - A^2}{A^1,A^2 \in \mathcal{A}^+}$
+			により$\mathcal{A}$を定める．任意の$A = A_1 - A_2 \in \mathcal{A}$に対し，$A$は適合過程であり
 			$\mu$-a.s.に$I \ni t \longmapsto A_t$は連続且つ有界変動である．
 			
 		\item[$\mathrm{(3)}\ \mathcal{M}_{p,c}\ (p \geq 1)$]
-			$\mathcal{M}_{p,c}$を以下を満たす可測関数族$M = (M_t)_{t \in I} \subset \semiLp{p}{\mathcal{F},\mu}$の全体として定める．
+			$\mathcal{M}_{p,c}$を以下を満たす$M:I \times \Omega \rightarrow \R$の全体として定める．
 			\begin{description}
 				\item[0出発] $M_0 = 0 \quad \mbox{$\mu$-a.s.}$を満たす．
-				\item[$\mathrm{L}^p$-マルチンゲール] $M = (M_t)_{t \in I}$は$\mathrm{L}^p$-マルチンゲールである．
+				\item[$\mathrm{L}^p$-マルチンゲール] $M$は$\mathrm{L}^p$-マルチンゲールである．
 				\item[連続性] $\mu$-a.s.$\omega$に対し写像$I \ni t \longmapsto M_t(\omega) \in \R$が連続である．
 			\end{description}
 		
 		\item[$\mathrm{(4)}\ \mathcal{M}_{b,c}$]
-			$\mathcal{M}_{b,c}$を一様有界な$\mathrm{L}^1$-マルチンゲールの全体として定める:
-			\begin{align}
-				\mathcal{M}_{b,c} \coloneqq \Set{M = (M_t)_{t \in I} \in \mathcal{M}_{1,c}}{\sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty}.
-			\end{align}
+			$\sup{t \in I}{\Norm{M_t}{\mathscr{L}^\infty}} < \infty$を満たす
+			$\mathrm{L}^1$-マルチンゲール$M$の全体を$\mathcal{M}_{b,c}$と表す．
 			
 		\item[$\mathrm{(5)}\ \mathcal{T}$]
 			$\mathcal{T}$を以下を満たすような，$I$に値を取る停止時刻の列$(\tau_j)_{j=0}^{\infty}$の全体として定める．
@@ -72,21 +70,20 @@
 				\item[b)] $\tau_j \leq \tau_{j+1} \quad \mbox{$\mu$-a.s.}\ (j=1,2,\cdots).$
 				\item[c)] $(\tau_j)_{j=1}^{\infty}$に対し或る$\mu$-零集合$N_T$が存在し，任意の$\omega \in \Omega \backslash N_T$に対し或る$n = n(\omega) \in \N$が存在して$\tau_n(\omega)=T$が成り立つ．
 			\end{description}
-			例えば$\tau_j = jT/2^n$なら$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$となる．
-			上の条件において，$a)$が零集合$N_0$を除いて成立し，$b)$が各$j$について零集合$N_j$を除いて成立するとき，
-			$N \coloneqq N_0 \cup N_T \cup (\cup_{j=0}^{\infty}N_j)$とすればこれも$\mu$-零集合であり，任意の$\omega \in \Omega \backslash N$に対して
+			$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$について，
+			$a)$が$N_0 \in \mathcal{N}$を除いて成立し，$b)$が$N_j \in \mathcal{N}\ (\forall j)$を除いて成立するとき，
+			$N \coloneqq N_0 \cup N_T \cup (\cup_{j=0}^{\infty}N_j)$とおけば
+			任意の$\omega \in \Omega \backslash N$に対し或る$n = n(\omega) \in \N$が存在して
 			\begin{align}
-				\tau_0(\omega) = 0,\quad \tau_j(\omega) \leq \tau_{j+1}(\omega)\ (j=1,2,\cdots),\quad
-				\tau_n(\omega) = T\ (\exists n = n(\omega) \in \N)
+				0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \tau_2(\omega) \leq \cdots
+				\leq \tau_n(\omega) = T
 			\end{align}
-			が成立する．
+			が成り立つ．
 			
 		\item[$\mathrm{(4)}\ \mathcal{M}_{c,loc}$]
-			$\mathcal{M}_{c,loc}$を次で定める．$\mathcal{M}_{c,loc}$の元を「連続な局所マルチンゲール」という:
-			\begin{align}
-				\mathcal{M}_{c,loc} \coloneqq 
-				\Set{M = (M_t)_{t \in I} \subset \semiLp{1}{\mathcal{F},\mu}}{\substack{\mbox{全ての$\omega \in \Omega$に対し，$I \ni t \longmapsto M_t(\omega)$が} \\ \mbox{各点$t$で右連続且つ左極限を持ち，} \\ \mbox{或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して} \\ \mbox{$M^{\tau_j} \in \mathcal{M}_{b,c}\ (\forall j =0,1,\cdots)$を満たす．}}}.
-			\end{align}
+			全てのパスが右連続且つ左極限を持ち，また或る$(\tau_j)_{j=0}^{\infty} \in \mathcal{T}$が存在して
+			$\tau_j$で停めた過程が全て$\mathcal{M}_{b,c}$に属するような確率過程$M:I \times \Omega \rightarrow \R$の全体を
+			$\mathcal{M}_{c,loc}$と表す．
 	\end{description}
 	
 	\begin{screen}
@@ -157,8 +154,7 @@
 		が従う．
 		\QED
 	\end{prf}
-	
-\newpage
+
 	\begin{screen}
 		\begin{lem}[$\mathcal{M}_{p,c}$は線形空間]
 			任意の$M,N \in \mathcal{M}_{p,c}$と$\alpha \in \R$に対して線型演算を
@@ -467,4 +463,3 @@
 		$\mathfrak{M}_{2,c}$はHilbert空間である．
 		\QED
 	\end{prf}
-\newpage
