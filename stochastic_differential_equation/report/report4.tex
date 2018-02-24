@@ -1,8 +1,7 @@
-\section{停止時刻の性質}
+\section{フィルトレーション}
 	基礎に置く確率空間を$(\Omega,\mathcal{F},\mu)$とする．また集合$I \subset \R$によって確率過程の時点全体を表現する．
 	$I$は$[0,T]\ (T > 0)$或は$\{0,1,\cdots,n\}$などを指し，
 	$I$が$\R$の区間の場合は相対位相，$I$が高々可算集合の場合は離散位相を導入する．
-	また扱う確率変数は全て実数値とする．
 	\begin{screen}
 		\begin{dfn}[フィルトレーション・適合過程]
 			$\mathcal{F}$の部分$\sigma$-加法族の系$\Set{\mathcal{F}_t}{t \in I}$
@@ -11,12 +10,30 @@
 				\mathcal{F}_s \subset \mathcal{F}_t
 				\quad (\forall s \leq t,\ s,t \in I).
 			\end{align}
-			また位相空間$S$に対し，$t \in I$ごとに
-			$\Omega \ni \omega \longmapsto X(t,\omega) \in S$が$\mathcal{F}_t/\borel{S}$-可測性を満たすとき，
-			$X:I \times \Omega \rightarrow S$を($(\mathcal{F}_t)$-)適合過程(adapted process)と呼ぶ．
+			また可測空間$(S,\mathcal{M})$と写像$X:I \times \Omega \rightarrow S$に対し，$t \in I$ごとに
+			$\Omega \ni \omega \longmapsto X(t,\omega) \in S$が$\mathcal{F}_t/\mathcal{M}$-可測性を満たすとき，
+			$X$を($(\mathcal{F}_t)$-)適合過程(adapted process)と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
+	以降は断りなくとも確率空間$(\Omega,\mathcal{F},\mu)$にフィルトレーション$(\mathcal{F}_t)_{t \in I}$が付随する．
+	
+	\begin{screen}
+		\begin{dfn}[発展的可測性]
+			$I = [0,T]$或は$I = [0,\infty)$とし，$(S,\mathcal{M})$を可測空間とする．
+			任意の$t \in I$に対し$X:I \times \Omega \rightarrow S$を$[0,t] \times \Omega$上に制限した写像が
+			$\borel{[0,t]} \times \mathcal{F}_t/\mathcal{M}$-可測性を満たすとき，
+			$X$は($(\mathcal{F}_t)$-)発展的可測(progressively measurable)であるという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[右連続適合過程は発展的可測]
+			
+		\end{thm}
+	\end{screen}
+	
+\section{停止時刻の性質}
 	\begin{screen}
 		\begin{dfn}[停止時刻]
 			次を満たす関数$\tau:\Omega \rightarrow \R$を($I$値)停止時刻(stopping time)という:
@@ -84,6 +101,13 @@
 			\end{align}
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			任意の停止時刻$\tau$は可測$\mathcal{F}_\tau/\borel{\R}$である．
+		\end{thm}
+	\end{screen}
+	
 	
 	\begin{screen}
 		\begin{prp}[停止時刻の性質]
@@ -237,14 +261,14 @@
 					\int_B \cexp{\cexp{X}{\mathcal{F}_\sigma}}{\mathcal{F}_\tau}(\omega)\ \mu(d\omega)
 					= \int_B \cexp{X}{\mathcal{F}_{\sigma \wedge \tau}}(\omega)\ \mu(d\omega)
 				\end{align}
-				が従う．$B \in \mathcal{F}_\tau$の任意性より(3)が得られる．
+				が従う．$B \in \mathcal{F}_\tau$の任意性より，前段と同様にして(3)が得られる．
 				\QED
 		\end{description}
 	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[停止時刻との合成写像の可測性]
-			$I = [0,T]$，フィルトレーションを$(\mathcal{F}_t)_{t \in I}$，$\tau$を停止時刻とする．
+			$I = [0,T]$或は$I = [0,\infty)$とし，フィルトレーションを$(\mathcal{F}_t)_{t \in I}$，$\tau$を停止時刻とする．
 			確率過程$M:I \times \Omega \rightarrow \R$が右連続且つ$(\mathcal{F}_t)$-適合なら，
 			写像$\Omega \ni \omega \longmapsto M(\tau(\omega),\omega)$は可測$\mathcal{F}_\tau/\borel{\R}$である．
 			\label{thm:measurability_of_stopping_time}
@@ -400,8 +424,9 @@
 					d(X_{s_n}(\omega),F) < \frac{1}{n}
 				\end{align}
 				を満たす点列$(s_n)_{n=1}^{\infty} \subset [0,t] \cap \Q$が存在する．
-				$s \in [0,t]$を$(s_n)_{n=1}^{\infty}$の集積点とすれば，パスの連続性より$d(X_s(\omega),F) = 0$が成り立ち，
-				$F$が閉であるから$\tau(\omega) \leq s \leq t$が従う．
+				$(s_n)_{n=1}^{\infty}$は集積点$s \in [0,t]$を持ち，
+				パスの連続性より$d(X_s(\omega),F) = 0$が成り立つから$X_s(\omega) \in F$が従い
+				$\tau(\omega) \leq s \leq t$となる．
 				
 			\item[第四段]
 				定理の後半の主張を示す．
