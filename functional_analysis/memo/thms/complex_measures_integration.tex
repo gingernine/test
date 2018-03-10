@@ -9,6 +9,7 @@
 				\item[(2)] $\mathcal{M}/\borel{\C}$-可測関数列$(f_n)_{n=1}^{\infty}$が$f$に各点収束するなら
 					$f$もまた可測$\mathcal{M}/\borel{\C}$となる．
 			\end{description}
+			\label{thm:measurability_of_complex_measurable_functions}
 		\end{thm}
 	\end{screen}
 	
@@ -41,7 +42,158 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{dfn}[積分の定義]
+		\begin{dfn}[複素数値可測関数の正値測度に関する積分]
+			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の正値測度とし，
+			$\mathcal{M}/\borel{\C}$-可測関数$f$が実数値関数$u,v$を用いて
+			$f = u + i v$と表現されているとする．$u,v$が$\mu$に関して$X$上可積分であるとき\footnotemark
+			，$f$は$\mu$に関して$X$上可積分であるといい，$\mu$に関する$f$の積分を次で定める:
+			\begin{align}
+				\int_E f(x)\ \mu(dx)
+				\coloneqq \int_E u(x)\ \mu(dx) + i \int_E v(x)\ \mu(dx)
+				\quad (\forall E \in \mathcal{M}).
+			\end{align}
+		\end{dfn}
+	\end{screen}
+
+	\footnotetext{
+		定理\ref{thm:measurability_of_complex_measurable_functions}により
+		$u,v$は$\mathcal{M}/\borel{\R}$-可測である．
+	}
+	
+	\begin{screen}
+		\begin{thm}[正値測度に関する積分の性質]
+			$(X,\mathcal{M})$を可測空間とし，$\mu$を$\mathcal{M}$上の正値測度とする．
+			\begin{description}
+				\item[(1)] $\mu$に関して可積分な$\mathcal{M}/\borel{\C}$-可測関数$f$と
+					複素数$\gamma = \alpha + i \beta\ (\alpha,\beta \in \R)$に対して次が成り立つ:
+					\begin{align}
+						\int_E \gamma f(x)\ \mu(dx) = \gamma \int_E f(x)\ \mu(dx)
+						\quad (\forall E \in \mathcal{M}).
+					\end{align}
+					
+				\item[(2)] $\mu$に関して可積分な$\mathcal{M}/\borel{\C}$-可測関数$f$がに対して次が成り立つ:
+					\begin{align}
+						\left| \int_E f(x)\ \mu(dx) \right| \leq \int_E |f(x)|\ \mu(dx) < \infty
+						\quad (\forall E \in \mathcal{M}).
+					\end{align}
+					
+				\item[(3)] $\mathcal{M}/\borel{\C}$-可測関数$f,g$が$\mu$に関して可積分であり
+					\begin{align}
+						\int_E f(x)\ \mu(dx) = \int_E g(x)\ \mu(dx)
+						\quad (\forall E \in \mathcal{M})
+					\end{align}
+					を満たすとき，$\mu$-a.e.に$f = g$が成り立つ．
+					
+				\item[(4)] $f$が$\mathcal{M}/\borel{\R}$-可測かつ$\mu$に関して可積分であり
+					\begin{align}
+						0 \leq \int_E f(x)\ \mu(dx) \leq \mu(E)
+						\quad (\forall E \in \mathcal{M})
+					\end{align}
+					が成り立つとき，$\mu$-a.e.$x$に対して$0 \leq f(x) \leq 1$が満たされる．
+			\end{description}
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $f$に対して或る実数値可積分関数$u,v$が存在して
+				$f = u + i v$と表現できる．このとき
+				\begin{align}
+					\gamma f = (\alpha u - \beta v) + i (\alpha v + \beta u)
+				\end{align}
+				が成り立つから，任意の$E \in \mathcal{M}$に対して次を得る:
+				\begin{align}
+					&\int_E \gamma f\ d\mu
+					= \int_E (\alpha u - \beta v) + i (\alpha v + \beta u)\ d \mu \\
+					&\qquad = \int_E \alpha u - \beta v\ d\mu
+						+ i \int_E \alpha v + \beta u\ d\mu
+					= \left( \alpha + i \beta \right) 
+						\left( \int_E u\ d\mu + i \int_E u\ d\mu \right)
+					= \gamma \int_E f\ d\mu.
+				\end{align}
+			
+			\item[(2)] 
+				$f$に対して或る実数値可積分関数$u,v$が存在して
+				$f = u + i v$と表現でき，$u,v$の可積分性から
+				\begin{align}
+					\int_E |f(x)|\ \mu(dx)
+					\leq \int_E |u(x)|\ \mu(dx) + \int_E |v(x)|\ \mu(dx) < \infty
+					\quad (\forall E \in \mathcal{M})
+				\end{align}
+				が従う．次に初めの不等式を示す．任意に$E \in \mathcal{M}$を取り
+				$\alpha \coloneqq \int_E f\ d\mu$とおく．$\alpha \neq 0$の場合，(1)の結果より
+				\begin{align}
+					|\alpha|
+					= \frac{\conj{\alpha}}{|\alpha|} \int_E f(x)\ \mu(dx)
+					= \int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\Re{\frac{\conj{\alpha}}{|\alpha|} f(x)} \leq |f(x)|
+					\quad (\forall x \in X)
+				\end{align}
+				が満たされるから
+				\begin{align}
+					|\alpha|
+					= \Re{\int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)}
+					= \int_E \Re{\frac{\conj{\alpha}}{|\alpha|} f(x)}\ \mu(dx)
+					\leq \int_E |f(x)|\ \mu(dx)
+				\end{align}
+				が従う．$\alpha = 0$の場合も不等式は成り立つ．
+				
+			\item[(3)] $f,g$に対し或る実数値可積分関数$u_1,u_2,v_1,v_2$が存在して
+				\begin{align}
+					f = u_1 + i v_1,
+					\quad g = u_2 + i v_2
+				\end{align}
+				と表現できる．自然数$n$に対して
+				\begin{align}
+					E_n \coloneqq \Set{x \in X}{u_1(x) - u_2(x) \geq \frac{1}{n}}
+				\end{align}
+				と定めれば$E_n \in \mathcal{M}$が満たされるから，仮定より
+				\begin{align}
+					\int_{E_n} u_1(x) - u_2(x)\ \mu(dx) = 0
+				\end{align}
+				が成り立つ．ここで$\mu(E_n) > 0$と仮定すると
+				\begin{align}
+					0 < \frac{1}{n} \mu(E_n) \leq \int_{E_n} u_1(x) - u_2(x)\ \mu(dx) = 0
+				\end{align}
+				が従い矛盾が生じるから，$\mu(E_n) = 0\ (\forall n \in \N)$が満たされ
+				\begin{align}
+					\mu(u_1 > u_2) = \mu\biggl( \bigcup_{n=1}^{\infty} E_n \biggr) 
+					\leq \sum_{n=1}^{\infty} \mu(E_n) = 0
+				\end{align}
+				が得られる．同様にして$\mu(u_1 < u_2) = 0$及び$\mu(v_1 \neq v_2) = 0$となり，
+				\begin{align}
+					\mu(f \neq g) \leq \mu(u_1 \neq u_2) + \mu(v_1 \neq v_2) = 0
+				\end{align}
+				により$\mu$-a.e.に$f = g$が成り立つ．
+			
+			\item[(4)] 任意の自然数$n$に対し
+				\begin{align}
+					E_n^- \coloneqq \Set{x \in X}{f(x) \leq -\frac{1}{n}},
+					\quad E_n^+ \coloneqq \Set{x \in X}{f(x) \geq 1 + \frac{1}{n}}
+				\end{align}
+				とおく．ここで或る自然数$n$に対して$\mu(E_n^-) > 0$が満たされているとすると
+				\begin{align}
+					0 \leq \int_{E_n^-} f(x)\ \mu(dx)
+					\leq -\frac{1}{n} \mu(E_n^-) < 0
+				\end{align}
+				が成り立ち矛盾が生じるから，$\mu(E_n^-) = 0\ (\forall n \in \N)$が従う．
+				同様の理由により$\mu(E_n^+) = 0\ (\forall n \in \N)$が得られ
+				\begin{align}
+					\mu(f \notin [0,1]) 
+					= \mu\biggl( \bigcup_{n=1}^{\infty} E_n^- \biggr) 
+						+ \mu\biggl( \bigcup_{n=1}^{\infty} E_n^+ \biggr) = 0
+				\end{align}
+				が成り立つ．
+			\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[複素測度に関する積分]
 			$(X,\mathcal{M})$を可測空間とし，$\mu$を$(X,\mathcal{M})$上の複素測度とする．
 			$\mu$の総変動測度$|\mu|$に関して可積分となる関数$f:X \rightarrow \C$について
 			，$f$の$\mu$に関する積分を次で定める:
