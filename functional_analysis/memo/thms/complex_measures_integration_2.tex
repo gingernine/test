@@ -1,38 +1,155 @@
-\section{複素測度のRieszの表現定理}
+\section{Rieszの表現定理}
 	\begin{screen}
-		\begin{dfn}[空間$C_\infty$]
-			局所コンパクトなHausdorff空間$X$に対し$\c{X} \coloneqq \Set{f:X \rightarrow \C}{連続}$とおく．
+		\begin{dfn}[記号の定義]
+			位相空間$X$に対し$\c{X} \coloneqq \Set{f:X \rightarrow \C}{連続}$とおく．先ず
 			\begin{align}
-				\cvan{X} \coloneqq
+				\ckon{X} &\coloneqq
+				\Set{f \in \c{X}}{\mbox{$\supp{f}$がコンパクト．}}, \\
+				\cvan{X} &\coloneqq
 				\Set{f \in \c{X}}{\mbox{任意の$\epsilon > 0$に対して$\Set{x \in X}{|f(x)| \geq \epsilon}$がコンパクト．}}
 			\end{align}
-			として$\cvan{X}$を定め，またsup-normをノルムとする．
+			により二つの空間を定め，そして開集合$V$，コンパクト集合$K$，$f \in \ckon{X}$に対し
+			\begin{align}
+				f \prec V &\quad \DEF \quad 0 \leq f \leq 1, \quad \supp{f} \subset V, \\
+				K \prec f &\quad \DEF \quad 0 \leq f \leq 1, \quad f(x) = 1 \ (\forall x \in K)
+			\end{align}
+			により二項関係$\prec$を定める．
 		\end{dfn}
 	\end{screen}
 	
-	$f \in \cvan{X}$は遠方で0になる関数である．特に$X = \R^d$の場合は
+	特に$X = \R^d$の場合，$f \in \cvan{X}$は原点を中心にして遠方で0になる関数である．実際
 	\begin{align}
 		\cvan{\R^d} = \Set{f:\R^d \rightarrow \C}{\lim_{|x| \to \infty}|f(x)| = 0}
 	\end{align}
 	が成り立つ．
 	
+	
 	\begin{screen}
-		\begin{thm}[$C_c$は$C_\infty$で稠密]
-			コンパクトな台を持つ$f \in \c{X}$の全体を$\ckon{X}$と表す．
+		\begin{thm}[$C_c$は$C_0$で稠密]
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
+		\begin{lem}
+			$X$を局所コンパクトなHausdorff空間，$K$を$X$のコンパクト集合，
+			$V$を$X$の開集合とすると，或る閉包がコンパクトな開集合$U$が次を満たす:
+			\begin{align}
+				K \subset U \subset \closure{U} \subset V.
+			\end{align}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[コンパクト集合上の一の分割]
+			$X$を局所コンパクトなHausdorff空間，$K$を$X$のコンパクト集合，
+			$V_1,\cdots, V_n$を$X$の開集合とし
+			$K \subset V_1 \cup \cdots \cup V_n$を満たすものとする．
+			このとき或る$h_1,\cdots,h_n \in \ckon{X}$が存在して
+			\begin{align}
+				h_i \prec V_i,  \quad (i=1,\cdots,n),
+				\quad h_1(x) + \cdots + h_n(x) = 1, \quad (\forall x \in K)
+			\end{align}
+			を満たす．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		
+	\end{prf}
+		
+	\begin{screen}
 		\begin{thm}[Rieszの表現定理]
-			各$\mu \in \CM = \CM(X,\mathcal{M})$に対し
+			$X$を局所コンパクトなHausdorff空間とする．各$\mu \in \CM = \CM(X,\mathcal{M})$に対し
 			\begin{align}
-				\Phi_\mu: \cvan{X} \ni f \longmapsto \int_X f(x)\ \mu(dx)
+				\Psi_\mu: \cvan{X} \ni f \longmapsto \int_X f(x)\ \mu(dx)
+				\label{eq:thm_complex_measure_riesz_representation_theorem_1}
 			\end{align}
-			で定める$\Phi_\mu$は$\cvan{X}^*$の元であり，次で定める写像
+			で定める$\Psi_\mu$は$\cvan{X}^*$の元であり，次で定める写像
 			\begin{align}
-				\Phi: \CM \ni \mu \longmapsto \Phi_\mu \in \cvan{X}^*
+				\Psi: \CM \ni \mu \longmapsto \Psi_\mu \in \cvan{X}^*
 			\end{align}
-			は等長かつ$\CM$から$\cvan{X}^*$へのBanach空間としての同型写像である．
+			は$\CM$から$\cvan{X}^*$へのBanach空間としての等長同型写像である．
 			\label{thm:complex_measure_riesz_representation_theorem}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		任意に$\Phi \in \cvan{X}^*$を取る．このとき$\Phi = \Psi_\mu$
+		を満たす複素測度$\mu$がただ一つだけ存在することを示す．
+		\begin{description}
+			\item[第一段] $\mu$の一意性を示す．
+			\item[第二段] $\mu$の存在を示す．
+				次を満たす$\cvan{X}$上の正値有界線形汎関数$\Lambda$を構成する:
+				\begin{align}
+					|\Phi f| \leq \Lambda |f| \leq \Norm{\Phi}{} \Norm{f}{\cvan{X}}
+					\quad (\forall f \in \cvan{X}).
+				\end{align}
+				実際これを満たす$\Lambda$が存在すれば，
+				$\Lambda$により導入する$\mathcal{M}$上の正値測度$\lambda$は
+				\begin{align}
+					\lambda(X)
+					= \sup{}{\Set{\Lambda f}{f \prec X}}
+				\end{align}
+				を満たすから
+				\begin{align}
+					\lambda(X) \leq \Norm{\Phi}{}
+				\end{align}
+				が従う．また
+				\begin{align}
+					\Lambda f = \int_X f(x)\ \lambda(dx)
+					\quad (\forall f \in \ckon{X})
+				\end{align}
+				の関係から
+				\begin{align}
+					|\Phi f| \leq \Lambda |f| = \Norm{f}{\mathrm{L}^1(\lambda)}
+					\quad (\forall f \in \ckon{X})
+				\end{align}
+				が得られ，$\ckon{X}$は$\cvan{X}$においてsup-normで稠密だから
+				\begin{align}
+					|\Phi f| \leq \Norm{f}{\mathrm{L}^1(\lambda)}
+					\quad (\forall f \in \cvan{X})
+				\end{align}
+				が成立する．実際任意の$f \in \cvan{X}$に対して
+				\begin{align}
+					&\bigl| |\Phi f| - |\Phi f_n| \bigr|
+					\leq \Norm{\Phi}{} \Norm{f - f_n}{\cvan{X}}
+					\longrightarrow 0 \quad (n \longrightarrow \infty), \\
+					&\left| \Norm{f}{\mathrm{L}^1(\lambda)} - \Norm{f_n}{\mathrm{L}^1(\lambda)} \right| \leq \lambda(X) \Norm{f - f_n}{\cvan{X}}
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				を満たすように$f_n \in \ckon{X}$を選ぶことができる．
+				また$\cvan{X}$は$\mathrm{L}^1(\lambda)$において
+				稠密であるから，$\Phi$は$\mathrm{L}^1(\lambda)$上の
+				有界線形作用素$\tilde{\Phi}$にノルム保存拡張される．
+				従って或る$g \in \mathrm{L}^\infty(\lambda)$が存在して
+				\begin{align}
+					\tilde{\Phi}f = \int_X f(x) g(x)\ \lambda(dx)
+					\quad (\forall f \in \mathrm{L}^1(\lambda))
+				\end{align}
+				を満たす．このとき任意の$E \in \mathcal{M}$に対して，
+				$\lambda$の有限性より$\defunc_E \in \mathrm{L}^1(\lambda)$であるから
+				\begin{align}
+					\left| \int_E g(x)\ \lambda(dx) \right|
+					= \left| \tilde{\Phi} \defunc_E \right|
+					\leq \Norm{\defunc_E}{\mathrm{L}^1(\lambda)}
+					= \lambda(E)
+				\end{align}
+				が成り立ち$|g| \leq 1$が得られる．従って$d\mu \coloneqq g d\lambda$により
+				$\mu \in \CM$を定めれば
+				\begin{align}
+					|\mu|(X) = \int_X |g(x)|\ \lambda(dx) \leq \lambda(X) \leq \Norm{\Phi}{}
+				\end{align}
+				が出る．一方で
+				\begin{align}
+					|\mu|(X) = \int_X |g(x)|\ \lambda(dx)
+					\geq \sup{}{\Set{|\tilde{\Phi} f|}{ 0 \leq f \leq 1,\ f \in \mathrm{L}^1(\lambda)}} = \Norm{\tilde{\Phi}}{} = \Norm{\Phi}{}
+				\end{align}
+				も成り立つ．
+				
+			\item[第三段] $\Psi$の線形等長性を示す．
+		\end{description}
+	\end{prf}
