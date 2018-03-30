@@ -1,5 +1,82 @@
 \section{緩増加超関数の構造定理}
-	$\N = \{0,1,2,\cdots\},\ \Z_+ = \{1,2,\cdots\}$として扱う．
+	$\N = \{0,1,2,\cdots\},\ \Z_+ = \{1,2,\cdots\}$とする．
+	また複素係数線形空間$E_i\ (i=1,\cdots,n)$の直積空間$E_1 \times \cdots \times E_n$においては
+	\begin{align}
+		(e_1,\cdots,e_n) + (f_1,\cdots,f_n) \coloneqq (e_1 + f_1,\cdots,e_n + f_n), 
+		\quad \alpha (e_1,\cdots,e_n) \coloneqq (\alpha e_1,\cdots,\alpha e_n)
+	\end{align}
+	により線型演算を定め，ノルム空間$(X_i,\Norm{\cdot}{i})\ (i=1,\cdots,n)$の
+	直積空間$X_1 \times \cdots \times X_n$におけるノルムは
+	$\Norm{x_1}{1} + \cdots + \Norm{x_n}{n}\ (x_i \in X_i)$とする．
+	以降，線型空間は全て複素係数と考える．
+	\begin{screen}
+		\begin{lem}
+			$\Lambda$を有限集合，$\Bigl( (X_\lambda,\Norm{\cdot}{\lambda}) \Bigr)_{\lambda \in \Lambda}$
+			をノルム空間の系とする．このとき，$f_\lambda \in X^*_\lambda\ (\lambda \in \Lambda)$
+			を取り
+			\begin{align}
+				F(x) \coloneqq \sum_{\lambda \in \Lambda} f_\lambda(x_\lambda),
+				\quad \biggl(\forall x = (x_\lambda)_{\lambda \in \Lambda} \in \prod_{\lambda \in \Lambda} X_\lambda \biggr)
+				\label{eq:lem_isomorphism_on_product_of_dual_spaces}
+			\end{align}
+			により線型汎関数$F$を定めれば$F \in \left( \prod_{\lambda \in \Lambda} X_\lambda \right)^*$
+			が満たされる．そしてこの対応により定まる次の写像
+			\begin{align}
+				W:\prod_{\lambda \in \Lambda} X_\lambda^* \ni f = (f_\lambda)_{\lambda \in \Lambda}
+				\longmapsto F \in \Biggl( \prod_{\lambda \in \Lambda} X_\lambda \Biggr)^*
+			\end{align}
+			は線型・位相同型である．
+			\label{lem:isomorphism_on_product_of_dual_spaces}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		$X_\lambda^*,\prod_{\lambda \in \Lambda} X_\lambda^*,\left( \prod_{\lambda \in \Lambda} X_\lambda \right)^*$におけるノルムをそれぞれ
+		$\Norm{\cdot}{X_\lambda^*},\Norm{\cdot}{\prod_{\lambda \in \Lambda} X_\lambda^*},\Norm{\cdot}{\left( \prod_{\lambda \in \Lambda} X_\lambda \right)^*}$と表す．
+		先ず(\refeq{eq:lem_isomorphism_on_product_of_dual_spaces})において，
+		\begin{align}
+			|F(x)| \leq \sum_{\lambda \in \Lambda} |f_\lambda(x_\lambda)|
+			\leq \max{\lambda \in \Lambda}{\Norm{f_\lambda}{X_\lambda^*}} \sum_{\lambda \in \Lambda} \Norm{x_\lambda}{\lambda}
+			\label{eq:lem_isomorphism_on_product_of_dual_spaces_2}
+		\end{align}
+		となるから$F \in \left( \prod_{\lambda \in \Lambda} X_\lambda \right)^*$を得る．
+		次に$W$が全単射であることを示す．実際，任意の$G \in \left( \prod_{\lambda \in \Lambda} X_\lambda \right)^*$に対して
+		\begin{align}
+			x^{(\lambda)}_\nu \coloneqq 
+			\begin{cases}
+				x_\lambda & (\nu = \lambda) \\
+				0 & (\nu \neq \lambda)
+			\end{cases},
+			\quad g_\lambda(x_\lambda) \coloneqq G(x^{(\lambda)})
+			\quad (\forall x_\lambda \in X_\lambda)
+		\end{align}
+		と定めれば$g_\lambda \in X_\lambda^*$が成り立つから$W$は全射であり，
+		また$f,g \in \prod_{\lambda \in \Lambda} X_\lambda^*$に対し$Wf = Wg$が満たされているとき，
+		\begin{align}
+			f_\lambda(x_\lambda) = (Wf)(x^{(\lambda)})
+			= (Wg)(x^{(\lambda)}) = g(x_\lambda),
+			\quad (\forall x_\lambda \in X_\lambda,\ \forall \lambda \in \Lambda)
+		\end{align}
+		が従い$W$の単射性が出る．$W$の線型性は
+		\begin{align}
+			&W(\alpha f + \beta g)(x)
+			= \sum_{\lambda \in \Lambda} (\alpha f_\lambda + \beta g_\lambda) (x_\lambda) \\
+			&\qquad = \alpha \sum_{\lambda \in \Lambda} f_\lambda(x_\lambda)
+				+ \beta \sum_{\lambda \in \Lambda} g_\lambda(x_\lambda)
+			= (\alpha W f + \beta W g)(x),
+			\quad (\forall x=(x_\lambda),\ f=(f_\lambda),g=(g_\lambda),\ \alpha,\beta \in \C)
+		\end{align}
+		により得られ，かつ(\refeq{eq:lem_isomorphism_on_product_of_dual_spaces_2})より
+		\begin{align}
+			\Norm{Wf}{\left( \prod_{\lambda \in \Lambda} X_\lambda \right)^*}
+			\leq \max{\lambda \in \Lambda}{\Norm{f_\lambda}{X_\lambda^*}}
+			\leq \Norm{f}{\prod_{\lambda \in \Lambda} X_\lambda^*},
+			\quad \biggl( \forall f = (f_\lambda)_{\lambda \in \Lambda} \in \prod_{\lambda \in \Lambda} X_\lambda^* \biggr)
+		\end{align}
+		が成り立つから$W$は連続であり，開写像定理より$W^{-1}$もまた連続である．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
 		\begin{lem}
 			任意の$u \in \tempdist{\R^n}$に対して或る$c = c(u) > 0$と$m = m(u) \in \N$が存在し
@@ -43,10 +120,10 @@
 		\begin{thm}[緩増加超関数の構造定理]
 			$u \in \tempdist{\R^n}$とし，補題\ref{lem:tempered_distributions_continuity}
 			により対応する$c > 0,\ m \in \N$を取る．また以下では$\alpha$は$n$次元多重指数を表すものとする．
-			このとき或る系$(f_\alpha)_{|\alpha| \leq m} \subset \mathrm{L}^\infty(\R^n)$が存在して次を満たす:
+			このとき或る系$(g_\alpha)_{|\alpha| \leq m} \subset \mathrm{L}^\infty(\R^n)$が存在して次を満たす:
 			\begin{align}
 				\inprod<u,\varphi> =
-				\int_{\R^n} \partial_1 \cdots \partial_n \left[(1+|x|^2)^m f_\alpha(x)\right] \varphi(x)\ dx,
+				\sum_{|\alpha| \leq m} \int_{\R^n} (1+|x|^2)^m g_\alpha(x) \left[ \partial_1 \cdots \partial_n \partial^\alpha \varphi(x) \right]\ dx,
 				\quad (\forall \varphi \in \rapid{\R^n}).
 			\end{align}
 			\label{thm:structure_theorem_of_tempered_distributions}
@@ -89,18 +166,14 @@
 				
 			\item[第二段]
 				$\varphi \in \rapid{\R^n}$に対し，
-				$\psi^\varphi_\alpha(y) \coloneqq (1+|y|^2)^m \partial_1 \cdots \partial_n\partial^\alpha \varphi(y)$により$(\psi^\varphi_\alpha)_{|\alpha| \leq m}$を定める．
-				ここで$|\alpha| \leq m$を満たす$\alpha$の個数を$N$とし，
-				$\Set{\alpha \in \N^n}{|\alpha| \leq m}$を並び替え
-				$( \psi^\varphi_\alpha )_{|\alpha| \leq m}$を
-				$(\psi^\varphi_1,\cdots,\psi^\varphi_N)$と表記し直す．このとき
+				$\psi^\varphi_\alpha(y) \coloneqq (1+|y|^2)^m \partial_1 \cdots \partial_n\partial^\alpha \varphi(y)$により$\psi^\varphi = (\psi^\varphi_\alpha)_{|\alpha| \leq m}$を定める．このとき
 				\begin{align}
-					\Delta \coloneqq \Set{(\psi^\varphi_1,\cdots,\psi^\varphi_N)}{\varphi \in \rapid{\R^n}}
+					\Delta \coloneqq \Set{\psi^\varphi = (\psi^\varphi_\alpha)_{|\alpha| \leq m}}{\varphi \in \rapid{\R^n}}
 				\end{align}
-				で定める$\Delta$は対応$\varphi \longmapsto (\psi^\varphi_1,\cdots,\psi^\varphi_N)$により$\rapid{\R^n}$と線形同型となる．実際，この写像の線形性は微分の性質から従い，
+				で定める$\Delta$は対応$\varphi \longmapsto \psi^\varphi$により$\rapid{\R^n}$と線型同型となる．実際，この写像の線型性は微分の性質から従い，
 				$\Delta$の作り方より全射である．また
 				$\varphi,\eta \in \rapid{\R^n}$に対して，
-				$(\psi^\varphi_1,\cdots,\psi^\varphi_N) = (\psi^\eta_1,\cdots,\psi^\eta_N)$
+				$(\psi^\varphi_\alpha)_{|\alpha| \leq m} = (\psi^\eta_\alpha)_{|\alpha| \leq m}$
 				ならば
 				\begin{align}
 					(1+|y|^2)^m \partial_1 \cdots \partial_n \varphi(y)
@@ -115,43 +188,67 @@
 					= \eta(x),
 					\quad (\forall x \in \R^n)
 				\end{align}
-				が得られるから$\varphi \longmapsto (\psi^\varphi_1,\cdots,\psi^\varphi_N)$は単射である．
-				いま，$\Delta \ni (\psi^\varphi_1,\cdots,\psi^\varphi_N)$に対し
+				が得られるから$\varphi \longmapsto \psi^\varphi$は単射である．
+				いま，
 				\begin{align}
-					\Norm{(\psi^\varphi_1,\cdots,\psi^\varphi_N)}{\Delta}
-					\coloneqq \sum_{i=1}^{N} \int_{\R^n} \left| \psi^\varphi_i(y) \right|\ dy
+					\Norm{\psi^\varphi}{\Delta}
+					\coloneqq \sum_{|\alpha| \leq m} \int_{\R^n} \left| \psi^\varphi_\alpha(y) \right|\ dy
 					= \sum_{|\alpha| \leq m} \int_{\R^n} (1+|y|^2)^m \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy
 					\label{eq:structure_theorem_of_tempered_distributions_2}
 				\end{align}
 				として$\Norm{\cdot}{\Delta}$を定めれば，
-				$\psi^\varphi_i$の連続性よりこれは$\Delta$上のノルムとなる．
+				$\psi^\varphi_\alpha$の連続性よりこれは$\Delta$上のノルムとなる．
 				
 			\item[第三段]
-				ノルム空間$\Delta$上の線形汎関数$L$を
+				ノルム空間$\Delta$上の線型汎関数$L$を
 				\begin{align}
-					L(\psi^\varphi_1,\cdots,\psi^\varphi_N)
+					L\psi^\varphi
 					\coloneqq \inprod<u,\varphi>,
 					\quad (\forall \varphi \in \rapid{\R^n})
 				\end{align}
-				により定めれば，$F$は連続である．
+				により定めれば，$L$は連続である．
 				実際(\refeq{eq:structure_theorem_of_tempered_distributions_1})と
 				(\refeq{eq:structure_theorem_of_tempered_distributions_2})より
 				\begin{align}
-					\left| L(\psi^\varphi_1,\cdots,\psi^\varphi_N) \right|
-					\leq c (m+1) \Norm{(\psi^\varphi_1,\cdots,\psi^\varphi_N)}{\Delta},
+					\left| L\psi^\varphi \right|
+					\leq c (m+1) \Norm{\psi^\varphi}{\Delta},
 					\quad (\forall \varphi \in \rapid{\R^n})
 				\end{align}
 				が成立する．
 				
 			\item[第四段]
-				$\Delta \ni (\psi^\varphi_1,\cdots,\psi^\varphi_N)$に対し，
-				各成分$\psi^\varphi_i$にこれを代表とする$\mathrm{L}^1(\R^n)$の元を対応させる等長単射を
+				$\psi^\varphi = (\psi^\varphi_\alpha)_{|\alpha| \leq m}$に対し，
+				各成分$\psi^\varphi_\alpha$にこれを代表とする$\mathrm{L}^1(\R^n)$の元を対応させる等長単射を
 				$U$と表す:
 				\begin{align}
-					U:\Delta \ni (\psi^\varphi_1,\cdots,\psi^\varphi_N) \longmapsto 
-					U (\psi^\varphi_1,\cdots,\psi^\varphi_N) \in
-					\overbrace{\mathrm{L}^1(\R^n) \times \cdots \times \mathrm{L}^1(\R^n)}^N.
+					U:\Delta \ni \psi^\varphi \longmapsto 
+					U \psi^\varphi \in \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n).
 				\end{align}
-				このとき$LU$
+				$U$の値域をその像に制限すれば逆写像$U^{-1}$が存在し，
+				合成写像$LU^{-1}$は部分空間$U\Delta$上で連続であるからHahn-Banachの拡張定理より
+				$LU^{-1}$のノルム保存拡張$\tilde{L} \in \left( \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n) \right)^*$が存在する．従って，
+				\begin{align}
+					W:\prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n)^* \longrightarrow 
+					\biggl( \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n) \biggr)^*
+				\end{align}
+				を補題\ref{lem:isomorphism_on_product_of_dual_spaces}における同型写像とすれば，
+				或る$(\Phi_\alpha)_{|\alpha| \leq m} \in \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n)^*$がただ一つ存在して$\tilde{L} = W (\Phi_\alpha)_{|\alpha| \leq m}$と表される．一方で
+				$\Phi_\alpha$に対しては或る$g_\alpha \in \mathrm{L}^\infty(\R^n)$
+				がただ一つ対応し
+				\begin{align}
+					\Phi_\alpha (f) = \int_{\R^n} g_\alpha(x)f(x)\ dx,
+					\quad \left( \forall f \in \mathrm{L}^1(\R^n) \right)
+				\end{align}
+				を満たすから，
+				\begin{align}
+					\inprod<u,\varphi>
+					&= L\psi^\varphi
+					= \tilde{L}U\psi^\varphi
+					= \left[ W(\Phi_\alpha)_{|\alpha| \leq m} \right] U\psi^\varphi \\
+					&= \sum_{|\alpha| \leq m} \int_{\R^n} g_\alpha(x) \psi^\varphi_\alpha(x)\ dx
+					= \sum_{|\alpha| \leq m} \int_{\R^n} g_\alpha(x) (1+|x|^2)^m \partial_1 \cdots \partial_n\partial^\alpha \varphi(x)\ dx
+				\end{align}
+				が成り立ち定理の主張を得る．
+				\QED
 		\end{description}
 	\end{prf}
