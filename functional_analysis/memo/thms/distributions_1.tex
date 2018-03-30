@@ -1,0 +1,157 @@
+\section{緩増加超関数の構造定理}
+	$\N = \{0,1,2,\cdots\},\ \Z_+ = \{1,2,\cdots\}$として扱う．
+	\begin{screen}
+		\begin{lem}
+			任意の$u \in \tempdist{\R^n}$に対して或る$c = c(u) > 0$と$m = m(u) \in \N$が存在し
+			\begin{align}
+				|\inprod<u,\varphi>| \leq c p_m(\varphi),
+				\quad (\forall \varphi \in \rapid{\R^n})
+			\end{align}
+			を満たす．
+			\label{lem:tempered_distributions_continuity}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		背理法で証明する．主張が満たされない場合，
+		任意の$k \in \Z_+$に対して或る$\varphi_k \in \rapid{\R^k}$が存在し
+		\begin{align}
+			|\inprod<u,\varphi_k>| > k p_k(\varphi_k)
+		\end{align}
+		が成立するから，$\psi_k \coloneqq \varphi_k / [k p_k(\varphi_k)]\ (k \in \Z_+)$とおけば
+		\footnote{
+			$|\inprod<u,\varphi_k>| > 0$より$\varphi_k$は零写像ではない．従って$\rapid{\R^n}$の半ノルム
+			$p_k$の定義より$p_k(\varphi_k) > 0$が満たされている．
+		}
+		\begin{align}
+			|\inprod<u,\psi_k>| = \frac{|\inprod<u,\varphi_k>|}{k p_k(\varphi_k)} > 1
+			\quad (\forall k \in \Z_+)
+			\label{eq:lem_tempered_distributions_continuity}
+		\end{align}
+		が従う．一方で半ノルム系$(p_m)_{m \in \N}$は$p_0 \leq p_1 \leq p_2 \leq \cdots$を満たすから，
+		任意の$m \in \N$に対して
+		\begin{align}
+			p_m(\psi_k) = \frac{p_m(\varphi_k)}{k p_k(\varphi_k)} \leq \frac{1}{k}
+			\longrightarrow 0 \quad (k \longrightarrow \infty)
+		\end{align}
+		が成り立ち，$u$の連続性から$\inprod<u,\psi_k> \longrightarrow \inprod<u,0> = 0$となるはずであるが，
+		これは(\refeq{eq:lem_tempered_distributions_continuity})と矛盾する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[緩増加超関数の構造定理]
+			$u \in \tempdist{\R^n}$とし，補題\ref{lem:tempered_distributions_continuity}
+			により対応する$c > 0,\ m \in \N$を取る．また以下では$\alpha$は$n$次元多重指数を表すものとする．
+			このとき或る系$(f_\alpha)_{|\alpha| \leq m} \subset \mathrm{L}^\infty(\R^n)$が存在して次を満たす:
+			\begin{align}
+				\inprod<u,\varphi> =
+				\int_{\R^n} \partial_1 \cdots \partial_n \left[(1+|x|^2)^m f_\alpha(x)\right] \varphi(x)\ dx,
+				\quad (\forall \varphi \in \rapid{\R^n}).
+			\end{align}
+			\label{thm:structure_theorem_of_tempered_distributions}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}以下$u \in \tempdist{\R^n}$と$m \in \N$は固定する．
+		\begin{description}
+			\item[第一段]
+				任意の$\varphi \in \rapid{\R^n}$に対して
+				\begin{align}
+					p_m(\varphi)
+					\leq (m+1) \sum_{|\alpha| \leq m} \int_{\R^n} (1+|y|^2)^m \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy
+					\label{eq:structure_theorem_of_tempered_distributions_1}
+				\end{align}
+				が成り立つことを示す．
+				任意の$\alpha \in \N^n$と$x = (x_1,\cdots,x_n) \in \R^n$に対して，
+				$x_j \geq 0$を満たす$1 \leq j \leq n$の個数を$\#$で表し，
+				$x_j < 0$なら積分範囲$I_j$を$(-\infty,x_j]$，$x_j \geq 0$なら$I_j = [x_j,\infty)$とすれば
+				\begin{align}
+					\partial^\alpha \varphi(x)
+					= (-1)^{\#} \int_{I_1}\cdots\int_{I_n} \partial_1 \cdots \partial_n\partial^\alpha \varphi(y)\ dy_n \cdots dy_1
+				\end{align}
+				が成り立つ．そして$y \in I_1 \times \cdots \times I_n$なら$|x| \leq |y|$が満たされるから，
+				$0 \leq k \leq m$に対し
+				\begin{align}
+					(1+|x|^2)^k \left| \partial^\alpha \varphi(x) \right|
+					&\leq \int_{I_1}\cdots\int_{I_n} (1+|x|^2)^k \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy_n \cdots dy_1 \\
+					&\leq \int_{I_1}\cdots\int_{I_n} (1+|y|^2)^k \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy_n \cdots dy_1 \\
+					&\leq \int_{\R^n} (1+|y|^2)^k \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy \\
+					&\leq \int_{\R^n} (1+|y|^2)^m \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy
+				\end{align}
+				が従い
+				\begin{align}
+					p_m(\varphi) &= \sum_{|\alpha|+k \leq m} \sup{x \in \R^n}{(1+|x|^2)^k \left| \partial^\alpha \varphi(x) \right|} \\
+					&\leq \sum_{|\alpha|+k \leq m} \int_{\R^n} (1+|y|^2)^m \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy \\
+					&\leq (m+1) \sum_{|\alpha| \leq m} \int_{\R^n} (1+|y|^2)^m \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy
+				\end{align}
+				を得る．
+				
+			\item[第二段]
+				$\varphi \in \rapid{\R^n}$に対し，
+				$\psi^\varphi_\alpha(y) \coloneqq (1+|y|^2)^m \partial_1 \cdots \partial_n\partial^\alpha \varphi(y)$により$(\psi^\varphi_\alpha)_{|\alpha| \leq m}$を定める．
+				ここで$|\alpha| \leq m$を満たす$\alpha$の個数を$N$とし，
+				$\Set{\alpha \in \N^n}{|\alpha| \leq m}$を並び替え
+				$( \psi^\varphi_\alpha )_{|\alpha| \leq m}$を
+				$(\psi^\varphi_1,\cdots,\psi^\varphi_N)$と表記し直す．このとき
+				\begin{align}
+					\Delta \coloneqq \Set{(\psi^\varphi_1,\cdots,\psi^\varphi_N)}{\varphi \in \rapid{\R^n}}
+				\end{align}
+				で定める$\Delta$は対応$\varphi \longmapsto (\psi^\varphi_1,\cdots,\psi^\varphi_N)$により$\rapid{\R^n}$と線形同型となる．実際，この写像の線形性は微分の性質から従い，
+				$\Delta$の作り方より全射である．また
+				$\varphi,\eta \in \rapid{\R^n}$に対して，
+				$(\psi^\varphi_1,\cdots,\psi^\varphi_N) = (\psi^\eta_1,\cdots,\psi^\eta_N)$
+				ならば
+				\begin{align}
+					(1+|y|^2)^m \partial_1 \cdots \partial_n \varphi(y)
+					= (1+|y|^2)^m \partial_1 \cdots \partial_n \eta(y),
+					\quad (\forall y \in \R^n)
+				\end{align}
+				が従い
+				\begin{align}
+					&\varphi(x)
+					= \int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_n} \partial_1 \cdots \partial_n \varphi(y)\ dy_n\cdots dy_1 \\
+					&\qquad = \int_{-\infty}^{x_1}\cdots\int_{-\infty}^{x_n} \partial_1 \cdots \partial_n \eta(y)\ dy_n\cdots dy_1
+					= \eta(x),
+					\quad (\forall x \in \R^n)
+				\end{align}
+				が得られるから$\varphi \longmapsto (\psi^\varphi_1,\cdots,\psi^\varphi_N)$は単射である．
+				いま，$\Delta \ni (\psi^\varphi_1,\cdots,\psi^\varphi_N)$に対し
+				\begin{align}
+					\Norm{(\psi^\varphi_1,\cdots,\psi^\varphi_N)}{\Delta}
+					\coloneqq \sum_{i=1}^{N} \int_{\R^n} \left| \psi^\varphi_i(y) \right|\ dy
+					= \sum_{|\alpha| \leq m} \int_{\R^n} (1+|y|^2)^m \left| \partial_1 \cdots \partial_n\partial^\alpha \varphi(y) \right|\ dy
+					\label{eq:structure_theorem_of_tempered_distributions_2}
+				\end{align}
+				として$\Norm{\cdot}{\Delta}$を定めれば，
+				$\psi^\varphi_i$の連続性よりこれは$\Delta$上のノルムとなる．
+				
+			\item[第三段]
+				ノルム空間$\Delta$上の線形汎関数$L$を
+				\begin{align}
+					L(\psi^\varphi_1,\cdots,\psi^\varphi_N)
+					\coloneqq \inprod<u,\varphi>,
+					\quad (\forall \varphi \in \rapid{\R^n})
+				\end{align}
+				により定めれば，$F$は連続である．
+				実際(\refeq{eq:structure_theorem_of_tempered_distributions_1})と
+				(\refeq{eq:structure_theorem_of_tempered_distributions_2})より
+				\begin{align}
+					\left| L(\psi^\varphi_1,\cdots,\psi^\varphi_N) \right|
+					\leq c (m+1) \Norm{(\psi^\varphi_1,\cdots,\psi^\varphi_N)}{\Delta},
+					\quad (\forall \varphi \in \rapid{\R^n})
+				\end{align}
+				が成立する．
+				
+			\item[第四段]
+				$\Delta \ni (\psi^\varphi_1,\cdots,\psi^\varphi_N)$に対し，
+				各成分$\psi^\varphi_i$にこれを代表とする$\mathrm{L}^1(\R^n)$の元を対応させる等長単射を
+				$U$と表す:
+				\begin{align}
+					U:\Delta \ni (\psi^\varphi_1,\cdots,\psi^\varphi_N) \longmapsto 
+					U (\psi^\varphi_1,\cdots,\psi^\varphi_N) \in
+					\overbrace{\mathrm{L}^1(\R^n) \times \cdots \times \mathrm{L}^1(\R^n)}^N.
+				\end{align}
+				このとき$LU$
+		\end{description}
+	\end{prf}
