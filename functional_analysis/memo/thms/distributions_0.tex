@@ -1,0 +1,51 @@
+\section{緩増加$C^m$-関数}
+	\begin{screen}
+		\begin{dfn}[緩増加$C^m$-関数]
+			$f:\R^n \longrightarrow \C$が$C^m$-級で，各$\alpha \in \N^n$に対して
+			或る定数$C_\alpha$と$\ell_\alpha \in \N$が存在し
+			\begin{align}
+				\left| \partial^\alpha f(x) \right| \leq C_\alpha(1+|x|^2)^{\ell_\alpha},
+				\quad (\forall x \in \R^n,\ |\alpha| \leq m)
+				\label{eq:tempered_c^m_function}
+			\end{align}
+			が成り立つとき，$f$を緩増加$C^m$-関数(tempered $C^m$-function)という．
+			$m=0$の場合$f$を緩増加連続関数と呼び，
+			$m=\infty$の場合は緩増加関数と呼ぶ．
+			また緩増加$C^m$-関数の全体のなす線形空間を$TC^m$と表す．
+		\end{dfn}
+	\end{screen}
+	
+	緩増加$C^m$-関数$f$に対し(\refeq{eq:tempered_c^m_function})を満たす
+	$C_\alpha$と$\ell_\alpha$について，
+	$C \coloneqq \max{|\alpha| \leq m}{C_\alpha}
+	,\ \ell \coloneqq \max{|\alpha| \leq m}{\ell_\alpha}$とおけば
+	\begin{align}
+		\left| \partial^\alpha f(x) \right| \leq C(1+|x|^2)^\ell,
+		\quad (\forall x \in \R^n,\ |\alpha| \leq m)
+		\label{eq:tempered_c^m_function_2}
+	\end{align}
+	が成立する．特に緩増加関数に対しては任意の$m \in \N$ごとに$C,\ \ell$が定まり
+	(\refeq{eq:tempered_c^m_function_2})が満たされる．
+	
+	\begin{screen}
+		\begin{thm}[緩増加連続関数により定まる緩増加超関数]
+		\label{thm:tempered_continuous_functions_and_tempered_distributions}
+			緩増加連続関数$f:\R^n \longrightarrow \C$に対して
+			\begin{align}
+				u_f: \rapid{\R^n} \ni \varphi \longmapsto
+				\int_{\R^n} f(x) \varphi(x)\ dx
+			\end{align}
+			により定める$u_f$は緩増加超関数である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$f$に対し或る定数$C$と$\ell \in \N$が存在して(\refeq{eq:tempered_c^m_function})が満たされ
+		\begin{align}
+			\int_{\R^n} |f(x)| |\varphi(x)|\ dx
+			\leq C \int_{\R^n} (1+|x|^2)^\ell |\varphi(x)|\ dx
+			\leq \left[ C \int_{\R^n} \frac{1}{(1+|x|^2)^n}\ dx \right] p_{m+\ell}(\varphi) 
+		\end{align}
+		が成立する．可積分性より$u_f$は線型性をもち，また半ノルム$p_{m+\ell}$で抑えられているから$u_f$の連続性も出る．
+		\QED
+	\end{prf}

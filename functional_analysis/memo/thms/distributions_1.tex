@@ -1,14 +1,4 @@
 \section{緩増加超関数の構造定理}
-	$\N = \{0,1,2,\cdots\},\ \Z_+ = \{1,2,\cdots\}$とする．
-	また複素係数線形空間$E_i\ (i=1,\cdots,n)$の直積空間$E_1 \times \cdots \times E_n$においては
-	\begin{align}
-		(e_1,\cdots,e_n) + (f_1,\cdots,f_n) \coloneqq (e_1 + f_1,\cdots,e_n + f_n), 
-		\quad \alpha (e_1,\cdots,e_n) \coloneqq (\alpha e_1,\cdots,\alpha e_n)
-	\end{align}
-	により線型演算を定め，ノルム空間$(X_i,\Norm{\cdot}{i})\ (i=1,\cdots,n)$の
-	直積空間$X_1 \times \cdots \times X_n$におけるノルムは
-	$\Norm{x_1}{1} + \cdots + \Norm{x_n}{n}\ (x_i \in X_i)$とする．
-	以降，線型空間は全て複素係数と考える．
 	\begin{screen}
 		\begin{lem}\label{lem:isomorphism_on_product_of_dual_spaces}
 			$\Lambda$を有限集合，$\Bigl( (X_\lambda,\Norm{\cdot}{\lambda}) \Bigr)_{\lambda \in \Lambda}$
@@ -214,37 +204,123 @@
 				
 			\item[第四段]
 				$\psi^\varphi = (\psi^\varphi_\alpha)_{|\alpha| \leq m}$に対し，
-				各成分$\psi^\varphi_\alpha$にこれを代表とする$\mathrm{L}^1(\R^n)$の元を対応させる等長単射を
+				各成分$\psi^\varphi_\alpha$にこれを代表とする$\mathrm{L}^1(\R^n)$の元を対応させる等長な線型単射を
 				$U$と表す:
 				\begin{align}
 					U:\Delta \ni \psi^\varphi \longmapsto 
 					U \psi^\varphi \in \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n).
 				\end{align}
 				$U$の値域をその像に制限すれば逆写像$U^{-1}$が存在し，
-				合成写像$LU^{-1}$は部分空間$U\Delta$上で連続であるからHahn-Banachの拡張定理より
+				合成写像$LU^{-1}$は部分空間$U\Delta$上で線型連続であるからHahn-Banachの拡張定理より
 				$LU^{-1}$のノルム保存拡張$\tilde{L} \in \left( \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n) \right)^*$が存在する．従って，
 				\begin{align}
 					W:\prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n)^* \longrightarrow 
 					\biggl( \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n) \biggr)^*
 				\end{align}
 				を補題\ref{lem:isomorphism_on_product_of_dual_spaces}における同型写像とすれば，
-				或る$(\Phi_\alpha)_{|\alpha| \leq m} \in \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n)^*$がただ一つ存在して$\tilde{L} = W (\Phi_\alpha)_{|\alpha| \leq m}$と表される．一方で
-				$\Phi_\alpha$に対しては或る$g_\alpha \in \mathrm{L}^\infty(\R^n)$
-				がただ一つ対応し
+				或る$(\Phi_\alpha)_{|\alpha| \leq m} \in \prod_{|\alpha| \leq m} \mathrm{L}^1(\R^n)^*$がただ一つ存在して$\tilde{L} = W \left((\Phi_\alpha)_{|\alpha| \leq m}\right)$と表される．一方で
+				それぞれの$\Phi_\alpha$には或る$g_\alpha \in \mathrm{L}^\infty(\R^n)$
+				がただ一つ対応して
 				\begin{align}
 					\Phi_\alpha (f) = \int_{\R^n} g_\alpha(x)f(x)\ dx,
 					\quad \left( \forall f \in \mathrm{L}^1(\R^n) \right)
 				\end{align}
-				を満たすから，
+				を満たすから，(\refeq{eq:lem_isomorphism_on_product_of_dual_spaces})で定める演算により
 				\begin{align}
 					\inprod<u,\varphi>
 					&= L\psi^\varphi
 					= \tilde{L}U\psi^\varphi
-					= \left[ W(\Phi_\alpha)_{|\alpha| \leq m} \right] U\psi^\varphi \\
+					= \left[ W \left((\Phi_\alpha)_{|\alpha| \leq m}\right) \right] U\psi^\varphi \\
 					&= \sum_{|\alpha| \leq m} \int_{\R^n} g_\alpha(x) \psi^\varphi_\alpha(x)\ dx
 					= \sum_{|\alpha| \leq m} \int_{\R^n} g_\alpha(x) (1+|x|^2)^m \partial_1 \cdots \partial_n\partial^\alpha \varphi(x)\ dx
 				\end{align}
 				が成り立ち定理の主張を得る．
 				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[緩増加連続関数と緩増加超関数の一対一対応]
+			緩増加連続関数$f:\R^n \longrightarrow \C$に対し
+			$u_f \in \tempdist{\R^n}$を
+			\begin{align}
+				u_f: \rapid{\R^n} \ni \varphi \longmapsto
+				\int_{\R^n} f(x) \varphi(x)\ dx
+			\end{align}
+			で定めるとき，対応$f \longmapsto u_f$は
+			緩増加連続関数の全体$TC^0$から$\tempdist{\R^n}$への線型同型である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:tempered_continuous_functions_and_tempered_distributions}より
+		$u_f$は緩増加超関数であり，可積分性より$f \longmapsto u_f$の線型性が出る．
+		また緩増加連続関数は局所可積分であるから，変分法の基本補題より
+		$f \longmapsto u_f$は単射である．後は$f \longmapsto u_f$が全射であることを示せばよい．
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[緩増加超関数の合成積の性質]\mbox{}
+			\begin{description}
+				\item[(1)] $u \in \tempdist{\R^n}$と$\varphi \in \rapid{\R^n}$の合成積
+					$u \ast \varphi$に対し或る緩増加関数$f$が存在して
+					$u \ast \varphi = u_f$を満たす．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 構造定理より$u$に対して或る$(g_\alpha)_{|\alpha| \leq m} \subset \mathrm{L}^\infty(\R^n)$が存在し
+			\begin{align}
+				\inprod<u,\varphi> =
+				\sum_{|\alpha| \leq m} \int_{\R^n} (1+|x|^2)^m g_\alpha(x) \left[ \partial_1 \cdots \partial_n \partial^\alpha \varphi(x) \right]\ dx,
+				\quad (\forall \varphi \in \rapid{\R^n}).
+			\end{align}
+			と表現できるから，Fubiniの定理より任意の$\psi \in \rapid{\R^n}$に対して
+			\begin{align}
+				\inprod<u \ast \varphi,\psi> &= \inprod<u, \check{\varphi} \ast \psi> \\
+				&= \sum_{|\alpha| \leq m} \int_{\R^n} (1+|x|^2)^m g_\alpha(x) \left[ \partial_1 \cdots \partial_n \partial^\alpha \left(\check{\varphi} \ast \psi\right)(x) \right]\ dx \\
+				&= \sum_{|\alpha| \leq m} \int_{\R^n} (1+|x|^2)^m g_\alpha(x) \left[ \partial_1 \cdots \partial_n \partial^\alpha \int_{\R^n} \varphi(y-x) \psi (y)\ dy \right]\ dx \\
+				&= \sum_{|\alpha| \leq m} (-1)^{|\alpha|} \int_{\R^n} (1+|x|^2)^m g_\alpha(x) \left[ \int_{\R^n} \partial_1 \cdots \partial_n \partial^\alpha\varphi(y-x) \psi (y)\ dy \right]\ dx \\
+				&= \sum_{|\alpha| \leq m} (-1)^{|\alpha|} \int_{\R^n} \left[ \int_{\R^n} (1+|x|^2)^m g_\alpha(x)\ \partial_1 \cdots \partial_n \partial^\alpha\varphi(y-x)\ dx\right] \psi(y)\ dy
+			\end{align}
+			が成立する．このとき，各$\alpha$に対して
+			\begin{align}
+				f_\alpha:\R^n \ni y \longmapsto \int_{\R^n} (1+|x|^2)^m g_\alpha(x)\ \partial_1 \cdots \partial_n \partial^\alpha\varphi(y-x)\ dx
+			\end{align}
+			は緩増加関数である．表記上簡単にするため$\partial_1 \cdots \partial_n \partial^\alpha\varphi$を$\eta$と書き，
+			先ずは$f_\alpha$の微分可能性を示す．実際
+			\begin{align}
+				(1+|x|^2) \leq (1 + 2|y-x|^2 + 2|y|^2) \leq 2(1+|y-x|^2)(1+|y|^2)
+			\end{align}
+			であることを用いれば，任意の$1 \leq k \leq n$に対して
+			\begin{align}
+				(1+|x|^2)^m |g_\alpha(x)|\ |\partial_k \eta(y-x)|
+				\leq 2 \Norm{g_\alpha}{\mathrm{L}^\infty(\R^n)} (1+|y|^2)^m p_{m+n+1}(\eta) \frac{1}{(1+|y-x|^2)^n},
+				\quad (\forall x \in \R^n)
+			\end{align}
+			が成り立ち，右辺は$x$の関数として$\R^n$上可積分である．よってLebesgueの収束定理より
+			\begin{align}
+				\partial_k \int_{\R^n} (1+|x|^2)^m g_\alpha(x)\ \eta(y-x)\ dx
+				= \int_{\R^n} (1+|x|^2)^m g_\alpha(x)\ \partial_k \eta(y-x)\ dx
+			\end{align}
+			が従い，帰納法により任意の$\beta \in \N^n$に対して
+			\begin{align}
+				\partial^\beta \int_{\R^n} (1+|x|^2)^m g_\alpha(x)\ \eta(y-x)\ dx
+				= \int_{\R^n} (1+|x|^2)^m g_\alpha(x)\ \partial^\beta \eta(y-x)\ dx
+			\end{align}
+			が出る．そして
+			\begin{align}
+				\left| \partial^\beta f_\alpha(y) \right|
+				&\leq \int_{\R^n} (1+|x|^2)^m |g_\alpha(x)|\ \left| \partial^\beta \eta(y-x) \right|\ dx \\
+				&\leq \left[2 \Norm{g_\alpha}{\mathrm{L}^\infty(\R^n)} p_{m+n+|\beta|}(\eta) \int_{\R^n} \frac{1}{(1+|y-x|^2)^n}\ dx \right] (1+|y|^2)^m
+			\end{align}
+			が満たされるから$f_\alpha$は緩増加関数であり，
+			\begin{align}
+				f \coloneqq \sum_{|\alpha| \leq m} (-1)^{|\alpha|} f_\alpha
+			\end{align}
+			により緩増加関数$f$を定めれば$u \ast \varphi = u_f$が得られる．
+			\QED
 		\end{description}
 	\end{prf}
