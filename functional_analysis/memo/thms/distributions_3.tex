@@ -1,0 +1,69 @@
+\section{緩増加超関数の台}
+	\begin{screen}
+		\begin{lem}
+			$A,K \subset \R^n$をそれぞれ閉集合，コンパクト集合とする．このとき
+			\begin{align}
+				A + K \coloneqq \Set{z = x + y \in \R^n}{x \in A,\ y \in K}
+			\end{align}
+			で定める$A + K$は閉集合である．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		$A+K$の完備性を示す．$(z_n)_{n=1}^{\infty}$を
+		$A+K$のCauchy列とし，$z_n = x_n + y_n\ (x_n \in A,\ y_n \in K,\ n=1,2,\cdots)$と考える．
+		\begin{description}
+			\item[第一段]
+				$(x_n)_{n=1}^{\infty}$がCauchy列である場合，
+				$|y_n - y_m| \leq |z_n - z_m| + |x_n - x_m| \longrightarrow 0\ (n,m \longrightarrow \infty)$より
+				$(y_n)_{n=1}^{\infty}$もCauchy列である．$A,K$が閉集合であるから
+				$x_n \longrightarrow {}^\exists x \in A,\ y_n \longrightarrow {}^\exists y \in K$が満たされ，
+				$z \coloneqq x + y \in A + K$とおけば
+				\begin{align}
+					|z_n - z| \leq |x_n - x| + |y_n - y| \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が従う．
+			
+			\item[第二段]
+				$(x_n)_{n=1}^{\infty}$と$(y_n)_{n=1}^{\infty}$のどちらもCauchy列でない場合，
+				$(y_n)_{n=1}^{\infty}$は有界であるから或る部分列
+				$(y_{n_k})_{k=1}^{\infty}$が$K$で収束する．
+				前段の結果より$(z_{n_k})_{k=1}^{\infty}$は$A + K$で収束し，
+				$(z_n)_{n=1}^{\infty}$も部分列と同じ極限に収束する．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				$\supp{u} + \supp{\varphi}$は閉集合であるから，
+				任意の$x \notin \supp{u}+\supp{\varphi}$に対して
+				$U \cap \supp{u}+\supp{\varphi} = \emptyset$を満たす近傍$U$が存在する．
+				このとき$U \subset (\supp{u \ast \varphi})^c$が成立し
+				\begin{align}
+					(\supp{u \ast \varphi})^c
+					\supset (\supp{u} + \supp{\varphi})^c
+				\end{align}
+				が得られる．実際，冒頭に書いたような$U$を取れば，
+				$\supp{\psi} \subset U$を満たす$\psi \in \rapid{\R^n}$について
+				\begin{align}
+					\check{\varphi} \ast \psi (y)
+					= \int_{U} \varphi(z - y)\psi(z)\ dz
+					= 0,
+					\quad (\forall y \in \supp{u})
+				\end{align}
+				が成り立ち
+				\footnote{
+					任意の$y \in \supp{u}$に対して$z - y \notin \supp{\varphi}\ (\forall z \in U)$が満たされる．
+				}
+				\begin{align}
+					\inprod<u \ast \varphi, \psi>
+					= \inprod<u, \check{\varphi} \ast \psi>
+					= 0
+				\end{align}
+				が従う．すなわち$u \ast \varphi$は$U$で0であり$U \subset (\supp{u \ast \varphi})^c$が満たされる．
+				\QED
+		\end{description}
+	\end{prf}
