@@ -1,4 +1,7 @@
-\section{デルタ近似関数}
+\section{あんまり意味ないメモ}
+	$\Omega \neq \emptyset$を$\R^n$の開集合とする．
+	コンパクト台（相対位相）を持つ$C^\infty$-級関数$(\Omega \longrightarrow \C)$を（$\Omega$上の）{\bf テスト関数(test function)}と呼び，
+	その全体を$\Test{\Omega}$で表す．以後考察対象となるデルタ近似関数とは$\R^n$上のテスト関数である．
 	\begin{align}
 		f(t) \coloneqq 
 		\begin{cases}
@@ -14,13 +17,87 @@
 			0 & (|t| \geq 1)
 		\end{cases}
 	\end{align}
-	で定める$g$もまた，Libnizの公式より$\R$上で無限回微分可能である．指数関数は0を取りえないから
+	で定める$g$もまたLibnizの公式より$\R$上で無限回微分可能である．指数関数は0を取りえないから
 	\begin{align}
 		\Set{t \in \R}{g(t) \neq 0} = \Set{t \in \R}{|t| < 1}
 	\end{align}
-	が成り立つ．
+	が成り立つ．$\R^n \ni x \longmapsto |x|^2$もまた無限回微分可能であるから
 	\begin{align}
-		\rho(x) \coloneqq g(|x|^2) = g(x_1^2+ \cdots + x_n^2),
+		h(x) \coloneqq g(|x|^2) = g(x_1^2+ \cdots + x_n^2),
 		\quad (\forall x=(x_1,\cdots,x_n) \in \R^n)
 	\end{align}
-	により定める$C^\infty$-級関数$\rho$
+	とおけば$h \in \Test{\R^n}$が満たされ，
+	\begin{align}
+		c \coloneqq \int_{\R^n} h(x)\ dx > 0
+	\end{align}
+	に対し$\rho \coloneqq (1/c)h$で定める$\rho \in \Test{\R^n}$は
+	\begin{align}
+		\supp{\rho} = \Set{x \in \R^n}{|x| \leq 1}
+	\end{align}
+	かつ
+	\begin{align}
+		\int_{\R^n} \rho(x)\ dx = 1
+	\end{align}
+	を満たす．
+	
+	\begin{screen}
+		\begin{dfn}[デルタ近似関数]
+			Diracのデルタ関数を近似する関数をデルタ近似関数と呼び，任意の$\epsilon > 0$に対し
+			\begin{align}
+				\rho_\epsilon(x) \coloneqq \epsilon^n \rho(x/\epsilon),
+				\quad (\forall x \in \R^n)
+			\end{align}
+			により定めるテスト関数$\rho_\epsilon$はデルタ近似関数である．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[デルタ近似関数$\rho_\epsilon$の性質]\mbox{}
+			\begin{description}
+				\item[(1)] $\rho_\epsilon \geq 0$.
+				\item[(2)] $\check{\rho}_\epsilon = \rho_\epsilon$.
+				\item[(3)] $\supp{\rho_\epsilon} = \Set{x \in \R^n}{|x| \leq \epsilon}$.
+				\item[(4)] $\int_{\R^n} \rho_\epsilon(x)\ dx = 1$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[任意の開集合上に台を持つテスト関数の構成]
+			$\Omega \subset \R^n$を空でない開集合とする．
+			（$\Omega$の相対位相に関して）任意にコンパクト集合$K$と開集合$U\ (K \subset U)$を取れば，
+			\begin{align}
+				0 \leq \eta \leq 1,
+				\quad 
+				\eta(x) =
+				\begin{cases}
+					1 & (x \in K), \\
+					0 & (x \in \Omega \backslash U) 
+				\end{cases}
+			\end{align}
+			を満たす$\eta \in \Test{\Omega}$が存在する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$x \in K$に対し
+		$B(x;\epsilon_x) \coloneqq \Set{y \in \Omega}{|x-y| < \epsilon_x} \subset U$を満たす$\epsilon_x > 0$が存在し，
+		コンパクト性から有限個の$x_1,\cdots,x_m \in K$により$K \subset B(x_1,\epsilon_1/3) \cup \cdots \cup B(x_m,\epsilon_m/3)$が成り立つ．
+		ここで$\epsilon \coloneqq \min{}{\left\{ \epsilon_{x_1}/3,\cdots,\epsilon_{x_m}/3 \right\}}$とおけば
+		\begin{align}
+			\eta(x) \coloneqq \rho_\epsilon \ast \defunc_K(x) = \int_{K} \rho_\epsilon(x - y)\ dy,
+			\quad (\forall x \in \Omega)
+		\end{align}
+		が求めるテスト関数である．先ず任意の$\alpha \in \N^n$に対して
+		\begin{align}
+			\partial^\alpha \eta(x) = \int_K \partial^\alpha \rho_\epsilon(x-y)\ dy,
+			\quad (\forall x \in \Omega)
+		\end{align}
+		が成り立つから$\eta$は$\Omega$上で無限回微分可能であり，
+		$x \in \Omega \backslash U$なら
+		$|x - y| > \epsilon\ (\forall y \in K)$より$\eta(x) = 0$が従う．
+		\begin{align}
+			\eta(x) = \int_K \rho_\epsilon(x-y)\ dy \leq \int_{\R^n} \rho_\epsilon(x-y)\ dy = 1
+		\end{align}
+		より$0 \leq \eta \leq 1$が成り立ち，また
+	\end{prf}

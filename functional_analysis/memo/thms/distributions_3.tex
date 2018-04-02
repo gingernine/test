@@ -1,6 +1,6 @@
 \section{緩増加超関数の台}
 	\begin{screen}
-		\begin{lem}
+		\begin{lem}[閉集合とコンパクト集合の和は閉]\label{lem:combination_closed_compact}
 			$A,K \subset \R^n$をそれぞれ閉集合，コンパクト集合とする．このとき
 			\begin{align}
 				A + K \coloneqq \Set{z = x + y \in \R^n}{x \in A,\ y \in K}
@@ -23,7 +23,7 @@
 					|z_n - z| \leq |x_n - x| + |y_n - y| \longrightarrow 0
 					\quad (n \longrightarrow \infty)
 				\end{align}
-				が従う．
+				が従う．$(x_n)_{n=1}^{\infty}$と$(y_n)_{n=1}^{\infty}$の立場を交換しても同じことが言える．
 			
 			\item[第二段]
 				$(x_n)_{n=1}^{\infty}$と$(y_n)_{n=1}^{\infty}$のどちらもCauchy列でない場合，
@@ -35,19 +35,41 @@
 		\end{description}
 	\end{prf}
 	
+	\begin{screen}
+		\begin{thm}[緩増加超関数$u$とデルタ近似関数の合成積は$u$に収束する]\label{thm:supp_of_tempered_distributions_1}
+			$u \in \tempdist{\R^n}$とする．
+			\begin{description}
+				\item[(1)]	任意のテスト関数$\varphi \in \Test{\R^n}$に対し
+					\begin{align}
+						\supp{u \ast \varphi} \subset \supp{u} + \supp{\varphi}
+						\label{eq:thm_supp_of_tempered_distributions_1}
+					\end{align}
+					が成り立つ．ただし$\supp{u} + \supp{\varphi} = \Set{x \in \R^n}{x = y+z,\ y \in \supp{u},\ z \in \supp{\varphi}}$である．
+					
+				\item[(2)] 
+					$\tempdist{\R^n}$の位相に関して$u \ast \rho_\epsilon \longrightarrow u\ (\epsilon \longrightarrow 0)$が成立する．
+					つまり次が成り立つ．
+					\begin{align}
+						\inprod<u \ast \rho_\epsilon,\varphi> \longrightarrow \inprod<u,\varphi>,
+						\quad (\forall \varphi \in \rapid{\R^n}).
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(1)]
-				$\supp{u} + \supp{\varphi}$は閉集合であるから，
-				任意の$x \notin \supp{u}+\supp{\varphi}$に対して
-				$U \cap \supp{u}+\supp{\varphi} = \emptyset$を満たす近傍$U$が存在する．
-				このとき$U \subset (\supp{u \ast \varphi})^c$が成立し
+				$\supp{u} \neq \R^n$の場合を考える．
+				補題\ref{lem:combination_closed_compact}より$\supp{u} + \supp{\varphi}$は閉集合であるから，
+				$x \notin \supp{u}+\supp{\varphi}$を取れば
+				$U \cap \supp{u}+\supp{\varphi} = \emptyset$を満たす開近傍$U$が存在する．
+				このとき$U \subset (\supp{u \ast \varphi})^c$が成立するから，
 				\begin{align}
-					(\supp{u \ast \varphi})^c
-					\supset (\supp{u} + \supp{\varphi})^c
+					(\supp{u} + \supp{\varphi})^c \subset (\supp{u \ast \varphi})^c
 				\end{align}
-				が得られる．実際，冒頭に書いたような$U$を取れば，
-				$\supp{\psi} \subset U$を満たす$\psi \in \rapid{\R^n}$について
+				が従い(\refeq{eq:thm_supp_of_tempered_distributions_1})が得られる．
+				実際，$\supp{\psi} \subset U$を満たす任意の$\psi \in \rapid{\R^n}$について
 				\begin{align}
 					\check{\varphi} \ast \psi (y)
 					= \int_{U} \varphi(z - y)\psi(z)\ dz
@@ -63,7 +85,46 @@
 					= \inprod<u, \check{\varphi} \ast \psi>
 					= 0
 				\end{align}
-				が従う．すなわち$u \ast \varphi$は$U$で0であり$U \subset (\supp{u \ast \varphi})^c$が満たされる．
+				が出る．すなわち$u \ast \varphi$は$U$で0であり$U \subset (\supp{u \ast \varphi})^c$が満たされる．
+				
+			\item[(2)]
+				任意の$\varphi \in \rapid{\R^n}$に対して
+				$\inprod<u \ast \rho_\epsilon, \varphi> = \inprod<u, \check{\rho}_\epsilon \ast \varphi> = \inprod<u, \rho_\epsilon \ast \varphi>$
+				が成り立つから，$|\inprod<u, \rho_\epsilon \ast \varphi - \varphi>| \longrightarrow 0\ (\epsilon \longrightarrow 0)$となることを示せばよい．
+				補題\ref{lem:tempered_distributions_continuity}より$u$に対し或る$c > 0$と$m \in \N$が存在して
+				\begin{align}
+					|\inprod<u, \rho_\epsilon \ast \varphi - \varphi>| \leq c p_m(\rho_\epsilon \ast \varphi - \varphi),
+					\quad (\forall \varphi \in \rapid{\R^n})
+				\end{align}
+				を満たす．
+				\begin{align}
+					p_m(\rho_\epsilon \ast \varphi - \varphi)
+					&= \sum_{|\alpha| + k \leq m} \sup{x \in \R^n}{(1+|x|^2)^k \left| \rho_\epsilon \ast \partial^\alpha \varphi(x) - \partial^\alpha \varphi(x) \right|} \\
+					&= \sum_{|\alpha| + k \leq m} 
+						\sup{x \in \R^n}{(1+|x|^2)^k \left| \int_{|y| \leq \epsilon} \left( \partial^\alpha \varphi(x-y) - \partial^\alpha \varphi(x) \right) \rho_\epsilon(y)\ dy \right|} \\
+					&\leq \sum_{|\alpha| + k \leq m} 
+						\sup{x \in \R^n}{\int_{|y| \leq \epsilon} (1+|x|^2)^k \left| \partial^\alpha \varphi(x-y) - \partial^\alpha \varphi(x) \right| \rho_\epsilon(y)\ dy}
+					\label{eq:thm_supp_of_tempered_distributions_1_2}
+				\end{align}
+				まで半ノルムを展開し
+				\begin{align}
+					\partial^\alpha \varphi(x-y) - \partial^\alpha \varphi(x)
+					= \int_0^1 \frac{d}{dt} \partial^\alpha \varphi(x-ty)\ dt
+					= -\sum_{j=1}^{n} y_j \int_0^1 \partial_j \partial^\alpha \varphi(x-ty)\ dt
+				\end{align}
+				と式変形すれば，$\epsilon < 1$なら$(1+|x|^2) \leq 2 (1+|ty|^2)(1+|x-ty|^2) \leq 4(1+|x-ty|^2)\ (|y|\leq \epsilon,\ |t| \leq 1)$より
+				\begin{align}
+					(\refeq{eq:thm_supp_of_tempered_distributions_1_2})
+					&= \sum_{|\alpha| + k \leq m} 
+						\sup{x \in \R^n}{\int_{|y| \leq \epsilon} (1+|x|^2)^k  \left| \sum_{j=1}^{n} y_j \int_0^1 \partial_j \partial^\alpha \varphi(x-ty)\ dt \right| \rho_\epsilon(y)\ dy} \\
+					&\leq n \epsilon \sum_{|\alpha| + k \leq m} 
+						\sup{x \in \R^n}{\int_{|y| \leq \epsilon} (1+|x|^2)^k \int_0^1 \left| \partial_j \partial^\alpha \varphi(x-ty) \right|\ dt\ \rho_\epsilon(y)\ dy} \\
+					&\leq 4^m n \epsilon \sum_{|\alpha| + k \leq m} 
+						\sup{x \in \R^n}{\int_{|y| \leq \epsilon} \int_0^1 (1+|x-ty|^2)^k \left| \partial_j \partial^\alpha \varphi(x-ty) \right|\ dt\ \rho_\epsilon(y)\ dy} \\
+					&\leq \left( 4^m n p_{m+1}(\varphi) \right) \epsilon 
+				\end{align}
+				が成り立ち，$\epsilon$を潰して$|\inprod<u \ast \rho_\epsilon, \varphi> - \inprod<u, \varphi>| 
+				\leq c p_m(\rho_\epsilon \ast \varphi - \varphi) \longrightarrow 0\ (\epsilon \longrightarrow 0)$を得る．
 				\QED
 		\end{description}
 	\end{prf}
