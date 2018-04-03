@@ -1,0 +1,62 @@
+\section{有向族とフィルター}
+	\begin{screen}
+		\begin{thm}[有向点族による連続性の特徴づけ]
+			$X,Y$を位相空間とする．
+			写像$f:X \longrightarrow Y$が点$x \in X$で連続
+			であるための必要十分条件について，次がいえる:
+			\begin{description}
+				\item[(1)] $x$が可算な基本近傍系をもつとき，
+					必要十分条件は，$x$に収束する任意の点列$(x_n)_{n=1}^{\infty}$に対し
+					$\left( f(x_n) \right)_{n=1}^\infty$
+					が$f(x)$に収束することである．
+					
+				\item[(2)] $X$が一般の位相空間の場合，
+					必要十分条件は，$x$に収束する任意の有向点族$(x_\lambda)_{\lambda \in \Lambda}$に対し
+					$\left( f(x_\lambda) \right)_{\lambda \in \Lambda}$
+					が$f(x)$に収束することである．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[必要性]
+				$x$に収束する任意の点列$(x_n)_{n=1}^{\infty}$は有向点族であるから，
+				必要性の証明は(2)に対して示せばよい．
+				$(x_\lambda)_{\lambda \in \Lambda}$を$x$に収束する有向点族とする．
+				$f$が$x$で連続であるとき，$f(x)$の任意の近傍$V$に対して或る
+				$x$の近傍$U$が存在し
+				\begin{align}
+					f(U) \subset V
+				\end{align}
+				が満たされる．この$U$に対し或る$\lambda_0 \in \Lambda$が存在して
+				$x_\lambda \in U\ (\forall \lambda \geq \lambda_0)$が成り立ち
+				$f(x_\lambda) \in V\ (\forall \lambda \geq \lambda_0)$が従う．
+				
+			\item[十分性] (1)と(2)それぞれの場合について，対偶を証明する．
+				いま，$f$が$x$で連続ではないと仮定する．
+				\begin{description}
+					\item[(1)]
+						$x$に対し可算基本近傍系$(U_n)_{n=1}^{\infty}$が存在する．
+						近傍系は有限回の交演算で閉じるから
+						\begin{align}
+							W_n \coloneqq U_1 \cap U_2 \cap \cdots \cap U_n,
+							\quad (n=1,2,\cdots)
+						\end{align}
+						により$x$の単調減少な可算近傍系$(W_n)_{n=1}^{\infty}$が定まり，
+						仮定より$f(x)$の或る近傍$V$が存在して
+						\begin{align}
+							f(W_n) \not\subset V,
+							\quad (n=1,2,\cdots)
+						\end{align}
+						が成り立つから，各$n$に対し$f(x_n) \notin V$を満たす
+						$x_n \in W_n$が取れる．ゆえに$f(x_n) \not\rightarrow f(x)$であるが，
+						一方で$x$の任意の近傍$U$に対し或る
+						$U_{n_0}$が$U$に含まれ，
+						$x_n \in W_n \subset U\ (\forall n \geq n_0)$が従い
+						$(x_n)_{n=1}^{\infty}$は$x$に収束する．
+					\item[(2)]
+				\end{description}
+		\end{description}
+	\end{prf}
+	
