@@ -1,4 +1,32 @@
-\section{有向族とフィルター}
+\section{有向集合とフィルター}
+	\begin{screen}
+		\begin{dfn}[有向集合]
+			集合$\Lambda$において，次の性質を持つ二項関係$\leq\ (\geq)$\footnotemark
+			が定まっているとき，$\Lambda$を有向集合(directed set)，或は有向擬順序集合(directed preorder)と呼ぶ．
+			\begin{description}
+				\item[反射的] $\lambda \leq \lambda\ (\forall \lambda \in \Lambda)$,
+				\item[推移的] $\lambda \leq \mu$かつ$\mu \leq \nu$なら$\lambda \leq \nu\ (\forall \lambda,\mu,\nu \in \Lambda)$,
+				\item[有向的] 任意に$\lambda,\mu \in \Lambda$を取れば或る$\nu \in \Lambda$が存在し
+					$\lambda \leq \nu$かつ$\mu \leq \nu$を満たす．
+			\end{description}
+			（順序集合に対して三番目の性質を追加しても有向集合となるが，本節では反対称性を使うことはない．）
+		\end{dfn}
+	\end{screen}
+	\footnotetext{
+		$\lambda,\mu \in \Lambda$について
+		$\lambda \leq \mu \Leftrightarrow \mu \geq \lambda$．
+	}
+	\begin{screen}
+		\begin{dfn}[有向族による収束の記述]
+			位相空間$X$において，有向集合$\Lambda$を添数集合とする
+			系$(x_\lambda)_{\lambda \in \Lambda}$を有向族(directed family)と呼ぶ．
+			$(x_\lambda)_{\lambda \in \Lambda}$が$x \in X$に収束するとは，
+			$x$の任意の近傍$U$に対して或る$\lambda_0 \in \Lambda$が存在し，
+			$x_\lambda \in U\ (\forall \lambda \geq \lambda_0)$が成り立つことにより定める．
+			これは距離空間における点列収束の一般化である．
+		\end{dfn}
+	\end{screen}
+	
 	\begin{screen}
 		\begin{thm}[有向点族による連続性の特徴づけ]
 			$X,Y$を位相空間とする．
@@ -9,7 +37,7 @@
 					必要十分条件は，$x$に収束する任意の点列$(x_n)_{n=1}^{\infty}$に対し
 					$\left( f(x_n) \right)_{n=1}^\infty$
 					が$f(x)$に収束することである．
-					
+					すなわち，$X$が第一可算公理を満たすなら点列連続性と連続性は一致する．
 				\item[(2)] $X$が一般の位相空間の場合，
 					必要十分条件は，$x$に収束する任意の有向点族$(x_\lambda)_{\lambda \in \Lambda}$に対し
 					$\left( f(x_\lambda) \right)_{\lambda \in \Lambda}$
@@ -21,7 +49,7 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[必要性]
-				$x$に収束する任意の点列$(x_n)_{n=1}^{\infty}$は有向点族であるから，
+				点列$(x_n)_{n=1}^{\infty}$は有向点族であるから，
 				必要性の証明は(2)に対して示せばよい．
 				$(x_\lambda)_{\lambda \in \Lambda}$を$x$に収束する有向点族とする．
 				$f$が$x$で連続であるとき，$f(x)$の任意の近傍$V$に対して或る
@@ -56,6 +84,13 @@
 						$x_n \in W_n \subset U\ (\forall n \geq n_0)$が従い
 						$(x_n)_{n=1}^{\infty}$は$x$に収束する．
 					\item[(2)]
+						$x$の近傍全体を$\Lambda$とおけば，
+						$U \leq V \DEF U \supset V\ (U,V \in \Lambda)$により
+						$\Lambda$は有向集合となる．
+						仮定より$f(x)$の或る近傍$V$が存在して
+						全ての$U \in \Lambda$に対し或る$x_U \in U$が存在して
+						$f(x_U) \notin V$を満たすから，
+						$$
 				\end{description}
 		\end{description}
 	\end{prf}
