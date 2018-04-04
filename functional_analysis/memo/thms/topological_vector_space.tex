@@ -1,5 +1,16 @@
 \section{位相線形空間}
-	位相空間$X$が分離公理$T_1$を満たすとは，
+	以下，位相空間$X$の点$x$の近傍を次で考える:
+	\begin{align}
+		\mbox{$V \subset X$が$x$の近傍である．}
+		\quad \Leftrightarrow \quad
+		\mbox{$x$は$U$の内点である．}
+	\end{align}
+	$x$の近傍全体を$\nbh{x}$と表す．また$x$の基本近傍系を
+	\begin{align}
+		\fnbh{x} \coloneqq
+		\Set{V \in \nbh{x}}{}
+	\end{align}
+	により定める．位相空間$X$が分離公理$T_1$を満たすとは，
 	或いは$T_1$-空間であるとは，
 	任意の$x,y \in X$に対して$y$の近傍$U_y$
 	で$x \notin U_y$となるものが存在することをいう．
@@ -11,6 +22,9 @@
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf}
+		TBA
+	\end{prf}
 	
 	以下，体$K$上の線形空間$X$と$A,B \subset X,\ x \in X,\ \alpha \in K$に対し
 	\begin{align}
@@ -23,13 +37,100 @@
 	と定める．
 	\begin{screen}
 		\begin{dfn}[位相線形空間]
-			$X$を線形空間とする．
+			$X$を体$K = \R$或は$K = \C$上の線形空間とする．
 			$X$に対し次を満たす位相$\tau$が付随しているとき，
 			$\tau$を線型位相(vector topology)，
 			$X$を位相線形空間(topological vector space)と呼ぶ．
 			\begin{description}
 				\item[(i)] $(X,\tau)$は$T_1$-空間である．つまり，$X$の一点集合は閉である．
-				\item[(ii)] $X$上の線型演算（加法・スカラ倍）が$\tau$に関して連続である．
+				\item[(ii)] $X$上の線型演算
+					\begin{align}
+						X \times X \ni (x,y) \longmapsto x+y \in X, 
+						\quad K \times X \ni (\alpha, x) \longmapsto \alpha x \in X
+					\end{align}
+					が$\tau$と$K$の位相に関して連続である．
 			\end{description}
 		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[平行移動作用素・スカラ倍作用素]
+			$a \in X$と$\alpha \in K$を任意に取り
+			$T_a:x \longmapsto a + x$と
+			$M_\alpha:x \longmapsto \alpha x$を定めれば，
+			$T_a,M_\alpha\ (\alpha \neq 0)$は$X$上の自己同相である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[全単射]
+				$\alpha \neq 0$とする．
+				任意の$x \in X$に対し$x = T_a \circ T_{-a} (x) = T_{-a} \circ T_{a}(x)$かつ
+				$x = M_{\alpha} \circ M_{\alpha^{-1}}(x) = M_{\alpha^{-1}} \circ M_{\alpha}(x)$
+				が成り立つから，$T_a,M_\alpha$は$X$上の全単射であり
+				それぞれ$T_{-a},M_{\alpha^{-1}}$を逆写像に持つ．
+				
+			\item[連続性]
+				加法を$\Phi$，スカラ倍を$\Psi$と表す．
+				線型位相空間の定義より，任意の$x \in X$について，
+				$a + x$の任意の近傍$U$に対し或る$a$の近傍$V_1$と$x$の近傍$V_2$
+				が存在して$\Phi(V_1 \times V_2) = V_1 + V_2 \subset U$を満たす．
+				ゆえに$V_2 \subset T_a^{-1}(U)$が従うから
+				$T_a$は各点で連続である．
+				同様に$\alpha x$の任意の近傍$U'$に対し或る$\alpha$の近傍$V_1'$と$x$の近傍$V_2'$
+				が存在して$\Psi(V_1' \times V_2') \subset U$を満たすから，
+				$V_2' \subset M_\alpha^{-1}(U')$が従い$M_\alpha$の連続性が出る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[均整集合・有界集合・対称集合]
+			$(X,\tau)$を$K = \R$或は$K = \C$上の線型位相空間とする．このとき
+			部分集合$A \subset X$に対して，
+			$\alpha A \subset A\ (\forall |\alpha| \leq 1)$が成り立つとき
+			$A$は均整である(balanced)といい，
+			任意の0の近傍$V$に対して或る$\alpha > 0$が対応し
+			$A \subset \beta V\ (\beta > \alpha)$を満たすとき$A$は有界である(bounded)という．
+			また$A$が対称的であるとは$A = -A$が成立することである．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[]
+			線型位相空間において$0$の近傍全体は任意の$x \in X$の近傍全体と一対一対応．
+			位相は$0$の基本近傍系のみで記述される．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[互いに素なコンパクト集合と閉集合を覆う互いに素な開集合の存在]
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$E \neq X$を満たす$E \in \fnbh{x}$と$x \in X \backslash \closure{E}$を取る．
+		一点集合はコンパクトであるから，前定理より或る$V \in \fnbh{x}$が存在して
+		\begin{align}
+			(x+V) \cap (\closure{E} + V) = \emptyset
+		\end{align}
+		が成立し，
+		\begin{align}
+			V \subset x+V \subset (\closure{E} + V)^c \subset \closure{E}^c
+		\end{align}
+		が成り立つ．
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+			任意の線型位相空間はHausdorff空間である．
+			従って特に，任意のコンパクト部分集合は閉である．
+		\end{thm}
 	\end{screen}
