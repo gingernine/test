@@ -1,11 +1,61 @@
 \section{緩増加超関数の台}
+	$f:\R^n \longrightarrow \C$を緩増加連続関数として，定理\ref{thm:tempered_continuous_functions_and_tempered_distributions}
+	で定める緩増加超関数$u_f$の台を考察する．
+	いま，$\Omega \coloneqq (\supp{f})^c$とおけば，
+	$\supp{\varphi} \subset \Omega$を満たす全ての$\varphi \in \rapid{\R^n}$に対して
+	（定理\ref{construction_of_test_function}により$\varphi$は存在する．）
+	\begin{align}
+		\inprod<u_f,\varphi> = \int_{\R^n} f(x)\varphi(x)\ dx = 0
+	\end{align}
+	が成立する．これをもとに次を定義する．
+	\begin{screen}
+		\begin{dfn}[緩増加関数の台]
+			$\Omega \subset \R^n$を開集合とする．緩増加超関数$u \in \tempdist{\R^n}$が
+			$\Omega$で0であるとは，$\supp{\varphi} \subset \Omega$を満たす任意の
+			$\varphi \in \rapid{\R^n}$に対し$\inprod<u,\varphi> = 0$が成り立つことであると定める．
+			そして$u$の台$\supp{u}$を次で定める:
+			\begin{align}
+				\supp{u} \coloneqq \left\{ \mbox{$u$が0になる最大の開集合} \right\}^c = \left[ \bigcup_{\substack{\Omega:\mathrm{open} \\ u:0\ \mathrm{on}\ \Omega}} \Omega \right]^c.
+			\end{align}
+		\end{dfn}	
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			緩増加連続関数$f$に対して$\supp{u_f} = \supp{f}$が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		上で述べたことにより
+		$u_f$は$(\supp{f})^c$で0になるから，
+		$(\supp{f})^c \subset (\supp{u})^c$すなわち
+		$\supp{u_f} \subset \supp{f}$が成り立つ．
+		一方で任意の$x \in (\supp{u_f})^c$に対し
+		\footnote{
+			$\supp{u_f} = \R^n$の場合は自動的に$\supp{u_f} \supset \supp{f}$が成立する．
+		}
+		或る開近傍$U_x$が存在し，
+		$\supp{\varphi} \subset U_x$を満たす任意の$\varphi \in \rapid{\R^n}$に対して
+		\begin{align}
+			\int_{U_x}  f(y) \varphi(y)\ dy = 0
+		\end{align}
+		が成立する．よって変分法の基本補題と$f$の連続性より
+		$f$は$U_x$上で0に張り付くから，
+		\begin{align}
+			(\supp{u_f})^c \subset \Set{x \in \R^n}{f(x) = 0}^\circ = (\supp{f})^c
+		\end{align}
+		が従い$\supp{u_f} \supset \supp{f}$を得る．
+		\QED
+	\end{prf}
+
 	\begin{screen}
 		\begin{lem}[閉集合とコンパクト集合の和は閉]\label{lem:combination_closed_compact}
 			$A,K \subset \R^n$をそれぞれ閉集合，コンパクト集合とする．このとき
 			\begin{align}
-				A + K \coloneqq \Set{z = x + y \in \R^n}{x \in A,\ y \in K}
+				A + K = \Set{z = x + y \in \R^n}{x \in A,\ y \in K}
 			\end{align}
-			で定める$A + K$は閉集合である．
+			は$\R^n$の閉集合である．
 		\end{lem}
 	\end{screen}
 	
@@ -36,15 +86,14 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[緩増加超関数$u$とデルタ近似関数の合成積は$u$に収束する]\label{thm:supp_of_tempered_distributions_1}
+		\begin{thm}\label{thm:supp_of_tempered_distributions_1}
 			$u \in \tempdist{\R^n}$とする．
 			\begin{description}
-				\item[(1)]	任意のテスト関数$\varphi \in \Test{\R^n}$に対し
+				\item[(1)]	任意のテスト関数$\varphi \in \Test{\R^n}$に対し次が成り立つ:
 					\begin{align}
-						\supp{u \ast \varphi} \subset \supp{u} + \supp{\varphi}
+						\supp{u \ast \varphi} \subset \supp{u} + \supp{\varphi}.
 						\label{eq:thm_supp_of_tempered_distributions_1}
 					\end{align}
-					が成り立つ．ただし$\supp{u} + \supp{\varphi} = \Set{x \in \R^n}{x = y+z,\ y \in \supp{u},\ z \in \supp{\varphi}}$である．
 					
 				\item[(2)] 
 					$\tempdist{\R^n}$の位相に関して$u \ast \rho_\epsilon \longrightarrow u\ (\epsilon \longrightarrow 0)$が成立する．
@@ -64,7 +113,7 @@
 				補題\ref{lem:combination_closed_compact}より$\supp{u} + \supp{\varphi}$は閉集合であるから，
 				$x \notin \supp{u}+\supp{\varphi}$を取れば
 				$U \cap \supp{u}+\supp{\varphi} = \emptyset$を満たす開近傍$U$が存在する．
-				このとき$U \subset (\supp{u \ast \varphi})^c$が成立するから，
+				このとき$U \subset (\supp{u \ast \varphi})^c$が成立し，
 				\begin{align}
 					(\supp{u} + \supp{\varphi})^c \subset (\supp{u \ast \varphi})^c
 				\end{align}
@@ -128,3 +177,20 @@
 				\QED
 		\end{description}
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト台を持つ緩増加超関数のFourier変換]
+			$u \in \comtempdist{\R^n}$に対し，$K \coloneqq \supp{u}$とおく．このとき
+			$K$上で$1$を満たす任意の$\varphi \in \rapid{\R^n}$に対して
+			\begin{align}
+				\hat{u}(\xi) \coloneqq \inprod<u,\exp{-ix \cdot \xi}\varphi>\ \footnotemark,
+				\quad (\xi \in \R^n)
+			\end{align}
+			と定めれば，左辺は$K$上で$1$を満たす急減少関数の選び方に依らずに確定する．また
+			$\xi \longmapsto \hat{u}(\xi)$は緩増加である．
+		\end{thm}
+	\end{screen}
+	\footnotetext{
+		正確には$a_\xi:\R^n \ni x \longmapsto \exp{-ix \cdot \xi}\varphi(x)$で定まる急減少関数$a_\xi$を用いて
+		$\hat{u}(\xi) \coloneqq \inprod<u,a_\xi>$と表す．
+	}

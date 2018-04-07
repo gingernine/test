@@ -1,6 +1,6 @@
 \section{あんまり意味ないメモ}
 	$\Omega \neq \emptyset$を$\R^n$の開集合とする．
-	コンパクト台（相対位相）を持つ$C^\infty$-級関数$(\Omega \longrightarrow \C)$を（$\Omega$上の）{\bf テスト関数(test function)}と呼び，
+	$\Omega$に含まれるコンパクト集合を台とする$C^\infty$-級関数$(\Omega \longrightarrow \C)$を（$\Omega$上の）{\bf テスト関数(test function)}と呼び，
 	その全体を$\Test{\Omega}$で表す．以後考察対象となるデルタ近似関数は$\R^n$上のテスト関数である．
 	\begin{align}
 		f(t) \coloneqq 
@@ -63,38 +63,38 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[任意の開集合上に台を持つテスト関数の構成]
-			$\Omega \subset \R^n$を空でない開集合とする．
-			（$\Omega$の相対位相に関して）任意にコンパクト集合$K$と開集合$U\ (K \subset U)$を取れば，
+		\begin{thm}[テスト関数を任意に構成する]
+		\label{construction_of_test_function}
+			任意に$\R^n$のコンパクト集合$K$と開集合$U\ (K \subset U)$を取れば，
 			\begin{align}
 				0 \leq \eta \leq 1,
 				\quad 
 				\eta(x) =
 				\begin{cases}
 					1 & (x \in K), \\
-					0 & (x \in \Omega \backslash U) 
+					0 & (x \in \R^n \backslash U) 
 				\end{cases}
 			\end{align}
-			を満たす$\eta \in \Test{\Omega}$が存在する．
+			を満たす$\eta \in \Test{\R^n}$が存在する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
 		任意の$x \in K$に対し
-		$B(x;\epsilon_x) \coloneqq \Set{y \in \Omega}{|x-y| < \epsilon_x} \subset U$を満たす$\epsilon_x > 0$が存在し，
+		$B(x;\epsilon_x) \coloneqq \Set{y \in \R^n}{|x-y| < \epsilon_x} \subset U$を満たす$\epsilon_x > 0$が存在し，
 		コンパクト性から有限個の$x_1,\cdots,x_m \in K$により$K \subset B(x_1,\epsilon_1/3) \cup \cdots \cup B(x_m,\epsilon_m/3)$が成り立つ．
 		ここで$\epsilon \coloneqq \min{}{\left\{ \epsilon_{x_1}/3,\cdots,\epsilon_{x_m}/3 \right\}}$とおけば
 		\begin{align}
 			\eta(x) \coloneqq \rho_\epsilon \ast \defunc_K(x) = \int_{K} \rho_\epsilon(x - y)\ dy,
-			\quad (\forall x \in \Omega)
+			\quad (\forall x \in \R^n)
 		\end{align}
 		が求めるテスト関数である．先ず任意の$\alpha \in \N^n$に対して
 		\begin{align}
 			\partial^\alpha \eta(x) = \int_K \partial^\alpha \rho_\epsilon(x-y)\ dy,
-			\quad (\forall x \in \Omega)
+			\quad (\forall x \in \R^n)
 		\end{align}
-		が成り立つから$\eta$は$\Omega$上で無限回微分可能であり，
-		$x \in \Omega \backslash U$なら
+		が成り立つから$\eta$は$\R^n$上で無限回微分可能であり，
+		$x \in \R^n \backslash U$なら
 		$|x - y| > \epsilon\ (\forall y \in K)$より$\eta(x) = 0$が従う．
 		\begin{align}
 			\eta(x) = \int_K \rho_\epsilon(x-y)\ dy \leq \int_{\R^n} \rho_\epsilon(x-y)\ dy = 1
