@@ -1,2 +1,152 @@
 \section{Kolmogorovの拡張定理}
+	\begin{screen}
+		\begin{thm}[Daniell, Kolmogorov]
+			Let $(Q_t)_{t \in T}$ be a consistent family of finite-dimensional 
+			distributions. Then there is a probability measure $P$ on 
+			$\left( \R^{d,[0,\infty)}, \borel{\R^{d,[0,\infty)}} \right)$, such that 
+			(2.2) holds for every $t \in T$.
+		\end{thm}
+	\end{screen}
 	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$C \in \mathscr{C}$について，
+				$C = \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in A}$
+				という表示に対し
+				\begin{align}
+					Q(C) \coloneqq Q_t(A)
+				\end{align}
+				により$Q(C)$を定めると，$Q(C)$はwell-definedであり，$Q$は$\mathscr{C}$上の初等確率測度となる:
+				いま，
+				\begin{align}
+					C 
+					&= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in A} \\
+					&= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(s_1),\cdots,\omega(s_m)) \in B} 
+				\end{align}
+				という二つの表示があるとする．
+				\begin{description}
+					\item[case1]
+						$s$が$t$の並び替えである場合，
+						或る$\{1,\cdots,n\}$の全単射$\varphi$が存在して
+						\begin{align}
+							(s_1,\cdots,s_n) 
+							= (t_{\varphi(1)},\cdots,t_{\varphi(n)})
+						\end{align}
+						と書ける．
+						\begin{align}
+							F:(\R^d)^n \ni x \longmapsto x \circ \varphi \in (\R^d)^n
+						\end{align}
+						により線型同型写像$F$を定めれば
+						\begin{align}
+							\omega \circ t \in A
+							\quad \Leftrightarrow \quad \omega \circ t \circ \varphi 
+							= F(\omega \circ t) \in F(A),
+							\quad (\omega \in \R^{d,[0,\infty)})
+						\end{align}
+						が成り立つから
+						\begin{align}
+							\Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in A}
+							&= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_{\varphi(1)}),\cdots,\omega(t_{\varphi(n)})) \in F(A)} \\
+							&= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(s_1),\cdots,\omega(s_m)) \in B} 
+						\end{align}
+						が従い$B = F(A)$が出る．
+						$F$は逆写像も込めて有限次元空間上の線型同型であるから同相であり
+						\begin{align}
+							F(A) \in \borel{(\R^d)^n}
+						\end{align}
+						が満たされ，特に矩形集合に対しては
+						\begin{align}
+							F(E_1 \times \cdots \times E_n) = E_{\varphi(1)} \times \cdots \times  E_{\varphi(n)},
+							\quad (E_i \in \borel{\R^d})
+						\end{align}
+						が成立する．$(Q_t)_{t \in T}$のconsistencyにより
+						\begin{align}
+							\Set{E_1 \times \cdots \times E_n}{E_i \in \borel{\R^d},\ i=1,\cdots,n}
+							\subset \Set{E \in \borel{(\R^d)^n}}{Q_t(E) = Q_s(F(E))}
+						\end{align}
+						が成り立ち，Dynkin族定理より$Q_t(A) = Q_s (B)$を得る．
+					
+					\item[case2]
+						$n < m$かつ$\{t_1,\cdots,t_n\} \subset \{s_1,\cdots,s_m\}$の場合，
+						或る$\{1,\cdots,m\}$上の全単射$\psi$が存在して
+						\begin{align}
+							(s_{\psi(1)},\cdots, s_{\psi(m)})
+							= (t_1, \cdots, t_n,s_{\psi(n+1)},\cdots,s_{\psi(m)})
+						\end{align}
+						を満たす．
+						\begin{align}
+							G:(\R^d)^m \ni x \longmapsto x \circ \psi \in (\R^d)^m
+						\end{align}
+						により線型同型かつ同相な写像$G$を定めれば
+						\begin{align}
+							\omega \circ s \in B
+							\quad \Leftrightarrow \quad \omega \circ s \circ \psi 
+							= G(\omega \circ s) \in G(B),
+							\quad (\omega \in \R^{d,[0,\infty)})
+						\end{align}
+						が成り立つから
+						\begin{align}
+							&\Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in A}
+							= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(s_1),\cdots,\omega(s_m)) \in B} \\
+							&\qquad= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n),\omega(s_{\psi(n+1)}),\cdots,\omega(s_{\psi(m)})) \in G(B)} 
+						\end{align}
+						が従い$G(B) = A \times (\R^d)^{m-n}$が出る．
+						$(Q_t)_{t \in T}$のconsistencyとcase1の結果を併せて
+						\begin{align}
+							Q_t(A) = Q_{s \circ \psi}(A \times (\R^d)^{m-n}) = Q_{s \circ \psi}(G(B))
+							= Q_s(B)
+						\end{align}
+						を得る．
+						
+					\item[case3]
+						$\{u_1,\cdots,u_k\} \coloneqq \{t_1,\cdots,t_n\} \cup \{s_1,\cdots,s_m\}$により
+						$u \in T$を定める．$n \vee m=k$なら
+						case1或はcase2に該当するので，$n \vee m < k$の場合を考える．
+						このとき$\{1,\cdots,k\}$上の全単射$\varphi_1,\varphi_2$が存在して
+						\begin{align}
+							(u_{\varphi_1(1)},\cdots, u_{\varphi_1(k)})
+							&= (t_1, \cdots, t_n,u_{\varphi_1(n+1)},\cdots,u_{\varphi_1(k)}), \\
+							(u_{\varphi_2(1)},\cdots, u_{\varphi_2(k)})
+							&= (s_1, \cdots, s_m,u_{\varphi_2(m+1)},\cdots,u_{\varphi_2(k)})
+						\end{align}
+						を満たす．いま，
+						\begin{align}
+							H:(\R^d)^m \ni x \longmapsto x \circ \varphi_2^{-1} \circ \varphi_1 \in (\R^d)^m
+						\end{align}
+						により線型同型かつ同相な写像$H$を定めれば
+						\begin{align}
+							\omega \circ u \circ \varphi_2 \in B \times (\R^d)^{k-m}
+							\quad \Leftrightarrow \quad 
+							\omega \circ u \circ \varphi_1 
+							= H(\omega \circ u \circ \varphi_2) \in H\left( B \times (\R^d)^{k-m} \right),
+							\quad (\omega \in \R^{d,[0,\infty)})
+						\end{align}
+						が成り立つから，case1の結果より
+						\begin{align}
+							H\left( B \times (\R^d)^{k-m} \right) = A \times (\R^d)^{k-n}
+						\end{align}
+						かつ
+						\begin{align}
+							Q_t(A) 
+							= Q_{u \circ \varphi_1} \left( A \times (\R^d)^{k-n} \right)
+							= Q_{u \circ \varphi_1} \left( H\left( B \times (\R^d)^{k-m} \right) \right)
+							= Q_{u \circ \varphi_2} \left( B \times (\R^d)^{k-m} \right)
+							= Q_s(B)
+						\end{align}
+						が出る．
+				\end{description}
+				以上より$Q$はwell-definedである．次に$Q$が初等確率測度であることを示す．
+				実際，
+				\begin{align}
+					\R^{d,[0,\infty)} = \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in (\R^d)^n}
+				\end{align}
+				により$Q(\R^{d,[0,\infty)}) = Q_t((\R^d)^n) = 1$が従い，また
+				$C_1,C_2 \in \mathscr{C},\ C_1 \cap C_2 = \emptyset$に対して
+				\begin{align}
+					C_1 &= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in A_1}, \\
+					C_2 &= \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(s_1),\cdots,\omega(s_m)) \in A_2}
+				\end{align}
+				という表示があるとして，case1$\sim$3の証明と同様にすれば$Q(C_1 + C_2) = Q(C_1) + Q(C_2)$が得られる．
+		\end{description}
+	\end{prf}
