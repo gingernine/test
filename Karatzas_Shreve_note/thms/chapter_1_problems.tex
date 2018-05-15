@@ -1,11 +1,122 @@
-\begin{screen}
-	\begin{thm}
+\section{Stochastic Processes and $\sigma$-Fields}
+\begin{itembox}[l]{Problem 1.5}
+	Let $Y$ be a modification of $X$, and suppose that every 
+	sample path of both processes are right-continuous sample paths. 
+	Then $X$ and $Y$ are indistinguishable.
+\end{itembox}
+
+\begin{prf}
+	Karatzas-Shreveの問題文には``suppose that both processes have a.s. right-continuous sample paths''
+	と書いてあるがこれは誤植である．実際，或る零集合$\emptyset \neq N \in \mathscr{F}$が存在し，
+	$\omega \in \Omega \backslash N$に対する$X,Y$のパスが右連続であるとする．このとき
+	\begin{align}
+		\left\{ X_t = Y_t,\ \forall t \geq 0 \right\}
+		&= \left\{ X_t = Y_t,\ \forall t \geq 0 \right\} \cap N
+			+ \left\{ X_t = Y_t,\ \forall t \geq 0 \right\} \cap N^c \\
+		&= \left\{ X_t = Y_t,\ \forall t \geq 0 \right\} \cap N
+			+ \bigcap_{r \in \Q \cap [0,\infty)} \left\{ X_r = Y_r \right\} \cap N^c
+	\end{align}
+	が成り立つが，右辺第一項は$(\Omega,\mathscr{F},P)$が完備である場合でないと
+	可測集合であるという保証がない．従って全てのサンプルパスが
+	右連続であると仮定し直す必要がある．
+	この場合
+	\begin{align}
+		\left\{ X_t = Y_t,\ \forall t \geq 0 \right\}
+		= \bigcap_{r \in \Q \cap [0,\infty)} \left\{ X_r = Y_r \right\}
+	\end{align}
+	が成立するから，$P(X_r = Y_r) = 1\   (\forall r \geq 0)$より
+	\begin{align}
+		P(X_t = Y_t,\ \forall t \geq 0)
+		= P \biggl( \bigcap_{r \in \Q \cap [0,\infty)} \left\{ X_r = Y_r \right\} \biggr)
+		= 1
+	\end{align}
+	が従う．
+	\QED
+\end{prf}
+
+\begin{itembox}[l]{Problem 1.7}
+		Let $X$ be a process with every sample path RCLL. 
+		Let $A$ be the event that $X$ is continuous on $[0,t_0)$. 
+		Show that $A \in \mathscr{F}^X_{t_0}$.
+\end{itembox}
+
+\begin{prf}
+	$[0,t_0)$に属する有理数の全体を$\Q^* \coloneqq \Q \cap [0,t_0)$と表すとき，
+	\begin{align}
+		A = \bigcap_{m \geq 1} \bigcup_{n \geq 1} \bigcap_{\substack{p,q \in \Q^* \\ |p-q| < 1/n}}
+		\Set{\omega \in \Omega}{\left|X_p(\omega) - X_q(\omega) \right| < \frac{1}{m}}
+	\end{align}
+	が成立することを示せばよい．実際，$\omega \longmapsto \left(X_p(\omega), X_q(\omega) \right)$の
+	$\mathscr{F}^X_{t_0}/\borel{\R^2}$-可測性と
+	\begin{align}
+		\Phi:\R \times \R \ni (x,y) \longmapsto |x-y| \in \R
+	\end{align}
+	の$\borel{\R^2}/\borel{\R}$-可測性より
+	\begin{align}
+		\Set{\omega \in \Omega}{\left|X_p(\omega) - X_q(\omega) \right| < \frac{1}{m}}
+		= \Set{\omega \in \Omega}{\left(X_p(\omega), X_q(\omega) \right) \in 
+		\Phi^{-1}\left(B_{1/m}(0)\right)}
+		\in \mathscr{F}^X_{t_0}
+	\end{align}
+	が得られ$A \in \mathscr{F}^X_{t_0}$が従う．$\left(B_{1/m}(0) = \Set{x \in \R}{|x| < 1/m}.\right)$
+	\begin{description}
+		\item[第一段]
+			$\omega \in A^c$を任意にとる．このとき
+			或る$s \in (0,t_0)$が存在して，$t \longmapsto X_t(\omega)$は
+			$t = s$において左側不連続である．従って或る$m \geq 1$については，
+			任意の$n \geq 1$に対し$0< s-u < 1/3n$を満たす
+			$u$が存在して
+			\begin{align}
+				\left|X_u(\omega) - X_s(\omega) \right| \geq \frac{1}{m}
+			\end{align}
+			を満たす．一方でパスの右連続性より
+			$0 < p - s,\ q - u < 1/3n$を満たす$p,q \in \Q^*$が存在して
+			\begin{align}
+				\left|X_p(\omega) - X_s(\omega) \right| < \frac{1}{4m},
+				\quad \left|X_q(\omega) - X_u(\omega) \right| < \frac{1}{4m}
+			\end{align}
+			が成立する．このとき$0 < |p - q| < 1/n$かつ
+			\begin{align}
+				\left|X_p(\omega) - X_q(\omega) \right|
+				\geq \left|X_p(\omega) - X_s(\omega) \right|
+					- \left|X_s(\omega) - X_u(\omega) \right|
+					- \left|X_q(\omega) - X_u(\omega) \right|
+				\geq \frac{1}{2m}
+			\end{align}
+			が従い
+			\begin{align}
+				\omega \in \bigcup_{m \geq 1} \bigcap_{n \geq 1} \bigcup_{\substack{p,q \in \Q^* \\ |p-q| < 1/n}}
+		\Set{\omega \in \Omega}{\left|X_p(\omega) - X_q(\omega) \right| \geq \frac{1}{m}}
+			\end{align}
+			を得る．
+		
+		\item[第二段]
+			任意に$\omega \in A$を取る．各点で有限な左極限が存在するという仮定から，
+			\begin{align}
+				X_{t_0}(\omega) \coloneqq \lim_{t \uparrow t_0}X_t(\omega)
+			\end{align}
+			と定めることにより
+			\footnote{
+				実際$X_{t_0}(\omega)$は所与のものであるが，いまは$[0,t_0]$上での連続性を考えればよいから
+				便宜上値を取り替える．
+			}
+			$t \longmapsto X_t(\omega)$は$[0,t_0]$上で一様連続となる．
+			従って
+			\begin{align}
+				\omega \in \bigcap_{m \geq 1} \bigcup_{n \geq 1} \bigcap_{\substack{p,q \in \Q^* \\ |p-q| < 1/n}}
+		\Set{\omega \in \Omega}{\left|X_p(\omega) - X_q(\omega) \right| < \frac{1}{m}}
+			\end{align}
+			を得る．
+			\QED
+	\end{description}
+\end{prf}
+
+\begin{itembox}[l]{Problem 1.10 unsolved}
 		Let $X$ be a process with every sample path LCRL, and 
 		let A be the event that $X$ is continuous on $[0,x_0]$.
 		Let $X$ be adapted to a right-continuous filtration 
 		$(\mathscr{F}_t)_{t \geq 0}$. Show that $A \in \mathscr{F}_{t_0}$.
-	\end{thm}
-\end{screen}
+\end{itembox}
 
 \begin{prf}\mbox{}
 	\begin{description}
@@ -38,14 +149,44 @@
 	\end{description}
 \end{prf}
 
-\begin{screen}
-\end{screen}
+\begin{itembox}[l]{Problem 1.16}
+	If the process $X$ is measurable and the random time $T$ is finite, 
+	then the function $X_T$ is a random variable.
+\end{itembox}
 
 \begin{prf}
 	\begin{align}
+		\tau:\Omega \ni \omega \longmapsto (T(\omega),\omega) \in [0,\infty) \times \Omega
+	\end{align}
+	とおけば，
+	任意の$A \in \borel{[0,\infty)},\ B \in \mathscr{F}$に対して
+	\begin{align}
+		\tau^{-1}(A \times B) = \Set{\omega \in \Omega}{(T(\omega),\omega) \in A \times B}
+		= T^{-1}(A) \cap B \in \mathscr{F}
+	\end{align}
+	が満たされる
+	\begin{align}
+		\Set{A \times B}{A \in \borel{[0,\infty)},\ B \in \mathscr{F}}
+		\subset \Set{E \in \borel{[0,\infty)} \otimes \mathscr{F}}{\tau^{-1}(E) \in \mathscr{F}}
+	\end{align}
+	が従い$\tau$の$\mathscr{F}/\borel{[0,\infty)} \otimes \mathscr{F}$-可測性が出る．
+	$X_T = X \circ \tau$より$X_T$は可測$\mathscr{F}/\borel{\R}$である．
+	\QED
+\end{prf}
+
+\begin{itembox}[l]{Problem 1.17}
+	Let $X$ be a measurable process and $T$ a random time. Show that 
+	the collection of all sets of the form $\{X_T \in A\}$ and 
+	$\{X_T \in A\} \cup \{T = \infty\};A \in \borel{\R}$, forms a 
+	sub-$\sigma$-field of $\mathscr{F}$.
+\end{itembox}
+
+\begin{prf}
+	$X_T$の定義域は$\{T<\infty\}$であるから，
+	\begin{align}
 		\mathscr{G} \coloneqq \Set{\{T < \infty\} \cap E}{E \in \mathscr{F}}
 	\end{align}
-	とおけば$X_T$は可測$\mathscr{G}/\borel{\R}$である．
+	とおけば，前問の結果より$X_T$は可測$\mathscr{G}/\borel{\R}$である．
 	$\mathscr{G} \subset \mathscr{F}$より
 	\begin{align}
 		\mathscr{H} \coloneqq \Set{\{X_T \in A\},\ \{X_T \in A\} \cup \{T = \infty\}}{A \in \borel{\R}}
@@ -56,18 +197,21 @@
 	\begin{align}
 		\{X_T \in A\} \cup \{T = \infty\} = \{T < \infty\} \cup \{T = \infty\} = \Omega
 	\end{align}
-	より$\Omega \in \mathcal{H}$．また
+	となり$\Omega \in \mathscr{H}$が従い，また
 	\begin{align}
-		\{X_T \in A\}^c = \{X_T \in A^c\} \cup \{T = \infty\},
-		\left( \{X_T \in A\} \cup \{T = \infty\} \right)^c
+		&\{X_T \in A\}^c = \{X_T \in A^c\} \cup \{T = \infty\}, \\
+		&\left( \{X_T \in A\} \cup \{T = \infty\} \right)^c
 		=  \{X_T \in A^c\} \cap \{T < \infty\}
 		= \{X_T \in A^c\}
 	\end{align}
-	より$\mathscr{H}$は補演算で閉じる．
+	より$\mathscr{H}$は補演算で閉じる．更に$B_n \in \mathscr{H}\ (n=1,2,\cdots)$を取れば，
 	\begin{align}
 		\bigcup_{n=1}^{\infty} B_n = \left\{X_T \in \bigcup_{n=1}^{\infty} A_n \right\}
 	\end{align}
+	或は
 	\begin{align}
 		\bigcup_{n=1}^{\infty} B_n = \left\{X_T \in \bigcup_{n=1}^{\infty} A_n \right\} \cup \{T = \infty\}
 	\end{align}
+	が成立し$\bigcup_{n=1}^\infty B_n \in \mathscr{H}$を得る．
+	\QED
 \end{prf}

@@ -1,12 +1,10 @@
 \section{Kolmogorovの拡張定理}
-	\begin{screen}
-		\begin{thm}[Daniell, Kolmogorov]
+	\begin{itembox}[l]{Daniell, Kolmogorov}
 			Let $(Q_t)_{t \in T}$ be a consistent family of finite-dimensional 
 			distributions. Then there is a probability measure $P$ on 
 			$\left( \R^{d,[0,\infty)}, \borel{\R^{d,[0,\infty)}} \right)$, such that 
 			(2.2) holds for every $t \in T$.
-		\end{thm}
-	\end{screen}
+	\end{itembox}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
@@ -149,4 +147,100 @@
 				\end{align}
 				という表示があるとして，case1$\sim$3の証明と同様にすれば$Q(C_1 + C_2) = Q(C_1) + Q(C_2)$が得られる．
 		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 1.5}
+			Show that the just defined family $(Q_{t})_{t \in T}$ is consistent.
+	\end{itembox}
+	
+	\begin{prf}
+		Karatzas-Shreveの解答が間違っているので訂正する．
+		Karatzas-Shreveの解答では$(Q_{t})_{t \in T}$が整合性条件を満たしていることを
+		証明する前にKolmogorovの拡張定理を適用し，$(\R^{[0,\infty)},\borel{\R^{[0,\infty)}})$
+		上の確率測度$P$によって$(Q_{t})_{t \in T}$の整合性条件を示しているが，
+		これは論理が転倒している．$(Q_{t})_{t \in T}$の構成から
+		やり直さなければならない．まず任意に
+		\begin{align}
+			t \in T,
+			\quad (t = (t_1,\cdots,t_n)) 
+		\end{align}
+		を取る．このとき$t_1,\cdots,t_n$は昇順に並んでいるとは限らないが，
+		これを昇順にした並び替え
+		\begin{align}
+			t_{i_1} < t_{i_2} < \cdots < t_{i_n}
+		\end{align}
+		がただ一つ存在する．ここで並び替え$i$は$\{1,\cdots,n\}$上の全単射とみなせる．
+		\begin{align}
+			s \coloneqq (t_{i_1},\cdots,t_{i_n}),
+			\quad J_{ts} : \R^n \ni x \longmapsto x \circ i \in \R^n
+		\end{align}
+		により$s$と$J_{ts}$を定めれば，$J_{ts}$は線型同型($\R^n$は有限次元なので同相，すなわちBorel同型)
+		であり，
+		\begin{align}
+			J_{ts} t = t \circ i = (t_{i_1},\cdots,t_{i_n}) = s
+		\end{align}
+		となる．
+		分布$Q_{s}$は式(2.5)の分布関数により定めることができるから，
+		$Q_{t}$については
+		\begin{align}
+			Q_{t}(A) \coloneqq Q_{s}(J_{ts}A),
+			\quad (\forall A \in \borel{\R^n})
+		\end{align}
+		で定義する．このとき，$t$と$s$に対して整合性条件の(a)が成立する:
+		\begin{align}
+			Q_{t} (A_1 \times \cdots \times A_n)
+			= Q_{s}(A_{i_1} \times \cdots \times A_{i_n}),
+			\quad (\forall A_i \in \borel{\R}).
+		\end{align}
+		$s$を媒介することにより，
+		$t$の任意の並び替え$u$に対する$Q_{u}$も定まり，
+		$t,u$間の整合性条件(a)が満たされる．実際，
+		$J_{us}$と$J_{tu}$を$J_{ts}$と同様に定めれば$J_{us}^{-1}J_{ts} = J_{tu}$
+		の関係があるので
+		\begin{align}
+			Q_{t}(A) = Q_{s}(J_{ts}A)
+			= Q_{s}(J_{us}J_{us}^{-1}J_{ts}A)
+			= Q_{u}(J_{us}^{-1}J_{ts}A)
+			= Q_{u}(J_{tu}A),
+			\quad (\forall A \in \borel{\R^n})
+		\end{align}
+		が得られる．以上で分布族$(Q_{t})_{t \in T}$を構成する．
+		あとは$(Q_{t})_{t \in T}$が整合性条件の(b)を満たせばよい．
+		$t$の拡張
+		\begin{align}
+			t' \coloneqq (t_1,\cdots,t_n,t_{n+1})
+		\end{align}
+		に対して，その昇順並び替えを$s'$と書くとき，
+		\begin{align}
+			Q_{t'}(A_1 \times \cdots \times A_n \times \R)
+			= Q_{s'}(J_{t's'}(A_1 \times \cdots \times A_n \times \R))
+			= Q_{s} (J_{ts} (A_1 \times \cdots \times A_n))
+			= Q_{t} (A_1 \times \cdots \times A_n)
+		\end{align}
+		が成立する．実際，昇順に並び替える全単射$i:\{1,\cdots,n+1\} \longrightarrow \{1,\cdots,n+1\}$により
+		\begin{align}
+			s' = (t_{i_1},\cdots,t_{i_{n+1}})
+		\end{align}
+		と表せるとき，$j \coloneqq i^{-1}(n+1)$とおいて，
+		$n$次元Lebesgue測度を$\mu_n$と書けば，Fubiniの定理より
+		\begin{align}
+			&Q_{t'}(A_1 \times \cdots \times A_n \times \R) \\
+			&=Q_{s'}(A_{i_1} \times \cdots \times A_{i_{j-1}} \times \R \times A_{i_{j+1}} \times \cdots \times A_{i_{n+1}}) \\
+			&= \int_{A_{i_1} \times \cdots \times \R \times \cdots \times A_{i_{n+1}}}
+			p(s_{i_1};0,y_1)p(s_{i_2} -s_{i_1};y_1,y_2)\cdots p(s_{i_{n+1}}-s_{i_n};y_n,y_{n+1})\ \mu_{n+1}(dy_1 \cdots dy_1) \\
+			&= \int_{A_{i_1}}\cdots\int_{A_{i_{n+1}}} p(s_{i_1};0,y_1) \cdots
+			\left[ \int_{\R} p(s_{i_{j+1}}-s_{i_j};y_i,y_{i+1}) p(s_{i_j}-s_{i_{j-1}};y_{i-1},y_i)\ dy_j\right]dy_{n+1}\cdots dy_1 \\
+			&= \int_{A_{i_1}}\cdots\int_{A_{i_{n+1}}} p(s_{i_1};0,y_1) \cdots p(s_{i_{n+1}}-s_{i_n};y_n,y_{n+1})
+			\left[p(s_{i_{j+1}}-s_{i_{j-1}};y_{i-1},y_{i+1})\right]dy_{n+1}\cdots dy_1 \\
+			&= \int_{A_{i_1} \times \cdots \times A_{i_{n+1}}} p(s_{i_1};0,y_1) \cdots p(s_{i_{j+1}}-s_{i_{j-1}};y_{i-1},y_{i+1}) \cdots p(s_{i_{n+1}}-s_{i_n};y_n,y_{n+1})\ \mu_n(dy_1 \cdots dy_{n+1}) \\
+			&= Q_{s}(A_{i_1} \times \cdots \times A_{i_{j-1}} \times A_{i_{j+1}} \times \cdots \times A_{i_{n+1}}) \\
+			&= Q_{t} (A_1 \times \cdots \times A_n)
+		\end{align}
+		を得る．これにより
+		\begin{align}
+			\Set{A_1 \times \cdots \times A_n}{A_i \in \borel{\R},\ i=1,\cdots,n}
+			\subset \Set{A \in \borel{\R^n}}{Q_{t'}(A \times \R) = Q_{t}(A)}
+		\end{align}
+		が従い，Dynkin族定理より整合性条件の(b)が満たされる．
+		\QED
 	\end{prf}
