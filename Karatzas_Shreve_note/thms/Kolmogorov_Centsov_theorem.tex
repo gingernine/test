@@ -1,37 +1,128 @@
 \section{Kolmogorov-\v{C}entsovの定理}
-	\begin{screen}
-		\begin{thm}
-			The only $\borel{\R^{d,[0,\infty)}}$-measurable set contained 
-			in $C[0,\infty)$ is the empty set.
-		\end{thm}
-	\end{screen}
+	\begin{itembox}[l]{Exercise 2.7 unsolved}
+		The only $\borel{(\R^d)^{[0,\infty)}}$-measurable set contained 
+		in $C[0,\infty)$ is the empty set.
+	\end{itembox}
 	
-	\begin{prf}
-				点列$(t_i)_{i=1}^{\infty}\ (t_i \in [0,\infty))$と
-				$A \in \borel{\R^d \times \R^d \times \cdots}$を用いて
-				表される$\R^{d,[0,\infty)}$の部分集合
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\borel{(\R^d)^{[0,\infty)}} = \sigma(B_t;\ 0 \leq t < \infty)$
+				が成り立つことを示す．先ず，任意の$C \in \mathscr{C}$は
 				\begin{align}
-					E = \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\omega(t_2),\cdots) \in A}
-					\label{eq:Kolmogorov_Centsov_1}
+					C &= \Set{\omega \in (\R^d)^{[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in A} \\
+					&=  \Set{\omega \in (\R^d)^{[0,\infty)}}{(B_{t_1}(\omega),\cdots,B_{t_n}(\omega)) \in A},
+					\quad (A \in \borel{(\R^d)^n})
 				\end{align}
-				の全体を次でおく:
+				の形で表されるから$\mathscr{C} \subset \sigma(B_t;\ 0 \leq t < \infty)$
+				が従い$\borel{(\R^d)^{[0,\infty)}} \subset \sigma(B_t;\ 0 \leq t < \infty)$
+				を得る．逆に
 				\begin{align}
-					\mathcal{E} \coloneqq
-					\Set{E \subset \R^{d,[0,\infty)}}{
-					\mbox{$E$ is in the form of (\refeq{eq:Kolmogorov_Centsov_1})}}.
+					\sigma(B_t) \subset \mathscr{C},
+					\quad (\forall t \geq 0)
 				\end{align}
-				このとき，$\mathcal{E}$は$\sigma$-加法族であり
-				$\mathscr{C}$を含む．実際，任意の$C \in \mathscr{C}$は
+				より$\borel{(\R^d)^{[0,\infty)}} \supset \sigma(B_t;\ 0 \leq t < \infty)$
+				も成立し$\borel{(\R^d)^{[0,\infty)}} = \sigma(B_t;\ 0 \leq t < \infty)$
+				が出る．
+				
+			\item[第二段]
+				高々可算集合$S = \{t_1,t_2,\cdots\} \subset [0,\infty)$に対して
 				\begin{align}
-					C = \Set{\omega \in \R^{d,[0,\infty)}}{(\omega(t_1),\cdots,\omega(t_n)) \in B},
-					\quad (t_i \in [0,\infty),\ B \in \borel{(\R^d)^n})
+					\mathcal{E}_S \coloneqq \Set{\Set{\omega \in (\R^d)^{[0,\infty)}}{(\omega(t_1),\omega(t_2),\cdots) \in A}}{A \in \borel{(\R^d)^{\# S}}}
 				\end{align}
-				と表されるから，$t_n = t_{n+1} = t_{n+2} = \cdots$として$C \in \mathcal{E}$が従う．
-				また$E_i \in \mathcal{E}\ (i=1,2,\cdots)$に対して
+				とおけば
+				\footnote{
+					$S$が可算無限なら$(\R^d)^{\# S} = \R^\infty$．
+				}，座標過程$B$は
+				$(\omega(t_1),\omega(t_2),\cdots) = (B_{t_1}(\omega),B_{t_2}(\omega),\cdots)$
+				を満たすから
 				\begin{align}
-					d
+					\mathcal{E}_S = \Set{\left\{(B_{t_1},B_{t_2},\cdots) \in A\right\}}{A \in \borel{(\R^d)^{\# S}}} \eqqcolon \mathcal{F}^B_S
 				\end{align}
+				が成立する．従ってLemma3 for Exercise 1.8 と前段の結果より
+				\begin{align}
+					\borel{(\R^d)^{[0,\infty)}}
+					&= \sigma(B_t;\ 0 \leq t < \infty)
+					= \mathcal{F}^B_{[0,\infty)}
+					= \bigcup_{S \subset [0,\infty):at\ most\ countable} \mathcal{F}^B_S\\
+					&= \bigcup_{S \subset [0,\infty):at\ most\ countable} \mathcal{E}_S
+				\end{align}
+				を得る．すなわち，$\borel{(\R^d)^{[0,\infty)}}$の任意の元は
+				$\Set{\omega \in (\R^d)^{[0,\infty)}}{(\omega(t_1),\omega(t_2),\cdots) \in A}$
+				の形で表現され，$A \neq \emptyset$ならば
+				$\Set{\omega \in (\R^d)^{[0,\infty)}}{(\omega(t_1),\omega(t_2),\cdots) \in A} \not\subset C[0,\infty)$となり主張が従う．
 				\QED
+		\end{description}
 	\end{prf}
 	
+	\begin{itembox}[l]{Theorem 2.8 の主張は次のように変更するべきである:}
+		Suppose that a process $X = \Set{X_t}{0 \leq t \leq T}$ on a probability space 
+		$(\Omega,\mathscr{F},P)$ satisfies the condition
+		\begin{align}
+			E|X_t - X_s|^\alpha \leq C|t-s|^{1 + \beta},
+			\quad 0 \leq s,t \leq T,
+		\end{align}
+		for some positive constants $\alpha,\beta$, and $C$. Then there exists a 
+		continuous modification $\tilde{X} = \Set{\tilde{X}_t}{0 \leq t \leq T}$ of $X$, 
+		which is locally H\Ddot{o}lder-continuous with exponent $\gamma$ for every 
+		$\gamma \in (0,\beta/\alpha)$. More precisely, for every $\gamma \in (0,\beta/\alpha)$,
+		\begin{align}
+			\sup{\substack{0 < |t-s| < h(\omega) \\ s,t \in [0,T]}}{\frac{\left| \tilde{X}_t(\omega) - \tilde{X}_s(\omega) \right|}{|t-s|^\gamma}} \leq \frac{2}{1-2^{-\gamma}},
+			\quad \forall \omega \in \Omega^*,
+		\end{align}
+		for some $\Omega^* \in \mathscr{F}$ with $P(\Omega^*)=1$ and 
+		positive random variable $h$, where $\Omega^*$ and $h$ depend on $\gamma$.
+	\end{itembox}
 	
+	なぜならば，式(2.8)において$P$の中身が$\Omega^*$に一致するかどうかわからないためである．
+	可測集合でなければ$P$で測ることはできない．ただし
+	今の場合は$(\Omega,\mathscr{F},P)$が完備確率空間ならば式(2.8)の表記で問題ない．
+	
+	
+	\begin{itembox}[l]{Theorem 2.8 memo}
+		証明中の式(2.10)直後の
+		``where $n^*(\omega)$ is a positive, integer-valued random variable''
+		について．
+	\end{itembox}
+	
+	\begin{prf}
+		$\N \coloneqq \{1,2,\cdots\}$とおき，
+		$\N$の冪集合を$2^\N$で表せば，$(\N,2^\N)$は可測空間となる．
+		示せばよいのは$n^*$の$\mathscr{F}/2^\N$-可測性である．
+		ただし，$n^*$は証明文中においてwell-definedでないため，明確な意味を持たせる必要がある．
+		\begin{align}
+			A_0 \coloneqq \Omega,
+			\quad A_n \coloneqq \Set{\omega \in \Omega}{\max{1 \leq k \leq 2^n}{\left| X_{k/2^n}(\omega) - X_{(k-1)/2^n}(\omega) \right|} \geq 2^{-\gamma n}},
+			\quad (n=1,2,\cdots)
+		\end{align}
+		とおくとき，$\Omega^*$は
+		\begin{align}
+			\Omega^* \coloneqq \bigcup_{\ell =1}^{\infty} \bigcap_{n = \ell}^\infty A_n^c
+		\end{align}
+		により定まる集合である．
+		任意の$\omega \in \Omega^*$に対して或る$\ell \geq 1$が存在し，
+		\begin{align}
+			\max{1 \leq k \leq 2^n}{\left| X_{k/2^n}(\omega) - X_{(k-1)/2^n}(\omega) \right|} < 2^{-\gamma n},
+			\quad (\forall n \geq \ell)
+		\end{align}
+		を満たす．このような$\ell$のうち最小なものを$n^*(\omega)$と定めれば
+		\begin{align}
+			{n^*}^{-1}(\ell) = \left\{ \bigcap_{n = \ell}^\infty A_n^c \right\} \cap \left\{ \bigcap_{n = \ell-1}^\infty A_n^c \right\}^c,
+			\quad (\ell =1,2,\cdots)
+		\end{align}
+		が成立し$n^*$の$\mathscr{F}/2^\N$-可測性が従う．
+		\QED
+	\end{prf}
+	
+	確率変数$h$について，厳密には
+	\begin{align}
+		h(\omega) \coloneqq 
+		\begin{cases}
+			2^{-n^*(\omega)}, & (\omega \in \Omega^*), \\
+			0, & (\omega \in \Omega \backslash \Omega^*)
+		\end{cases}
+	\end{align}
+	とおけばよい．
+	
+	\begin{itembox}[l]{Theorem 2.8 memo}
+	\end{itembox}

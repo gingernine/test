@@ -46,7 +46,7 @@
 		A = \bigcap_{m \geq 1} \bigcup_{n \geq 1} \bigcap_{\substack{p,q \in \Q^* \\ |p-q| < 1/n}}
 		\Set{\omega \in \Omega}{\left|X_p(\omega) - X_q(\omega) \right| < \frac{1}{m}}
 	\end{align}
-	が成立することを示せばよい．実際，$\omega \longmapsto \left(X_p(\omega), X_q(\omega) \right)$の
+	が成立することを示せばよい．これが示されれば，$\omega \longmapsto \left(X_p(\omega), X_q(\omega) \right)$の
 	$\mathscr{F}^X_{t_0}/\borel{\R^2}$-可測性と
 	\begin{align}
 		\Phi:\R \times \R \ni (x,y) \longmapsto |x-y| \in \R
@@ -108,6 +108,162 @@
 			\end{align}
 			を得る．
 			\QED
+	\end{description}
+\end{prf}
+
+\begin{screen}
+	\begin{dfn}[積$\sigma$-加法族]
+		$\Lambda$を空でない任意濃度の添字集合とする．
+		$(S_\lambda,\mathcal{M}_\lambda),\ \lambda \in \Lambda$を可測空間の族とし，
+		$S \coloneqq \prod_{\lambda \in \Lambda} S_\lambda$とおく．$\lambda$射影を
+		$p_\lambda:S \longrightarrow S_\lambda,\ \lambda \in \Lambda$と書くとき，
+		\begin{align}
+			\mathscr{A} \coloneqq \Set{\bigcap_{\lambda \in \Lambda'} p_\lambda^{-1}(A_\lambda)}{A_\lambda \in \mathcal{M}_\lambda,\ \mbox{$\Lambda'$ is finite subset of $\Lambda$.}}
+		\end{align}
+		で定める乗法族$\mathscr{A}$が生成する$\sigma$-加法族を
+		$\mathcal{M}_\lambda$の積$\sigma$-加法族と呼び，
+		$\prod_{\lambda \in \Lambda} \mathcal{M}_\lambda$で表す．
+		$\Lambda = \{1,2,\cdots\}$の場合，
+		\begin{align}
+			\prod_{\lambda \in \Lambda} \mathcal{M}_\lambda
+			= \mathcal{M}_1 \otimes \mathcal{M}_2 \otimes \cdots
+		\end{align}
+		とも表記する．
+	\end{dfn}
+\end{screen}
+\begin{itembox}[l]{Lemma1 for Exercise 1.8}
+	$\Lambda$を空でない任意濃度集合とする．
+	$(S_\lambda)_{\lambda \in \Lambda}$を第二可算公理を満たす位相空間の族とし
+	$S \coloneqq \prod_{\lambda \in \Lambda} S_\lambda$とおくとき，
+	\begin{align}
+		\borel{S} = \prod_{\lambda \in \Lambda} \borel{S_\lambda}
+	\end{align}
+	が成立する．($S$には直積位相を導入する．)
+\end{itembox}
+
+\begin{prf}
+	各$S_\lambda$の開集合系及び可算基を$\mathscr{O}_\lambda,\ \mathscr{B}_\lambda$と書く．
+\end{prf}
+
+\begin{itembox}[l]{Lemma2 for Exercise 1.8}
+	$T = \{1,2,\cdots\}$を高々可算集合とし，
+	$S_i$を第二可算公理を満たす位相空間，$X_i$を
+	確率空間$(\Omega,\mathscr{F},P)$上の$S_i$-値確率変数とする$(i \in T)$．
+	このとき，任意の並び替え$\pi:T \longrightarrow T$
+	に対して$S \coloneqq \prod_{i \in T} S_{\pi(i)}$とおけば次が成立する:
+	\begin{align}
+		\sigma(X_i,\ i \in T) = \Set{\left\{ (X_{\pi(1)},X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}.
+		\label{eq:lem2_for_chap_1_exercise_1_8_1}
+	\end{align}
+\end{itembox}
+
+\begin{prf}\mbox{}
+	\begin{description}
+		\item[第一段]
+			射影$S \longrightarrow S_{\pi(n)}$を$p_n$で表す．
+			任意に$t_i \in T$を取り$n \coloneqq \pi^{-1}(i)$とおけば，
+			任意の$B \in \borel{S_n}$に対して
+			\begin{align}
+				X_i^{-1}(B) = \left\{ (\cdots, X_{\pi(n)},\cdots) \in p_n^{-1}(B) \right\} \in \Set{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}
+			\end{align}
+			が成り立つから$\sigma(X_i,\ i \in T) \subset 
+			\Set{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}$が従う．
+		
+		\item[第二段]
+			任意の有限部分集合$T' \subset T$と$B_i \in \borel{S_{\pi(i)}},\ (i \in T')$に対し
+			\begin{align}
+				\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in \bigcap_{i \in T'} p_i^{-1}(B_i) \right\}
+				= \bigcap_{i \in T'} X_{\pi(i)}^{-1}(B_i)
+				\in \sigma(X_i,\ i \in T)
+			\end{align}
+			が成立するから
+			\begin{align}
+				\Set{\bigcap_{i \in T'} p_i^{-1}(B_i)}{T' \subset T:finite,\ B_i \in \borel{S_{\pi(i)}}}
+				\subset \Set{A \in \borel{S}}{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\} \in \sigma(X_i,\ i \in T)}
+			\end{align}
+			が従う．右辺は$\sigma$-加法族であり，前補題より左辺は$\borel{S}$を生成するから
+			前段と併せて(\refeq{eq:lem2_for_chap_1_exercise_1_8_1})を得る．
+			\QED
+	\end{description}
+\end{prf}
+
+\begin{itembox}[l]{Lemma3 for Exercise 1.8}
+	$X = \Set{X_t}{0 \leq t < \infty}$を確率空間$(\Omega,\mathscr{F},P)$上の$\R^d$-値確率過程とする．
+	任意の空でない$S \subset [0,\infty)$に対し
+	\begin{align}
+		\mathcal{F}^X_S \coloneqq \sigma(X_s,\ s \in S)
+	\end{align}
+	とおくとき，任意の空でない$T \subset [0,\infty)$に対して次が成立する:
+	\begin{align}
+		\mathcal{F}^X_T \coloneqq \bigcup_{S \subset T:at\ most\ countable} \mathcal{F}^X_S.
+		\label{eq:lem3_for_chap_1_exercise_1_8_1}
+	\end{align}
+\end{itembox}
+
+\begin{prf}
+	便宜上
+	\begin{align}
+		\mathcal{F} \coloneqq \bigcup_{S \subset T:at\ most\ countable} \mathcal{F}^X_S
+	\end{align}
+	とおく．まず，任意の$S \subset T$に対し$\mathcal{F}^X_S \subset \mathcal{F}^X_T$が成り立つから
+	\begin{align}
+		\mathcal{F} \subset \mathcal{F}^X_T
+	\end{align}
+	が従う．また$\sigma(X_t) = \mathcal{F}^X_{\{t\}},\ (\forall t \in T)$より
+	\begin{align}
+		\bigcup_{t \in T} \sigma(X_t) \subset \mathcal{F}
+	\end{align}
+	が成り立つから，あとは$\mathcal{F}$が$\sigma$-加法族であることを示せばよい．実際，
+	$\mathcal{F}$は$\sigma$-加法族の合併であるから$\Omega$を含みかつ補演算で閉じる．
+	また$B_n \in \mathcal{F},\ n=1,2,\cdots$に対しては，$B_n \in \mathcal{F}^X_{S_n}$を満たす
+	高々可算集合$S_n \subset T$が対応して
+	\begin{align}
+		\bigcup_{n=1}^\infty \mathcal{F}^X_{S_n}
+		= \bigcup_{n=1}^\infty \sigma(X_s,\ s \in S_n)
+		\subset \sigma\biggl(X_s,\ s \in \bigcup_{n=1}^\infty S_n \biggr)
+	\end{align}
+	が成り立つから，
+	\begin{align}
+		\bigcup_{n=1}^\infty B_n \in \sigma\biggl(X_s,\ s \in \bigcup_{n=1}^\infty S_n \biggr)
+		\subset \mathcal{F}
+	\end{align}
+	が従う．ゆえに$\mathcal{F}$は$\sigma$-加法族であり
+	(\refeq{eq:lem3_for_chap_1_exercise_1_8_1})を得る．
+	\QED
+\end{prf}
+
+\begin{itembox}[l]{Exercise 1.8}
+	Let $X$ be a process whose sample paths are RCLL almost surely, 
+	and let $A$ be the event that $X$ is continuous on $[0,t_0)$. Show 
+	that $A$ can fail to be in $\mathscr{F}^X_{t_0}$, but if $\Set{\mathscr{F}_t}{t \geq 0}$ is 
+	a fitration satisfying $\mathscr{F}^X_t \subset \mathscr{F}_t,\ t \geq 0$, and 
+	$\mathscr{F}^X_{t_0}$ contains all $P$-null sets of $\mathscr{F}$, then $A \in \mathscr{F}_{t_0}$.
+\end{itembox}
+
+\begin{prf}\mbox{}
+	\begin{description}
+		\item[第一段]
+			高々可算な集合$S = \{t_1,t_2,\cdots\} \subset [0,t_0]$に対し，昇順に並び替えたものを
+			$t_{\pi(1)} < t_{\pi(2)} < \cdots$と表し
+			\begin{align}
+				\mathcal{F}^X_S \coloneqq 
+				\Set{\left\{(X_{t_{\pi(1)}},X_{t_{\pi(2)}},\cdots) \in B \right\}}{B \in \borel{(\R^d)^{\# S}}}
+			\end{align}
+			とおく．ただし$S$が可算無限の場合は$(\R^d)^{\# S} = \R^\infty$である．
+			このとき(\refeq{eq:lem2_for_chap_1_exercise_1_8_1})より
+			\begin{align}
+				\sigma(X_s,\ s \in S) = \mathcal{F}^X_S
+			\end{align}
+			が成り立ち，(\refeq{eq:lem3_for_chap_1_exercise_1_8_1})より
+			\begin{align}
+				\mathscr{F}^X_{t_0}
+				= \sigma(X_t,\ 0 \leq t \leq t_0)
+				= \bigcup_{S \subset [0,t_0]:at\ most\ countable} \mathcal{F}^X_S
+			\end{align}
+			が満たされる．すなわち，$\mathscr{F}^X_{t_0}$の任意の元は
+			$\left\{(X_{t_1},X_{t_2},\cdots) \in B \right\},\ (t_1 < t_2 < \cdots)$の形で表される．
+			
+		\item[第二段]
 	\end{description}
 \end{prf}
 
