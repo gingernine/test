@@ -118,10 +118,10 @@
 		$S \coloneqq \prod_{\lambda \in \Lambda} S_\lambda$とおく．$\lambda$射影を
 		$p_\lambda:S \longrightarrow S_\lambda,\ \lambda \in \Lambda$と書くとき，
 		\begin{align}
-			\mathscr{A} \coloneqq \Set{\bigcap_{\lambda \in \Lambda'} p_\lambda^{-1}(A_\lambda)}{A_\lambda \in \mathcal{M}_\lambda,\ \mbox{$\Lambda'$ is finite subset of $\Lambda$.}}
+			\Set{p_\lambda^{-1}(A_\lambda)}{A_\lambda \in \mathcal{M}_\lambda,\ \lambda \in \Lambda}
 		\end{align}
-		で定める乗法族$\mathscr{A}$が生成する$\sigma$-加法族を
-		$\mathcal{M}_\lambda$の積$\sigma$-加法族と呼び，
+		が生成する$\sigma$-加法族を
+		$(\mathcal{M}_\lambda)_{\lambda \in \Lambda}$の積$\sigma$-加法族と呼び，
 		$\prod_{\lambda \in \Lambda} \mathcal{M}_\lambda$で表す．
 		$\Lambda = \{1,2,\cdots\}$の場合，
 		\begin{align}
@@ -132,17 +132,70 @@
 	\end{dfn}
 \end{screen}
 \begin{itembox}[l]{Lemma1 for Exercise 1.8}
-	$\Lambda$を空でない任意濃度集合とする．
+	$\Lambda$を空でない高々可算集合とする．
 	$(S_\lambda)_{\lambda \in \Lambda}$を第二可算公理を満たす位相空間の族とし
 	$S \coloneqq \prod_{\lambda \in \Lambda} S_\lambda$とおくとき，
 	\begin{align}
 		\borel{S} = \prod_{\lambda \in \Lambda} \borel{S_\lambda}
+		\label{eq:lem1_for_chap_1_exercise_1_8_1}
 	\end{align}
-	が成立する．($S$には直積位相を導入する．)
+	が成立する．($S$には直積位相を導入する．この場合，$S$もまた第二可算公理を満たす．)
 \end{itembox}
 
 \begin{prf}
-	各$S_\lambda$の開集合系及び可算基を$\mathscr{O}_\lambda,\ \mathscr{B}_\lambda$と書く．
+	各$S_\lambda$の開集合系及び可算基を$\mathcal{O}_\lambda,\ \mathscr{B}_\lambda$，
+	$S$の開集合系を$\mathscr{O}$とし，
+	また$\lambda$射影を$p_\lambda:S \longrightarrow S_\lambda$と書く．
+	先ず，任意の$O_\lambda \in \mathscr{O}_\lambda$に対して
+	$p_\lambda^{-1}(O_\lambda) \in \mathscr{O}$
+	が満たされるから
+	\begin{align}
+		\mathscr{O}_\lambda 
+		\subset \Set{A_\lambda \in \borel{S_\lambda}}{p_\lambda^{-1}(A_\lambda) \in \borel{S}}
+	\end{align}
+	が従い，右辺が$\sigma$-加法族であるから
+	\begin{align}
+		\prod_{\lambda \in \Lambda} \borel{S_\lambda}
+		= \sgmalg{\Set{p_\lambda^{-1}(A_\lambda)}{A_\lambda \in \borel{S_\lambda},\ \lambda \in \Lambda}} \subset \borel{S}
+	\end{align}
+	を得る．一方で
+	\begin{align}
+		\mathscr{B} \coloneqq 
+		\Set{\bigcap_{\lambda \in \Lambda'} p_\lambda^{-1}(B_\lambda)}{B_\lambda \in \mathscr{B}_\lambda,\ \Lambda' \subset \Lambda:finite\ subset}
+	\end{align}
+	は$\mathscr{O}$の基底の一つである．実際，任意に$O \in \mathscr{O}$を取れば，
+	任意の$x \in O$に対し或る有限集合$\Lambda' \subset \Lambda$が存在して
+	\begin{align}
+		x \in \bigcap_{\lambda \in \Lambda'} p_\lambda^{-1} (O_\lambda) \subset O
+	\end{align}
+	が成立するが，更に$S_\lambda$の第二可算性より或る
+	$\mathscr{B}'_\lambda \subset \mathscr{B}_\lambda\ (\lambda \in \Lambda')$が存在して
+	\begin{align}
+		x \in \bigcap_{\lambda \in \Lambda'} p_\lambda^{-1} (O_\lambda)
+		= \bigcap_{\lambda \in \Lambda'} \bigcup_{B_{\lambda} \in \mathscr{B}'_\lambda} p_\lambda^{-1} (B_{\lambda})
+	\end{align}
+	が満たされる．すなわち，任意の$O \in \mathscr{O}$は
+	\begin{align}
+		O = \bigcup_{E \in \mathscr{B}'} E,
+		\quad (\exists\mathscr{B}' \subset \mathscr{B})
+	\end{align}
+	と表される．$\mathscr{B}$は高々可算の濃度を持ち
+	\footnote{
+		$L_0 \coloneqq 
+		\Set{\Lambda'}{\Lambda' \subset \Lambda:finite\ subset}$は
+		高々可算集合である．実際，$\Lambda_n \coloneqq \Lambda \times \cdots \times \Lambda\ 
+		(\mbox{$n$ copies of $\Lambda$})$として
+		$L \coloneqq \bigcup_{n=1}^{\# \Lambda} \Lambda_n$とおき，
+		$(x_1,\cdots,x_n) \in L$に対し$\{x_1,\cdots,x_n\} \in L_0$を対応させる
+		$f:L \longrightarrow L_0$を考えれば全射であるから
+		$\card{L_0} \leq \card{L} \leq \aleph_0$が従う．
+	}，
+	$\mathscr{B} \subset \prod_{\lambda \in \Lambda} \borel{S_\lambda}$が満たされるから
+	\begin{align}
+		\mathscr{O} \subset \prod_{\lambda \in \Lambda} \borel{S_\lambda}
+	\end{align}
+	が従い(\refeq{eq:lem1_for_chap_1_exercise_1_8_1})を得る．
+	\QED
 \end{prf}
 
 \begin{itembox}[l]{Lemma2 for Exercise 1.8}
@@ -152,7 +205,7 @@
 	このとき，任意の並び替え$\pi:T \longrightarrow T$
 	に対して$S \coloneqq \prod_{i \in T} S_{\pi(i)}$とおけば次が成立する:
 	\begin{align}
-		\sigma(X_i,\ i \in T) = \Set{\left\{ (X_{\pi(1)},X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}.
+		\sigma(X_i;\ i \in T) = \Set{\left\{ (X_{\pi(1)},X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}.
 		\label{eq:lem2_for_chap_1_exercise_1_8_1}
 	\end{align}
 \end{itembox}
@@ -166,20 +219,20 @@
 			\begin{align}
 				X_i^{-1}(B) = \left\{ (\cdots, X_{\pi(n)},\cdots) \in p_n^{-1}(B) \right\} \in \Set{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}
 			\end{align}
-			が成り立つから$\sigma(X_i,\ i \in T) \subset 
+			が成り立つから$\sigma(X_i;\ i \in T) \subset 
 			\Set{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\}}{A \in \borel{S}}$が従う．
 		
 		\item[第二段]
-			任意の有限部分集合$T' \subset T$と$B_i \in \borel{S_{\pi(i)}},\ (i \in T')$に対し
+			任意の有限部分集合$j \in T$と$B_j \in \borel{S_{\pi(j)}}$に対し
 			\begin{align}
-				\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in \bigcap_{i \in T'} p_i^{-1}(B_i) \right\}
-				= \bigcap_{i \in T'} X_{\pi(i)}^{-1}(B_i)
-				\in \sigma(X_i,\ i \in T)
+				\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in p_j^{-1}(B_j) \right\}
+				= X_{\pi(j)}^{-1}(B_j)
+				\in \sigma(X_i;\ i \in T)
 			\end{align}
 			が成立するから
 			\begin{align}
-				\Set{\bigcap_{i \in T'} p_i^{-1}(B_i)}{T' \subset T:finite,\ B_i \in \borel{S_{\pi(i)}}}
-				\subset \Set{A \in \borel{S}}{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\} \in \sigma(X_i,\ i \in T)}
+				\Set{p_i^{-1}(B_i)}{B_i \in \borel{S_{\pi(i)}},\ i \in T}
+				\subset \Set{A \in \borel{S}}{\left\{ (X_{\pi(1)}, X_{\pi(2)},\cdots) \in A \right\} \in \sigma(X_i;\ i \in T)}
 			\end{align}
 			が従う．右辺は$\sigma$-加法族であり，前補題より左辺は$\borel{S}$を生成するから
 			前段と併せて(\refeq{eq:lem2_for_chap_1_exercise_1_8_1})を得る．
@@ -191,7 +244,7 @@
 	$X = \Set{X_t}{0 \leq t < \infty}$を確率空間$(\Omega,\mathscr{F},P)$上の$\R^d$-値確率過程とする．
 	任意の空でない$S \subset [0,\infty)$に対し
 	\begin{align}
-		\mathcal{F}^X_S \coloneqq \sigma(X_s,\ s \in S)
+		\mathcal{F}^X_S \coloneqq \sigma(X_s;\ s \in S)
 	\end{align}
 	とおくとき，任意の空でない$T \subset [0,\infty)$に対して次が成立する:
 	\begin{align}
@@ -219,12 +272,12 @@
 	高々可算集合$S_n \subset T$が対応して
 	\begin{align}
 		\bigcup_{n=1}^\infty \mathcal{F}^X_{S_n}
-		= \bigcup_{n=1}^\infty \sigma(X_s,\ s \in S_n)
-		\subset \sigma\biggl(X_s,\ s \in \bigcup_{n=1}^\infty S_n \biggr)
+		= \bigcup_{n=1}^\infty \sigma(X_s;\ s \in S_n)
+		\subset \sigma\biggl(X_s;\ s \in \bigcup_{n=1}^\infty S_n \biggr)
 	\end{align}
 	が成り立つから，
 	\begin{align}
-		\bigcup_{n=1}^\infty B_n \in \sigma\biggl(X_s,\ s \in \bigcup_{n=1}^\infty S_n \biggr)
+		\bigcup_{n=1}^\infty B_n \in \sigma\biggl(X_s;\ s \in \bigcup_{n=1}^\infty S_n \biggr)
 		\subset \mathcal{F}
 	\end{align}
 	が従う．ゆえに$\mathcal{F}$は$\sigma$-加法族であり
@@ -252,12 +305,12 @@
 			とおく．ただし$S$が可算無限の場合は$(\R^d)^{\# S} = \R^\infty$である．
 			このとき(\refeq{eq:lem2_for_chap_1_exercise_1_8_1})より
 			\begin{align}
-				\sigma(X_s,\ s \in S) = \mathcal{F}^X_S
+				\sigma(X_s;\ s \in S) = \mathcal{F}^X_S
 			\end{align}
 			が成り立ち，(\refeq{eq:lem3_for_chap_1_exercise_1_8_1})より
 			\begin{align}
 				\mathscr{F}^X_{t_0}
-				= \sigma(X_t,\ 0 \leq t \leq t_0)
+				= \sigma(X_t;\ 0 \leq t \leq t_0)
 				= \bigcup_{S \subset [0,t_0]:at\ most\ countable} \mathcal{F}^X_S
 			\end{align}
 			が満たされる．すなわち，$\mathscr{F}^X_{t_0}$の任意の元は
