@@ -1,1 +1,48 @@
 \section{Stopping Times}
+	\begin{itembox}[l]{Problem 2.2}
+		Let $X$ be a stochastic process and $T$ a stopping time of 
+		$\left\{ \mathscr{F}^X_t \right\}$. Suppose that for some pair $\omega,\omega' \in \Omega$, 
+		we have $X_t(\omega) = X_t(\omega')$ for all $t \in [0,T(\omega)] \cap [0,\infty)$. 
+		Show that $T(\omega) = T(\omega')$. 
+	\end{itembox}
+	
+	\begin{prf}[参照元:\cite{key3}]
+		$\omega,\omega'$を分離しない集合族$\mathscr{H}$を
+		\begin{align}
+			\mathscr{H} \coloneqq \Set{A \subset \Omega}{\{\omega,\omega'\} \subset A,\ or\ \{\omega,\omega'\} \subset \Omega \backslash A}
+		\end{align}
+		により定めれば，$\mathscr{H}$は$\sigma$-加法族である．このとき，
+		$\{T = T(\omega)\} \in \mathscr{H}$を示せばよい．
+		\begin{description}
+			\item[case1]
+				$T(\omega) = \infty$の場合，
+				任意の$A \in \borel{\R^d}$及び$0 \leq t < \infty$に対して，
+				仮定より
+				\begin{align}
+					\omega \in X_t^{-1}(A) \quad \Leftrightarrow \quad
+					\omega' \in X_t^{-1}(A)
+				\end{align}
+				が成り立ち
+				\begin{align}
+					\sigma(X_t;\ 0 \leq t < \infty) \subset \mathscr{H}
+				\end{align}
+				となる．任意の$t \geq 0$に対し$\{T \leq t\} \in \mathscr{F}^X_t \subset 
+				\sigma(X_t;\ 0 \leq t < \infty)$が満たされるから
+				\begin{align}
+					\{T = \infty\} = \bigcap_{n=1}^\infty \{T \leq n\}^c
+					\in \sigma(X_t;\ 0 \leq t < \infty) \subset \mathscr{H}
+				\end{align}
+				が成立し，$\omega \in \{T = \infty\}$より$\omega' \in \{T = \infty\}$が従い
+				$T(\omega) = T(\omega')$を得る．
+				
+			\item[case2]
+				$T(\omega) < \infty$の場合，
+				case1と同様の理由で
+				\begin{align}
+					\mathscr{F}^X_{T(\omega)} \subset \mathscr{H}
+				\end{align}
+				が成り立つ．$\{T = T(\omega)\} \in \mathscr{F}^X_{T(\omega)}$より
+				$\omega' \in \{T = T(\omega)\}$が従い$T(\omega) = T(\omega')$を得る．
+				\QED
+		\end{description}
+	\end{prf}
