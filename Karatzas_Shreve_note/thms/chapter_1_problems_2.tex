@@ -37,7 +37,8 @@
 				
 			\item[case2]
 				$T(\omega) < \infty$の場合，
-				case1と同様の理由で
+				case1と同様に任意の$0 \leq t \leq T(\omega)$に対し
+				$\sigma(X_t) \subset \mathscr{H}$が満たされるから
 				\begin{align}
 					\mathscr{F}^X_{T(\omega)} \subset \mathscr{H}
 				\end{align}
@@ -45,4 +46,78 @@
 				$\omega' \in \{T = T(\omega)\}$が従い$T(\omega) = T(\omega')$を得る．
 				\QED
 		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Lemma for Proposition 2.3}
+		$(\mathscr{F}_t)_{t \geq 0}$を可測空間
+		$(\Omega,\mathscr{F})$のフィルトレーションとするとき，
+		任意の$t \geq 0$及び任意の点列$s_1  > s_2 > \cdots > t, (s_n \downarrow t)$
+		に対して次が成立する:
+		\begin{align}
+			\bigcap_{s>t} \mathscr{F}_s = \bigcap_{n=1}^\infty \mathscr{F}_{s_n}.
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}
+		先ず任意の$n \geq 1$に対して
+		\begin{align}
+			\bigcap_{s > t} \mathscr{F}_s \subset \mathscr{F}_{s_n}
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\bigcap_{s > t} \mathscr{F}_s \subset \bigcap_{n=1}^\infty \mathscr{F}_{s_n}
+		\end{align}
+		を得る．一方で，任意の$s > t$に対し或る$N \geq 1$が存在して$s \geq s_n,\ (\forall n \geq N)$を満たすから，
+		\begin{align}
+			\mathscr{F}_s \supset  \bigcap_{n=N}^\infty \mathscr{F}_{s_n}
+			= \bigcap_{n=1}^\infty \mathscr{F}_{s_n}
+		\end{align}
+		が成立し
+		\begin{align}
+			\bigcap_{s > t} \mathscr{F}_s \supset \bigcap_{n=1}^\infty \mathscr{F}_{s_n}
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	$(\mathscr{F}_{t+})_{t \geq 0}$は右連続である．実際，任意の$t \geq 0$で
+	\begin{align}
+		\bigcap_{s > t} \mathscr{F}_{s+} = \bigcap_{s > t} \bigcap_{u > s} \mathscr{F}_u
+		= \bigcap_{s > t} \mathscr{F}_s
+		= \mathscr{F}_{t+}
+	\end{align}
+	が成立する．
+	
+	\begin{itembox}[l]{Corollary 2.4\footnotemark}
+		$T$ is an optional time of the filtration $\{\mathscr{F}_t\}$ if and only if 
+		it is a stopping time of the (right-continuous!) filtration $\{\mathscr{F}_{t+}\}$.
+	\end{itembox}
+	\footnotetext{
+		optional time の訳語がわからないので弱停止時刻と呼ぶ．
+	}
+	言い換えれば，確率時刻$T$に対し
+	\begin{align}
+		\{T < t\} \in \mathscr{F}_t,\ \forall t \geq 0
+		\quad \Leftrightarrow \quad
+		\{T \leq t\} \in \mathscr{F}_{t+},\ \forall t \geq 0
+	\end{align}
+	が成り立つことを主張している．
+	\begin{prf}
+		$T$が$(\mathscr{F}_{t+})$-停止時刻であるとき，
+		任意の$n \geq 1$に対して$\{T \leq t - 1/n\} \in \mathscr{F}_{(t-1/n)+} \subset \mathscr{F}_t$
+		が満たされるから
+		\begin{align}
+			\{T < t\} = \bigcup_{n=1}^\infty \left\{T \leq t - \frac{1}{n}\right\} \in \mathscr{F}_t
+		\end{align}
+		が従う．逆に$T$が$(\mathscr{F}_t)$-弱停止時刻のとき，任意の$m \geq 1$に対し
+		\begin{align}
+			\{T \leq t\} = \bigcap_{n=m}^\infty \left\{T < t+\frac{1}{n} \right\}
+			\in \mathscr{F}_{t + 1/m}
+		\end{align}
+		が成立するから
+		\begin{align}
+			\{T \leq t\} \in \bigcap_{n=1}^\infty \mathscr{F}_{t + 1/n} = \mathscr{F}_{t+}
+		\end{align}
+		を得る．
+		\QED
 	\end{prf}

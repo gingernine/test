@@ -1,0 +1,202 @@
+\section{The Space $C[0,\infty)$, Weak Convergence, and the Wiener Measure}
+	\begin{itembox}[l]{Problem 4.1}
+		Show that $\rho$ defined by (4.1) is a metric on $C[0,\infty)^d$ and, under $\rho$, 
+		$C[0,\infty)^d$ is a complete, separable metric space.
+	\end{itembox}
+	以下，$C[0,\infty)^d$には$\rho$により広義一様収束位相を導入する．
+	
+\begin{comment}
+\begin{prf}完備性と可分性を示す．
+	\begin{description}
+		\item[完備性]
+			$C[0,\infty)^d$から任意にCauchy列$(w_n)_{n=1}^{\infty}$を取る．任意の$\epsilon > 0$に対して
+			或る$N \in \N$が取れて，$n,m > N$ならば$d(w_n,w_m) < \epsilon$が成り立つのであるから，距離関数の各項では
+			$\sup{t \leq k}{|w_n(t) - w_m(t)|} < 2^k \epsilon\ (k=1,2,\cdots)$が成立している．
+			$\epsilon$は任意であるから$(w_n)_{n=1}^{\infty}$は各点でCauchy列をなし，実数の完備性から
+			各$t \in [0,\infty)$で$(w(t))_{n=1}^{\infty}$は$\R^d$で収束する．収束先を$w(t)\ (\forall t \in [0,\infty))$と
+			表して極限関数$w$を定義すれば$w$は連続である．
+			実際任意の$s \in [0, \infty)$に対し$s < k$となるように$k \in \N$を取れば，$t \leq k$の範囲で
+			\begin{align}
+				\sup{t \leq k}{|w_n(t) - w_m(t)|} \quad (n,m=1,2,\cdots)
+			\end{align}
+			がCauchy列をなしているから，任意の$\epsilon > 0$に対して或る$N \in \N$が存在し，$n,m > N$で
+			\begin{align}
+				\sup{t \leq k}{|w_n(t) - w_m(t)|} < \epsilon
+			\end{align}
+			となる．特に$w_m(t) \longrightarrow w(t)$であることを併せれば，各点$t \leq k$において
+			$|w_n(t) - w(t)| \leq \epsilon$となるから
+			\footnote{
+				$\left| |w_n(t) - w(t)| - |w_n(t) - w_m(t)| \right| \leq |w_m(t) - w(t)|$で右辺をいくらでも小さくできるから，
+				$|w_n(t) - w(t)| > \epsilon$であると矛盾する．
+			}
+			\begin{align}
+				\sup{t \leq k}{|w_n(t) - w(t)|} \leq \epsilon
+			\end{align}
+			が成り立つ．連続関数列が一様収束しているから$w$は$s$で連続である．
+			各点での連続性が示され，$w \in C[0,\infty)^d$であると判る．
+		\item[可分性]
+			任意の$w \in C[0,\infty)^d$と$\epsilon > 0$に対し，$\sum_{k=N+1}^{\infty}2^{-k} = 2^{-N} < \epsilon/2$となるように
+			$N \in \N$を取る．こうすれば任意の$w' \in C[0,\infty)^d$に対して
+			\begin{align}
+				\sum_{k=N+1}^{\infty} 2^{-k}\left\{ \sup{t \leq k}{|w(t) - w'(t)| \wedge 1} \right\} < \epsilon/2
+			\end{align}
+			が成り立つ．可分性を示すには，$C[0,\infty)^d$で可算稠密な連続関数の集合から関数$w'$を選んで
+			\begin{align}
+				d(w,w') < \epsilon
+			\end{align}
+			を満たすことができればよいから，あとは
+			\begin{align}
+				\sum_{k=1}^{N}2^{-k}\left\{ \sup{t \leq k}{|w(t) - w'(t)| \wedge 1} \right\} < \epsilon/2
+			\end{align}
+			が成り立つように$w'$を選ぶことができればよい．
+			以下では$w'$と$C[0,\infty)^d$で可算稠密な連続関数の集合を同時に構成する．
+			各$k$で$\sup{t \leq k}{|w(t) - w'(t)|} < \epsilon/2$が成り立てばよいから，つまるところ
+			\begin{align}
+				\sup{t \leq N}{|w(t) - w'(t)|} < \epsilon/2
+			\end{align}
+			が成り立つように$w'$を構成すればよい．$w$は$[0,N]$で一様連続であるから，適当に$\delta > 0$を取れば
+			$|t - s| < \delta$である限り$w(s)$は$w(t)$の$\epsilon/2$近傍に入る．
+			ここで有理数$r > 0$を$r < \delta$かつ$N/r$が整数となるように取れば，
+			$q = N/r$として$0=t_0,\ t_1 = r,\ t_2 = 2r,\cdots,t_q = N$となるように区間を等分割できる．
+			$w(t_i)$は$w(t_{i-1})$の$\epsilon/2$近傍と$w(t_{i+1})$の$\epsilon/2$近傍の両方に入るから，
+			$w(t_i)$の或る$\eta_i$近傍が両二つの$\epsilon/2$近傍に含まれるように$\eta_i$を取り，この$\eta_i$近傍から
+			有理点$P_i$を一つ選ぶ．$t_i$に$P_i$を対応させて線分でつなぎ合わせた関数は，$[0,N]$において連続且つ
+			$w$から常に$\epsilon/2$の距離の内にある．$t > N$の範囲ではどのようにしてもよいが，例えばグラフ$(N,P_q)$と$(N+1,0)$
+			を結んで以降は$0$を取るよう$[0, \infty)$上の連続関数$w'$を定めれば，$w'$は慥かに
+			\begin{align}
+				d(w,w') < \epsilon
+			\end{align}
+			を満たす．
+			$w'$の構成法に倣って「有界な台を持ち，グラフが有理点を折れ線で結ぶだけの連続関数」の全体を$M$とすれば
+			これは可算集合であり，$w'$は$M$の元である．以上より$C[0,\infty)^d$において$M$は可算稠密であり，$C[0,\infty)^d$の可分性が示された．
+	\end{description}
+	\QED
+\end{prf}
+\end{comment}
+
+\begin{itembox}[l]{連続関数の空間のBorel集合族}
+	$n=1,2,\cdots,\ B \in \borel{(\R^d)^n},\ 0 \leq t_1 < \cdots < t_n$により
+	\begin{align}
+		C = \Set{w \in C[0,\infty)^d}{(w(t_1),\cdots,w(t_n)) \in B}
+	\end{align}
+	と表される$C[0,\infty)^d$の部分集合$C$の全体を$\mathscr{C}$とおく．このとき，$\borel{C[0,\infty)^d} = \sgmalg{\mathscr{C}}$が成り立つ．
+\end{itembox}
+\begin{prf}
+	$w_0 \in C[0,\infty)^d$とする．任意に$w \in C[0,\infty)^d$を取れば，$w$の連続性により$d(w_0,w)$の各項について
+	\begin{align}
+		\sup{t \leq n}{|w_0(t) - w(t)|} = \sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \quad (n = 1,2,\cdots)
+	\end{align}
+	と表現できる．いま，任意に実数$\alpha \in \R$を取れば
+	\begin{align}
+		\Set{w \in C[0,\infty)^d}{\sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \leq \alpha}
+		= \bigcap_{r \in [0,n]\cap\Q} \Set{w \in C[0,\infty)^d}{|w_0(r) - w(r)| \leq \alpha}
+	\end{align}
+	が成立し，右辺の各集合は$\mathscr{C}$に属するから$\mbox{左辺} \in \sgmalg{\mathscr{C}}$となる．従って
+	\begin{align}
+		\psi_n : C[0,\infty)^d \ni w \longmapsto \sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \in \R, \quad (n = 1,2,\cdots)
+	\end{align}
+	で定める$\psi_n$は可測$\sgmalg{\mathscr{C}}/\borel{\R}$である．
+	$x \longmapsto x \wedge 1$の連続性より$\psi_n \wedge 1$
+	も$\sgmalg{\mathscr{C}}/\borel{\R}$-可測性を持ち，
+	\begin{align}
+		d(w_0,w) = \sum_{n=1}^{\infty}\frac{1}{2^n} \left( \psi_n(w) \wedge 1 \right)
+	\end{align}
+	により$C[0,\infty)^d \ni w \longmapsto d(w_0,w) \in \R$の
+	$\sgmalg{\mathscr{C}}/\borel{\R}$-可測性が出るから，任意の$\epsilon > 0$に対する球について
+	\begin{align}
+		\Set{w \in C[0,\infty)^d}{d(w_0,w) < \epsilon} \in \sgmalg{\mathscr{C}}
+	\end{align}
+	が成り立つ．$C[0,\infty)^d$は第二可算公理を満たし，可算基底は上式の形の球で構成されるから，
+	$\open{C[0,\infty)^d} \subset \sgmalg{\mathscr{C}}$が従い$\borel{C[0,\infty)^d} \subset \sgmalg{\mathscr{C}}$を得る．
+	次に逆の包含関係を示す．いま，任意に$n \in \Z_+$と$t_1 < \cdots < t_n$を選んで
+	\begin{align}
+		\phi : C[0,\infty)^d \ni w \longmapsto (w(t_1),\cdots, w(t_n)) \in (\R^d)^n
+	\end{align}
+	により定める写像は連続である．
+	実際，$w_0$での連続性を考えると，任意の$\epsilon > 0$に対して$t_n \leq N$を満たす$N \in \N$を取れば，
+	$d(w_0,w) < \epsilon/(n2^N)$ならば
+	$\sum_{i=1}^{n}|w_0(t_i) - w(t_i)| < \epsilon$が成り立つ．よって
+	$\phi$は$w_0$で連続であり(各点連続)
+	\begin{align}
+		\borel{(\R^d)^n} \subset \Set{A \in \borel{(\R^d)^n}}{\phi^{-1}(A) \in \borel{C[0,\infty)^d}}
+	\end{align}
+	が出る．任意の$C \in \mathscr{C}$は，$n \in \N$と時点$t_1 < \cdots < t_n$によって決まる写像$\phi$によって
+	$C = \phi^{-1}(B)\ (\exists B \in \borel{(\R^d)^n})$と表現できるから，
+	$\mathscr{C} \subset \borel{C[0,\infty)^d}$が成り立ち
+	$\sgmalg{\mathscr{C}} \subset \borel{C[0,\infty)^d}$が得られる．
+	\QED
+\end{prf}
+
+\begin{comment}
+次の事柄は後の定理の証明で使うからここで証明しておく．
+\begin{screen}
+	\begin{thm}[$\mathscr{C}$は乗法族である]
+		$\mathscr{C}$は交演算について閉じている．
+	\end{thm}
+\end{screen}
+\begin{prf}
+	任意に$A_1, A_2 \in \mathscr{C}$を取れば，$A_1,\ A_2$それぞれに対し
+	$n_1,n_2 \in \N,\ C_1 \in \borel{(\R^d)^{n_1}},\ C_2 \in \borel{(\R^d)^{n_2}},\ t_1<\cdots<t_{n_1}$それから
+	$s_1<\cdots<s_{n_2}$が決まっていて，
+	\begin{align}
+		A_1 &= \left\{\ w \in C[0,\infty)^d\quad |\quad (w(t_1), \cdots, w(t_{n_1})) \in C_1\ \right\} \\
+		A_2 &= \left\{\ w \in C[0,\infty)^d\quad |\quad (w(s_1), \cdots, w(s_{n_2})) \in C_2\ \right\}
+	\end{align}
+	と表されている．$A_1,A_2$の時点に重複があるかないかで場合分けして示す．
+	\begin{description}
+	\item[時点に重複がない場合]
+		集合を次のように同値な表記に直す：
+		\begin{align}
+			A_1 &= \left\{\ w \in C[0,\infty)^d\quad |\quad (w(t_1), \cdots, w(t_{n_1}),w(s_1), \cdots, w(s_{n_2})) \in C_1 \times (\R^d)^{n_2}\ \right\} \\
+			A_2 &= \left\{\ w \in C[0,\infty)^d\quad |\quad (w(t_1), \cdots, w(t_{n_1}),w(s_1), \cdots, w(s_{n_2})) \in (\R^d)^{n_1} \times C_2\ \right\}
+		\end{align}
+		表現を変えれば乗法を考えやすくなり，上の場合は
+		\begin{align}
+			A_1 \cap A_2 = \left\{\ w \in C[0,\infty)^d\quad |\quad (w(t_1), \cdots, w(t_{n_1}),w(s_1), \cdots, w(s_{n_2})) \in C_1 \times C_2\ \right\}
+		\end{align}
+		と表現できる．$t_1,\cdots,s_{n_2}$の並びが気になるなら，この時点の並びを昇順に変換する$(dn_1 + dn_2) \times (dn_1 + dn_2)$行列$J_1$
+		を用いて($J_1$は連続,線型,全単射)，
+		\begin{align}
+			A_1 \cap A_2 &= \left\{\ w \in C[0,\infty)^d\quad |\quad J_1\Vector{w} \in J_1(C_1 \times C_2)\ \right\} \\
+			\left(\Vector{w} \right.&= {}^{T}(w(t_1), \cdots, \left.w(t_{n_1}),w(s_1), \cdots, w(s_{n_2}))\right)
+		\end{align}
+		とすれば，$J(C_1 \times C_2) \in \borel{(\R^d)^{n_1 + n_2}}$であるから，$A_1 \cap A_2 \in \mathscr{C}$であることが明確になる．
+	
+	\item[時点に重複がある場合]
+		$(r_{k_1},\cdots,r_{k_l}) \subset (t_1,\cdots,t_{n_1})$が重複時点であるとき，$A_1,A_2$の同値な表記は次のようにすればよい：
+		\begin{align}
+			A_1 &= \left\{\ w \in C[0,\infty)^d\quad |\quad (w(t_1),.,w(r_{k_1}),.,w(r_{k_l}),.,w(t_{n_1}),\mbox{\scriptsize($s_1, \cdots, s_{n_2}$から$r_{k_1},\cdots,r_{k_l}$を抜いたものを並べる)}) \in C_1 \times (\R^d)^{n_2 - l}\ \right\} \\
+			A_2 &= \left\{\ w \in C[0,\infty)^d\quad |\quad (w(s_1),.,w(r_{k_1}),.,w(r_{k_l}),.,w(s_{n_2}),\mbox{\scriptsize($t_1, \cdots, t_{n_1}$から$r_{k_1},\cdots,r_{k_l}$を抜いたものを並べる)}) \in C_2 \times (\R^d)^{n_1 - l}\ \right\}
+		\end{align}
+		$A_2$について，条件中の時点の並びを変換し$A_1$の条件の順番に合わせる行列$J_2$(連続,線型,全単射)を用いて
+		\begin{align}
+			A_2 = \left\{\ w \in C[0,\infty)^d\quad |\quad (w(t_1),.,w(r_{k_1}),.,w(r_{k_l}),.,w(t_{n_1}),\mbox{\scriptsize($s_1, \cdots, s_{n_2}$から$r_{k_1},\cdots,r_{k_l}$を抜いたものを並べる)}) \in J_2(C_2 \times (\R^d)^{n_1 - l})\ \right\}
+		\end{align}
+		と書き直せば，$A_1 \cap A_2$は前段の様に表現可能であり，前段と同様に最後に時点を昇順に変換する行列を用いることで$A_1 \cap A_2 \in \mathscr{C}$となることが明確に判る．
+	\end{description}
+	\QED
+\end{prf}
+\end{comment}
+
+\begin{itembox}[l]{連続関数の空間に値を取る確率変数}
+	$\omega \in \Omega$に$\R^d$値連続確率過程$X$のパスを対応させる写像
+	\begin{align}
+		X_{\bullet} : \Omega \ni \omega \longmapsto (t \longmapsto X_t(\omega)), \quad (t \geq 0)
+	\end{align}
+	は可測$\mathcal{F}/\borel{C[0,\infty)^d}$である．
+\end{itembox}
+\begin{prf}
+	任意に$C \in \mathscr{C}$を取れば$C = \Set{w \in C[0,\infty)^d}{(w(t_1),\cdots,w(t_n)) \in B}, \ (B \in \borel{(\R^d)^n})$
+	と表されるから
+	\begin{align}
+		\Set{\omega \in \Omega}{X_{\bullet}(\omega) \in C}
+		= \Set{\omega \in \Omega}{\left(X_{t_1}(\omega), \cdots, X_{t_n}(\omega)\right) \in B}
+	\end{align}
+	が成り立つ．右辺は$\mathcal{F}$に属するから
+	\begin{align}
+		\mathscr{C} \subset \Set{C \in \sgmalg{\mathscr{C}}}{(X_{\bullet})^{-1}(C) \in \mathcal{F}}
+	\end{align}
+	が従い，右辺は$\sigma$加法族であるから$X_{\bullet}$の$\mathcal{F}/\sgmalg{\mathscr{C}}$-可測性，
+	つまり$\mathcal{F}/\borel{C[0,\infty)^d}$-可測性が出る．
+	\QED
+\end{prf}
