@@ -161,36 +161,54 @@
 		process $X$ are continuous, then $H_\Gamma$ is a stopping time.
 	\end{itembox}
 	
-	\begin{prf}
-		$\R^d$上のEuclid距離を$\rho$で表し，
-		\begin{align}
-			\rho(x,\Gamma) \coloneqq \inf{}{\Set{|x - y|}{y \in \Gamma}},
-			\quad \Gamma_n \coloneqq \Set{x \in \R^d}{\rho(x,\Gamma) < \frac{1}{n}},
-			\quad (x \in \R^d,\ n=1,2,\cdots)
-		\end{align}
-		とおく．$\R^d \ni x \longmapsto \rho(x,\Gamma)$の連続性より$\Gamma_n$は開集合であるから，
-		$T_n \coloneqq H_{\Gamma_n}$により定める$T_n,\ n=1,2,\cdots$は弱停止時刻である．
-		また$H \coloneqq H_\Gamma$とおく．このとき，次の(1)と(2)が成立する．
+	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(1)] $\{H = 0\} = \{X_0 \in \Gamma\}$が成り立つ．実際，
-				$X_0(\omega) \in \Gamma$なら$H(\omega) = 0$であり，一方で
-				$X_0(\omega) \notin \Gamma$なら，$\Gamma$が閉集合であることと
-				パスの連続性より或る$h > 0$が存在して，
+			\item[第一段]
+				$\R^d$上のEuclid距離を$\rho$で表し，
+				\begin{align}
+					\rho(x,\Gamma) \coloneqq \inf{}{\Set{|x - y|}{y \in \Gamma}},
+					\quad \Gamma_n \coloneqq \Set{x \in \R^d}{\rho(x,\Gamma) < \frac{1}{n}},
+					\quad (x \in \R^d,\ n=1,2,\cdots)
+				\end{align}
+				とおく．$\R^d \ni x \longmapsto \rho(x,\Gamma)$の連続性より$\Gamma_n$は開集合であるから，
+				Problem 2.6の結果より$T_n \coloneqq H_{\Gamma_n}$で定める$T_n,\ n=1,2,\cdots$は
+				$(\mathscr{F}_t)$-弱停止時刻であり，
+				また$H \coloneqq H_\Gamma$とおけば次の(1)と(2)が成立する:
+				\begin{description}
+					\setlength{\leftskip}{3.0cm}
+					\item[(1)] $\{H = 0\} = \{X_0 \in \Gamma\}$,
+					
+					\setlength{\leftskip}{3.0cm}
+					\item[(2)] $H(\omega) \leq t 
+					\quad \Leftrightarrow \quad 
+					T_n(\omega) < t,\ \forall n=1,2,\cdots,
+					\quad (\forall \omega \in \{H>0\},\ \forall t>0)$.
+				\end{description}
+				(1)と(2)及び$T_n,\ n=1,2,\cdots$が$(\mathscr{F}_t)$-弱停止時刻であることを併せれば
+				\begin{align}
+					\{H \leq t\}
+					= \{H \leq t\} \cap \{H > 0\} + \{H = 0\}
+					= \left\{ \bigcap_{n=1}^\infty \{T_n < t\} \right\} \cap \{H > 0\} + \{H = 0\}
+					\in \mathscr{F}_t,
+					\quad (\forall t \geq 0)
+				\end{align}
+				が成立し，$H$が$(\mathscr{F}_t)$-停止時刻であるという主張を得る．
+			
+			\item[第二段]
+				(1)を示す．実際，
+				$X_0(\omega) \in \Gamma$なら$H(\omega) = 0$であり，
+				$X_0(\omega) \notin \Gamma$なら，$\Gamma$が閉であることと
+				パスの連続性より
 				\begin{align}
 					X_t(\omega) \notin \Gamma,
 					\quad (0 \leq t \leq h)
 				\end{align}
-				が満たされ$H(\omega) \geq h > 0$が従う．
-				
-			\item[(2)]
-				任意の$\omega \in \{H > 0\},\ t > 0$に対して
-				\begin{align}
-					H(\omega) \leq t 
-					\quad \Leftrightarrow \quad 
-					T_n(\omega) < t,\ \forall n=1,2,\cdots
-				\end{align}
-				が成り立つ．$H(\omega) \leq t$の場合，
-				$\beta \coloneqq H(\omega)$とおけば
+				を満たす$h > 0$が存在して$H(\omega) \geq h > 0$が従う．
+		
+			\item[第三段]
+				(2)を示す．$H(\omega) \leq t$の場合，
+				$\beta \coloneqq H(\omega)$とおけば，$\Gamma$が閉であることと
+				パスの連続性より
 				\begin{align}
 					X_\beta(\omega) \in \Gamma
 				\end{align}
@@ -230,17 +248,8 @@
 					> \frac{1}{n}
 				\end{align}
 				が満たされる．従って$T_n(\omega) \geq t$となる．
+				\QED
 		\end{description}
-		(1)(2)の結果，及び$T_n,\ n=1,2,\cdots$が弱停止時刻であることにより
-		\begin{align}
-			\{H \leq t\}
-			= \{H \leq t\} \cap \{H > 0\} + \{H = 0\}
-			= \left\{ \bigcap_{n=1}^\infty \{T_n < t\} \right\} \cap \{H > 0\} + \{H = 0\}
-			\in \mathscr{F}_t,
-			\quad (\forall t \geq 0)
-		\end{align}
-		が従い，これにより$H$は$(\mathscr{F}_t)$-停止時刻である．
-		\QED
 	\end{prf}
 	
 	\begin{itembox}[l]{Problem 2.17 修正}
