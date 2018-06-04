@@ -1,0 +1,160 @@
+\section{Weak Convergence}
+	なぜ弱収束と呼ぶか．いま，$X$を局所コンパクトHausdorff空間として
+	\begin{align}
+		C_0(X) \coloneqq \Set{f:X \longrightarrow \C}{\mbox{連続かつ，任意の$\epsilon > 0$に対し
+		$\closure{\Set{x \in X}{|f(x)| \geq \epsilon}}$がコンパクト}} 
+	\end{align}
+	とおく．この$C_0(X)$はノルム$\Norm{f}{C_0(X)} \coloneqq \sup{x \in X}{|f(x)|}$
+	により複素Banach空間となる．また
+	$(X,\borel{X})$上の複素測度$\mu$について，その総変動$|\mu|$が正則測度であるとき
+	$\mu$は正則であるという．$X$上の正則複素測度の全体を$RM(X)$と書き，
+	総変動ノルム$\Norm{\mu}{RM(X)} \coloneqq |\mu|(X)$によりノルム位相を導入する．
+	任意の複素測度$\mu$に対し
+	\begin{align}
+		\Phi_\mu(f) \coloneqq \int_X f(x)\ \mu(dx)
+	\end{align}
+	により$C_0(X)$上の有界線型汎関数$\Phi_\mu$が定まる．
+	
+	\begin{screen}
+		\begin{thm}[Rieszの表現定理]
+			$X$を局所コンパクトHausdorff空間とする．
+			$C_0(X)$に$\Norm{\cdot}{C_0(X)}$で位相を入れるとき，
+			共役空間$C_0(X)^*$と書く．
+			このとき$C_0(X)^*$と$RM(X)$は
+			\begin{align}
+				\Phi:RM(X) \ni \mu \longrightarrow \Phi_\mu \in C_0(X)
+			\end{align}
+			で定める対応関係$\Phi$によりBanach空間として等長同型となる．
+		\end{thm}
+	\end{screen}
+	
+	$C_0(X)^*$に汎弱位相を入れるとき，
+	汎関数列$\left( \Phi_{\mu_n} \right)_{n=1}^\infty$が
+	$\Phi_\mu$に汎弱収束することと
+	\begin{align}
+		\Phi_{\mu_n}(f) \longrightarrow \Phi_\mu(f)\ (n \longrightarrow \infty),
+		\quad (\forall f \in C_0(X))
+	\end{align}
+	は同値になる．$C_0(X)^*$の汎弱位相の$\Phi$による逆像位相を
+	$RM(X)$の弱位相と定めれば，$\Phi$は弱位相に関して位相同型となる．
+	このとき，$(\mu_n)_{n=1}^\infty$が$\mu$に弱収束することは
+	$\left( \Phi_{\mu_n} \right)_{n=1}^\infty$が$\Phi_\mu$に汎弱収束することと同値になり，
+	すなわち
+	\begin{align}
+		\int_X f(x)\ \mu_n(dx) \longrightarrow \int_X f(x)\ \mu(dx)\ (n \longrightarrow \infty),
+		\quad (\forall f \in C_0(X))
+	\end{align}
+	と同値になる．$X$上の正則な確率測度の全体を$\mathscr{P}(X)$と書けば
+	$\mathscr{P}(X) \subset RM(X)$となり，正則確率測度の列$(P_n)_{n=1}^\infty$が
+	$P \in \mathscr{P}(X)$に弱収束することは
+	\begin{align}
+		\int_X f(x)\ P_n(dx) \longrightarrow \int_X f(x)\ P(dx)\ (n \longrightarrow \infty),
+		\quad (\forall f \in C_0(X))
+	\end{align}
+	と同値になる．
+	
+	\begin{itembox}[l]{Definition 4.3}
+		It follows, in particular, that the weak limit $P$ is a probability measure, 
+		and that it is unique.
+	\end{itembox}
+	
+	\begin{prf}
+		$f \equiv 1$として
+		\begin{align}
+			P(S) = \lim_{n \to \infty} P_n(S) = 1
+		\end{align}
+		が従うから$P$は確率測度である．また任意の有界連続関数$f:S \longrightarrow \R$に対し
+		\begin{align}
+			\int_S f\ dP = \int_S f\ dQ
+		\end{align}
+		が成り立つとき，任意の閉集合$A \subset S$に対して
+		\begin{align}
+			f_k(s) \coloneqq \frac{1}{1 + k d(s,A)},
+			\quad (k=1,2,\cdots)
+		\end{align}
+		と定めれば$\lim_{k \to \infty} f_k = \defunc_A$(各点収束)が満たされるから，Lebesgueの収束定理より
+		\begin{align}
+			P(A) = \lim_{k \to \infty} \int_S f_k\ dP
+			= \lim_{k \to \infty} \int_S f_k\ dQ
+			= Q(A)
+		\end{align}
+		となり，測度の一致の定理より$P = Q$が得られる．すなわち弱極限は一意である．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{lemma: change of variables for expectation}
+		$(\Omega,\mathscr{F},P)$を確率空間，
+		$(S,\mathscr{S})$を可測空間とする．
+		このとき任意の
+		有界$\mathscr{S}/\borel{\R}$-可測関数$f$
+		と$\mathscr{F}/\mathscr{S}$-可測写像$X$に対して
+		\begin{align}
+			\int_\Omega f(X)\ dP = \int_S f\ dPX^{-1}
+		\end{align}
+		が成立する．
+	\end{itembox}
+	
+	\begin{prf}
+		任意の$A \in \mathscr{S}$に対して
+		\begin{align}
+			\int_S \defunc_A dPX^{-1}
+			= P(X^{-1}(A))
+			= \int_\Omega \defunc_{X^{-1}(A)}\ dP
+			= \int_\Omega \defunc_{A}(X)\ dP
+		\end{align}
+		が成り立つから，任意の$\mathscr{S}/\borel{\R}$-可測単関数$g$に対し
+		\begin{align}
+			\int_\Omega g(X)\ dP = \int_S g\ dPX^{-1}
+		\end{align}
+		となる．$f$が有界なら一様有界な単関数で近似できるので，Lebesgueの収束定理より
+		\begin{align}
+			\int_\Omega f(X)\ dP = \int_S f\ dPX^{-1}
+		\end{align}
+		が出る．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Definition 4.4}
+		Equivalently, $X_n \overset{\mathscr{D}}{\longrightarrow} X$ if and only if
+		\begin{align}
+			\lim_{n \to \infty} E_n f(X_n) = E f(X)
+		\end{align} 
+		for every bounded, continuous real-valued function $f$ on $S$, 
+		where $E_n$ and $E$ denote expectations with respect to $P_n$ and $P$, respectively.
+	\end{itembox}
+	
+	\begin{prf}
+		任意の有界実連続関数$f:S \longrightarrow \R$に対し
+		\begin{align}
+			\int_\Omega f(X_n)\ dP_n = \int_S f\ dP_nX_n^{-1},
+			\quad \int_\Omega f(X)\ dP = \int_S f\ dPX^{-1},
+		\end{align}
+		が成り立つから，$P_nX_n^{-1}$が$PX^{-1}$に弱収束することと
+		$\lim_{n \to \infty} E_n f(X_n) = E f(X)$は同値である．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 4.5}
+		Suppose $\{X_n\}_{n=1}^\infty$ is a sequence of random variables taking values 
+		in a metric space $(S_1,\rho_1)$ and converging in distribution to $X$. Suppose 
+		$(S_2,\rho_2)$ is another metric space, and $\varphi:S_1 \longrightarrow S_2$ 
+		is continuous. Show that $Y_n \coloneqq \varphi(X_n)$ converges in distribution 
+		to $Y \coloneqq \varphi(X)$.
+	\end{itembox}
+	
+	\begin{prf}
+		任意の有界実連続関数$f:S_2 \longrightarrow \R$に対し
+		$f \circ \varphi$は$S_1$上の有界実連続関数であるから
+		\begin{align}
+			\int_{S_2} f\ dPY_n^{-1}
+			&= \int_{\Omega} f(Y_n)\ dP
+			= \int_{\Omega} f(\varphi(X_n))\ dP
+			= \int_{S_1} f \circ \varphi\ dPX_n^{-1} \\
+			& \longrightarrow 
+			\int_{S_1} f \circ \varphi\ dPX^{-1}
+			= \int_{S_2} f\ dPY^{-1}
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}

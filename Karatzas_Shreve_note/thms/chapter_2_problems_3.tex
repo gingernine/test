@@ -81,50 +81,96 @@
 	\end{align}
 	と表される$C[0,\infty)^d$の部分集合$C$の全体を$\mathscr{C}$とおく．このとき，$\borel{C[0,\infty)^d} = \sgmalg{\mathscr{C}}$が成り立つ．
 \end{itembox}
-\begin{prf}
-	$w_0 \in C[0,\infty)^d$とする．任意に$w \in C[0,\infty)^d$を取れば，$w$の連続性により$d(w_0,w)$の各項について
-	\begin{align}
-		\sup{t \leq n}{|w_0(t) - w(t)|} = \sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \quad (n = 1,2,\cdots)
-	\end{align}
-	と表現できる．いま，任意に実数$\alpha \in \R$を取れば
-	\begin{align}
-		\Set{w \in C[0,\infty)^d}{\sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \leq \alpha}
-		= \bigcap_{r \in [0,n]\cap\Q} \Set{w \in C[0,\infty)^d}{|w_0(r) - w(r)| \leq \alpha}
-	\end{align}
-	が成立し，右辺の各集合は$\mathscr{C}$に属するから$\mbox{左辺} \in \sgmalg{\mathscr{C}}$となる．従って
-	\begin{align}
-		\psi_n : C[0,\infty)^d \ni w \longmapsto \sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \in \R, \quad (n = 1,2,\cdots)
-	\end{align}
-	で定める$\psi_n$は可測$\sgmalg{\mathscr{C}}/\borel{\R}$である．
-	$x \longmapsto x \wedge 1$の連続性より$\psi_n \wedge 1$
-	も$\sgmalg{\mathscr{C}}/\borel{\R}$-可測性を持ち，
-	\begin{align}
-		d(w_0,w) = \sum_{n=1}^{\infty}\frac{1}{2^n} \left( \psi_n(w) \wedge 1 \right)
-	\end{align}
-	により$C[0,\infty)^d \ni w \longmapsto d(w_0,w) \in \R$の
-	$\sgmalg{\mathscr{C}}/\borel{\R}$-可測性が出るから，任意の$\epsilon > 0$に対する球について
-	\begin{align}
-		\Set{w \in C[0,\infty)^d}{d(w_0,w) < \epsilon} \in \sgmalg{\mathscr{C}}
-	\end{align}
-	が成り立つ．$C[0,\infty)^d$は第二可算公理を満たし，可算基底は上式の形の球で構成されるから，
-	$\open{C[0,\infty)^d} \subset \sgmalg{\mathscr{C}}$が従い$\borel{C[0,\infty)^d} \subset \sgmalg{\mathscr{C}}$を得る．
-	次に逆の包含関係を示す．いま，任意に$n \in \Z_+$と$t_1 < \cdots < t_n$を選んで
-	\begin{align}
-		\phi : C[0,\infty)^d \ni w \longmapsto (w(t_1),\cdots, w(t_n)) \in (\R^d)^n
-	\end{align}
-	により定める写像は連続である．
-	実際，$w_0$での連続性を考えると，任意の$\epsilon > 0$に対して$t_n \leq N$を満たす$N \in \N$を取れば，
-	$d(w_0,w) < \epsilon/(n2^N)$ならば
-	$\sum_{i=1}^{n}|w_0(t_i) - w(t_i)| < \epsilon$が成り立つ．よって
-	$\phi$は$w_0$で連続であり(各点連続)
-	\begin{align}
-		\borel{(\R^d)^n} \subset \Set{A \in \borel{(\R^d)^n}}{\phi^{-1}(A) \in \borel{C[0,\infty)^d}}
-	\end{align}
-	が出る．任意の$C \in \mathscr{C}$は，$n \in \N$と時点$t_1 < \cdots < t_n$によって決まる写像$\phi$によって
-	$C = \phi^{-1}(B)\ (\exists B \in \borel{(\R^d)^n})$と表現できるから，
-	$\mathscr{C} \subset \borel{C[0,\infty)^d}$が成り立ち
-	$\sgmalg{\mathscr{C}} \subset \borel{C[0,\infty)^d}$が得られる．
-	\QED
+\begin{prf}\mbox{}
+	\begin{description}
+		\item[第一段]
+			$w_0 \in C[0,\infty)^d$とする．任意に$w \in C[0,\infty)^d$を取れば，$w$の連続性により$d(w_0,w)$の各項について
+			\begin{align}
+				\sup{t \leq n}{|w_0(t) - w(t)|} = \sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \quad (n = 1,2,\cdots)
+			\end{align}
+			と表現できる．いま，任意に実数$\alpha \in \R$を取れば
+			\begin{align}
+				\Set{w \in C[0,\infty)^d}{\sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \leq \alpha}
+				= \bigcap_{r \in [0,n]\cap\Q} \Set{w \in C[0,\infty)^d}{|w_0(r) - w(r)| \leq \alpha}
+			\end{align}
+			が成立し，右辺の各集合は
+			$\mathscr{C}$に属するから$\mbox{左辺} \in \sgmalg{\mathscr{C}}$となる．従って
+			\begin{align}
+				\psi_n : C[0,\infty)^d \ni w \longmapsto \sup{r \in [0,n]\cap\Q}{|w_0(r) - w(r)|} \in \R, \quad (n = 1,2,\cdots)
+			\end{align}
+			で定める$\psi_n$は可測$\sgmalg{\mathscr{C}}/\borel{\R}$である．
+			$x \longmapsto x \wedge 1$の連続性より$\psi_n \wedge 1$
+			も$\sgmalg{\mathscr{C}}/\borel{\R}$-可測性を持ち，
+			\begin{align}
+				d(w_0,w) = \sum_{n=1}^{\infty}\frac{1}{2^n} \left( \psi_n(w) \wedge 1 \right)
+			\end{align}
+			により$C[0,\infty)^d \ni w \longmapsto d(w_0,w) \in \R$の
+			$\sgmalg{\mathscr{C}}/\borel{\R}$-可測性が出るから，任意の$\epsilon > 0$に対する球について
+			\begin{align}
+				\Set{w \in C[0,\infty)^d}{d(w_0,w) < \epsilon} \in \sgmalg{\mathscr{C}}
+			\end{align}
+			が成り立つ．$C[0,\infty)^d$は第二可算公理を満たし，可算基底は上式の形の球で構成されるから，
+			$\open{C[0,\infty)^d} \subset \sgmalg{\mathscr{C}}$が従い$\borel{C[0,\infty)^d} \subset \sgmalg{\mathscr{C}}$を得る．
+			次に逆の包含関係を示す．いま，任意に$n \in \Z_+$と$t_1 < \cdots < t_n$を選んで
+			\begin{align}
+				\phi : C[0,\infty)^d \ni w \longmapsto (w(t_1),\cdots, w(t_n)) \in (\R^d)^n
+			\end{align}
+			により定める写像は連続である．
+			実際，$w_0$での連続性を考えると，任意の$\epsilon > 0$に対して$t_n \leq N$を満たす$N \in \N$を取れば，
+			$d(w_0,w) < \epsilon/(n2^N)$ならば
+			$\sum_{i=1}^{n}|w_0(t_i) - w(t_i)| < \epsilon$が成り立つ．よって
+			$\phi$は$w_0$で連続であり(各点連続)
+			\begin{align}
+				\borel{(\R^d)^n} \subset \Set{A \in \borel{(\R^d)^n}}{\phi^{-1}(A) \in \borel{C[0,\infty)^d}}
+			\end{align}
+			が出る．任意の$C \in \mathscr{C}$は，$n \in \N$と時点$t_1 < \cdots < t_n$によって決まる写像$\phi$によって
+			$C = \phi^{-1}(B)\ (\exists B \in \borel{(\R^d)^n})$と表現できるから，
+			$\mathscr{C} \subset \borel{C[0,\infty)^d}$が成り立ち
+			$\sgmalg{\mathscr{C}} \subset \borel{C[0,\infty)^d}$が得られる．
+			
+		\item[第二段]
+			$t \geq 0$とする．$C[0,\infty)^d$の位相を$\open{C[0,\infty)^d}$と書けば
+			\begin{align}
+				\varphi_t^{-1}\left( \borel{C[0,\infty)^d} \right)
+				= \sgmalg{\Set{\varphi_t^{-1}(O)}{O \in \open{C[0,\infty)^d}}}
+			\end{align}
+			が成り立つ．任意の$\alpha \in \R$と$r \geq 0$に対して
+			\begin{align}
+				&\Set{w \in C[0,\infty)^d}{|w_0(r) - (\varphi_t w)(r)| \leq \alpha} \\
+				&\qquad = \begin{cases}
+					\Set{w \in C[0,\infty)^d}{|w_0(r) - (\varphi_t w)(r)| \leq \alpha}, & (r \leq t), \\
+					\Set{w \in C[0,\infty)^d}{|w_0(r) - (\varphi_t w)(t)| \leq \alpha}, & (r > t),
+				\end{cases}
+				\quad \in \mathscr{C}_t
+			\end{align}
+			となるから
+			\begin{align}
+				\psi^t_n : C[0,\infty)^d \ni w \longmapsto \sup{r \in [0,n]\cap\Q}{|w_0(r) - (\varphi_t w)(r)|} \in \R, \quad (n = 1,2,\cdots)
+			\end{align}
+			で定める$\psi^t_n$は可測$\sgmalg{\mathscr{C}_t}/\borel{\R}$である．
+			$x \longmapsto x \wedge 1$の連続性より$\psi^t_n \wedge 1$
+			も$\sgmalg{\mathscr{C}_t}/\borel{\R}$-可測性を持ち，
+			\begin{align}
+				d(w_0,\varphi_t w) = \sum_{n=1}^{\infty}\frac{1}{2^n} \left( \psi^t_n(w) \wedge 1 \right)
+			\end{align}
+			により$C[0,\infty)^d \ni w \longmapsto d(w_0,\varphi_t w) \in \R$の
+			$\sgmalg{\mathscr{C}_t}/\borel{\R}$-可測性が出るから，任意の$\epsilon > 0$に対する球について
+			\begin{align}
+				\Set{w \in C[0,\infty)^d}{d(w_0,\varphi_t w) < \epsilon} \in \sgmalg{\mathscr{C}_t}
+			\end{align}
+			が成り立つ．特に
+			\begin{align}
+				\varphi_t^{-1}\left( \Set{w \in C[0,\infty)^d}{d(w_0,w) < \epsilon} \right)
+				= \Set{w \in C[0,\infty)^d}{d(w_0,\varphi_t w) < \epsilon}
+			\end{align}
+			が満たされ，$C[0,\infty)^d$の第二可算性より
+			\begin{align}
+				\varphi_t^{-1}(O) \in \sgmalg{\mathscr{C}_t},
+				\quad (\forall O \in \open{C[0,\infty)^d})
+			\end{align}
+			が従う．ゆえに$\varphi_t^{-1}\left( \borel{C[0,\infty)^d} \right) \subset \sgmalg{\mathscr{C}_t}$となる．
+			\QED
+	\end{description}
 \end{prf}
 
 \begin{comment}

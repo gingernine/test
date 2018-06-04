@@ -1,0 +1,304 @@
+\section{Continuous Time Martingales}
+\subsection{Fundamental Inequalities}
+	
+	\begin{itembox}[l]{Lemma: 凸関数の片側微係数の存在}
+		任意の凸関数$\varphi:\R \longrightarrow \R$は
+		各点で左右の微係数が存在する．特に，凸関数は連続である．
+	\end{itembox}
+	
+	\begin{prf}
+		凸性より任意の$x < y < z$に対して
+		\begin{align}
+			\frac{\varphi(y) - \varphi(x)}{y - x} 
+			\leq \frac{\varphi(z) - \varphi(x)}{z - x}
+			\leq \frac{\varphi(z) - \varphi(y)}{z - y}
+			\label{ineq:lem:convex_function_measurability_1}
+		\end{align}
+		が満たされる．従って，$x$を固定すれば，$x$に単調減少に近づく任意の点列$(x_n)_{n=1}^{\infty}$に対し
+		 \begin{align}
+		 	\left(\frac{f(x_n)-f(x)}{x_n-x}\right)_{n=1}^{\infty} 
+		 	\label{seq:lem:convex_function_measurability_2}
+		 \end{align}
+		 は下に有界な単調減少列となり下限が存在する．$x$に単調減少に近づく別の点列$(y_k)_{k=1}^{\infty}$を取れば
+		 \begin{align}
+		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \frac{f(x_n)-f(x)}{x_n-x} \quad (n=1,2,\cdots)
+		 \end{align}
+		 より
+		 \begin{align}
+		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \inf{n \in \N}{\frac{f(x_n)-f(x)}{x_n-x}}
+		 \end{align}
+		 が成立し，$(x_n),(y_k)$の立場を変えれば逆向きの不等号も得られる．
+		 すなわち極限は点列に依らず確定し，$\varphi$は$x$で右側微係数を持つ．
+		 同様に左側微係数も存在し，特に$\varphi$の連続性及びBorel可測性が従う．
+		 \QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Lemma: Jensenの不等式}
+		$(\Omega,\mathscr{F},P)$を確率空間，
+		$X:\Omega \longrightarrow \R$を可測$\mathscr{F}/\borel{\R}$とする．
+		このとき，任意の部分$\sigma$-加法族$\mathscr{G} \subset \mathscr{F}$及び
+		凸関数$\varphi:\R \longrightarrow \R$に対し，
+		$X,\varphi(X)$が$\Omega$上$P$に関して可積分であるなら次が成立する:
+		\begin{align}
+			\varphi\left(\cexp{X}{\mathscr{G}} \right)
+			\leq \cexp{\varphi(X)}{\mathscr{G}},
+			\quad \mbox{$P$-a.s.}
+		\end{align}
+	\end{itembox}
+		\begin{prf}
+			$\varphi$は各点$x \in \R$で右側接線を持つから，
+			それを$t \longmapsto a_x t + b_x$と表せば，
+			\begin{align}
+				\varphi(t) = \sup{x \in \R}{\left\{ a_x t + b_x \right\}} \quad (\forall t \in \R)
+				\label{eq:prp_properties_of_expanded_conditional_expectation_1}
+			\end{align}
+			が成立する．
+			よって任意の$x \in \R$に対して
+			\begin{align}
+				\varphi(X(\omega)) \geq a_x X(\omega) + b_x
+			\end{align}
+			が満たされるから
+			\begin{align}
+				\cexp{\varphi(X)}{\mathcal{G}}
+				\geq a_x \cexp{X}{\mathcal{G}} + b_x \quad (\forall x \in \R),
+				\quad \mbox{$P$-a.s.}
+			\end{align}
+			が従い，$x \in \R$の任意性と
+			(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
+			\begin{align}
+				\cexp{\varphi(X)}{\mathcal{G}} \geq \varphi\left( \cexp{X}{\mathcal{G}} \right),
+				\quad \mbox{$P$-a.s.}
+			\end{align}
+			が得られる．
+			\QED
+		\end{prf}
+		
+	\begin{itembox}[l]{Proposition 3.6}
+		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a martingale (respectively, 
+		submartingale), and $\varphi:\R \longrightarrow \R$ a convex (respectively, convex 
+		nondecreasing) function, such that $E\left|\varphi(X_t)\right| < \infty$ holds 
+		for every $t \geq 0$. Then $\Set{\varphi(X_t),\mathscr{F}_t}{0 \leq t < \infty}$ 
+		is a submartingale.
+	\end{itembox}
+	
+	\begin{prf}
+		$(X_t)_{t \geq 0}$がマルチンゲールであり
+		$\varphi$が凸であるとき，Jensenの不等式より
+		$P$-a.s.の$\omega \in \Omega$に対し
+		\begin{align}
+			\varphi(X_s(\omega))
+			= \varphi(\cexp{X_t}{\mathscr{F}_s}(\omega))
+			\leq \cexp{\varphi(X_t)}{\mathscr{F}_s}(\omega)
+		\end{align}
+		が成り立つ．$(X_t)_{t \geq 0}$が劣マルチンゲールであり
+		$\varphi$が凸かつ単調増大であるとき，$P$-a.s.の$\omega \in \Omega$に対し
+		\begin{align}
+			\varphi(X_s(\omega))
+			\leq \varphi(\cexp{X_t}{\mathscr{F}_s}(\omega))
+			\leq \cexp{\varphi(X_t)}{\mathscr{F}_s}(\omega)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{離散時間の任意抽出定理}
+	\end{itembox}
+	
+	\begin{itembox}[l]{Theorem 3.8 (i)}
+		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a submartingale 
+		whose every path is right-continuous, let $[\sigma, \tau]$ be a subinterval of 
+		$[0,\infty)$, and let $\alpha < \beta,\ \lambda > 0$ be real numbers. We have the 
+		following results:
+		\begin{description}
+			\item[(i)] First submartingale inequality:
+				\begin{align}
+					\lambda \cdot P\left[ \sup{\sigma \leq t \leq \tau}{X_t} \geq \lambda \right]
+					\leq E(X^+_\tau).
+				\end{align}
+		\end{description}
+	\end{itembox}
+	
+	\begin{prf}
+		$n \geq 1$に対し$[\sigma,\tau]$を$2^n$等分に分割し
+		\begin{align}
+			E_n &\coloneqq \left\{ \max{k=0,1,\cdots,2^n}{X_{\sigma + \frac{k}{2^n}(\tau - \sigma)} > \lambda} \right\}, \\
+			E_n^0 &\coloneqq \left\{ X_\sigma > \lambda \right\}, \quad
+			E_n^m \coloneqq \left\{ \max{k=0,1,\cdots,m-1}{X_{\sigma + \frac{k}{2^n}(\tau - \sigma)}} \leq \lambda,\ X_{\sigma + \frac{m}{2^n}(\tau - \sigma)} > \lambda \right\},
+			\quad (1 \leq m \leq 2^n)
+		\end{align}
+		とおけば，
+		\begin{align}
+			E_n^m \in \mathscr{F}_{\sigma + \frac{m}{2^n}(\tau - \sigma)} \subset \mathscr{F}_\tau,
+			\quad E_n = \sum_{m=0}^{2^n} E_n^m,
+			\quad (n=1,2,\cdots)	
+		\end{align}
+		かつ，$E_1 \subset E_2 \subset E_3 \subset \cdots$と$X$のパスの右連続性より
+		\begin{align}
+			\left\{ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda \right\}
+			= \bigcup_{n=1}^\infty \left\{ \max{k=0,1,\cdots,2^n}{X_{\sigma + \frac{k}{2^n}(\tau - \sigma)} > \lambda} \right\}
+			= \lim_{n \to \infty} E_n
+		\end{align}
+		が満たされる．いま，任意の$n \geq 1$についてChebyshevの不等式と劣マルチンゲール性より
+		\begin{align}
+			P(E_n) = \sum_{m=0}^{2^n} P(E_n^m)
+			\leq \frac{1}{\lambda} \sum_{m=0}^{2^n} \int_{E_n^m} X_{\sigma + \frac{m}{2^n}(\tau - \sigma)}\ dP
+			\leq \frac{1}{\lambda} \sum_{m=0}^{2^n} \int_{E_n^m} X_{\tau}\ dP
+			= \frac{1}{\lambda} \int_{E_n} X_\tau\ dP
+			\leq \frac{1}{\lambda} E(X^+_\tau)
+		\end{align}
+		となるから，$n \longrightarrow \infty$として
+		\begin{align}
+			P\left[ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda \right]
+			\leq \frac{1}{\lambda} E(X^+_\tau)
+		\end{align}
+		を得る．特に，任意の$m \in \N$に対して
+		\begin{align}
+			P\left[ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda - \frac{1}{m} \right]
+			\leq \frac{1}{\lambda - 1/m} E(X^+_\tau)
+		\end{align}
+		が成り立ち，$m \longrightarrow \infty$として
+		\begin{align}
+			P\left[ \sup{\sigma \leq t \leq \tau}{X_t} \geq \lambda \right]
+			\leq \frac{1}{\lambda} E(X^+_\tau)
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Theorem 3.8 (ii)}
+		Second submartingale inequality:
+		\begin{align}
+			\lambda \cdot P\left[ \sup{\sigma \leq t \leq \tau}{X_t} \leq -\lambda \right]
+					\leq E(X^+_\tau) - E(X_\sigma).
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}
+		$n \geq 1$に対し$[\sigma,\tau]$を$2^n$等分に分割し
+		\begin{align}
+			E_n &\coloneqq \left\{ \min{k=0,1,\cdots,2^n}{X_{\sigma + \frac{k}{2^n}(\tau - \sigma)} < -\lambda} \right\}, \\
+			E_n^0 &\coloneqq \left\{ X_\sigma < -\lambda \right\}, \quad
+			E_n^m \coloneqq \left\{ \min{k=0,1,\cdots,m-1}{X_{\sigma + \frac{k}{2^n}(\tau - \sigma)}} \geq -\lambda,\ X_{\sigma + \frac{m}{2^n}(\tau - \sigma)} < -\lambda \right\},
+			\quad (1 \leq m \leq 2^n)
+		\end{align}
+		として，また
+		\begin{align}
+			T(\omega) \coloneqq
+			\begin{cases}
+				\sigma + \frac{m}{2^n} (\tau - \sigma), & (\omega \in E_n^m,\ m=0,1,\cdots,2^n),\\
+				\tau, & (\omega \in \Omega \backslash E_n),
+			\end{cases}
+			\quad (\forall \omega \in \Omega)
+		\end{align}
+		により$(\mathscr{F}_t)$-停止時刻を定めれば，任意抽出定理より
+		\begin{align}
+			E(X_\sigma) 
+			&\leq E(X_T)
+			= \sum_{m=0}^{2^n} \int_{E_n^m} X_{\sigma+\frac{m}{2^n}(\tau-\sigma)}\ dP + \int_{\Omega \backslash E_n} X_\tau\ dP
+			\leq \sum_{m=0}^{2^n} (-\lambda) P(E_n^m) + E(X_\tau^+) \\
+			&= -\lambda P(E_n) + E(X_\tau^+)
+		\end{align}
+		が成立する．移項して$n \longrightarrow \infty$とすれば
+		\begin{align}
+			P\left[ \inf{\sigma \leq t \leq \tau}{X_t} < -\lambda \right]
+			\leq \frac{1}{\lambda} \left\{ E(X^+_\tau) - E(X_\sigma) \right\} 
+		\end{align}
+		が得られ，(i)の証明と同様にして
+		\begin{align}
+			P\left[ \inf{\sigma \leq t \leq \tau}{X_t} \leq -\lambda \right]
+			\leq \frac{1}{\lambda} \left\{ E(X^+_\tau) - E(X_\sigma) \right\}
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Lemma: Theorem 3.8 (iii)}
+		確率過程$X = \Set{X_t}{0 \leq t < \infty}$のすべてのパスが右連続であるとき，
+		$[\sigma,\tau]$の$2^n$等分点を
+		\begin{align}
+			F_n \coloneqq \Set{\tau_i^n}{\tau_i^n = \sigma + \frac{i}{2^n}(\tau - \sigma),\ i=0,1,\cdots,2^n},
+			\quad n=1,2,\cdots
+		\end{align}
+		とおけば次が成立する:
+		\begin{align}
+			U_{[\sigma,\tau]}(\alpha,\beta;X)
+			= \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)},
+			\quad D_{[\sigma,\tau]}(\alpha,\beta;X)
+			= \sup{n \in \N}{D_{F_n}(\alpha,\beta;X)}.
+		\end{align}
+	\end{itembox}
+	Karatzas-Shreve本文中では
+	\begin{align}
+		\tau_1(\omega) = \min{}{\Set{t \in F}{X_t(\omega) \leq \alpha}}
+	\end{align}
+	と定めているが，
+	\begin{align}
+		\tau_1(\omega) = \min{}{\Set{t \in F}{X_t(\omega) < \alpha}}
+	\end{align}
+	と定める方がよい．実際，こうでないと今の補題が従わない．
+	\begin{prf}
+		$U_{[\sigma,\tau]}(\alpha,\beta;X) \leq \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)}$
+		が成立すれば主張を得る．いま，任意に有限部分集合$F \subset [\sigma,\tau]$を取り
+		\begin{align}
+			\tau_1(\omega) \coloneqq \min{}{\Set{t \in F}{X_t(\omega) < \alpha}},
+			\quad \sigma_1(\omega) \coloneqq \min{}{\Set{t \in F}{t \geq \tau_1(\omega),\ X_t(\omega) > \beta}},
+			\cdots
+		\end{align}
+		を定め，$\omega \in \Omega$を任意に取り
+		$U_F(\alpha,\beta;X(\omega)) = j \geq 1$と仮定する．このとき
+		\begin{align}
+			X_{\tau_i(\omega)}(\omega) < \alpha,
+			\quad X_{\sigma_i(\omega)}(\omega) > \beta,
+			\quad (i=1,\cdots,j)
+		\end{align}
+		が満たされ，$t \longrightarrow X_t(\omega)$の右連続性より
+		十分大きい$n \in \N$に対して，或る$t_i,s_i \in F_n,\ (1 \leq i \leq j)$が
+		\begin{align}
+			\tau_1(\omega) \leq t_1 < \sigma_1(\omega) \leq s_1 < 
+			\cdots < \tau_j(\omega) \leq t_j < \sigma_j(\omega) \leq s_j
+		\end{align}
+		かつ
+		\begin{align}
+			X_{t_i}(\omega) < \alpha,
+			\quad X_{s_i}(\omega) > \beta,
+			\quad (\forall i=1,\cdots,j)
+		\end{align}
+		を満たす．これにより
+		\begin{align}
+			U_F(\alpha,\beta;X(\omega)) = j \leq U_{F_n}(\alpha,\beta;X(\omega))
+		\end{align}
+		が従い，$\omega$の任意性より$U_F(\alpha,\beta;X(\omega)) \leq \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)}$が出る．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Theorem 3.8 (iii)}
+		Upcrossing and downcrossing inequalities:
+		\begin{align}
+			E U_{[\sigma,\tau]}(\alpha,\beta;X) \leq \frac{E(X_\tau^+) + |\alpha|}{\beta-\alpha},
+			\quad E D_{[\sigma,\tau]}(\alpha,\beta;X) \leq \frac{E(X_\tau-\alpha)^+}{\beta-\alpha}.
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				任意の有限部分集合$F \subset [\sigma,\tau]$に対し
+				\begin{align}
+					E U_F(\alpha,\beta;X) \leq \frac{E(X_\tau^+) + |\alpha|}{\beta-\alpha}
+				\end{align}
+				が成立することを示せば，補題の$(F_n)_{n=1}^\infty$に対し
+				\begin{align}
+					E U_{F_n}(\alpha,\beta;X)
+					\leq E U_{F_{n+1}}(\alpha,\beta;X),
+					\quad (n=1,2,\cdots)
+				\end{align}
+				より単調収束定理から
+				\begin{align}
+					E U_{[\sigma,\tau]}(\alpha,\beta;X)
+					= E \left( \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)} \right)
+					\leq \frac{E(X_\tau^+) + |\alpha|}{\beta-\alpha}
+				\end{align}
+				が従う．
+		\end{description}
+	\end{prf}
+	
