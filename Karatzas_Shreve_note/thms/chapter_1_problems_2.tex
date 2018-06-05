@@ -520,3 +520,191 @@
 		は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R}$-可測である．
 		\QED
 	\end{prf}
+	
+	\begin{itembox}[l]{Problem 2.21}
+		Verify that the class $\mathscr{F}_{T+}$ is indeed a $\sigma$-field
+		with respect to which $T$ is measurable, that it coincides with
+		$\Set{A \in \mathscr{F}}{A \cap \{T < t\} \in \mathscr{F}_t,\ \forall t \geq 0}$,
+		and that if $T$ is a stopping time (so that both $\mathscr{F}_T,\mathscr{F}_{T+}$
+		are defined), then $\mathscr{F}_T \subset \mathscr{F}_{T+}$.
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\Omega \cap \{T \leq t\} = \{T \leq t\} \in \mathscr{F}_t,\ (\forall t \geq 0)$
+				より$\Omega \in \mathscr{F}_{T+}$が従い，また
+				\begin{align}
+					A^c \cap \{T \leq t\} = \{T \leq t\} - A \cap \{T \leq t\},
+					\quad \left\{ \bigcup_{n=1}^\infty A_n \right\} \cap \{T \leq t\}
+					= \bigcup_{n=1}^\infty \left( A_n \cap \{T \leq t\} \right)
+				\end{align}
+				より$\mathscr{F}_{T+}$は補演算と可算和で閉じるから
+				$\mathscr{F}_{T+}$は$\sigma$-加法族である．また，
+				\begin{align}
+					\{T < \alpha\} \cap \{T \leq t\}
+					= \begin{cases}
+						\{T < \alpha\}, & (\alpha \leq t), \\
+						\{T \leq t\}, & (\alpha > t),
+					\end{cases}
+					\in \mathscr{F}_{t+},
+					\quad (\forall t \geq 0)
+				\end{align}
+				より$(\mathscr{F}_t)$-弱停止時刻$T$は
+				$\mathscr{F}_{T+}/\borel{[0,\infty]}$-可測である．
+				
+			\item[第二段]
+				任意の$t \geq 0$に対し
+				\begin{align}
+					A \cap \{T < t\} = \bigcup_{n=1}^\infty A \cap \left\{T \leq t - \frac{1}{n}\right\},
+					\quad A \cap \{T \leq t\} = \bigcap_{n=1}^\infty A \cap \left\{T < t + \frac{1}{n}\right\}
+				\end{align}
+				が成り立ち$\mathscr{F}_{T+} = \Set{A \in \mathscr{F}}{A \cap \{T < t\} \in \mathscr{F}_t,\ \forall t \geq 0}$
+				が従う．
+			
+			\item[第三段]
+				$T$が$(\mathscr{F}_t)$-停止時刻であるとき，
+				任意の$A \in \mathscr{F}_T$に対し
+				\begin{align}
+					A \cap \{T \leq t\} \in \mathscr{F}_t \subset \mathscr{F}_{t+},
+					\quad (\forall t \geq 0)
+				\end{align}
+				となり$\mathscr{F}_T \subset \mathscr{F}_{T+}$が成り立つ．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Lemma: 弱停止時刻の可測性}
+		
+	\end{itembox}
+	
+	\begin{itembox}[l]{Probelem 2.22}
+		Verify that analogues of Lemmas 2.15 and 2.16 hold if $T$ and
+		$S$ are assumed to be optional and $\mathscr{F}_T,\ \mathscr{F}_S$
+		and $\mathscr{F}_{T \wedge S}$ are replaced by $\mathscr{F}_{T+},\ \mathscr{F}_{S+}$
+		and $\mathscr{F}_{(T \wedge S)+}$, respectively. Prove that if $S$ is 
+		an optional time and $T$ is a positive stopping time with $S \leq T$,
+		and $S < T$ on $\{S < \infty\}$, then $\mathscr{F}_{S+} \subset \mathscr{F}_T$.
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$T \wedge t,\ S \wedge t$は
+				$\mathscr{F}_{t+}/\borel{[0,\infty]}$-可測であるから、
+				任意の$A \in \mathscr{F}_{S+}$に対して
+				\begin{align}
+					A \cap \{S \leq T\} \cap \{T \leq t\}
+					= (A \cap \{S \leq t\}) \cap \{S \wedge t \leq T \wedge t\} \cap \{T \leq t\}
+					\in \mathscr{F}_{t+},
+					\quad (\forall t \geq 0)
+				\end{align}
+				となり$A \cap \{S \leq T\} \in \mathscr{F}_{T+}$が成立する．
+				特に，$\Omega$上で$S \leq T$なら$\mathscr{F}_{S+} \subset \mathscr{F}_{T+}$が従う．
+				
+			\item[第二段]
+				前段の結果より$\mathscr{F}_{(T \wedge S)+} \subset \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$
+				が満たされる．一方で，任意の$A \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$に対し
+				\begin{align}
+					A \cap \{T \wedge S \leq t\}
+					&= A \cap \{T \leq S\} \cap \{T \wedge S \leq t\}
+						+ A \cap \{T > S\} \cap \{T \wedge S \leq t\} \\
+					&= A \cap \{T \leq t\} \cap \{T \wedge t \leq S \wedge t\}
+						+ A \cap \{S \leq t\} \cap \{T \wedge t > S \wedge t\} \\
+					&\in \mathscr{F}_{t+},
+					\quad (\forall t \geq 0)
+				\end{align}
+				が成り立ち$\mathscr{F}_{(T \wedge S)+} = \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$を得る．
+				また
+				\begin{align}
+					\{S \leq T\} \cap \{T \wedge S \leq t\}
+					= \{S \wedge t \leq T \wedge t\} \cap \{S \leq t\}
+					\in \mathscr{F}_{t+},
+					\quad (\forall t \geq 0)
+				\end{align}
+				により$\{S \leq T\},\ \{T \leq S\} \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$となり
+				$\{T < S\},\ \{T > S\},\ \{T = S\} \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 2.23}
+		Show that if $\{T_n\}_{n=1}^\infty$ is a sequence of optional times
+		and $T = \inf{n \geq 1}{T_n}$, then $\mathscr{F}_{T+} = \bigcap_{n=1}^\infty \mathscr{F}_{T_n+}$.
+		Besides, if each $T_n$ is a positive stopping time and $T < T_n$ on
+		$\{T < \infty\}$, then we have $\mathscr{F}_{T+} = \bigcap_{n=1}^\infty \mathscr{F}_{T_n}$.
+	\end{itembox}
+	
+	\begin{prf}
+		$T \leq T_n,\ (\forall n \geq 1)$より
+		$\mathscr{F}_{T+} \subset \bigcap_{n=1}^\infty \mathscr{F}_{T_n+}$
+		が成り立つ．一方で
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 2.24}
+		Given an optional time $T$ of the filtration $\{\mathscr{F}_t\}$,
+		consider the sequence $\{T_n\}_{n=1}^\infty$ of random times given by
+		\begin{align}
+			T_n(\omega) = 
+			\begin{cases}
+				T(\omega); & \mbox{on $\Set{\omega}{T(\omega) = \infty}$} \\
+				\frac{k}{2^n}; & \mbox{on $\Set{\omega}{\frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}}$}
+			\end{cases}
+		\end{align}
+		for $n \geq 1,\ k \geq 1$. Obviously $T_n \geq T_{n+1} \geq T$,
+		for every $n \geq 1$. Show that each $T_n$ is a stopping time,
+		that $\lim_{n \to \infty} T_n = T$, and that for every $A \in \mathscr{F}_{T+}$
+		we have $A \cap \left\{ T_n = (k/2^n) \right\} \in \mathscr{F}_{k/2^n};\ n,k \geq 1$.
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				任意の$\omega \in \Omega$に対して
+				ある$j,k \in \N$が存在して
+				\begin{align}
+					\frac{j-1}{2^{n+1}} \leq T(\omega) < \frac{j}{2^{n+1}},
+					\quad \frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}
+				\end{align}
+				を満たす．このとき
+				\begin{align}
+					\frac{2k-2}{2^{n+1}} \leq T(\omega) < \frac{2k-1}{2^{n+1}}
+				\end{align}
+				または
+				\begin{align}
+					\frac{2k-1}{2^{n+1}} \leq T(\omega) < \frac{2k}{2^{n+1}}
+				\end{align}
+				のどちらかであるから
+				\begin{align}
+					T(\omega) \leq \frac{j}{2^{n+1}} = T_{n+1}(\omega)
+					\leq \frac{2k}{2^{n+1}} = T_n(\omega)
+				\end{align}
+				が成立する．
+			
+			\item[第二段]
+				任意の$t \geq 0$に対して
+				\begin{align}
+					\{T_n \leq t\}
+					= \bigcup_{k/2^n \leq t} \Set{\omega}{\frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}}
+					\in \mathscr{F}_t,
+					\quad (\forall t \geq 0)
+				\end{align}
+				が成り立つから$T_n$は$(\mathscr{F}_t)$-停止時刻である．また$\{T < \infty\}$上では
+				\begin{align}
+					|T(\omega) - T_n(\omega)| \leq \frac{1}{2^n} \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				となる．
+			
+			\item[第三段]
+				任意の$A \in \mathscr{F}_{T+}$に対して，Problem 2.21より
+				\begin{align}
+					A \cap \left\{T_n = \frac{k}{2^n}\right\}
+					= A \cap \left\{T < \frac{k}{2^n}\right\}
+					- A \cap \left\{T < \frac{k-1}{2^n}\right\}
+					\in \mathscr{F}_{k/2^n}
+				\end{align}
+				が成り立つ．
+				\QED
+		\end{description}
+	\end{prf}
