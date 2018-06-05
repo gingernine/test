@@ -282,8 +282,88 @@
 	\end{itembox}
 	
 	\begin{itembox}[l]{Problem 2.10}
-		d
+		Let $T,S$ be optional times; then $T + S$ is optional. 
+		It is a stopping time, if one of the following conditions holds:
+		\begin{description}
+			\item[(i)] $T > 0,\ S > 0$;
+			\item[(ii)] $T > 0,$ $T$ is a stopping time.
+		\end{description}
 	\end{itembox}
+	
+	\begin{prf}
+		$T,S$が$(\mathscr{F}_t)$-弱停止時刻であるとすれば，
+		任意の$t > 0$に対し
+		\begin{align}
+			\{T + S < t\}
+			&= \{T = 0,\ T + S < t\} + \{0 < T < t,\ T + S < t\} \\
+			&= \{T = 0,\ S < t\} + \bigcup_{\substack{0 < r < t \\ r \in \Q}} \{0 < T < r,\ S < t-r\} \\
+			&\in \mathscr{F}_t
+		\end{align}
+		が成り立つから$T + S$も$(\mathscr{F}_t)$-弱停止時刻である．
+		\begin{description}
+			\item[(i)] この場合$\{T + S \leq 0\} = \emptyset$である．また$t > 0$なら
+				\begin{align}
+					\{T + S > t\} = \{0 < T < t,\ T + S > t\} + \{T \geq t,\ T + S > t \}
+					= \bigcup_{\substack{0 < r < t \\ r \in \Q}} \{r < T < t,\ S > t-r\} + \{T \geq t\} \in \mathscr{F}_t
+				\end{align}
+				が成立する．
+				
+			\item[(ii)]
+				この場合も$\{T + S \leq 0\} = \emptyset$であり，また$t > 0$のとき
+				\begin{align}
+					\{T + S > t\} &= \{0 < T < t,\ T + S > t\} + \{T \geq t,\ T + S > t \} \\
+					&= \{0 < T < t,\ T + S > t\} + \{T \geq t,\ T + S > t,\ S=0 \} + \{T \geq t,\ T + S > t,\ S>0 \} \\
+					&= \{0 < T < t,\ T + S > t\} + \{T > t,\ S=0 \} + \{T \geq t,\ S>0 \} \\
+					&\in \mathscr{F}_t
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 2.13}
+		Verify that $\mathscr{F}_T$ is actually a $\sigma$-field and $T$ is 
+		$\mathscr{F}_T$-measurable. Show that if $T(\omega) = t$ for some constant 
+		$t \geq 0$ and every $\omega \in \Omega$, then $\mathscr{F}_T = \mathscr{F}_t$.
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\mathscr{F}_T$が$\sigma$-加法族であることを示す．実際，
+				$\Omega \cap \{T \leq t\} = \{T \leq t\} \in \mathscr{F}_t,\ (\forall t \geq 0)$
+				より$\Omega \in \mathscr{F}_T$が従い，また
+				\begin{align}
+					A^c \cap \{T \leq t\} = \{T \leq t\} - A \cap \{T \leq t\},
+					\quad \left\{ \bigcup_{n=1}^\infty A_n \right\} \cap \{T \leq t\}
+					= \bigcup_{n=1}^\infty \left( A_n \cap \{T \leq t\} \right)
+				\end{align}
+				より$\mathscr{F}_T$は補演算と可算和で閉じる．
+				
+			\item[第二段]
+				任意の$\alpha \geq 0$に対し
+				\begin{align}
+					\{T \leq \alpha \} \cap \{T \leq t\}
+					= \{T \leq \alpha \wedge t\}
+					\in \mathscr{F}_{\alpha \wedge t} \subset \mathscr{F}_t
+				\end{align}
+				が成立し$T$の$\mathscr{F}_T/\borel{[0,\infty]}$-可測性が出る．
+				
+			\item[第三段]
+				$A \in \mathscr{F}_T$なら$A = A \cap \{T \leq t\} \in \mathscr{F}_t$となり，
+				$A \in \mathscr{F}_t$については，任意の$s \geq 0$に対し
+				$s \geq t$なら
+				\begin{align}
+					A \cap \{T \leq s\} = A \in \mathscr{F} \subset \mathscr{F}_s,
+				\end{align}
+				$s < t$なら
+				\begin{align}
+					A \cap \{T \leq s\} = \emptyset \in \mathscr{F}_s
+				\end{align}
+				が成り立ち$A \in \mathscr{F}_T$が従う．
+				\QED
+		\end{description}
+	\end{prf}
 	
 	\begin{itembox}[l]{Problem 2.17 修正}
 		Let $T,S$ be stopping times and $Z$ an $\mathscr{F}/\borel{\R}$-measurable, 
