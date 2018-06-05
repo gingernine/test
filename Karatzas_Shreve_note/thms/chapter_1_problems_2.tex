@@ -365,6 +365,20 @@
 		\end{description}
 	\end{prf}
 	
+	\begin{itembox}[l]{Exercise 2.14}
+		Let $T$ be a stopping time and $S$ a random time such that $S \geq T$ 
+		on $\Omega$. If $S$ is $\mathscr{F}_T$-measurable, then it is also a stopping time.
+	\end{itembox}
+	
+	\begin{prf}
+		任意の$t \geq 0$に対し
+		\begin{align}
+			\{S \leq t\} = \{S \leq t\} \cap \{T \leq t\} \in \mathscr{F}_t
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
 	\begin{itembox}[l]{Problem 2.17 修正}
 		Let $T,S$ be stopping times and $Z$ an $\mathscr{F}/\borel{\R}$-measurable, 
 		integrable random variable. We have
@@ -418,3 +432,48 @@
 		\end{description}
 	\end{prf}
 	
+	\begin{itembox}[l]{Proposition 2.18}
+		Let $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a progressively measurable 
+		process, and let $T$ be a stopping time of the filtration $\{\mathscr{F}_t\}$. 
+		Then the random variable $X_T$ of Definition 1.15, defined on the set 
+		$\{T < \infty\} \in \mathscr{F}_T$, is $\mathscr{F}_T$-measurable, and
+		the ``stopped process'' $\Set{X_{T \wedge t},\mathscr{F}_t}{0 \leq t < \infty}$
+		is progressively measurable.
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				停止過程の発展的可測性を示す．$t \geq 0$を固定する．
+				このとき，全ての$\omega \in \Omega$に対して
+				$[0,t] \ni s \longmapsto T(\omega) \wedge s$は連続であり，かつ
+				全ての$s \in [0,t]$に対し$\Omega \ni \omega \longmapsto T(\omega) \wedge s$は
+				$\mathscr{F}_s/\borel{[0,t]}$-可測であるから，
+				$[0,t] \times \Omega \ni (s,\omega) \longmapsto T(\omega) \wedge s$
+				は$\borel{[0,t]} \otimes \mathscr{F}_s/\borel{[0,t]}$-可測である．
+				従って，任意の$A \in \borel{[0,t]}$と$B \in \mathscr{F}_t$に対し
+				\begin{align}
+					\Set{(s,\omega) \in [0,t] \times \Omega}{(T(\omega) \wedge s,\omega) \in A \times B}
+					&= \Set{(s,\omega) \in [0,t] \times \Omega}{T(\omega) \wedge s \in A}
+					\cap ([0,t] \times B) \\
+					&\in \borel{[0,t]} \otimes \mathscr{F}_t
+				\end{align}
+				が成り立つから，任意の$E \in \borel{[0,t]} \otimes \mathscr{F}_t$
+				に対して
+				\begin{align}
+					\Set{(s,\omega) \in [0,t] \times \Omega}{(T(\omega) \wedge s,\omega) \in E} 
+					\in \borel{[0,t]} \otimes \mathscr{F}_t
+				\end{align}
+				が満たされ$(s,\omega) \longmapsto (T(\omega) \wedge s,\omega)$の
+				$\borel{[0,t]} \otimes \mathscr{F}_s/\borel{[0,t]} \otimes \mathscr{F}_s$-可測性を得る．
+				\begin{align}
+					X(s,\omega) = X|_{[0,t] \times \Omega}(s,\omega),
+					\quad (\forall (s,\omega) \in [0,t] \times \Omega)
+				\end{align}
+				かつ$X|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_s/\borel{\R^d}$-可測であるから，
+				$[0,t] \times \Omega \ni (s,\omega) \longmapsto X(T(\omega) \wedge s,\omega) 
+				= X|_{[0,t] \times \Omega}(T(\omega) \wedge s,\omega)$の
+				$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R^d}$-可測性が出る．
+			\item[第二段]
+		\end{description}
+	\end{prf}
