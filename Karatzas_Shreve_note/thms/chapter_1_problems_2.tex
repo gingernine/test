@@ -575,8 +575,23 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Lemma: 弱停止時刻の可測性}
-		
+		$T$を$(\mathscr{F}_t)$-弱停止時刻とすれば，任意の
+		$t \geq 0$に対し$T \wedge t$は$\mathscr{F}_{t+}/\borel{[0,\infty]}$-可測である．
 	\end{itembox}
+	
+	\begin{prf}
+		任意の$\alpha \geq 0$に対し
+		\begin{align}
+			\{T \wedge t \leq \alpha\} = 
+			\begin{cases}
+			\Omega, & (t \leq \alpha), \\
+			\{T \leq \alpha \}, & (t > \alpha),
+			\end{cases}
+			 \in \mathscr{F}_{t+}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
 	
 	\begin{itembox}[l]{Probelem 2.22}
 		Verify that analogues of Lemmas 2.15 and 2.16 hold if $T$ and
@@ -624,6 +639,17 @@
 				\end{align}
 				により$\{S \leq T\},\ \{T \leq S\} \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$となり
 				$\{T < S\},\ \{T > S\},\ \{T = S\} \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$が従う．
+			
+			\item[第三段]
+				$T$が正値停止時刻で$\{T < \infty\}$上で$S < T$
+				を満たしているとき．任意の$A \in \mathscr{F}_{S+}$に対し
+				\begin{align}
+					A \cap \{T \leq t\}
+					= A \cap \{S < t\} \cap \{T \leq t\}
+					\in \mathscr{F}_t,
+					\quad (\forall t \geq 0)
+				\end{align}
+				が成り立り$\mathscr{F}_{S+} \subset \mathscr{F}_T$となる．
 				\QED
 		\end{description}
 	\end{prf}
@@ -638,7 +664,25 @@
 	\begin{prf}
 		$T \leq T_n,\ (\forall n \geq 1)$より
 		$\mathscr{F}_{T+} \subset \bigcap_{n=1}^\infty \mathscr{F}_{T_n+}$
-		が成り立つ．一方で
+		が成り立つ．一方で$A \in \bigcap_{n=1}^\infty \mathscr{F}_{T_n+}$に対し，
+		Problem 2.21より
+		\begin{align}
+			A \cap \{T < t\}
+			= \bigcup_{n=1}^\infty A \cap \{T_n < t\}
+			\in \mathscr{F}_t,
+			\quad (\forall t > 0)
+		\end{align}
+		が成り立つから$A \in \mathscr{F}_{T+}$が従う．
+		また$\{T < \infty\}$上で$T < T_n,\ (\forall n \geq 1)$であるとき，
+		Problem 2.22より$\mathscr{F}_{T+} \subset \bigcap_{n=1}^\infty \mathscr{F}_{T_n}$
+		が従い，また任意の$A \in \bigcap_{n=1}^\infty \mathscr{F}_{T_n}$に対して
+		\begin{align}
+			A \cap \{T \leq t\}
+			= \bigcap_{m=1}^\infty \bigcup_{n=1}^\infty A \cap \left\{T_n < t+\frac{1}{m}\right\}
+			\in \mathscr{F}_{t+}
+		\end{align}
+		が成り立ち後半の主張が得られる．
+		\QED
 	\end{prf}
 	
 	\begin{itembox}[l]{Problem 2.24}
