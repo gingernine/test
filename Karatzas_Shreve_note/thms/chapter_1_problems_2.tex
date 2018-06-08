@@ -448,9 +448,9 @@
 				このとき，全ての$\omega \in \Omega$に対して
 				$[0,t] \ni s \longmapsto T(\omega) \wedge s$は連続であり，かつ
 				全ての$s \in [0,t]$に対し$\Omega \ni \omega \longmapsto T(\omega) \wedge s$は
-				$\mathscr{F}_s/\borel{[0,t]}$-可測であるから，
+				$\mathscr{F}_t/\borel{[0,t]}$-可測であるから，
 				$[0,t] \times \Omega \ni (s,\omega) \longmapsto T(\omega) \wedge s$
-				は$\borel{[0,t]} \otimes \mathscr{F}_s/\borel{[0,t]}$-可測である．
+				は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{[0,t]}$-可測である．
 				従って，任意の$A \in \borel{[0,t]}$と$B \in \mathscr{F}_t$に対し
 				\begin{align}
 					\Set{(s,\omega) \in [0,t] \times \Omega}{(T(\omega) \wedge s,\omega) \in A \times B}
@@ -465,12 +465,12 @@
 					\in \borel{[0,t]} \otimes \mathscr{F}_t
 				\end{align}
 				が満たされ$(s,\omega) \longmapsto (T(\omega) \wedge s,\omega)$の
-				$\borel{[0,t]} \otimes \mathscr{F}_s/\borel{[0,t]} \otimes \mathscr{F}_s$-可測性を得る．
+				$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{[0,t]} \otimes \mathscr{F}_t$-可測性を得る．
 				\begin{align}
 					X(s,\omega) = X|_{[0,t] \times \Omega}(s,\omega),
 					\quad (\forall (s,\omega) \in [0,t] \times \Omega)
 				\end{align}
-				かつ$X|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_s/\borel{\R^d}$-可測であるから，
+				かつ$X|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R^d}$-可測であるから，
 				$[0,t] \times \Omega \ni (s,\omega) \longmapsto X(T(\omega) \wedge s,\omega) 
 				= X|_{[0,t] \times \Omega}(T(\omega) \wedge s,\omega)$の
 				$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R^d}$-可測性が出る．
@@ -576,7 +576,7 @@
 	
 	\begin{itembox}[l]{Lemma: 弱停止時刻の可測性}
 		$T$を$(\mathscr{F}_t)$-弱停止時刻とすれば，任意の
-		$t \geq 0$に対し$T \wedge t$は$\mathscr{F}_{t+}/\borel{[0,\infty]}$-可測である．
+		$t \geq 0$に対し$T \wedge t$は$\mathscr{F}_t/\borel{[0,\infty]}$-可測である．
 	\end{itembox}
 	
 	\begin{prf}
@@ -587,7 +587,7 @@
 			\Omega, & (t \leq \alpha), \\
 			\{T \leq \alpha \}, & (t > \alpha),
 			\end{cases}
-			 \in \mathscr{F}_{t+}
+			 \in \mathscr{F}_t
 		\end{align}
 		が成立する．
 		\QED
@@ -622,23 +622,22 @@
 				が満たされる．一方で，任意の$A \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$に対し
 				\begin{align}
 					A \cap \{T \wedge S \leq t\}
-					&= A \cap \{T \leq S\} \cap \{T \wedge S \leq t\}
-						+ A \cap \{T > S\} \cap \{T \wedge S \leq t\} \\
-					&= A \cap \{T \leq t\} \cap \{T \wedge t \leq S \wedge t\}
-						+ A \cap \{S \leq t\} \cap \{T \wedge t > S \wedge t\} \\
-					&\in \mathscr{F}_{t+},
+					= \left( A \cap \{T \leq t\} \right) \cup \left( A \cap \{S \leq t\} \right)
+					\in \mathscr{F}_{t+},
 					\quad (\forall t \geq 0)
 				\end{align}
 				が成り立ち$\mathscr{F}_{(T \wedge S)+} = \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$を得る．
 				また
 				\begin{align}
-					\{S \leq T\} \cap \{T \wedge S \leq t\}
-					= \{S \wedge t \leq T \wedge t\} \cap \{S \leq t\}
+					\{S < T\} \cap \{T \wedge S \leq t\}
+					= \Biggl( \bigcup_{\substack{0 \leq r \leq t \\ r \in \Q \cup \{t\}}} \{S \leq r\} \cap \{r < T\} \Biggr) 
+					\cap \{S \leq t\}
 					\in \mathscr{F}_{t+},
 					\quad (\forall t \geq 0)
 				\end{align}
-				により$\{S \leq T\},\ \{T \leq S\} \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$となり
-				$\{T < S\},\ \{T > S\},\ \{T = S\} \in \mathscr{F}_{T+} \cap \mathscr{F}_{S+}$が従う．
+				により$\{S < T\} \in \mathscr{F}_{(T \wedge S)+}$及び
+				$\{T < S\} \in \mathscr{F}_{(T \wedge S)+}$となり，
+				$\{T \leq S\},\{S \leq T\},\{T = S\} \in \mathscr{F}_{(T \wedge S)+}$が従う．
 			
 			\item[第三段]
 				$T$が正値停止時刻で$\{T < \infty\}$上で$S < T$
@@ -671,17 +670,13 @@
 			= \bigcup_{n=1}^\infty A \cap \{T_n < t\}
 			\in \mathscr{F}_t,
 			\quad (\forall t > 0)
+			\label{eq:chapter_1_problem_2_23}
 		\end{align}
 		が成り立つから$A \in \mathscr{F}_{T+}$が従う．
 		また$\{T < \infty\}$上で$T < T_n,\ (\forall n \geq 1)$であるとき，
 		Problem 2.22より$\mathscr{F}_{T+} \subset \bigcap_{n=1}^\infty \mathscr{F}_{T_n}$
-		が従い，また任意の$A \in \bigcap_{n=1}^\infty \mathscr{F}_{T_n}$に対して
-		\begin{align}
-			A \cap \{T \leq t\}
-			= \bigcap_{m=1}^\infty \bigcup_{n=1}^\infty A \cap \left\{T_n < t+\frac{1}{m}\right\}
-			\in \mathscr{F}_{t+}
-		\end{align}
-		が成り立ち後半の主張が得られる．
+		が従い，また$T_n,\ n \geq 1$が停止時刻の場合も(\refeq{eq:chapter_1_problem_2_23})は成立するので
+		$\mathscr{F}_{T+} = \bigcap_{n=1}^\infty \mathscr{F}_{T_n}$が出る．
 		\QED
 	\end{prf}
 	
