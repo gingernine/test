@@ -235,7 +235,7 @@
 	\begin{align}
 		\tau_1(\omega) = \min{}{\Set{t \in F}{X_t(\omega) < \alpha}}
 	\end{align}
-	と定める方がよい．実際，こうでないと今の補題が従わない．
+	と定める方がよい．実際，こうでないと今の補題が従わない．また$\sigma_0 \equiv 0,\ \tau_0 \equiv 0$と考える．
 	\begin{prf}
 		$U_{[\sigma,\tau]}(\alpha,\beta;X) \leq \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)}$
 		が成立すれば主張を得る．いま，任意に有限部分集合$F \subset [\sigma,\tau]$を取り
@@ -251,8 +251,8 @@
 			\quad X_{\sigma_i(\omega)}(\omega) > \beta,
 			\quad (i=1,\cdots,j)
 		\end{align}
-		が満たされ，$t \longrightarrow X_t(\omega)$の右連続性より
-		十分大きい$n \in \N$に対して，或る$t_i,s_i \in F_n,\ (1 \leq i \leq j)$が
+		が満たされ，$t \longrightarrow X_t(\omega)$の右連続性より，
+		十分大きい$n \in \N$に対して或る$t_i,s_i \in F_n,\ (1 \leq i \leq j)$が
 		\begin{align}
 			\tau_1(\omega) \leq t_1 < \sigma_1(\omega) \leq s_1 < 
 			\cdots < \tau_j(\omega) \leq t_j < \sigma_j(\omega) \leq s_j
@@ -267,7 +267,7 @@
 		\begin{align}
 			U_F(\alpha,\beta;X(\omega)) = j \leq U_{F_n}(\alpha,\beta;X(\omega))
 		\end{align}
-		が従い，$\omega$の任意性より$U_F(\alpha,\beta;X(\omega)) \leq \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)}$が出る．
+		が従い，$\omega$の任意性より$U_F(\alpha,\beta;X) \leq \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)}$が出る．
 		\QED
 	\end{prf}
 	
@@ -282,23 +282,80 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				任意の有限部分集合$F \subset [\sigma,\tau]$に対し
+				有限部分集合$F = \{t_1,\cdots,t_n\} \subset [\sigma,\tau]$に対し
 				\begin{align}
-					E U_F(\alpha,\beta;X) \leq \frac{E(X_\tau^+) + |\alpha|}{\beta-\alpha}
+					\tau_1(\omega) \coloneqq \min{}{\Set{t \in F}{X_t(\omega) < \alpha}},
+					\quad \sigma_1(\omega) \coloneqq \min{}{\Set{t \in F}{t \geq \tau_1(\omega),\ X_t(\omega) > \beta}},
+					\cdots
 				\end{align}
-				が成立することを示せば，補題の$(F_n)_{n=1}^\infty$に対し
+				で定める$\tau_i,\sigma_i,\ (i=1,2,\cdots)$が$(\mathscr{F}_t)$-停止時刻であることを示す．
+				実際，任意の$t_j \in F$に対して
 				\begin{align}
-					E U_{F_n}(\alpha,\beta;X)
-					\leq E U_{F_{n+1}}(\alpha,\beta;X),
-					\quad (n=1,2,\cdots)
+					\left\{\tau_1 = t_j\right\} &= \left[\bigcap_{k=1}^{j-1} \left\{ X_{t_k} \geq \alpha \right\}\right] \cap \left\{ X_{t_j} < \alpha \right\} \in \mathscr{F}_{t_j}, \\
+					&\vdots \\
+					\left\{\tau_i = t_j\right\} &= \bigcup_{r=1}^{j-1} \left[ \{\sigma_{i-1} = t_r\} \cap \bigcap_{k=r}^{j-1} \left\{ X_{t_k} \geq \alpha \right\}\right] \cap \left\{ X_{t_j} < \alpha \right\}   \in \mathscr{F}_{t_j}, \\
+					\left\{\sigma_i = t_j\right\} &= \bigcup_{r=1}^{j-1} \left[ \{\tau_i = t_r\} \cap \bigcap_{k=r}^{j-1} \left\{ X_{t_k} \leq \beta \right\}\right] \cap \left\{ X_{t_j} > \beta \right\}   \in \mathscr{F}_{t_j}
 				\end{align}
-				より単調収束定理から
+				が成立するから$\left\{ \tau_i \leq t \right\} \in \mathscr{F}_t\ (\forall t \geq 0)$
+				が満たされる．
+				\begin{align}
+					\tau_1(\omega) \coloneqq \min{}{\Set{t \in F}{X_t(\omega) > \beta}},
+					\quad \sigma_1(\omega) \coloneqq \min{}{\Set{t \in F}{t \geq \tau_1(\omega),\ X_t(\omega) < \alpha}},
+					\cdots
+				\end{align}
+				により$\tau_i,\sigma_i,\ (i=1,2,\cdots)$を定めてもこれらは$(\mathscr{F}_t)$-停止時刻となる．
+				
+			\item[第二段]
+				補題の有限部分集合$F_n \subset [\sigma,\tau]$に対し
+				\begin{align}
+					E U_{F_n}(\alpha,\beta;X) \leq \frac{E(X_\tau^+) + |\alpha|}{\beta-\alpha}
+					\label{eq:chapter_1_Theorem_3_8_1}
+				\end{align}
+				が成立することを示せば，単調収束定理より
 				\begin{align}
 					E U_{[\sigma,\tau]}(\alpha,\beta;X)
 					= E \left( \sup{n \in \N}{U_{F_n}(\alpha,\beta;X)} \right)
 					\leq \frac{E(X_\tau^+) + |\alpha|}{\beta-\alpha}
 				\end{align}
-				が従う．
+				が従う．実際，$j = U_{F_n}(\alpha,\beta;X(\omega))$ならば
+				$\sigma_j(\omega) \leq \tau < \tau_{j+1}(\omega)$或は
+				$\tau_{j+1}(\omega) \leq \tau < \sigma_{j+1}(\omega)$であるから
+				\begin{align}
+					Z(\omega) \coloneqq
+					\sum_{i=1}^\infty \left( X_{\tau_{i+1}(\omega)\wedge\tau}(\omega) - X_{\sigma_i(\omega)\wedge\tau}(\omega) \right)
+					= \begin{cases}
+						\displaystyle\sum_{i=1}^j \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right), & (1), \\
+						\displaystyle\sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) + \left( X_{\tau}(\omega) - X_{\sigma_j(\omega)}(\omega) \right), & (2)
+					\end{cases}
+				\end{align}
+				となり，$X_{\tau_i} < \alpha,\ X_{\sigma_i} > \beta$より
+				\begin{align}
+					(2)
+					&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) + \left( X_{\tau}(\omega) - \alpha \right) + 
+					\left( \alpha - X_{\sigma_j(\omega)}(\omega) \right)
+					\leq j(\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha| \\
+					&= U_{F_n}(\alpha,\beta;X(\omega))(\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha|
+				\end{align}
+				及び
+				\begin{align}
+					(1)
+					\leq j (\alpha - \beta)
+					\leq j (\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha|
+					= U_{F_n}(\alpha,\beta;X(\omega))(\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha|
+				\end{align}
+				が満たされ
+				\begin{align}
+					E Z \leq (\alpha - \beta) EU_{F_n}(\alpha,\beta;X) + E(X_\tau^+) + |\alpha|
+				\end{align}
+				が従う．$\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$の劣マルチンゲール性と任意抽出定理より
+				\begin{align}
+					E\left( X_{\tau_{i+1} \wedge \tau} - X_{\sigma_i \wedge \tau} \right) \geq 0,
+					\quad (i=1,\cdots,j)
+				\end{align}
+				が成り立つから，$E Z \geq 0$となり(\refeq{eq:chapter_1_Theorem_3_8_1})が得られる．
+				
+			\item[第三段]
+				
 		\end{description}
 	\end{prf}
 	
