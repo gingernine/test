@@ -137,6 +137,7 @@
 			\left\{ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda \right\}
 			= \bigcup_{n=1}^\infty \left\{ \max{k=0,1,\cdots,2^n}{X_{\sigma + \frac{k}{2^n}(\tau - \sigma)} > \lambda} \right\}
 			= \lim_{n \to \infty} E_n
+			\label{eq:chapter_1_Theorem_3_8_2}
 		\end{align}
 		が満たされる．いま，任意の$n \geq 1$についてChebyshevの不等式と劣マルチンゲール性より
 		\begin{align}
@@ -324,13 +325,13 @@
 					Z(\omega) \coloneqq
 					\sum_{i=1}^\infty \left( X_{\tau_{i+1}(\omega)\wedge\tau}(\omega) - X_{\sigma_i(\omega)\wedge\tau}(\omega) \right)
 					= \begin{cases}
-						\displaystyle\sum_{i=1}^j \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right), & (1), \\
-						\displaystyle\sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) + \left( X_{\tau}(\omega) - X_{\sigma_j(\omega)}(\omega) \right), & (2)
+						\displaystyle\sum_{i=1}^j \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right), & (\star 1), \\
+						\displaystyle\sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) + \left( X_{\tau}(\omega) - X_{\sigma_j(\omega)}(\omega) \right), & (\star 2)
 					\end{cases}
 				\end{align}
 				となり，$X_{\tau_i} < \alpha,\ X_{\sigma_i} > \beta$より
 				\begin{align}
-					(2)
+					(\star 2)
 					&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) + \left( X_{\tau}(\omega) - \alpha \right) + 
 					\left( \alpha - X_{\sigma_j(\omega)}(\omega) \right)
 					\leq j(\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha| \\
@@ -338,7 +339,7 @@
 				\end{align}
 				及び
 				\begin{align}
-					(1)
+					(\star 1)
 					\leq j (\alpha - \beta)
 					\leq j (\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha|
 					= U_{F_n}(\alpha,\beta;X(\omega))(\alpha - \beta) + X^+_{\tau}(\omega) + |\alpha|
@@ -355,7 +356,56 @@
 				が成り立つから，$E Z \geq 0$となり(\refeq{eq:chapter_1_Theorem_3_8_1})が得られる．
 				
 			\item[第三段]
-				
+				$j = D_{F_n}(\alpha,\beta;X(\omega))$ならば
+				$\sigma_j(\omega) \leq \tau < \tau_{j+1}(\omega)$或は
+				$\tau_{j+1}(\omega) \leq \tau < \sigma_{j+1}(\omega)$であるから
+				\begin{align}
+					Z(\omega) \coloneqq
+					\sum_{i=1}^\infty \left( X_{\sigma_i(\omega)\wedge\tau}(\omega) - X_{\tau_i(\omega)\wedge\tau}(\omega) \right)
+					= \begin{cases}
+						\displaystyle\sum_{i=1}^j \left( X_{\sigma_i(\omega)}(\omega) - X_{\tau_i(\omega)}(\omega) \right) + \left( X_\tau(\omega) - X_{\tau_{j+1}(\omega)}(\omega) \right), & (\star 3), \\
+						\displaystyle\sum_{i=1}^j \left( X_{\sigma_i(\omega)}(\omega) - X_{\tau_i(\omega)}(\omega) \right), & (\star 4)
+					\end{cases}
+				\end{align}
+				となり，$X_{\tau_i} > \beta,\ X_{\sigma_i} < \alpha$より
+				\begin{align}
+					(\star 4)
+					\leq \sum_{i=1}^j \left( X_{\sigma_i(\omega)}(\omega) - X_{\tau_i(\omega)}(\omega) \right) + \left( X_{\tau}(\omega) - \alpha \right)
+					= D_{F_n}(\alpha,\beta;X(\omega))(\alpha - \beta) + (X_{\tau}(\omega) - \alpha )^+
+				\end{align}
+				及び
+				\begin{align}
+					(\star 3)
+					\leq j (\alpha - \beta)
+					\leq j (\alpha - \beta) + (X_{\tau}(\omega) - \alpha )^+
+					= D_{F_n}(\alpha,\beta;X(\omega))(\alpha - \beta) + (X_{\tau}(\omega) - \alpha )^+
+				\end{align}
+				が満たされ
+				\begin{align}
+					E Z \leq (\alpha - \beta) ED_{F_n}(\alpha,\beta;X) + E(X_\tau - \alpha)^+
+				\end{align}
+				が従う．$\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$の劣マルチンゲール性と任意抽出定理より
+				\begin{align}
+					E\left( X_{\sigma_i \wedge \tau} - X_{\tau_i \wedge \tau} \right) \geq 0,
+					\quad (i=1,\cdots,j+1)
+				\end{align}
+				が成り立つから，$E Z \geq 0$となり
+				\begin{align}
+					E D_{F_n}(\alpha,\beta;X) \leq \frac{E(X_\tau -\alpha)^+}{\beta-\alpha}
+				\end{align}
+				が得られる．
+				\QED
 		\end{description}
 	\end{prf}
 	
+	\begin{itembox}[l]{Theorem 3.8 (iv)}
+		Doob's maximal inequality:
+		\begin{align}
+			E\left( \sup{\sigma \leq t \leq \tau} X_t \right)^p
+			\leq \left( \frac{p}{p-1} \right)^p E\left(X_\tau\right)^p,
+			\quad p > 1,
+		\end{align}
+		provided $X_t \geq 0\ \mbox{a.s.$P$}$ for every $t \geq 0$, and $E\left(X_\tau\right)^p < \infty$.
+	\end{itembox}
+	
+	(\refeq{eq:chapter_1_Theorem_3_8_2})

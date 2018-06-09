@@ -1,2 +1,121 @@
 \section{Fubiniの定理}
+	$(X,\mathscr{M}),(Y,\mathscr{N})$を可測空間とするとき，
+	任意の$x \in X$に対し
+	\begin{align}
+		p_x:Y \ni y \longmapsto (x,y) \in X \times Y
+	\end{align}
+	で定める$p_x$は$\mathscr{N}/\mathscr{M} \otimes \mathscr{N}$-可測である．
+	実際，$A \in \mathscr{M},\ B \in \mathscr{N}$に対しては
+	\begin{align}
+		p_x^{-1}(A \times B) = 
+		\begin{cases}
+			\emptyset, & (x \notin A), \\
+			B, & (x \in A),
+		\end{cases}
+		\in \mathscr{N}
+	\end{align}
+	より
+	\begin{align}
+		\Set{A \times B}{A \in \mathscr{M},\ B \in \mathscr{N}}
+		\subset \Set{E \in \mathscr{M} \otimes \mathscr{N}}{p_x^{-1}(E) \in \mathscr{N}}
+	\end{align}
+	が従い$p_x$の$\mathscr{N}/\mathscr{M} \otimes \mathscr{N}$-可測性が出る．
+	同様に任意の$y \in Y$に対し
+	\begin{align}
+		q_y:X \ni x \longmapsto (x,y) \in X \times Y
+	\end{align}
+	で定める$q_y$は$\mathscr{M}/\mathscr{M} \otimes \mathscr{N}$-可測である．
 	
+	\begin{screen}
+		\begin{lem}[二変数可測写像は片変数で可測]
+			$(X,\mathscr{M}),(Y,\mathscr{N}),(Z,\mathscr{L})$を可測空間とするとき，
+			写像$f: X \times Y \longmapsto Z$が
+			$\mathscr{M}\otimes \mathscr{N}/ \mathscr{L}$-可測であれば
+			\begin{align}
+				X \ni x \longmapsto f(x,y_0),
+				\quad Y \ni y \longmapsto f(x_0,y),
+				\quad (\forall x_0 \in X,\ y_0 \in Y)
+			\end{align}
+			はそれぞれ$\mathscr{M}/\mathscr{L}$-可測，
+			$\mathscr{N}/\mathscr{L}$-可測である．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		$X \ni x \longmapsto f(x,y_0)$は$f$と$q_{y_0}$の合成$f \circ q_{y_0}$であり，
+		$Y \ni y \longmapsto f(x_0,y)$は$f \circ p_{y_0}$である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[直積測度]
+			$(X_i,\mathscr{M}_i,\mu_i),\ (i=1,\cdots,n)$を測度空間の族とするとき，
+			$\prod_{i=1}^n X_i,\ \bigotimes_{i=1}^n \mathscr{M}_i$上の測度$\mu$で
+			\begin{align}
+				\mu(A_1 \times \cdots \times A_n)
+				= \mu_1(A_1) \cdots \mu_n(A_n),
+				\quad (A_i \in \mathscr{M}_i,\ i=1,\cdots,n)
+			\end{align}
+			を満たすものがただ一つ存在する．この$\mu$を$(\mu_i)_{i=1}^n$の
+			直積測度と呼び$\bigotimes_{i=1}^n \mu_i = \mu_1 \otimes \cdots \otimes \mu_n$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}
+			$(X,\mathscr{M},\mu),(Y,\mathscr{N},\nu)$を$\sigma$-有限測度空間とするとき，
+			任意の$Q \in \mathscr{M} \otimes \mathscr{N}$に対し
+			\begin{align}
+				X \ni x \longmapsto \int_Y \defunc_{Q}(x,y)\ \nu(dy),
+				\quad Y \ni y \longmapsto \int_X \defunc_{Q}(x,y)\ \mu(dx),
+			\end{align}
+			はそれぞれ$\mathscr{M}/\borel{[0,\infty]}$-可測，
+			$\mathscr{N}/\borel{[0,\infty]}$-可測であり
+			\begin{align}
+				\int_X \int_Y \defunc_Q (x,y)\ \nu(dy)\ \mu(dx)
+				= (\mu \otimes \nu)(Q)
+				= \int_Y \int_X \defunc_Q (x,y)\ \mu(dx)\ \nu(dy)
+			\end{align}
+			が成立する．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				仮定より$X_1 \subset X_2 \subset \cdots \uparrow X,
+				\ Y_1 \subset Y_2 \subset \cdots \uparrow Y$で
+				$\mu(X_i),\nu(Y_i) < \infty,\ (i=1,2,\cdots)$を満たすものが存在する．
+				\begin{align}
+					\mathscr{M}_n \coloneqq \Set{A \cap X_n}{A \in \mathscr{M}},
+					\quad \mathscr{N}_n \coloneqq \Set{B \cap Y_n}{B \in \mathscr{N}}
+				\end{align}
+				及び
+				\begin{align}
+					\mathscr{D}_n \coloneqq
+					\Set{E \in \mathscr{M}_n \otimes \mathscr{N}_n}{} 
+				\end{align}
+				とおけば，
+				\begin{align}
+					\Set{A \times B}{A \in \mathscr{M}_n,\ B \in \mathscr{N}_n}
+					\subset \mathscr{D}_n
+				\end{align}
+				が従い
+		\end{description}
+	\end{prf}
+	
+	$(X_i,\mathscr{M}_i),\ (i=1,\cdots,n)$を可測空間の族とする．
+	いま，$0 < k < n$として$\{i_1,\cdots,i_k\} \subset \{1,\cdots,n\}$を取り
+	\begin{align}
+		Y &\coloneqq \prod_{i=1}^n X_i,
+		\quad Y_1 \coloneqq \prod_{j=1}^k X_{i_j},
+		\quad Y_2 \coloneqq \prod_{i \in \substack{\{1,\cdots,n\} \\ \backslash \{i_1,\cdots,i_k\}}} X_i, \\
+		\mathscr{N} &\coloneqq \bigotimes_{i=1}^n \mathscr{M}_i,
+		\quad \mathscr{N}_1 \coloneqq \bigotimes_{j=1}^k \mathscr{M}_{i_j},
+		\quad \mathscr{N}_2 \coloneqq \bigotimes_{i \in \substack{\{1,\cdots,n\} \\ \backslash \{i_1,\cdots,i_k\}}} \mathscr{M}_i
+	\end{align}
+	とおく．このとき，任意の$x_1 = (x_1^{i_1},\cdots,x_1^{i_k}) \in Y_1$に対し
+	\begin{align}
+		p_{x_1}:X_2 \ni x_2 = (x_2^i)_{i \in \substack{\{1,\cdots,n\} \\ \backslash \{i_1,\cdots,i_k\}}} \longmapsto (x_1^1) \in Y
+	\end{align}
+	は
