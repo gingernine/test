@@ -427,8 +427,8 @@
 	\begin{prf}
 		パスの右連続性より
 		\begin{align}
-			A \coloneqq \Set{\omega}{X_t(\omega) \geq 0,\ \forall t \in [0,\infty)}
-			= \Set{\omega}{X_r(\omega) \geq 0,\ \forall r \in [0,\infty) \cap \Q}
+			A \coloneqq \Set{\omega}{X_t(\omega) < 0,\ \exists t \in [0,\infty)}
+			= \Set{\omega}{X_r(\omega) < 0,\ \exists r \in [0,\infty) \cap \Q}
 		\end{align}
 		が成り立ち，仮定より$P(A) = 0$である．ここで
 		\begin{align}
@@ -505,10 +505,55 @@
 					&= \lim_{N \to \infty} P\left( \inf{t \in [\sigma,\tau]}{X_t} \leq -N \right)
 					= 0
 				\end{align}
-				となる．
+				となる．ここで
+				\begin{align}
+					B^{(n)} \coloneqq \left\{ -\infty < \inf{t \in [0,n]}{X_t} \leq \sup{t \in [0,n]}{X_t} < +\infty \right\},
+					\quad (n=1,2,\cdots)
+				\end{align}
+				とおく．
 			
 			\item[第二段]
-				$P$-a.s.にパスが各点で左極限を持つことを示す．
+				$P$-a.s.にパスが各点で左極限を持つことを示す．いま，$n \geq 1$として$\alpha < \beta$に対し
+				\begin{align}
+					A^{(n)}_{\alpha,\beta}
+					\coloneqq \Set{\omega \in \Omega}{U_{[0,n]}(\alpha,\beta;X(\omega)) = \infty}
+				\end{align}
+				とおくとき，
+				\begin{align}
+					\Set{\omega \in \Omega}{\sup{s \uparrow t}{}\inf{s < u < t}{X_u(\omega)}
+					< \inf{s \uparrow t}{}\sup{s < u < t}{X_u(\omega)},\ \exists t \in (0,n]}
+					\subset \bigcup_{\substack{\alpha < \beta \\ \alpha,\beta \in \Q}}A^{(n)}_{\alpha,\beta}
+					\eqqcolon A^{(n)}
+					\label{eq:chapter_1_Theorem_3_8_v_1}
+				\end{align}
+				が成り立つ．実際或る$t \in (0,n]$で
+				\begin{align}
+					\sup{s \uparrow t}{}\inf{s < u < t}{X_u(\omega)}
+					< \alpha < \beta < \inf{s \uparrow t}{}\sup{s < u < t}{X_u(\omega)}
+				\end{align}
+				となる場合，任意の$N \in \N$に対して或る点列
+				$0 < s_1 < t_1 < s_2 < t_2 < \cdots < s_N < t_N < t$が存在して
+				\begin{align}
+					X_{s_i}(\omega) < \alpha,
+					\quad X_{t_i}(\omega) > \beta,
+					\quad (i=1,\cdots,N)
+				\end{align}
+				を満たす．従って$\{s_1,t_1,\cdots,s_N,t_N\}$を含む有限集合$F \subset [0,n]$に対し
+				\begin{align}
+					N \leq U_F(\alpha,\beta;X(\omega)) \leq U_{[0,n]}(\alpha,\beta;X(\omega))
+				\end{align}
+				が成り立ち，$N$の任意性より
+				\begin{align}
+					U_{[0,n]}(\alpha,\beta;X(\omega)) = \infty
+				\end{align}
+				が従い(\refeq{eq:chapter_1_Theorem_3_8_v_1})が出る．
+				すなわち$\omega \notin \left( A^{(n)} \cup B^{(n)} \right)$なら
+				任意の$t \in (0,n]$で$\lim_{s \uparrow t} X_s(\omega)$が有限確定する．
+				\begin{align}
+					A \coloneqq \bigcup_{n=1}^\infty \left( A^{(n)} \cup B^{(n)} \right)
+				\end{align}
+				により零集合を定めれば$\omega \in \Omega \backslash A$に対するパスはRCLLである．
+				\QED
 		\end{description}
 	\end{prf}
 	
