@@ -112,6 +112,12 @@
 		\begin{description}
 			\item[(i)] First submartingale inequality:
 				\begin{align}
+					\lambda \cdot P\left[ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda \right]
+					\leq \int_{\displaystyle\sup{\sigma \leq t \leq \tau}{X_t} > \lambda} X_\tau\ dP,
+					\label{eq:chapter_1_Theorem_3_8_i_1}
+				\end{align}
+				and
+				\begin{align}
 					\lambda \cdot P\left[ \sup{\sigma \leq t \leq \tau}{X_t} \geq \lambda \right]
 					\leq E(X^+_\tau).
 				\end{align}
@@ -139,20 +145,22 @@
 			= \lim_{n \to \infty} E_n
 			\label{eq:chapter_1_Theorem_3_8_2}
 		\end{align}
-		が満たされる．いま，任意の$n \geq 1$についてChebyshevの不等式と劣マルチンゲール性より
+		が満たされ，また$\sup{\sigma \leq t \leq \tau}{X_t}$の
+		$\mathscr{F}_\tau/\borel{[-\infty,\infty]}$-可測性も従う．
+		Chebyshevの不等式と劣マルチンゲール性より
 		\begin{align}
 			P(E_n) = \sum_{m=0}^{2^n} P(E_n^m)
 			\leq \frac{1}{\lambda} \sum_{m=0}^{2^n} \int_{E_n^m} X_{\sigma + \frac{m}{2^n}(\tau - \sigma)}\ dP
 			\leq \frac{1}{\lambda} \sum_{m=0}^{2^n} \int_{E_n^m} X_{\tau}\ dP
 			= \frac{1}{\lambda} \int_{E_n} X_\tau\ dP
-			\leq \frac{1}{\lambda} E(X^+_\tau)
 		\end{align}
-		となるから，$n \longrightarrow \infty$として
+		となるから，$n \longrightarrow \infty$として，測度の連続性とLebesgueの収束定理より
 		\begin{align}
 			P\left[ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda \right]
+			\leq \frac{1}{\lambda} \int_{\displaystyle\sup{\sigma \leq t \leq \tau}{X_t} > \lambda} X_\tau\ dP
 			\leq \frac{1}{\lambda} E(X^+_\tau)
 		\end{align}
-		を得る．特に，任意の$m \in \N$に対して
+		を得る．特に，任意の$m \in \N,\ (\lambda > 1/m)$に対して
 		\begin{align}
 			P\left[ \sup{\sigma \leq t \leq \tau}{X_t} > \lambda - \frac{1}{m} \right]
 			\leq \frac{1}{\lambda - 1/m} E(X^+_\tau)
@@ -305,6 +313,14 @@
 					\cdots
 				\end{align}
 				により$\tau_i,\sigma_i,\ (i=1,2,\cdots)$を定めてもこれらは$(\mathscr{F}_t)$-停止時刻となる．
+				特に，
+				\begin{align}
+					\left\{ U_F(\alpha,\beta;X) = j \right\}
+					= \left\{ \sigma_j < \infty \right\} \cap \left\{ \sigma_{j+1} = \infty \right\}
+					\in \mathscr{F},
+					\quad (j=0,1,2,\cdots)
+				\end{align}
+				が成立するから$U_F(\alpha,\beta;X)$及び$D_F(\alpha,\beta;X)$の可測性が得られる．
 				
 			\item[第二段]
 				補題の有限部分集合$F_n \subset [\sigma,\tau]$に対し
@@ -408,4 +424,124 @@
 		provided $X_t \geq 0\ \mbox{a.s.$P$}$ for every $t \geq 0$, and $E\left(X_\tau\right)^p < \infty$.
 	\end{itembox}
 	
-	(\refeq{eq:chapter_1_Theorem_3_8_2})
+	\begin{prf}
+		パスの右連続性より
+		\begin{align}
+			A \coloneqq \Set{\omega}{X_t(\omega) \geq 0,\ \forall t \in [0,\infty)}
+			= \Set{\omega}{X_r(\omega) \geq 0,\ \forall r \in [0,\infty) \cap \Q}
+		\end{align}
+		が成り立ち，仮定より$P(A) = 0$である．ここで
+		\begin{align}
+			Y_n(\omega) \coloneqq
+			\begin{cases}
+				n \wedge \sup{\sigma \leq t \leq \tau}{X_t(\omega)}, & (\omega \in \Omega \backslash A), \\
+				0, & (\omega \in A),
+			\end{cases}
+			\quad (n=1,2,\cdots)
+		\end{align}
+		で$Y_n$を定めれば，$\sup{\sigma \leq t \leq \tau}{X_t}$の
+		$\mathscr{F}_\tau/\borel{[-\infty,\infty]}$-可測性より
+		$Y_n$も$\mathscr{F}_\tau/\borel{[-\infty,\infty]}$-可測である．このとき
+		\begin{align}
+			[0,n) \ni \lambda \longmapsto \defunc_{\Set{(\lambda,\omega)}{\lambda < Y_n(\omega)}}(\lambda,\omega)
+		\end{align}
+		は任意の$\omega \in \Omega$に対し右連続，
+		\begin{align}
+			\Omega \ni \omega \longmapsto \defunc_{\Set{(\lambda,\omega)}{\lambda < Y_n(\omega)}}(\lambda,\omega)
+		\end{align}
+		は任意の$\lambda \in [0,n)$に対し可測$\mathscr{F}_\tau/\borel{[0,\infty)}$であるから
+		\begin{align}
+			[0,n) \times \Omega \ni (\lambda,\omega) \longmapsto \defunc_{\Set{(\lambda,\omega)}{\lambda < Y_n(\omega)}}(\lambda,\omega)
+		\end{align}
+		は$\borel{[0,n)} \otimes \mathscr{F}_\tau/\borel{[0,\infty)}$-可測である．
+		$q$を$p$の共役指数として，Fubiniの定理と(\refeq{eq:chapter_1_Theorem_3_8_i_1})及び
+		H\Ddot{o}lderの不等式より
+		\begin{align}
+			\int_{\Omega} Y_n^p\ dP
+			&= p \int_{\Omega} \int_{[0,n)}　\lambda^{p-1} \defunc_{\Set{(\lambda,\omega)}{\lambda < Y_n(\omega)}}(\lambda,\omega)\ d\lambda\ dP \\
+			&= p \int_{[0,n)} \lambda^{p-1} P(Y_n > \lambda)\ d\lambda \\
+			&= p \int_{[0,n)} \lambda^{p-1} P\left( \sup{\sigma \leq t \leq \tau}{X_t} > \lambda \right)\ d\lambda \\
+			&\leq p \int_{[0,n)} \lambda^{p-2} \int_{\displaystyle\sup{\sigma \leq t \leq \tau}{X_t} > \lambda} X_\tau(\omega)\ dP\ d\lambda \\
+			&= p \int_\Omega X_\tau \int_{[0,n)} \lambda^{p-2} \defunc_{\Set{(\lambda,\omega)}{\lambda < Y_n(\omega)}}(\lambda,\omega)\ d\lambda\ dP \\
+			&= \frac{p}{p-1} \int_\Omega X_\tau Y^{p-1}_n\ dP \\
+			&\leq \frac{p}{p-1} \left\{ \int_\Omega X^p_\tau\ dP \right\}^{1/p}
+				\left\{ \int_\Omega Y^p_n\ dP \right\}^{1/q}
+		\end{align}
+		が成り立つから，$\left\{ \int_\Omega Y^p_n\ dP \right\}^{1/q}$を
+		移項して両辺を$p$乗すれば
+		\begin{align}
+			\int_\Omega Y^p_n\ dP
+			\leq \left( \frac{p}{p-1} \right)^p \int_\Omega X^p_\tau\ dP 
+		\end{align}
+		が得られる．$n \longrightarrow \infty$として，単調収束定理より主張が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Theorem 3.8 (v)}
+		Regularity of the paths: Almost every sample path $\Set{X_t(\omega)}{0 \leq t < \infty}$
+		is bounded on compact intervals; is free of discontinuities of the second kind, i.e.,
+		admits left-hand limits everywhere on $(0,\infty)$; and if the filtration $(\mathscr{F}_t)$
+		satisfies the usual conditions, then the jumps are exhausted by a sequence of stopping times
+		(Proposition 2.26). 
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				コンパクト区間$[\sigma,\tau]$上で$P$-a.s.にパスが有界であることを示す．実際，
+				任意の$N \in \N$に対して
+				\begin{align}
+					P\left( \sup{t \in [\sigma,\tau]}{X_t} \geq N \right)
+					&\leq \frac{1}{N} EX_\tau^+, \\
+					P\left( \inf{t \in [\sigma,\tau]}{X_t} \leq -N \right)
+					&\leq \frac{1}{N} \left\{ EX_\tau^+ - EX_\sigma \right\}
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					P\left( \sup{t \in [\sigma,\tau]}{X_t} = \infty \right)
+					&= \lim_{N \to \infty} P\left( \sup{t \in [\sigma,\tau]}{X_t} \geq N \right)
+					= 0, \\
+					P\left( \inf{t \in [\sigma,\tau]}{X_t} = -\infty \right)
+					&= \lim_{N \to \infty} P\left( \inf{t \in [\sigma,\tau]}{X_t} \leq -N \right)
+					= 0
+				\end{align}
+				となる．
+			
+			\item[第二段]
+				$P$-a.s.にパスが各点で左極限を持つことを示す．
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{一様可積分性と条件付き期待値}
+		可積分な$X:\Omega \longrightarrow \R$に対し
+		$\left( \cexp{X}{\mathscr{G}} \right)_{\mathscr{G} \subset \mathscr{F}}$は一様可積分である．
+	\end{itembox}
+	
+	\begin{prf}
+		Jensenの不等式より
+		\begin{align}
+			\int_{\left| \cexp{X}{\mathscr{G}} \right| > \lambda} \left| \cexp{X}{\mathscr{G}} \right|\ dP
+			\leq \int_{\cexp{|X|}{\mathscr{G}} > \lambda} \cexp{|X|}{\mathscr{G}}\ dP
+			= \int_{\cexp{|X|}{\mathscr{G}} > \lambda} |X|\ dP
+		\end{align}
+		が成り立つ．Chebyshevの不等式より
+		\begin{align}
+			P\left( \cexp{|X|}{\mathscr{G}} > \lambda \right)
+			\leq \frac{1}{\lambda} \int_\Omega \cexp{|X|}{\mathscr{G}}\ dP
+			= \frac{E|X|}{\lambda}
+		\end{align}
+		となるから，任意の$\epsilon > 0$に対し或る$\lambda_0 > 0$が存在して
+		\begin{align}
+			\sup{\mathscr{G} \subset \mathscr{F}}{P\left( \cexp{|X|}{\mathscr{G}} > \lambda \right)}
+			< \delta,
+			\quad (\forall \lambda > \lambda_0)
+		\end{align}
+		が満たされ
+		\begin{align}
+			\sup{\mathscr{G} \subset \mathscr{F}}{\int_{\cexp{|X|}{\mathscr{G}} > \lambda}|X|\ dP}
+			< \epsilon,
+			\quad (\forall \lambda > \lambda_0)
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}

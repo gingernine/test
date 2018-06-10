@@ -14,7 +14,7 @@
 		\end{cases}
 		\in \mathscr{N}
 	\end{align}
-	より
+	となるから，
 	\begin{align}
 		\Set{A \times B}{A \in \mathscr{M},\ B \in \mathscr{N}}
 		\subset \Set{E \in \mathscr{M} \otimes \mathscr{N}}{p_x^{-1}(E) \in \mathscr{N}}
@@ -43,21 +43,22 @@
 	
 	\begin{prf}
 		$X \ni x \longmapsto f(x,y_0)$は$f$と$q_{y_0}$の合成$f \circ q_{y_0}$であり，
-		$Y \ni y \longmapsto f(x_0,y)$は$f \circ p_{y_0}$である．
+		$Y \ni y \longmapsto f(x_0,y)$は$f \circ p_{x_0}$である．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{dfn}[直積測度]
-			$(X_i,\mathscr{M}_i,\mu_i),\ (i=1,\cdots,n)$を測度空間の族とするとき，
-			$\prod_{i=1}^n X_i,\ \bigotimes_{i=1}^n \mathscr{M}_i$上の測度$\mu$で
+		\begin{dfn}[積測度]
+			$\sigma$-有限測度空間の族$\left((X_i,\mathscr{M}_i,\mu_i)\right)_{i=1}^n$に対し，
+			$\left( \prod_{i=1}^n X_i,\ \bigotimes_{i=1}^n \mathscr{M}_i \right)$上の
+			$\sigma$-有限測度$\mu$で
 			\begin{align}
 				\mu(A_1 \times \cdots \times A_n)
 				= \mu_1(A_1) \cdots \mu_n(A_n),
-				\quad (A_i \in \mathscr{M}_i,\ i=1,\cdots,n)
+				\quad (\forall A_i \in \mathscr{M}_i,\ i=1,\cdots,n)
 			\end{align}
 			を満たすものがただ一つ存在する．この$\mu$を$(\mu_i)_{i=1}^n$の
-			直積測度と呼び$\bigotimes_{i=1}^n \mu_i = \mu_1 \otimes \cdots \otimes \mu_n$と書く．
+			積測度と呼び$\bigotimes_{i=1}^n \mu_i = \mu_1 \otimes \cdots \otimes \mu_n$と書く．
 		\end{dfn}
 	\end{screen}
 	
@@ -90,17 +91,31 @@
 					\mathscr{M}_n \coloneqq \Set{A \cap X_n}{A \in \mathscr{M}},
 					\quad \mathscr{N}_n \coloneqq \Set{B \cap Y_n}{B \in \mathscr{N}}
 				\end{align}
-				及び
+				により$X_n,Y_n$上の$\sigma$-加法族を定めて
 				\begin{align}
 					\mathscr{D}_n \coloneqq
-					\Set{E \in \mathscr{M}_n \otimes \mathscr{N}_n}{} 
+					\Set{Q_n \in \mathscr{M}_n \otimes \mathscr{N}_n}{
+					\substack{
+					\displaystyle X \ni x \longmapsto \int_Y \defunc_{Q_n}(x,y)\ \nu(dy):\mbox{$\mathscr{M}/\borel{[0,\infty]}$-可測},\\
+					\displaystyle Y \ni y \longmapsto \int_X \defunc_{Q_n}(x,y)\ \mu(dy):\mbox{$\mathscr{N}/\borel{[0,\infty]}$-可測},\\
+					\displaystyle \int_X \int_Y \defunc_{Q_n} (x,y)\ \nu(dy)\ \mu(dx)
+					= (\mu \otimes \nu)(Q_n)
+					= \int_Y \int_X \defunc_{Q_n} (x,y)\ \mu(dx)\ \nu(dy)}} 
 				\end{align}
-				とおけば，
+				とおけば，$\mathscr{D}_n$は$X_n \times Y_n$上のDynkin族であり
 				\begin{align}
 					\Set{A \times B}{A \in \mathscr{M}_n,\ B \in \mathscr{N}_n}
 					\subset \mathscr{D}_n
 				\end{align}
-				が従い
+				を満たすから$\mathscr{M}_n \otimes \mathscr{N}_n = \mathscr{D}_n$が従う．
+			
+			\item[第二段]
+				$\mathscr{M}_n \otimes \mathscr{N}_n = \Set{Q \cap (X_n \times Y_n)}{Q \in \mathscr{M} \otimes \mathscr{N}}$より，任意の$Q \in \mathscr{M} \otimes \mathscr{N}$に対して
+				\begin{align}
+					Q_n \coloneqq Q \cap (X_n \times Y_n) \in \mathscr{D}_n
+				\end{align}
+				が従い，単調収束定理より補題の主張が得られる．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -114,8 +129,4 @@
 		\quad \mathscr{N}_1 \coloneqq \bigotimes_{j=1}^k \mathscr{M}_{i_j},
 		\quad \mathscr{N}_2 \coloneqq \bigotimes_{i \in \substack{\{1,\cdots,n\} \\ \backslash \{i_1,\cdots,i_k\}}} \mathscr{M}_i
 	\end{align}
-	とおく．このとき，任意の$x_1 = (x_1^{i_1},\cdots,x_1^{i_k}) \in Y_1$に対し
-	\begin{align}
-		p_{x_1}:X_2 \ni x_2 = (x_2^i)_{i \in \substack{\{1,\cdots,n\} \\ \backslash \{i_1,\cdots,i_k\}}} \longmapsto (x_1^1) \in Y
-	\end{align}
-	は
+	とおく．このとき，
