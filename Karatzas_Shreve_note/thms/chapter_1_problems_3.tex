@@ -507,10 +507,11 @@
 				\end{align}
 				となる．ここで
 				\begin{align}
-					B^{(n)} \coloneqq \left\{ -\infty < \inf{t \in [0,n]}{X_t} \leq \sup{t \in [0,n]}{X_t} < +\infty \right\},
+					B^{(n)} \coloneqq \left\{ -\infty = \inf{t \in [0,n]}{X_t} \right\} 
+					\cup \left\{ \sup{t \in [0,n]}{X_t} = +\infty \right\},
 					\quad (n=1,2,\cdots)
 				\end{align}
-				とおく．
+				により$P$-零集合を定める．
 			
 			\item[第二段]
 				$P$-a.s.にパスが各点で左極限を持つことを示す．いま，$n \geq 1$として$\alpha < \beta$に対し
@@ -557,7 +558,49 @@
 		\end{description}
 	\end{prf}
 	
-	\begin{itembox}[l]{一様可積分性と条件付き期待値}
+	\begin{itembox}[l]{Lemma: 一様可積分性の同値条件}
+		$\Lambda$を任意の添数集合とし，$(X_\lambda)_{\lambda \in \Lambda}$を
+		$\mathscr{F}/\borel{\R}$-可測関数の族とするとき，次の(1)と(2)は同値である:
+		\begin{description}
+			\item[(1)] $(X_\lambda)_{\lambda \in \Lambda}$が一様可積分．
+			\item[(2)] 
+				\begin{align}
+					\sup{\lambda \in \Lambda}\int_\Omega |X_\lambda|\ dP < \infty
+				\end{align}
+				かつ，任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して次を満たす:
+				\begin{align}
+					P(B) < \delta
+					\Rightarrow \sup{\lambda \in \Lambda}\int_B |X_\lambda|\ dP < \epsilon.
+				\end{align}
+		\end{description}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$(1) \Rightarrow (2)$を示す．
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Lemma: 一様可積分性と平均収束}
+		$(X_n)_{n=1}^\infty$を$\mathscr{F}/\borel{\R}$-可測関数の族とする．
+		$(X_n)_{n=1}^\infty$が$P$-a.s.に$\R$で収束するとき，次の(1)と(2)は同値である:
+		\begin{description}
+			\item[(1)] $(X_n)_{n=1}^\infty$が一様可積分．
+			\item[(2)] $(X_n)_{n=1}^\infty$が零集合$A$を除いて収束するとして，
+				\begin{align}
+					X \coloneqq \lim_{n \to \infty} X_n \defunc_A
+				\end{align}
+				により$X$を定めれば，$X$は可積分であり次を満たす:
+				\begin{align}
+					\int_\Omega |X - X_n|\ dP 
+					\longrightarrow 0
+					\quad (n \longrightarrow \infty).
+				\end{align}
+		\end{description}
+	\end{itembox}
+	
+	\begin{itembox}[l]{Lemma: 一様可積分性と条件付き期待値}
 		可積分な$X:\Omega \longrightarrow \R$に対し
 		$\left( \cexp{X}{\mathscr{G}} \right)_{\mathscr{G} \subset \mathscr{F}}$は一様可積分である．
 	\end{itembox}
@@ -569,13 +612,18 @@
 			\leq \int_{\cexp{|X|}{\mathscr{G}} > \lambda} \cexp{|X|}{\mathscr{G}}\ dP
 			= \int_{\cexp{|X|}{\mathscr{G}} > \lambda} |X|\ dP
 		\end{align}
-		が成り立つ．Chebyshevの不等式より
+		が成り立つ．また$X$の可積分性より，任意の$\epsilon > 0$に対して
+		或る$\delta > 0$が存在し
+		\begin{align}
+			P(B) < \delta \Rightarrow \int_B |X|\ dP < \epsilon
+		\end{align}
+		が満たされる．いま，Chebyshevの不等式より
 		\begin{align}
 			P\left( \cexp{|X|}{\mathscr{G}} > \lambda \right)
 			\leq \frac{1}{\lambda} \int_\Omega \cexp{|X|}{\mathscr{G}}\ dP
 			= \frac{E|X|}{\lambda}
 		\end{align}
-		となるから，任意の$\epsilon > 0$に対し或る$\lambda_0 > 0$が存在して
+		となるから，$\epsilon > 0$に対し或る$\lambda_0 > 0$が存在して
 		\begin{align}
 			\sup{\mathscr{G} \subset \mathscr{F}}{P\left( \cexp{|X|}{\mathscr{G}} > \lambda \right)}
 			< \delta,
@@ -590,3 +638,8 @@
 		が従う．
 		\QED
 	\end{prf}
+	
+	\begin{itembox}[l]{Problem}
+		
+	\end{itembox}
+	
