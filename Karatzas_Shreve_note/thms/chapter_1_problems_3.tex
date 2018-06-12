@@ -47,24 +47,35 @@
 	\end{itembox}
 		\begin{prf}
 			$\varphi$は各点$x \in \R$で右側接線を持つから，
-			それを$t \longmapsto a_x t + b_x$と表せば，
+			それを$\R \ni t \longmapsto a_x t + b_x$と表せば，
 			\begin{align}
-				\varphi(t) = \sup{x \in \R}{\left\{ a_x t + b_x \right\}} \quad (\forall t \in \R)
+				\varphi(t) = \sup{r \in \Q}{\left\{ a_r t + b_r \right\}} \quad (\forall t \in \R)
 				\label{eq:prp_properties_of_expanded_conditional_expectation_1}
 			\end{align}
 			が成立する．
-			よって任意の$x \in \R$に対して
+			よって任意の$r \in \Q$に対して
 			\begin{align}
-				\varphi(X(\omega)) \geq a_x X(\omega) + b_x
+				\varphi(X(\omega)) \geq a_r X(\omega) + b_r
 			\end{align}
 			が満たされるから
 			\begin{align}
 				\cexp{\varphi(X)}{\mathcal{G}}
-				\geq a_x \cexp{X}{\mathcal{G}} + b_x \quad (\forall x \in \R),
-				\quad \mbox{$P$-a.s.}
+				\geq a_r \cexp{X}{\mathcal{G}} + b_r 
+				\quad \mbox{$P$-a.s.},
+				\quad \forall r \in \Q 
 			\end{align}
-			が従い，$x \in \R$の任意性と
-			(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
+			が従い，各$r \in \Q$に対し
+			\begin{align}
+				N_r \coloneqq \Set{\omega \in \Omega}{\cexp{\varphi(X)}{\mathcal{G}}(\omega)
+				< a_r \cexp{X}{\mathcal{G}}(\omega) + b_r}
+			\end{align}
+			とおけば$P(N_r) = 0$かつ
+			\begin{align}
+				\cexp{\varphi(X)}{\mathcal{G}}(\omega)
+				\geq a_r \cexp{X}{\mathcal{G}}(\omega) + b_r, 
+				\quad \forall r \in \Q,\ \omega \notin \bigcup_{r \in \Q} N_r
+			\end{align}
+			となる．$r$の任意性と(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
 			\begin{align}
 				\cexp{\varphi(X)}{\mathcal{G}} \geq \varphi\left( \cexp{X}{\mathcal{G}} \right),
 				\quad \mbox{$P$-a.s.}
@@ -639,7 +650,92 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Problem}
-		
+	\begin{itembox}[l]{Problem 3.11}
+		Let $\left\{ \mathscr{F}_n \right\}_{n=1}^\infty$ be a decreasing sequence of sub-$\sigma$-fields of 
+		$\mathscr{F}$ (i.e.,$\mathscr{F}_{n+1} \subset \mathscr{F}_n \subset \mathscr{F},\ \forall n \geq 1$),
+		and let $\Set{X_n,\mathscr{F}_n}{n \geq 1}$ be a backward submartingale; i.e., $E|X_n| < \infty$, $X_n$
+		is $\mathscr{F}_n$-measurable, and $\cexp{X_n}{\mathscr{F}_{n+1}} \geq X_{n+1}\ \mbox{a.s.$P$}$, for
+		every $n \geq 1$. Then $l \coloneqq \lim_{n \to \infty} E(X_n) > -\infty$ implies that the sequence $\{X_n\}_{n=1}^\infty$
+		is uniformly integrable.
 	\end{itembox}
 	
+	\begin{prf}
+		$(X_n)_{n=1}^\infty$は，或る$(\mathscr{F}_n)$-後退マルチンゲール$(M_n)_{n=1}^\infty$と
+		単調増大列$(A_n)_{n=1}^\infty$を用いて
+		\begin{align}
+			X_n = M_n - A_n,
+			\quad (\forall n \geq 1)
+		\end{align}
+		と分解できる．実際，
+		\begin{align}
+			A_0 &\coloneqq 0, \\
+			A_n &\coloneqq \sum_{i=1}^{n-1} \cexp{X_i - X_{i+1}}{\mathscr{F}_{i+1}},
+			\quad (n=2,3,\cdots)
+		\end{align}
+		とおけば，$(X_n)_{n=1}^\infty$の後退劣マルチンゲール性により
+		\begin{align}
+			E \coloneqq \bigcap_{n=1}^\infty \Set{\omega \ni \Omega}{\cexp{X_n}{\mathscr{F}_{n+1}}(\omega) < X_{n+1}(\omega)}
+		\end{align}
+		で定まる$P$-零集合$E$に対し
+		\begin{align}
+			0 \leq A_1(\omega) \leq A_2(\omega) \leq \cdots \quad (\forall \omega \in \Omega \backslash E)
+		\end{align}
+		が満たされ
+		\begin{align}
+			A_\infty(\omega) \coloneqq 
+			\begin{cases}
+				\displaystyle \lim_{n \to \infty} A_n(\omega), & (\omega \in \Omega \backslash E)\\
+				0, & (\omega \in E)
+			\end{cases}
+		\end{align}
+		が$\infty$まで含めて確定する．すなわち$A_\infty$は可測
+		$\mathscr{F}/\borel{[0,\infty]}$である．\
+		また$EX_1 \geq EX_2 \geq \cdots \geq l > -\infty$の仮定より
+		\begin{align}
+			\int_\Omega A_n\ dP
+			= \sum_{i=1}^{n-1} \int_{\Omega} \cexp{X_i - X_{i+1}}{\mathscr{F}_{i+1}}\ dP
+			= \int_\Omega X_1 - X_n\ dP
+			\leq \int_\Omega X_1\ dP - l,
+			\quad (\forall n \geq 1)
+		\end{align}
+		となるから，単調収束定理より$A_\infty$の可積分性が出る．一方で
+		\begin{align}
+			M_n \coloneqq X_n + A_n,
+			\quad (n = 1,2,\cdots)
+		\end{align}
+		により$\{M_n\}_{n=1}^\infty$を定めれば
+		\begin{align}
+			\cexp{M_n - M_{n+1}}{\mathscr{F}_{n+1}}
+			&= \cexp{(X_n - X_{n+1}) + (A_n - A_{n+1})}{\mathscr{F}_{n+1}} \\
+			&= \cexp{(X_n - X_{n+1}) - \cexp{X_n - X_{n+1}}{\mathscr{F}_{n+1}}}{\mathscr{F}_{n+1}}
+			= 0,
+			\quad \mbox{$P$-a.s.},
+			\quad n=1,2,\cdots
+		\end{align}
+		となるから
+		\begin{align}
+			\cexp{M_1}{\mathscr{F}_n} = M_n,
+			\quad \mbox{$P$-a.s.},
+			\quad n=1,2,\cdots
+		\end{align}
+		が従う．このとき，任意の$\lambda > 0$に対して
+		\begin{align}
+			\int_{|X_n| > \lambda} |X_n|\ dP
+			&= \int_{|M_n - A_n| > \lambda} |M_n - A_n|\ dP \\
+			&\leq 2 \int_{|M_n| > \lambda/2} |M_n|\ dP + 2 \int_{|A_n| > \lambda/2} |A_n|\ dP \\
+			&\leq 2 \int_{|M_n| > \lambda/2} |M_n|\ dP + 2 \int_{A_\infty > \lambda/2} A_\infty\ dP,
+			\quad (\forall n \geq 1)
+		\end{align}
+		が満たされ，$(M_n = \cexp{M_1}{\mathscr{F}_n})_{n=1}^\infty$の一様可積分性(補題)と$A_\infty$の可積分性より
+		\begin{align}
+			\sup{n \geq 1}{\int_{|X_n| > \lambda} |X_n|\ dP}
+			\leq \sup{n \geq 1}{\int_{|M_n| > \lambda/2} |M_n|\ dP} + 2 \int_{A_\infty > \lambda/2} A_\infty\ dP
+			\longrightarrow 0
+			\quad (\lambda \longrightarrow \infty)
+		\end{align}
+		が成立し$(X_n)_{n=1}^\infty$の一様可積分性が出る．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+	\end{itembox}
