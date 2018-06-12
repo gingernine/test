@@ -737,5 +737,153 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
+	\begin{itembox}[l]{Proposition 3.14 (i)}
+		Let $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a submartingale. We have the following:
+		\begin{description}
+			\item[(i)] There is an event $\Omega^* \in \mathscr{F}$ with $P(\Omega^*) = 1$, such that for every $\omega \in \Omega^*$:
+			\begin{align}
+				&\mbox{the limits } X_{t+}(\omega) \coloneqq \lim_{\substack{s \downarrow t \\ s \in \Q}} X_s(\omega),
+				\quad X_{t-}(\omega) \coloneqq \lim_{\substack{s \uparrow t \\ s \in \Q}} X_s(\omega) \\
+				&\mbox{exist for all $t \geq 0$ (respectively, $t > 0$).}
+			\end{align}
+		\end{description}
 	\end{itembox}
+	
+	\begin{itembox}[l]{Proposition 3.14 (ii)}
+		\begin{description}
+			\item[(ii)] The limits in (i) satisfy
+			\begin{align}
+				\cexp{X_{t+}}{\mathscr{F}_s} \geq X_s \quad \mbox{a.s.} P,\ \mbox{for all } 0 \leq s \leq t.
+			\end{align}
+		\end{description}
+	\end{itembox}
+	
+	\begin{prf}
+		$0 \leq s \leq t$とする．
+		$t_n \downarrow t$を満たす単調減少な有理点列$(t_n)_{n=1}^\infty$を取れば，
+		$\left( X_{t_n} \right)_{n=1}^\infty$は$(\mathscr{F}_{t_n})$-後退劣マルチンゲールであり，
+		かつ
+		\begin{align}
+			-\infty < EX_t \leq  \cdots \leq EX_{t_2} \leq EX_{t_1}
+		\end{align}
+		が満たされているから$(X_{t_n})_{n=1}^\infty$は一様可積分である(Problem 3.11)．
+		いま，後退劣マルチンゲール性より
+		\begin{align}
+			\int_A X_s\ dP \leq \int_A X_{t_n}\ dP,
+			\quad (\forall A \in \mathscr{F}_s,\ n=1,2,\cdots)
+		\end{align}
+		が従い，また(i)より$X_{t_n} \longrightarrow X_{t+}\ \mbox{$P$-a.s.}$が成り立つから，
+		一様可積分性と平均収束の補題より
+		\begin{align}
+			E\left| X_{t+} \right| < \infty,
+			\quad E \left| X_{t_n} - X_{t+} \right| \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+			\label{eq:chapter_1_Proposition_3_14_1}
+		\end{align}
+		となり
+		\begin{align}
+			\int_A X_s\ dP \leq \int_A X_{t+}\ dP,
+			\quad (\forall A \in \mathscr{F}_s)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Proposition 3.14 (iii)}
+		\begin{description}
+			\item[(iii)] If $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$, then
+				$\Set{X_{t+},\mathscr{F}_{t+}}{0 \leq t < \infty}$ is a submartingale with every path RCLL.
+				\footnotemark
+		\end{description}
+	\end{itembox}
+	\footnotetext{
+		$(X_{t+})_{t \geq 0}$が$(\mathscr{F}_{t+})$-適合であることを保証するためには
+		$(\mathscr{F}_t)_{t \geq 0}$の完備性が要る．
+		また$P$-almostではなく全てのパスがRCLLとなる．
+	}
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				(\refeq{eq:chapter_1_Proposition_3_14_1})より$X_{t+}$は可積分である．
+				
+			\item[第二段]
+				$(X_{t+})_{t \geq 0}$が$(\mathscr{F}_{t+})$-適合であることを示す．
+				任意に$t < u$を取るとき，
+				$u_n \downarrow t$を満たす単調減少な有理点列$(u_n)_{n=1}^\infty$に対し
+				或る$N \geq 1$が存在して$t < u_n < u\ (\forall n > N)$となるから
+				$X_{u_n}\defunc_{\Omega^*}\ (n > N)$は$\mathscr{F}_u/\borel{\R}$-可測性を持つ
+				\footnote{
+					フィルトレーションの完備性の仮定より$\defunc_{\Omega^*}$は$\mathscr{F}_u/\borel{\R}$-可測となる．
+				}．
+				\begin{align}
+					X_{t+} = \lim_{\substack{n \to \infty \\ n > N}} X_{u_n} \defunc_{\Omega^*}
+				\end{align}
+				より$X_{t+}$の$\mathscr{F}_u/\borel{\R}$-可測性が従い，$t < u$の任意性より
+				$\mathscr{F}_{t+}/\borel{\R}$-可測性を得る．
+			
+			\item[第三段]
+				任意の$0 \leq s < t$に対し$\cexp{X_{t+}}{\mathscr{F}_{s+}} \geq X_{s+}\ \mbox{$P$-a.s.}$が成り立つことを示す．
+				実際，$s_n \downarrow s$を満たす単調減少な有理点列$\{s_n\}_{n=1}^\infty \subset (s,t]$を取れば，(ii)の結果より
+				任意の$A \in \mathscr{F}_{s+} = \bigcap_{n=1}^\infty \mathscr{F}_{s_n}$と$n \geq 1$に対し
+				\begin{align}
+					\int_A X_{t+}\ dP \geq \int_A X_{s_n}\ dP
+				\end{align}
+				が成立し，また$(X_{s_n})_{n=1}^\infty$の一様可積分性より
+				\begin{align}
+					E\left| X_{s_n} - X_{s+} \right| \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				となり
+				\begin{align}
+					\int_A X_{t+}\ dP \geq \int_A X_{s+}\ dP,
+					\quad (\forall A \in \mathscr{F}_{s+})
+				\end{align}
+				が従う．
+				
+			\item[第四段]
+				$\Set{X_{t+}}{0 \leq t < \infty}$の右連続性を示す．任意の$t \geq 0,\ \omega \in \Omega^*,\ \epsilon > 0$に対し，
+				或る$\delta > 0$が存在して
+				\begin{align}
+					\left| X_{t+}(\omega) - X_r(\omega) \right| < \epsilon,
+					\quad (r \in (t,t+\delta) \cap \Q)
+				\end{align}
+				が成立する．このとき，任意の$s \in (t, t+\delta)$に対し
+				\begin{align}
+					\left| X_{s+}(\omega) - X_u(\omega) \right| < \epsilon
+				\end{align}
+				を満たす$u \in (s,t+\delta) \cap \Q$が存在するから
+				\begin{align}
+					\left| X_{t+}(\omega) - X_{s+}(\omega) \right|
+					\leq \left| X_{t+}(\omega) - X_u(\omega) \right|
+						+ \left| X_u(\omega) - X_{s+}(\omega) \right|
+					< 2\epsilon
+				\end{align}
+				が従い$[0,\infty) \ni t \longmapsto X_{t+}(\omega)$の右連続性が得られる．
+				
+			\item[第五段]
+				$\Set{X_{t+}}{0 \leq t < \infty}$が各点で有限な左極限を持つことを示す．
+				任意の$t > 0,\ \omega \in \Omega^*,\ \epsilon > 0$に対し，
+				或る$\delta > 0$が存在して
+				\begin{align}
+					\left| X_{t-}(\omega) - X_r(\omega) \right| < \epsilon,
+					\quad (r \in (t - \delta,t) \cap \Q)
+				\end{align}
+				が成立する．このとき，任意の$s \in (t-\delta,t)$に対し
+				\begin{align}
+					\left| X_{s+}(\omega) - X_u(\omega) \right| < \epsilon
+				\end{align}
+				を満たす$u \in (s,t) \cap \Q$が存在するから
+				\begin{align}
+					\left| X_{t-}(\omega) - X_{s+}(\omega) \right|
+					\leq \left| X_{t-}(\omega) - X_u(\omega) \right|
+						+ \left| X_u(\omega) - X_{s+}(\omega) \right|
+					< 2\epsilon
+				\end{align}
+				が従い
+				\begin{align}
+					\lim_{s \uparrow t} X_{s+}(\omega) = X_{t-}(\omega)
+				\end{align}
+				を得る．
+				\QED
+		\end{description}
+	\end{prf}
