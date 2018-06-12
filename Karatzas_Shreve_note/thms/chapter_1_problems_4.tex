@@ -30,7 +30,7 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Problem 3.19}
-		Assume that $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$.
+		Assume that $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$ \footnotemark.
 		Then the following three conditions are equivalent for a nonnegative, right-continuous 
 		submartingale $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$:
 		\begin{description}
@@ -41,11 +41,13 @@
 		\end{description}
 		Observe that the implications (a) $\Rightarrow$ (b) $\Rightarrow$ (c) hold without the assumption of nonnegativity. 
 	\end{itembox}
-	
+	\footnotetext{
+		証明の第二段で出てくる$E$が$\mathscr{F}_\infty$に属していなければならない．
+	}
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				非負性を仮定しないで(a) $\Rightarrow$ (b)を示す．実際，一様可積分性の同値条件の補題より
+				(a) $\Rightarrow$ (b)を示す．実際，一様可積分性の同値条件の補題より
 				\begin{align}
 					\sup{t \geq 0}{EX_t^+} \leq \sup{t \geq 0}{E|X_t|} < \infty
 				\end{align}
@@ -72,19 +74,24 @@
 				が従う．
 			
 			\item[第二段]
-				非負性を仮定しないで(b) $\Rightarrow$ (c)を示す．(b)の下で，或る可積分関数$X_\infty$が存在して
+				(b) $\Rightarrow$ (c)を示す．(b)の下で，或る可積分関数$X_*$が存在して
 				\begin{align}
-					E|X_n - X_\infty| \longrightarrow 0
+					E|X_n - X_*| \longrightarrow 0
 					\quad (n \longrightarrow \infty)
 				\end{align}
-				が満たされるから，その或る部分列$\left( X_{n_k} \right)_{k=1}^\infty$は$X_\infty$に概収束する．
-				$X_{n_k}$は全て$\mathscr{F}_\infty/\borel{\R}$-可測であるから
+				が満たされるから，或る部分列$\left( X_{n_k} \right)_{k=1}^\infty$と$P$-零集合$E$が存在して
 				\begin{align}
-					X_\infty \coloneqq \lim_{k \to \infty} X_{n_k} \defunc_{\Omega \backslash A}
+					\lim_{k \to \infty} X_{n_k}(\omega) = X_*(\omega),
+					\quad (\forall \omega \in \Omega \backslash E)
 				\end{align}
-				とおけば$X_\infty = X^*\ \mbox{$P$-a.s.}$より$X_\infty$は$\mathscr{F}_\infty/\borel{\R}$-可測かつ可積分であり
+				となる．$X_{n_k}\defunc_{\Omega \backslash E}$は全て$\mathscr{F}_\infty/\borel{\R}$-可測であるから，
 				\begin{align}
-					E|X_n - X_\infty| \longrightarrow 0
+					X_\infty \coloneqq \lim_{k \to \infty} X_{n_k} \defunc_{\Omega \backslash E}
+				\end{align}
+				とおけば$X_\infty$は$\mathscr{F}_\infty/\borel{\R}$-可測，
+				かつ$X_\infty = X^*\ \mbox{$P$-a.s.}$より可積分であり
+				\begin{align}
+					E|X_n - X_\infty| = E|X_n - X_*| \longrightarrow 0
 					\quad (n \longrightarrow \infty)
 				\end{align}
 				を満たす．従って任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
@@ -126,7 +133,8 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Problem 3.20}
-		The following four conditions are equivalent for a right-continuous martingale
+		Assume that $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$.
+		Then the following four conditions are equivalent for a right-continuous martingale
 		$\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$:
 		\begin{description}
 			\item[(a),(b)] as in Problem 3.19;
@@ -139,6 +147,7 @@
 		\begin{align}
 			\cexp{Y}{\mathscr{F}_\infty} = X_\infty
 			\quad \mbox{a.s. $P$}.
+			\label{eq:chapter_1_Problem_3_20_1}
 		\end{align}
 	\end{itembox}
 	
@@ -152,6 +161,28 @@
 				より(d) $\Rightarrow$ (a)が出る．
 				
 			\item[第二段]
-				
+				(\refeq{eq:chapter_1_Problem_3_20_1})を示す．
+				いま，任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
+				\begin{align}
+					\int_A Y\ dP = \int_A X_t\ dP = \int_A X_\infty\ dP
+				\end{align}
+				が成立するから
+				\begin{align}
+					\int_A Y\ dP = \int_A X_\infty\ dP,
+					\quad (\forall A \in \bigcup_{t \geq 0} \mathscr{F}_t)
+				\end{align}
+				が従う．$Y$と$X_\infty$の可積分性より
+				\begin{align}
+					\mathscr{D} \coloneqq
+					\Set{A \in \mathscr{F}_\infty}{\int_A Y\ dP = \int_A X_\infty\ dP}
+				\end{align}
+				はDynkin族をなし乗法族$\bigcup_{t \geq 0} \mathscr{F}_t$を含むから，
+				Dynkin族定理より
+				\begin{align}
+					\int_A Y\ dP = \int_A X_\infty\ dP,
+					\quad (\forall A \in \mathscr{F}_\infty)
+				\end{align}
+				が成立する．
+				\QED
 		\end{description}
 	\end{prf}
