@@ -1,0 +1,124 @@
+\subsection{Convergence Results}
+	\begin{itembox}[l]{Problem 3.16}
+		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a right-continuous, nonnegative
+		supermatingale; then $X_\infty(\omega) = \lim_{t \to \infty} X_t(\omega)$ exists for
+		$P$-a.e. $\omega \in \Omega$, and $\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$ is a supermartingale.
+	\end{itembox}
+	
+	\begin{prf}
+		$\Set{-X_t,\mathscr{F}_t}{0 \leq t < \infty}$は右連続な$(\mathscr{F}_t)$-劣マルチンゲールとなり
+		\begin{align}
+			\sup{t \geq 0}{E(-X_t)^+} = 0
+		\end{align}
+		が満たされるから，劣マルチンゲール収束定理により或る$P$-零集合$A$が存在して
+		\begin{align}
+			Z_\infty \coloneqq \lim_{t \to \infty} (-X_t)\defunc_{\Omega \backslash A}
+		\end{align}
+		により$\mathscr{F}_\infty/\borel{[-\infty,0]}$-可測な可積分関数$Z_\infty$が定まる．
+		すなわち
+		\begin{align}
+			X_\infty \coloneqq \lim_{t \to \infty} X_t\defunc_{\Omega \backslash A}
+		\end{align}
+		により$\mathscr{F}_\infty/\borel{[0,\infty]}$-可測関数が定まり，
+		かつ$X_\infty = -Z_\infty$より$X_\infty$は可積分である．
+		またFatouの補題により任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
+		\begin{align}
+			\int_A X_\infty\ dP \leq \liminf_{\substack{n \to \infty \\ n > t}} \int_A X_n\ dP \leq \int_A X_t\ dP
+		\end{align}
+		が成立するから$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$は優マルチンゲールである．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 3.19}
+		Assume that $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$.
+		Then the following three conditions are equivalent for a nonnegative, right-continuous 
+		submartingale $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$:
+		\begin{description}
+			\item[(a)] it is a uniformly integrable family of random variables;
+			\item[(b)] is converges in $L^1$, as $t \to \infty$;
+			\item[(c)] it converges $P$ a.s. (as $t \to \infty$) to an integrable random variable $X_\infty$,
+			such that $\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$ is a submartingale.
+		\end{description}
+		Observe that the implications (a) $\Rightarrow$ (b) $\Rightarrow$ (c) hold without the assumption of nonnegativity. 
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				非負性を仮定しないで(a) $\Rightarrow$ (b)を示す．実際，一様可積分性の同値条件の補題より
+				\begin{align}
+					\sup{t \geq 0}{EX_t^+} \leq \sup{t \geq 0}{E|X_t|} < \infty
+				\end{align}
+				となるから，劣マルチンゲール収束定理より或る$\mathscr{F}_\infty/\borel{\R}$-可測な
+				\footnote{
+					Theorem 3.15における$X_\infty$は$\pm \infty$も取るが，可積分性より
+					$P$-a.s.に$\R$値であるから$X_\infty \defunc_{|X_\infty|<\infty}$を$X_\infty$に置き換えればよい．
+				}
+				可積分関数$X_\infty$が存在して
+				\begin{align}
+					\lim_{t \to \infty} X_t = X_\infty
+					\quad \mbox{$P$-a.s.}
+				\end{align}
+				が満たされる．一様可積分性と平均収束の補題より，$t_n \uparrow \infty$となる任意の単調増大列$(t_n)_{n=1}^\infty$に対して
+				\begin{align}
+					E|X_{t_n} - X_\infty| \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が成立するから
+				\begin{align}
+					E|X_t - X_\infty| \longrightarrow 0
+					\quad (t \longrightarrow \infty)
+				\end{align}
+				が従う．
+			
+			\item[第二段]
+				非負性を仮定しないで(b) $\Rightarrow$ (c)を示す．(b)の下で，或る可積分関数$X_\infty$が存在して
+				\begin{align}
+					E|X_n - X_\infty| \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が満たされるから，その或る部分列$\left( X_{n_k} \right)_{k=1}^\infty$は$X_\infty$に概収束する．
+				$X_{n_k}$は全て$\mathscr{F}_\infty/\borel{\R}$-可測であるから
+				\begin{align}
+					X_\infty \coloneqq \lim_{k \to \infty} X_{n_k} \defunc_{\Omega \backslash A}
+				\end{align}
+				とおけば$X_\infty = X^*\ \mbox{$P$-a.s.}$より$X_\infty$は$\mathscr{F}_\infty/\borel{\R}$-可測かつ可積分であり
+				\begin{align}
+					E|X_n - X_\infty| \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				を満たす．従って任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
+				\begin{align}
+					\int_A X_t\ dP \leq \int_A X_n\ dP,
+					\quad (n > t)
+				\end{align}
+				より
+				\begin{align}
+					\int_A X_t\ dP \leq \int_A X_\infty\ dP
+				\end{align}
+				が出る．
+				
+			\item[第三段]
+				$X_t \geq 0\ (\forall t \geq 0)$を仮定して(c) $\Rightarrow$ (a)を示す．実際，
+				劣マルチンゲール性より
+				\begin{align}
+					\int_{|X_t| > \lambda} |x_t|\ dP
+					= \int_{X_t > \lambda} X_t\ dP
+					\leq \int_{X_t > \lambda} X_\infty\ dP
+				\end{align}
+				かつ
+				\begin{align}
+					P\left( X_t > \lambda \right)
+					\leq \frac{1}{\lambda} EX_t
+					\leq \frac{1}{\lambda} EX_\infty
+				\end{align}
+				が成り立ち，$X_\infty$の可積分性より
+				\begin{align}
+					\sup{t \geq 0}{\int_{|X_t| > \lambda} |x_t|\ dP} 
+					\longrightarrow 0
+					\quad (\lambda \longrightarrow \infty)
+				\end{align}
+				となる．
+				\QED
+		\end{description}
+	\end{prf}
