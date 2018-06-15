@@ -14,12 +14,12 @@
 		\begin{align}
 			Z_\infty \coloneqq \lim_{t \to \infty} (-X_t)\defunc_{\Omega \backslash A}
 		\end{align}
-		により$\mathscr{F}_\infty/\borel{[-\infty,0]}$-可測な可積分関数$Z_\infty$が定まる．
+		により$\mathscr{F}_\infty/\borel{\R}$-可測な可積分関数$Z_\infty$が定まる．
 		すなわち
 		\begin{align}
 			X_\infty \coloneqq \lim_{t \to \infty} X_t\defunc_{\Omega \backslash A}
 		\end{align}
-		により$\mathscr{F}_\infty/\borel{[0,\infty]}$-可測関数が定まり，
+		により$\mathscr{F}_\infty/\borel{\R}$-可測関数が定まり，
 		かつ$X_\infty = -Z_\infty$より$X_\infty$は可積分である．
 		またFatouの補題により任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
 		\begin{align}
@@ -28,6 +28,108 @@
 		が成立するから$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$は優マルチンゲールである．
 		\QED
 	\end{prf}
+	
+	\begin{itembox}[l]{Exercise 3.18}
+		Suppose that the filtration $\{\mathscr{F}_t\}$ satisfies the usual conditions.
+		Then every right-continuous, uniformly integrable supermartingale $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$
+		admits the Riesz decomposition $X_t = M_t + Z_t,\ \mbox{a.s. $P$}$, as the sum
+		of a right-continuous, uniformly integrable martingale $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$
+		ans a potential $\Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$.
+ 	\end{itembox}
+ 	
+ 	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $M$を構成する．いま，$t \geq 0$を固定する．
+				$n > t$を満たす$n \in \N$と任意の$A \in \mathscr{F}_t$に対し
+ 				\begin{align}
+ 					\int_A \cexp{X_{n+1}}{\mathscr{F}_t}\ dP
+ 					&= \int_A X_{n+1}\ dP
+ 					= \int_A \cexp{X_{n+1}}{\mathscr{F}_n}\ dP \\
+		 			&\leq \int_A X_n\ dP
+ 					= \int_A \cexp{X_n}{\mathscr{F}_t}\ dP
+ 				\end{align}
+ 				が成り立つから$\left( \cexp{X_n}{\mathscr{F}_t} \right)_{n=1}^\infty$は単調減少関数列であり，
+ 				或る$P$-零集合$E$が存在して
+ 				\begin{align}
+ 					X^*_t \coloneqq \lim_{n \to \infty} \cexp{X_n}{\mathscr{F}_t} \defunc_{\Omega \backslash E}
+ 				\end{align}
+ 				が$-\infty$まで込めて確定する．$X^*_t$は$\mathscr{F}_t/\borel{[-\infty,\infty]}$-可測であり，
+ 				$n > t$なら$X_t \geq \cexp{X_n}{\mathscr{F}_t},\ \mbox{$P$-a.s.}$となるから
+ 				\begin{align}
+ 					X_t \geq X^*_t, \quad \mbox{$P$-a.s.}
+ 				\end{align}
+ 				が満たされる．一方で単調収束定理と$\sup{n \geq 1}{E|X_n|} < \infty$ (一様可積分性)より
+ 				\begin{align}
+ 					E\left( X_t - X^*_t \right)
+ 					= \int_{\Omega \backslash E} \lim_{n \to \infty} \left( X_t - \cexp{X_n}{\mathscr{F}_t} \right)\ dP
+ 					= \lim_{n \to \infty} \int_{\Omega \backslash E} X_t - \cexp{X_n}{\mathscr{F}_t}\ dP
+ 					= E X_t - \lim_{n \to \infty} EX_n < \infty
+ 				\end{align}
+ 				が成立し$X^*_t$の可積分性が従い，$P$-a.s.に$|X^*_t| <\infty$となる．ここで
+ 				\begin{align}
+ 					X^{**}_t \coloneqq X^*_t \defunc_{|X^*_t| < \infty}
+ 				\end{align}
+ 				により$\mathscr{F}_t/\borel{\R}$-可測な可積分関数を定めれば，
+ 				Lebesgueの収束定理より
+ 				\begin{align}
+ 					E X^{**}_t
+ 					= \lim_{n \to \infty} \int_\Omega \cexp{X_n}{\mathscr{F}_t}\ dP
+ 					= \lim_{n \to \infty} E X_n
+ 					\label{eq:chapter_1_Exercise_3_18_1}
+ 				\end{align}
+ 				となる．任意の$t \geq 0$に対し$X^{**}_t$を定めれば，任意の$0 \leq s < t$及び$A \in \mathscr{F}_s$に対して
+ 				\begin{align}
+ 					\int_A X^{**}_t\ dP
+ 					= \lim_{n \to \infty} \int_A \cexp{X_n}{\mathscr{F}_t}\ dP 
+ 					= \lim_{n \to \infty} \int_A \cexp{X_n}{\mathscr{F}_s}\ dP
+ 					= \int_A X^{**}_s\ dP
+ 				\end{align}
+ 				が成り立つから$\Set{X^{**}_t,\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールである．
+ 				マルチンゲール性より$[0,\infty) \ni t \longmapsto EX^{**}_t$は定数であるから
+ 				Theorem 3.13により右連続な修正$\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$が存在する．
+ 		
+ 			\item[第二段]
+ 				まず$\lim_{t \to \infty} EX_t$が存在することを示す．
+ 				任意の単調増大列$(t_k)_{k=1}^\infty,\ t_k \uparrow \infty$に対し優マルチンゲール性より
+	 			\begin{align}
+	 				\lim_{k \to \infty} EX_{t_k} = \inf{k \geq 1}{EX_{t_k}}
+	 			\end{align}
+	 			が確定し，任意の$n \in \N$に対し$n < t_k$を満たす$k$が存在するから
+	 			\begin{align}
+	 				\inf{n \geq 1}{EX_n} \geq \inf{k \geq 1}{EX_{t_k}}
+	 			\end{align}
+	 			が従う．逆に任意の$t_k$に対し$t_k < n$を満たす$n$が存在するから
+	 			\begin{align}
+	 				\lim_{n \to \infty} EX_n = \inf{n \geq 1}{EX_n} 
+	 				= \inf{k \geq 1}{EX_{t_k}} = \lim_{k \to \infty} EX_{t_k}
+	 			\end{align}
+	 			が成立し，$(t_k)_{k=1}^\infty$の任意性から$\lim_{t \to \infty} EX_t$が存在して
+	 			\begin{align}
+	 				\lim_{t \to \infty} EX_t = \lim_{n \to \infty} EX_n
+	 				\label{eq:chapter_1_Exercise_3_18_2}
+	 			\end{align}
+	 			となる．右連続な優マルチンゲール$\Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$を
+	 			\begin{align}
+ 					Z_t \coloneqq X_t - M_t,
+ 					\quad (\forall t \geq 0)
+ 				\end{align}
+ 				により定めれば，
+ 				(\refeq{eq:chapter_1_Exercise_3_18_1})より任意の$t \geq 0$に対し
+ 				\begin{align}
+ 					E(X_t - M_t)
+ 					= E X_t - E M_t
+ 					= EX_t - \lim_{n \to \infty} E X_n
+ 				\end{align}
+ 				が成り立ち，(\refeq{eq:chapter_1_Exercise_3_18_2})より
+ 				\begin{align}
+ 					\lim_{t \to \infty} E(X_t - M_t)
+ 					= \lim_{t \to \infty} E X_t - \lim_{n \to \infty} E X_n
+ 					= 0
+ 				\end{align}
+ 				が満たされるから$\Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$はポテンシャルである．
+ 				\QED
+ 		\end{description}
+ 	\end{prf}
 	
 	\begin{itembox}[l]{Problem 3.19}
 		Assume that $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$ \footnotemark.
@@ -93,14 +195,15 @@
 				\begin{align}
 					E|X_n - X_\infty| = E|X_n - X_*| \longrightarrow 0
 					\quad (n \longrightarrow \infty)
+					\label{eq:chapter_1_Problem_3_19_3}
 				\end{align}
-				を満たす．従って任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
+				を満たす．任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し
 				\begin{align}
 					\int_A X_t\ dP \leq \int_A X_n\ dP,
-					\quad (n > t)
+					\quad (\forall n > t)
 					\label{eq:chapter_1_Problem_3_19_1}
 				\end{align}
-				より
+				が成り立つから，(\refeq{eq:chapter_1_Problem_3_19_3})より
 				\begin{align}
 					\int_A X_t\ dP \leq \int_A X_\infty\ dP
 					\label{eq:chapter_1_Problem_3_19_2}
