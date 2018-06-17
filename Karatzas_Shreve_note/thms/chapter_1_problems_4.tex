@@ -36,6 +36,12 @@
 		of a right-continuous, uniformly integrable martingale $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$
 		ans a potential $\Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$.
  	\end{itembox}
+ 	条件を満たす二つの分解$X_t = M_t + Z_t = M'_t + Z'_t\ \mbox{a.s. $P$}, (\forall t \geq 0)$が存在する場合，
+ 	次の意味で分解は一意である:
+ 	\begin{align}
+ 		P \left( M_t = M'_t,\ Z_t = Z'_t,\ \forall t \geq 0 \right) = 1.
+ 		\label{eq:chapter_1_Exercise_3_18_4}
+ 	\end{align}
  	
  	\begin{prf}\mbox{}
 		\begin{description}
@@ -48,29 +54,35 @@
 		 			&\leq \int_A X_n\ dP
  					= \int_A \cexp{X_n}{\mathscr{F}_t}\ dP
  				\end{align}
- 				が成り立つから$\left( \cexp{X_n}{\mathscr{F}_t} \right)_{n=1}^\infty$は単調減少関数列であり，
- 				或る$P$-零集合$E$が存在して
+ 				が成り立つから
  				\begin{align}
- 					X^*_t \coloneqq \lim_{n \to \infty} \cexp{X_n}{\mathscr{F}_t} \defunc_{\Omega \backslash E}
+ 					E \coloneqq \bigcup_{n > t}\Set{\omega \in \Omega}{\cexp{X_n}{\mathscr{F}_t}(\omega) < \cexp{X_{n+1}}{\mathscr{F}_t}(\omega)}
  				\end{align}
- 				が$-\infty$まで込めて確定する．$X^*_t$は$\mathscr{F}_t/\borel{[-\infty,\infty]}$-可測であり，
- 				$n > t$なら$X_t \geq \cexp{X_n}{\mathscr{F}_t},\ \mbox{$P$-a.s.}$となるから
+ 				として$P$-零集合が定まる．また，同様に優マルチンゲール性より
  				\begin{align}
- 					X_t \geq X^*_t, \quad \mbox{$P$-a.s.}
+ 					F \coloneqq \bigcup_{n > t}\Set{\omega \in \Omega}{\cexp{X_n}{\mathscr{F}_t}(\omega) > X_t(\omega)}
  				\end{align}
- 				が満たされる．一方で単調収束定理と$\sup{n \geq 1}{E|X_n|} < \infty$ (一様可積分性)より
+ 				も$P$-零集合である．このとき，単調減少性より
+ 				\begin{align}
+ 					X^*_t \coloneqq \lim_{n \to \infty} \cexp{X_n}{\mathscr{F}_t} \defunc_{\Omega \backslash (E \cup F)}
+ 				\end{align}
+ 				が$-\infty$まで込めて確定し，$X^*_t$は$\mathscr{F}_t/\borel{[-\infty,\infty]}$-可測であり
+ 				\begin{align}
+ 					X_t(\omega) \geq X^*_t(\omega), \quad (\forall \omega \in \Omega \backslash (E \cup F))
+ 				\end{align}
+ 				を満たす．単調収束定理と$\sup{n \geq 1}{E|X_n|} < \infty$ (一様可積分性)より
  				\begin{align}
  					E\left( X_t - X^*_t \right)
- 					= \int_{\Omega \backslash E} \lim_{n \to \infty} \left( X_t - \cexp{X_n}{\mathscr{F}_t} \right)\ dP
- 					= \lim_{n \to \infty} \int_{\Omega \backslash E} X_t - \cexp{X_n}{\mathscr{F}_t}\ dP
+ 					= \int_{\Omega \backslash (E \cup F)} \lim_{n \to \infty} \left( X_t - \cexp{X_n}{\mathscr{F}_t} \right)\ dP
+ 					= \lim_{n \to \infty} \int_{\Omega \backslash (E \cup F)} X_t - \cexp{X_n}{\mathscr{F}_t}\ dP
  					= E X_t - \lim_{n \to \infty} EX_n < \infty
  				\end{align}
- 				が成立し$X^*_t$の可積分性が従い，$P$-a.s.に$|X^*_t| <\infty$となる．ここで
+ 				が成立するから$X^*_t$は可積分性であり$P$-a.s.に$|X^*_t| <\infty$となる．ここで
  				\begin{align}
  					X^{**}_t \coloneqq X^*_t \defunc_{|X^*_t| < \infty}
  				\end{align}
  				により$\mathscr{F}_t/\borel{\R}$-可測な可積分関数を定めれば，
- 				Lebesgueの収束定理より
+ 				単調収束定理より
  				\begin{align}
  					E X^{**}_t
  					= \lim_{n \to \infty} \int_\Omega \cexp{X_n}{\mathscr{F}_t}\ dP
@@ -83,6 +95,7 @@
  					= \lim_{n \to \infty} \int_A \cexp{X_n}{\mathscr{F}_t}\ dP 
  					= \lim_{n \to \infty} \int_A \cexp{X_n}{\mathscr{F}_s}\ dP
  					= \int_A X^{**}_s\ dP
+ 					\label{eq:chapter_1_Exercise_3_18_3}
  				\end{align}
  				が成り立つから$\Set{X^{**}_t,\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールである．
  				マルチンゲール性より$[0,\infty) \ni t \longmapsto EX^{**}_t$は定数であるから
@@ -127,6 +140,23 @@
  					= 0
  				\end{align}
  				が満たされるから$\Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$はポテンシャルである．
+			
+			\item[第三段]
+				分解の一意性を示す．任意の$t \geq 0$及び$A \in \mathscr{F}_t$に対し，
+				(\refeq{eq:chapter_1_Exercise_3_18_3})と$M'$のマルチンゲール性より
+				\begin{align}
+					\int_A M_t\ dP
+					= \lim_{\substack{n \to \infty \\ n > t}} \int_A X_n\ dP
+					= \lim_{\substack{n \to \infty \\ n > t}} \left\{ \int_A M'_n - Z'_n\ dP \right\}
+					= \lim_{\substack{n \to \infty \\ n > t}} \left\{ \int_A M'_t\ dP - \int_A Z'_n\ dP \right\}
+				\end{align}
+				が成立する．またポテンシャルは非負であるから
+				\begin{align}
+					0 \leq \int_A Z'_n\ dP \leq \int_\Omega Z'_n\ dP \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立ち，$M_t = M'_t\ \mbox{$P$-a.s.}$及び$Z_t = Z'_t\ \mbox{$P$-a.s.}$が従う．パスの右連続性より
+				(\refeq{eq:chapter_1_Exercise_3_18_4})が出る．
  				\QED
  		\end{description}
  	\end{prf}
