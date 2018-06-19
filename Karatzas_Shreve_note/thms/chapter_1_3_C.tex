@@ -1,0 +1,95 @@
+\subsection{The Optional Sampling Theorem}
+	\begin{itembox}[l]{Lemma: 離散時間の任意抽出定理}
+		$0 = t_0 < t_1 < \cdots < t_n < \infty$とし，
+		$\Set{X_{t_n},\mathscr{F}_{t_n}}{n=0,\cdots,n}$を劣マルチンゲール，
+		$S,T:\Omega \longrightarrow \{t_0,t_1,\cdots,t_n,\infty\}$を$(\mathscr{F}_{t_n})$-停止時刻とする．
+		また或る$\mathscr{F}/\borel{\R}$-可測関数$Y$が存在して
+		\begin{align}
+			X_T(\omega) \coloneqq Y(\omega)\ (\forall \omega \in \{T=\infty\}),
+			\quad X_S(\omega) \coloneqq Y(\omega)\ (\forall \omega \in \{S=\infty\})
+		\end{align}
+		を満たしているとする．このとき，
+		\begin{description}
+			\item[(a)] $S,T < \infty$．
+			\item[(b)] $Y$が可積分で$\cexp{Y}{\mathscr{F}_{t_n}} \geq X_{t_n}\ \mbox{a.s. $P$},\ (n=0,\cdots,n)$を満たす．
+		\end{description}
+		のいずれかの場合次が成り立つ:
+		\begin{align}
+			\cexp{X_T}{\mathscr{F}_S} \geq X_{S \wedge T}
+			\quad \mbox{a.s. $P$}.
+			\label{eq:lem_optional_sampling_theorem_1}
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]	
+				$S \leq T$と仮定して(\refeq{eq:lem_optional_sampling_theorem_1})を示す．先ず
+				\begin{align}
+					\int_\Omega |X_S|\ dP
+					= \sum_{i=0}^n \int_{\{S=t_i\}} |X_{t_i}|\ dP
+						+ \int_{\{S=\infty\}} |Y|\ dP
+				\end{align}
+				より(a),(b)いずれの場合も$X_S,X_T$は可積分である．
+				また，劣マルチンゲール性より任意の$A \in \mathscr{F}_S$に対して
+				\begin{align}
+					\int_{A \cap \{S=t_i\}} X_{t_i}\ dP
+					&= \int_{A \cap \{S=t_i\} \cap \{T=t_i\}} X_{t_i}\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T>t_i\}} X_{t_i}\ dP \\
+					&\leq \int_{A \cap \{S=t_i\} \cap \{T=t_i\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T>t_i\}} X_{t_{i+1}}\ dP \\
+					&= \int_{A \cap \{S=t_i\} \cap \{T=t_i\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T=t_{i+1}\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T>t_{i+1}\}} X_{t_{i+1}}\ dP \\
+					&\cdots \\
+					&\leq \sum_{j=i}^n \int_{A \cap \{S=t_i\} \cap \{T=t_j\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T>t_n\}} X_{t_n}\ dP
+				\end{align}
+				及び
+				\begin{align}
+					\int_{A \cap \{S=\infty\}} X_S\ dP
+					= \int_{A \cap \{S=\infty\}} Y\ dP
+					= \int_{A \cap \{S=\infty\}} X_T\ dP
+				\end{align}
+				が成り立つから，(a)の場合は
+				\begin{align}
+					\int_{A \cap \{S=t_i\}} X_{t_i}\ dP \leq
+					\sum_{j=i}^n \int_{A \cap \{S=t_i\} \cap \{T=t_j\}} X_T\ dP
+					= \int_{A \cap \{S=t_i\}} X_T\ dP,
+				\end{align}
+				(b)の場合は
+				\begin{align}
+					\int_{A \cap \{S=t_i\}} X_{t_i}\ dP
+					&\leq \sum_{j=i}^n \int_{A \cap \{S=t_i\} \cap \{T=t_j\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T>t_n\}} X_{t_n}\ dP \\
+					&\leq \sum_{j=i}^n \int_{A \cap \{S=t_i\} \cap \{T=t_j\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T>t_n\}} Y\ dP \\
+					&= \int_{A \cap \{S=t_i\}} X_T\ dP
+				\end{align}
+				となり，いずれの場合も
+				\begin{align}
+					\int_A X_S\ dP
+					= \sum_{i=0}^n \int_{A \cap \{S=t_i\}} X_{t_i}\ dP
+						+ \int_{A \cap \{S=\infty\}} X_S\ dP
+					\leq \sum_{i=0}^n \int_{A \cap \{S=t_i\}} X_T\ dP + \int_{A \cap \{S=\infty\}} X_T\ dP
+					= \int_A X_T\ dP
+				\end{align}
+				が成立する．
+			
+			\item[第二段]
+				一般の$S,T$に対して(\refeq{eq:lem_optional_sampling_theorem_1})を示す．
+				任意の$A \in \mathscr{F}_S$に対し，Problem 2.17 (P. \pageref{chapter_1_Problem_2_17})
+				と前段の結果より
+				\begin{align}
+					\int_A \cexp{X_T}{\mathscr{F}_S}\ dP
+					&= \int_{A \cap \{S \leq T\}} \cexp{X_T}{\mathscr{F}_S}\ dP
+						+ \int_{A \cap \{S > T\}} \cexp{X_T}{\mathscr{F}_S}\ dP \\
+					&= \int_{A \cap \{S \leq T\}} \cexp{X_T}{\mathscr{F}_{S \wedge T}}\ dP
+						+ \int_{A \cap \{S > T\}} X_T\ dP \\
+					&\geq \int_{A \cap \{S \leq T\}} X_{S \wedge T}\ dP
+					 	+ \int_{A \cap \{S > T\}} X_{S \wedge T}\ dP \\
+					&= \int_A X_{S \wedge T}\ dP
+				\end{align}
+				となる．
+		\end{description}
+	\end{prf}
