@@ -1,19 +1,19 @@
 \subsection{The Optional Sampling Theorem}
-	\begin{itembox}[l]{Lemma: 離散時間の任意抽出定理}
+	\begin{itembox}[l]{Lemma: 離散時間の任意抽出定理}\label{lem:optional_sampling_theorem}
 		$0 = t_0 < t_1 < \cdots < t_n < \infty$とし，
 		$\Set{X_{t_n},\mathscr{F}_{t_n}}{n=0,\cdots,n}$を劣マルチンゲール，
-		$S,T:\Omega \longrightarrow \{t_0,t_1,\cdots,t_n,\infty\}$を$(\mathscr{F}_{t_n})$-停止時刻とする．
-		また或る$\mathscr{F}/\borel{\R}$-可測関数$Y$が存在して
+		$S,T:\Omega \longrightarrow \{t_0,t_1,\cdots,t_n,\infty\}$を$(\mathscr{F}_{t_n})$-停止時刻，
+		$Y$を$\mathscr{F}/\borel{\R}$-可測関数として
 		\begin{align}
-			X_T(\omega) \coloneqq Y(\omega)\ (\forall \omega \in \{T=\infty\}),
-			\quad X_S(\omega) \coloneqq Y(\omega)\ (\forall \omega \in \{S=\infty\})
+			X_T(\omega) \coloneqq Y(\omega), \quad (\forall \omega \in \{T=\infty\}), \quad
+			X_S(\omega) \coloneqq Y(\omega), \quad (\forall \omega \in \{S=\infty\})
 		\end{align}
-		を満たしているとする．このとき，
+		とおく．このとき，
 		\begin{description}
-			\item[(a)] $S,T < \infty$．
-			\item[(b)] $Y$が可積分で$\cexp{Y}{\mathscr{F}_{t_n}} \geq X_{t_n}\ \mbox{a.s. $P$},\ (n=0,\cdots,n)$を満たす．
+			\item[(a)] $S,T < \infty,\ \mbox{a.s. $P$}$．
+			\item[(b)] $Y$が可積分かつ$\cexp{Y}{\mathscr{F}_{t_n}} \geq X_{t_n}\ \mbox{a.s. $P$},\ (n=0,\cdots,n)$．
 		\end{description}
-		のいずれかの場合次が成り立つ:
+		のいずれかのが満たされていれば次が成り立つ:
 		\begin{align}
 			\cexp{X_T}{\mathscr{F}_S} \geq X_{S \wedge T}
 			\quad \mbox{a.s. $P$}.
@@ -23,7 +23,56 @@
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[第一段]	
+			\item[第一段]
+				$X_S$が$\mathscr{F}_S/\borel{\R}$-可測であることを示す．任意の$t \geq 0$に対して
+				\begin{align}
+					\{X_S \in B\} \cap \{S \leq t\} = \{X_{S \wedge t} \in B\} \cap \{S \leq t\},
+					\quad (\forall B \in \borel{\R})
+				\end{align}
+				となるから$X_{S \wedge t}$の$\mathscr{F}_t/\borel{\R}$-可測性を言えばよい．
+				$t_m \leq t < t_{m+1}$の場合($m=n$なら$t_{m+1} = \infty$)，
+				\begin{align}
+					X_{S \wedge t} = \sum_{t_i \leq t} X_{t_i} \defunc_{\{S=t_i\}}
+					= \sum_{i=0}^m X_{t_i} \defunc_{\{S=t_i\}}
+				\end{align}
+				と分解できる．
+				連続写像$\varphi:\R^2 \ni (x,y) \longmapsto xy$と
+				$\psi:\R^{m+1} \ni (x_0,x_1,\cdots,x_m) \longmapsto x_0+x_1+\cdots+x_m$を用いれば，
+				\begin{align}
+					\left\{ X_{t_i}\defunc_{\{S=t_i\}} \in B \right\}
+					= \left\{ \left( X_{t_i}, \defunc_{\{S=t_i\}} \right) \in \varphi^{-1}(B) \right\},
+					\quad (\forall B \in \borel{\R})
+				\end{align}
+				かつ
+				\begin{align}
+					\left\{ X_{S \wedge t} \in B \right\}
+					= \left\{ \left( X_{t_0}\defunc_{\{S=t_0\}},\cdots,X_{t_m}\defunc_{\{S=t_m\}} \right) \in \psi^{-1}(B) \right\},
+					\quad (\forall B \in \borel{\R})
+				\end{align}
+				が成り立つ．いま，$\R$の第二可算性より
+				$\borel{\R^2} = \borel{\R} \otimes \borel{\R}$
+				が満たされ，かつ任意の$E,F \in \borel{\R}$に対して
+				\begin{align}
+					\left\{ \left( X_{t_i}, \defunc_{\{S=t_i\}} \right) \in E \times F \right\}
+					= X_{t_i}^{-1}(E) \cap \left\{ \defunc_{\{S=t_i\}} \in F \right\}
+					\in \mathscr{F}_t,
+					\quad (\forall t_i \leq t)
+				\end{align}
+				となるから$X_{t_i} \defunc_{\{S=t_i\}}$の$\mathscr{F}_t/\borel{\R}$-可測性が従う．
+				同様に
+				$\borel{\R^{m+1}} = \borel{\R} \otimes \cdots \otimes \borel{\R}$
+				と
+				\begin{align}
+					\left\{ \left( X_{t_0}\defunc_{\{S=t_0\}},\cdots,X_{t_m}\defunc_{\{S=t_m\}} \right) \in E_0 \times \cdots \times E_n \right\}
+					= \bigcap_{i=0}^m \left\{X_{t_i}\defunc_{\{S=t_i\}} \in E_i\right\}
+					\in \mathscr{F}_t,
+					\quad (\forall E_i \in \borel{\R},\ i=0,\cdots,m)
+				\end{align}
+				より$X_{S \wedge t}$は$\mathscr{F}_t/\borel{\R}$-可測である．
+				これより$X_T$の$\mathscr{F}_T/\borel{\R}$-可測性及び$X_{S \wedge T}$の
+				$\mathscr{F}_{S \wedge T}/\borel{\R}$-可測性も出る．
+				
+			\item[第二段]
 				$S \leq T$と仮定して(\refeq{eq:lem_optional_sampling_theorem_1})を示す．先ず
 				\begin{align}
 					\int_\Omega |X_S|\ dP
@@ -64,6 +113,8 @@
 						+ \int_{A \cap \{S=t_i\} \cap \{T>t_n\}} X_{t_n}\ dP \\
 					&\leq \sum_{j=i}^n \int_{A \cap \{S=t_i\} \cap \{T=t_j\}} X_T\ dP
 						+ \int_{A \cap \{S=t_i\} \cap \{T>t_n\}} Y\ dP \\
+					&= \sum_{j=i}^n \int_{A \cap \{S=t_i\} \cap \{T=t_j\}} X_T\ dP
+						+ \int_{A \cap \{S=t_i\} \cap \{T=\infty\}} Y\ dP \\
 					&= \int_{A \cap \{S=t_i\}} X_T\ dP
 				\end{align}
 				となり，いずれの場合も
@@ -74,9 +125,9 @@
 					\leq \sum_{i=0}^n \int_{A \cap \{S=t_i\}} X_T\ dP + \int_{A \cap \{S=\infty\}} X_T\ dP
 					= \int_A X_T\ dP
 				\end{align}
-				が成立する．
+				が成立する．$X_S$の$\mathscr{F}_S/\borel{\R}$-可測性より(\refeq{eq:lem_optional_sampling_theorem_1})を得る．
 			
-			\item[第二段]
+			\item[第三段]
 				一般の$S,T$に対して(\refeq{eq:lem_optional_sampling_theorem_1})を示す．
 				任意の$A \in \mathscr{F}_S$に対し，Problem 2.17 (P. \pageref{chapter_1_Problem_2_17})
 				と前段の結果より
@@ -90,6 +141,67 @@
 					 	+ \int_{A \cap \{S > T\}} X_{S \wedge T}\ dP \\
 					&= \int_A X_{S \wedge T}\ dP
 				\end{align}
-				となる．
+				となる．$X_{S \wedge T}$の$\mathscr{F}_{S \wedge T}/\borel{\R}$-可測性より
+				(\refeq{eq:lem_optional_sampling_theorem_1})が出る．
+				\QED
 		\end{description}
 	\end{prf}
+	
+	\begin{itembox}[l]{Theorem 3.22 修正}
+		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$ be a right-continuous submartingale with a last element $X_\infty$,
+		and let $S \leq T$ be two optional times of the filtration $\{\mathscr{F}_t\}$. We have
+		\begin{align}
+			\cexp{X_T}{\mathscr{F}_{S+}} \geq X_S
+			\quad \mbox{a.s. $P$}.
+		\end{align}
+		If $S$ is a stopping time, then $\mathscr{F}_S$ can replace $\mathscr{F}_{S+}$ above.
+		In particular, $EX_T \geq EX_0$, and for a martingale with a last element we have $EX_T = EX_0$.
+	\end{itembox}
+	
+	任意の停止時刻或は弱停止時刻$U$に対し，$U(\omega) = \infty$のとき$X_U(\omega) = X_\infty(\omega)$と考える．
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$X_S$の$\mathscr{F}_{S+}/\borel{\R}$-可測性を示す．
+				Corollary 2.4 より$S$は$(\mathscr{F}_{t+})$-停止時刻であり，
+				$\Set{X_t,\mathscr{F}_{t+}}{0 \leq t < \infty}$は
+				発展的可測である．従って
+				Proposition 2.18 (P. \pageref{chapter_1_Problem_2_18})より
+				任意の$t \geq 0$に対し$X_{S \wedge t}$は$\mathscr{F}_{t+}/\borel{\R}$-可測であり，
+				\begin{align}
+					\{X_S \in B\} \cap \{S \leq t\}
+					= \{X_{S \wedge t} \in B\} \cap \{S \leq t\}
+					\in \mathscr{F}_{t+},
+					\quad (\forall B \in \borel{\R})
+				\end{align}
+				より$X_S$の$\mathscr{F}_{S+}/\borel{\R}$-可測性が出る．
+				$S$が$(\mathscr{F}_t)$-停止時刻のときは，
+				$X_{S \wedge t}$は$\mathscr{F}_t/\borel{\R}$-可測性を持ち
+				\begin{align}
+					\{X_S \in B\} \cap \{S \leq t\}
+					= \{X_{S \wedge t} \in B\} \cap \{S \leq t\}
+					\in \mathscr{F}_t,
+					\quad (\forall B \in \borel{\R})
+				\end{align}
+				が従うから$X_S$は$\mathscr{F}_S/\borel{\R}$-可測である．
+			
+			\item[第二段]
+				任意の$n \geq 1$に対し
+				\begin{align}
+					S_n(\omega) \coloneqq
+					\begin{cases}
+						\infty & \mbox{if $S(\omega) \geq n$}, \\
+						\displaystyle\frac{k}{2^n} & \mbox{if $\displaystyle\frac{k-1}{2^n} \leq S(\omega) < \frac{k}{2^n}$ for $k=1,\cdots,n2^n$},
+					\end{cases}
+				\end{align}
+				により停止時刻列$(S_n)_{n=1}^\infty$が定まる(Problem 2.24 修正版， P. \pageref{chapter_1_Problem_2_24})．
+				同様に$(T_n)_{n=1}^\infty$も構成すれば，補題より
+				\begin{align}
+					\int_A X_{T_n}\ dP \geq \int_A X_{S_n \wedge T_n}\ dP,
+					\quad (\forall A \in \mathscr{F}_{S_n},\ \forall n \geq 1)
+				\end{align}
+				が成立する．
+		\end{description}
+	\end{prf}
+	
