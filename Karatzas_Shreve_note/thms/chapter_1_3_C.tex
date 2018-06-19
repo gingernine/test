@@ -141,24 +141,33 @@
 					 	+ \int_{A \cap \{S > T\}} X_{S \wedge T}\ dP \\
 					&= \int_A X_{S \wedge T}\ dP
 				\end{align}
-				となる．$X_{S \wedge T}$の$\mathscr{F}_{S \wedge T}/\borel{\R}$-可測性より
+				となり，$X_{S \wedge T}$の$\mathscr{F}_{S \wedge T}/\borel{\R}$-可測性より
 				(\refeq{eq:lem_optional_sampling_theorem_1})が出る．
 				\QED
 		\end{description}
 	\end{prf}
 	
 	\begin{itembox}[l]{Theorem 3.22 修正}
-		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$ be a right-continuous submartingale with a last element $X_\infty$,
-		and let $S \leq T$ be two optional times of the filtration $\{\mathscr{F}_t\}$. We have
+		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a right-continuous submartingale,
+		$S, T$ be two optional times of the filtration $\{\mathscr{F}_t\}$,
+		and $Y$ be a $\mathscr{F}/\borel{\R}$-measurable function, and set
 		\begin{align}
-			\cexp{X_T}{\mathscr{F}_{S+}} \geq X_S
+			X_U(\omega) \coloneqq Y(\omega)
+			\quad (\forall \omega \in \{U = \infty\}).
+		\end{align}
+		for any random time $U$. Then, under either of the following two conditions;
+		\begin{description}
+			\item[(a)] There exists an $N \in \N$ such that $S,T < N\ \mbox{a.s. $P$}$,
+			\item[(b)] $Y$ is integrable and $X_t \leq \cexp{Y}{\mathscr{F}_t}\ \mbox{a.s. $P$}$, for every $t \geq 0$,
+		\end{description}
+		we have
+		\begin{align}
+			\cexp{X_T}{\mathscr{F}_{S+}} \geq X_{S \wedge T}
 			\quad \mbox{a.s. $P$}.
 		\end{align}
 		If $S$ is a stopping time, then $\mathscr{F}_S$ can replace $\mathscr{F}_{S+}$ above.
 		In particular, $EX_T \geq EX_0$, and for a martingale with a last element we have $EX_T = EX_0$.
 	\end{itembox}
-	
-	任意の停止時刻或は弱停止時刻$U$に対し，$U(\omega) = \infty$のとき$X_U(\omega) = X_\infty(\omega)$と考える．
 	
 	\begin{prf}\mbox{}
 		\begin{description}
@@ -187,7 +196,7 @@
 				が従うから$X_S$は$\mathscr{F}_S/\borel{\R}$-可測である．
 			
 			\item[第二段]
-				任意の$n \geq 1$に対し
+				任意の$n \geq N$に対し
 				\begin{align}
 					S_n(\omega) \coloneqq
 					\begin{cases}
@@ -195,13 +204,65 @@
 						\displaystyle\frac{k}{2^n} & \mbox{if $\displaystyle\frac{k-1}{2^n} \leq S(\omega) < \frac{k}{2^n}$ for $k=1,\cdots,n2^n$},
 					\end{cases}
 				\end{align}
-				により停止時刻列$(S_n)_{n=1}^\infty$が定まる(Problem 2.24 修正版， P. \pageref{chapter_1_Problem_2_24})．
-				同様に$(T_n)_{n=1}^\infty$も構成すれば，補題より
+				により停止時刻$S_n$が定まる(Problem 2.24 修正版， P. \pageref{chapter_1_Problem_2_24})．
+				同様に$(T_n)_{n \geq N}$も構成すれば，補題より
 				\begin{align}
 					\int_A X_{T_n}\ dP \geq \int_A X_{S_n \wedge T_n}\ dP,
-					\quad (\forall A \in \mathscr{F}_{S_n},\ \forall n \geq 1)
+					\quad (\forall A \in \mathscr{F}_{S_n},\ \forall n \geq N)
 				\end{align}
-				が成立する．
+				が成立する．また$S(\omega) < \infty$なら$S_n(\omega) \downarrow S(\omega)$，
+				かつ$S(\omega) = \infty$なら$S_n(\omega) = \infty$であるから
+				\begin{align}
+					S = \inf{n \geq N}{S_n}
+				\end{align}
+				が満たされ，Problem 2.23 より
+				\begin{align}
+					\mathscr{F}_{S+} = \bigcap_{n \geq N} \mathscr{F}_{S_n}
+				\end{align}
+				となり
+				\begin{align}
+					\int_A X_{T_n}\ dP \geq \int_A X_{S_n \wedge T_n}\ dP,
+					\quad (\forall A \in \mathscr{F}_{S+},\ \forall n \geq N)
+					\label{eq:chapter_1_Theorem_3_22_1}
+				\end{align}
+				が成立する．$S$が停止時刻の場合は
+				$\mathscr{F}_S \subset \mathscr{F}_{S+}$
+				であるから，(\refeq{eq:chapter_1_Theorem_3_22_1})を
+				$\mathscr{F}_S$に置き換えて成立する．
+			
+			\item[第三段]
+				$(S_n)_{n \geq N},(T_n)_{n \geq N}$は単調減少列であるから
+				$\left( \mathscr{F}_{S_n} \right)_{n \geq N}$と
+				$\left( \mathscr{F}_{T_n} \right)_{n \geq N}$も単調減少列であり，
+				$\Set{X_{T_n},\mathscr{F}_{T_n}}{n \geq N}$及び
+				$\Set{X_{S_n \wedge T_n},\mathscr{F}_{S_n \wedge T_n}}{n \geq N}$
+				は後退劣マルチンゲールとなる．かつ
+				\begin{align}
+					\quad EX_{T_n} \downarrow EX_0,
+					\quad EX_{S_n \wedge T_n} \downarrow EX_0
+				\end{align}
+				が満たされているから，Problem 3.11 より
+				$\left( X_{T_n} \right)_{n \geq N},\left( X_{S_n \wedge T_n} \right)_{n \geq N}$
+				は一様可積分である．また$\{X_t\}$の右連続性より
+				\begin{align}
+					X_{T_n}(\omega) \longrightarrow X_T(\omega),
+					\quad X_{S_n \wedge T_n}(\omega) \longrightarrow X_{S \wedge T}(\omega),
+					\quad (\forall \omega \in \Omega)
+				\end{align}
+				が成り立つから，一様可積分性と平均収束の補題(P. \pageref{lem:uniformly_integrable_and_convergence_in_mean})より
+				\begin{align}
+					E\left| X_T - X_{T_n} \right| \longrightarrow 0,
+					\quad E\left| X_{S \wedge T} - X_{S_n \wedge T_n} \right| \longrightarrow 0,
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が従い
+				\begin{align}
+					\int_A X_T\ dP \geq \int_A X_{S \wedge T}\ dP,
+					\quad (\forall A \in \mathscr{F}_{S+})
+				\end{align}
+				が得られる．$S$が停止時刻の場合は$\mathscr{F}_{S+}$を
+				$\mathscr{F}_S$に置き換えて成立する．
+				\QED
 		\end{description}
 	\end{prf}
 	
