@@ -381,7 +381,11 @@
 	
 	\begin{itembox}[l]{Problem 2.17 修正}
 		Let $T,S$ be stopping times and $Z$ an $\mathscr{F}/\borel{\R}$-measurable, 
-		integrable random variable. We have
+		integrable random variable. Then
+		\begin{align}
+			A \in \mathscr{F}_T \quad \Rightarrow \quad A \cap \{T \leq S\}, A \cap \{T < S\} \in \mathscr{F}_{S \wedge T},
+		\end{align}
+		and we have
 		\begin{description}
 			\item[(i)] $\defunc_{\{T \leq S\}} \cexp{Z}{\mathscr{F}_T} = \defunc_{\{T \leq S\}} \cexp{Z}{\mathscr{F}_{S \wedge T}},\ \mbox{$P$-a.s.}$
 			\item[(ii)] $\defunc_{\{T < S\}} \cexp{Z}{\mathscr{F}_T} = \defunc_{\{T < S\}} \cexp{Z}{\mathscr{F}_{S \wedge T}},\ \mbox{$P$-a.s.}$
@@ -679,32 +683,32 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Problem 2.24}
+	\begin{itembox}[l]{Problem 2.24 修正}
 		Given an optional time $T$ of the filtration $\{\mathscr{F}_t\}$,
 		consider the sequence $\{T_n\}_{n=1}^\infty$ of random times given by
 		\begin{align}
 			T_n(\omega) = 
 			\begin{cases}
-				T(\omega); & \mbox{on $\Set{\omega}{T(\omega) = \infty}$} \\
-				\displaystyle\frac{k}{2^n}; & \mbox{on $\Set{\omega}{\frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}}$}
+				+\infty; & \mbox{on $\Set{\omega}{T(\omega) \geq n}$} \\
+				\displaystyle\frac{k}{2^n}; & \mbox{on $\Set{\omega}{\frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}}$ for $k=1,\cdots,n2^n$}
 			\end{cases}
 		\end{align}
-		for $n \geq 1,\ k \geq 1$. Obviously $T_n \geq T_{n+1} \geq T$,
+		for $n \geq 1$. Obviously $T_n \geq T_{n+1} \geq T$,
 		for every $n \geq 1$. Show that each $T_n$ is a stopping time,
 		that $\lim_{n \to \infty} T_n = T$, and that for every $A \in \mathscr{F}_{T+}$
-		we have $A \cap \left\{ T_n = (k/2^n) \right\} \in \mathscr{F}_{k/2^n};\ n,k \geq 1$.
+		we have $A \cap \left\{ T_n = (k/2^n) \right\} \in \mathscr{F}_{k/2^n};\ n \geq 1, 1 \leq k \leq n2^n$.
 	\end{itembox}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				任意の$\omega \in \Omega$に対して
-				ある$j,k \in \N$が存在して
+				$T_n(\omega)<\infty$を満たす$\omega \in \Omega$に対し，
+				或る$1 \leq j \leq (n+1)2^{n+1},\ 1\leq k \leq n2^n$が存在して
 				\begin{align}
 					\frac{j-1}{2^{n+1}} \leq T(\omega) < \frac{j}{2^{n+1}},
 					\quad \frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}
 				\end{align}
-				を満たす．このとき
+				となる．このとき
 				\begin{align}
 					\frac{2k-2}{2^{n+1}} \leq T(\omega) < \frac{2k-1}{2^{n+1}}
 				\end{align}
@@ -712,24 +716,25 @@
 				\begin{align}
 					\frac{2k-1}{2^{n+1}} \leq T(\omega) < \frac{2k}{2^{n+1}}
 				\end{align}
-				のどちらかであるから
+				のどちらかであるから，すなわち$j=2k-1$或は$j=2k$であり
 				\begin{align}
-					T(\omega) \leq \frac{j}{2^{n+1}} = T_{n+1}(\omega)
+					T(\omega) < \frac{j}{2^{n+1}} = T_{n+1}(\omega)
 					\leq \frac{2k}{2^{n+1}} = T_n(\omega)
 				\end{align}
-				が成立する．
+				が成立する．$T_n(\omega) = \infty$の場合も併せて$T_n \geq T_{n+1} \geq T\ (\forall n \geq 1)$を得る．
 			
 			\item[第二段]
 				任意の$t \geq 0$に対して
 				\begin{align}
 					\{T_n \leq t\}
-					= \bigcup_{k/2^n \leq t} \Set{\omega}{\frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}}
+					= \bigcup_{k/2^n \leq n \wedge t} \Set{\omega}{\frac{k-1}{2^n} \leq T(\omega) < \frac{k}{2^n}}
 					\in \mathscr{F}_t,
 					\quad (\forall t \geq 0)
 				\end{align}
 				が成り立つから$T_n$は$(\mathscr{F}_t)$-停止時刻である．また$\{T < \infty\}$上では
+				$T(\omega) < n$のとき
 				\begin{align}
-					|T(\omega) - T_n(\omega)| \leq \frac{1}{2^n} \longrightarrow 0
+					0 < T_n(\omega) - T(\omega) \leq \frac{1}{2^n} \longrightarrow 0
 					\quad (n \longrightarrow \infty)
 				\end{align}
 				となる．
