@@ -266,3 +266,61 @@
 		\end{description}
 	\end{prf}
 	
+	\begin{itembox}[l]{Problem 3.25}
+		A submartingale of constant expectation, i.e., with $E(X_t) = E(X_0)$ for every $t \geq 0$, is a martingale. 
+	\end{itembox}
+	
+	\begin{prf}
+		任意の$0 \leq s < t$に対し，
+		\begin{align}
+			\cexp{X_t}{\mathscr{F}_s} - X_s \geq 0,
+			\quad \mbox{a.s. $P$}
+		\end{align}
+		かつ
+		\begin{align}
+			E\left( \cexp{X_t}{\mathscr{F}_s} - X_s \right)
+			= EX_t - EX_s
+			= EX_0 - EX_0
+			= 0
+		\end{align}
+		より
+		\begin{align}
+			\cexp{X_t}{\mathscr{F}_s} - X_s = 0,
+			\quad \mbox{a.s. $P$}
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 3.26}
+		A right-continuous process $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ with $E|X_t| < \infty;\ 0 \leq t < \infty$
+		is a submartingale if and only if for every pair $S \leq T$ of bounded stopping times of 
+		the filtration $\{\mathscr{F}_t\}$ we have
+		\begin{align}
+			E(X_T) \geq E(X_S).
+			\label{chapter_1_Problem_3_26_1}
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}
+		$(\Rightarrow)$は任意抽出定理より従う．$(\Leftarrow)$を示す．
+		任意の$0 \leq s < t$及び$A \in \mathscr{F}_s$に対し，
+		\begin{align}
+			T(\omega) \coloneqq t,
+			\quad 
+			S(\omega) \coloneqq
+			\begin{cases}
+				s, & (\omega \in A), \\
+				t, & (\omega \in \Omega \backslash A)
+			\end{cases},
+			\quad (\forall \omega \in \Omega)
+		\end{align}
+		により$(\mathscr{F}_t)$-停止時刻$S \leq T$を定めれば，(\refeq{chapter_1_Problem_3_26_1})より
+		\begin{align}
+			\int_A X_t\ dP = \int_\Omega X_T\ dP - \int_{\Omega \backslash A} X_t\ dP
+			\geq \int_\Omega X_S\ dP - \int_{\Omega \backslash A} X_t\ dP
+			= \int_A X_s\ dP
+		\end{align}
+		が成り立ち，$A \in \mathscr{F}_s$の任意性より$\cexp{X_t}{\mathscr{F}_s} \geq X_s\ \mbox{a.s. $P$}$となる．
+		\QED
+	\end{prf}
