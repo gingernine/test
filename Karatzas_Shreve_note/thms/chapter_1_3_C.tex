@@ -435,7 +435,7 @@
 					T(\omega) < \infty
 					\quad \Leftrightarrow \quad
 					\sup{t > s}{Z_t(\omega)} \geq b,
-					\quad (\forall \omega \in \{Z_s < b\})
+					\quad (\mbox{a.s.}\omega \in \{Z_s < b\})
 					\label{eq:chapter_1_Problem_3_28_2}
 				\end{align}
 				が成立する．実際，$\omega \in \{T < \infty\} \cap \{Z_s < b\}$に対し，
@@ -449,28 +449,38 @@
 					Z_t(\omega) = b,
 					\quad s < \exists t < T(\omega)
 				\end{align}
-				となり，$T(\omega) \leq t < T(\omega)$が従い矛盾が生じる．よって(\refeq{eq:chapter_1_Problem_3_28_1})が出る．
-				
+				となるから，$T(\omega) \leq t < T(\omega)$という矛盾が生じ，(\refeq{eq:chapter_1_Problem_3_28_1})が出る．
+				これにより，$\omega \in \{Z_s < b\}$に対し
+				\begin{align}
+					T(\omega) < \infty \quad \Rightarrow \quad b = Z_T(\omega) \leq \sup{t > s}{Z_t(\omega)}
+				\end{align}
+				が成立する．一方で$\mbox{a.s.}\omega \in \{Z_s < b\}$で$Z_t(\omega) \longrightarrow 0$となるから，
+				$0 < \epsilon < b$に対し或る$t_0$が存在して
+				\begin{align}
+					Z_t(\omega) < \epsilon,
+					\quad (\forall t > t_0)
+				\end{align}
+				が満たされる．この場合
+				\begin{align}
+					\sup{t > s}{Z_t(\omega)} \geq b
+					\quad \Rightarrow \quad
+					\sup{t \in [s,t_0]}{Z_t(\omega)} \geq b
+				\end{align}
+				となるから，連続性より$Z_t(\omega) = b$を満たす$t \in (s,t_0)$が存在し，
+				$T(\omega) \leq t$が従い(\refeq{eq:chapter_1_Problem_3_28_2})が出る．
 				
 			\item[第二段]
-				(i)を示す．いま，任意に$A \in \mathscr{F}_s$と$t \geq s$を取れば，任意抽出定理と
+				(i)を示す．任意の$A \in \mathscr{F}_s$と$n > s$に対し，任意抽出定理と
 				(\refeq{eq:chapter_1_Problem_3_28_1})より
 				\begin{align}
 					\int_{A \cap \{Z_s < b\}} Z_s\ dP
-					&= \int_{A \cap \{Z_s < b\}} Z_{T \wedge t}\ dP \\
-					&= \int_{A \cap \{Z_s < b\}} Z_T \defunc_{\{T \leq t\}}\ dP
-						+ \int_{A \cap \{Z_s < b\}} Z_t \defunc_{\{T > t\}}\ dP \\
-					&= b P\left[ A \cap \{Z_s < b\} \cap \{T \leq t\} \right]
-						+ \int_{A \cap \{Z_s < b\}} Z_t \defunc_{\{T > t\}}\ dP
+					&= \int_{A \cap \{Z_s < b\}} Z_{T \wedge n}\ dP \\
+					&= \int_{A \cap \{Z_s < b\}} Z_T \defunc_{\{T \leq n\}}\ dP
+						+ \int_{A \cap \{Z_s < b\}} Z_n \defunc_{\{T > n\}}\ dP \\
+					&= b P\left[ A \cap \{Z_s < b\} \cap \{T \leq n\} \right]
+						+ \int_{A \cap \{Z_s < b\}} Z_n \defunc_{\{T > n\}}\ dP
 				\end{align}
-				が成立し，$t \geq s$の任意性より
-				\begin{align}
-					\int_{A \cap \{Z_s < b\}} Z_s\ dP
-					= b P\left[ A \cap \{Z_s < b\} \cap \{T \leq n\} \right]
-						+ \int_{A \cap \{Z_s < b\}} Z_n \defunc_{\{T > n\}}\ dP,
-					\quad (\forall n > s)
-				\end{align}
-				が従う．ここで
+				が成立する．ここで
 				\begin{align}
 					P\left[ A \cap \{Z_s < b\} \cap \{T \leq n\} \right]
 					\longrightarrow 
@@ -488,13 +498,13 @@
 					= b P\left[ A \cap \{Z_s < b\} \cap \{T < \infty\} \right]
 					= b \int_{A \cap \{Z_s < b\}} \defunc_{\{T < \infty\}}\ dP
 				\end{align}
-				が得られ，(\refeq{eq:chapter_1_Problem_3_28_2})より
+				が得られる．更に(\refeq{eq:chapter_1_Problem_3_28_2})より
 				\begin{align}
 					\int_{A \cap \{Z_s < b\}} Z_s\ dP
 					= b \int_{A \cap \{Z_s < b\}} \defunc_{\{\sup{t > s}{Z_t(\omega)} \geq b\}}\ dP
 					= b \int_{A \cap \{Z_s < b\}} P\left[ \sup{t>s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP
 				\end{align}
-				となる．$A \in \mathscr{F}_s$は任意に取っていたから
+				となるから，$A \in \mathscr{F}_s$の任意性より
 				\begin{align}
 					P\left[ \sup{t>s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right] \defunc_{\{Z_s < b\}}
 					= \frac{1}{b} Z_s \defunc_{\{Z_s < b\}},
@@ -503,7 +513,25 @@
 				が出る．
 				
 			\item[第三段]
-				(iii)を示す．
+				(iii)を示す．$t \longmapsto Z_t(\omega)$の連続性より
+				\begin{align}
+					\sup{t > s}{Z_t(\omega)} \geq b 
+					\quad \Leftrightarrow \quad
+					\sup{t \geq s}{Z_t(\omega)} \geq b,
+					\quad (\forall \omega \in \{Z_s < b\})
+				\end{align}
+				となるから
+				\begin{align}
+					P\left[ \sup{t \geq s}{Z_t \geq b} \right]
+					&= \int_\Omega P\left[ \sup{t \geq s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP \\
+					&= \int_{\{Z_s \geq b\}} P\left[ \sup{t \geq s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP
+						+ \int_{\{Z_s < b\}} P\left[ \sup{t > s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP \\
+					&= \int_{\{Z_s \geq b\}} \defunc_{\left\{ \sup{t \geq s}{Z_t \geq b} \right\}}\ dP
+						+ \frac{1}{b} \int_{\{Z_s < b\}} Z_s\ dP \\
+					&= P[Z_s \geq b] + \frac{1}{b} E[Z_s \defunc_{\{Z_s < b\}}]
+				\end{align}
+				が成立する．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -514,6 +542,10 @@
 			X_{T + t} = 0; \quad 0 \leq t < \infty \quad \mbox{hold a.s. on $\{T < \infty\}$}.
 		\end{align}
 	\end{itembox}
+	
+	\begin{prf}
+		
+	\end{prf}
 	
 	\begin{itembox}[l]{Exercise 3.30}
 		Suppose that the filtration $\{\mathscr{F}_t\}$ satisfies the usual conditions and let 
