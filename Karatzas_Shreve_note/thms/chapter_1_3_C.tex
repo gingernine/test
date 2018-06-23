@@ -385,6 +385,24 @@
 				が成立するから，$\tilde{X}$は右連続劣マルチンゲールである．
 				
 			\item[第三段]
+				$S_1 \leq S_2$を有界な$(\mathscr{F}_t)$-停止時刻とすれば
+				$S_j - T\ (j=1,2)$は$(\tilde{\mathscr{F}}_t)$-停止時刻である．実際，
+				\begin{align}
+					\{S_j - T \leq t\} \cap \{T+t \leq u\}
+					= \{S_j \wedge u \leq (T+t) \wedge u\} \cap \{T+t \leq u\}
+					\in \mathscr{F}_u,
+					\quad (\forall u \geq 0)
+				\end{align}
+				より$\{S_j - T \leq t\} \in \mathscr{F}_{T+t} = \tilde{\mathscr{F}}_t\ (\forall t \geq 0)$が成立する．
+				Problem 3.26より
+				\begin{align}
+					EX_{S_1} 
+					= E \tilde{X}_{(S_1 - T) \vee 0} 
+					\leq E \tilde{X}_{(S_2 - T) \vee 0}
+					= EX_{S_2}
+				\end{align}
+				が満たされ，同じくProblem 3.26より$X$の劣マルチンゲール性が従う．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -397,6 +415,97 @@
 			\item[(ii)] $\displaystyle P\left[ \sup{t \geq s}{Z_t \geq b} \right] = P[Z_s \geq b] + \frac{1}{b} E[Z_s \defunc_{\{Z_s < b\}}]$.
 		\end{description}
 	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $\inf{}{\Set{t \in [s,\infty)}{Z_t(\omega) = b}} = \inf{}{\Set{t \in [0,\infty)}{Z_{t+s}(\omega) = b}} + s$と
+				Problem 2.7より
+				\begin{align}
+					T(\omega) \coloneqq \inf{}{\Set{t \in [s,\infty)}{Z_t(\omega) = b}},
+					\quad (\forall \omega \in \Omega)
+				\end{align}
+				により$(\mathscr{F}_t)$-停止時刻が定まる．このとき
+				\begin{align}
+					Z_T(\omega) = b,
+					\quad (\forall \omega \in \{T < \infty\} \cap \{Z_s < b\})
+					\label{eq:chapter_1_Problem_3_28_1}
+				\end{align}
+				と
+				\begin{align}
+					T(\omega) < \infty
+					\quad \Leftrightarrow \quad
+					\sup{t > s}{Z_t(\omega)} \geq b,
+					\quad (\forall \omega \in \{Z_s < b\})
+					\label{eq:chapter_1_Problem_3_28_2}
+				\end{align}
+				が成立する．実際，$\omega \in \{T < \infty\} \cap \{Z_s < b\}$に対し，
+				$Z_T(\omega) < b$なら
+				\begin{align}
+					\sup{s \leq t \leq T(\omega)}{Z_t(\omega)} < b
+				\end{align}
+				となり，$t \longmapsto Z_t(\omega)$の連続性より$T(\omega) < T(\omega)$が従い矛盾が生じる．
+				逆に$Z_T(\omega) > b$なら中間値の定理より
+				\begin{align}
+					Z_t(\omega) = b,
+					\quad s < \exists t < T(\omega)
+				\end{align}
+				となり，$T(\omega) \leq t < T(\omega)$が従い矛盾が生じる．よって(\refeq{eq:chapter_1_Problem_3_28_1})が出る．
+				
+				
+			\item[第二段]
+				(i)を示す．いま，任意に$A \in \mathscr{F}_s$と$t \geq s$を取れば，任意抽出定理と
+				(\refeq{eq:chapter_1_Problem_3_28_1})より
+				\begin{align}
+					\int_{A \cap \{Z_s < b\}} Z_s\ dP
+					&= \int_{A \cap \{Z_s < b\}} Z_{T \wedge t}\ dP \\
+					&= \int_{A \cap \{Z_s < b\}} Z_T \defunc_{\{T \leq t\}}\ dP
+						+ \int_{A \cap \{Z_s < b\}} Z_t \defunc_{\{T > t\}}\ dP \\
+					&= b P\left[ A \cap \{Z_s < b\} \cap \{T \leq t\} \right]
+						+ \int_{A \cap \{Z_s < b\}} Z_t \defunc_{\{T > t\}}\ dP
+				\end{align}
+				が成立し，$t \geq s$の任意性より
+				\begin{align}
+					\int_{A \cap \{Z_s < b\}} Z_s\ dP
+					= b P\left[ A \cap \{Z_s < b\} \cap \{T \leq n\} \right]
+						+ \int_{A \cap \{Z_s < b\}} Z_n \defunc_{\{T > n\}}\ dP,
+					\quad (\forall n > s)
+				\end{align}
+				が従う．ここで
+				\begin{align}
+					P\left[ A \cap \{Z_s < b\} \cap \{T \leq n\} \right]
+					\longrightarrow 
+					P\left[ A \cap \{Z_s < b\} \cap \{T < \infty\} \right],
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				かつ$Z_n \defunc_{\{T > n\} \cap \{Z_s < b\}} < b,\ (\forall n > s)$及び
+				\begin{align}
+					Z_n \defunc_{\{T > n\}} \longrightarrow Z_\infty \defunc_{\{T=\infty\}},
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つから，$Z_\infty = 0\ \mbox{a.s. $P$}$とLebesgueの収束定理より
+				\begin{align}
+					\int_{A \cap \{Z_s < b\}} Z_s\ dP
+					= b P\left[ A \cap \{Z_s < b\} \cap \{T < \infty\} \right]
+					= b \int_{A \cap \{Z_s < b\}} \defunc_{\{T < \infty\}}\ dP
+				\end{align}
+				が得られ，(\refeq{eq:chapter_1_Problem_3_28_2})より
+				\begin{align}
+					\int_{A \cap \{Z_s < b\}} Z_s\ dP
+					= b \int_{A \cap \{Z_s < b\}} \defunc_{\{\sup{t > s}{Z_t(\omega)} \geq b\}}\ dP
+					= b \int_{A \cap \{Z_s < b\}} P\left[ \sup{t>s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP
+				\end{align}
+				となる．$A \in \mathscr{F}_s$は任意に取っていたから
+				\begin{align}
+					P\left[ \sup{t>s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right] \defunc_{\{Z_s < b\}}
+					= \frac{1}{b} Z_s \defunc_{\{Z_s < b\}},
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				が出る．
+				
+			\item[第三段]
+				(iii)を示す．
+		\end{description}
+	\end{prf}
 	
 	\begin{itembox}[l]{Problem 3.29}
 		Let $\Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a continuous, nonnegative supermartingale
