@@ -168,7 +168,7 @@
 		If $S$ is a stopping time, then $\mathscr{F}_S$ can replace $\mathscr{F}_{S+}$ above.
 		In particular, $EX_T \geq EX_0$, and for a martingale with a last element we have $EX_T = EX_0$.
 	\end{itembox}
-	
+	この修正によりProblem 3.23 と Problem 3.24の主張が従う．
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
@@ -338,6 +338,55 @@
 				$X = \Set{X_t \coloneqq \tilde{X}_{(t-T) \vee 0},\mathscr{F}_t}{0 \leq t < \infty}$ is also a submartingale.
 		\end{description}
 	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\{\tilde{\mathscr{F}}_t\}$が通常の条件(usual conditions)を満たすことを示す．
+				実際，
+				\begin{align}
+					\Set{N \in \mathscr{F}}{P(N)=0} 
+					\subset \mathscr{F}_0 \subset \mathscr{F}_{T+t},
+					\quad (\forall t \geq 0)
+				\end{align}
+				より$\{\tilde{\mathscr{F}}_t\}$は完備であり，また
+				任意の$t \geq 0$に対して$T+t = \inf{n \geq 1}{(T+t+1/n)}$より
+				\begin{align}
+					\tilde{\mathscr{F}}_{t+}
+					= \bigcap_{n=1}^\infty \tilde{\mathscr{F}}_{t+\frac{1}{n}}
+					= \bigcap_{n=1}^\infty \mathscr{F}_{T+t+\frac{1}{n}}
+					= \mathscr{F}_{(T+t)+}
+				\end{align}
+				となるが(Problem 2.23)，$\{\mathscr{F}_t\}$の右連続性より
+				\begin{align}
+					A \cap \{T \leq t\} \in \mathscr{F}_{t+},
+					\ \forall t \geq 0
+					\quad \Leftrightarrow \quad
+					A \cap \{T \leq t\} \in \mathscr{F}_t,
+					\ \forall t \geq 0
+				\end{align}
+				が成立するから$\mathscr{F}_{(T+t)+} = \mathscr{F}_{T+t}$が満たされ
+				\begin{align}
+					\tilde{\mathscr{F}}_{t+} = \mathscr{F}_{T+t} = \tilde{\mathscr{F}}_{t}
+				\end{align}
+				を得る．
+				
+			\item[第二段]
+				$X$の右連続性より$\tilde{X}$は右連続である．また
+				任意抽出定理より$X_{T+t}$は$\mathscr{F}_{T+t}/\borel{\R}$-可測かつ可積分であり
+				\begin{align}
+					\cexp{\tilde{X}_t}{\tilde{\mathscr{F}}_s}
+					= \cexp{X_{T+t} - X_T}{\mathscr{F}_{T+s}}
+					\geq X_{T+s} - X_T
+					= \tilde{X}_s,
+					\quad \mbox{a.s. $P$},
+					\ (0 \leq s < t)
+				\end{align}
+				が成立するから，$\tilde{X}$は右連続劣マルチンゲールである．
+				
+			\item[第三段]
+		\end{description}
+	\end{prf}
 	
 	\begin{itembox}[l]{Problem 3.28}
 		Let $Z = \Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a continuous, nonnegative martingale with
