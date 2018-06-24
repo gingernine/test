@@ -334,11 +334,14 @@
 			\item[(i)] If $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a right-continuous submartingale,
 				then so is $\tilde{X} = \Set{\tilde{X}_t \coloneqq X_{T+t} - X_T,\tilde{\mathscr{F}}_t}{0 \leq t < \infty}$.
 			\item[(ii)] $\tilde{X} = \Set{\tilde{X}_t, \tilde{\mathscr{F}}_t}{0 \leq t < \infty}$ is a right-continuous submartingale,
-				with $\tilde{X}_0 = 0,\ \mbox{a.s. $P$}$, then
+				with $\tilde{X}_0 = 0$\footnotemark, then
 				$X = \Set{X_t \coloneqq \tilde{X}_{(t-T) \vee 0},\mathscr{F}_t}{0 \leq t < \infty}$ is also a submartingale.
 		\end{description}
 	\end{itembox}
-	
+	\footnotetext{
+		$\tilde{X}_0 = 0\ \mbox{a.s. $P$}$だと$X_t = \tilde{X}_{(t-T) \vee 0}$が
+		$(\mathscr{F}_t)$-適合となるかわからない．
+	}
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
@@ -371,7 +374,7 @@
 				\end{align}
 				を得る．
 				
-			\item[第二段]
+			\item[(i)の証明]
 				$X$の右連続性より$\tilde{X}$は右連続である．また
 				任意抽出定理より$X_{T+t}$は$\mathscr{F}_{T+t}/\borel{\R}$-可測かつ可積分であり
 				\begin{align}
@@ -384,24 +387,30 @@
 				\end{align}
 				が成立するから，$\tilde{X}$は右連続劣マルチンゲールである．
 				
-			\item[第三段]
-				$S_1 \leq S_2$を有界な$(\mathscr{F}_t)$-停止時刻とすれば
-				$S_j - T\ (j=1,2)$は$(\tilde{\mathscr{F}}_t)$-停止時刻である．実際，
+			\item[(ii)の証明]
+				$S_1 \leq S_2$を有界な$(\mathscr{F}_t)$-停止時刻とするとき，
+				$(S_j - T) \vee 0\ (j=1,2)$は$(\tilde{\mathscr{F}}_t)$-停止時刻である．実際，
 				\begin{align}
-					\{S_j - T \leq t\} \cap \{T+t \leq u\}
+					\{(S_j - T) \vee 0 \leq t\} \cap \{T+t \leq u\}
 					= \{S_j \wedge u \leq (T+t) \wedge u\} \cap \{T+t \leq u\}
 					\in \mathscr{F}_u,
 					\quad (\forall u \geq 0)
 				\end{align}
-				より$\{S_j - T \leq t\} \in \mathscr{F}_{T+t} = \tilde{\mathscr{F}}_t\ (\forall t \geq 0)$が成立する．
-				Problem 3.26より
+				より$\{(S_j - T) \vee 0 \leq t\} \in \mathscr{F}_{T+t} = \tilde{\mathscr{F}}_t\ (\forall t \geq 0)$が成立する．
+				$[0,\infty) \ni t \longmapsto \tilde{X}_{(t-T)\vee0}(\omega)$は右連続であり，また
+				$\tilde{X}_{t-T}$が$\tilde{\mathscr{F}}_{t-T} = \mathscr{F}_t$-可測かつ可積分であるから
+				\begin{align}
+					X_t = \tilde{X}_{(t-T)\vee0} = \tilde{X}_{t-T}\defunc_{\{T \leq t\}}
+				\end{align}
+				は$\mathscr{F}_t/\borel{\R}$-可測かつ可積分である．従って
+				$X$は右連続可積分適合過程であり，Problem 3.26より
 				\begin{align}
 					EX_{S_1} 
 					= E \tilde{X}_{(S_1 - T) \vee 0} 
 					\leq E \tilde{X}_{(S_2 - T) \vee 0}
 					= EX_{S_2}
 				\end{align}
-				が満たされ，同じくProblem 3.26より$X$の劣マルチンゲール性が従う．
+				が成り立つから，同じくProblem 3.26より$X$の劣マルチンゲール性が出る．
 				\QED
 		\end{description}
 	\end{prf}
@@ -467,7 +476,7 @@
 					\sup{t \in [s,t_0]}{Z_t(\omega)} \geq b
 				\end{align}
 				となるから，連続性より$Z_t(\omega) = b$を満たす$t \in (s,t_0)$が存在し，
-				$T(\omega) \leq t$が従い(\refeq{eq:chapter_1_Problem_3_28_2})が出る．
+				$T(\omega) \leq t$が従い(\refeq{eq:chapter_1_Problem_3_28_2})が得られる．
 				
 			\item[第二段]
 				(i)を示す．任意の$A \in \mathscr{F}_s$と$n > s$に対し，任意抽出定理と
@@ -523,11 +532,10 @@
 				となるから
 				\begin{align}
 					P\left[ \sup{t \geq s}{Z_t \geq b} \right]
-					&= \int_\Omega P\left[ \sup{t \geq s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP \\
-					&= \int_{\{Z_s \geq b\}} P\left[ \sup{t \geq s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP
-						+ \int_{\{Z_s < b\}} P\left[ \sup{t > s}{Z_t \geq b}\ \middle|\ \mathscr{F}_s \right]\ dP \\
-					&= \int_{\{Z_s \geq b\}} \defunc_{\left\{ \sup{t \geq s}{Z_t \geq b} \right\}}\ dP
-						+ \frac{1}{b} \int_{\{Z_s < b\}} Z_s\ dP \\
+					&= P\left[ \left\{ \sup{t \geq s}{Z_t \geq b} \right\} \cap \{Z_s \geq b\} \right]
+						+ P\left[ \left\{ \sup{t \geq s}{Z_t \geq b} \right\} \cap \{Z_s < b\} \right] \\
+					&= P\left[ Z_s \geq b \right]
+						+ P\left[ \left\{ \sup{t > s}{Z_t \geq b} \right\} \cap \{Z_s < b\} \right] \\
 					&= P[Z_s \geq b] + \frac{1}{b} E[Z_s \defunc_{\{Z_s < b\}}]
 				\end{align}
 				が成立する．
