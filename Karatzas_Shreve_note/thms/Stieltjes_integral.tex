@@ -210,126 +210,97 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[複素測度の一致の定理]
-			$\mu,\nu$を可測空間$(X,\mathcal{M})$上の複素測度，
-			$\mathscr{A}$を$X$の部分集合の族とする．
-			$\mathscr{A}$乗法族で$\mathcal{M}$を生成し，
-			$\mu$と$\nu$が$\mathscr{A} \cup \{X\}$の上で一致しているとき，
-			$\mu$と$\nu$は$\mathcal{M}$の上で一致している．
-			\label{thm:identity_theorem_of_complex_measures}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		\begin{align}
-			\mathcal{D} \coloneqq
-			\Set{A \in \mathcal{M}}{\mu(A) = \nu(A)}
-		\end{align}
-		とおけば$\mathcal{D}$はDynkin族であり$\mathscr{A}$を含むから，
-		Dynkin族定理により$\mathcal{D} = \mathcal{M}$が従う．
-		\QED
-	\end{prf}
-	
-	\begin{itembox}[l]{}
 		\begin{thm}[複素測度の空間・ノルムの定義]
-			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM = \CM(X,\mathcal{M})$と表す．
-			$\lambda,\mu \in \CM,\ c \in \C,\ E \in \mathcal{M}$に対し
+			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM(X,\mathcal{M})$と書く．
 			\begin{align}
 				&(\lambda + \mu)(E) \coloneqq \lambda(E) + \mu(E), \\
 				&(c\lambda)(E) \coloneqq c\lambda(E)
 				\label{complex_measure_linear}
 			\end{align}
-			を線型演算として$\CM$は線形空間となり，特に定理\ref{thm:total_variation_measure_bounded}により
-			$\lambda \in \CM$に対して$|\lambda| \in \CM$が成り立つ．
-			また$\Norm{\cdot}{}:\CM \rightarrow \R$を
+			を線型演算として$\CM(X,\mathcal{M})$は線形空間となる．また
 			\begin{align}
 				\Norm{\lambda}{} \coloneqq |\lambda|(X) \quad (\lambda \in \CM)
 			\end{align}
-			と定義すればこれは$\CM$においてノルムとなり，$\left( \CM,\Norm{\cdot}{} \right)$はBanach空間となる．
+			により$\CM(X,\mathcal{M})$にノルム$\Norm{\cdot}{}$が定まる．
 		\end{thm}
-	\end{itembox}
+	\end{screen}
 	
-	\begin{prf}
-	総変動の正値性からノルムの正値性が従うから，以下では
-	同次性と三角不等式が成り立つことを示す．
-	\begin{description}
-		\item[同次性]
-			総変動測度の定義(\refeq{radon_nikodym_3})とスカラ倍の定義(\refeq{complex_measure_linear})より，任意の$\lambda \in \CM$と$c \in \C$に対し
-			\begin{align}
-				\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
-			\end{align}
-			が成り立つ．
+	後述のRieszの表現定理によれば$(\CM(X,\mathcal{M}),\Norm{\cdot}{})$はBanach空間である．
+	
+	\begin{prf}\mbox{}
+		$\Norm{\cdot}{}$がノルムであることを示す．
+		\begin{description}
+			\item[第一段]
+				$\lambda = 0$なら$\Norm{\lambda}{} = |\lambda|(X) = 0$となる．また
+				$|\lambda(E)| \leq |\lambda|(E) \leq \Norm{\lambda}{}$より
+				$\Norm{\lambda}{} = 0$なら$\lambda=0$が従う．
 			
-		\item[三角不等式]
-			任意の$\lambda,\mu \in \CM$に対し
-			\begin{align}
-				\Norm{\lambda + \mu}{} = |\lambda + \mu|(X) = \sup{}{\sum_{i} |(\lambda + \mu)(E_i)|} = \sup{}{\sum_{i} |\lambda(E_i) + \mu(E_i)|}
-			\end{align}
-			となるが，ここで
-			\begin{align}
-				\sum_{i} |\lambda(E_i) + \mu(E_i)| \leq \sum_{i} |\lambda(E_i)| + \sum_{i} |\mu(E_i)| \leq \Norm{\lambda}{} + \Norm{\mu}{}
-			\end{align}
-			が成り立つから
-			\begin{align}
-				\Norm{\lambda + \mu}{} = \sup{}{\sum_{i} |\lambda(E_i) + \mu(E_i)|} \leq \Norm{\lambda}{} + \Norm{\mu}{}
-			\end{align}
-			が従う．
-	\end{description}
-	\QED
+			\item[第二段]
+				任意の$\lambda \in \CM$と$c \in \C$に対し
+				\begin{align}
+					\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
+				\end{align}
+				が成り立ち同次性が得られる．
+			
+			\item[第三段]
+				$\lambda,\mu \in \CM(X,\mathcal{M})$を任意に取る．このとき，
+				$X$の任意の分割$X = \sum_{i=1}^\infty E_i\ (E_i \in \mathcal{M})$に対して
+				\begin{align}
+					\sum_{i=1}^\infty |(\lambda + \mu)(E_i)| 
+					= \sum_{i=1}^\infty |\lambda(E_i) + \mu(E_i)| 
+					\leq \sum_{i=1}^\infty |\lambda(E_i)| + \sum_{i=1}^\infty |\mu(E_i)| \leq \Norm{\lambda}{} + \Norm{\mu}{}
+				\end{align}
+				が成り立つから$\Norm{\lambda + \mu}{} \leq \Norm{\lambda}{} + \Norm{\mu}{}$が従う．
+				\QED
+		\end{description}
 	\end{prf}
 	
-	可測空間$(X,\mathcal{M})$において，実数にしか値を取らない複素測度を符号付き測度(signed measure)という．
-	\begin{itembox}[l]{}
+	可測空間$(X,\mathcal{M})$において，$\R$にしか値を取らない複素測度を符号付き測度(signed measure)という．
+	\begin{screen}
 		\begin{dfn}[正変動と負変動・Jordanの分解]
 			$(X,\mathcal{M})$を可測空間とする．$(X,\mathcal{M})$上の符号付き測度$\mu$を取り
 			\begin{align}
 				\mu^+ \coloneqq \frac{1}{2}(|\mu| + \mu) , \quad \mu^- \coloneqq \frac{1}{2}(|\mu| - \mu)
 			\end{align}
-			として$\mu^+,\mu^-$を定めれば，どちらも正値有限測度となる\footnotemark
-			．この$\mu^+$を$\mu$の正変動(positive variation)といい$\mu^-$を$\mu$の負変動(negative variation)という．
-			また
+			として正値有限測度$\mu^+,\mu^-$を定める．
+			$\mu^+\ (\mu^-)$を$\mu$の正(負)変動(positive (negative) variation)と呼び，
 			\begin{align}
-				\mu = \mu^+ - \mu^-, \quad |\mu| = \mu^+ + \mu^-
+				\mu = \mu^+ - \mu^-
 			\end{align}
-			が成り立ち，上の表現を符号付き測度$\mu$のJordan分解という．
+			を符号付き測度$\mu$のJordan分解(Jordan decomposition)という．同時に$|\mu| = \mu^+ + \mu^-$も成り立つ．
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	\footnotetext{
-		$\mathcal{M}$上で$|\mu|(E) \geq |\mu(E)|$であることと定理\ref{thm:total_variation_measure_bounded}による．
-	}
-	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{dfn}[絶対連続・特異]
 			$(X,\mathcal{M})$を可測空間，
-			$\mu$を$\mathcal{M}$上の正値測度\footnotemark
+			$\mu$を$\mathcal{M}$上の正値測度
 			，$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の任意の測度とする．
 			\begin{itemize}
-				\item $\lambda$が$\mu$に関して絶対連続である(absolutely continuous)とは
-					$\mu(E)=0$となる全ての$E \in \mathcal{M}$について$\lambda(E)=0$が成り立つことを指し，
+				\item $\mu(E)=0$ならば$\lambda(E)=0$となるとき，
+					$\lambda$は$\mu$に関して絶対連続である(absolutely continuous)といい
 					\begin{align}
 						\lambda \ll \mu
 					\end{align}
-					と表記する．
+					と書く．
 				
-				\item 或る$A \in \mathcal{M}$が存在して$\lambda(E) = \lambda(A \cap E)\ (\forall E \in \mathcal{M})$
+				\item 或る$A \in \mathcal{M}$が存在して
+					\begin{align}
+						\lambda(E) = \lambda(A \cap E),\quad (\forall E \in \mathcal{M})
+					\end{align}
 					が成り立つとき，$\lambda$は$A$に集中している(concentrated on A)という．
-					$\lambda_1,\lambda_2$に対し或る$A_1,A_2 \in \mathcal{M}$が存在し，
-					$\lambda_1$が$A_1$に，$\lambda_2$が$A_2$に集中しかつ
-					$A_1 \cap A_2 = \emptyset$が満たされているとき，$\lambda_1,\lambda_2$は互いに特異である(mutually singular)といい
+					$\lambda_1$が$A_1$に，$\lambda_2$が$A_2$に集中し，かつ
+					$A_1 \cap A_2 = \emptyset$であるとき，
+					$\lambda_1,\lambda_2$は互いに特異である(mutually singular)といい
 					\begin{align}
 						\lambda_1 \perp \lambda_2
 					\end{align}
-					と表記する．
+					と書く．
 			\end{itemize}
 		\end{dfn}
-	\end{itembox}
+	\end{screen}
 	
-	\footnotetext{
-		正値測度という場合は$\infty$も取りうる．従って正値測度は複素測度の範疇にはない．$\mu$として例えば$k$次元Lebesgue測度を想定している．
-	}
-	
-	\begin{itembox}[l]{}
+	\begin{screen}
 		\begin{prp}[絶対連続性と特異性に関する性質]
 			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の正値測度，
 			$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の複素測度とする．このとき以下に羅列する事柄が成り立つ．
@@ -344,7 +315,7 @@
 			\end{description}
 			\label{prp:absolute_continuous_singular}
 		\end{prp}
-	\end{itembox}
+	\end{screen}
 	
 	\section{複素測度に関する積分}
 	
