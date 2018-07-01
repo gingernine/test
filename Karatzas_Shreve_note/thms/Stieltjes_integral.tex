@@ -1,2 +1,894 @@
 \section{Stieltjes積分}
+	\subsection{複素測度}
+
+	\begin{screen}
+		\begin{dfn}[複素測度]
+			$(X,\mathcal{M})$を可測空間とする．
+			$\lambda: \mathcal{M} \rightarrow \C$が
+			任意の互いに素な列$(E_i)_{i=1}^{\infty} \subset \mathcal{M}$に対し
+			\begin{align}
+				\lambda\biggl( \sum_{i=1}^{\infty} E_i \biggr) = \sum_{i=1}^{\infty} \lambda(E_i)
+				\label{eq:dfn_complex_measure}
+			\end{align}
+			を満たすとき，$\lambda$を複素測度(complex measure)という．
+		\end{dfn}
+	\end{screen}
 	
+	任意の全単射$\sigma:\N \rightarrow \N$に対し
+	\begin{align}
+		\sum_{i=1}^{\infty}E_i = \sum_{i=1}^{\infty}E_{\sigma(i)}
+	\end{align}
+	が成り立つから(\refeq{eq:dfn_complex_measure})より
+	\begin{align}
+		\sum_{i=1}^{\infty} \lambda(E_i) = \sum_{i=1}^{\infty} \lambda(E_{\sigma(i)})
+	\end{align}
+	が従い，
+	Riemannの級数定理の系\ref{cor:Riemann_series}より
+	$\sum_{i=1}^{\infty} \lambda(E_i)$は絶対収束する．
+	今，$\lambda$を支配する，つまり
+	\begin{align}
+		|\lambda(E)| \leq \mu(E) \quad (\forall E \in \mathcal{M})
+		\label{radon_nikodym_1}
+	\end{align}
+	を満たす$(X,\mathcal{M})$上の或る測度$\mu$を，できるだけ小さいものとして取ろうと考える
+	\footnote{
+		つまり(\refeq{radon_nikodym_1})を満たす$\mu$のうちから，
+		同様に(\refeq{radon_nikodym_1})を満たす任意の測度$\mu'$に対し
+		\begin{align}
+			\mu(E) \leq \mu'(E) \quad (\forall E \in \mathcal{M})
+		\end{align}
+		を満たすものが存在するかどうかを考える．
+	}．
+	このような$\mu$は次を満たす:
+	\begin{align}
+		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) 
+		= \mu \biggl( \sum_{i=1}^{\infty} E_i \biggr).
+	\end{align}
+	ゆえに，任意の$E \in \mathcal{M}$に対し，
+	$E \coloneqq \sum_{i=1}^{\infty} E_i$を満たすあらゆる分割に対する上限を取れば
+	\begin{align}
+		\sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} 
+		\leq \mu(E)
+		\label{radon_nikodym_2}
+	\end{align}
+	が成立する．この場合(\refeq{radon_nikodym_1})を満たす最小の測度は
+	\begin{align}
+		|\lambda|(E) \coloneqq \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} \quad (\forall E \in \mathcal{M})
+		\label{radon_nikodym_3}
+	\end{align}
+	で定まる．
+	実際，$E$自体が$E$の分割であるから$|\lambda|$は$\lambda$を支配し，
+	また$|\lambda|$は$(X,\mathcal{M})$上の測度である(定理\ref{thm:total_variation_measure})．
+	
+	\begin{screen}
+		\begin{dfn}[総変動・総変動測度]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，(\refeq{radon_nikodym_3})で定める
+			$|\lambda|$を$\lambda$の総変動測度(total variation measure)といい，$|\lambda|(X)$を
+			$\lambda$の総変動(total variation)という．
+		\end{dfn}
+	\end{screen}
+	特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．実際，
+	複素測度の虚部が0であるものとして考えれば
+	\begin{align}
+		0 \leq \lambda(E) \leq \lambda(X) < \infty
+		\quad (\forall E \in \mathcal{M})
+	\end{align}
+	が成り立ち，また任意の$E \in \mathcal{M}$とその分割$(E_i)_{i=1}^{\infty}$に対して
+	\begin{align}
+		|\lambda|(E) = \sup{}{\sum_{i=1}^{\infty} |\lambda(E_i)|} = \sup{}{\sum_{i=1}^{\infty} \lambda(E_i)} = \sup{}{\lambda(E)} = \lambda(E)
+	\end{align}
+	が満たされる．
+	以降で$|\lambda|$の性質
+	\begin{description}
+		\item[(1)] $|\lambda|$は$(X,\mathcal{M})$上の測度である．
+		\item[(2)] $|\lambda|(X) < \infty$が成り立つ．
+	\end{description}
+	を証明する．特に(2)より
+	\begin{align}
+		|\lambda(E)| \leq |\lambda|(E) \leq |\lambda|(X) < \infty
+		\quad (\forall E \in \mathcal{M})
+	\end{align}
+	が従い複素測度の有界性が出る．
+
+	\begin{screen}
+		\begin{thm}[$|\lambda|$は測度]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対して，
+			(\refeq{radon_nikodym_3})で定める$|\lambda|$は測度である．
+			\label{thm:total_variation_measure}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		(\refeq{radon_nikodym_3})より$|\lambda|$の正値性は出ているから，
+		以下では$|\lambda|$の完全加法性を示す．
+		互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$を取り
+		$E \coloneqq \sum_{i=1}^{\infty} E_i$とおく．
+		(\refeq{radon_nikodym_3})により，任意の$\epsilon > 0$に対して
+		$E_i$の或る分割$(A_{ij})_{j=1}^{\infty} \subset \mathcal{M}$が存在して
+		\begin{align}
+			|\lambda|(E_i) \geq \sum_{j=1}^{\infty} |\lambda(A_{ij})| 
+			> |\lambda|(E_i) - \frac{\epsilon}{2^i}
+		\end{align}
+		を満たすから，$E = \sum_{i,j=1}^{\infty} A_{ij}$と併せて
+		\begin{align}
+			|\lambda|(E) \geq \sum_{i,j=1}^{\infty} |\lambda(A_{ij})| \geq \sum_{i=1}^{\infty}\sum_{j=1}^{\infty} |\lambda(A_{ij})| > \sum_{i=1}^{\infty} |\lambda|(E_i) - \epsilon
+		\end{align}
+		が成り立ち，$\epsilon > 0$の任意性より
+		\begin{align}
+			|\lambda|(E) \geq \sum_{j=1}^{\infty} |\lambda|(E_j)
+		\end{align}
+		が従う．一方で$E$の任意の分割$(A_j)_{j=1}^{\infty} \subset \mathcal{M}$に対し
+		\begin{align}
+			\sum_{j=1}^{\infty} |\lambda(A_j)| 
+			= \sum_{j=1}^{\infty} \left| \sum_{i=1}^{\infty} \lambda(A_j \cap E_i) \right|
+			\leq \sum_{j=1}^{\infty} \sum_{i=1}^{\infty} |\lambda(A_j \cap E_i)|
+			\leq \sum_{i=1}^{\infty} |\lambda|(E_i)
+			\ \footnotemark
+		\end{align}
+		\footnotetext{
+			正項級数は和の順序に依らないから
+			\begin{align}
+				\sum_{j=1}^{\infty} \sum_{i=1}^{\infty} |\lambda(A_j \cap E_i)|
+				= \sum_{i=1}^{\infty} \sum_{j=1}^{\infty} |\lambda(A_j \cap E_i)|
+			\end{align}
+			が成り立つ．これと(\refeq{radon_nikodym_3})を併せれば最後の不等号が従う．
+		}
+		が成り立つから，左辺の上限を取って
+		\begin{align}
+			|\lambda|(E) \leq \sum_{i=1} |\lambda|(E_i)
+		\end{align}
+		を得る．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}	
+		\begin{thm}[総変動測度は有界]
+			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$の総変動測度$|\lambda|$について次が成り立つ:
+			\begin{align}
+				|\lambda|(X) < \infty.
+			\end{align}
+			\label{thm:total_variation_measure_bounded}
+		\end{thm}
+	\end{itembox}
+	
+	先ずは次の補題を示す．
+	
+	\begin{itembox}[l]{}
+		\begin{lem}
+			$z_1,\cdots,z_N$を複素数とする．添数集合の或る部分$S \subset \{1,\cdots,N\}$を抜き取れば次が成り立つ:
+			\begin{align}
+				\left| \sum_{k \in S} z_k \right| \geq \frac{1}{2\pi} \sum_{k=1}^{N} |z_k|.
+			\end{align}
+			\label{lem:total_variation_measure_bounded}
+		\end{lem}
+	\end{itembox}
+	
+	\begin{prf}[補題]
+		$z_k = |z_k|\exp{i \alpha_k}\ (-\pi \leq \alpha_k < \pi,\ k=1,\cdots,N)$となるように$\alpha_1,\cdots,\alpha_N$を取る．
+		ここで$i$は虚数単位である．また$-\pi \leq \theta \leq \pi$に対し
+		\begin{align}
+			S(\theta) \coloneqq \Set{k \in \{1,\cdots,N\}}{\cos{(\alpha_k - \theta)}{} > 0}
+		\end{align}
+		とおく．このとき
+		\begin{align}
+			\left| \sum_{k \in S(\theta)} z_k \right| &= |\exp{-i\theta}|\left| \sum_{k \in S(\theta)} z_k \right| = \left| \sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)} \right| \\
+			&\geq \Re{\sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)}} = \sum_{k \in S(\theta)} |z_k| \cos{(\alpha_k - \theta)}{} = \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
+			\ \footnotemark
+		\end{align}
+		\footnotetext{$\cos{x}{+} = 0 \vee \cos{x}{}\ (x \in \R)$である．}
+		が成り立ち，最右辺は$\theta$に関して連続となるから$[-\pi,\pi]$上で最大値を達成する$\theta_0$が存在する．$S \coloneqq S(\theta_0)$とすれば
+		\begin{align}
+			\left| \sum_{k \in S} z_k \right| \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta_0)}{+} \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
+			\quad (\forall \theta \in [-\pi, \pi])
+		\end{align}
+		が成り立つから，左辺右辺を積分して
+		\begin{align}
+			\left| \sum_{k \in S} z_k \right| \geq \sum_{k=1}^{N} |z_k| \frac{1}{2\pi} \int_{[-\pi,\pi]} \cos{(\alpha_k - \theta)}{+}\ d\theta
+			= \frac{1}{2\pi} \sum_{k=1}^{N} |z_k|
+		\end{align}
+		が成り立つ\footnote{
+			三角関数の周期性を使えば任意の$\alpha \in \R$に対して
+			\begin{align}
+				\int_{[-\pi,\pi]} \cos{(\alpha - \theta)}{+}\ d\theta = \int_{[\alpha-\pi,\alpha+\pi]} \cos{\theta}{+}\ d\theta = \int_{[-\pi,\pi]} \cos{\theta}{+}\ d\theta = 1
+			\end{align}
+			が成り立つ．
+		}．
+		\QED
+	\end{prf}
+	
+	\begin{prf}[定理\ref{thm:total_variation_measure_bounded}]\mbox{}
+		\begin{description}
+		\item[第一段]
+			或る$E \in \mathcal{M}$に対し$|\lambda|(E) = \infty$が成り立っていると仮定する．
+			$t \coloneqq 2\pi(1 + |\lambda(E)|)$とおけば({\scriptsize 複素測度であるから$|\lambda(E)| < \infty$})
+			$|\lambda|(E) > t$となるから，(\refeq{radon_nikodym_3})より$E$の分割$(E_i)_{i=1}^{\infty}$を
+			\begin{align}
+				\sum_{i=1}^{\infty} |\lambda(E_i)| > t
+			\end{align}
+			となるように取ることができる．従って或る$N \in \N$を取れば
+			\begin{align}
+				\sum_{i=1}^{N} |\lambda(E_i)| > t
+			\end{align}
+			が成り立つ．$z_i \coloneqq \lambda(E_i)\ (i=1,\cdots,N)$として補題\ref{lem:total_variation_measure_bounded}を使えば，
+			或る$S \subset \{1,\cdots,N\}$に対し
+			\begin{align}
+				\left| \sum_{k \in S} \lambda(E_k) \right| \geq \frac{1}{2\pi} \sum_{k=1}^{N} |\lambda(E_k)| > \frac{t}{2\pi} > 1
+			\end{align}
+			となる．$A \coloneqq \sum_{k \in S} E_k$とおいて$B \coloneqq E - A$とすれば
+			\begin{align}
+				|\lambda(B)| = |\lambda(E)-\lambda(A)| \geq |\lambda(A)| - |\lambda(E)| > \frac{t}{2\pi} - |\lambda(E)| = 1
+			\end{align}
+			が成り立つから，つまり$|\lambda|(E) = \infty$の場合，$E$の直和分割$A,B$で
+			\begin{align}	
+				|\lambda(A)| > 1, \quad |\lambda(B)| > 1
+			\end{align}
+			を満たすものが取れると示された．そして$|\lambda|$の加法性から
+			\begin{align}
+				|\lambda|(E) = |\lambda|(A) + |\lambda|(B)
+			\end{align}
+			も成り立つから，この場合右辺の少なくとも一方は$\infty$となる．
+		
+		\item[第二段]
+			背理法により定理の主張することを証明する．今$|\lambda|(X) = \infty$と仮定すると，前段の結果より$X$の或る直和分割$A_1,B_1$で
+			\begin{align}
+				|\lambda|(B_1) = \infty, \quad |\lambda(A_1)| > 1, \quad |\lambda(B_1)| > 1
+			\end{align}
+			を満たすものが取れる．$B_1$についてもその直和分割$A_2,B_2$で
+			\begin{align}
+				|\lambda|(B_2) = \infty, \quad |\lambda(A_2)| > 1, \quad |\lambda(B_2)| > 1
+			\end{align}
+			を満たすものが取れる．この操作を繰り返せば，どの二つも互いに素な集合列$(A_j)_{j=1}^{\infty}$で$|\lambda(A_j)| > 1\ (j=1,2,\cdots)$
+			を満たすものを構成できる．$A \coloneqq \sum_{j=1}^{\infty}$について，$|\lambda(A)| < \infty$でなくてはならないから，
+			Riemannの級数定理より
+			\begin{align}
+				\lambda(A) = \sum_{j=1}^{\infty} \lambda(A_j)
+			\end{align}
+			の右辺は絶対収束する．従って$0 < \epsilon < 1$に対し或る$N \in \N$が存在して$n > N$なら$|\lambda(A_n)| < \epsilon$
+			が成り立つはずであるが，これは$|\lambda(A_n)| > 1$であることに矛盾する．
+			背理法により$|\lambda|(X) < \infty$であることが示された．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[複素測度の一致の定理]
+			$\mu,\nu$を可測空間$(X,\mathcal{M})$上の複素測度，
+			$\mathscr{A}$を$X$の部分集合の族とする．
+			$\mathscr{A}$乗法族で$\mathcal{M}$を生成し，
+			$\mu$と$\nu$が$\mathscr{A} \cup \{X\}$の上で一致しているとき，
+			$\mu$と$\nu$は$\mathcal{M}$の上で一致している．
+			\label{thm:identity_theorem_of_complex_measures}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			\mathcal{D} \coloneqq
+			\Set{A \in \mathcal{M}}{\mu(A) = \nu(A)}
+		\end{align}
+		とおけば$\mathcal{D}$はDynkin族であり$\mathscr{A}$を含むから，
+		Dynkin族定理により$\mathcal{D} = \mathcal{M}$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		\begin{thm}[複素測度の空間・ノルムの定義]
+			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM = \CM(X,\mathcal{M})$と表す．
+			$\lambda,\mu \in \CM,\ c \in \C,\ E \in \mathcal{M}$に対し
+			\begin{align}
+				&(\lambda + \mu)(E) \coloneqq \lambda(E) + \mu(E), \\
+				&(c\lambda)(E) \coloneqq c\lambda(E)
+				\label{complex_measure_linear}
+			\end{align}
+			を線型演算として$\CM$は線形空間となり，特に定理\ref{thm:total_variation_measure_bounded}により
+			$\lambda \in \CM$に対して$|\lambda| \in \CM$が成り立つ．
+			また$\Norm{\cdot}{}:\CM \rightarrow \R$を
+			\begin{align}
+				\Norm{\lambda}{} \coloneqq |\lambda|(X) \quad (\lambda \in \CM)
+			\end{align}
+			と定義すればこれは$\CM$においてノルムとなり，$\left( \CM,\Norm{\cdot}{} \right)$はBanach空間となる．
+		\end{thm}
+	\end{itembox}
+	
+	\begin{prf}
+	総変動の正値性からノルムの正値性が従うから，以下では
+	同次性と三角不等式が成り立つことを示す．
+	\begin{description}
+		\item[同次性]
+			総変動測度の定義(\refeq{radon_nikodym_3})とスカラ倍の定義(\refeq{complex_measure_linear})より，任意の$\lambda \in \CM$と$c \in \C$に対し
+			\begin{align}
+				\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
+			\end{align}
+			が成り立つ．
+			
+		\item[三角不等式]
+			任意の$\lambda,\mu \in \CM$に対し
+			\begin{align}
+				\Norm{\lambda + \mu}{} = |\lambda + \mu|(X) = \sup{}{\sum_{i} |(\lambda + \mu)(E_i)|} = \sup{}{\sum_{i} |\lambda(E_i) + \mu(E_i)|}
+			\end{align}
+			となるが，ここで
+			\begin{align}
+				\sum_{i} |\lambda(E_i) + \mu(E_i)| \leq \sum_{i} |\lambda(E_i)| + \sum_{i} |\mu(E_i)| \leq \Norm{\lambda}{} + \Norm{\mu}{}
+			\end{align}
+			が成り立つから
+			\begin{align}
+				\Norm{\lambda + \mu}{} = \sup{}{\sum_{i} |\lambda(E_i) + \mu(E_i)|} \leq \Norm{\lambda}{} + \Norm{\mu}{}
+			\end{align}
+			が従う．
+	\end{description}
+	\QED
+	\end{prf}
+	
+	可測空間$(X,\mathcal{M})$において，実数にしか値を取らない複素測度を符号付き測度(signed measure)という．
+	\begin{itembox}[l]{}
+		\begin{dfn}[正変動と負変動・Jordanの分解]
+			$(X,\mathcal{M})$を可測空間とする．$(X,\mathcal{M})$上の符号付き測度$\mu$を取り
+			\begin{align}
+				\mu^+ \coloneqq \frac{1}{2}(|\mu| + \mu) , \quad \mu^- \coloneqq \frac{1}{2}(|\mu| - \mu)
+			\end{align}
+			として$\mu^+,\mu^-$を定めれば，どちらも正値有限測度となる\footnotemark
+			．この$\mu^+$を$\mu$の正変動(positive variation)といい$\mu^-$を$\mu$の負変動(negative variation)という．
+			また
+			\begin{align}
+				\mu = \mu^+ - \mu^-, \quad |\mu| = \mu^+ + \mu^-
+			\end{align}
+			が成り立ち，上の表現を符号付き測度$\mu$のJordan分解という．
+		\end{dfn}
+	\end{itembox}
+	
+	\footnotetext{
+		$\mathcal{M}$上で$|\mu|(E) \geq |\mu(E)|$であることと定理\ref{thm:total_variation_measure_bounded}による．
+	}
+	
+	\begin{itembox}[l]{}
+		\begin{dfn}[絶対連続・特異]
+			$(X,\mathcal{M})$を可測空間，
+			$\mu$を$\mathcal{M}$上の正値測度\footnotemark
+			，$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の任意の測度とする．
+			\begin{itemize}
+				\item $\lambda$が$\mu$に関して絶対連続である(absolutely continuous)とは
+					$\mu(E)=0$となる全ての$E \in \mathcal{M}$について$\lambda(E)=0$が成り立つことを指し，
+					\begin{align}
+						\lambda \ll \mu
+					\end{align}
+					と表記する．
+				
+				\item 或る$A \in \mathcal{M}$が存在して$\lambda(E) = \lambda(A \cap E)\ (\forall E \in \mathcal{M})$
+					が成り立つとき，$\lambda$は$A$に集中している(concentrated on A)という．
+					$\lambda_1,\lambda_2$に対し或る$A_1,A_2 \in \mathcal{M}$が存在し，
+					$\lambda_1$が$A_1$に，$\lambda_2$が$A_2$に集中しかつ
+					$A_1 \cap A_2 = \emptyset$が満たされているとき，$\lambda_1,\lambda_2$は互いに特異である(mutually singular)といい
+					\begin{align}
+						\lambda_1 \perp \lambda_2
+					\end{align}
+					と表記する．
+			\end{itemize}
+		\end{dfn}
+	\end{itembox}
+	
+	\footnotetext{
+		正値測度という場合は$\infty$も取りうる．従って正値測度は複素測度の範疇にはない．$\mu$として例えば$k$次元Lebesgue測度を想定している．
+	}
+	
+	\begin{itembox}[l]{}
+		\begin{prp}[絶対連続性と特異性に関する性質]
+			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の正値測度，
+			$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の複素測度とする．このとき以下に羅列する事柄が成り立つ．
+			\begin{description}
+				\item[(1)] $\lambda$が$A \in \mathcal{M}$に集中しているなら$|\lambda|$も$A$に集中している．
+				\item[(2)] $\lambda_1 \perp \lambda_2$ならば$|\lambda_1| \perp |\lambda_2|$．
+				\item[(3)] $\lambda_1 \perp \mu$かつ$\lambda_2 \perp \mu$ならば$\lambda_1 + \lambda_2 \perp \mu$．
+				\item[(4)] $\lambda_1 \ll \mu$かつ$\lambda_2 \ll \mu$ならば$\lambda_1 + \lambda_2 \ll \mu$．
+				\item[(5)] $\lambda \ll \mu$ならば$|\lambda| \ll \mu$．
+				\item[(6)] $\lambda_1 \ll \mu$かつ$\lambda_2 \perp \mu$ならば$\lambda_1 \perp \lambda_2$．
+				\item[(7)] $\lambda \ll \mu$かつ$\lambda \perp \mu$ならば$\lambda = 0$．
+			\end{description}
+			\label{prp:absolute_continuous_singular}
+		\end{prp}
+	\end{itembox}
+	
+	\section{複素測度に関する積分}
+	\begin{screen}
+		\begin{thm}[複素数値関数の可測性]
+			$(X,\mathcal{M})$を可測空間とする．$f:X \rightarrow \C$について次が成り立つ:
+			\begin{description}
+				\item[(1)] $f$が可測$\mathcal{M}/\borel{\C}$であることと
+					$f$の実部$u$虚部$v$がそれぞれ可測$\mathcal{M}/\borel{\R}$であることは同値である．
+					
+				\item[(2)] $\mathcal{M}/\borel{\C}$-可測関数列$(f_n)_{n=1}^{\infty}$が$f$に各点収束するなら
+					$f$もまた可測$\mathcal{M}/\borel{\C}$となる．
+			\end{description}
+			\label{thm:measurability_of_complex_measurable_functions}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\item[(1)] $z \in \C$に対し$x,y \in \C$の組が唯一つ対応し$z = x + i y$と表される．この対応関係により定める写像
+			\begin{align}
+				\varphi:\C \ni z \longmapsto (x,y) \in \R^2
+			\end{align}
+			は位相同型である．射影を$p_1:\R^2 \ni (x,y) \longmapsto x,
+			\ p_2:\R^2 \ni (x,y) \longmapsto y$とすれば
+			\begin{align}
+				u = p_1 \circ \varphi \circ f,
+				\quad v = p_2 \circ \varphi \circ f
+			\end{align}
+			と表せるから，$f$が可測$\mathcal{M}/\borel{\C}$であると仮定すれば，
+			$p_1,p_2,\varphi$の連続性により任意の$A \in \borel{R}$に対して
+			\begin{align}
+				u^{-1}(A) = f^{-1} \circ \varphi^{-1} \circ p_1^{-1}(A) \in \mathcal{M},
+				\quad v^{-1}(A) = f^{-1} \circ \varphi^{-1} \circ p_2^{-1}(A) \in \mathcal{M}
+			\end{align}
+			が成り立ち$u,v$の可測性が従う．逆に$u,v$が共に可測$\mathcal{M}/\borel{\R}$であるとき，
+			任意の$B \in \borel{\C}$に対し
+			\begin{align}
+				f^{-1}(B) = \Set{x \in X}{(u(x),v(x)) \in \varphi(B)} \in \mathcal{M}
+			\end{align}
+			が成り立つから$f$の可測性が得られる．
+		
+		\item[(2)] 補題\ref{lem:measurability_metric_space}による．
+			\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[複素数値可測関数の正値測度に関する積分]
+			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の正値測度とし，
+			$\mathcal{M}/\borel{\C}$-可測関数$f$が実数値関数$u,v$を用いて
+			$f = u + i v$と表現されているとする．$u,v$が$\mu$に関して$X$上可積分であるとき\footnotemark
+			，$f$は$\mu$に関して$X$上可積分であるといい，$\mu$に関する$f$の積分を次で定める:
+			\begin{align}
+				\int_E f(x)\ \mu(dx)
+				\coloneqq \int_E u(x)\ \mu(dx) + i \int_E v(x)\ \mu(dx)
+				\quad (\forall E \in \mathcal{M}).
+			\end{align}
+		\end{dfn}
+	\end{screen}
+
+	\footnotetext{
+		定理\ref{thm:measurability_of_complex_measurable_functions}により
+		$u,v$は$\mathcal{M}/\borel{\R}$-可測である．
+	}
+	
+	\begin{screen}
+		\begin{thm}[正値測度に関する積分の性質]
+			$(X,\mathcal{M})$を可測空間とし，$\mu$を$\mathcal{M}$上の正値測度とする．
+			\begin{description}
+				\item[(1)] $\mu$に関して可積分な$\mathcal{M}/\borel{\C}$-可測関数$f$と
+					複素数$\gamma = \alpha + i \beta\ (\alpha,\beta \in \R)$に対して次が成り立つ:
+					\begin{align}
+						\int_E \gamma f(x)\ \mu(dx) = \gamma \int_E f(x)\ \mu(dx)
+						\quad (\forall E \in \mathcal{M}).
+					\end{align}
+					
+				\item[(2)] $\mu$に関して可積分な$\mathcal{M}/\borel{\C}$-可測関数$f$がに対して次が成り立つ:
+					\begin{align}
+						\left| \int_E f(x)\ \mu(dx) \right| \leq \int_E |f(x)|\ \mu(dx) < \infty
+						\quad (\forall E \in \mathcal{M}).
+					\end{align}
+					
+				\item[(3)] $\mathcal{M}/\borel{\C}$-可測関数$f,g$が$\mu$に関して可積分であり
+					\begin{align}
+						\int_E f(x)\ \mu(dx) = \int_E g(x)\ \mu(dx)
+						\quad (\forall E \in \mathcal{M})
+					\end{align}
+					を満たすとき，$\mu$-a.e.に$f = g$が成り立つ．
+					
+				\item[(4)] $f$が$\mathcal{M}/\borel{\R}$-可測かつ$\mu$に関して可積分であり
+					\begin{align}
+						0 \leq \int_E f(x)\ \mu(dx) \leq \mu(E)
+						\quad (\forall E \in \mathcal{M})
+					\end{align}
+					が成り立つとき，$\mu$-a.e.$x$に対して$0 \leq f(x) \leq 1$が満たされる．
+			\end{description}
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $f$に対して或る実数値可積分関数$u,v$が存在して
+				$f = u + i v$と表現できる．このとき
+				\begin{align}
+					\gamma f = (\alpha u - \beta v) + i (\alpha v + \beta u)
+				\end{align}
+				が成り立つから，任意の$E \in \mathcal{M}$に対して次を得る:
+				\begin{align}
+					&\int_E \gamma f\ d\mu
+					= \int_E (\alpha u - \beta v) + i (\alpha v + \beta u)\ d \mu \\
+					&\qquad = \int_E \alpha u - \beta v\ d\mu
+						+ i \int_E \alpha v + \beta u\ d\mu
+					= \left( \alpha + i \beta \right) 
+						\left( \int_E u\ d\mu + i \int_E u\ d\mu \right)
+					= \gamma \int_E f\ d\mu.
+				\end{align}
+			
+			\item[(2)] 
+				$f$に対して或る実数値可積分関数$u,v$が存在して
+				$f = u + i v$と表現でき，$u,v$の可積分性から
+				\begin{align}
+					\int_E |f(x)|\ \mu(dx)
+					\leq \int_E |u(x)|\ \mu(dx) + \int_E |v(x)|\ \mu(dx) < \infty
+					\quad (\forall E \in \mathcal{M})
+				\end{align}
+				が従う．次に初めの不等式を示す．任意に$E \in \mathcal{M}$を取り
+				$\alpha \coloneqq \int_E f\ d\mu$とおく．$\alpha \neq 0$の場合，(1)の結果より
+				\begin{align}
+					|\alpha|
+					= \frac{\conj{\alpha}}{|\alpha|} \int_E f(x)\ \mu(dx)
+					= \int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\Re{\frac{\conj{\alpha}}{|\alpha|} f(x)} \leq |f(x)|
+					\quad (\forall x \in X)
+				\end{align}
+				が満たされるから
+				\begin{align}
+					|\alpha|
+					= \Re{\int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)}
+					= \int_E \Re{\frac{\conj{\alpha}}{|\alpha|} f(x)}\ \mu(dx)
+					\leq \int_E |f(x)|\ \mu(dx)
+				\end{align}
+				が従う．$\alpha = 0$の場合も不等式は成り立つ．
+				
+			\item[(3)] $f,g$に対し或る実数値可積分関数$u_1,u_2,v_1,v_2$が存在して
+				\begin{align}
+					f = u_1 + i v_1,
+					\quad g = u_2 + i v_2
+				\end{align}
+				と表現できる．自然数$n$に対して
+				\begin{align}
+					E_n \coloneqq \Set{x \in X}{u_1(x) - u_2(x) \geq \frac{1}{n}}
+				\end{align}
+				と定めれば$E_n \in \mathcal{M}$が満たされるから，仮定より
+				\begin{align}
+					\int_{E_n} u_1(x) - u_2(x)\ \mu(dx) = 0
+				\end{align}
+				が成り立つ．ここで$\mu(E_n) > 0$と仮定すると
+				\begin{align}
+					0 < \frac{1}{n} \mu(E_n) \leq \int_{E_n} u_1(x) - u_2(x)\ \mu(dx) = 0
+				\end{align}
+				が従い矛盾が生じるから，$\mu(E_n) = 0\ (\forall n \in \N)$が満たされ
+				\begin{align}
+					\mu(u_1 > u_2) = \mu\biggl( \bigcup_{n=1}^{\infty} E_n \biggr) 
+					\leq \sum_{n=1}^{\infty} \mu(E_n) = 0
+				\end{align}
+				が得られる．同様にして$\mu(u_1 < u_2) = 0$及び$\mu(v_1 \neq v_2) = 0$となり，
+				\begin{align}
+					\mu(f \neq g) \leq \mu(u_1 \neq u_2) + \mu(v_1 \neq v_2) = 0
+				\end{align}
+				により$\mu$-a.e.に$f = g$が成り立つ．
+			
+			\item[(4)] 任意の自然数$n$に対し
+				\begin{align}
+					E_n^- \coloneqq \Set{x \in X}{f(x) \leq -\frac{1}{n}},
+					\quad E_n^+ \coloneqq \Set{x \in X}{f(x) \geq 1 + \frac{1}{n}}
+				\end{align}
+				とおく．ここで或る自然数$n$に対して$\mu(E_n^-) > 0$が満たされているとすると
+				\begin{align}
+					0 \leq \int_{E_n^-} f(x)\ \mu(dx)
+					\leq -\frac{1}{n} \mu(E_n^-) < 0
+				\end{align}
+				が成り立ち矛盾が生じるから，$\mu(E_n^-) = 0\ (\forall n \in \N)$が従う．
+				同様の理由により$\mu(E_n^+) = 0\ (\forall n \in \N)$が得られ
+				\begin{align}
+					\mu(f \notin [0,1]) 
+					= \mu\biggl( \bigcup_{n=1}^{\infty} E_n^- \biggr) 
+						+ \mu\biggl( \bigcup_{n=1}^{\infty} E_n^+ \biggr) = 0
+				\end{align}
+				が成り立つ．
+			\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[複素測度に関する積分]
+			$(X,\mathcal{M})$を可測空間とし，$\mu$を$(X,\mathcal{M})$上の複素測度とする．
+			$\mu$の総変動測度$|\mu|$に関して可積分となる関数$f:X \rightarrow \C$について
+			，$f$の$\mu$に関する積分を次で定める:
+			\begin{description}
+				\item[$f$が可測単関数の場合]
+					有限個の複素数$\alpha_1,\cdots,\alpha_k$と集合$A_1,\cdots,A_k \in \mathcal{M}$によって
+					\begin{align}
+						f = \sum_{i=1}^{k} \alpha_i \defunc_{A_i}
+						\label{eq:expression_simple_function}
+					\end{align}
+					と表されるとき\footnotemark
+					，$f$の$\mu$に関する積分を
+					\begin{align}
+						\int_X f(x)\ \mu(dx) \coloneqq \sum_{i=1}^{k} \alpha_i \mu(A_i)
+						\label{eq:complex_measures_integration_simple_function}
+					\end{align}
+					で定める．
+					
+				\item[$f$が一般の可測関数の場合]
+					\begin{align}
+						\int_X f_n(x)\ |\mu|(dx) \longrightarrow \int_X f(x)\ |\mu|(dx)
+						\label{eq:integration_simple_function_approximation}
+					\end{align}
+					を満たす$f$の可測単関数近似列$(f_n)_{n=1}^{\infty}$を取り，
+					$f$の$\mu$に関する積分を
+					\begin{align}
+						\int_X f(x)\ \mu(dx) \coloneqq \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx)
+						\label{eq:complex_measures_integration_measurable_function}
+					\end{align}
+					で定める．
+					
+			\end{description}
+			\label{dfn:complex_measures_integration}
+		\end{dfn}
+	\end{screen}
+	
+	\footnotetext{
+		$A_1,\cdots,A_k$は互いに素であり$X = \sum_{i=1}^{k} A_i$を満たす．
+	}
+	
+	\begin{screen}
+		\begin{thm}[積分の定義はwell-defined]
+			定義\ref{dfn:complex_measures_integration}において，
+			(\refeq{eq:complex_measures_integration_simple_function})
+			は(\refeq{eq:expression_simple_function})の表示の仕方に依らずに定まり，
+			(\refeq{eq:complex_measures_integration_measurable_function})
+			も(\refeq{eq:integration_simple_function_approximation})を満たす単関数近似列の選び方に
+			依らずに定まる．更に任意の$f \in MF$に対して次が成り立つ:
+			\begin{align}
+				\left| \int_X f(x)\ \mu(dx) \right| \leq \int_X |f(x)|\ |\mu|(dx).
+				\label{eq:thm_complex_measure_integration_well_defined_2}
+			\end{align}
+			\label{thm:complex_measure_integration_well_defined}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$f$が可測単関数の場合]
+				$f$が(\refeq{eq:expression_simple_function})の表示とは別に
+				\begin{align}
+					f = \sum_{j=1}^{m} \beta_j \defunc_{B_j}
+					\quad (\beta_j \in \C,\ B_j \in \mathcal{M},\ \mbox{$X=\sum_{j=1}^{m} B_j$})
+				\end{align}
+				と表現できるとしても
+				\begin{align}
+					\sum_{i=1}^{k} \alpha_i \mu(A_i)
+					= \sum_{i=1}^{k} \sum_{j=1}^{m} \alpha_i \mu(A_i \cap B_j)
+					= \sum_{j=1}^{m} \sum_{i=1}^{k} \beta_j \mu(A_i \cap B_j)
+					= \sum_{j=1}^{m} \beta_j \mu(B_j)
+				\end{align}
+				が成り立つ．また(\refeq{radon_nikodym_3})より
+				\begin{align}
+					\left| \int_X f(x)\ \mu(dx) \right|
+					= \left| \sum_{i=1}^{k} \alpha_i \mu(A_i) \right|
+					\leq \sum_{i=1}^{k} \left| \alpha_i \right| |\mu|(A_i)
+					= \int_X |f(x)|\ |\mu|(dx)
+					\label{eq:thm_complex_measure_integration_well_defined}
+				\end{align}
+				も成り立つ．
+				
+			\item[$f$が一般の可測関数の場合]
+				(\refeq{eq:complex_measures_integration_measurable_function})
+				は有限確定している．実際
+				(\refeq{eq:integration_simple_function_approximation})を
+				満たす単関数近似列$(f_n)_{n=1}^{\infty}$に対して
+				(\refeq{eq:thm_complex_measure_integration_well_defined})より
+				\begin{align}
+					\left| \int_X f_n(x)\ \mu(dx) - \int_X f_m(x)\ \mu(dx) \right|
+					\leq \int_X \left| f_n(x) - f_m(x) \right|\ |\mu|(dx)
+					\quad (\forall n,m \in \N)
+				\end{align}
+				が成り立つから，$\left( \int_X f_n(x)\ \mu(dx) \right)_{n=1}^{\infty}$
+				は$\C$においてCauchy列をなし極限が存在する．
+				$(f_n)_{n=1}^{\infty}$とは別に(\refeq{eq:integration_simple_function_approximation})
+				を満たす$f$の単関数近似列$(g_n)_{n=1}^{\infty}$が存在しても
+				\begin{align}
+					&\left| \int_X f_n(x)\ \mu(dx) - \int_X g_m(x)\ \mu(dx) \right|
+					\leq \int_X \left| f_n(x) - g_m(x) \right|\ |\mu|(dx) \\
+					&\qquad \leq \int_X \left| f_n(x) - f(x) \right|\ |\mu|(dx)
+						+ \int_X \left| f(x) - g_m(x) \right|\ |\mu|(dx)
+					\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\alpha \coloneqq \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx),
+					\quad \beta \coloneqq \lim_{n \to \infty} \int_X g_n(x)\ \mu(dx)
+				\end{align}
+				とおけば
+				\begin{align}
+					|\alpha - \beta|
+					&\leq \left| \alpha - \int_X f_n(x)\ \mu(dx) \right|
+						+ \left| \int_X f_n(x)\ \mu(dx) - \int_X g_m(x)\ \mu(dx) \right|
+						+ \left| \int_X g_m(x)\ \mu(dx) - \beta \right| \\
+					&\longrightarrow 0 \quad (n,m \longrightarrow \infty)
+				\end{align}
+				が従い$\alpha = \beta$を得る．また(\refeq{eq:thm_complex_measure_integration_well_defined})より
+				\begin{align}
+					\left| \int_X f_n(x)\ \mu(dx) \right| \leq \int_X |f_n(x)|\ |\mu|(dx) \quad (n = 1,2,\cdots)
+				\end{align}
+				が満たされているから，両辺で$n \longrightarrow \infty$として(\refeq{eq:thm_complex_measure_integration_well_defined_2})を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	定義\ref{dfn:complex_measures_integration}において，
+	(\refeq{eq:complex_measures_integration_measurable_function})は
+	(\refeq{eq:complex_measures_integration_simple_function})の拡張となっている．
+	実際$f$が可測単関数の場合，(\refeq{eq:integration_simple_function_approximation})を満たす単関数近似列
+	として$f$自身を選べばよい．定理\ref{thm:complex_measure_integration_well_defined}より
+	(\refeq{eq:complex_measures_integration_measurable_function})による$f$の積分は一意に確定し
+	(\refeq{eq:complex_measures_integration_simple_function})の左辺に一致する．
+	
+	\begin{screen}
+		\begin{thm}[積分の線型性]
+			定義\ref{dfn:complex_measures_integration}で定めた積分について，
+			任意の$f,g \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$と
+			$\alpha,\beta \in \C$に対し
+			\begin{align}
+				\int_X \alpha f(x) + \beta g(x)\ \mu(dx)
+				= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X g(x)\ \mu(dx)
+			\end{align}
+			が成り立つ．
+			\label{thm:complex_measure_integral_linearity}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$f,g$が可測単関数の場合，(\refeq{eq:complex_measures_integration_simple_function})で定める積分が線型性を持つことを示す．
+				$u_1,\cdots,u_k,v_1,\cdots,v_r \in \C$と$A_1,\cdots,A_k,B_1,\cdots,B_r \in \mathcal{M}\ (X = \sum_{i=1}^{k} A_i = \sum_{j=1}^{r} B_j)$によって
+				\begin{align}
+					f = \sum_{i=1}^{k} u_i \defunc_{A_i},
+					\quad g = \sum_{j=1}^{r} v_j \defunc_{B_j}
+				\end{align}
+				と表示されているとき，
+				\begin{align}
+					\alpha f + \beta g = \sum_{i=1}^{k} \sum_{j=1}^{r} (\alpha u_i + \beta v_j) \defunc_{A_i \cap B_j}
+				\end{align}
+				と表現できるから
+				\begin{align}
+					&\int_X \alpha f(x) + \beta g(x)\ \mu(dx) 
+					= \sum_{i=1}^{k} \sum_{j=1}^{r} (\alpha u_i + \beta v_j) \mu(A_i \cap B_j) \\
+					&\qquad = \alpha \sum_{i=1}^{k} u_i \mu(A_i) + \beta \sum_{j=1}^{r} v_j \mu(B_j)
+					= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X g(x)\ \mu(dx)
+				\end{align}
+				が成り立つ．
+			\item[第二段]
+				$f,g$を一般の可測関数とし，$f,g$それぞれについて(\refeq{eq:integration_simple_function_approximation})を満たす
+				単関数近似列$(f_n)_{n=1}^{\infty},(g_n)_{n=1}^{\infty}$を一つ選ぶ．
+				\begin{align}
+					&\int_X \left|(\alpha f_n(x) + \beta g_n(x)) - (\alpha f(x) + \beta g(x)) \right|\ |\mu|(dx) \\
+					&\qquad \leq |\alpha| \int_X \left| f_n(x) - f(x) \right|\ |\mu|(dx)
+						+ |\beta| \int_X \left| g_n(x) - g(x) \right|\ |\mu|(dx)
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成り立つから$\alpha f + \beta g$の$\mu$に関する積分は
+				\begin{align}
+					\int_X \alpha f(x) + \beta g(x)\ \mu(dx) \coloneqq \lim_{n \to \infty} \int_X \alpha f_n(x) + \beta g_n(x)\ \mu(dx)
+				\end{align}
+				で定義され，前段の結果より
+				\begin{align}
+					&\left| \int_X \alpha f(x) + \beta g(x)\ \mu(dx) - \alpha \int_X f(x)\ \mu(dx) - \beta \int_X g(x)\ \mu(dx) \right| \\
+					&\quad\leq \left| \int_X \alpha f(x) + \beta g(x)\ \mu(dx) - \int_X \alpha f_n(x) + \beta g_n(x)\ \mu(dx) \right| \\
+						&\qquad+ \left| \alpha \int_X f_n(x)\ \mu(dx) + \beta \int_X g_n(x)\ \mu(dx) - \alpha \int_X f(x)\ \mu(dx) - \beta \int_X g(x)\ \mu(dx) \right| \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[積分の測度に関する線型性]
+			$(X,\mathcal{M})$を可測空間，$\mu,\nu$をこの上の複素測度とする．$f:X \rightarrow \C$が$|\mu|$と$|\nu|$について可積分であるなら，
+			$\alpha,\beta \in \C$に対し$|\alpha \mu|, |\beta \nu|, |\alpha \mu + \beta \nu|$についても可積分であり，更に次が成り立つ:
+			\begin{align}
+				\int_X f(x)\ (\alpha\mu + \beta\nu)(dx) = \alpha \int_X f(x)\ \mu(dx) + \beta \int_X f(x)\ \nu(dx).
+			\end{align}
+			\label{thm:linearity_of_integral_respect_to_measure}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{description}
+			\item[第一段]
+				$f$が可測単関数の場合について証明する．
+				$a_i \in \C,\ A_i \in \mathcal{M}\ (i=1,\cdots,n,\ \sum_{i=1}^{n} A_i = X)$を用いて
+				\begin{align}
+					f = \sum_{i=1}^{n} a_i \defunc_{A_i}
+				\end{align}
+				と表されている場合，
+				\begin{align}
+					&\int_X f(x)\ (\alpha\mu + \beta\nu)(dx)
+					= \sum_{i=1}^{n} a_i (\alpha\mu + \beta\nu)(A_i) \\
+					&\qquad = \alpha \sum_{i=1}^{n} a_i \mu(A_i) + \beta \sum_{i=1}^{n} a_i \nu(A_i)
+					= \alpha \int_X f(x)\ \mu(dx) + \beta \int_X f(x)\ \nu(dx)
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段]
+			$f$が一般の可測関数の場合について証明する．任意の$A \in \mathcal{M}$に対して
+			\begin{align}
+				\left| (\alpha \mu + \beta \nu)(A) \right| \leq |\alpha||\mu(A)| + |\beta||\nu(A)| \leq |\alpha||\mu|(A) + |\beta||\nu|(A)
+ 			\end{align}
+ 			が成り立つから，左辺で$A$を任意に分割しても右辺との大小関係は変わらず
+ 			\begin{align}
+ 				|\alpha \mu + \beta \nu|(A) \leq |\alpha||\mu|(A) + |\beta||\nu|(A)
+ 			\end{align}
+ 			となる．従って$f$が$|\mu|$と$|\nu|$について可積分であるなら
+ 			\begin{align}
+ 				\int_X |f(x)|\ |\alpha \mu + \beta \nu|(dx) \leq |\alpha| \int_X |f(x)|\ |\mu|(dx) + |\beta| \int_X |f(x)|\ |\nu|(dx) < \infty
+ 			\end{align}
+ 			が成り立ち前半の主張を得る．$f$の単関数近似列$(f_n)_{n=1}^{\infty}$を取れば，前段の結果と積分の定義より
+ 			\begin{align}
+ 				&\left| \int_X f(x)\ (\alpha\mu + \beta\nu)(dx) - \alpha \int_X f(x)\ \mu(dx) - \beta \int_X f(x)\ \nu(dx) \right| \\
+ 					&\qquad \leq \left| \int_X f(x)\ (\alpha\mu + \beta\nu)(dx) - \int_X f_n(x)\ (\alpha\mu + \beta\nu)(dx) \right| \\
+ 					&\qquad \quad + |\alpha| \left| \int_X f(x)\ \mu(dx) - \int_X f_n(x)\ \mu(dx) \right|
+ 					+ |\beta| \left| \int_X f(x)\ \nu(dx) - \int_X f_n(x)\ \nu(dx) \right| \\
+ 				&\qquad \longrightarrow 0 \quad (n \longrightarrow \infty)
+ 			\end{align}
+ 			が成り立ち後半の主張が従う．
+ 			\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[収束定理]
+			$(X,\mathcal{M})$を可測空間，$\mu$をこの上の複素測度とする．$\mathcal{M}/\borel{C}$-可測関数列$(f_n)_{n=1}^{\infty}$
+			が各点で収束し，かつ或る$g \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$が存在して$|f_n| \leq |g|\ (n=1,2,\cdots)$
+			を満たすとき，次が成り立つ:
+			\begin{align}
+				\int_X\lim_{n \to \infty} f_n(x)\ \mu(dx) = \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx).
+			\end{align}
+			\label{eq:lebesgue_convergence_theorem_complex_measure}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			f(x) \coloneqq \lim_{n \to \infty} f_n(x) \quad (\forall x \in X)
+		\end{align}
+		とおく．Lebesgueの収束定理より$f \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$かつ
+		\begin{align}
+			\int_X f(x)\ |\mu|(dx) = \lim_{n \to \infty} \int_X f_n(x)\ |\mu|(dx)
+		\end{align}
+		が成り立つから，定理\ref{thm:complex_measure_integral_linearity}及び定理\ref{thm:complex_measure_integration_well_defined}より
+		\begin{align}
+			\left| \int_X f(x)\ \mu(dx) - \int_X f_n(x)\ \mu(dx) \right| \leq \int_X \left| f(x) - f_n(x) \right|\ |\mu|(dx) \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[順序交換定理]
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$|\mu| \times |\nu| \leq |\mu \times \nu|$より$|\mu|,|\nu|,|\mu \times \nu|$にFubiniの定理を適用．
+		\begin{align}
+			\int_X \int_Y f_n(x,y)\ \nu(dy)\ \mu(dx) = \int_{X \times Y} f_n(x,y)\ (\mu \times \nu)(dx \times dy)
+			= \int_Y \int_X f_n(x,y)\ \mu(dy)\ \nu(dx)
+		\end{align}
+		$f$が$|\mu \times \nu|$に関して可積分なら
+		\begin{align}
+			\int_{X \times Y} f(x,y)\ (\mu \times \nu)(dx \times dy)
+		\end{align}
+		が定義され，更に
+		\begin{align}
+			\int_Y |f(x,y)|\ |\nu|(dy) < \infty
+		\end{align}
+		だから
+		\begin{align}
+			\int_Y f(x,y)\ \nu(dy)
+		\end{align}
+		も定義される．
+		\begin{align}
+			\left| \int_Y f(x,y)\ \nu(dy) \right| \leq \int_Y |f(x,y)|\ |\nu|(dy)
+		\end{align}
+		が$|\mu|$について可積分であるから
+		\begin{align}
+			\int_X \int_Y f(x,y)\ \nu(dy)\ \mu(dx)
+		\end{align}
+		も定義される．
+	\end{prf}
