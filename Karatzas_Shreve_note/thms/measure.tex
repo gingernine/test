@@ -58,10 +58,7 @@
 				\begin{description}
 					\item[(a)] 或る$\mathcal{B}/\borel{\R}$-可測関数$g$が存在して
 						$f = g\quad \mbox{$\overline{\mu}$-a.e.}$を満たす．
-					\item[(b)] 或る$\mathcal{B}/\borel{\R}$-可測関数$g_1,g_2$が存在して
-						$g_1 \leq f \leq g_2\quad \mbox{$\overline{\mu}$-a.e.}$
-						かつ$g_1 = g_2\quad \mbox{$\overline{\mu}$-a.e.}$を満たす．
-					\item[(c)] $f$は$\overline{\mathcal{B}}/\borel{\R}$-可測である．
+					\item[(b)] $f$は$\overline{\mathcal{B}}/\borel{\R}$-可測である．
 				\end{description}
 			\end{thm}
 		\end{screen}
@@ -79,7 +76,7 @@
 					\end{align}
 					が成り立つから，(\refeq{eq:appendix_Lebesgue_expansion_note_1})より
 					$f^{-1}(E) \in \overline{\mathcal{B}}$が従い$(a) \Rightarrow (c)$が出る．
-					以下，$(c) \Rightarrow (b) \Rightarrow (a)$を示す．
+					以下，$(b) \Rightarrow (a)$を示す．
 					
 				\item[第二段]
 					$B \subset X$に対して$f = \defunc_B$と表せるとき，
@@ -89,8 +86,8 @@
 						A_1 \subset B \subset A_2,\quad \mu(A_2 - A_1)=0
 					\end{align}
 					を満たす$A_1,A_2 \in \mathcal{B}$が存在し，
-					$g_1 \coloneqq \defunc_{A_1},\ g_2 \coloneqq \defunc_{A_2}$とおけば
-					$(c) \Rightarrow (b) \Rightarrow (a)$が従う．
+					$g \coloneqq \defunc_{A_1}$或は$g \coloneqq \defunc_{A_2}$とおけば
+					$(b) \Rightarrow (a)$が従う．
 				
 				\item[第三段]
 					$f$が$0 \leq f < \infty$かつ単関数$f = \sum_{n=0}^N \alpha_n \defunc_{B_n}\ 
@@ -98,16 +95,12 @@
 					として表されるとき，$f$が$\overline{\mathcal{B}}/\borel{\R}$-可測なら
 					$B_n = f^{-1}(\{\alpha_n\}) \in \overline{\mathcal{B}},\ (n=0,1,\cdots,n)$となるから
 					\begin{align}
-						g_{1,n} \leq \defunc_{B_n} \leq g_{2,n},
-						\quad \mu(g_{1,n} \neq g_{1,n})=0,
-						\quad (n=0,1,\cdots,N)
+						g_n = \defunc_{B_n} \quad \mbox{$\overline{\mu}$-a.e.},
+						\ (n=0,1,\cdots,N)
 					\end{align}
-					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_{1,n},g_{2,n}$が存在する．
-					\begin{align}
-						g_1 \coloneqq \sum_{n=0}^N \alpha_n g_{1,n},
-						\quad g_2 \coloneqq \sum_{n=0}^N \alpha_n g_{2,n}
-					\end{align}
-					とおけば$(c) \Rightarrow (b) \Rightarrow (a)$が従う．
+					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_n$が存在する．
+					$g \coloneqq \sum_{n=0}^N \alpha_n g_n$
+					とおけば$(b) \Rightarrow (a)$が従う．
 					
 				\item[第四段]
 					$0 \leq f < \infty$のとき，
@@ -116,27 +109,20 @@
 					非負$\overline{\mathcal{B}}$-可測単関数列$(f_n)_{n=1}^\infty$が存在し，
 					前段より各$f_n$に対して
 					\begin{align}
-						g_{1,n} \leq f_n \leq g_{2,n},
-						\quad \mu\left( g_{1,n} \neq g_{2,n} \right)=0
+						g_n = f_n \quad \mbox{$\overline{\mu}$-a.e.}
 					\end{align}
-					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_{1,n},g_{2,n}$が存在する．
+					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_n$が存在する．
 					\begin{align}
-						g_1 \coloneqq \liminf_{n \to \infty} g_{1,n},
-						\quad \tilde{g}_2 \coloneqq \limsup_{n \to \infty} g_{2,n}
+						\overline{N} \coloneqq \bigcup_{n=1}^\infty\{f_n \neq g_n\}
 					\end{align}
-					とおけば
+					により$\overline{\mu}$-零集合を定めれば，
+					$\overline{N} \subset N$を満たす$\mu$-零集合が存在して
 					\begin{align}
-						g_{1,n}(x) = g_{2,n}(x)\ (\forall n \geq 1)
-						\quad \Rightarrow \quad g_1(x) = \lim_{n \to \infty} f_n(x) = \tilde{g}_2(x)
+						\lim_{n \to \infty}g_n(x) = f(x),
+						\quad (\forall x \in X \backslash N)
 					\end{align}
-					が成り立ち
-					\begin{align}
-						\mu(g_1 \neq \tilde{g}_2)
-						\leq \mu\Biggl( \bigcup_{n=1}^\infty \left\{g_{1,n} \neq g_{2,n}\right\} \Biggr)=0 \\
-					\end{align}
-					が従うから，$\{\tilde{g}_2 = \infty\}$は$\mu$-零集合である．
-					$g_2 \coloneqq \tilde{g}_2 \defunc_{\{\tilde{g}_2 < \infty\}}$
-					として$(c) \Rightarrow (b) \Rightarrow (a)$が従う．
+					が満たされる．このとき$g \coloneqq \lim_{n \to \infty} g_n \defunc_{X \backslash N}$
+					とすれば$(b) \Rightarrow (a)$が従う．
 					
 				\item[第五段]
 					一般の$f:X \longrightarrow \R$に対し
@@ -144,17 +130,11 @@
 					$f$が$\overline{\mathcal{B}}/\borel{\R}$-可測なら
 					$f^+,f^-$も$\overline{\mathcal{B}}/\borel{\R}$-可測であり，前段の結果より
 					\begin{align}
-						g_1^\pm \leq f^\pm \leq g_2^\pm, \quad \mbox{$\overline{\mu}$-a.e.},
-						\quad \mu\left( g_1^\pm \neq g_2^\pm \right) = 0,
+						g^\pm = f^\pm \quad \mbox{$\overline{\mu}$-a.e.}
 						\quad \mbox{(複合同順)}
 					\end{align}
-					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_1^{\pm},g_2^{\pm}$が存在する．
-					ここで
-					\begin{align}
-						g_1 \coloneqq g_1^+ - g_2^-,
-						\quad g_2 \coloneqq g_2^+ - g_1^+
-					\end{align}
-					とおけば$(c) \Rightarrow (b) \Rightarrow (a)$が従う．
+					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g^{\pm}$が存在する．
+					$g \coloneqq g^+ - g^-$とおけば$(b) \Rightarrow (a)$が従う．
 					\QED
 			\end{description}
 		\end{prf}
