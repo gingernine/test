@@ -1,0 +1,90 @@
+\section{The Doob-Meyer Decomposition}
+	\begin{itembox}[l]{martingale transform}
+		If $A = \Set{A_n,\mathscr{F}_n}{n=0,1,\cdots}$ is predictable with $E|A_n|<\infty$ for every $n$,
+		and if $\Set{M_n,\mathscr{F}_n}{n=0,1,\cdots}$ is bounded martingale, then the martingale transform of $A$
+		by $M$ defined by
+		\begin{align}
+			Y_0 = 0 \quad \mbox{and} \quad
+			Y_n = \sum_{k=1}^n A_k (M_k - M_{k-1});
+			\quad n \geq 1, 
+		\end{align}
+		is itself a martingale.
+	\end{itembox}
+	
+	\begin{prf}
+		$A_k(M_k - M_{k-1})\ (k \leq n)$は$\mathscr{F}_n/\borel{\R}$-可測であるから
+		$(Y_n)_{n=1}^\infty$は$(\mathscr{F}_n)$-適合である．また
+		\begin{align}
+			E|Y_n| = E\left| \sum_{k=1}^n A_k (M_k - M_{k-1}) \right|
+			\leq \sum_{k=1}^n \left\{\esssup{\omega \in \Omega}{\left(|M_k(\omega)|+|M_{k-1}(\omega)|\right)}\right\} E|A_k| < \infty
+		\end{align}
+		が成り立つ．更に任意の$n \geq 1$に対し
+		\begin{align}
+			\cexp{Y_n}{\mathscr{F}_{n-1}}
+			&= \cexp{A_n(M_n - M_{n-1}) + Y_{n-1}}{\mathscr{F}_{n-1}} \\
+			&= A_n(\cexp{M_n}{\mathscr{F}_{n-1}} - M_{n-1}) + Y_{n-1}
+			= Y_{n-1},
+			\quad \mbox{a.s. $P$}
+		\end{align}
+		が満たされる．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Doob's decomposition}
+		Any submartingale $\Set{X_n,\mathscr{F}_n}{n=0,1,\cdots}$ admits the Doob decomposition
+		$X_n = M_n + A_n$ as the summation of a martingale $\{M_n,\mathscr{F}_n\}$ and an 
+		predictable and increasing sequence $\{A_n,\mathscr{F}_n\}$.
+		This decomposition is unique.
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				Doob分解が存在するとして，分解の一意性を示す．
+				実際，分解が存在すれば
+				\begin{align}
+					A_{n+1} - A_n = \cexp{A_{n+1}-A_n}{\mathscr{F}_{n}}
+					= \cexp{X_{n+1}-X_n}{\mathscr{F}_{n}} - \cexp{M_{n+1}-M_n}{\mathscr{F}_{n}}
+					= \cexp{X_{n+1}-X_n}{\mathscr{F}_{n}},
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				が成立し，$A_n\ (n \geq 1)$は
+				\begin{align}
+					A_n = \sum_{k=0}^{n-1} \cexp{X_{k+1}-X_k}{\mathscr{F}_{k}},
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				を満たすことになり分解の一意性が出る．
+				
+			\item[第二段]
+				分解可能性を示す．
+				\begin{align}
+					A_0 \coloneqq 0,
+					\quad A_n \coloneqq \sum_{k=0}^{n-1} \cexp{X_{k+1}-X_k}{\mathscr{F}_{k}},
+					\quad (n=1,2,\cdots)
+				\end{align}
+				と定めれば$(A_n)$は可予測かつ可積分であり，
+				\begin{align}
+					A_{n+1} - A_n = \cexp{X_{k+1}-X_k}{\mathscr{F}_{k}} \geq 0,
+					\quad \mbox{a.s. $P$}
+					\ (\forall n \geq 1)
+				\end{align}
+				より増大過程である．また$M_n \coloneqq X_n - A_n$により$(\mathscr{F}_n)$-適合かつ可積分な過程を定めれば，
+				\begin{align}
+					\cexp{M_{n+1} - M_n}{\mathscr{F}_n}
+					&= \cexp{(X_{n+1} - X_n)-(A_{n+1}-A_n)}{\mathscr{F}_n} \\
+					&= \cexp{X_{n+1} - X_n}{\mathscr{F}_n} - \cexp{\cexp{X_{n+1} - X_n}{\mathscr{F}_n}}{\mathscr{F}_n}
+					= 0,
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				が成り立つから$\{M_n,\mathscr{F}_n\}$はマルチンゲールである．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{predictable $\Rightarrow$ natural}
+		Every predictable increasing sequence is natural.
+	\end{itembox}
+	
+	\begin{prf}
+		
+	\end{prf}
