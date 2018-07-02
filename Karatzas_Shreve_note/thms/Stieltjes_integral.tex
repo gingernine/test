@@ -118,17 +118,18 @@
 	\end{screen}
 	
 	\begin{prf}
-		$z_k = |z_k|\exp{i \alpha_k}\ (-\pi \leq \alpha_k < \pi,\ k=1,\cdots,N)$となるように$\alpha_1,\cdots,\alpha_N$を取る．
-		ここで$i$は虚数単位である．また$-\pi \leq \theta \leq \pi$に対し
+		$i = \sqrt{-1}$として，
+		$z_k = |z_k|\exp{i \alpha_k}\ (-\pi \leq \alpha_k < \pi,\ k=1,\cdots,N)$を満たす$\alpha_1,\cdots,\alpha_N$を取り
 		\begin{align}
-			S(\theta) \coloneqq \Set{k \in \{1,\cdots,N\}}{\cos{(\alpha_k - \theta)}{} > 0}
+			S(\theta) \coloneqq \Set{k \in \{1,\cdots,N\}}{\cos{(\alpha_k - \theta)}{} > 0},
+			\quad (-\pi \leq \theta \leq \pi)
 		\end{align}
-		とおく．このとき，$\cos{x}{+} \coloneqq 0 \vee \cos{x}{}\ (x \in \R)$と表せば
+		とおく．このとき，$\cos{x}{+} \coloneqq 0 \vee \cos{x}{}\ (x \in \R)$とすれば
 		\begin{align}
 			\left| \sum_{k \in S(\theta)} z_k \right| &= |\exp{-i\theta}|\left| \sum_{k \in S(\theta)} z_k \right| = \left| \sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)} \right| \\
 			&\geq \Re{\sum_{k \in S(\theta)} |z_k|\exp{i(\alpha_k - \theta)}} = \sum_{k \in S(\theta)} |z_k| \cos{(\alpha_k - \theta)}{} = \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
 		\end{align}
-		が成り立ち，最右辺は$\theta$に関して連続となるから最大値を達成する$\theta_0 \in [-\pi,\pi]$が存在する．
+		が成り立ち，最右辺は$\theta$に関して連続であるから最大値を達成する$\theta_0 \in [-\pi,\pi]$が存在する．
 		$S \coloneqq S(\theta_0)$として
 		\begin{align}
 			\left| \sum_{k \in S} z_k \right| \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta_0)}{+} \geq \sum_{k=1}^{N} |z_k| \cos{(\alpha_k - \theta)}{+}
@@ -155,58 +156,55 @@
 		\end{thm}
 	\end{screen}
 
-	\begin{prf}\mbox{}
+	\begin{prf} $|\lambda|(X) = \infty$と仮定して背理法により定理を導く．
 		\begin{description}
 		\item[第一段]
-			或る$E \in \mathcal{M}$に対し$|\lambda|(E) = \infty$が成り立っていると仮定する．
-			$t \coloneqq 2\pi(1 + |\lambda(E)|)$とおけば({\scriptsize 複素測度であるから$|\lambda(E)| < \infty$})
-			$|\lambda|(E) > t$となるから，(\refeq{radon_nikodym_3})より$E$の分割$(E_i)_{i=1}^{\infty}$を
+			或る$E \in \mathcal{M}$に対し$|\lambda|(E) = \infty$が成り立っているなら，
+			\begin{align}
+				|\lambda(A)| > 1, \quad |\lambda(B)| > 1, \quad E = A + B
+			\end{align}
+			を満たす$A,B \in \mathcal{M}$が存在することを示す．いま，$t \coloneqq 2\pi(1 + |\lambda(E)|)$とおけば
 			\begin{align}
 				\sum_{i=1}^{\infty} |\lambda(E_i)| > t
 			\end{align}
-			となるように取ることができる．従って或る$N \in \N$を取れば
+			を満たす$E$の分割$(E_i)_{i=1}^{\infty}$が存在する．従って或る$N \in \N$に対し
 			\begin{align}
 				\sum_{i=1}^{N} |\lambda(E_i)| > t
 			\end{align}
-			が成り立つ．$z_i \coloneqq \lambda(E_i)\ (i=1,\cdots,N)$として補題\ref{lem:total_variation_measure_bounded}を使えば，
-			或る$S \subset \{1,\cdots,N\}$に対し
+			が成り立ち，補題\ref{lem:total_variation_measure_bounded}より
 			\begin{align}
 				\left| \sum_{k \in S} \lambda(E_k) \right| \geq \frac{1}{2\pi} \sum_{k=1}^{N} |\lambda(E_k)| > \frac{t}{2\pi} > 1
 			\end{align}
-			となる．$A \coloneqq \sum_{k \in S} E_k$とおいて$B \coloneqq E - A$とすれば
+			を満たす$S \subset \{1,\cdots,N\}$が取れる．ここで$A \coloneqq \sum_{k \in S} E_k,\ B \coloneqq E - A$とおけば，
+			$|\lambda(A)| > 1$かつ
 			\begin{align}
 				|\lambda(B)| = |\lambda(E)-\lambda(A)| \geq |\lambda(A)| - |\lambda(E)| > \frac{t}{2\pi} - |\lambda(E)| = 1
 			\end{align}
-			が成り立つから，つまり$|\lambda|(E) = \infty$の場合，$E$の直和分割$A,B$で
-			\begin{align}	
-				|\lambda(A)| > 1, \quad |\lambda(B)| > 1
-			\end{align}
-			を満たすものが取れると示された．そして$|\lambda|$の加法性から
+			が成り立つ．また，
 			\begin{align}
 				|\lambda|(E) = |\lambda|(A) + |\lambda|(B)
 			\end{align}
-			も成り立つから，この場合右辺の少なくとも一方は$\infty$となる．
+			より$|\lambda|(A),\ |\lambda|(B)$の少なくとも一方は$\infty$となる．
 		
 		\item[第二段]
-			背理法により定理の主張することを証明する．今$|\lambda|(X) = \infty$と仮定すると，前段の結果より$X$の或る直和分割$A_1,B_1$で
+			いま，$|\lambda|(X) = \infty$と仮定すると，前段の結果より
 			\begin{align}
-				|\lambda|(B_1) = \infty, \quad |\lambda(A_1)| > 1, \quad |\lambda(B_1)| > 1
+				|\lambda|(B_1) = \infty, \quad |\lambda(A_1)| > 1, \quad |\lambda(B_1)| > 1,
+				\quad X = A_1 + B_1
 			\end{align}
-			を満たすものが取れる．$B_1$についてもその直和分割$A_2,B_2$で
+			を満たす$A_1,B_1 \in \mathcal{M}$が存在する．同様に$B_1$に対しても
 			\begin{align}
-				|\lambda|(B_2) = \infty, \quad |\lambda(A_2)| > 1, \quad |\lambda(B_2)| > 1
+				|\lambda|(B_2) = \infty, \quad |\lambda(A_2)| > 1, \quad |\lambda(B_2)| > 1,
+				\quad B_1 = A_2 + B_2
 			\end{align}
-			を満たすものが取れる．この操作を繰り返せば，どの二つも互いに素な集合列$(A_j)_{j=1}^{\infty}$で$|\lambda(A_j)| > 1\ (j=1,2,\cdots)$
-			を満たすものを構成できる．$A \coloneqq \sum_{j=1}^{\infty}$について，$|\lambda(A)| < \infty$でなくてはならないから，
-			Riemannの級数定理より
-			\begin{align}
-				\lambda(A) = \sum_{j=1}^{\infty} \lambda(A_j)
-			\end{align}
-			の右辺は絶対収束する．従って$0 < \epsilon < 1$に対し或る$N \in \N$が存在して$n > N$なら$|\lambda(A_n)| < \epsilon$
-			が成り立つはずであるが，これは$|\lambda(A_n)| > 1$であることに矛盾する．
-			背理法により$|\lambda|(X) < \infty$であることが示された．
+			を満たす$A_2,B_2 \in \mathcal{M}$が存在する．
+			繰り返せば$|\lambda(A_j)| > 1\ (j=1,2,\cdots)$
+			を満たす互いに素な集合列$(A_j)_{j=1}^{\infty}$が構成され，
+			このとき$\sum_{j=1}^{\infty} |\lambda(A_j)| = \infty$となる．
+			一方でRiemannの級数定理より$\sum_{j=1}^{\infty} |\lambda(A_j)| < \infty$
+			が成り立つから矛盾が生じ，$|\lambda|(X) < \infty$が出る．
+			\QED
 		\end{description}
-		\QED
 	\end{prf}
 	
 	\begin{screen}
@@ -236,7 +234,7 @@
 				$\Norm{\lambda}{} = 0$なら$\lambda=0$が従う．
 			
 			\item[第二段]
-				任意の$\lambda \in \CM$と$c \in \C$に対し
+				任意の$\lambda \in \CM(X,\mathcal{M})$と$c \in \C$に対し
 				\begin{align}
 					\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
 				\end{align}
@@ -719,65 +717,3 @@
 		\end{description}
 	\end{prf}
 	
-	\begin{screen}
-		\begin{thm}[収束定理]
-			$(X,\mathcal{M})$を可測空間，$\mu$をこの上の複素測度とする．$\mathcal{M}/\borel{C}$-可測関数列$(f_n)_{n=1}^{\infty}$
-			が各点で収束し，かつ或る$g \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$が存在して$|f_n| \leq |g|\ (n=1,2,\cdots)$
-			を満たすとき，次が成り立つ:
-			\begin{align}
-				\int_X\lim_{n \to \infty} f_n(x)\ \mu(dx) = \lim_{n \to \infty} \int_X f_n(x)\ \mu(dx).
-			\end{align}
-			\label{eq:lebesgue_convergence_theorem_complex_measure}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		\begin{align}
-			f(x) \coloneqq \lim_{n \to \infty} f_n(x) \quad (\forall x \in X)
-		\end{align}
-		とおく．Lebesgueの収束定理より$f \in \mathscr{L}^1(X,\mathcal{M},|\mu|)$かつ
-		\begin{align}
-			\int_X f(x)\ |\mu|(dx) = \lim_{n \to \infty} \int_X f_n(x)\ |\mu|(dx)
-		\end{align}
-		が成り立つから，定理\ref{thm:complex_measure_integral_linearity}及び定理\ref{thm:complex_measure_integration_well_defined}より
-		\begin{align}
-			\left| \int_X f(x)\ \mu(dx) - \int_X f_n(x)\ \mu(dx) \right| \leq \int_X \left| f(x) - f_n(x) \right|\ |\mu|(dx) \longrightarrow 0
-			\quad (n \longrightarrow \infty)
-		\end{align}
-		が従う．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{thm}[順序交換定理]
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$|\mu| \times |\nu| \leq |\mu \times \nu|$より$|\mu|,|\nu|,|\mu \times \nu|$にFubiniの定理を適用．
-		\begin{align}
-			\int_X \int_Y f_n(x,y)\ \nu(dy)\ \mu(dx) = \int_{X \times Y} f_n(x,y)\ (\mu \times \nu)(dx \times dy)
-			= \int_Y \int_X f_n(x,y)\ \mu(dy)\ \nu(dx)
-		\end{align}
-		$f$が$|\mu \times \nu|$に関して可積分なら
-		\begin{align}
-			\int_{X \times Y} f(x,y)\ (\mu \times \nu)(dx \times dy)
-		\end{align}
-		が定義され，更に
-		\begin{align}
-			\int_Y |f(x,y)|\ |\nu|(dy) < \infty
-		\end{align}
-		だから
-		\begin{align}
-			\int_Y f(x,y)\ \nu(dy)
-		\end{align}
-		も定義される．
-		\begin{align}
-			\left| \int_Y f(x,y)\ \nu(dy) \right| \leq \int_Y |f(x,y)|\ |\nu|(dy)
-		\end{align}
-		が$|\mu|$について可積分であるから
-		\begin{align}
-			\int_X \int_Y f(x,y)\ \nu(dy)\ \mu(dx)
-		\end{align}
-		も定義される．
-	\end{prf}
