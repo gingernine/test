@@ -81,10 +81,77 @@
 		\end{description}
 	\end{prf}
 	
-	\begin{itembox}[l]{predictable $\Rightarrow$ natural}
-		Every predictable increasing sequence is natural.
+	\begin{itembox}[l]{Proposition 4.3 修正}
+		An increasing random sequence $A$ has a predictable modification
+		if and only if it is natural.
 	\end{itembox}
 	
 	\begin{prf}
-		
+		$A$が可予測な修正$\tilde{A}$を持つとき，任意の有界マルチンゲール$M$に対して
+		\begin{align}
+			\tilde{Y}_0 \coloneqq 0,
+			\quad \tilde{Y}_n \coloneqq \sum_{k=1}^n \tilde{A}_k(M_k - M_{k-1}); \quad n \geq 1
+		\end{align}
+		は$(\mathscr{F}_n)$-マルチンゲールとなる．
+		このとき$M_n \tilde{A}_n$と$\sum_{k=1}^n M_{k-1}(\tilde{A}_k - \tilde{A}_{k-1})$は可積分であり
+		\begin{align}
+			0 = E \tilde{Y}_n = E\left[ M_n \tilde{A}_n - \sum_{k=1}^n M_{k-1}(\tilde{A}_k - \tilde{A}_{k-1}) \right]
+			= E(M_n A_n) - E\sum_{k=1}^n M_{k-1}(A_k - A_{k-1}),
+			\quad (\forall n \geq 1)
+		\end{align}
+		が成り立つから$A$はナチュラルである．逆に$A$がナチュラルであるとき，
+		有界マルチンゲール$M$に対して
+		\begin{align}
+			0 &= E\left[ M_n A_n - \sum_{k=1}^n M_{k-1}(A_k - A_{k-1}) \right] \\
+			&= E\left[ A_n(M_n-M_{n-1}) \right] - E\left[ M_{n-1} A_{n-1} - \sum_{k=1}^{n-1} M_{k-1}(A_k - A_{k-1}) \right] \\
+			&= E\left[ A_n(M_n-M_{n-1}) \right],
+			\quad (\forall n \geq 1)
+		\end{align}
+		が成り立つ．一方で
+		\begin{align}
+			E\left[ M_{n-1}(A_n-\cexp{A_n}{\mathscr{F}_{n-1}}) \right]
+			&= E\left[ \cexp{M_{n-1} (A_n-\cexp{A_n}{\mathscr{F}_{n-1}})}{\mathscr{F}_{n-1}} \right] \\
+			&= E\left[ M_{n-1} \cexp{A_n-\cexp{A_n}{\mathscr{F}_{n-1}}}{\mathscr{F}_{n-1}} \right]
+			= 0,
+			\quad (\forall n \geq 1)
+		\end{align}
+		及び
+		\begin{align}
+			E\left[ \cexp{A_n}{\mathscr{F}_{n-1}}(M_n-M_{n-1}) \right]
+			&= E\left[ \cexp{ \cexp{A_n}{\mathscr{F}_{n-1}}(M_n-M_{n-1})}{\mathscr{F}_{n-1}} \right] \\
+			&= E\left[ \cexp{A_n}{\mathscr{F}_{n-1}}\cexp{M_n-M_{n-1}}{\mathscr{F}_{n-1}} \right]
+			= 0,
+			\quad (\forall n \geq 1)
+		\end{align}
+		となるから
+		\begin{align}
+			E\left[ M_n(A_n - \cexp{A_n}{\mathscr{F}_{n-1}}) \right]
+			&= E\left[ A_n(M_n-M_{n-1}) \right] \\
+			&\quad	+ E\left[ M_{n-1}(A_n-\cexp{A_n}{\mathscr{F}_{n-1}}) \right] \\
+			&\quad	- E\left[ \cexp{A_n}{\mathscr{F}_{n-1}}(M_n-M_{n-1}) \right] \\
+			&= 0,
+			\quad (\forall n \geq 1)
+		\end{align}
+		が従う．ここで各$n \geq 1$に対し，
+		$\borel{\R}/\borel{\R}$-可測関数$\operatorname{sgn} = \defunc_{(0,\infty)} - \defunc_{(-\infty,0)}$を用いて
+		\begin{align}
+			M^{(n)}_k \coloneqq 
+			\begin{cases}
+				\sgn{A_n - \cexp{A_n}{\mathscr{F}_{n-1}}}, & (k \geq n), \\
+				\cexp{\sgn{A_n - \cexp{A_n}{\mathscr{F}_{n-1}}}}{\mathscr{F}_k}, & (0 \leq k < n)
+			\end{cases}
+		\end{align}
+		により有界マルチンゲール$M^{(n)} = \Set{M^{(n)}_k,\mathscr{F}_k}{k=0,1,\cdots}$を定めれば，
+		\begin{align}
+			0 = E\left[ M^{(n)}_n(A_n - \cexp{A_n}{\mathscr{F}_{n-1}}) \right] 
+			= E\left| A_n - \cexp{A_n}{\mathscr{F}_{n-1}} \right|,
+			\quad (\forall n \geq 1)
+		\end{align}
+		が得られ
+		\begin{align}
+			\tilde{A}_0 \coloneqq 0,
+			\quad \tilde{A}_n \coloneqq \cexp{A_n}{\mathscr{F}_{n-1}}; \quad n \geq 1
+		\end{align}
+		は$A$の可予測な修正となる．
+		\QED
 	\end{prf}
