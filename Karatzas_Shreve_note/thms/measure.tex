@@ -48,17 +48,63 @@
 			\subset A \cup N
 		\end{align}
 		より$A_1 = A\cap N^c,\ A_2 = A \cup N$として$(\supset)$を得る．
-	
+		
+		\begin{screen}
+			\begin{lem}[可分値写像による可測写像の近似]\label{lem:approximation_of_countably_valued_mappings_on_dist_space}
+				$(X,\mathcal{B},\mu)$を測度空間，$(S,d)$を可分距離空間とする．このとき，
+				任意の$\mathcal{B}/\borel{S}$-可測写像$f$に対し
+				次を満たす可分値$\mathcal{B}/\borel{S}$-可測写像列$(f_n)_{n=1}^\infty$が存在する:
+				\begin{align}
+					\sup{x \in X}{d\left(f_n(x),f(x)\right)} \longrightarrow 0
+					\quad (n \longrightarrow \infty).
+					\label{eq:lem_approximation_of_countably_valued_mappings_on_dist_space}
+				\end{align}
+			\end{lem}
+		\end{screen}
+		
+		\begin{prf}
+			$S$の可算稠密な部分集合を$\{a_k\}_{k=1}^\infty$とする．
+			任意の$n \geq 1$に対し
+			\begin{align}
+				B_n^k \coloneqq \Set{s \in S}{d(s,a_k) < \frac{1}{n}},
+				\quad A_n^k \coloneqq f^{-1}\left( B_n^k \right);
+				\quad (k=1,2,\cdots)
+			\end{align}
+			とおけば，
+			\begin{align}
+				\bigcup_{k=1}^\infty A_n^k 
+				= \bigcup_{k=1}^\infty f^{-1}\left( B_n^k \right)
+				= f^{-1}(S)
+			\end{align}
+			より$X = \bigcup_{k=1}^\infty A_n^k$が成り立つ．ここで
+			\begin{align}
+				\tilde{A}_n^1 \coloneqq A_n^1,
+				\quad \tilde{A}_n^k \coloneqq A_n^k \left\backslash \Biggl( \bigcup_{i=1}^{k-1} A_n^i \Biggr)\right.;
+				\quad (k=1,2,\cdots)
+			\end{align}
+			として
+			\begin{align}
+				 f_n(x) \coloneqq a_k, \quad (x \in \tilde{A}_n^k,\ k=1,2,\cdots)
+			\end{align}
+			により$\mathcal{B}/\borel{S}$-可測写像列$(f_n)_{n=1}^\infty$を定めれば，
+			\begin{align}
+				d\left(f_n(x),f(x)\right) < \frac{1}{n},
+				\quad (\forall x \in X)
+			\end{align}
+			が満たされ(\refeq{eq:lem_approximation_of_countably_valued_mappings_on_dist_space})が従う．
+			\QED
+		\end{prf}
+		
 		\begin{screen}
 			\begin{thm}[拡大前後の可測性]\label{thm:measurability_before_after_Lebesgue_extension}
 				$(X,\mathcal{B},\mu)$を測度空間，そのLebesgue拡大を
 				$\left(X,\overline{\mathcal{B}},\overline{\mu}\right)$と書き，
-				$f:X \longrightarrow \R$とする．
-				このとき次は同値である:
+				$(S,d)$を可分距離空間とする．
+				このとき，任意の写像$f:X \longrightarrow S$に対し次は同値である:
 				\begin{description}
-					\item[(a)] 或る$\mathcal{B}/\borel{\R}$-可測関数$g$が存在して
-						$f = g\quad \mbox{$\overline{\mu}$-a.e.}$を満たす．
-					\item[(b)] $f$は$\overline{\mathcal{B}}/\borel{\R}$-可測である．
+					\item[(a)] 或る$\mathcal{B}/\borel{S}$-可測写像$g$が存在して
+						$f = g\quad \mbox{$\mu$-a.e.}$を満たす．
+					\item[(b)] $f$は$\overline{\mathcal{B}}/\borel{S}$-可測である．
 				\end{description}
 			\end{thm}
 		\end{screen}
@@ -67,74 +113,57 @@
 			\begin{description}
 				\item[第一段]
 					$(a)$が成立しているとき，
-					$\{f \neq g\} \subset N$かつ$\mu(N) = \overline{\mu}(f \neq g) = 0$を満たす
+					$\{f \neq g\} \subset N$を満たす
 					$\mu$-零集合$N \in \mathcal{B}$が存在して
 					\begin{align}
 						f^{-1}(E) \cap \left( g^{-1}(E) \right)^c \subset N,
 						\quad g^{-1}(E) \cap \left( f^{-1}(E) \right)^c \subset N,
-						\quad (\forall E \in \borel{\R})
+						\quad (\forall E \in \borel{S})
 					\end{align}
 					が成り立つから，(\refeq{eq:appendix_Lebesgue_expansion_note_1})より
-					$f^{-1}(E) \in \overline{\mathcal{B}}$が従い$(a) \Rightarrow (c)$が出る．
+					$f^{-1}(E) \in \overline{\mathcal{B}}$が従い$(a) \Rightarrow (b)$が出る．
 					以下，$(b) \Rightarrow (a)$を示す．
 					
 				\item[第二段]
-					$B \subset X$に対して$f = \defunc_B$と表せるとき，
-					$f$が$\overline{\mathcal{B}}/\borel{\R}$-可測なら
-					$B = f^{-1}(\{1\}) \in \overline{\mathcal{B}}$となるから
+					$S$の可算稠密な部分集合を$\{a_k\}_{k=1}^\infty$とすれば，
+					補題\ref{lem:approximation_of_countably_valued_mappings_on_dist_space}より
 					\begin{align}
-						A_1 \subset B \subset A_2,\quad \mu(A_2 - A_1)=0
+						f_n(x) = a_k, \ (x \in A_n^k,\ k=1,2,\cdots);
+						\quad \sum_{k=1}^\infty A_n^k = X;
+						\quad d\left(f_n(x),f(x)\right) < \frac{1}{n},\ (\forall x \in X)
 					\end{align}
-					を満たす$A_1,A_2 \in \mathcal{B}$が存在し，
-					$g \coloneqq \defunc_{A_1}$或は$g \coloneqq \defunc_{A_2}$とおけば
-					$(b) \Rightarrow (a)$が従う．
-				
-				\item[第三段]
-					$f$が$0 \leq f < \infty$かつ単関数$f = \sum_{n=0}^N \alpha_n \defunc_{B_n}\ 
-					(\alpha_0 = 0,\ i \neq j \Rightarrow \alpha_i \neq \alpha_j)$
-					として表されるとき，$f$が$\overline{\mathcal{B}}/\borel{\R}$-可測なら
-					$B_n = f^{-1}(\{\alpha_n\}) \in \overline{\mathcal{B}},\ (n=0,1,\cdots,n)$となるから
+					を満たす$\overline{\mathcal{B}}/\borel{S}$-可測写像列$(f_n)_{n=1}^\infty$と
+					互いに素な集合$\left\{A_n^k\right\}_{k=1}^\infty \subset \overline{\mathcal{B}}$が存在する．
+					各$A_n^k$に対し
 					\begin{align}
-						g_n = \defunc_{B_n} \quad \mbox{$\overline{\mu}$-a.e.},
-						\ (n=0,1,\cdots,N)
+						E_{1,n}^k \subset A_n^k \subset E_{2,n}^k,
+						\quad \mu\left(E_{2,n}^k- E_{1,n}^k\right) = 0
 					\end{align}
-					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_n$が存在する．
-					$g \coloneqq \sum_{n=0}^N \alpha_n g_n$
-					とおけば$(b) \Rightarrow (a)$が従う．
-					
-				\item[第四段]
-					$0 \leq f < \infty$のとき，
-					$f$が$\overline{\mathcal{B}}/\borel{\R}$-可測なら
-					$f_n(x) \uparrow f(x)\ (\forall x \in X)$を満たす
-					非負$\overline{\mathcal{B}}$-可測単関数列$(f_n)_{n=1}^\infty$が存在し，
-					前段より各$f_n$に対して
+					を満たす$E_{1,n}^k,E_{2,n}^k \in \mathcal{B}$が存在するから，
+					一つ$a_0 \in S$を選び
 					\begin{align}
-						g_n = f_n \quad \mbox{$\overline{\mu}$-a.e.}
+						g_n(x) \coloneqq 
+						\begin{cases}
+							a_k, & (x \in E_{1,n}^k,\ k=1,2,\cdots), \\
+							a_0, & (x \in N_n \coloneqq X \backslash \sum_{k=1}^\infty E_{1,n}^k)
+						\end{cases}
 					\end{align}
-					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g_n$が存在する．
+					で$\mathcal{B}/\borel{S}$-可測写像列$(g_n)_{n=1}^\infty$を定めて
+					$N \coloneqq \bigcup_{n=1}^\infty N_n$とおけば
 					\begin{align}
-						\overline{N} \coloneqq \bigcup_{n=1}^\infty\{f_n \neq g_n\}
+						f_n(x) = g_n(x),
+						\quad (\forall x \in X \backslash N,\ \forall n \geq 1)
 					\end{align}
-					により$\overline{\mu}$-零集合を定めれば，
-					$\overline{N} \subset N$を満たす$\mu$-零集合が存在して
+					が成り立つ．このとき
+					$X \backslash N$上で$\lim_{n \to \infty} g_n(x)$は存在し$\lim_{n \to \infty} f_n(x)=f(x)$に一致するから，
 					\begin{align}
-						\lim_{n \to \infty}g_n(x) = f(x),
-						\quad (\forall x \in X \backslash N)
+						g(x) \coloneqq 
+						\begin{cases}
+							\displaystyle\lim_{n \to \infty} g_n(x), & (x \in X \backslash N), \\
+							a_0, & (x \in N)
+						\end{cases}
 					\end{align}
-					が満たされる．このとき$g \coloneqq \lim_{n \to \infty} g_n \defunc_{X \backslash N}$
-					とすれば$(b) \Rightarrow (a)$が従う．
-					
-				\item[第五段]
-					一般の$f:X \longrightarrow \R$に対し
-					$f^+ \coloneqq f \defunc_{\{f \geq 0\}},\ f^- \coloneqq -f \defunc_{\{f < 0\}}$とおけば，
-					$f$が$\overline{\mathcal{B}}/\borel{\R}$-可測なら
-					$f^+,f^-$も$\overline{\mathcal{B}}/\borel{\R}$-可測であり，前段の結果より
-					\begin{align}
-						g^\pm = f^\pm \quad \mbox{$\overline{\mu}$-a.e.}
-						\quad \mbox{(複合同順)}
-					\end{align}
-					を満たす$\mathcal{B}/\borel{\R}$-可測関数$g^{\pm}$が存在する．
-					$g \coloneqq g^+ - g^-$とおけば$(b) \Rightarrow (a)$が従う．
+					により$\mathcal{B}/\borel{S}$-可測写像$g$を定めれば(a)が満たされる．
 					\QED
 			\end{description}
 		\end{prf}
@@ -171,35 +200,6 @@
 				\quad (\forall B \in \borel{\C})
 			\end{align}
 			が成り立ち$f$の$\mathcal{M}/\borel{\C}$-可測性が出る．
-			\QED
-		\end{prf}
-	
-		\begin{screen}
-			\begin{thm}[定理\ref{thm:measurability_before_after_Lebesgue_extension}の系]
-				$(X,\mathcal{B},\mu)$を測度空間，そのLebesgue拡大を
-				$\left( X,\overline{\mathcal{B}},\overline{\mu} \right)$と書き，
-				$f:X \longrightarrow \C$とする．このとき次は同値である:
-				\begin{description}
-					\item[(a)] 或る$\mathcal{B}/\borel{\C}$-可測関数$g$が存在して
-						$f = g\quad \mbox{$\overline{\mu}$-a.e.}$を満たす．
-					\item[(b)] $f$は$\overline{\mathcal{B}}/\borel{\C}$-可測である．
-				\end{description}
-			\end{thm}
-		\end{screen}
-		
-		\begin{prf}
-			$u \coloneqq \Re{f},\ v \coloneqq \Im{f}$とおく．このとき，
-			定理\ref{thm:measurability_before_after_Lebesgue_extension}と
-			補題\ref{thm:measurability_of_complex_measurable_functions}より
-			\begin{align}
-				\mbox{$f$が$\overline{\mathcal{B}}/\borel{\C}$-可測}
-				&\Leftrightarrow \mbox{$u,v$が$\overline{\mathcal{B}}/\borel{\R}$-可測} \\
-				&\Leftrightarrow \mbox{$u = h\ (\mbox{$\overline{\mu}$-a.e.}),\ v = k\ (\mbox{$\overline{\mu}$-a.e.})$を満たす
-					$\mathcal{B}/\borel{\R}$-可測関数$h,k$が存在する} \\
-				&\Leftrightarrow \mbox{$f = g\ (\mbox{$\overline{\mu}$-a.e.})$を満たす
-					$\mathcal{B}/\borel{\C}$-可測関数$g$が存在する}
-			\end{align}
-			が成立する．
 			\QED
 		\end{prf}
 		
