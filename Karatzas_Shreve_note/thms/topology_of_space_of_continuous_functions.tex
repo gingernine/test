@@ -43,26 +43,39 @@
 	より$\rho$は三角不等式を満たす．
 	
 	\begin{screen}
-		\begin{thm}[広義一様収束距離の可分性]
+		\begin{thm}[$C(X,Y)$の可分性]
 			$(X,d_X)$を$\sigma$-コンパクト距離空間，$(Y,d_Y)$を可分距離空間とするとき，$C(X,Y)$は$\rho$により可分距離空間となる．
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[広義一様収束距離の完備性]
-			$(X,d_X)$を$\sigma$-コンパクト距離空間，$(Y,d_Y)$を完備距離空間とするとき，$C(X,Y)$は$\rho$により完備距離空間となる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$(f_n)_{n=1}^\infty$を$C(X,Y)$のCauchy列として，
-				$(K_n)_{n=1}^\infty$を(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_1})
-				を満たすコンパクト部分集合の列とする．
+				
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$C(X,Y)$の完備性]
+			$(X,d_X)$を距離空間，$(Y,d_Y)$を完備距離空間とする．$X$において
+			\begin{align}
+				K_1 \subset K_2 \subset K_3 \subset \cdots,
+				\quad \bigcup_{n=1}^\infty \interior{K_n} = X
+				\label{eq:completeness_and_separability_of_space_of_continuous_functions_2}
+			\end{align}
+			を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するとき，$C(X,Y)$は$\rho$により完備距離空間となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$(f_n)_{n=1}^\infty$を$C(X,Y)$のCauchy列とする．
 				任意の$x \in X$に対し$x$を含む$K_j$を取れば
 				\begin{align}
-					1 \wedge d_Y(f_n(x),f_m(x)) \leq 2^j \rho(f_n,f_m) \longrightarrow 0
+					1 \wedge d_Y(f_n(x),f_m(x)) 
+					\leq 1 \wedge \sup{t \in K_j}{d_Y(f_n(t),f(t))}
+					\leq 2^j \rho(f_n,f_m) \longrightarrow 0
 					\quad (n,m \longrightarrow \infty)
 				\end{align}
 				となるから，$Y$の完備性より$\lim_{n \to \infty} f_n(x)$が存在する．ここで
@@ -72,16 +85,93 @@
 				により写像$f:X \longrightarrow Y$を定めれば，$f$は連続であり
 				\begin{align}
 					\rho(f_n,f) \longrightarrow 0 \quad (n \longrightarrow \infty)
+					\label{eq:completeness_and_separability_of_space_of_continuous_functions_3}
 				\end{align}
 				を満たす．
 			
 			\item[第二段]
-				$f$の連続性を示す．
+				任意の$K_j$に対し
+				\begin{align}
+					\sup{x \in K_j}{d_Y(f_n(x),f(x))} \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+					\label{eq:completeness_and_separability_of_space_of_continuous_functions_4}
+				\end{align}
+				が成り立つことを示す．実際，任意の$\epsilon > 0$に対し或る$N \geq 1$が存在して
+				\begin{align}
+					\sup{x \in K_j}{d_Y(f_n(x),f_m(x))} < \frac{\epsilon}{2}
+					\quad (\forall n,m \geq N)
+				\end{align}
+				が満たされ，また$f$の定め方より任意の$x \in K_j$に対し
+				\begin{align}
+					d_Y(f_m(x),f(x)) < \frac{\epsilon}{2}
+				\end{align}
+				を満たす$m \geq N$が存在するから，
+				\begin{align}
+					d_Y(f_n(x),f(x)) \leq d_Y(f_n(x),f_m(x)) + d_Y(f_m(x),f(x)) 
+					< \frac{\epsilon}{2} + \frac{\epsilon}{2}
+					= \epsilon,
+					\quad (\forall n \geq N)
+				\end{align}
+				が従い
+				\begin{align}
+					\sup{x \in K_j}{d_Y(f_n(x),f(x))} \leq \epsilon,
+					\quad (\forall n \geq N)
+				\end{align}
+				が成立する．
+				
+			\item[第三段]
+				$f$の連続性を示す．任意に$\epsilon > 0$と$x \in X$及び
+				$x \in \interior{K_j}$を満たす$K_j$を取れば，
+				(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_4})より
+				\begin{align}
+					d_Y(f_n(t),f(t)) < \frac{\epsilon}{3},
+					\quad (\forall t \in K_j)
+				\end{align}
+				を満たす$n \geq 1$が存在する．
+				また$f_n$の連続性より$x$の或る開近傍$W$が存在して
+				\begin{align}
+					d_Y(f_n(x),f_n(x')) < \frac{\epsilon}{3},
+					\quad (\forall x' \in W)
+				\end{align}
+				となるから，
+				\begin{align}
+					d_Y(f(x),f(x'))
+					\leq d_Y(f(x),f_n(x)) + d_Y(f_n(x),f_n(x')) + d_Y(f_n(x'),f(x'))
+					< \epsilon,
+					\quad (\forall x' \in W \cap \interior{K_j})
+				\end{align}
+				が従い$f$の$x$における連続性が出る．
+			
+			\item[第四段]
+				(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_3})を示す．
+				任意の$\epsilon > 0$に対し，
+				\begin{align}
+					\sum_{k=k_0+1}^\infty 2^{-k} < \frac{\epsilon}{2}
+				\end{align}
+				を満たす$k_0 \geq 1$が存在する．
+				また(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_4})より
+				或る$n_0 \geq 1$が存在して
+				\begin{align}
+					\sup{x \in K_{k_0}}{d_Y(f_n(x),f(x))} < \frac{\epsilon}{2},
+					\quad (\forall n \geq n_0)
+				\end{align}
+				となるから
+				\begin{align}
+					\rho(f_n,f) < \epsilon, \quad (\forall n \geq n_0)
+				\end{align}
+				が成立する．
+				\QED
 		\end{description}
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[広義一様収束距離の完備可分性]
-			$(X,d_X)$を$\sigma$-コンパクト距離空間，$(Y,d_Y)$を完備可分距離空間とするとき，$C(X,Y)$は$\rho$により完備可分距離空間となる．
+		\begin{thm}[$C(X,Y)$の完備可分性]
+			$(X,d_X)$を距離空間，$(Y,d_Y)$を完備可分距離空間とする．$X$において
+			\begin{align}
+				K_1 \subset K_2 \subset K_3 \subset \cdots,
+				\quad \bigcup_{n=1}^\infty \interior{K_n} = X
+				\label{eq:completeness_and_separability_of_space_of_continuous_functions_2}
+			\end{align}
+			を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するとき，$C(X,Y)$は$\rho$により完備可分距離空間となる．
 		\end{thm}
 	\end{screen}
