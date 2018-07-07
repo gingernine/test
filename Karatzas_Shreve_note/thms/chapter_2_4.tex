@@ -5,74 +5,10 @@
 	\end{itembox}
 	以下，$C[0,\infty)^d$には$\rho$により広義一様収束位相を導入する．
 	
-\begin{comment}
-\begin{prf}完備性と可分性を示す．
-	\begin{description}
-		\item[完備性]
-			$C[0,\infty)^d$から任意にCauchy列$(w_n)_{n=1}^{\infty}$を取る．任意の$\epsilon > 0$に対して
-			或る$N \in \N$が取れて，$n,m > N$ならば$d(w_n,w_m) < \epsilon$が成り立つのであるから，距離関数の各項では
-			$\sup{t \leq k}{|w_n(t) - w_m(t)|} < 2^k \epsilon\ (k=1,2,\cdots)$が成立している．
-			$\epsilon$は任意であるから$(w_n)_{n=1}^{\infty}$は各点でCauchy列をなし，実数の完備性から
-			各$t \in [0,\infty)$で$(w(t))_{n=1}^{\infty}$は$\R^d$で収束する．収束先を$w(t)\ (\forall t \in [0,\infty))$と
-			表して極限関数$w$を定義すれば$w$は連続である．
-			実際任意の$s \in [0, \infty)$に対し$s < k$となるように$k \in \N$を取れば，$t \leq k$の範囲で
-			\begin{align}
-				\sup{t \leq k}{|w_n(t) - w_m(t)|} \quad (n,m=1,2,\cdots)
-			\end{align}
-			がCauchy列をなしているから，任意の$\epsilon > 0$に対して或る$N \in \N$が存在し，$n,m > N$で
-			\begin{align}
-				\sup{t \leq k}{|w_n(t) - w_m(t)|} < \epsilon
-			\end{align}
-			となる．特に$w_m(t) \longrightarrow w(t)$であることを併せれば，各点$t \leq k$において
-			$|w_n(t) - w(t)| \leq \epsilon$となるから
-			\footnote{
-				$\left| |w_n(t) - w(t)| - |w_n(t) - w_m(t)| \right| \leq |w_m(t) - w(t)|$で右辺をいくらでも小さくできるから，
-				$|w_n(t) - w(t)| > \epsilon$であると矛盾する．
-			}
-			\begin{align}
-				\sup{t \leq k}{|w_n(t) - w(t)|} \leq \epsilon
-			\end{align}
-			が成り立つ．連続関数列が一様収束しているから$w$は$s$で連続である．
-			各点での連続性が示され，$w \in C[0,\infty)^d$であると判る．
-		\item[可分性]
-			任意の$w \in C[0,\infty)^d$と$\epsilon > 0$に対し，$\sum_{k=N+1}^{\infty}2^{-k} = 2^{-N} < \epsilon/2$となるように
-			$N \in \N$を取る．こうすれば任意の$w' \in C[0,\infty)^d$に対して
-			\begin{align}
-				\sum_{k=N+1}^{\infty} 2^{-k}\left\{ \sup{t \leq k}{|w(t) - w'(t)| \wedge 1} \right\} < \epsilon/2
-			\end{align}
-			が成り立つ．可分性を示すには，$C[0,\infty)^d$で可算稠密な連続関数の集合から関数$w'$を選んで
-			\begin{align}
-				d(w,w') < \epsilon
-			\end{align}
-			を満たすことができればよいから，あとは
-			\begin{align}
-				\sum_{k=1}^{N}2^{-k}\left\{ \sup{t \leq k}{|w(t) - w'(t)| \wedge 1} \right\} < \epsilon/2
-			\end{align}
-			が成り立つように$w'$を選ぶことができればよい．
-			以下では$w'$と$C[0,\infty)^d$で可算稠密な連続関数の集合を同時に構成する．
-			各$k$で$\sup{t \leq k}{|w(t) - w'(t)|} < \epsilon/2$が成り立てばよいから，つまるところ
-			\begin{align}
-				\sup{t \leq N}{|w(t) - w'(t)|} < \epsilon/2
-			\end{align}
-			が成り立つように$w'$を構成すればよい．$w$は$[0,N]$で一様連続であるから，適当に$\delta > 0$を取れば
-			$|t - s| < \delta$である限り$w(s)$は$w(t)$の$\epsilon/2$近傍に入る．
-			ここで有理数$r > 0$を$r < \delta$かつ$N/r$が整数となるように取れば，
-			$q = N/r$として$0=t_0,\ t_1 = r,\ t_2 = 2r,\cdots,t_q = N$となるように区間を等分割できる．
-			$w(t_i)$は$w(t_{i-1})$の$\epsilon/2$近傍と$w(t_{i+1})$の$\epsilon/2$近傍の両方に入るから，
-			$w(t_i)$の或る$\eta_i$近傍が両二つの$\epsilon/2$近傍に含まれるように$\eta_i$を取り，この$\eta_i$近傍から
-			有理点$P_i$を一つ選ぶ．$t_i$に$P_i$を対応させて線分でつなぎ合わせた関数は，$[0,N]$において連続且つ
-			$w$から常に$\epsilon/2$の距離の内にある．$t > N$の範囲ではどのようにしてもよいが，例えばグラフ$(N,P_q)$と$(N+1,0)$
-			を結んで以降は$0$を取るよう$[0, \infty)$上の連続関数$w'$を定めれば，$w'$は慥かに
-			\begin{align}
-				d(w,w') < \epsilon
-			\end{align}
-			を満たす．
-			$w'$の構成法に倣って「有界な台を持ち，グラフが有理点を折れ線で結ぶだけの連続関数」の全体を$M$とすれば
-			これは可算集合であり，$w'$は$M$の元である．以上より$C[0,\infty)^d$において$M$は可算稠密であり，$C[0,\infty)^d$の可分性が示された．
-	\end{description}
-	\QED
-\end{prf}
-\end{comment}
+	\begin{prf}
+		付録の定理\ref{thm:appendix_complete_separability_of_spaces_of_continuous_functions}で証明．
+		\QED
+	\end{prf}
 
 \begin{itembox}[l]{Problem 4.2}
 	Let $\mathscr{C}(\mathscr{C}_t)$ be the collection of finite-dimensional cylinder sets of the form (2.1); i.e.,
