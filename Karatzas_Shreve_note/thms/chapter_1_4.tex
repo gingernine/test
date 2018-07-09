@@ -18,12 +18,12 @@
 			E|Y_n| = E\left| \sum_{k=1}^n A_k (M_k - M_{k-1}) \right|
 			\leq \sum_{k=1}^n \left\{\esssup{\omega \in \Omega}{\left(|M_k(\omega)|+|M_{k-1}(\omega)|\right)}\right\} E|A_k| < \infty
 		\end{align}
-		が成り立つ．更に任意の$n \geq 1$に対し
+		が成り立つ．更に任意の$n \geq 0$に対し
 		\begin{align}
-			\cexp{Y_n}{\mathscr{F}_{n-1}}
-			&= \cexp{A_n(M_n - M_{n-1}) + Y_{n-1}}{\mathscr{F}_{n-1}} \\
-			&= A_n(\cexp{M_n}{\mathscr{F}_{n-1}} - M_{n-1}) + Y_{n-1}
-			= Y_{n-1},
+			\cexp{Y_{n+1} - Y_n}{\mathscr{F}_n}
+			= \cexp{A_{n+1}(M_{n+1} - M_n)}{\mathscr{F}_n}
+			= A_{n+1}\cexp{M_{n+1} - M_n}{\mathscr{F}_n}
+			= 0,
 			\quad \mbox{a.s. $P$}
 		\end{align}
 		が満たされる．
@@ -502,3 +502,33 @@
 			\item[第二段]
 		\end{description}
 	\end{prf}
+	
+	\begin{itembox}[l]{Problem 4.13}
+		Verify that a continuous, nonnegative submartingale is regular. 
+	\end{itembox}
+	
+	\begin{prf}
+		$(X_{T_n})_{n=1}^\infty$は一様可積分である．実際，
+		\begin{align}
+			\int_{X_{T_n} > \lambda} X_{T_n}\ dP
+			\leq \int_{X_{T_n} > \lambda} X_T\ dP
+		\end{align}
+		かつ
+		\begin{align}
+			P\left( X_{T_n} > \lambda \right)
+			\leq \frac{EX_{T_n}}{\lambda}
+			\leq \frac{EX_T}{\lambda}
+		\end{align}
+		が成り立ち，$X_T$の可積分性(任意抽出定理)より一様可積分性が従う．またパスの連続性より
+		\begin{align}
+			X_{T_n} \longrightarrow X_T
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		となるから，一様可積分性と平均収束の補題 (P. \pageref{lem:uniformly_integrable_and_convergence_in_mean})より
+		\begin{align}
+			\lim_{n \to \infty} EX_{T_n} = EX_T
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
