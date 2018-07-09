@@ -214,14 +214,14 @@
 		\begin{align}
 			d(f(y-),f(t)) < \epsilon, \quad (\forall t \in (y-\delta,y))
 		\end{align}
-		となるが，$f$が$y$で右連続であるから$y-\delta < t_{k_m} \leq y$を満たす$t_{k_m}$が存在して
+		となるが，$f$が$y$で右連続であるから(或は$y=T$のとき) $y-\delta < t_{k_m} \leq y$を満たす$t_{k_m}$が存在して
 		\begin{align}
 			\frac{1}{n+1} - \epsilon < 
 			d(f(t_{k_m}-),f(t_{k_m})) - d(f(t_{k_m}-),f(y-)) \leq d(f(y-),f(t_{k_m})) < \epsilon
 		\end{align}
 		が従い矛盾が生じる．よって任意の$n \geq 1$に対して$D(n)$は有限集合であり，同様に
 		$E(n)$も有限集合であるから$D_T$は高々可算集合である．
-		$f$の不連続点の全体は$\bigcup_{T=1}^\infty D_T$に一致して高々可算個である．
+		$f$の不連続点の全体は$\bigcup_{T=1}^\infty D_T$に一致するから高々可算個である．
 		\QED
 	\end{prf}
 	
@@ -313,9 +313,14 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Problem 4.9}
-		Suppose $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a right-continuous submartingale.
-		Show that under any one of the following conditions, $X$ is of class $DL$.
+	\begin{itembox}[l]{Problem 4.9 修正}
+		Suppose $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$ and
+		$X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a right-continuous submartingale,
+		and set 
+		\begin{align}
+			X_U(\omega) \coloneqq 0, \quad (\forall \omega \in \{U=\infty\})
+		\end{align}
+		for any random time $U$. Show that under any one of the following conditions, $X$ is of class $DL$.
 		\begin{description}
 			\item[(a)] $X_t \geq 0$ a.s. for every $t \geq 0$.
 			\item[(b)] $X$ has the special form
@@ -328,10 +333,103 @@
 		Show also that if $X$ is a uniformly integrable martingale, then it is of class $D$.
 	\end{itembox}
 	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)]
+				任意の$T \in \mathscr{S}_a\ (a > 0)$に対して
+				$X_T$は$\mathscr{F}_T/\borel{\R}$-可測であるから，任意抽出定理より
+				\begin{align}
+					\int_{\{X_T > \lambda\}} X_T\ dP
+					\leq \int_{\{X_T > \lambda\}} X_a\ dP,
+					\quad (\forall \lambda > 0)
+				\end{align}
+				及び
+				\begin{align}
+					P\left( X_T > \lambda \right)
+					\leq \frac{EX_T}{\lambda}
+					\leq \frac{EX_a}{\lambda},
+					\quad (\forall \lambda > 0)
+				\end{align}
+				が成立する．$X_a$が可積分であるから
+				\begin{align}
+					\sup{T \in \mathscr{S}_a}{\int_{\{X_T > \lambda\}} X_T\ dP}
+					\longrightarrow 0
+					\quad (\lambda \longrightarrow \infty)
+				\end{align}
+				となり，$(X_T)_{T \in \mathscr{S}_a}$の一様可積分性が得られる．
+				
+			\item[(b)]
+				$a > 0$とすれば，任意抽出定理より
+				\begin{align}
+					M_T = \cexp{M_a}{\mathscr{F}_T},\ \mbox{a.s. $P$,}
+					\quad (\forall T \in \mathscr{S}_a)
+				\end{align}
+				が成り立つから，一様可積分性と条件付き期待値の補題
+				(P. \pageref{lem:uniformly_integrability_and_conditional_expectations})より
+				$(M_T)_{T \in \mathscr{S}_a}$は一様可積分である．このとき
+				\begin{align}
+					\int_{\{|X_T| > \lambda\}} |X_T|\ dP
+					&\leq 2\int_{\{|M_T| > \lambda/2\}} |M_T|\ dP + 2\int_{\{|A_T| > \lambda/2\}} |A_T|\ dP \\
+					&\leq 2\sup{T \in \mathscr{S}_a}{\int_{\{|M_T| > \lambda/2\}} |M_T|\ dP} + 2\int_{\{A_a > \lambda/2\}} A_a\ dP \\
+					&\longrightarrow 0 \quad (\lambda \longrightarrow \infty)
+				\end{align}
+				が従い$(X_T)_{T \in \mathscr{S}_a}$の一様可積分性が出る．
+		\end{description}
+		$X$が一様可積分なマルチンゲールであるとき，Problem 3.20より
+		\begin{align}
+			X_t = \cexp{X_\infty}{\mathscr{F}_t},\ \mbox{a.s. $P$},
+			\quad (\forall t \geq 0)
+		\end{align}
+		を満たす$\mathscr{F}_\infty/\borel{\R}$-可測可積分関数$X_\infty$が存在し，任意抽出定理より
+		\begin{align}
+			X_T = \cexp{X_\infty}{\mathscr{F}_T},\ \mbox{a.s. $P$},
+			\quad (\forall T \in \mathscr{S})
+		\end{align}
+		が成り立つから$X$はクラス$DL$に属する．
+		\QED
+	\end{prf}
+	
 	\begin{itembox}[l]{Problem 4.11 修正}
 		Let $(X,\mathscr{F},\mu)$ be a $\sigma$-finite measurable space and  
 		$\left\{f_n\right\}_{n=1}^\infty$ be a sequence of integrable complex functions on $(X,\mathscr{F},\mu)$
 		which converges weakly in $L^1$ to an integrable complex function $f$.
-		Then for each $\sigma$-field $\mathscr{G} \subset \mathscr{F}$, the sequence $\cexp{f_n}{\mathscr{G}}$
-		converges to $\cexp{f}{\mathscr{G}}$ weakly in $L^1$.
+		Then for each $\sigma$-field $\mathscr{G} \subset \mathscr{F}$
+		where $(X,\mathscr{G},\left.\mu\right|_{\mathscr{G}})$ is $\sigma$-finite,
+		the sequence $\cexp{f_n}{\mathscr{G}}$ converges to $\cexp{f}{\mathscr{G}}$ weakly in $L^1$.
 	\end{itembox}
+	
+	\begin{prf}
+		任意の$g \in \mathscr{L}^\infty(X,\mathscr{F},\mu)$に対して
+		\begin{align}
+			\int_X g\cexp{f}{\mathscr{G}}\ dP
+			&= \int_X \cexp{g\cexp{f}{\mathscr{G}}}{\mathscr{G}}\ dP \\
+			&= \int_X \cexp{g}{\mathscr{G}}\cexp{f}{\mathscr{G}}\ dP \\
+			&= \int_X \cexp{\cexp{g}{\mathscr{G}}f}{\mathscr{G}}\ dP \\
+			&= \int_X \cexp{g}{\mathscr{G}}f\ dP
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\lim_{n \to \infty} \int_X g\cexp{f_n}{\mathscr{G}}\ dP
+			= \lim_{n \to \infty} \int_X \cexp{g}{\mathscr{G}}f_n\ dP
+			= \int_X \cexp{g}{\mathscr{G}}f\ dP
+			= \int_X g\cexp{f}{\mathscr{G}}\ dP
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Theorem 4.10 (Doob-Meyer Decomposition)}
+		Let $\{\mathscr{F}_t\}$ satisfy the usual conditions. If the right-continuous
+		submartingale $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is of class $DL$, then it admits
+		the decomposition (4.6) as the summation of a right-continuous martingale $M = \Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$
+		and an increasing process $A = \Set{A_t,\mathscr{F}_t}{0 \leq t < \infty}$. The latter can be taken to be natural;
+		under this additional condition, the decomposition (4.6) is unique (up to indistinguishability).
+		Further, if $X$ is of class $D$, then $M$ is a uniformly integrable martingale and $A$ is integrable.	
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				分解の一意性を示す．
+		\end{description}
+	\end{prf}
