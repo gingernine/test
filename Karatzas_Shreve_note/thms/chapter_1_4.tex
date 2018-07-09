@@ -31,10 +31,13 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Doob's decomposition}
-		Any submartingale $\Set{X_n,\mathscr{F}_n}{n=0,1,\cdots}$ admits the Doob decomposition
+		Any submartingale $\Set{X_n,\mathscr{F}_n}{n=0,1,\cdots}$ admits the unique decomposition
 		$X_n = M_n + A_n$ as the summation of a martingale $\{M_n,\mathscr{F}_n\}$ and an 
-		predictable and increasing sequence $\{A_n,\mathscr{F}_n\}$.
-		This decomposition is unique.
+		predictable and increasing sequence $\{A_n,\mathscr{F}_n\}$, where
+		\begin{align}
+			A_n = \sum_{k=0}^{n-1}\cexp{X_{k+1}-X_k}{\mathscr{F}_k},
+			\quad \mbox{a.s. $P$},\ n \geq 1.
+		\end{align}
 	\end{itembox}
 	
 	\begin{prf}\mbox{}
@@ -431,5 +434,71 @@
 		\begin{description}
 			\item[第一段]
 				分解の一意性を示す．
+				二つのマルチンゲール$\{M_t,\mathscr{F}_t\},\{M'_t,\mathscr{F}_t\}$と
+				ナチュラルな$\{A_t,\mathscr{F}_t\},\{A'_t,\mathscr{F}_t\}$により
+				\begin{align}
+					X_t = M_t + A_t = M't + A'_t,
+					\quad \forall t \geq 0
+				\end{align}
+				と書けるとき，
+				$B=\Set{B_t \coloneqq A_t - A'_t = M'_t - M_t,\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールとなる．
+				いま，$[0,t]$の分割を$\Pi_n \coloneqq \left\{t_0^{(n)},\cdots,t_{m_n}^{(n)}\right\},\ 
+				|\Pi_n| \longrightarrow 0\ (n \longrightarrow \infty)$として，
+				任意の有界な右連続マルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対して
+				\begin{align}
+					\xi^n_s \coloneqq \sum_{j=1}^{m_n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(s)\ \xi_{t^{(n)}_{j-1}},
+					\quad (\forall s \in (0,t])
+				\end{align}
+				とおけば，Theorem 3.8(v)より$\xi$のパスはa.s.に$RCLL$であるから
+				\begin{align}
+					\lim_{n \to \infty} \xi^n_s = \xi_{s-},\ (\forall s \in (0,t]),\ \mbox{a.s. $P$}
+				\end{align}
+				が成り立つ．従ってLebesgueの収束定理より
+				\begin{align}
+					E\left[ \xi_t\left( A_t - A'_t \right) \right]
+					&= E\left[ \xi_t A_t \right] -  E\left[ \xi_t A'_t \right]
+					= E\int_{(0,t]} \xi_{s-}\ dA_s - E\int_{(0,t]} \xi_{s-}\ dA'_s \\
+					&= \lim_{n \to \infty} E\sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right)
+						-  \lim_{n \to \infty} E\sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A'_{t^{(n)}_j} - A'_{t^{(n)}_{j-1}} \right) \\
+					&= \lim_{n \to \infty} E\sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right)
+				\end{align}
+				が成立し，$B$のマルチンゲール性より
+				\begin{align}
+					E\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right)
+					= E \left[\cexp{\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right)}{\mathscr{F}_{t^{(n)}_{j-1}}} \right]
+					= E \left[ \xi_{t^{(n)}_{j-1}}\cexp{B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}}}{\mathscr{F}_{t^{(n)}_{j-1}}} \right]
+					= 0 
+				\end{align}
+				となるから
+				\begin{align}
+					E\left[ \xi_t\left( A_t - A'_t \right) \right] = 0,
+					\quad (\forall t > 0)
+				\end{align}
+				が得られる．今度は任意の有界確率変数$\xi$に対して
+				$\Set{\cexp{\xi}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$でマルチンゲールを作れば
+				\begin{align}
+					E\left[ \cexp{\xi}{\mathscr{F}_t} \right] = E \xi,
+					\quad (\forall t \geq 0)
+				\end{align}
+				が満たされ，Theorem 3,13より右連続な修正$\Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$が得られる．
+				このとき
+				\begin{align}
+					0 = E\left[ \xi_t\left( A_t - A'_t \right) \right]
+					= E\left[ \cexp{\xi}{\mathscr{F}_t}\left( A_t - A'_t \right) \right]
+					= E\left[ \cexp{\xi\left( A_t - A'_t \right)}{\mathscr{F}_t} \right]
+					= E\left[ \xi\left( A_t - A'_t \right) \right]
+				\end{align}
+				が成り立ち，$\xi = \sgn{A_t - A'_t}$として
+				\begin{align}
+					E\left| A_t - A'_t \right| = 0,
+					\quad (\forall t \geq 0)
+				\end{align}
+				が従う．$A,A'$のパスの右連続性より
+				\begin{align}
+					P\left( A_t = A'_t;\ 0 \leq t < \infty \right) = 1
+				\end{align}
+				となり分解の一意性が出る．
+				
+			\item[第二段]
 		\end{description}
 	\end{prf}
