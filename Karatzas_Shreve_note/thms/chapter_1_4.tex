@@ -156,6 +156,19 @@
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{Definition 4.5 について}
+		$A$に対し或る$P$-零集合$N \in \mathscr{F}$が存在して，$\omega \in \Omega \backslash N$なら
+		$t \longmapsto A_t(\omega)$は右連続非減少であるからLebesgue-Stieltjes積分を定義できる．このとき
+		\begin{align}
+			\left( \int_{(0,t]} M_s\ dA_s \right)(\omega)
+			= \begin{cases}
+				\displaystyle\int_{(0,t]} M_s(\omega)\ dA_s(\omega), & (\omega \in \Omega \backslash N), \\
+				0, & (\omega \in N)
+			\end{cases}
+		\end{align}
+		と理解する．
+	\end{itembox}
+	
 	\begin{itembox}[l]{RCLL関数の不連続点は高々可算個}
 		$(S,d)$を距離空間とする．写像$X:[0,\infty) \longrightarrow S$について
 		各点$t \in [0,\infty)$で右連続かつ各点$t \in (0,\infty)$で左極限が存在するとき，
@@ -212,28 +225,16 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Definition 4.5 について}
-		$A$に対し或る$P$-零集合$N \in \mathscr{F}$が存在して，$\omega \in \Omega \backslash N$なら
-		$t \longmapsto A_t(\omega)$は右連続非減少であるからLebesgue-Stieltjes積分を定義できる．このとき
-		\begin{align}
-			\left( \int_{(0,t]} M_s\ dA_s \right)(\omega)
-			= \begin{cases}
-				\displaystyle\int_{(0,t]} M_s(\omega)\ dA_s(\omega), & (\omega \in \Omega \backslash N), \\
-				0, & (\omega \in N)
-			\end{cases}
-		\end{align}
-		と理解する．
-	\end{itembox}
-	
 	\begin{itembox}[l]{Remarks 4.6 (i) 修正}
-		If $A$ is an right-continuous increasing and $X$ a measurable process, then with $\omega \in \Omega$ fixed,
+		If $A$ is an increasing and $X$ a measurable process, then with $\omega \in \Omega$ fixed,
 		the sample path $\Set{X_t(\omega)}{0 \leq t < \infty}$ is a measurable function from $[0,\infty)$
 		into $\R$. It follows that the Lebesgue-Stieltjes integrals
 		\begin{align}
 			I^{\pm}_t(\omega) \coloneqq
 			\int_{(0,t]} X^\pm_s(\omega)\ dA_s(\omega)
 		\end{align}
-		are well defined. If $X$ is progressively measurable (e.g., right-continuous and adapted), and
+		are well defined. If $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$ 
+		and $X$ is progressively measurable (e.g., right-continuous and adapted), and
 		if $I_t = I^+_t - I^-_t$ is well defined and finite for all $t > 0$, then $I$ is right-continuous,
 		progressively measurable.
 	\end{itembox}
@@ -243,7 +244,8 @@
 		補題\ref{lem:Fubini_lemma_1} (P. \pageref{lem:Fubini_lemma_1})より
 		$[0,\infty) \ni t \longmapsto X_t(\omega)$は
 		$\borel{[0,\infty)}/\borel{\R}$-可測である．
-		また
+		また，或る$P$-零集合$N \in \mathscr{F}$が存在して$\omega \in \Omega \backslash N$に対し
+		$t \longmapsto A_t(\omega)$は右連続非減少であり，このとき
 		\begin{align}
 			\mu_\omega((a,b]) = A_b(\omega) - A_a(\omega),
 			\quad (\forall (a,b] \subset [0,\infty))
@@ -254,21 +256,33 @@
 			\coloneqq \int_{(0,t]} X^\pm_s(\omega)\ \mu_\omega(ds),
 			\quad (0 < t < \infty)
 		\end{align}
-		が定義される．$I_t\ (\forall t > 0)$が有限確定し$X$が$(\mathscr{F}_t)$-発展的可測であるとき，
+		が定義される．ここで$I_t = I^+_t - I^-_t$を
 		\begin{align}
-			\mu_\omega^t \coloneqq \left.\mu_\omega\right|_{\borel{[0,t]}}
+			I^\pm_t(\omega) \coloneqq
+			\begin{cases}
+				\displaystyle\int_{(0,t]} X_s(\omega)\ \mu_\omega(ds), & (\omega \in \Omega \backslash N), \\
+				0, & (\omega \in N)
+			\end{cases}
 		\end{align}
-		とおけば$\left([0,t],\borel{[0,t]},\mu_\omega^t\right)$は測度空間となり
+		により定める．$I_t\ (\forall t > 0)$が有限確定し$X$が$(\mathscr{F}_t)$-発展的可測であるとき，
+		$t>0$と$\omega \in \Omega \backslash N$に対して
+		\begin{align}
+			\mu_{t,\omega} \coloneqq \left.\mu_\omega\right|_{\borel{[0,t]}}
+		\end{align}
+		とすれば$\left([0,t],\borel{[0,t]},\mu_{t,\omega}\right)$は測度空間となり
 		\begin{align}
 			I^{\pm}_t(\omega) =
-			\int_{(0,t]} \left.X^\pm\right|_{[0,t] \times \Omega}(s,\omega)\ \mu_\omega^t(ds)
+			\int_{(0,t]} \left.X^\pm\right|_{[0,t] \times \Omega}(s,\omega)\ \mu_{t,\omega}(ds),
+			\quad (\forall \omega \in \Omega \backslash N)
 		\end{align}
-		が成り立つから，Fubiniの定理より
+		が成り立つから，
 		\begin{align}
-			\Omega \ni \omega \longmapsto \int_{(0,t]} \left.X^\pm\right|_{[0,t] \times \Omega}(s,\omega)\ \mu_\omega^t(ds)
+			\mathscr{F}^N_t \coloneqq \Set{E \cap (\Omega \backslash N)}{E \in \mathscr{F}_t}
 		\end{align}
-		は$\mathscr{F}_t/\borel{\R}$-可測である．また任意の$0<t<T$及び$\{t_n\}_{n=1}^\infty \subset (t,T],\ 
-		t_n \downarrow t$に対して，Lebesgueの収束定理より
+		とおけばFubiniの定理より$\left.I^\pm_t\right|_{\Omega \backslash N}$は
+		$\mathscr{F}^N_t/\borel{\R}$-可測であり，
+		$N \in \mathscr{F}_t$より$I^\pm_t$は$\mathscr{F}_t/\borel{\R}$-可測である．
+		また$t<T$及び$\{t_n\}_{n=1}^\infty \subset (t,T],\ t_n \downarrow t$に対して，Lebesgueの収束定理より
 		\begin{align}
 			\lim_{n \to \infty} I^\pm_{t_n}(\omega)
 			= \lim_{n \to \infty} \int_{(0,T]} \defunc_{(0,t_n]}(s)X^\pm_s(\omega)\ \mu_\omega(ds)
@@ -277,6 +291,25 @@
 		\end{align}
 		が成立し$t \longmapsto I_t(\omega)$の右連続性が出る．$I$は右連続$(\mathscr{F}_t)$-適合過程であるから
 		$(\mathscr{F}_t)$-発展的可測である．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Remark 4.6 (ii)}
+		Every continuous, increasing process is natural. Indeed then, for $P$-a.e. $\omega \in \Omega$
+		we have
+		\begin{align}
+			\int_{(0,t]} (M_s(\omega)-M_{s-}(\omega))\ dA_s(\omega) = 0
+			\quad \mbox{for every $0 < t < \infty$},
+		\end{align}
+		because every path $\Set{M_s(\omega)}{0 \leq s < \infty}$ has only countably many discontinuities
+		(Theorem 3.8(v)).
+	\end{itembox}
+	
+	\begin{prf}
+		$P$-a.e. $\omega \in \Omega$に対しLebesgue-Stieltjes積分が定義され，さらに
+		$\Set{M_s(\omega)}{0 \leq s < \infty}$はRCLLである．
+		RCLLパスの不連続点は高々可算個であり，
+		連続な$A$で作る測度に対し一点集合は零集合となる．
 		\QED
 	\end{prf}
 	
