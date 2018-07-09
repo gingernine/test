@@ -155,3 +155,150 @@
 		は$A$の可予測な修正となる．
 		\QED
 	\end{prf}
+	
+	\begin{itembox}[l]{RCLL関数の不連続点は高々可算個}
+		$(S,d)$を距離空間とする．写像$X:[0,\infty) \longrightarrow S$について
+		各点$t \in [0,\infty)$で右連続かつ各点$t \in (0,\infty)$で左極限が存在するとき，
+		$X$の不連続点は存在しても高々可算個である．
+	\end{itembox}
+	
+	\begin{prf}
+		各点$t > 0$における$f$の左極限を$f(t-)$と書けば
+		\begin{align}
+			\mbox{$f$が$t \in (0,\infty)$で不連続}
+			\quad \Leftrightarrow \quad
+			\mbox{$d(f(t),f(t-)) > 0$}
+		\end{align}
+		が成立するから，任意に$T > 0$を選び固定して
+		\begin{align}
+			D(n) \coloneqq \Set{t \in (0,T]}{\frac{1}{n+1} \leq d(f(t),f(t-)) < \frac{1}{n}},
+			\quad E(n) \coloneqq \Set{t \in (0,T]}{n \leq d(f(t),f(t-)) < n+1}
+		\end{align}
+		とおけば
+		\begin{align}
+			D_T \coloneqq \Set{t \in (0,T]}{\mbox{$f$が$t \in (0,\infty)$で不連続}}
+			= \bigcup_{n=1}^\infty D(n) \cup E(n)
+		\end{align}
+		となる．このとき$D(n),E(n)$は全て有限集合である．実際，或る$n$に対し$D(n)$が無限集合なら
+		\begin{align}
+			\left\{ t_k \right\}_{k=1}^\infty \subset D(n),
+			\quad t_k \neq t_j\ (k \neq j)
+		\end{align}
+		を満たす可算集合が存在し，$[0,T]$のコンパクト性より
+		或る部分列$\left( t_{k_m} \right)_{m=1}^\infty$は
+		或る$y \in [0,T]$に収束する．
+		$y=0$の場合，右連続の仮定より$1/2(n+1) > \epsilon > 0$に対し或る$\delta > 0$が存在して
+		\begin{align}
+			d(f(0),f(t)) < \epsilon, \quad (\forall 0 < t < \delta)
+		\end{align}
+		が成り立つが，一方で$0 < t_{k_m} < \delta$を満たす$t_{k_m}$が存在して
+		\begin{align}
+			\frac{1}{n+1} - \epsilon < d(f(t_{k_m}),f(t_{k_m}-)) - d(f(0),f(t_{k_m}-))
+			\leq d(f(0),f(t_{k_m})) < \epsilon 
+		\end{align}
+		となり矛盾が生じる．
+		$y > 0$の場合も，$1/2(n+1) > \epsilon > 0$に対し或る$\delta > 0$が存在して
+		\begin{align}
+			d(f(y-),f(t)) < \epsilon, \quad (\forall t \in (y-\delta,y))
+		\end{align}
+		となるが，$f$が$y$で右連続であるから$y-\delta < t_{k_m} \leq y$を満たす$t_{k_m}$が存在して
+		\begin{align}
+			\frac{1}{n+1} - \epsilon < 
+			d(f(t_{k_m}-),f(t_{k_m})) - d(f(t_{k_m}-),f(y-)) \leq d(f(y-),f(t_{k_m})) < \epsilon
+		\end{align}
+		が従い矛盾が生じる．よって任意の$n \geq 1$に対して$D(n)$は有限集合であり，同様に
+		$E(n)$も有限集合であるから$D_T$は高々可算集合である．
+		$f$の不連続点の全体は$\bigcup_{T=1}^\infty D_T$に一致して高々可算個である．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Definition 4.5 について}
+		$A$に対し或る$P$-零集合$N \in \mathscr{F}$が存在して，$\omega \in \Omega \backslash N$なら
+		$t \longmapsto A_t(\omega)$は右連続非減少であるからLebesgue-Stieltjes積分を定義できる．このとき
+		\begin{align}
+			\left( \int_{(0,t]} M_s\ dA_s \right)(\omega)
+			= \begin{cases}
+				\displaystyle\int_{(0,t]} M_s(\omega)\ dA_s(\omega), & (\omega \in \Omega \backslash N), \\
+				0, & (\omega \in N)
+			\end{cases}
+		\end{align}
+		と理解する．
+	\end{itembox}
+	
+	\begin{itembox}[l]{Remarks 4.6 (i) 修正}
+		If $A$ is an right-continuous increasing and $X$ a measurable process, then with $\omega \in \Omega$ fixed,
+		the sample path $\Set{X_t(\omega)}{0 \leq t < \infty}$ is a measurable function from $[0,\infty)$
+		into $\R$. It follows that the Lebesgue-Stieltjes integrals
+		\begin{align}
+			I^{\pm}_t(\omega) \coloneqq
+			\int_{(0,t]} X^\pm_s(\omega)\ dA_s(\omega)
+		\end{align}
+		are well defined. If $X$ is progressively measurable (e.g., right-continuous and adapted), and
+		if $I_t = I^+_t - I^-_t$ is well defined and finite for all $t > 0$, then $I$ is right-continuous,
+		progressively measurable.
+	\end{itembox}
+	
+	\begin{prf}
+		$X$が$\borel{[0,\infty)} \otimes \mathscr{F}/\borel{\R}$-可測なら，
+		補題\ref{lem:Fubini_lemma_1} (P. \pageref{lem:Fubini_lemma_1})より
+		$[0,\infty) \ni t \longmapsto X_t(\omega)$は
+		$\borel{[0,\infty)}/\borel{\R}$-可測である．
+		また
+		\begin{align}
+			\mu_\omega((a,b]) = A_b(\omega) - A_a(\omega),
+			\quad (\forall (a,b] \subset [0,\infty))
+		\end{align}
+		を満たす$\left([0,\infty),\borel{[0,\infty)}\right)$上の$\sigma$-有限測度が唯一つ存在して
+		\begin{align}
+			\int_{(0,t]} X^\pm_s(\omega)\ dA_s(\omega)
+			\coloneqq \int_{(0,t]} X^\pm_s(\omega)\ \mu_\omega(ds),
+			\quad (0 < t < \infty)
+		\end{align}
+		が定義される．$I_t\ (\forall t > 0)$が有限確定し$X$が$(\mathscr{F}_t)$-発展的可測であるとき，
+		\begin{align}
+			\mu_\omega^t \coloneqq \left.\mu_\omega\right|_{\borel{[0,t]}}
+		\end{align}
+		とおけば$\left([0,t],\borel{[0,t]},\mu_\omega^t\right)$は測度空間となり
+		\begin{align}
+			I^{\pm}_t(\omega) =
+			\int_{(0,t]} \left.X^\pm\right|_{[0,t] \times \Omega}(s,\omega)\ \mu_\omega^t(ds)
+		\end{align}
+		が成り立つから，Fubiniの定理より
+		\begin{align}
+			\Omega \ni \omega \longmapsto \int_{(0,t]} \left.X^\pm\right|_{[0,t] \times \Omega}(s,\omega)\ \mu_\omega^t(ds)
+		\end{align}
+		は$\mathscr{F}_t/\borel{\R}$-可測である．また任意の$0<t<T$及び$\{t_n\}_{n=1}^\infty \subset (t,T],\ 
+		t_n \downarrow t$に対して，Lebesgueの収束定理より
+		\begin{align}
+			\lim_{n \to \infty} I^\pm_{t_n}(\omega)
+			= \lim_{n \to \infty} \int_{(0,T]} \defunc_{(0,t_n]}(s)X^\pm_s(\omega)\ \mu_\omega(ds)
+			= \int_{(0,T]} \defunc_{(0,t]}(s)X^\pm_s(\omega)\ \mu_\omega(ds)
+			= I^\pm_t(\omega)
+		\end{align}
+		が成立し$t \longmapsto I_t(\omega)$の右連続性が出る．$I$は右連続$(\mathscr{F}_t)$-適合過程であるから
+		$(\mathscr{F}_t)$-発展的可測である．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Problem 4.9}
+		Suppose $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a right-continuous submartingale.
+		Show that under any one of the following conditions, $X$ is of class $DL$.
+		\begin{description}
+			\item[(a)] $X_t \geq 0$ a.s. for every $t \geq 0$.
+			\item[(b)] $X$ has the special form
+				\begin{align}
+					X_t = M_t + A_t, \quad 0 \leq t < \infty
+				\end{align}
+				suggested by the Doob decomposition, where $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$
+				is a martingale and $\Set{A_t,\mathscr{F}_t}{0 \leq t < \infty}$ is an increasing process.
+		\end{description}
+		Show also that if $X$ is a uniformly integrable martingale, then it is of class $D$.
+	\end{itembox}
+	
+	\begin{itembox}[l]{Problem 4.11 修正}
+		Let $(X,\mathscr{F},\mu)$ be a $\sigma$-finite measurable space and  
+		$\left\{f_n\right\}_{n=1}^\infty$ be a sequence of integrable complex functions on $(X,\mathscr{F},\mu)$
+		which converges weakly in $L^1$ to an integrable complex function $f$.
+		Then for each $\sigma$-field $\mathscr{G} \subset \mathscr{F}$, the sequence $\cexp{f_n}{\mathscr{G}}$
+		converges to $\cexp{f}{\mathscr{G}}$ weakly in $L^1$.
+	\end{itembox}
