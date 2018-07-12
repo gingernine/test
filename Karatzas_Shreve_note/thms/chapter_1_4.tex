@@ -437,30 +437,46 @@
 				二つのマルチンゲール$\{M_t,\mathscr{F}_t\},\{M'_t,\mathscr{F}_t\}$と
 				ナチュラルな$\{A_t,\mathscr{F}_t\},\{A'_t,\mathscr{F}_t\}$により
 				\begin{align}
-					X_t = M_t + A_t = M't + A'_t,
+					X_t = M_t + A_t = M'_t + A'_t,
 					\quad \forall t \geq 0
 				\end{align}
 				と書けるとき，
-				$B=\Set{B_t \coloneqq A_t - A'_t = M'_t - M_t,\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールとなる．
-				いま，$[0,t]$の分割を$\Pi_n \coloneqq \left\{t_0^{(n)},\cdots,t_{m_n}^{(n)}\right\},\ 
-				|\Pi_n| \longrightarrow 0\ (n \longrightarrow \infty)$として，
-				任意の有界な右連続マルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対して
 				\begin{align}
-					\xi^n_s \coloneqq \sum_{j=1}^{m_n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(s)\ \xi_{t^{(n)}_{j-1}},
-					\quad (\forall s \in (0,t])
+					B=\Set{B_t \coloneqq A_t - A'_t = M'_t - M_t,\mathscr{F}_t}{0 \leq t < \infty}
 				\end{align}
-				とおけば，Theorem 3.8(v)より$\xi$のパスはa.s.に$RCLL$であるから
+				は(a.s.のパスが有界変動な)マルチンゲールとなる．いま任意に$a > 0$を取り
 				\begin{align}
-					\lim_{n \to \infty} \xi^n_s = \xi_{s-},\ (\forall s \in (0,t]),\ \mbox{a.s. $P$}
+					\Pi_n \coloneqq \left\{t_0^{(n)},\cdots,t_{m_n}^{(n)}\right\},
+					\quad \max{1 \leq j \leq m_n}{\left| t_j^{(n)} - t_{j-1}^{(n)}\right|} \longrightarrow 0\ (n \longrightarrow \infty)
 				\end{align}
-				が成り立つ．従ってLebesgueの収束定理より
+				を$[0,a]$の細分列として，
+				任意の有界な右連続マルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対し
 				\begin{align}
-					E\left[ \xi_t\left( A_t - A'_t \right) \right]
-					&= E\left[ \xi_t A_t \right] -  E\left[ \xi_t A'_t \right]
-					= E\int_{(0,t]} \xi_{s-}\ dA_s - E\int_{(0,t]} \xi_{s-}\ dA'_s \\
-					&= \lim_{n \to \infty} E\sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right)
-						-  \lim_{n \to \infty} E\sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A'_{t^{(n)}_j} - A'_{t^{(n)}_{j-1}} \right) \\
-					&= \lim_{n \to \infty} E\sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right)
+					\xi^{(n)}_s \coloneqq \sum_{j=1}^{m_n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(s)\ \xi_{t^{(n)}_{j-1}},
+					\quad (\forall s \in [0,a])
+				\end{align}
+				とおけば，a.s.のパスの正則性(Theorem 3.8(v))より或る$P$-零集合$N_1$が存在して
+				\begin{align}
+					\lim_{n \to \infty} \xi^{(n)}_s(\omega) = \xi_{s-}(\omega),\ \forall s \in (0,a];
+					\quad (\forall \omega \in \Omega \backslash N_1)
+				\end{align}
+				が満たされる．また或る$P$-零集合$N_2$が存在して$\omega \in \Omega \backslash N_2$に対する
+				$A,A'$のパスが右連続かつ非減少となり，このときLebesgueの収束定理より
+				任意の$\omega \in \Omega \backslash (N_1 \cup N_2)$に対して
+				\begin{align}
+					\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s(\omega)\ dA_s(\omega) = \int_{(0,a]} \xi_{s-}(\omega)\ dA_s(\omega),
+					\quad \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s(\omega)\ dA'_s(\omega) = \int_{(0,a]} \xi_{s-}(\omega)\ dA'_s(\omega)
+				\end{align}
+				が成立する．ここで$A_a,A'_a$が可積分で$\xi$が有界であるから，再びLebesgueの収束定理より
+				\begin{align}
+					E\left[ \xi_a\left( A_a - A'_a \right) \right]
+					&= E\left[ \xi_a A_a \right] -  E\left[ \xi_a A'_a \right]
+					= E \int_{(0,a]} \xi_{s-}\ dA_s - E\int_{(0,a]} \xi_{s-}\ dA'_s \\
+					&= E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s\ dA_s \right]
+						- E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s\ dA'_s \right] \\
+					&= \lim_{n \to \infty} E\left[ \sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right) \right]
+						-  \lim_{n \to \infty} E \left[ \sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A'_{t^{(n)}_j} - A'_{t^{(n)}_{j-1}} \right) \right] \\
+					&= \lim_{n \to \infty} E \left[ \sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right) \right]
 				\end{align}
 				が成立し，$B$のマルチンゲール性より
 				\begin{align}
@@ -471,11 +487,10 @@
 				\end{align}
 				となるから
 				\begin{align}
-					E\left[ \xi_t\left( A_t - A'_t \right) \right] = 0,
-					\quad (\forall t > 0)
+					E\left[ \xi_a\left( A_a - A'_a \right) \right] = 0
 				\end{align}
-				が得られる．今度は任意の有界確率変数$\xi$に対して
-				$\Set{\cexp{\xi}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$でマルチンゲールを作れば
+				が得られる．ここで$\xi$を有界実確率変数とすれば
+				$\Set{\cexp{\xi}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールとなり
 				\begin{align}
 					E\left[ \cexp{\xi}{\mathscr{F}_t} \right] = E \xi,
 					\quad (\forall t \geq 0)
@@ -483,23 +498,23 @@
 				が満たされ，Theorem 3,13より右連続な修正$\Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$が得られる．
 				このとき
 				\begin{align}
-					0 = E\left[ \xi_t\left( A_t - A'_t \right) \right]
-					= E\left[ \cexp{\xi}{\mathscr{F}_t}\left( A_t - A'_t \right) \right]
-					= E\left[ \cexp{\xi\left( A_t - A'_t \right)}{\mathscr{F}_t} \right]
-					= E\left[ \xi\left( A_t - A'_t \right) \right]
+					0 = E\left[ \xi_a\left( A_a - A'_a \right) \right]
+					= E\left[ \cexp{\xi}{\mathscr{F}_a}\left( A_a - A'_a \right) \right]
+					= E\left[ \cexp{\xi\left( A_a - A'_a \right)}{\mathscr{F}_a} \right]
+					= E\left[ \xi\left( A_a - A'_a \right) \right]
 				\end{align}
-				が成り立ち，$\xi = \sgn{A_t - A'_t}$として
+				が成り立ち，$\xi = \sgn{A_a - A'_a}$として
 				\begin{align}
-					E\left| A_t - A'_t \right| = 0,
-					\quad (\forall t \geq 0)
+					E\left| A_a - A'_a \right| = 0
 				\end{align}
-				が従う．$A,A'$のパスの右連続性より
+				が従う．$a > 0$の任意性及び$A,A'$のパスの右連続性より
 				\begin{align}
 					P\left( A_t = A'_t;\ 0 \leq t < \infty \right) = 1
 				\end{align}
 				となり分解の一意性が出る．
 				
 			\item[第二段]
+				
 		\end{description}
 	\end{prf}
 	
