@@ -318,12 +318,8 @@
 	
 	\begin{itembox}[l]{Problem 4.9 修正}
 		Suppose $\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$ and
-		$X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a right-continuous submartingale,
-		and set 
-		\begin{align}
-			X_U(\omega) \coloneqq 0, \quad (\forall \omega \in \{U=\infty\})
-		\end{align}
-		for any random time $U$. Show that under any one of the following conditions, $X$ is of class $DL$.
+		$X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a right-continuous submartingale.
+		Show that under any one of the following conditions, $X$ is of class $DL$.
 		\begin{description}
 			\item[(a)] $X_t \geq 0$ a.s. for every $t \geq 0$.
 			\item[(b)] $X$ has the special form
@@ -421,6 +417,26 @@
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{Lemma for Theorem 4.10}
+		$a > 0$，$\mathscr{F}_a/\borel{\R}$-可測写像$A$と$T \in \mathscr{S}_a$に対して次が成り立つ:
+		\begin{align}
+			\left. \cexp{A}{\mathscr{F}_t} \right|_{t = T} = \cexp{A}{\mathscr{F}_T}
+			\quad \mbox{a.s. $P$}.
+			\label{eq:lemma_for_theorem_4_10}
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}
+		$\Set{Y_t \coloneqq \cexp{A}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールであり，
+		任意抽出定理より
+		\begin{align}
+			\cexp{Y_t}{\mathscr{F}_T} = Y_{t \wedge T},
+			\quad \mbox{a.s. $P$}
+		\end{align}
+		が成り立つ．$Y_a = A,\ \mbox{a.s. $P$}$かつ$P(T \leq a)=1$より$t=a$として(\refeq{eq:lemma_for_theorem_4_10})を得る．
+		\QED
+	\end{prf}
+	
 	\begin{itembox}[l]{Theorem 4.10 (Doob-Meyer Decomposition)}
 		Let $\{\mathscr{F}_t\}$ satisfy the usual conditions. If the right-continuous
 		submartingale $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is of class $DL$, then it admits
@@ -509,7 +525,9 @@
 				\end{align}
 				が従う．$a > 0$の任意性及び$A,A'$のパスの右連続性より
 				\begin{align}
-					P\left( A_t = A'_t;\ 0 \leq t < \infty \right) = 1
+					P\left[ \Set{A_t = A'_t}{0 \leq t < \infty} \cap (\Omega \backslash N_2) \right]
+					= P\left[ \bigcap_{a \in [0,\infty) \cap \Q} \{A_a=A'_a\} \right]
+					= 1
 				\end{align}
 				となり分解の一意性が出る．
 				
