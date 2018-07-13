@@ -1,6 +1,6 @@
 \section{条件付き期待値}
 	\begin{screen}
-		\begin{lem}
+		\begin{lem}\label{lem:Lebesgue_Radon_Nikodym}
 			$(X,\mathscr{F},\mu)$を$\sigma$-有限測度空間とするとき，
 			$0 < w < 1$を満たす可積分関数$w$が存在する．
 		\end{lem}
@@ -137,6 +137,7 @@
 				が成り立つから
 				\begin{align}
 					\Norm{\Phi_g}{\left( L^p(\mu) \right)^*} \leq \Norm{g}{L^q(\mu)}
+					\label{eq:thm_dual_space_of_L_p_3}
 				\end{align}
 				が従う．よって$\Phi_g \in \left( L^p(\mu) \right)^*$となる．
 			
@@ -147,6 +148,7 @@
 				\begin{align}
 					\mu(X_n) < \infty,\ (\forall n \geq 1);
 					\quad X = \bigcup_{n=1}^\infty X_n
+					\label{eq:thm_dual_space_of_L_p_6}
 				\end{align}
 				を満たす$\{X_n\}_{n=1}^\infty \subset \mathscr{F}$が存在する．
 				いま，$g,g' \in L^q(\mu)$に対して
@@ -236,6 +238,7 @@
 				が成立し
 				\begin{align}
 					\Norm{g}{L^q(\mu)} \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}
+					\label{eq:thm_dual_space_of_L_p_4}
 				\end{align}
 				が従う．$1 < p < \infty$の場合は，
 				\begin{align}
@@ -269,12 +272,103 @@
 				が得られ，単調収束定理より
 				\begin{align}
 					\Norm{g}{L^q(\mu)} \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}
+					\label{eq:thm_dual_space_of_L_p_5}
 				\end{align}
 				が出る．
 				
 			\item[第五段]
-				任意の$f \in L^p(\mu)$に対して(\refeq{eq:thm_dual_space_of_L_p_2})が成り立つことを示す．
+				任意の$f \in L^p(\mu)$に対して，単関数近似列$(f_n)_{n=1}^\infty$は(\refeq{eq:thm_dual_space_of_L_p_2})を満たすから，
+				H\Ddot{o}lderの不等式とLebesgueの収束定理より
+				\begin{align}
+					\left| \varphi(f) - \int_X fg\ d\mu \right|
+					&\leq \left| \varphi(f) - \varphi(f_n) \right| + \left| \int_X f_ng\ d\mu - \int_X fg\ d\mu \right| \\
+					&\leq \Norm{\varphi}{\left( L^p(\mu) \right)^*} \Norm{f - f_n}{L^p(\mu)}
+						+ \Norm{f - f_n}{L^p(\mu)}\Norm{g}{L^q(\mu)} \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となり
+				\begin{align}
+					\varphi = \Phi(g)
+				\end{align}
+				が成り立つ．また，このとき(\refeq{eq:thm_dual_space_of_L_p_3})と(\refeq{eq:thm_dual_space_of_L_p_4})或は
+				(\refeq{eq:thm_dual_space_of_L_p_5})より
+				\begin{align}
+					\Norm{g}{L^q(\mu)} = \Norm{\varphi}{\left( L^p(\mu) \right)^*}
+				\end{align}
+				が満たされる．
 				
+			\item[第六段]
+				$\mu(X) = \infty$の場合，補題\ref{lem:Lebesgue_Radon_Nikodym}の関数$w$を用いて
+				\begin{align}
+					\tilde{\mu}(E) \coloneqq \int_E w\ d\mu,
+					\quad (\forall E \in \mathscr{F})
+				\end{align}
+				により有限測度$\tilde{\mu}$が定める．このとき
+				任意の$f \in L^p(\mu)$に対して
+				\begin{align}
+					F \coloneqq w^{-1/p} f
+				\end{align}
+				とおけば
+				\begin{align}
+					\int_X |F|^p\ d\tilde{\mu} = \int_X |F|^p w\ d\mu = \int_X |f|^p\ d\mu
+					\label{eq:thm_dual_space_of_L_p_6}
+				\end{align}
+				が成立し，
+				\begin{align}
+					L^p \ni f \longmapsto w^{-1/p} f \in L^p(\tilde{\mu})
+				\end{align}
+				は等長な線型同型となる．ここで任意の$\varphi \in \left( L^p(\mu) \right)^*$に対して
+				\begin{align}
+					\Psi(F) \coloneqq \varphi\left( w^{1/p} F \right),
+					\quad (\forall F \in L^p(\tilde{\mu}))
+				\end{align}
+				で線形作用素$\Psi$を定めれば
+				\begin{align}
+					\left| \Psi(F) \right| = \left| \varphi\left( w^{1/p} F \right) \right|
+					\leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}\Norm{w^{1/p} F}{L^p(\mu)}
+					= \Norm{\varphi}{\left( L^p(\mu) \right)^*}\Norm{F}{L^p(\tilde{\mu})}
+				\end{align}
+				より$\Psi \in \left( L^p(\tilde{\mu}) \right)^*$が満たされ，かつ
+				任意の$f \in L^p(\mu)$に対して
+				\begin{align}
+					\left| \varphi(f) \right| = \left| \Psi\left( w^{-1/p} f \right) \right|
+					\leq \Norm{\Psi}{\left( L^p(\mu) \right)^*}\Norm{w^{-1/p} f}{L^p(\tilde{\mu})}
+					= \Norm{\Psi}{\left( L^p(\tilde{\mu}) \right)^*}\Norm{f}{L^p(\mu)}
+				\end{align}
+				も成り立ち
+				\begin{align}
+					\Norm{\varphi}{\left( L^p(\mu) \right)^*} = \Norm{\Psi}{\left( L^p(\tilde{\mu}) \right)^*}
+				\end{align}
+				が得られる．前段までの結果より$\Psi$に対し或る$G \in L^q(\tilde{\mu})$が存在して
+				\begin{align}
+					\Psi(F) = \int_X FG\ d\tilde{\mu}
+				\end{align}
+				が成立するから，任意の$f \in L^p(\mu)$に対して
+				\begin{align}
+					\varphi(f) = \Psi\left( w^{-1/p} f \right)
+					= \int_X w^{-1/p} f G w\ d\mu
+					= \begin{cases}
+						\displaystyle\int_X f G\ d\mu, & (p = 1), \\
+						\displaystyle\int_X f w^{1/q} G\ d\mu, & (1 < p < \infty)
+					\end{cases}
+				\end{align}
+				が従い，
+				\begin{align}
+					g \coloneqq
+					\begin{cases}
+						G, & (p = 1), \\
+						w^{1/q} G, & (1 < p < \infty)
+					\end{cases}
+				\end{align}
+				とおけば(\refeq{eq:thm_dual_space_of_L_p_6})より$g \in L^q(\mu)$となり，
+				$\varphi = \Phi(g)$かつ
+				\begin{align}
+					\Norm{\varphi}{\left( L^p(\mu) \right)^*} = \Norm{\Psi}{\left( L^p(\tilde{\mu}) \right)^*}
+					= \Norm{G}{L^q(\tilde{\mu})}
+					= \Norm{g}{L^q(\mu)}
+				\end{align}
+				が満たされる．
+				\QED
 		\end{description}
 	\end{prf}
 	
