@@ -680,7 +680,67 @@
 				が得られる．
 			
 			\item[第六段]
+				$t \longmapsto A_t(\omega)$がa.s.に0出発かつ非減少であることを示す．
+				実際，$\xi = \sgn{A_0}$として
+				\begin{align}
+					E |A_0| = E \xi A_0 = E \xi \tilde{A}_0 = \lim_{k \to \infty} E \xi A^{(n_k)}_0 = 0
+				\end{align}
+				が成り立つから$A_0 = 0\ \mbox{a.s. $P$}$が従う．また任意に$s,t \in \Pi,\ (s<t)$を取れば
+				或る$K \geq 1$が存在して$s,t \in \Pi_{n_k}\ (\forall k > K)$が満たされ，
+				$A^{(n_k)}$は増大過程であるから$\xi = \defunc_{\{A_s > A_t\}}$として
+				\begin{align}
+					E \xi (A_t - A_s) = E \xi \left( \tilde{A}_t - \tilde{A}_s \right)
+					= \lim_{k \to \infty} E \xi \left( A^{(n_k)}_t - A^{(n_k)}_s \right) \geq 0 
+				\end{align}
+				となり$P(A_s > A_t) = 0$が成り立つ．
+				\begin{align}
+					N \coloneqq \Biggl(\bigcup_{\substack{s,t \in \Pi \\ s < t}} \{A_s > A_t\}\Biggr) \cup \{A_0 \neq 0\}
+				\end{align}
+				により$P$-零集合を定めれば，$t \longmapsto A_t$の右連続性より
+				$\Omega \backslash N$上で$t \longmapsto A_t$は0出発非減少となる．
 				
+			\item[第七段]
+				$A$がナチュラルであることを示す．$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t \leq a}$を有界な右連続マルチンゲールとすれば
+				\begin{align}
+					E \xi_a A^{(n_k)}_a 
+					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( A^{(n_k)}_{t^{(n_k)}_j} - A^{(n_k)}_{t^{(n_k)}_{j-1}} \right) \right]\\
+					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( Y_{t^{(n_k)}_j} - Y_{t^{(n_k)}_{j-1}} \right) \right]
+						+ E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_j}} - \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_{j-1}}} \right) \right] \\
+					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( A_{t^{(n_k)}_j} - A_{t^{(n_k)}_{j-1}} \right) \right]
+				\end{align}
+				が任意の$k \geq 1$で成り立ち，或る$P$-零集合$N'$が存在して
+				$\Omega \backslash N'$上で$\xi$のパスがRCLLとなるから，
+				\begin{align}
+					\left(\int_{(0,a]} \xi_{s(-)}\ dA_s\right)(\omega)
+					\coloneqq 
+					\begin{cases}
+						\displaystyle\int_{(0,a]} \xi_{s(-)}(\omega)\ dA_s(\omega), & (\omega \in \Omega \backslash (N \cup N')), \\
+						0, & (\omega \in N \cup N')
+					\end{cases}
+				\end{align}
+				と定めれば$k \longrightarrow \infty$として
+				\begin{align}
+					E \xi_a A_a = E \int_{(0,a]} \xi_{s-}\ dA_s
+				\end{align}
+				が得られる．任意の$t \in (0,a]$に対し
+				$\xi^t = \Set{\xi^t_s \coloneqq \xi_{t \wedge s},\mathscr{F}_s}{0 \leq s \leq a}$
+				も連続マルチンゲールであり
+				\begin{align}
+					\xi^t_{s-} &= \xi_{s-},\quad (\forall s \in (0,t]), \\
+					\xi^t_{s-} &= \xi_t, \quad (\forall s \in (t,a])
+				\end{align}
+				より
+				\begin{align}
+					E \xi_t A_t + E \xi_t(A_a - A_t) = E \xi^t_a A_a 
+					= E \int_{(0,a]} \xi^t_{s-}\ dA_s
+					= E \int_{(0,t]} \xi_{s-}\ dA_s + E \xi_t (A_a - A_t)
+				\end{align}
+				となり
+				\begin{align}
+					E \xi_t A_t = E \int_{(0,t]} \xi_{s-}\ dA_s,
+					\quad (\forall t \in (0,a])
+				\end{align}
+				が成立する．
 		\end{description}
 	\end{prf}
 	
