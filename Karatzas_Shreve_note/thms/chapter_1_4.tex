@@ -172,7 +172,7 @@
 		と理解する．
 	\end{itembox}
 	
-	\begin{itembox}[l]{RCLL関数の不連続点は高々可算個}
+	\begin{itembox}[l]{RCLLなパスの不連続点は高々可算個}
 		$(S,d)$を距離空間とする．写像$X:[0,\infty) \longrightarrow S$について
 		各点$t \in [0,\infty)$で右連続かつ各点$t \in (0,\infty)$で左極限が存在するとき，
 		$X$の不連続点は存在しても高々可算個である．
@@ -389,7 +389,7 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Problem 4.11 修正}
-		Let $(X,\mathscr{F},\mu)$ be a $\sigma$-finite measurable space and  
+		Let $(X,\mathscr{F},\mu)$ be a measure space and  
 		$\left\{f_n\right\}_{n=1}^\infty$ be a sequence of integrable complex functions on $(X,\mathscr{F},\mu)$
 		which converges weakly in $L^1$ to an integrable complex function $f$.
 		Then for each $\sigma$-field $\mathscr{G} \subset \mathscr{F}$
@@ -398,22 +398,28 @@
 	\end{itembox}
 	
 	\begin{prf}
-		任意の$g \in \mathscr{L}^\infty(X,\mathscr{F},\mu)$に対して
+		任意の$g \in L^\infty(\mu)$と$F \in L^1(\mu)$に対して
 		\begin{align}
-			\int_X g\cexp{f}{\mathscr{G}}\ dP
-			&= \int_X \cexp{g\cexp{f}{\mathscr{G}}}{\mathscr{G}}\ dP \\
-			&= \int_X \cexp{g}{\mathscr{G}}\cexp{f}{\mathscr{G}}\ dP \\
-			&= \int_X \cexp{\cexp{g}{\mathscr{G}}f}{\mathscr{G}}\ dP \\
-			&= \int_X \cexp{g}{\mathscr{G}}f\ dP
+			\int_X g\cexp{F}{\mathscr{G}}\ d\mu
+			&= \int_X \cexp{g\cexp{F}{\mathscr{G}}}{\mathscr{G}}\ d\mu \\
+			&= \int_X \cexp{g}{\mathscr{G}}\cexp{F}{\mathscr{G}}\ d\mu \\
+			&= \int_X \cexp{\cexp{g}{\mathscr{G}}F}{\mathscr{G}}\ d\mu \\
+			&= \int_X \cexp{g}{\mathscr{G}}F\ d\mu
 		\end{align}
-		が成り立つから
+		が成り立ち，また$\nu \coloneqq \left.\mu\right|_{\mathscr{G}}$とおけば
 		\begin{align}
-			\lim_{n \to \infty} \int_X g\cexp{f_n}{\mathscr{G}}\ dP
-			= \lim_{n \to \infty} \int_X \cexp{g}{\mathscr{G}}f_n\ dP
-			= \int_X \cexp{g}{\mathscr{G}}f\ dP
-			= \int_X g\cexp{f}{\mathscr{G}}\ dP
+			\int_A \cexp{g}{\mathscr{G}}\ d\nu = \int_A g\ d\mu \leq \mu(A) \Norm{g}{L^\infty(\mu)}
+			= \nu(A) \Norm{g}{L^\infty(\mu)},
+			\quad (\forall A \in \mathscr{G})
 		\end{align}
-		となる．
+		より$\Norm{\cexp{g}{\mathscr{G}}}{L^\infty(\nu)} \leq \Norm{g}{L^\infty(\mu)}$が従い，
+		\begin{align}
+			\lim_{n \to \infty} \int_X g\cexp{f_n}{\mathscr{G}}\ d\mu
+			= \lim_{n \to \infty} \int_X \cexp{g}{\mathscr{G}}f_n\ d\mu
+			= \int_X \cexp{g}{\mathscr{G}}f\ d\mu
+			= \int_X g\cexp{f}{\mathscr{G}}\ d\mu
+		\end{align}
+		となるから$\cexp{f_n}{\mathscr{G}}$は$\cexp{f}{\mathscr{G}}$に$L^1(\mu)$で弱収束する．
 		\QED
 	\end{prf}
 	

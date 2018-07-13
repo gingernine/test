@@ -1,0 +1,141 @@
+\section{一様可積分性}
+	\begin{screen}
+	\begin{thm}[一様可積分性の同値条件]\label{thm:appendix_uniform_integrability_equivalence}
+		$(X,\mathscr{F},\mu)$を測度空間とし，$\mu(X)<\infty$とする．
+		任意の添数集合$\Lambda$に対して$(f_\lambda)_{\lambda \in \Lambda}$を
+		$\mathscr{F}/\borel{\C}$-可測関数の族とするとき，次の(1)と(2)は同値である:
+		\begin{description}
+			\item[(1)] $(f_\lambda)_{\lambda \in \Lambda}$が一様可積分．
+			\item[(2)] 
+				\begin{align}
+					\sup{\lambda \in \Lambda}\int_X|f_\lambda|\ d\mu < \infty
+					\label{eq:thm_appendix_uniform_integrability_equivalence_1}
+				\end{align}
+				かつ，任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して次を満たす:
+				\begin{align}
+					\mu(B) < \delta
+					\Rightarrow \sup{\lambda \in \Lambda}\int_B |f_\lambda|\ d\mu < \epsilon.
+					\label{eq:thm_appendix_uniform_integrability_equivalence_2}
+				\end{align}
+		\end{description}
+	\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$(1) \Rightarrow (2)$を示す．任意の$a > 0$に対して
+				\begin{align}
+					\int_X |f_\lambda|\ d\mu
+					= \int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu
+						+ \int_{\{|f_\lambda| \leq a\}} |f_\lambda|\ d\mu
+					\leq \sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu
+						+ a\mu(X)
+				\end{align}
+				が成り立ち，一様可積分性より或る$a > 0$に対して
+				\begin{align}
+					\sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu < \infty
+				\end{align}
+				となるから(\refeq{eq:thm_appendix_uniform_integrability_equivalence_1})が従う．
+				また任意の$B \in \mathscr{F}$に対して
+				\begin{align}
+					\int_B |f_\lambda|\ d\mu
+					= \int_{\{|f_\lambda|>a\} \cap B} |f_\lambda|\ d\mu
+						+ \int_{\{|f_\lambda| \leq a\} \cap B} |f_\lambda|\ d\mu
+					\leq \sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu
+						+ a\mu(B)
+				\end{align}
+				が成り立つから，任意の$\epsilon > 0$に対して
+				\begin{align}
+					\sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu < \frac{\epsilon}{2}
+				\end{align}
+				を満たす$a > 0$を取り$\delta \coloneqq \epsilon/(2a)$とおけば
+				(\refeq{eq:thm_appendix_uniform_integrability_equivalence_2})が成立する．
+				
+			\item[第二段]
+				$(2) \Rightarrow (1)$を示す．任意の$a > 0$に対して
+				\begin{align}
+					\mu(|f_\lambda| > a) \leq \frac{1}{a} \int_X |f_\lambda|\ d\mu
+					\leq \frac{1}{a}\sup{\lambda \in \Lambda}{\int_X|f_\lambda|\ d\mu}
+				\end{align}
+				が成立するから，(\refeq{eq:thm_appendix_uniform_integrability_equivalence_2})
+				を満たす$\delta > 0$に対し或る$a_0 > 0$が存在して
+				\begin{align}
+					\mu(|f_\lambda| > a) < \delta,
+					\quad (\forall \lambda \in \Lambda,\ \forall a > a_0)
+				\end{align}
+				となり
+				\begin{align}
+					\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu < \epsilon,
+					\quad (\forall \lambda \in \Lambda,\ \forall a > a_0)
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+	\begin{thm}[一様可積分性と平均収束]\label{lem:uniformly_integrable_and_convergence_in_mean}
+		$(X,\mathscr{F},\mu)$を$\sigma$-有限測度空間とし，
+		$(f_n)_{n=1}^\infty$を$\mathscr{F}/\borel{\C}$-可測関数の族とする．
+		$(f_n)_{n=1}^\infty$が$\mu$-a.e.に$\C$で収束するとき，つまり或る零集合$A$が存在して，
+		\begin{align}
+			f \coloneqq \lim_{n \to \infty} f_n \defunc_A
+		\end{align}
+		により$\mathscr{F}/\borel{\C}$-可測関数が定まるとき，
+		次の(1)と(2)は同値である:
+		\begin{description}
+			\item[(1)] $(f_n)_{n=1}^\infty$が一様可積分．
+			\item[(2)] $f$が可積分で次を満たす:
+				\begin{align}
+					\int_X |f - f_n|\ d\mu 
+					\longrightarrow 0
+					\quad (n \longrightarrow \infty).
+				\end{align}
+		\end{description}
+	\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+	\begin{thm}[一様可積分性と条件付き期待値]\label{lem:uniformly_integrability_and_conditional_expectations}
+		$(X,\mathscr{F},\mu)$を測度空間とする．
+		部分$\sigma$-加法族$\mathscr{G} \subset \mathscr{F}$に対し
+		$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限なら，
+		可積分関数$f:X \longrightarrow \R$に対し
+		$\left( \cexp{f}{\mathscr{G}} \right)_{\mathscr{G} \subset \mathscr{F}}$は一様可積分である．
+	\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		Jensenの不等式より
+				\begin{align}
+					\int_{\left| \cexp{f}{\mathscr{G}} \right| > \lambda} \left| \cexp{f}{\mathscr{G}} \right|\ d\mu
+					\leq \int_{\cexp{|f|}{\mathscr{G}} > \lambda} \cexp{|f|}{\mathscr{G}}\ d\mu
+					= \int_{\cexp{|f|}{\mathscr{G}} > \lambda} |f|\ d\mu
+				\end{align}
+				が成り立つ．また$X$の可積分性より，任意の$\epsilon > 0$に対して
+				或る$\delta > 0$が存在し
+				\begin{align}
+					\mu(B) < \delta \Rightarrow \int_B |f|\ d\mu < \epsilon
+				\end{align}
+				が満たされる．いま，Chebyshevの不等式より
+				\begin{align}
+					\mu\left( \cexp{|f|}{\mathscr{G}} > \lambda \right)
+					\leq \frac{1}{\lambda} \int_X \cexp{|f|}{\mathscr{G}}\ d\mu
+					= \frac{1}{\lambda} \int_X |f|\ d\mu
+				\end{align}
+				となるから，$\epsilon > 0$に対し或る$\lambda_0 > 0$が存在して
+				\begin{align}
+					\sup{\mathscr{G} \subset \mathscr{F}}{\mu\left( \cexp{|f|}{\mathscr{G}} > \lambda \right)}
+					< \delta,
+					\quad (\forall \lambda > \lambda_0)
+				\end{align}
+				が満たされ
+				\begin{align}
+					\sup{\mathscr{G} \subset \mathscr{F}}{\int_{\cexp{|f|}{\mathscr{G}} > \lambda}|f|\ d\mu}
+					< \epsilon,
+					\quad (\forall \lambda > \lambda_0)
+				\end{align}
+				が従う．
+		\QED
+	\end{prf}

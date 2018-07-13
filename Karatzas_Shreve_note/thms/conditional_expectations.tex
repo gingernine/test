@@ -1,5 +1,100 @@
 \section{条件付き期待値}
 	\begin{screen}
+		\begin{lem}
+			$(X,\mathscr{F},\mu)$を$\sigma$-有限測度空間 $(\mu(X) > 0)$とするとき，
+			$0 < w < 1$を満たす可積分関数$w$が存在する．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		$\sigma$-有限の仮定より
+		\begin{align}
+			0 < \mu(X_n) < \infty,\ (\forall n \geq 1),
+			\quad X = \bigcup_{n=1}^\infty X_n
+		\end{align}
+		を満たす$\{X_n\}_{n=1}^\infty \subset \mathscr{F}$が存在する．ここで
+		\begin{align}
+			w_n(x) \coloneqq
+			\begin{cases}
+				\displaystyle\frac{1}{2^n\left(1+\mu(X_n)\right)}, & x \in X_n, \\
+				0, & x \in X \backslash X_n,
+			\end{cases}
+			\quad n=1,2,\cdots
+		\end{align}
+		に対して
+		\begin{align}
+			w \coloneqq \sum_{n=1}^\infty w_n
+		\end{align}
+		と定めれば，任意の$x \in X$は或る$X_n$に属するから
+		\begin{align}
+			0 < w_n(x) \leq w(x)
+		\end{align}
+		が成り立ち，かつ
+		\begin{align}
+			w(x) = w_1(x) + \sum_{n=2}^\infty w_n(x)
+			\leq \frac{1}{2\left(1+\mu(X_1)\right)} + \frac{1}{2}
+			< 1,
+			\quad (\forall x \in X)
+		\end{align}
+		が満たされる．また単調収束定理より
+		\begin{align}
+			\int_X w\ d\mu \leq \sum_{n=1}^\infty \int_X w_n\ d\mu
+			\leq \sum_{n=1}^\infty \frac{\mu(X_n)}{2^n\left(1+\mu(X_n)\right)}
+			\leq 1
+		\end{align}
+		となり$w$の可積分性が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Lebesgue-Radon-Nikodym]
+			$(X,\mathscr{F})$を可測空間，$\lambda$を$(X,\mathscr{F})$上の複素測度，
+			$\mu$を$(X,\mathscr{F})$上の$\sigma$-有限正値測度とするとき，以下が成立する:
+			\begin{description}
+				\item[Lebesgue分解]
+					$\lambda$は$\mu$に関して絶対連続な$\lambda_a$及び$\mu$と互いに特異な
+					$\lambda_s$に一意に分解される:
+					\begin{align}
+						\lambda = \lambda_a + \lambda_s,
+						\quad \lambda_a \ll \mu,
+						\quad \lambda_s \perp \mu.
+					\end{align}
+				
+				\item[密度関数の存在]
+					$\lambda_a$に対し或る$g \in L^1(\mu) = L^1(X,\mathscr{F},\mu)$が唯一つ存在して次を満たす:
+					\begin{align}
+						\lambda_a(E) = \int_E g\ d\mu,
+						\quad (\forall E \in \mathscr{F}).
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[条件付き期待値]
+			$(X,\mathscr{F},\mu)$を測度空間，$f \in L^1(\mu)$とする．
+			部分$\sigma$-加法族$\mathscr{G} \subset \mathscr{F}$に対し
+			$\nu \coloneqq \left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとき，
+			\begin{align}
+				\lambda(A) \coloneqq \int_A f\ d\mu,
+				\quad (\forall A \in \mathscr{G})
+			\end{align}
+			により$(X,\mathscr{G})$上に複素測度$\lambda$が定まり，$\lambda \ll \nu$であるから
+			Lebesgue-Radon-Nikodymの定理より
+			\begin{align}
+				\lambda(A) = \int_A g\ d\nu,
+				\quad (\forall A \in \mathscr{G})
+			\end{align}
+			を満たす$g \in L^1(\nu) = L^1\left(X,\mathscr{G},\nu\right)$
+			が存在する．この$g$を$\mathscr{G}$で条件付けた$f$の条件付き期待値と呼び
+			\begin{align}
+				g = \cexp{f}{\mathscr{G}}
+			\end{align}
+			と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{thm}
 			\begin{description}
 				\item[(1)]
@@ -15,3 +110,93 @@
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+	\begin{lem}[凸関数の片側微係数の存在]
+		任意の凸関数$\varphi:\R \longrightarrow \R$には
+		各点で左右の微係数が存在する．特に，凸関数は連続であり，すなわちBorel可測である．
+	\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		凸性より任意の$x < y < z$に対して
+		\begin{align}
+			\frac{\varphi(y) - \varphi(x)}{y - x} 
+			\leq \frac{\varphi(z) - \varphi(x)}{z - x}
+			\leq \frac{\varphi(z) - \varphi(y)}{z - y}
+			\label{ineq:lem:convex_function_measurability_1}
+		\end{align}
+		が満たされる．従って，$x$を固定すれば，$x$に単調減少に近づく任意の点列$(x_n)_{n=1}^{\infty}$に対し
+		 \begin{align}
+		 	\left(\frac{f(x_n)-f(x)}{x_n-x}\right)_{n=1}^{\infty} 
+		 	\label{seq:lem:convex_function_measurability_2}
+		 \end{align}
+		 は下に有界な単調減少列となり下限が存在する．$x$に単調減少に近づく別の点列$(y_k)_{k=1}^{\infty}$を取れば
+		 \begin{align}
+		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \frac{f(x_n)-f(x)}{x_n-x} \quad (n=1,2,\cdots)
+		 \end{align}
+		 より
+		 \begin{align}
+		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \inf{n \in \N}{\frac{f(x_n)-f(x)}{x_n-x}}
+		 \end{align}
+		 が成立し，$(x_n),(y_k)$の立場を変えれば逆向きの不等号も得られる．
+		 すなわち極限は点列に依らず確定し，$\varphi$は$x$で右側微係数を持つ．
+		 同様に左側微係数も存在し，特に$\varphi$の連続性及びBorel可測性が従う．
+		 \QED
+	\end{prf}
+	
+	\begin{screen}
+	\begin{thm}[Jensenの不等式]
+		$(X,\mathscr{F},\mu)$を測度空間，
+		$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族とし，
+		$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとする．
+		このとき，任意の可積分関数
+		$f:X \longrightarrow \R$と
+		凸関数$\varphi:\R \longrightarrow \R$に対し，
+		$\varphi(f)$が可積分なら次が成立する:
+		\begin{align}
+			\varphi\left(\cexp{f}{\mathscr{G}} \right)
+			\leq \cexp{\varphi(f)}{\mathscr{G}},
+			\quad \mbox{$\mu$-a.e.}
+		\end{align}
+	\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+			$\varphi$は各点$x \in \R$で右側接線を持つから，
+			それを$\R \ni t \longmapsto a_x t + b_x$と表せば，
+			\begin{align}
+				\varphi(t) = \sup{r \in \Q}{\left\{ a_r t + b_r \right\}} \quad (\forall t \in \R)
+				\label{eq:prp_properties_of_expanded_conditional_expectation_1}
+			\end{align}
+			が成立する．
+			よって任意の$r \in \Q$に対して
+			\begin{align}
+				\varphi(f(x)) \geq a_r f(x) + b_r
+			\end{align}
+			が満たされるから
+			\begin{align}
+				\cexp{\varphi(f)}{\mathscr{G}}
+				\geq a_r \cexp{f}{\mathscr{G}} + b_r 
+				\quad \mbox{$\mu$-a.e.},
+				\quad \forall r \in \Q 
+			\end{align}
+			が従い，各$r \in \Q$に対し
+			\begin{align}
+				N_r \coloneqq \Set{x \in X}{\cexp{\varphi(f)}{\mathscr{G}}(x)
+				< a_r \cexp{f}{\mathscr{G}}(x) + b_r}
+			\end{align}
+			とおけば$\mu(N_r) = 0$かつ
+			\begin{align}
+				\cexp{\varphi(f)}{\mathscr{G}}(x)
+				\geq a_r \cexp{f}{\mathscr{G}}(x) + b_r, 
+				\quad \forall r \in \Q,\ x \notin \bigcup_{r \in \Q} N_r
+			\end{align}
+			となる．$r$の任意性と(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
+			\begin{align}
+				\cexp{\varphi(f)}{\mathscr{G}} \geq \varphi\left( \cexp{f}{\mathscr{G}} \right),
+				\quad \mbox{$\mu$-a.e.}
+			\end{align}
+			が得られる．
+			\QED
+	\end{prf}
