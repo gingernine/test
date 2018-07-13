@@ -30,7 +30,7 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Doob's decomposition}
+	\begin{itembox}[l]{Doob's decomposition}\label{lem:Doob_decomposition}
 		Any submartingale $\Set{X_n,\mathscr{F}_n}{n=0,1,\cdots}$ admits the unique decomposition
 		$X_n = M_n + A_n$ as the summation of a martingale $\{M_n,\mathscr{F}_n\}$ and an 
 		predictable and increasing sequence $\{A_n,\mathscr{F}_n\}$, where
@@ -538,12 +538,13 @@
 				となり分解の一意性が出る．
 				
 			\item[第二段]
-				任意の区間$[0,a]\ (a>0)$上で分解の存在を示せばよい．
-				実際これが示されれば任意の$n \geq 1$に対し
+				任意の区間$[0,a]$上で分解の存在を示せば
+				$[0,\infty)$での分解が得られる．
+				実際任意の$n \geq 1$に対し
 				\begin{align}
 					X_t = M^n_t + A^n_t, \quad (t \in [0,n])
 				\end{align}
-				と分解されるから，$m > n$に対して
+				と分解されるなら，$m > n$に対して
 				\begin{align}
 					M^n_t + A^n_t = M^m_t + A^m_t, \quad (t \in [0,n])
 				\end{align}
@@ -566,7 +567,7 @@
 					A_t \coloneqq  \lim_{n \to \infty} A^n_t \defunc_{\Omega \backslash E},
 					\quad (\forall t \geq 0)
 				\end{align}
-				で$A_t$を定めれば$A_t$は$\mathscr{F}_t/\borel{\R}$-可測かつ可積分である．また
+				で$A_t$を定めれば$A_t$は$\mathscr{F}_t/\borel{\R}$-可測かつ可積分となる．また
 				任意の$\omega \in \Omega$と$n \geq 1$に対し
 				\begin{align}
 					A_t(\omega) = A^n_t(\omega) \defunc_{\Omega \backslash E}, \quad (\forall t \in [0,n))
@@ -606,6 +607,79 @@
 				となるから$\cexp{M_t}{\mathscr{F}_s} = M_s\ \mbox{a.s. $P$}$が満たされる．
 			
 			\item[第三段]
+				以下，$a > 0$として$[0,a]$上で分解の存在を示す．
+				\begin{align}
+					Y_t \coloneqq X_t - \cexp{X_a}{\mathscr{F}_t},
+					\quad (t \in [0,a])
+				\end{align}
+				とおけば$\Set{Y_t,\mathscr{F}_t}{0 \leq t \leq a}$は劣マルチンゲールであり，
+				\begin{align}
+					\Set{Y_{t^{(n)}_j},\mathscr{F}_{t^{(n)}_j}}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
+					\quad n=1,2,\cdots
+				\end{align}
+				で離散化すれば，Doob分解の補題 (P. \pageref{lem:Doob_decomposition})より
+				\begin{align}
+					A^{(n)}_0 \coloneqq 0,
+					\quad A^{(n)}_{t^{(n)}_j} \coloneqq \sum_{k=0}^{j-1} \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}},
+					\ (k=1,\cdots,2^n);
+					\quad M^{(n)}_{t^{(n)}_j} \coloneqq Y_{t^{(n)}_j} - A^{(n)}_{t^{(n)}_j},
+					\ (k=0,1,\cdots,2^n)
+				\end{align}
+				により可予測な増大過程$A^{(n)}$とマルチンゲール$M^{(n)}$に分解され，
+				$Y_a = 0\ \mbox{a.s. $P$}$であるから
+				\begin{align}
+					Y_{t^{(n)}_j} = A^{(n)}_{t^{(n)}_j} +  M^{(n)}_{t^{(n)}_j}
+					= A^{(n)}_{t^{(n)}_j} + \cexp{M^{(n)}_a}{\mathscr{F}_{t^{(n)}_j}}
+					= A^{(n)}_{t^{(n)}_j} - \cexp{A^{(n)}_a}{\mathscr{F}_{t^{(n)}_j}},
+					\quad \mbox{a.s. $P$},
+					\quad j=0,1,\cdots,2^n
+				\end{align}
+				となる．
+				
+			\item[第四段]
+				$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分であることを示す．
+				\begin{align}
+					f
+				\end{align}
+				
+			\item[第五段]
+				Dunford-Pettisの定理より$\left( A^{(n)}_a \right)_{n=1}^\infty$の或る部分列
+				$\left( A^{(n_k)}_a \right)_{k=1}^\infty$は$L^1(P)$で弱収束する．つまり
+				或る$A_a \in L^1(P)$が存在して
+				任意の$\xi \in L^\infty(P)$に対し
+				\begin{align}
+					E \xi A^{(n_k)}_a \longrightarrow E \xi A_a
+					\quad (k \longrightarrow \infty)
+				\end{align}
+				が成立する．
+				\begin{align}
+					\Pi_n \coloneqq \Set{t^{(n)}_j}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
+					\quad \Pi \coloneqq \bigcup_{n=1}^\infty \Pi_n
+				\end{align}
+				とすれば，任意の$t \in \Pi$に対し或る$K \geq 1$が存在して
+				$t \in \Pi_{n_k}\ (\forall k > K)$となり，Problem 4.11より
+				\begin{align}
+					E \xi A^{(n_k)}_t
+					= E \xi\left\{ Y_t + \cexp{A^{(n_k)}_a}{\mathscr{F}_t} \right\}
+					\longrightarrow E \xi\left\{ Y_t + \cexp{A_a}{\mathscr{F}_t} \right\}
+					\quad (k > K,\ k \longrightarrow \infty)
+				\end{align}
+				が成り立つから$A^{(n_k)}_t$は$Y_t + \cexp{A_a}{\mathscr{F}_t}$に弱収束する．
+				ここで
+				\begin{align}
+					\tilde{A}_t \coloneqq Y_t + \cexp{A_a}{\mathscr{F}_t},
+					\quad (t \in [0,a])
+				\end{align}
+				と定めれば$\Set{\tilde{A}_t,\mathscr{F}_t}{0 \leq t \leq a}$は
+				劣マルチンゲールとなり，$\Set{X_t,\mathscr{F}_t}{0 \leq t <\infty}$の右連続性より
+				\begin{align}
+					[0,a] \ni t \longmapsto E\left[ Y_t + \cexp{A_a}{\mathscr{F}_t} \right]
+					= E X_t - E X_a + E A_a
+				\end{align}
+				は右連続であるから(Theorem 3.13)，$\tilde{A}$の右連続な修正$\Set{A_t,\mathscr{F}_t}{0 \leq t \leq a}$
+				が得られる．
+			
+			\item[第六段]
 				
 		\end{description}
 	\end{prf}
