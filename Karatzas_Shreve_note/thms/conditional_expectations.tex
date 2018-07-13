@@ -108,20 +108,175 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[$L^p$の共役空間]
-			$1 \leq p < \infty$，$(X,\mathscr{F},\mu)$を$\sigma$-有限な測度空間とするとき，
-			$L^p(\mu) = L^p(X,\mathscr{F},\mu)$の共役空間$\left( L^p(\mu) \right)^*$と
-			$L^q(\mu)$は
+		\begin{thm}[$L^p$の共役空間]\label{thm:dual_space_of_L_p}
+			$1 \leq p < \infty$，$q$を$p$の共役指数とし，また$(X,\mathscr{F},\mu)$を$\sigma$-有限な測度空間とするとき，
+			$g \in L^q(\mu)$に対して
+			\begin{align}
+				\Phi_g: L^p(\mu) \ni f \longmapsto \int_X fg\ d\mu
+				\label{eq:thm_dual_space_of_L_p_1}
+			\end{align}
+			は有界線形作用素となり，
 			\begin{align}
 				\Phi: L^q(\mu) \ni g \longmapsto \Phi_g \in \left( L^p(\mu) \right)^*,
 				\quad \left( \Phi_g(f) = \int_X fg\ d\mu,\quad \forall f \in L^p(\mu) \right)
 			\end{align}
-			で定める$\Phi$によりBanach空間として等長同型となる:
+			で定める$\Phi$により$\left( L^p(\mu) \right)^*$と$L^q(\mu)$はBanach空間として等長同型となる:
 			\begin{align}
 				\Norm{g}{L^q(\mu)} = \Norm{\Phi_g}{\left( L^p(\mu) \right)^*}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\Phi_g$が(\refeq{eq:thm_dual_space_of_L_p_1})で与えられていれば，H\Ddot{o}lderの不等式より
+				\begin{align}
+					\left|\Phi_g(f)\right| \leq \Norm{g}{L^q(\mu)}\Norm{f}{L^p(\mu)}
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\Norm{\Phi_g}{\left( L^p(\mu) \right)^*} \leq \Norm{g}{L^q(\mu)}
+				\end{align}
+				が従う．よって$\Phi_g \in \left( L^p(\mu) \right)^*$となる．
+			
+			\item[第二段]
+				$\varphi \in \left( L^p(\mu) \right)^*$に対して
+				$\Phi(g) = \varphi$を満たす$g \in L^q(\mu)$が存在するとき，
+				$g$が$\varphi$に対して一意に決まることを示す．$\sigma$-有限の仮定より
+				\begin{align}
+					\mu(X_n) < \infty,\ (\forall n \geq 1);
+					\quad X = \bigcup_{n=1}^\infty X_n
+				\end{align}
+				を満たす$\{X_n\}_{n=1}^\infty \subset \mathscr{F}$が存在する．
+				いま，$g,g' \in L^q(\mu)$に対して
+				\begin{align}
+					\int_X fg\ d\mu = \int_X fg'\ d\mu,
+					\quad (\forall f \in L^p(\mu))
+				\end{align}
+				が成り立っているとすれば，任意の$E \in \mathscr{F}$に対して
+				$\defunc_{E \cap X_n} \in L^p(\mu)$であるから
+				\begin{align}
+					\int_{E \cap X_n} g-g'\ d\mu = 0,
+					\quad (\forall n \geq 1)
+				\end{align}
+				となり，Lebesgueの収束定理より
+				\begin{align}
+					\int_E g-g'\ d\mu = 0
+				\end{align}
+				が従い$g = g' \in L^q(\mu)$が出る．
+				
+			\item[第三段]
+				$\mu(X) < \infty$の場合，
+				任意の$\varphi \in \left( L^p(\mu) \right)^*$に対して
+				$\Phi(g) = \varphi$を満たす$g \in L^q(\mu)$が存在することを示す．
+				\begin{align}
+					\lambda(E) \coloneqq \varphi(\defunc_E)
+				\end{align}
+				により$\lambda$を定めれば
+				\begin{align}
+					\lambda(A + B) = \varphi(\defunc_{A+B}) = \varphi(\defunc_A + \defunc_B)
+					= \varphi(\defunc_A) + \varphi(\defunc_B)
+					= \lambda(A) + \lambda(B)
+				\end{align}
+				となり$\lambda$の加法性が出る．また
+				任意の互いに素な$\{E_n\}_{n=1}^\infty \in \mathscr{F}$に対して
+				\begin{align}
+					A_k \coloneqq \sum_{n=1}^k E_n,
+					\quad A \coloneqq \sum_{n=1}^\infty E_n
+				\end{align}
+				とおけば
+				\begin{align}
+					\left| \lambda(A) - \sum_{n=1}^k \lambda(E_n) \right|
+					&= \left| \lambda(A) - \lambda(A_k) \right|
+					= \left| \varphi(\defunc_A - \defunc_{A_k}) \right| \\
+					&\leq \Norm{\varphi}{\left( L^p(\mu) \right)^*} \Norm{\defunc_A - \defunc_{A_k}}{L^p(\mu)}
+					= \Norm{\varphi}{\left( L^p(\mu) \right)^*} \mu(A - A_k)^{1/p}
+					\longrightarrow 0
+					\quad (k \longrightarrow \infty)
+				\end{align}
+				が成り立つから$\lambda$は複素測度である．また
+				\begin{align}
+					|\lambda(E)| \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*} \mu(E)^{1/p}
+				\end{align}
+				より$\lambda \ll \mu$となるから，Lebesgue-Radon-Nikodymの定理より
+				\begin{align}
+					\varphi(\defunc_E) = \lambda(E) = \int_X \defunc_E g\ d\mu,
+					\quad (\forall E \in \mathscr{F})
+				\end{align}
+				を満たす$g \in L^1(\mu)$が存在する．$\varphi$の線型性より
+				任意の単関数の同値類$f$に対して
+				\begin{align}
+					\varphi(f) = \int_X fg\ d\mu
+					\label{eq:thm_dual_space_of_L_p_2}
+				\end{align}
+				が成立し，特に$f \in L^\infty(\mu)$に対しては
+				\begin{align}
+					B \coloneqq \Set{x \in X}{|f(x)| > \Norm{f}{L^\infty(\mu)}}
+				\end{align}
+				とおけば$\mu(B) = 0$となり，有界可測関数$f \defunc_{X \backslash B}$を
+				一様に近似する単関数列$(f_n)_{n=1}^\infty$が存在して
+				\begin{align}
+					\left| \varphi(f) - \int_X fg\ d\mu \right|
+					&\leq \left| \varphi(f) - \varphi(f_n) \right| + \left| \int_X f_ng\ d\mu - \int_X fg\ d\mu \right| \\
+					&\leq \Norm{\varphi}{\left( L^p(\mu) \right)^*} \Norm{f - f_n}{L^p(\mu)}
+						+ \int_X |f_n - f||g|\ d\mu \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となるから(\refeq{eq:thm_dual_space_of_L_p_2})が成立する．
+			
+			\item[第四段]
+				$g \in L^q(\mu)$であることを示す．$p = 1$の場合，
+				任意の$E \in \mathscr{F}$に対して$f = \defunc_E$とすれば，
+				(\refeq{eq:thm_dual_space_of_L_p_2})より
+				\begin{align}
+					\left| \int_E g\ d\mu \right| = \left| \varphi(\defunc_E) \right|
+					\leq \Norm{\varphi}{\left( L^p(\mu) \right)^*} \mu(E)
+				\end{align}
+				が成立し
+				\begin{align}
+					\Norm{g}{L^q(\mu)} \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}
+				\end{align}
+				が従う．$1 < p < \infty$の場合は，
+				\begin{align}
+					\alpha(x) \coloneqq
+					\begin{cases}
+						\overline{g(x)}/|g(x)|, & (g(x) \neq 0), \\
+						0, & (g(x) = 0)
+					\end{cases}
+				\end{align}
+				及び
+				\begin{align}
+					E_n \coloneqq \Set{x \in X}{|g(x)| \leq n},
+					\quad (n=1,2,\cdots)
+				\end{align}
+				に対して$f \coloneqq \defunc_{E_n} |g|^{q-1} \alpha$とおけば
+				\begin{align}
+					fg = \defunc_{E_n} |g|^q = |f|^p
+				\end{align}
+				が成り立ち，$|f|^p \in L^\infty(\mu)$となるから(\refeq{eq:thm_dual_space_of_L_p_2})より
+				\begin{align}
+					\int_X \defunc_{E_n} |g|^q\ d\mu
+					= \int_X fg\ d\mu
+					= \varphi(f)
+					\leq \Norm{\varphi}{\left( L^p(\mu) \right)^*} \Norm{f}{L^p(\mu)}
+					= \Norm{\varphi}{\left( L^p(\mu) \right)^*} \left\{ \int_X \defunc_{E_n} |g|^q\ d\mu \right\}^{1/p}
+				\end{align}
+				が従い
+				\begin{align}
+					\left\{ \int_X \defunc_{E_n} |g|^q\ d\mu \right\}^{1/q} \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}
+				\end{align}
+				が得られ，単調収束定理より
+				\begin{align}
+					\Norm{g}{L^q(\mu)} \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}
+				\end{align}
+				が出る．
+				
+			\item[第五段]
+				任意の$f \in L^p(\mu)$に対して(\refeq{eq:thm_dual_space_of_L_p_2})が成り立つことを示す．
+				
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[条件付き期待値]
