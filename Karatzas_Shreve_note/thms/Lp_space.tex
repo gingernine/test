@@ -1,0 +1,497 @@
+\section{$L^p$空間}
+
+測度空間を$(X,\mathscr{F},\mu)$とする．$\mathscr{F}/\borel{\C}$-可測関数$f$に対して
+\begin{align}
+	\Norm{f}{\mathscr{L}^p} \coloneqq
+	\begin{cases}
+		\inf{}{\Set{r \in \C}{|f(x)| \leq r\quad \mbox{$\mu$-a.e.}x \in X}} & (p = \infty) \\
+		\displaystyle\left( \int_{X} |f(x)|^p\ \mu(dx) \right)^{1/p} & (0 < p < \infty)
+	\end{cases}
+\end{align}
+により$\Norm{\cdot}{\mathscr{L}^p}$を定め，
+\begin{align}
+	\mathscr{L}^p(X,\mathscr{F},\mu) \coloneqq \Set{f:X \rightarrow \C}{f:\mbox{可測}\mathscr{F}/\borel{\C},\ \Norm{f}{\mathscr{L}^p} < \infty} \quad (1 \leq p \leq \infty)
+\end{align}
+で空間$\mathscr{L}^p(X,\mathscr{F},\mu)$を定義する．$\mathscr{L}^p(\mu)$とも略記する．
+
+\begin{screen}
+	\begin{lem}\label{lem:holder_inequality}
+		任意の$f \in \mathscr{L}^\infty(X,\mathscr{F},\mu)$に対して次が成り立つ:
+		\begin{align}
+			|f| \leq \Norm{f}{\mathscr{L}^\infty} \quad \mbox{$\mu$-a.e.}
+		\end{align}
+	\end{lem}
+\end{screen}
+
+\begin{prf}
+	$\mathscr{L}^\infty(X,\mathscr{F},\mu)$の定義より任意の実数$\alpha > \Norm{f}{\mathscr{L}^\infty}$に対して
+	\begin{align}
+		\mu\left( \Set{x \in X}{|f(x)| > \alpha} \right) = 0
+	\end{align}
+	が成り立つから，
+	\begin{align}
+		\Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} = \bigcup_{n =1}^{\infty} \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty} + \frac{1}{n}}
+	\end{align}
+	の右辺は$\mu$-零集合であり主張が従う．
+	\QED
+\end{prf}
+
+\begin{screen}
+	\begin{thm}[H\Ddot{o}lderの不等式]\label{thm:holder_inequality}
+		$1 \leq p, q \leq \infty$，$p + q = pq\ (p = \infty$なら$q = 1)$とする．このとき
+		任意の$\mathscr{F}/\borel{\C}$-可測関数$f,g$に対して次が成り立つ:
+		\begin{align}
+			\int_{X} |fg|\ d\mu \leq \Norm{f}{\mathscr{L}^p} \Norm{g}{\mathscr{L}^q}. \label{ineq:holder}
+		\end{align}
+	\end{thm}
+\end{screen}
+
+\begin{prf}
+	$\Norm{f}{\mathscr{L}^p} = \infty$又は$\Norm{g}{\mathscr{L}^q} = \infty$なら(\refeq{ineq:holder})
+		は成り立つから，$\Norm{f}{\mathscr{L}^p} < \infty$かつ$\Norm{g}{\mathscr{L}^q} < \infty$とする．
+	\begin{description}
+		\item[$p = \infty,\ q = 1$の場合]
+			補題\ref{lem:holder_inequality}により或る零集合$A$が存在して
+			\begin{align}
+				|f(x)g(x)| \leq \Norm{f}{\mathscr{L}^\infty}|g(x)| \quad (\forall x \in X \backslash A).
+			\end{align}
+			が成り立つから，
+			\begin{align}
+				\int_{X} |fg|\ d\mu = \int_{X \backslash A} |fg|\ d\mu
+				\leq \Norm{f}{\mathscr{L}^\infty} \int_{X \backslash A} |g|\ d\mu 
+				= \Norm{f}{\mathscr{L}^\infty} \Norm{g}{\mathscr{L}^1}
+			\end{align}
+			が従い不等式(\refeq{ineq:holder})を得る．
+		
+		\item[$1 < p,q < \infty$の場合]
+			$\Norm{f}{\mathscr{L}^p} = 0$のとき
+			\begin{align}
+				B \coloneqq \Set{x \in X}{|f(x)| > 0}
+			\end{align}
+			は零集合であるから，
+			\begin{align}
+				\int_{X} |fg|\ d\mu = \int_{X \backslash B} |fg|\ d\mu = 0
+			\end{align}
+			となり(\refeq{ineq:holder})を得る．$\Norm{g}{\mathscr{L}^q} = 0$の場合も同じである．
+			次に$0 < \Norm{f}{\mathscr{L}^p},\Norm{g}{\mathscr{L}^q} < \infty$の場合を示す．
+			実数値対数関数$(0,\infty) \ni t \longmapsto -\Log{t}$は凸であるから，$1/p + 1/q = 1$に対して
+			\begin{align}
+				-\Log{\left( \frac{s}{p} + \frac{t}{q} \right)} \leq \frac{1}{p}(-\Log{s}) + \frac{1}{q}(-\Log{t}) \quad (\forall s,t > 0)
+			\end{align}
+			を満たし
+			\begin{align}
+				s^{1/p}t^{1/q} \leq \frac{s}{p} + \frac{t}{q} \quad (\forall s,t > 0)
+			\end{align}
+			が従う．ここで
+			\begin{align}
+				F \coloneqq \frac{|f|^p}{\Norm{f}{\mathscr{L}^p}^p},
+				\quad G \coloneqq \frac{|g|^q}{\Norm{g}{\mathscr{L}^q}^q}
+			\end{align}
+			により可積分関数$F,G$を定めれば，
+			\begin{align}
+				F(x)^{1/p}G(x)^{1/q} \leq \frac{1}{p}F(x) + \frac{1}{q}G(x) \quad (\forall x \in X)
+			\end{align}
+			が成り立つから
+			\begin{align}
+				\frac{1}{\Norm{f}{\mathscr{L}^p}\Norm{g}{\mathscr{L}^q}}\int_{X} |fg|\ d\mu
+				= \int_{X} F^{1/p}G^{1/q}\ d\mu
+				\leq \frac{1}{p} \int_{X} F\ d\mu + \frac{1}{q} \int_{X} G\ d\mu
+				= \frac{1}{p} + \frac{1}{q} = 1
+			\end{align}
+			が従い，$\Norm{f}{\mathscr{L}^p}\Norm{g}{\mathscr{L}^q}$を移項して不等式(\refeq{ineq:holder})を得る．
+			\QED
+	\end{description}
+\end{prf}
+
+\begin{screen}
+	\begin{thm}[Minkowskiの不等式]\label{thm:minkowski_inequality}
+		$1 \leq p \leq \infty$のとき，
+		任意の$\mathscr{F}/\borel{\C}$-可測関数$f,g$に対して次が成り立つ:
+		\begin{align}
+			\Norm{f+g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p}. \label{ineq:minkowski}
+		\end{align}
+	\end{thm}
+\end{screen}
+
+\begin{prf}
+	$\Norm{f+g}{\mathscr{L}^p} = 0,\ \Norm{f}{\mathscr{L}^p} = \infty,\ \Norm{g}{\mathscr{L}^p} = \infty$
+	のいずれかが満たされていれば(\refeq{ineq:minkowski})は成り立つから，
+	$\Norm{f+g}{\mathscr{L}^p} > 0$かつ$\Norm{f}{\mathscr{L}^p} < \infty$かつ$\Norm{g}{\mathscr{L}^p} < \infty$
+	の場合を考える．
+	\begin{description}
+		\item[$p = \infty$の場合]
+			補題\ref{lem:holder_inequality}により
+			\begin{align}
+				C \coloneqq \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}} \cup \Set{x \in X}{|g(x)| > \Norm{g}{\mathscr{L}^\infty}}
+			\end{align}
+			は零集合であり，
+			\begin{align}
+				|f(x) + g(x)| \leq |f(x)| + |g(x)| \leq \Norm{f}{\mathscr{L}^\infty} + \Norm{g}{\mathscr{L}^\infty} \quad (\forall x \in X \backslash C)
+			\end{align}
+			が成り立ち(\refeq{ineq:minkowski})が従う．
+		
+		\item[$p = 1$の場合]
+			\begin{align}
+				\int_X |f + g|\ d\mu \leq \int_X |f| + |g|\ d\mu = \Norm{f}{\mathscr{L}^1} + \Norm{g}{\mathscr{L}^1}
+			\end{align}
+			より(\refeq{ineq:minkowski})が従う．
+		
+		\item[$1 < p < \infty$の場合]
+			$q$を$p$の共役指数とする．
+			\begin{align}
+				|f+g|^p = |f+g||f+g|^{p-1} \leq |f||f+g|^{p-1} + |g||f+g|^{p-1}
+			\end{align}
+			が成り立つから，H\Ddot{o}lderの不等式より
+			\begin{align}
+				\Norm{f+g}{\mathscr{L}^p}^p &= \int_{X} |f+ g|^p\ d\mu \\
+				&\leq \int_{X} |f||f+g|^{p-1}\ d\mu + \int_{X} |g||f+g|^{p-1}\ d\mu \\
+				&\leq \Norm{f}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1} + \Norm{g}{\mathscr{L}^p}\Norm{f+g}{\mathscr{L}^p}^{p-1}
+				\label{Minkowski_1}
+			\end{align}
+			が得られる．また$|f|^p,|g|^p$の可積性と
+			\begin{align}
+				|f + g|^p \leq 2^p \left( |f|^p + |g|^p \right)
+			\end{align}
+			により$\Norm{f+g}{\mathscr{L}^p} < \infty$が従うから，
+			(\refeq{Minkowski_1})の両辺を$\Norm{f+g}{\mathscr{L}^p}^{p-1}$で割って(\refeq{ineq:minkowski})を得る．
+			\QED
+	\end{description}
+\end{prf}
+
+以上の結果より$\mathscr{L}^p(X,\mathscr{F},\mu)$は線形空間となる．実際線型演算は
+\begin{align}
+	(f+g)(x) \coloneqq f(x) + g(x), \quad (\alpha f)(x) \coloneqq \alpha f(x),
+	\quad (\forall x \in X,\ f,g \in \mathscr{L}^p(\mu),\ \alpha \in \C)
+\end{align}
+により定義され，Minkowskiの不等式により加法について閉じている．
+
+\begin{screen}
+	\begin{lem}
+		$1 \leq p \leq \infty$に対し，$\Norm{\cdot}{\mathscr{L}^p}$は線形空間$\mathscr{L}^p(X,\mathscr{F},\mu)$のセミノルムである．
+	\end{lem}
+\end{screen}
+
+\begin{prf}\mbox{}
+	\begin{description}
+	\item[半正値性] $\Norm{\cdot}{\mathscr{L}^p}$が正値であることは定義による．
+		一方で，$E \neq \emptyset$を満たす$\mu$-零集合$E$が存在するとき，
+		\begin{align}
+			f(x) \coloneqq
+			\begin{cases}
+				1 & (x \in E) \\
+				0 & (x \in \Omega \backslash E)
+			\end{cases}
+		\end{align}
+		で定める$f$は零写像ではないが$\Norm{f}{\mathscr{L}^p} = 0$となる．
+		
+	\item[同次性] 
+		任意に$\alpha \in \C,\ f \in \mathscr{L}^p(\mu)$を取る．
+		$1 \leq p < \infty$の場合は
+		\begin{align}
+			\left( \int_{X} |\alpha f|^p\ d\mu \right)^{1/p} = \left( |\alpha|^p \int_{X} |f|^p\ d\mu \right)^{1/p} 
+			= |\alpha| \left( \int_{X} |f|^p\ d\mu \right)^{1/p}
+		\end{align}
+		により，$p = \infty$の場合は
+		\begin{align}
+			\inf{}{\Set{r \in \R}{|\alpha f(x)| \leq r \quad \mbox{$\mu$-a.e.}x \in X}} = |\alpha|\inf{}{\Set{r \in \R}{|f(x)|  \leq r \quad \mbox{$\mu$-a.e.}x \in X}}
+		\end{align}
+		により$\Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p}$が成り立つ．
+		
+	\item[三角不等式] Minkowskiの不等式より従う．
+	\QED
+	\end{description}
+\end{prf}
+
+$\mathscr{L}^p$はノルム空間ではないが，同値類でまとめることによりノルム空間となる．
+\begin{description}
+	\item[可測関数全体の商集合]
+		$\mathscr{F}/\borel{\C}$-可測関数全体の集合を
+		\begin{align}
+			\mathscr{L}^0(X,\mathscr{F},\mu) \coloneqq \Set{f:X \rightarrow \C}{f:\mbox{可測}\mathscr{F}/\borel{\C}}
+		\end{align}
+		とおく．$f,g \in \mathscr{L}^0(X,\mathscr{F},\mu)$に対し
+		\begin{align}
+			 f \sim g \quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad f = g \quad \mbox{$\mu$-a.e.}
+		\end{align}
+		により定める$\sim$は同値関係であり，$\sim$による$\mathscr{L}^0(X,\mathscr{F},\mu)$の商集合を
+		$L^0(X,\mathscr{F},\mu)$と表す．
+	
+	\item[商集合における算法]
+		$L^0(\mu)$の元である関数類(同値類)を$[f]\ $($f$は関数類の代表)と表せば，$L^0(\mu)$は
+		\begin{align}
+			[f] + [g] \coloneqq [f+g],
+			\quad \alpha [f] \coloneqq [\alpha f], \quad ([f],[g] \in L^0(\mu),\ \alpha \in \C).
+		\end{align}
+		を線型演算として$\C$上の線形空間となる．この演算はwell-definedである．実際$[f'] = [f],\ [g'] = [g]$なら
+		\begin{align}
+			\{ f+g \neq f'+g' \} \subset \{ f \neq f' \} \cup \{ g \neq g' \}, \quad
+			\{ \alpha f \neq \alpha f' \} = \{ f \neq f' \}
+		\end{align}
+		が成り立ち，どちらの右辺も$\mu$-零集合であるから$[f + g] = [f' + g'],\ [\alpha f'] = [\alpha f]$が従う．
+		更に
+		\begin{align}
+			[f][g] \coloneqq [fg] \quad \left([f],[g] \in L^{0}(\mu) \right).
+		\end{align}
+		を乗法として$L^0(\mu)$は環となる．$L^0(\mu)$の零元は零写像の関数類でありこれを[0]と書く．また
+		単位元は恒等的に$1$を取る関数の関数類でありこれを[1]と書く．
+		減法は
+		\begin{align}
+			[f] - [g] \coloneqq [f] + (-[g]) = [f] + [-g] = [f - g]
+		\end{align}
+		により定める．
+	
+	\item[関数類の順序]
+		$[f],[g] \in L^0(\mu)$に対して次の関係$<(>)$を定める:
+		\begin{align}
+			[f] < [g]\ \left( [g] > [f] \right) \quad
+			\overset{\mathrm{def}}{\Longleftrightarrow}
+			\quad f < g \quad \mbox{$\mu$-a.s.} \label{dfn:equiv_class_order}
+		\end{align}
+		この定義はwell-definedである．実際任意の$f' \in [f],g' \in [g]$に対して
+		\begin{align}
+			\left\{ f' \geq g' \right\} \subset \left\{ f \neq f' \right\} \cup \left\{ f \geq g \right\} \cup \left\{ g \neq g' \right\}
+		\end{align}
+		の右辺は零集合であるから
+		\begin{align}
+			[f] < [g] \Leftrightarrow [f'] < [g']
+		\end{align}
+		が従う．$<(>)$または$=$であることを$\leq(\geq)$と書くとき，任意の$[f],[g],[h] \in L^0(\mu)$に対し，
+		\begin{itemize}
+			\item $[f] \leq [f]$が成り立つ.
+			\item $[f] \leq [g]$かつ$[g] \leq [f]$ならば$[f] = [g]$が成り立つ．
+			\item $[f] \leq [g],\ [g] \leq [h]$ならば$[f] \leq [h]$が成り立つ.
+		\end{itemize}
+		が満たされるから$\leq$は$L^0(\mu)$における順序となる．
+\end{description}
+
+\begin{screen}
+	\begin{lem}[商空間におけるノルムの定義]
+		\begin{align}
+			\Norm{[f]}{\mathrm{L}^p} \coloneqq \Norm{f}{\mathscr{L}^p} \quad (f \in \semiLp{p}{X,\mathscr{F},\mu},\ 1 \leq p \leq \infty)
+		\end{align}
+		により定める$\Norm{\cdot}{\mathrm{L}^p}:\Lp{0}{X,\mathscr{F},\mu} \rightarrow \R$は関数類の代表に依らずに値が確定する．
+		そして
+		\begin{align}
+			\Lp{p}{X,\mathscr{F},\mu} \coloneqq \Set{[f] \in \Lp{0}{X,\mathscr{F},\mu}}{\Norm{[f]}{\mathrm{L}^p} < \infty} \quad (1 \leq p \leq \infty)
+		\end{align}
+		として定める空間は$\Norm{\cdot}{\mathrm{L}^p}$をノルムとしてノルム空間となる．
+	\end{lem}
+\end{screen}
+
+\begin{prf}\mbox{}
+	\begin{description}
+		\item[第一段]
+			任意の$f,g \in \semiLp{p}{X,\mathscr{F},\mu}$に対し，$[f] = [g]$なら
+			$\Norm{f}{\mathscr{L}^p}^p = \Norm{g}{\mathscr{L}^p}^p$となることを示す．
+			\begin{align}
+				A \coloneqq \Set{x \in X}{f(x) \neq g(x)}
+			\end{align}
+			として零集合を定める．
+			\begin{description}
+				\item[$p = \infty$の場合]
+					$A^c$の上では$f(x)=g(x)$が満たされているから
+					\begin{align}
+						&\Set{x \in X}{|g(x)| > \Norm{f}{\mathscr{L}^\infty}} \\
+						&\qquad = A \cap \Set{x \in X}{|g(x)| > \Norm{f}{\mathscr{L}^\infty}} + A^c \cap \Set{x \in X}{|f(x)| > \Norm{f}{\mathscr{L}^\infty}}
+					\end{align}
+					が成り立ち，右辺はどちらも零集合であるから$\Norm{g}{\mathscr{L}^\infty} \leq \Norm{f}{\mathscr{L}^\infty}$が従う．
+					$f,g$を入れ替えれば$\Norm{f}{\mathscr{L}^\infty} \leq \Norm{g}{\mathscr{L}^\infty}$も示されて
+					$\Norm{g}{\mathscr{L}^\infty} = \Norm{f}{\mathscr{L}^\infty}$を得る．
+					
+				\item[$1 \leq p < \infty$の場合]
+					\begin{align}
+						\Norm{f}{\mathscr{L}^p}^p = \int_{X \backslash A} |f(x)|^p\ \mu(dx) 
+						= \int_{X \backslash A} |g(x)|^p\ \mu(dx) = \Norm{g}{\mathscr{L}^p}^p
+					\end{align}
+					が成り立つ．
+			\end{description}
+		
+		\item[第二段]
+			$\Norm{\cdot}{\mathrm{L}^p}$がノルムの公理を満たすことを示す．
+			任意に$[f],[g] \in \Lp{p}{X,\mathscr{F},\mu}$と$\alpha \in \R$を取る．
+			$\Norm{[f]}{\mathrm{L}^p}$が正値であることは$\Norm{\cdot}{\mathscr{L}^p}$が正値であることから従う．
+			また$\mu(f \neq 0) > 0 \Rightarrow \Norm{f}{\mathscr{L}^p} > 0$の
+			対偶により$\Norm{[f]}{\mathrm{L}^p} = 0 \Rightarrow [f] = [0]$が成り立ち，
+			逆に$[f] = [0]$ならば$\Norm{[f]}{\mathrm{L}^p} = \Norm{0}{\mathscr{L}^p} = 0$が成り立つ．
+			更に$\Norm{\cdot}{\mathscr{L}^p}$の同次性とMinkowskiの不等式より
+			\begin{align}
+				&\Norm{\alpha[f]}{\mathrm{L}^p} = \Norm{\alpha f}{\mathscr{L}^p} = |\alpha|\Norm{f}{\mathscr{L}^p} = |\alpha|\Norm{[f]}{\mathrm{L}^p}, \\
+				&\Norm{[f] + [g]}{\mathrm{L}^p} = \Norm{f + g}{\mathscr{L}^p} \leq \Norm{f}{\mathscr{L}^p} + \Norm{g}{\mathscr{L}^p} = \Norm{[f]}{\mathrm{L}^p} + \Norm{[g]}{\mathrm{L}^p}
+			\end{align}
+			が得られ，$\Norm{\cdot}{\mathrm{L}^p}$の同次性と劣加法性が導かれる．
+			\QED
+	\end{description}
+\end{prf}
+
+\begin{screen}
+	\begin{thm}[$\mathrm{L}^p$の完備性]
+		ノルム空間$\Lp{p}{X,\mathscr{F},\mu}\ (1 \leq p \leq \infty)$はBanach空間である．
+		\label{prp:Lp_banach}
+	\end{thm}
+\end{screen}
+
+\begin{prf}
+	任意にCauchy列$[f_n] \in \Lp{p}{X,\mathscr{F},\mu}\ (n=1,2,3,\cdots)$を取れば，
+	或る$N_1 \in \N$が存在して
+	\begin{align}
+		\Norm{[f_n]-[f_m]}{\mathrm{L}^p} < \frac{1}{2}
+		\quad (\forall n > m \geq N_1)
+	\end{align}
+	を満たす．ここで$m > N_1$を一つ選び$n_1$とおく．
+	同様に$N_2 > N_1$を満たす$N_2 \in \N$が存在して
+	\begin{align}
+		\Norm{[f_n]-[f_m]}{\mathrm{L}^p} < \frac{1}{2^2}
+		\quad (\forall n > m \geq N_2)
+	\end{align}
+	を満たすから，$m > N_2$を一つ選び$n_2$とおけば
+	\begin{align}
+		\Norm{\equiv{f_{n_1}}{} - \equiv{f_{n_2}}{}}{\mathrm{L}^p} < \frac{1}{2}
+	\end{align}
+	が成り立つ．同様の操作を繰り返して
+	\begin{align}
+		\Norm{\equiv{f_{n_k}}{} - \equiv{f_{n_{k+1}}}{}}{\mathrm{L}^p} < \frac{1}{2^k} 
+		\quad (n_k < n_{k+1},\ k=1,2,3,\cdots) \label{ineq:Lp_banach_2}
+	\end{align}
+	を満たす部分添数列$(n_k)_{k=1}^{\infty}$を構成する．
+	\begin{description}
+		\item[$p = \infty$の場合]
+			$\equiv{f_{n_k}}{}$の代表$f_{n_k}\ (k=1,2,\cdots)$に対して
+			\begin{align}
+				A_k &\coloneqq \Set{x \in X}{\left| f_{n_k}(x) \right| > \Norm{f_{n_k}}{\mathscr{L}^\infty}}, \\
+				A^k &\coloneqq \Set{x \in X}{\left| f_{n_k}(x) - f_{n_{k+1}}(x) \right| > \Norm{f_{n_k} - f_{n_{k+1}}}{\mathscr{L}^\infty}}
+			\end{align}
+			とおけば，補題\ref{lem:holder_inequality}より$\mu(A_k) = \mu(A^k) = 0\ (k=1,2,\cdots)$が成り立つ．
+			\begin{align}
+				A_\circ \coloneqq \bigcup_{k=1}^{\infty} A_k,
+				\quad A^\circ \coloneqq \bigcup_{k=1}^{\infty}A^k,
+				\quad A \coloneqq A_\circ \cup A^\circ
+			\end{align}
+			として$\mu$-零集合$A$を定めて
+			\begin{align}
+				\hat{f}_{n_k}(x) \coloneqq
+				\begin{cases}
+					f_{n_k}(x) & (x \in X \backslash A) \\
+					0 & (x \in A)
+				\end{cases}
+				\quad (\forall x \in X,\ k=1,2,\cdots)
+			\end{align}
+			により$\left( \hat{f}_{n_k} \right)_{k=1}^{\infty}$を構成すれば，
+			各$\hat{f}_{n_k}$は$\equiv{\hat{f}_{n_k}}{} = \equiv{f_{n_k}}{}$を満たす有界可測関数であり，
+			(\refeq{ineq:Lp_banach_2})より
+			\begin{align}
+				\sup{x \in X}{\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{k+1}}(x)\right|}
+				\leq \Norm{\hat{f}_{n_k} - \hat{f}_{n_{k+1}}}{\mathscr{L}^\infty} < \frac{1}{2^k} \quad (k=1,2,3,\cdots) 
+				\label{ineq:Lp_banach_1}
+			\end{align}
+			が成り立つ．従って各点$x \in X$に対し$\left( \hat{f}_{n_k}(x) \right)_{k=1}^{\infty}$は$\R$のCauchy列をなし
+			\footnote{
+				任意の$\epsilon > 0$に対し$1/2^N < \epsilon$を満たす$N \in \N$を取れば，全ての$\ell > k > N$に対して
+				\begin{align}
+					\left|\hat{f}_{n_k}(x) - \hat{f}_{n_{\ell}}(x)\right| 
+					\leq \sum_{j=k}^{\ell-1}\left|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)\right| 
+					< \sum_{k > N} \frac{1}{2^k} = \frac{1}{2^N} < \epsilon
+					\quad (\forall x \in X)
+				\end{align}
+				が成り立つ．
+			}
+			収束する．
+			\begin{align}
+				\hat{f}(x) \coloneqq \lim_{k \to \infty} \hat{f}_{n_k}(x)
+				\quad (\forall x \in X)
+			\end{align}
+			として$\hat{f}$を定めれば，$\hat{f}$は可測$\mathscr{F}/\borel{\R}$であり，且つ任意に$k \in \N$を取れば
+			\begin{align}
+				\sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|} \leq 1/2^{k-1} \label{ineq:Lp_banach_3}
+			\end{align}
+			を満たす．実際或る$y \in X$で$\alpha \coloneqq |\hat{f}_{n_k}(y) - \hat{f}(y)| > 1/2^{k-1}$が成り立つと仮定すれば，
+			\begin{align}
+				\left| \hat{f}_{n_k}(y) - \hat{f}_{n_\ell}(y) \right|
+				\leq \sum_{j=k}^{\ell-1} \sup{x \in X}{\left|\hat{f}_{n_j}(x) - \hat{f}_{n_{j+1}}(x)\right|}
+				< \sum_{j=k}^{\infty} \frac{1}{2^j}
+				= \frac{1}{2^{k-1}}
+				\quad (\forall \ell > k)
+			\end{align}
+			より
+			\begin{align}
+				0 < \alpha - \frac{1}{2^{k-1}} < \left| \hat{f}_{n_k}(y) - \hat{f}(y) \right| - \left| \hat{f}_{n_k}(y) - \hat{f}_{n_\ell}(y) \right|
+				\leq \left| \hat{f}(y) - \hat{f}_{n_\ell}(y) \right|
+				\quad (\forall \ell > k)
+			\end{align}
+			が従い各点収束に反する．不等式(\refeq{ineq:Lp_banach_3})により
+			\begin{align}
+				\sup{x \in X}{\left| \hat{f}(x) \right|} 
+				< \sup{x \in X}{\left| \hat{f}(x) - \hat{f}_{n_k}(x) \right|} + \sup{x \in X}{\left| \hat{f}_{n_k}(x) \right|} 
+				\leq \frac{1}{2^{k-1}} + \Norm{\hat{f}_{n_k}}{\mathscr{L}^\infty}
+			\end{align}
+			が成り立つから$\equiv{\hat{f}}{} \in \Lp{\infty}{\Omega,\mathscr{F},\mu}$が従い，
+			\begin{align}
+				\Norm{\equiv{f_{n_k}}{} - \equiv{\hat{f}}{}}{\mathrm{L}^\infty}
+				= \Norm{\equiv{\hat{f}_{n_k}}{} - \equiv{\hat{f}}{}}{\mathrm{L}^\infty}
+				\leq \sup{x \in X}{|\hat{f}_{n_k}(x) - \hat{f}(x)|}
+				\longrightarrow 0 \quad (k \longrightarrow \infty)
+			\end{align}
+			により部分列$\left( \equiv{f_{n_k}}{} \right)_{k=1}^{\infty}$が$\equiv{\hat{f}}{}$に収束するから
+			元のCauchy列も$\equiv{\hat{f}}{}$に収束する．
+			
+		\item[$1 \leq p < \infty$の場合]
+			$\equiv{f_{n_k}}{}$の代表$f_{n_k}\ (k=1,2,\cdots)$は
+			\begin{align}	
+				f_{n_k}(x) = f_{n_1}(x) + \sum_{j=1}^{k}\left( f_{n_j}(x) - f_{n_{j-1}}(x) \right) \quad (\forall x \in X)
+				\label{eq:Lp_banach_3}
+			\end{align}
+			を満たし，これに対して
+			\begin{align}
+				g_k(x) &\coloneqq \left| f_{n_1}(x) \right| + \sum_{j=1}^{k} \left| f_{n_j}(x) - f_{n_{j-1}}(x) \right|
+				\quad (\forall x \in X,\ k=1,2,\cdots)
+			\end{align}
+			により単調非減少な可測関数列$(g_k)_{k=1}^{\infty}$を定めれば，Minkowskiの不等式と(\refeq{ineq:Lp_banach_2})により
+			\begin{align}
+				\Norm{g_k}{\mathscr{L}^p} \leq \Norm{f_{n_1}}{\mathscr{L}^p} + \sum_{j=1}^{k}\Norm{f_{n_j} - f_{n_{j-1}}}{\mathscr{L}^p}
+				< \Norm{f_{n_1}}{\mathscr{L}^p} + 1 < \infty
+				\quad (k = 1,2,\cdots)
+				\label{eq:thm_Lp_banach_1}
+			\end{align}
+			が成り立つ．ここで
+			\begin{align}
+				B_N \coloneqq \bigcap_{k=1}^{\infty} \Set{x \in X}{g_k(x) \leq N},
+				\quad B \coloneqq \bigcup_{N=1}^{\infty} B_N
+			\end{align}
+			とおけば$(g_k)_{k=1}^{\infty}$は$B$上で各点収束し$X \backslash B$上では発散するが，
+			$X \backslash B$は零集合である．実際
+			\begin{align}
+				\int_X |g_k(x)|^p\ \mu(dx)
+				&= \int_B |g_k(x)|^p\ \mu(dx) + \int_{X \backslash B} |g_k(x)|^p\ \mu(dx) \\
+				&\leq \left( \Norm{f_{n_1}}{\mathscr{L}^p} + 1 \right)^p
+				\quad (k=1,2,\cdots)
+			\end{align}
+			が満たされているから，単調収束定理より
+			\begin{align}
+				\int_B \lim_{k \to \infty}|g_k(x)|^p\ \mu(dx) + \int_{X \backslash B} \lim_{k \to \infty}|g_k(x)|^p\ \mu(dx)
+				\leq \left( \Norm{f_{n_1}}{\mathscr{L}^p} + 1 \right)^p
+			\end{align}
+			が成り立ち$\mu(X \backslash B) = 0$が従う．
+			\begin{align}
+				g(x) \coloneqq
+				\begin{cases}
+					\lim\limits_{k \to \infty} g_k(x) & (x \in B) \\
+					0 & (x \in X \backslash B)
+				\end{cases}
+				,\quad
+				f(x) \coloneqq
+				\begin{cases}
+					\lim\limits_{k \to \infty} f_{n_k}(x) & (x \in B) \\
+					0 & (x \in X \backslash B)
+				\end{cases}
+			\end{align}
+			として$g,f$を定義すれば$g,f$は共に$\mathscr{F}/\borel{\R}$-可測であり，また$|f(x)| \leq g(x)\ (\forall x \in X)$と
+			$g^p$の可積分性により$\equiv{f}{} \in \Lp{p}{X,\mathscr{F},\mu}$が成り立つ．
+			今$\left|f_{n_k}(x) - f(x)\right|^p \leq 2^p g(x)^p\ (\forall x \in B,\ k=1,2,\cdots)$が満たされているから，
+			Lebesgueの収束定理により
+			\begin{align}
+				\lim_{k \to \infty}\Norm{\equiv{f_{n_k}}{} - \equiv{f}{}}{\mathrm{L}^p}^p
+				= \lim_{k \to \infty} \int_X \left| f_{n_k}(x) - f(x) \right|^p\ \mu(dx) = 0
+			\end{align}
+			が得られ，部分列の収束により元のCauchy列も$\equiv{f}{}$に収束する．
+			\QED
+	\end{description}
+\end{prf}

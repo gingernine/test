@@ -120,10 +120,11 @@
 				\Phi: L^q(\mu) \ni g \longmapsto \Phi_g \in \left( L^p(\mu) \right)^*,
 				\quad \left( \Phi_g(f) = \int_X fg\ d\mu,\quad \forall f \in L^p(\mu) \right)
 			\end{align}
-			で定める$\Phi$により$\left( L^p(\mu) \right)^*$と$L^q(\mu)$はBanach空間として等長同型となる:
+			で定める$\Phi$は
 			\begin{align}
-				\Norm{g}{L^q(\mu)} = \Norm{\Phi_g}{\left( L^p(\mu) \right)^*}.
+				\Norm{g}{L^q(\mu)} = \Norm{\Phi_g}{\left( L^p(\mu) \right)^*}
 			\end{align}
+			の意味で等長であり，$\Phi$により$\left( L^p(\mu) \right)^*$と$L^q(\mu)$はBanach空間として同型となる．
 		\end{thm}
 	\end{screen}
 	
@@ -388,7 +389,7 @@
 				\quad (\forall A \in \mathscr{G})
 			\end{align}
 			を満たす$g \in L^1(\nu) = L^1\left(X,\mathscr{G},\nu\right)$
-			が存在する．この$g$を$\mathscr{G}$で条件付けた$f$の条件付き期待値と呼び
+			が唯一つ存在する．この$g$を$\mathscr{G}$で条件付けた$f$の条件付き期待値と呼び
 			\begin{align}
 				g = \cexp{f}{\mathscr{G}}
 			\end{align}
@@ -397,27 +398,119 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}
-			$(X,\mathscr{F},\mu)$を測度空間，$\mathscr{H},\mathscr{G}\ (\mathscr{H} \subset \mathscr{G})$を
-			$\mathscr{F}$の部分$\sigma$-加法族とし，$\left. \mu \right|_{\mathscr{H}},\left. \mu \right|_{\mathscr{G}}$
+		\begin{thm}[条件付き期待値の性質]\label{thm:properties_of_conditional_expectations}
+			$(X,\mathscr{F},\mu)$を測度空間，$\mathscr{H},\mathscr{G}$を$\mathscr{H} \subset \mathscr{G}$を満たす
+			$\mathscr{F}$の部分$\sigma$-加法族とし，$\theta \coloneqq \left. \mu \right|_{\mathscr{H}},
+			\gamma \coloneqq \left. \mu \right|_{\mathscr{G}}$
 			がそれぞれ$\sigma$-有限測度であるとする．このとき以下が成立する:
 			\begin{description}
-				\item[(1)] 条件付き期待値$\cexp{\cdot}{\mathscr{G}}$は$L^1(X,\mathscr{F},\mu)$から
-					$L^1\left(X,\mathscr{G},\left. \mu \right|_{\mathscr{G}}\right)$への線形作用素である．
-				
-				\item[(2)] $f \in L^1(\mu),\ g \in L^1(\left. \mu \right|_{\mathscr{G}})$に対して，
-					$gf$が可積分なら
+				\item[(1)] $f \in L^1(\mu),\ g \in L^\infty(\gamma)$に対して
 					\begin{align}
 						\cexp{gf}{\mathscr{G}} = g\cexp{f}{\mathscr{G}}.
+						\label{eq:thm_properties_of_conditional_expectations_1}
+					\end{align}
+					
+				\item[(2)] $\cexp{\cdot}{\mathscr{G}}$は$L^1(X,\mathscr{F},\mu)$から
+					$L^1\left(X,\mathscr{G},\gamma\right)$への有界線形作用素であり，
+					次を満たす:
+					\begin{align}
+						|\cexp{f}{\mathscr{G}}| \leq \cexp{|f|}{\mathscr{G}},
+						\quad (\forall f \in L^1(\mu)).
+						\label{eq:thm_properties_of_conditional_expectations_2}
 					\end{align}
 					
 				\item[(3)] $f \in L^1(\mu)$に対して
 					\begin{align}
 						\cexp{\cexp{f}{\mathscr{G}}}{\mathscr{H}} = \cexp{f}{\mathscr{H}}.
 					\end{align}
+					
+				\item[(4)] $f \in L^1(\mu) \cap L^\infty(\mu)$なら
+					\begin{align}
+						\Norm{\cexp{f}{\mathscr{G}}}{L^\infty(\mu)}
+						\leq \Norm{f}{L^\infty(\mu)}.
+						\label{eq:thm_properties_of_conditional_expectations_3}
+					\end{align}
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				任意の$A,B \in \mathscr{G}$に対して
+				\begin{align}
+					\int_A \defunc_B f\ d\mu
+					= \int_{A \cap B} f\ d\mu
+					= \int_{A \cap B} \cexp{f}{\mathscr{G}}\ d\gamma
+					= \int_A \defunc_B \cexp{f}{\mathscr{G}}\ d\gamma
+				\end{align}
+				となるから，$g$の単関数近似列$(g_n)_{n=1}^\infty,\ \left(g_n \in L^\infty(\gamma),|g_n| \leq |g|\right)$に対して
+				\begin{align}
+					\int_A g_n f\ d\mu = \int_A g_n \cexp{f}{\mathscr{G}}\ d\gamma,
+					\quad (\forall n \geq 1)
+				\end{align}
+				が成り立つ．$gf \in L^1(\mu)$かつ$g\cexp{f}{\mathscr{G}} \in L^1(\gamma)$であるから
+				Lebesgueの収束定理より
+				\begin{align}
+					\int_A g \cexp{f}{\mathscr{G}}\ d\gamma
+					= \int_A g f\ d\mu
+					= \int_A \cexp{g f}{\mathscr{G}}\ d\gamma
+				\end{align}
+				が従い(\refeq{eq:thm_properties_of_conditional_expectations_2})が得られる．
+				
+			\item[(2)]
+				任意の$\alpha_1,\alpha_2 \in \C,\ f_1,f_2 \in L^1(\mu)$と$A \in \mathscr{G}$に対して
+				\begin{align}
+					&\int_A \cexp{\alpha_1 f_1 + \alpha_2 f_2}{\mathscr{G}}\ d\gamma
+					= \int_A \alpha_1 f_1 + \alpha_2 f_2\ d\mu
+					= \alpha_1 \int_A f_1\ d\mu + \alpha_2 \int_A f_2\ d\mu \\
+					&\qquad = \alpha_1 \int_A \cexp{f_1}{\mathscr{G}}\ d\gamma 
+						+ \alpha_2 \int_A \cexp{f_2}{\mathscr{G}}\ d\gamma
+					= \int_A \alpha_1 \cexp{f_1}{\mathscr{G}} + \alpha_2 \cexp{f_2}{\mathscr{G}}\ d\gamma
+				\end{align}
+				が成立するから$L^1(\nu)$で
+				\begin{align}
+					\cexp{\alpha_1 f_1 + \alpha_2 f_2}{\mathscr{G}}
+					= \alpha_1 \cexp{f_1}{\mathscr{G}} + \alpha_2 \cexp{f_2}{\mathscr{G}}
+				\end{align}
+				となり$\cexp{\cdot}{\mathscr{G}}$の線型性が出る．また$f \in L^1(\mu)$に対し
+				\begin{align}
+					\alpha \coloneqq \defunc_{\left\{\cexp{f}{\mathscr{G}} \neq 0\right\}} 
+						\frac{\overline{\cexp{f}{\mathscr{G}}}}{|\cexp{f}{\mathscr{G}}|}
+				\end{align}
+				により$\alpha \in L^\infty(\gamma)$を定めれば，任意の$A \in \mathscr{G}$に対して
+				\begin{align}
+					\int_A |\cexp{f}{\mathscr{G}}|\ d\gamma
+					&= \int_A \alpha \cexp{f}{\mathscr{G}}\ d\gamma
+					= \int_A \cexp{\alpha f}{\mathscr{G}}\ d\gamma \\
+					&= \int_A \alpha f\ d\mu
+					\leq \int_A |f|\ d\mu
+					= \int_A \cexp{|f|}{\mathscr{G}}\ d\gamma
+				\end{align}
+				が成り立つから，(\refeq{eq:thm_properties_of_conditional_expectations_2})及び
+				$\cexp{\cdot}{\mathscr{G}}$の有界性が得られる．
+				
+			\item[(3)]
+				任意の$A \in \mathscr{H}$に対して
+				\begin{align}
+					\int_A \cexp{f}{\mathscr{H}}\ d\theta
+					= \int_A f\ d\mu
+					= \int_A \cexp{f}{\mathscr{G}}\ d\gamma
+					= \int_A \cexp{\cexp{f}{\mathscr{G}}}{\mathscr{H}}\ d\theta
+				\end{align}
+				が成立する．
+				
+			\item[(4)] 任意の$A \in \mathscr{G}$に対して(\refeq{eq:thm_properties_of_conditional_expectations_2})より
+				\begin{align}
+					\int_A \left| \cexp{f}{\mathscr{G}} \right|\ d\gamma
+					\leq \int_A |f|\ d\mu
+					\leq \mu(A) \Norm{f}{L^\infty}
+					= \gamma(A) \Norm{f}{L^\infty}
+				\end{align}
+				が成り立つから(\refeq{eq:thm_properties_of_conditional_expectations_3})が従う．
+				\QED
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}
@@ -475,14 +568,12 @@
 		$(X,\mathscr{F},\mu)$を測度空間，
 		$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族とし，
 		$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとする．
-		このとき，任意の可積分関数
-		$f:X \longrightarrow \R$と
+		このとき，任意の可積分関数$f:X \longrightarrow \R$と
 		凸関数$\varphi:\R \longrightarrow \R$に対し，
 		$\varphi(f)$が可積分なら次が成立する:
 		\begin{align}
 			\varphi\left(\cexp{f}{\mathscr{G}} \right)
-			\leq \cexp{\varphi(f)}{\mathscr{G}},
-			\quad \mbox{$\mu$-a.e.}
+			\leq \cexp{\varphi(f)}{\mathscr{G}}.
 		\end{align}
 	\end{thm}
 	\end{screen}
