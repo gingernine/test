@@ -115,16 +115,21 @@
 				\Phi_g: L^p(\mu) \ni f \longmapsto \int_X fg\ d\mu
 				\label{eq:thm_dual_space_of_L_p_1}
 			\end{align}
-			は有界線形作用素となり，
+			は有界線形作用素となる．また
 			\begin{align}
 				\Phi: L^q(\mu) \ni g \longmapsto \Phi_g \in \left( L^p(\mu) \right)^*,
 				\quad \left( \Phi_g(f) = \int_X fg\ d\mu,\quad \forall f \in L^p(\mu) \right)
 			\end{align}
-			で定める$\Phi$は
+			で定める$\Phi$は$\left( L^p(\mu) \right)^*$から$L^q(\mu)$への線型同型であり，
+			次の意味で等長である:
 			\begin{align}
-				\Norm{g}{L^q(\mu)} = \Norm{\Phi_g}{\left( L^p(\mu) \right)^*}
+				\Norm{g}{L^q(\mu)} = \Norm{\Phi_g}{\left( L^p(\mu) \right)^*}.
+				\label{eq:thm_dual_space_of_L_p_asseretion_2}
 			\end{align}
-			の意味で等長であり，$\Phi$により$\left( L^p(\mu) \right)^*$と$L^q(\mu)$はBanach空間として同型となる．
+			$p=\infty$の場合，$\mu(X) < \infty$かつ$\varphi \in \left( L^\infty(\mu) \right)^*$に対し
+			$\mathscr{F} \ni A \longmapsto \varphi(\defunc_A)$が可算加法的ならば，
+			$\varphi$に対し或る$g \in L^1(\mu)$が唯一つ存在して
+			$\varphi = \Phi_g$と(\refeq{eq:thm_dual_space_of_L_p_asseretion_2})を満たす．
 		\end{thm}
 	\end{screen}
 	
@@ -167,14 +172,15 @@
 				\begin{align}
 					\int_E g-g'\ d\mu = 0
 				\end{align}
-				が従い$g = g' \in L^q(\mu)$が出る．
+				が従い$L^q(\mu)$で$g = g'$が成立する．
 				
 			\item[第三段]
-				$\mu(X) < \infty$の場合，
+				$1 \leq p < \infty$の場合，$\mu(X) < \infty$なら
 				任意の$\varphi \in \left( L^p(\mu) \right)^*$に対して
 				$\Phi(g) = \varphi$を満たす$g \in L^q(\mu)$が存在することを示す．
 				\begin{align}
 					\lambda(E) \coloneqq \varphi(\defunc_E)
+					\label{eq:thm_dual_space_of_L_p_7}
 				\end{align}
 				により$\lambda$を定めれば
 				\begin{align}
@@ -206,6 +212,7 @@
 				\begin{align}
 					\varphi(\defunc_E) = \lambda(E) = \int_X \defunc_E g\ d\mu,
 					\quad (\forall E \in \mathscr{F})
+					\label{eq:thm_dual_space_of_L_p_8}
 				\end{align}
 				を満たす$g \in L^1(\mu)$が存在する．$\varphi$の線型性より
 				任意の単関数の同値類$f$に対して
@@ -229,6 +236,27 @@
 				となるから(\refeq{eq:thm_dual_space_of_L_p_2})が成立する．
 			
 			\item[第四段]
+				$p = \infty,\ \mu(X) < \infty$の場合，
+				$\varphi \in \left( L^p(\mu) \right)^*$に対して
+				$\mathscr{F} \ni A \longmapsto \varphi(\defunc_A)$が可算加法的ならば
+				(\refeq{eq:thm_dual_space_of_L_p_7})で定める$\lambda$は複素測度となり，
+				前段と同じ理由で(\refeq{eq:thm_dual_space_of_L_p_8})を満たす$g \in L^1(\mu)$が存在し
+				\begin{align}
+					\varphi(f) = \int_X fg\ d\mu,
+					\quad (\forall f \in L^\infty(\mu))
+				\end{align}
+				が成立する．すなわち$\varphi = \Phi_g$であり，
+				このとき$f \coloneqq \defunc_{\{g \neq 0\}}\overline{g}/g \in L^\infty(\mu)$
+				に対して
+				\begin{align}
+					\Norm{g}{L^1(\mu)} = \int_X fg\ d\mu = \varphi(f) 
+					\leq \Norm{\varphi}{\left( L^\infty(\mu) \right)^*} 
+				\end{align}
+				となるから，(\refeq{eq:thm_dual_space_of_L_p_3})と併せて
+				(\refeq{eq:thm_dual_space_of_L_p_asseretion_2})が満たされる．
+				以降は$p < \infty$とする．
+				
+			\item[第五段]
 				$g \in L^q(\mu)$であることを示す．$p = 1$の場合，
 				任意の$E \in \mathscr{F}$に対して$f = \defunc_E$とすれば，
 				(\refeq{eq:thm_dual_space_of_L_p_2})より
@@ -241,24 +269,17 @@
 					\Norm{g}{L^q(\mu)} \leq \Norm{\varphi}{\left( L^p(\mu) \right)^*}
 					\label{eq:thm_dual_space_of_L_p_4}
 				\end{align}
-				が従う．$1 < p < \infty$の場合は，
-				\begin{align}
-					\alpha(x) \coloneqq
-					\begin{cases}
-						\overline{g(x)}/|g(x)|, & (g(x) \neq 0), \\
-						0, & (g(x) = 0)
-					\end{cases}
-				\end{align}
-				及び
+				が従う．$1 < p < \infty$の場合は
+				$\alpha \coloneqq \defunc_{\{g \neq 0\}}\overline{g}/g$と
 				\begin{align}
 					E_n \coloneqq \Set{x \in X}{|g(x)| \leq n},
 					\quad (n=1,2,\cdots)
 				\end{align}
-				に対して$f \coloneqq \defunc_{E_n} |g|^{q-1} \alpha$とおけば
+				に対して$f \coloneqq \defunc_{E_n} |g|^{q-1} \alpha$とおけば，
 				\begin{align}
 					fg = \defunc_{E_n} |g|^q = |f|^p
 				\end{align}
-				が成り立ち，$|f|^p \in L^\infty(\mu)$となるから(\refeq{eq:thm_dual_space_of_L_p_2})より
+				が成り立ち$|f|^p \in L^\infty(\mu)$となるから(\refeq{eq:thm_dual_space_of_L_p_2})より
 				\begin{align}
 					\int_X \defunc_{E_n} |g|^q\ d\mu
 					= \int_X fg\ d\mu
@@ -277,7 +298,7 @@
 				\end{align}
 				が出る．
 				
-			\item[第五段]
+			\item[第六段]
 				任意の$f \in L^p(\mu)$に対して，単関数近似列$(f_n)_{n=1}^\infty$は(\refeq{eq:thm_dual_space_of_L_p_2})を満たすから，
 				H\Ddot{o}lderの不等式とLebesgueの収束定理より
 				\begin{align}
@@ -298,13 +319,13 @@
 				\end{align}
 				が満たされる．
 				
-			\item[第六段]
+			\item[第七段]
 				$\mu(X) = \infty$の場合，補題\ref{lem:Lebesgue_Radon_Nikodym}の関数$w$を用いて
 				\begin{align}
 					\tilde{\mu}(E) \coloneqq \int_E w\ d\mu,
 					\quad (\forall E \in \mathscr{F})
 				\end{align}
-				により有限測度$\tilde{\mu}$が定める．このとき
+				により有限測度$\tilde{\mu}$を定める．このとき
 				任意の$f \in L^p(\mu)$に対して
 				\begin{align}
 					F \coloneqq w^{-1/p} f
