@@ -513,13 +513,7 @@
 			\gamma \coloneqq \left. \mu \right|_{\mathscr{G}}$
 			がそれぞれ$\sigma$-有限測度であるとする．このとき以下が成立する:
 			\begin{description}
-				\item[(1)] $f \in L^1(\mu),\ g \in L^\infty(\gamma)$に対して
-					\begin{align}
-						\cexp{gf}{\mathscr{G}} = g\cexp{f}{\mathscr{G}}.
-						\label{eq:thm_properties_of_conditional_expectations_1}
-					\end{align}
-					
-				\item[(2)] $\cexp{\cdot}{\mathscr{G}}$は$L^1(X,\mathscr{F},\mu)$から
+				\item[(1)] $\cexp{\cdot}{\mathscr{G}}$は$L^1(X,\mathscr{F},\mu)$から
 					$L^1\left(X,\mathscr{G},\gamma\right)$への有界線形作用素であり，
 					次を満たす:
 					\begin{align}
@@ -528,19 +522,19 @@
 						\label{eq:thm_properties_of_conditional_expectations_2}
 					\end{align}
 				
-				\item[(3)] $f \in L^1(\mu),\ g \in L^0(\gamma)$に対して，
+				\item[(2)] $f \in L^1(\mu),\ g \in L^0(\gamma)$に対して，
 					$gf \in L^1(\mu)$なら$g \cexp{f}{\mathscr{G}} \in L^1(\gamma)$であり
 					\begin{align}
 						\cexp{gf}{\mathscr{G}} = g\cexp{f}{\mathscr{G}}.
 						\label{eq:thm_properties_of_conditional_expectations_4}
 					\end{align}
 					
-				\item[(4)] $f \in L^1(\mu)$に対して
+				\item[(3)] $f \in L^1(\mu)$に対して
 					\begin{align}
 						\cexp{\cexp{f}{\mathscr{G}}}{\mathscr{H}} = \cexp{f}{\mathscr{H}}.
 					\end{align}
 					
-				\item[(5)] $p \in [1,\infty]$に対し$f \in L^1(\mu) \cap L^p(\mu)$なら
+				\item[(4)] $p \in [1,\infty]$に対し$f \in L^1(\mu) \cap L^p(\mu)$なら
 					\begin{align}
 						\left| \cexp{f}{\mathscr{G}} \right|^p
 						\leq \cexp{|f|^p}{\mathscr{G}},\quad (p \in [0,\infty))
@@ -558,7 +552,27 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(1)]
-				任意の$A,B \in \mathscr{G}$に対して
+				任意の$\alpha_1,\alpha_2 \in \C,\ f_1,f_2 \in L^1(\mu)$と$A \in \mathscr{G}$に対して
+				\begin{align}
+					&\int_A \cexp{\alpha_1 f_1 + \alpha_2 f_2}{\mathscr{G}}\ d\gamma
+					= \int_A \alpha_1 f_1 + \alpha_2 f_2\ d\mu
+					= \alpha_1 \int_A f_1\ d\mu + \alpha_2 \int_A f_2\ d\mu \\
+					&\qquad = \alpha_1 \int_A \cexp{f_1}{\mathscr{G}}\ d\gamma 
+						+ \alpha_2 \int_A \cexp{f_2}{\mathscr{G}}\ d\gamma
+					= \int_A \alpha_1 \cexp{f_1}{\mathscr{G}} + \alpha_2 \cexp{f_2}{\mathscr{G}}\ d\gamma
+				\end{align}
+				が成立するから，$L^1(\nu)$で
+				\begin{align}
+					\cexp{\alpha_1 f_1 + \alpha_2 f_2}{\mathscr{G}}
+					= \alpha_1 \cexp{f_1}{\mathscr{G}} + \alpha_2 \cexp{f_2}{\mathscr{G}}
+				\end{align}
+				となり$\cexp{\cdot}{\mathscr{G}}$の線型性が出る．
+				いま，$f \in L^1(\mu),\ g \in L^\infty(\gamma)$に対して
+				\begin{align}
+					\cexp{gf}{\mathscr{G}} = g\cexp{f}{\mathscr{G}}.
+					\label{eq:thm_properties_of_conditional_expectations_1}
+				\end{align}
+				が成り立つことを示す．実際，任意の$A,B \in \mathscr{G}$に対して
 				\begin{align}
 					\int_A \defunc_B f\ d\mu
 					= \int_{A \cap B} f\ d\mu
@@ -570,31 +584,15 @@
 					\int_A g_n f\ d\mu = \int_A g_n \cexp{f}{\mathscr{G}}\ d\gamma,
 					\quad (\forall n \geq 1)
 				\end{align}
-				が成り立つ．$gf \in L^1(\mu)$かつ$g\cexp{f}{\mathscr{G}} \in L^1(\gamma)$であるから
+				が成り立ち，$gf \in L^1(\mu)$かつ$g\cexp{f}{\mathscr{G}} \in L^1(\gamma)$であるから
 				Lebesgueの収束定理より
 				\begin{align}
 					\int_A g \cexp{f}{\mathscr{G}}\ d\gamma
 					= \int_A g f\ d\mu
 					= \int_A \cexp{g f}{\mathscr{G}}\ d\gamma
 				\end{align}
-				が従い(\refeq{eq:thm_properties_of_conditional_expectations_2})が得られる．
-				
-			\item[(2)]
-				任意の$\alpha_1,\alpha_2 \in \C,\ f_1,f_2 \in L^1(\mu)$と$A \in \mathscr{G}$に対して
-				\begin{align}
-					&\int_A \cexp{\alpha_1 f_1 + \alpha_2 f_2}{\mathscr{G}}\ d\gamma
-					= \int_A \alpha_1 f_1 + \alpha_2 f_2\ d\mu
-					= \alpha_1 \int_A f_1\ d\mu + \alpha_2 \int_A f_2\ d\mu \\
-					&\qquad = \alpha_1 \int_A \cexp{f_1}{\mathscr{G}}\ d\gamma 
-						+ \alpha_2 \int_A \cexp{f_2}{\mathscr{G}}\ d\gamma
-					= \int_A \alpha_1 \cexp{f_1}{\mathscr{G}} + \alpha_2 \cexp{f_2}{\mathscr{G}}\ d\gamma
-				\end{align}
-				が成立するから$L^1(\nu)$で
-				\begin{align}
-					\cexp{\alpha_1 f_1 + \alpha_2 f_2}{\mathscr{G}}
-					= \alpha_1 \cexp{f_1}{\mathscr{G}} + \alpha_2 \cexp{f_2}{\mathscr{G}}
-				\end{align}
-				となり$\cexp{\cdot}{\mathscr{G}}$の線型性が出る．また$f \in L^1(\mu)$に対し
+				が従い(\refeq{eq:thm_properties_of_conditional_expectations_1})が得られる．
+				ここで$f \in L^1(\mu)$に対し
 				\begin{align}
 					\alpha \coloneqq \defunc_{\left\{\cexp{f}{\mathscr{G}} \neq 0\right\}} 
 						\frac{\overline{\cexp{f}{\mathscr{G}}}}{|\cexp{f}{\mathscr{G}}|}
@@ -611,7 +609,7 @@
 				が成り立つから，(\refeq{eq:thm_properties_of_conditional_expectations_2})及び
 				$\cexp{\cdot}{\mathscr{G}}$の有界性が得られる．
 				
-			\item[(3)]
+			\item[(2)]
 				$(g_n)_{n=1}^\infty$を$g$の単関数近似列とすれば，
 				単調収束定理と(\refeq{eq:thm_properties_of_conditional_expectations_1})より
 				\begin{align}
@@ -630,7 +628,7 @@
 				\end{align}
 				が成り立ち(\refeq{eq:thm_properties_of_conditional_expectations_4})が得られる．
 				
-			\item[(4)]
+			\item[(3)]
 				任意の$A \in \mathscr{H}$に対して
 				\begin{align}
 					\int_A \cexp{f}{\mathscr{H}}\ d\theta
@@ -640,7 +638,7 @@
 				\end{align}
 				が成立する．
 				
-			\item[(5)] 
+			\item[(4)] 
 				$1 \leq p < \infty$の場合，
 				(\refeq{eq:thm_properties_of_conditional_expectations_2})とJensenの不等式より
 				\begin{align}
