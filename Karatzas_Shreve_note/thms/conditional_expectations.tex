@@ -419,6 +419,94 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{lem}[凸関数の片側微係数の存在]
+			任意の凸関数$\varphi:\R \longrightarrow \R$には
+			各点で左右の微係数が存在する．特に，凸関数は連続であり，すなわちBorel可測である．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		凸性より任意の$x < y < z$に対して
+		\begin{align}
+			\frac{\varphi(y) - \varphi(x)}{y - x} 
+			\leq \frac{\varphi(z) - \varphi(x)}{z - x}
+			\leq \frac{\varphi(z) - \varphi(y)}{z - y}
+			\label{ineq:lem:convex_function_measurability_1}
+		\end{align}
+		が満たされる．従って，$x$を固定すれば，$x$に単調減少に近づく任意の点列$(x_n)_{n=1}^{\infty}$に対し
+		 \begin{align}
+		 	\left(\frac{f(x_n)-f(x)}{x_n-x}\right)_{n=1}^{\infty} 
+		 	\label{seq:lem:convex_function_measurability_2}
+		 \end{align}
+		 は下に有界な単調減少列となり下限が存在する．$x$に単調減少に近づく別の点列$(y_k)_{k=1}^{\infty}$を取れば
+		 \begin{align}
+		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \frac{f(x_n)-f(x)}{x_n-x} \quad (n=1,2,\cdots)
+		 \end{align}
+		 より
+		 \begin{align}
+		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \inf{n \in \N}{\frac{f(x_n)-f(x)}{x_n-x}}
+		 \end{align}
+		 が成立し，$(x_n),(y_k)$の立場を変えれば逆向きの不等号も得られる．
+		 すなわち極限は点列に依らず確定し，$\varphi$は$x$で右側微係数を持つ．
+		 同様に左側微係数も存在し，特に$\varphi$の連続性及びBorel可測性が従う．
+		 \QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Jensenの不等式]
+			$(X,\mathscr{F},\mu)$を測度空間，
+			$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族とし，
+			$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとする．
+			このとき，任意の可積分関数$f:X \longrightarrow \R$と
+			凸関数$\varphi:\R \longrightarrow \R$に対し，
+			$\varphi(f)$が可積分なら次が成立する:
+			\begin{align}
+				\varphi\left(\cexp{f}{\mathscr{G}} \right)
+				\leq \cexp{\varphi(f)}{\mathscr{G}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+			$\varphi$は各点$x \in \R$で右側接線を持つから，
+			それを$\R \ni t \longmapsto a_x t + b_x$と表せば，
+			\begin{align}
+				\varphi(t) = \sup{r \in \Q}{\left\{ a_r t + b_r \right\}} \quad (\forall t \in \R)
+				\label{eq:prp_properties_of_expanded_conditional_expectation_1}
+			\end{align}
+			が成立する．
+			よって任意の$r \in \Q$に対して
+			\begin{align}
+				\varphi(f(x)) \geq a_r f(x) + b_r
+			\end{align}
+			が満たされるから
+			\begin{align}
+				\cexp{\varphi(f)}{\mathscr{G}}
+				\geq a_r \cexp{f}{\mathscr{G}} + b_r 
+				\quad \mbox{$\mu$-a.e.},
+				\quad \forall r \in \Q 
+			\end{align}
+			が従い，各$r \in \Q$に対し
+			\begin{align}
+				N_r \coloneqq \Set{x \in X}{\cexp{\varphi(f)}{\mathscr{G}}(x)
+				< a_r \cexp{f}{\mathscr{G}}(x) + b_r}
+			\end{align}
+			とおけば$\mu(N_r) = 0$かつ
+			\begin{align}
+				\cexp{\varphi(f)}{\mathscr{G}}(x)
+				\geq a_r \cexp{f}{\mathscr{G}}(x) + b_r, 
+				\quad \forall r \in \Q,\ x \notin \bigcup_{r \in \Q} N_r
+			\end{align}
+			となる．$r$の任意性と(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
+			\begin{align}
+				\cexp{\varphi(f)}{\mathscr{G}} \geq \varphi\left( \cexp{f}{\mathscr{G}} \right),
+				\quad \mbox{$\mu$-a.e.}
+			\end{align}
+			が得られる．
+			\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{thm}[条件付き期待値の性質]\label{thm:properties_of_conditional_expectations}
 			$(X,\mathscr{F},\mu)$を測度空間，$\mathscr{H},\mathscr{G}$を$\mathscr{H} \subset \mathscr{G}$を満たす
 			$\mathscr{F}$の部分$\sigma$-加法族とし，$\theta \coloneqq \left. \mu \right|_{\mathscr{H}},
@@ -439,16 +527,28 @@
 						\quad (\forall f \in L^1(\mu)).
 						\label{eq:thm_properties_of_conditional_expectations_2}
 					\end{align}
+				
+				\item[(3)] $f \in L^1(\mu),\ g \in L^0(\gamma)$に対して，
+					$gf \in L^1(\mu)$なら$g \cexp{f}{\mathscr{G}} \in L^1(\gamma)$であり
+					\begin{align}
+						\cexp{gf}{\mathscr{G}} = g\cexp{f}{\mathscr{G}}.
+						\label{eq:thm_properties_of_conditional_expectations_4}
+					\end{align}
 					
-				\item[(3)] $f \in L^1(\mu)$に対して
+				\item[(4)] $f \in L^1(\mu)$に対して
 					\begin{align}
 						\cexp{\cexp{f}{\mathscr{G}}}{\mathscr{H}} = \cexp{f}{\mathscr{H}}.
 					\end{align}
 					
-				\item[(4)] $f \in L^1(\mu) \cap L^\infty(\mu)$なら
+				\item[(5)] $p \in [1,\infty]$に対し$f \in L^1(\mu) \cap L^p(\mu)$なら
 					\begin{align}
-						\Norm{\cexp{f}{\mathscr{G}}}{L^\infty(\mu)}
-						\leq \Norm{f}{L^\infty(\mu)}.
+						\left| \cexp{f}{\mathscr{G}} \right|^p
+						\leq \cexp{|f|^p}{\mathscr{G}},\quad (p \in [0,\infty))
+					\end{align}
+					かつ
+					\begin{align}
+						\Norm{\cexp{f}{\mathscr{G}}}{L^p(\mu)}
+						\leq \Norm{f}{L^p(\mu)},\quad (p \in [0,\infty]).
 						\label{eq:thm_properties_of_conditional_expectations_3}
 					\end{align}
 			\end{description}
@@ -512,6 +612,25 @@
 				$\cexp{\cdot}{\mathscr{G}}$の有界性が得られる．
 				
 			\item[(3)]
+				$(g_n)_{n=1}^\infty$を$g$の単関数近似列とすれば，
+				単調収束定理と(\refeq{eq:thm_properties_of_conditional_expectations_1})より
+				\begin{align}
+					\int_X |g|\cexp{|f|}{\mathscr{G}}\ d\gamma
+					= \lim_{n \to \infty} \int_X |g_n|\cexp{|f|}{\mathscr{G}}\ d\gamma
+					= \lim_{n \to \infty} \int_X |g_n||f|\ d\mu
+					= \int_X |g||f|\ d\mu
+				\end{align}
+				となり$g\cexp{f}{\mathscr{G}}$の可積分性が従う．従って，
+				Lebesgueの収束定理より任意の$A \in \mathscr{G}$に対して
+				\begin{align}
+					\int_A g\cexp{f}{\mathscr{G}}\ d\gamma
+					= \lim_{n \to \infty} \int_A g_n\cexp{f}{\mathscr{G}}\ d\gamma
+					= \lim_{n \to \infty} \int_A g_n f\ d\mu
+					= \int_A gf\ d\mu
+				\end{align}
+				が成り立ち(\refeq{eq:thm_properties_of_conditional_expectations_4})が得られる．
+				
+			\item[(4)]
 				任意の$A \in \mathscr{H}$に対して
 				\begin{align}
 					\int_A \cexp{f}{\mathscr{H}}\ d\theta
@@ -521,14 +640,21 @@
 				\end{align}
 				が成立する．
 				
-			\item[(4)] 任意の$A \in \mathscr{G}$に対して(\refeq{eq:thm_properties_of_conditional_expectations_2})より
+			\item[(5)] 
+				$1 \leq p < \infty$の場合，
+				(\refeq{eq:thm_properties_of_conditional_expectations_2})とJensenの不等式より
+				\begin{align}
+					|\cexp{f}{\mathscr{G}}|^p \leq \cexp{|f|}{\mathscr{G}}^p
+					\leq \cexp{|f|^p}{\mathscr{G}}
+				\end{align}
+				が成り立つ．$p = \infty$の場合は任意の$A \in \mathscr{G}$に対して
 				\begin{align}
 					\int_A \left| \cexp{f}{\mathscr{G}} \right|\ d\gamma
 					\leq \int_A |f|\ d\mu
 					\leq \mu(A) \Norm{f}{L^\infty}
 					= \gamma(A) \Norm{f}{L^\infty}
 				\end{align}
-				が成り立つから(\refeq{eq:thm_properties_of_conditional_expectations_3})が従う．
+				となり，$1 \leq p < \infty$の場合も込めて(\refeq{eq:thm_properties_of_conditional_expectations_3})が従う．
 				\QED
 		\end{description}
 	\end{prf}
@@ -549,91 +675,3 @@
 			\end{description}
 		\end{thm}
 	\end{screen}
-	
-	\begin{screen}
-	\begin{lem}[凸関数の片側微係数の存在]
-		任意の凸関数$\varphi:\R \longrightarrow \R$には
-		各点で左右の微係数が存在する．特に，凸関数は連続であり，すなわちBorel可測である．
-	\end{lem}
-	\end{screen}
-	
-	\begin{prf}
-		凸性より任意の$x < y < z$に対して
-		\begin{align}
-			\frac{\varphi(y) - \varphi(x)}{y - x} 
-			\leq \frac{\varphi(z) - \varphi(x)}{z - x}
-			\leq \frac{\varphi(z) - \varphi(y)}{z - y}
-			\label{ineq:lem:convex_function_measurability_1}
-		\end{align}
-		が満たされる．従って，$x$を固定すれば，$x$に単調減少に近づく任意の点列$(x_n)_{n=1}^{\infty}$に対し
-		 \begin{align}
-		 	\left(\frac{f(x_n)-f(x)}{x_n-x}\right)_{n=1}^{\infty} 
-		 	\label{seq:lem:convex_function_measurability_2}
-		 \end{align}
-		 は下に有界な単調減少列となり下限が存在する．$x$に単調減少に近づく別の点列$(y_k)_{k=1}^{\infty}$を取れば
-		 \begin{align}
-		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \frac{f(x_n)-f(x)}{x_n-x} \quad (n=1,2,\cdots)
-		 \end{align}
-		 より
-		 \begin{align}
-		 	\inf{k \in \N}{\frac{f(y_k)-f(x)}{y_k-x}} \leq \inf{n \in \N}{\frac{f(x_n)-f(x)}{x_n-x}}
-		 \end{align}
-		 が成立し，$(x_n),(y_k)$の立場を変えれば逆向きの不等号も得られる．
-		 すなわち極限は点列に依らず確定し，$\varphi$は$x$で右側微係数を持つ．
-		 同様に左側微係数も存在し，特に$\varphi$の連続性及びBorel可測性が従う．
-		 \QED
-	\end{prf}
-	
-	\begin{screen}
-	\begin{thm}[Jensenの不等式]
-		$(X,\mathscr{F},\mu)$を測度空間，
-		$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族とし，
-		$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとする．
-		このとき，任意の可積分関数$f:X \longrightarrow \R$と
-		凸関数$\varphi:\R \longrightarrow \R$に対し，
-		$\varphi(f)$が可積分なら次が成立する:
-		\begin{align}
-			\varphi\left(\cexp{f}{\mathscr{G}} \right)
-			\leq \cexp{\varphi(f)}{\mathscr{G}}.
-		\end{align}
-	\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-			$\varphi$は各点$x \in \R$で右側接線を持つから，
-			それを$\R \ni t \longmapsto a_x t + b_x$と表せば，
-			\begin{align}
-				\varphi(t) = \sup{r \in \Q}{\left\{ a_r t + b_r \right\}} \quad (\forall t \in \R)
-				\label{eq:prp_properties_of_expanded_conditional_expectation_1}
-			\end{align}
-			が成立する．
-			よって任意の$r \in \Q$に対して
-			\begin{align}
-				\varphi(f(x)) \geq a_r f(x) + b_r
-			\end{align}
-			が満たされるから
-			\begin{align}
-				\cexp{\varphi(f)}{\mathscr{G}}
-				\geq a_r \cexp{f}{\mathscr{G}} + b_r 
-				\quad \mbox{$\mu$-a.e.},
-				\quad \forall r \in \Q 
-			\end{align}
-			が従い，各$r \in \Q$に対し
-			\begin{align}
-				N_r \coloneqq \Set{x \in X}{\cexp{\varphi(f)}{\mathscr{G}}(x)
-				< a_r \cexp{f}{\mathscr{G}}(x) + b_r}
-			\end{align}
-			とおけば$\mu(N_r) = 0$かつ
-			\begin{align}
-				\cexp{\varphi(f)}{\mathscr{G}}(x)
-				\geq a_r \cexp{f}{\mathscr{G}}(x) + b_r, 
-				\quad \forall r \in \Q,\ x \notin \bigcup_{r \in \Q} N_r
-			\end{align}
-			となる．$r$の任意性と(\refeq{eq:prp_properties_of_expanded_conditional_expectation_1})より
-			\begin{align}
-				\cexp{\varphi(f)}{\mathscr{G}} \geq \varphi\left( \cexp{f}{\mathscr{G}} \right),
-				\quad \mbox{$\mu$-a.e.}
-			\end{align}
-			が得られる．
-			\QED
-	\end{prf}
