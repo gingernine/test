@@ -681,3 +681,49 @@
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Vitali-Hahn-Saks]\label{thm;Vitali_Hahn_Saks}
+			$(X,\mathscr{F})$を可測空間，$(\lambda_n)_{n=1}^\infty$をこの上の複素測度の列とするとき，
+			\begin{align}
+				\lambda(E) \coloneqq \lim_{n \to \infty} \lambda_n(E),
+				\quad (\forall E \in \mathscr{F})
+				\label{eq:thm_Vitali_Hahn_Saks}
+			\end{align}
+			が複素数値で確定すれば，$\lambda$もまた$(X,\mathscr{F})$上の複素測度となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		(\refeq{eq:thm_Vitali_Hahn_Saks})が複素数値で確定しているとき，$(X,\mathscr{F})$上の有限測度を
+		\begin{align}
+			\mu \coloneqq \sum_{n=1}^\infty \frac{1}{2^n(1 + \Norm{\lambda_n}{})} |\lambda_n|
+		\end{align}
+		により定めれば$\lambda_n \ll \mu\ (\forall n \geq 1)$より
+		$\lambda \ll \mu$となる．任意の互いに素な$A,B \in \mathscr{F}$を取れば
+		\begin{align}
+			\lambda(A + B) = \lim_{n \to \infty} \lambda_n(A + B)
+			= \lim_{n \to \infty} \lambda_n(A) + \lim_{n \to \infty} \lambda_n(B)
+			= \lambda(A) + \lambda(B)
+		\end{align}
+		が成り立つから$\lambda$は有限加法的であり，このとき任意の互いに素な列$\{E_i\}_{i=1}^\infty \subset \mathscr{F}$に対し
+		\begin{align}
+			\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr)
+			= \lambda\Biggl( \sum_{i=1}^N E_i \Biggr) + \lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr)
+			= \sum_{i=1}^N \lambda(E_i) + \lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr)
+		\end{align}
+		が任意の$N \geq 1$について満たされるが，
+		\begin{align}
+			\mu\Biggl( \sum_{i=N+1}^\infty E_i \Biggr) \longrightarrow 0 \quad (N \longrightarrow \infty)
+		\end{align}
+		と定理\ref{thm:equivalent_condition_of_absolute_continuity}より
+		\begin{align}
+			\lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr) \longrightarrow 0 \quad (N \longrightarrow \infty)
+		\end{align}
+		が従い
+		\begin{align}
+			\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr) = \sum_{i=1}^\infty \lambda(E_i)
+		\end{align}
+		が得られる．よって$\lambda$は複素測度である．
+		\QED
+	\end{prf}
