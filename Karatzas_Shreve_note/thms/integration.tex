@@ -1,5 +1,69 @@
 \section{積分}
 	\begin{screen}
+		\begin{thm}[複素数値関数の可測性]\label{thm:measurability_of_complex_measurable_functions}
+			$(X,\mathscr{F})$を可測空間，$f:X \longrightarrow \C$とする．このとき，
+			$f$が$\mathscr{F}/\borel{\C}$-可測であることと
+			$f$の実部$u$と虚部$v$がそれぞれ$\mathscr{F}/\borel{\R}$-可測であることは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$z \in \C$に対し$x,y \in \C$の組が唯一つ対応し$z = x + i y$を満たす．この対応関係により定める写像
+		\begin{align}
+			\varphi:\C \ni z \longmapsto (x,y) \in \R^2
+		\end{align}
+		は位相同型である．射影を$p_1:\R^2 \ni (x,y) \longmapsto x,
+		\ p_2:\R^2 \ni (x,y) \longmapsto y$とすれば
+		\begin{align}
+			u = p_1 \circ \varphi \circ f,
+			\quad v = p_2 \circ \varphi \circ f
+		\end{align}
+		となるから，$f$が$\mathscr{F}/\borel{\C}$-可測であるなら
+		$p_1,p_2,\varphi$の連続性より
+		\begin{align}
+			u^{-1}(A) = f^{-1} \circ \varphi^{-1} \circ p_1^{-1}(A) \in \mathscr{F},
+			\quad v^{-1}(A) = f^{-1} \circ \varphi^{-1} \circ p_2^{-1}(A) \in \mathscr{F},
+			\quad (\forall A \in \borel{\R})
+		\end{align}
+		が成り立ち$u,v$の$\mathscr{F}/\borel{\R}$-可測性が従う．逆に$u,v$が$\mathscr{F}/\borel{\R}$-可測であるとき，
+		\begin{align}
+			f^{-1}(B) = \Set{x \in X}{(u(x),v(x)) \in \varphi(B)} \in \mathscr{F},
+			\quad (\forall B \in \borel{\C})
+		\end{align}
+		が成り立ち$f$の$\mathscr{F}/\borel{\C}$-可測性が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[単関数近似列の存在]
+			$(X,\mathscr{F})$を可測空間とする．
+			\begin{description} 
+				\item[(1)] 任意の$\mathscr{F}/\borel{[0,\infty]}$-可測写像$f$に対し
+					\begin{align}
+						0 \leq f_1 \leq f_2 \leq \cdots \leq f;
+						\quad \lim_{n \to \infty} f_n(x) = f(x),\ (\forall x \in X)
+					\end{align}
+					を満たす$\mathscr{F}/\borel{[0,\infty)}$-可測単関数列$(f_n)_{n=1}^\infty$が存在する．
+					
+				\item[(2)]
+					 任意の$\mathscr{F}/\borel{\C}$-可測写像$f$に対し
+					\begin{align}
+						0 \leq |f_1| \leq |f_2| \leq \cdots \leq |f|;
+						\quad \lim_{n \to \infty} f_n(x) = f(x),\ (\forall x \in X)
+					\end{align}
+					を満たす$\mathscr{F}/\borel{\C}$-可測単関数列$(f_n)_{n=1}^\infty$が存在する．
+				
+				\item[(3)] (1)または(2)において，$f$が$E \in \mathscr{F}$上で有界なら
+					$f_n \defunc_E$は一様に$f \defunc_E$を近似する:
+					\begin{align}
+						\sup{x \in E}{\left| f_n(x) - f(x) \right|} \longrightarrow 0
+						\quad (n \longrightarrow \infty).
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{screen}
+		
+	\begin{screen}
 		\begin{lem}
 			$S$を実数の集合とする．$-S \coloneqq \Set{-s}{s \in S}$とおくとき次が成り立つ:
 			\begin{align}
