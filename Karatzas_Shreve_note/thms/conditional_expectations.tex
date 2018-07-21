@@ -49,7 +49,7 @@
 	\begin{screen}
 		\begin{thm}[Lebesgue-Radon-Nikodym]
 			$(X,\mathscr{F})$を可測空間，$\lambda$を$(X,\mathscr{F})$上の複素測度，
-			$\mu$を$(X,\mathscr{F})$上の$\sigma$-有限正値測度とするとき，以下が成立する:
+			$\mu$を$(X,\mathscr{F})$上の$\sigma$-有限正値測度$(\mu(X)>0)$とするとき，以下が成立する:
 			\begin{description}
 				\item[Lebesgue分解]
 					$\lambda$は$\mu$に関して絶対連続な$\lambda_a$及び$\mu$と互いに特異な
@@ -89,17 +89,7 @@
 				\begin{align}
 					\int_E f\ d\mu = 0, \quad (\forall E \in \mathscr{F})
 				\end{align}
-				が成り立つとき，$u \coloneqq \Re{f}$に対して
-				\begin{align}
-					E_1 \coloneqq \{u > 0\},
-					\quad E_2 \coloneqq \{u < 0\}
-				\end{align}
-				とおけば
-				\begin{align}
-					0 = \left| \int_{E_j} f\ d\mu \right| \geq \left| \int_{E_j} u\ d\mu \right|,
-					\quad (j=1,2)
-				\end{align}
-				より$\mu(E_1) = \mu(E_2) = 0$となり，同様に$\Im{f} = 0\ \mbox{$\mu$-a.e.}$も従うから
+				が成り立つとき，定理\ref{thm:mean_value_of_integral_and_closed_set}より
 				$f = 0,\ \mbox{$\mu$-a.e.}$が成り立つ．
 				
 			\item[第三段] Lebesgueの分解と密度関数の存在を示す．
@@ -693,36 +683,103 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		(\refeq{eq:thm_Vitali_Hahn_Saks})が複素数値で確定しているとき，$(X,\mathscr{F})$上の有限測度を
-		\begin{align}
-			\mu \coloneqq \sum_{n=1}^\infty \frac{1}{2^n(1 + \Norm{\lambda_n}{})} |\lambda_n|
-		\end{align}
-		により定めれば$\lambda_n \ll \mu\ (\forall n \geq 1)$より
-		$\lambda \ll \mu$となる．任意の互いに素な$A,B \in \mathscr{F}$を取れば
-		\begin{align}
-			\lambda(A + B) = \lim_{n \to \infty} \lambda_n(A + B)
-			= \lim_{n \to \infty} \lambda_n(A) + \lim_{n \to \infty} \lambda_n(B)
-			= \lambda(A) + \lambda(B)
-		\end{align}
-		が成り立つから$\lambda$は有限加法的であり，このとき任意の互いに素な列$\{E_i\}_{i=1}^\infty \subset \mathscr{F}$に対し
-		\begin{align}
-			\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr)
-			= \lambda\Biggl( \sum_{i=1}^N E_i \Biggr) + \lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr)
-			= \sum_{i=1}^N \lambda(E_i) + \lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr)
-		\end{align}
-		が任意の$N \geq 1$について満たされるが，
-		\begin{align}
-			\mu\Biggl( \sum_{i=N+1}^\infty E_i \Biggr) \longrightarrow 0 \quad (N \longrightarrow \infty)
-		\end{align}
-		と定理\ref{thm:equivalent_condition_of_absolute_continuity}より
-		\begin{align}
-			\lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr) \longrightarrow 0 \quad (N \longrightarrow \infty)
-		\end{align}
-		が従い
-		\begin{align}
-			\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr) = \sum_{i=1}^\infty \lambda(E_i)
-		\end{align}
-		が得られる．よって$\lambda$は複素測度である．
-		\QED
+	\begin{prf}$\lambda_n \equiv 0\ (\forall n \geq 1)$なら$\lambda \equiv 0$で複素測度となるから，
+		或る$n$と$E \in \mathscr{F}$に対し$\lambda_n(E) \neq 0$と仮定する．
+		\begin{description}
+			\item[第一段] $(X,\mathscr{F})$上の有限測度を
+				\begin{align}
+					\mu \coloneqq \sum_{n=1}^\infty \frac{1}{2^n(1 + \Norm{\lambda_n}{})} |\lambda_n|
+				\end{align}
+				により定めるとき，%定理\ref{thm:equivalent_condition_of_absolute_continuity}より
+				任意の$\epsilon > 0$に対して或る$\delta > 0$が存在し
+				\begin{align}
+					\mu(E) < \delta \quad \Rightarrow \quad |\lambda_n(E)| < \epsilon\ (\forall n \geq 1)
+					\label{eq:thm_Vitali_Hahn_Saks_2}
+				\end{align}
+				となることを示す．
+				任意の$n \geq 1$に対して$\lambda_n \ll \mu$であるから
+				Lebesgue-Radon-Nikodymの定理より
+				\begin{align}
+					\lambda_n(E) = \int_E g_n\ d\mu,
+					\quad (\forall E \in \mathscr{F})
+				\end{align}
+				を満たす$g_n \in L^1(\mu)$が存在し，このとき
+				\begin{align}
+					\left| \int_E g_n\ d\mu \right|
+					\leq |\lambda_n|(E)
+					\leq 2^n(1+\Norm{\lambda_n}{})\mu(E),
+					\quad (\forall E \in \mathscr{F})
+				\end{align}
+				が成立するから定理\ref{thm:mean_value_of_integral_and_closed_set}より
+				\begin{align}
+					\Norm{g_n}{L^\infty(\mu)} \leq 2^n(1+\Norm{\lambda_n}{})
+				\end{align}
+				が従う．いま，任意の$E \in \mathscr{F}$に対し$f_E \coloneqq [\defunc_E]$として
+				\begin{align}
+					L \coloneqq \Set{f_E}{E \in \mathscr{F}}
+				\end{align}
+				とおけば，$\mu(X) < \infty$より$L \subset L^1(\mu)$となり，また
+				\begin{align}
+					d(f_E,f_{E'}) \coloneqq \Norm{f_E - f_{E'}}{L^1(\mu)}
+				\end{align}
+				で定める距離$d$により$L$は完備距離空間となる．ここで
+				\begin{align}
+					\Phi_n: L \ni f_E \longmapsto \int_X g_n f_E\ d\mu
+				\end{align}
+				とおけばH\Ddot{o}lderの不等式より
+				\begin{align}
+					\left| \Phi_n(f_E) - \Phi_n(f_{E'}) \right|
+					\leq \int_X |g_n| |f_E - f_{E'}|\ d\mu
+					\leq \Norm{g_n}{L^\infty(\mu)} d(f_E,f_{E'}),
+					\quad (\forall f_E,f_{E'} \in L)
+				\end{align}
+				がとなるから$\Phi_n$は$L$上の連続写像である．従って任意の$\delta > 0$に対し
+				\begin{align}
+					F_n(\delta) 
+					\coloneqq \Set{f_E \in L}{\sup{k \geq 1}{\left| \Phi_n(f_E)-\Phi_{n+k}(f_E) \right|} \leq \delta}
+					= \bigcap_{k \geq 1} \Set{f_E \in L}{\left| \Phi_n(f_E)-\Phi_{n+k}(f_E) \right| \leq \delta}
+				\end{align}
+				により定める$F_n(\delta)$は閉集合であり，
+				任意の$f_E \in L$は
+				\begin{align}
+					\sup{k \geq 1}{\left| \Phi_n(f_E)-\Phi_{n+k}(f_E) \right|}
+					&\leq \left| \Phi_n(f_E)-\lambda(E) \right|
+						+ \sup{k \geq 1}{\left| \lambda(E)-\Phi_{n+k}(f_E) \right|} \\
+					&= \left| \lambda_n(E)-\lambda(E) \right|
+						+ \sup{k \geq 1}{\left| \lambda(E)-\lambda_{n+k}(E) \right|} \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				を満たすから
+				\begin{align}
+					L = \bigcup_{n=1}^\infty F_n(\delta)
+				\end{align}
+				が成り立ち，Baireの範疇定理より或る$F_{n_0}(\delta)$は内点を持つ．
+				
+			\item[第二段] $\lambda$の可算加法性を示す．任意の互いに素な$A,B \in \mathscr{F}$を取れば
+				\begin{align}
+					\lambda(A + B) = \lim_{n \to \infty} \lambda_n(A + B)
+					= \lim_{n \to \infty} \lambda_n(A) + \lim_{n \to \infty} \lambda_n(B)
+					= \lambda(A) + \lambda(B)
+				\end{align}
+				となるから$\lambda$は有限加法的であり，このとき任意の互いに素な列$\{E_i\}_{i=1}^\infty \subset \mathscr{F}$に対し
+				\begin{align}
+					\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr)
+					= \lambda\Biggl( \sum_{i=1}^N E_i \Biggr) + \lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr)
+					= \sum_{i=1}^N \lambda(E_i) + \lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr)
+				\end{align}
+				が任意の$N \geq 1$について満たされるが，
+				\begin{align}
+					\mu\Biggl( \sum_{i=N+1}^\infty E_i \Biggr) \longrightarrow 0 \quad (N \longrightarrow \infty)
+				\end{align}
+				と(\refeq{eq:thm_Vitali_Hahn_Saks_2})より
+				\begin{align}
+					\lambda\Biggl( \sum_{i=N+1}^\infty E_i \Biggr) \longrightarrow 0 \quad (N \longrightarrow \infty)
+				\end{align}
+				が従い
+				\begin{align}
+					\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr) = \sum_{i=1}^\infty \lambda(E_i)
+				\end{align}
+				が得られる．よって$\lambda$は複素測度である．
+				\QED
+		\end{description}
 	\end{prf}
