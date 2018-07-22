@@ -62,7 +62,90 @@
 			\end{description}
 		\end{thm}
 	\end{screen}
-		
+	
+	\begin{screen}
+		\begin{dfn}[複素数値可測関数の正値測度に関する積分]
+			$(X,\mathcal{M})$を可測空間，$\mu$を$\mathcal{M}$上の正値測度とし，
+			$\mathcal{M}/\borel{\C}$-可測関数$f$が実数値関数$u,v$を用いて
+			$f = u + i v$と表現されているとする．$u,v$が$\mu$に関して$X$上可積分であるとき\footnotemark
+			，$f$は$\mu$に関して$X$上可積分であるといい，$\mu$に関する$f$の積分を次で定める:
+			\begin{align}
+				\int_E f(x)\ \mu(dx)
+				\coloneqq \int_E u(x)\ \mu(dx) + i \int_E v(x)\ \mu(dx)
+				\quad (\forall E \in \mathcal{M}).
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[積分の線形性・絶対値に関する不等式]
+			$(X,\mathscr{F})$を可測空間とし，$\mu$を$\mathscr{F}$上の正値測度とする．
+			\begin{description}
+				\item[(1)] 任意の$\mathscr{F}/\borel{\C}$-可測可積分関数$f,g$と
+					$\alpha,\beta \in \C$に対して次が成り立つ:
+					\begin{align}
+						\int_X \alpha f + \beta g\ d\mu
+						= \alpha \int_X f\ d\mu + \beta \int_X g\ d\mu.
+					\end{align}
+					
+				\item[(2)] 任意の$\mathscr{F}/\borel{\C}$-可測可積分関数$f$に対して次が成り立つ:
+					\begin{align}
+						\left| \int_X f\ d\mu \right| \leq \int_X |f|\ d\mu.
+					\end{align}
+			\end{description}	
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $f$に対して或る実数値可積分関数$u,v$が存在して
+				$f = u + i v$と表現できる．このとき
+				\begin{align}
+					\gamma f = (\alpha u - \beta v) + i (\alpha v + \beta u)
+				\end{align}
+				が成り立つから，任意の$E \in \mathcal{M}$に対して次を得る:
+				\begin{align}
+					&\int_E \gamma f\ d\mu
+					= \int_E (\alpha u - \beta v) + i (\alpha v + \beta u)\ d \mu \\
+					&\qquad = \int_E \alpha u - \beta v\ d\mu
+						+ i \int_E \alpha v + \beta u\ d\mu
+					= \left( \alpha + i \beta \right) 
+						\left( \int_E u\ d\mu + i \int_E u\ d\mu \right)
+					= \gamma \int_E f\ d\mu.
+				\end{align}
+			
+			\item[(2)] 
+				$f$に対して或る実数値可積分関数$u,v$が存在して
+				$f = u + i v$と表現でき，$u,v$の可積分性から
+				\begin{align}
+					\int_E |f(x)|\ \mu(dx)
+					\leq \int_E |u(x)|\ \mu(dx) + \int_E |v(x)|\ \mu(dx) < \infty
+					\quad (\forall E \in \mathcal{M})
+				\end{align}
+				が従う．次に初めの不等式を示す．任意に$E \in \mathcal{M}$を取り
+				$\alpha \coloneqq \int_E f\ d\mu$とおく．$\alpha \neq 0$の場合，(1)の結果より
+				\begin{align}
+					|\alpha|
+					= \frac{\conj{\alpha}}{|\alpha|} \int_E f(x)\ \mu(dx)
+					= \int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\Re{\frac{\conj{\alpha}}{|\alpha|} f(x)} \leq |f(x)|
+					\quad (\forall x \in X)
+				\end{align}
+				が満たされるから
+				\begin{align}
+					|\alpha|
+					= \Re{\int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)}
+					= \int_E \Re{\frac{\conj{\alpha}}{|\alpha|} f(x)}\ \mu(dx)
+					\leq \int_E |f(x)|\ \mu(dx)
+				\end{align}
+				が従う．$\alpha = 0$の場合も不等式は成り立つ．
+			\QED
+		\end{description}
+	\end{prf}
+	
 	\begin{screen}
 		\begin{lem}
 			$S$を実数の集合とする．$-S \coloneqq \Set{-s}{s \in S}$とおくとき次が成り立つ:
@@ -136,5 +219,37 @@
 			\mu\left( f^{-1}\left( \C \backslash C \right) \right) = 0
 		\end{align}
 		が成り立ち主張が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[可積分なら積分値を一様に小さくできる]\label{thm:integrable_intvalue_uniformly_shrinking}
+			$(X,\mathscr{F},\mu)$を正値測度空間，$f:X \longrightarrow \C$
+			を$\mathscr{F}/\borel{\C}$-可測関数とするとき，
+			$f$が可積分なら，任意の$\epsilon > 0$に対して或る$\delta > 0$が存在し次を満たす:
+			\begin{align}
+				\mu(E) < \delta \Longrightarrow \int_E |f|\ d\mu < \epsilon.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$X_n \coloneqq \{|f| \leq n\}$により増大列$(X_n)_{n=1}^\infty$を定めれば
+		単調収束定理より
+		\begin{align}
+			\int_X |f|\ d\mu = \lim_{n \to \infty} \int_{X_n} |f|\ d\mu
+		\end{align}
+		となるから，任意の$\epsilon > 0$に対し或る$n_0 \geq 1$が存在して
+		\begin{align}
+			\int_{X \backslash X_{n_0}} |f|\ d\mu < \frac{\epsilon}{2}
+		\end{align}
+		が成り立つ．このとき$\mu(E) < \delta \coloneqq \epsilon/(2 n_0)$なら
+		\begin{align}
+			\int_E |f|\ d\mu
+			= \int_{E \cap X_n} |f|\ d\mu + \int_{E \cap (X \backslash X_n)} |f|\ d\mu
+			\leq n_0 \mu(E) + \int_{X \backslash X_n} |f|\ d\mu
+			< \epsilon
+		\end{align}
+		が従う．
 		\QED
 	\end{prf}
