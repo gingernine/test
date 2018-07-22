@@ -510,9 +510,10 @@
 				\end{align}
 				に対し$E \coloneqq \{\varphi = 1\}$とおけば$f = [\defunc_E] \in L$が満たされる．ここで
 				\begin{align}
-					\Phi_n: L \ni f_E \longmapsto \int_X g_n f_E\ d\mu
+					\Phi_n: L \ni f_E \longmapsto \int_X |g_n| f_E\ d\mu
 				\end{align}
-				とおけばH\Ddot{o}lderの不等式より
+				とおけば，任意の$E \in \mathscr{F}$に対し$|\lambda_n|(E) \leq \Phi_n(f_E)$が満たされ，
+				またH\Ddot{o}lderの不等式より
 				\begin{align}
 					\left| \Phi_n(f_E) - \Phi_n(f_{E'}) \right|
 					\leq \int_X |g_n| |f_E - f_{E'}|\ d\mu
@@ -546,7 +547,23 @@
 					\quad \Rightarrow \quad
 					\sup{k \geq 1}{\left| \Phi_n(f_E)-\Phi_{n+k}(f_E) \right|} \leq \delta
 				\end{align}
-				となる．
+				となる．$\mu(E) < \eta_0$なら
+				\begin{align}
+					\left|\Phi_n(f_E)\right| 
+					&\leq \left|\Phi_{n_0}(f_E)\right| + \left|\Phi_n(f_E) - \Phi_{n_0}(f_E)\right| \\
+					&\leq \left|\Phi_{n_0}(f_E)\right| + \left|\Phi_n(f_{E_1}) - \Phi_{n_0}(f_{E_1})\right|
+						+ \left|\Phi_n(f_{E_2}) - \Phi_{n_0}(f_{E_2})\right| \\
+					&\leq \left|\Phi_{n_0}(f_E)\right| + 2\delta
+				\end{align}
+				となり，$n=1,2,\cdots,n_0$に対しては
+				\begin{align}
+					\mu(E) < \delta_n \Longrightarrow \Phi_n(f_E) = \int_E |g_n|\ d\mu < \frac{\epsilon}{2}
+				\end{align}
+				となり，
+				\begin{align}
+					\mu(E) < \delta \Longrightarrow |\lambda_n|(E) \leq \Phi_n(f_E) < \epsilon,\ (\forall n \geq 1)
+				\end{align}
+				が成立する．
 				
 			\item[第二段] $\lambda$の可算加法性を示す．任意の互いに素な$A,B \in \mathscr{F}$を取れば
 				\begin{align}
