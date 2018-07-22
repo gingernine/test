@@ -20,6 +20,28 @@
 		\QED
 	\end{prf}
 	
+	\begin{screen}
+		\begin{thm}[有限交叉性]\label{thm:finite_intersection_property}
+			位相空間$S$がコンパクトであることと，
+			任意の閉集合系$(U_\lambda)_{\lambda \in \Lambda}$に対して
+			\begin{align} 
+				\bigcap_{\lambda \in F} U_\lambda \neq \emptyset
+				\mbox{, for every finite subset $F \subset \Lambda$}
+				\quad \Longrightarrow \quad \bigcap_{\lambda \in \Lambda} U_\lambda \neq \emptyset
+				\label{eq:finite_intersection_property}
+			\end{align}
+			となることは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の閉集合系$(U_\lambda)_{\lambda \in \Lambda}$に対して
+		$\bigcap_{\lambda \in \Lambda} U_\lambda = \emptyset$なら
+		$(U_\lambda^c)_{\lambda \in \Lambda}$は$S$の開被覆となるから，
+		$S$がコンパクトであることと(\refeq{eq:finite_intersection_property})は同値である．
+		\QED
+	\end{prf}
+	
 \subsection{範疇定理}
 	\begin{screen}
 		\begin{dfn}[疎集合・第一類]
@@ -31,7 +53,7 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[Baire]
+		\begin{thm}[Baire]\label{thm:Baire_category_theorem}
 			$S \neq \emptyset$が完備距離空間，或は局所コンパクトHausdorff空間なら
 			$S$は第二類集合である．
 		\end{thm}
@@ -41,21 +63,40 @@
 		\begin{description}
 			\item[第一段]
 				$(V_n)_{n=1}^\infty$を$S$で稠密な開集合系とするとき
-				$\overline{\bigcap_{n=1}^\infty V_n} = S$となることを示す．
-				実際これが成立すれば，任意の疎集合系$(E_n)_{n=1}^\infty$に対して
+				\begin{align}
+					\overline{\bigcap_{n=1}^\infty V_n} = S,
+					\label{eq:thm_Baire_category_theorem_1}
+				\end{align}
+				となることを示す．実際(\refeq{eq:thm_Baire_category_theorem_1})が満たされていれば，
+				任意の疎集合系$(E_n)_{n=1}^\infty$に対して
 				\begin{align}
 					V_n \coloneqq \overline{E_n}^c,
 					\quad n=1,2,\cdots
 				\end{align}
-				で定める開集合系$(V_n)$は定理\ref{thm:topology_note_closure_interior}より
+				で開集合系$(V_n)$を定めると定理\ref{thm:topology_note_closure_interior}より
 				\begin{align}
-					\overline{V_n} = \overline{E_n}^{ca} = \overline{E_n}^{ic} = S
+					\overline{V_n} = \overline{E_n}^{ca} = \overline{E_n}^{ic} = \emptyset^c = S
 				\end{align}
-				を満たすから，$\bigcap_{n=1}^\infty V_n \neq \emptyset$が従い
+				となるから，$\bigcap_{n=1}^\infty V_n \neq \emptyset$が従い
 				$S \neq \bigcup_{n=1}^\infty \overline{E_n} \supset \bigcup_{n=1}^\infty E_n$
 				が成り立つ．従って$S$は第二類である．
 				
 			\item[第二段]
+				任意の空でない開集合$B_0$に対し$B_0 \cap \left( \bigcap_{n=1}^\infty V_n \right) \neq \emptyset$
+				となることを示せば(\refeq{eq:thm_Baire_category_theorem_1})が従う．
+				$V_1$の稠密性より$B_0 \cap V_1 \neq \emptyset$であるから，
+				$S$が距離関数$d$の距離空間の場合，或る$x_1 \in B_0 \cap V_1$と$0 < r_1 < 1$が存在して
+				\begin{align}
+					B_1 \coloneqq \Set{x \in S}{d(x,x_1) < r_1}
+				\end{align}
+				とおけば
+				\begin{align}
+					\overline{B_1} \subset B_0 \cap V_1
+					\label{eq:thm_Baire_category_theorem_2}
+				\end{align}
+				を満たす．また$S$が局所コンパクトHausdorff空間なら
+				閉包がコンパクトな開集合$B_1$が存在して(\refeq{eq:thm_Baire_category_theorem_2})
+				を満たす．
 				
 		\end{description}
 	\end{prf}
