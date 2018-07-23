@@ -206,47 +206,45 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[複素測度の空間・ノルムの定義]
-			可測空間$(X,\mathscr{F})$上の複素測度の全体を$\CM(X,\mathscr{F})$と書く．
+		\begin{thm}[複素測度全体は線型空間・総変動ノルム]
+			可測空間$(X,\mathscr{F})$上の複素測度の全体を$CM(X,\mathscr{F})$と書く．
 			\begin{align}
 				&(\lambda + \mu)(E) \coloneqq \lambda(E) + \mu(E), \\
 				&(c\lambda)(E) \coloneqq c\lambda(E)
 				\label{complex_measure_linear}
 			\end{align}
-			を線型演算として$\CM(X,\mathscr{F})$は線形空間となる．また
+			を線型演算として$CM(X,\mathscr{F})$は線形空間となり，また
 			\begin{align}
-				\Norm{\lambda}{} \coloneqq |\lambda|(X) \quad (\lambda \in \CM)
+				\Norm{\lambda}{TV} \coloneqq |\lambda|(X) \quad (\lambda \in CM(X,\mathscr{F}))
 			\end{align}
-			により$\CM(X,\mathscr{F})$にノルム$\Norm{\cdot}{}$が定まる．
+			により$CM(X,\mathscr{F})$に総変動ノルム$\Norm{\cdot}{TV}$が定まる．
 		\end{thm}
 	\end{screen}
 	
-	後述のRieszの表現定理によれば$(\CM(X,\mathscr{F}),\Norm{\cdot}{})$はBanach空間である．
-	
 	\begin{prf}\mbox{}
-		$\Norm{\cdot}{}$がノルムであることを示す．
+		$\Norm{\cdot}{TV}$がノルムであることを示す．
 		\begin{description}
 			\item[第一段]
-				$\lambda = 0$なら$\Norm{\lambda}{} = |\lambda|(X) = 0$となる．また
-				$|\lambda(E)| \leq |\lambda|(E) \leq \Norm{\lambda}{}$より
-				$\Norm{\lambda}{} = 0$なら$\lambda=0$が従う．
+				$\lambda = 0$なら$\Norm{\lambda}{TV} = |\lambda|(X) = 0$となる．また
+				$|\lambda(E)| \leq |\lambda|(E) \leq \Norm{\lambda}{TV}$より
+				$\Norm{\lambda}{TV} = 0$なら$\lambda=0$が従う．
 			
 			\item[第二段]
-				任意の$\lambda \in \CM(X,\mathscr{F})$と$c \in \C$に対し
+				任意の$\lambda \in CM(X,\mathscr{F})$と$c \in \C$に対し
 				\begin{align}
-					\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
+					\Norm{c\lambda}{TV} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{TV}
 				\end{align}
 				が成り立ち同次性が得られる．
 			
 			\item[第三段]
-				$\lambda,\mu \in \CM(X,\mathscr{F})$を任意に取る．このとき，
+				$\lambda,\mu \in CM(X,\mathscr{F})$を任意に取る．このとき，
 				$X$の任意の分割$X = \sum_{i=1}^\infty E_i\ (E_i \in \mathscr{F})$に対して
 				\begin{align}
 					\sum_{i=1}^\infty |(\lambda + \mu)(E_i)| 
 					= \sum_{i=1}^\infty |\lambda(E_i) + \mu(E_i)| 
-					\leq \sum_{i=1}^\infty |\lambda(E_i)| + \sum_{i=1}^\infty |\mu(E_i)| \leq \Norm{\lambda}{} + \Norm{\mu}{}
+					\leq \sum_{i=1}^\infty |\lambda(E_i)| + \sum_{i=1}^\infty |\mu(E_i)| \leq \Norm{\lambda}{TV} + \Norm{\mu}{TV}
 				\end{align}
-				が成り立つから$\Norm{\lambda + \mu}{} \leq \Norm{\lambda}{} + \Norm{\mu}{}$が従う．
+				が成り立つから$\Norm{\lambda + \mu}{TV} \leq \Norm{\lambda}{TV} + \Norm{\mu}{TV}$が従う．
 				\QED
 		\end{description}
 	\end{prf}
@@ -459,7 +457,8 @@
 				\quad (\forall E \in \mathscr{F})
 				\label{eq:thm_Vitali_Hahn_Saks}
 			\end{align}
-			が複素数値で確定すれば，$\lambda$もまた$(X,\mathscr{F})$上の複素測度となる．
+			が存在すれば$\lambda$もまた$(X,\mathscr{F})$上の複素測度となる．
+			つまり$(CM(X,\mathscr{F}),\Norm{\cdot}{TV})$はBanach空間である．
 		\end{thm}
 	\end{screen}
 	
@@ -468,7 +467,7 @@
 		\begin{description}
 			\item[第一段] $(X,\mathscr{F})$上の有限測度を
 				\begin{align}
-					\mu \coloneqq \sum_{n=1}^\infty \frac{1}{2^n(1 + \Norm{\lambda_n}{})} |\lambda_n|
+					\mu \coloneqq \sum_{n=1}^\infty \frac{1}{2^n(1 + \Norm{\lambda_n}{TV})} |\lambda_n|
 				\end{align}
 				により定めるとき，%定理\ref{thm:equivalent_condition_of_absolute_continuity}より
 				任意の$\epsilon > 0$に対して或る$\delta > 0$が存在し
@@ -487,12 +486,12 @@
 				\begin{align}
 					\left| \int_E g_n\ d\mu \right|
 					\leq |\lambda_n|(E)
-					\leq 2^n(1+\Norm{\lambda_n}{})\mu(E),
+					\leq 2^n(1+\Norm{\lambda_n}{TV})\mu(E),
 					\quad (\forall E \in \mathscr{F})
 				\end{align}
 				が成立するから定理\ref{thm:mean_value_of_integral_and_closed_set}より
 				\begin{align}
-					\Norm{g_n}{L^\infty(\mu)} \leq 2^n(1+\Norm{\lambda_n}{})
+					\Norm{g_n}{L^\infty(\mu)} \leq 2^n(1+\Norm{\lambda_n}{TV})
 				\end{align}
 				が従う．いま，任意の$E \in \mathscr{F}$に対し$f_E \coloneqq [\defunc_E]$として
 				\begin{align}
