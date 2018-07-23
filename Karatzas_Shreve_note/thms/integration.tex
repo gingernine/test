@@ -35,6 +35,26 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[和・積・商の可測性]
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[相対位相のBorel集合族]
+			$(S,\mathscr{O})$を位相空間とする．部分集合$A \subset S$に対して
+			\begin{align}
+				\borel{A} \coloneqq \sigma\left[ \Set{A \cap O}{O \in \mathscr{O}} \right]
+			\end{align}
+			とおくとき次が成り立つ:
+			\begin{align}
+				\borel{A} = \Set{A \cap E}{E \in \borel{S}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	$\R$-値可測関数は，終集合$\C$に拡張すれば$\C$-値可測関数となる．
+	
+	\begin{screen}
 		\begin{thm}[単関数近似列の存在]
 			$(X,\mathscr{F})$を可測空間とする．
 			\begin{description} 
@@ -73,12 +93,28 @@
 				\mbox{$|f|$が可積分} \quad \Longleftrightarrow \quad
 				\mbox{$u,v$が共に可積分}
 			\end{align}
-			が成り立つ．$|f|$が可積分のとき，$f$の$\mu$に関する積分を次で定める:
+			が成り立つ．$|f|$が可積分のとき，$f$は可積分であるといい$f$の$\mu$に関する積分を次で定める:
 			\begin{align}
 				\int_X f\ d\mu
 				\coloneqq \int_X u\ d\mu + i \int_X v\ d\mu.
 			\end{align}
 		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Lebesgueの収束定理]
+			$(X,\mathscr{F},\mu)$を正値測度空間，
+			$f,\ f_n\ (n=1,2,\cdots)$を$\mathscr{F}/\borel{\C}$-可測な可積分関数とする．
+			このとき，$f = \lim_{n \to \infty} f_n\ \mbox{$\mu$-a.e.}$かつ
+			\begin{align}
+				|f_n| \leq g, \quad \mbox{$\mu$-a.e.}
+			\end{align}
+			を満たす可積分関数$g$が存在するとき
+			\begin{align}
+				\int_X |f - f_n|\ d\mu \longrightarrow 0
+				\quad (n \longrightarrow \infty).
+			\end{align}
+		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
@@ -102,51 +138,24 @@
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(1)] $f$に対して或る実数値可積分関数$u,v$が存在して
-				$f = u + i v$と表現できる．このとき
-				\begin{align}
-					\gamma f = (\alpha u - \beta v) + i (\alpha v + \beta u)
-				\end{align}
-				が成り立つから，任意の$E \in \mathcal{M}$に対して次を得る:
-				\begin{align}
-					&\int_E \gamma f\ d\mu
-					= \int_E (\alpha u - \beta v) + i (\alpha v + \beta u)\ d \mu \\
-					&\qquad = \int_E \alpha u - \beta v\ d\mu
-						+ i \int_E \alpha v + \beta u\ d\mu
-					= \left( \alpha + i \beta \right) 
-						\left( \int_E u\ d\mu + i \int_E u\ d\mu \right)
-					= \gamma \int_E f\ d\mu.
-				\end{align}
+			\item[(1)] 
 			
-			\item[(2)] 
-				$f$に対して或る実数値可積分関数$u,v$が存在して
-				$f = u + i v$と表現でき，$u,v$の可積分性から
-				\begin{align}
-					\int_E |f(x)|\ \mu(dx)
-					\leq \int_E |u(x)|\ \mu(dx) + \int_E |v(x)|\ \mu(dx) < \infty
-					\quad (\forall E \in \mathcal{M})
-				\end{align}
-				が従う．次に初めの不等式を示す．任意に$E \in \mathcal{M}$を取り
-				$\alpha \coloneqq \int_E f\ d\mu$とおく．$\alpha \neq 0$の場合，(1)の結果より
+			\item[(2)]
+				$\alpha \coloneqq \int_X f\ d\mu$とおけば，$\alpha \neq 0$の場合
 				\begin{align}
 					|\alpha|
-					= \frac{\conj{\alpha}}{|\alpha|} \int_E f(x)\ \mu(dx)
-					= \int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)
+					= \frac{\overline{\alpha}}{|\alpha|} \int_X f\ d\mu
+					= \int_X \frac{\overline{\alpha}}{|\alpha|} f\ d\mu
 				\end{align}
-				が成り立ち，
+				が成り立ち
 				\begin{align}
-					\Re{\frac{\conj{\alpha}}{|\alpha|} f(x)} \leq |f(x)|
-					\quad (\forall x \in X)
+					|\alpha| = \Re{|\alpha|}
+					= \Re{\int_X \frac{\overline{\alpha}}{|\alpha|} f\ d\mu}
+					= \int_X \Re{\frac{\overline{\alpha}}{|\alpha|} f}\ d\mu
+					\leq \int_X |f|\ d\mu
 				\end{align}
-				が満たされるから
-				\begin{align}
-					|\alpha|
-					= \Re{\int_E \frac{\conj{\alpha}}{|\alpha|} f(x)\ \mu(dx)}
-					= \int_E \Re{\frac{\conj{\alpha}}{|\alpha|} f(x)}\ \mu(dx)
-					\leq \int_E |f(x)|\ \mu(dx)
-				\end{align}
-				が従う．$\alpha = 0$の場合も不等式は成り立つ．
-			\QED
+				が従う．$\alpha = 0$の場合も不等式は成立する．
+				\QED
 		\end{description}
 	\end{prf}
 	

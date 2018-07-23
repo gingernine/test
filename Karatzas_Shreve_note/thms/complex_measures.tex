@@ -1,9 +1,9 @@
 \section{複素測度}
 	\begin{screen}
 		\begin{dfn}[複素測度]
-			$(X,\mathcal{M})$を可測空間とする．
-			$\lambda: \mathcal{M} \longrightarrow \C$が
-			任意の互いに素な列$(E_i)_{i=1}^{\infty} \subset \mathcal{M}$に対し
+			$(X,\mathscr{F})$を可測空間とする．
+			$\lambda: \mathscr{F} \longrightarrow \C$が
+			任意の互いに素な列$(E_i)_{i=1}^{\infty} \subset \mathscr{F}$に対し
 			\begin{align}
 				\lambda\biggl( \sum_{i=1}^{\infty} E_i \biggr) = \sum_{i=1}^{\infty} \lambda(E_i)
 				\label{eq:dfn_complex_measure}
@@ -24,10 +24,10 @@
 	$\sum_{i=1}^{\infty} \lambda(E_i)$は絶対収束する．
 	ここで，
 	\begin{align}
-		|\lambda(E)| \leq \mu(E) \quad (\forall E \in \mathcal{M})
+		|\lambda(E)| \leq \mu(E) \quad (\forall E \in \mathscr{F})
 		\label{radon_nikodym_1}
 	\end{align}
-	を満たすような或る$(X,\mathcal{M})$上の測度$\mu$が存在すると考える．
+	を満たすような或る$(X,\mathscr{F})$上の測度$\mu$が存在すると考える．
 	このとき$\mu$は
 	\begin{align}
 		\sum_{i=1}^{\infty} |\lambda(E_i)| \leq \sum_{i=1}^{\infty} \mu(E_i) 
@@ -35,16 +35,16 @@
 	\end{align}
 	を満たすから
 	\begin{align}
-		\sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathcal{M}}} 
+		\sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathscr{F}}} 
 		\leq \mu(E),
-		\quad (\forall E \in \mathcal{M})
+		\quad (\forall E \in \mathscr{F})
 		\label{radon_nikodym_2}
 	\end{align}
 	が成立する．実は，
 	\begin{align}
 		|\lambda|(E) \coloneqq 
-		\sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathcal{M}}},
-		\quad (\forall E \in \mathcal{M})
+		\sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathscr{F}}},
+		\quad (\forall E \in \mathscr{F})
 		\label{radon_nikodym_3}
 	\end{align}
 	で定める$|\lambda|$は(\refeq{radon_nikodym_1})を満たす最小の有限測度となる
@@ -52,21 +52,21 @@
 	
 	\begin{screen}
 		\begin{dfn}[総変動・総変動測度]
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対し，(\refeq{radon_nikodym_3})で定める
+			可測空間$(X,\mathscr{F})$上の複素測度$\lambda$に対し，(\refeq{radon_nikodym_3})で定める
 			$|\lambda|$を$\lambda$の総変動測度(total variation measure)といい，$|\lambda|(X)$を
 			$\lambda$の総変動(total variation)という．
 		\end{dfn}
 	\end{screen}
-	特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．実際，任意の$E \in \mathcal{M}$に対して
+	特に$\lambda$が正値有限測度である場合は$\lambda = |\lambda|$が成り立つ．実際，任意の$E \in \mathscr{F}$に対して
 	\begin{align}
-		|\lambda|(E) = \sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathcal{M}}}
+		|\lambda|(E) = \sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathscr{F}}}
 		= \lambda(E)
 	\end{align}
 	が成立する．
 
 	\begin{screen}
 		\begin{thm}[$|\lambda|$は測度]
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$に対して，
+			可測空間$(X,\mathscr{F})$上の複素測度$\lambda$に対して，
 			(\refeq{radon_nikodym_3})で定める$|\lambda|$は正値測度である．
 			\label{thm:total_variation_measure}
 		\end{thm}
@@ -75,10 +75,10 @@
 	\begin{prf}
 		$|\lambda|$の正値性は(\refeq{radon_nikodym_3})より従うから，
 		$|\lambda|$の完全加法性を示す．
-		いま，互いに素な集合列$E_i \in \mathcal{M}\ (i=1,2,\cdots)$を取り
+		いま，互いに素な集合列$E_i \in \mathscr{F}\ (i=1,2,\cdots)$を取り
 		$E \coloneqq \sum_{i=1}^{\infty} E_i$とおく．
 		このとき，任意の$\epsilon > 0$に対して
-		$E_i$の或る分割$(A_{ij})_{j=1}^{\infty} \subset \mathcal{M}$が存在して
+		$E_i$の或る分割$(A_{ij})_{j=1}^{\infty} \subset \mathscr{F}$が存在して
 		\begin{align}
 			|\lambda|(E_i) \geq \sum_{j=1}^{\infty} |\lambda(A_{ij})| 
 			> |\lambda|(E_i) - \frac{\epsilon}{2^i}
@@ -91,7 +91,7 @@
 		\begin{align}
 			|\lambda|(E) \geq \sum_{j=1}^{\infty} |\lambda|(E_j)
 		\end{align}
-		が従う．一方で$E$の任意の分割$(A_j)_{j=1}^{\infty} \subset \mathcal{M}$に対し
+		が従う．一方で$E$の任意の分割$(A_j)_{j=1}^{\infty} \subset \mathscr{F}$に対し
 		\begin{align}
 			\sum_{j=1}^{\infty} |\lambda(A_j)| 
 			= \sum_{j=1}^{\infty} \left| \sum_{i=1}^{\infty} \lambda(A_j \cap E_i) \right|
@@ -146,7 +146,7 @@
 	
 	\begin{screen}
 		\begin{thm}[総変動は有限]\label{thm:total_variation_measure_bounded}
-			可測空間$(X,\mathcal{M})$上の複素測度$\lambda$の総変動測度$|\lambda|$について次が成り立つ:
+			可測空間$(X,\mathscr{F})$上の複素測度$\lambda$の総変動測度$|\lambda|$について次が成り立つ:
 			\begin{align}
 				|\lambda|(X) < \infty.
 			\end{align}
@@ -157,11 +157,11 @@
 	\begin{prf} $|\lambda|(X) = \infty$と仮定して背理法により定理を導く．
 		\begin{description}
 		\item[第一段]
-			或る$E \in \mathcal{M}$に対し$|\lambda|(E) = \infty$が成り立っているなら，
+			或る$E \in \mathscr{F}$に対し$|\lambda|(E) = \infty$が成り立っているなら，
 			\begin{align}
 				|\lambda(A)| > 1, \quad |\lambda(B)| > 1, \quad E = A + B
 			\end{align}
-			を満たす$A,B \in \mathcal{M}$が存在することを示す．いま，$t \coloneqq 2\pi(1 + |\lambda(E)|)$とおけば
+			を満たす$A,B \in \mathscr{F}$が存在することを示す．いま，$t \coloneqq 2\pi(1 + |\lambda(E)|)$とおけば
 			\begin{align}
 				\sum_{i=1}^{\infty} |\lambda(E_i)| > t
 			\end{align}
@@ -190,12 +190,12 @@
 				|\lambda|(B_1) = \infty, \quad |\lambda(A_1)| > 1, \quad |\lambda(B_1)| > 1,
 				\quad X = A_1 + B_1
 			\end{align}
-			を満たす$A_1,B_1 \in \mathcal{M}$が存在する．同様に$B_1$に対しても
+			を満たす$A_1,B_1 \in \mathscr{F}$が存在する．同様に$B_1$に対しても
 			\begin{align}
 				|\lambda|(B_2) = \infty, \quad |\lambda(A_2)| > 1, \quad |\lambda(B_2)| > 1,
 				\quad B_1 = A_2 + B_2
 			\end{align}
-			を満たす$A_2,B_2 \in \mathcal{M}$が存在する．
+			を満たす$A_2,B_2 \in \mathscr{F}$が存在する．
 			繰り返せば$|\lambda(A_j)| > 1\ (j=1,2,\cdots)$
 			を満たす互いに素な集合列$(A_j)_{j=1}^{\infty}$が構成され，
 			このとき$\sum_{j=1}^{\infty} |\lambda(A_j)| = \infty$となる．
@@ -207,21 +207,21 @@
 	
 	\begin{screen}
 		\begin{thm}[複素測度の空間・ノルムの定義]
-			可測空間$(X,\mathcal{M})$上の複素測度の全体を$\CM(X,\mathcal{M})$と書く．
+			可測空間$(X,\mathscr{F})$上の複素測度の全体を$\CM(X,\mathscr{F})$と書く．
 			\begin{align}
 				&(\lambda + \mu)(E) \coloneqq \lambda(E) + \mu(E), \\
 				&(c\lambda)(E) \coloneqq c\lambda(E)
 				\label{complex_measure_linear}
 			\end{align}
-			を線型演算として$\CM(X,\mathcal{M})$は線形空間となる．また
+			を線型演算として$\CM(X,\mathscr{F})$は線形空間となる．また
 			\begin{align}
 				\Norm{\lambda}{} \coloneqq |\lambda|(X) \quad (\lambda \in \CM)
 			\end{align}
-			により$\CM(X,\mathcal{M})$にノルム$\Norm{\cdot}{}$が定まる．
+			により$\CM(X,\mathscr{F})$にノルム$\Norm{\cdot}{}$が定まる．
 		\end{thm}
 	\end{screen}
 	
-	後述のRieszの表現定理によれば$(\CM(X,\mathcal{M}),\Norm{\cdot}{})$はBanach空間である．
+	後述のRieszの表現定理によれば$(\CM(X,\mathscr{F}),\Norm{\cdot}{})$はBanach空間である．
 	
 	\begin{prf}\mbox{}
 		$\Norm{\cdot}{}$がノルムであることを示す．
@@ -232,15 +232,15 @@
 				$\Norm{\lambda}{} = 0$なら$\lambda=0$が従う．
 			
 			\item[第二段]
-				任意の$\lambda \in \CM(X,\mathcal{M})$と$c \in \C$に対し
+				任意の$\lambda \in \CM(X,\mathscr{F})$と$c \in \C$に対し
 				\begin{align}
 					\Norm{c\lambda}{} = \sup{}{\sum_{i}|(c\lambda)(E_i)|} = \sup{}{\sum_{i}|c\lambda(E_i)|} = |c|\sup{}{\sum_{i}|\lambda(E_i)|} = |c|\Norm{\lambda}{}
 				\end{align}
 				が成り立ち同次性が得られる．
 			
 			\item[第三段]
-				$\lambda,\mu \in \CM(X,\mathcal{M})$を任意に取る．このとき，
-				$X$の任意の分割$X = \sum_{i=1}^\infty E_i\ (E_i \in \mathcal{M})$に対して
+				$\lambda,\mu \in \CM(X,\mathscr{F})$を任意に取る．このとき，
+				$X$の任意の分割$X = \sum_{i=1}^\infty E_i\ (E_i \in \mathscr{F})$に対して
 				\begin{align}
 					\sum_{i=1}^\infty |(\lambda + \mu)(E_i)| 
 					= \sum_{i=1}^\infty |\lambda(E_i) + \mu(E_i)| 
@@ -251,10 +251,10 @@
 		\end{description}
 	\end{prf}
 	
-	可測空間$(X,\mathcal{M})$において，$\R$にしか値を取らない複素測度を符号付き測度(signed measure)という．
+	可測空間$(X,\mathscr{F})$において，$\R$にしか値を取らない複素測度を符号付き測度(signed measure)という．
 	\begin{screen}
 		\begin{dfn}[正変動と負変動・Jordanの分解]
-			$(X,\mathcal{M})$を可測空間とする．$(X,\mathcal{M})$上の符号付き測度$\mu$に対し
+			$(X,\mathscr{F})$を可測空間とする．$(X,\mathscr{F})$上の符号付き測度$\mu$に対し
 			\begin{align}
 				\mu^+ \coloneqq \frac{1}{2}(|\mu| + \mu) , \quad \mu^- \coloneqq \frac{1}{2}(|\mu| - \mu)
 			\end{align}
@@ -269,9 +269,9 @@
 	
 	\begin{screen}
 		\begin{dfn}[絶対連続・特異]
-			$(X,\mathcal{M})$を可測空間，
-			$\mu$を$\mathcal{M}$上の正値測度
-			，$\lambda,\lambda_1,\lambda_2$を$\mathcal{M}$上の任意の測度とする．
+			$(X,\mathscr{F})$を可測空間，
+			$\mu$を$\mathscr{F}$上の正値測度
+			，$\lambda,\lambda_1,\lambda_2$を$\mathscr{F}$上の任意の測度とする．
 			\begin{itemize}
 				\item $\mu(E)=0$ならば$\lambda(E)=0$となるとき，
 					$\lambda$は$\mu$に関して絶対連続である(absolutely continuous)といい
@@ -280,9 +280,9 @@
 					\end{align}
 					と書く．
 				
-				\item 或る$A \in \mathcal{M}$が存在して
+				\item 或る$A \in \mathscr{F}$が存在して
 					\begin{align}
-						\lambda(E) = \lambda(A \cap E),\quad (\forall E \in \mathcal{M})
+						\lambda(E) = \lambda(A \cap E),\quad (\forall E \in \mathscr{F})
 					\end{align}
 					が成り立つとき，$\lambda$は$A$に集中している(concentrated on A)という．
 					$\lambda_1$が$A_1$に，$\lambda_2$が$A_2$に集中し，かつ
@@ -317,7 +317,7 @@
 				$(2) \Rightarrow (1)$が従う．また$\lambda \ll \mu$のとき，
 				\begin{align}
 					|\lambda|(E) =
-					\sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathcal{M}}},
+					\sup{}{\Set{\sum_{i=1}^{\infty} |\lambda(A_i)|}{E = \sum_{i=1}^\infty A_i,\ \{A_i\}_{i=1}^\infty \subset \mathscr{F}}},
 					\quad (\forall E \in \mathscr{F})
 				\end{align}
 				より$\mu(E) = 0$なら$\mu(A_i) = 0$となり
