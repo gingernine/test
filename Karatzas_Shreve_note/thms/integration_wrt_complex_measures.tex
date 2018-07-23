@@ -1,29 +1,25 @@
 \section{複素測度に関する積分}
 	\begin{screen}
-		\begin{thm}[複素測度に関する積分]
-			$(X,\mathscr{F})$を可測空間，$\mu$を$(X,\mathscr{F})$上の0でない複素測度とするとき，
+		\begin{thm}[複素測度の極分解]\label{thm:polar_decomposition_of_complex_measures}
+			可測空間$(X,\mathscr{F})$上の任意の複素測度$\mu$に対し，次の意味での極分解
 			\begin{align}
-				|h| = 1,
-				\quad \mu(E) = \int_E h\ d|\mu|,
+				\quad \mu(E) = \int_E e^{i\theta}\ d|\mu|,
 				\quad (\forall E \in \mathscr{F})
 			\end{align}
-			を満たす$h \in L^1(|\mu|)$が唯一つ存在する．ここで
-			任意の$f \in L^1(|\mu|)$に対し
-			\begin{align}
-				\int_X f\ d\mu \coloneqq \int_X fh\ d|\mu|
-			\end{align}
-			として$f$の複素測度$\mu$に関する積分を定める．
+			を満たす$\mathscr{F}/\borel{\C}$-可測関数$\theta$が存在する．
+			$\lambda \not\equiv 0$なら$e^{i \theta}$は
+			$L^1(|\mu|)$の元として唯一つに決まる．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$\mu \ll |\mu|$かつ$|\mu|$は有限測度であるから，
+	\begin{prf} $\mu \equiv 0$なら$|\mu| \equiv 0$より$\theta \equiv \pi$でよい．
+		$\mu \not\equiv 0$の場合，
 		Lebesgue-Radon-Nikodymの定理より
 		\begin{align}
 			\mu(E) = \int_E h\ d|\mu|,
 			\quad (\forall E \in \mathscr{F})
 		\end{align}
-		を満たす$h \in L^1(|\mu|)$が唯一つ存在する．このとき$|\mu|(E) > 0$なら
+		を満たす$[h] \in L^1(|\mu|)$が唯一つ存在する．このとき$|\mu|(E) > 0$なら
 		\begin{align}
 			\frac{1}{|\mu|(E)} \left| \int_E h\ d|\mu| \right|
 			= \frac{|\mu(E)|}{|\mu|(E)} \leq 1
@@ -47,10 +43,35 @@
 			= |\mu| \Biggl(\bigcap_{n=1}^\infty E_{1-1/n} \Biggr)
 			= 0
 		\end{align}
-		が従う．よって$|\mu|$-a.e.に$|h|=1$となる．
+		が従う．よって$|\mu|$-a.e.に$|h|=1$となる．ここで
+		\begin{align}
+			\theta(x) \coloneqq
+			\begin{cases}
+				0, & h(x) = 1, \\
+				\pi, & h(x) \neq 1
+			\end{cases}
+		\end{align}
+		と定めれば$[h] = [e^{i \theta}]$が成立する．
 		\QED
 	\end{prf}
 	
+	\begin{screen}
+		\begin{dfn}[複素測度に関する積分]
+			$(X,\mathscr{F})$を可測空間，$\mu$を$(X,\mathscr{F})$上の複素測度，
+			$f$を$\mathscr{F}/\borel{\C}$-可測関数とする．
+			$f$が$|\mu|$に関して可積分であるとき，極分解$d\mu = e^{i\theta}\ d|\mu|$を用いて
+			\begin{align}
+				\int_X f\ d\mu \coloneqq \int_X f e^{i \theta}\ d|\mu|
+			\end{align}
+			により$f$の$\mu$に関する積分を定める．
+		\end{dfn}
+	\end{screen}
+	
+	$\mu \not\equiv 0$なら極分解は定理\ref{thm:polar_decomposition_of_complex_measures}
+	の意味で一意であるから積分はwell-definedである．
+	$\mu \equiv 0$なら$|\mu| \equiv 0$であるから任意の可測写像は$|\mu|$について可積分となり，
+	$\mu$に関する積分値は0で確定する．
+		
 	\begin{screen}
 		\begin{thm}[積分の測度に関する線型性]
 			$(X,\mathcal{M})$を可測空間，$\mu,\nu$をこの上の複素測度とする．$f:X \rightarrow \C$が$|\mu|$と$|\nu|$について可積分であるなら，
