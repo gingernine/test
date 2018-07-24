@@ -291,3 +291,114 @@
 			を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するとき，$C(X,Y)$は$\rho$により完備可分距離空間となる．
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[正規族]
+			$(X,d_X),(Y,d_Y)$を距離空間，
+			$\mathscr{F} \subset C(X,Y)$とする．
+			$\mathscr{F}$の任意の列$\{f_n\}_{n=1}^\infty$と
+			$X$の任意のコンパクト部分集合$K$，及び任意の$\epsilon > 0$に対し或る$N \geq 1$が存在して
+			\begin{align}
+				n,m > N \quad \Longrightarrow \quad
+				\sup{x \in K}{d_Y(f_n(x),f_m(x))} < \epsilon
+			\end{align}
+			となるとき，$\mathscr{F}$を正規族(normal family)という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[同程度連続]
+			$(X,d_X),(Y,d_Y)$を距離空間，$\mathscr{F} \subset C(X,Y)$とする．
+			任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して
+			\begin{align}
+				d_X(p,q) < \delta \quad \Longrightarrow \quad
+				\sup{f \in \mathscr{F}}{d_Y(f(p),f(q))} < \epsilon
+			\end{align}
+			となるとき，$\mathscr{F}$は同程度連続である(equicontinuous)という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Ascoli-Arzela]
+			$(X,d_X)$を可分距離空間，$(Y,d_Y)$を距離空間，$E$を$X$で可算稠密な部分集合とする．
+			\begin{description}
+				\item[(1)] $\mathscr{F} \subset C(X,Y)$に対して次が成り立つ:
+					\begin{align}
+						\mbox{$\mathscr{F}$が正規族} \quad \Longleftarrow \quad
+						\begin{cases}
+							\mbox{$\mathscr{F}$が同程度連続，} & \\
+							\mbox{各点$x \in E$で$\overline{\Set{f(x)}{f \in \mathscr{F}}}$がコンパクトである．} & 
+						\end{cases}
+					\end{align}
+					
+				\item[(2)] 
+					$X$において
+					\begin{align}
+						K_1 \subset K_2 \subset K_3 \subset \cdots,
+						\quad \bigcup_{n=1}^\infty \interior{K_n} = X
+					\end{align}
+					を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するなら
+					(1)は必要十分条件で成り立つ:
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				同程度連続性より任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して
+				\begin{align}
+					d_X(p,q) < \delta \quad \Longrightarrow \quad
+					\sup{f \in \mathscr{F}}{d_Y(f(p),f(q))} < \frac{\epsilon}{3}
+				\end{align}
+				が成立する．また$K \subset X$を任意のコンパクト集合とすれば
+				\begin{align}
+					K \subset B_1 \cup \cdots \cup B_M
+				\end{align}
+				を満たす半径$\delta/2$の開球$B_1,\cdots,B_M$が存在し，
+				$E$の稠密性より$B_j \cap E \neq \emptyset$であるから
+				\begin{align}
+					p_j \in B_j \cap E, \quad j=1,\cdots,M
+				\end{align}
+				を選んでおく．いま$E = \{x_n\}_{n=1}^\infty$と付番して
+				任意に$\{f_n\}_{n=1}^\infty \subset \mathscr{F}$を取れば，
+				\begin{align}
+					\overline{\Set{f_n(x_1)}{n=1,2,\cdots}}
+					\subset \overline{\Set{f(x)}{f \in \mathscr{F}}}
+				\end{align}
+				より$\overline{\left\{f_{n}(x_1)\right\}_{n=1}^\infty}$は
+				コンパクトであるから収束部分列$\left\{f_{n(k,1)}(x_1)\right\}_{k=1}^\infty$が存在する．
+				同様に$\left\{f_{n(k,1)}(x_2)\right\}_{k=1}^\infty$の
+				或る部分列$\left\{f_{n(k,2)}(x_2)\right\}_{k=1}^\infty$は
+				$Y$で収束し，繰り返せば部分添数系
+				\begin{align}
+					\{n(k,1)\}_{k=1}^\infty \supset
+					\{n(k,2)\}_{k=1}^\infty \supset
+					\{n(k,3)\}_{k=1}^\infty \supset
+					\cdots
+				\end{align}
+				が構成され任意の$x \in E$に対して$\left\{f_{n(k,i)}(x)\right\}_{k=1}^\infty$は$Y$で収束する．
+				ここで
+				\begin{align}
+					n(k) \coloneqq n(k,k), \quad k=1,2,\cdots
+				\end{align}
+				とおけば任意の$i \geq 1$に対し
+				$\{n(k)\}_{k=i}^\infty \subset \{n(k,i)\}_{k=1}^\infty$
+				より$\left\{f_{n(k)}(x_i)\right\}_{k=i}^\infty$は収束し，
+				従って或る$N \geq 1$が存在して
+				\begin{align}
+					u,v > N \quad \Longrightarrow \quad
+					d_Y\left(f_{n(u)}(p_j),f_{n(v)}(p_j)\right) < \frac{\epsilon}{3},\ j=1,2,\cdots,M
+				\end{align}
+				を満たす．任意の$x \in K$は或る$B_j$に含まれ
+				$d_X(x,p_j) < \delta$となるから，任意の$u,v > N$に対して
+				\begin{align}
+					d_Y(f_{n(u)}(x),f_{n(v)}(x)) \leq 
+					d_Y\left(f_{n(u)}(x),f_{n(u)}(p_j)\right) 
+					+ d_Y\left(f_{n(u)}(p_j),f_{n(v)}(p_j)\right)
+					+ d_Y\left(f_{n(v)}(p_j),f_{n(v)}(x)\right)
+					< \epsilon
+				\end{align}
+				が成り立つ．よって$\mathscr{F}$は正規族である．
+		\end{description}
+	\end{prf}
