@@ -1,20 +1,51 @@
 \section{Ascoli-Arzelaの定理}
 	\begin{screen}
 		\begin{dfn}[正規族]
+			$(X,d_X),(Y,d_Y)$を距離空間，
+			$\mathscr{F} \subset C(X,Y)$とする．
+			$\mathscr{F}$の任意の列$\{f_n\}_{n=1}^\infty$と
+			$X$の任意のコンパクト部分集合$K$，及び任意の$\epsilon > 0$に対し或る$N \geq 1$が存在して
+			\begin{align}
+				n,m > N \quad \Longrightarrow \quad
+				\sup{x \in K}{d_Y(f_n(x),f_m(x))} < \epsilon
+			\end{align}
+			となるとき，$\mathscr{F}$を正規族(normal family)という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[同程度連続]
+			$(X,d_X),(Y,d_Y)$を距離空間，$\mathscr{F} \subset C(X,Y)$とする．
+			任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して
+			\begin{align}
+				d_X(p,q) < \delta \quad \Longrightarrow \quad
+				\sup{f \in \mathscr{F}}{d_Y(f(p),f(q))} < \epsilon
+			\end{align}
+			となるとき，$\mathscr{F}$は同程度連続である(equicontinuous)という．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[Ascoli-Arzela]
-			$(X,d)$を可分距離空間とし，$E$を$X$で可算稠密な部分集合とする．
-			また$(S,\rho)$を距離空間，$\mathscr{F}$を$X$から$S$への連続写像の集合とする．
-			このとき次の関係が成立する:
-			\begin{align}
-				\mbox{$\mathscr{F}$が正規族} \Longleftrightarrow
-				\begin{cases}
-					\mbox{$\mathscr{F}$が同程度連続，} & \\
-					\mbox{各点$x \in E$で$\closure{\Set{f(x)}{f \in \mathscr{F}}}$がコンパクトである．} & 
-				\end{cases}
-			\end{align}
+			$(X,d_X)$を可分距離空間，$(Y,d_Y)$を距離空間，$E$を$X$で可算稠密な部分集合とする．
+			\begin{description}
+				\item[(1)] $\mathscr{F} \subset C(X,Y)$に対して次が成り立つ:
+					\begin{align}
+						\mbox{$\mathscr{F}$が正規族} \quad \Longleftarrow \quad
+						\begin{cases}
+							\mbox{$\mathscr{F}$が同程度連続，} & \\
+							\mbox{各点$x \in E$で$\overline{\Set{f(x)}{f \in \mathscr{F}}}$がコンパクトである．} & 
+						\end{cases}
+					\end{align}
+					
+				\item[(2)] 
+					$X$において
+					\begin{align}
+						K_1 \subset K_2 \subset K_3 \subset \cdots,
+						\quad \bigcup_{n=1}^\infty \interior{K_n} = X
+					\end{align}
+					を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するなら
+					(1)は必要十分条件で成り立つ:
+			\end{description}
 		\end{thm}
 	\end{screen}
