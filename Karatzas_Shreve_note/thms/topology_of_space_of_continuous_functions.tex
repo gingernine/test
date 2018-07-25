@@ -35,6 +35,7 @@
 	\begin{align}
 		\rho(f,g) \coloneqq \sum_{n=1}^\infty 2^{-n} \left( 1 \wedge \rho_n(f,g) \right),
 		\quad (f,g \in C(X,Y))
+		\label{eq:distance_in_spaces_of_continuous_functions}
 	\end{align}
 	により$C(X,Y)$上に距離$\rho$が定まる．
 	
@@ -173,41 +174,28 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[$C(X,Y)$の完備性]
-			$(X,d_X)$を距離空間，$(Y,d_Y)$を完備距離空間とする．$X$において
+		\begin{thm}[$C(X,Y)$の完備性]\label{thm:completeness_of_spaces_of_continuous_functions}
+			$(X,d_X),(Y,d_Y)$を距離空間，$(f_n)_{n=1}^\infty$を$C(X,Y)$の列とする．$X$において
 			\begin{align}
 				K_1 \subset K_2 \subset K_3 \subset \cdots,
 				\quad \bigcup_{n=1}^\infty \interior{K_n} = X
 				\label{eq:completeness_and_separability_of_space_of_continuous_functions_2}
 			\end{align}
-			を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するとき，$C(X,Y)$は$\rho$により完備距離空間となる．
+			を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するとき，
+			各点$x \in X$で$\lim_{n \to \infty} f_n(x)$が存在すれば
+			\begin{align}
+				f \coloneqq \lim_{n \to \infty} f_n \in C(X,Y),
+				\quad \rho(f,f_n) \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\label{eq:completeness_and_separability_of_space_of_continuous_functions_3}
+			\end{align}
+			が成立する．特に$(Y,d_Y)$が完備なら$C(X,Y)$は$\rho$により完備距離空間となる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$(f_n)_{n=1}^\infty$を$C(X,Y)$のCauchy列とする．
-				任意の$x \in X$に対し$x$を含む$K_j$を取れば
-				\begin{align}
-					1 \wedge d_Y(f_n(x),f_m(x)) 
-					\leq 1 \wedge \rho_j(f_n,f_m)
-					\leq 2^j \rho(f_n,f_m) \longrightarrow 0
-					\quad (n,m \longrightarrow \infty)
-				\end{align}
-				となるから，$Y$の完備性より$\lim_{n \to \infty} f_n(x)$が存在する．ここで
-				\begin{align}
-					f(x) \coloneqq \lim_{n \to \infty} f_n(x), \quad (x \in X)
-				\end{align}
-				により写像$f:X \longrightarrow Y$を定めれば，$f$は連続であり
-				\begin{align}
-					\rho(f_n,f) \longrightarrow 0 \quad (n \longrightarrow \infty)
-					\label{eq:completeness_and_separability_of_space_of_continuous_functions_3}
-				\end{align}
-				を満たす．
-			
-			\item[第二段]
-				任意の$K_j$に対し
+				任意の$j \geq 1$に対し
 				\begin{align}
 					\rho_j(f_n,f) \longrightarrow 0
 					\quad (n \longrightarrow \infty)
@@ -236,7 +224,7 @@
 				\end{align}
 				が成立する．
 				
-			\item[第三段]
+			\item[第二段]
 				$f$の連続性を示す．任意に$\epsilon > 0$と$x \in X$及び
 				$x \in \interior{K_j}$を満たす$K_j$を取れば，
 				(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_4})より
@@ -258,7 +246,7 @@
 				\end{align}
 				が従い$f$の$x$における連続性が出る．
 			
-			\item[第四段]
+			\item[第三段]
 				(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_3})を示す．
 				任意の$\epsilon > 0$に対し，
 				\begin{align}
@@ -296,39 +284,46 @@
 		\begin{dfn}[正規族]
 			$(X,d_X),(Y,d_Y)$を距離空間，
 			$\mathscr{F} \subset C(X,Y)$とする．
-			$\mathscr{F}$の任意の列$\{f_n\}_{n=1}^\infty$と
-			$X$の任意のコンパクト部分集合$K$，及び任意の$\epsilon > 0$に対し或る$N \geq 1$が存在して
-			\begin{align}
-				n,m > N \quad \Longrightarrow \quad
-				\sup{x \in K}{d_Y(f_n(x),f_m(x))} < \epsilon
-			\end{align}
-			となるとき，$\mathscr{F}$を正規族(normal family)という．
+			$\mathscr{F}$の任意の列$(f_n)_{n=1}^\infty$が
+			$X$で広義一様収束する(収束先が連続写像である必要はない)部分列を含むとき，
+			$\mathscr{F}$を正規族(normal family)という．
 		\end{dfn}
 	\end{screen}
+	
+	定理\ref{thm:completeness_of_spaces_of_continuous_functions}より
+	$X$において
+	\begin{align}
+		K_1 \subset K_2 \subset K_3 \subset \cdots,
+		\quad \bigcup_{n=1}^\infty \interior{K_n} = X
+	\end{align}
+	を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するなら，
+	正規族$\mathscr{F}$の任意の列$(f_n)_{n=1}^\infty$は
+	或る連続写像($\mathscr{F}$の元であるとは限らない)に広義一様収束する部分列を含む．
 	
 	\begin{screen}
 		\begin{dfn}[同程度連続]
 			$(X,d_X),(Y,d_Y)$を距離空間，$\mathscr{F} \subset C(X,Y)$とする．
-			任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して
+			任意の$\epsilon > 0$に対し
 			\begin{align}
 				d_X(p,q) < \delta \quad \Longrightarrow \quad
-				\sup{f \in \mathscr{F}}{d_Y(f(p),f(q))} < \epsilon
+				d_Y(f(p),f(q)) < \epsilon,\ (\forall f \in \mathscr{F})
 			\end{align}
-			となるとき，$\mathscr{F}$は同程度連続である(equicontinuous)という．
+			を満たす$\delta > 0$が存在するとき，$\mathscr{F}$は同程度連続である(equicontinuous)という．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[Ascoli-Arzela]
-			$(X,d_X)$を可分距離空間，$(Y,d_Y)$を距離空間，$E$を$X$で可算稠密な部分集合とする．
+			$(X,d_X)$を可分距離空間，$(Y,d_Y)$を距離空間とする．
 			\begin{description}
 				\item[(1)] $\mathscr{F} \subset C(X,Y)$に対して次が成り立つ:
 					\begin{align}
 						\mbox{$\mathscr{F}$が正規族} \quad \Longleftarrow \quad
 						\begin{cases}
-							\mbox{$\mathscr{F}$が同程度連続，} & \\
-							\mbox{各点$x \in E$で$\overline{\Set{f(x)}{f \in \mathscr{F}}}$がコンパクトである．} & 
+							\mbox{$\mathscr{F}$が任意のコンパクト集合$K \subset X$で同程度連続，} & \\
+							\mbox{各点$x \in X$で$\overline{\Set{f(x)}{f \in \mathscr{F}}}$がコンパクトである．} & 
 						\end{cases}
+						\label{eq:thm_Ascoli_Arzela}
 					\end{align}
 					
 				\item[(2)] 
@@ -338,7 +333,7 @@
 						\quad \bigcup_{n=1}^\infty \interior{K_n} = X
 					\end{align}
 					を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するなら
-					(1)は必要十分条件で成り立つ:
+					(\refeq{eq:thm_Ascoli_Arzela})は必要十分条件で成立する．
 			\end{description}
 		\end{thm}
 	\end{screen}
@@ -346,22 +341,20 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(1)]
+				$E = \{x_n\}_{n=1}^\infty$を$X$で可算稠密な集合とし，
+				$\mathscr{F}$が(\refeq{eq:thm_Ascoli_Arzela})右辺の仮定を満たしているとする．
+				$K \subset X$を任意のコンパクト集合とすれば，
 				同程度連続性より任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して
 				\begin{align}
-					d_X(p,q) < \delta \quad \Longrightarrow \quad
+					p,q \in K,\ d_X(p,q) < \delta \quad \Longrightarrow \quad
 					\sup{f \in \mathscr{F}}{d_Y(f(p),f(q))} < \frac{\epsilon}{3}
 				\end{align}
-				が成立する．また$K \subset X$を任意のコンパクト集合とすれば
-				\begin{align}
-					K \subset B_1 \cup \cdots \cup B_M
-				\end{align}
-				を満たす半径$\delta/2$の開球$B_1,\cdots,B_M$が存在し，
-				$E$の稠密性より$B_j \cap E \neq \emptyset$であるから
+				が成立する．また半径$\delta/2$の$K$の開被覆$B_1,\cdots,B_M$が存在し，
+				$E$は稠密であるから
 				\begin{align}
 					p_j \in B_j \cap E, \quad j=1,\cdots,M
 				\end{align}
-				を選んでおく．いま$E = \{x_n\}_{n=1}^\infty$と付番して
-				任意に$\{f_n\}_{n=1}^\infty \subset \mathscr{F}$を取れば，
+				を選んでおく．任意に$\{f_n\}_{n=1}^\infty \subset \mathscr{F}$を取れば，
 				\begin{align}
 					\overline{\Set{f_n(x_1)}{n=1,2,\cdots}}
 					\subset \overline{\Set{f(x)}{f \in \mathscr{F}}}
@@ -377,14 +370,15 @@
 					\{n(k,3)\}_{k=1}^\infty \supset
 					\cdots
 				\end{align}
-				が構成され，$n(k) \coloneqq n(k,k),\ (\forall k \geq 1)$
-				とおけば任意の$x_i \in E$に対して$\left\{f_{n(k)}(x_i)\right\}_{k=i}^\infty
-				\subset \left\{f_{n(k,i)}(x)\right\}_{k=1}^\infty$より
-				$\left\{f_{n(k)}(x_i)\right\}_{k=i}^\infty$は収束列の部分列となるから収束する．
+				が構成される．$n(k) \coloneqq n(k,k),\ (\forall k \geq 1)$
+				とおけば任意の$x_i \in E$に対して
+				$\left\{f_{n(k)}(x_i)\right\}_{k=i}^\infty$は収束列
+				$\left\{f_{n(k,i)}(x_i)\right\}_{k=1}^\infty$の部分列となるから収束し，
 				従って或る$N \geq 1$が存在して
 				\begin{align}
 					u,v > N \quad \Longrightarrow \quad
-					d_Y\left(f_{n(u)}(p_j),f_{n(v)}(p_j)\right) < \frac{\epsilon}{3},\ j=1,2,\cdots,M
+					d_Y\left(f_{n(u)}(p_j),f_{n(v)}(p_j)\right) < \frac{\epsilon}{3},
+					\ (\forall j=1,2,\cdots,M)
 				\end{align}
 				を満たす．任意に$x \in K$を取れば或る$j$で$x \in B_j$かつ
 				$d_X(x,p_j) < \delta$となるから，$u,v > N$なら
@@ -395,6 +389,44 @@
 					+ d_Y\left(f_{n(v)}(p_j),f_{n(v)}(x)\right) \\
 					&< \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} < \epsilon
 				\end{align}
-				が成り立つ．よって$\mathscr{F}$は正規族である．
+				が成り立つ．$\{f_{n(k)}(x)\}_{k=1}^\infty$は相対コンパクトであるから
+				$\lim_{k \to \infty} f_{n(k)}(x) \eqqcolon f(x) \in Y$が存在し，このとき
+				$\left(f_{n(k)}\right)_{k=1}^\infty$は$f$に$K$で一様収束するから
+				$\mathscr{F}$は正規族である．
+			
+			\item[(2)] 
+				$\mathscr{F}$が正規族であるなら$\mathscr{F}$は
+				(\refeq{eq:distance_in_spaces_of_continuous_functions})の距離$\rho$に関して全有界となるから，
+				任意の$\epsilon > 0$に対して
+				\begin{align}
+					\mathscr{F}
+					= \bigcup_{i=1}^N \Set{f \in \mathscr{F}}{\rho(f,f_i) < \epsilon}
+				\end{align}
+				を満たす$\{f_i\}_{i=1}^N \subset \mathscr{F}$が存在する．
+				$K \subset X$がコンパクトなら或る$n$で$K \subset K_n$となり，或る$\delta > 0$が存在して
+				\begin{align}
+					p,q \in K,\ d_X(p,q) < \delta
+					\quad \Longrightarrow \quad
+					d_Y(f_i(p),f_i(q)) < \epsilon,\ (\forall i = 1,\cdots,N)
+				\end{align}
+				が成り立つから，任意の$f \in \mathscr{F}$に対し$\rho(f,f_i) < \epsilon$
+				を満たす$f_i$を取れば
+				\begin{align}
+					p,q \in K,\ d_X(p,q) < \delta
+					\quad \Longrightarrow \quad
+					d_Y(f(p),f(q)) 
+					&\leq d_Y(f(p),f_i(p)) + d_Y(f_i(p),f_i(q)) + d_Y(f_i(q),f(q)) \\
+					&\leq 2^n \epsilon + \epsilon + 2^n \epsilon \\
+					&= (2^{n+1} + 1)\epsilon
+				\end{align}
+				となる．すなわち$\mathscr{F}$は任意のコンパクト部分集合上で同程度連続である．
+				また任意の$x \in X$に対し
+				\begin{align}
+					\Gamma(x) \coloneqq \Set{f(x)}{f \in \mathscr{F}}
+				\end{align}
+				とおけば，$\mathscr{F}$が有限集合なら$\Gamma(x)$はコンパクトであり，
+				$\mathscr{F}$が無限集合なら可算部分列
+				$\left\{f_n(x)\right\}_{n=1}^\infty$が存在し，
+				$\mathscr{F}$が正規族であるから収束部分列$$
 		\end{description}
 	\end{prf}
