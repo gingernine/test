@@ -40,21 +40,26 @@
 	\end{align}
 	により$C(X,Y)$上に距離$\rho$が定まる．特に，
 	定理\ref{thm:second_countable_Hausdorff_sigma_compact}より
-	$X$が可分なら$\sigma$-コンパクトとなり$\rho$が定義される．
+	$X$が可分かつ局所コンパクトなら
+	\begin{align}
+		K_n \subset K_{n+1}^{\mathrm{o}},
+		\quad X = \bigcup_{n=1}^\infty K_n
+		\label{eq:distance_in_spaces_of_continuous_functions_2}
+	\end{align}
+	を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在するから$\rho$が定義される．
 	
 	\begin{screen}
 		\begin{thm}[広義一様収束を定める距離]
-			$(X,d_X)$を$\sigma$-コンパクトな距離空間，
-			$(K_n)_{n=1}^\infty$を(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_1})を満たすコンパクト集合列，
-			$(Y,d_Y)$を距離空間とし，$\rho$を(\refeq{eq:distance_in_spaces_of_continuous_functions})
-			で定める．また$f,f_n \in C(X,Y)$とする．このとき
+			$(X,d_X)$を可分な局所コンパクト距離空間，$(Y,d_Y)$を距離空間とし，
+			(\refeq{eq:distance_in_spaces_of_continuous_functions_2})
+			を満たす$(K_n)_{n=1}^\infty$で$\rho$を定めるとき，$f,f_n \in C(X,Y)$に対して
+			次が成り立つ．
 			\begin{align}
 				\mbox{$(f_n)_{n=1}^\infty$が広義一様収束する}
-				\quad \Longrightarrow \quad
+				\quad \Longleftrightarrow \quad
 				\rho(f,f_n) \longrightarrow 0
-				\quad (n \longrightarrow \infty)
+				\quad (n \longrightarrow \infty).
 			\end{align}
-			が成り立ち，$X$が可分ならば逆も成立する．
 		\end{thm}
 	\end{screen}
 	
@@ -194,7 +199,9 @@
 	
 	\begin{screen}
 		\begin{thm}[$C(X,Y)$の完備性]\label{thm:completeness_of_spaces_of_continuous_functions}
-			$(X,d_X)$を可分距離空間，$(Y,d_Y)$を距離空間，$(f_n)_{n=1}^\infty$を$C(X,Y)$の列とするとき，
+			$(X,d_X)$を可分な局所コンパクト距離空間，$(Y,d_Y)$を距離空間，$(f_n)_{n=1}^\infty$を$C(X,Y)$の列とし，
+			(\refeq{eq:distance_in_spaces_of_continuous_functions_2})
+			を満たす$(K_n)_{n=1}^\infty$で$\rho$を定める．このとき
 			各点$x \in X$で$\lim_{n \to \infty} f_n(x)$が存在すれば
 			\begin{align}
 				f \coloneqq \lim_{n \to \infty} f_n \in C(X,Y),
@@ -207,15 +214,7 @@
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[第一段] $X$が可分であるから定理\ref{thm:second_countable_Hausdorff_sigma_compact}より
-				\begin{align}
-					K_n \subset K_{n+1}^{\mathrm{o}},
-					\quad X = \bigcup_{n=1}^\infty K_n
-				\end{align}
-				を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在する．
-				これに対して(\refeq{eq:distance_in_spaces_of_continuous_functions})の距離$\rho$を定める．
-				
-			\item[第二段]
+			\item[第一段]
 				任意の$j \geq 1$に対し
 				\begin{align}
 					\rho_j(f_n,f) \longrightarrow 0
@@ -245,7 +244,7 @@
 				\end{align}
 				が成立する．
 				
-			\item[第三段]
+			\item[第二段]
 				$f$の連続性を示す．任意に$\epsilon > 0$と$x \in X$及び
 				$x \in \interior{K_j}$を満たす$K_j$を取れば，
 				(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_4})より
@@ -267,7 +266,7 @@
 				\end{align}
 				が従い$f$の$x$における連続性が出る．
 			
-			\item[第四段]
+			\item[第三段]
 				(\refeq{eq:completeness_and_separability_of_space_of_continuous_functions_3})を示す．
 				任意の$\epsilon > 0$に対し，
 				\begin{align}
@@ -291,7 +290,9 @@
 	
 	\begin{screen}
 		\begin{thm}[$C(X,Y)$の完備可分性]\label{thm:appendix_complete_separability_of_spaces_of_continuous_functions}
-			$(X,d_X)$を可分距離空間，$(Y,d_Y)$を完備可分距離空間とするとき
+			$(X,d_X)$を可分な局所コンパクト距離空間，$(Y,d_Y)$を距離空間とし，
+			(\refeq{eq:distance_in_spaces_of_continuous_functions_2})
+			を満たす$(K_n)_{n=1}^\infty$で$\rho$を定めるとき，
 			$C(X,Y)$は$\rho$により完備可分距離空間となる．
 		\end{thm}
 	\end{screen}

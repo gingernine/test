@@ -82,22 +82,92 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[第二可算空間の任意の基底は可算基を含む]
+		\begin{thm}[第二可算空間の任意の基底は可算基を含む]\label{thm:countable_base_of_second_countable_space}
 			$\mathscr{B}$を第二可算空間$S$の任意の基底とするとき，或る可算部分集合
 			$\mathscr{B}_0 \subset \mathscr{B}$もまた$S$の基底となる．
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf}
+		$\mathscr{D}$を$S$の可算基とする．
+		任意の開集合$U$に対し或る$\mathscr{B}_U \subset \mathscr{B}$が存在して
+		$U = \bigcup_{V \in \mathscr{B}_U}V$を満たすから，
+		\begin{align}
+			\mathscr{D}_U \coloneqq
+			\Set{W \in \mathscr{D}}{W \subset V,\ V \in \mathscr{B}_U}
+			\label{eq:thm_countable_base_of_second_countable_space_1}
+		\end{align}
+		とおけば$U = \bigcup_{V \in \mathscr{B}_U} V
+			= \bigcup_{V \in \mathscr{B}_U} \bigcup_{\substack{W \in \mathscr{D}_U \\ W \subset V}} W
+			\subset \bigcup_{W \in \mathscr{D}_U} W
+			\subset U$より
+		\begin{align}
+			U = \bigcup_{W \in \mathscr{D}_U} W
+		\end{align}
+		が成り立つ．ここで(\refeq{eq:thm_countable_base_of_second_countable_space_1})より
+		任意の$W \in \mathscr{D}_U$に対して
+		$\Set{V \in \mathscr{B}}{W \subset V} \neq \emptyset$であるから
+		\begin{align}
+			\Phi_U \in \prod_{W \in \mathscr{D}_U} \Set{V \in \mathscr{B}}{W \subset V}
+		\end{align}
+		が取れる．$\mathscr{B}_U' \coloneqq \Set{\Phi_U(W)}{W \in \mathscr{D}_U}$とすれば
+		$U = \bigcup_{W \in \mathscr{D}_U} W \subset \bigcup_{W \in \mathscr{D}_U} \Phi(W)
+		\subset \bigcup_{V \in \mathscr{B}_U'} V \subset U$より
+		\begin{align}
+			U = \bigcup_{V \in \mathscr{B}_U'} V
+		\end{align}
+		が満たされ，
+		\begin{align}
+			\mathscr{B}_0 \coloneqq \bigcup_{W \in \mathscr{D}} \mathscr{B}_W'
+		\end{align}
+		と定めれば$\mathscr{B}_0$は求める$S$の可算基となる．実際任意の開集合$U$に対し
+		\begin{align}
+			U = \bigcup_{W \in \mathscr{D}_U} W
+			= \bigcup_{W \in \mathscr{D}_U} \bigcup_{V \in \mathscr{B}_W'} V
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
-		\begin{thm}[第二可算Hausdorff空間の$\sigma$-コンパクト性]\label{thm:second_countable_Hausdorff_sigma_compact}
-			$S$が第二可算Hausdorff空間なら
+		\begin{thm}[局所コンパクトHausdorff空間が第二可算なら$\sigma$-コンパクト]\label{thm:second_countable_Hausdorff_sigma_compact}
+			$S$が第二可算公理を満たす局所コンパクトHausdorff空間なら，
+			次を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在する:
 			\begin{align}
 				K_n \subset K_{n+1}^{\mathrm{o}},
-				\quad S = \bigcup_{n=1}^\infty K_n
+				\quad S = \bigcup_{n=1}^\infty K_n.
 			\end{align}
-			を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在する．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		任意の$x \in S$に対して閉包がコンパクトな開近傍$U_x$を取っておく．
+		$\mathscr{O}$を$S$の開集合系として
+		\begin{align}
+			\mathscr{B} \coloneqq
+			\Set{U \in \mathscr{O}}{\mbox{$\overline{U}$がコンパクト}}
+		\end{align}
+		とおけば，$\mathscr{B}$は$\mathscr{O}$の基底となる．実際，
+		任意の$O \in \mathscr{O}$に対し$O \cap U_x \in \mathscr{B}$かつ
+		\begin{align}
+			O = \bigcup_{x \in O} O \cap U_x
+		\end{align}
+		となる．定理\ref{thm:countable_base_of_second_countable_space}より
+		或る可算部分集合$\{U_n\}_{n=1}^\infty \subset \mathscr{B}$が
+		$\mathscr{O}$の基底となる．いま，$K_1 \coloneqq \overline{U_1}$として，
+		またコンパクト集合$K_n$が選ばれたとして，
+		$K_n$の有限被覆$\mathscr{U}_n \subset \mathscr{B}_0$を取り
+		\begin{align}
+			K_{n+1} \coloneqq \overline{U_{n+1}} \cup \bigcup_{V \in \mathscr{U}_n} \overline{V}
+		\end{align}
+		とすれば，$K_{n+1}$はコンパクトであり$K_n \subset K_{n+1}^{\mathrm{o}}$を満たす．
+		この操作で$(K_n)_{n=1}^\infty$を構成すれば
+		\begin{align}
+			S = \bigcup_{n=1}^\infty U_n \subset \bigcup_{n=1}^\infty K_n \subset S
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
 	
 \subsection{範疇定理}
 	\begin{screen}
