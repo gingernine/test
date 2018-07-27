@@ -1,28 +1,39 @@
 \section{Stieltjes積分}
 	$\R$の区間$I$とは，
-	$(a,b),(a,b],[a,b),[a,b],\ (-\infty \leq a \leq b \leq \infty)$のいずれかを指す．このとき
+	$(a,b),(a,b],[a,b),[a,b],\ (-\infty \leq \inf{}{I} \leq \sup{}{I} \leq \infty)$のいずれかを指す．ここで
 	\begin{align}
-		\mathfrak{F} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \subset \R:\mbox{区間},\ I_i \neq \emptyset,\ n=1,2,\cdots}
+		\mathfrak{F} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \subset \R:\mbox{区間},\ n=1,2,\cdots}
 	\end{align}
-	は$\R$上の加法族をなす．$f:\R \longrightarrow \R$を単調非減少関数として，任意の区間$I$に対し
+	とおけば，定理\ref{thm:forming_finitely_additive_class}より$\mathfrak{F}$は$\R$上の加法族をなす．
+	$f:\R \longrightarrow \R$を単調非減少関数として，任意の区間$I$に対し
 	\begin{align}
 		m_0(I) \coloneqq \sup{}{\Set{f(\beta) - f(\alpha)}{(\alpha,\beta] \subset I}}
 	\end{align}
-	とおき，
+	とおき，また$I = \emptyset$なら$m_0(I) \coloneqq 0$として
 	\begin{align}
 		\mu_0(F) \coloneqq \sum_{i=1}^n m_0(I_i),
 		\quad (\forall F = I_1 + I_2 + \cdots + I_n \in \mathfrak{F})
 	\end{align}
-	により有限加法的関数$\mu_0$を定める．
+	により$\mu_0$を定める．この$\mu_0$はwell-definedであり有限加法的である．実際，
+	\begin{align}
+		I_1 + I_2 + \cdots + I_n = J_1 + J_2 + \cdots + J_m
+	\end{align}
+	に対し，$\sum_{i=1}^n I_i = \sum_{i=1}^n \sum_{j=1}^m I_i \cap J_j = \sum_{j=1}^m J_i$かつ$I_i \cap J_j$は区間であるから
+	\begin{align}
+		\mu_0\Biggl(\sum_{i=1}^n I_i\Biggr)
+		= \sum_{i=1}^n \sum_{j=1}^m m_0(I_i \cap J_j)
+		= \mu_0\Biggl(\sum_{j=1}^m J_j\Biggr)
+	\end{align}
+	が成り立ち，また有限加法性は$\mu_0$の定義より従う．
 	
 	\begin{screen}
 		\begin{thm}[右連続性と完全加法性]
-			単調非減少関数$f$を用いて定める$\mu_0$について，
+			単調非減少関数$f:\R \longrightarrow \R$を用いて定める$\mu_0$について，
 			$f$が右連続であることと$\mu_0$が$\mathfrak{F}$で完全加法的であることは同値である．
 		\end{thm}
 	\end{screen}
 	
-	$\mathfrak{F}$が加法族であるから，空でない任意の区間$I$に対して
+	$\mathfrak{F}$が加法族であるから，空でない任意の区間$I \neq \emptyset$に対して
 	\begin{align}
 		\mathfrak{F}_I \coloneqq \Set{I \cap F}{F \in \mathfrak{F}}
 	\end{align}
@@ -48,6 +59,8 @@
 	\end{align}
 	は$\mathfrak{F}_I$上で完全加法的となる．
 	$\mu_{0,I}$の拡張測度を$\mu_I$と書き，これを$f_I$のStieltjes測度と呼ぶ．
+	$\mu_I$のLebesgue拡大をLebesgue-Stieltjes測度と呼び，
+	特に$I = \R,\ f(x) = x$のときLebesgue測度と呼ぶ．
 	
 	\begin{screen}
 		\begin{thm}[左半開区間のStiletjes測度]

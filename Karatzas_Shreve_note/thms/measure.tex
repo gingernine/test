@@ -219,6 +219,46 @@
 		
 	\subsection{有限加法的測度の拡張}
 		\begin{screen}
+			\begin{thm}[有限加法族の生成]\label{thm:forming_finitely_additive_class}
+				$X$を集合，$\mathcal{A}$を$X$上の乗法族で$X$を含むものとする．
+				\begin{align}
+					\mathcal{B} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \in \mathcal{A},\ n=1,2,\cdots}
+				\end{align}
+				とおくとき，任意の$I \in \mathcal{A}$に対し$X \backslash I \in \mathcal{B}$となれば
+				$\mathcal{B}$は$X$上の有限加法族となる．
+			\end{thm}
+		\end{screen}
+		
+		\begin{prf}
+			$\mathcal{A} \subset \mathcal{B}$より$X \in \mathcal{B}$となる．$A,B \in \mathcal{B}$が
+			\begin{align}
+				A = I_1 + I_2 + \cdots + I_n,
+				\quad B = J_1 + J_2 + \cdots + J_m
+			\end{align}
+			と表されているとき，$A \cap B = \emptyset$なら
+			\begin{align}
+				A + B = I_1 + I_2 + \cdots + I_n + J_1 + J_2 + \cdots + J_m \in \mathcal{A}
+				\label{eq:thm_forming_finitely_additive_class_1}
+			\end{align}
+			となり，そうでない場合$I_i \cap J_j \in \mathcal{A}$より
+			\begin{align}
+				A \cap B = \sum_{i=1}^n\sum_{j=1}^m I_i \cap J_i \in \mathcal{B}
+				\label{eq:thm_forming_finitely_additive_class_2}
+			\end{align}
+			となるから$\mathcal{B}$は交演算で閉じ，$X \backslash I_i \in \mathcal{B}$であるから
+			\begin{align}
+				X \backslash A = (X \backslash I_1) \cap \cdots \cap (X \backslash I_n) \in \mathcal{B}
+				\label{eq:thm_forming_finitely_additive_class_3}
+			\end{align}
+			が従う．(\refeq{eq:thm_forming_finitely_additive_class_1})，
+			(\refeq{eq:thm_forming_finitely_additive_class_2})，
+			(\refeq{eq:thm_forming_finitely_additive_class_3})
+			より$A \cup B = A + B \cap (X \backslash A) \in \mathcal{B}$が成り立ち，
+			$\mathcal{B}$は集合和でも閉じる．
+			\QED
+		\end{prf}
+		
+		\begin{screen}
 			\begin{thm}[測度の一致の定理]\label{thm:identity_theorem_of_measures}
 				$(X,\mathcal{B})$を可測空間，
 				$\mathcal{A}$を$\mathcal{B}$を生成する乗法族とし，
