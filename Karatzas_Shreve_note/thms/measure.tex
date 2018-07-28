@@ -231,7 +231,7 @@
 		Hausdorff空間のコンパクト部分集合から成る任意の族はコンパクトクラスとなる．
 	
 		\begin{screen}
-			\begin{thm}[有限加法的測度空間の生成]\label{thm:forming_finitely_additive_class}
+			\begin{thm}[有限加法的正値測度空間の生成]\label{thm:forming_finitely_additive_class}
 				$X$を集合，$\mathcal{A}$を$X$上の乗法族で$X$を含むものとする．
 				\begin{align}
 					\mathcal{B} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \in \mathcal{A},\ n=1,2,\cdots}
@@ -244,10 +244,13 @@
 					\quad (B=I_1 + \cdots + I_n \in \mathcal{B})
 				\end{align}
 				により$\mathcal{B}$の上の有限加法的な$m$の拡張写像$\mu$が定まる．
+				特に$m(\emptyset) = 0$なら$\mu$は有限加法的な正値測度となる．
 			\end{thm}
 		\end{screen}
 		
-		\begin{prf}\mbox{}
+		\begin{prf} $X \backslash I \in \mathcal{B},\ (\forall I \in \mathcal{A})$及び
+			$m:\mathcal{A} \longrightarrow [0,\infty]$が与えられたとする．このとき
+			$\emptyset = X \backslash X \in \mathcal{B}$より$\emptyset \in \mathcal{A}$である．
 			\begin{description}
 				\item[第一段]
 					$\mathcal{B}$が有限加法族であることを示す．
@@ -296,14 +299,23 @@
 						=  m(I_1) + \cdots + m(I_n) + m(J_1) + \cdots + m(J_m)
 						= \mu(A) + \mu(B)
 					\end{align}
-					となり$\mu$の有限加法性が出る．
+					となり$\mu$の有限加法性が出る．$m(\emptyset) = 0$なら$\mu(\emptyset) = 0$が従う．
 					\QED
 			\end{description}
 		\end{prf}
 		
 		\begin{screen}
-			\begin{thm}[コンパクトクラスの存在と]
-				
+			\begin{thm}[コンパクトクラスの存在と完全加法性]
+				$\mathcal{B}$を集合$X$の上の有限加法族，
+				$\mu$を$\mathcal{B}$上の有限加法的測度とする．
+				$X$にコンパクトクラス$\mathcal{K}$が存在するとき，
+				$\mu(B) < \infty$を満たす任意の$B \in \mathcal{B}$及び任意の$\epsilon > 0$に対し
+				\begin{align}
+					A \subset K \subset B,
+					\quad \mu(B \backslash A) < \epsilon
+				\end{align}
+				を満たす$A \in \mathcal{B}$と$K \in \mathcal{K}$が存在すれば，
+				$\mu$は$\mathcal{B}$の上で完全加法的である．
 			\end{thm}
 		\end{screen}
 		
