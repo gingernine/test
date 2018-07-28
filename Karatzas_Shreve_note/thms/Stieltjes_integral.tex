@@ -1,20 +1,33 @@
 \section{Stieltjes積分}
-	$\R$の区間$I$とは，
-	$(a,b),(a,b],[a,b),[a,b],\ (-\infty \leq \inf{}{I} \leq \sup{}{I} \leq \infty)$のいずれかを指す．ここで
+	$\R$の左半開区間とは
+	$(a,b],\ (-\infty \leq a \leq b \leq \infty)$を指す．ただし
 	\begin{align}
-		\mathfrak{F} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \subset \R:\mbox{区間},\ n=1,2,\cdots}
+		(a,b] =
+		\begin{cases}
+			\emptyset, & a=b, \\
+			(-\infty,b], & a=-\infty,\ b < \infty, \\
+			(a,\infty), & -\infty < a,\ b = \infty, \\
+			(-\infty,\infty), & a=-\infty,\ b = \infty, \\
+		\end{cases}
 	\end{align}
-	とおけば，定理\ref{thm:forming_finitely_additive_class}より$\mathfrak{F}$は$\R$上の加法族をなす．
-	$f:\R \longrightarrow \R$を単調非減少関数として，任意の区間$I$に対し
+	と考える．ここで$d \geq 1$に対し$\left(a_1,b_1\right] \times \left(a_2,b_2\right] \times
+	\cdots \times \left(a_d,b_d\right]$の形の集合を$\R^d$の左半開区間として
 	\begin{align}
-		m_0(I) \coloneqq \sup{}{\Set{f(\beta) - f(\alpha)}{(\alpha,\beta] \subset I}}
+		\mathfrak{F} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \subset \R^d:\mbox{左半開区間},\ n=1,2,\cdots}
+	\end{align}
+	とおけば，定理\ref{thm:forming_finitely_additive_class}より$\mathfrak{F}$は$\R^d$の上の加法族となる．
+	$f_\lambda:\R \longrightarrow \R,\ (\lambda = 1,\cdots,d)$を単調非減少関数として，
+	任意の左半開区間$I = I^1 \times \cdots \times I^d \subset \R^d$($I^\lambda$は$\R$の左半開区間)に対し
+	\begin{align}
+		m_0(I) \coloneqq \prod_{\lambda=1}^d 
+		\sup{}{\Set{f_\lambda(\beta_\lambda) - f_\lambda(\alpha_\lambda)}{\left(\alpha_\lambda,\beta_\lambda\right] \subset I^\lambda}}
 	\end{align}
 	とおき，また$I = \emptyset$なら$m_0(I) \coloneqq 0$として
 	\begin{align}
 		\mu_0(F) \coloneqq \sum_{i=1}^n m_0(I_i),
 		\quad (\forall F = I_1 + I_2 + \cdots + I_n \in \mathfrak{F})
 	\end{align}
-	により$\mu_0$を定める．この$\mu_0$はwell-definedであり有限加法的な$m_0$の拡張である．実際，
+	により$\mu_0$を定める．この$\mu_0$はwell-definedであり，有限劣加法的かつ有限加法的な$m_0$の拡張である．実際，
 	\begin{align}
 		I_1 + I_2 + \cdots + I_n = J_1 + J_2 + \cdots + J_m
 	\end{align}
@@ -28,10 +41,20 @@
 	
 	\begin{screen}
 		\begin{thm}[右連続性と完全加法性]
-			単調非減少関数$f:\R \longrightarrow \R$を用いて定める$\mu_0$について，
-			$f$が右連続であることと$\mu_0$が$\mathfrak{F}$で完全加法的であることは同値である．
+			単調非減少関数$f_\lambda:\R \longrightarrow \R,\ (\lambda=1,\cdots,d)$を用いて定める$\mu_0$について，
+			全ての$f_\lambda$が右連続であることと$\mu_0$が$\mathfrak{F}$の上で完全加法的であることは同値である．
 		\end{thm}
 	\end{screen}
+	
+	$\mathfrak{F}$は$\borel{\R^d}$を生成する．
+	任意の$n \geq 1$に対して
+	\begin{align}
+		\mu_0((-n,n] \times \cdots \times (-n,n]) 
+		= \prod_{\lambda=1}^d \left\{f_\lambda(n) - f_\lambda(-n)\right\} < \infty
+	\end{align}
+	であるから
+	$\mu_0$は$\mathfrak{F}$上で$\sigma$-有限的であり，$f_\lambda$が右連続であれば
+	定理\ref{thm:appendix_Kolmogorov_Hopf}より$\mu_0$の拡張測度$\mu$が唯一つ存在する．
 	
 	$\mathfrak{F}$が加法族であるから，空でない任意の区間$I \neq \emptyset$に対して
 	\begin{align}
