@@ -293,7 +293,7 @@
 		\end{prf}
 		
 		\begin{screen}
-			\begin{thm}[完全加法性の同値条件]
+			\begin{thm}[完全加法性の同値条件]\label{thm:equivalent_conditions_of_countable_additivity}
 				$\mathcal{B}$を集合$X$の上の有限加法族，
 				$\mu$を$\mathcal{B}$上の有限加法的な正値測度として
 				\begin{description}
@@ -311,7 +311,7 @@
 				\end{description}
 				とおくとき，
 				\begin{description}
-					\item[(1)] $\mu(X) < \infty$なら$\mu$が$\mathcal{B}$の上で
+					\item[(1)] $0 < \mu(X) < \infty$なら$\mu$が$\mathcal{B}$の上で
 						完全加法性であることと(a)は同値である．
 						
 					\item[(2)] $\mu(X) = \infty$なら$\mu$が$\mathcal{B}$の上で
@@ -322,6 +322,10 @@
 				\end{description}
 			\end{thm}
 		\end{screen}
+		
+		\begin{prf}
+			
+		\end{prf}
 		
 		\begin{screen}
 			\begin{dfn}[コンパクトクラス]
@@ -334,40 +338,41 @@
 		\end{screen}
 		
 		\begin{screen}
-			\begin{thm}
+			\begin{thm}\label{thm:compact_class_Haudorff}
 				Hausdorff空間において，コンパクト部分集合から成る任意の族はコンパクトクラスとなる．
 			\end{thm}
 		\end{screen}
 		
 		\begin{prf}
-			定理\ref{thm:Cantor_intersection_theorem}より従う．
+			Cantorの共通部分定理(P. \pageref{thm:Cantor_intersection_theorem})より従う．
 			\QED
 		\end{prf}
 		
 		\begin{screen}
-			\begin{thm}[コンパクトクラスの存在と共通点性]\label{thm:compact_class_intersection}
+			\begin{thm}[コンパクトクラスと共通点性]\label{thm:compact_class_intersection}
 				$\mathcal{B}$を集合$X$の上の有限加法族，
-				$\mu$を$\mathcal{B}$上の有限加法的測度とする．
+				$\mu$を$\mathcal{B}$上の有限加法的正値測度とする．
 				$X$にコンパクトクラス$\mathcal{K}$が存在するとき，
-				$\mu(B) < \infty$を満たす任意の$B \in \mathcal{B}$及び任意の$\epsilon > 0$に対し
+				$0 < \mu(B) < \infty$を満たす任意の$B \in \mathcal{B}$及び任意の$\epsilon > 0$に対し
 				\begin{align}
 					A \subset K \subset B,
 					\quad \mu(B \backslash A) < \epsilon
 				\end{align}
 				を満たす$A \in \mathcal{B}$と$K \in \mathcal{K}$が存在すれば，
-				減少列$\{B_n\}_{n=1}^\infty \subset \mathcal{B}$に対し次が満たされる:
-				\begin{align}
-					\mu(B_1) < \infty,
-					\quad \bigcap_{n=1}^\infty B_n = \emptyset
-					\quad \Longrightarrow \quad
-					\lim_{n \to \infty} \mu(B_n) = 0.
-				\end{align}
+				定理\ref{thm:equivalent_conditions_of_countable_additivity}の
+				(a)が満たされる．
 			\end{thm}
 		\end{screen}
 		
 		\begin{prf}
-			$(B_n)_{n=1}^\infty$を$\mu(B_1) < \infty,\ \bigcap_{n=1}^\infty B_n = \emptyset$
-			を満たす減少列とすれば，任意の$\epsilon > 0$に対して
+			$(B_n)_{n=1}^\infty$を$\mu(B_1) < \infty$かつ$\bigcap_{n=1}^\infty B_n = \emptyset$
+			を満たす減少列とすれば，或る$N$で$\mu(B_N) = 0$となるとき
+			\begin{align}
+				\mu(B_n) \leq \mu(B_N) = 0,
+				\quad (\forall n \geq N)
+			\end{align}
+			より$\lim_{n \to \infty} \mu(B_n) = 0$が従う．
+			全ての$n$で$0 < \mu(B_n)$なら，任意の$\epsilon > 0$に対して
 			\begin{align}
 				A_n \subset K_n \subset B_N,
 				\quad \mu(B_n \backslash A_n) < \frac{\epsilon}{2^n},
@@ -607,16 +612,17 @@
 		
 		\begin{screen}
 			\begin{thm}[積測度]
-				$\sigma$-有限測度空間の族$\left((X_i,\mathscr{F}_i,\mu_i)\right)_{i=1}^n$に対し，
+				測度空間の族$\left((X_i,\mathscr{F}_i,\mu_i)\right)_{i=1}^n$に対し，
 				$\left( \prod_{i=1}^n X_i,\ \bigotimes_{i=1}^n \mathscr{F}_i \right)$上の
-				$\sigma$-有限測度$\mu$で
+				測度$\mu$で
 				\begin{align}
 					\mu(A_1 \times \cdots \times A_n)
 					= \mu_1(A_1) \cdots \mu_n(A_n),
 					\quad (\forall A_i \in \mathscr{F}_i,\ i=1,\cdots,n)
 				\end{align}
-				を満たすものがただ一つ存在する．この$\mu$を$(\mu_i)_{i=1}^n$の
+				を満たすものが存在する．この$\mu$を$(\mu_i)_{i=1}^n$の
 				積測度と呼び$\bigotimes_{i=1}^n \mu_i = \mu_1 \otimes \cdots \otimes \mu_n$と書く．
+				全ての$\mu_i$が$\sigma$-有限なら積測度$\mu$は唯一つ存在し$\sigma$-有限となる．
 			\end{thm}
 		\end{screen}
 		

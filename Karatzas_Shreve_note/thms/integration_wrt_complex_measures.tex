@@ -71,15 +71,28 @@
 	の意味で一意であるから$\mu$に関する積分はwell-definedである．
 	$\mu \equiv 0$なら$|\mu| \equiv 0$であるから任意の可測写像は$|\mu|$について可積分となり，
 	$\mu$に関する積分値は0で確定する(well-defined)．
-		
+	
 	\begin{screen}
-		\begin{thm}[積分の測度に関する線型性]
-			$(X,\mathcal{M})$を可測空間，$\mu,\nu$をこの上の複素測度とする．$f:X \rightarrow \C$が$|\mu|$と$|\nu|$について可積分であるなら，
-			$\alpha,\beta \in \C$に対し$|\alpha \mu|, |\beta \nu|, |\alpha \mu + \beta \nu|$についても可積分であり，更に次が成り立つ:
+		\begin{thm}[総変動測度の積分表現]
+			$(X,\mathscr{F},\mu)$を正値測度空間，
+			$f$を$\mathscr{F}/\borel{\C}$-可測な可積分関数とするとき，
 			\begin{align}
-				\int_X f(x)\ (\alpha\mu + \beta\nu)(dx) = \alpha \int_X f(x)\ \mu(dx) + \beta \int_X f(x)\ \nu(dx).
+				\lambda(E) \coloneqq \int_E f\ d\mu, \quad (\forall E \in \mathscr{F})
 			\end{align}
-			\label{thm:linearity_of_integral_respect_to_measure}
+			で複素測度$\lambda$を定めれば次が成り立つ:
+			\begin{align}
+				|\lambda|(E) = \int_E |f|\ d\mu, \quad (\forall E \in \mathscr{F}).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[積分の測度に関する線型性]\label{thm:linearity_of_integral_respect_to_complex_measure}
+			$(X,\mathscr{F})$を可測空間，$\mu,\nu$をこの上の複素測度とする．$f:X \rightarrow \C$が$|\mu|$と$|\nu|$について可積分であるなら，
+			$\alpha,\beta \in \C$に対し$|\alpha \mu + \beta \nu|$についても可積分であり，更に次が成り立つ:
+			\begin{align}
+				\int_X f\ d(\alpha\mu + \beta\nu) = \alpha \int_X f\ d\mu + \beta \int_X f\ d\nu.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
@@ -124,6 +137,32 @@
  			が成り立ち後半の主張が従う．
  			\QED
 		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[積分の複素共役]
+			$(X,\mathscr{F})$を可測空間，$\mu$を複素測度，
+			$f:X \rightarrow \C$を$|\mu|$について可積分な$\mathscr{F}/\borel{\C}$-可測関数とするとき
+			次が成り立つ:
+			\begin{align}
+				\int_X f\ d\overline{\mu}
+				= \overline{\int_X \overline{f}\ d\mu}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$u = \Re{f},\ v = \Im{f},\ \gamma = \Re{\mu},\ \theta = \Im{\mu}$とすれば，
+		定理\refeq{thm:linearity_of_integral_respect_to_complex_measure}より
+		\begin{align}
+			\int_X f\ d\overline{\mu} &= \int_X f\ d\gamma - i \int_X f\ d\theta \\
+			&= \int_X u\ d\gamma + i \int_X v\ d\gamma - i \int_X u\ d\theta + \int_X v\ d\theta \\
+			&= \overline{\int_X u\ d\gamma - i \int_X v\ d\gamma + i \int_X u\ d\theta + \int_X v\ d\theta} \\
+			&= \overline{\int_X \overline{f}\ d\gamma + i \int_X \overline{f}\ d\theta} \\
+			&= \overline{\int_X \overline{f}\ d\mu}
+		\end{align}
+		が成立する．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
