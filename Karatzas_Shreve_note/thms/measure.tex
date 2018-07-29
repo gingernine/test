@@ -219,18 +219,6 @@
 		
 	\subsection{有限加法的測度の拡張}
 		\begin{screen}
-			\begin{dfn}[コンパクトクラス]
-				$X$を空でない集合，$\mathcal{K}$をその部分集合族とする．
-				任意の$\{K_n\}_{n=1}^\infty \subset \mathcal{K}$について，
-				$\bigcap_{n=1}^\infty K_n = \emptyset$なら或る$N \geq 1$が存在して
-				$\bigcap_{n=1}^N K_n = \emptyset$となるとき，
-				$\mathcal{K}$を$X$のコンパクトクラスという．
-			\end{dfn}
-		\end{screen}
-		定理\ref{thm:Cantor_intersection_theorem}より
-		Hausdorff空間のコンパクト部分集合から成る任意の族はコンパクトクラスとなる．
-	
-		\begin{screen}
 			\begin{thm}[有限加法的正値測度空間の生成]\label{thm:forming_finitely_additive_class}
 				$X$を集合，$\mathcal{A}$を$X$上の乗法族で$X$を含むものとする．
 				\begin{align}
@@ -305,6 +293,23 @@
 		\end{prf}
 		
 		\begin{screen}
+			\begin{dfn}[コンパクトクラス]
+				$X$を空でない集合，$\mathcal{K}$をその部分集合族とする．
+				任意の$\{K_n\}_{n=1}^\infty \subset \mathcal{K}$について，
+				$\bigcap_{n=1}^\infty K_n = \emptyset$なら或る$N \geq 1$が存在して
+				$\bigcap_{n=1}^N K_n = \emptyset$となるとき，
+				$\mathcal{K}$を$X$のコンパクトクラスという．
+			\end{dfn}
+		\end{screen}
+		定理\ref{thm:Cantor_intersection_theorem}より
+		Hausdorff空間のコンパクト部分集合から成る任意の族はコンパクトクラスとなる．
+		
+		\begin{screen}
+			\begin{thm}
+			\end{thm}
+		\end{screen}
+		
+		\begin{screen}
 			\begin{thm}[コンパクトクラスの存在と完全加法性]
 				$\mathcal{B}$を集合$X$の上の有限加法族，
 				$\mu$を$\mathcal{B}$上の有限加法的測度とする．
@@ -357,14 +362,14 @@
 			\begin{thm}[Kolmogorov-Hopf]\label{thm:appendix_Kolmogorov_Hopf}
 				$(X,\mathcal{B},\mu_0)$を有限加法的測度空間($\mathcal{B}$は有限加法族，$\mu_0$は有限加法的)とし，
 				\begin{align}
-					\mu^*(A) \coloneqq \inf{}{}\Set{\sum_{n=1}^\infty \mu_0(B_n)}{B_n \in \mathcal{B},\ A \subset \bigcup_{n=1}^\infty B_n},
+					\tilde{\mu}(A) \coloneqq \inf{}{}\Set{\sum_{n=1}^\infty \mu_0(B_n)}{B_n \in \mathcal{B},\ A \subset \bigcup_{n=1}^\infty B_n},
 					\quad (\forall A \subset X)
 				\end{align}
-				により$X$上に外測度を定め，$\mu^*$-可測集合を$\mathcal{B}^*$と書く．このとき，
+				により$X$上に外測度を定め，$\tilde{\mu}$-可測集合を$\mathcal{B}^*$と書く．このとき，
 				\begin{description}
 					\item[(1)] $\sigma[\mathcal{B}] \subset \mathcal{B}^*$が成り立つ．
-						ここで$\mu' \coloneqq\left.\mu^*\right|_{\mathcal{B}^*},
-						\ \mu \coloneqq \left.\mu^*\right|_{\sigma[\mathcal{B}]}$とおく．
+						ここで$\mu^* \coloneqq\left.\tilde{\mu}\right|_{\mathcal{B}^*},
+						\ \mu \coloneqq \left.\tilde{\mu}\right|_{\sigma[\mathcal{B}]}$とおく．
 					\item[(2)] $\mu_0$が$\mathcal{B}$上で$\sigma$-加法的なら
 						$\mu$は$\mu_0$の拡張となっている:
 						\begin{align}
@@ -378,10 +383,10 @@
 					
 					\item[(4)] $\mu_0$が$\mathcal{B}$上で$\sigma$-加法的かつ$\sigma$-有限的ならば，
 						$\mu$は$\mu_0$の$\left( X,\sigma[\mathcal{B}] \right)$への唯一つの拡張測度であり，
-						このとき$\left( X,\mathcal{B}^*,\mu' \right)$は$(X,\sigma[\mathcal{B}],\mu)$の
+						このとき$\left( X,\mathcal{B}^*,\mu^* \right)$は$(X,\sigma[\mathcal{B}],\mu)$の
 						Lebesgue拡大に一致する:
 						\begin{align}
-							\left( X,\mathcal{B}^*,\mu' \right) 
+							\left( X,\mathcal{B}^*,\mu^* \right) 
 							= \left( X,\overline{\sigma[\mathcal{B}]},\overline{\mu} \right).
 							\label{eq:appendix_finite_additive_measure_expansion_5}
 						\end{align}
@@ -392,9 +397,9 @@
 		\begin{prf}\mbox{}
 			\begin{description}
 				\item[(1)の証明]
-					任意の$B \in \mathcal{B}$が$\mu^*$-可測であること，つまり任意の$A \subset X$に対し
+					任意の$B \in \mathcal{B}$が$\tilde{\mu}$-可測であること，つまり任意の$A \subset X$に対し
 					\begin{align}
-						\mu^*(A) \geq \mu^*(A \cap B) + \mu^*(A \cap B^c)
+						\tilde{\mu}(A) \geq \tilde{\mu}(A \cap B) + \tilde{\mu}(A \cap B^c)
 						\label{eq:appendix_finite_additive_measure_expansion_2}
 					\end{align}
 					となることを示せば，$\mathcal{B} \subset \mathcal{B}^*$すなわち
@@ -402,22 +407,22 @@
 					任意の$A \subset X,\ \epsilon > 0$に対し
 					\begin{align}
 						A \subset \bigcup_{n=1}^\infty B_n,
-						\quad \sum_{n=1}^\infty \mu_0(B_n) < \mu^*(A) + \epsilon
+						\quad \sum_{n=1}^\infty \mu_0(B_n) < \tilde{\mu}(A) + \epsilon
 					\end{align}
 					を満たす$\{B_n\}_{n=1}^\infty \subset \mathcal{B}$が存在する．
 					このとき$A \cap B \subset \bigcup_{n=1}^\infty (B_n \cap B)
 					,\ A \cap B^c \subset \bigcup_{n=1}^\infty (B_n \cap B^c)$より
 					\begin{align}
-						\mu^*(A \cap B) \leq \sum_{n=1}^\infty \mu_0(B_n \cap B),
-						\quad \mu^*(A \cap B^c) \leq \sum_{n=1}^\infty \mu_0(B_n \cap B^c)
+						\tilde{\mu}(A \cap B) \leq \sum_{n=1}^\infty \mu_0(B_n \cap B),
+						\quad \tilde{\mu}(A \cap B^c) \leq \sum_{n=1}^\infty \mu_0(B_n \cap B^c)
 					\end{align}
 					となるから
 					\begin{align}
-						\mu^*(A) + \epsilon
+						\tilde{\mu}(A) + \epsilon
 						&\geq \sum_{n=1}^\infty \mu_0(B_n)
 						= \sum_{n=1}^\infty \left\{ \mu_0(B_n \cap B) + \mu_0(B_n \cap B^c) \right\} \\
 						&= \sum_{n=1}^\infty \mu_0(B_n \cap B) + \sum_{n=1}^\infty \mu_0(B_n \cap B^c) \\
-						&\geq \mu^*(A \cap B) + \mu^*(A \cap B^c)
+						&\geq \tilde{\mu}(A \cap B) + \tilde{\mu}(A \cap B^c)
 					\end{align}
 					が成り立つ．$\epsilon$の任意性より
 					(\refeq{eq:appendix_finite_additive_measure_expansion_2})が出る．
@@ -426,7 +431,7 @@
 					任意に$B \in \mathcal{B}$を取る．まず，
 					$B \subset B \cup \emptyset \cup \emptyset \cup \cdots$より
 					\begin{align}
-						\mu^*(B) \leq \mu_0(B)
+						\tilde{\mu}(B) \leq \mu_0(B)
 					\end{align}
 					が成り立つ．一方で
 					$B \subset \bigcup_{n=1}^\infty B_n$を満たす$\{B_n\}_{n=1}^\infty \subset \mathcal{B}$に対し
@@ -439,7 +444,7 @@
 						\mu_0(B) = \sum_{n=1}^\infty \mu_0\Biggl( B \cap \Biggl( B_n \backslash \bigcup_{k=1}^{n-1}B_k \Biggr) \Biggr)
 						\leq \sum_{n=1}^\infty \mu_0(B_n)
 					\end{align}
-					が成り立ち$\mu_0(B) \leq \mu^*(B)$が従う．よって$\mu_0(B) = \mu^*(B) = \mu(B)$が得られる．
+					が成り立ち$\mu_0(B) \leq \tilde{\mu}(B)$が従う．よって$\mu_0(B) = \tilde{\mu}(B) = \mu(B)$が得られる．
 				
 				\item[(3)の証明]
 					$\sigma$-有限の仮定より，或る増大列$X_1 \subset X_2 \subset \cdots
@@ -463,7 +468,7 @@
 						B_1 \subset E \subset B_2, \quad \mu(B_2 - B_1) = 0
 					\end{align}
 					を満たす．このとき(1)より
-					$\mu'(B_2 - B_1) = 0$であり，$\left( X,\mathcal{B}^*,\mu' \right)$の完備性より
+					$\mu^*(B_2 - B_1) = 0$であり，$\left( X,\mathcal{B}^*,\mu^* \right)$の完備性より
 					$E \backslash B_1 \in \mathcal{B}^*$が満たされ
 					\begin{align}
 						E = B_1 + E \backslash B_1 \in \mathcal{B}^*
@@ -472,14 +477,14 @@
 					$\{X_n\}_{n=1}^\infty \subset \mathcal{B}$を取り，
 					$E \in \mathcal{B}^*$に対して$E_n \coloneqq E \cap X_n$とおく．このとき
 					\begin{align}
-						\mu'(E_n) \leq \mu'(X_n) = \mu_0(X_n) < \infty
+						\mu^*(E_n) \leq \mu^*(X_n) = \mu_0(X_n) < \infty
 					\end{align}
 					となり，任意の$k = 1,2,\cdots$に対して
 					\begin{align}
 						E_n \subset \bigcup_{j=1}^\infty B^n_{k,j},
 						\quad
 						\sum_{j=1}^\infty \mu_0\left( B^n_{k,j} \right)
-						< \mu'(E_n) + \frac{1}{k}
+						< \mu^*(E_n) + \frac{1}{k}
 					\end{align}
 					を満たす$\left\{B^n_{k,j}\right\}_{j=1}^\infty \subset \mathcal{B}$が存在する．
 					\begin{align}
@@ -488,13 +493,13 @@
 					とおけば$E_n \subset B_{2,n} \in \sigma[\mathcal{B}]$であり，
 					任意の$k = 1,2,\cdots$に対して
 					\begin{align}
-						&\mu'(B_{2,n} - E_n) = \mu'(B_{2,n}) - \mu'(E_n)
-						\leq \mu'\Biggl( \bigcup_{j=1}^\infty B^n_{k,j} \Biggr) - \mu'(E_n) \\
-						&\qquad \leq \sum_{j=1}^\infty \mu'\left( B^n_{k,j} \right) - \mu'(E_n)
-						< \mu'(E_n) + \frac{1}{k} - \mu'(E_n)
+						&\mu^*(B_{2,n} - E_n) = \mu^*(B_{2,n}) - \mu^*(E_n)
+						\leq \mu^*\Biggl( \bigcup_{j=1}^\infty B^n_{k,j} \Biggr) - \mu^*(E_n) \\
+						&\qquad \leq \sum_{j=1}^\infty \mu^*\left( B^n_{k,j} \right) - \mu^*(E_n)
+						< \mu^*(E_n) + \frac{1}{k} - \mu^*(E_n)
 						= \frac{1}{k}
 					\end{align}
-					が成り立つから$\mu'(B_{2,n} - E_n) = 0$となる．
+					が成り立つから$\mu^*(B_{2,n} - E_n) = 0$となる．
 					$E_n$を$B_{2,n} - E_n$に替えれば
 					\begin{align}
 						B_{2,n} - E_n \subset N_n, \quad \mu(N_n) = 0
@@ -522,10 +527,10 @@
 					(\refeq{eq:appendix_finite_additive_measure_expansion_4})が得られる．
 					同時に
 					\begin{align}
-						\overline{\mu}(E) = \mu(B_1) = \mu'(B_1)
-						\leq \mu'(E) \leq \mu'(B_2) = \mu(B_2) = \overline{\mu}(E)
+						\overline{\mu}(E) = \mu(B_1) = \mu^*(B_1)
+						\leq \mu^*(E) \leq \mu^*(B_2) = \mu(B_2) = \overline{\mu}(E)
 					\end{align}
-					が成立するから，$\overline{\mu} = \mu'$となり
+					が成立するから，$\overline{\mu} = \mu^*$となり
 					(\refeq{eq:appendix_finite_additive_measure_expansion_5})が出る．
 					\QED
 			\end{description}

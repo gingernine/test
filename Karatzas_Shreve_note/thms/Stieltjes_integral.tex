@@ -1,6 +1,6 @@
 \section{Stieltjes積分}
-	$\R$の左半開区間とは
-	$(a,b],\ (-\infty \leq a \leq b \leq \infty)$を指す．ただし
+\subsection{$\R^d$上のStieltjes測度}
+	$\R$の左半開区間とは$(a,b],\ (-\infty \leq a \leq b \leq \infty)$を指す．ただし
 	\begin{align}
 		(a,b] =
 		\begin{cases}
@@ -15,20 +15,30 @@
 	\begin{align}
 		\mathfrak{F} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \subset \R^d:\mbox{左半開区間},\ n=1,2,\cdots}
 	\end{align}
-	とおけば，定理\ref{thm:forming_finitely_additive_class}より$\mathfrak{F}$は$\R^d$の上の加法族となる．
+	とおけば，$\mathfrak{F}$は$\borel{\R^d}$を生成し，
+	また定理\ref{thm:forming_finitely_additive_class}より$\R^d$の上の加法族となる．
 	$f_\lambda:\R \longrightarrow \R,\ (\lambda = 1,\cdots,d)$を単調非減少関数として，
 	任意の左半開区間$I = I^1 \times \cdots \times I^d \subset \R^d$($I^\lambda$は$\R$の左半開区間)に対し
 	\begin{align}
 		m_0(I) \coloneqq \prod_{\lambda=1}^d 
 		\sup{}{\Set{f_\lambda(\beta_\lambda) - f_\lambda(\alpha_\lambda)}{\left(\alpha_\lambda,\beta_\lambda\right] \subset I^\lambda}}
 	\end{align}
-	とおき，また$I = \emptyset$なら$m_0(I) \coloneqq 0$として
+	とおき，また$I = \emptyset$なら$m_0(I) \coloneqq 0$とすれば，定理\ref{thm:forming_finitely_additive_class}より
 	\begin{align}
 		\mu_0(F) \coloneqq \sum_{i=1}^n m_0(I_i),
 		\quad (\forall F = I_1 + I_2 + \cdots + I_n \in \mathfrak{F})
 	\end{align}
-	により$\mu_0$を定める．この$\mu_0$はwell-definedであり，有限加法的な$m_0$の拡張である
-	(定理\ref{thm:forming_finitely_additive_class})．
+	は$\mathfrak{F}$で有限加法的となる．そして
+	Caratheodoryの拡張定理より$(\R^d,\mathfrak{F},\mu_0)$は
+	完備測度空間$(\R^d,\mathfrak{M},\mu^*)$に拡張される．
+	
+	\begin{screen}
+		\begin{dfn}[Lebesgue-Stieltjes測度]
+			単調非減少関数の族$(f_\lambda)_{\lambda=1}^d$で構成する
+			完備測度空間$(\R^d,\mathfrak{M},\mu^*)$を$d$次元Lebesgue-Stieltjes測度空間と呼ぶ．
+			特に$f_\lambda$が全て恒等写像の場合，$d$次元Lebesgue測度空間と呼ぶ．
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[右連続性と完全加法性]
@@ -37,45 +47,50 @@
 		\end{thm}
 	\end{screen}
 	
-	$\mathfrak{F}$は$\borel{\R^d}$を生成する．
 	任意の$n \geq 1$に対して
 	\begin{align}
 		\mu_0((-n,n] \times \cdots \times (-n,n]) 
 		= \prod_{\lambda=1}^d \left\{f_\lambda(n) - f_\lambda(-n)\right\} < \infty
 	\end{align}
-	であるから
-	$\mu_0$は$\mathfrak{F}$上で$\sigma$-有限的であり，$f_\lambda$が右連続であれば
-	定理\ref{thm:appendix_Kolmogorov_Hopf}より$\mu_0$の拡張測度$\mu$が唯一つ存在する．
+	となるから$\mu_0$は$\mathfrak{F}$上で$\sigma$-有限的である．従って$f_\lambda$が全て右連続であれば
+	定理\ref{thm:appendix_Kolmogorov_Hopf}より$\mu_0$は
+	$(\R^d,\borel{\R^d})$の上の$\sigma$-有限測度$\mu$に一意に拡張され，
+	このとき$\left(\R^d,\overline{\borel{\R^d}},\overline{\mu}\right) = \left(\R^d,\mathfrak{M},\mu^*\right)$
+	が成立する．$\mu$をBorel-Stieltjes測度と呼ぶ．
 	
-	$\mathfrak{F}$が加法族であるから，空でない任意の区間$I \neq \emptyset$に対して
+\subsection{任意の区間上のStieltjes測度}
+	$I \subset \R$を区間，つまり
+	$(a,b),(a,b],[a,b),[a,b],\ (-\infty \leq a \leq b \leq \infty)$のいずれかとし，
+	また$f$を$I$上で定義された右連続単調非減少な，
+	ただし$I$が有界なら$I$上で有界な関数とする．
 	\begin{align}
-		\mathfrak{F}_I \coloneqq \Set{I \cap F}{F \in \mathfrak{F}}
+		x_0 \coloneqq \inf{}{\Set{f(x)}{\inf{}{I} < x < \sup{}{I}}},
+		\quad x_1 \coloneqq \sup{}{\Set{f(x)}{\inf{}{I} < x < \sup{}{I}}}
 	\end{align}
-	は加法族をなす．$I$上右連続単調非減少な，
-	ただし$I$が有界なら$I$上で有界な関数$f_I$に対し
+	とおけば，$\inf{}{I} \in I$なら$x_0 = f(\inf{}{I})$，
+	$\sup{}{I} \in I$なら$x_1 = f(\sup{}{I})$であり，
 	\begin{align}
-		a_0 \coloneqq \inf{}{\Set{f(x)}{\inf{}{I} < x < \sup{}{I}}},
-		\quad b_0 \coloneqq \sup{}{\Set{f(x)}{\inf{}{I} < x < \sup{}{I}}}
-	\end{align}
-	とすれば，$\inf{}{I} \in I$なら$a_0 = f(\inf{}{I})$，
-	$\sup{}{I} \in I$なら$b_0 = f(\sup{}{I})$であり，
-	\begin{align}
-		f(x) \coloneqq 
+		\hat{f}(x) \coloneqq 
 		\begin{cases}
-			a_0 & -\infty < x \leq \inf{}{I} \\
-			f_I(x) & \inf{}{I} < x < \sup{}{I} \\
-			b_0 & \sup{}{I} \leq x < \infty
+			x_0 & -\infty < x \leq \inf{}{I} \\
+			f(x) & \inf{}{I} < x < \sup{}{I} \\
+			x_1 & \sup{}{I} \leq x < \infty
 		\end{cases}
 	\end{align}
-	により$f_I$を$f$に拡張して$\mu_0$を定めるとき，
+	により$f$を$\hat{f}$に拡張すればBorel-Stieltjes測度空間$(\R,\borel{\R},\mu)$が定まる．
+	定理\ref{thm:Borel_algebra_of_relative_topology}より
 	\begin{align}
-		\mu_{0,I}(I \cap F) \coloneqq \mu_0(I \cap F)
+		\borel{I} = \Set{I \cap E}{E \in \borel{\R}} \subset \borel{\R}
 	\end{align}
-	は$\mathfrak{F}_I$上で完全加法的となる．
-	$\mu_{0,I}$の拡張測度を$\mu_I$と書き，これを$f_I$のStieltjes測度と呼ぶ．
+	が成り立つから，
+	\begin{align}
+		\mu_I(I \cap E) \coloneqq \mu(I \cap E),
+		\quad (\forall E \in \borel{\R})
+	\end{align}
+	とおけば$(I,\borel{I},\mu_I)$は測度空間となる．この$\mu_I$を$f$のBorel-Stieltjes測度と呼ぶ．
 	$\mu_I$のLebesgue拡大をLebesgue-Stieltjes測度と呼び，
-	特に$I = \R,\ f(x) = x$のときLebesgue測度と呼ぶ．
 	
+\subsection{Stieltjes積分}
 	\begin{screen}
 		\begin{thm}[左半開区間のStiletjes測度]
 			$(\alpha,\beta] \subset I,\ (-\infty < \alpha < \beta < \infty)$に対して
