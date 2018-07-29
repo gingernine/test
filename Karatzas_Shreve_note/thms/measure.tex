@@ -293,6 +293,37 @@
 		\end{prf}
 		
 		\begin{screen}
+			\begin{thm}[完全加法性の同値条件]
+				$\mathcal{B}$を集合$X$の上の有限加法族，
+				$\mu$を$\mathcal{B}$上の有限加法的な正値測度として
+				\begin{description}
+					\item[(a)] $\{B_n\}_{n=1}^\infty \subset \mathcal{B}$が
+						$\mu(B_1) < \infty,\ B_n \supset B_{n+1},\ \bigcap_{n=1}^\infty B_n = \emptyset$
+						なら$\lim_{n \to \infty} \mu(B_n) = 0$．
+						
+					\item[(b)] $\{B_n\}_{n=1}^\infty \subset \mathcal{B}$が
+						$B_n \subset B_{n+1},\ \bigcap_{n=1}^\infty B_n \eqqcolon B \in \mathcal{B}$
+						かつ$\mu(B) = \infty$なら$\lim_{n \to \infty} \mu(B_n) = \infty$．
+					
+					\item[(c)] $\mu(X_n) < \infty$かつ$\bigcup_{n=1}^\infty X_n = X$
+						を満たす$(X_n)_{n=1}^\infty \subset \mathcal{B}$が存在するとき，
+						$\mu(B) = \infty$なら$\lim_{n \to \infty} \mu(B \cap X_n) = \infty$．
+				\end{description}
+				とおくとき，
+				\begin{description}
+					\item[(1)] $\mu(X) < \infty$なら$\mu$が$\mathcal{B}$の上で
+						完全加法性であることと(a)は同値である．
+						
+					\item[(2)] $\mu(X) = \infty$なら$\mu$が$\mathcal{B}$の上で
+						完全加法性であることと(a)$\wedge$(b)は同値である．
+						
+					\item[(3)] $\mu(X) = \infty$で$\mu$が$\sigma$-有限的なら，
+						$\mu$が$\mathcal{B}$の上で完全加法性であることと(a)$\wedge$(c)は同値である．
+				\end{description}
+			\end{thm}
+		\end{screen}
+		
+		\begin{screen}
 			\begin{dfn}[コンパクトクラス]
 				$X$を空でない集合，$\mathcal{K}$をその部分集合族とする．
 				任意の$\{K_n\}_{n=1}^\infty \subset \mathcal{K}$について，
@@ -301,16 +332,20 @@
 				$\mathcal{K}$を$X$のコンパクトクラスという．
 			\end{dfn}
 		\end{screen}
-		定理\ref{thm:Cantor_intersection_theorem}より
-		Hausdorff空間のコンパクト部分集合から成る任意の族はコンパクトクラスとなる．
 		
 		\begin{screen}
 			\begin{thm}
+				Hausdorff空間において，コンパクト部分集合から成る任意の族はコンパクトクラスとなる．
 			\end{thm}
 		\end{screen}
 		
+		\begin{prf}
+			定理\ref{thm:Cantor_intersection_theorem}より従う．
+			\QED
+		\end{prf}
+		
 		\begin{screen}
-			\begin{thm}[コンパクトクラスの存在と完全加法性]
+			\begin{thm}[コンパクトクラスの存在と共通点性]\label{thm:compact_class_intersection}
 				$\mathcal{B}$を集合$X$の上の有限加法族，
 				$\mu$を$\mathcal{B}$上の有限加法的測度とする．
 				$X$にコンパクトクラス$\mathcal{K}$が存在するとき，
@@ -320,9 +355,43 @@
 					\quad \mu(B \backslash A) < \epsilon
 				\end{align}
 				を満たす$A \in \mathcal{B}$と$K \in \mathcal{K}$が存在すれば，
-				$\mu$は$\mathcal{B}$の上で完全加法的である．
+				減少列$\{B_n\}_{n=1}^\infty \subset \mathcal{B}$に対し次が満たされる:
+				\begin{align}
+					\mu(B_1) < \infty,
+					\quad \bigcap_{n=1}^\infty B_n = \emptyset
+					\quad \Longrightarrow \quad
+					\lim_{n \to \infty} \mu(B_n) = 0.
+				\end{align}
 			\end{thm}
 		\end{screen}
+		
+		\begin{prf}
+			$(B_n)_{n=1}^\infty$を$\mu(B_1) < \infty,\ \bigcap_{n=1}^\infty B_n = \emptyset$
+			を満たす減少列とすれば，任意の$\epsilon > 0$に対して
+			\begin{align}
+				A_n \subset K_n \subset B_N,
+				\quad \mu(B_n \backslash A_n) < \frac{\epsilon}{2^n},
+				\quad (n=1,2,\cdots)
+			\end{align}
+			を満たす$A_n \in \mathcal{B}$と$K_n \in \mathcal{K}$が存在する．このとき
+			\begin{align}
+				\bigcap_{n=1}^\infty K_n \subset \bigcap_{n=1}^\infty B_n = \emptyset
+			\end{align}
+			となるから或る$N \geq 1$が存在して
+			\begin{align}
+				\bigcap_{n=1}^N A_n \subset \bigcap_{n=1}^N K_n = \emptyset
+			\end{align}
+			が成立し，任意の$m \geq N$に対して
+			\begin{align}
+				B_m \subset \bigcup_{n=1}^N (B_n \cap A_n^c)
+			\end{align}
+			より
+			\begin{align}
+				\mu(B_m) \leq \sum_{n=1}^N \mu(B_n \cap A_n^c) < \epsilon
+			\end{align}
+			が従う．
+			\QED
+		\end{prf}
 		
 		\begin{screen}
 			\begin{thm}[測度の一致の定理]\label{thm:identity_theorem_of_measures}
