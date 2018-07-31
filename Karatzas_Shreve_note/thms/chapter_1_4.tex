@@ -178,7 +178,6 @@
 			\end{cases}
 		\end{align}
 		となるから$\{M_t = N_t,\ \forall t \in I\}$は可測である．
-		$\sim$による$M \in RCSP(I)$の同値類を$[M]_{RCSP}$と書く．
 	\end{itembox}
 	
 	\begin{itembox}[l]{Definition 4.4 修正}
@@ -190,13 +189,6 @@
 		and $E(A_t) < \infty$ holds for every $t \in [0,\infty)$.
 		An increasing process is called integrable if $E(A_\infty) < \infty$,
 		where $A_\infty = \lim_{t \to \infty} A_t$.
-		\textcolor{red}{Let us denote the subspace of $RCSP[0,\infty)$ as
-		\begin{align}
-			Inc[0,\infty) \coloneqq 
-			\Set{A \in RCSP[0,\infty)}{increasing},
-		\end{align}
-		and the equivalent class of $A \in Inc[0,\infty)$ as $[A]_{Inc}$.
-		By definition, $[A]_{Inc} \subset [A]_{RCSP}$ for every $A \in Inc[0,\infty)$.}
 	\end{itembox}
 	
 	\begin{itembox}[l]{Definition 4.5 修正}
@@ -206,20 +198,23 @@
 			E \int_{(0,t]} M_s\ dA_s = E \int_{(0,t]} M_{s-}\ dA_s,
 			\quad \mbox{for every $0 < t < \infty$}.
 		\end{align}
-		プロセスが$RCLL$とは全てのパスが$RCLL$であるということである．Theorem 3.8によれば
-		右連続な劣マルチンゲールはa.e.のパスが$RCLL$であるから，
-		(\refeq{eq:equivalence_with_respect_to_path})の意味で同値である．
-		$A$も全てのパスが右連続かつ単調非減少であるから，
-		全ての$\omega \in \Omega$に対し$\int_{(0,t]} M_s(\omega)\ dA_s(\omega)$と
-		$\int_{(0,t]} M_{s-}(\omega)\ dA_s(\omega)$が定義される．また
+		\textcolor{red}{Let us denote the subspace of $RCSP[0,\infty)$ as
 		\begin{align}
 			Nat[0,\infty) \coloneqq
 			\Set{A \in RCSP[0,\infty)}{natural},
 		\end{align}
-		と定め，$A \in Nat[0,\infty)$の同値類を$[A]_{Nat}$と書けば，
-		$[A]_{Nat} \subset [A]_{Inc} \subset [A]_{RCSP}$となる．
+		and the equivalent class of $A \in Nat[0,\infty)$
+		in the meaning of (\refeq{eq:equivalence_with_respect_to_path}) as $[A]_{Nat}\ ( \subset Nat[0,\infty))$.}
 	\end{itembox}
 	
+	プロセスが$RCLL$とは全てのパスが$RCLL$であるということである．Theorem 3.8によれば
+	右連続な劣マルチンゲールはa.e.のパスが$RCLL$であるから，
+	(\refeq{eq:equivalence_with_respect_to_path})の意味で同値である．
+	$A$も全てのパスが右連続かつ単調非減少であるから，
+	全ての$\omega \in \Omega$に対し$\int_{(0,t]} M_s(\omega)\ dA_s(\omega)$と
+	$\int_{(0,t]} M_{s-}(\omega)\ dA_s(\omega)$が定義される．
+	たぶん余計な煩雑さを回避できる．
+		
 	\begin{itembox}[l]{$RCLL$なパスの不連続点は高々可算個}
 		$(S,d)$を距離空間とする．写像$X:[0,\infty) \longrightarrow S$について
 		各点$t \in [0,\infty)$で右連続かつ各点$t \in (0,\infty)$で左極限が存在するとき，
@@ -285,7 +280,7 @@
 			\int_{(0,t]} X^\pm_s(\omega)\ dA_s(\omega)
 		\end{align}
 		are well defined. \textcolor{red}{If $X$ is bounded, right-continuous and adapted, 
-		then $I$ is right-continuous, progressively measurable.}
+		then $I$ is finite, right-continuous and progressively measurable.}
 	\end{itembox}
 	
 	\begin{prf}
@@ -306,14 +301,18 @@
 			\quad (0 < t < \infty)
 		\end{align}
 		及び$I_t \coloneqq I^+_t - I^-_t$が定義される．
-		$X$が有界かつ右連続$(\mathscr{F}_t)$-適合であるとき，
-		$t>0$を固定し$t^{(n)}_j \coloneqq tj/2^n$とおいて
+		特に$\sup{s \in (0,t]}{|X^\pm_s|} \leq B < \infty$なら
+		\begin{align}
+			\left|I^\pm_t\right| \leq B A_t
+		\end{align}
+		となるから$I^\pm_t$は有限確定する．$X$が有界かつ右連続$(\mathscr{F}_t)$-適合であるとき，
+		$t>0$を固定し$t^{(n)}_j \coloneqq tj/2^n$として
 		\begin{align}
 			X^{(n)\pm}_s \coloneqq X_0 \defunc_{\{0\}}(s) + 
 				\sum_{j=0}^{2^n-1} X_{t^{(n)}_{j+1}} 
 				\defunc_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]}(s)
 		\end{align}
-		とおけば$X^{(n)\pm}_s \longrightarrow X^\pm_s,\ (\forall s \in [0,t])$が成立し，かつ
+		とおけば右連続性より$X^{(n)\pm}_s \longrightarrow X^\pm_s,\ (\forall s \in [0,t])$が成立し，かつ
 		\begin{align}
 			I^{(n)\pm}_t \coloneqq \int_{(0,t]} X^{(n)\pm}_s\ dA_s
 			= \sum_{j=0}^{2^n-1} X_{t^{(n)}_{j+1}} \left(A_{t^{(n)}_j} - A_{t^{(n)}_{j+1}}\right)
@@ -355,6 +354,10 @@
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{Lemma 4.7}
+		
+	\end{itembox}
+	
 	\begin{itembox}[l]{Definition 4.8 修正}
 		Let us consider the class $\mathscr{S}(\mathscr{S}_a)$ such as
 		\begin{align}
@@ -376,7 +379,7 @@
 				\begin{align}
 					X_t = M_t + A_t, \quad 0 \leq t < \infty
 				\end{align}
-				suggested by the Doob decomposition, where $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$
+				suggested by the Doob-Meyer decomposition, where $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$
 				is a martingale and $\Set{A_t,\mathscr{F}_t}{0 \leq t < \infty}$ is an increasing process.
 		\end{description}
 		Show also that if \textcolor{red}{$\mathscr{F}_0$ contains all the $P$-negligible events in $\mathscr{F}$} and
@@ -497,11 +500,11 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Theorem 4.10 (Doob-Meyer Decomposition)}
+	\begin{itembox}[l]{Theorem 4.10 (Doob-Meyer Decomposition) 修正}
 		Let $\{\mathscr{F}_t\}$ satisfy the usual conditions. If the right-continuous
 		submartingale $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is of class $DL$, then
-		there exists unique $[A]_{Nat}$ where $M \coloneqq X - A'$ is right-continuous martingale
-		for every $A' \in [A]_{Nat}$.
+		\textcolor{red}{there exists a unique $[A]_{Nat}$ where $X - A'$ is right-continuous martingale
+		for every $A' \in [A]_{Nat}$.}
 		Further, if $X$ is of class $D$, then $M$ is a uniformly integrable martingale 
 		and $A$ is integrable.	
 	\end{itembox}
@@ -803,27 +806,104 @@
 	\end{itembox}
 	
 	\begin{prf}
-		$(X_{T_n})_{n=1}^\infty$は一様可積分である．実際，
-		\begin{align}
-			\int_{X_{T_n} > \lambda} X_{T_n}\ dP
-			\leq \int_{X_{T_n} > \lambda} X_T\ dP
-		\end{align}
-		かつ
-		\begin{align}
-			P\left( X_{T_n} > \lambda \right)
-			\leq \frac{EX_{T_n}}{\lambda}
-			\leq \frac{EX_T}{\lambda}
-		\end{align}
-		が成り立ち，$X_T$の可積分性(任意抽出定理)より一様可積分性が従う．またパスの連続性より
-		\begin{align}
-			X_{T_n} \longrightarrow X_T
-			\quad (n \longrightarrow \infty)
-		\end{align}
-		となるから，一様可積分性と平均収束の補題 (P. \pageref{lem:uniformly_integrable_and_convergence_in_mean})より
-		\begin{align}
-			\lim_{n \to \infty} EX_{T_n} = EX_T
-		\end{align}
-		が成立する．
+		Problem 4.9 より$(X_{T_n})_{n=1}^\infty$は一様可積分であり，またパスの連続性より
+		$X_{T_n} \longrightarrow X_T\ (n \longrightarrow \infty)$
+		となるから，定理\ref{lem:uniformly_integrable_and_convergence_in_mean}より
+		$\lim_{n \to \infty} EX_{T_n} = EX_T$が成立する．
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{Theorem 4.14 修正}
+		Suppose that $X = \Set{X_t}{0 \leq t < \infty}$ is a right-continuous submartingale
+		of class $DL$ with respect to the filtration $\{\mathscr{F}_t\}$, which
+		satisfies the usual conitions, and 
+		\textcolor{red}{let $[A]_{Nat}$ be of the Doob-Meyer decomposition of $X$.
+		There exists a continuous version in $[A]_{Nat}$ if and only if $X$ is regular.}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $A$が連続であるとき，
+				増大列$\{T_n\}_{n=1}^\infty \subset \mathscr{S}_a$と
+				$T \coloneqq \lim_{n \to \infty} \in T_n \mathscr{S}_a$に対し
+				単調収束定理より
+				\begin{align}
+					\lim_{n \to \infty} EA_{T_n}
+					= E \lim_{n \to \infty} A_{T_n}
+					= EA_T
+				\end{align}
+				が成立する．また任意抽出定理より
+				\begin{align}
+					E(X_{T_n} - A_{T_n}) = E(X_{T} - A_{T}),
+					\quad (\forall n \geq 1)
+				\end{align}
+				となるから
+				\begin{align}
+					\lim_{n \to \infty} EX_{T_n} 
+					= \lim_{n \to \infty} E(X_{T_n} - A_{T_n}) + \lim_{n \to \infty} EA_{T_n} 
+					= (X_{T} - A_{T}) + EA_T
+					= EX_T
+				\end{align}
+				が従う．
+				
+			\item[第二段]
+				$X$がレギュラーであるとし，任意に$a > 0$を取り
+				\begin{align}
+					t^{(n)}_j \coloneqq \frac{j}{2^n}a,\quad (j=0,1,\cdots,2^n)
+				\end{align}
+				とおく．任意に$\lambda > 0$を取り，各$j = 0,1,\cdots,2^n$に対し
+				\begin{align}
+					Y^{(n),j}_t \coloneqq
+					\begin{cases}
+						\lambda \wedge A_{t^{(n)}_{j+1}}, & (t > t^{(n)}_{j+1}), \\
+						\cexp{\lambda \wedge A_{t^{(n)}_{j+1}}}{\mathscr{F}_t}, & (0 \leq t \leq t^{(n)}_{j+1})
+					\end{cases}
+				\end{align}
+				とおけば$\Set{Y^{(n),j}_t,\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールとなり
+				\begin{align}
+					[0,\infty) \ni t \longmapsto EY^{(n),j}_t 
+					= E\left(\lambda \wedge A_{t^{(n)}_{j+1}}\right)
+				\end{align}
+				より$RCLL$な修正$\tilde{Y}^{(n),j}$が存在する(Theorem 3.13)．またこのとき
+				\begin{align}
+					\int_A \tilde{Y}^{(n),j}_t\ dP 
+					= \int_A \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
+					\leq \lambda P(A),
+					\quad (\forall A \in \mathscr{F}_t,\ t \geq 0)
+				\end{align}
+				より全ての$t \geq 0$で$P$-a.s.に$\tilde{Y}^{(n),j}_t \leq \lambda$となるから
+				\begin{align}
+					E \coloneqq \Set{\tilde{Y}^{(n),j}_t > \lambda}{\exists t \geq 0}
+					= \bigcup_{r \in [0,\infty)\cap\Q}\left\{\tilde{Y}^{(n),j}_r > \lambda\right\}
+				\end{align}
+				により$P$-零集合を定まり
+				\begin{align}
+					Z^{(n),j}_t \coloneqq \tilde{Y}^{(n),j}_t \defunc_{\Omega \backslash E},
+					\quad (0 \leq t < \infty)
+				\end{align}
+				で$Z^{(n),j}$は$Y^{(n),j}$の$RCLL$かつ有界な修正となる．
+				$A$がナチュラルであるから
+				\begin{align}
+					\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
+					&= \int_{\left(0,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
+						- \int_{\left(0,t^{(n)}_j\right]} Z^{(n),j}_s\ dA_s \\
+					&= \int_{\left(0,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
+						- \int_{\left(0,t^{(n)}_j\right]} Z^{(n),j}_{s-}\ dA_s \\
+					&= \int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
+				\end{align}
+				となる．
+				\begin{align}
+					\xi^{(n)}_t \coloneqq
+					\sum_{j=0}^{2^n-1} Z^{(n),j}_t \defunc_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]},
+					\quad (t \geq 0)
+				\end{align}
+				とおけば
+				\begin{align}
+					\int_{(0,a]} \xi^{(n)}_s\ dA_s
+					= \sum_{j=0}^{2^n-1} \int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
+					= \sum_{j=0}^{2^n-1} \int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
+					= \int_{(0,a]} \xi^{(n)}_{s-}\ dA_s
+				\end{align}
+				が成立する．
+		\end{description}
+	\end{prf}
