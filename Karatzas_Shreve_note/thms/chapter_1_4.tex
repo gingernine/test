@@ -842,73 +842,104 @@
 				が従う．
 				
 			\item[第二段]
-				$X$がレギュラーであるとし，任意に$a > 0$を取り
+				$X$がレギュラーであるとき，任意の有界な停止時刻の増大列
+				$(T_n)_{n=1}^\infty$と$T \coloneqq \lim_{n \to \infty} T_n$に対し
 				\begin{align}
-					t^{(n)}_j \coloneqq \frac{j}{2^n}a,\quad (j=0,1,\cdots,2^n)
+					EA_{T_n} &= EX_{T_n} - E(X_{T_n} - A_{T_n})
+					= EX_{T_n} - E(X_T - A_T) \\
+					&\qquad \longrightarrow EX_T - E(X_T - A_T)
+					= EA_T
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				が成立する．いま，任意に$a > 0$を取り
+				\begin{align}
+					\Pi_n \coloneqq 
+					\Set{t^{(n)}_j}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
+					\quad \Pi \coloneqq \bigcup_{n=1}^\infty \Pi_n
 				\end{align}
 				とおく．任意に$\lambda > 0$を取り，各$j = 0,1,\cdots,2^n$に対し
 				\begin{align}
 					Y^{(n),j}_t \coloneqq
-					\begin{cases}
-						\lambda \wedge A_{t^{(n)}_{j+1}}, & (t > t^{(n)}_{j+1}), \\
-						\cexp{\lambda \wedge A_{t^{(n)}_{j+1}}}{\mathscr{F}_t}, & (0 \leq t \leq t^{(n)}_{j+1})
-					\end{cases}
+					\cexp{\lambda \wedge A_{t^{(n)}_{j+1}}}{\mathscr{F}_t},
+					\quad (\forall t \geq 0)
 				\end{align}
-				とおけば$\Set{Y^{(n),j}_t,\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールとなり
+				によりマルチンゲール$\Set{Y^{(n),j}_t,\mathscr{F}_t}{0 \leq t < \infty}$を定めれば，
 				\begin{align}
 					[0,\infty) \ni t \longmapsto EY^{(n),j}_t 
 					= E\left(\lambda \wedge A_{t^{(n)}_{j+1}}\right)
 				\end{align}
-				より$RCLL$な修正$\tilde{Y}^{(n),j}$が存在する(Theorem 3.13)．またこのとき
+				と Theorem 3.13 より$RCLL$な修正$\tilde{Y}^{(n),j}$が存在する．このとき
 				\begin{align}
 					\int_A \tilde{Y}^{(n),j}_t\ dP 
 					= \int_A \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
 					\leq \lambda P(A),
 					\quad (\forall A \in \mathscr{F}_t,\ t \geq 0)
 				\end{align}
-				より全ての$t \geq 0$で$P$-a.s.に$\tilde{Y}^{(n),j}_t \leq \lambda$となるから
+				より各$t \geq 0$で$P$-a.s.に$\tilde{Y}^{(n),j}_t \leq \lambda$となるから
 				\begin{align}
 					E \coloneqq \Set{\tilde{Y}^{(n),j}_t > \lambda}{\exists t \geq 0}
 					= \bigcup_{r \in [0,\infty)\cap\Q}\left\{\tilde{Y}^{(n),j}_r > \lambda\right\}
 				\end{align}
-				により$P$-零集合を定まり，usual条件より$E \in \mathscr{F}_0$であるから
+				で$P$-零集合が定まり，usual条件より$E \in \mathscr{F}_0$であるから
 				\begin{align}
 					Z^{(n),j}_t \coloneqq \tilde{Y}^{(n),j}_t \defunc_{\Omega \backslash E},
 					\quad (0 \leq t < \infty)
 				\end{align}
-				で$Z^{(n),j}$は$Y^{(n),j}$の$RCLL$かつ有界な修正マルチンゲールとなる．
-				$A$がナチュラルであるから
-				\begin{align}
-					\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
-					&= \int_{\left(0,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
-						- \int_{\left(0,t^{(n)}_j\right]} Z^{(n),j}_s\ dA_s \\
-					&= \int_{\left(0,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
-						- \int_{\left(0,t^{(n)}_j\right]} Z^{(n),j}_{s-}\ dA_s \\
-					&= \int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
-				\end{align}
-				となる．
-				\begin{align}
-					\xi^{(n)}_t \coloneqq
-					\sum_{j=0}^{2^n-1} Z^{(n),j}_t \defunc_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]}(t),
-					\quad (t \geq 0)
-				\end{align}
-				とおけば
-				\begin{align}
-					\int_{(0,a]} \xi^{(n)}_s\ dA_s
-					= \sum_{j=0}^{2^n-1} \int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
-					= \sum_{j=0}^{2^n-1} \int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
-					= \int_{(0,a]} \xi^{(n)}_{s-}\ dA_s
-				\end{align}
-				が成立する．同様に
+				とすれば$Z^{(n),j}$は$Y^{(n),j}$の$RCLL$かつ有界な修正マルチンゲールとなる．
+				ここで
 				\begin{align}
 					\eta^{(n)}_t \coloneqq
 					\sum_{j=0}^{2^n-1} Z^{(n),j}_t \defunc_{\left[t^{(n)}_j,t^{(n)}_{j+1}\right)}(t)
 						+ (\lambda \wedge A_a) \defunc_{[a,\infty)}(t),
 					\quad (t \geq 0)
 				\end{align}
-				とおけば$\eta^{(n)}$は右連続かつ
-				$t \neq t^{(n)}_j,\ (j=0,1,\cdots,2^n)$なら
-				$\xi^{(n)}_t = \eta^{(n)}_t$を満たし，また
+				とおけば，$\eta^{(n)}$の右連続性，Corollary 2.4， Problem2.5 及びusual条件より
+				\begin{align}
+					T^{(n)}_\epsilon \coloneqq
+					a \wedge \inf{}{\Set{t \geq 0}{\eta^{(n)}_t - (\lambda \wedge A_t) > \epsilon}}
+				\end{align}
+				は$T^{(n)}_\epsilon \in \mathscr{S}_a$となり，このとき
+				\begin{align}
+					\varphi_n(t) \coloneqq 
+					\begin{cases}
+						t^{(n)}_{j+1}, & t^{(n)}_j \leq t < t^{(n)}_{j+1},\ j=0,1,\cdots,2^n-1 \\
+						a, & t = a
+					\end{cases}
+				\end{align}
+				を用いれば
+				\begin{align}
+					E\left( \eta_{T^{(n)}_\epsilon} \right)
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{T^{(n)}_\epsilon}\ dP
+						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{t^{(n)}_{j+1}}\ dP
+						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
+						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\ dP
+						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\ dP \\
+					&= E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\right)
+				\end{align}
+				が得られる．また$\eta^{n} - (\lambda \wedge A)$の右連続性より
+				\begin{align}
+					T^{(n)}_\epsilon(\omega) < a
+					\quad \Longrightarrow
+					\quad \eta^{(n)}_{T^{(n)}_\epsilon}(\omega) - \left(\lambda \wedge A_{T^{(n)}_\epsilon}(\omega)\right) \geq \epsilon
+				\end{align}
+				となるから
+				\begin{align}
+					E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}
+						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
+					= E\left(\eta_{T^{(n)}_\epsilon}
+						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
+					= E\defunc_{\left\{T^{(n)}_\epsilon < a\right\}}\left(\eta_{T^{(n)}_\epsilon}
+						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
+					\geq \epsilon P\left(T^{(n)}_\epsilon < a\right)
+				\end{align}
+				が従う．
+				
+			\item[第三段]
+				$\left( \eta^{(n)} \right)_{n=1}^\infty$は$n$に関して
+				$P$-a.s. に減少していく．実際
 				\begin{align}
 					\int_A \eta^{(n)}_t\ dP
 					= \int_A \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
@@ -916,39 +947,94 @@
 					= \int_A \eta^{(n+1)}_t\ dP,
 					\quad (\forall A \in \mathscr{F}_t,\ t^{(n)}_j \leq t < t^{(n)}_{j+1})
 				\end{align}
-				より$\eta^{(n)}_t \geq \eta^{(n+1)}_t\ \mbox{a.s. $P$}$となる．
+				より各$t \in [0,a)$で$\eta^{(n)}_t \geq \eta^{(n+1)}_t\ \mbox{a.s. $P$}$となり
 				$\eta^{(n)}$の右連続性より
 				\begin{align}
 					F_n \coloneqq \Set{\eta^{(n)}_t < \eta^{(n+1)}_t}{\exists t \geq 0}
 					= \bigcup_{r \in [0,\infty) \cap \Q} \left\{\eta^{(n)}_r < \eta^{(n+1)}_r\right\}
 				\end{align}
-				で$P$-零集合が定まり，$F \coloneqq \bigcup_{n=1}^\infty E_n$及び
+				で$P$-零集合が定まるから，$F \coloneqq \bigcup_{n=1}^\infty E_n$とおけば
+				$\omega \in \Omega \backslash F$なら
 				\begin{align}
-					T^{(n)}_\epsilon \coloneqq
-					a \wedge \inf{}{\Set{t \geq 0}{\eta^{(n)}_t - (\lambda \wedge A_t) > \epsilon}}
+					\eta^{(1)}_t(\omega) \geq \eta^{(2)}_t(\omega) \geq \cdots,
+					\quad (\forall t \in [0,a])
 				\end{align}
-				とおけば
+				が成立する．従って
 				\begin{align}
-					T^{(1)}_\epsilon(\omega) \geq T^{(2)}_\epsilon(\omega) \geq \cdots,
-					\quad (\forall \omega \in \Omega \backslash F)
+					T^{(1)}_\epsilon \defunc_{\Omega \backslash F} 
+					\leq T^{(2)}_\epsilon \defunc_{\Omega \backslash F} \leq \cdots \leq a
 				\end{align}
-				Corollary 2.4 と Problem2.5 及びusual条件より$T^{(n)}_\epsilon$は
-				$(\mathscr{F}_t)$-停止時刻であり
+				となる．ここでusual条件より$F \in \mathscr{F}_0$であるから
 				\begin{align}
 					\left\{ T^{(n)}_\epsilon \defunc_{\Omega \backslash F} \leq t \right\}
 					= \left\{ T^{(n)}_\epsilon \leq t \right\} \cap (\Omega \backslash F) + F
 					\in \mathscr{F}_t,\quad (\forall t \geq 0)
 				\end{align}
-				より$T^{(n)}_\epsilon \defunc_{\Omega \backslash F}$も停止時刻，
+				より$T^{(n)}_\epsilon \defunc_{\Omega \backslash F}$も停止時刻であり，
+				単調性より
 				\begin{align}
 					T_\epsilon \coloneqq \lim_{n \to \infty} T^{(n)}_\epsilon \defunc_{\Omega \backslash F}
+					\in \mathscr{S}_a
+				\end{align}
+				が定まる．
+				
+				
+			\item[第四段]
+				$A$はナチュラルであり，$Z^{(n),j}$は有界かつ$RCLL$なマルチンゲールであるから
+				\begin{align}
+					E\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
+					&= E\int_{\left(0,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
+						- E\int_{\left(0,t^{(n)}_j\right]} Z^{(n),j}_s\ dA_s \\
+					&= E\int_{\left(0,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
+						- E\int_{\left(0,t^{(n)}_j\right]} Z^{(n),j}_{s-}\ dA_s \\
+					&= E\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
+				\end{align}
+				が成立する．ここで
+				\begin{align}
+					\xi^{(n)}_t \coloneqq
+					\sum_{j=0}^{2^n-1} Z^{(n),j}_t \defunc_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]}(t),
+					\quad (t \geq 0)
 				\end{align}
 				とおけば
 				\begin{align}
-					\left\{T_\epsilon < t \right\} = \bigcup_{n=1}^\infty
-					\left\{ T^{(n)}_\epsilon \defunc_{\Omega \backslash F} < t \right\}
-					\in \mathscr{F}_t,\quad (\forall t \geq 0)
+					E\int_{(0,a]} \xi^{(n)}_s\ dA_s
+					= \sum_{j=0}^{2^n-1} E\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
+					= \sum_{j=0}^{2^n-1} E\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_{s-}\ dA_s
+					= E\int_{(0,a]} \xi^{(n)}_{s-}\ dA_s
 				\end{align}
-				と$(\mathscr{F}_t)$の右連続性より$T_\epsilon \in \mathscr{S}_a$となる．
+				が成立する．一方で$t \notin \Pi$で$\xi^{(n)}_t = \eta^{(n)}_t,\ (\forall n \geq 1)$
+				が満たされるから
+				\begin{align}
+					\lim_{k \to \infty} \xi^{(n_k)}_t = \lambda \wedge A_t,
+					\quad (\forall t \in [0,a])
+				\end{align}
+				となり
+				\begin{align}
+					E\int_{(0,a]} \lambda \wedge A_t\ dA_t
+					= E\int_{(0,a]} \lambda \wedge A_{t-}\ dA_t
+				\end{align}
+				となり，$A$の単調非減少性より$A_{t-} \leq A_t$となるから
+				\begin{align}
+					\int_{(0,a]} (\lambda \wedge A_t) - (\lambda \wedge A_{t-})\ dA_t = 0,
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				が成立し
+				\begin{align}
+					(0,a] \ni t \longmapsto \lambda \wedge A_t 
+				\end{align}
+				は連続となる．$a > 0$の任意性より
+				\begin{align}
+					(0,\infty) \ni t \longmapsto \lambda \wedge A_t 
+				\end{align}
+				は連続となり，$\lambda > 0$も任意であるから
+				\begin{align}
+					t \longmapsto A_t
+				\end{align}
+				は連続となる．
+				\begin{align}
+					\tilde{A}_t \coloneqq A \defunc_{\Omega \backslash }
+				\end{align}
+				と置けば$\tilde{A} \in [A]_{Nat}$を満たす．
+				\QED
 		\end{description}
 	\end{prf}
