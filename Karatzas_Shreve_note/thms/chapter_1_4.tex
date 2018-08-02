@@ -939,21 +939,27 @@
 				
 			\item[第三段]
 				$\left( \eta^{(n)} \right)_{n=1}^\infty$は$n$に関して
-				$P$-a.s. に減少していく．実際
+				$P$-a.s. に減少していく．実際，任意の$t \in [0,a)$に対し
+				\begin{align}
+					t \in \left[t^{(n)}_j, t^{(n)}_{j+1}\right)
+				\end{align}
+				を満たす$0 \leq j \leq 2^n-1$を取れば
+				$t \in \left[t^{(n+1)}_{2j}, t^{(n+1)}_{2j+1}\right)$或は
+				$t \in \left[t^{(n+1)}_{2j+1}, t^{(n+1)}_{2j+2}\right)$となるから
 				\begin{align}
 					\int_A \eta^{(n)}_t\ dP
 					= \int_A \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
-					\geq \int_A \lambda \wedge A_{t^{(n+1)}_{}}\ dP
+					\geq \int_A \lambda \wedge A_{t^{(n+1)}_{2j+1}}\ dP
 					= \int_A \eta^{(n+1)}_t\ dP,
-					\quad (\forall A \in \mathscr{F}_t,\ t^{(n)}_j \leq t < t^{(n)}_{j+1})
+					\quad (\forall A \in \mathscr{F}_t)
 				\end{align}
-				より各$t \in [0,a)$で$\eta^{(n)}_t \geq \eta^{(n+1)}_t\ \mbox{a.s. $P$}$となり
-				$\eta^{(n)}$の右連続性より
+				より$\eta^{(n)}_t \geq \eta^{(n+1)}_t,\ \mbox{a.s. $P$}$が従う．
+				$\eta^{(n)},\eta^{(n+1)}$は右連続であるから
 				\begin{align}
 					F_n \coloneqq \Set{\eta^{(n)}_t < \eta^{(n+1)}_t}{\exists t \geq 0}
 					= \bigcup_{r \in [0,\infty) \cap \Q} \left\{\eta^{(n)}_r < \eta^{(n+1)}_r\right\}
 				\end{align}
-				で$P$-零集合が定まるから，$F \coloneqq \bigcup_{n=1}^\infty E_n$とおけば
+				で$P$-零集合が定まり，$F \coloneqq \bigcup_{n=1}^\infty E_n$とおけば
 				$\omega \in \Omega \backslash F$なら
 				\begin{align}
 					\eta^{(1)}_t(\omega) \geq \eta^{(2)}_t(\omega) \geq \cdots,
@@ -970,14 +976,34 @@
 					= \left\{ T^{(n)}_\epsilon \leq t \right\} \cap (\Omega \backslash F) + F
 					\in \mathscr{F}_t,\quad (\forall t \geq 0)
 				\end{align}
-				より$T^{(n)}_\epsilon \defunc_{\Omega \backslash F}$も停止時刻であり，
-				単調性より
+				より$T^{(n)}_\epsilon \defunc_{\Omega \backslash F} \in \mathscr{S}_a$であり，単調性より
 				\begin{align}
 					T_\epsilon \coloneqq \lim_{n \to \infty} T^{(n)}_\epsilon \defunc_{\Omega \backslash F}
 					\in \mathscr{S}_a
 				\end{align}
-				が定まる．
+				となる．
 				
+			\item[第四段]
+				$\eta^{(n)}_a = \lambda \wedge A_a$より任意の$\omega \in \Omega$と$n \geq 1$に対し
+				\begin{align}
+					T^{(n)}_\epsilon(\omega) < a
+					\quad \Longleftrightarrow \quad
+					\sup{0 \leq t \leq a}{\left\{\eta^{(n)}_t(\omega) - (\lambda \wedge A_t(\omega))\right\}} > \epsilon
+				\end{align}
+				となるから
+				\begin{align}
+					P\left(\sup{0 \leq t \leq a}{\left\{\eta^{(n)}_t-(\lambda \wedge A_t)\right\}} > \epsilon\right)
+					= P\left(T^{(n)}_\epsilon < a\right)
+					&\leq \frac{1}{\epsilon} E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}
+						- \lambda \wedge A_{T^{(n)}_\epsilon} \right) \\
+					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となる．従って或る部分列$(n_k)_{k=1}^\infty$と$P$-零集合$G$が存在して
+				\begin{align}
+					\lim_{k \to \infty} \eta^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
+					\quad (\forall t \in [0,a],\ \forall \omega \in \Omega \backslash G)
+				\end{align}
+				が成立する．
 				
 			\item[第四段]
 				$A$はナチュラルであり，$Z^{(n),j}$は有界かつ$RCLL$なマルチンゲールであるから
@@ -1005,10 +1031,26 @@
 				が成立する．一方で$t \notin \Pi$で$\xi^{(n)}_t = \eta^{(n)}_t,\ (\forall n \geq 1)$
 				が満たされるから
 				\begin{align}
-					\lim_{k \to \infty} \xi^{(n_k)}_t = \lambda \wedge A_t,
-					\quad (\forall t \in [0,a])
+					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
+					\quad (\forall \omega \in \Omega \backslash G)
 				\end{align}
-				となり
+				となり，$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
+				$\xi^{(n)}_t = \lambda \wedge A_t,\ \mbox{$P$-a.s.},\ (\forall n \geq N)$となり
+				\begin{align}
+					H_t \coloneqq \bigcup_{n \geq N} \left\{\xi^{(n)}_t \neq \lambda \wedge A_t\right\},
+					\quad H \coloneqq \bigcup_{t \in \Pi} H_t
+				\end{align}
+				により$P$-零集合$H$を定めれば
+				\begin{align}
+					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
+					\quad (\forall \omega \in \Omega \backslash H)
+				\end{align}
+				が成立する．従って任意の$t \in [0,a]$で
+				\begin{align}
+					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
+					\quad (\forall \omega \in \Omega \backslash (G \cup H))
+				\end{align}
+				となる．
 				\begin{align}
 					E\int_{(0,a]} \lambda \wedge A_t\ dA_t
 					= E\int_{(0,a]} \lambda \wedge A_{t-}\ dA_t
