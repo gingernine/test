@@ -851,7 +851,7 @@
 					&\qquad \longrightarrow EX_T - E(X_T - A_T)
 					= EA_T
 					\quad (n \longrightarrow \infty)
-					\label{eq:chapter_1_theorem_3_14_1}
+					\label{eq:chapter_1_theorem_4_14_1}
 				\end{align}
 				が成立する．いま，任意に$a > 0$を取り
 				\begin{align}
@@ -896,6 +896,7 @@
 					\lambda \wedge A_t(\omega) 
 					\leq Z^{(n),j}_t(\omega) \leq \lambda,
 					\quad (\forall \omega \in \Omega \backslash E,\ \forall t \geq 0)
+					\label{eq:chapter_1_theorem_4_14_4}
 				\end{align}
 				を満たす$RCLL$かつ有界なマルチンゲールとなる．ここで
 				\begin{align}
@@ -945,6 +946,7 @@
 					= E\defunc_{\left\{T^{(n)}_\epsilon < a\right\}}\left(\eta_{T^{(n)}_\epsilon}
 						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
 					\geq \epsilon P\left(T^{(n)}_\epsilon < a\right)
+					\label{eq:chapter_1_theorem_4_14_5}
 				\end{align}
 				が従う．
 				
@@ -971,13 +973,13 @@
 					= \bigcup_{r \in [0,\infty) \cap \Q} \left\{\eta^{(n)}_r < \eta^{(n+1)}_r\right\}
 				\end{align}
 				で$P$-零集合が定まり，$F \coloneqq \bigcup_{n=1}^\infty E_n$とおけば
-				任意の$\omega \in \Omega \backslash F$で
+				任意の$\omega \in \Omega \backslash F$と$t \in [0,a]$で
+				$\left( \eta^{(n)}_t(\omega) \right)_{n=1}^\infty$は減少し
 				\begin{align}
-					\eta^{(1)}_t(\omega) \geq \eta^{(2)}_t(\omega) \geq \cdots,
-					\quad (\forall t \in [0,a])
+					T^{(1)}_\epsilon \defunc_{\Omega \backslash F} 
+					\leq T^{(2)}_\epsilon \defunc_{\Omega \backslash F} \leq \cdots \leq a
+					\label{eq:chapter_1_theorem_4_14_2}
 				\end{align}
-				が成立し$T^{(1)}_\epsilon \defunc_{\Omega \backslash F} 
-				\leq T^{(2)}_\epsilon \defunc_{\Omega \backslash F} \leq \cdots \leq a$
 				となる．usual条件より$F \in \mathscr{F}_0$であるから
 				\begin{align}
 					\left\{ T^{(n)}_\epsilon \defunc_{\Omega \backslash F} \leq t \right\}
@@ -991,41 +993,61 @@
 				\end{align}
 				と定めれば$T_\epsilon \in \mathscr{S}_a$も満たされる．
 				同様に$\varphi_n\left(T^{(n)}_\epsilon\right) \in \mathscr{S}_a,\ (n=1,2,\cdots)$かつ
+				$\Omega \backslash F$上で単調に増大して
 				\begin{align}
 					T_\epsilon = \lim_{n \to \infty} \varphi_n\left(T^{(n)}_\epsilon\right) \defunc_{\Omega \backslash F}
+					\label{eq:chapter_1_theorem_4_14_3}
 				\end{align}
-				を満たす．実際任意の$t \geq 0$に対し
+				が成り立つ．実際任意の$t \geq 0$に対し
 				\begin{align}
 					\left\{\varphi_n\left(T^{(n)}_\epsilon\right) \leq t\right\}
 					= \bigcup_{t^{(n)}_j \leq t} \left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}
 					\in \mathscr{F}_t
 				\end{align}
-				となるから$\varphi_n\left(T^{(n)}_\epsilon\right) \in \mathscr{S}_a$が従い，また
-				任意の$t \in [0,a]$で$\varphi_n(t) \leq \varphi_{n+1}(t),\ (\forall n \geq 1)$となるから
+				となるから$\varphi_n\left(T^{(n)}_\epsilon\right) \in \mathscr{S}_a$
+				が従い，また$\varphi_n \leq \varphi_{n+1},\ (\forall n \geq 1)$と
+				(\refeq{eq:chapter_1_theorem_4_14_2})より
 				\begin{align}
 					\varphi_n \left(T^{(n)}_\epsilon(\omega)\right)
 					\leq \varphi_{n+1} \left(T^{(n)}_\epsilon(\omega)\right)
 					\leq \varphi_{n+1} \left(T^{(n+1)}_\epsilon(\omega)\right),
 					\quad (\forall \omega \in \Omega \backslash F)
 				\end{align}
-				となり()が出る．
+				となる．任意に$\delta > 0$と$\omega \in \Omega \backslash F$を取れば
+				\begin{align}
+					T_\epsilon(\omega) - T^{(n)}_\epsilon(\omega) < \delta,
+					\quad \frac{a}{2^n} < \delta,
+					\quad (\forall n > N)
+				\end{align}
+				を満たす$N = N(\delta,\omega) \geq 1$が存在するから
+				\begin{align}
+					\left|T_\epsilon(\omega) - \varphi_n\left(T^{(n)}_\epsilon(\omega)\right)\right|
+					\leq \left|T_\epsilon(\omega) - T^{(n)}_\epsilon(\omega)\right|
+						+ \left|T^{(n)}_\epsilon(\omega) - \varphi_n\left(T^{(n)}_\epsilon(\omega)\right)\right|
+					< 2\delta,
+					\quad (\forall n > N)
+				\end{align}
+				が従い(\refeq{eq:chapter_1_theorem_4_14_3})が出る．
 			
 			\item[第五段]
-				$\eta^{(n)}_a = \lambda \wedge A_a$より任意の$\omega \in \Omega$と$n \geq 1$に対し
+				任意の$\omega \in \Omega$と$n \geq 1$に対し
 				\begin{align}
 					T^{(n)}_\epsilon(\omega) < a
 					\quad \Longleftrightarrow \quad
 					\sup{0 \leq t \leq a}{\left\{\eta^{(n)}_t(\omega) - (\lambda \wedge A_t(\omega))\right\}} > \epsilon
 				\end{align}
-				となるから
+				が満たされ，また(\refeq{eq:chapter_1_theorem_4_14_4})より
+				$P$-a.s.に$\eta^{(n)}_t-(\lambda \wedge A_t) \geq 0,\ (\forall t \geq 0)$であるから，
+				(\refeq{eq:chapter_1_theorem_4_14_1}), (\refeq{eq:chapter_1_theorem_4_14_5})と併せて
 				\begin{align}
-					P\left(\sup{0 \leq t \leq a}{\left\{\eta^{(n)}_t-(\lambda \wedge A_t)\right\}} > \epsilon\right)
-					= P\left(T^{(n)}_\epsilon < a\right)
-					&\leq \frac{1}{\epsilon} E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}
-						- \lambda \wedge A_{T^{(n)}_\epsilon} \right) \\
-					&\longrightarrow 0 \quad (n \longrightarrow \infty)
+					&P\left(\sup{0 \leq t \leq a}{\left|\eta^{(n)}_t-(\lambda \wedge A_t)\right|} > \epsilon\right)
+					= P\left(T^{(n)}_\epsilon < a\right) \\
+					&\qquad \leq \frac{1}{\epsilon} E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}
+						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
+					\longrightarrow E\left(\lambda \wedge A_{T_\epsilon}
+						- \lambda \wedge A_{T_\epsilon} \right) 0 \quad (n \longrightarrow \infty)
 				\end{align}
-				となる．従って或る部分列$(n_k)_{k=1}^\infty$と$P$-零集合$G$が存在して
+				が得られる．従って或る部分列$(n_k)_{k=1}^\infty$と$P$-零集合$G$が存在して
 				\begin{align}
 					\lim_{k \to \infty} \eta^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
 					\quad (\forall t \in [0,a],\ \forall \omega \in \Omega \backslash G)
