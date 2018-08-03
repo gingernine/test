@@ -873,18 +873,24 @@
 				と Theorem 3.13 より$RCLL$な修正$\tilde{Y}^{(n),j}$が存在する．このとき
 				各$t \geq 0$で
 				\begin{align}
-					\int_A \lambda \wedge A_t\ dP
-					\leq \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
-					= \int_A \tilde{Y}^{(n),j}_t\ dP 
+					\int_A \tilde{Y}^{(n),j}_t\ dP 
+					= \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
 					\leq \lambda P(A),
 					\quad (\forall A \in \mathscr{F}_t)
 				\end{align}
-				となるから定理\ref{thm:mean_value_of_integral_and_closed_set}より
-				$P$-a.s.に$\lambda \wedge A_t \leq \tilde{Y}^{(n),j}_t \leq \lambda$
-				が満たされ，
+				となり，一方で各$0 \leq t \leq t^{(n)}_j$で
 				\begin{align}
-					E \coloneqq \Set{\lambda \wedge A_t > \tilde{Y}^{(n),j}_t > \lambda}{\exists t \geq 0}
-					= \bigcup_{r \in [0,\infty)\cap\Q}\left\{\lambda \wedge A_r > \tilde{Y}^{(n),j}_r > \lambda\right\}
+					\int_A \lambda \wedge A_t\ dP
+					\leq \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
+					= \int_A \tilde{Y}^{(n),j}_t\ dP 
+				\end{align}
+				となるから
+				\begin{align}
+					E_j &\coloneqq \Set{\tilde{Y}^{(n),j}_t > \lambda}{\exists t \geq 0} 
+						\cup \Set{\lambda \wedge A_t > \tilde{Y}^{(n),j}_t}{\exists t \in [0,t^{(n)}_j]} \\
+					&= \left[ \bigcup_{r \in [0,\infty)\cap\Q}\left\{\tilde{Y}^{(n),j}_r > \lambda\right\} \right]
+					\bigcup \left[ \bigcup_{r \in [0,t^{(n)}_j]\cap\Q}\left\{\lambda \wedge A_r > \tilde{Y}^{(n),j}_r\right\} \right], \\
+					E &\coloneqq \bigcup_{j=0}^{2^n} E_j
 				\end{align}
 				で$P$-零集合を定めればusual条件より$E \in \mathscr{F}_0$であるから
 				\begin{align}
@@ -894,8 +900,8 @@
 				で定める$Y^{(n),j}$のバージョンは
 				\begin{align}
 					\lambda \wedge A_t(\omega) 
-					\leq Z^{(n),j}_t(\omega) \leq \lambda,
-					\quad (\forall \omega \in \Omega \backslash E,\ \forall t \geq 0)
+					\leq Z^{(n),j}_t(\omega),
+					\quad (\forall \omega \in \Omega \backslash E,\ \forall t \in [0,a])
 					\label{eq:chapter_1_theorem_4_14_4}
 				\end{align}
 				を満たす$RCLL$かつ有界なマルチンゲールとなる．ここで
@@ -1037,7 +1043,7 @@
 					\sup{0 \leq t \leq a}{\left\{\eta^{(n)}_t(\omega) - (\lambda \wedge A_t(\omega))\right\}} > \epsilon
 				\end{align}
 				が満たされ，また(\refeq{eq:chapter_1_theorem_4_14_4})より
-				$P$-a.s.に$\eta^{(n)}_t-(\lambda \wedge A_t) \geq 0,\ (\forall t \geq 0)$であるから，
+				$P$-a.s.に$\eta^{(n)}_t-(\lambda \wedge A_t) \geq 0,\ (\forall t \in [0,a])$であるから，
 				(\refeq{eq:chapter_1_theorem_4_14_1}), (\refeq{eq:chapter_1_theorem_4_14_5})と併せて
 				\begin{align}
 					&P\left(\sup{0 \leq t \leq a}{\left|\eta^{(n)}_t-(\lambda \wedge A_t)\right|} > \epsilon\right)
@@ -1049,8 +1055,11 @@
 				\end{align}
 				が得られる．従って或る部分列$(n_k)_{k=1}^\infty$と$P$-零集合$G$が存在して
 				\begin{align}
-					\lim_{k \to \infty} \eta^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
-					\quad (\forall t \in [0,a],\ \forall \omega \in \Omega \backslash G)
+					\sup{0 \leq t \leq a}{\left|\eta^{(n_k)}_t(\omega)-(\lambda \wedge A_t(\omega))\right|}
+					\longrightarrow 0
+					\quad (k \longrightarrow \infty),
+					\quad (\forall \omega \in \Omega \backslash G)
+					\label{eq:chapter_1_theorem_4_14_6}
 				\end{align}
 				が成立する．
 				
@@ -1078,30 +1087,25 @@
 					= E\int_{(0,a]} \xi^{(n)}_{s-}\ dA_s
 				\end{align}
 				が成立する．一方で$t \notin \Pi$で$\xi^{(n)}_t = \eta^{(n)}_t,\ (\forall n \geq 1)$
-				が満たされるから
+				であるから(\refeq{eq:chapter_1_theorem_4_14_6})より
 				\begin{align}
-					\sup{t \in [0,a]\backslash\Pi}{\left|\xi^{(n_k)}_t(\omega) - \lambda \wedge A_t(\omega)\right|}
+					\sup{t \in [0,a]\backslash\Pi}{\left|\xi^{(n_k)}_t(\omega) - (\lambda \wedge A_t(\omega))\right|}
 					\longrightarrow 0 \quad (k \longrightarrow \infty),
 					\quad (\forall \omega \in \Omega \backslash G)
 				\end{align}
-				となり，これにより任意の$t \in (0,a]$で
+				が従い，これにより任意の$t \in (0,a]$で
 				\begin{align}
-					\sup{t \in (0,a]}{\left|\xi^{(n_k)}_{t-}(\omega) - \lambda \wedge A_{t-}(\omega)\right|}
+					\sup{t \in (0,a]}{\left|\xi^{(n_k)}_{t-}(\omega) - (\lambda \wedge A_{t-}(\omega))\right|}
 					\longrightarrow 0 \quad (k \longrightarrow \infty),
 					\quad (\forall \omega \in \Omega \backslash G)
 				\end{align}
-				が満たされる．$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
+				も満たされる．$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
 				$\xi^{(n)}_t = \lambda \wedge A_t,\ \mbox{$P$-a.s.},\ (\forall n \geq N)$となり
 				\begin{align}
 					H_t \coloneqq \bigcup_{n \geq N} \left\{\xi^{(n)}_t \neq \lambda \wedge A_t\right\},
 					\quad H \coloneqq \bigcup_{t \in \Pi} H_t
 				\end{align}
-				により$P$-零集合$H$を定めれば
-				\begin{align}
-					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
-					\quad (\forall \omega \in \Omega \backslash H)
-				\end{align}
-				が成立する．従って任意の$t \in [0,a]$で
+				により$P$-零集合$H$を定めれば任意の$t \in [0,a]$で
 				\begin{align}
 					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
 					\quad (\forall \omega \in \Omega \backslash (G \cup H))
@@ -1111,20 +1115,15 @@
 					E\int_{(0,a]} \lambda \wedge A_t\ dA_t
 					= E\int_{(0,a]} \lambda \wedge A_{t-}\ dA_t
 				\end{align}
-				となり，$A$の単調非減少性より$A_{t-} \leq A_t$であるから
-				或る$P$-零集合$U_a$が存在して
+				が得られ，$A$の単調非減少性より$A_{t-} \leq A_t$であるから
+				或る$P$-零集合$U_a$が存在し，任意の$\omega \in \Omega \backslash U_a$で
 				\begin{align}
 					\int_{(0,a]} (\lambda \wedge A_t(\omega)) 
-					- (\lambda \wedge A_{t-}(\omega))\ dA_t(\omega) = 0,
-					\quad (\forall \omega \in \Omega \backslash U_a)
+					- (\lambda \wedge A_{t-}(\omega))\ dA_t(\omega) = 0
 				\end{align}
-				が成立し
-				\begin{align}
-					(0,a] \ni t \longmapsto \lambda \wedge A_t(\omega),
-					\quad (\forall \omega \in \Omega \backslash U_a)
-				\end{align}
-				は連続となる．$a > 0$の任意性より
-				$V_\lambda \coloneqq \bigcup_{a=1}^\infty U_a$とけば
+				が成立し$(0,a] \ni t \longmapsto \lambda \wedge A_t(\omega)$
+				の連続性が出る．$a > 0$の任意性より
+				$V_\lambda \coloneqq \bigcup_{a=1}^\infty U_a$とおけば
 				\begin{align}
 					(0,\infty) \ni t \longmapsto \lambda \wedge A_t(\omega),
 					 \quad (\forall \omega \in \Omega \backslash V_\lambda)
@@ -1132,7 +1131,7 @@
 				は連続となり，$\lambda > 0$も任意であるから
 				$V \coloneqq \bigcup_{\lambda=1}^\infty V_\lambda$として
 				\begin{align}
-					t \longmapsto A_t(\omega),
+					(0,\infty) \ni t \longmapsto A_t(\omega),
 					\quad (\omega \in \Omega \backslash V)
 				\end{align}
 				は連続となる．$\tilde{A} \coloneqq A \defunc_{\Omega \backslash V} \in [A]_{Nat}$
