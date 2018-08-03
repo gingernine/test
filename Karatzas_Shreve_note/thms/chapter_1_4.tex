@@ -508,8 +508,7 @@
 		\begin{description}
 			\item[第一段]
 				分解の一意性を示す．
-				二つのマルチンゲール$\{M_t,\mathscr{F}_t\},\{M'_t,\mathscr{F}_t\}$と
-				ナチュラルな$\{A_t,\mathscr{F}_t\},\{A'_t,\mathscr{F}_t\}$により
+				二つのマルチンゲール$M,M'$とナチュラルな$A,A'$により
 				\begin{align}
 					X_t = M_t + A_t = M'_t + A'_t,
 					\quad \forall t \geq 0
@@ -518,25 +517,24 @@
 				\begin{align}
 					B=\Set{B_t \coloneqq A_t - A'_t = M'_t - M_t,\mathscr{F}_t}{0 \leq t < \infty}
 				\end{align}
-				は(a.s.のパスが有界変動な)マルチンゲールとなる．いま任意に$a > 0$を取り
+				はパスが有界変動なマルチンゲールとなる．いま任意に$a > 0$を取り
 				\begin{align}
 					\Pi_n \coloneqq \left\{t_0^{(n)},\cdots,t_{m_n}^{(n)}\right\},
 					\quad \max{1 \leq j \leq m_n}{\left| t_j^{(n)} - t_{j-1}^{(n)}\right|} \longrightarrow 0\ (n \longrightarrow \infty)
 				\end{align}
 				を$[0,a]$の細分列として，
-				任意の有界な右連続マルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対し
+				任意の有界かつ$RCLL$なマルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対し
 				\begin{align}
 					\xi^{(n)}_s \coloneqq \sum_{j=1}^{m_n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(s)\ \xi_{t^{(n)}_{j-1}},
 					\quad (\forall s \in [0,a])
 				\end{align}
-				とおけば，a.s.のパスの正則性(Theorem 3.8(v))より或る$P$-零集合$N_1$が存在して
+				とおけば
 				\begin{align}
 					\lim_{n \to \infty} \xi^{(n)}_s(\omega) = \xi_{s-}(\omega),\ \forall s \in (0,a];
-					\quad (\forall \omega \in \Omega \backslash N_1)
+					\quad (\forall \omega \in \Omega)
 				\end{align}
-				が満たされる．また或る$P$-零集合$N_2$が存在して$\omega \in \Omega \backslash N_2$に対する
-				$A,A'$のパスが右連続かつ非減少となり，このときLebesgueの収束定理より
-				任意の$\omega \in \Omega \backslash (N_1 \cup N_2)$に対して
+				が満たされる．このときLebesgueの収束定理より
+				任意の$\omega \in \Omega$で
 				\begin{align}
 					\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s(\omega)\ dA_s(\omega) = \int_{(0,a]} \xi_{s-}(\omega)\ dA_s(\omega),
 					\quad \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s(\omega)\ dA'_s(\omega) = \int_{(0,a]} \xi_{s-}(\omega)\ dA'_s(\omega)
@@ -860,18 +858,18 @@
 				とおく．任意に$\lambda > 0$を取り，各$j = 0,1,\cdots,2^n$に対し
 				\begin{align}
 					Y^{(n),j}_t \coloneqq
-					\cexp{\lambda \wedge A_{t^{(n)}_{j+1}}}{\mathscr{F}_t},
+					\cexp{\lambda \wedge A_{t^{(n)}_j}}{\mathscr{F}_t},
 					\quad (\forall t \geq 0)
 				\end{align}
 				によりマルチンゲール$\Set{Y^{(n),j}_t,\mathscr{F}_t}{0 \leq t < \infty}$を定めれば，
 				\begin{align}
 					[0,\infty) \ni t \longmapsto EY^{(n),j}_t 
-					= E\left(\lambda \wedge A_{t^{(n)}_{j+1}}\right)
+					= E\left(\lambda \wedge A_{t^{(n)}_j}\right)
 				\end{align}
 				と Theorem 3.13 より$RCLL$な修正$\tilde{Y}^{(n),j}$が存在する．このとき
 				\begin{align}
 					\int_A \tilde{Y}^{(n),j}_t\ dP 
-					= \int_A \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
+					= \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
 					\leq \lambda P(A),
 					\quad (\forall A \in \mathscr{F}_t,\ t \geq 0)
 				\end{align}
@@ -893,7 +891,7 @@
 						+ (\lambda \wedge A_a) \defunc_{[a,\infty)}(t),
 					\quad (t \geq 0)
 				\end{align}
-				とおけば，$\eta^{(n)}$の右連続性，Corollary 2.4， Problem2.5 及びusual条件より
+				とおけば，$\eta^{(n)}$の右連続性，Corollary2.4，Problem2.5 及びusual条件より
 				\begin{align}
 					T^{(n)}_\epsilon \coloneqq
 					a \wedge \inf{}{\Set{t \geq 0}{\eta^{(n)}_t - (\lambda \wedge A_t) > \epsilon}}
@@ -902,18 +900,18 @@
 				\begin{align}
 					\varphi_n(t) \coloneqq 
 					\begin{cases}
-						t^{(n)}_{j+1}, & t^{(n)}_j \leq t < t^{(n)}_{j+1},\ j=0,1,\cdots,2^n-1 \\
+						t^{(n)}_j, & t^{(n)}_j \leq t < t^{(n)}_{j+1},\ j=0,1,\cdots,2^n-1 \\
 						a, & t = a
 					\end{cases}
 				\end{align}
-				を用いれば
+				を用いれば，任意抽出定理より
 				\begin{align}
 					E\left( \eta_{T^{(n)}_\epsilon} \right)
 					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{T^{(n)}_\epsilon}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{t^{(n)}_{j+1}}\ dP
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{t^{(n)}_j}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \lambda \wedge A_{t^{(n)}_j}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
 					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\ dP \\
@@ -981,9 +979,27 @@
 					T_\epsilon \coloneqq \lim_{n \to \infty} T^{(n)}_\epsilon \defunc_{\Omega \backslash F}
 					\in \mathscr{S}_a
 				\end{align}
-				となる．
-				
-			\item[第四段]
+				となる．同様に$\varphi_n\left(T^{(n)}_\epsilon\right) \in \mathscr{S}_a,\ (n=1,2,\cdots)$かつ
+				\begin{align}
+					T_\epsilon = \lim_{n \to \infty} \varphi_n\left(T^{(n)}_\epsilon\right) \defunc_{\Omega \backslash F}
+				\end{align}
+				を満たす．実際任意の$t \geq 0$に対し
+				\begin{align}
+					\left\{\varphi_n\left(T^{(n)}_\epsilon\right) \leq t\right\}
+					= \bigcup_{t^{(n)}_j \leq t} \left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}
+					\in \mathscr{F}_t
+				\end{align}
+				となるから$\varphi_n\left(T^{(n)}_\epsilon\right) \in \mathscr{S}_a$が従い，また
+				任意の$t \in [0,a]$で$\varphi_n(t) \leq \varphi_{n+1}(t),\ (\forall n \geq 1)$となるから
+				\begin{align}
+					\varphi_n \left(T^{(n)}_\epsilon(\omega)\right)
+					\leq \varphi_{n+1} \left(T^{(n)}_\epsilon(\omega)\right)
+					\leq \varphi_{n+1} \left(T^{(n+1)}_\epsilon(\omega)\right),
+					\quad (\forall \omega \in \Omega \backslash F)
+				\end{align}
+				となり()が出る．
+			
+			\item[第五段]
 				$\eta^{(n)}_a = \lambda \wedge A_a$より任意の$\omega \in \Omega$と$n \geq 1$に対し
 				\begin{align}
 					T^{(n)}_\epsilon(\omega) < a
@@ -1005,7 +1021,7 @@
 				\end{align}
 				が成立する．
 				
-			\item[第四段]
+			\item[第六段]
 				$A$はナチュラルであり，$Z^{(n),j}$は有界かつ$RCLL$なマルチンゲールであるから
 				\begin{align}
 					E\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
@@ -1031,10 +1047,17 @@
 				が成立する．一方で$t \notin \Pi$で$\xi^{(n)}_t = \eta^{(n)}_t,\ (\forall n \geq 1)$
 				が満たされるから
 				\begin{align}
-					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
+					\sup{t \in [0,a]\backslash\Pi}{\left|\xi^{(n_k)}_t(\omega) - \lambda \wedge A_t(\omega)\right|}
+					\longrightarrow 0 \quad (k \longrightarrow \infty),
 					\quad (\forall \omega \in \Omega \backslash G)
 				\end{align}
-				となり，$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
+				となり，これにより任意の$t \in (0,a]$で
+				\begin{align}
+					\sup{t \in (0,a]}{\left|\xi^{(n_k)}_{t-}(\omega) - \lambda \wedge A_{t-}(\omega)\right|}
+					\longrightarrow 0 \quad (k \longrightarrow \infty),
+					\quad (\forall \omega \in \Omega \backslash G)
+				\end{align}
+				が満たされる．$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
 				$\xi^{(n)}_t = \lambda \wedge A_t,\ \mbox{$P$-a.s.},\ (\forall n \geq N)$となり
 				\begin{align}
 					H_t \coloneqq \bigcup_{n \geq N} \left\{\xi^{(n)}_t \neq \lambda \wedge A_t\right\},
@@ -1050,33 +1073,37 @@
 					\lim_{k \to \infty} \xi^{(n_k)}_t(\omega) = \lambda \wedge A_t(\omega),
 					\quad (\forall \omega \in \Omega \backslash (G \cup H))
 				\end{align}
-				となる．
+				となる．Lebesgueの収束定理より
 				\begin{align}
 					E\int_{(0,a]} \lambda \wedge A_t\ dA_t
 					= E\int_{(0,a]} \lambda \wedge A_{t-}\ dA_t
 				\end{align}
-				となり，$A$の単調非減少性より$A_{t-} \leq A_t$となるから
+				となり，$A$の単調非減少性より$A_{t-} \leq A_t$であるから
+				或る$P$-零集合$U_a$が存在して
 				\begin{align}
-					\int_{(0,a]} (\lambda \wedge A_t) - (\lambda \wedge A_{t-})\ dA_t = 0,
-					\quad \mbox{a.s. $P$}
+					\int_{(0,a]} (\lambda \wedge A_t(\omega)) 
+					- (\lambda \wedge A_{t-}(\omega))\ dA_t(\omega) = 0,
+					\quad (\forall \omega \in \Omega \backslash U_a)
 				\end{align}
 				が成立し
 				\begin{align}
-					(0,a] \ni t \longmapsto \lambda \wedge A_t 
+					(0,a] \ni t \longmapsto \lambda \wedge A_t(\omega),
+					\quad (\forall \omega \in \Omega \backslash U_a)
 				\end{align}
 				は連続となる．$a > 0$の任意性より
+				$V_\lambda \coloneqq \bigcup_{a=1}^\infty U_a$とけば
 				\begin{align}
-					(0,\infty) \ni t \longmapsto \lambda \wedge A_t 
+					(0,\infty) \ni t \longmapsto \lambda \wedge A_t(\omega),
+					 \quad (\forall \omega \in \Omega \backslash V_\lambda)
 				\end{align}
 				は連続となり，$\lambda > 0$も任意であるから
+				$V \coloneqq \bigcup_{\lambda=1}^\infty V_\lambda$として
 				\begin{align}
-					t \longmapsto A_t
+					t \longmapsto A_t(\omega),
+					\quad (\omega \in \Omega \backslash V)
 				\end{align}
-				は連続となる．
-				\begin{align}
-					\tilde{A}_t \coloneqq A \defunc_{\Omega \backslash }
-				\end{align}
-				と置けば$\tilde{A} \in [A]_{Nat}$を満たす．
+				は連続となる．$\tilde{A} \coloneqq A \defunc_{\Omega \backslash V} \in [A]_{Nat}$
+				が求める$A$のバージョンである．
 				\QED
 		\end{description}
 	\end{prf}
