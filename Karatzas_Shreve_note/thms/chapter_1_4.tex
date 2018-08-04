@@ -200,11 +200,11 @@
 		\end{align}
 		\textcolor{red}{Let us denote the subspace of $RCSP[0,\infty)$ as
 		\begin{align}
-			Nat[0,\infty) \coloneqq
+			NAT[0,\infty) \coloneqq
 			\Set{A \in RCSP[0,\infty)}{natural},
 		\end{align}
-		and the equivalent class of $A \in Nat[0,\infty)$
-		in the meaning of (\refeq{eq:equivalence_with_respect_to_path}) as $[A]_{Nat}\ ( \subset Nat[0,\infty))$.}
+		and the equivalent class of $A \in NAT[0,\infty)$
+		in the meaning of (\refeq{eq:equivalence_with_respect_to_path}) as $[A]_{NAT}\ ( \subset NAT[0,\infty))$.}
 	\end{itembox}
 	
 	プロセスが$RCLL$とは全てのパスが$RCLL$であるということである．Theorem 3.8によれば
@@ -216,9 +216,9 @@
 	たぶん余計な煩雑さを回避できる．
 		
 	\begin{itembox}[l]{$RCLL$なパスの不連続点は高々可算個}
-		$(S,d)$を距離空間とする．写像$X:[0,\infty) \longrightarrow S$について
+		$(S,d)$を距離空間とする．写像$f:[0,\infty) \longrightarrow S$について
 		各点$t \in [0,\infty)$で右連続かつ各点$t \in (0,\infty)$で左極限が存在するとき，
-		$X$の不連続点は存在しても高々可算個である．
+		$f$の不連続点は存在しても高々可算個である．
 	\end{itembox}
 	
 	\begin{prf}
@@ -498,20 +498,90 @@
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{Lemma for theorem 4.10}
+		Let $M = \Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a right-continuous martingale,
+		where the filtration $(\mathscr{F}_t)$ is not necessarily usual.
+		If $M$ is a difference of two natural processes 
+		$A = \Set{A_t,\mathscr{F}_t}{0 \leq t < \infty}$
+		and $B = \Set{B_t,\mathscr{F}_t}{0 \leq t < \infty}$, namely
+		\begin{align}
+			M_t = A_t - B_t; \quad \forall t \geq 0,
+		\end{align}
+		then $P\Set{M_t = 0}{0 \leq \forall t < \infty} = 1$.
+	\end{itembox}
+	
+	\begin{prf}
+		仮定より$M$はパスが有界変動なマルチンゲールである．いま任意に$a > 0$を取り
+		\begin{align}
+			\Pi_n \coloneqq \Set{t^{(n)}_j \coloneqq \frac{j}{2^n}a}{j=0,1,\cdots,2^n}
+		\end{align}
+		として，任意の有界かつ$RCLL$なマルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対し
+		\begin{align}
+			\xi^{(n)}_t \coloneqq \sum_{j=1}^{2^n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(t)\ \xi_{t^{(n)}_{j-1}},
+			\quad (\forall t \in [0,a])
+		\end{align}
+		とおけば，任意の$\omega \in \Omega$で
+		\begin{align}
+			\lim_{n \to \infty} \xi^{(n)}_t(\omega) = \xi_{t-}(\omega),\ \forall t \in (0,a]
+		\end{align}
+		が満たされるからLebesgueの収束定理より
+		\begin{align}
+			&\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t(\omega)\ dA_t(\omega) = \int_{(0,a]} \xi_{t-}(\omega)\ dA_t(\omega), \\
+			&\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t(\omega)\ dB_t(\omega) = \int_{(0,a]} \xi_{t-}(\omega)\ dB_t(\omega)
+		\end{align}
+		が成立する．また$A_a,B_a$の可積性と$\xi$の有界性により，再びLebesgueの収束定理を適用すれば
+		\begin{align}
+			E\left[ \xi_a\left( A_a - B_a \right) \right]
+			&= E\left[ \xi_a A_a \right] -  E\left[ \xi_a B_a \right]
+			= E \int_{(0,a]} \xi_{t-}\ dA_t - E\int_{(0,a]} \xi_{t-}\ dB_t \\
+			&= E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t\ dA_t \right]
+				- E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t\ dB_t \right] \\
+			&= \lim_{n \to \infty} E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n)}_{j-1}}\left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right) \right]
+				-  \lim_{n \to \infty} E \left[ \sum_{j=1}^{2^n}\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right) \right] \\
+			&= \lim_{n \to \infty} E \left[ \sum_{j=1}^{2^n}\xi_{t^{(n)}_{j-1}}\left( M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}} \right) \right]
+		\end{align}
+		が従い，このとき右辺は$M$のマルチンゲール性より
+		\begin{align}
+			E\xi_{t^{(n)}_{j-1}}\left( M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}} \right)
+			= E \left[\cexp{\xi_{t^{(n)}_{j-1}}\left( M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}} \right)}{\mathscr{F}_{t^{(n)}_{j-1}}} \right]
+			= E \left[ \xi_{t^{(n)}_{j-1}}\cexp{M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}}}{\mathscr{F}_{t^{(n)}_{j-1}}} \right]
+			= 0 
+		\end{align}
+		となるから
+		\begin{align}
+			E\left[ \xi_a\left( A_a - B_a \right) \right] = 0
+		\end{align}
+		が得られる．$\xi$を有界マルチンゲール
+		$\Set{\cexp{\sgn{A_a - B_a}}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$
+		の$RCLL$な修正とすれば
+		\begin{align}
+			0 = E\left[ \xi_a\left( A_a - B_a \right) \right]
+			= E\left[ \sgn{A_a - B_a}\left( A_a - B_a \right) \right]
+			= E\left| A_a - B_a \right|
+		\end{align}
+		が成り立ち，$a > 0$の任意性及び$A,B$のパスの右連続性より
+		\begin{align}
+			P\left[ \Set{A_t = B_t}{0 \leq t < \infty}\right]
+			= P\left[ \bigcap_{r \in [0,\infty) \cap \Q} \{A_r=B_r\} \right]
+			= 1
+		\end{align}
+		が出る．
+		\QED
+	\end{prf}
+	
 	\begin{itembox}[l]{Theorem 4.10 (Doob-Meyer Decomposition) 修正}
 		Let $\{\mathscr{F}_t\}$ satisfy the usual conditions. If the right-continuous
 		submartingale $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ is of class $DL$, then
-		\textcolor{red}{there exists a unique $[A]_{Nat}$ where $X - A'$ is right-continuous martingale
-		for every $A' \in [A]_{Nat}$.}
+		\textcolor{red}{there exists a unique $[A]_{NAT}$ where $X - A'$ is right-continuous martingale
+		for every $A' \in [A]_{NAT}$.}
 		Further, if $X$ is of class $D$, then $M$ is a uniformly integrable martingale 
 		and $A$ is integrable.	
 	\end{itembox}
 	
-	\begin{prf}[未修正]\mbox{}
+	\begin{prf}[未修正] \mbox{}
 		\begin{description}
 			\item[第一段]
-				分解の一意性を示す．
-				二つのマルチンゲール$M,M'$とナチュラルな$A,A'$により
+				$[A]_{NAT}$の一意性を示す．二つの右連続マルチンゲール$M,M'$とナチュラルな$A,A'$により
 				\begin{align}
 					X_t = M_t + A_t = M'_t + A'_t,
 					\quad \forall t \geq 0
@@ -520,75 +590,7 @@
 				\begin{align}
 					B=\Set{B_t \coloneqq A_t - A'_t = M'_t - M_t,\mathscr{F}_t}{0 \leq t < \infty}
 				\end{align}
-				はパスが有界変動なマルチンゲールとなる．いま任意に$a > 0$を取り
-				\begin{align}
-					\Pi_n \coloneqq \left\{t_0^{(n)},\cdots,t_{m_n}^{(n)}\right\},
-					\quad \max{1 \leq j \leq m_n}{\left| t_j^{(n)} - t_{j-1}^{(n)}\right|} \longrightarrow 0\ (n \longrightarrow \infty)
-				\end{align}
-				を$[0,a]$の細分列として，
-				任意の有界かつ$RCLL$なマルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対し
-				\begin{align}
-					\xi^{(n)}_s \coloneqq \sum_{j=1}^{m_n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(s)\ \xi_{t^{(n)}_{j-1}},
-					\quad (\forall s \in [0,a])
-				\end{align}
-				とおけば
-				\begin{align}
-					\lim_{n \to \infty} \xi^{(n)}_s(\omega) = \xi_{s-}(\omega),\ \forall s \in (0,a];
-					\quad (\forall \omega \in \Omega)
-				\end{align}
-				が満たされる．このときLebesgueの収束定理より
-				任意の$\omega \in \Omega$で
-				\begin{align}
-					\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s(\omega)\ dA_s(\omega) = \int_{(0,a]} \xi_{s-}(\omega)\ dA_s(\omega),
-					\quad \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s(\omega)\ dA'_s(\omega) = \int_{(0,a]} \xi_{s-}(\omega)\ dA'_s(\omega)
-				\end{align}
-				が成立する．ここで$A_a,A'_a$が可積分で$\xi$が有界であるから，再びLebesgueの収束定理より
-				\begin{align}
-					E\left[ \xi_a\left( A_a - A'_a \right) \right]
-					&= E\left[ \xi_a A_a \right] -  E\left[ \xi_a A'_a \right]
-					= E \int_{(0,a]} \xi_{s-}\ dA_s - E\int_{(0,a]} \xi_{s-}\ dA'_s \\
-					&= E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s\ dA_s \right]
-						- E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_s\ dA'_s \right] \\
-					&= \lim_{n \to \infty} E\left[ \sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right) \right]
-						-  \lim_{n \to \infty} E \left[ \sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( A'_{t^{(n)}_j} - A'_{t^{(n)}_{j-1}} \right) \right] \\
-					&= \lim_{n \to \infty} E \left[ \sum_{j=1}^{m_n}\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right) \right]
-				\end{align}
-				が成立し，$B$のマルチンゲール性より
-				\begin{align}
-					E\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right)
-					= E \left[\cexp{\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right)}{\mathscr{F}_{t^{(n)}_{j-1}}} \right]
-					= E \left[ \xi_{t^{(n)}_{j-1}}\cexp{B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}}}{\mathscr{F}_{t^{(n)}_{j-1}}} \right]
-					= 0 
-				\end{align}
-				となるから
-				\begin{align}
-					E\left[ \xi_a\left( A_a - A'_a \right) \right] = 0
-				\end{align}
-				が得られる．ここで$\xi$を有界実確率変数とすれば
-				$\Set{\cexp{\xi}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールとなり
-				\begin{align}
-					E\left[ \cexp{\xi}{\mathscr{F}_t} \right] = E \xi,
-					\quad (\forall t \geq 0)
-				\end{align}
-				が満たされ，Theorem 3,13より右連続な修正$\Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$が得られる．
-				このとき
-				\begin{align}
-					0 = E\left[ \xi_a\left( A_a - A'_a \right) \right]
-					= E\left[ \cexp{\xi}{\mathscr{F}_a}\left( A_a - A'_a \right) \right]
-					= E\left[ \cexp{\xi\left( A_a - A'_a \right)}{\mathscr{F}_a} \right]
-					= E\left[ \xi\left( A_a - A'_a \right) \right]
-				\end{align}
-				が成り立ち，$\xi = \sgn{A_a - A'_a}$として
-				\begin{align}
-					E\left| A_a - A'_a \right| = 0
-				\end{align}
-				が従う．$a > 0$の任意性及び$A,A'$のパスの右連続性より
-				\begin{align}
-					P\left[ \Set{A_t = A'_t}{0 \leq t < \infty} \cap (\Omega \backslash N_2) \right]
-					= P\left[ \bigcap_{a \in [0,\infty) \cap \Q} \{A_a=A'_a\} \right]
-					= 1
-				\end{align}
-				となり分解の一意性が出る．
+				はLemmaの仮定を満たすマルチンゲールとなるから$[A]_{NAT} = [A']_{NAT}$が従う．
 				
 			\item[第二段]
 				任意の区間$[0,a]$上で分解の存在を示せば
@@ -813,8 +815,8 @@
 		Suppose that $X = \Set{X_t}{0 \leq t < \infty}$ is a right-continuous submartingale
 		of class $DL$ with respect to the filtration $\{\mathscr{F}_t\}$, which
 		satisfies the usual conitions, and 
-		\textcolor{red}{let $[A]_{Nat}$ be of the Doob-Meyer decomposition of $X$.
-		There exists a continuous version of $A$ in $[A]_{Nat}$ if and only if $X$ is regular.}
+		\textcolor{red}{let $[A]_{NAT}$ be of the Doob-Meyer decomposition of $X$.
+		There exists a continuous version of $A$ in $[A]_{NAT}$ if and only if $X$ is regular.}
 	\end{itembox}
 	
 	\begin{prf}\mbox{}
@@ -1135,7 +1137,7 @@
 					(0,\infty) \ni t \longmapsto A_t(\omega),
 					\quad (\forall \omega \in \Omega \backslash V)
 				\end{align}
-				は連続となる．$\tilde{A} \coloneqq A \defunc_{\Omega \backslash V} \in [A]_{Nat}$
+				は連続となる．$\tilde{A} \coloneqq A \defunc_{\Omega \backslash V} \in [A]_{NAT}$
 				が求める$A$のバージョンである．
 				\QED
 		\end{description}
