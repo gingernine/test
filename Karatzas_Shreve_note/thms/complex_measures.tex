@@ -201,6 +201,57 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[総変動測度は有限分割で表現できる]\label{thm:complex_measure_finite_splits}
+			可測空間$(X,\mathscr{F})$上の複素測度
+			$\lambda$に対して次が成り立つ:
+			\begin{align}
+				|\lambda|(E)
+				= \sup{}{\Set{\sum_{i=1}^n|\lambda(A_i)|}{E=\sum_{i=1}^n A_i,
+				\ \{A_i\}_{i=1}^n \subset \mathscr{F},\ n=1,2,\cdots}},
+				\quad (\forall E \in \mathscr{F}).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$E \in \mathscr{F}$で，$E = \sum_{i=1}^n A_i$に対し
+		$A_{i+1} = A_{i+2} = \cdots = \emptyset$とすれば
+		$E = \sum_{i=1}^\infty A_i$となるから
+		\begin{align}
+			|\lambda|(E) \geq \sup{}{\Set{\sum_{i=1}^n|\lambda(A_i)|}{E=\sum_{i=1}^n A_i,
+			\ \{A_i\}_{i=1}^n \subset \mathscr{F},\ n=1,2,\cdots}}
+			\label{eq:thm_complex_measure_finite_splits}
+		\end{align}
+		が従う．一方で$|\lambda|(E) > 0$の場合，$|\lambda|(E) > \alpha > 0$を満たす
+		$\alpha$を任意に取れば
+		\begin{align}
+			|\lambda|(E) \geq \sum_{i=1}^\infty |\lambda(A_i)| > \alpha,
+			\quad E = \sum_{i=1}^\infty A_i
+		\end{align}
+		を満たす$\{A_i\}_{i=1}^\infty \subset \mathscr{F}$が存在し，
+		このとき$B_n \coloneqq \sum_{i=n}^\infty A_i$とおけば
+		\begin{align}
+			0 \leq \sum_{i=n}^\infty |\lambda(A_i)| - \left| \lambda\left(B_n\right) \right|
+			\leq \sum_{i=n}^\infty |\lambda(A_i)| \longrightarrow 0
+			\quad (n \longrightarrow \infty)
+		\end{align}
+		となるから，或る$n \geq 1$で
+		\begin{align}
+			|\lambda|(E) \geq \sum_{i=1}^\infty |\lambda(A_i)| 
+			\geq |\lambda(A_1)| + \cdots + |\lambda(A_{n-1})| + \left| \lambda\left(B_n\right) \right|> \alpha
+		\end{align}
+		が満たされる．$E = A_1 + \cdots + A_{n-1} + B_n$であるから，
+		(\refeq{eq:thm_complex_measure_finite_splits})と併せて
+		\begin{align}
+			|\lambda|(E) = \sup{}{\Set{\sum_{i=1}^n|\lambda(A_i)|}{E=\sum_{i=1}^n A_i,
+			\ \{A_i\}_{i=1}^n \subset \mathscr{F},\ n=1,2,\cdots}}
+		\end{align}
+		が得られる．$|\lambda|(E) = 0$なら(\refeq{eq:thm_complex_measure_finite_splits})で
+		等号成立となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{thm}[総変動ノルム]
 			可測空間$(X,\mathscr{F})$上の複素測度の全体を$CM(X,\mathscr{F})$と書くとき，
 			\begin{align}
@@ -454,7 +505,7 @@
 				\label{eq:thm_Vitali_Hahn_Saks}
 			\end{align}
 			が存在すれば$\lambda$もまた$(X,\mathscr{F})$上の複素測度となる．
-			つまり$(CM(X,\mathscr{F}),\Norm{\cdot}{TV})$はBanach空間である．
+			また$(CM(X,\mathscr{F}),\Norm{\cdot}{TV})$はBanach空間である．
 		\end{thm}
 	\end{screen}
 	
@@ -535,7 +586,8 @@
 				\begin{align}
 					L = \bigcup_{n=1}^\infty F_n(\eta)
 				\end{align}
-				が成り立ち，Baireの範疇定理より或る$F_{n_0}(\eta)$は内点$f_{E_0}$を持つ．
+				が成り立ち，Baireの範疇定理
+				(P. \pageref{thm:Baire_category_theorem})より或る$F_{n_0}(\eta)$は内点$f_{E_0}$を持つ．
 				つまり或る$\delta_0 > 0$が存在して
 				\begin{align}
 					d(f_{E_0},f_E) < \delta_0
@@ -598,6 +650,23 @@
 					\lambda\Biggl( \sum_{i=1}^\infty E_i \Biggr) = \sum_{i=1}^\infty \lambda(E_i)
 				\end{align}
 				が得られる．よって$\lambda$は複素測度である．
+				
+			\item[第三段]
+				$(\nu_n)_{n=1}^\infty$を$CM(X,\mathscr{F})$のCauchy列とすれば
+				任意の$E \in \mathscr{F}$で
+				\begin{align}
+					|\nu_n(E) - \nu_m(E)| \leq \Norm{\nu_n-\nu_m}{TV} 
+					\longrightarrow 0
+					\quad (n,m \longrightarrow \infty)
+				\end{align}
+				となるから，$\C$の完備性より$\nu \coloneqq \lim_{n \to \infty} \nu_n$
+				で複素測度$\nu$が定まる．このとき
+				\begin{align}
+					\Norm{\nu - \nu_m}{TV} \leq \liminf_{n \to \infty}\Norm{\nu_n - \nu_m}{TV}
+					\longrightarrow 0
+					\quad (m \longrightarrow \infty)
+				\end{align}
+				が成立する．
 				\QED
 		\end{description}
 	\end{prf}
