@@ -43,12 +43,13 @@
 			= |\mu| \Biggl(\bigcap_{n=1}^\infty E_{1-1/n} \Biggr)
 			= 0
 		\end{align}
-		が従う．よって$|\mu|$-a.e.に$|h|=1$となる．ここで
+		が従う．よって$|\mu|$-a.e.に$|h|=1$となる．$\tilde{h} \coloneqq \defunc_{\{|h|=1\}}h + \defunc_{\{|h|\neq1\}}$
+		とおいて
 		\begin{align}
 			\theta(x) \coloneqq
 			\begin{cases}
-				0, & h(x) = 1, \\
-				\pi, & h(x) \neq 1
+				-i \operatorname{Arg} \tilde{h}(x), & (\tilde{h}(x) \neq -1), \\
+				\pi, & (\tilde{h}(x) = -1)
 			\end{cases}
 		\end{align}
 		と定めれば$[h] = [e^{i \theta}]$が成立する．
@@ -61,7 +62,8 @@
 			$f$を$\mathscr{F}/\borel{\C}$-可測関数とする．
 			$f$が$|\mu|$-可積分であるとき，極分解$d\mu = e^{i\theta}\ d|\mu|$を用いて
 			\begin{align}
-				\int_X f\ d\mu \coloneqq \int_X f e^{i \theta}\ d|\mu|
+				\int_E f\ d\mu \coloneqq \int_E f e^{i \theta}\ d|\mu|,
+				\quad (\forall E \in \mathscr{F})
 			\end{align}
 			により$f$の$\mu$に関する積分を定める．
 		\end{dfn}
@@ -71,6 +73,14 @@
 	の意味で一意であるから$\mu$に関する積分はwell-definedである．
 	$\mu \equiv 0$なら$|\mu| \equiv 0$であるから任意の可測写像は$|\mu|$について可積分となり，
 	$\mu$に関する積分値は0で確定する(well-defined)．
+	また定義より
+	\begin{align}
+		\int_E f\ d\mu = \int_E f e^{i \theta}\ d|\mu|
+		= \int_X \defunc_E f e^{i\theta}\ d|\mu|
+		= \int_X \defunc_E f\ d\mu,
+		\quad (\forall E \in \mathscr{F})
+	\end{align}
+	が満たされる．
 	
 	\begin{screen}
 		\begin{thm}[総変動測度の積分表現]

@@ -1,0 +1,69 @@
+\section{正則条件付測度}
+	\begin{screen}
+		\begin{dfn}[正則条件付複素測度]
+			$(X,\mathscr{F})$を可測空間，$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族，
+			$\mu$を$\mathscr{F}$上の複素測度とするとき，次の(1)(2)(3)を満たす写像
+			\begin{align}
+				\mu_{\mathscr{G}}(\cdot\, |\, \cdot):\mathscr{F} \times X \longrightarrow \C
+			\end{align}
+			を$\mathscr{G}$の下での$\mu$の正則条件付複素測度
+			(regular conditional complex measure of $\mu$ with respect to $\mathscr{G}$)と呼ぶ:
+			\begin{description}
+				\item[(1)] 任意の$x \in X$で$\mathscr{F} \ni A \longmapsto \mu_{\mathscr{G}}(A\, |\, x)$は複素測度である．
+				\item[(2)] 任意の$A \in \mathscr{F}$で$X \ni x \longmapsto \mu_{\mathscr{G}}(A\, |\, x)$は
+					$\mathscr{G}/\borel{\C}$-可測かつ$|\mu|$-可積分である．
+				\item[(3)] 任意の$A \in \mathscr{F}$と$B \in \mathscr{G}$に対し次を満たす:
+					\begin{align}
+						\mu(A \cap B) = \int_B \mu_{\mathscr{G}}(A\, |\, x)\ |\mu|(dx).
+					\end{align}
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[正則条件付複素測度の一意性]
+			$(X,\mathscr{F})$を可測空間，$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族，
+			$\mu$を$\mathscr{F}$上の複素測度とする．
+			$\mathscr{F}$が可算乗法族で生成されるなら，
+			$\mu$に対し$\mathscr{G}$の下での正則条件付複素測度
+			$\mu_{\mathscr{G}},\nu_{\mathscr{G}}$が存在するとき，
+			或る$|\mu|$-零集合$N \in \mathscr{G}$が存在して次が成立する:
+			\begin{align}
+				\mu_{\mathscr{G}}(A\, |\, x) = \nu_{\mathscr{G}}(A\, |\, x),
+				\quad (\forall A \in \mathscr{F},\ \forall x \in X \backslash N).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{F}$を生成する可算乗法族を$\{A_n\}_{n=1}^\infty$と書けば，任意の$A_n$に対し
+		\begin{align}
+			\int_{B} \mu_{\mathscr{G}}(A_n\, |\, x)\ |\mu|(dx)
+			= \int_{B} \nu_{\mathscr{G}}(A_n\, |\, x)\ |\mu|(dx),
+			\quad (\forall B \in \mathscr{G})
+		\end{align}
+		が満たされるから$N_n \coloneqq \Set{x \in X}{\mu_{\mathscr{G}}(A_n\, |\, x) \neq \nu_{\mathscr{G}}(A_n\, |\, x)}$
+		は$\mathscr{G}$の$|\mu|$-零集合となる．$N \coloneqq \bigcup_{n=1}^\infty N_n$とおけば
+		\begin{align}
+			\mathscr{D} \coloneqq \Set{A \in \mathscr{F}}{\mu_{\mathscr{G}}(A\, |\, x) = \nu_{\mathscr{G}}(A\, |\, x),\ 
+			\forall x \in X \backslash N}
+		\end{align}
+		によりDynkin族が定まり，$\mathscr{D}$は$\{A_n\}_{n=1}^\infty$を含むから
+		Dynkin族定理より定理の主張が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[正則条件付測度の存在]
+			$(X,\mathscr{F})$を可測空間，$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族，
+			$\mu$を$\mathscr{F}$上の複素測度とする．
+			また$\mathscr{F}$が可算族で生成され，かつ或る
+			コンパクトクラス$\mathcal{K}$が存在して，
+			任意の$\epsilon > 0$と$A \in \mathscr{F}$に対し
+			\begin{align}
+				A_\epsilon \subset K_\epsilon \subset A,\quad |\mu|(A \backslash A_\epsilon) < \epsilon
+			\end{align}
+			を満たす$K_\epsilon \in \mathcal{K},\ A_\epsilon \in \mathscr{F}$が取れると仮定する．
+			このとき$\mathscr{G}$の下での$\mu$の正則条件付複素測度が存在する．
+		\end{thm}
+	\end{screen}
