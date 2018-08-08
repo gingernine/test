@@ -85,14 +85,55 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Lemma 5.9}
-		Let $X \in \mathscr{M}_2$ satisfy...
+		Let $X \in \mathscr{M}_2$ satisfy $|X_s| \leq K < \infty$ for all $s \in [0,t]$,
+		a.s. $P$. Let $\Pi = \{t_0,t_1,\cdots,t_m\}$, with $0 = t_0 \leq t_1 \leq \cdots \leq
+		t_m = t$, be a partition of $[0,t]$. Then $E\left( V_t^{(2)}(\Pi) \right)^2 \leq 6K^4$.
 	\end{itembox}
 	
 	\begin{prf}
-		$[0,t]$の分割$\Pi = \{t_0,t_1,\cdots,t_m\}$に対し
+		$X$のマルチンゲール性により，任意の$0 \leq s_0 \leq s_1 \leq \cdots \leq s_n < \infty$に対して
 		\begin{align}
-			
+			E \sum_{k=1}^n \left|X_{s_k} - X_{s_{k-1}}\right|^2
+			&= \sum_{k=1}^n E \left\{\cexp{X_{s_k}^2 -2X_{s_k}X_{s_{k-1}} + X_{s_{k-1}}^2}{\mathscr{F}_{s_k}}\right\} \\
+			&= \sum_{k=1}^n E \left\{X_{s_k}^2 -2\cexp{X_{s_k}}{\mathscr{F}_{s_k}}X_{s_{k-1}} + X_{s_{k-1}}^2\right\} \\
+			&= \sum_{k=1}^n E \left( X_{s_k}^2 - X_{s_{k-1}}^2 \right) \\
+			&= E X_{s_n}^2 - E X_{s_0}^2
+			\label{eq:chapter_1_lemma_5_9_1}
 		\end{align}
+		が成立する．いま，
+		\begin{align}
+			E\left( V_t^{(2)}(\Pi) \right)^2
+			= E \left\{ \sum_{k=1}^m \left|X_{t_k} - X_{t_{k-1}}\right|^2 \right\}^2
+			= E \sum_{k=1}^m \left|X_{t_k} - X_{t_{k-1}}\right|^4
+				+ 2 E \sum_{i=1}^{m-1} \sum_{j=i+1}^m 
+				\left|X_{t_i} - X_{t_{i-1}}\right|^2\left|X_{t_j} - X_{t_{j-1}}\right|^2
+		\end{align}
+		と分解すれば，$\left|X_{t_k} - X_{t_{k-1}}\right|^2 \leq 2\left( X_{t_k}^2 + X_{t_{k-1}}^2 \right)^2 \leq 2K^2$
+		と(\refeq{eq:chapter_1_lemma_5_9_1})より右辺第一項は
+		\begin{align}
+			E \sum_{k=1}^m \left|X_{t_k} - X_{t_{k-1}}\right|^4
+			\leq 2K^2 E \sum_{k=1}^m \left|X_{t_k} - X_{t_{k-1}}\right|^2
+			= 2K^2 E X_{t_m}^2
+			\leq 2K^4
+		\end{align}
+		となる．また右辺第二項も(\refeq{eq:chapter_1_lemma_5_9_1})より
+		\begin{align}
+			\sum_{i=1}^{m-1} \sum_{j=i+1}^m 
+				E \left|X_{t_i} - X_{t_{i-1}}\right|^2\left|X_{t_j} - X_{t_{j-1}}\right|^2
+			&= \sum_{i=1}^{m-1} \sum_{j=i+1}^m 
+				E \left[ \cexp{\left|X_{t_i} - X_{t_{i-1}}\right|^2 
+				\left|X_{t_j} - X_{t_{j-1}}\right|^2}{\mathscr{F}_{t_j}} \right] \\
+			&= \sum_{i=1}^{m-1} \sum_{j=i+1}^m 
+				E \left[\left|X_{t_i} - X_{t_{i-1}}\right|^2
+				\cexp{\left|X_{t_j} - X_{t_{j-1}}\right|^2}{\mathscr{F}_{t_j}} \right] \\
+			&= \sum_{i=1}^{m-1} \sum_{j=i+1}^m 
+				E \left|X_{t_i} - X_{t_{i-1}}\right|^2 \left( X_{t_j}^2 - X_{t_{j-1}}^2 \right) \\
+			&= \sum_{i=1}^{m-1} E \left|X_{t_i} - X_{t_{i-1}}\right|^2 \left( X_t^2 - X_{t_i}^2 \right) \\
+			&\leq 2K^2 E \sum_{i=1}^{m-1} \left|X_{t_i} - X_{t_{i-1}}\right|^2 \\
+			&\leq 2K^4
+		\end{align}
+		となるから$E\left( V_t^{(2)}(\Pi) \right)^2 \leq 6K^4$が出る．
+		\QED
 	\end{prf}
 	
 	\begin{itembox}[l]{Theorem 5.13 修正}
