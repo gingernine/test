@@ -4,17 +4,18 @@
 			$(X,\mathscr{F})$を可測空間，$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族，
 			$\mu$を$\mathscr{F}$上の複素測度とするとき，次の(1)(2)(3)を満たす写像
 			\begin{align}
-				\mu_{\mathscr{G}}(\cdot\, |\, \cdot):\mathscr{F} \times X \longrightarrow \C
+				\mu(\cdot\, |\, \mathscr{G})(\cdot):
+				\mathscr{F} \times X \ni (A,x) \longmapsto \mu(A\, |\, \mathscr{G})(x) \in \C
 			\end{align}
 			を$\mathscr{G}$の下での$\mu$の正則条件付複素測度
 			(regular conditional complex measure of $\mu$ with respect to $\mathscr{G}$)と呼ぶ:
 			\begin{description}
-				\item[(1)] 任意の$x \in X$で$\mathscr{F} \ni A \longmapsto \mu_{\mathscr{G}}(A\, |\, x)$は複素測度である．
-				\item[(2)] 任意の$A \in \mathscr{F}$で$X \ni x \longmapsto \mu_{\mathscr{G}}(A\, |\, x)$は
+				\item[(1)] 任意の$x \in X$で$\mathscr{F} \ni A \longmapsto \mu(A\, |\, \mathscr{G})(x)$は複素測度である．
+				\item[(2)] 任意の$A \in \mathscr{F}$で$X \ni x \longmapsto \mu(A\, |\, \mathscr{G})(x)$は
 					$\mathscr{G}/\borel{\C}$-可測かつ$|\mu|$-可積分である．
 				\item[(3)] 任意の$A \in \mathscr{F}$と$B \in \mathscr{G}$に対し次を満たす:
 					\begin{align}
-						\mu(A \cap B) = \int_B \mu_{\mathscr{G}}(A\, |\, x)\ |\mu|(dx).
+						\mu(A \cap B) = \int_B \mu(A\, |\, \mathscr{G})\ d|\mu|.
 					\end{align}
 			\end{description}
 		\end{dfn}
@@ -23,32 +24,38 @@
 	\begin{screen}
 		\begin{thm}[正則条件付複素測度の一意性]
 			$(X,\mathscr{F})$を可測空間，$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族，
-			$\mu$を$\mathscr{F}$上の複素測度とする．
-			$\mathscr{F}$が可算乗法族で生成されるなら，
+			$\mu$を$\mathscr{F}$上の複素測度とし，
 			$\mu$に対し$\mathscr{G}$の下での正則条件付複素測度
-			$\mu_{\mathscr{G}},\nu_{\mathscr{G}}$が存在するとき，
+			$\mu(\cdot\, |\, \mathscr{G})(\cdot)$と$\nu(\cdot\, |\, \mathscr{G})(\cdot)$
+			が存在しているとする．このとき，$\mathscr{F}$が可算族で生成されるなら，
 			或る$|\mu|$-零集合$N \in \mathscr{G}$が存在して次が成立する:
 			\begin{align}
-				\mu_{\mathscr{G}}(A\, |\, x) = \nu_{\mathscr{G}}(A\, |\, x),
+				\mu(A\, |\, \mathscr{G})(x) = \nu(A\, |\, \mathscr{G})(x),
 				\quad (\forall A \in \mathscr{F},\ \forall x \in X \backslash N).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\mathscr{F}$を生成する可算乗法族を$\{A_n\}_{n=1}^\infty$と書けば，任意の$A_n$に対し
+		$\mathscr{F}$を生成する可算族を$\mathscr{A}$とし，
 		\begin{align}
-			\int_{B} \mu_{\mathscr{G}}(A_n\, |\, x)\ |\mu|(dx)
-			= \int_{B} \nu_{\mathscr{G}}(A_n\, |\, x)\ |\mu|(dx),
+			\mathscr{U} \coloneqq \Set{\bigcap_{i=1}^n A_i}{A_i \in \mathscr{A},\ n = 1,2,\cdots}
+		\end{align}
+		により可算乗法族を定める．$\mathscr{A}$は$\mathscr{F}$を生成するから
+		$\sgmalg{\mathscr{U}} = \mathscr{F}$となり，
+		任意の$U \in \mathscr{U}$に対し
+		\begin{align}
+			\int_{B} \mu(U\, |\, \mathscr{G})\ d|\mu|
+			= \int_{B} \nu(U\, |\, \mathscr{G})\ d|\mu|,
 			\quad (\forall B \in \mathscr{G})
 		\end{align}
-		が満たされるから$N_n \coloneqq \Set{x \in X}{\mu_{\mathscr{G}}(A_n\, |\, x) \neq \nu_{\mathscr{G}}(A_n\, |\, x)}$
-		は$\mathscr{G}$の$|\mu|$-零集合となる．$N \coloneqq \bigcup_{n=1}^\infty N_n$とおけば
+		が満たされるから$N_U \coloneqq \left\{\mu(U\, |\, \mathscr{G}) \neq \nu(U\, |\, \mathscr{G}) \right\}$
+		は$\mathscr{G}$の$|\mu|$-零集合となる．$N \coloneqq \bigcup_{U \in \mathscr{U}} N_U$とおけば
 		\begin{align}
-			\mathscr{D} \coloneqq \Set{A \in \mathscr{F}}{\mu_{\mathscr{G}}(A\, |\, x) = \nu_{\mathscr{G}}(A\, |\, x),\ 
+			\mathscr{D} \coloneqq \Set{A \in \mathscr{F}}{\mu(A\, |\, \mathscr{G})(x) = \nu(A\, |\, \mathscr{G})(x),\ 
 			\forall x \in X \backslash N}
 		\end{align}
-		によりDynkin族が定まり，$\mathscr{D}$は$\{A_n\}_{n=1}^\infty$を含むから
+		によりDynkin族が定まり，$\mathscr{D}$は$\mathscr{U}$を含むから
 		Dynkin族定理より定理の主張が従う．
 		\QED
 	\end{prf}
