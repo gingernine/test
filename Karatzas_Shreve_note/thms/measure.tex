@@ -228,7 +228,7 @@
 				$X$上の有限加法族となる．
 				また$I \in \mathcal{A}$が$I = \sum_{j=1}^m J_j,\ (J_j \in \mathcal{A},\ m \in \N)$
 				で表されるとき$m(I) = \sum_{j=1}^m m(J_j)$を満たすような
-				写像$m:\mathcal{A} \longrightarrow [0,\infty],\ (m(\emptyset)=0)$が与えられたとき，
+				写像$m:\mathcal{A} \longrightarrow [0,\infty],\ (m(\emptyset)=0)$が与えられれば，
 				\begin{align}
 					\mu(B) \coloneqq \sum_{i=1}^n m(I_i),
 					\quad (B=I_1 + \cdots + I_n \in \mathcal{B})
@@ -286,7 +286,7 @@
 						=  m(I_1) + \cdots + m(I_n) + m(J_1) + \cdots + m(J_m)
 						= \mu(A) + \mu(B)
 					\end{align}
-					となり$\mu$の有限加法性が出る．
+					となり$\mu$の有限加法性が出る．$\mu$は$m$の拡張であるから$\mu(\emptyset) = 0$も従う．
 					\QED
 			\end{description}
 		\end{prf}
@@ -940,13 +940,13 @@
 		\end{prf}
 		
 		上の定理で有限性を外すときの反例を示す．
-		$X = [0,\infty)$，$\mu$を一次元Lebesgue測度の$X$への制限とするとき，
+		$X = \R$，$\mu$を一次元Lebesgue測度とするとき，
 		\begin{align}
-			f_n \coloneqq \defunc_{[n,\infty)}
+			f_n \coloneqq \defunc_{\R \backslash (-n,n)}
 		\end{align}
 		で定める関数列$(f_n)_{n=1}^\infty$は零写像に各点収束するが，$0 < \epsilon < 1$に対し
 		\begin{align}
-			\mu\left( f_n > \epsilon \right) = \mu([n,\infty)) = \infty,
+			\mu\left( f_n > \epsilon \right) = \mu((-\infty,-n] \cup [n,\infty)) = \infty,
 			\quad (\forall n \geq 1)
 		\end{align}
 		を満たすから測度収束しない．
@@ -955,13 +955,13 @@
 			\begin{thm}[測度収束列の概収束部分列]
 				$(X,\mathscr{F},\mu)$を正値測度空間，
 				$(f_n)_{n=1}^\infty,f$を全て$\mathscr{F}/\borel{\C}$-可測関数とするとき，
-				$(f_n)_{n=1}^\infty$は$f$に測度収束するなら
+				$(f_n)_{n=1}^\infty$が$f$に測度収束するなら
 				或る部分列$(f_{n_k})_{k=1}^\infty$は$f$に概収束する．
 			\end{thm}
 		\end{screen}
 		
 		\begin{prf}
-			任意の$k \geq 1$に対し
+			$(f_n)_{n=1}^\infty$が$f$に測度収束するとき，任意の$k \geq 1$に対し
 			\begin{align}
 				\mu\left( |f_{n_k} - f| > \frac{1}{2^k}\right) < \frac{1}{2^k}
 			\end{align}
@@ -977,7 +977,7 @@
 			\end{align}
 			より$\mu(A^c) = 0$が従い，$x \in A$なら或る$k = k(x)$が存在して
 			\begin{align}
-				|f_{n_j} - f| \leq \frac{1}{2^j}, \quad (\forall j > k)
+				|f_{n_j}(x) - f(x)| \leq \frac{1}{2^j}, \quad (\forall j > k)
 			\end{align}
 			となるから$\lim_{k \to \infty} f_{n_k}(x) = f(x)$が満たされる．
 			\QED
@@ -1007,7 +1007,7 @@
 			\QED
 		\end{prf}
 		
-	\subsection{正則Borel測度}
+	\subsection{Radon測度}
 		\begin{screen}
 			\begin{thm}[Riesz-Markov-Kakutaniの表現定理]
 			\end{thm}
