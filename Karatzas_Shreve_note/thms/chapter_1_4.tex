@@ -160,16 +160,9 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{区別不能性によるパスの同値類}
-		$I \subset [0,\infty)$を区間とし，$I$上で右連続な確率過程
-		($s=\sup{}{I} \in I$の場合は$s$での右連続性は考えない)
-		の全体を$RCSP(I)$と書けば，$M = \Set{M_t}{t \in I},N = \Set{N_t}{t \in I} \in RCSP(I)$に対し
-		\begin{align}
-			M \sim N \quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad 
-			P(M_t = N_t,\ \forall t \in I) = 1
-			\label{eq:equivalence_with_respect_to_path}
-		\end{align}
-		により同値関係$\sim$が定まる．ここで
-		右連続性より
+		区間\footnotemark $I \subset [0,\infty)$
+		の上で右連続な確率過程の全体を$RCSP(I)$と書く．また$RCSP([0,\infty))$は$RCSP$と書く．
+		任意の$M = \Set{M_t}{t \in I},N = \Set{N_t}{t \in I} \in RCSP(I)$に対し，
 		\begin{align}
 			\{M_t = N_t,\ \forall t \in I\} = 
 			\begin{cases}
@@ -177,32 +170,47 @@
 				\displaystyle \bigcap_{r \in I \cap \Q}\{M_r = N_r\}, & (\sup{}{I} \notin I)
 			\end{cases}
 		\end{align}
-		となるから$\{M_t = N_t,\ \forall t \in I\}$は可測である．
-		$I = [0,\infty)$なら$RCSP(I) = RCSP$と書く．
+		となるから$\{M_t = N_t,\ \forall t \in I\}$は可測であり，
+		このとき，
+		\begin{align}
+			M \sim N \quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad 
+			P(M_t = N_t,\ \forall t \in I) = 1
+			\label{eq:equivalence_with_respect_to_path}
+		\end{align}
+		により同値関係$\sim$が定まる．
 	\end{itembox}
+	\footnotetext{
+		この場合区間は$[a,b],(a,b),[a,b),(a,b],[a,\infty),(a,\infty),\ (0 \leq a < b < \infty)$のいずれかと考える．
+	}
 	
 	\begin{itembox}[l]{Definition 4.4 修正}
-		An adapted process $A$ is called increasing if \textcolor{red}{for all $\omega \in \Omega$} we have
+		\textcolor{red}{Let $I \subset [0,\infty)$ be an interval.}
+		An adapted process \textcolor{red}{$A = \Set{A_t,\mathscr{F}_t}{t \in I}$} 
+		is called increasing if \textcolor{red}{for all $\omega \in \Omega$} we have
 		\begin{description}
 			\item[(a)] $A_0(\omega) = 0$
 			\item[(b)] $t \longmapsto A_t(\omega)$ is nondecreasing, right-continuous function,
 		\end{description}
-		and $E(A_t) < \infty$ holds for every $t \in [0,\infty)$.
-		An increasing process is called integrable if $E(A_\infty) < \infty$,
-		where $A_\infty = \lim_{t \to \infty} A_t$.
+		and $E(A_t) < \infty$ holds for every \textcolor{red}{$t \in I$}.
+		An increasing process is called integrable if \textcolor{red}{$E\left(A_{\infty}\right) < \infty$,
+		where $A_{\infty} = \lim_{t \to \sup{}{I}} A_t$.
+		Since $A$ is nondecreasing, $A_{\infty} = A_{(\sup{}{I})-}$ if $\sup{}{I} \in I$.}
 	\end{itembox}
 	
 	\begin{itembox}[l]{Definition 4.5 修正}
-		An increasing processs $A$ is called natural if for every bounded, 
-		\textcolor{red}{$RCLL$} martingale $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$ we have
+		\textcolor{red}{Let $I \subset [0,\infty)$ be an interval and $\alpha \coloneqq \inf{}{I}$.}
+		An increasing processs \textcolor{red}{$A = \Set{A_t,\mathscr{F}_t}{t \in I}$} 
+		is called natural if for every bounded, 
+		\textcolor{red}{$RCLL$ martingale $\Set{M_t,\mathscr{F}_t}{t \in I}$} we have
 		\begin{align}
-			E \int_{(0,t]} M_s\ dA_s = E \int_{(0,t]} M_{s-}\ dA_s,
-			\quad \mbox{for every $0 < t < \infty$}.
+			E \int_{(\alpha,t]} M_s\ dA_s = E \int_{(\alpha,t]} M_{s-}\ dA_s,
+			\quad \mbox{for every $t \in (\alpha,\infty) \cap I$}.
 		\end{align}
-		\textcolor{red}{Let us denote the subspace of $RCSP$ as
+		\textcolor{red}{Let us denote the subspace of $RCSP(I)$ as
 		\begin{align}
-			NAT \coloneqq
-			\Set{A \in RCSP}{natural},
+			NAT(I) \coloneqq
+			\Set{A \in RCSP(I)}{\mbox{natural}},
+			\quad NAT \coloneqq NAT([0,\infty))
 		\end{align}
 		and the equivalent class of $A \in NAT$
 		in the meaning of (\refeq{eq:equivalence_with_respect_to_path}) as $[A]_{NAT}\ ( \subset NAT)$.}
@@ -360,9 +368,44 @@
 		If $A$ is an increasing process and $\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$ is a bounded,
 		\textcolor{red}{$RCLL$} martingale, then
 		\begin{align}
-			E(M_t A_t) = E \int_{(0,t]} M_s\ dA_s.
+			E(M_t A_t) = E \int_{(0,t]} M_s\ dA_s, \quad (\forall t > 0).
+			\label{eq:chapter_1_lemma_4_7}
 		\end{align}
 	\end{itembox}
+	
+	\begin{prf}
+		$t_j^{(n)} \coloneqq jt/2^n,\ (j=0,1,\cdots,2^n)$として
+		\begin{align}
+			M^{(n)}_s \coloneqq \sum_{j=1}^{2^n} \defunc_{\left(t^{(n)}_{j-1},t^{(n)}_j\right]}(s) M_{t^{(n)}_j},
+			\quad (\forall s \in (0,t])
+		\end{align}
+		とおけば，$M$のパスの右連続性より任意の$s \in (0,t]$で$\lim_{n \to \infty} M^{(n)}_s = M_s$となる．また
+		\begin{align}
+			E \left[ A_{t^{(n)}_{j-1}} \left( M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}} \right) \right]
+			= E \left[ A_{t^{(n)}_{j-1}} \cexp{M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}}}{\mathscr{F}_{t_{j-1}}} \right]
+			= 0,
+			\quad (j=1,\cdots,2^n)
+		\end{align}
+		が満たされるから任意の$n \geq 1$で
+		\begin{align}
+			E\int_{(0,t]} M^{(n)}_s\ dA_s
+			&= E \sum_{j=1}^{2^n} M_{t^{(n)}_j} \left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right) \\
+			&= E(M_t A_t) - \sum_{j=1}^{2^n} E \left[ A_{t^{(n)}_{j-1}} \left( M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}} \right) \right] \\
+			&= E(M_t A_t)
+		\end{align}
+		が成立する．仮定より$\sup{s \geq 0}{|M_s|} \leq b < \infty$を満たす$b$が存在して
+		\begin{align}
+			\left| \int_{(0,t]} M^{(n)}_s\ dA_s \right| \leq b (A_t - A_0) = b A_t,
+			\quad (\forall n \geq 1)
+		\end{align}
+		となり，$A_t$の可積分性とLebesgueの収束定理より
+		\begin{align}
+			\lim_{n \to \infty} E \int_{(0,t]} M^{(n)}_s\ dA_s = E \lim_{n \to \infty} \int_{(0,t]} M^{(n)}_s\ dA_s
+			= E \int_{(0,t]} M_s\ dA_s 
+		\end{align}
+		が従い(\refeq{eq:chapter_1_lemma_4_7})を得る．
+		\QED
+	\end{prf}
 	
 	\begin{itembox}[l]{Definition 4.8 修正}
 		Let us consider the class $\mathscr{S}(\mathscr{S}_a)$ such as
@@ -504,15 +547,16 @@
 	\end{prf}
 	
 	\begin{itembox}[l]{Lemma for theorem 4.10}\label{lem:uniqueness_of_Doob_Meyer_decomposition}
-		Let $M = \Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a right-continuous martingale,
-		where the filtration $(\mathscr{F}_t)$ is not necessarily usual.
+		Let $I \subset [0,\infty)$ be an interval and 
+		$\Set{M_t,\mathscr{F}_t}{t \in I}$ be a right-continuous martingale,
+		where the filtration $(\mathscr{F}_t)_{t \in I}$ is not necessarily usual.
 		If $M$ is a difference of two natural processes 
-		$A = \Set{A_t,\mathscr{F}_t}{0 \leq t < \infty}$
-		and $B = \Set{B_t,\mathscr{F}_t}{0 \leq t < \infty}$, namely
+		$\Set{A_t,\mathscr{F}_t}{t \in I}$
+		and $\Set{B_t,\mathscr{F}_t}{t \in I}$, namely
 		\begin{align}
-			M_t = A_t - B_t; \quad \forall t \geq 0,
+			M_t = A_t - B_t; \quad \forall t \in I,
 		\end{align}
-		then $P\Set{M_t = 0}{0 \leq \forall t < \infty} = 1$.
+		then $P\Set{M_t = 0}{\forall t \in I} = 1$.
 	\end{itembox}
 	
 	\begin{prf}
@@ -583,7 +627,7 @@
 		and $A$ is integrable.	
 	\end{itembox}
 	
-	\begin{prf}[未修正] \mbox{}
+	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
 				$[A]_{NAT}$の一意性を示す．二つの右連続マルチンゲール$M,M'$とナチュラルな$A,A'$により
@@ -608,7 +652,7 @@
 				\begin{align}
 					M^n_t + A^n_t = M^m_t + A^m_t, \quad (t \in [0,n])
 				\end{align}
-				となり，前段の結果より或る$P$-零集合$E_{n,m}$が存在して，任意の$\omega \in \Omega \backslash E_{n,m}$に対して
+				となり，Lemmaより或る$P$-零集合$E_{n,m}$が存在して，任意の$\omega \in \Omega \backslash E_{n,m}$に対して
 				\begin{align}
 					A^n_t(\omega) = A^m_t(\omega), \quad (\forall t \in [0,n])
 				\end{align}
