@@ -172,7 +172,7 @@
 				\end{align}
 				となり(\refeq{eq:chapter_1_lemma_5_10_1})が出る．
 				$\mbox{(左辺)} \leq 2K$より$m_t(X;\delta)$は$\mathscr{F}/\borel{\R}$-可測である．
-				また定理\ref{thm:exponentiation_of_supremum_supremum_of_exponentiation}より任意の$a \geq 0$で
+				また定理\ref{thm:exponentiation_of_supremum_supremum_of_exponentiation}より任意の$a > 0$で
 				\begin{align}
 					m_t^a(X;\delta) 
 					\coloneqq \sup{}{\Set{|X_p(\omega) - X_q(\omega)|^a}{p,q \in Q \cap [0,t],\ |q-p| < \delta}}
@@ -182,7 +182,7 @@
 			\item[第二段]
 				H\Ddot{o}lderの不等式より，任意の$\Pi$に対し
 				\begin{align}
-					E V_t^{(4)}(\Pi) \leq E V_t^{(2)}(\Pi) m_t^2(X;\Norm{\Pi}{})
+					E V_t^{(4)}(\Pi) \leq E\left[ V_t^{(2)}(\Pi) \cdot m_t^2(X;\Norm{\Pi}{}) \right]
 					\leq \left\{ E \left(V_t^{(2)}(\Pi)\right)^2 \right\}^{1/2}
 						\left\{ E m_t^4(X;\Norm{\Pi}{}) \right\}^{1/2}
 					\leq \sqrt{6} K^2 \left\{ E m_t^4(X;\Norm{\Pi}{}) \right\}^{1/2}
@@ -229,15 +229,69 @@
 				\begin{align}
 					T_n \leq T_{n+1}, \quad (\forall n \geq 1)
 				\end{align}
-				が成立し，また任意の$K > 0$に対し$\sup{t \in [0,K]}{|X_t(\omega)| \vee \inprod<X>_t(\omega)} < N$となる
-				自然数を取れば$T_N(\omega) > K$となり
+				が成立し，また任意の$K > 0$に対し$\sup{t \in [0,K]}{|X_t(\omega)| \vee \inprod<X>_t(\omega)} < N$を満たす
+				$N \in \N$を取れば$T_N(\omega) > K$となり
 				\begin{align}
 					\lim_{n \to \infty} T_n(\omega) = \infty, \quad (\forall \omega \in \Omega)
+					\label{eq:chapter_1_theorem_5_8_1}
 				\end{align}
-				が従う．また$t \leq T_n(\omega)$なら$|X_t(\omega)| \vee \inprod<X>_t(\omega) \leq n$である．
+				が従う．
 				
 			\item[第二段]
-				
+				$X^{(n)}$を$X^{(n)}_t \coloneqq X_{t \wedge T_n},\ (\forall t \geq 0)$で定めて，
+				$[0,t]$の分割$\Pi = \{t_0,t_1,\cdots,t_m\}$に対し
+				\begin{align}
+					V^{(2,n)}_t(\Pi) \coloneqq \sum_{k=1}^m \left|X^{(n)}_{t_k} - X^{(n)}_{t_{k-1}}\right|^2
+				\end{align}
+				とおけば，$\{t \leq T_n\}$の上で$X_t = X^{(n)}_t$となるから
+				\begin{align}
+					V^{(2,n)}_t(\Pi)(\omega) = V^{(2)}_t(\Pi)(\omega),
+					\quad \left(\forall \omega \in \{t \leq T_n\}\right)
+					\label{eq:chapter_1_theorem_5_8_2}
+				\end{align}
+				が成り立つ．$\left|X_{t \wedge T_n}\right| \vee \inprod<X>_{t \wedge T_n} \leq n$であるから，
+				Lemma 5.10 と$\inprod<X^{(n)}>$の連続性により
+				\begin{align}
+					E \left| V_t^{(2,n)}(\Pi) - \inprod<X^{(n)}>_t \right|^2
+					&= E \left[ \sum_{k=1}^m \left\{\left|X^{(n)}_{t_k} - X^{(n)}_{t_{k-1}}\right|^2 
+						- \left(\inprod<X^{(n)}>_{t_k} - \inprod<X^{(n)}>_{t_{k-1}}\right)\right\} \right]^2 \\
+					&= E \sum_{k=1}^m \left\{ \left|X^{(n)}_{t_k} - X^{(n)}_{t_{k-1}}\right|^2 
+						- \left(\inprod<X^{(n)}>_{t_k} - \inprod<X^{(n)}>_{t_{k-1}}\right) \right\}^2 \\
+					&\leq 2 E \sum_{k=1}^m \left|X^{(n)}_{t_k} - X^{(n)}_{t_{k-1}}\right|^4
+						+ 2 E \left(\inprod<X^{(n)}>_{t_k} - \inprod<X^{(n)}>_{t_{k-1}}\right)^2 \\
+					&\leq 2 E V_t^{(4,n)}(\Pi) 
+						+ 2 n E \left[ m_t\left(\inprod<X^{(n)}>;\Norm{\Pi}{}\right) \right] \\
+					&\longrightarrow 0,\quad (\Norm{\Pi}{} \longrightarrow 0)
+				\end{align}
+				が得られる．
+			
+			\item[第三段]
+				任意に$\epsilon > 0$と$\eta > 0$を取る．(\refeq{eq:chapter_1_theorem_5_8_2})より任意の$n \geq 1$で
+				\begin{align}
+					P\left(\left|V_t^{(2)}(\Pi) - \inprod<X>_t\right| > \epsilon\right)
+					&= P\left(\left\{\left|V_t^{(2)}(\Pi) - \inprod<X>_t\right| > \epsilon\right\} \cap \{t > T_n\}\right)
+						+ P\left(\left\{\left|V_t^{(2,n)}(\Pi) - \inprod<X^{(n)}>_t\right| > \epsilon\right\} \cap \{t \leq T_n\}\right) \\
+					&\leq P(t > T_n) + P\left(\left|V_t^{(2,n)}(\Pi) - \inprod<X^{(n)}>_t\right| > \epsilon\right)
+				\end{align}
+				が成立し，このとき(\refeq{eq:chapter_1_theorem_5_8_1})より或る$N \geq 1$が存在して
+				\begin{align}
+					P(t > T_n) < \frac{\eta}{2},\quad (\forall n \geq N)
+				\end{align}
+				となり，第二段の結果より或る$\delta > 0$が存在して$\Norm{\Pi}{} < \delta$なら
+				\begin{align}
+					P\left(\left|V_t^{(2,N)}(\Pi) - \inprod<X^{(N)}>_t\right| > \epsilon\right)
+					\leq \frac{1}{\epsilon} E\left|V_t^{(2,N)}(\Pi) - \inprod<X^{(N)}>_t\right|
+					\leq \frac{1}{\epsilon} \left\{E\left|V_t^{(2,N)}(\Pi) - \inprod<X^{(N)}>_t\right|^2 \right\}^{1/2}
+					< \frac{\eta}{2}
+				\end{align}
+				が満たされるから
+				\begin{align}
+					\Norm{\Pi}{} < \delta
+					\quad \Longrightarrow \quad 
+					P\left(\left|V_t^{(2)}(\Pi) - \inprod<X>_t\right| > \epsilon\right) < \eta
+				\end{align}
+				が従う．
+				\QED
 		\end{description}
 	\end{prf}
 	
