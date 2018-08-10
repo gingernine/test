@@ -215,6 +215,32 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
+				$X^2 - \inprod<X>$のマルチンゲール性より任意の$0 \leq s < t < \infty$に対して
+				\begin{align}
+					\cexp{(X_t - X_s)^2 - (\inprod<X>_t - \inprod<X>_s)}{\mathscr{F}_s}
+					&= \cexp{(X_t - X_s)^2}{\mathscr{F}_s} - \cexp{\inprod<X>_t - \inprod<X>_s}{\mathscr{F}_s} \\
+					&= \cexp{X_t^2 - X_s^2}{\mathscr{F}_s} - \cexp{\inprod<X>_t - \inprod<X>_s}{\mathscr{F}_s} \\
+					&= 0,
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				となる．従って，任意の$0 \leq u < v \leq s < t < \infty$に対し
+				\begin{align}
+					E\left|(X_v - X_u)^2 - (\inprod<X>_v - \inprod<X>_u)\right|
+					\left|(X_t - X_s)^2 - (\inprod<X>_t - \inprod<X>_s)\right| < \infty
+				\end{align}
+				であれば
+				\begin{align}
+					&E \left[\left\{(X_v - X_u)^2 - (\inprod<X>_v - \inprod<X>_u)\right\}
+						\left\{(X_t - X_s)^2 - (\inprod<X>_t - \inprod<X>_s)\right\}\right] \\
+					&= E \left[\cexp{\left\{(X_v - X_u)^2 - (\inprod<X>_v - \inprod<X>_u)\right\}
+						\left\{(X_t - X_s)^2 - (\inprod<X>_t - \inprod<X>_s)\right\}}{\mathscr{F}_s} \right] \\
+					&= E \left[\left\{(X_v - X_u)^2 - (\inprod<X>_v - \inprod<X>_u)\right\}
+						\cexp{\left\{(X_t - X_s)^2 - (\inprod<X>_t - \inprod<X>_s)\right\}}{\mathscr{F}_s} \right] \\
+					&= 0
+				\end{align}
+				が成立する．
+				
+			\item[第二段]
 				$|X|$及び$\inprod<X>$のパスは全て連続であるから，Problem 2.7より
 				\begin{align}
 					T_n \coloneqq \inf{}{\Set{t \geq 0}{|X_t| \vee \inprod<X>_t \geq n}}
@@ -237,7 +263,7 @@
 				\end{align}
 				が従う．
 				
-			\item[第二段]
+			\item[第三段]
 				$X^{(n)}$を$X^{(n)}_t \coloneqq X_{t \wedge T_n},\ (\forall t \geq 0)$で定めて，
 				$[0,t]$の分割$\Pi = \{t_0,t_1,\cdots,t_m\}$に対し
 				\begin{align}
@@ -250,7 +276,7 @@
 					\label{eq:chapter_1_theorem_5_8_2}
 				\end{align}
 				が成り立つ．$\left|X_{t \wedge T_n}\right| \vee \inprod<X>_{t \wedge T_n} \leq n$であるから，
-				Lemma 5.10 と$\inprod<X^{(n)}>$の連続性により
+				Lemma 5.10 と第一段の結果及び$\inprod<X^{(n)}>$の連続性により
 				\begin{align}
 					E \left| V_t^{(2,n)}(\Pi) - \inprod<X^{(n)}>_t \right|^2
 					&= E \left[ \sum_{k=1}^m \left\{\left|X^{(n)}_{t_k} - X^{(n)}_{t_{k-1}}\right|^2 
@@ -265,7 +291,7 @@
 				\end{align}
 				が得られる．
 			
-			\item[第三段]
+			\item[第四段]
 				任意に$\epsilon > 0$と$\eta > 0$を取る．(\refeq{eq:chapter_1_theorem_5_8_2})より任意の$n \geq 1$で
 				\begin{align}
 					P\left(\left|V_t^{(2)}(\Pi) - \inprod<X>_t\right| > \epsilon\right)
@@ -277,7 +303,7 @@
 				\begin{align}
 					P(t > T_n) < \frac{\eta}{2},\quad (\forall n \geq N)
 				\end{align}
-				となり，第二段の結果より或る$\delta > 0$が存在して$\Norm{\Pi}{} < \delta$なら
+				となり，前段の結果より或る$\delta > 0$が存在して$\Norm{\Pi}{} < \delta$なら
 				\begin{align}
 					P\left(\left|V_t^{(2,N)}(\Pi) - \inprod<X^{(N)}>_t\right| > \epsilon\right)
 					\leq \frac{1}{\epsilon} E\left|V_t^{(2,N)}(\Pi) - \inprod<X^{(N)}>_t\right|
