@@ -22,7 +22,7 @@
 		to be natural increasing and continuous process.}
 	\end{itembox}
 	
-	\begin{itembox}[l]{Problem 5.7}
+	\begin{itembox}[l]{Problem 5.7 修正}
 		Show that $\inprod<\cdot,\cdot>$ is a bilinear form on $\mathscr{M}_2$, i.e.,
 		for any members $X,Y,Z$ of $\mathscr{M}_2$ and real numbers $\alpha,\beta$, we have
 		\begin{description}
@@ -39,6 +39,12 @@
 				\end{align}
 				where $\check{\xi}_t$ denotes the total variation of 
 				$\check{\xi} \coloneqq \inprod<X,Y>$ on $[0,t]$.
+				
+			\item[(v)] For any stopping time $T$ of $(\mathscr{F}_t)_{t \geq 0}$, we have 
+				\begin{align}
+					P \left( \inprod<X>_{t \wedge T} = \inprod<X^T>_t,\ \forall 0 \leq t < \infty \right) = 1,
+				\end{align}
+				where $X^T_t \coloneqq X_{t \wedge T},\ (\forall t \geq 0)$.
 		\end{description}
 	\end{itembox}
 	
@@ -136,33 +142,40 @@
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{Lemma 5.10}
+		Let $X \in \mathscr{M}_2^c$ satisfy $|X_s| \leq K < \infty$ for all $s \in [0,t]$, a.s. $P$.
+		For partitions $\Pi$ of $[0,t]$, we have
+		\begin{align}
+			\lim_{\Norm{\Pi}{} \to 0} E V_t^{(4)}(\Pi) = 0.
+		\end{align}
+	\end{itembox}
+	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段] 
 				任意の$\omega \in \Omega$と$\delta > 0$に対し
 				\begin{align}
 					&\sup{}{\Set{|X_r(\omega) - X_s(\omega|}{s,r \in [0,t],\ |s-r| < \delta}} \\
-					&\qquad = \sup{}{\Set{|X_p(\omega) - X_q(\omega)|}{p,q \in (Q \cap [0,t]) \cup \{t\},\ |q-p| < \delta}}
+					&\qquad = \sup{}{\Set{|X_p(\omega) - X_q(\omega)|}{p,q \in Q \cap [0,t],\ |q-p| < \delta}}
 					\label{eq:chapter_1_lemma_5_10_1}
 				\end{align}
-				が成立する．実際任意の$\mbox{(左辺)} > \alpha > 0$に対し
+				が成立する．実際，上限を取る範囲の大小関係より$\mbox{(左辺)} \geq \mbox{(右辺)}$が成り立ち，
+				一方で任意の$\mbox{(左辺)} > \alpha > 0$に対し
 				$|X_r(\omega) - X_s(\omega)| > \alpha$を満たす$s,r \in [0,t],\ (|s-r| < \delta)$を取れば，
+				$X$のパスの連続性より
 				\begin{align}
 					|X_r(\omega) - X_p(\omega)|,\ |X_s(\omega) - X_q(\omega)| < \frac{\beta-\alpha}{2}
 				\end{align}
-				を満たす$p,q \in (\Q \cap [0,t]) \cup \{t\},\ (|p-q| < \delta)$が$X$の連続性より存在して
+				を満たす$p,q \in \Q \cap [0,t],\ (|p-q| < \delta)$が存在して
 				\begin{align}
 					|X_p(\omega) - X_q(\omega)| \geq |X_r(\omega) - X_s(\omega) | - |X_r(\omega) - X_p(\omega)| - |X_q(\omega) - X_s(\omega)| > \alpha
 				\end{align}
-				となるから(\refeq{eq:chapter_1_lemma_5_10_1})が得られる．
-				$RCLL$より$\mbox{(左辺)} \in \R$となるから
+				となり(\refeq{eq:chapter_1_lemma_5_10_1})が出る．
+				$\mbox{(左辺)} \leq 2K$より$m_t(X;\delta)$は$\mathscr{F}/\borel{\R}$-可測である．
+				また定理\ref{thm:exponentiation_of_supremum_supremum_of_exponentiation}より任意の$a \geq 0$で
 				\begin{align}
-					m_t(X;\delta) \coloneqq \sup{}{\Set{|X_r - X_s|}{s,r \in [0,t],\ |s-r| < \delta}}
-				\end{align}
-				は$\mathscr{F}/\borel{\R}$-可測である．
-				また定理より任意の$a \geq 0$で
-				\begin{align}
-					m_t^a(X;\delta) \coloneqq \sup{}{\Set{|X_r - X_s|^a}{s,r \in [0,t],\ |s-r| < \delta}}
+					m_t^a(X;\delta) 
+					\coloneqq \sup{}{\Set{|X_p(\omega) - X_q(\omega)|^a}{p,q \in Q \cap [0,t],\ |q-p| < \delta}}
 				\end{align}
 				が満たされる．
 				
@@ -182,11 +195,49 @@
 				\end{align}
 				が成り立つから，Lebesgueの収束定理より
 				\begin{align}
-					E m_t^4(X;\Norm{\Pi_n}{}) \longrightarrow 0,\ (n \longrightarrow \infty)
+					E m_t^4(X;\Norm{\Pi_n}{}) \longrightarrow 0\quad (n \longrightarrow \infty)
 				\end{align}
-				が従い$E V_t^{(4)}(\Pi_n) \longrightarrow 0,\ (n \longrightarrow \infty)$となる．
+				が従い$E V_t^{(4)}(\Pi_n) \longrightarrow 0\ (n \longrightarrow \infty)$となる．
 				$(\Pi_n)_{n=1}^\infty$の任意性より補題の主張が得られる．
 				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{Theorem 5.8}
+		Let $X$ be in $\mathscr{M}_2^c$. For partitions $\Pi$ of $[0,t]$, we have
+		$\lim_{\Norm{\Pi}{} \to 0} V_t^{(2)} = \inprod<X>_t$ (in probability); i.e.,
+		for every $\epsilon > 0,\ \eta > 0$ there exists $\delta > 0$ such that $\Norm{\Pi}{} < \delta$ implies
+		\begin{align}
+			P\left[ \left| V_t^{(2)}(\Pi) - \inprod<X>_t \right| > \epsilon \right] < \eta.
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$|X|$及び$\inprod<X>$のパスは全て連続であるから，Problem 2.7より
+				\begin{align}
+					T_n \coloneqq \inf{}{\Set{t \geq 0}{|X_t| \vee \inprod<X>_t \geq n}}
+				\end{align}
+				で$(\mathscr{F}_t)$-停止時刻の列$(T_n)_{n=1}^\infty$が定まる．
+				このとき任意の$\omega \in \Omega$で
+				\begin{align}
+					\Set{t \geq 0}{|X_t(\omega)| \vee \inprod<X>_t(\omega) \geq n+1}
+					\subset \Set{t \geq 0}{|X_t(\omega)| \vee \inprod<X>_t(\omega) \geq n}
+				\end{align}
+				となるから
+				\begin{align}
+					T_n \leq T_{n+1}, \quad (\forall n \geq 1)
+				\end{align}
+				が成立し，また任意の$K > 0$に対し$\sup{t \in [0,K]}{|X_t(\omega)| \vee \inprod<X>_t(\omega)} < N$となる
+				自然数を取れば$T_N(\omega) > K$となり
+				\begin{align}
+					\lim_{n \to \infty} T_n(\omega) = \infty, \quad (\forall \omega \in \Omega)
+				\end{align}
+				が従う．また$t \leq T_n(\omega)$なら$|X_t(\omega)| \vee \inprod<X>_t(\omega) \leq n$である．
+				
+			\item[第二段]
+				
 		\end{description}
 	\end{prf}
 	
