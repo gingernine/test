@@ -292,6 +292,36 @@
 		\end{prf}
 		
 		\begin{screen}
+			\begin{dfn}[外測度]
+				$X$の冪集合$\mathcal{P}(X)$の上で定義される$[0,\infty]$-値写像$\mu$が
+				\begin{description}
+					\item[(O1)] $\mu(\emptyset) = 0,\quad 0 \leq \mu(A) \leq \infty,\ (\forall A \subset X)$,
+					\item[(O2)] $A \subset B \quad \Longrightarrow \quad \mu(A) \leq \mu(B)$,
+					\item[(O3)] $\mu\left( \bigcup_{n=1}^\infty A_n \right) \leq \sum_{n=1}^\infty \mu(A_n),\ (A_n \subset X,\ n=1,2,\cdots)$
+				\end{description}
+				を満たすとき，$\mu$を$X$の外測度(outer measure)と呼ぶ．また$A \subset X$が
+				\begin{align}
+					\mu(W) = \mu(A \cap W) + \mu(A^c \cap W), \quad (\forall W \in \mathcal{P}(X))
+				\end{align}
+				を満たすとき$A$は$\mu$-可測集合であるという．
+			\end{dfn}
+		\end{screen}
+		
+		\begin{screen}
+			\begin{thm}[Caratheodoryの拡張定理]
+				$\mu$を集合$X$の外測度とし，$\mathcal{B}^*$を$\mu$-可測集合の全体とする．
+				このとき$\mathcal{B}^*$は$\sigma$-加法族であり
+				$\mu^* \coloneqq \left. \mu \right|_{\mathcal{B}^*}$は測度となる．
+			\end{thm}
+		\end{screen}
+		
+		\begin{screen}
+			\begin{thm}[有限加法的な正値測度により定まる外測度]
+				
+			\end{thm}
+		\end{screen}
+		
+		\begin{screen}
 			\begin{thm}[完全加法性の同値条件]\label{thm:equivalent_conditions_of_countable_additivity}
 				$\mathcal{B}$を集合$X$の上の有限加法族，
 				$\mu$を$\mathcal{B}$上の有限加法的な正値測度として
@@ -381,17 +411,11 @@
 			\begin{align}
 				\bigcap_{n=1}^\infty K_n \subset \bigcap_{n=1}^\infty B_n = \emptyset
 			\end{align}
-			となるから或る$N \geq 1$が存在して
+			より或る$N \geq 1$が存在して$\bigcap_{n=1}^N A_n \subset \bigcap_{n=1}^N K_n = \emptyset$
+			が成立し，任意の$m \geq N$で$B_m \subset \bigcup_{n=1}^N (B_n \cap A_n^c)$となるから
 			\begin{align}
-				\bigcap_{n=1}^N A_n \subset \bigcap_{n=1}^N K_n = \emptyset
-			\end{align}
-			が成立し，任意の$m \geq N$に対して
-			\begin{align}
-				B_m \subset \bigcup_{n=1}^N (B_n \cap A_n^c)
-			\end{align}
-			より
-			\begin{align}
-				\mu(B_m) \leq \sum_{n=1}^N \mu(B_n \cap A_n^c) < \epsilon
+				\mu(B_m) \leq \sum_{n=1}^N \mu(B_n \cap A_n^c) < \epsilon,
+				\quad (\forall m \geq N)
 			\end{align}
 			が従う．
 			\QED

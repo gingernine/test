@@ -652,7 +652,7 @@
 				\begin{align}
 					M^n_t + A^n_t = M^m_t + A^m_t, \quad (t \in [0,n])
 				\end{align}
-				となり，Lemmaより或る$P$-零集合$E_{n,m}$が存在して，任意の$\omega \in \Omega \backslash E_{n,m}$に対して
+				となり，Lemmaより或る$P$-零集合$E_{n,m}$が存在して，任意の$\omega \in \Omega \backslash E_{n,m}$で
 				\begin{align}
 					A^n_t(\omega) = A^m_t(\omega), \quad (\forall t \in [0,n])
 				\end{align}
@@ -671,17 +671,18 @@
 					A_t \coloneqq  \lim_{n \to \infty} A^n_t \defunc_{\Omega \backslash E},
 					\quad (\forall t \geq 0)
 				\end{align}
-				で$A_t$を定めれば$A_t$は$\mathscr{F}_t/\borel{\R}$-可測かつ可積分となる．また
-				任意の$\omega \in \Omega$と$n \geq 1$に対し
+				で$A_t$を定めれば$A_t$は$\mathscr{F}_t/\borel{\R}$-可測となる．また
+				任意の$n \geq 1$で
 				\begin{align}
-					A_t(\omega) = A^n_t(\omega) \defunc_{\Omega \backslash E}, \quad (\forall t \in [0,n))
+					A_t = A^n_t \defunc_{\Omega \backslash E}, \quad (\forall t \in [0,n))
 				\end{align}
-				が成り立つから$[0,\infty) \ni t \longmapsto A_t(\omega)$は右連続かつ非減少である．
+				が成り立つから$A_t$は可積分であり，$[0,\infty) \ni t \longmapsto A_t(\omega)$は右連続かつ非減少である．
 				$\Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$を有界$RCLL$マルチンゲールとすれば
 				任意の$t > 0$で
 				\begin{align}
 					E \int_{(0,t]} \xi_s\ dA_s = E \int_{(0,t]} \xi_s\ dA^n_s 
-					= E \int_{(0,t]} \xi_{s-}\ dA^n_s = E \int_{(0,t]} \xi_{s-}\ dA_s
+					= E \int_{(0,t]} \xi_{s-}\ dA^n_s = E \int_{(0,t]} \xi_{s-}\ dA_s,
+					\quad (t < n)
 				\end{align}
 				が成立する．
 				\begin{align}
@@ -697,7 +698,11 @@
 				となるから$\cexp{M_t}{\mathscr{F}_s} = M_s\ \mbox{a.s. $P$}$が満たされる．
 			
 			\item[第三段]
-				以下，$a > 0$として$[0,a]$上で分解の存在を示す．
+				以下，$a \in (0,\infty]$として$[0,a]$
+				\footnote{
+					$X_\infty$が定義され
+					$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$がマルチンゲールの場合に$a=\infty$とする．
+				}上で分解の存在を示す．
 				\begin{align}
 					Y_t \coloneqq X_t - \cexp{X_a}{\mathscr{F}_t},
 					\quad (t \in [0,a])
@@ -705,15 +710,15 @@
 				とおけば$\Set{Y_t,\mathscr{F}_t}{0 \leq t \leq a}$は劣マルチンゲールであり，
 				\begin{align}
 					\Set{Y_{t^{(n)}_j},\mathscr{F}_{t^{(n)}_j}}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
-					\quad n=1,2,\cdots
+					\quad n=1,2,\cdots,
+					\quad (\mbox{$a = \infty$の場合は$t^{(n)}_j = j/2^n$},\ j \in \N_0)
 				\end{align}
 				で離散化すれば，Doob分解の補題 (P. \pageref{lem:Doob_decomposition})より
 				\begin{align}
-					A^{(n)}_0 \coloneqq 0,
+					&A^{(n)}_0 \coloneqq 0,
 					\quad A^{(n)}_{t^{(n)}_j} \coloneqq \sum_{k=0}^{j-1} \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}},
-					\ (k=1,\cdots,2^n);
-					\quad M^{(n)}_{t^{(n)}_j} \coloneqq Y_{t^{(n)}_j} - A^{(n)}_{t^{(n)}_j},
-					\ (k=0,1,\cdots,2^n)
+					\ A^{(n)}_\infty \coloneqq \sum_{k=0}^\infty \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}}; \\
+					&M^{(n)}_{t^{(n)}_j} \coloneqq Y_{t^{(n)}_j} - A^{(n)}_{t^{(n)}_j}
 				\end{align}
 				により可予測な増大過程$A^{(n)}$とマルチンゲール$M^{(n)}$に分解され，
 				$Y_a = 0\ \mbox{a.s. $P$}$であるから
@@ -727,9 +732,31 @@
 				となる．
 				
 			\item[第四段]
-				$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分であることを示す．
+				$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分であることを示す．任意に$\lambda > 0$を取り
 				\begin{align}
-					f
+					T_\lambda^{(n)} \coloneqq
+					\begin{cases}
+						a \wedge \min{}{\Set{t^{(n)}_{j-1}}{A^{(n)}_{t^{(n)}_j} > \lambda \mbox{ for some } j,\ 1 \leq j \leq 2^n}}, & (a < \infty), \\
+						\min{}{\Set{t^{(n)}_{j-1}}{A^{(n)}_{t^{(n)}_j} > \lambda \mbox{ for some } j,\ 1 \leq j < \infty}}, & (a=\infty)
+					\end{cases}
+				\end{align}
+				とおけば，任意の$t \leq 0$で
+				\begin{align}
+					\left\{ T_\lambda^{(n)} \leq t \right\}
+					= \bigcup_{j\, :\, t^{(n)}_{j-1} \leq t} \left\{ T_\lambda^{(n)} = t^{(n)}_{j-1} \right\}
+					= \bigcup_{j\, :\, t^{(n)}_{j-1} \leq t}
+						\left[ \bigcap_{k=0}^{j-1} \left\{ A^{(n)}_{t^{(n)}_k} \leq \lambda \right\} \right] 
+						\cap \left\{ A^{(n)}_{t^{(n)}_j} > \lambda \right\}
+					\in \mathscr{F}_{t^{(n)}_j}
+				\end{align}
+				となるから$T_\lambda^{(n)}$は$(\mathscr{F}_t)$-停止時刻である．また
+				\begin{align}
+					N \coloneqq \bigcup_{j=1}^{2^n} \left\{ \cexp{Y_{t^{(n)}_k} - Y_{t^{(n)}_{k-1}}}{\mathscr{F}_{t^{(n)}_{k-1}}} < 0 \right\}
+				\end{align}
+				により$P$-零集合を定めれば，$\Omega \backslash N$の上で
+				$A^{(n)}_0 \leq A^{(n)}_{t^{(n)}_1} \leq \cdots \leq A^{(n)}_a$となるから
+				\begin{align}
+					s
 				\end{align}
 				
 			\item[第五段]
