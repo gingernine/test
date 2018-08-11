@@ -560,31 +560,33 @@
 	\end{itembox}
 	
 	\begin{prf}
-		仮定より$M$はパスが有界変動なマルチンゲールである．いま任意に$a > 0$を取り
+		$a_0 \coloneqq \inf{}{I}$として任意に$a \in I \cap (a_0,\infty)$を取り，
 		\begin{align}
-			\Pi_n \coloneqq \Set{t^{(n)}_j \coloneqq \frac{j}{2^n}a}{j=0,1,\cdots,2^n}
+			t^{(n)}_j \coloneqq a_0 + \frac{j}{2^n}(a-a_0), \quad (j=0,1,\cdots,2^n)
 		\end{align}
-		として，任意の有界かつ$RCLL$なマルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t < \infty}$に対し
+		とおく．任意の有界かつ$RCLL$なマルチンゲール$\xi = \Set{\xi_t,\mathscr{F}_t}{t \in I}$に対し
 		\begin{align}
 			\xi^{(n)}_t \coloneqq \sum_{j=1}^{2^n} \defunc_{\left(t_{j-1}^{(n)},t_j^{(n)}\right]}(t)\ \xi_{t^{(n)}_{j-1}},
-			\quad (\forall t \in [0,a])
+			\quad (\forall t \in (a_0,a])
 		\end{align}
-		とおけば，任意の$\omega \in \Omega$で
+		とおけば，任意の$\omega \in \Omega$と$t \in (a_0,a]$で
 		\begin{align}
-			\lim_{n \to \infty} \xi^{(n)}_t(\omega) = \xi_{t-}(\omega),\ \forall t \in (0,a]
+			\lim_{n \to \infty} \xi^{(n)}_t(\omega) = \xi_{t-}(\omega)
 		\end{align}
 		が満たされるからLebesgueの収束定理より
 		\begin{align}
-			&\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t(\omega)\ dA_t(\omega) = \int_{(0,a]} \xi_{t-}(\omega)\ dA_t(\omega), \\
-			&\lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t(\omega)\ dB_t(\omega) = \int_{(0,a]} \xi_{t-}(\omega)\ dB_t(\omega)
+			&\lim_{n \to \infty} \int_{(a_0,a]} \xi^{(n)}_t(\omega)\ dA_t(\omega) 
+				= \int_{(a_0,a]} \xi_{t-}(\omega)\ dA_t(\omega), \\
+			&\lim_{n \to \infty} \int_{(a_0,a]} \xi^{(n)}_t(\omega)\ dB_t(\omega) 
+				= \int_{(a_0,a]} \xi_{t-}(\omega)\ dB_t(\omega)
 		\end{align}
 		が成立する．また$A_a,B_a$の可積性と$\xi$の有界性により，再びLebesgueの収束定理を適用すれば
 		\begin{align}
 			E\left[ \xi_a\left( A_a - B_a \right) \right]
 			&= E\left[ \xi_a A_a \right] -  E\left[ \xi_a B_a \right]
-			= E \int_{(0,a]} \xi_{t-}\ dA_t - E\int_{(0,a]} \xi_{t-}\ dB_t \\
-			&= E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t\ dA_t \right]
-				- E \left[ \lim_{n \to \infty} \int_{(0,a]} \xi^{(n)}_t\ dB_t \right] \\
+			= E \int_{(a_0,a]} \xi_{t-}\ dA_t - E\int_{(a_0,a]} \xi_{t-}\ dB_t \\
+			&= E \left[ \lim_{n \to \infty} \int_{(a_0,a]} \xi^{(n)}_t\ dA_t \right]
+				- E \left[ \lim_{n \to \infty} \int_{(a_0,a]} \xi^{(n)}_t\ dB_t \right] \\
 			&= \lim_{n \to \infty} E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n)}_{j-1}}\left( A_{t^{(n)}_j} - A_{t^{(n)}_{j-1}} \right) \right]
 				-  \lim_{n \to \infty} E \left[ \sum_{j=1}^{2^n}\xi_{t^{(n)}_{j-1}}\left( B_{t^{(n)}_j} - B_{t^{(n)}_{j-1}} \right) \right] \\
 			&= \lim_{n \to \infty} E \left[ \sum_{j=1}^{2^n}\xi_{t^{(n)}_{j-1}}\left( M_{t^{(n)}_j} - M_{t^{(n)}_{j-1}} \right) \right]
@@ -601,7 +603,7 @@
 			E\left[ \xi_a\left( A_a - B_a \right) \right] = 0
 		\end{align}
 		が得られる．$\xi$を有界マルチンゲール
-		$\Set{\cexp{\sgn{A_a - B_a}}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$
+		$\Set{\cexp{\sgn{A_a - B_a}}{\mathscr{F}_t},\mathscr{F}_t}{t \in I}$
 		の$RCLL$な修正とすれば
 		\begin{align}
 			0 = E\left[ \xi_a\left( A_a - B_a \right) \right]
@@ -610,9 +612,12 @@
 		\end{align}
 		が成り立ち，$a > 0$の任意性及び$A,B$のパスの右連続性より
 		\begin{align}
-			P\left[ \Set{A_t = B_t}{0 \leq t < \infty}\right]
-			= P\left[ \bigcap_{r \in [0,\infty) \cap \Q} \{A_r=B_r\} \right]
-			= 1
+			P\left[ \Set{A_t = B_t}{t \in I}\right] =
+			\begin{cases}
+				\displaystyle P\Biggl( \bigcap_{r \in (I \cap \Q) \cup \{\sup{}{I}\}}\{A_r = B_r\} \Biggr) = 1, 
+					& (\sup{}{I} \in I), \\
+				\displaystyle P\Biggl( \bigcap_{r \in I \cap \Q}\{A_r = B_r\} \Biggr) = 1, & (\sup{}{I} \notin I)
+			\end{cases}
 		\end{align}
 		が出る．
 		\QED
@@ -698,11 +703,12 @@
 				となるから$\cexp{M_t}{\mathscr{F}_s} = M_s\ \mbox{a.s. $P$}$が満たされる．
 			
 			\item[第三段]
-				以下，$a \in (0,\infty]$として$[0,a]$
-				\footnote{
-					$X_\infty$が定義され
-					$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$がマルチンゲールの場合に$a=\infty$とする．
-				}上で分解の存在を示す．
+				以下，$a > 0$として$[0,a]$
+				%\footnote{
+				%	$X_\infty$が定義され
+				%	$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$が劣マルチンゲールの場合に$a=\infty$とする．
+				%}
+				上で分解の存在を示す．
 				\begin{align}
 					Y_t \coloneqq X_t - \cexp{X_a}{\mathscr{F}_t},
 					\quad (t \in [0,a])
@@ -711,13 +717,13 @@
 				\begin{align}
 					\Set{Y_{t^{(n)}_j},\mathscr{F}_{t^{(n)}_j}}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
 					\quad n=1,2,\cdots,
-					\quad (\mbox{$a = \infty$の場合は$t^{(n)}_j = j/2^n$},\ j \in \N_0)
+					%\quad (\mbox{$a = \infty$の場合は$t^{(n)}_j = j/2^n$},\ j \in \N_0)
 				\end{align}
-				で離散化すれば，Doob分解の補題 (P. \pageref{lem:Doob_decomposition})より
+				で離散化すれば，離散時のDoob分解 (P. \pageref{lem:Doob_decomposition})より
 				\begin{align}
 					&A^{(n)}_0 \coloneqq 0,
-					\quad A^{(n)}_{t^{(n)}_j} \coloneqq \sum_{k=0}^{j-1} \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}},
-					\ A^{(n)}_\infty \coloneqq \sum_{k=0}^\infty \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}}; \\
+					\quad A^{(n)}_{t^{(n)}_j} \coloneqq \sum_{k=0}^{j-1} \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}}; \\
+					%\ A^{(n)}_\infty \coloneqq \sum_{k=0}^\infty \cexp{Y_{t^{(n)}_{k+1}} - Y_{t^{(n)}_k}}{\mathscr{F}_{t^{(n)}_k}}; \\
 					&M^{(n)}_{t^{(n)}_j} \coloneqq Y_{t^{(n)}_j} - A^{(n)}_{t^{(n)}_j}
 				\end{align}
 				により可予測な増大過程$A^{(n)}$とマルチンゲール$M^{(n)}$に分解され，
@@ -735,10 +741,7 @@
 				$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分であることを示す．任意に$\lambda > 0$を取り
 				\begin{align}
 					T_\lambda^{(n)} \coloneqq
-					\begin{cases}
-						a \wedge \min{}{\Set{t^{(n)}_{j-1}}{A^{(n)}_{t^{(n)}_j} > \lambda \mbox{ for some } j,\ 1 \leq j \leq 2^n}}, & (a < \infty), \\
-						\min{}{\Set{t^{(n)}_{j-1}}{A^{(n)}_{t^{(n)}_j} > \lambda \mbox{ for some } j,\ 1 \leq j < \infty}}, & (a=\infty)
-					\end{cases}
+					a \wedge \min{}{\Set{t^{(n)}_{j-1}}{A^{(n)}_{t^{(n)}_j} > \lambda \mbox{ for some } j,\ 1 \leq j \leq 2^n}}
 				\end{align}
 				とおけば，任意の$t \leq 0$で
 				\begin{align}
@@ -749,15 +752,46 @@
 						\cap \left\{ A^{(n)}_{t^{(n)}_j} > \lambda \right\}
 					\in \mathscr{F}_{t^{(n)}_j}
 				\end{align}
-				となるから$T_\lambda^{(n)}$は$(\mathscr{F}_t)$-停止時刻である．また
+				となるから$T_\lambda^{(n)}$は$(\mathscr{F}_t)$-停止時刻であり$T^{(n)}_\lambda \in \mathscr{S}_a$を満たす．また
 				\begin{align}
 					N \coloneqq \bigcup_{j=1}^{2^n} \left\{ \cexp{Y_{t^{(n)}_k} - Y_{t^{(n)}_{k-1}}}{\mathscr{F}_{t^{(n)}_{k-1}}} < 0 \right\}
 				\end{align}
 				により$P$-零集合を定めれば，$\Omega \backslash N$の上で
 				$A^{(n)}_0 \leq A^{(n)}_{t^{(n)}_1} \leq \cdots \leq A^{(n)}_a$となるから
 				\begin{align}
-					s
+					\left\{T^{(n)}_\lambda < a\right\} \cap (\Omega \backslash N)
+					= \left\{A^{(n)}_a > \lambda\right\} \cap (\Omega \backslash N)
+					\label{eq:chapter_1_theorem_4_10_1}
 				\end{align}
+				となる．任意の$\Lambda \in \mathscr{F}_{T^{(n)}_\lambda}$に対し
+				$\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\} \in \mathscr{F}_{t^{(n)}_{j-1}}$となるから
+				\begin{align}
+					\int_\Lambda Y_{T^{(n)}_\lambda}\ dP = 
+					\sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} Y_{t^{(n)}_{j-1}}\ dP
+					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
+						A^{(n)}_{t^{(n)}_{j-1}} - \cexp{A^{(n)}_a}{\mathscr{F}_{t^{(n)}_{j-1}}}\ dP \\
+					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
+						A^{(n)}_{t^{(n)}_{j-1}} - \cexp{A^{(n)}_a}{\mathscr{F}_{t^{(n)}_{j-1}}}\ dP \\
+					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
+						A^{(n)}_{t^{(n)}_{j-1}} - A^{(n)}_a\ dP \\
+					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
+						A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP \\
+					&= \int_\Lambda A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP
+				\end{align}
+				が成立し
+				\begin{align}
+					Y_{T^{(n)}_\lambda} = A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}
+					\leq \lambda - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}},
+					\quad \mbox{a.s. $P$}
+				\end{align}
+				が得られるから(\refeq{eq:chapter_1_theorem_4_10_1})より
+				\begin{align}
+					\int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_a\ dP
+					= \int_{\left\{T^{(n)}_\lambda < a\right\}} \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP
+					\leq \lambda P\left( T^{(n)}_\lambda < a\right) 
+						- \int_{\left\{T^{(n)}_\lambda < a\right\}} Y_{T^{(n)}_\lambda}\ dP
+				\end{align}
+				となる．
 				
 			\item[第五段]
 				Dunford-Pettisの定理より$\left( A^{(n)}_a \right)_{n=1}^\infty$の或る部分列
@@ -765,7 +799,7 @@
 				或る$A_a \in L^1(P)$が存在して
 				任意の$\xi \in L^\infty(P)$に対し
 				\begin{align}
-					E \xi A^{(n_k)}_a \longrightarrow E \xi A_a
+					E \left( \xi A^{(n_k)}_a \right) \longrightarrow E (\xi A_a)
 					\quad (k \longrightarrow \infty)
 				\end{align}
 				が成立する．
@@ -776,7 +810,7 @@
 				とすれば，任意の$t \in \Pi$に対し或る$K \geq 1$が存在して
 				$t \in \Pi_{n_k}\ (\forall k > K)$となり，Problem 4.11より
 				\begin{align}
-					E \xi A^{(n_k)}_t
+					E \left( \xi A^{(n_k)}_t \right)
 					= E \xi\left\{ Y_t + \cexp{A^{(n_k)}_a}{\mathscr{F}_t} \right\}
 					\longrightarrow E \xi\left\{ Y_t + \cexp{A_a}{\mathscr{F}_t} \right\}
 					\quad (k > K,\ k \longrightarrow \infty)
@@ -809,15 +843,15 @@
 					E \xi (A_t - A_s) = E \xi \left( \tilde{A}_t - \tilde{A}_s \right)
 					= \lim_{k \to \infty} E \xi \left( A^{(n_k)}_t - A^{(n_k)}_s \right) \geq 0 
 				\end{align}
-				となり$P(A_s > A_t) = 0$が成り立つ．
+				となり$P(A_s > A_t) = 0$が成り立つ．$t \longmapsto A_t$が右連続性であるから，$P$-零集合を
 				\begin{align}
 					N \coloneqq \Biggl(\bigcup_{\substack{s,t \in \Pi \\ s < t}} \{A_s > A_t\}\Biggr) \cup \{A_0 \neq 0\}
 				\end{align}
-				により$P$-零集合を定めれば，$t \longmapsto A_t$の右連続性より
-				$\Omega \backslash N$上で$t \longmapsto A_t$は0出発非減少となる．
+				で定めれば$\Omega \backslash N$上で$t \longmapsto A_t$は0出発非減少となり，
+				$N$上で$A \equiv 0$と修正すれば$A$は増大過程となる．
 				
 			\item[第七段]
-				$A$がナチュラルであることを示す．$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t \leq a}$を有界な右連続マルチンゲールとすれば
+				$A$がナチュラルであることを示す．$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t \leq a}$を有界な$RCLL$マルチンゲールとすれば
 				\begin{align}
 					E \xi_a A^{(n_k)}_a 
 					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( A^{(n_k)}_{t^{(n_k)}_j} - A^{(n_k)}_{t^{(n_k)}_{j-1}} \right) \right]\\
@@ -825,31 +859,21 @@
 						+ E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_j}} - \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_{j-1}}} \right) \right] \\
 					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( A_{t^{(n_k)}_j} - A_{t^{(n_k)}_{j-1}} \right) \right]
 				\end{align}
-				が任意の$k \geq 1$で成り立ち，或る$P$-零集合$N'$が存在して
-				$\Omega \backslash N'$上で$\xi$のパスがRCLLとなるから，
-				\begin{align}
-					\left(\int_{(0,a]} \xi_{s(-)}\ dA_s\right)(\omega)
-					\coloneqq 
-					\begin{cases}
-						\displaystyle\int_{(0,a]} \xi_{s(-)}(\omega)\ dA_s(\omega), & (\omega \in \Omega \backslash (N \cup N')), \\
-						0, & (\omega \in N \cup N')
-					\end{cases}
-				\end{align}
-				と定めれば$k \longrightarrow \infty$として
+				が任意の$k \geq 1$で成り立ち，$k \longrightarrow \infty$として
 				\begin{align}
 					E \xi_a A_a = E \int_{(0,a]} \xi_{s-}\ dA_s
 				\end{align}
 				が得られる．任意の$t \in (0,a]$に対し
-				$\xi^t = \Set{\xi^t_s \coloneqq \xi_{t \wedge s},\mathscr{F}_s}{0 \leq s \leq a}$
-				も連続マルチンゲールであり
+				$\xi^{(t)} = \Set{\xi^{(t)}_s \coloneqq \xi_{t \wedge s},\mathscr{F}_s}{0 \leq s \leq a}$
+				も$RCLL$マルチンゲールであり
 				\begin{align}
-					\xi^t_{s-} &= \xi_{s-},\quad (\forall s \in (0,t]), \\
-					\xi^t_{s-} &= \xi_t, \quad (\forall s \in (t,a])
+					\xi^{(t)}_{s-} &= \xi_{s-},\quad (\forall s \in (0,t]), \\
+					\xi^{(t)}_{s-} &= \xi_t, \quad (\forall s \in (t,a])
 				\end{align}
 				より
 				\begin{align}
-					E \xi_t A_t + E \xi_t(A_a - A_t) = E \xi^t_a A_a 
-					= E \int_{(0,a]} \xi^t_{s-}\ dA_s
+					E \xi_t A_t + E \xi_t(A_a - A_t) = E \xi^{(t)}_a A_a 
+					= E \int_{(0,a]} \xi^{(t)}_{s-}\ dA_s
 					= E \int_{(0,t]} \xi_{s-}\ dA_s + E \xi_t (A_a - A_t)
 				\end{align}
 				となり
@@ -858,6 +882,7 @@
 					\quad (\forall t \in (0,a])
 				\end{align}
 				が成立する．よって$A$はナチュラルである．
+				\QED
 		\end{description}
 	\end{prf}
 	
