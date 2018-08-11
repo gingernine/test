@@ -635,7 +635,7 @@
 				\end{align}
 				と分解されるなら，$m > n$に対して
 				\begin{align}
-					M^n_t + A^n_t = M^m_t + A^m_t, \quad (t \in [0,n])
+					M^n_t + A^n_t = X_t = M^m_t + A^m_t, \quad (t \in [0,n])
 				\end{align}
 				となり，Lemmaより或る$P$-零集合$E_{n,m}$が存在して，任意の$\omega \in \Omega \backslash E_{n,m}$で
 				\begin{align}
@@ -681,25 +681,21 @@
 					\quad \mbox{a.s. $P$}
 				\end{align}
 				となるから$\cexp{M_t}{\mathscr{F}_s} = M_s\ \mbox{a.s. $P$}$が満たされる．
+				次段以降で$[0,a]$上で分解の存在を示す．
 			
 			\item[第三段]
-				以下，$a > 0$として$[0,a]$
 				%\footnote{
 				%	$X_\infty$が定義され
 				%	$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$が劣マルチンゲールの場合に$a=\infty$とする．
 				%}
-				上で分解の存在を示す．$\Set{Y_t,\mathscr{F}_t}{0 \leq t \leq a}$を
+				$\Set{Z_t,\mathscr{F}_t}{0 \leq t < \infty}$
+				を$\Set{\cexp{X_a}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$の
+				右連続な修正として(Theorem 3.13)，
 				\begin{align}
-					Y_t \coloneqq X_t - \cexp{X_a}{\mathscr{F}_t},
+					Y_t \coloneqq X_t - Z_t,
 					\quad (t \in [0,a])
 				\end{align}
-				で定めれば劣マルチンゲールとなり，
-				$X$の劣マルチンゲール性より任意の$t \in [0,a]$で
-				\begin{align}
-					Y_t \leq 0, \quad \mbox{a.s. $P$}
-					\label{eq:chapter_1_theorem_4_10_4}
-				\end{align}
-				となる．
+				により非正値の劣マルチンゲール$\Set{Y_t,\mathscr{F}_t}{0 \leq t \leq a}$を定め
 				\begin{align}
 					\Set{Y_{t^{(n)}_j},\mathscr{F}_{t^{(n)}_j}}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
 					\quad n=1,2,\cdots,
@@ -727,21 +723,21 @@
 				$(Y_T)_{T \in \mathscr{S}_a}$が一様可積分であることを示す．
 				先ず任意の$T \in \mathscr{S}_a$に対し
 				\begin{align}
-					Y_T = X_T - \cexp{X_a}{\mathscr{F}_T},\quad \mbox{a.s. $P$}
+					Z_T = \cexp{X_a}{\mathscr{F}_T},\quad \mbox{a.s. $P$}
 					\label{eq:chapter_1_theorem_4_10_2}
 				\end{align}
-				が成立する．実際$M_t \coloneqq \cexp{X_a}{\mathscr{F}_t}$で
-				マルチンゲール$\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$を定めれば，
-				任意抽出定理より
+				が成立する．実際，任意抽出定理より
 				\begin{align}
-					\int_A M_T\ dP = \int_A \cexp{M_a}{\mathscr{F}_T}\ dP
+					\int_A Z_T\ dP = \int_A Z_a\ dP
+					= \int_A X_a\ dP
 					= \int_A \cexp{X_a}{\mathscr{F}_T}\ dP,
 					\quad (\forall A \in \mathscr{F}_T)
 				\end{align}
-				が成立し，$M_T = X_T - Y_T$であるから(\refeq{eq:chapter_1_theorem_4_10_2})が得られる．
-				$X$はクラス$DL$に属し，$\left(\cexp{X_a}{\mathscr{F}_T}\right)_{T \in \mathscr{S}_a}$は
-				定理\ref{lem:uniformly_integrability_and_conditional_expectations}より一様可積分であるから，
-				$(Y_T)_{T \in \mathscr{S}_a}$の一様可積分性が従う．
+				が従い(\refeq{eq:chapter_1_theorem_4_10_2})が得られる．
+				$\left(\cexp{X_a}{\mathscr{F}_T}\right)_{T \in \mathscr{S}_a}$は
+				定理\ref{lem:uniformly_integrability_and_conditional_expectations}より一様可積分であるから
+				$\left(Z_T\right)_{T \in \mathscr{S}_a}$も一様可積分であり，
+				また$X$がクラス$DL$に属しているので$(Y_T)_{T \in \mathscr{S}_a}$の一様可積分性が従う．
 				
 			\item[第五段]
 				$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分であることを示す．任意に$\lambda > 0$を取り
@@ -792,34 +788,25 @@
 					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
 						A^{(n)}_{t^{(n)}_{j-1}} - \cexp{A^{(n)}_a}{\mathscr{F}_{t^{(n)}_{j-1}}}\ dP \\
 					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
-						A^{(n)}_{t^{(n)}_{j-1}} - A^{(n)}_a\ dP \\
-					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
-						A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP \\
-					&= \int_\Lambda A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP
-				\end{align}
-				が成立し
-				\begin{align}
-					Y_{T^{(n)}_\lambda} = A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}},
-					\quad \mbox{a.s. $P$}
+						A^{(n)}_{T^{(n)}_\lambda} - A^{(n)}_a\ dP \\
+					&= \int_\Lambda A^{(n)}_{T^{(n)}_\lambda} - A^{(n)}_a\ dP
 					\label{eq:chapter_1_theorem_4_10_5}
 				\end{align}
-				が得られるから，(\refeq{eq:chapter_1_theorem_4_10_3})と(\refeq{eq:chapter_1_theorem_4_10_1})より
+				が成立するから，(\refeq{eq:chapter_1_theorem_4_10_3})と(\refeq{eq:chapter_1_theorem_4_10_1})と併せて
 				\begin{align}
 					\int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_a\ dP
-					= \int_{\left\{T^{(n)}_\lambda < a\right\}} \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP
-					\leq \lambda P\left( T^{(n)}_\lambda < a\right) 
+					= \int_{\left\{T^{(n)}_\lambda < a\right\}} A^{(n)}_{T^{(n)}_\lambda}\ dP
+						- \int_{\left\{T^{(n)}_\lambda < a\right\}} Y_{T^{(n)}_\lambda}\ dP
+					\leq \lambda P\left(T^{(n)}_\lambda < a\right) 
 						- \int_{\left\{T^{(n)}_\lambda < a\right\}} Y_{T^{(n)}_\lambda}\ dP
 				\end{align}
-				となる．一方で(\refeq{eq:chapter_1_theorem_4_10_4})，(\refeq{eq:chapter_1_theorem_4_10_6})，
-				(\refeq{eq:chapter_1_theorem_4_10_3})，(\refeq{eq:chapter_1_theorem_4_10_1})，
-				(\refeq{eq:chapter_1_theorem_4_10_5})より
+				となる．一方で(\refeq{eq:chapter_1_theorem_4_10_6})，(\refeq{eq:chapter_1_theorem_4_10_3})，
+				(\refeq{eq:chapter_1_theorem_4_10_1})，(\refeq{eq:chapter_1_theorem_4_10_5})より
 				\begin{align}
 					\int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} Y_{T^{(n)}_{\lambda/2}}\ dP
-					\leq \int_{\left\{T^{(n)}_{\lambda} < a\right\}} Y_{T^{(n)}_{\lambda/2}}\ dP
-					&= \int_{\left\{T^{(n)}_{\lambda} < a\right\}} A^{(n)}_{T^{(n)}_{\lambda/2}} - A^{(n)}_a\ dP \\
-					&= \int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_{T^{(n)}_{\lambda/2}} - A^{(n)}_a\ dP \\
-					&\leq -\frac{\lambda}{2} P\left(A^{(n)}_a > \lambda\right)
-					= -\frac{\lambda}{2} P\left(T^{(n)}_{\lambda} < a\right)
+					&= \int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} A^{(n)}_{T^{(n)}_{\lambda/2}} - A^{(n)}_a\ dP \\
+					&\leq \int_{\left\{T^{(n)}_{\lambda} < a\right\}} A^{(n)}_{T^{(n)}_{\lambda/2}} - A^{(n)}_a\ dP \\
+					&\leq -\frac{\lambda}{2} P\left(T^{(n)}_{\lambda} < a\right)
 				\end{align}
 				が成立するから
 				\begin{align}
@@ -841,7 +828,7 @@
 				一様可積分性により
 				\begin{align}
 					\sup{n \in \N}{\int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_a\ dP}
-					\leq \sup{n \in \N}{\int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} \left|Y_{T^{(n)}_{\lambda/2}}\right|\ dP}
+					\leq 2 \sup{n \in \N}{\int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} \left|Y_{T^{(n)}_{\lambda/2}}\right|\ dP}
 					+ \sup{n \in \N}{\int_{\left\{T^{(n)}_{\lambda} < a\right\}} \left|Y_{T^{(n)}_{\lambda}}\right|\ dP}
 					\longrightarrow 0
 					\quad (\lambda \longrightarrow \infty)
@@ -869,6 +856,7 @@
 					= E \xi\left\{ Y_t + \cexp{A^{(n_k)}_a}{\mathscr{F}_t} \right\}
 					\longrightarrow E \xi\left\{ Y_t + \cexp{A_a}{\mathscr{F}_t} \right\}
 					\quad (k > K,\ k \longrightarrow \infty)
+					\label{eq:chapter_1_theorem_4_10_7}
 				\end{align}
 				が成り立つから$A^{(n_k)}_t$は$Y_t + \cexp{A_a}{\mathscr{F}_t}$に弱収束する．
 				ここで
@@ -887,7 +875,7 @@
 			
 			\item[第七段]
 				$t \longmapsto A_t(\omega)$がa.s.に0出発かつ非減少であることを示す．
-				実際，$\xi = \sgn{A_0}$として
+				実際，$\xi = \sgn{A_0}$として，(\refeq{eq:chapter_1_theorem_4_10_7})より
 				\begin{align}
 					E |A_0| = E \xi A_0 = E \xi \tilde{A}_0 = \lim_{k \to \infty} E \xi A^{(n_k)}_0 = 0
 				\end{align}
@@ -905,16 +893,16 @@
 				で定めれば$\Omega \backslash N$上で$t \longmapsto A_t$は0出発非減少となり，
 				$N$上で$A \equiv 0$と修正すれば$A$は増大過程となる．
 				
-			\item[第七段]
+			\item[第八段]
 				$A$がナチュラルであることを示す．$\xi = \Set{\xi_t,\mathscr{F}_t}{0 \leq t \leq a}$を有界な$RCLL$マルチンゲールとすれば
 				\begin{align}
 					E \xi_a A^{(n_k)}_a 
-					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( A^{(n_k)}_{t^{(n_k)}_j} - A^{(n_k)}_{t^{(n_k)}_{j-1}} \right) \right]\\
-					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( Y_{t^{(n_k)}_j} - Y_{t^{(n_k)}_{j-1}} \right) \right]
-						+ E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_j}} - \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_{j-1}}} \right) \right] \\
-					&= E\left[ \sum_{j=1}^{2^n}\xi_{t^{(n_k)}_{j-1}} \left( A_{t^{(n_k)}_j} - A_{t^{(n_k)}_{j-1}} \right) \right]
+					&= E\left[ \sum_{j=1}^{2^{n_k}}\xi_{t^{(n_k)}_{j-1}} \left( A^{(n_k)}_{t^{(n_k)}_j} - A^{(n_k)}_{t^{(n_k)}_{j-1}} \right) \right] \\
+					&= E\left[ \sum_{j=1}^{2^{n_k}}\xi_{t^{(n_k)}_{j-1}} \left( Y_{t^{(n_k)}_j} - Y_{t^{(n_k)}_{j-1}} \right) \right]
+						+ E\left[ \sum_{j=1}^{2^{n_k}}\xi_{t^{(n_k)}_{j-1}} \left( \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_j}} - \cexp{A^{(n_k)}_a}{\mathscr{F}_{t^{(n_k)}_{j-1}}} \right) \right] \\
+					&= E\left[ \sum_{j=1}^{2^{n_k}}\xi_{t^{(n_k)}_{j-1}} \left( A_{t^{(n_k)}_j} - A_{t^{(n_k)}_{j-1}} \right) \right]
 				\end{align}
-				が任意の$k \geq 1$で成り立ち，$k \longrightarrow \infty$として
+				が任意の$k \geq 1$で成り立ち(Proposition 4.3)，$k \longrightarrow \infty$として
 				\begin{align}
 					E \xi_a A_a = E \int_{(0,a]} \xi_{s-}\ dA_s
 				\end{align}
@@ -937,6 +925,20 @@
 					\quad (\forall t \in (0,a])
 				\end{align}
 				が成立する．よって$A$はナチュラルである．
+				
+			\item[第九段]
+				$\Set{M_t \coloneqq X_t - A_t, \mathscr{F}_t}{0 \leq t \leq a}$がマルチンゲールであることを示す．
+				$M$の適合性と可積分性は$X,A$のそれより従い，また任意に
+				$0 \leq s \leq t \leq a$を取れば，任意の$A \in \mathscr{F}_s$で
+				\begin{align}
+					\int_A M_s\ dP = \int_A X_s - A_s\ dP
+					&= \int_A X_s - \left(Y_s - \cexp{A_a}{\mathscr{F}_s}\right)\ dP \\
+					&= \int_A X_s - \left(X_s - Z_s - \cexp{A_a}{\mathscr{F}_s}\right)\ dP \\
+					&= \int_A Z_t + \cexp{A_a}{\mathscr{F}_t}\ dP \\
+					&= \int_A X_t - \left(X_t - Z_t - \cexp{A_a}{\mathscr{F}_t}\right)\ dP \\
+					&= \int_A M_t\ dP
+				\end{align}
+				が成立する．
 				\QED
 		\end{description}
 	\end{prf}
@@ -1284,3 +1286,22 @@
 				\QED
 		\end{description}
 	\end{prf}
+	
+	\begin{itembox}[l]{Problem 4.15}
+		Let $X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$ be a continuous, nonnegative process
+		with $X_0 = 0$ a.s., and $A = \Set{A_t,\mathscr{F}_t}{0 \leq t < \infty}$ any continuous,
+		increasing process for which
+		\begin{align}
+			E(X_T) \leq E(A_T)
+		\end{align}
+		holds for every bounded stopping time $T$ of $\{\mathscr{F}_t\}$. Introduce the process
+		$V_t \coloneqq \max{0 \leq s \leq t}{X_s}$, consider a continuous, increasing function $F$
+		on $[0,\infty)$ with $F(0) = 0$, and define $G(x) \coloneqq 2F(x) + x\int_{x}^\infty u^{-1}\ dF(u);
+		\ 0 < x < \infty$. Establish the inequalities
+		\begin{description}
+			\item[(4.14)] $\displaystyle P[V_T \geq \epsilon] \leq \frac{E(A_T)}{\epsilon};\quad \forall \epsilon > 0$
+			\item[(4.15)] $\displaystyle P[V_T \geq \epsilon,\ A_T < \delta] \leq \frac{E(\delta \wedge A_T)}{\epsilon};\quad \forall \epsilon > 0,\ \delta > 0$
+			\item[(4.16)] $EF(V_T) \leq EG(A_T)$
+		\end{description}
+		for any stopping time $T$ of $\{\mathscr{F}_t\}$.
+	\end{itembox}
