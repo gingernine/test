@@ -206,7 +206,7 @@
 			E \int_{(\alpha,t]} M_s\ dA_s = E \int_{(\alpha,t]} M_{s-}\ dA_s,
 			\quad \mbox{for every $t \in (\alpha,\infty) \cap I$}.
 		\end{align}
-		\textcolor{red}{Let us denote the subspace of $RCSP(I)$ as
+		\textcolor{red}{Let us denote the subset of $RCSP(I)$ as
 		\begin{align}
 			NAT(I) \coloneqq
 			\Set{A \in RCSP(I)}{\mbox{natural}},
@@ -347,8 +347,8 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Remark 4.6 (ii)}
-		Every continuous, increasing process is natural. Indeed then, for $P$-a.e. $\omega \in \Omega$
+	\begin{itembox}[l]{Remark 4.6 (ii) 修正}
+		Every continuous, increasing process is natural. Indeed then, for \textcolor{red}{every} $\omega \in \Omega$
 		we have
 		\begin{align}
 			\int_{(0,t]} (M_s(\omega)-M_{s-}(\omega))\ dA_s(\omega) = 0
@@ -526,30 +526,10 @@
 		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{Lemma for Theorem 4.10}
-		$a > 0$，$\mathscr{F}_a/\borel{\R}$-可測な可積分関数$A$と$T \in \mathscr{S}_a$に対して次が成り立つ:
-		\begin{align}
-			\left. \cexp{A}{\mathscr{F}_t} \right|_{t = T} = \cexp{A}{\mathscr{F}_T}
-			\quad \mbox{a.s. $P$}.
-			\label{eq:lemma_for_theorem_4_10}
-		\end{align}
-	\end{itembox}
-	
-	\begin{prf}
-		$\Set{Y_t \coloneqq \cexp{A}{\mathscr{F}_t},\mathscr{F}_t}{0 \leq t < \infty}$はマルチンゲールであり，
-		任意抽出定理より
-		\begin{align}
-			\cexp{Y_t}{\mathscr{F}_T} = Y_{t \wedge T},
-			\quad \mbox{a.s. $P$}
-		\end{align}
-		が成り立つ．$Y_a = A,\ \mbox{a.s. $P$}$より$t=a$として(\refeq{eq:lemma_for_theorem_4_10})を得る．
-		\QED
-	\end{prf}
-	
 	\begin{itembox}[l]{Lemma for theorem 4.10}\label{lem:uniqueness_of_Doob_Meyer_decomposition}
 		Let $I \subset [0,\infty)$ be an interval and 
 		$\Set{M_t,\mathscr{F}_t}{t \in I}$ be a right-continuous martingale,
-		where the filtration $(\mathscr{F}_t)_{t \in I}$ is not necessarily usual.
+		where the filtration $(\mathscr{F}_t)_{t \in I}$ is usual.
 		If $M$ is a difference of two natural processes 
 		$\Set{A_t,\mathscr{F}_t}{t \in I}$
 		and $\Set{B_t,\mathscr{F}_t}{t \in I}$, namely
@@ -604,7 +584,7 @@
 		\end{align}
 		が得られる．$\xi$を有界マルチンゲール
 		$\Set{\cexp{\sgn{A_a - B_a}}{\mathscr{F}_t},\mathscr{F}_t}{t \in I}$
-		の$RCLL$な修正とすれば
+		の$RCLL$な修正とすれば(usual条件よりTheorem 3.13を適用)
 		\begin{align}
 			0 = E\left[ \xi_a\left( A_a - B_a \right) \right]
 			= E\left[ \sgn{A_a - B_a}\left( A_a - B_a \right) \right]
@@ -708,12 +688,18 @@
 				%	$X_\infty$が定義され
 				%	$\Set{X_t,\mathscr{F}_t}{0 \leq t \leq \infty}$が劣マルチンゲールの場合に$a=\infty$とする．
 				%}
-				上で分解の存在を示す．
+				上で分解の存在を示す．$\Set{Y_t,\mathscr{F}_t}{0 \leq t \leq a}$を
 				\begin{align}
 					Y_t \coloneqq X_t - \cexp{X_a}{\mathscr{F}_t},
 					\quad (t \in [0,a])
 				\end{align}
-				とおけば$\Set{Y_t,\mathscr{F}_t}{0 \leq t \leq a}$は劣マルチンゲールであり，
+				で定めれば劣マルチンゲールとなり，
+				$X$の劣マルチンゲール性より任意の$t \in [0,a]$で
+				\begin{align}
+					Y_t \leq 0, \quad \mbox{a.s. $P$}
+					\label{eq:chapter_1_theorem_4_10_4}
+				\end{align}
+				となる．
 				\begin{align}
 					\Set{Y_{t^{(n)}_j},\mathscr{F}_{t^{(n)}_j}}{t^{(n)}_j = \frac{j}{2^n}a,\ j=0,1,\cdots,2^n},
 					\quad n=1,2,\cdots,
@@ -736,25 +722,59 @@
 					\quad j=0,1,\cdots,2^n
 				\end{align}
 				となる．
-				
+
 			\item[第四段]
+				$(Y_T)_{T \in \mathscr{S}_a}$が一様可積分であることを示す．
+				先ず任意の$T \in \mathscr{S}_a$に対し
+				\begin{align}
+					Y_T = X_T - \cexp{X_a}{\mathscr{F}_T},\quad \mbox{a.s. $P$}
+					\label{eq:chapter_1_theorem_4_10_2}
+				\end{align}
+				が成立する．実際$M_t \coloneqq \cexp{X_a}{\mathscr{F}_t}$で
+				マルチンゲール$\Set{M_t,\mathscr{F}_t}{0 \leq t < \infty}$を定めれば，
+				任意抽出定理より
+				\begin{align}
+					\int_A M_T\ dP = \int_A \cexp{M_a}{\mathscr{F}_T}\ dP
+					= \int_A \cexp{X_a}{\mathscr{F}_T}\ dP,
+					\quad (\forall A \in \mathscr{F}_T)
+				\end{align}
+				が成立し，$M_T = X_T - Y_T$であるから(\refeq{eq:chapter_1_theorem_4_10_2})が得られる．
+				$X$はクラス$DL$に属し，$\left(\cexp{X_a}{\mathscr{F}_T}\right)_{T \in \mathscr{S}_a}$は
+				定理\ref{lem:uniformly_integrability_and_conditional_expectations}より一様可積分であるから，
+				$(Y_T)_{T \in \mathscr{S}_a}$の一様可積分性が従う．
+				
+			\item[第五段]
 				$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分であることを示す．任意に$\lambda > 0$を取り
 				\begin{align}
 					T_\lambda^{(n)} \coloneqq
 					a \wedge \min{}{\Set{t^{(n)}_{j-1}}{A^{(n)}_{t^{(n)}_j} > \lambda \mbox{ for some } j,\ 1 \leq j \leq 2^n}}
 				\end{align}
-				とおけば，任意の$t \leq 0$で
+				とおけば，$A^{(n)}$の可予測性より任意の$t \geq 0$で
 				\begin{align}
 					\left\{ T_\lambda^{(n)} \leq t \right\}
 					= \bigcup_{j\, :\, t^{(n)}_{j-1} \leq t} \left\{ T_\lambda^{(n)} = t^{(n)}_{j-1} \right\}
 					= \bigcup_{j\, :\, t^{(n)}_{j-1} \leq t}
-						\left[ \bigcap_{k=0}^{j-1} \left\{ A^{(n)}_{t^{(n)}_k} \leq \lambda \right\} \right] 
+						\left[ \bigcap_{k=1}^{j-1} \left\{ A^{(n)}_{t^{(n)}_k} \leq \lambda \right\} \right] 
 						\cap \left\{ A^{(n)}_{t^{(n)}_j} > \lambda \right\}
-					\in \mathscr{F}_{t^{(n)}_j}
+					\in \mathscr{F}_t
 				\end{align}
-				となるから$T_\lambda^{(n)}$は$(\mathscr{F}_t)$-停止時刻であり$T^{(n)}_\lambda \in \mathscr{S}_a$を満たす．また
+				が成り立つから$T_\lambda^{(n)} \in \mathscr{S}_a$が満たされ，また
 				\begin{align}
-					N \coloneqq \bigcup_{j=1}^{2^n} \left\{ \cexp{Y_{t^{(n)}_k} - Y_{t^{(n)}_{k-1}}}{\mathscr{F}_{t^{(n)}_{k-1}}} < 0 \right\}
+					\mu < \lambda
+					\quad \Longrightarrow \quad
+					\left\{T^{(n)}_\lambda < a\right\} \subset \left\{T^{(n)}_\mu < a\right\}
+					\label{eq:chapter_1_theorem_4_10_6}
+				\end{align}
+				及び
+				\begin{align}
+					T^{(n)}_\lambda(\omega) < a
+					\quad \Longrightarrow \quad
+					A^{(n)}_{T^{(n)}_\lambda}(\omega) \leq \lambda
+					\label{eq:chapter_1_theorem_4_10_3}
+				\end{align}
+				も満たされる．
+				\begin{align}
+					N \coloneqq \bigcup_{k=1}^{2^n} \left\{ \cexp{Y_{t^{(n)}_k} - Y_{t^{(n)}_{k-1}}}{\mathscr{F}_{t^{(n)}_{k-1}}} < 0 \right\}
 				\end{align}
 				により$P$-零集合を定めれば，$\Omega \backslash N$の上で
 				$A^{(n)}_0 \leq A^{(n)}_{t^{(n)}_1} \leq \cdots \leq A^{(n)}_a$となるから
@@ -763,13 +783,12 @@
 					= \left\{A^{(n)}_a > \lambda\right\} \cap (\Omega \backslash N)
 					\label{eq:chapter_1_theorem_4_10_1}
 				\end{align}
-				となる．任意の$\Lambda \in \mathscr{F}_{T^{(n)}_\lambda}$に対し
-				$\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\} \in \mathscr{F}_{t^{(n)}_{j-1}}$となるから
+				が従う．任意に$\Lambda \in \mathscr{F}_{T^{(n)}_\lambda}$を取れば，
+				$\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\} \in \mathscr{F}_{t^{(n)}_{j-1}},
+				\ (j=1,\cdots,2^n)$より
 				\begin{align}
 					\int_\Lambda Y_{T^{(n)}_\lambda}\ dP = 
 					\sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} Y_{t^{(n)}_{j-1}}\ dP
-					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
-						A^{(n)}_{t^{(n)}_{j-1}} - \cexp{A^{(n)}_a}{\mathscr{F}_{t^{(n)}_{j-1}}}\ dP \\
 					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
 						A^{(n)}_{t^{(n)}_{j-1}} - \cexp{A^{(n)}_a}{\mathscr{F}_{t^{(n)}_{j-1}}}\ dP \\
 					&= \sum_{j=1}^{2^n} \int_{\Lambda \cap \left\{T^{(n)}_\lambda=t^{(n)}_{j-1}\right\}} 
@@ -780,20 +799,56 @@
 				\end{align}
 				が成立し
 				\begin{align}
-					Y_{T^{(n)}_\lambda} = A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}
-					\leq \lambda - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}},
+					Y_{T^{(n)}_\lambda} = A^{(n)}_{T^{(n)}_\lambda} - \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}},
 					\quad \mbox{a.s. $P$}
+					\label{eq:chapter_1_theorem_4_10_5}
 				\end{align}
-				が得られるから(\refeq{eq:chapter_1_theorem_4_10_1})より
+				が得られるから，(\refeq{eq:chapter_1_theorem_4_10_3})と(\refeq{eq:chapter_1_theorem_4_10_1})より
 				\begin{align}
 					\int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_a\ dP
 					= \int_{\left\{T^{(n)}_\lambda < a\right\}} \cexp{A^{(n)}_a}{\mathscr{F}_{T^{(n)}_\lambda}}\ dP
 					\leq \lambda P\left( T^{(n)}_\lambda < a\right) 
 						- \int_{\left\{T^{(n)}_\lambda < a\right\}} Y_{T^{(n)}_\lambda}\ dP
 				\end{align}
-				となる．
+				となる．一方で(\refeq{eq:chapter_1_theorem_4_10_4})，(\refeq{eq:chapter_1_theorem_4_10_6})，
+				(\refeq{eq:chapter_1_theorem_4_10_3})，(\refeq{eq:chapter_1_theorem_4_10_1})，
+				(\refeq{eq:chapter_1_theorem_4_10_5})より
+				\begin{align}
+					\int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} Y_{T^{(n)}_{\lambda/2}}\ dP
+					\leq \int_{\left\{T^{(n)}_{\lambda} < a\right\}} Y_{T^{(n)}_{\lambda/2}}\ dP
+					&= \int_{\left\{T^{(n)}_{\lambda} < a\right\}} A^{(n)}_{T^{(n)}_{\lambda/2}} - A^{(n)}_a\ dP \\
+					&= \int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_{T^{(n)}_{\lambda/2}} - A^{(n)}_a\ dP \\
+					&\leq -\frac{\lambda}{2} P\left(A^{(n)}_a > \lambda\right)
+					= -\frac{\lambda}{2} P\left(T^{(n)}_{\lambda} < a\right)
+				\end{align}
+				が成立するから
+				\begin{align}
+					\int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_a\ dP
+					\leq -2 \int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} Y_{T^{(n)}_{\lambda/2}}\ dP
+						- \int_{\left\{T^{(n)}_\lambda < a\right\}} Y_{T^{(n)}_\lambda}\ dP
+				\end{align}
+				となる．ここで
+				\begin{align}
+					P\left(T^{(n)}_{\lambda} < a\right)
+					= P\left(A^{(n)}_a > \lambda\right)
+					\leq \frac{E A^{(n)}_a}{\lambda}
+					= \frac{- E M^{(n)}_a}{\lambda}
+					= \frac{- E M^{(n)}_0}{\lambda}
+					= \frac{- E Y_0}{\lambda}
+				\end{align}
+				より$P\left(T^{(n)}_{\lambda} < a\right)$は$\lambda$のみに依存して
+				0に収束し，定理\ref{thm:appendix_uniform_integrability_equivalence}と$(Y_T)_{T \in \mathscr{S}_a}$の
+				一様可積分性により
+				\begin{align}
+					\sup{n \in \N}{\int_{\left\{A^{(n)}_a > \lambda\right\}} A^{(n)}_a\ dP}
+					\leq \sup{n \in \N}{\int_{\left\{T^{(n)}_{\lambda/2} < a\right\}} \left|Y_{T^{(n)}_{\lambda/2}}\right|\ dP}
+					+ \sup{n \in \N}{\int_{\left\{T^{(n)}_{\lambda} < a\right\}} \left|Y_{T^{(n)}_{\lambda}}\right|\ dP}
+					\longrightarrow 0
+					\quad (\lambda \longrightarrow \infty)
+				\end{align}
+				が従い$\left( A^{(n)}_a \right)_{n=1}^\infty$が一様可積分性が出る．
 				
-			\item[第五段]
+			\item[第六段]
 				Dunford-Pettisの定理より$\left( A^{(n)}_a \right)_{n=1}^\infty$の或る部分列
 				$\left( A^{(n_k)}_a \right)_{k=1}^\infty$は$L^1(P)$で弱収束する．つまり
 				或る$A_a \in L^1(P)$が存在して
@@ -830,7 +885,7 @@
 				は右連続であるから(Theorem 3.13)，$\tilde{A}$の右連続な修正$\Set{A_t,\mathscr{F}_t}{0 \leq t \leq a}$
 				が得られる．
 			
-			\item[第六段]
+			\item[第七段]
 				$t \longmapsto A_t(\omega)$がa.s.に0出発かつ非減少であることを示す．
 				実際，$\xi = \sgn{A_0}$として
 				\begin{align}
