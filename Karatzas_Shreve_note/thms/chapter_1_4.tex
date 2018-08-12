@@ -983,14 +983,15 @@
 				\begin{align}
 					\lim_{n \to \infty} EX_{T_n} 
 					= \lim_{n \to \infty} E(X_{T_n} - A_{T_n}) + \lim_{n \to \infty} EA_{T_n} 
-					= (X_{T} - A_{T}) + EA_T
+					= E(X_{T} - A_{T}) + EA_T
 					= EX_T
 				\end{align}
 				が従う．
 				
 			\item[第二段]
 				以降$X$がレギュラーであるとする．このとき任意の有界な停止時刻の増大列
-				$(T_n)$と$T \coloneqq \lim T_n$に対し
+				$(T_n)$と$T \coloneqq \lim T_n$に対し，$X-A$のマルチンゲール性と任意抽出定理，
+				及び$X$のレギュラリティより
 				\begin{align}
 					EA_{T_n} &= EX_{T_n} - E(X_{T_n} - A_{T_n})
 					= EX_{T_n} - E(X_T - A_T) \\
@@ -1024,18 +1025,19 @@
 					\leq \lambda P(A),
 					\quad (\forall A \in \mathscr{F}_t)
 				\end{align}
-				となり，一方で各$0 \leq t \leq t^{(n)}_j$で
+				となり，一方で各$t \in \left[t^{(n)}_j, t^{(n)}_{j+1} \right)$で
 				\begin{align}
-					\int_A \lambda \wedge A_t\ dP
-					\leq \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
-					= \int_A \tilde{Y}^{(n),j}_t\ dP 
+					\int_A \tilde{Y}^{(n),j}_t\ dP
+					= \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
+					\leq \int_A \lambda \wedge A_t\ dP,
+					\quad (\forall A \in \mathscr{F}_t) 
 				\end{align}
 				となるから
 				\begin{align}
 					E_j &\coloneqq \Set{\tilde{Y}^{(n),j}_t > \lambda}{\exists t \geq 0} 
-						\cup \Set{\lambda \wedge A_t > \tilde{Y}^{(n),j}_t}{\exists t \in [0,t^{(n)}_j]} \\
+						\cup \Set{\lambda \wedge A_t < \tilde{Y}^{(n),j}_t}{\exists t \in \left[t^{(n)}_j, t^{(n)}_{j+1} \right)} \\
 					&= \left[ \bigcup_{r \in [0,\infty)\cap\Q}\left\{\tilde{Y}^{(n),j}_r > \lambda\right\} \right]
-					\bigcup \left[ \bigcup_{r \in [0,t^{(n)}_j]\cap\Q}\left\{\lambda \wedge A_r > \tilde{Y}^{(n),j}_r\right\} \right], \\
+					\bigcup \left[ \bigcup_{r \in \left[t^{(n)}_j, t^{(n)}_{j+1} \right)\cap\Q}\left\{\lambda \wedge A_r < \tilde{Y}^{(n),j}_r\right\} \right], \\
 					E &\coloneqq \bigcup_{j=0}^{2^n} E_j
 				\end{align}
 				で$P$-零集合が定まる．usual条件より$E \in \mathscr{F}_0$であるから
@@ -1045,22 +1047,34 @@
 				\end{align}
 				で定める$Y^{(n),j}$のバージョンは
 				\begin{align}
-					\lambda \wedge A_t(\omega) 
-					\leq Z^{(n),j}_t(\omega),
-					\quad (\forall \omega \in \Omega \backslash E,\ \forall t \in [0,a])
-					\label{eq:chapter_1_theorem_4_14_4}
+					\omega \in \Omega \backslash E
+					\quad \Longrightarrow \quad
+					\begin{cases}
+						Z^{(n),j}_t(\omega) \leq \lambda, & \forall t \geq 0, \\
+						Z^{(n),j}_t(\omega) \leq \lambda \wedge A_t(\omega), & \forall t \in \left[t^{(n)}_j, t^{(n)}_{j+1} \right)
+					\end{cases}
 				\end{align}
-				を満たす$RCLL$かつ有界なマルチンゲールとなる．ここで
+				を満たす$RCLL$かつ有界なマルチンゲールとなり，
 				\begin{align}
 					\eta^{(n)}_t \coloneqq
 					\sum_{j=0}^{2^n-1} Z^{(n),j}_t \defunc_{\left[t^{(n)}_j,t^{(n)}_{j+1}\right)}(t)
 						+ (\lambda \wedge A_a) \defunc_{[a,\infty)}(t),
 					\quad (t \geq 0)
 				\end{align}
-				とおけば，$\eta^{(n)}$の右連続性，Corollary2.4，Problem2.5 及びusual条件より
+				とおけば
+				\begin{align}
+					\omega \in \Omega \backslash E
+					\quad \Longrightarrow \quad
+					\begin{cases}
+						\eta^{(n)}_t(\omega) \leq \lambda, & \forall t \geq 0, \\
+						\eta^{(n)}_t(\omega) \leq \lambda \wedge A_t(\omega), & \forall t \in [0,a]
+					\end{cases}
+					\label{eq:chapter_1_theorem_4_14_4}
+				\end{align}
+				が成り立つ．また$\eta^{(n)}$の右連続性，Corollary2.4，Problem2.5 及びusual条件より
 				\begin{align}
 					T^{(n)}_\epsilon \coloneqq
-					a \wedge \inf{}{\Set{t \geq 0}{\eta^{(n)}_t - (\lambda \wedge A_t) > \epsilon}}
+					a \wedge \inf{}{\Set{t \geq 0}{(\lambda \wedge A_t) - \eta^{(n)}_t > \epsilon}}
 				\end{align}
 				は$\mathscr{S}_a$に属する停止時刻となり，このとき
 				\begin{align}
@@ -1075,7 +1089,9 @@
 					E\left( \eta_{T^{(n)}_\epsilon} \right)
 					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{T^{(n)}_\epsilon}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{t^{(n)}_j}\ dP
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \cexp{Z^{(n),j}_{t^{(n)}_{j+1}}}{\mathscr{F}_{T^{(n)}_\epsilon}}\ dP
+						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} Z^{(n),j}_{t^{(n)}_{j+1}}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
 					&= \sum_{j=0}^{2^n-1} \int_{\left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}} \lambda \wedge A_{t^{(n)}_j}\ dP
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_a\ dP \\
@@ -1083,20 +1099,21 @@
 						+ \int_{\left\{T^{(n)}_\epsilon = a\right\}} \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\ dP \\
 					&= E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}\right)
 				\end{align}
-				が得られる．また$\eta^{n} - (\lambda \wedge A)$の右連続性より
+				が得られる．また$(\lambda \wedge A) - \eta^{(n)}$の右連続性より
 				\begin{align}
 					T^{(n)}_\epsilon(\omega) < a
 					\quad \Longrightarrow
-					\quad \eta^{(n)}_{T^{(n)}_\epsilon}(\omega) - \left(\lambda \wedge A_{T^{(n)}_\epsilon}(\omega)\right) \geq \epsilon
+					\quad \left(\lambda \wedge A_{T^{(n)}_\epsilon}(\omega)\right) - \eta^{(n)}_{T^{(n)}_\epsilon}(\omega)
+						\geq \epsilon
 				\end{align}
 				となるから
 				\begin{align}
-					E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}
-						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
-					= E\left(\eta_{T^{(n)}_\epsilon}
-						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
-					= E\defunc_{\left\{T^{(n)}_\epsilon < a\right\}}\left(\eta_{T^{(n)}_\epsilon}
-						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
+					E\left(\lambda \wedge A_{T^{(n)}_\epsilon}
+						- \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)} \right)
+					= E\left(\lambda \wedge A_{T^{(n)}_\epsilon}
+						- \eta^{(n)}_{T^{(n)}_\epsilon} \right)
+					= E\defunc_{\left\{T^{(n)}_\epsilon < a\right\}}\left(\lambda \wedge A_{T^{(n)}_\epsilon}
+						- \eta^{(n)}_{T^{(n)}_\epsilon} \right)
 					\geq \epsilon P\left(T^{(n)}_\epsilon < a\right)
 					\label{eq:chapter_1_theorem_4_14_5}
 				\end{align}
@@ -1104,29 +1121,32 @@
 				
 			\item[第三段]
 				$\left( \eta^{(n)} \right)_{n=1}^\infty$は$n$に関して
-				$P$-a.s. に減少していく．実際，任意の$t \in [0,a)$に対し
+				$P$-a.s. に増大していく．実際，任意の$t \in [0,a)$に対し
 				\begin{align}
 					t \in \left[t^{(n)}_j, t^{(n)}_{j+1}\right)
 				\end{align}
 				を満たす$0 \leq j \leq 2^n-1$を取れば
 				$t \in \left[t^{(n+1)}_{2j}, t^{(n+1)}_{2j+1}\right)$或は
-				$t \in \left[t^{(n+1)}_{2j+1}, t^{(n+1)}_{2j+2}\right)$となるから
+				$t \in \left[t^{(n+1)}_{2j+1}, t^{(n+1)}_{2j+2}\right)$となるから，
+				任意の$A \in \mathscr{F}_t$で
 				\begin{align}
 					\int_A \eta^{(n)}_t\ dP
-					= \int_A \lambda \wedge A_{t^{(n)}_{j+1}}\ dP
-					\geq \int_A \lambda \wedge A_{t^{(n+1)}_{2j+1}}\ dP
-					= \int_A \eta^{(n+1)}_t\ dP,
-					\quad (\forall A \in \mathscr{F}_t)
+					= \int_A \lambda \wedge A_{t^{(n)}_j}\ dP
+					\begin{cases}
+						\displaystyle= \int_A \lambda \wedge A_{t^{(n+1)}_{2j}}\ dP \\
+						\displaystyle\leq \int_A \lambda \wedge A_{t^{(n+1)}_{2j+1}}\ dP
+					\end{cases}
+					= \int_A \eta^{(n+1)}_t\ dP
 				\end{align}
-				より$\eta^{(n)}_t \geq \eta^{(n+1)}_t,\ \mbox{a.s. $P$}$が従う．
+				が成り立ち$\eta^{(n)}_t \leq \eta^{(n+1)}_t,\ \mbox{a.s. $P$}$が従う．
 				$\eta^{(n)},\eta^{(n+1)}$は右連続であるから
 				\begin{align}
-					F_n \coloneqq \Set{\eta^{(n)}_t < \eta^{(n+1)}_t}{\exists t \geq 0}
-					= \bigcup_{r \in [0,\infty) \cap \Q} \left\{\eta^{(n)}_r < \eta^{(n+1)}_r\right\}
+					F_n \coloneqq \Set{\eta^{(n)}_t > \eta^{(n+1)}_t}{\exists t \in [0,a)}
+					= \bigcup_{r \in [0,a) \cap \Q} \left\{\eta^{(n)}_r > \eta^{(n+1)}_r\right\}
 				\end{align}
-				で$P$-零集合が定まり，$F \coloneqq \bigcup_{n=1}^\infty E_n$とおけば
+				で$P$-零集合が定まり，$F \coloneqq \bigcup_{n=1}^\infty F_n$とおけば
 				任意の$\omega \in \Omega \backslash F$と$t \in [0,a]$で
-				$\left( \eta^{(n)}_t(\omega) \right)_{n=1}^\infty$は減少し
+				$\left( \eta^{(n)}_t(\omega) \right)_{n=1}^\infty$は増大し
 				\begin{align}
 					T^{(1)}_\epsilon \defunc_{\Omega \backslash F} 
 					\leq T^{(2)}_\epsilon \defunc_{\Omega \backslash F} \leq \cdots \leq a
@@ -1145,8 +1165,7 @@
 				\end{align}
 				と定めれば$T_\epsilon \in \mathscr{S}_a$も満たされる．
 				同様に$\left(\varphi_n\left(T^{(n)}_\epsilon\right)\right)_{n=1}^\infty$
-				も$\mathscr{S}_a$の列で，
-				$\Omega \backslash F$上で単調に増大して
+				も$\mathscr{S}_a$の列で，$\Omega \backslash F$の上で単調に増大し
 				\begin{align}
 					T_\epsilon = \lim_{n \to \infty} \varphi_n\left(T^{(n)}_\epsilon\right) \defunc_{\Omega \backslash F}
 					\label{eq:chapter_1_theorem_4_14_3}
@@ -1154,19 +1173,18 @@
 				を満たす．実際任意の$t \geq 0$に対し
 				\begin{align}
 					\left\{\varphi_n\left(T^{(n)}_\epsilon\right) \leq t\right\}
-					= \bigcup_{t^{(n)}_j \leq t} \left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}
+					= \bigcup_{j\, :\, t^{(n)}_{j+1} \leq t} \left\{t^{(n)}_j \leq T^{(n)}_\epsilon < t^{(n)}_{j+1}\right\}
 					\in \mathscr{F}_t
 				\end{align}
 				となるから$\varphi_n\left(T^{(n)}_\epsilon\right) \in \mathscr{S}_a$
-				が従い，また$\varphi_n \leq \varphi_{n+1},\ (\forall n \geq 1)$と
-				(\refeq{eq:chapter_1_theorem_4_14_2})より
+				が従い，また$(\varphi_n)_n$の増大性と$t \longmapsto \varphi_n(t)$の増大性より
 				\begin{align}
-					\varphi_n \left(T^{(n)}_\epsilon(\omega)\right)
-					\leq \varphi_{n+1} \left(T^{(n)}_\epsilon(\omega)\right)
-					\leq \varphi_{n+1} \left(T^{(n+1)}_\epsilon(\omega)\right),
+					\varphi_n\left(T^{(n)}_\epsilon(\omega)\right)
+					\leq \varphi_{n+1}\left(T^{(n)}_\epsilon(\omega)\right)
+					\leq \varphi_{n+1}\left(T^{(n+1)}_\epsilon(\omega)\right),
 					\quad (\forall \omega \in \Omega \backslash F)
 				\end{align}
-				となる．任意に$\delta > 0$と$\omega \in \Omega \backslash F$を取れば
+				が成り立つ．任意に$\delta > 0$と$\omega \in \Omega \backslash F$を取れば
 				\begin{align}
 					T_\epsilon(\omega) - T^{(n)}_\epsilon(\omega) < \delta,
 					\quad \frac{a}{2^n} < \delta,
@@ -1187,22 +1205,23 @@
 				\begin{align}
 					T^{(n)}_\epsilon(\omega) < a
 					\quad \Longleftrightarrow \quad
-					\sup{0 \leq t \leq a}{\left\{\eta^{(n)}_t(\omega) - (\lambda \wedge A_t(\omega))\right\}} > \epsilon
+					\sup{0 \leq t \leq a}{\left\{(\lambda \wedge A_t(\omega)) - \eta^{(n)}_t(\omega)\right\}} > \epsilon
 				\end{align}
 				が満たされ，また(\refeq{eq:chapter_1_theorem_4_14_4})より
-				$\Omega \backslash E$の上で$\eta^{(n)}_t-(\lambda \wedge A_t) \geq 0,\ (\forall t \in [0,a])$であるから，
+				$\Omega \backslash E$の上で$(\lambda \wedge A_t) - \eta^{(n)}_t \geq 0,\ (\forall t \in [0,a])$であるから，
 				(\refeq{eq:chapter_1_theorem_4_14_1}), (\refeq{eq:chapter_1_theorem_4_14_5})と併せて
 				\begin{align}
-					&P\left(\sup{0 \leq t \leq a}{\left|\eta^{(n)}_t-(\lambda \wedge A_t)\right|} > \epsilon\right)
+					&P\left(\sup{0 \leq t \leq a}{\left|(\lambda \wedge A_t) - \eta^{(n)}_t\right|} > \epsilon\right)
 					= P\left(T^{(n)}_\epsilon < a\right) \\
-					&\qquad \leq \frac{1}{\epsilon} E\left(\lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)}
-						- \lambda \wedge A_{T^{(n)}_\epsilon} \right)
-					\longrightarrow E\left(\lambda \wedge A_{T_\epsilon}
+					&\qquad \leq \frac{1}{\epsilon} E\left(\lambda \wedge A_{T^{(n)}_\epsilon}
+						- \lambda \wedge A_{\varphi_n\left(T^{(n)}_\epsilon\right)} \right)
+					\longrightarrow \frac{1}{\epsilon} E\left(\lambda \wedge A_{T_\epsilon}
 						- \lambda \wedge A_{T_\epsilon} \right) = 0 \quad (n \longrightarrow \infty)
 				\end{align}
-				が得られる．従って或る部分列$(n_k)_{k=1}^\infty$と$P$-零集合$G$が存在して
+				が得られる．従って定理\ref{thm:convergence_in_measure_then_convergence_almost_everywhere}より
+				或る部分列$(n_k)_{k=1}^\infty$と$P$-零集合$G$が存在して
 				\begin{align}
-					\sup{0 \leq t \leq a}{\left|\eta^{(n_k)}_t(\omega)-(\lambda \wedge A_t(\omega))\right|}
+					\sup{0 \leq t \leq a}{\left(\lambda \wedge A_t(\omega))-|\eta^{(n_k)}_t(\omega)\right|}
 					\longrightarrow 0
 					\quad (k \longrightarrow \infty),
 					\quad (\forall \omega \in \Omega \backslash G)
