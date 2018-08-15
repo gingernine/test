@@ -12,6 +12,70 @@
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 任意の$x \in U$で$f(x) \in f(U)$となるから
+				$x \in f^{-1}\left(f(U)\right)$が成立する．
+				$f$が単射であれば，任意の$x \in f^{-1}\left(f(U)\right)$に対し
+				$f(x) \in f(U)$となるから或る$x_1 \in U$で$f(x) = f(x_1)$となり，
+				単射性より$x = x_1 \in U$が成り立つ．
+				
+			\item[(2)] 任意に$y \in f\left(f^{-1}(V)\right)$を取れば，
+				或る$x \in f^{-1}(V)$で$y = f(x) \in V$となる．$f$が全射であるとき，
+				任意の$y \in V$に対し或る$x \in A$が$y = f(x)$を満たすから，
+				$x \in f^{-1}(V)$となり$y \in f\left(f^{-1}(V)\right)$が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[距離化可能性の遺伝]
+			$(X,\tau_X),(Y,\tau_Y)$を位相空間，$f:X \longrightarrow Y$を同相写像とする．
+			$X$が距離$d_X$で距離化可能なら，
+			\begin{align}
+				d_Y\left(f(x),f(y)\right) \coloneqq d_X(x,y),
+				\quad (\forall x,y \in X)
+			\end{align}
+			により$Y$は距離化可能である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau_{d_Y}$で$d_Y$により導入する距離位相を表す．
+		任意に$U \in \tau_Y$を取れば$f^{-1}(U) \in \tau_X$となるから，
+		任意の$y_0 \in U$及び$x_0 = f^{-1}(y_0)$に対し
+		\begin{align}
+			B^X_r(x_0) \coloneqq \Set{x \in X}{d_X(x_0,x) < r} \subset f^{-1}(U)
+		\end{align}
+		を満たす$r > 0$が存在して
+		\begin{align}
+			f\left(B^X_r(x_0)\right) = \Set{y \in Y}{d_Y(y_0,y) < r} \subset U
+		\end{align}
+		となり$U \in \tau_{d_Y}$が従う．一方で任意の点$y_1 = f(x_1)$を中心とする$d_Y$の球
+		\begin{align}
+			B^Y_\epsilon (y_1) \coloneqq \Set{y \in Y}{d_Y(y_1,y) < \epsilon}
+		\end{align}
+		に対し
+		\begin{align}
+			f^{-1}\left(B^Y_\epsilon (y_1)\right)
+			= \Set{x \in X}{d_X(x_1,x) < \epsilon} \in \tau_X
+		\end{align}
+		が成り立つから，$B^Y_\epsilon (y_1) \in \tau_Y$が従い
+		$\tau_{d_Y} \subset \tau_Y$が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[位相線型空間の連結性]\label{thm:topological_vector_spaces_connected}
+			位相線型空間は連結である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		位相線型空間は弧状連結であるから定理\ref{thm:connected_path_connected}より連結である．
+		\QED
+	\end{prf}
+	
 	位相線形空間$(X,\tau)$に対し，その部分集合$Y$上の相対位相を$\tau_Y$と書き，
 	また$X$が或る距離$d$で距離付け可能なとき，
 	$d$により導入する位相を$\tau_d$と書く．位相$\tau$に関する開集合，閉集合，近傍，
@@ -41,7 +105,7 @@
 	
 	\begin{screen}
 		\begin{dfn}[集合の線型演算]
-			$X$を$\Phi$上の位相線型空間，$A,B$を$X$の部分集合，$\alpha,\beta \in \Phi$とする．
+			$X$を体$\Phi$上の位相線型空間，$A,B$を$X$の部分集合，$\alpha,\beta \in \Phi$とする．
 			このとき
 			\begin{align}
 				\alpha A + \beta B \coloneqq \Set{\alpha a + \beta b}{a \in A,\ b \in B}
@@ -49,6 +113,36 @@
 			と書く．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			$X$を位相線型空間，$A,B$を部分集合とする．
+			\begin{description}
+				\item[(1)] $\alpha \overline{A} = \overline{\alpha A}$
+				\item[(2)] $\alpha (A^{\mathrm{o}}) = (\alpha A)^{\mathrm{o}}$
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $\alpha = 0$或は$A = \emptyset$の場合は両辺が
+				$\{0\}$或は$\emptyset$となって等号が成立する．
+				$\alpha \neq 0$かつ$A \neq \emptyset$の場合，
+				\begin{align}
+					x \in \alpha \overline{A}
+					\quad &\Longleftrightarrow \quad
+					\alpha^{-1}x \in \overline{A} \\
+					\quad &\Longleftrightarrow \quad
+					\left(\alpha^{-1}x + V\right) \cap A \neq \emptyset, \quad (\forall V) \\
+					\quad &\Longleftrightarrow \quad
+					\left(x + V\right) \cap \alpha A \neq \emptyset, \quad (\forall V) \\
+					\quad &\Longleftrightarrow \quad
+					x \in \overline{\alpha A}
+				\end{align}
+				が成り立つ．
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[位相線形空間の有界集合]
