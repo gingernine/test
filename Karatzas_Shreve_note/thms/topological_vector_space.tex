@@ -90,24 +90,42 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[ノルム空間は位相線型空間]
-			ノルム空間にノルム位相を導入すれば位相線型空間となる．
+		\begin{dfn}[平行移動不変距離]
+			線型空間$X$上に定まる距離$d$が
+			\begin{align}
+				d(x+z, y+z) = d(x,y),\quad (\forall x,y,z \in X)
+			\end{align}
+			を満たすとき，$d$を平行移動不変距離(invariant metric)と呼ぶ．
+			平行移動不変距離$d$がさらに
+			\begin{align}
+				d(\alpha x, \alpha y) = |\alpha| d(x,y),
+				\quad (\forall \alpha \in \Phi,\ x,y \in X)
+			\end{align}
+			を満たすとき$d$は斉次的である(homogeneous)という．
+			例えば，$X$にノルム$\Norm{\cdot}{}$が定まっている場合，
+			$d(x,y) \coloneqq \Norm{x-y}{}$により定まる距離$d$は斉次的かつ平行移動不変である．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[斉次的な平行移動不変距離による距離位相は線型位相]
+			$X$を線型空間とする．$X$において斉次的な平行移動不変距離$d$が存在するとき，
+			$d$で導入する距離位相は線型位相となる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$(X,\Norm{\cdot}{})$をノルム空間として
+		距離空間は$T_4$であるから$X$は$T_1$である．また
 		\begin{align}
-			d(x,y) \coloneqq \Norm{x-y}{},
-			\quad (\forall x,y \in X)
+			d(x+y,x'+y') \leq d(x+y,x'+y) + d(x'+y,x'+y') = d(x,x') + d(y,y')
 		\end{align}
-		で定める距離$d$で導入する距離位相がノルム位相である．
-		すなわち$X$はHausdorff空間となる．また
+		より加法の連続性が得られ，
 		\begin{align}
-			\Norm{(x+y)-(x'+y')}{} \leq \Norm{x-x'}{} + \Norm{y-y'}{},
-			\quad \Norm{\alpha x - \alpha'x'}{} \leq |\alpha-\alpha'|\Norm{x}{} + |\alpha'|\Norm{x-x'}{}
+			d(\alpha x, \alpha'x') &\leq d(\alpha x, \alpha'x) + d(\alpha'x,\alpha'x') \\
+			&= d((\alpha - \alpha') x, 0) + |\alpha'|d(x,x')
+			= |\alpha-\alpha'|d(x,0) + |\alpha'|d(x,x')
 		\end{align}
-		より線型演算は連続である．
+		よりスカラ倍の連続性も出る．
 		\QED
 	\end{prf}
 	
@@ -199,16 +217,8 @@
 	\begin{screen}
 		\begin{dfn}[$F$-空間・Frechet空間・ノルム空間]
 			$(X,\tau)$を位相線型空間とする．
-			$\tau = \tau_d$を満たす距離$d$が存在するとき，
-			$X$は距離化可能(metrizable)であるという．
-			$X$の距離$d$が
-			\begin{align}
-				d(x+z, y+z) = d(x,y),\quad (\forall x,y,z \in X)
-			\end{align}
-			を満たすとき，$d$を平行移動不変距離(invariant metric)と呼び，
 			$d$により$X$が距離化可能でかつ完備距離空間となるとき，
 			$X$を$F$-空間と呼ぶ．局所凸な$F$-空間をFrechet空間と呼び
-			
 		\end{dfn}
 	\end{screen}
 	
