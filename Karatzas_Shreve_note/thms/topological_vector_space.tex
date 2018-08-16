@@ -1,5 +1,12 @@
 \subsection{位相線型空間 (Rudin note)}
-
+	\begin{screen}
+		\begin{thm}[多変数連続写像は一変数写像として連続]
+			$\Lambda$を任意濃度の空でない集合とし，
+			$\left( (S_\lambda,\tau_\lambda) \right)_{\lambda \in \Lambda}$を位相空間の族とする．
+			
+		\end{thm}
+	\end{screen}
+	
 	\begin{screen}
 		\begin{thm}[全射・単射・像・原像]
 			$f$を集合$A$から集合$B$への写像とするとき，
@@ -65,6 +72,38 @@
 		\QED
 	\end{prf}
 	
+	以降扱う線型空間はすべて体$\Phi (=\C,\R)$をスカラーとして考え，位相はEuclid距離による距離位相を導入する．
+	
+	\begin{screen}
+		\begin{dfn}[位相線型空間]
+			$\Phi$上の線型空間$X$で定められる位相$\tau$が
+			\begin{description}
+				\item[(tvs1)] $X \times X \ni (x,y) \longmapsto x+y \in X$
+					及び$\Phi \times X \ni (\alpha,x) \longmapsto \alpha x \in X$
+					が$\tau$及びその直積位相に関し連続である．
+				\item[(tvs2)]
+					$(X,\tau)$は$T_1$位相空間である．
+			\end{description}
+			を満たすとき線型位相(vector topology)と呼び，
+			$(X,\tau)$を位相線型空間(topological vector space)と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[平行移動・スカラ倍の連続性]\label{thm:continuity_of_translations_multiples}
+			$(X,\tau)$を位相線型空間とするとき，任意の$a \in X$に対し
+			\begin{align}
+				X \ni x \longmapsto a + x \in X,
+				\quad \Phi \ni \alpha \longmapsto \alpha a \in X
+			\end{align}
+			はいずれも連続である．同様に任意の$\beta \in \Phi$に対し
+			$X \ni x \longmapsto \beta x$もまた連続である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+	\end{prf}
+	
 	\begin{screen}
 		\begin{thm}[位相線型空間の連結性]\label{thm:topological_vector_spaces_connected}
 			位相線型空間は連結である．
@@ -72,7 +111,20 @@
 	\end{screen}
 	
 	\begin{prf}
-		位相線型空間は弧状連結であるから定理\ref{thm:connected_path_connected}より連結である．
+		零元のみの空間は密着空間であるから連結である．
+		$X \neq \{0\}$を位相線型空間とするとき，任意に$a,b \in X$を取り
+		\begin{align}
+			f:[0,1] \ni t \longmapsto a + t(b - a) \in X
+		\end{align}
+		と定めれば$f$は$[0,1]$から$X$への連続写像である．実際，
+		定理\ref{thm:continuity_of_translations_multiples}より
+		$\Phi \ni t \longmapsto t(b-a)$が連続であるから
+		\begin{align}
+			g:[0,1] \ni t \longmapsto t(b-a)
+		\end{align}
+		は$[0,1]$の相対位相に関して連続であり，かつ$h:X \ni x \longmapsto a + x$もまた連続であるから
+		$f = h \circ g$の連続性が従う．
+		よって$X$は弧状連結であるから定理\ref{thm:connected_path_connected}より連結である．
 		\QED
 	\end{prf}
 	
@@ -80,6 +132,47 @@
 	また$X$が或る距離$d$で距離付け可能なとき，
 	$d$により導入する位相を$\tau_d$と書く．位相$\tau$に関する開集合，閉集合，近傍，
 	Cauchy列は$\tau$-開集合(resp. 閉集合，近傍，Cauchy列)と書く．
+	
+	\begin{screen}
+		\begin{dfn}[局所基・局所凸・局所コンパクト・局所有界]
+			$(X,\tau)$を位相線型空間とする．
+			\begin{description}
+				\item[(1)] $0 \in X$の基本近傍系を$X$の局所基(local base)と呼ぶ．
+				\item[(2)] すべての元が凸集合であるような局所基が取れるとき，$X$は局所凸(locally convex)であるという．
+				\item[(3)] $0 \in X$がコンパクトな近傍を持つとき，$X$は局所コンパクト(locally compact)であるという．
+				\item[(4)] $0 \in X$が有界な近傍を持つとき，$X$は局所有界(locally bounded)であるという．
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[局所基は平行移動により任意の点の近傍系となる]
+			$X$を位相線型空間とするとき以下が成り立つ:
+			\begin{description}
+				\item[(1)] 任意の$x \in X$に対し$\Set{x + V}{V \in \mathscr{B}}$は
+					$x$の近傍系となる．
+				\item[(2)] $x$の近傍系$\mathbb{V}(x)$に対し$\mathscr{B} = \Set{-x + V}{V \in \mathbb{V}(x)}$
+					となる．
+				\item[(3)] $X$が局所コンパクト空間であるとき，任意の点はコンパクトな近傍を持つ． 
+ 			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[$F$-空間・Frechet空間・ノルム空間]
+			$(X,\tau)$を位相線型空間とする．
+			$\tau = \tau_d$を満たす距離$d$が存在するとき，
+			$X$は距離化可能(metrizable)であるという．
+			$X$の距離$d$が
+			\begin{align}
+				d(x+z, y+z) = d(x,y),\quad (\forall x,y,z \in X)
+			\end{align}
+			を満たすとき，$d$を平行移動不変距離(invariant metric)と呼び，
+			$d$により$X$が距離化可能でかつ完備距離空間となるとき，
+			$X$を$F$-空間と呼ぶ．局所凸な$F$-空間をFrechet空間と呼び
+			
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[部分空間が$F$-空間なら閉]
@@ -134,13 +227,32 @@
 					\quad &\Longleftrightarrow \quad
 					\alpha^{-1}x \in \overline{A} \\
 					\quad &\Longleftrightarrow \quad
-					\left(\alpha^{-1}x + V\right) \cap A \neq \emptyset, \quad (\forall V) \\
+					\left(\alpha^{-1}x + V\right) \cap A \neq \emptyset, \quad 
+						(\mbox{$\forall V$: neighborhood of 0}) \\
 					\quad &\Longleftrightarrow \quad
-					\left(x + V\right) \cap \alpha A \neq \emptyset, \quad (\forall V) \\
+					\left(x + V\right) \cap \alpha A \neq \emptyset, \quad 
+						(\mbox{$\forall V$: neighborhood of 0}) \\
 					\quad &\Longleftrightarrow \quad
 					x \in \overline{\alpha A}
 				\end{align}
 				が成り立つ．
+				
+			\item[(2)] $\alpha = 0$或は$A = \emptyset$の場合は両辺が
+				$\{0\}$或は$\emptyset$となって等号が成立する．
+				$\alpha \neq 0$かつ$A \neq \emptyset$の場合，
+				\begin{align}
+					x \in \alpha (A^{\mathrm{o}})
+					\quad &\Longleftrightarrow \quad
+					\alpha^{-1}x \in A^{\mathrm{o}} \\
+					\quad &\Longleftrightarrow \quad
+					\mbox{$\exists V$: neighborhood of 0},\quad \alpha^{-1}x + V \subset A \\
+					\quad &\Longleftrightarrow \quad
+					\mbox{$\exists V$: neighborhood of 0},\quad x + V \subset \alpha A \\
+					\quad &\Longleftrightarrow \quad
+					x \in (\alpha A)^{\mathrm{o}}
+				\end{align}
+				が成り立つ．
+				
 		\end{description}
 	\end{prf}
 	
@@ -170,5 +282,17 @@
 		\begin{thm}[同程度連続な写像族の有界性]
 			$X,Y$を位相線形空間，$\mathscr{F}$を$X$から$Y$への連続線型写像の族とする．
 			$\mathscr{F}$が同程度連続であるとき，
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Banach-Steinhaus]
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[開写像原理]
+			$X$
 		\end{thm}
 	\end{screen}
