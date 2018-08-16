@@ -137,6 +137,20 @@
 
 \subsection{位相}
 	\begin{screen}
+		\begin{dfn}[位相]
+			集合$S$の部分集合の族$\mathscr{O}$が
+			以下を満たすとき，$\mathscr{O}$を$S$の位相(topology)と呼ぶ:
+			\begin{description}
+				\item[(O1)] $\emptyset, S \in \mathscr{O}$,
+				\item[(O2)] $O_1,O_2 \in \mathscr{O} 
+					\quad \Longrightarrow \quad O_1 \cap O_2 \in \mathscr{O}$,
+				\item[(O3)] $\displaystyle\mathscr{U} \subset \mathscr{O}
+					\quad \Longrightarrow \quad \bigcup \mathscr{U} = 
+					\bigcup_{U \in \mathscr{U}} U \in \mathscr{O}$.
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	\begin{screen}
 		\begin{dfn}[近傍]
 			位相空間$S$において，$V \subset S$と$x \in S$に対し
 			\begin{align}
@@ -146,11 +160,80 @@
 		\end{dfn}
 	\end{screen}
 	
+	\begin{screen}
+		\begin{dfn}[相対位相]
+			$(S,\mathscr{O})$を位相空間，$M \subset S$を部分集合，
+			$i:M \longrightarrow S$を恒等写像とするとき，
+			\begin{align}
+				\mathscr{O}_M \coloneqq 
+				\Set{i^{-1}(O) = O \cap M}{O \in \mathscr{O}}
+			\end{align}
+			で定まる$i$による$\mathscr{O}$の引き戻しを$M$の相対位相(relative topology)と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[位相の生成]
+			$S$を集合，$\mathcal{P}(S)$を冪集合として
+			任意に$M \subset \mathcal{P}(S)$を取り
+			\begin{align}
+				\mathscr{A} \coloneqq
+				\Set{\bigcap_{i=1}^n I_i}{I_i \in M,\ n = 1,2,\cdots}
+			\end{align}
+			とおくとき，$M$を含む最小の位相は
+			\begin{align}
+				\mathscr{O} \coloneqq
+				\Set{\bigcup \Lambda}{\Lambda \subset \mathscr{A}}
+				\cup \{S\}
+			\end{align}
+			で与えられる．この$\mathscr{O}$を$M$が生成する$S$の位相と呼ぶ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{O}$は定め方より$S$と$\emptyset$を含む．また
+		任意の$O_1 = \bigcup \Lambda_1,\ O_2=\bigcup \Lambda_2 \in \mathscr{O},\ 
+		(\Lambda_1,\Lambda_2 \subset \mathscr{A})$に対し
+		\begin{align}
+			\Set{I \cap J}{I \in \Lambda_1,\ J \in \Lambda_2} \subset \mathscr{A}
+		\end{align}
+		となるから
+		\begin{align}
+			O_1 \cap O_2 = \bigcup_{I \in \Lambda_1,\ J \in \Lambda_2} I \cap J \in \mathscr{O}
+		\end{align}
+		が成立する．任意に$\emptyset \neq \mathscr{U} \subset \mathscr{O}$を取れば，
+		各$U \in \mathscr{U}$に$U = \bigcup \Lambda_U$を満たす
+		$\Lambda_U \subset \mathscr{A}$が対応し，このとき
+		\begin{align}
+			\bigcup_{U \in \mathscr{U}} \Lambda_U \subset \mathscr{A}
+		\end{align}
+		となるから
+		\begin{align}
+			\bigcup \mathscr{U} = \bigcup \Biggl(\bigcup_{U \in \mathscr{U}} \Lambda_U\Biggr)
+			\in \mathscr{O}
+		\end{align}
+		が従う．$M$を含む任意の位相は$\mathscr{A}$を含みかつその任意和で閉じるから$\mathscr{O}$を含む．
+		\QED
+	\end{prf}
+	
 \subsection{分離公理}
 	\begin{screen}
 		\begin{dfn}[分離公理]
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[連続な単射の引き戻しによる分離性の遺伝]
+			$S,T$を位相空間，$f:S \longrightarrow T$を連続単射とするとき，
+			$T$が$T_k$-空間$(k=0,1,\cdots,6)$なら
+			$S$もまた$T_k$-空間となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に異なる二点$s_1,s_2 \in S$を取れば単射性より$f(s_1) \neq f(s_2)$となる．
+		$T$の分離性より
+	\end{prf}
 	
 \subsection{位相的補題}
 	位相空間$S$の部分集合$A$について，$A$の内核を$A^i$或は$A^{\mathrm{o}}$と書き，
