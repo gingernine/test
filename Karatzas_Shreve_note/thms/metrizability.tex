@@ -1,0 +1,151 @@
+\subsection{距離化可能性}
+	\begin{screen}
+		\begin{thm}[全射・単射・像・原像]\label{projective_injective_image_preimage}
+			$f$を集合$A$から集合$B$への写像とするとき，
+			\begin{description}
+				\item[(1)] 任意の$U \subset A$に対し$f^{-1}\left(f(U)\right) \supset U$が成立し，
+					特に$f$が単射なら$f^{-1}\left(f(U)\right) = U$となる．
+				\item[(2)] 任意の$V \subset B$に対し$f\left(f^{-1}(V)\right) \subset V$が成立し，
+					特に$f$が全射なら$f\left(f^{-1}(V)\right) = V$となる．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 任意の$x \in U$で$f(x) \in f(U)$となるから
+				$x \in f^{-1}\left(f(U)\right)$が成立する．
+				$f$が単射であれば，任意の$x \in f^{-1}\left(f(U)\right)$に対し
+				$f(x) \in f(U)$となるから或る$x_1 \in U$で$f(x) = f(x_1)$となり，
+				単射性より$x = x_1 \in U$が成り立つ．
+				
+			\item[(2)] 任意に$y \in f\left(f^{-1}(V)\right)$を取れば，
+				或る$x \in f^{-1}(V)$で$y = f(x) \in V$となる．$f$が全射であるとき，
+				任意の$y \in V$に対し或る$x \in A$が$y = f(x)$を満たすから，
+				$x \in f^{-1}(V)$となり$y \in f\left(f^{-1}(V)\right)$が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[距離化可能]
+			位相空間において，その位相と一致する距離位相を定める距離が存在するとき，
+			その空間は距離化可能(metrizable)であるという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[連続単射な開写像による距離化可能性の遺伝]\label{thm:heredity_of_metrizability}
+			$X,Y$を位相空間，$f:X \longrightarrow Y$を連続単射な開写像とする．
+			$X$が距離$d_X$で距離化可能なら，$f(X)$の相対位相は次で定める$d_Y$により距離化可能である:
+			\begin{align}
+				d_Y\left(f(x),f(y)\right) = d_X(x,y),
+				\quad (\forall x,y \in X).
+				\label{eq:thm_heredity_of_metrizability}
+			\end{align}
+			逆に$f(X)$の相対位相が或る距離$d_Y$で距離化可能であるとき，
+			(\refeq{eq:thm_heredity_of_metrizability})で定める$d_X$により$X$は距離化可能である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$X$に距離$d_X$が定まっているとき，或は$f(X)$に距離$d_Y$が定まっているとき，
+		(\refeq{eq:thm_heredity_of_metrizability})で$d_Y$或は$d_X$を定めれば
+		いずれも距離となる．このとき任意の$f(x_0) = y_0$と$r > 0$に対し
+		\begin{align}
+			B^X_r(x_0) \coloneqq \Set{x \in X}{d_X(x_0,x) < r},
+			\quad B^Y_r(y_0) \coloneqq \Set{y \in f(X)}{d_Y(y_0,y) < r}
+		\end{align}
+		とおけば
+		\begin{align}
+			f\left(B^X_r(x_0)\right) = B^Y_r(y_0),
+			\quad B^X_r(x_0) = f^{-1}\left(B^Y_r(y_0)\right)
+			\label{eq:thm_heredity_of_metrizability_2}
+		\end{align}
+		が成立する．$X$が距離化可能であるとき，$U$を$f(X)$の相対開集合とすれば
+		$f^{-1}(U)$は$X$の開集合であるから
+		\begin{align}
+			f^{-1}(U) = \bigcup_{x \in f^{-1}(U)}B^X_{r_x}(x)
+		\end{align}
+		と表され，定理\ref{projective_injective_image_preimage}と
+		(\refeq{eq:thm_heredity_of_metrizability_2})より
+		\begin{align}
+			U = f\Biggl(\bigcup_{x \in f^{-1}(U)}B^X_{r_x}(x)\Biggr)
+			= \bigcup_{x \in f^{-1}(U)}B^Y_{r_x}(f(x))
+		\end{align}
+		となるから$U$は$d_Y$による距離位相の開集合である．逆に$V$を$d_Y$による距離位相の開集合とすれば，
+		(\refeq{eq:thm_heredity_of_metrizability_2})より$f^{-1}(V)$は
+		$d_X$による開球の和で書けるから$X$の開集合であり，$f$が全射開写像であるから
+		$V = f\left(f^{-1}(V)\right)$は$f(X)$の相対開集合である．
+		後半の主張は$f$の逆写像$f^{-1}:f(X) \longrightarrow X$に対し前半の結果を当てはめて得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[$\sigma$-局所有限]
+			位相空間$X$の部分集合族$\mathscr{F}$が局所有限(locally finite)であるとは，
+			任意の$x \in X$が$\mathscr{F}$の高々有限個の元としか交叉しない近傍を持つことである．
+			位相空間が$\sigma$-局所有限であるとは，その基底が局所有限な部分集合族の可算和で表されることである．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Nagata-Smirnov]\label{thm:Nagata_Smirnov_metrizability}
+			位相空間が距離化可能であるための必要十分条件は，$T_3$かつ$\sigma$-局所有限であることである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} $X$を位相空間とする．\mbox{}
+		\begin{description}
+			\item[第一段] $X$が$T_3$かつ$\sigma$-局所有限であれば，
+				$X$は$T_4$かつ全ての閉集合は$G_\delta$となる．
+				$X$は局所有限な部分集合族$\mathscr{B}_n$の合併
+				$\bigcup_{n=1}^\infty \mathscr{B}_n$で表せる基底を有する．
+				任意の$n \in \Z_+$及び$B \in \mathscr{B}_n$に対し
+				\begin{align}
+					f_{n,B}(x)
+					\begin{cases}
+						> 0, & (x \in B), \\
+						= 0, & (x \in X \backslash B)
+					\end{cases}
+				\end{align}
+		\end{description}
+		を満たす連続写像$f_{n,B}:X \longrightarrow [0,1/n]$が存在する．
+		\begin{align}
+			J \coloneqq \Set{(n,B)}{n \in \Z_+,\ B \in \mathscr{B}_n}
+		\end{align}
+		とおいて
+		\begin{align}
+			F(x) \coloneqq \left(f_{n,B}(x)\right)_{(n,B) \in J}
+		\end{align}
+		により$F$を定めれば，$F$は単射となる．また
+		\begin{align}
+			d\left((x_j)_{j \in J},(y_j)_{j \in J}\right)
+			\coloneqq \sup{j \in J}{|x_j - y_j|}
+		\end{align}
+		により$[0,1]^J$に距離を定めれば，
+		$F$は$X$から$[0,1]^J$への開写像かつ連続写像となる．
+		任意の$x_0 \in X$と$\epsilon > 0$に対して
+		\begin{align}
+			x \in W \quad \Longrightarrow \quad d(F(x),F(x_0)) < \epsilon
+			\label{eq:thm_Nagata_Smirnov_metrizability_1}
+		\end{align}
+		を満たす$x_0$の開近傍$W$が存在する．$n$を固定すれば
+		或る$x_0$の近傍$U_n$は$\mathscr{B}_n$の高々有限個の元としか交わらない．
+		従って或る開近傍$V_n \subset U_n$が存在し，すべての$B \in \mathscr{B}_n$で
+		\begin{align}
+			x \in V_n \quad \Longrightarrow \quad d(F(x),F(x_0)) < \epsilon
+			\label{eq:thm_Nagata_Smirnov_metrizability_2}
+		\end{align}
+		が満たされる，$1/N < \epsilon/2$を満たす$N \in \Z_+$を取り
+		\begin{align}
+			W \coloneqq V_1 \cap \cdots \cap U_N
+		\end{align}
+		とおけば，$n \leq N$の場合任意の$B \in \mathscr{B}_n$で
+		(\refeq{eq:thm_Nagata_Smirnov_metrizability_2})が成立し，
+		$n > N$の場合任意の$B \in \mathscr{B}_n$で
+		\begin{align}
+			d(F(x),F(x_0)) \leq \frac{2}{n} < \epsilon, \quad (\forall x \in X)
+		\end{align}
+		となるから(\refeq{eq:thm_Nagata_Smirnov_metrizability_1})が成り立つ．
+	\end{prf}
