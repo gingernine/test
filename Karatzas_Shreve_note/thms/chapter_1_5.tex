@@ -429,3 +429,51 @@
 				Then $\mathfrak{M}_2^c$ is a complete metric space under the preceding metric $d_c$.
 		\end{description}
 	\end{itembox}
+	
+	\begin{prf} 任意の$0 \leq t < \infty$に対し，$L^2(\Omega,\mathscr{F}_t,P)$における関数類を$[\cdot]_t$と書く．
+		\begin{description}
+			\item[(1)] $\left([X^{(k)}]_{\mathfrak{M}_2}\right)_{k=1}^\infty$をCauchy列とすれば，
+				$|X^{(k)} - X^{(j)}|^2$の劣マルチンゲール性より任意の$0 \leq t \leq n$で
+				\begin{align}
+					\Norm{[x^{(k)}_t]_t - [X^{(j)}_t]_t}{L^2(\Omega,\mathscr{F}_t,P)} \wedge 1
+					&\leq \Norm{[x^{(k)}_n] - [X^{(j)}_n]}{L^2(P)} \wedge 1 \\
+					&\leq 2^n \Norm{[X^{(k)}]_{\mathfrak{M}_2} - [X^{(j)}]_{\mathfrak{M}_2}}{\mathfrak{M}_2}
+					\longrightarrow 0,
+					\quad (k,j \longrightarrow \infty)
+				\end{align}
+				となるから，定理\ref{thm:Lp_banach}より或る$[X_t]_t \in L^2(\Omega,\mathscr{F}_t,P)$が存在して
+				\begin{align}
+					E \left|X^{(k)}_t - X_t\right|^2 \longrightarrow 0,
+					\quad (k \longrightarrow \infty)
+				\end{align}
+				を満たす．特に$t = 0$なら$X_t = 0,\ \mbox{a.s. $P$}$が従う．
+				H\Ddot{o}lderの不等式より任意の$A \in \mathscr{F}_t$で
+				\begin{align}
+					\int_A \left|X^{(k)}_t - X_t\right|\ dP
+					\leq \left( E \left|X^{(k)}_t - X_t\right|^2 \right)^{1/2}
+					\longrightarrow 0,
+					\quad (k \longrightarrow \infty)
+				\end{align}
+				が成り立つから，任意に$0 \leq s < t$を取れば
+				\begin{align}
+					\int_A X_s\ dP
+					= \lim_{k \to \infty} \int_A X^{(k)}_s\ dP
+					= \lim_{k \to \infty} \int_A X^{(k)}_t\ dP
+					= \int_A X_t\ dP,
+					\quad (\forall A \in \mathscr{F}_s)
+				\end{align}
+				が得られ$X = \Set{X_t,\mathscr{F}_t}{0 \leq t < \infty}$のマルチンゲール性が出る．
+				Theorem 3.13より$X$の$RCLL$な修正$\tilde{X}$が得られ，ここで任意に$\epsilon > 0$及び
+				$1/2^N < \epsilon/2$を満たす$N$を取れば，或る$K \geq 1$が存在して
+				\begin{align}
+					\Norm{[X^{(k)}_n] - [\tilde{X}_n]}{L^2(P)} < \frac{\epsilon}{2},
+					\quad (\forall k \geq K)
+				\end{align}
+				がすべての$n \leq N$で満たされるから
+				\begin{align}
+					\Norm{[X^{(k)}]_{\mathfrak{M}_2} - [\tilde{X}]_{\mathfrak{M}_2}}{\mathfrak{M}_2} < \epsilon,
+					\quad (\forall k \geq K)
+				\end{align}
+				が従う．
+		\end{description}
+	\end{prf}
