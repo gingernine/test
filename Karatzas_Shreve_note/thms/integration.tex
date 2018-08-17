@@ -1,4 +1,5 @@
 \section{積分}
+\subsection{積分}
 	\begin{screen}
 		\begin{thm}[複素数値関数の可測性]\label{thm:measurability_of_complex_measurable_functions}
 			$(X,\mathscr{F})$を可測空間，$f:X \longrightarrow \C$とする．このとき，
@@ -267,3 +268,116 @@
 		が従う．
 		\QED
 	\end{prf}
+	
+	\subsection{関数列の収束}
+		\begin{screen}
+			\begin{dfn}[概収束すれば測度収束する]
+				$(X,\mathscr{F},\mu)$を正値有限測度空間とする．
+				$(f_n)_{n=1}^\infty,f$を全て$\mathscr{F}/\borel{\C}$-可測関数とするとき，
+				$\lim_{n \to \infty} f_n = f,\ \mbox{$\mu$-a.e.}$なら
+				$(f_n)_{n=1}^\infty$は$f$に測度収束する．
+			\end{dfn}
+		\end{screen}
+		
+		\begin{prf}
+			任意の$\epsilon > 0$に対し
+			\begin{align}
+				A^n_\epsilon \coloneqq \left\{ |f_n - f| > \epsilon \right\}
+			\end{align}
+			とおけば，Lebesgueの収束定理より任意の$k \geq 1$で
+			\begin{align}
+				\epsilon \mu\left(A^n_\epsilon\right)
+				\leq \int_{A^n_\epsilon} |f_n - f| \wedge \epsilon\ d\mu
+				\leq \int_{X} |f_n - f| \wedge \epsilon\ d\mu
+				\longrightarrow 0
+				\quad (n \longrightarrow \infty)
+			\end{align}
+			が成立する．
+			\QED
+		\end{prf}
+		
+		上の定理で有限性を外すときの反例を示す．
+		$X = \R$，$\mu$を一次元Lebesgue測度とするとき，
+		\begin{align}
+			f_n \coloneqq \defunc_{\R \backslash (-n,n)}
+		\end{align}
+		で定める関数列$(f_n)_{n=1}^\infty$は零写像に各点収束するが，$0 < \epsilon < 1$に対し
+		\begin{align}
+			\mu\left( f_n > \epsilon \right) = \mu((-\infty,-n] \cup [n,\infty)) = \infty,
+			\quad (\forall n \geq 1)
+		\end{align}
+		を満たすから測度収束しない．
+		
+		\begin{screen}
+			\begin{thm}[測度収束列の概収束部分列]\label{thm:convergence_in_measure_then_convergence_almost_everywhere}
+				$(X,\mathscr{F},\mu)$を正値測度空間，
+				$(f_n)_{n=1}^\infty,f$を全て$\mathscr{F}/\borel{\C}$-可測関数とするとき，
+				$(f_n)_{n=1}^\infty$が$f$に測度収束するなら
+				或る部分列$(f_{n_k})_{k=1}^\infty$は$f$に概収束する．
+			\end{thm}
+		\end{screen}
+		
+		\begin{prf}
+			$(f_n)_{n=1}^\infty$が$f$に測度収束するとき，任意の$k \geq 1$に対し
+			\begin{align}
+				\mu\left( |f_{n_k} - f| > \frac{1}{2^k}\right) < \frac{1}{2^k}
+			\end{align}
+			を満たす添数列$n_1 < n_2 < n_3 < \cdots$が取れる．
+			\begin{align}
+				A_k \coloneqq \left\{|f_{n_k} - f| > \frac{1}{2^k}\right\},
+				\quad A \coloneqq \bigcup_{k\geq1} \bigcap_{j>k} A_j^c
+			\end{align}
+			とおけば，$\mu(A^c) \leq \mu\left(\bigcup_{j>k} A_j\right),\ (\forall k \geq 1)$かつ
+			\begin{align}
+				\mu\Biggl(\bigcup_{j>k} A_j\Biggr) \leq \sum_{j>k} \frac{1}{2^j}
+				= \frac{1}{2^k}
+			\end{align}
+			より$\mu(A^c) = 0$が従い，$x \in A$なら或る$k = k(x)$が存在して
+			\begin{align}
+				|f_{n_j}(x) - f(x)| \leq \frac{1}{2^j}, \quad (\forall j > k)
+			\end{align}
+			となるから$\lim_{k \to \infty} f_{n_k}(x) = f(x)$が満たされる．
+			\QED
+		\end{prf}
+		
+		\begin{screen}
+			\begin{thm}[平均収束すれば測度収束する]
+				$p \in (0,\infty)$，$(X,\mathscr{F},\mu)$を正値測度空間，
+				$(f_n)_{n=1}^\infty,f$を全て$\mathscr{F}/\borel{\C}$-可測関数とするとき，
+				\begin{align}
+					\int_X |f_n - f|^p\ d\mu \longrightarrow 0
+					\quad (n \longrightarrow \infty)
+				\end{align}
+				なら$(f_n)_{n=1}^\infty$は$f$に測度収束する．
+			\end{thm}
+		\end{screen}
+		
+		\begin{prf}
+			任意の$\epsilon > 0$に対し
+			\begin{align}
+				\epsilon^p \mu\left(|f_n - f| > \epsilon\right)
+				\leq \int_{\left\{|f_n - f| > \epsilon\right\}} |f_n-f|^p\ d\mu
+				\leq \int_X |f_n - f|^p\ d\mu \longrightarrow 0
+				\quad (n \longrightarrow \infty)
+			\end{align}
+			が成立する．
+			\QED
+		\end{prf}
+		
+		\begin{screen}
+			\begin{thm}[Egorov]
+			\end{thm}
+		\end{screen}
+		
+	\subsection{Radon測度}
+		\begin{screen}
+			\begin{thm}[Riesz-Markov-Kakutaniの表現定理]
+			\end{thm}
+		\end{screen}
+		
+		\begin{screen}
+			\begin{thm}[正値Borel測度の正則性定理]
+				
+			\end{thm}
+		\end{screen}
+	
