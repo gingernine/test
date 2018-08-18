@@ -1361,7 +1361,8 @@
 					&\quad \Longrightarrow \quad
 					H_\epsilon(\omega) \leq t \leq T(\omega)
 				\end{align}
-				が成立するから，$\{V_T \geq \epsilon\}$上で$\epsilon = X_{H_\epsilon} = X_{T \wedge H_\epsilon}$となり
+				が成立するから，$\{X_0 = 0\} \cap \{V_T \geq \epsilon\}$上で
+				$\epsilon = X_{H_\epsilon} = X_{T \wedge H_\epsilon}$となり
 				\begin{align}
 					\epsilon P(V_T \geq \epsilon)
 					= \int_{\{V_T \geq \epsilon\}} X_{T \wedge H_\epsilon}\ dP
@@ -1371,6 +1372,46 @@
 				\end{align}
 				が得られる．
 				
-			\item[(2)] 
+			\item[(2)] $S_\delta \coloneqq \inf{}{\Set{t \geq 0}{X_t \geq \delta}}$により$(\mathscr{F}_t)$-停止時刻を定めれば，
+				$A_{S_\delta} = \delta$と$t \longmapsto A_t(\omega)$の増大性より
+				\begin{align}
+					A_T(\omega) < \delta \quad \Longleftrightarrow \quad
+					T(\omega) < S_\delta(\omega)
+				\end{align}
+				となるから
+				\begin{align}
+					P\left( V_T \geq \epsilon,\ A_T < \delta \right)
+					&= P\left( V_{T \wedge S_\delta} \geq \epsilon,\ A_T < \delta \right)
+					\leq P\left( V_{T \wedge S_\delta} \geq \epsilon \right) \\
+					&\leq \frac{E(A_{S_\delta \wedge T})}{\epsilon}
+					= \frac{E(A_{S_\delta} \wedge A_T)}{\epsilon}
+					= \frac{E(\delta \wedge A_T)}{\epsilon}
+				\end{align}
+				が成立し，両辺に$P\left( V_T \geq \epsilon,\ A_T \geq \delta \right)$を加えて
+				Lenglartの不等式を得る．
+				
+			\item[(3)] $F$は連続かつ非減少であるからLebesgue-Stieltjes積分が構成され，任意の$x \in [0,\infty)$に対し
+				\begin{align}
+					F(x) = \int_{[0,\infty)} \defunc_{(0,x]}(u)\ dF(u)
+				\end{align}
+				が満たされる．
+				\begin{align}
+					(\omega,u) \longmapsto \defunc_{(0,V_T(\omega)]}(u)
+				\end{align}
+				は，$u$の関数として左連続であり，また$\omega$の関数としては$\mathscr{F}/\borel{\R}$-可測であるから(Problem 1.16)，
+				二変数関数として$\mathscr{F} \otimes \borel{[0,\infty)}/\borel{\R}$-可測であり，このときFubiniの定理より
+				\begin{align}
+					E F(V_T) &= \int_{[0,\infty)} E\left( \defunc_{[u,\infty)}(V_T) \right)\ dF(u) \\
+					&= \int_{[0,\infty)} P(V_T \geq u)\ dF(u) \\
+					&\leq \int_{[0,\infty)} \frac{E(u \wedge A_T)}{u} + P(A_T \geq u)\ dF(u) \\
+					&= \int_{[0,\infty)} \frac{E(u \wedge A_T \defunc_{\{A_T \geq u\}})}{u} + 
+						\frac{E(u \wedge A_T \defunc_{\{A_T < u\}})}{u} + P(A_T \geq u)\ dF(u) \\
+					&= \int_{[0,\infty)} 2 P(A_T \geq u) + \frac{E(A_T \defunc_{\{A_T < u\}})}{u}\ dF(u) \\
+					&=  E\left(2F(A_T)\right) 
+						+ E\left[A_T \int_{[0,\infty)} \frac{1}{u} \defunc_{(A_T,\infty)}(u)\ dF(u)\right] \\
+					&= EG(A_T)
+				\end{align}
+				が得られる．
+				\QED
 		\end{description}
 	\end{prf}
