@@ -1247,7 +1247,7 @@
 					\sum_{j=0}^{2^n-1} Z^{(n),j}_t \defunc_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]}(t),
 					\quad (t \geq 0)
 				\end{align}
-				とおけば
+				とおけば任意の$t \in (0,a]$で$\xi^{(n)}_{t-}$が存在し
 				\begin{align}
 					E\int_{(0,a]} \xi^{(n)}_s\ dA_s
 					= \sum_{j=0}^{2^n-1} E\int_{\left(t^{(n)}_j,t^{(n)}_{j+1}\right]} Z^{(n),j}_s\ dA_s
@@ -1257,17 +1257,36 @@
 				が成立する．一方で$t \notin \Pi$で$\xi^{(n)}_t = \eta^{(n)}_t,\ (\forall n \geq 1)$
 				であるから(\refeq{eq:chapter_1_theorem_4_14_6})より
 				\begin{align}
-					\sup{t \in [0,a]\backslash\Pi}{\left|\xi^{(n_k)}_t(\omega) - (\lambda \wedge A_t(\omega))\right|}
+					\sup{t \in (0,a]\backslash\Pi}{\left|\xi^{(n_k)}_t(\omega) - \lambda \wedge A_t(\omega)\right|}
 					\longrightarrow 0 \quad (k \longrightarrow \infty),
 					\quad (\forall \omega \in \Omega \backslash G)
 				\end{align}
-				が従い，これにより(任意の$t \in (0,a]$で$\xi^{(n_k)}_{t-}$と$A_{t-}$が存在する)
+				が従い，これにより
 				\begin{align}
-					\sup{t \in (0,a]}{\left|\xi^{(n_k)}_{t-}(\omega) - (\lambda \wedge A_{t-}(\omega))\right|}
+					\sup{t \in (0,a]}{\left|\xi^{(n_k)}_{t-}(\omega) - \lambda \wedge A_{t-}(\omega)\right|}
 					\longrightarrow 0 \quad (k \longrightarrow \infty),
 					\quad (\forall \omega \in \Omega \backslash G)
 				\end{align}
-				も満たされる．$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
+				も出る．実際，$\omega \in \Omega \backslash G$を固定すれば，
+				任意の$\epsilon > 0$に対し或る$K = K(\omega,\epsilon) \geq 1$が存在して
+				\begin{align}
+					\sup{t \in (0,a]\backslash\Pi}{\left|\xi^{(n_k)}_t(\omega) - \lambda \wedge A_t(\omega)\right|} 
+					< \epsilon,\quad (\forall k \geq K)
+				\end{align}
+				となり，このとき任意の$t \in (0,a]$と$k \geq K$で
+				\begin{align}
+					&\left|\xi^{(n_k)}_{t-}(\omega) - \lambda \wedge A_{t-}(\omega)\right| \\
+					&\quad \leq \left|\xi^{(n_k)}_{t-}(\omega) - \xi^{(n_k)}_{s}(\omega)\right|
+						+ \left|\xi^{(n_k)}_{s}(\omega) - \lambda \wedge A_{s}(\omega)\right|
+						+ \left|\lambda \wedge A_{s}(\omega) - \lambda \wedge A_{t-}(\omega)\right| \\
+					&\quad < \epsilon
+				\end{align}
+				を満たす$s = s(t,k) \in (0,a]\backslash\Pi,\ (s < t)$が取れるから
+				\begin{align}
+					\sup{t \in (0,a]}{\left|\xi^{(n_k)}_{t-}(\omega) - \lambda \wedge A_{t-}(\omega)\right|} 
+					\leq \epsilon,\quad (\forall k \geq K)
+				\end{align}
+				が成立する．$t \in \Pi$なら或る$N = N(t)$で$t \in \Pi_N$となるから
 				$\xi^{(n)}_t = \lambda \wedge A_t,\ \mbox{$P$-a.s.},\ (\forall n \geq N)$となり
 				\begin{align}
 					H_t \coloneqq \bigcup_{n \geq N} \left\{\xi^{(n)}_t \neq \lambda \wedge A_t\right\},
@@ -1317,12 +1336,41 @@
 		\end{align}
 		holds for every bounded stopping time $T$ of $\{\mathscr{F}_t\}$. Introduce the process
 		$V_t \coloneqq \max{0 \leq s \leq t}{X_s}$, consider a continuous, increasing function $F$
-		on $[0,\infty)$ with $F(0) = 0$, and define $G(x) \coloneqq 2F(x) + x\int_{x}^\infty u^{-1}\ dF(u);
-		\ 0 < x < \infty$. Establish the inequalities
+		on $[0,\infty)$ with $F(0) = 0$, and define \textcolor{red}{$G(x) \coloneqq 2F(x) + x\int_{(x,\infty)} u^{-1}\ dF(u);
+		\ 0 < x < \infty$.} Establish the inequalities
 		\begin{description}
 			\item[(4.14)] $\displaystyle P[V_T \geq \epsilon] \leq \frac{E(A_T)}{\epsilon};\quad \forall \epsilon > 0$
-			\item[(4.15)] $\displaystyle P[V_T \geq \epsilon,\ A_T < \delta] \leq \frac{E(\delta \wedge A_T)}{\epsilon};\quad \forall \epsilon > 0,\ \delta > 0$
+			\textcolor{red}{\item[(4.15) (Lenglart inequality)] $\displaystyle P[V_T \geq \epsilon] 
+				\leq \frac{E(\delta \wedge A_T)}{\epsilon} + P[A_T \geq \delta];\quad \forall \epsilon > 0,\ \delta > 0$}
 			\item[(4.16)] $EF(V_T) \leq EG(A_T)$
 		\end{description}
 		for any stopping time $T$ of $\{\mathscr{F}_t\}$.
 	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $X$のパスの連続性とProblem 2.7より
+				\begin{align}
+					H_\epsilon \coloneqq \inf{}{\Set{t \geq 0}{X_t \geq \epsilon}}
+				\end{align}
+				で$(\mathscr{F}_t)$-停止時刻が定まる．このとき
+				\begin{align}
+					V_T(\omega) \geq \epsilon 
+					&\quad \Longrightarrow \quad
+					X_t(\omega) \geq \epsilon, \quad \exists t \in [0,T(\omega)] \\
+					&\quad \Longrightarrow \quad
+					H_\epsilon(\omega) \leq t \leq T(\omega)
+				\end{align}
+				が成立するから，$\{V_T \geq \epsilon\}$上で$\epsilon = X_{H_\epsilon} = X_{T \wedge H_\epsilon}$となり
+				\begin{align}
+					\epsilon P(V_T \geq \epsilon)
+					= \int_{\{V_T \geq \epsilon\}} X_{T \wedge H_\epsilon}\ dP
+					\leq EX_{T \wedge H_\epsilon}
+					\leq EA_{T \wedge H_\epsilon}
+					\leq EA_T
+				\end{align}
+				が得られる．
+				
+			\item[(2)] 
+		\end{description}
+	\end{prf}
