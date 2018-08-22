@@ -152,11 +152,16 @@
 	\end{screen}
 	\begin{screen}
 		\begin{dfn}[近傍]
-			位相空間$S$において，$V \subset S$と$x \in S$に対し
+			位相空間$S$において，$x \in S$と$U \subset S$に対し
 			\begin{align}
-				x \in V^{\mathrm{o}}
+				x \in U^{\mathrm{o}}
 			\end{align}
-			が満たされるとき，$V$は$x$の近傍(neighborhood)であるという．
+			が満たされるとき，$U$は$x$の近傍(neighborhood)であるという．
+			同様に$A \subset S$と$V \subset S$に対し
+			\begin{align}
+				A \subset V^{\mathrm{o}}
+			\end{align}
+			が満たされるとき，$V$は$A$の近傍であるという．
 		\end{dfn}
 	\end{screen}
 	
@@ -218,8 +223,101 @@
 	
 \subsection{分離公理}
 	\begin{screen}
-		\begin{dfn}[分離公理]
+		\begin{dfn}[識別・分離]
+			$S$を位相空間とする．
+			\begin{itemize}
+				\item $x,y \in S$に対し$x \notin \overline{\{y\}}$
+					或は$y \notin \overline{\{x\}}$が満たされるとき，
+					$x$と$y$は位相的に識別可能(topologically distinguishable)であるという．
+				\item $A,B \subset S$に対し$\overline{A} \cap B = \emptyset$
+					或は$A \cap \overline{B} = \emptyset$が満たされるとき，
+					$A$と$B$は分離される(separeted)という．点と点，点と集合の分離は一点集合を考える．
+				\item $A,B \subset S$が近傍で分離される(separated by neighborhoods)とは，
+					$A,B$が互いに交わらない近傍を持つことをいう．
+				\item 閉集合$A,B \subset S$が関数で分離される(separated by a function)とは，
+					或る連続関数$f:S\longrightarrow\R$によって$f(A) = \{0\},\ f(B) = \{1\}$
+					が満たされることをいう．
+				\item 閉集合$A,B \subset S$が関数でちょうど分離される(precisely separated by a function)とは，
+					或る連続関数$f:S\longrightarrow\R$によって$A = f^{-1}(\{0\}),\ B = f^{-1}(\{1\})$
+					が満たされることをいう．
+			\end{itemize}
 		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[位相的に識別可能な二点は相異なる]
+			$S$を位相空間とするとき，任意の$x,y \in S$に対し
+			\begin{align}
+				\mbox{$x$と$y$が位相的に識別可能} \quad \Longrightarrow \quad
+				x \neq y .
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x = y$なら$\overline{\{x\}} = \overline{\{y\}}$となる．
+		後述の$T_0$空間とは，この逆が満たされる位相空間である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[分離される集合は他方を含まない近傍を持つ]
+		\label{thm:the_equivalent_condition_of_separatedness}
+			位相空間$S$において，$A,B \subset S$が分離されることと
+			\begin{align}
+				A \subset U,\quad B \subset V,\quad 
+				A \cap V = \emptyset,
+				\quad B \cap U = \emptyset
+				\label{eq:thm_the_equivalent_condition_of_separatedness}
+			\end{align}
+			を満たす開集合$U,V$が存在することは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$A,B \subset S$が分離されるとき，$U \coloneqq \overline{B}^c,\ V \coloneqq \overline{A}^c$
+		とおけば(\refeq{eq:thm_the_equivalent_condition_of_separatedness})が成立する．
+		逆に$A,B$に対し(\refeq{eq:thm_the_equivalent_condition_of_separatedness})を満たす
+		開集合$U,V$が存在するとき，$\closure{A} \subset V^c \subset B^c$及び
+		$\closure{B} \subset U^c \subset A^c$となるから$A,B$は分離される．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[分離公理]\mbox{}
+			\begin{itemize}
+				\item 任意の二点が位相的に識別可能である位相空間を$T_0$空間という．
+				\item 任意の二点が分離される位相空間を$T_1$空間という．
+				\item 任意の二点が互いに交わらない近傍を持つ位相区間を$T_2$空間という．
+				\item 任意の交わらない点(一点集合)と閉集合が近傍で分離される位相空間を
+					正則(regular)空間という．
+				\item $T_0$かつ正則な位相空間を$T_3$空間という．
+				\item 任意の交わらない二つの閉集合が近傍で分離される位相空間を正規(normal)空間という．
+				\item $T_1$かつ正規な位相空間を$T_4$空間という．
+				\item 任意の部分位相空間が正規である位相空間は全部分正規(completely normal)であるという．
+				\item $T_1$かつ全部分正規な位相空間を$T_5$空間という．
+				\item 任意の交わらない二つの閉集合が関数でちょうど分離される位相空間は完全正規(perfectly normal)であるという．
+				\item $T_1$かつ完全正規な位相空間を$T_6$空間という．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$T_1$の同値条件]
+			位相空間$S$に対し，
+			\begin{align}
+				\mbox{$S$が$T_1$}
+				&\quad \Longleftrightarrow \quad \mbox{$S$は$T_0$かつ位相的に識別可能な任意の二点が分離される} \\
+				&\quad \Longleftrightarrow \quad \mbox{$S$の任意の一点集合は閉} \\
+				&\quad \Longleftrightarrow \quad \mbox{$x \in S$が$A \subset S$の集積点であることと$x$の任意の近傍が$A$と交わることは同値}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Urysohnの補題]
+			
+		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
