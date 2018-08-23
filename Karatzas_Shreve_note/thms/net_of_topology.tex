@@ -315,13 +315,32 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[Hausdorff空間においてコンパクト部分集合は閉]
-			$S$をHausdorff空間，
+		\begin{thm}[Hausdorff空間のコンパクト部分集合は閉]
+			Hausdorff空間のコンパクト部分集合は閉である．
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf}
+		$S$をHausdorff空間，$K \subset S$をコンパクト部分集合とするとき，
+		任意に$x \in S \backslash K,\ y \in K$を取れば
+		\begin{align}
+			x \in U_y,\quad y \in V_y, \quad U_y \cap V_y = \emptyset
+		\end{align}
+		を満たす開集合$U_y,V_y$が取れる．或る$\{y_i\}_{i=1}^n \subset K$に対し
+		$K \subset \bigcup_{i=1}^n V_{y_i}$となるから，
+		$U \coloneqq \bigcap_{i=1}^n U_{y_i}$とおけば
+		\begin{align}
+			x \in U,\quad U \subset \bigcap_{i=1}^n \left(S\backslash V_{y_i}\right)
+			\subset S \backslash K
+		\end{align}
+		が成立する．従って$S \backslash K$は開集合であり，$K$は閉集合である．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
-		\begin{thm}[Hausdorff空間においてコンパクト部分集合は]
+		\begin{thm}[Hausdorff空間においてコンパクト集合の閉部分集合はコンパクト]
+			$S$をHausdorff空間，$K \subset S$をコンパクト部分集合，$F \subset S$を閉集合とするとき，
+			$K \cap F$はコンパクトである．
 		\end{thm}
 	\end{screen}
 	
@@ -378,7 +397,8 @@
 	
 	\begin{screen}
 		\begin{thm}[正規なら交わらない二つの閉集合は関数で分離される．(Urysohnの補題)]
-			$S$を正規空間，$A,B$を$S$の閉集合とするとき，次を満たす連続関数$f:S \longrightarrow \R$が存在する:
+			$S$を正規空間，$A,B$を$S$の閉集合とするとき，
+			$A \cap B = \emptyset$なら次を満たす連続関数$f:S \longrightarrow \R$が存在する:
 			\begin{align}
 				f(A) = \{0\}, \quad f(B) = \{1\}.
 			\end{align}
@@ -398,73 +418,7 @@
 		$T$の分離性より
 	\end{prf}
 	
-\subsection{位相的補題}
-	位相空間$S$の部分集合$A$について，$A$の内核を$A^i$或は$A^{\mathrm{o}}$と書き，
-	$A$の閉包を$A^a$或は$\overline{A}$と書く．
-	また$A^{ca} = (A^c)^a,\ A^{ic} = (A^i)^c$と略記する．
-	\begin{screen}
-		\begin{thm}[閉包・内核]\label{thm:topology_note_closure_interior}
-			$S$を位相空間，$h:S \longrightarrow S$を同相，$A$を$S$の部分集合とするとき次が成り立つ．
-			\begin{description}
-				\item[(1)] $A^{ic} = A^{ca}$.
-				\item[(2)] $h(A^a) = h(A)^a$.
-				\item[(3)] $h(A^i) = h(A)^i$.
-			\end{description}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(1)]
-				$A^i \subset A$より$A^{ic} \supset A^c$が従い，
-				$A^{ic}$が閉であるから$A^{ic} \supset A^{ca}$となる．
-				一方で$A^c \subset A^{ca}$より$A \supset A^{cac}$が従い，
-				$A^{cac}$は開であるから$A^i \supset A^{cac}$すなわち
-				$A^{ic} \subset A^{ca}$となる．
-			
-			\item[(2)]
-				$h(A) \subset h(A^a)$かつ$h(A^a)$は閉であるから$h(A)^a \subset h(A^a)$が従う．一方で
-				任意の$x \in h(A^a)$に対し$x = h(y)$を満たす
-				$y \in A^a$と$x$の任意の近傍$V$を取れば，
-				$h^{-1}(V) \cap A \neq \emptyset$より
-				$V \cap h(A) \neq \emptyset$が成り立ち
-				$x \in h(A)^a$となる．
-				
-			\item[(3)]
-				$h(A^i) \subset h(A)$かつ$h(A^i)$は開であるから
-				$h(A^i) \subset h(A)^i$が従う．一方で
-				任意の開集合$O \subset h(A)$に対し
-				$h^{-1}(O) \subset A$より
-				$h^{-1}(O) \subset A^i$となり，
-				$O \subset h(A^i)$が成り立つから
-				$h(A)^i \subset h(A^i)$が得られる．
-				\QED
-		\end{description}
-	\end{prf}
-	
-	\begin{screen}
-		\begin{thm}[有限交叉性]\label{thm:finite_intersection_property}
-			位相空間$S$がコンパクトであることと，
-			任意の閉集合系$(U_\lambda)_{\lambda \in \Lambda}$に対して
-			\begin{align} 
-				\bigcap_{\lambda \in F} U_\lambda \neq \emptyset
-				\mbox{, for every finite subset $F \subset \Lambda$}
-				\quad \Longrightarrow \quad \bigcap_{\lambda \in \Lambda} U_\lambda \neq \emptyset
-				\label{eq:finite_intersection_property}
-			\end{align}
-			となることは同値である．
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		任意の閉集合系$(U_\lambda)_{\lambda \in \Lambda}$に対して
-		$\bigcap_{\lambda \in \Lambda} U_\lambda = \emptyset$なら
-		$(U_\lambda^c)_{\lambda \in \Lambda}$は$S$の開被覆となるから，
-		$S$がコンパクトであることと(\refeq{eq:finite_intersection_property})は同値である．
-		\QED
-	\end{prf}
-	
-	
+\subsection{可算公理}
 	\begin{screen}
 		\begin{thm}[可算コンパクト性の同値条件]
 		\end{thm}
@@ -682,6 +636,46 @@
 					\subset B_0 \cap \Biggl( \bigcap_{n=1}^\infty V_n \Biggr)
 				\end{align}
 				が従い定理の主張が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[閉包・内核]\label{thm:topology_note_closure_interior}
+			$S$を位相空間，$h:S \longrightarrow S$を同相，$A$を$S$の部分集合とするとき次が成り立つ．
+			\begin{description}
+				\item[(1)] $A^{ic} = A^{ca}$.
+				\item[(2)] $h(A^a) = h(A)^a$.
+				\item[(3)] $h(A^i) = h(A)^i$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				$A^i \subset A$より$A^{ic} \supset A^c$が従い，
+				$A^{ic}$が閉であるから$A^{ic} \supset A^{ca}$となる．
+				一方で$A^c \subset A^{ca}$より$A \supset A^{cac}$が従い，
+				$A^{cac}$は開であるから$A^i \supset A^{cac}$すなわち
+				$A^{ic} \subset A^{ca}$となる．
+			
+			\item[(2)]
+				$h(A) \subset h(A^a)$かつ$h(A^a)$は閉であるから$h(A)^a \subset h(A^a)$が従う．一方で
+				任意の$x \in h(A^a)$に対し$x = h(y)$を満たす
+				$y \in A^a$と$x$の任意の近傍$V$を取れば，
+				$h^{-1}(V) \cap A \neq \emptyset$より
+				$V \cap h(A) \neq \emptyset$が成り立ち
+				$x \in h(A)^a$となる．
+				
+			\item[(3)]
+				$h(A^i) \subset h(A)$かつ$h(A^i)$は開であるから
+				$h(A^i) \subset h(A)^i$が従う．一方で
+				任意の開集合$O \subset h(A)$に対し
+				$h^{-1}(O) \subset A$より
+				$h^{-1}(O) \subset A^i$となり，
+				$O \subset h(A^i)$が成り立つから
+				$h(A)^i \subset h(A^i)$が得られる．
 				\QED
 		\end{description}
 	\end{prf}
