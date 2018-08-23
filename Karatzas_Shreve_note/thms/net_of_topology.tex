@@ -464,51 +464,6 @@
 		\QED
 	\end{prf}
 	
-	\begin{screen}
-		\begin{thm}[Cantorの共通部分定理]\label{thm:Cantor_intersection_theorem}
-			$S$をHausdorff空間とし，
-			$(K_n)_{n=1}^\infty$をコンパクト部分集合の列とする．
-			このとき，任意の$n \geq 1$に対して$\bigcap_{i=1}^n K_i \neq \emptyset$なら
-			$\bigcap_{i=1}^\infty K_i \neq \emptyset$が成り立つ．
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$\bigcap_{i=1}^\infty K_i = \emptyset$と仮定すれば，
-		$K_1 \subset \bigcup_{n=1}^\infty K_n^c = S$と$K_1$のコンパクト性より
-		\begin{align}
-			K_1 \subset \bigcup_{n=1}^N K_n^c = \Biggl( \bigcap_{n=1}^N K_n \Biggr)^c
-		\end{align}
-		を満たす$N \geq 1$が存在し，$\bigcap_{n=1}^N K_n \subset K_1$より$\bigcap_{n=1}^N K_n = \emptyset$が従う．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{thm}[局所コンパクト空間において$T_2$と$T_3$は同値]\label{thm:regularity_of_Hausdorff_spaces}
-			局所コンパクトHausdorff空間は$T_3$である．
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$S$を局所コンパクトHausdorff空間とし，点$x \in S$と閉集合$F \subset S$が$x \notin F$を満たしているとする．
-		$x$のコンパクトな近傍$K$を取れば，Hausdorff性より$K \cap F$はコンパクトであるから
-		\begin{align}
-			U_0 \cap V_0 = \emptyset, \quad x \in U_0,  \quad K \cap F \subset V_0
-		\end{align}
-		を満たす開集合$U_0,V_0$が存在する．このとき，
-		\begin{align}
-			U \coloneqq U_0 \cap K^{\mathrm{o}},
-			\quad V \coloneqq V_0 \cup (S \backslash K)
-		\end{align}
-		により開集合$U,V$を定めれば
-		\begin{align}
-			U \cap V = \emptyset,
-			\quad x \in U,
-			\quad F \subset V
-		\end{align}
-		が成立する．
-		\QED
-	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[可算コンパクト性の同値条件]
@@ -610,6 +565,53 @@
 	
 \subsection{範疇定理}
 	\begin{screen}
+		\begin{thm}[Cantorの共通部分定理]\label{thm:Cantor_intersection_theorem}
+			$S$をHausdorff空間とし，
+			$(K_n)_{n=1}^\infty$をコンパクト部分集合の列とする．
+			このとき，任意の$n \geq 1$に対して$\bigcap_{i=1}^n K_i \neq \emptyset$なら
+			$\bigcap_{i=1}^\infty K_i \neq \emptyset$が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\bigcap_{i=1}^\infty K_i = \emptyset$と仮定すれば，
+		$K_1 \subset \bigcup_{n=1}^\infty K_n^c = S$と$K_1$のコンパクト性より
+		\begin{align}
+			K_1 \subset \bigcup_{n=1}^N K_n^c = \Biggl( \bigcap_{n=1}^N K_n \Biggr)^c
+		\end{align}
+		を満たす$N \geq 1$が存在し，$\bigcap_{n=1}^N K_n \subset K_1$より$\bigcap_{n=1}^N K_n = \emptyset$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[局所コンパクトなら$T_2$と$T_3$は同値]\label{thm:regularity_of_Hausdorff_spaces}
+			局所コンパクト位相空間において，$T_2 \Longleftrightarrow T_3$である.
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$T_3$ならば$T_2$であるから$\Longleftarrow$を得る．
+		逆に$S$を局所コンパクトHausdorff空間とし，点$x$と閉集合$F$が$x \notin F$を満たしているとする．
+		$x$のコンパクトな近傍$K$を取れば，Hausdorff性より$K \cap F$はコンパクトであるから
+		\begin{align}
+			U_0 \cap V_0 = \emptyset, \quad x \in U_0,  \quad K \cap F \subset V_0
+		\end{align}
+		を満たす開集合$U_0,V_0$が存在する．このとき，
+		\begin{align}
+			U \coloneqq U_0 \cap K^{\mathrm{o}},
+			\quad V \coloneqq V_0 \cup (S \backslash K)
+		\end{align}
+		により開集合$U,V$を定めれば
+		\begin{align}
+			U \cap V = \emptyset,
+			\quad x \in U,
+			\quad F \subset V
+		\end{align}
+		が成立し，$S$の正則性が出る．$S$は$T_0$空間でもあるから$T_3$である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{dfn}[疎集合・第一類集合・第二類集合]
 			位相空間$S$の部分集合$A$が疎である(nowhere dense)とは
 			$A$の閉包の内核が$\overline{A}^{\mathrm{o}} = \emptyset$を満たすことをいう．
@@ -651,20 +653,21 @@
 				任意の空でない開集合$B_0$に対し$B_0 \cap \left( \bigcap_{n=1}^\infty V_n \right) \neq \emptyset$
 				となることを示せば(\refeq{eq:thm_Baire_category_theorem_1})が従う．
 				$V_1$の稠密性より或る点$x_1 \in B_0 \cap V_1$が存在し，
-				定理\ref{thm:each_point_in_regular_space_has_closesd_local_base}より
-				次を満たす開集合$B_1$が取れる:
+				このとき次を満たす開集合$B_1$が取れる:
 				\begin{align}
 					x_1 \in \overline{B_1} \subset B_0 \cap V_1.
 					\label{eq:thm_Baire_category_theorem_2}
 				\end{align}
-				このとき，$S$が距離空間なら$B_1$は半径$1$以下の開球，
-				局所コンパクトHausdorff空間なら$\overline{B_1}$がコンパクトであるようにできる．
-				繰り返して，半径$1/n$以下の開球，
-				或は閉包がコンパクトな開集合$B_n$と$x_n \in S$が存在して
+				実際，$S$が距離空間なら$B_1$は半径$<1$の開球，
+				局所コンパクトHausdorff空間なら
+				定理\ref{thm:each_point_in_regular_space_has_closesd_local_base}より
+				$\overline{B_1}$がコンパクトであるものを取れる．
+				同様に半径$<1/n$の開球，
+				或は閉包がコンパクトな開集合$B_n$と$x_n \in S$で
 				\begin{align}
 					x_n \in \overline{B_n} \subset B_{n-1} \cap V_n
 				\end{align}
-				を満たす．このとき$S$が完備距離空間なら$(x_n)_{n=1}^\infty$は
+				を満たすものが存在する．このとき$S$が完備距離空間なら$(x_n)_{n=1}^\infty$は
 				Cauchy列をなし，その極限点$x_\infty$は
 				\begin{align}
 					x_\infty \in \bigcap_{n=1}^\infty \overline{B_n}
