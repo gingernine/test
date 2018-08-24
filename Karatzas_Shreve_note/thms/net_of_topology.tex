@@ -151,19 +151,131 @@
 		\end{dfn}
 	\end{screen}
 	\begin{screen}
-		\begin{dfn}[近傍]
-			位相空間$S$において，$x \in S$と$U \subset S$に対し
+		\begin{dfn}[近傍・基本近傍系]
+			空でない位相空間$S$において，$x \in S$と$U \subset S$に対し
 			\begin{align}
 				x \in U^{\mathrm{o}}
 			\end{align}
-			が満たされるとき，$U$は$x$の近傍(neighborhood)であるという．
+			が満たされるとき$U$は$x$の近傍(neighborhood)であるという．
 			同様に$A \subset S$と$V \subset S$に対し
 			\begin{align}
 				A \subset V^{\mathrm{o}}
 			\end{align}
 			が満たされるとき，$V$は$A$の近傍であるという．
+			点$x$の近傍全体を$\mathscr{V}(x)$と書くとき，
+			$S$は$x$の最大の近傍であるから$\mathscr{V}(x)$は空ではない．
+			また$\mathscr{V}(x)$の空でない部分集合$\mathscr{U}(x)$が
+			\begin{align}
+				\forall V \in \mathscr{V}(x),
+				\quad \exists U \in \mathscr{U}(x),
+				\quad U \subset V
+			\end{align}
+			を満たすとき，$\mathscr{U}(x)$を$x$の基本近傍系(local base of a point $x$)と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[基本近傍系は開集合を決定する]\label{thm:local_base_defines_open_sets}
+			$S$を空でない位相空間，
+			$\mathscr{U}(x)$を点$x$の基本近傍系とすれば
+			\begin{align}
+				\mbox{$O$が$S$の開集合} \quad \Longleftrightarrow \quad 
+				\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
+				$U \subset O$を満たす$U \in \mathscr{U}(x)$が存在する}
+			\end{align}
+			が成立する．すなわち，$\{\mathscr{U}(x)\}_{x \in S}$を基本近傍系とする位相は唯一つである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$O$が開集合なら任意の$x \in O$に対し$O$は$x$の近傍となるから，
+		或る$U \in \mathscr{U}(x)$が存在して$U \subset O$を満たす．
+		逆に任意の$x \in O$に対し$U \subset O$を満たす$U \in \mathscr{U}(x)$が存在するとき，
+		\begin{align}
+			x \in U^{\mathrm{o}} \subset O^{\mathrm{o}}
+		\end{align}
+		となり$O = O^{\mathrm{o}}$が成立するから$O$は開集合である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[基本近傍系は位相を復元する]\mbox{}
+			\begin{description}
+				\item[(1)] 
+					$(S,\mathscr{O})$を空でない位相空間とし，各点
+					$x \in S$に対し$\mathscr{U}(x)$を基本近傍系とすれば以下が成り立つ:
+					\begin{description}
+						\item[(LB1)] $\mathscr{U}(x)$は空ではなく，また任意の$U \in \mathscr{U}(x)$は$x \in U$を満たす．
+						\item[(LB2)] 任意の$U,V \in \mathscr{U}(x)$に対し或る$W \in \mathscr{U}(x)$
+							が存在して$W \subset U \cap V$を満たす．
+						\item[(LB3)] 任意の$U \in \mathscr{U}(x)$に対し或る$V \in \mathscr{U}(x)$が存在し，
+							任意の$y \in V$に対し$W_y \subset V$を満たす$W_y \in \mathscr{U}(y)$が取れる．
+					\end{description}
+				\item[(2)]
+					空でない集合$S$の各点$x$に対し(LB1)(LB2)(LB3)を満たす部分集合族$\mathscr{U}(x)$が与えられれば，
+					\begin{align}
+						\mathscr{O} \coloneqq
+						\Set{O \subset S}{\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
+						$U \subset O$を満たす$U \in \mathscr{U}(x)$が存在する}}
+					\end{align}
+					により$S$に位相が定まり，$\{\mathscr{U}(x)\}_{x \in S}$は
+					$(S,\mathscr{O})$において基本近傍系となる．
+				\item[(3)] 空でない位相空間$(S,\mathscr{O})$から基本近傍系
+					$\{\mathscr{U}(x)\}_{x \in S}$を得れば，
+					$\{\mathscr{U}(x)\}_{x \in S}$を基本近傍系とする位相
+					を(2)の手続きで構成することにより$\mathscr{O}$を復元できる．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 任意の$U \in \mathscr{U}(x)$は$x$の近傍であるから
+				$x \in U^{\mathrm{o}}$となり$(LB1)$が満たされる．
+				また$U,V \in \mathscr{U}(x)$に対し
+				\begin{align}
+					x \in U^{\mathrm{o}} \cap V^{\mathrm{o}} = (U \cap V)^{\mathrm{o}}
+				\end{align}
+				となるから$U \cap V$は$x$の近傍であり(LB2)も従う．
+				任意の$U \in \mathscr{U}(x)$に対し$V \coloneqq U^{\mathrm{o}}$とおけば，
+				$V$は任意の$y \in V$の開近傍となるから(LB3)も得られる．
+			
+			\item[(2)] 
+				$\mathscr{U}(x)$は空ではないから$S \in \mathscr{O}$となる．
+				また$O_1,O_2 \in \mathscr{O}$を取れば，
+				任意の$x \in O_1 \cap O_2$に対し
+				\begin{align}
+					x \in U_1 \subset O_1,
+					\quad x \in U_2 \subset O_2
+				\end{align}
+				を満たす$U_1,U_2 \in \mathscr{U}(x)$が存在し，
+				(LB2)より或る$U_3 \in \mathscr{U}(x)$に対して
+				\begin{align}
+					U_3 \subset U_1 \cap U_2 \subset O_1 \cap O_2
+				\end{align}
+				が成り立つから$O_1 \cap O_2 \in \mathscr{O}$となる．
+				任意に$\mathscr{G} \subset \mathscr{O}$を取れば
+				任意の$x \in \bigcup \mathscr{G}$は或る$G \in \mathscr{G}$の点であるから，
+				\begin{align}
+					U \subset G \subset \bigcup \mathscr{G}
+				\end{align}
+				を満たす$U \in \mathscr{U}(x)$が存在し$\bigcup \mathscr{G} \in \mathscr{O}$が従う．
+				よって$\mathscr{O}$は位相である．
+				また(LB3)の$V$は$\mathscr{O}$の元であり
+				\begin{align}
+					x \in V \subset U^{\mathrm{o}}
+				\end{align}
+				が成り立つから任意の$U \in \mathscr{U}(x)$は$x$の近傍である．
+				そして$W$を$x$の任意の近傍とすれば，$\mathscr{O}$の定め方より或る$U \in \mathscr{U}(x)$が
+				$U \subset W^{\mathrm{o}}$を満たすから$\mathscr{U}(x)$は$x$の基本近傍系である．
+			
+			\item[(3)] 
+				定理\ref{thm:local_base_defines_open_sets}より
+				$\{\mathscr{U}(x)\}_{x \in S}$を基本近傍系とする位相は唯一つであるから
+				主張が従う．
+				\QED
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[相対位相]
