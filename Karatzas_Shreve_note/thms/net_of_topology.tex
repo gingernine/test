@@ -287,18 +287,18 @@
 	\begin{screen}
 		\begin{dfn}[分離公理]\mbox{}
 			\begin{itemize}
-				\item 任意の二点が位相的に識別可能である位相空間を$T_0$空間という．
+				\item 任意の二点が位相的に識別可能である位相空間を$T_0$空間，或はKolmogorov空間という．
 				\item 任意の二点が分離される位相空間を$T_1$空間という．
 				\item 任意の二点が互いに交わらない近傍を持つ位相区間を$T_2$空間，或はHausdorff空間という．
 				\item 任意の交わらない点(一点集合)と閉集合が近傍で分離される位相空間を
 					正則(regular)空間という．
-				\item $T_0$かつ正則な位相空間を$T_3$空間という．
+				\item $T_0$かつ正則な位相空間を$T_3$空間，或は正則Hausdorff空間という．
 				\item 任意の交わらない二つの閉集合が近傍で分離される位相空間を正規(normal)空間という．
-				\item $T_1$かつ正規な位相空間を$T_4$空間という．
+				\item $T_1$かつ正規な位相空間を$T_4$空間，或は正規Hausdorff空間という．
 				\item 任意の部分位相空間が正規である位相空間は全部分正規(completely normal)であるという．
-				\item $T_1$かつ全部分正規な位相空間を$T_5$空間という．
+				\item $T_1$かつ全部分正規な位相空間を$T_5$空間，或は全部分正規Hausdorff空間という．
 				\item 任意の交わらない二つの閉集合が関数でちょうど分離される位相空間は完全正規(perfectly normal)であるという．
-				\item $T_1$かつ完全正規な位相空間を$T_6$空間という．
+				\item $T_1$かつ完全正規な位相空間を$T_6$空間，或は完全正規Hausdorff空間という．
 			\end{itemize}
 		\end{dfn}
 	\end{screen}
@@ -445,7 +445,18 @@
 	
 	\begin{screen}
 		\begin{thm}[完全正規空間とは正規かつ閉集合が全て$G_\delta$である空間]
-			位相空間において，完全正規であることと，正規かつ任意の閉集合が$G_\delta$であることは同値である．
+		\label{thm:perfectly_normal_Hausdorff_is_normal_and_closed_is_G_delta}\mbox{}
+			\begin{description}
+				\item[(1)]
+					$F$を完全正規空間の閉集合とすれば，次を満たす閉集合系$(F_n)_{n=1}^\infty$が存在する:
+					\begin{align}
+						F = \bigcap_{n=1}^\infty F_n,
+						\quad F_n^{\mathrm{o}} \supset F_{n+1}. 
+					\end{align}
+					
+				\item[(2)]
+					位相空間において，完全正規であることと，正規かつ任意の閉集合が$G_\delta$であることは同値である．
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
@@ -465,7 +476,16 @@
 			= g^{-1}\Biggl(\bigcap_{n=1}^\infty\left[0,n^{-1}\right)\Biggr)
 			= \bigcap_{n=1}^\infty g^{-1}\left(\left[0,n^{-1}\right)\right)
 		\end{align}
-		が成立するから$F$は$G_\delta$である．逆に$S$が正規かつ
+		が成立するから$F$は$G_\delta$である．特に，このとき
+		$F_n \coloneqq g^{-1}\left(\left[0,n^{-1}\right]\right)$とおけば
+		\begin{align}
+			F = \bigcap_{n=1}^\infty g^{-1}\left(\left[0,n^{-1}\right]\right)
+			= \bigcap_{n=1}^\infty F_n,
+			\quad F_n^{\mathrm{o}} \supset g^{-1}\left(\left[0,n^{-1}\right)\right)
+			\supset g^{-1}\left(\left[0,(n+1)^{-1}\right]\right)
+			= F_{n+1}
+		\end{align}
+		となり(1)の主張が得られる．逆に$S$が正規かつ
 		閉集合が全て$G_\delta$であるとき，任意の交わらない閉集合$A,B$に対し
 		$A = \bigcap_{n=1}^\infty U_n,\ B = \bigcap_{n=1}^\infty V_n$
 		を満たす開集合系$(U_n)_{n=1}^\infty,\ (V_n)_{n=1}^\infty$が取れて，
@@ -601,6 +621,39 @@
 			S = \bigcup_{n=1}^\infty U_n \subset \bigcup_{n=1}^\infty K_n \subset S
 		\end{align}
 		が成立する．
+		\QED
+	\end{prf}
+	
+\subsection{距離空間}
+	\begin{screen}
+		\begin{thm}[距離関数の連続性]
+			$(x,y) \longmapsto d(x,y)$は直積位相に関し連続である．
+			$x \longmapsto d(x,A)$は連続である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[距離空間の完全正規性]
+			任意の距離空間は，その距離で導入する位相により$T_6$空間となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$(S,d)$を距離空間とし距離位相を導入すれば，$S$はHausdorffとなる．
+		実際相異なる二点$x,y$に対し
+		\begin{align}
+			B_\epsilon(x) \coloneqq \Set{s \in S}{d(s,x) < \frac{\epsilon}{2}},
+			\quad B_\epsilon(y) \coloneqq \Set{s \in S}{d(s,y) < \frac{\epsilon}{2}},
+			\quad (\epsilon \coloneqq d(x,y))
+		\end{align}
+		で交わらない開球を定めれば，$x,y$は
+		これらで分離される．また$A,B$を交わらない閉集合として
+		\begin{align}
+			f(x) \coloneqq \frac{d(x,A)}{d(x,A) + d(x,B)},
+			\quad (\forall x \in S)
+		\end{align}
+		により連続写像$f:S \longrightarrow \R$を定めれば，
+		$A = f^{-1}(\{0\}),\ B = f^{-1}(\{1\})$となるから$S$は完全正規である．
 		\QED
 	\end{prf}
 	
