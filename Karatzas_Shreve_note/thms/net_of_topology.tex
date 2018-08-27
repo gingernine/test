@@ -477,13 +477,46 @@
 	
 	\begin{screen}
 		\begin{thm}[Hausdorff空間とは交わらない二つのコンパクト集合が近傍で分離される空間]
+		\label{thm:Hausdorff_space_two_disjoint_compact_sets_are_separated_by_nbh}
+			位相空間において，Hausdorff性と，交わらない二つのコンパクト集合が近傍で分離されることは同値である．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$A,B$をHausdorff空間の交わらないコンパクト集合とするとき，
+		任意の$p \in A$に対し
+		\begin{align}
+			p \in U_p,\quad B \subset V_p,\quad U_p \cap V_p = \emptyset
+			\label{eq:thm_Hausdorff_space_two_disjoint_compact_sets_are_separated_by_nbh_1}
+		\end{align}
+		を満たす開集合$U_p,V_p$が存在する．実際
+		任意の$q \in B$に対し
+		\begin{align}
+			p \in U_p(q),\quad q \in V_p(q),\quad U_p(q) \cap U_p(q) = \emptyset
+		\end{align}
+		を満たす開集合$U_p(q), U_p(q)$が取れ，$B$のコンパクト性より
+		或る$\{q_i\}_{i=1}^n \subset B$で$B \subset \bigcup_{i=1}^n U_p(q_i)$となるから，
+		\begin{align}
+			U_p \coloneqq \bigcap_{i=1}^n U_p(q_i),
+			\quad V_p \coloneqq \bigcup_{i=1}^n V_p(q_i)
+		\end{align}
+		とおけば(\refeq{eq:thm_Hausdorff_space_two_disjoint_compact_sets_are_separated_by_nbh_1})
+		が成立する．$A$のコンパクト性より或る$\{p_j\}_{j=1}^m \subset A$で
+		$A \subset \bigcup_{j=1}^m U_{p_j}$となるから，
+		\begin{align}
+			U \coloneqq \bigcup_{j=1}^m U_{p_j},
+			\quad V \coloneqq \bigcap_{j=1}^m V_{p_j}
+		\end{align}
+		とおけば$A$と$B$は$U,V$により分離される．
+		逆の主張は一点集合がコンパクトであることより従う．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[Hausdorff空間値連続写像の等価域は閉]
 			$S$を位相空間，$T$をHausdorff空間，$f,g$を
-			$S$から$T$への連続写像とするとき，$\Set{x \in S}{f(x) = g(x)}$は$S$で閉じている．
+			$S$から$T$への連続写像とするとき，$E \coloneqq \Set{x \in S}{f(x) = g(x)}$は$S$で閉じている．
+			特に，$E$が$X$で稠密なら$f=g$となる．
 		\end{thm}
 	\end{screen}
 	
@@ -493,11 +526,12 @@
 			f(x) \in A,\quad g(x) \in B,\quad A \cap B = \emptyset
 		\end{align}
 		を満たす$T$の開集合$A,B$が存在する．
-		$f^{-1}(A) \cap g^{-1}(B)$は$x$の開近傍であり
+		$f^{-1}(A) \cap g^{-1}(B)$は$x$の開近傍であり，
 		\begin{align}
 			f^{-1}(A) \cap g^{-1}(B) \subset \Set{x \in S}{f(x) \neq g(x)}
 		\end{align}
-		を満たすから，$\Set{x \in S}{f(x) \neq g(x)}$は$S$の開集合である．
+		となるから$\Set{x \in S}{f(x) \neq g(x)}$は$S$の開集合である．
+		従って$E$は閉である．
 		\QED
 	\end{prf}
 	
