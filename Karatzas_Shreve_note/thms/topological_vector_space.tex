@@ -51,19 +51,19 @@
 				\item[(1)] 任意の$a \in X$に対し$X \ni x \longmapsto a + x \in X$は
 					同相写像である．
 					
-				\item[(2)] 任意の$\beta \in \Phi$に対し
-					$X \ni x \longmapsto \beta x \in X$は連続であり，
-					特に$\beta \neq 0$のとき同相写像となる．
+				\item[(2)] 任意の$\alpha \in \Phi$に対し
+					$X \ni x \longmapsto \alpha x \in X$は連続であり，
+					特に$\alpha \neq 0$のとき同相写像となる．
 					
-				\item[(3)] 任意の$a \in X$に対し
-					$\Phi \ni \alpha \longmapsto \alpha a \in X$は連続である．
+				\item[(3)] 任意の$x \in X$に対し
+					$\Phi \ni \alpha \longmapsto \alpha x \in X$は連続である．
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
 		連続性は定理\ref{thm:multivariable_continuous_mapping_is_one_variable_continuous}より従う．
-		また，(1)(2)において$x \longmapsto -a+x,\ x \longmapsto \beta^{-1}x$
+		また，(1)(2)において$x \longmapsto -a+x,\ x \longmapsto \alpha^{-1}x$
 		が逆写像となる．
 		\QED
 	\end{prf}
@@ -100,25 +100,58 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{dfn}[平行移動不変距離]
-			線型空間$X$上に定まる距離$d$が
-			\begin{align}
-				d(x+z, y+z) = d(x,y),\quad (\forall x,y,z \in X)
-			\end{align}
-			を満たすとき，$d$を平行移動不変距離(invariant metric)と呼ぶ．
-			平行移動不変距離$d$がさらに
-			\begin{align}
-				d(\alpha x, \alpha y) = |\alpha| d(x,y),
-				\quad (\forall \alpha \in \Phi,\ x,y \in X)
-			\end{align}
-			を満たすとき$d$は斉次的である(homogeneous)という．
+		\begin{dfn}[平行移動不変距離・絶対斉次距離]
+			$d$を線型空間$X$上に定まる距離とする．
+			\begin{description}
+				\item[(1)] 次が満たされるとき$d$は平行移動不変である(invariant)という:
+					\begin{align}
+						d(x+z, y+z) = d(x,y),\quad (\forall x,y,z \in X).
+					\end{align}
+					
+				\item[(2)]  次が満たされるとき$d$は
+					絶対斉次的である(absolutely homogeneous)という:
+					\begin{align}
+						d(\alpha x, \alpha y) = |\alpha| d(x,y),
+						\quad (\forall \alpha \in \Phi,\ x,y \in X).
+					\end{align}
+			\end{description}
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[ノルムで定める距離は唯一の斉次的かつ平行移動不変な距離]
-			ノルムで導入する距離は斉次的かつ平行移動不変であり，逆に
-			斉次的かつ平行移動不変な距離はノルムである．
+		\begin{thm}[平行移動不変距離による距離位相は平行移動不変]
+			線型空間$X$に平行移動不変距離$d$が定まっているとき，
+			$d$による距離位相は平行移動不変となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$\delta>0$と$a \in X$に対し
+		$B_\delta(a) \coloneqq \Set{x \in X}{d(x,a) < \delta}$と書けば，
+		任意の$y \in X$で
+		\begin{align}
+			z \in y + B_\delta(a)
+			\quad \Longleftrightarrow \quad
+			d(z-y,a) < \delta
+			\quad \Longleftrightarrow \quad
+			d(z,y+a) < \delta
+			\quad \Longleftrightarrow \quad
+			z \in B_\delta(y+a)
+		\end{align}
+		が成り立つ．従って，部分集合$U$が$U = \bigcup_{a \in U}B_{\delta_a}(a)$と書けるとき
+		任意の$x \in X$に対し
+		\begin{align}
+			x + U = \bigcup_{a \in U} \left(x+B_{\delta_a}(a)\right)
+			= \bigcup_{a \in U} B_{\delta_a}(x+a)
+		\end{align}
+		となるから，$U$が開集合であることと$x + U$が開集合であることは同値になる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[ノルムで定める距離は唯一の絶対斉次的かつ平行移動不変な距離]
+			ノルムで導入する距離は絶対斉次的かつ平行移動不変であり，逆に
+			絶対斉次的かつ平行移動不変な距離はノルムを定める．
 		\end{thm}
 	\end{screen}
 	
@@ -369,6 +402,13 @@
 	\end{screen}
 
 \subsection{局所凸空間}
+	\begin{screen}
+		\begin{lem}
+			$Z$を線型空間，$(X_\lambda)_{\lambda \in \Lambda}$を
+			局所凸位相線型空間の族とする．
+		\end{lem}
+	\end{screen}
+	
 	\begin{screen}
 		\begin{thm}[局所凸空間とはセミノルムの族で生成される空間]
 			
