@@ -930,8 +930,8 @@
 				\item[(対称性)] $d(x,y) = d(y,x),\quad (\forall x,y \in S)$
 				\item[(三角不等式)] $d(x,y) \leq d(x,z) + d(z,y),\quad (\forall x,y,z \in S)$
 			\end{description}
-			を満たす関数$d:S \times S \longrightarrow \R$を擬距離(pseudometric)と呼ぶ．
-			これらに加えて
+			を満たす関数$d:S \times S \longrightarrow [0,\infty)$を
+			擬距離(pseudometric)と呼ぶ．これらに加えて
 			\begin{align}
 				d(x,y) = 0 \quad \Longleftrightarrow \quad x=y,
 				\quad (\forall x,y \in S)
@@ -972,8 +972,9 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[擬距離が距離$\Longleftrightarrow$擬距離位相が$T_0$]
-			$(S,d)$を擬距離空間として擬距離位相を導入するとき，
+		\begin{thm}[距離でないと分離性が成り立たない]
+		\label{thm:pseudometric_is_metric_iff_T_0}
+			$(S,d)$を擬距離空間とするとき，
 			\begin{align}
 				\mbox{$d$が距離である} \quad \Longleftrightarrow \quad
 				\mbox{擬距離位相が$T_0$である}.
@@ -1005,35 +1006,52 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[距離関数の連続性]
-			$d$を集合$S$の距離とするとき，
-			$(x,y) \longmapsto d(x,y)$は直積位相に関し連続である．
-			$x \longmapsto d(x,A)$は連続である．
+		\begin{thm}[擬距離関数の連続性]\label{thm:continuity_of_pseudometrics}
+			$(S,d)$を擬距離空間として擬距離位相を導入するとき，以下が成り立つ:
+			\begin{description}
+				\item[(1)] $S \times S \ni (x,y) \longmapsto d(x,y)$は直積位相に関し連続である．
+				
+				\item[(2)] 任意の空でない部分集合$A$に対し
+					$S \ni x \longmapsto d(x,A)$は連続である．特に$A$が閉なら
+					\begin{align}
+						x \in A \quad \Longleftrightarrow \quad
+						d(x,A) = 0. 
+					\end{align} 
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[距離空間は完全正規]
-			任意の距離空間は，その距離で導入する位相により$T_6$空間となる．
+		\begin{thm}[擬距離空間は完全正規]
+			任意の擬距離位相空間は完全正規である．特に
+			\begin{align}
+				\mbox{擬距離が距離である} \quad \Longleftrightarrow \quad
+				\mbox{擬距離位相が$T_6$である}.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$(S,d)$を距離空間とし距離位相を導入すれば，$S$はHausdorffとなる．
-		実際相異なる二点$x,y$に対し
+		$(S,d)$を擬距離空間として擬距離位相を入れるとき，$A,B$を交わらない$S$の閉集合として
+		\begin{align}
+			f(x) \coloneqq \frac{d(x,A)}{d(x,A) + d(x,B)},
+			\quad (\forall x \in S)
+		\end{align}
+		により$f:S \longrightarrow \R$を定めれば，
+		定理\ref{thm:continuity_of_pseudometrics}より$f$は連続であり
+		\begin{align}
+			A = f^{-1}(\{0\}),\quad B = f^{-1}(\{1\})
+		\end{align}
+		が満たされるから$S$は完全正規である．また$d$が距離であるとき，相異なる二点$x,y$に対し
 		\begin{align}
 			B_\epsilon(x) \coloneqq \Set{s \in S}{d(s,x) < \frac{\epsilon}{2}},
 			\quad B_\epsilon(y) \coloneqq \Set{s \in S}{d(s,y) < \frac{\epsilon}{2}},
 			\quad (\epsilon \coloneqq d(x,y))
 		\end{align}
-		で交わらない開球を定めれば，$x,y$は
-		これらで分離される．また$A,B$を交わらない閉集合として
-		\begin{align}
-			f(x) \coloneqq \frac{d(x,A)}{d(x,A) + d(x,B)},
-			\quad (\forall x \in S)
-		\end{align}
-		により連続写像$f:S \longrightarrow \R$を定めれば，
-		$A = f^{-1}(\{0\}),\ B = f^{-1}(\{1\})$となるから$S$は完全正規である．
+		で交わらない開球を定めれば$x,y$は$B_\epsilon(x),\ B_\epsilon(y)$で分離され，
+		$S$はHausdorffかつ完全正規となるから$T_6$となる．
+		逆に$S$が$T_6$空間であれば$T_0$が満たされるから，
+		定理\ref{thm:pseudometric_is_metric_iff_T_0}より$d$は距離となる．
 		\QED
 	\end{prf}
 	
