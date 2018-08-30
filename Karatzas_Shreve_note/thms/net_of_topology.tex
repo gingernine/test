@@ -810,16 +810,210 @@
 		\QED
 	\end{prf}
 	
+\subsection{商位相}
+	\begin{screen}
+		\begin{thm}[商位相]
+			位相空間$(S,\mathscr{O})$に同値関係$\sim$が定まっているとき，
+			$x \in S$からその同値類$\pi(x)$への対応
+			\begin{align}
+				\pi: S \ni x \longmapsto \pi(x) \in S/\sim
+			\end{align}
+			を商写像(quotient mapping)という．
+			すなわち商写像は
+			\begin{align}
+				x \sim y \quad \Longleftrightarrow \quad
+				\pi(x) = \pi(y)
+			\end{align}
+			を満たす．また，商写像を連続にする$S/\sim$の最強の位相，つまり
+			\begin{align}
+				\mathscr{O}(S/\sim) \coloneqq
+				\Set{V \subset S/\sim}{\pi^{-1}(V) \in \mathscr{O}}
+			\end{align}
+			で定まる位相を$S/\sim$の商位相(quotient topology)という．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[商空間が$T_1 \Longleftrightarrow$同値類が元の空間で閉じている]
+		\label{thm:quotient_space_T_1_iff_each_equivalence_class_closed}
+			$S$を位相空間，$\sim$を$S$上の同値関係，$\pi:S \longrightarrow S/\sim$を商写像
+			とする．このとき次が成り立つ:
+			\begin{align}
+				\mbox{$S/\sim$が$T_1$空間である}
+				\quad \Longleftrightarrow \quad
+				\mbox{任意の$x \in S$に対し$\pi(x)$が$S$の閉集合である}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$F \subset S/\sim$に対し
+		\begin{align}
+			\mbox{$F$が閉} \quad \Longleftrightarrow \quad
+			\mbox{$\pi^{-1}(F^c) = \pi^{-1}(F)^c$が開} \quad \Longleftrightarrow \quad
+			\mbox{$\pi^{-1}(F)$が閉}
+		\end{align}
+		となる．いま任意の$x \in S$に対し
+		$\pi(x) = \pi^{-1}(\pi(x))$が満たされているから定理の主張を得る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[商写像が開なら，商空間がHausdorff$\Longleftrightarrow$対角線集合が閉]
+		\label{thm:quotient_space_Hausdorff_iff_diagonal_set_closed}
+			$S$を位相空間，$\sim$を$S$上の同値関係，$\pi:S \longrightarrow S/\sim$を商写像
+			とする．このとき，$\pi$が開写像であれば次が成立する:
+			\begin{align}
+				\mbox{$S/\sim$がHausdorff} \quad \Longleftrightarrow \quad
+				\mbox{$\Set{(x,y) \in S \times S}{x \sim y}$が閉}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$S/\sim$がHausdorffであるとき，$x \not\sim y$を満たす$(x,y) \in S \times S$に対し
+		$\pi(x) \neq \pi(y)$となるから
+		\begin{align}
+			\pi(x) \in U,\quad \pi(y) \in V,\quad U \cap V = \emptyset
+		\end{align}
+		を満たす$S/\sim$の開集合$U,V$が取れる．このとき
+		$\pi^{-1}(U) \times \pi^{-1}(V)$は$S \times S$の開集合であり
+		\begin{align}
+			(x,y) \in \pi^{-1}(U) \times \pi^{-1}(V)
+			\subset \Set{(s,t) \in S \times S}{s \not\sim t}
+		\end{align}
+		が成り立つから$\Longrightarrow$が得られる．
+		逆に$\Set{(s,t) \in S \times S}{s \not\sim t}$が開集合であるとき，
+		$\pi(x) \neq \pi(y)$なら
+		\begin{align}
+			(x,y) \in U \times V \subset \Set{(s,t) \in S \times S}{s \not\sim t}
+		\end{align}
+		を満たす$S$の開集合$U,V$が存在し，このとき
+		\begin{align}
+			\pi(x) \in \pi(U),\quad \pi(y) \in \pi(V),
+			\quad \pi(U) \cap \pi(V) = \emptyset
+		\end{align}
+		となりかつ$\pi$が開写像であるから$\Longleftarrow$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{cor}[Hausdorff$\Longleftrightarrow$対角線集合が閉]
+		\label{cor:quotient_space_Hausdorff_iff_diagonal_set_closed}
+			$S$を位相空間とするとき，
+			\begin{align}
+				\mbox{$S$がHausdorffである}
+				\quad \Longleftrightarrow \quad
+				\mbox{$\Set{(x,x)}{x \in S}$が$S \times S$で閉じている}.
+			\end{align}
+		\end{cor}
+	\end{screen}
+	
+	\begin{prf}
+		等号$=$を同値関係と見れば$S$と$S/=$は商写像により同相となるから，
+		定理\ref{thm:quotient_space_Hausdorff_iff_diagonal_set_closed}より
+		\begin{align}
+			\mbox{$S$がHausdorff} \quad \Longleftrightarrow \quad
+			\mbox{$S/=$がHausdorff} \quad \Longleftrightarrow \quad
+			\mbox{$\Set{(x,x)}{x \in S}$が閉}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
 \subsection{距離空間}
 	\begin{screen}
+		\begin{dfn}[(擬)距離関数・距離位相]
+			空でない集合$S$において，
+			\begin{description}
+				\item[(非負性)] $d(x,y) \geq 0,\quad (\forall x,y \in S)$
+				\item[(対称性)] $d(x,y) = d(y,x),\quad (\forall x,y \in S)$
+				\item[(三角不等式)] $d(x,y) \leq d(x,z) + d(z,y),\quad (\forall x,y,z \in S)$
+			\end{description}
+			を満たす関数$d:S \times S \longrightarrow \R$を擬距離(pseudometric)と呼ぶ．
+			これらに加えて
+			\begin{align}
+				d(x,y) = 0 \quad \Longleftrightarrow \quad x=y,
+				\quad (\forall x,y \in S)
+			\end{align}
+			が満たされるとき$d$を距離(metric)と呼び，
+			$S$と(擬)距離$d$との対$(S,d)$を(擬)距離空間と呼ぶ．また
+			\begin{align}
+				&\mbox{$O \subset S$が開集合である}
+				\quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad \\
+				&\quad\mbox{$O \neq \emptyset$，或は任意の$x \in O$に対し或る$r_x > 0$が存在して
+					$\Set{y \in S}{d(x,y) < r_x} \subset O$となる}
+			\end{align}
+			で定める開集合系を(擬)距離位相と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[擬距離位相は第一可算]
+			$(S,d)$を擬距離空間として擬距離位相を導入すれば，
+			任意の$x \in S$に対して
+			\begin{align}
+				\left\{\Set{y \in S}{d(x,y) < \frac{1}{n}}\right\}_{n=1}^\infty
+			\end{align}
+			は$x$の基本近傍系となる．すなわち擬距離位相は第一可算空間を定める．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$U$を$x$を近傍とすれば或る$r > 0$で
+		$\Set{y \in S}{d(x,y) < r} \subset U$となる．
+		このとき$1/n < r$なら
+		\begin{align}
+			\Set{y \in S}{d(x,y) < \frac{1}{n}}
+			\subset \Set{y \in S}{d(x,y) < r} \subset U
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[擬距離が距離$\Longleftrightarrow$擬距離位相が$T_0$]
+			$(S,d)$を擬距離空間として擬距離位相を導入するとき，
+			\begin{align}
+				\mbox{$d$が距離である} \quad \Longleftrightarrow \quad
+				\mbox{擬距離位相が$T_0$である}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$x,y \in S,\ (x \neq y)$を取る．また$r > 0$に対し
+		$B_r(x) \coloneqq \Set{s \in S}{d(x,s) < \epsilon}$と書く．このとき
+		\begin{align}
+			&\mbox{$d$が距離} \quad \Longrightarrow \quad
+			\epsilon \coloneqq d(x,y)> 0 \quad \Longrightarrow \quad
+			y \in S \backslash B_\epsilon(x) \\ 
+			&\qquad \quad \Longrightarrow \quad
+			\overline{\{y\}} \subset S \backslash B_\epsilon(x)
+			\quad \Longrightarrow \quad
+			x \notin \overline{\{y\}}
+			\quad \Longrightarrow \quad
+			\mbox{擬距離位相が$T_0$}
+		\end{align}
+		が成立し，逆に擬距離位相が$T_0$なら
+		$x \notin \overline{\{y\}}$か$y \notin \overline{\{x\}}$となるから，
+		$x \notin \overline{\{y\}}$とすれば
+		$\overline{\{y\}} \subset S \backslash B_r(x)$
+		を満たす$r > 0$が存在し，$d(x,y) \geq r > 0$が成り立つから
+		$d$は距離となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{thm}[距離関数の連続性]
+			$d$を集合$S$の距離とするとき，
 			$(x,y) \longmapsto d(x,y)$は直積位相に関し連続である．
 			$x \longmapsto d(x,A)$は連続である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[距離空間の完全正規性]
+		\begin{thm}[距離空間は完全正規]
 			任意の距離空間は，その距離で導入する位相により$T_6$空間となる．
 		\end{thm}
 	\end{screen}
@@ -842,6 +1036,54 @@
 		$A = f^{-1}(\{0\}),\ B = f^{-1}(\{1\})$となるから$S$は完全正規である．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[距離空間の部分空間の距離]
+			$(S,d)$を距離空間，$M$を$S$の空でない部分集合とし，
+			$S$に距離位相を入れる．このとき$M$の相対位相$\mathscr{O}_M$は
+			\begin{align}
+				d_M(x,y) \coloneqq d(x,y),
+				\quad (\forall x,y \in M)
+			\end{align}
+			で定める相対距離により導入する距離位相$\mathscr{O}_{d_M}$と一致する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} 任意の$x \in M$と$r > 0$に対し
+		\begin{align}
+			\Set{y \in M}{d_M(x,y) < r}
+			= M \cap \Set{y \in S}{d(x,y) < r}
+		\end{align}
+		が成り立つから，相対開集合は$d_M$-開球の合併で表され，
+		逆に$d_M$-開集合は$M$と$d$-開集合の交叉で表せる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[距離空間の高々可算直積の距離]
+			$((S_n,d_n))_{n=1}^N$を距離空間の族として距離位相を導入し，
+			$S$をその直積位相空間とする．また$x \in S$に対し
+			$x(n)$を$x_n$と書く．このとき$N < \infty$なら
+			\begin{align}
+				d(x,y)
+				\coloneqq \left\{\sum_{n=1}^N d_n(x_n,y_n)^2\right\}^{1/2},
+				\quad (\forall x,y \in S)
+			\end{align}
+			により，$N = \infty$なら
+			\begin{align}
+				d(x,y) \coloneqq
+				\sum_{n=1}^\infty 2^{-n}\left(d_n(x_n,y_n) \wedge 1\right),
+				\quad (\forall x,y \in S)
+			\end{align}
+			により，$S$は距離化可能である．特に$(S_n,d_n)$が全て完備(resp. 可分)なら
+			$(S,d)$も完備(resp. 可分)となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[距離空間において可分$\Longrightarrow$第二可算]
+		\end{thm}
+	\end{screen}
 	
 \subsection{範疇定理}
 	\begin{screen}
