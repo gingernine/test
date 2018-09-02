@@ -1,0 +1,357 @@
+\subsection{距離空間}
+	\begin{screen}
+		\begin{dfn}[(擬)距離関数・距離位相]
+			空でない集合$S$において，
+			\begin{description}
+				\item[(PM1)] $d(x,x) = 0,\quad (\forall x \in S)$
+				\item[(PM2)] $d(x,y) = d(y,x),\quad (\forall x,y \in S)$
+				\item[(PM3)] $d(x,y) \leq d(x,z) + d(z,y),\quad (\forall x,y,z \in S)$
+			\end{description}
+			を満たす関数$d:S \times S \longrightarrow [0,\infty)$を
+			擬距離(pseudometric)と呼ぶ．これらに加えて
+			\begin{description}
+				\item[(PM4)] $d(x,y) = 0 \quad \Longleftrightarrow \quad x=y,
+				\quad (\forall x,y \in S)$
+			\end{description}
+			が満たされるとき$d$を距離(metric)と呼び，
+			$S$と(擬)距離$d$との対$(S,d)$を(擬)距離空間と呼ぶ．また
+			\begin{align}
+				&\mbox{$O \subset S$が開集合である}
+				\quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad \\
+				&\quad\mbox{$O \neq \emptyset$，或は任意の$x \in O$に対し或る$r_x > 0$が存在して
+					$\Set{y \in S}{d(x,y) < r_x} \subset O$となる}
+			\end{align}
+			で定める開集合系を(擬)距離位相と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[擬距離位相は第一可算]
+			$(S,d)$を擬距離空間として擬距離位相を導入すれば，
+			任意の$x \in S$に対して
+			\begin{align}
+				\left\{\Set{y \in S}{d(x,y) < \frac{1}{n}}\right\}_{n=1}^\infty
+			\end{align}
+			は$x$の基本近傍系となる．すなわち擬距離位相は第一可算空間を定める．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$U$を$x$を近傍とすれば或る$r > 0$で
+		$\Set{y \in S}{d(x,y) < r} \subset U$となる．
+		このとき$1/n < r$なら
+		\begin{align}
+			\Set{y \in S}{d(x,y) < \frac{1}{n}}
+			\subset \Set{y \in S}{d(x,y) < r} \subset U
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[距離でないと分離性が成り立たない]
+		\label{thm:pseudometric_is_metric_iff_T_0}
+			$(S,d)$を擬距離空間として擬距離位相を入れるとき，
+			\begin{align}
+				\mbox{$d$が距離である} \quad \Longleftrightarrow \quad
+				\mbox{$S$が$T_0$である} \quad \Longleftrightarrow \quad
+				\mbox{$S$が$T_2$である}.
+				\label{eq:thm_pseudometric_is_metric_iff_T_0}
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] 	$d$が距離なら$S$はHausdorffである．
+				実際，相異なる二点$x,y \in S$に対し
+				\begin{align}
+					B_\epsilon(x) \coloneqq \Set{s \in S}{d(s,x) < \frac{\epsilon}{2}},
+					\quad B_\epsilon(y) \coloneqq \Set{s \in S}{d(s,y) < \frac{\epsilon}{2}},
+					\quad (\epsilon \coloneqq d(x,y))
+				\end{align}
+				で交わらない開球を定めれば，$x$と$y$は
+				$B_\epsilon(x)$と$B_\epsilon(y)$で分離される．
+			
+			\item[第二段]
+				$S$が$T_0$であるとき，相異なる二点$x,y$に対し
+				$x \notin \overline{\{y\}}$或は$y \notin \overline{\{x\}}$となる．
+				$x \notin \overline{\{y\}}$とすれば
+				$\overline{\{y\}} \subset S \backslash B_r(x)$
+				を満たす$r > 0$が存在し，$d(x,y) \geq r > 0$が成り立つから
+				$d$は距離となる．
+				$T_2 \Longrightarrow T_0$より
+				(\refeq{eq:thm_pseudometric_is_metric_iff_T_0})を得る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[擬距離関数の連続性]\label{thm:continuity_of_pseudometrics}
+			$(S,d)$を擬距離空間として擬距離位相を導入するとき，以下が成り立つ:
+			\begin{description}
+				\item[(1)] $S \times S \ni (x,y) \longmapsto d(x,y)$は直積位相に関し連続である．
+				
+				\item[(2)] 任意の空でない部分集合$A$に対し
+					$S \ni x \longmapsto d(x,A)$は連続である．特に$A$が閉なら
+					\begin{align}
+						x \in A \quad \Longleftrightarrow \quad
+						d(x,A) = 0. 
+					\end{align} 
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[擬距離空間は完全正規]
+			任意の擬距離位相空間は完全正規である．特に
+			\begin{align}
+				\mbox{擬距離が距離である} \quad \Longleftrightarrow \quad
+				\mbox{擬距離位相が$T_6$である}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$(S,d)$を擬距離空間として擬距離位相を入れるとき，$A,B$を交わらない$S$の閉集合として
+		\begin{align}
+			f(x) \coloneqq \frac{d(x,A)}{d(x,A) + d(x,B)},
+			\quad (\forall x \in S)
+		\end{align}
+		により$f:S \longrightarrow \R$を定めれば，
+		定理\ref{thm:continuity_of_pseudometrics}より$f$は連続であり
+		\begin{align}
+			A = f^{-1}(\{0\}),\quad B = f^{-1}(\{1\})
+		\end{align}
+		が満たされるから$S$は完全正規である．また$d$が距離であるとき，
+		定理\ref{thm:pseudometric_is_metric_iff_T_0}より
+		$S$はHausdorffかつ完全正規となるから$T_6$となる．
+		逆に$S$が$T_6$なら$T_0$であるから$d$は距離となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[距離空間の部分空間の距離]
+			$(S,d)$を距離空間，$M$を$S$の空でない部分集合とし，
+			$S$に距離位相を入れる．このとき$M$の相対位相$\mathscr{O}_M$は
+			\begin{align}
+				d_M(x,y) \coloneqq d(x,y),
+				\quad (\forall x,y \in M)
+			\end{align}
+			で定める相対距離により導入する距離位相$\mathscr{O}_{d_M}$と一致する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} 任意の$x \in M$と$r > 0$に対し
+		\begin{align}
+			\Set{y \in M}{d_M(x,y) < r}
+			= M \cap \Set{y \in S}{d(x,y) < r}
+		\end{align}
+		が成り立つから，相対開集合は$d_M$-開球の合併で表され，
+		逆に$d_M$-開集合は$M$と$d$-開集合の交叉で表せる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[距離空間の高々可算直積の距離]
+			$((S_n,d_n))_{n=1}^N$を距離空間の族として距離位相を導入し，
+			$S$をその直積位相空間とする．また$x \in S$に対し
+			$x(n)$を$x_n$と書く．このとき$N < \infty$なら
+			\begin{align}
+				d(x,y)
+				\coloneqq \left\{\sum_{n=1}^N d_n(x_n,y_n)^2\right\}^{1/2},
+				\quad (\forall x,y \in S)
+			\end{align}
+			により，$N = \infty$なら
+			\begin{align}
+				d(x,y) \coloneqq
+				\sum_{n=1}^\infty 2^{-n}\left(d_n(x_n,y_n) \wedge 1\right),
+				\quad (\forall x,y \in S)
+			\end{align}
+			により，$S$は距離化可能である．特に$(S_n,d_n)$が全て完備(resp. 可分)なら
+			$(S,d)$も完備(resp. 可分)となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[距離空間において可分$\Longrightarrow$第二可算]
+		\end{thm}
+	\end{screen}
+	
+\subsection{範疇定理}
+	\begin{screen}
+		\begin{thm}[Cantorの共通部分定理]\label{thm:Cantor_intersection_theorem}
+			$S$をHausdorff空間とし，
+			$(K_n)_{n=1}^\infty$をコンパクト部分集合の列とする．
+			このとき，任意の$n \geq 1$に対して$\bigcap_{i=1}^n K_i \neq \emptyset$なら
+			$\bigcap_{i=1}^\infty K_i \neq \emptyset$が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\bigcap_{i=1}^\infty K_i = \emptyset$と仮定すれば，
+		$K_1 \subset \bigcup_{n=1}^\infty K_n^c = S$と$K_1$のコンパクト性より
+		\begin{align}
+			K_1 \subset \bigcup_{n=1}^N K_n^c = \Biggl( \bigcap_{n=1}^N K_n \Biggr)^c
+		\end{align}
+		を満たす$N \geq 1$が存在し，$\bigcap_{n=1}^N K_n \subset K_1$より$\bigcap_{n=1}^N K_n = \emptyset$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[疎集合・第一類集合・第二類集合]
+			位相空間$S$の部分集合$A$が疎である(nowhere dense)とは
+			$A$の閉包の内核が$\overline{A}^{\mathrm{o}} = \emptyset$を満たすことをいう．
+			$S$が可算個の疎集合の合併で表せるとき$S$を第一類集合(the set of the first category)と呼び，
+			そうでない場合はこれを第二類集合と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Baireの範疇定理]\label{thm:Baire_category_theorem}
+			空でない完備距離空間と局所コンパクトHausdorff空間は第二類集合である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} $S \neq \emptyset$を完備距離空間，或は局所コンパクトHausdorff空間とする．\mbox{}
+		\begin{description}
+			\item[第一段]
+				$(V_n)_{n=1}^\infty$を$S$で稠密な開集合系とするとき
+				\begin{align}
+					\overline{\bigcap_{n=1}^\infty V_n} = S,
+					\label{eq:thm_Baire_category_theorem_1}
+				\end{align}
+				となることを示す．実際(\refeq{eq:thm_Baire_category_theorem_1})が満たされていれば，
+				任意の疎集合系$(E_n)_{n=1}^\infty$に対して
+				\begin{align}
+					V_n \coloneqq \overline{E_n}^c,
+					\quad n=1,2,\cdots
+				\end{align}
+				で開集合系$(V_n)$を定めると定理\ref{thm:topology_note_closure_interior}より
+				\begin{align}
+					\overline{V_n} = \overline{E_n}^{ca} = \overline{E_n}^{ic} = \emptyset^c = S
+				\end{align}
+				となるから，$\bigcap_{n=1}^\infty V_n \neq \emptyset$が従い
+				$S \neq \bigcup_{n=1}^\infty \overline{E_n} \supset \bigcup_{n=1}^\infty E_n$
+				が成り立つ．従って$S$は第二類である．
+				
+			\item[第二段]
+				任意の空でない開集合$B_0$に対し$B_0 \cap \left( \bigcap_{n=1}^\infty V_n \right) \neq \emptyset$
+				となることを示せば(\refeq{eq:thm_Baire_category_theorem_1})が従う．
+				$V_1$は稠密であるから$B_0 \cap V_1 \neq \emptyset$となり，
+				点$x_1 \in B_0 \cap V_1$を取れば，
+				$S$が距離空間なら或る半径$<1$の開球$B_1$が存在して
+				\begin{align}
+					x_1 \in B_1 \subset \overline{B_1} \subset B_0 \cap V_1
+					\label{eq:thm_Baire_category_theorem_2}
+				\end{align}
+				を満たす．$S$が局所コンパクトHausdorffの場合も，
+				定理\ref{thm:each_point_in_regular_space_has_closesd_local_base}と
+				定理\ref{thm:T_2_equals_to_T_3_in_locally_compact_spaces}より
+				(\refeq{eq:thm_Baire_category_theorem_2})を満たす
+				相対コンパクトな開集合$B_1$が取れる．
+				同様に半径$<1/n$の開球，或は相対コンパクトな開集合$B_n$と$x_n \in S$で
+				\begin{align}
+					x_n \in B_n \subset \overline{B_n} \subset B_{n-1} \cap V_n
+				\end{align}
+				を満たすものが存在する．このとき$S$が完備距離空間なら$(x_n)_{n=1}^\infty$は
+				Cauchy列をなし，その極限点$x_\infty$は
+				\begin{align}
+					x_\infty \in \bigcap_{n=1}^\infty \overline{B_n}
+				\end{align}
+				を満たす．$S$が局所コンパクトHausdorff空間なら定理\ref{thm:Cantor_intersection_theorem}より
+				\begin{align}
+					\bigcap_{n=1}^\infty \overline{B_n} \neq \emptyset
+				\end{align}
+				となるから，いずれの場合も
+				\begin{align}
+					\emptyset \neq \bigcap_{n=1}^\infty \overline{B_n} 
+					\subset B_0 \cap \Biggl( \bigcap_{n=1}^\infty V_n \Biggr)
+				\end{align}
+				が従い定理の主張が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{lem}[同相写像に関して閉包(内部)の像は像の閉包(内部)に一致する]
+		\label{lem:image_of_closure_is_closure_of_image}
+			$A$を位相空間$S$の部分集合，$h:S \longrightarrow S$を同相写像とするとき
+			次が成り立つ:
+			\begin{description}
+				\item[(1)] $h(A^a) = h(A)^a$.
+				\item[(2)] $h(A^i) = h(A)^i$.
+			\end{description}
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				$h(A) \subset h(A^a)$かつ$h(A^a)$は閉であるから$h(A)^a \subset h(A^a)$が従う．一方で
+				任意の$x \in h(A^a)$に対し$x = h(y)$を満たす
+				$y \in A^a$と$x$の任意の近傍$V$を取れば，
+				$h^{-1}(V) \cap A \neq \emptyset$より
+				$V \cap h(A) \neq \emptyset$が成り立ち
+				$x \in h(A)^a$となる．
+				
+			\item[(2)]
+				$h(A^i) \subset h(A)$かつ$h(A^i)$は開であるから
+				$h(A^i) \subset h(A)^i$が従う．一方で
+				任意の開集合$O \subset h(A)$に対し
+				$h^{-1}(O) \subset A$より
+				$h^{-1}(O) \subset A^i$となり，
+				$O \subset h(A^i)$が成り立つから
+				$h(A)^i \subset h(A^i)$が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[第一類集合の性質]
+			$S$を位相空間とする．
+			\begin{description}
+				\item[(a)] $A \subset B \subset S$に対し$B$が第一類なら$A$も第一類である．
+				\item[(b)] 第一類集合の可算和も第一類である．
+				\item[(c)] 内核が空である閉集合は第一類である．
+				\item[(d)] $S$から$S$への位相同型$h$と$E \subset S$に対し次が成り立つ:
+					\begin{align}
+						\mbox{$E$が第一類} \quad \Longleftrightarrow \quad
+						\mbox{$h(E)$が第一類}.
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)] $B = \bigcup_{n=1}^\infty E_n$
+				を満たす疎集合系$(E_n)_{n=1}^\infty$に対し
+				$A \cap E_n$は疎であり$A = \bigcup_{n=1}^\infty (A \cap E_n)$となる．
+			\item[(b)] $A_n \subset S,\ (n=1,2,\cdots)$が第一類集合とし
+				$(E_{n,i})_{i=1}^\infty$を$A_n = \bigcup_{i=1}^\infty E_{n,i}$
+				を満たす疎集合系とすれば
+				\begin{align}
+					\bigcup_{n=1}^\infty A_n
+					= \bigcup_{n,i=1}^\infty E_{n,i}
+				\end{align}
+				が成り立つ．
+				
+			\item[(c)] 内核が空である閉集合はそれ自身が疎であり，自身の可算和に一致する．
+			\item[(d)] $E$が第一類のとき，$E = \bigcup_{i=1}^\infty E_i$を満たす
+				疎集合系$(E_i)_{i=1}^\infty$に対し
+				定理\ref{thm:topology_note_closure_interior}と
+				補題\ref{lem:image_of_closure_is_closure_of_image}より
+				\begin{align}
+					\emptyset = h(E_i^{ai})
+					= h(E_i^a)^i
+					= h(E_i)^{ai}
+				\end{align}
+				が成り立つから$h(E_i)$は疎であり，
+				\begin{align}
+					h(E) = \bigcup_{i=1}^\infty h(E_i)
+				\end{align}
+				となるから$h(E)$も第一類である．$h(E)$が第一類なら$E = h^{-1}(h(E))$も第一類である．
+				\QED
+		\end{description}
+	\end{prf}

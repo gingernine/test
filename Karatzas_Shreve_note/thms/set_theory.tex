@@ -1,0 +1,136 @@
+\subsection{Dynkin族定理}
+	\begin{screen}
+		\begin{dfn}[乗法族・Dynkin族]\label{def:Dynkin_system_theorem}
+			集合$X$の部分集合の族$\mathscr{A}$が
+			任意の$A,B \in \mathscr{A}$に対し$A \cap B \in \mathscr{A}$を満たすとき
+			$\mathscr{A}$を$X$上の乗法族($\pi$-system)という．
+			$X$の部分集合の族$\mathscr{D}$が
+			\begin{description}
+				\item[(D1)] $X \in \mathscr{D}$,
+				\item[(D2)] $A,B \in \mathscr{D},
+					\ A \subset B \quad \Longrightarrow \quad B \backslash A \in \mathscr{D}$,
+				\item[(D3)] $\{A_n\}_{n=1}^\infty \subset \mathscr{D},
+					\ A_n \cap A_m = \emptyset\ (n \neq m)
+					\quad \Longrightarrow \quad \bigcup_{n=1}^\infty A_n \in \mathscr{D}$,
+			\end{description}
+			を満たすとき，$\mathscr{D}$を$X$上のDynkin族(Dynkin system)という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[Dynkin族定理]\label{thm:Dynkin_system_theorem}
+			集合$X$上の乗法族$\mathscr{A}$に対し，
+			$\mathscr{A}$を含む最小のDynkin族を$\delta(\mathscr{A})$と書くとき，
+			\begin{align}
+				\delta(\mathscr{A}) = \sigma(\mathscr{A}).
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\delta(\mathscr{C})$が交演算で閉じていれば
+				$\delta(\mathscr{C})$は$\sigma$-加法族となる．実際任意の$A \in \delta(\mathscr{A})$に対し
+				\begin{align}
+					A^c = X \backslash A \in \delta(\mathscr{A})
+				\end{align}
+				となるから，$\delta(\mathscr{C})$が交演算で閉じていれば任意の
+				$A_n \in \delta(\mathscr{C})\ (n=1,2,\cdots)$に対し
+				\begin{align}
+					\bigcup_{n=1}^{\infty} A_n
+					= \bigcup_{n=1}^{\infty} A_1^c \cap A_2^c \cap \cdots \cap A_{n-1}^c \cap A_n
+					\in \delta(\mathscr{C})
+				\end{align}
+				が従う．$\sigma$-加法族はDynkin族であるから
+				$\sigma(\mathscr{C}) \subset \delta(\mathscr{C})$も成り立ち
+				$\sigma(\mathscr{C}) = \delta(\mathscr{C})$が得られる．
+			
+			\item[第二段]
+				$\delta(\mathscr{C})$が交演算について閉じていることを示す．いま，
+				\begin{align}
+					\mathscr{D}_1 \coloneqq
+					\Set{B \in \delta(\mathscr{C})}{ A \cap B \in \delta(\mathscr{C}),\ 
+					\forall A \in \mathscr{C}}
+				\end{align}
+				により定める$\mathscr{D}_1$はDynkin族であり$\mathscr{C}$を含むから
+				\begin{align}
+					\delta(\mathscr{C}) \subset \mathscr{D}_1
+				\end{align}
+				が成立する．従って
+				\begin{align}
+					\mathscr{D}_2 \coloneqq
+					\Set{B \in \delta(\mathscr{C})}{ A \cap B \in \delta(\mathscr{C}),\ 
+					\forall A \in \delta(\mathscr{C})}
+				\end{align}
+				によりDynkin族$\mathscr{D}_2$を定めれば，$\mathscr{C} \subset \mathscr{D}_2$が満たされ
+				\begin{align}
+					\delta(\mathscr{C}) \subset \mathscr{D}_2
+				\end{align}
+				が得られる．よって$\delta(\mathscr{C})$は交演算について閉じている．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+			集合$X$の部分集合族$\mathscr{D}$が
+			の定義\ref{def:Dynkin_system_theorem}の(D1),(D2)を満たしているとき，
+			$\mathscr{D}$が(D3)を満たすことと
+			$\mathscr{D}$が増大列の可算和で閉じることは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{D}$が可算直和について閉じているとする．このとき
+		単調増大列$A_1 \subset A_2 \subset \cdots$を取り
+		\begin{align}
+			B_1 \coloneqq A_1,
+			\quad B_n \coloneqq A_n \backslash A_{n-1},
+			\quad (n \geq 2)
+		\end{align}
+		とおけば(D2)より$B_n \in \mathscr{D},\ (\forall n \geq 1)$が満たされ，
+		$n \neq m$なら$B_n \cap B_m = \emptyset$となるから
+		\begin{align}
+			\bigcup_{n=1}^{\infty} A_n = \bigcup_{n=1}^{\infty} B_n \in \mathscr{D} 
+		\end{align}
+		が成立する．逆に$\mathscr{D}$が増大列の可算和で閉じているとする．
+		(D1)(D2)より互いに素な$A,B \in \mathscr{D}$に対し
+		$A^c \in \mathscr{D}$及び$A^c \cap B^c = A^c \backslash B\in \mathscr{D}$が成り立つから，
+		$\mathscr{D}$の互いに素な集合列$(B_n)_{n=1}^{\infty}$を取れば
+		\begin{align}
+			B_1^c \cap B_2^c \cap \cdots \cap B_n^c
+			= \left( \cdots \left( \left( B_1^c \cap B_2^c \right) \cap B_3^c \right) \cap \cdots \cap B_{n-1}^c \right) \cap B_n^c
+			\in \mathscr{D},
+			\quad (n=1,2,\cdots)
+		\end{align}
+		が得られる．よって
+		\begin{align}
+			D_n \coloneqq \bigcup_{i=1}^n B_i = X \backslash \Biggl( \bigcap_{i=1}^n B_i^c \Biggr),
+			\quad (n=1,2,\cdots)
+		\end{align}
+		により$\mathscr{D}$の単調増大列$(D_n)_{n=1}^{\infty}$を定めれば
+		\begin{align}
+			\bigcup_{n=1}^{\infty} B_n = \bigcup_{n=1}^{\infty} D_n \in \mathscr{D}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+
+\subsection{上限下限}
+	\begin{screen}
+		\begin{thm}[上限の冪と冪の上限]\label{thm:exponentiation_of_supremum_supremum_of_exponentiation}
+			任意の空でない$S \subset [0,\infty)$と$t > 0$に対し次が成立する:
+			\begin{align}
+				(\sup{}{S})^t = \sup{}{\Set{s^t}{s \in S}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$S=\{0\}$なら両辺0で一致するので，$S$は$\{0\}$より真に大きいとする．このとき
+		任意の$s \in S$に対し$s^t \leq (\sup{}{S})^t$となるから$\sup{}{\Set{s^t}{s \in S}} \leq (\sup{}{S})^t$が従う．
+		また任意の$(\sup{}{S})^t > \alpha > 0$に対し$s > \alpha^{1/t}$を満たす$s \in S$が存在し
+		$(\sup{}{S})^t \geq s^t > \alpha$となるから$\sup{}{\Set{s^t}{s \in S}} = (\sup{}{S})^t$が得られる．
+		\QED
+	\end{prf}
