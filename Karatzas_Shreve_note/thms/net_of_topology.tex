@@ -139,8 +139,8 @@
 \subsection{位相}
 	\begin{screen}
 		\begin{dfn}[位相]
-			集合$S$の部分集合の族$\mathscr{O}$が
-			以下を満たすとき，$\mathscr{O}$を$S$の位相(topology)と呼ぶ:
+			集合$S$の部分集合族$\mathscr{O}$が
+			以下を満たすとき，$\mathscr{O}$を$S$の位相(topology)，或は開集合系と呼ぶ:
 			\begin{description}
 				\item[(O1)] $\emptyset, S \in \mathscr{O}$,
 				\item[(O2)] $O_1,O_2 \in \mathscr{O} 
@@ -149,8 +149,68 @@
 					\quad \Longrightarrow \quad \bigcup \mathscr{U} = 
 					\bigcup_{U \in \mathscr{U}} U \in \mathscr{O}$.
 			\end{description}
+			また$\mathscr{O}$の元を$S$の開集合(open set)と呼び，
+			補集合が開である集合を閉集合(closed set)と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[内部・閉包]
+			位相空間の部分集合$A$に対し，
+			$A$に含まれる最大の開集合を$A$の内部(interior)と呼び
+			$A^{\mathrm{o}}$や$A^i$で表す．また
+			$A$を含む最大の閉集合を$A$の閉包(closure)と呼び
+			$\overline{A}$や$A^a$で表す．特に，
+			\begin{align}
+				\mbox{$A$が開} \quad \Longleftrightarrow \quad
+				A = A^\mathrm{o},
+				\quad \mbox{$A$が閉} \quad \Longleftrightarrow \quad
+				A = \overline{A}.
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[内部の補集合は補集合の閉包]
+		\label{thm:topology_note_closure_interior}
+			$S$を位相空間，$h:S \longrightarrow S$を同相，$A$を$S$の部分集合とするとき次が成り立つ．
+			\begin{description}
+				\item[(1)] $A^{ic} = A^{ca}$.
+				\item[(2)] $h(A^a) = h(A)^a$.
+				\item[(3)] $h(A^i) = h(A)^i$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				$A^i \subset A$より$A^{ic} \supset A^c$が従い，
+				$A^{ic}$が閉であるから$A^{ic} \supset A^{ca}$となる．
+				一方で$A^c \subset A^{ca}$より$A \supset A^{cac}$が従い，
+				$A^{cac}$は開であるから$A^i \supset A^{cac}$すなわち
+				$A^{ic} \subset A^{ca}$となる．
+			
+			\item[(2)]
+				$h(A) \subset h(A^a)$かつ$h(A^a)$は閉であるから$h(A)^a \subset h(A^a)$が従う．一方で
+				任意の$x \in h(A^a)$に対し$x = h(y)$を満たす
+				$y \in A^a$と$x$の任意の近傍$V$を取れば，
+				$h^{-1}(V) \cap A \neq \emptyset$より
+				$V \cap h(A) \neq \emptyset$が成り立ち
+				$x \in h(A)^a$となる．
+				
+			\item[(3)]
+				$h(A^i) \subset h(A)$かつ$h(A^i)$は開であるから
+				$h(A^i) \subset h(A)^i$が従う．一方で
+				任意の開集合$O \subset h(A)$に対し
+				$h^{-1}(O) \subset A$より
+				$h^{-1}(O) \subset A^i$となり，
+				$O \subset h(A^i)$が成り立つから
+				$h(A)^i \subset h(A^i)$が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
 	\begin{screen}
 		\begin{dfn}[近傍・基本近傍系]
 			空でない位相空間$S$において，$x \in S$と$U \subset S$に対し
@@ -275,6 +335,93 @@
 				主張が従う．
 				\QED
 		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[集積点・密集点]
+			位相空間$S$の点$x$と部分集合$A$について，
+			$x$の任意の近傍$U$に対し
+			\begin{align}
+				(U \backslash \{x\}) \cap A \neq \emptyset
+			\end{align}
+			となるとき，$x$は$A$の集積点(accumulation point)であるという．
+			同様に$x$の任意の近傍$U$に対し
+			\begin{align}
+				U \cap A \neq \emptyset
+			\end{align}
+			となるとき，$x$は$A$の密集点(cluster point)であるという．
+		\end{dfn}
+	\end{screen}
+	
+	集積点と密集点の明確な違いは$T_1$空間(後述)において現れる．
+	\begin{screen}
+		\begin{thm}[閉である一点集合は集積点を持たない]
+		\label{thm:closed_singleton_has_no_accumulation_point}
+			位相空間において，閉じている一点集合は集積点を持たない．特に
+			$\{x\}$が閉であるとき，$x$は$\{x\}$の密集点ではあるが集積点ではない．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		一点集合$\{x\}$が閉であるとする．このとき$y \neq x$なら
+		$U \coloneqq \{x\}^c$は$y$の開近傍となり
+		\begin{align}
+			(U \backslash \{y\}) \cap \{x\} = \emptyset
+		\end{align}
+		を満たすから$y$は$\{x\}$の集積点ではない．
+		$x$は$\{x\}$の集積点となりえないから$\{x\}$は集積点を持たない．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[閉集合は密集点集合]
+		\label{thm:belongs_to_closure_iff_clusters}
+			位相空間$S$の点$x$と部分集合$A$について次が成り立つ:
+			\begin{align}
+				x \in \overline{A} \quad \Longleftrightarrow \quad
+				\mbox{$x$は$A$の密集点である}.
+			\end{align}
+			特に，$A$が閉であることと$A$の密集点全体が$A$に一致することは同値になる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$の或る近傍$U$が$U \cap A = \emptyset$を満たすとき，
+		定理\ref{thm:topology_note_closure_interior}より
+		\begin{align}
+			x \in U^i \subset A^{ci} = A^{ac}
+		\end{align}
+		が成り立ち$x \notin \overline{A}$が従う．逆に
+		$x \notin \overline{A}$のとき，
+		$\overline{A}^c$は$A$と交わらない$x$の開近傍となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$x \in \overline{A \backslash \{x\}}$$\Longleftrightarrow$$x$が$A$の集積点]
+			位相空間$S$の点$x$と部分集合$A$について次が成り立つ:
+			\begin{align}
+				x \in \overline{A \backslash \{x\}} \quad \Longleftrightarrow \quad
+				\mbox{$x$は$A$の集積点である}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$の任意の近傍$U$に対し
+		$U \cap (A \backslash \{x\}) = (U \backslash \{x\}) \cap A$となるから，
+		定理\ref{thm:belongs_to_closure_iff_clusters}と併せて
+		\begin{align}
+			x \in \overline{A \backslash \{x\}} 
+			&\quad \Longleftrightarrow \quad
+			\mbox{$x$の任意の近傍$U$に対し$U \cap (A \backslash \{x\}) \neq \emptyset$} \\
+			&\quad \Longleftrightarrow \quad
+			\mbox{$x$の任意の近傍$U$に対し$(U \backslash \{x\}) \cap A \neq \emptyset$}
+			\quad \Longleftrightarrow \quad
+			\mbox{$x$は$A$の集積点}
+		\end{align}
+		が成立する．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
@@ -433,10 +580,23 @@
 				\mbox{$S$が$T_1$}
 				&\quad \Longleftrightarrow \quad \mbox{$S$は$T_0$かつ位相的に識別可能な任意の二点が分離される} \\
 				&\quad \Longleftrightarrow \quad \mbox{$S$の任意の一点集合は閉} \\
-				&\quad \Longleftrightarrow \quad \mbox{$x \in S$が$A \subset S$の集積点であることと$x$の任意の近傍が$A$と交わることは同値}.
+				&\quad \Longleftrightarrow \quad \mbox{$x \in S$が$A \subset S$の集積点であることと$x$の任意の開近傍が$A$と交わることは同値}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$x$が$A$の集積点であるとき，任意に$x$の近傍$U$を取る．
+		いま，$x$の或る開近傍$U_{n-1}$と$x_{n-1} \in U_{n-1},\ (x \neq x_{n-1})$
+		が取れたとして，
+		\begin{align}
+			U_n \coloneqq U_{n-1} \cap (S \backslash \{x_{n-1}\})
+		\end{align}
+		は$x$の開近傍となり或る$x_n \in (U_{n-1} \backslash \{x\}) \cap A$が取れる．
+		$U_0 \coloneqq U^{\mathrm{o}},\ 
+		x_0 \in (U^{\mathrm{o}} \backslash \{x\}) \cap A$を出発点とすれば
+		$A$は$U$の無限集合$\{x_n\}_{n=1}^\infty$を含む．
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[Hausdorff空間のコンパクト部分集合は閉]
@@ -1195,47 +1355,7 @@
 				\QED
 		\end{description}
 	\end{prf}
-	
-	\begin{screen}
-		\begin{thm}[閉包・内核]\label{thm:topology_note_closure_interior}
-			$S$を位相空間，$h:S \longrightarrow S$を同相，$A$を$S$の部分集合とするとき次が成り立つ．
-			\begin{description}
-				\item[(1)] $A^{ic} = A^{ca}$.
-				\item[(2)] $h(A^a) = h(A)^a$.
-				\item[(3)] $h(A^i) = h(A)^i$.
-			\end{description}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(1)]
-				$A^i \subset A$より$A^{ic} \supset A^c$が従い，
-				$A^{ic}$が閉であるから$A^{ic} \supset A^{ca}$となる．
-				一方で$A^c \subset A^{ca}$より$A \supset A^{cac}$が従い，
-				$A^{cac}$は開であるから$A^i \supset A^{cac}$すなわち
-				$A^{ic} \subset A^{ca}$となる．
-			
-			\item[(2)]
-				$h(A) \subset h(A^a)$かつ$h(A^a)$は閉であるから$h(A)^a \subset h(A^a)$が従う．一方で
-				任意の$x \in h(A^a)$に対し$x = h(y)$を満たす
-				$y \in A^a$と$x$の任意の近傍$V$を取れば，
-				$h^{-1}(V) \cap A \neq \emptyset$より
-				$V \cap h(A) \neq \emptyset$が成り立ち
-				$x \in h(A)^a$となる．
-				
-			\item[(3)]
-				$h(A^i) \subset h(A)$かつ$h(A^i)$は開であるから
-				$h(A^i) \subset h(A)^i$が従う．一方で
-				任意の開集合$O \subset h(A)$に対し
-				$h^{-1}(O) \subset A$より
-				$h^{-1}(O) \subset A^i$となり，
-				$O \subset h(A^i)$が成り立つから
-				$h(A)^i \subset h(A^i)$が得られる．
-				\QED
-		\end{description}
-	\end{prf}
-	
+		
 	\begin{screen}
 		\begin{thm}[第一類集合の性質]
 			$S$を位相空間とする．
