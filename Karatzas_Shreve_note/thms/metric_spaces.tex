@@ -8,12 +8,12 @@
 				\item[(PM3)] $d(x,y) \leq d(x,z) + d(z,y),\quad (\forall x,y,z \in S)$
 			\end{description}
 			を満たす関数$d:S \times S \longrightarrow [0,\infty)$を
-			擬距離(pseudometric)と呼ぶ．これらに加えて
+			擬距離\index{ぎきょり@擬距離}(pseudometric)と呼ぶ．これらに加えて
 			\begin{description}
 				\item[(PM4)] $d(x,y) = 0 \quad \Longleftrightarrow \quad x=y,
 				\quad (\forall x,y \in S)$
 			\end{description}
-			が満たされるとき$d$を距離(metric)と呼び，
+			が満たされるとき$d$を距離\index{きょり@距離}(metric)と呼び，
 			$S$と(擬)距離$d$との対$(S,d)$を(擬)距離空間と呼ぶ．また
 			\begin{align}
 				&\mbox{$O \subset S$が開集合である}
@@ -22,8 +22,80 @@
 					$\Set{y \in S}{d(x,y) < r_x} \subset O$となる}
 			\end{align}
 			で定める開集合系を(擬)距離位相と呼ぶ．
+			$d$で入れる(擬)距離位相を$d$-位相とも書く．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[球]
+			$(S,d)$を擬距離空間とするとき，$x \in S$と$r > 0$により
+			\begin{align}
+				\Set{y \in S}{d(x,y) < r}
+			\end{align}
+			で表される集合を(中心$x$，半径$r$の)開球\index{かいきゅう@開球}(open ball)と呼ぶ．
+			$<$を$\leq$に替えたものは閉球\index{へいきゅう@閉球}(closed ball)と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[開球・閉球はそれぞれ開集合・閉集合]
+		\label{thm:open_ball_is_open}
+			擬距離位相空間の開球は開集合，閉球は閉集合である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$(S,d)$を擬距離空間とすれば
+		任意の$x \in S$で$d_x:S \ni y \longmapsto d(x,y)$は連続であり，
+		半径$r$の開球は$d_x^{-1}([0,r))$，半径$r$の閉球は$d_x^{-1}([0,r])$
+		と書けるからそれぞれ$S$の開集合，閉集合である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[擬距離空間において開球全体は基底をなす]
+		\label{thm:base_on_pseudometric_space}
+			$(S,d)$を擬距離空間として擬距離位相を入れるとき，
+			中心$x$半径$r$の開球を$B_r(x)$と書けば
+			\begin{align}
+				\mathscr{B} \coloneqq \Set{B_r(x)}{x \in S,\ r > 0}
+				\label{eq:thm_base_on_pseudometric_space_1}
+			\end{align}
+			は$S$の基底をなす．
+			また$S$が可分であるとき，つまり$S$で稠密な高々可算集合$M$が存在するとき，
+			\begin{align}
+				\mathscr{B}_0 \coloneqq \Set{B_r(x)}{x \in M,\ r \in \Q \cap (0,\infty)}
+			\end{align}
+			は$S$の高々可算な基底となる．すなわち可分な距離空間は第二可算である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:open_ball_is_open}より任意の$\mathscr{U} \subset \mathscr{B}$に対し
+		$\bigcup \mathscr{U}$は開集合となる．一方で
+		$O$が開集合なら，任意の$x \in O$に対し
+		\begin{align}
+			B_{r_x}(x) \subset O
+		\end{align}
+		を満たす$r_x > 0$が存在して
+		\begin{align}
+			O = \bigcup_{x \in O} B_{r_x}(x) \in \mathscr{B}
+		\end{align}
+		が従い(\refeq{eq:thm_base_on_pseudometric_space_1})が出る．
+		$S$で稠密な高々可算集合$M$が存在するとき，
+		稠密性より任意の$x \in S$と$r > 0$に対し
+		\begin{align}
+			B_{r/3}(x) \cap M \neq \emptyset
+		\end{align}
+		となるから，或る$m \in B_{r/3}(x) \cap M$と
+		$r/3 < \epsilon < 2r/3$を満たす有理数$\epsilon$で
+		\begin{align}
+			x \in B_\epsilon(m) \subset B_r(x),\quad B_\epsilon(m) \in \mathscr{B}_0
+		\end{align}
+		が成り立つ．すなわち任意の開球は$\mathscr{B}_0$の元の合併で表せるから
+		$\mathscr{B}_0$は$S$の基底となる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[擬距離位相は第一可算]
@@ -49,7 +121,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}
+		\begin{thm}[距離空間は$\sigma$-局所有限な基底を持つ]
 		\end{thm}
 	\end{screen}
 	
@@ -179,11 +251,6 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[距離空間において可分$\Longrightarrow$第二可算]
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
 		\begin{thm}[擬距離の距離化]
 			$(S,d)$を擬距離空間とするとき，
 			$x \sim y \overset{\mathrm{def}}{\Longleftrightarrow} d(x,y) = 0$
@@ -196,6 +263,22 @@
 			$S$の$d$-位相の商位相に一致する．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $\rho$がwell-definedであることを示す．実際，
+				$\pi(x) = \pi(x'),\ \pi(y) = \pi(y')$ならば
+				\begin{align}
+					d(x',y') &\leq d(x',x) + d(x,y) + d(y,y') = d(x,y) \\
+					&\leq d(x,x') + d(x',y') + d(y',y) = d(x',y')
+				\end{align}
+				より$d(x,y) = d(x',y')$が成り立つから
+				$\rho(\pi(x),\pi(y)) = \rho(\pi(x'),\pi(y'))$が満たされる．
+				
+			\item[第二段] 	$\rho$-位相が$d$-位相の商位相に一致することを示す．
+				
+		\end{description}
+	\end{prf}
 	
 \subsection{範疇定理}
 	\begin{screen}
