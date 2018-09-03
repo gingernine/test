@@ -28,32 +28,35 @@
 	
 	\begin{screen}
 		\begin{dfn}[有向点族]
-			空でない集合$X$と有向集合$(\Lambda,\leq)$に対し，
-			写像$x:\Lambda \longrightarrow X\ (\lambda \longmapsto x_\lambda)$を
-			有向点族\index{ゆうこうてんぞく@有向点族}(net)と呼ぶ．
-			$x$は$(x_\lambda)_{\lambda \in \Lambda}$や$(x_\lambda)$とも書く．
-			特に$\Lambda=\N$に対する有向点族を点列\index{てんれつ@点列}(sequence)と呼ぶ．
-			また$(\Gamma,\preceq)$も有向集合とし，
-			写像$f:\Gamma \longrightarrow \Lambda$が次を満たすとき，
-			$\left(x_{f(\gamma)}\right)_{\gamma \in \Gamma}$を
-			$(x_\lambda)$の部分有向点族\index{ぶぶんゆうこうてんぞく@部分有向点族}(subnet)と呼ぶ:
+			有向集合を添数集合とする点族
+			(P. \pageref{dfn:family_collection})
+			を有向点族\index{ゆうこうてんぞく@有向点族}(net)と呼ぶ．
+			$(\Lambda,\leq),\ (\Gamma,\preceq)$を有向集合，
+			$(x_\lambda)_{\lambda \in \Lambda}$を有向点族とするとき，
+			共終かつ序列を保つ写像$f:\Gamma \longrightarrow \Lambda$:
+			つまり
 			\begin{description}
 				\item[(単調性)] $\gamma \preceq \xi \quad \Longrightarrow \quad
 					f(\gamma) \leq f(\xi),\quad (\forall \gamma,\xi \in \Gamma)$,
-				\item[(共終性)] 任意の$\lambda \in \Lambda$に対し
-					或る$\gamma \in \Gamma$が存在して$\lambda \leq f(\gamma)$となる．
+				\item[(共終性)] $f(\Gamma)$が非有界:
+					任意の$\lambda \in \Lambda$に対し
+					$\lambda \leq f(\gamma)$を満たす$\gamma \in \Gamma$が存在する
 			\end{description}
+			を満たす写像$f$に対して，$\left(x_{f(\gamma)}\right)_{\gamma \in \Gamma}$を
+			$(x_\lambda)$の部分有向点族\index{ぶぶんゆうこうてんぞく@部分有向点族}
+			(subnet)と呼ぶ:
 		\end{dfn}
 	\end{screen}
-	点列$(x_n)_{n \in \N}$に対し
+	特に自然数全体$\N$を有向集合とする有向点族を点列\index{てんれつ@点列}(sequence)と呼ぶ．
+	また点列$(x_n)_{n \in \N}$に対し
 	\begin{align}
 		f:\N \ni k \longmapsto n_k \in \N,
 		\quad (n_1 < n_2 < n_3 < \cdots)
 	\end{align}
-	により定まる部分有向点族$\left(x_{f(k)}\right)=\left(x_{n_k}\right)$
+	で定まる部分有向点族$\left(x_{n_k}\right)$
 	を部分列\index{ぶぶんれつ@部分列}(subsequence)と呼ぶ．
-	部分有向点族では写像$f$の単射性は仮定されないが，
-	部分列は$k < j$なら$n_k < n_j$が満たされる．
+	一般の部分有向点族ではそれを定める写像$f$に単射性を仮定していないが
+	(病的な例: Tychonoff plank)，部分列は$k < j$なら$n_k < n_j$が満たされるものと約束する．
 	
 	
 	\begin{screen}
@@ -73,14 +76,18 @@
 	\begin{screen}
 		\begin{thm}[有向点族が収束する$\Longleftrightarrow$任意の部分点族が収束する]
 		\label{thm:a_net_converges_iff_every_subnet_converges}
-			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族とするとき，
-			任意の$a \in S$に対して
-			\begin{align}
-				\mbox{$(x_\lambda)$が$a$に収束する}
-				\quad \Longleftrightarrow \quad
-				\mbox{$(x_\lambda)$の任意の部分有向点族が$a$に収束する}
-			\end{align}
-			が成り立つ．
+			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族とし，
+			また$a$を$S$の任意の点とするとき，次が成り立つ:
+			\begin{description}
+				\item[(1)] $\mbox{$(x_\lambda)$が$a$に収束する}
+					\quad \Longleftrightarrow \quad
+					\mbox{$(x_\lambda)$の任意の部分有向点族が$a$に収束する}$.
+					
+				\item[(2)] $\Lambda = \N$のとき，
+					$\mbox{$(x_n)$が$a$に収束する}
+					\quad \Longleftrightarrow \quad
+					\mbox{$(x_n)$の任意の部分列が$a$に収束する}$.
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
@@ -118,17 +125,35 @@
 					\label{eq:thm_a_net_converges_iff_every_subnet_converges_1}
 				\end{align}
 				を満たす$\mu \in \Lambda$が取れる．
-				このとき$\Gamma \coloneqq \Set{\lambda \in \Lambda}{x_\lambda \notin U}$
-				とおけば，$\leq$は$\Gamma$においても反射律と推移律を満たし，
-				さらに$M \subset \Gamma$を有限集合とすれば
-				或る$\lambda \in \Lambda$が$M$の上界となるが，
+				このとき
+				\begin{align}
+					\Gamma \coloneqq \Set{\lambda \in \Lambda}{x_\lambda \notin U}
+				\end{align}
+				とおけば$\leq$は$\Gamma$においても反射律と推移律を満たし，
+				さらに任意の有限集合$M \subset \Gamma$に対し
+				$\Lambda$における上界$\lambda$が存在するが，
 				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_1})
 				より$\lambda \leq \mu$を満たす
-				$\mu \in \Gamma$が存在するから$(\Gamma,\leq)$は有向集合となる．
+				$\mu \in \Gamma$が取れるから$(\Gamma,\leq)$は有向集合となる．
 				恒等写像$\Gamma \longrightarrow \Lambda$は単調性と共終性を満たし，
 				この場合の部分有向点族$(x_\gamma)_{\gamma \in \Gamma}$は$a$に収束しない．
+			
+			\item[(2)]
+				$\Longrightarrow$は(1)より従う．
+				$(x_n)$が$a$に収束しないとき，$a$の或る近傍$V$では
+				任意の$n \in \N$に対し
+				\begin{align}
+					n < m,\quad x_m \notin V
+				\end{align}
+				を満たす$m \in \N$が存在する．$n_0 \coloneqq 1$として
+				\begin{align}
+					n_0 < n_1 < n_2 < \cdots;
+					\quad x_{n_k} \notin V,\ (\forall k \geq 1)
+				\end{align}
+				を満たす$n_1,n_2,\cdots$を構成すれば，
+				部分列$(x_{n_k})_{k \in \N}$は$a$に収束しない．
+				\QED
 		\end{description}
-		\QED
 	\end{prf}
 	
 	\begin{screen}
