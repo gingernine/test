@@ -259,8 +259,8 @@
 				\rho(\pi(x),\pi(y)) \coloneqq d(x,y),
 				\quad (\forall \pi(x),\pi(y) \in S/\sim)
 			\end{align}
-			により$S/\sim$に距離$\rho$が定まり，$\rho$-位相は
-			$S$の$d$-位相の商位相に一致する．
+			により$S/\sim$に距離$\rho$が定まり，$S$の$d$-位相の商位相は
+			$S/\sim$の$\rho$-位相に一致する．
 		\end{thm}
 	\end{screen}
 	
@@ -269,14 +269,36 @@
 			\item[第一段] $\rho$がwell-definedであることを示す．実際，
 				$\pi(x) = \pi(x'),\ \pi(y) = \pi(y')$ならば
 				\begin{align}
-					d(x',y') &\leq d(x',x) + d(x,y) + d(y,y') = d(x,y) \\
-					&\leq d(x,x') + d(x',y') + d(y',y) = d(x',y')
+					d(x',y') &\leq d(x',x) + d(x,y) + d(y,y') = d(x,y)
+					\leq d(x,x') + d(x',y') + d(y',y) = d(x',y')
 				\end{align}
 				より$d(x,y) = d(x',y')$が成り立つから
 				$\rho(\pi(x),\pi(y)) = \rho(\pi(x'),\pi(y'))$が満たされる．
 				
-			\item[第二段] 	$\rho$-位相が$d$-位相の商位相に一致することを示す．
-				
+			\item[第二段] $d$-開球と$\rho$-開球をそれぞれ$B_d(x;r),\ B_\rho(\pi(x);r),
+				\ (x \in S,\ r>0)$と書けば
+				\begin{align}
+					\pi\left(B_d(x;r)\right) = B_\rho(\pi(x);r),
+					\quad B_d(x;r) = \pi^{-1}\left(B_\rho(\pi(x);r)\right)
+				\end{align}
+				が成り立つ．$U$を商位相の空でない開集合とすれば，
+				定理\ref{thm:base_on_pseudometric_space}と
+				定理\ref{projective_injective_image_preimage}より
+				\begin{align}
+					U = \pi\left(\pi^{-1}(U)\right)
+					= \pi\Biggl(\bigcup_{x \in \pi^{-1}(U)}B_d(x;r_x)\Biggr)
+					= \bigcup_{x \in \pi^{-1}(U)} B_\rho(\pi(x);r_x)
+				\end{align}
+				となるから$U$は$\rho$-開集合でもある．
+				同様に$V$を空でない$\rho$-開集合とすれば
+				\begin{align}
+					\pi^{-1}(V)
+					= \pi^{-1}\Biggl(\bigcup_{\pi(x) \in V} B_\rho\left(\pi(x);\epsilon_{\pi(x)}\right)\Biggr)
+					= \bigcup_{\pi(x) \in V} B_d\left(x;\epsilon_{\pi(x)}\right)
+				\end{align}
+				が成り立つから$V$は商空間の開集合でもある．
+				従って商位相と$\rho$-位相は一致する．
+				\QED
 		\end{description}
 	\end{prf}
 	
