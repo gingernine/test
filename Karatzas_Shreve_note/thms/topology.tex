@@ -31,6 +31,7 @@
 				A = A^\mathrm{o},
 				\quad \mbox{$A$が閉} \quad \Longleftrightarrow \quad
 				A = \overline{A}.
+				\label{eq:dfn_interior_closure}
 			\end{align}
 		\end{dfn}
 	\end{screen}
@@ -40,7 +41,9 @@
 		\label{thm:topology_note_closure_interior}
 			$A$を位相空間の部分集合とするとき次が成り立つ．
 			\begin{align}
-				A^{ic} = A^{ca}.
+				A^{ic} = A^{ca},
+				\quad A^{cic} = A^a,
+				\quad A^{ci} = A^{ac}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -51,6 +54,7 @@
 		一方で$A^c \subset A^{ca}$より$A \supset A^{cac}$が従い，
 		$A^{cac}$は開であるから$A^i \supset A^{cac}$すなわち
 		$A^{ic} \subset A^{ca}$となる．
+		$A$を$A^c$に替えれば残りの関係も得られる．
 		\QED
 	\end{prf}
 	
@@ -225,6 +229,7 @@
 			\begin{align}
 				x \in \overline{A} \quad \Longleftrightarrow \quad
 				\mbox{$x$は$A$の密集点である}.
+				\label{eq:thm_belongs_to_closure_iff_clusters}
 			\end{align}
 			特に，$A$が閉であることと$A$の密集点全体が$A$に一致することは同値になる．
 		\end{thm}
@@ -236,9 +241,17 @@
 		\begin{align}
 			x \in U^i \subset A^{ci} = A^{ac}
 		\end{align}
-		が成り立ち$x \notin \overline{A}$が従う．逆に
-		$x \notin \overline{A}$のとき，
-		$\overline{A}^c$は$A$と交わらない$x$の開近傍となる．
+		となり$x \notin \overline{A}$が従う．逆に
+		$x \notin \overline{A}$なら
+		$\overline{A}^c$は$A$と交わらない$x$の開近傍となるから
+		(\refeq{eq:thm_belongs_to_closure_iff_clusters})が出る．
+		また(\refeq{eq:dfn_interior_closure})より
+		\begin{align}
+			\mbox{$A$が閉} \quad \Longleftrightarrow \quad A = \overline{A}
+			\quad \Longleftrightarrow \quad
+			\mbox{$A$の密集点全体が$A$に一致}
+		\end{align}
+		が成立する．
 		\QED
 	\end{prf}
 	
@@ -366,12 +379,12 @@
 	\begin{screen}
 		\begin{thm}[部分空間と制限写像の連続性]
 			$S,T$を位相空間，$f$を$S$から$T$への写像とする．
-			また$U \coloneqq f(S)$として$f'$を
-			$S$から$U$への$f$の制限とする．このとき次が成り立つ:
+			また$U \coloneqq f(S)$として$g:S \longrightarrow U$を
+			$f$の値域を$U$へ制限した写像とする．このとき次が成り立つ:
 			\begin{align}
 				\mbox{$f:S \longrightarrow T$が連続である} 
 				\quad \Longleftrightarrow \quad
-				\mbox{$f':S \longrightarrow U$が($U$の相対位相に関して)連続である}.
+				\mbox{$g:S \longrightarrow U$が($U$の相対位相に関して)連続である}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -379,9 +392,9 @@
 	\begin{prf}
 		$T$の任意の開集合$O$に対し
 		\begin{align}
-			f'^{-1}(U \cap O) = f^{-1}(U \cap O) = f^{-1}(O)
+			g^{-1}(U \cap O) = f^{-1}(U \cap O) = f^{-1}(O)
 		\end{align}
-		が成り立つから，$f$と$f'$の連続性は一致する．
+		が成り立つから，$f$と$g$の連続性は一致する．
 		\QED
 	\end{prf}
 	
