@@ -2,18 +2,20 @@
 	\begin{screen}
 		\begin{dfn}[有向集合]
 			空でない集合$\Lambda$において
+			任意の有限部分集合が上界を持つような前順序が定まっているとき，
+			つまり次を満たす二項関係$\leq$が定まっているとき，
+			対$(\Lambda,\leq)$を有向集合\index{ゆうこうしゅうごう@有向集合}(directed set)と呼ぶ:
 			\begin{description}
-				\item[(D1)] $\lambda \leq \lambda,\quad (\forall \lambda \in \Lambda)$,
-				\item[(D2)] $\lambda \leq \mu,\ \mu \leq \nu 
+				\item[(反射律)] $\lambda \leq \lambda,\quad (\forall \lambda \in \Lambda)$,
+				\item[(推移律)] $\lambda \leq \mu,\ \mu \leq \nu 
 					\quad \Longrightarrow \quad \lambda \leq \nu,\quad 
 					(\forall \lambda,\mu,\nu \in \Lambda)$,
-				\item[(D3)] 任意の二元$\lambda,\mu \in \Lambda$に対し
-					或る$\nu \in \Lambda$が存在して
-					$\lambda \leq \nu,\ \mu \leq \nu$を満たす，
+				\item[(有向律)] 
+					$M \subset \Lambda$が有限なら
+					$\mu \leq \lambda,\ (\forall \mu \in M)$を満たす
+					$\lambda \in \Lambda$が存在する．
 			\end{description}
-			を満たす二項関係$\leq$が定まっているとき，
-			対$(\Lambda,\leq)$を有向集合
-			\index{ゆうこうしゅうごう@有向集合}(directed set)と呼ぶ．
+			ただし$\lambda \leq \mu$かつ$\lambda \neq \mu$のときは$\lambda < \mu$とも書く．
 		\end{dfn}
 	\end{screen}
 	自然数全体$\N$や実数全体$\R$は，通常の順序により
@@ -26,29 +28,117 @@
 	
 	\begin{screen}
 		\begin{dfn}[有向点族]
-			$X$を空でない集合，$\Lambda$を有向集合とするとき，
+			空でない集合$X$と有向集合$(\Lambda,\leq)$に対し，
 			写像$x:\Lambda \longrightarrow X\ (\lambda \longmapsto x_\lambda)$を
 			有向点族\index{ゆうこうてんぞく@有向点族}(net)と呼ぶ．
 			$x$は$(x_\lambda)_{\lambda \in \Lambda}$や$(x_\lambda)$とも書く．
 			特に$\Lambda=\N$に対する有向点族を点列\index{てんれつ@点列}(sequence)と呼ぶ．
+			また$(\Gamma,\preceq)$も有向集合とし，
+			写像$f:\Gamma \longrightarrow \Lambda$が次を満たすとき，
+			$\left(x_{f(\gamma)}\right)_{\gamma \in \Gamma}$を
+			$(x_\lambda)$の部分有向点族\index{ぶぶんゆうこうてんぞく@部分有向点族}(subnet)と呼ぶ:
+			\begin{description}
+				\item[(単調性)] $\gamma \preceq \xi \quad \Longrightarrow \quad
+					f(\gamma) \leq f(\xi),\quad (\forall \gamma,\xi \in \Gamma)$,
+				\item[(共終性)] 任意の$\lambda \in \Lambda$に対し
+					或る$\gamma \in \Gamma$が存在して$\lambda \leq f(\gamma)$となる．
+			\end{description}
 		\end{dfn}
 	\end{screen}
+	点列$(x_n)_{n \in \N}$に対し
+	\begin{align}
+		f:\N \ni k \longmapsto n_k \in \N,
+		\quad (n_1 < n_2 < n_3 < \cdots)
+	\end{align}
+	により定まる部分有向点族$\left(x_{f(k)}\right)=\left(x_{n_k}\right)$
+	を部分列\index{ぶぶんれつ@部分列}(subsequence)と呼ぶ．
+	部分有向点族では写像$f$の単射性は仮定されないが，
+	部分列は$k < j$なら$n_k < n_j$が満たされる．
+	
 	
 	\begin{screen}
-		\begin{dfn}[有向点族の収束]
-			$x = (x_\lambda)$を位相空間$X$と有向集合$(\Lambda,\leq)$で定まる有向点族
-			とする．点$a \in X$において，$a$の任意の近傍$U$に対し或る
+		\begin{dfn}[有向点族の収束\index{ゆうこうてんぞくのしゅうそく@有向点族の収束}]
+			$x = (x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族
+			とする．点$a \in S$において，$a$の任意の近傍$U$に対し或る
 			$\lambda_0 \in \Lambda$が存在して
 			\begin{align}
 				\lambda_0 \leq \lambda \quad \Longrightarrow \quad
 				x_\lambda \in U
 			\end{align}
 			となるとき，$(x_\lambda)$は$a$に収束する(converge)といい
-			$\lim x_\lambda = a$と書く．
+			$\lim x_\lambda = a$や$\lim_{\lambda} x_\lambda = a$と書く．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}
+		\begin{thm}[有向点族が収束する$\Longleftrightarrow$任意の部分点族が収束する]
+		\label{thm:a_net_converges_iff_every_subnet_converges}
+			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族とするとき，
+			任意の$a \in S$に対して
+			\begin{align}
+				\mbox{$(x_\lambda)$が$a$に収束する}
+				\quad \Longleftrightarrow \quad
+				\mbox{$(x_\lambda)$の任意の部分有向点族が$a$に収束する}
+			\end{align}
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)]
+				$(x_\lambda)$が$a$に収束するとき，$a$の任意の近傍$U$に対し
+				或る$\lambda_0 \in \Lambda$が存在して
+				\begin{align}
+					\lambda_0 \leq \lambda
+					\quad \Longrightarrow \quad
+					x_\lambda \in U
+				\end{align}
+				を満たす．$(y_\gamma)$を$(x_\lambda)$の部分有向点族とするとき，
+				つまりこのとき或る有向集合$(\Gamma,\preceq)$と
+				$f:\Gamma \longrightarrow \Lambda$で
+				$y_\gamma = x_{f(\gamma)}$となるが，$f$の共終性から
+				$\lambda_0 \leq f(\gamma_0)$を満たす$\gamma_0 \in \Gamma$が存在し，
+				$f$の単調性と$\leq$の推移律より
+				\begin{align}
+					\gamma_0 \preceq \gamma
+					\quad \Longrightarrow \quad
+					f(\gamma_0) \leq f(\gamma)
+					\quad \Longrightarrow \quad
+					\lambda_0 \leq f(\gamma)
+					\quad \Longrightarrow \quad
+					y_\gamma = x_{f(\gamma)} \in U
+				\end{align}
+				が従うから$(y_\lambda)$は$a$に収束する．
+				逆に$(x_\lambda)$が$a$に収束しないとき，
+				$a$の或る近傍$V$では任意の$\lambda \in \Lambda$に対し
+				\begin{align}
+					\lambda \leq \mu,
+					\quad x_\mu \notin V
+					\label{eq:thm_a_net_converges_iff_every_subnet_converges_1}
+				\end{align}
+				を満たす$\mu \in \Lambda$が取れる．
+				このとき$\Gamma \coloneqq \Set{\lambda \in \Lambda}{x_\lambda \notin U}$
+				とおけば，$\leq$は$\Gamma$においても反射律と推移律を満たし，
+				さらに$M \subset \Gamma$を有限集合とすれば
+				或る$\lambda \in \Lambda$が$M$の上界となるが，
+				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_1})
+				より$\lambda \leq \mu$を満たす
+				$\mu \in \Gamma$が存在するから$(\Gamma,\leq)$は有向集合となる．
+				恒等写像$\Gamma \longrightarrow \Lambda$は単調性と共終性を満たし，
+				この場合の部分有向点族$(x_\gamma)_{\gamma \in \Gamma}$は$a$に収束しない．
+		\end{description}
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[有向点族の密集点に対する部分収束点族の存在]
+			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族，
+			$a$を$S$の点とするとき，次が成り立つ:
+			\begin{align}
+				\mbox{$a$が$(x_\lambda)$の密集点である}
+				\quad \Longleftrightarrow \quad
+				\mbox{$a$に収束する$(x_\lambda)$の部分有向列が存在する}.
+			\end{align}
 		\end{thm}
 	\end{screen}
