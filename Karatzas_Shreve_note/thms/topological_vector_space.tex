@@ -1,4 +1,4 @@
-\section{位相線型空間 (Rudin note)}
+\section{位相線型空間}
 \subsection{線型位相}
 	\begin{screen}
 		\begin{thm}[多変数連続写像は一変数写像として連続]
@@ -21,8 +21,10 @@
 				\item[(tvs2)]
 					$(X,\tau)$は$T_1$位相空間である．
 			\end{description}
-			を満たすとき線型位相(vector topology)と呼び，
-			$(X,\tau)$を位相線型空間(topological vector space)と呼ぶ．
+			を満たすとき，$\tau$を$X$の線型位相
+			\index{せんけいいそう@線型位相}(vector topology)と呼び，
+			$(X,\tau)$を位相線型空間\index{いそうせんけいくうかん@位相線型空間}
+			(topological vector space)と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -93,23 +95,49 @@
 			\end{align}
 			は$x$の基本近傍系となる．すなわち次が成立する:
 			\begin{align}
-				\tau = \{\emptyset\} \cup 
-				\{\mbox{$\mathscr{U}$の元を平行移動したものの合併集合の全体}\}.
+				\tau = 
+				\Set{O \subset X}{\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
+				$x+U_x \subset O$を満たす$U_x \in \mathscr{U}$が存在する}}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$V$を$x$の任意の近傍とすれば
+		定理\ref{thm:continuity_of_translations_multiples}より
+		$-x + V^{\mathrm{o}}$は$0$の開近傍となる．このとき或る
+		$U \in \mathscr{U}$が
+		\begin{align}
+			U \subset -x + V^{\mathrm{o}} \subset -x + V
+		\end{align}
+		を満たし$x + U \subset V$が従うから
+		$\mathscr{U}(x)$は$x$の基本近傍系をなしている．
+		このとき定理\ref{thm:a_local_base_restores_the_topology}より
+		\begin{align}
+			O \in \tau &\quad \Longleftrightarrow \quad
+			\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
+				$U \subset O$を満たす$U \in \mathscr{U}(x)$が存在する} \\
+			&\quad \Longleftrightarrow \quad
+			\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
+				$x+U_x\subset O$を満たす$U_x \in \mathscr{U}$が存在する} \\
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[平行移動不変距離・絶対斉次距離]
 			$d$を線型空間$X$上に定まる距離とする．
 			\begin{description}
-				\item[(1)] 次が満たされるとき$d$は平行移動不変である(invariant)という:
+				\item[(1)] 次が満たされるとき$d$は平行移動不変
+				\index{へいこういどうふへん@平行移動不変}である(invariant)という:
 					\begin{align}
 						d(x+z, y+z) = d(x,y),\quad (\forall x,y,z \in X).
 					\end{align}
 					
 				\item[(2)]  次が満たされるとき$d$は
-					絶対斉次的である(absolutely homogeneous)という:
+					絶対斉次的\index{ぜったいせいじてき@絶対斉次的}
+					である(absolutely homogeneous)という:
 					\begin{align}
 						d(\alpha x, \alpha y) = |\alpha| d(x,y),
 						\quad (\forall \alpha \in \Phi,\ x,y \in X).
@@ -149,11 +177,36 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[ノルムで定める距離は唯一の絶対斉次的かつ平行移動不変な距離]
-			ノルムで導入する距離は絶対斉次的かつ平行移動不変であり，逆に
-			絶対斉次的かつ平行移動不変な距離はノルムを定める．
+		\begin{thm}[絶対斉次的かつ平行移動不変な距離はノルムで導入する距離に限られる]
+			ノルムで導入する距離は絶対斉次的かつ平行移動不変であり，
+			かつそのような距離はノルムで導入する距離に限られる．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$\Norm{\cdot}{}$を線型空間$X$のノルムとするとき，
+		\begin{align}
+			d(x,y) \coloneqq \Norm{x-y}{}, \quad (\forall x,y \in X)
+		\end{align}
+		で距離を定めれば
+		\begin{align}
+			d(x+z,y+z) = \Norm{x+z-(y+z)}{} = \Norm{x-y}{} = d(x,y),
+			\quad d(\alpha x, \alpha y)
+			= \Norm{\alpha (x-y)}{} = |\alpha|\Norm{x-y}{} = |\alpha|d(x,y)
+		\end{align}
+		が成立する．逆に$X$上の距離$d$が絶対斉次的かつ平行移動不変であるとき，
+		\begin{align}
+			\Norm{x}{} \coloneqq d(x,0),\quad (\forall x \in X)
+		\end{align}
+		でノルムが定まる．実際$\Norm{\alpha x}{} = d(\alpha x,0) 
+		= |\alpha|d(x,0) = |\alpha|\Norm{x}{}$かつ
+		\begin{align}
+			\quad \Norm{x+y}{} = d(x+y,0) = d(x,-y) 
+			\leq d(x,0) + d(0,-y) = d(x,0) + d(y,0) = \Norm{x}{} + \Norm{y}{}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[ノルムで導入する距離位相は線型位相]
@@ -390,9 +443,40 @@
 
 \subsection{局所凸空間}
 	\begin{screen}
-		\begin{lem}
+		\begin{dfn}[局所凸・Frechet空間]
+			位相線型空間において，0の基本近傍系で全ての元が凸であるものが存在するとき
+			その空間は局所凸\index{きょくしょとつ@局所凸}である(locally convex)という．
+			また局所凸なF-空間をFrechet空間\index{Frechetくうかん@Frechet空間}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{lem}[局所凸空間の直積は局所凸]
 			$Z$を線型空間，$(X_\lambda)_{\lambda \in \Lambda}$を
-			局所凸位相線型空間の族とする．
+			局所凸位相線型空間の族とし，$0 \in X_\lambda$の
+			基本近傍系(全ての元は凸)を$\mathscr{U}_\lambda$
+			と書く．また各$\lambda \in \Lambda$に対し
+			写像$f_\lambda:Z \longrightarrow X_\lambda$が定まっているとする．
+			このとき次が成り立つ:
+			\begin{description}
+				\item[(1)] 
+					$0 \in Z$を含み，かつ定理のを満たすような集合系$\mathscr{U}$を
+					\begin{align}
+						\mathscr{U} \coloneqq
+						\Set{\bigcap_{\lambda \in H} f_\lambda^{-1}(V_\lambda)}{
+						\mbox{$H$は$\Lambda$の空でない有限部分集合},\ 
+						V_\lambda \in \mathscr{U}_\lambda}
+					\end{align}
+					で定める．また任意の$V \in \mathscr{U}_\lambda$に対し
+					$f_\lambda^{-1}(V)$が凸であるとき($\forall \lambda \in \Lambda$)，
+					\begin{align}
+						\mathscr{U}(x) \coloneqq
+						\Set{x+U}{U\in\mathscr{U}},
+						\quad(\forall x \in Z)
+					\end{align}
+					とおけば，$\{\mathscr{U}(x)\}_{x \in Z}$を基本近傍系とする
+					$Z$の位相がただ一つに定まり，$Z$の和を連続にする．
+			\end{description}
 		\end{lem}
 	\end{screen}
 	

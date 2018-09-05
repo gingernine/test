@@ -18,7 +18,7 @@
 			ただし$\lambda \leq \mu$かつ$\lambda \neq \mu$のときは$\lambda < \mu$とも書く．
 		\end{dfn}
 	\end{screen}
-	自然数全体$\N$や実数全体$\R$は，通常の順序により
+	正の自然数全体$\N$や実数全体$\R$は，通常の順序により
 	有向集合となっている．また位相空間の一点の近傍全体も
 	\begin{align}
 		U \leq V \quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad
@@ -47,7 +47,7 @@
 			(subnet)と呼ぶ:
 		\end{dfn}
 	\end{screen}
-	特に自然数全体$\N$を有向集合とする有向点族を点列\index{てんれつ@点列}(sequence)と呼ぶ．
+	特に$\N$を有向集合とする有向点族を点列\index{てんれつ@点列}(sequence)と呼ぶ．
 	また点列$(x_n)_{n \in \N}$に対し
 	\begin{align}
 		f:\N \ni k \longmapsto n_k \in \N,
@@ -57,7 +57,11 @@
 	を部分列\index{ぶぶんれつ@部分列}(subsequence)と呼ぶ．
 	一般の部分有向点族ではそれを定める写像$f$に単射性を仮定していないが
 	(病的な例: Tychonoff plank)，部分列は$k < j$なら$n_k < n_j$が満たされるものと約束する．
+	従って点列の部分有向点族のうちには部分列となっていないものも含まれる．
 	
+	有向集合の概念は自然数の可算かつ全順序的な性質の一般化であり，
+	本節では可算かつ全順序的な有向集合により添数付けられる
+	(部分)有向点族を特に可算全順序(部分)有向点族と呼ぶことにする．
 	
 	\begin{screen}
 		\begin{dfn}[有向点族の収束\index{ゆうこうてんぞくのしゅうそく@有向点族の収束}]
@@ -77,23 +81,21 @@
 		\begin{thm}[有向点族が収束する$\Longleftrightarrow$任意の部分点族が収束する]
 		\label{thm:a_net_converges_iff_every_subnet_converges}
 			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族とし，
-			また$a$を$S$の任意の点とするとき，次が成り立つ:
-			\begin{description}
-				\item[(1)] $\mbox{$(x_\lambda)$が$a$に収束する}
-					\quad \Longleftrightarrow \quad
-					\mbox{$(x_\lambda)$の任意の部分有向点族が$a$に収束する}$.
-					
-				\item[(2)] $\Lambda = \N$のとき，
-					$\mbox{$(x_n)$が$a$に収束する}
-					\quad \Longleftrightarrow \quad
-					\mbox{$(x_n)$の任意の部分列が$a$に収束する}$.
-			\end{description}
+			また$a$を$S$の任意の点とするとき
+			\begin{align}
+				\mbox{$(x_\lambda)$が$a$に収束する}
+				\quad \Longleftrightarrow \quad
+				\mbox{$(x_\lambda)$の任意の部分有向点族が$a$に収束する}
+				\label{eq:thm_a_net_converges_iff_every_subnet_converges_2}
+			\end{align}
+			が成立する．特に$(\Lambda,\leq)$が全順序的な無限有向集合で，かつ
+			任意の$M \subset \Lambda$に対し
+			$M$が有限集合であるときに限り$M$が上界を持つのであれば，
+			右辺で部分有向点族を可算全順序部分列に替えても同値関係は成立する．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(1)]
+	\begin{prf}
 				$(x_\lambda)$が$a$に収束するとき，$a$の任意の近傍$U$に対し
 				或る$\lambda_0 \in \Lambda$が存在して
 				\begin{align}
@@ -125,45 +127,94 @@
 					\label{eq:thm_a_net_converges_iff_every_subnet_converges_1}
 				\end{align}
 				を満たす$\mu \in \Lambda$が取れる．
-				このとき
+				ここで
 				\begin{align}
 					\Gamma \coloneqq \Set{\lambda \in \Lambda}{x_\lambda \notin U}
 				\end{align}
-				とおけば$\leq$は$\Gamma$においても反射律と推移律を満たし，
-				さらに任意の有限集合$M \subset \Gamma$に対し
+				とおけば，任意の有限集合$M \subset \Gamma$に対し
 				$\Lambda$における上界$\lambda$が存在するが，
 				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_1})
 				より$\lambda \leq \mu$を満たす
 				$\mu \in \Gamma$が取れるから$(\Gamma,\leq)$は有向集合となる．
 				恒等写像$\Gamma \longrightarrow \Lambda$は単調性と共終性を満たし，
-				この場合の部分有向点族$(x_\gamma)_{\gamma \in \Gamma}$は$a$に収束しない．
-			
-			\item[(2)]
-				$\Longrightarrow$は(1)より従う．
-				$(x_n)$が$a$に収束しないとき，$a$の或る近傍$V$では
-				任意の$n \in \N$に対し
+				この場合の部分有向点族$(x_\gamma)_{\gamma \in \Gamma}$は$a$に収束しないから
+				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_2})が出る．
+				$(\Lambda,\leq)$が定理の後半の条件を満たすとき，
+				任意の$\gamma \in \Gamma$に対して
 				\begin{align}
-					n < m,\quad x_m \notin V
+					\inprod<\gamma> \coloneqq
+					\Set{\mu \in \Gamma}{\gamma < \mu}
 				\end{align}
-				を満たす$m \in \N$が存在する．$n_0 \coloneqq 1$として
+				は空ではない．実際このとき$\Lambda$は非有界であるから
+				$\gamma < \lambda$を満たす$\lambda \in \Lambda$が存在し，
+				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_1})
+				より$\lambda < \mu$を満たす$\mu \in \Gamma$が取れる．
+				推移律より$\gamma < \mu$となるから$\mu \in \inprod<\gamma>$となる．
+				$\Gamma$の空でない部分集合の全体を$\mathscr{X}$として
+				選択関数$\Phi \in \prod \mathscr{X}$を取り
 				\begin{align}
-					n_0 < n_1 < n_2 < \cdots;
-					\quad x_{n_k} \notin V,\ (\forall k \geq 1)
+					\gamma_1 &\coloneqq \Phi(\Gamma), \\
+					\gamma_2 &\coloneqq \Phi(\inprod<\gamma_1>), \\
+					\gamma_3 &\coloneqq \Phi(\inprod<\gamma_2>), \\
+					&\cdots
 				\end{align}
-				を満たす$n_1,n_2,\cdots$を構成すれば，
-				部分列$(x_{n_k})_{k \in \N}$は$a$に収束しない．
+				で$\{\gamma_k\}_{k \in \N}$を定めれば，
+				$\{\gamma_k\}_{k \in \N}$は$\Lambda$で非有界であるから
+				恒等写像$\{\gamma_k\}_{k \in \N} \longrightarrow \Lambda$は
+				単調かつ共終であり，従って$(x_{\gamma_k})$は$a$に収束しない
+				$(x_\lambda)$の可算全順序部分有向点族となる．
 				\QED
-		\end{description}
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[有向点族の密集点に対する部分収束点族の存在]
+		\begin{thm}[有向点族の密集点に対する収束部分点族の存在]
 			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族，
-			$a$を$S$の点とするとき，次が成り立つ:
+			$a$を$S$の点とするとき
 			\begin{align}
-				\mbox{$a$が$(x_\lambda)$の密集点である}
+				\mbox{$a$が$\{x_\lambda\}$の密集点である}
 				\quad \Longleftrightarrow \quad
 				\mbox{$a$に収束する$(x_\lambda)$の部分有向列が存在する}.
 			\end{align}
+			が成立する．特に$\Lambda = \N$かつ
+			$a$が可算な基本近傍系を持つ場合，右辺の部分有向点族を部分列に替えて成立する．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$a$が$\{x_\lambda\}$の密集点であるとき，
+		$\mathscr{U}$を$a$の基本近傍系とすれば
+		任意の$U \in \mathscr{U}$に対し
+		或る$\lambda \in \Lambda$が存在して$x_\lambda \in U$となるから，
+		選択関数$\Phi \in \prod_{U \in \mathscr{U}} 
+		\Set{\lambda \in \Lambda}{x_\lambda \in U}$を取り
+		\begin{align}
+			\Gamma \coloneqq \Set{(\Phi(U),U)}{U \in \mathscr{U}}
+		\end{align}
+		と定める．$\Lambda = \N$かつ$\mathscr{U} = \{U_k\}_{k \in \N}$と書けるときは
+		\begin{align}
+			\Gamma \coloneqq \Set{(n_k,U_k)}{k \in \N,\ x_{n_k} \in U_k,\ n_1 < n_2 < \cdots}
+		\end{align}
+		で定める．$\Gamma$において二項関係$\preceq$を
+		\begin{align}
+			(\lambda,U) \preceq (\mu,V) 
+			\quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad
+			\mbox{$\lambda \leq \mu$かつ$U \supset V$}
+		\end{align}
+		で定めれば$(\Gamma,\preceq)$は有向集合となり，次の写像
+		\begin{align}
+			f:\Gamma \ni (\lambda,U) \longmapsto \lambda \in \Lambda
+		\end{align}
+		は単調かつ共終であるから$(x_{f(\gamma)})$は部分有向点族となる．
+		そして任意に$U_0 \in \mathscr{U}$を取り
+		$\lambda_0 \coloneqq \Phi(U_0)$とおけば
+		\begin{align}
+			(\lambda_0,U_0) \preceq (\lambda,U)
+			\quad \Longrightarrow \quad
+			x_{f(\lambda,U)} = x_\lambda \in U \subset U_0
+		\end{align}
+		となるから$(x_{f(\gamma)})_{\gamma \in \Gamma}$は$a$に収束する．
+		逆に$a$に収束する$(x_\lambda)$の部分有向族(又は部分列)$(y_\gamma)$が存在するとき，
+		$\{y_\gamma\}$は$\{x_\lambda\}$の部分集合でありかつ
+		$a$の任意の近傍と交わるから，$\{x_\lambda\}$も$a$の任意の近傍と交叉する．
+		\QED
+	\end{prf}
