@@ -1,1 +1,88 @@
 \subsection{一様空間}
+	\begin{screen}
+		\begin{thm}
+			$(S,\mathscr{V})$を一様空間とするとき，
+			任意の$V \in \mathscr{V}$に対し
+			\begin{align}
+				W_x \times W_x \subset V,\quad (\forall x \in S)
+			\end{align}
+			を満たす対称な$W \in \mathscr{V}$が存在する．
+			ただし$W_x = \Set{y \in S}{(x,y) \in W}$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		近縁系の定義より$U \circ U \subset V$を満たす
+		$U \in \mathscr{V}$が存在する．ここで
+		\begin{align}
+			W \coloneqq U \cap U^{-1}
+		\end{align}
+		で$W \in \mathscr{V}$を定めれば，$W$は対称であるので任意の$x \in S$に対し
+		\begin{align}
+			y,z \in W_x \quad \Longrightarrow \quad
+			(x,y),(x,z) \in W \quad \Longrightarrow \quad
+			(y,x),(x,z) \in W \quad \Longrightarrow \quad
+			(y,z) \in V
+		\end{align}
+		が成立し$W_x \times W_x \subset V$が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[一様位相空間において$T_0 \Longleftrightarrow T_2$]
+		\label{thm:T_0_iff_T_2_on_uniform_topological_space}
+			$(S,\mathscr{V})$を一様空間とし，$S$に一様位相を導入する．このとき
+			\begin{align}
+				\mbox{$S$が$T_0$} \quad \Longleftrightarrow \quad
+				\bigcap_{V \in \mathscr{V}}V = \Set{(x,x)}{x \in S}
+				\quad \Longleftrightarrow \quad
+				\mbox{$S$が$T_2$}
+				\label{eq:thm_T_0_iff_T_2_on_uniform_topological_space}
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[一つ目の$\Longrightarrow$]
+				$\bigcap_{V \in \mathscr{V}}V \neq \Set{(x,x)}{x \in S}$
+				が満たされるとき，或る相異なる二点$x,y \in S$に対し
+				\begin{align}
+					(x,y),(y,x) \in V, \quad (\forall V \in \mathscr{V})
+				\end{align}
+				となる．$\Set{V_x \coloneqq \Set{s \in S}{(x,s) \in V}}{V \in \mathscr{V}}$は$x$の基本近傍系をなすから
+				\begin{align}
+					y \in V_x, \quad (\forall V \in \mathscr{V})
+				\end{align}
+				が成立し，定理\ref{thm:belongs_to_closure_iff_clusters}より
+				$x \in \overline{\{y\}}$が従う．
+				対称的に$y \in \overline{\{x\}}$も出るから
+				$x$と$y$は位相的に区別不能である．
+				
+			\item[二つ目の$\Longrightarrow$]
+				$\bigcap_{V \in \mathscr{V}}V = \Set{(x,x)}{x \in S}$
+				が満たされるとき，任意の相異なる二点$x,y \in S$に対し
+				\begin{align}
+					(x,y) \in V
+				\end{align}
+				を満たす$V \in \mathscr{V}$が存在する．
+				定理より或る対称な$W \in \mathscr{V}$で
+				\begin{align}
+					W \circ W \subset V,
+					\quad W_x \times W_x \subset V,
+					\quad W_y \times W_y \subset V
+				\end{align}
+				となるが，このとき$W_x \cap W_y = \emptyset$が成り立つ．実際，
+				$W_x \cap W_y$が空でないとき，$z \in W_x \cap W_y$を取れば
+				\begin{align}
+					(x,z),(y,z) \in W \quad \Longrightarrow \quad
+					(x,z),(z,y) \in W \quad \Longrightarrow \quad
+					(x,y) \in V
+				\end{align}
+				が従い矛盾が生じる．$W_x,W_y$はそれぞれ$x,y$の近傍であるから，
+				二つ目の$\Longrightarrow$が得られた．
+				位相空間が$T_2$なら$T_0$であるから
+				(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space})が成り立つ．
+				\QED
+		\end{description}
+	\end{prf}
