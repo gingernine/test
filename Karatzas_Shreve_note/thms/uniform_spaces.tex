@@ -42,7 +42,8 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
+	\begin{prf} 位相空間が$T_2$なら$T_0$であるから，二つの$\Longrightarrow$を示せば
+		(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space})が従う．
 		\begin{description}
 			\item[一つ目の$\Longrightarrow$]
 				$\bigcap_{V \in \mathscr{V}}V \neq \Set{(x,x)}{x \in S}$
@@ -79,10 +80,7 @@
 					(x,z),(z,y) \in W \quad \Longrightarrow \quad
 					(x,y) \in V
 				\end{align}
-				が従い矛盾が生じる．$W_x,W_y$はそれぞれ$x,y$の近傍であるから，
-				二つ目の$\Longrightarrow$が得られた．
-				位相空間が$T_2$なら$T_0$であるから
-				(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space})が成り立つ．
+				が従い矛盾が生じる．$W_x,W_y$はそれぞれ$x,y$の近傍であるから二つ目の$\Longrightarrow$を得る．
 				\QED
 		\end{description}
 	\end{prf}
@@ -144,9 +142,17 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[擬距離空間において，完備$\Longleftrightarrow$任意のCauchy列が収束する]
-			$(S,d)$を擬距離空間として一様構造$\mathscr{V}$を
-			定理\ref{thm:uniform_structure_on_pseudometric_spaces}の要領で定めるとき，
+		\begin{thm}[点列の擬距離に関する収束]
+			点列$(x_n)_{n \in \N}$が$a$に収束する
+			ことと$d(x_n,a) \longrightarrow 0$は同値．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[可算な基本近縁系が存在するとき，完備$\Longleftrightarrow$任意のCauchy列が収束する]
+		\label{thm:complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset}
+			$(S,\mathscr{V})$を一様空間とする．
+			$\mathscr{V}$に対して可算な基本近縁系$\{V_n\}_{n \in \N}$が存在するとき次が成立する:
 			\begin{align}
 				\mbox{$S$が完備である} \quad \Longleftrightarrow \quad
 				\mbox{$S$の任意のCauchy列が収束する}.
@@ -155,49 +161,91 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\Longleftarrow$を示せばよい．任意のCauchy列が収束するとき，$S$のCauchy有向点族
-		$(x_\lambda)_{\lambda \in \Lambda}$に対し
+		$\Longleftarrow$を示す．近縁系は有限交叉で閉じるから
 		\begin{align}
-			A_\lambda \coloneqq \Set{x_\mu}{\lambda \leq \mu}
+			U_n \coloneqq V_1 \cap V_2 \cap \cdots \cap V_n,
+			\quad (n = 1,2,\cdots)
 		\end{align}
-		とおけば，任意の$n \in \N$で
+		により単調減少な$\mathscr{V}$の基本近縁系$\{U_n\}_{n \in \N}$が定まる．
+		$(x_\lambda)_{\lambda \in \Lambda}$を$S$のCauchy有向点族として
 		\begin{align}
-			A_{\lambda_n} \times A_{\lambda_n} \subset V(1/n)
+			A_\lambda \coloneqq \Set{x_\mu}{\lambda \leq \mu},
+			\quad (\forall \lambda \in \Lambda)
 		\end{align}
-		を満たす$\lambda_n \in \Lambda$が存在する．
-		このとき任意の$\epsilon > 0$に対し
-		$1/N < \epsilon$となる$N \in \N$を取れば，
-		$n,m \geq N$なら
+		とおけば，任意の$n \in \N$で或る$\lambda_n \in \Lambda$が存在して
 		\begin{align}
-			A_{\lambda_n} \times A_{\lambda_n},\
-			A_{\lambda_m} \times A_{\lambda_m}
-			\subset V(1/N) \subset V(\epsilon)
+			A_{\lambda_n} \times A_{\lambda_n} \subset U_n
 		\end{align}
-		となり，有向集合の定義より$\lambda_n,\lambda_m \leq \mu$を満たす
-		$\mu \in \Lambda$が存在して
+		となる．任意の$V \in \mathscr{V}$に対し$W \circ W \subset V$
+		を満たす$W \in \mathscr{V}$を取れば，或る$N \in \N$で$U_N \subset W$となるから
 		\begin{align}
-			d(x_{\lambda_n},x_{\lambda_m})
-			\leq d(x_{\lambda_n},x_\mu) + d(x_\mu,x_{\lambda_m})
-			< 2\epsilon
+			U_N \circ U_N \subset V
 		\end{align}
-		が成り立つから，$(x_{\lambda_n})_{n \in \N}$は$S$のCauchy列であり
-		或る$x_0 \in S$に収束する．このとき任意の$x \in A_{\lambda_n}$に対し
+		が成り立つ．また任意の$n,m \geq N$に対し，有向集合の定義より
+		$\lambda_n,\lambda_m \leq \mu$を満たす$\mu \in \Lambda$が存在して
 		\begin{align}
-			d(x_0,x) \leq d(x_0,x_{\lambda_n}) + d(x_{\lambda_n},x)
-			< d(x_0,x_{\lambda_n}) + \frac{1}{n}
+			(x_{\lambda_n},x_\mu) \in U_n \subset U_N,
+			\quad (x_\mu, x_{\lambda_m}) \in U_m \subset U_N
 		\end{align}
-		となるから，各$n \in \N$で$r_n \coloneqq d(x_0,x_{\lambda_n}) + 1/n$
-		とおけば
+		となり$(x_{\lambda_n},x_{\lambda_m}) \in V$が従うから，
+		$(x_{\lambda_n})_{n \in \N}$はCauchy列であり或る$a \in S$に収束する．このとき
 		\begin{align}
-			A_{\lambda_n} \subset B_{r_n}(x_0)
-			\coloneqq \Set{x \in S}{d(x_0,x) < r_n}
+			\lim x_\lambda = a
+			\label{eq:thm_complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset}
 		\end{align}
-		が成り立つ．$r_n \longrightarrow 0$より$B_{r_n}(x_0)$の全体は
-		$x_0$の基本近傍系をなすから，$x_0$の任意の近傍$U$に対し
+		が成立する．実際，任意に$a$の近傍$B$を取れば或る$\tilde{V} \in \mathscr{V}$で
 		\begin{align}
-			A_{\lambda_n} \subset B_{r_n}(x_0) \subset U
+			\tilde{V}_a \coloneqq \Set{x \in S}{(a,x) \in \tilde{V}} \subset B
 		\end{align}
-		を満たす$n \in \N$が取れる．これで$\lim x_\lambda = x_0$が得られ，
-		任意のCauchy有向点族が収束するから$S$は完備である．
+		となり，$\tilde{W} \circ \tilde{W} \subset V$を満たす$\tilde{W} \in \mathscr{V}$に対し
+		或る$N_1 \in \N$が存在して
+		\begin{align}
+			n \geq N_1 \quad \Longrightarrow \quad
+			x_{\lambda_n} \in \tilde{W}_a \quad \Longrightarrow \quad
+			(a,x_{\lambda_n}) \in \tilde{W}
+		\end{align}
+		を満たす．また或る$N_2 \geq N_1$で$U_{N_2} \subset \tilde{W}$となるから
+		\begin{align}
+			A_{\lambda_{N_2}} \times A_{\lambda_{N_2}} \subset U_{N_2} \subset \tilde{W}
+		\end{align}
+		が従い，このとき$(a,x_{\lambda_{N_2}}) \in \tilde{W}$かつ
+		$(x_{\lambda_{N_2}},x) \in \tilde{W},\ (\forall x \in A_{\lambda_{N_2}})$より
+		$(a,x) \in \tilde{V},\ (\forall x \in A_{\lambda_{N_2}})$となるから
+		\begin{align}
+			A_{\lambda_{N_2}} \subset \tilde{V}_a 
+		\end{align}
+		が得られ(
+		\refeq{eq:thm_complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset})
+		が出る．任意のCauchy有向点族が収束するから$S$は完備である．
 		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[完備かつ全有界$\Longleftrightarrow$コンパクト]
+			$(S,\mathscr{V})$を一様空間として$\mathscr{V}$で一様位相を導入するとき，
+			\begin{align}
+				\mbox{$S$が完備かつ全有界} \quad \Longleftrightarrow \quad
+				\mbox{$S$がコンパクト}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				任意の有向点族が収束する部分有向点族を持てばコンパクトである．
+				$(x_\lambda)_{\lambda \in \Lambda}$を$S$の有向点族とする．
+				任意の$V \in \mathscr{V}$に対し或る$\{A_i\}_{i=1}^n$が存在して
+				\begin{align}
+					A_i \times A_i \subset U;\ (\forall i=1,\cdots,n),\quad
+					\bigcup_{i=1}^n A_i = S
+				\end{align}
+				を満たす．この$\{A_i\}_{i=1}^n$が生成する$S$の位相を$\tau_V$とし，
+				$\tau_V$を導入した$S$を$S_V$と書けば，$S_V$はコンパクトであるからTyconovの定理より
+				\begin{align}
+					T \coloneqq \prod_{V \in \mathscr{V}} S_V
+				\end{align}
+				はコンパクト空間であり，
+			\item[第二段]
+		\end{description}
 	\end{prf}
