@@ -1,4 +1,58 @@
 \subsection{一様空間}
+	$S$を空でない集合とするとき，任意の空でない$V \subset S \times S$に対して
+	\begin{align}
+		V^{-1} \coloneqq \Set{(y,x)}{(x,y) \in V}
+	\end{align}
+	と書き，また$S \times S$における二項演算$\circ$を
+	\begin{align}
+		U \circ V \coloneqq
+		\Set{(x,z)}{\mbox{或る$y \in S$で$(x,y) \in U$かつ$(y,z) \in V$となる}},
+		\quad (U,V \subset S \times S)
+	\end{align}
+	で定める．このとき演算$\circ$について次が成り立つ:
+	$V,W \subset S \times S$を空でない部分集合とすれば
+	\begin{align}
+		W \circ W \subset V
+		\quad \Longleftrightarrow \quad
+		\mbox{任意の$x,y,z \in S$に対し$(x,y),(y,z) \in W$なら$(x,z) \in V$}.
+	\end{align}
+	
+	\begin{screen}
+		\begin{dfn}[近縁系]
+			$S$を空でない集合とするとき，次の(US1)$\sim$(US5)を満たす
+			$S \times S$の部分集合族$\mathscr{V}$を
+			$S$の近縁系\index{きんえんけい@近縁系}(system of entourages)
+			や一様構造\index{いちようこうぞう@一様構造}(uniform structure)と呼び，
+			対$(S,\mathscr{V})$を一様空間\index{いちようくうかん@一様空間}
+			(uniform space)と呼ぶ:
+			\begin{description}
+				\item[(US1)] $\mathscr{V} \neq \emptyset$かつ任意の$V \in \mathscr{V}$は
+					$\Set{(x,x)}{x \in S} \subset V$を満たす．
+					
+				\item[(US2)] 任意の$V \subset S \times S$に対し
+					$V \in \mathscr{V} \Longleftrightarrow V^{-1} \in \mathscr{V}$.
+				\item[(US3)] 任意の$U,V \in \mathscr{V}$に対し$U \cap V \in \mathscr{V}$．
+				\item[(US4)] 任意の$V \in \mathscr{V}$に対し或る$W \in \mathscr{V}$が存在して$W \circ W \subset V$．またこれは次と同値である:
+					\begin{align}
+						\forall V \in \mathscr{V};\ 
+						\exists W \in \mathscr{V};\ 
+						\forall x,y,z \in S;\quad
+						(x,y),(y,z) \in W \Longrightarrow (x,z) \in V.
+					\end{align}
+					
+				\item[(US5)] 任意の$V \subset \mathscr{V}$に対し
+					$V \subset R$なら$R \in \mathscr{V}$.
+			\end{description}
+			$\mathscr{V}$の元を近縁\index{きんえん@近縁}(entourage)と呼び，
+			近縁$V$が$V = V^{-1}$を満たすとき$V$は対称\index{たいしょう@対称}
+			である(symmetric)という．また基本近傍系と同様に
+			$\mathscr{V}$の部分集合$\mathscr{U}$で
+			$\mathscr{V}$の任意の近縁に対しそれに含まれる$\mathscr{U}$の元が取れるとき，
+			$\mathscr{U}$を$\mathscr{V}$の基本近縁系
+			\index{きほんきんえんけい@基本近縁系}(fundamental system of entourages)と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
 	\begin{screen}
 		\begin{thm}\label{thm:uniform_structure}
 			$(S,\mathscr{V})$を一様空間とするとき，
@@ -17,7 +71,7 @@
 		\begin{align}
 			W \coloneqq U \cap U^{-1}
 		\end{align}
-		で$W \in \mathscr{V}$を定めれば，$W$は対称であるので任意の$x \in S$に対し
+		で対称な$W \in \mathscr{V}$を定めれば，任意の$x \in S$に対し
 		\begin{align}
 			y,z \in W_x \quad \Longrightarrow \quad
 			(x,y),(x,z) \in W \quad \Longrightarrow \quad
@@ -27,6 +81,95 @@
 		が成立し$W_x \times W_x \subset V$が得られる．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[近縁系で導入する位相]\label{thm:topology_induced_by_the_uniformity}
+			$\mathscr{V}$を集合$S$の近縁系，$\mathscr{U}$を
+			$\mathscr{V}$の基本近縁系とする．$V_x$を
+			\begin{align}
+				V_x \coloneqq \Set{y \in S}{(x,y) \in V},
+				\quad (V \in \mathscr{V},\ x \in S)
+			\end{align}
+			で定義するとき，各$x \in S$で
+			\begin{align}
+				\mathscr{U}(x) \coloneqq \Set{U_x}{U \in \mathscr{U}}
+			\end{align}
+			とおけば$\{\mathscr{U}(x)\}_{x \in S}$は定理
+			\ref{thm:a_local_base_restores_the_topology}
+			の(LB1)(LB2)(LB3)を満たす．このとき$\{\mathscr{U}(x)\}_{x \in S}$を基本近傍系とする
+			$S$の位相がただ一つ定まるが，別の基本近縁系を用いても同じ位相が定まる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{U}$は空でないから$\mathscr{U}(x)$も空ではない．
+		そして任意の$U \in \mathscr{U}$は$\Set{(x,x)}{x \in S}$を含むから
+		$x \in U_x$となり(LB1)が満たされる．また任意の$U_x,V_x \in \mathscr{U}(x)$に対し
+		或る$W \in \mathscr{U}$で$W \subset U \cap V$となるから
+		$W_x \subset U_x \cap V_x$が従い(LB2)も出る．
+		任意の$U_x \in \mathscr{U}(x)$に対し
+		定理\ref{thm:uniform_structure}より
+		\begin{align}
+			W_y \times W_y \subset U,\quad (\forall y \in S)
+		\end{align}
+		を満たす対称な$W \in \mathscr{V}$が存在する．
+		$R \subset W$を満たす$R \in \mathscr{U}$を取れば
+		\begin{align}
+			y \in R_x \quad \Longrightarrow \quad
+			y \in W_x \quad \Longrightarrow \quad
+			(x,y) \in W_x \times W_x \subset U \quad \Longrightarrow \quad
+			y \in U_x
+		\end{align}
+		となるから$R_x \subset U_x$が成り立ち，このとき任意の$y \in R_x$に対し
+		\begin{align}
+			z \in R_y \quad \Longrightarrow \quad
+			(y,z) \in W = W^{-1} \quad \Longrightarrow \quad
+			(x,z) \in W_y \times W_y \subset U \quad \Longrightarrow \quad
+			z \in U_x
+		\end{align}
+		より$R_y \subset U_x$が満たされるから(LB3)も得られる．
+		従って定理\ref{thm:local_base_defines_open_sets}と
+		定理\ref{thm:a_local_base_restores_the_topology}より
+		$\{\mathscr{U}(x)\}_{x \in S}$を基本近傍系とする$S$の位相
+		$\tau_{\mathscr{U}}$がただ一つ定まる．
+		$\tilde{\mathscr{U}}$を$\mathscr{V}$の別の基本近縁系として
+		\begin{align}
+			\tilde{\mathscr{U}}(x) \coloneqq \Set{\tilde{U}_x}{\tilde{U} \in \tilde{\mathscr{U}}},
+			\quad (\forall x \in S)
+		\end{align}
+		とおくとき，$\left\{\tilde{\mathscr{U}}(x)\right\}_{x \in S}$は
+		$(S,\tau_{\mathscr{U}})$における基本近傍系となる．
+		実際任意の$\tilde{U} \in \tilde{\mathscr{U}}$に対し
+		$U \subset \tilde{U}$を満たす$U \in \mathscr{U}$が存在して
+		$U_x \subset \tilde{U}_x$となるから$\tilde{U}_x$は$x$の近傍であり，
+		任意の$U_x \in \mathscr{U}(x)$に対し或る$\tilde{V} \in \tilde{\mathscr{U}}$で
+		$\tilde{V} \subset U$となり$\tilde{V}_x \subset U_x$が満たされるから
+		$\tilde{\mathscr{U}}(x)$は$x$の基本近傍系となる．
+		定理\ref{thm:local_base_defines_open_sets}より
+		$\left\{\tilde{\mathscr{U}}(x)\right\}_{x \in S}$を基本近傍系とする位相
+		$\tau_{\tilde{\mathscr{U}}}$は$\tau_{\mathscr{U}}$に一致する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[一様位相]
+			$\mathscr{V}$を集合$S$の近縁系，$\mathscr{U}$を
+			$\mathscr{V}$の基本近縁系とする．$U \in \mathscr{U}$と$x \in S$に対し$U_x$を
+			\begin{align}
+				U_x \coloneqq \Set{y \in S}{(x,y) \in U}
+			\end{align}
+			で定義するとき，定理\ref{thm:topology_induced_by_the_uniformity}より
+			\begin{align}
+				\mathscr{U}(x) \coloneqq \Set{U_x}{U \in \mathscr{U}}
+			\end{align}
+			を各点$x$の基本近傍系とする位相が定まるが，
+			別の基本近縁系を取っても同じ位相が定まるので
+			これを近縁系$\mathscr{V}$で導入する
+			$S$の一様位相\index{いちよういそう@一様位相}(uniform topology)と呼ぶ．
+			$S$が位相空間であるとき，$\mathscr{V}$で導入する位相と元の位相が一致することを
+			$\mathscr{V}$と元の位相が両立\index{りょうりつ@両立}する(compatible)という．
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[一様位相空間において$T_0 \Longleftrightarrow T_2$]
