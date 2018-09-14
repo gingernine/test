@@ -18,7 +18,7 @@
 	\end{align}
 	
 	\begin{screen}
-		\begin{dfn}[近縁系]
+		\begin{dfn}[近縁系]\label{dfn:uniform_structure}
 			$S$を空でない集合とするとき，次の(US1)$\sim$(US5)を満たす
 			$S \times S$の部分集合族$\mathscr{V}$を
 			$S$の近縁系\index{きんえんけい@近縁系}(system of entourages)
@@ -170,6 +170,68 @@
 			$\mathscr{V}$と元の位相が両立\index{りょうりつ@両立}する(compatible)という．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[部分一様空間]
+			$(S,\mathscr{V})$を一様空間とするとき，任意の空でない部分集合$A \subset S$に対し
+			\begin{align}
+				\mathscr{V}_A \coloneqq 
+				\Set{(A \times A) \cap V}{V \in \mathscr{V}}
+			\end{align}
+			は$A$上の近縁系となる．また$S$と$A$にそれぞれ$\mathscr{V},\ \mathscr{V}_A$で
+			一様位相$\tau,\ \tau_A$を導入すれば次の関係が満たされる:
+			\begin{align}
+				\tau_A = \Set{O \cap A}{O \in \tau}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $\mathscr{V}_A$が定義
+				\ref{dfn:uniform_structure}の(US1)$\sim$(US5)を満たすことを示す．先ず
+				$\mathscr{V} \neq \emptyset$より$\mathscr{V}_A \neq \emptyset$であり，
+				\begin{align}
+					V \in \mathscr{V} \quad \Longrightarrow \quad
+					(a,a) \in V,\ (\forall a \in A) \quad \Longrightarrow \quad
+					(a,a) \in (A \times A) \cap V,\ (\forall a \in A)
+				\end{align}
+				となるから(US1)が満たされる．また任意に$E \in \mathscr{V}_A$を取れば
+				或る$V \in \mathscr{V}$で$E = (A \times A) \cap V$と表され，
+				\begin{align}
+					(x,y) \in ((A \times A) \cap V)^{-1}
+					\quad \Longleftrightarrow \quad
+					(y,x) \in (A \times A) \cap V 
+					\quad \Longleftrightarrow \quad
+					(x,y) \in (A \times A) \cap V^{-1}
+				\end{align}
+				が成り立つから$E^{-1} \in \mathscr{V}_A$が従い(US2)も満たされる．
+				任意の$U,V \in \mathscr{V}$に対し
+				\begin{align}
+					((A \times A) \cap U) \cap ((A \times A) \cap V)
+					= (A \times A) \cap (U \cap V) \in \mathscr{V}_A
+				\end{align}
+				より(US3)が得られ，また$V \in \mathscr{V}$に対し
+				$W \circ W \subset V$となる$W \in \mathscr{V}$を取れば
+				\begin{align}
+					(x,y),(y,z) \in (A \times A) \cap W
+					\quad \Longrightarrow \quad
+					x,z \in A,\ (x,z) \in V
+					\quad \Longrightarrow \quad
+					(x,z) \in (A \times A) \cap V
+				\end{align}
+				となるから(US4)が出る．
+				$(A \times A) \cap V \subset R,\ (V \in \mathscr{V})$を満たす任意の
+				$R \subset A \times A$に対し，
+				$V \cup R \in \mathscr{V}$より
+				\begin{align}
+					R = (A \times A) \cap (V \cup R) \in \mathscr{V}_A
+				\end{align}
+				が成立し(US5)も従う．
+			
+			\item[第二段] 
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[一様位相空間において$T_0 \Longleftrightarrow T_2$]
