@@ -52,9 +52,15 @@
 			\index{きほんきんえんけい@基本近縁系}(fundamental system of entourages)と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	(US3)について，$V$に対し$W$を対称なものとして取ることができる．実際
+	$U \in \mathscr{V}$が$U \circ U \subset V$を満たすとき，
+	\begin{align}
+		W \coloneqq U \cap U^{-1}
+	\end{align}
+	で$W \in \mathscr{V}$を定めれば$W \circ W \subset U \circ U \subset V$となる．
 	
 	\begin{screen}
-		\begin{thm}\label{thm:uniform_structure}
+		\begin{thm}[近縁は対角線集合を覆う`ベルト'を持つ]\label{thm:uniform_structure}
 			$(S,\mathscr{V})$を一様空間とするとき，
 			任意の$V \in \mathscr{V}$に対し
 			\begin{align}
@@ -311,6 +317,63 @@
 			となるとき，$f$は一様連続\index{いちようれんぞく@一様連続}である(uniformly continuous)という．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト集合上で連続写像は一様連続]
+			$(S,\mathscr{U})$と$(T,\mathscr{V})$を一様空間として
+			$\mathscr{U},\mathscr{V}$により$S,T$に一様位相を導入し，
+			$f:S \longrightarrow T$を連続写像とする．
+			$A \subset S$をコンパクト部分集合とするとき，
+			$f$は$A$上で一様連続となる．つまり，
+			任意の$V \in \mathscr{V}$に対し或る$U \in \mathscr{U}$が存在して
+			\begin{align}
+				(x,y) \in U \cap A \quad \Longrightarrow \quad (f(x),f(y)) \in V.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$M \in \mathscr{U}, s \in S$に対し
+		\begin{align}
+			M_s \coloneqq \Set{x \in S}{(s,x) \in M}
+		\end{align}
+		と定め，$W \in \mathscr{V},\ t \in T$に対しても同様に$W_t$を定める．
+		任意に$V \in \mathscr{V}$を取れば，定理\ref{thm:uniform_structure}より
+		或る$W \in \mathscr{V}$で
+		\begin{align}
+			W_t \times W_t \subset V,
+			\quad (\forall t \in T)
+		\end{align}
+		となる．$f$は連続であるから任意の$s \in S$に対し或る$N(s) \in \mathscr{U}$が存在して
+		\begin{align}
+			(s,x) \in N(s) \quad \Longrightarrow \quad
+			f(x) \in W_{f(s)}
+		\end{align}
+		が成り立ち，$M(s) \circ M(s) \subset N(s)$を満たす対称な$M(s) \in \mathscr{U}$を取れば，
+		定理\ref{thm:subset_is_compact_iff_every_original_open_cover_contains_finite_subcover}より
+		或る$a_1,\cdots,a_n \in A$で
+		\begin{align}
+			A \subset \bigcup_{i=1}^n M(a_i)_{a_i}
+		\end{align}
+		となる．近縁系は有限交叉で閉じるから
+		\begin{align}
+			U \coloneqq \bigcap_{i=1}^n M(a_i)
+		\end{align}
+		は$\mathscr{U}$の元であり，このとき任意に$(x,y) \in U \cap A$を取れば，
+		或る$i$で$y \in M(a_i)_{a_i}$となり，
+		\begin{align}
+			(a_i,a_i),(a_i,y) \in M(a_i) \quad \Longrightarrow \quad
+			(a_i,y) \in N(a_i)
+		\end{align}
+		及び$M(a_i)$の対称性から
+		\begin{align}
+			(a_i,y),(y,x) \in M(a_i) \quad \Longrightarrow \quad
+			(a_i,x) \in N(a_i)
+		\end{align}
+		が満たされ，$f(x),f(y) \in W_{f(a_i)}$が従うから
+		$(f(x),f(y)) \in V$が成立し$f$の$A$の上での一様連続性が出る．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[擬距離空間の一様構造]
