@@ -416,26 +416,65 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{dfn}[有限交叉性]
+			集合$S$の部分集合族$\mathscr{S}$について，その任意の
+			有限部分族$\mathscr{T} \subset \mathscr{S}$が
+			$\bigcap \mathscr{T} \neq \emptyset$を満たすとき
+			$\mathscr{S}$は有限交叉性\index{ゆうげんこうさせい@有限交叉性}
+			(finite intersection property)を持つという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト$\Longleftrightarrow$閉集合族が有限交叉的]
+		\label{thm:compact_iff_closed_sets_family_finitely_intersect}
+			$S$を位相空間，$A$を$S$の部分集合とするとき，
+			\begin{align}
+				&\mbox{$A$がコンパクト部分集合} \quad \Longleftrightarrow \\ 
+				&\quad \mbox{任意の$S$の閉集合族$\mathscr{F}$に対し
+				$\Set{F \cap A}{F \in \mathscr{F}}$が有限交叉性を持つなら
+				$A \cap \bigcap \mathscr{F} \neq \emptyset.$}
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:subset_is_compact_iff_every_original_open_cover_contains_finite_subcover}より
+		\begin{align}
+			&\mbox{$A$がコンパクト部分集合} \\
+			&\Longleftrightarrow \quad \mbox{$A$の$S$における任意の開被覆が($S$における)有限部分被覆を含む} \\
+			&\Longleftrightarrow \quad \mbox{任意の$S$の閉集合族$\mathscr{F}$に対し
+			$A \cap \bigcap \mathscr{F} = \emptyset$なら或る有限族$\mathscr{M} \subset \mathscr{F}$で
+			$A \cap \bigcap \mathscr{M} = \emptyset$} \\
+			&\Longleftrightarrow \quad \mbox{任意の$S$の閉集合族$\mathscr{F}$に対し
+			$\Set{F \cap A}{F \in \mathscr{F}}$が有限交叉性を持つなら
+			$A \cap \bigcap \mathscr{F} \neq \emptyset.$}
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{dfn}[連続・同相・開写像]
 			$f$を位相空間$S$から位相空間$T$への写像とする．
-			\begin{description}
-				\item[(1)]
+			\begin{itemize}
+				\item
 					$x \in S$において$f(x)$の任意の近傍$U$に対し
 					$f^{-1}(U)$が$x$の近傍となるとき，
 					$f$は$x$で連続\index{れんぞく@連続}である(continuous at a point $x$)という．
 					
-				\item[(2)] $T$の任意の開集合$O$に対し$f^{-1}(O)$が$S$の開集合となるとき，
+				\item $T$の任意の開集合$O$に対し$f^{-1}(O)$が$S$の開集合となるとき，
 					$f$は連続である(continuous)という．
 					
-				\item[(3)] $f$に逆写像$f^{-1}$が存在し，$f,f^{-1}$が共に連続であるとき，
+				\item $f$に逆写像$f^{-1}$が存在し，$f,f^{-1}$が共に連続であるとき，
 					$f$を同相写像\index{どうそうしゃぞう@同相写像}(homeomorphism)，
 					或は位相同型\index{いそうどうけい@位相同型}と呼ぶ．また
 					$S,T$間に同相写像が存在するとき$S$と$T$は
 					同相\index{どうそう@同相}である(homeomorphic)，或は位相同型であるという．
 					
-				\item[(4)] $S$の任意の開集合の$f$による像が$T$の開集合であるとき，
+				\item $S$の任意の開集合の$f$による像が$T$の開集合であるとき，
 					$f$を開写像\index{かいしゃぞう@開写像}(open mapping)と呼ぶ．
-			\end{description}
+			\end{itemize}
 		\end{dfn}
 	\end{screen}
 	
@@ -1081,7 +1120,7 @@
 			\begin{align}
 				\mathscr{B} = \bigcup_{m \in M} \Set{B \in \mathscr{B}}{m \in B}
 			\end{align}
-			が成立する．すなわち$\mathscr{B}$は高々可算集合である．
+			が成立する．すなわちこのとき$\mathscr{B}$は高々可算集合である．
 		\end{thm}
 	\end{screen}
 	
@@ -1090,7 +1129,7 @@
 		\begin{align}
 			\mathscr{U} \coloneqq \bigcup_{m \in M} \Set{B \in \mathscr{B}}{m \in B}
 		\end{align}
-		で高々可算集合が定まる．稠密性より任意の$E \in \mathscr{B}$は
+		で高々可算集合$\mathscr{U}$が定まる．稠密性より任意の$E \in \mathscr{B}$は
 		$E \cap M \neq \emptyset$を満たすから，$m \in E \cap M$に対し
 		\begin{align}
 			E \in \Set{B \in \mathscr{B}}{m \in B}

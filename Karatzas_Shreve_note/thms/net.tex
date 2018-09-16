@@ -1,9 +1,10 @@
 \subsection{有向点族}
 	第一可算性が仮定された空間では
 	可算個の点族(点列)の収束を用いることでいくつかの位相的概念を記述できるが，
-	丸っきり一般の位相空間では近傍が`多すぎる'ため，位相概念を記述するのに点列では間に合わない．
-	非可算個の集合に或る種の`向き'を与えることでそれを添数集合とする点族に収束の概念が定式化され，
-	一般の位相空間における閉包やコンパクト性の概念を点族の収束により記述することが可能となる．
+	一般に位相空間では近傍が`多すぎる'ため位相概念を記述するのに点列では間に合わない．
+	有向点族の理論では，非可算個の集合に或る種の`向き'を与えることで
+	それを添数集合とする点族に収束の概念が定式化され，
+	一般の位相空間における閉包や連続性，コンパクト性の概念を点族の収束により記述することが可能となる．
 	
 	\begin{screen}
 		\begin{dfn}[有向集合]
@@ -68,8 +69,9 @@
 	
 	\begin{screen}
 		\begin{dfn}[有向点族の収束\index{ゆうこうてんぞくのしゅうそく@有向点族の収束}]
-			$x = (x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族
-			とする．点$a \in S$において，$a$の任意の近傍$U$に対し或る
+			$x = (x_\lambda)_{\lambda \in \Lambda}$を位相空間$S$と
+			有向集合$(\Lambda,\leq)$で定まる有向点族とする．
+			点$a \in S$において，$a$の任意の近傍$U$に対し或る
 			$\lambda_0 \in \Lambda$が存在して
 			\begin{align}
 				\lambda_0 \leq \lambda \quad \Longrightarrow \quad
@@ -77,37 +79,41 @@
 			\end{align}
 			となるとき，$(x_\lambda)$は$a$に収束する(converge)といい
 			$\lim x_\lambda = a$や$\lim_{\lambda} x_\lambda = a$と書く．
+			また$(x_\lambda)_{\lambda \in \Lambda}$が
+			部分集合$A$上の有向点族である場合，$(x_\lambda)_{\lambda \in \Lambda}$が
+			$A$の点に収束するとき$(x_\lambda)_{\lambda \in \Lambda}$は`$A$で収束する'という．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[有向点族が収束する$\Longleftrightarrow$任意の部分点族が収束する]
 		\label{thm:a_net_converges_iff_every_subnet_converges}
-			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族とし，
+			$(x_\lambda)_{\lambda \in \Lambda}$を位相空間$S$
+			と有向集合$(\Lambda,\leq)$で定まる有向点族とし，
 			また$a$を$S$の任意の点とするとき
 			\begin{align}
-				\mbox{$(x_\lambda)$が$a$に収束する}
+				\mbox{$(x_\lambda)_{\lambda \in \Lambda}$が$a$に収束する}
 				\quad \Longleftrightarrow \quad
-				\mbox{$(x_\lambda)$の任意の部分有向点族が$a$に収束する}
+				\mbox{$(x_\lambda)_{\lambda \in \Lambda}$
+				の任意の部分有向点族が$a$に収束する}
 				\label{eq:thm_a_net_converges_iff_every_subnet_converges_2}
 			\end{align}
-			が成立する．特に$(\Lambda,\leq)$が全順序的な無限有向集合で，かつ
-			任意の$M \subset \Lambda$に対し
-			$M$が有限集合であるときに限り$M$が上界を持つのであれば，
-			右辺で部分有向点族を可算全順序部分列に替えても同値関係は成立する．
+			が成立する．特に$(x_\lambda)_{\lambda \in \Lambda}$が点列であるとき，
+			右辺で部分有向点族を部分列に替えても同値関係は成立する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-				$(x_\lambda)$が$a$に収束するとき，$a$の任意の近傍$U$に対し
-				或る$\lambda_0 \in \Lambda$が存在して
+				$(x_\lambda)_{\lambda \in \Lambda}$が$a$に収束するとき，
+				$a$の任意の近傍$U$に対し或る$\lambda_0 \in \Lambda$が存在して
 				\begin{align}
 					\lambda_0 \leq \lambda
 					\quad \Longrightarrow \quad
 					x_\lambda \in U
 				\end{align}
-				を満たす．$(y_\gamma)$を$(x_\lambda)$の部分有向点族とするとき，
-				つまりこのとき或る有向集合$(\Gamma,\preceq)$と
+				を満たす．$(y_\gamma)_{\gamma \in \Gamma}$
+				を$(x_\lambda)_{\lambda \in \Lambda}$
+				の部分有向点族とするとき，つまりこのとき或る有向集合$(\Gamma,\preceq)$と
 				$f:\Gamma \longrightarrow \Lambda$により
 				$y_\gamma = x_{f(\gamma)}$と表せるが，$f$の共終性から
 				$\lambda_0 \leq f(\gamma_0)$を満たす$\gamma_0 \in \Gamma$が存在し，
@@ -121,8 +127,8 @@
 					\quad \Longrightarrow \quad
 					y_\gamma = x_{f(\gamma)} \in U
 				\end{align}
-				が従うから$(y_\lambda)$は$a$に収束する．
-				逆に$(x_\lambda)$が$a$に収束しないとき，
+				が従うから$(y_\lambda)_{\gamma \in \Gamma}$は$a$に収束する．
+				逆に$(x_\lambda)_{\lambda \in \Lambda}$が$a$に収束しないとき，
 				$a$の或る近傍$V$では任意の$\lambda \in \Lambda$に対し
 				\begin{align}
 					\lambda \leq \mu,
@@ -142,49 +148,43 @@
 				恒等写像$\Gamma \longrightarrow \Lambda$は単調性と共終性を満たし，
 				この場合の部分有向点族$(x_\gamma)_{\gamma \in \Gamma}$は$a$に収束しないから
 				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_2})が出る．
-				$(\Lambda,\leq)$が定理の後半の条件を満たすとき，
-				任意の$\gamma \in \Gamma$に対して
+				$(x_\lambda)_{\lambda \in \Lambda}$が$a$に収束しない点列であるとき，
+				任意の$n \in \N$に対して
 				\begin{align}
-					\inprod<\gamma> \coloneqq
-					\Set{\mu \in \Gamma}{\gamma < \mu}
+					\inprod<n> \coloneqq
+					\Set{m \in \N}{n < m,\ x_m \notin U}
 				\end{align}
-				は空ではない．実際このとき$\Lambda$は非有界であるから
-				$\gamma < \lambda$を満たす$\lambda \in \Lambda$が存在し，
-				(\refeq{eq:thm_a_net_converges_iff_every_subnet_converges_1})
-				より$\lambda < \mu$を満たす$\mu \in \Gamma$が取れる．
-				推移律より$\gamma < \mu$となるから$\mu \in \inprod<\gamma>$となる．
-				$\Gamma$の空でない部分集合の全体を$\mathscr{X}$として
-				選択関数$\Phi \in \prod \mathscr{X}$を取り
+				は空ではない．
+				$\N$の空でない部分集合の全体を$\mathscr{N}$として
+				選択関数$\Phi \in \prod \mathscr{N}$を取り
 				\begin{align}
-					\gamma_1 &\coloneqq \Phi(\Gamma), \\
-					\gamma_2 &\coloneqq \Phi(\inprod<\gamma_1>), \\
-					\gamma_3 &\coloneqq \Phi(\inprod<\gamma_2>), \\
-					&\cdots
+					n_1 &\coloneqq \Phi(\inprod<1>), \\
+					n_2 &\coloneqq \Phi(\inprod<n_1>), \\
+					n_3 &\coloneqq \Phi(\inprod<n_2>), \\
+					&\vdots
 				\end{align}
-				で$\{\gamma_k\}_{k \in \N}$を定めれば，
-				$\{\gamma_k\}_{k \in \N}$は$\Lambda$で非有界であるから
-				恒等写像$\{\gamma_k\}_{k \in \N} \longrightarrow \Lambda$は
-				単調かつ共終であり，従って$(x_{\gamma_k})$は$a$に収束しない
-				$(x_\lambda)$の可算全順序部分有向点族となる．
+				で$\{n_k\}_{k \in \N}$を定めれば，
+				$(x_{n_k})_{k \in \N}$は$a$に収束しない部分列となる．
 				\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[有向点族の密集点に対する収束部分点族の存在]
-			$(x_\lambda)$を位相空間$S$と有向集合$(\Lambda,\leq)$で定まる有向点族，
-			$a$を$S$の点とするとき
+			$(x_\lambda)_{\lambda \in \Lambda}$を位相空間$S$
+			と有向集合$(\Lambda,\leq)$で定まる有向点族，$a$を$S$の点とするとき
 			\begin{align}
-				\mbox{$a$が$\{x_\lambda\}$の密集点である}
+				\mbox{$a$が$\{x_\lambda\}_{\lambda \in \Lambda}$の密集点である}
 				\quad \Longleftrightarrow \quad
-				\mbox{$a$に収束する$(x_\lambda)$の部分有向列が存在する}.
+				\mbox{$a$に収束する$(x_\lambda)_{\lambda \in \Lambda}$の部分有向列が存在する}.
 			\end{align}
-			が成立する．特に$\Lambda = \N$かつ
-			$a$が可算な基本近傍系を持つ場合，右辺の部分有向点族を部分列に替えて成立する．
+			特に$\Lambda = \N$かつ
+			$a$が可算な基本近傍系を持つ場合，右辺の部分有向点族を部分列に替えて
+			同値関係が成立する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$が$\{x_\lambda\}$の密集点であるとき，
+		$a$が$\{x_\lambda\}_{\lambda \in \Lambda}$の密集点であるとき，
 		$\mathscr{U}$を$a$の基本近傍系とすれば
 		任意の$U \in \mathscr{U}$に対し
 		或る$\lambda \in \Lambda$が存在して$x_\lambda \in U$となるから，
@@ -203,11 +203,34 @@
 			\quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad
 			\mbox{$\lambda \leq \mu$かつ$U \supset V$}
 		\end{align}
-		で定めれば$(\Gamma,\preceq)$は有向集合となり，次の写像
+		で定めれば$(\Gamma,\preceq)$は有向集合となる．実際
+		$\lambda \leq \lambda$かつ$U \supset U$より
+		$(\lambda,U) \preceq (\lambda,U),\ (\forall (\lambda,U) \in \Gamma)$となり，
+		\begin{align}
+			(\lambda_1,U_1) \preceq (\lambda_2,U_2),\
+			(\lambda_2,U_2) \preceq (\lambda_3,U_3) 
+			&\quad \Longrightarrow \quad
+			\lambda_1 \leq \lambda_2,\ \lambda_2 \leq \lambda_3,
+			\ U_1 \supset U_2,\ U_2 \supset U_3 \\
+			&\quad \Longrightarrow \quad
+			\lambda_1 \leq \lambda_3,\ U_1 \supset U_3 \\
+			&\quad \Longrightarrow \quad
+			(\lambda_1,U_1) \preceq (\lambda_3,U_3)
+		\end{align}
+		より推移律も出る．また任意の有限個の$(\lambda_i,U_i) \in \Gamma,\ (i=1,2,\cdots,n)$
+		に対し或る$\lambda \in \Lambda$と$U \in \mathscr{U}$が存在して
+		\begin{align}
+			\lambda_i \leq \lambda,\ (1 \leq i \leq n);
+			\quad \bigcap_{i=1}^n U_i \supset U
+		\end{align}
+		を満たすが，$x_\mu \in U$を満たす$\mu \in \Lambda$を取れば
+		或る$\nu \in \Lambda$で$\lambda,\mu \leq \nu$となり
+		
+		，$\Gamma$の任意の有限部分集合は上界を持つ．そして次の写像
 		\begin{align}
 			f:\Gamma \ni (\lambda,U) \longmapsto \lambda \in \Lambda
 		\end{align}
-		は単調かつ共終であるから$(x_{f(\gamma)})$は部分有向点族となる．
+		は単調かつ共終であるから$(x_{f(\gamma)})_{\gamma \in \Gamma}$は部分有向点族となる．
 		そして任意に$U_0 \in \mathscr{U}$を取り
 		$\lambda_0 \coloneqq \Phi(U_0)$とおけば
 		\begin{align}
@@ -221,3 +244,14 @@
 		$a$の任意の近傍と交わるから，$\{x_\lambda\}$も$a$の任意の近傍と交叉する．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト$\Longleftrightarrow$任意の有向点族が収束部分有向点族を持つ]
+			位相空間$S$の部分集合$A$に対し，
+			\begin{align}
+				\mbox{$A$がコンパクト部分集合}
+				\quad \Longleftrightarrow \quad
+				\mbox{$A$上の任意の有向点族が$A$で収束する部分有向点族を持つ}.
+			\end{align}
+		\end{thm}
+	\end{screen}
