@@ -3,8 +3,8 @@
 	可算個の点族(点列)の収束を用いることでいくつかの位相的概念を記述できるが，
 	一般に位相空間では近傍が`多すぎる'ため位相概念を記述するのに点列では間に合わない．
 	有向点族の理論では，非可算個の集合に或る種の`向き'を与えることで
-	それを添数集合とする点族に収束の概念が定式化され，
-	一般の位相空間における閉包や連続性，コンパクト性の概念を点族の収束により記述することが可能となる．
+	それを添数集合とする点族に対し収束の概念が定式化され，
+	一般の位相空間における閉包や連続性，コンパクト性の概念を点族の収束により特徴づけることが可能となる．
 	
 	\begin{screen}
 		\begin{dfn}[有向集合]
@@ -78,13 +78,87 @@
 				\lambda_0 \leq \lambda \quad \Longrightarrow \quad
 				x_\lambda \in U
 			\end{align}
-			となるとき，$(x_\lambda)$は$a$に収束する(converge)といい
-			$\lim x_\lambda = a$や$\lim_{\lambda} x_\lambda = a$と書く．
-			また$(x_\lambda)_{\lambda \in \Lambda}$が
-			部分集合$A$上の有向点族である場合，$(x_\lambda)_{\lambda \in \Lambda}$が
-			$A$の点に収束するとき$(x_\lambda)_{\lambda \in \Lambda}$は`$A$で収束する'という．
+			となるとき，$(x_\lambda)_{\lambda \in \Lambda}$は$a$に収束する(converge)といい
+			$x_\lambda \longrightarrow a$と書く．
+			また$a$を$(x_\lambda)_{\lambda \in \Lambda}$の{\bf 極限}
+			\index{きょくげん@極限}{\bf (limit)}と呼ぶ．
+			$(x_\lambda)_{\lambda \in \Lambda}$が
+			部分集合$A$上の有向点族であり，かつ$A$の点に収束するとき，
+			`$(x_\lambda)_{\lambda \in \Lambda}$は$A$で収束する'という．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Hausdorff$\Longleftrightarrow$収束する有向点族の極限は一つ]
+		\label{thm:Hausdorff_iff_at_most_one_limit}
+			$S$を二つ以上の元を持つ位相空間とするとき，
+			\begin{align}
+				\mbox{$S$がHausdorff} \quad \Longleftrightarrow \quad
+				\mbox{$S$で収束する任意の有向点族の極限は一つ}
+			\end{align}
+			となる．特に，$S$が第一可算性を持てば有向点族を点列に替えて成立する:
+			\begin{align}
+				\mbox{$S$がHausdorff} \quad \Longleftrightarrow \quad
+				\mbox{$S$で収束する任意の点列の極限は一つ}.
+				\label{eq:thm_Hausdorff_iff_at_most_one_limit_1}
+			\end{align}
+			$S$がHausdorffであるとき，$S$上の有向点族$(x_\lambda)_{\lambda \in \Lambda}$
+			と$a \in S$に対して$x_\lambda \longrightarrow a$を$\lim x_\lambda = a$とも表記する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$(\Lambda,\leq)$を有向集合，$(x_\lambda)_{\lambda \in \Lambda}$を
+		$a \in S$に収束する有向点族とする．$a \neq b \in S$に対して，$S$がHausdorffなら
+		\begin{align}
+			a \in U,\quad b \in V,\quad U \cap V = \emptyset
+		\end{align}
+		を満たす$a$の近傍$U$と$b$の近傍$V$が取れるが，このとき或る$\lambda_0 \in \Lambda$
+		が存在して
+		\begin{align}
+			\lambda_0 \leq \lambda \quad \Longrightarrow \quad
+			x_\lambda \in U
+		\end{align}
+		が成り立つから，任意の$\mu_0 \in \Lambda$に対し$\{\lambda_0,\mu_0\}$
+		の上界$\lambda \in \Lambda$で$x_\lambda \notin V$
+		となり$x_\lambda \centernot\longrightarrow b$が従う．
+		逆に$S$がHausdorffでないとき，或る二点$x,y \in S,\ (x \neq y)$は近傍で分離されない．
+		$x,y$それぞれの近傍の全体を$\mathscr{U},\mathscr{V}$として
+		\begin{align}
+			\Gamma \coloneqq \Set{U \cap V}{U \in \mathscr{U},\ V \in \mathscr{V}}
+		\end{align}
+		とおけば，
+		\begin{align}
+			U \cap V \preceq X \cap Y
+			\quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad
+			(U \cap V) \supset (X \cap Y)
+		\end{align}
+		により$(\Gamma,\preceq)$は有向集合となるから
+		$z \in \prod \Gamma$を取れば$z = (z_\gamma)_{\gamma \in \Gamma}$は
+		$S$上の有向点族をなす．任意の$U_0 \in \mathscr{U}$に対し
+		\begin{align}
+			U_0 = U_0 \cap S \preceq U \cap V
+			\quad \Longrightarrow \quad
+			z_{U \cap V} \in U \cap V \subset U_0
+		\end{align}
+		となるから$(z_\gamma)_{\gamma \in \Gamma}$は$x$に収束し，対称的に$y$にも収束する．
+		これで一般の場合に$\Longleftarrow$が得られたが，
+		いま$S$に第一可算性が仮定されていたとすると，
+		$\{U_n\}_{n \in \N},\ \{V_n\}_{n \in \N}$をそれぞれ
+		$x,y$の可算な基本近傍系として
+		\begin{align}
+			\tilde{U}_n \coloneqq U_1 \cap U_2 \cap \cdots \cap U_n,
+			\quad \tilde{V}_n \coloneqq V_1 \cap V_2 \cap \cdots \cap V_n,
+			\quad (\forall n \in \N)
+		\end{align}
+		で単調減少な基本近傍系$\left\{\tilde{U}_n\right\}_{n \in \N}$と
+		$\left\{\tilde{V}_n\right\}_{n \in \N}$を定め
+		$w \in \prod_{n \in \N} \left(\tilde{U}_n \cap \tilde{V}_n\right)$を取れば，
+		点列$w = (w_n)_{n \in N}$は$x,y$の両方に収束する．
+		従って(\refeq{eq:thm_Hausdorff_iff_at_most_one_limit_1})の
+		$\Longleftarrow$も得られる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[有向点族が収束する$\Longleftrightarrow$任意の部分点族が収束する]
@@ -170,13 +244,13 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[閉集合は有向点族の極限点集合]
+		\begin{thm}[閉集合は有向点族の極限集合]
 			$A$を位相空間$S$の部分集合とするとき，
 			\begin{align}
 				a \in \overline{A} \quad \Longleftrightarrow \quad
 				\mbox{或る有向集合$(\Lambda,\leq)$と$A$上の有向点族
 				$(x_\lambda)_{\lambda \in \Lambda}$が存在して
-				$\lim x_\lambda = a$}.
+				$x_\lambda \longrightarrow a$}.
 			\end{align}
 			特に$S$が第一可算空間であるとき，右辺で
 			有向点族を点列に替えて同値関係が成立する．
@@ -206,7 +280,7 @@
 					\forall U \in \mathscr{U};\quad
 					U_0 \preceq U \Longrightarrow x_U \in U \subset U_0 \subset V
 				\end{align}
-				となり$\lim x_U = a$が従う．$\mathscr{U}$が高々可算集合であるとき，
+				となり$x_U \longrightarrow a$が従う．$\mathscr{U}$が高々可算集合であるとき，
 				つまり$\mathscr{U} = \{U_n\}_{n \in \N}$と表せるとき，
 				\begin{align}
 					\tilde{U}_n \coloneqq U_1 \cap U_2 \cap \cdots \cap U_n,
@@ -225,7 +299,7 @@
 					n_0 \leq n \Longrightarrow y_n \in \tilde{U}_n \subset \tilde{U}_{n_0}
 					\subset V
 				\end{align}
-				が成り立ち$\lim y_n = a$となる．
+				が成り立ち$y_n \longrightarrow a$となる．
 				
 			\item[第二段] $\Longleftarrow$を示す．$a$に収束する$A$上の有向点族
 				$(x_\lambda)_{\lambda \in \Lambda}$が存在するとき，
@@ -234,6 +308,88 @@
 					\subset \overline{A}
 				\end{align}
 				が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$f$が$x$で連続$\Longleftrightarrow$
+		$x$に収束する有向点族の像点族が$f(x)$に収束]
+			$S,T$を位相空間とするとき，$f:S \longrightarrow T$が点$s \in S$
+			で連続であるための必要十分条件は
+			\begin{description}
+				\item[(1)] 任意の有向集合$(\Lambda,\leq)$と
+					任意の有向点族$(x_\lambda)_{\lambda \in \Lambda}$に対し，
+					\begin{align}
+						x_\lambda \longrightarrow s \quad \Longrightarrow \quad
+						f(x_\lambda) \longrightarrow f(s).
+					\end{align}
+					
+				\item[(2)] $s$が可算な基本近傍系を持つとき，
+					任意の点列$(x_n)_{n \in \N}$に対し
+					\begin{align}
+						x_n \longrightarrow s \quad \Longrightarrow \quad
+						f(x_n) \longrightarrow f(s).
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $f$が$s$で連続であるとき，$f(s)$の任意の近傍$V$に対し
+				$f^{-1}(V)$は$s$の近傍となる．任意の有向集合$(\Lambda,\leq)$と
+				任意の有向点族$(x_\lambda)_{\lambda \in \Lambda}$に対し，
+				$x_\lambda \longrightarrow s$なら或る$\lambda_0 \in \Lambda$が存在して
+				\begin{align}
+					\lambda_0 \leq \lambda \quad \Longrightarrow \quad
+					x_\lambda \in f^{-1}(V) \quad \Longrightarrow \quad
+					f(x_\lambda) \in V
+				\end{align}
+				となるから$f(x_\lambda) \longrightarrow f(s)$となる．
+				逆に$f$が$s$で連続でないとき，$\mathscr{U}$を$s$の基本近傍系とすれば
+				\begin{align}
+					U \backslash f^{-1}(V) \neq \emptyset,
+					\quad (\forall U \in \mathscr{U})
+				\end{align}
+				を満たす$f(s)$の近傍$V$が存在して，このとき
+				$x \in \prod_{U \in \mathscr{U}} U \backslash f^{-1}(V)$
+				が取れる．$\mathscr{U}$において二項関係$\preceq$を
+				\begin{align}
+					U_1 \preceq U_2 
+					\quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad
+					U_1 \supset U_2
+				\end{align}
+				で定めれば$(\mathscr{U},\preceq)$は有向集合となるから
+				$x = (x_U)_{U \in \mathscr{U}}$は有向点族をなし，
+				\begin{align}
+					f(x_U) \notin V,\quad (\forall U \in \mathscr{U})
+				\end{align}
+				より$f(x_U) \centernot\longrightarrow f(s)$であるが，一方で
+				任意の$U_0 \in \mathscr{U}$に対し
+				\begin{align}
+					U_0 \preceq U \quad \Longrightarrow \quad
+					x_U \in U \subset U_0
+				\end{align}
+				が成り立つから$(x_U)_{U \in \mathscr{U}}$は$s$に収束する．
+			
+			\item[(2)] 点列は有向点族であるから(1)より必要性が従う．
+				$\mathscr{U} = \{U_n\}_{n \in \N}$を$s$の基本近傍系すれば，
+				\begin{align}
+					\tilde{U}_n \coloneqq
+					U_1 \cap U_2 \cap \cdots \cap U_n,
+					\quad (n=1,2,\cdots)
+				\end{align}
+				により単調減少な$s$の基本近傍系$\left\{\tilde{U}_n\right\}_{n \in \N}$
+				が得られる．$f$が$s$で連続でないとき，
+				$f(s)$の或る近傍$V$で
+				\begin{align}
+					\tilde{U}_n \backslash f^{-1}(V) \neq \emptyset,
+					\quad (\forall n \in \N)
+				\end{align}
+				が成り立ち，$x \in \prod_{n \in \N} \tilde{U}_n \backslash f^{-1}(V)$
+				を取れば$x = (x_n)_{n \in \N}$は
+				$x_n \longrightarrow s$かつ$f(x_n) \centernot\longrightarrow f(s)$を満たす．
 				\QED
 		\end{description}
 	\end{prf}
