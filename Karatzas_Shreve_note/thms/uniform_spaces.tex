@@ -266,6 +266,16 @@
 		\begin{thm}[一様位相空間において$T_0 \Longleftrightarrow T_2$]
 		\label{thm:T_0_iff_T_2_on_uniform_topological_space}
 			$(S,\mathscr{V})$を一様空間とし，$S$に一様位相を導入する．このとき
+			任意の$x,y \in S$に対して
+			\begin{align}
+				\mbox{$x,y$が位相的に識別可能}
+				\quad \Longleftrightarrow \quad
+				(x,y) \notin \bigcap_{V \in \mathscr{V}}V
+				\quad \Longleftrightarrow \quad
+				\mbox{$x,y$が近傍で分離される}.
+				\label{eq:thm_T_0_iff_T_2_on_uniform_topological_space_0}
+			\end{align}
+			特に次が得られる:
 			\begin{align}
 				\mbox{$S$が$T_0$} \quad \Longleftrightarrow \quad
 				\bigcap_{V \in \mathscr{V}}V = \Set{(x,x)}{x \in S}
@@ -276,48 +286,47 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf} 位相空間が$T_2$なら$T_0$であるから，二つの$\Longrightarrow$を示せば
-		(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space})が従う．
-		\begin{description}
-			\item[一つ目の$\Longrightarrow$]
-				$\bigcap_{V \in \mathscr{V}}V \neq \Set{(x,x)}{x \in S}$
-				が満たされるとき，或る相異なる二点$x,y \in S$に対し
-				\begin{align}
-					(x,y),(y,x) \in V, \quad (\forall V \in \mathscr{V})
-				\end{align}
-				となる．$\Set{V_x \coloneqq \Set{s \in S}{(x,s) \in V}}{V \in \mathscr{V}}$は$x$の基本近傍系をなすから
-				\begin{align}
-					y \in V_x, \quad (\forall V \in \mathscr{V})
-				\end{align}
-				が成立し，定理\ref{thm:belongs_to_closure_iff_clusters}より
-				$x \in \overline{\{y\}}$が従う．
-				対称的に$y \in \overline{\{x\}}$も出るから
-				$x$と$y$は位相的に区別不能である．
-				
-			\item[二つ目の$\Longrightarrow$]
-				$\bigcap_{V \in \mathscr{V}}V = \Set{(x,x)}{x \in S}$
-				が満たされるとき，任意の相異なる二点$x,y \in S$に対し
-				\begin{align}
-					(x,y) \in V
-				\end{align}
-				を満たす$V \in \mathscr{V}$が存在する．
-				定理\ref{thm:uniform_structure}より或る対称な$W \in \mathscr{V}$で
-				\begin{align}
-					W \circ W \subset V,
-					\quad W_x \times W_x \subset V,
-					\quad W_y \times W_y \subset V
-				\end{align}
-				となるが，このとき$W_x \cap W_y = \emptyset$が成り立つ．実際，
-				$W_x \cap W_y$が空でないとき，$z \in W_x \cap W_y$を取れば
-				\begin{align}
-					(x,z),(y,z) \in W \quad \Longrightarrow \quad
-					(x,z),(z,y) \in W \quad \Longrightarrow \quad
-					(x,y) \in V
-				\end{align}
-				が従い矛盾が生じる．$W_x,W_y$はそれぞれ$x,y$の近傍であるから二つ目の$\Longrightarrow$を得る．
-				\QED
-		\end{description}
+	\begin{prf}
+		任意の$V \in \mathscr{V}$と$s \in S$に対し
+		\begin{align}
+			V_s \coloneqq \Set{t \in S}{(s,t) \in V}
+		\end{align}
+		と定義する．$(x,y) \in \bigcap_{V \in \mathscr{V}}V$なら
+		任意の$V \in \mathscr{V}$に対し
+		\begin{align}
+			x \in V_y,\quad y \in V_x
+		\end{align}
+		となる．$\{V_x\}_{V \in \mathscr{V}}$と$\{V_y\}_{V \in \mathscr{V}}$
+		はそれぞれ$x,y$の基本近傍系となるから
+		定理\ref{thm:belongs_to_closure_iff_clusters}より
+		$x \in \overline{\{y\}}$かつ$y \in \overline{\{x\}}$が従い
+		\begin{align}
+			\mbox{$x,y$が位相的に識別可能}
+			\quad \Longrightarrow \quad
+			(x,y) \notin \bigcap_{V \in \mathscr{V}}V
+		\end{align}
+		が出る．また或る$V \in \mathscr{V}$で$(x,y) \notin V$となるとき，
+		$W \circ W \subset V$を満たす対称な$W \in \mathscr{V}$を取れば
+		$W_x,W_y$はそれぞれ$x,y$の近傍となるが，これらは互いに素である．実際交叉してしまうと
+		\begin{align}
+			\exists z \in W_x \cap W_y;\ 
+			(x,z),(z,y) \in W \quad \Longrightarrow \quad (x,y) \in V
+		\end{align}
+		となり$(x,y) \notin V$に矛盾する．従って
+		\begin{align}
+			(x,y) \notin \bigcap_{V \in \mathscr{V}}V
+			\quad \Longrightarrow \quad
+			\mbox{$x,y$が近傍で分離される}
+		\end{align}
+		を得る．近傍で分離される二点は位相的に識別可能であるから
+		(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space_0})が成立する．
+		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[連続写像が局所一様収束するなら極限写像も連続]
+		\end{thm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{dfn}[一様連続性]
@@ -331,6 +340,11 @@
 			となるとき，$f$は{\bf 一様連続}\index{いちようれんぞく@一様連続}である
 			{\bf (uniformly continuous)}という．
 		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[一様連続なら連続]
+		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
