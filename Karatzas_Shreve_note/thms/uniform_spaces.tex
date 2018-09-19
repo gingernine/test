@@ -324,7 +324,87 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{dfn}[一様収束]
+			$S,T$を空でない集合とし，$Y$上に近縁系$\mathscr{V}$が定まっているとする．
+			また$(f_\lambda)_{\lambda \in \Lambda}$を
+			有向集合$(\Lambda,\leq)$で添数付けた$S$から$T$への写像族，
+			$f$を$S$から$T$への写像，及び$A$を$S$の部分集合とする．
+			\begin{itemize}
+				\item 任意の近縁$V$に対し或る
+					$\lambda_0 \in \Lambda$が存在して，全ての$y \in A$で
+					\begin{align}
+						\lambda_0 \leq \lambda \quad \Longrightarrow \quad
+						(f(y),f_\lambda(y)) \in V
+					\end{align}
+					となるとき，$(f_\lambda)_{\lambda \in \Lambda}$は
+					$A$上で$f$に{\bf 一様収束}\index{いちようしゅうそく@一様収束}する
+					{\bf (uniformly converge)}という．
+					
+				\item 任意の一点集合において一様収束することを{\bf 各点収束}
+					\index{かくてんしゅうそく@各点収束}{\bf (pointwise convergence)}という．
+				
+				\item $S$が位相空間であるとき，任意のコンパクト部分集合上で一様収束することを
+					{\bf コンパクト一様収束}\index{こんぱくといちようしゅうそく@コンパクト一様収束}
+					{\bf (compact convergence)}や{\bf 広義一様収束}
+					\index{こうぎいちようしゅうそく@広義一様収束}という．
+					
+				\item $S$が位相空間であるとき，各点$x \in S$で或る近傍$U(x)$が取れて
+					$U(x)$上で一様収束することを{\bf 局所一様収束}
+					\index{きょくしょいちようしゅうそく@局所一様収束}
+					{\bf (locally uniform convergence)}という．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{thm}[連続写像が局所一様収束するなら極限写像も連続]
+			$S$を位相空間，$(T,\mathscr{V})$を一様空間として$T$に$\mathscr{V}$で
+			位相を導入する．また$(\Lambda,\leq)$を有向集合，
+			$(f_\lambda)_{\lambda \in \Lambda}$を$S$から$T$への連続写像族とし，
+			$f$を$S$から$T$への写像とする．このとき
+			$(f_\lambda)_{\lambda \in \Lambda}$が$f$に局所一様収束しているなら
+			$f$も連続写像である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意に$x \in S$を取れば，$f(x)$の任意の近傍$N$に対し或る近縁$V$が存在して
+		\begin{align}
+			V_{f(x)} \coloneqq \Set{t \in T}{(f(x),t) \in V} \subset N
+		\end{align}
+		を満たす．また$V$に対し或る対称な近縁$W$で
+		\begin{align}
+			(a,b),(b,c),(c,d) \in W \quad \Longrightarrow \quad
+			(a,d) \in V,
+			\quad (\forall a,b,c,d \in S)
+		\end{align}
+		を満たすものが取れる．この$W$に対して或る$\lambda_0 \in \Lambda$と
+		$x$の近傍$U(x)$が存在し，全ての$y \in U(x)$で
+		\begin{align}
+			\lambda_0 \leq \lambda \quad \Longrightarrow \quad
+			(f(y),f_\lambda(y)) \in W
+		\end{align}
+		となる．$f_{\lambda_0}$は連続であり$W_{f_{\lambda_0}(x)}$は
+		$f_{\lambda_0}(x)$の近傍であるから，$x$の或る近傍$R(x)$で
+		\begin{align}
+			y \in R(x) \quad \Longrightarrow \quad
+			f_{\lambda_0}(y) \in W_{f_{\lambda_0}(x)}
+		\end{align}
+		が成り立ち，以上より
+		\begin{align}
+			y \in U(x) \cap R(x) &\quad \Longrightarrow \quad
+			(f(x),f_{\lambda_0}(x)),(f_{\lambda_0}(x),f_{\lambda_0}(y))
+			,(f_{\lambda_0}(y),f(y)) \in W \\
+			&\quad \Longrightarrow \quad (f(x),f(y)) \in V \\
+			&\quad \Longrightarrow \quad f(y) \in N
+		\end{align}
+		が従い$f$の$x$での連続性が得られる．$x$の任意性と
+		定理\ref{thm:continuous_on_every_point_iff_continuous}より$f$は$S$で連続である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[局所コンパクト空間において，広義一様収束$\Longleftrightarrow$局所一様収束]
 		\end{thm}
 	\end{screen}
 	
