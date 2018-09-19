@@ -307,12 +307,9 @@
 		\end{align}
 		が出る．また或る$V \in \mathscr{V}$で$(x,y) \notin V$となるとき，
 		$W \circ W \subset V$を満たす対称な$W \in \mathscr{V}$を取れば
-		$W_x,W_y$はそれぞれ$x,y$の近傍となるが，これらは互いに素である．実際交叉してしまうと
-		\begin{align}
-			\exists z \in W_x \cap W_y;\ 
-			(x,z),(z,y) \in W \quad \Longrightarrow \quad (x,y) \in V
-		\end{align}
-		となり$(x,y) \notin V$に矛盾する．従って
+		$W_x,W_y$はそれぞれ$x,y$の近傍となるが，これらは互いに素である．実際
+		或る$z \in W_x \cap W_y$が取れるとすると，
+		$(x,z),(z,y) \in W$から$(x,y) \in V$が従い$(x,y) \notin V$に矛盾する．よって
 		\begin{align}
 			(x,y) \notin \bigcap_{V \in \mathscr{V}}V
 			\quad \Longrightarrow \quad
@@ -405,48 +402,94 @@
 	
 	\begin{screen}
 		\begin{thm}[局所コンパクト空間において，広義一様収束$\Longleftrightarrow$局所一様収束]
+		\label{thm:compact_unif_conv_iff_locally_unif_conv_if_locally_compact}
+			$S$を局所コンパクト空間，$(T,\mathscr{V})$を一様空間として$T$に$\mathscr{V}$で
+			位相を導入する．また$(\Lambda,\leq)$を有向集合，
+			$(f_\lambda)_{\lambda \in \Lambda}$を$S$から$T$への写像族とし，
+			$f$を$S$から$T$への写像とする．このとき
+			\begin{align}
+				\mbox{$(f_\lambda)_{\lambda \in \Lambda}$が$f$に広義一様収束する} 
+				\quad \Longleftrightarrow \quad
+				\mbox{$(f_\lambda)_{\lambda \in \Lambda}$が$f$に局所一様収束する}.
+			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		各点でコンパクトな近傍が取れるから$\Longrightarrow$が得られる．
+		逆に$(f_\lambda)_{\lambda \in \Lambda}$が
+		$f$に局所一様収束すると仮定する．$K$を$S$のコンパクト部分集合として
+		各点$x \in K$のコンパクトな近傍$U(x)$を取れば，
+		有限個の$x_1,x_2,\cdots,x_n \subset K$で
+		\begin{align}
+			K \subset U(x_1) \cup \cdots \cup U(x_n)
+			\label{eq:thm_compact_unif_conv_iff_locally_unif_conv_if_locally_compact}
+		\end{align}
+		となる．任意に近縁$V \in \mathscr{V}$を取れば，
+		各$i = 1,\cdots,n$で或る$\lambda_i \in \Lambda$が存在して
+		\begin{align}
+			y \in U(x_i),\ \lambda_i \leq \lambda \quad \Longrightarrow \quad
+			(f(y),f_\lambda(y)) \in V
+		\end{align}
+		が成り立つが，このとき有向律より$\{\lambda_1,\cdots,\lambda_n\}$は
+		上界$\lambda_0 \in \Lambda$
+		を持つから，任意の$y \in \bigcup_{i=1}^n U(x_i)$で
+		\begin{align}
+			\lambda_0 \leq \lambda \quad \Longrightarrow \quad
+			(f(y),f_\lambda(y)) \in V
+		\end{align}
+		が満たされる．
+		(\refeq{eq:thm_compact_unif_conv_iff_locally_unif_conv_if_locally_compact})より
+		$(f_\lambda)_{\lambda \in \Lambda}$は$K$上で$f$に一様収束し，
+		$K$の任意性から$\Longleftarrow$が得られる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[一様連続性]
 			$(S,\mathscr{U})$と$(T,\mathscr{V})$を一様空間として
 			$\mathscr{U},\mathscr{V}$により$S,T$に一様位相を導入し，
-			$f:S \longrightarrow T$を連続写像とする．
+			$f:S \longrightarrow T$を写像とする．また$A$を$S$の部分集合とする．
 			任意の$V \in \mathscr{V}$に対し或る$U \in \mathscr{U}$が存在して
 			\begin{align}
-				(x,y) \in U \quad \Longrightarrow \quad (f(x),f(y)) \in V
+				(x,y) \in (A \times A) \cap U 
+				\quad \Longrightarrow \quad (f(x),f(y)) \in V
 			\end{align}
-			となるとき，$f$は{\bf 一様連続}\index{いちようれんぞく@一様連続}である
+			となるとき，$f$は$A$上で{\bf 一様連続}\index{いちようれんぞく@一様連続}である
 			{\bf (uniformly continuous)}という．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[一様連続なら連続]
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[コンパクト集合上で連続写像は一様連続]
 			$(S,\mathscr{U})$と$(T,\mathscr{V})$を一様空間として
 			$\mathscr{U},\mathscr{V}$により$S,T$に一様位相を導入し，
-			$f:S \longrightarrow T$を連続写像とする．
-			$A \subset S$をコンパクト部分集合とするとき，
-			$f$は$A$上で一様連続となる．つまり，
-			任意の$V \in \mathscr{V}$に対し或る$U \in \mathscr{U}$が存在して
-			\begin{align}
-				(x,y) \in U \cap A \quad \Longrightarrow \quad (f(x),f(y)) \in V.
-			\end{align}
+			$f:S \longrightarrow T$を写像とする．また$A$を$S$の部分集合とする．
+			このとき$f$が$A$上で一様連続なら$f$は$A$上で連続
+			($\left. f\right|_A$が連続)である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
+		
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[連続写像はコンパクト集合上で一様連続]
+			$(S,\mathscr{U})$と$(T,\mathscr{V})$を一様空間として
+			$\mathscr{U},\mathscr{V}$で$S,T$に一様位相を導入し，
+			$f:S \longrightarrow T$を連続写像とする．
+			このとき$f$は任意のコンパクト部分集合上で一様連続となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$K$を$S$のコンパクト部分集合とする．
 		任意の$M \in \mathscr{U}, s \in S$に対し
 		\begin{align}
 			M_s \coloneqq \Set{x \in S}{(s,x) \in M}
 		\end{align}
-		と定め，$W \in \mathscr{V},\ t \in T$に対しても同様に$W_t$を定める．
+		と定義し，$W \in \mathscr{V},\ t \in T$に対しても同様に$W_t$を定める．
 		任意に$V \in \mathscr{V}$を取れば，定理\ref{thm:uniform_structure}より
 		或る$W \in \mathscr{V}$で
 		\begin{align}
@@ -458,29 +501,22 @@
 			(s,x) \in N(s) \quad \Longrightarrow \quad
 			f(x) \in W_{f(s)}
 		\end{align}
-		が成り立ち，$M(s) \circ M(s) \subset N(s)$を満たす対称な$M(s) \in \mathscr{U}$を取れば，
+		が成り立つ．$M(s) \circ M(s) \subset N(s)$を満たす対称な$M(s) \in \mathscr{U}$を取れば，
 		定理\ref{thm:subset_is_compact_iff_every_original_open_cover_contains_finite_subcover}より
-		或る$a_1,\cdots,a_n \in A$で
+		或る$x_1,\cdots,x_n \in K$で
 		\begin{align}
-			A \subset \bigcup_{i=1}^n M(a_i)_{a_i}
+			K \subset \bigcup_{i=1}^n M(x_i)_{x_i}
 		\end{align}
 		となる．近縁系は有限交叉で閉じるから
 		\begin{align}
-			U \coloneqq \bigcap_{i=1}^n M(a_i)
+			U \coloneqq \bigcap_{i=1}^n M(x_i)
 		\end{align}
-		は$\mathscr{U}$の元であり，このとき任意に$(x,y) \in U \cap A$を取れば，
-		或る$i$で$y \in M(a_i)_{a_i}$となり，
-		\begin{align}
-			(a_i,a_i),(a_i,y) \in M(a_i) \quad \Longrightarrow \quad
-			(a_i,y) \in N(a_i)
-		\end{align}
-		及び$M(a_i)$の対称性から
-		\begin{align}
-			(a_i,y),(y,x) \in M(a_i) \quad \Longrightarrow \quad
-			(a_i,x) \in N(a_i)
-		\end{align}
-		が満たされ，$f(x),f(y) \in W_{f(a_i)}$が従うから
-		$(f(x),f(y)) \in V$が成立し$f$の$A$の上での一様連続性が出る．
+		は$\mathscr{U}$の元であり，このとき任意に$(x,y) \in (K \times K) \cap U$を取れば，
+		或る$i$で$y \in M(x_i)_{x_i}$となり，$(x_i,x_i),(x_i,y) \in M(x_i)$より
+		$(x_i,y) \in N(x_i)$となる．一方で$M(x_i)$が対称であるから
+		$(x_i,y),(y,x) \in M(x_i)$となり$(x_i,x) \in N(x_i)$
+		が満たされ，$f(x),f(y) \in W_{f(x_i)}$が従うから
+		$(f(x),f(y)) \in V$が成立し$f$の$K$の上での一様連続性が出る．
 		\QED
 	\end{prf}
 	
@@ -545,6 +581,32 @@
 			点列$(x_n)_{n \in \N}$が$a$に収束する
 			ことと$d(x_n,a) \longrightarrow 0$は同値．
 		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[Cauchy有向点族・完備性]
+			$(S,\mathscr{V})$を一様空間，$(\Lambda,\leq)$を有向集合，
+			$(x_\lambda)_{\lambda \in \Lambda}$を有向点族とする．
+			$(x_\lambda)_{\lambda \in \Lambda}$が{\bf Cauchy有向点族}
+			\index{Cauchyゆうこうてんぞく@Cauchy有向点族}
+			{\bf (Cauchy net)}であるとは，任意の近縁$V \in \mathscr{V}$に対し
+			或る$\lambda_0 \in \Lambda$が存在して
+			\begin{align}
+				\lambda_0 \leq \lambda,\mu
+				\quad \Longrightarrow \quad
+				(x_\lambda,x_\mu) \in V
+			\end{align}
+			となることをいう．点列がCauchy有向点族をなしているときは
+			これをCauchy列\index{Cauchy列@Cauchy列}{\bf (Cauchy sequence)}と呼ぶ．
+			任意のCauchy有向点族が$S$で収束するとき，
+			$S$は{\bf 完備}である\index{かんび@完備}{\bf (complete)}という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[全有界]
+			
+		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
