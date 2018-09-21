@@ -72,7 +72,7 @@
 	$W \circ W \subset U \circ U \subset V$となる．
 	
 	\begin{screen}
-		\begin{thm}[近縁は対角線集合を覆う`ベルト'を持つ]\label{thm:uniform_structure}
+		\begin{thm}\label{thm:uniform_structure}
 			$(S,\mathscr{V})$を一様空間とするとき，
 			任意の$V \in \mathscr{V}$に対し
 			\begin{align}
@@ -183,7 +183,7 @@
 			別の基本近縁系を取っても同じ位相が定まるので
 			これを`近縁系$\mathscr{V}$で導入する
 			$S$の{\bf 一様位相}\index{いちよういそう@一様位相}
-			{\bf (uniform topology)}'と呼ぶ．$S$が位相空間であるとき，
+			{\bf (uniform topology)}'と呼ぶ．$S$が元から位相空間であるとき，
 			$\mathscr{V}$で導入する位相と元の位相が一致することを
 			`$\mathscr{V}$と元の位相が{\bf 両立}\index{りょうりつ@両立}する
 			{\bf (compatible)}'という．
@@ -471,7 +471,30 @@
 	\end{screen}
 	
 	\begin{prf}
-		
+		任意の$U \in \mathscr{U},s \in S$に対し
+		\begin{align}
+			U_s \coloneqq \Set{y \in S}{(s,y) \in U}
+		\end{align}
+		と定義し，同様に$V \in \mathscr{V},t \in T$に対し$V_t$を定める．
+		$x \in A$を取れば，$f(x)$の任意の近傍$N$に対し或る
+		$V \in \mathscr{V}$で
+		\begin{align}
+			V_{f(x)} \subset N
+		\end{align}
+		となる．このとき$f$が$A$で一様連続であるなら
+		$V$に対し或る$U \in \mathscr{U}$が存在して
+		\begin{align}
+			(x,y) \in (A \times A) \cap U 
+			\quad \Longrightarrow \quad (f(x),f(y)) \in V
+		\end{align}
+		が満たされるから，
+		\begin{align}
+			y \in A \cap U_x \quad \Longrightarrow \quad
+			f(y) \in V_{f(x)} \subset N
+		\end{align}
+		が従い$\left. f\right|_A$の$x$での連続性が出る．$x$の任意性より
+		$f$は$A$上で連続である．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
@@ -604,10 +627,93 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{dfn}[全有界]
-			
-		\end{dfn}
+		\begin{thm}[収束する有向点族はCauchy有向点族]
+			$(S,\mathscr{V})$を一様空間，$(\Lambda,\leq)$を有向集合，
+			$(x_\lambda)_{\lambda \in \Lambda}$を有向点族とする．
+			$(x_\lambda)_{\lambda \in \Lambda}$が$S$で収束するとき，
+			$(x_\lambda)_{\lambda \in \Lambda}$はCauchy有向点族をなしている．
+		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$a \in S$を$(x_\lambda)_{\lambda \in \Lambda}$の極限(の一つ)とする．
+		任意の近縁$V \in \mathscr{V}$に対し或る対称な$W \in \mathscr{V}$で
+		$W \circ W \subset V$を満たすものが取れるが，
+		$W_a \coloneqq \Set{s \in S}{(a,s) \in W}$は$a$の近傍であるから
+		或る$\lambda_0 \in \Lambda$が存在して
+		\begin{align}
+			\lambda_0 \leq \lambda \quad \Longrightarrow \quad
+			x_\lambda \in W_a
+		\end{align}
+		となり，$W$の対称性と併せて
+		\begin{align}
+			\lambda_0 \leq \lambda,\mu \quad \Longrightarrow \quad
+			(x_\lambda,a),(a,x_\mu) \in W \quad \Longrightarrow \quad
+			(x_\lambda,x_\mu) \in V
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Cauchy有向点族の部分点族もCauchy・部分点族の極限には元の点族も収束]
+			$(S,\mathscr{V})$を一様空間，$(\Lambda,\leq)$を有向集合，
+			$(x_\lambda)_{\lambda \in \Lambda}$をCauchy有向点族とする．
+			また$(\Gamma,\preceq)$を有向集合，$f:\Gamma \longrightarrow \Lambda$を
+			共終かつ順序を保存する写像とする．このとき部分有向点族
+			$(x_{f(\gamma)})_{\gamma \in \Gamma}$もまたCauchy有向点族となり，
+			かつ任意の$a \in S$に対し
+			\begin{align}
+				x_{f(\gamma)} \longrightarrow a
+				\quad \Longrightarrow \quad
+				x_\lambda \longrightarrow a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の近縁$V \in \mathscr{V}$に対し或る$\lambda_0 \in \Lambda$が存在して
+		\begin{align}
+			\lambda_0 \leq \lambda,\mu
+			\quad \Longrightarrow \quad
+			(x_\lambda,x_\mu) \in V
+		\end{align}
+		が成り立つ．共終性より$\lambda_0 \leq f(\gamma_0)$を満たす
+		$\gamma_0 \in \Gamma$が取れて，
+		$\gamma_0 \preceq \gamma, \xi$なら
+		$f(\gamma_0) \leq f(\gamma),f(\xi)$となるから
+		\begin{align}
+			\gamma_0 \preceq \gamma,\xi
+			\quad \Longrightarrow \quad
+			\left(x_{f(\gamma)},x_{f(\xi)}\right) \in V
+		\end{align}
+		が従う．よって$(x_{f(\gamma)})_{\gamma \in \Gamma}$はCauchy有向点族である．
+		いま，$x_{f(\gamma)} \longrightarrow a$とする．
+		このとき任意の$U \in \mathscr{V}$に対し$W \circ W \subset U$を満たす
+		$W \in \mathscr{V}$を取れば，或る$\gamma_1 \in \Gamma$が存在して
+		\begin{align}
+			\gamma_1 \preceq \gamma
+			\quad \Longrightarrow \quad
+			\left(a,x_{f(\gamma)}\right) \in W
+		\end{align}
+		となる．一方で或る$\lambda_1 \in \Lambda$が存在して
+		\begin{align}
+			\lambda_1 \leq \lambda,\mu
+			\quad \Longrightarrow \quad
+			(x_\lambda,x_\mu) \in W
+		\end{align}
+		となる．$\lambda_1 \leq f(\gamma_2)$を満たす$\gamma_2 \in \Gamma$を取り，
+		$\{\gamma_1,\gamma_2\}$の上界を$\gamma_3 \in \Gamma$とすれば，
+		\begin{align}
+			\lambda_1 \leq \lambda \quad \Longrightarrow \quad
+			\left(a,x_{f(\gamma_3)}\right),
+			\left(x_{f(\gamma_3)},x_\lambda\right) \in W
+			\quad \Longrightarrow \quad
+			(a,x_\lambda) \in U
+		\end{align}
+		が成り立ち$x_\lambda \longrightarrow a$が従う．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[可算な基本近縁系が存在するとき，完備$\Longleftrightarrow$任意のCauchy列が収束する]
@@ -678,6 +784,84 @@
 		が得られ(
 		\refeq{eq:thm_complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset})
 		が出る．任意のCauchy有向点族が収束するから$S$は完備である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[全有界]
+			$(S,\mathscr{V})$を一様空間とし，$A$を$S$の空でない部分集合とする．
+			このとき，$A$が$S$で{\bf 全有界}\index{ぜんゆうかい@全有界}{\bf (totally bounded)}
+			であるとは，任意の近縁$V \in \mathscr{V}$に対し或る
+			有限集合$F_V \subset A$が存在して
+			\begin{align}
+				A \subset \bigcup_{x \in F_V} V_x
+			\end{align}
+			が満たされることを指す．ここで$V_x \coloneqq \Set{y \in S}{(x,y) \in V}$である．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[全有界性の同値条件]
+		\label{thm:an_equivalent_condition_of_totally_boundedness}
+			$(S,\mathscr{V})$を一様空間，$A$を$S$の空でない部分集合とする．
+			このとき，$A$が$S$で全有界であることと，任意の近縁$V \in \mathscr{V}$に対し
+			$A$の空でない部分集合の有限族$\mathscr{F}_V$で
+			\begin{align}
+				A = \bigcup \mathscr{F}_V;
+				\quad F \times F \subset V,
+				\ (\forall F \in \mathscr{F}_V)
+				\label{eq:thm_an_equivalent_condition_of_totally_boundedness}
+			\end{align}
+			を満たすものが取れることは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$A$が$S$で全有界であるとする．任意に$V \in \mathscr{V}$を取れば，
+		定理\ref{thm:uniform_structure}より或る$W \in \mathscr{V}$で
+		\begin{align}
+			W_x \times W_x \subset V,\quad (\forall x \in S)
+		\end{align}
+		が成り立つ．全有界性より$W$に対し或る有限集合$F_W \subset A$が存在して
+		\begin{align}
+			A \subset \bigcup_{x \in F_W} W_x
+		\end{align}
+		となるが，このとき$\mathscr{F}_V \coloneqq
+		\{W_x \cap A\}_{x \in F_W}$は$A$の空でない部分集合の族で
+		(\refeq{eq:thm_an_equivalent_condition_of_totally_boundedness})を満たす．
+		逆に任意の近縁$V \in \mathscr{V}$に対して$A$の空でない部分集合の
+		有限族$\mathscr{F}_V \subset \mathscr{A}$で
+		(\refeq{eq:thm_an_equivalent_condition_of_totally_boundedness})を満たすものが
+		取れるとき，$\mathscr{F}_V$の各元から一点ずつ選んで集めた$A$の有限部分集合を
+		$F_V$とすれば，任意の$F \in \mathscr{F}_V$と$F$に属する$x \in F_V$で
+		\begin{align}
+			y \in F \quad \Longrightarrow \quad
+			(x,y) \in F \times F \subset V \quad \Longrightarrow \quad
+			y \in V_x
+		\end{align}
+		が成り立つから
+		\begin{align}
+			A = \bigcup \mathscr{F}_V \subset \bigcup_{x \in F_V} V_x
+		\end{align}
+		が従い$A$の$S$での全有界性が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[コンパクトなら全有界]
+			$(S,\mathscr{V})$を一様空間とし，$\mathscr{V}$で$S$に位相を導入する．
+			$A$を$S$の空でないコンパクト部分集合とするとき，$A$は全有界である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$V \in \mathscr{V}$に対し$\{V_x^{\mathrm{o}}\}_{x \in A}$は
+		$A$の$S$における開被覆となるから，$A$がコンパクトであれば
+		\begin{align}
+			A \subset \bigcup_{x \in F_V} V_x^{\mathrm{o}} 
+			\subset \bigcup_{x \in F_V} V_x
+		\end{align}
+		を満たす有限集合$F_V \subset A$が存在する．従って$A$は$S$で全有界である．
 		\QED
 	\end{prf}
 	
