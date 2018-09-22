@@ -619,15 +619,15 @@
 				\quad \Longrightarrow \quad
 				(x_\lambda,x_\mu) \in V
 			\end{align}
-			となることをいう．点列がCauchy有向点族をなしているときは
+			となることをいう．点列がCauchy有向点族をなすときは
 			これをCauchy列\index{Cauchy列@Cauchy列}{\bf (Cauchy sequence)}と呼ぶ．
-			任意のCauchy有向点族が$S$で収束するとき，
-			$S$は{\bf 完備}である\index{かんび@完備}{\bf (complete)}という．
+			$S$の空でない部分集合$A$の上の任意のCauchy有向点族が$A$で収束するとき，
+			$A$は$S$で{\bf 完備}である\index{かんび@完備}{\bf (complete)}という．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[収束する有向点族はCauchy有向点族]
+		\begin{thm}[収束する有向点族はCauchy有向点族]\label{thm:convergent_net_is_Cauchy}
 			$(S,\mathscr{V})$を一様空間，$(\Lambda,\leq)$を有向集合，
 			$(x_\lambda)_{\lambda \in \Lambda}$を有向点族とする．
 			$(x_\lambda)_{\lambda \in \Lambda}$が$S$で収束するとき，
@@ -657,6 +657,7 @@
 	
 	\begin{screen}
 		\begin{thm}[Cauchy有向点族の部分点族もCauchy・部分点族の極限には元の点族も収束]
+		\label{thm:subnet_of_a_Cauchy_net_is_Cauchy}
 			$(S,\mathscr{V})$を一様空間，$(\Lambda,\leq)$を有向集合，
 			$(x_\lambda)_{\lambda \in \Lambda}$をCauchy有向点族とする．
 			また$(\Gamma,\preceq)$を有向集合，$f:\Gamma \longrightarrow \Lambda$を
@@ -670,6 +671,11 @@
 			\end{align}
 		\end{thm}
 	\end{screen}
+	定理\ref{thm:a_net_converges_iff_every_subnet_converges}より
+	一般に有向点族が点$a$に収束するための必要十分条件は
+	その任意の部分有向点族が$a$に収束することであるが，
+	Cauchy有向点族の場合は半分収束点族をなしている(定理\ref{thm:convergent_net_is_Cauchy})から，
+	一つでも収束する部分有向点族が得られれば元の点族の収束も判明する．
 	
 	\begin{prf}
 		任意の近縁$V \in \mathscr{V}$に対し或る$\lambda_0 \in \Lambda$が存在して
@@ -718,30 +724,32 @@
 	\begin{screen}
 		\begin{thm}[可算な基本近縁系が存在するとき，完備$\Longleftrightarrow$任意のCauchy列が収束する]
 		\label{thm:complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset}
-			$(S,\mathscr{V})$を一様空間とする．
-			$\mathscr{V}$に対して可算な基本近縁系$\{V_n\}_{n \in \N}$が存在するとき次が成立する:
+			$(S,\mathscr{V})$を一様空間とし，$\mathscr{V}$で$S$に位相を導入する．
+			また$A$を$S$の空でない部分集合とする．
+			$\mathscr{V}$が可算な基本近縁系を持つとき，
 			\begin{align}
-				\mbox{$S$が完備である} \quad \Longleftrightarrow \quad
-				\mbox{$S$の任意のCauchy列が収束する}.
+				\mbox{$A$が$S$で完備である} \quad \Longleftrightarrow \quad
+				\mbox{$A$上の任意のCauchy列が$A$で収束する}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\Longleftarrow$を示す．近縁系は有限交叉で閉じるから
+		$\Longleftarrow$を示す．$\mathscr{V}$が可算な基本近縁系
+		$\{V_n\}_{n \in \N}$を持つとき，近縁系は有限交叉で閉じるから
 		\begin{align}
 			U_n \coloneqq V_1 \cap V_2 \cap \cdots \cap V_n,
 			\quad (n = 1,2,\cdots)
 		\end{align}
 		により単調減少な$\mathscr{V}$の基本近縁系$\{U_n\}_{n \in \N}$が定まる．
-		$(x_\lambda)_{\lambda \in \Lambda}$を$S$のCauchy有向点族として
+		$(x_\lambda)_{\lambda \in \Lambda}$を$A$上のCauchy有向点族として
 		\begin{align}
-			A_\lambda \coloneqq \Set{x_\mu}{\lambda \leq \mu},
+			X_\lambda \coloneqq \Set{x_\mu}{\lambda \leq \mu},
 			\quad (\forall \lambda \in \Lambda)
 		\end{align}
 		とおけば，任意の$n \in \N$で或る$\lambda_n \in \Lambda$が存在して
 		\begin{align}
-			A_{\lambda_n} \times A_{\lambda_n} \subset U_n
+			X_{\lambda_n} \times X_{\lambda_n} \subset U_n
 		\end{align}
 		となる．任意の$V \in \mathscr{V}$に対し$W \circ W \subset V$
 		を満たす$W \in \mathscr{V}$を取れば，或る$N \in \N$で$U_N \subset W$となるから
@@ -755,7 +763,7 @@
 			\quad (x_\mu, x_{\lambda_m}) \in U_m \subset U_N
 		\end{align}
 		となり$(x_{\lambda_n},x_{\lambda_m}) \in V$が従うから，
-		$(x_{\lambda_n})_{n \in \N}$はCauchy列であり或る$a \in S$に収束する．このとき
+		$(x_{\lambda_n})_{n \in \N}$はCauchy列であり或る$a \in A$に収束する．このとき
 		\begin{align}
 			x_\lambda \longrightarrow a
 			\label{eq:thm_complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset}
@@ -773,17 +781,17 @@
 		\end{align}
 		を満たす．また或る$N_2 \geq N_1$で$U_{N_2} \subset \tilde{W}$となるから
 		\begin{align}
-			A_{\lambda_{N_2}} \times A_{\lambda_{N_2}} \subset U_{N_2} \subset \tilde{W}
+			X_{\lambda_{N_2}} \times X_{\lambda_{N_2}} \subset U_{N_2} \subset \tilde{W}
 		\end{align}
 		が従い，このとき$(a,x_{\lambda_{N_2}}) \in \tilde{W}$かつ
-		$(x_{\lambda_{N_2}},x) \in \tilde{W},\ (\forall x \in A_{\lambda_{N_2}})$より
-		$(a,x) \in \tilde{V},\ (\forall x \in A_{\lambda_{N_2}})$となるから
+		$(x_{\lambda_{N_2}},x) \in \tilde{W},\ (\forall x \in X_{\lambda_{N_2}})$より
+		$(a,x) \in \tilde{V},\ (\forall x \in X_{\lambda_{N_2}})$となるから
 		\begin{align}
-			A_{\lambda_{N_2}} \subset \tilde{V}_a 
+			X_{\lambda_{N_2}} \subset \tilde{V}_a \subset B 
 		\end{align}
-		が得られ(
-		\refeq{eq:thm_complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset})
-		が出る．任意のCauchy有向点族が収束するから$S$は完備である．
+		が得られ
+(\refeq{eq:thm_complete_iff_every_Cauchy_seq_converges_if_entourage_contains_some_countable_subset})
+		が出る．$A$上の任意のCauchy有向点族が$A$で収束するから$A$は$S$で完備である．
 		\QED
 	\end{prf}
 	
@@ -848,7 +856,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[コンパクトなら全有界]
+		\begin{thm}[コンパクトなら全有界]\label{thm:compact_then_totally_bounded}
 			$(S,\mathscr{V})$を一様空間とし，$\mathscr{V}$で$S$に位相を導入する．
 			$A$を$S$の空でないコンパクト部分集合とするとき，$A$は全有界である．
 		\end{thm}
@@ -868,9 +876,10 @@
 	\begin{screen}
 		\begin{thm}[完備かつ全有界$\Longleftrightarrow$コンパクト]
 			$(S,\mathscr{V})$を一様空間として$\mathscr{V}$で一様位相を導入するとき，
+			$S$の任意の空でない部分集合$A$に対し，
 			\begin{align}
-				\mbox{$S$が完備かつ全有界} \quad \Longleftrightarrow \quad
-				\mbox{$S$がコンパクト}.
+				\mbox{$A$が$S$で完備かつ全有界} \quad \Longleftrightarrow \quad
+				\mbox{$A$がコンパクト}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -878,19 +887,60 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				任意の有向点族が収束する部分有向点族を持てばコンパクトである．
-				$(x_\lambda)_{\lambda \in \Lambda}$を$S$の有向点族とする．
-				任意の$V \in \mathscr{V}$に対し或る$\{A_i\}_{i=1}^n$が存在して
+				$\Longrightarrow$を示す．
+				$A$が$S$で全有界なら，任意の$V \in \mathscr{V}$に対し
+				$A$の空でない部分集合の有限族$\mathscr{F}_V$で
 				\begin{align}
-					A_i \times A_i \subset U;\ (\forall i=1,\cdots,n),\quad
-					\bigcup_{i=1}^n A_i = S
+					A = \bigcup \mathscr{F}_V,\quad
+					F \times F \subset V,\ (\forall F \in \mathscr{F}_V)
 				\end{align}
-				を満たす．この$\{A_i\}_{i=1}^n$が生成する$S$の位相を$\tau_V$とし，
-				$\tau_V$を導入した$S$を$S_V$と書けば，$S_V$はコンパクトであるからTyconovの定理より
+				を満たすものが取れる．$\mathscr{F}_V$が生成する$A$の位相を$\tau_V$と書けば，
+				Alexanderの定理より$(A,\tau_V)$はコンパクトとなり，
+				Tychonoffの定理より$\left\{(A,\tau_V)\right\}_{V \in \mathscr{V}}$の
+				直積位相空間$B$もまたコンパクトとなる．写像$\delta:A \longrightarrow B$を
 				\begin{align}
-					T \coloneqq \prod_{V \in \mathscr{V}} S_V
+					\delta(x)(V) = x,\quad (\forall V \in \mathscr{V},\ x \in A)
 				\end{align}
-				はコンパクト空間であり，
+				により定めれば，$A$上の任意の有向点族$(x_\lambda)_{\lambda \in \Lambda}$に対し
+				$\left(\delta(x_\lambda)\right)_{\lambda \in \Lambda}$
+				は$B$の有向点族となるから，$B$のコンパクト性より或る
+				有向集合$(\Gamma,\preceq)$と共終かつ序列を保つ写像
+				$f:\Gamma \longrightarrow \Lambda$，及び$b \in B$が存在して
+				\begin{align}
+					\delta(x_{f(\gamma)}) \longrightarrow b
+				\end{align}
+				となる．このとき$(x_{f(\gamma)})_{\gamma \in \Gamma}$は
+				$A$上のCauchy有向点族をなす．実際，任意の$V \in \mathscr{V}$に対して
+				$b(V) \in F$を満たす$F \in \mathscr{F}_V$を取れば
+				\begin{align}
+					b \in \operatorname{pr}_V^{-1}(F)
+				\end{align}
+				となり(ただし$\operatorname{pr}_V$は$B$から$(A,\tau_V)$への射影である)，
+				$\operatorname{pr}_V^{-1}(F)$は$b$の開近傍であるから
+				或る$\gamma_V \in \Gamma$で
+				\begin{align}
+					\gamma_V \preceq \gamma
+					\quad \Longrightarrow \quad
+					\delta(x_{f(\gamma)}) \in \operatorname{pr}_V^{-1}(F)
+					\quad \Longrightarrow \quad
+					x_{f(\gamma)} \in F
+				\end{align}
+				が成り立つ．従って
+				\begin{align}
+					\gamma_V \preceq \gamma,\xi
+					\quad \Longrightarrow \quad
+					\left(x_{f(\gamma)},x_{f(\xi)}\right) \in F \times F \subset V
+				\end{align}
+				が得られる．いま$A$は$S$で完備であるから$(x_{f(\gamma)})_{\gamma \in \Gamma}$
+				は$A$で収束し，定理\ref{thm:compact_iff_every_net_has_a_convergent_subnet}より$A$のコンパクト性が出る．
+				
 			\item[第二段]
+				$A$がコンパクトであれば，定理\ref{thm:compact_then_totally_bounded}より
+				$A$は全有界であり，また$A$上の任意のCauchy有向点族は$A$で収束する
+				部分有向点族を持ち
+				(定理\ref{thm:compact_iff_every_net_has_a_convergent_subnet})，
+				このとき元の点族も$A$で収束する
+				(定理\ref{thm:subnet_of_a_Cauchy_net_is_Cauchy})．
+				\QED
 		\end{description}
 	\end{prf}
