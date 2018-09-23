@@ -1,0 +1,80 @@
+\subsection{群}
+	\begin{screen}
+		\begin{dfn}[半群]
+			空でない集合$S$に次を満たす二項演算$\ast:S \times S \longrightarrow S$
+			が定義されているとき，対$(S,\ast)$を(代数的){\bf 半群}
+			\index{はんぐん@半群}{\bf (semigroup)}と呼ぶ:
+			\begin{align}
+				(a \ast b) \ast c = a \ast (b \ast c),
+				\quad (\forall a,b,c \in S).
+			\end{align}
+			この演算法則を{\bf 結合法則}\index{けつごうほうそく@結合法則}{\bf (associative law)}，
+			或は{\bf 結合律}\index{けつごうりつ@結合律}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[一般結合法則]
+			空でない集合$S$に次を満たす二項演算$\ast:S \times S \longrightarrow S$
+			が定義されているとき，$a_1,a_2,a_3,a_4$を$S$の元として，
+			$a_1,a_2,a_3,a_4$の並びを替えずに$\ast$で評価していくと
+			\begin{align}
+				&(a_1 \ast (a_2 \ast a_3)) \ast a_4,
+				\quad ((a_1 \ast a_2) \ast a_3) \ast a_4,
+				\quad (a_1 \ast a_2) \ast (a_3 \ast a_4), \\
+				&\qquad \quad a_1 \ast (a_2 \ast (a_3 \ast a_4)),
+				\quad a_1 \ast ((a_2 \ast a_3) \ast a_4)
+			\end{align}
+			の5通りの評価法が考えうるが(括弧の中を優先して評価する)，これは
+			\begin{align}
+				a_1 \ast a_2 \ast a_3 \ast a_4
+			\end{align}
+			の3つの$\ast$に演算の順番を付けることに対応している．
+			特に，この場合は$\ast$が結合律を満たしていれば5通りの評価は全て同値になる．
+			一般に$n$個の$a_1,a_2,\cdots,a_n \in S$を取りこれらに対して$n-1$回の評価を行うとき，
+			$a_1,a_2,\cdots,a_n$の並びを替えない限り演算の順番をどう設定しても
+			得られる結果に影響しない(最終的な評価がただ一つに確定する)ならば，
+			$\ast$は{\bf 一般結合法則}\index{いっぱんけつごうほうそく@一般結合法則}
+			{\bf (generalized associative law)}を満たすという．またその結果を
+			\begin{align}
+				a_1 \ast a_2 \ast \cdots \ast a_n
+			\end{align}
+			と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[半群において一般結合法則が成立する]
+		\label{thm:generalized_associative_law_on_semigroup}
+			$(S,\ast)$を半群とするとき$\ast$は一般結合法則を満たす．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$n > 3$を選ぶとき，
+		任意の$k$個$(3 \leq k < n)$の元に対する演算の結果が評価順に依存しないと仮定すると
+		$n$個の元に対する演算の結果も評価順に依存せず確定することを示す．
+		$a_1,a_2,\cdots,a_n \in S$に対し，並びを替えずに$n-1$回評価するとき，
+		$n-1$回目の演算は
+		\begin{align}
+			(\mbox{$a_1,a_2,\cdots,a_k$に対する評価}) \ast
+			(\mbox{$a_{k+1},a_{k+2},\cdots,a_n$に対する評価})
+			\label{eq:thm_generalized_associative_law_on_semigroup}
+		\end{align}
+		となる．ただし$k$は$1 \leq k \leq n-1$を満たす．仮定より第一項と第二項について
+		\begin{align}
+			\mbox{(第一項)} &= (\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_k, \\
+			\mbox{(第二項)} &= a_{k+1} \ast (\cdots(a_{n-2} \ast (a_{n-1} \ast a_n))\cdots)
+		\end{align}
+		が成り立つから，ここで$\ast$の結合律を繰り返し用いることにより
+		\begin{align}
+			(\refeq{eq:thm_generalized_associative_law_on_semigroup}) 
+			&= ((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_k) \ast (a_{k+1} \ast (\cdots(a_{n-2} \ast (a_{n-1} \ast a_n))\cdots)) \\
+			&= (((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_k) \ast a_{k+1}) \ast (a_{k+2} \ast (\cdots(a_{n-2} \ast (a_{n-1} \ast a_n))\cdots)) \\
+			&\vdots \\
+			&= ((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_{n-2}) \ast (a_{n-1} \ast a_n) \\
+			&= (((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_{n-2}) \ast a_{n-1}) \ast a_n
+		\end{align}
+		が得られる．$3$個の元の演算は評価順に依らないから，数学的帰納法より$\ast$は一般結合法則を満たす．
+		\QED
+	\end{prf}
