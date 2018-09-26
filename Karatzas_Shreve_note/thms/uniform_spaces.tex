@@ -295,14 +295,107 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[一様位相空間において$T_0 \Longleftrightarrow T_2$]
+		\begin{thm}[一様位相空間は完全正則]
+			近縁系で導入する位相は完全正則である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[一様化可能]
+			空でない位相空間が{\bf 一様化可能}\index{いちようかかのう@一様化可能}
+			{\bf (uniformizable)}であるとは，その位相と両立する近縁系が存在することをいう．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[完全正則なら一様化可能]
+			$S$を空でない完全正則空間とし，$C(S,\R)$で$S$から$\R$への連続写像の全体を表す．
+			任意の連続写像$f \in C(S,\R)$と$B_r \coloneqq \Set{(\alpha,\beta) \in \R \times \R}{|\alpha - \beta| < r},\ (r > 0)$に対し
+			\begin{align}
+				V(f,r) \coloneqq \Set{(x,y) \in S \times S}{(f(x),f(y)) \in B_r}
+			\end{align}
+			と定義して，これらの有限交叉の全体を$\mathscr{A} \coloneqq
+				\Set{\bigcap_{i=1}^n V(f_i,r_i)}{f_i \in C(S,\R),\ r_i \in (0,\infty),\ n \in \N}$とおくとき，
+			\begin{align}
+				\mathscr{V} \coloneqq
+				\Set{V \subset S \times S}{\mbox{$V$は$\mathscr{A}$の元を少なくとも一つ含む}}
+			\end{align}
+			は$S$上の近縁系となり$S$の位相と両立する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $\mathscr{V}$が近縁系であることを示す．$C(S,\R)$は空でないから
+				$\mathscr{V}$も空でなく，また任意の$f \in C(S,\R)$と$r > 0$で
+				\begin{align}
+					(f(x),f(x)) \in B_r, \quad (\forall x \in S) 
+				\end{align}
+				となるから定義\ref{dfn:uniform_structure}の(US1)が満たされる．
+				$B_r$の対称性より$V(f,r)$も対称となるから
+				\begin{align}
+					\bigcap_{i=1}^n V(f_i,r_i) \subset V
+					\quad \Longleftrightarrow \quad
+					\bigcap_{i=1}^n V(f_i,r_i) = \bigcap_{i=1}^n V(f_i,r_i)^{-1} \subset V^{-1}
+				\end{align}
+				が従い(US2)も満たされる．$\mathscr{A}$が有限交叉で閉じるから
+				$\mathscr{V}$も有限交叉で閉じる．
+				$\bigcap_{i=1}^n V(f_i,r_i) \subset V$のとき
+				\begin{align}
+					W \coloneqq \bigcap_{i=1}^n V(f_i,r_i/2)
+				\end{align}
+				とおけば
+				\begin{align}
+					(x,y),(y,z) \in W &\quad \Longrightarrow \quad
+					|f(x) - f(y)|,|f(y)-f(z)| < r_i/2,\ (1 \leq i \leq n) \\
+					&\quad \Longrightarrow \quad
+					|f(x) - f(z)| < r_i,\ (1 \leq i \leq n)
+				\end{align}
+				となるから$W \circ W \subset \bigcap_{i=1}^n V(f_i,B_{r_i}) \subset V$
+				が成立し，$\mathscr{V}$は上位の包含関係で閉じるから(US5)も満たされる．
+				
+			\item[第二段]
+				任意の$x \in S$と$V \in \mathscr{V}$に対し
+				\begin{align}
+					V_x \coloneqq \Set{y \in S}{(x,y) \in V}
+				\end{align}
+				と定めるとき，$\mathscr{V}(x) \coloneqq \Set{V_x}{V \in \mathscr{V}}$
+				がもとの位相において$x$の基本近傍系となることを示す．実際
+				\begin{align}
+					V(f,r)_x = \Set{y \in S}{(f(x),f(y)) \in B_r}
+					= \Set{y \in S}{|f(x)-f(y)|< r}
+				\end{align}
+				より$V(f,r)_x$は$x$の開近傍となるから$\mathscr{U}(x)$の元は
+				$x$の近傍であり，さらに$x$の任意の近傍$U$に対し
+				\begin{align}
+					g(y) = \begin{cases}
+						0, & (x=y),\\
+						1, & (y \in S \backslash U^{\mathrm{o}})
+					\end{cases}
+				\end{align}
+				を満たす$g \in C(S,\R)$が取れるが(完全正則性による)，このとき
+				\begin{align}
+					y \in V(g,1)_x \quad \Longrightarrow \quad
+					|g(y)| = |g(y) - g(x)| < 1 \quad \Longrightarrow \quad
+					y \in U^{\mathrm{o}}
+				\end{align}
+				となるから$V(g,B_1)_x \subset U$が従う．以上より
+				$\mathscr{V}(x)$はもとの位相で$x$の基本近傍系となるが，
+				一方で$\mathscr{V}$の導入する一様位相においても
+				$\mathscr{V}(x)$は$x$の基本近傍系をなすから二つの位相は一致する．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[一様位相空間において$T_0 \Longleftrightarrow T_2 \Longleftrightarrow T_{3{}^1{\mskip -5mu/\mskip -3mu}_2}$]
 		\label{thm:T_0_iff_T_2_on_uniform_topological_space}
 			$(S,\mathscr{V})$を一様空間とし，$S$に一様位相を導入する．このとき
 			任意の$x,y \in S$に対して
 			\begin{align}
 				\mbox{$x,y$が位相的に識別可能}
 				\quad \Longleftrightarrow \quad
-				(x,y) \notin \bigcap_{V \in \mathscr{V}}V
+				(x,y) \notin \bigcap \mathscr{V}
 				\quad \Longleftrightarrow \quad
 				\mbox{$x,y$が近傍で分離される}.
 				\label{eq:thm_T_0_iff_T_2_on_uniform_topological_space_0}
@@ -310,9 +403,11 @@
 			特に次が得られる:
 			\begin{align}
 				\mbox{$S$が$T_0$} \quad \Longleftrightarrow \quad
-				\bigcap_{V \in \mathscr{V}}V = \Set{(x,x)}{x \in S}
+				\bigcap \mathscr{V} = \Set{(x,x)}{x \in S}
 				\quad \Longleftrightarrow \quad
 				\mbox{$S$が$T_2$}
+				\quad \Longleftrightarrow \quad
+				\mbox{$S$が$T_{3{}^1{\mskip -5mu/\mskip -3mu}_2}$}.
 				\label{eq:thm_T_0_iff_T_2_on_uniform_topological_space}
 			\end{align}
 		\end{thm}
@@ -335,7 +430,7 @@
 		\begin{align}
 			\mbox{$x,y$が位相的に識別可能}
 			\quad \Longrightarrow \quad
-			(x,y) \notin \bigcap_{V \in \mathscr{V}}V
+			(x,y) \notin \bigcap \mathscr{V}
 		\end{align}
 		が出る．また或る$V \in \mathscr{V}$で$(x,y) \notin V$となるとき，
 		$W \circ W \subset V$を満たす対称な$W \in \mathscr{V}$を取れば
@@ -343,12 +438,25 @@
 		或る$z \in W_x \cap W_y$が取れるとすると，
 		$(x,z),(z,y) \in W$から$(x,y) \in V$が従い$(x,y) \notin V$に矛盾する．よって
 		\begin{align}
-			(x,y) \notin \bigcap_{V \in \mathscr{V}}V
+			(x,y) \notin \bigcap \mathscr{V}
 			\quad \Longrightarrow \quad
 			\mbox{$x,y$が近傍で分離される}
 		\end{align}
 		を得る．近傍で分離される二点は位相的に識別可能であるから
 		(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space_0})が成立する．
+		$S$が$T_0$なら
+		\begin{align}
+			\begin{cases}
+				(x,y) \notin \bigcap \mathscr{V}, & (x \neq y), \\
+				(x,y) \in \bigcap \mathscr{V}, & (x = y),
+			\end{cases}
+			\quad (\forall x,y \in S)
+		\end{align}
+		となるから$\bigcap \mathscr{V} = \Set{(x,x)}{x \in S}$が従い，
+		またこのとき相異なる任意の二点は近傍で分離されるから$S$はHausdorffとなる．
+		一様空間は完全正則であるから，$S$が$T_0$なら$S$は$T_{3{}^1{\mskip -5mu/\mskip -3mu}_2}$となり，
+		$S$が$T_{3{}^1{\mskip -5mu/\mskip -3mu}_2}$なら$T_0$であるから
+		(\refeq{eq:thm_T_0_iff_T_2_on_uniform_topological_space})を得る．
 		\QED
 	\end{prf}
 	
