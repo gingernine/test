@@ -848,7 +848,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[正則空間とは交わらないコンパクト集合と閉集合が近傍で分離できる空間]
+		\begin{thm}[正則空間とは交わらないコンパクト集合と閉集合が近傍で分離される空間]
 		\label{thm:each_point_in_regular_space_has_closesd_local_base}\mbox{}
 			\begin{description}
 				\item[(1)] 位相空間において，正則性と，交わらないコンパクト集合と閉集合が近傍で分離されることは同値である．
@@ -923,6 +923,77 @@
 		\end{align}
 		が成立し，$S$の正則性が出る．$S$は$T_0$空間でもあるから$T_3$である．
 		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[完全正則空間とは交わらないコンパクト集合と閉集合が関数で分離される空間]
+			位相空間において，完全正則であることと，交わらないコンパクト集合と閉集合が
+			関数で分離されることは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$K,C$をそれぞれ完全正則空間$S$のコンパクト部分集合と閉集合とする．
+		任意の$x \in K$に対し
+		\begin{align}
+			f_x(y) = 
+			\begin{cases}
+				0, & (y=x), \\
+				1, & (y \in C)
+			\end{cases} 
+		\end{align}
+		を満たす連続写像$f_x:S \longrightarrow [0,1]$が存在し，
+		$K$のコンパクト性より或る$x_1,x_2,\cdots,x_n \in K$で
+		\begin{align}
+			K \subset \bigcup_{i=1}^n \Set{x \in K}{f_{x_i}(x) < \frac{1}{2}}
+		\end{align}
+		が成り立つ．$x \in K$なら$\prod_{i=1}^n f_{x_i}(x) < 1/2$，
+		$x \in C$なら$\prod_{i=1}^n f_{x_i}(x) = 1$となるから，
+		$f \coloneqq \prod_{i=1}^n f_{x_i}$として
+		\begin{align}
+			g(x) \coloneqq 2 \operatorname{max}\left\{f(x),\frac{1}{2}\right\} - 1
+		\end{align}
+		により連続写像$g:S \longrightarrow [0,1]$を定めれば
+		\begin{align}
+			g(x) = 
+			\begin{cases}
+				0, & (x \in K), \\
+				1, & (x \in C)
+			\end{cases}
+		\end{align}
+		が従う．すなわち$K,C$は$g$で分離される．
+		一点はコンパクトであるから逆の主張も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[完全正則空間の位相は実連続写像全体の始位相に一致する]
+			$(S,\mathscr{O})$を空でない位相空間，$C(S)$を実連続写像の全体とするとき，
+			\begin{align}
+				\mbox{$S$が完全正則} \quad \Longleftrightarrow \quad
+				\mbox{$C(S)$-始位相が$\mathscr{O}$に一致する}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$C(S)$-始位相を$\mathscr{O}_{IT}$と書く．
+		\begin{align}
+			\bigcup_{f \in C(S)} \Set{f^{-1}(O)}{\mbox{$O$は$\R$の開集合}}
+		\end{align}
+		は$\mathscr{O}_{IT}$を生成し，かつ$\mathscr{O}$に含まれるから
+		$\mathscr{O}_{IT} \subset \mathscr{O}$を得る．
+		$S$が完全正則であるとき，空でない$O \in \mathscr{O}$を取れば任意の$x \in O$に対して
+		\begin{align}
+			f(x) = 0,\quad f(y) = 1,\ (\forall y \in S \backslash O)
+		\end{align}
+		を満たす$f \in C(S)$が存在するが，
+		このとき$B_1 \coloneqq \Set{\alpha \in \R}{|\alpha| < 1}$とおけば
+		\begin{align}
+			f^{-1}(B_1) \subset O
+		\end{align}
+		が成り立つ．$f^{-1}(B_1)$は$\mathscr{O}_{IT}$における$x$の開近傍であるから
+		$O \in \mathscr{O}_{IT}$が従い$\mathscr{O}_{IT} \subset \mathscr{O}$が成立する．
 	\end{prf}
 	
 	\begin{screen}
