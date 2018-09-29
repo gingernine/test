@@ -967,33 +967,92 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[完全正則空間の位相は実連続写像全体の始位相に一致する]
-			$(S,\mathscr{O})$を空でない位相空間，$C(S)$を実連続写像の全体とするとき，
-			\begin{align}
-				\mbox{$S$が完全正則} \quad \Longleftrightarrow \quad
-				\mbox{$C(S)$-始位相が$\mathscr{O}$に一致する}.
-			\end{align}
+		\begin{thm}[実連続写像全体の始位相は完全正則]
+		\label{thm:initial_topology_of_continuous_functions_is_completely_regular}
+			$S$を空でない位相空間とし，$S$から$\R$への連続写像の族を$\mathscr{C}$で表す．このとき
+			$S$は$\mathscr{C}$-始位相により完全正則空間となる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$C(S)$-始位相を$\mathscr{O}_{IT}$と書く．
+		$S$に$\mathscr{C}$-始位相を入れるとき，任意の$x \in S$と$x$を含まない(空でない)始位相の閉集合$F$に対して
 		\begin{align}
-			\bigcup_{f \in C(S)} \Set{f^{-1}(O)}{\mbox{$O$は$\R$の開集合}}
+			x \in \bigcap_{i=1}^n f_i^{-1}(O_i) \subset S \backslash F
 		\end{align}
-		は$\mathscr{O}_{IT}$を生成し，かつ$\mathscr{O}$に含まれるから
-		$\mathscr{O}_{IT} \subset \mathscr{O}$を得る．
-		$S$が完全正則であるとき，空でない$O \in \mathscr{O}$を取れば任意の$x \in O$に対して
+		を満たす$f_i \in \mathscr{C}$と$\R$の開集合$O_i,\ (i=1,\cdots,n)$が取れる．
+		ここで$j$を$f_j(x) \in O_j$を満たす添数とすれば
 		\begin{align}
-			f(x) = 0,\quad f(y) = 1,\ (\forall y \in S \backslash O)
+			g_j(f_j(x)) = 1;\quad g_i(f_i(y)) = 0,\quad (y \in S \backslash f_i^{-1}(O_i),
+			\ i=1,\cdots,n)
 		\end{align}
-		を満たす$f \in C(S)$が存在するが，
-		このとき$B_1 \coloneqq \Set{\alpha \in \R}{|\alpha| < 1}$とおけば
+		を満たす連続写像$g_i:\R \longrightarrow [0,1]$が存在する($\R$は完全正則である)．
 		\begin{align}
-			f^{-1}(B_1) \subset O
+			h \coloneqq \operatorname{max}\{g_1 \circ f_1,g_2 \circ f_2,\cdots,g_n \circ f_n\}
 		\end{align}
-		が成り立つ．$f^{-1}(B_1)$は$\mathscr{O}_{IT}$における$x$の開近傍であるから
-		$O \in \mathscr{O}_{IT}$が従い$\mathscr{O}_{IT} \subset \mathscr{O}$が成立する．
+		により写像$h:S \longrightarrow [0,1]$を定めれば，
+		$h$は$\mathscr{C}$-始位相に関して連続であり，
+		$h(x)=1$かつ$h$は$C$上で$0$となる．
+		従って$S$は完全正則となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[完全正則空間の位相は実連続写像全体の始位相に一致する]
+			$(S,\mathscr{O})$を空でない位相空間，$C(S)$を実連続写像の全体とし，
+			$\mathscr{Z} \coloneqq \Set{f^{-1}(\{0\})}{f \in C(S)}$とおくとき，
+			以下は同値となる:
+			\begin{description}
+				\item[(a)] $S$が完全正則である．
+				\item[(b)] $S$の$C(S)$-始位相が$\mathscr{O}$に一致する．
+				\item[(c)] $S$の閉集合全体と
+					$\Set{\bigcap \mathscr{F}}{\mathscr{F} \subset \mathscr{Z}}$が一致する
+					(ただし$\bigcap \emptyset = \emptyset$)．
+			\end{description}
+		\end{thm}
+	\end{screen}
+		
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[$(a) \Longrightarrow (c)$]
+				$S$が完全正則であるとき，$C=\emptyset$なら
+				$f:S \longrightarrow \{1\}$により，
+				$C = S$なら$\tilde{f}:S \longrightarrow \{0\}$により
+				$C = f^{-1}(\{0\})$となる．$C$が$\emptyset$でも$S$でもない閉集合であるとき，
+				任意の$x \in S \backslash C$に対し或る$f_x \in C(S)$で
+				\begin{align}
+					f_x(y) = \begin{cases}
+						1, & (y=x),\\
+						0, & (y \in C)
+					\end{cases}
+				\end{align}
+				を満たすものが存在する．このとき$C \subset \bigcup_{x \in S \backslash C} f_x^{-1}(\{0\})$となるが，
+				一方で$x \notin C$なら$x \notin f_x^{-1}(\{0\})$より
+				\begin{align}
+					C = \bigcap_{x \in S \backslash C} f_x^{-1}(\{0\})
+					\in \Set{\bigcap \mathscr{F}}{\mathscr{F} \subset \mathscr{Z}}
+				\end{align}
+				が成り立つ．一方で$f \in C(S)$に対し$f^{-1}(\{0\})$は閉であるから
+				$\Set{\bigcap \mathscr{F}}{\mathscr{F} \subset \mathscr{Z}}$
+				は$S$の閉集合の族であり，$(c)$が満たされる．
+				
+			\item[$(c) \Longrightarrow (b)$]
+				$C(S)$-始位相は
+				\begin{align}
+					\bigcup_{f \in C(S)} \Set{f^{-1}(O)}{\mbox{$O$は$\R$の開集合}}
+				\end{align}
+				で生成されるから$\mathscr{O}$より弱い位相である．
+				一方で$(c)$が満たされているとき，任意の空でない$O \in \mathscr{O}$に対し
+				或る$\mathscr{F} \subset \Set{f^{-1}(\{0\})}{f \in C(S)}$が存在して
+				\begin{align}
+					O = \bigcup_{f \in \mathscr{F}} f^{-1}(\R \backslash \{0\})
+				\end{align}
+				となるから，$O$は$C(S)$-始位相においても開集合となり$(b)$が出る．
+			
+			\item[$(b) \Longrightarrow (a)$] 
+				定理\ref{thm:initial_topology_of_continuous_functions_is_completely_regular}
+				より従う．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
