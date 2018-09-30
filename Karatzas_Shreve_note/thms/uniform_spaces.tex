@@ -103,6 +103,22 @@
 		\QED
 	\end{prf}
 	
+	従って$U_1,U_2,\cdots,U_n \subset S \times S$に対し
+	\begin{align}
+		U_1 \circ U_2 \circ \cdots \circ U_n
+		\coloneqq (\cdots((U_1 \circ U_2) \circ U_3) \cdots ) \circ U_n
+	\end{align}
+	と定めれば，定理\ref{thm:generalized_associative_law_on_semigroup}より
+	左辺の評価は演算$\circ$の順番に依らないから，
+	任意に$1 \leq k \leq m \leq n$を取れば
+	\begin{align}
+		U_1 \circ U_2 \circ \cdots \circ U_n
+		= (U_1 \circ \cdots \circ U_k) 
+		\circ (U_{k+1} \circ \cdots \circ U_m)
+		\circ (U_{m+1} \circ \cdots \circ U_n)
+	\end{align}
+	が成立する．
+	
 	\begin{screen}
 		\begin{thm}\label{thm:uniform_structure}
 			$(S,\mathscr{V})$を一様空間とするとき，
@@ -290,6 +306,147 @@
 				$\Set{V_a \cap A}{V \in \mathscr{V}}$
 				は$A$の相対位相における$a$の基本近傍系をなすが，
 				両者が一致するので位相も一致する．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[可算な基本近縁系を持てば$\sigma$-局所有限な基底が存在する]
+		\label{thm:if_uniformity_has_countable_base_then_has_topology_has_sigma_locally_finite_base}
+			$(S,\mathscr{V})$を一様空間とし，$\mathscr{V}$が可算な基本近縁系$\{V_n\}_{n \in \N}$を
+			持つとする．また$S$に$\mathscr{V}$で一様位相を導入する．このとき，$\mathscr{S}$を$S$の任意の開被覆
+			($\emptyset \notin \mathscr{S}$)とすれば$\mathscr{S}$の開細分で
+			$\sigma$-局所有限なものが存在する．特に，$S$は$\sigma$-局所有限な基底を持つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $\mathscr{V}$の可算な基本近縁系$\{U_n\}_{n \in \N}$で，
+				\begin{align}
+					U_{n+1} \circ U_{n+1} \circ U_{n+1} \subset U_n
+					\subset V_n,\quad (\forall n \in \N)
+				\end{align}
+				を満たし，かつ$U_n$が全て対称であるものが存在する．実際
+				$V_1$に対し$\tilde{W}_1 \circ \tilde{W}_1 \subset V_1 \cap V_1^{-1}$を満たす
+				$\tilde{W}_1 \in \mathscr{V}$が取れるが，
+				$\tilde{W}_1$に対しても或る$W_1 \in \mathscr{V}$で
+				$W_1 \circ W_1 \subset \tilde{W}_1$となり，このとき
+				\begin{align}
+					W_1 \circ W_1 \circ W_1
+					\subset W_1 \circ W_1 \circ W_1 \circ W_1
+					\subset V_1 \cap V_1^{-1}
+				\end{align}
+				が成り立つ．ここで
+				\begin{align}
+					U_1 \coloneqq V_1 \cap V_1^{-1},
+					\quad U_2 \coloneqq V_2 \cap V_2^{-1} \cap W_1 \cap W_1^{-1}
+				\end{align}
+				とおく．$U_2$に対しても$W_2 \circ W_2 \circ W_2 \subset U_2$
+				を満たす$W_2 \in \mathscr{V}$が取れるから，ここで
+				\begin{align}
+					U_3 \coloneqq V_3 \cap V_3^{-1} \cap W_2 \cap W_2^{-1}
+				\end{align}
+				とおく．帰納的に全ての$n \in \N$に対して$U_n$が定義されるから$\{U_n\}_{n \in \N}$を得る．
+				
+			\item[第二段]
+				整列可能定理により$\mathscr{S}$を整列集合にする全順序$\preceq$が存在する．ここで
+				\begin{align}
+					E \prec F \quad \overset{\mathrm{def}}{\Longleftrightarrow} \quad
+					\mbox{$E \preceq F$かつ$E \neq F$}
+				\end{align}
+				とする．任意の$x \in S$と$V \in \mathscr{V}$に対し
+				\begin{align}
+					V(x) \coloneqq \Set{y \in S}{(x,y) \in V}
+				\end{align}
+				と定義して，任意の$n \in \N$と$E \in \mathscr{S}$に対し
+				\begin{align}
+					I_n(E) &\coloneqq \Set{x \in S}{U_n(x) \subset E}, \\
+					J_n(E) &\coloneqq I_n(E) \left\backslash \bigcup_{F \prec E}F \right.
+				\end{align}
+				として$\mathscr{S}_n \coloneqq \Set{E \in \mathscr{S}}{J_n(E) \neq \emptyset}$
+				とおく．$\mathscr{S}$の$\preceq$に関する最小元を$M$として
+				$x \in M$を一つ取れば，$M$は開集合であるから十分大きい$n_0$で
+				$U_{n_0}(x) \subset M$となり，$M$の最小性より
+				\begin{align}
+					x \in I_{n_0}(M) = J_{n_0}(M)
+				\end{align}
+				が成り立つので，少なくとも$n \geq n_0$ならば$\mathscr{S}_n$は空でない．
+				$\mathscr{S}_n \neq \emptyset$のとき，任意の$E \in \mathscr{S}_n$に対し
+				\begin{align}
+					K_n(E) \coloneqq \bigcup_{x \in J_n(E)} U_{n+1}(x)^{\mathrm{o}}
+				\end{align}
+				により開集合を定めて$\mathscr{K}_n \coloneqq 
+				\Set{K_n(E)}{E \in \mathscr{S}_n}$とおけば次が成立する:
+				\begin{description}
+					\item[(1)] 任意の$E \in \mathscr{S}_n$に対し$K_n(E) \subset E$となる．
+					
+					\item[(2)] 相異なる二元$E, F \in \mathscr{S}_n$に対し
+						\begin{align}
+							(x,y) \notin U_{n+1},\quad
+							(\forall x \in K_n(E),\ y \in K_n(F)).
+						\end{align}
+						
+					\item[(3)] 任意の$x \in S$に対し，$U_{n+2}(x)$は$\mathscr{K}_n$の二個以上の元と
+						交わることはない．
+				\end{description}
+				実際，任意の$x \in K_n(E)$に対し或る$x_0 \in J_n(E)$が存在して
+				\begin{align}
+					x \in U_{n+1}(x_0) \subset U_n(x_0) \subset E
+				\end{align}
+				となり(1)が出る．また任意に$x \in K_n(E)$と$y \in K_n(F)$を取れば
+				或る$x_0 \in J_n(E)$と$y_0 \in J_n(F)$で
+				\begin{align}
+					(x_0,x),(y,y_0) \in U_{n+1}
+				\end{align}
+				となるが，このとき$E \neq F$とすると$E \prec F$又は$F \prec E$ということになり，
+				$E \prec F$とすれば$x_0 \in E$かつ$y_0 \notin E$が満たされるから
+				$(x_0,y_0) \notin U_n$が従う．そして$U_{n+1} \circ U_{n+1} \circ U_{n+1} \subset U_n$より
+				\begin{align}
+					(x,y) \notin U_{n+1}
+				\end{align}
+				が成立する．すなわち(2)も得られ，これと$y,z \in U_{n+2}(x) \Longrightarrow (y,z) \in U_{n+1}$
+				を併せて(3)も出る．ここで
+				\begin{align}
+					\mathscr{K} \coloneqq 
+					\bigcup_{\substack{n \in \N \\ \mathscr{S}_n \neq \emptyset}} \mathscr{K}_n
+				\end{align}
+				とおけば，$\mathscr{K}$は$\mathscr{S}$の$\sigma$-局所有限な開細分となる．実際
+				(1)より$\mathscr{K}$の元は全て$\mathscr{S}$の元の部分集合であり，(3)より
+				各$\mathscr{K}_n$は局所有限である．また
+				任意の$x \in S$に対し，$x$を含む$\mathscr{S}$の元のうち$\preceq$に関する最小元を
+				$E$とすれば，十分大きい$n$で$U_n(x) \subset E$となるから$x \in I_n(E)$
+				が従い，最小性より$F \prec E$なら$x \notin F$が満たされ
+				\begin{align}
+					x \in J_n(E) \subset K_n(E)
+				\end{align}
+				が成立する．すなわち$\mathscr{K}$は$S$を覆っている．
+				
+			\item[第三段]
+				任意の$n \in \N$に対し$\Set{U_n(x)^{\mathrm{o}}}{x \in S}$
+				は$S$の開被覆をなすから，$\sigma$-局所有限な開細分$\mathscr{B}_n$が存在する．このとき
+				任意に$B \in \mathscr{B}_{n+1}$を取れば，或る$z \in S$で$B \subset U_{n+1}(z)$となるから
+				\begin{align}
+					x,y \in B \quad\Longrightarrow\quad
+					(x,z),(z,y) \in U_{n+1} \quad\Longrightarrow\quad
+					(x,y) \in U_n
+					\label{eq:thm_if_uniformity_has_countable_base_then_has_topology_has_sigma_locally_finite_base}
+				\end{align}
+				が満たされる．いま，任意に開集合$G$と$x \in G$を取れば，或る$n \in \N$で
+				\begin{align}
+					U_n(x) \subset G
+				\end{align}
+				となる．一方で$\mathscr{B}_{n+1}$は$S$を覆うから
+				或る$B \in \mathscr{B}_{n+1}$もまた$x$を含み，このとき
+				(\refeq{eq:thm_if_uniformity_has_countable_base_then_has_topology_has_sigma_locally_finite_base})
+				より
+				\begin{align}
+					x \in B \subset U_n(x) \subset G
+				\end{align}
+				が成立する．従って$\mathscr{B} \coloneqq \bigcup_{n \in \N}\mathscr{B}_n$
+				は$S$の基底となり，各$\mathscr{B}_n$が$\sigma$-局所有限であるから
+				$\mathscr{B}$も$\sigma$-局所有限となる．
+				すなわち$S$は$\sigma$-局所有限な基底を持つ．
 				\QED
 		\end{description}
 	\end{prf}
