@@ -773,6 +773,7 @@
 	
 	\begin{screen}
 		\begin{thm}[Hausdorff空間においてコンパクト集合の閉部分集合はコンパクト]
+		\label{thm:closed_subset_of_compact_set_is_compact_on_Hausdorff_space}
 			$S$をHausdorff空間，$K \subset S$をコンパクト部分集合，$F \subset S$を閉集合とするとき，
 			$K \cap F$はコンパクトである．
 		\end{thm}
@@ -854,8 +855,8 @@
 				\item[(1)] 位相空間において，正則性と，交わらないコンパクト集合と閉集合が近傍で分離されることは同値である．
 					
 				\item[(2)]
-					$K,W$をそれぞれ局所コンパクトな正則空間のコンパクト集合，開集合とするとき，
-					相対コンパクトな開集合$U$が存在して次を満たす:
+					$K,W,\ (K \subset W)$をそれぞれ局所コンパクトな$T_3$空間のコンパクト集合，
+					開集合とするとき，相対コンパクトな開集合$U$が存在して次を満たす:
 					\begin{align}
 						K \subset U \subset \overline{U} \subset W.
 						\label{eq:thm_each_point_in_regular_space_has_closesd_local_base}
@@ -884,13 +885,19 @@
 				が成立する．逆の主張は一点集合がコンパクトであることにより従う．
 			\item[(2)]
 				任意の$x \in K$に対し，$\overline{U_x} \subset W$
-				となる開近傍$U_x$と閉包がコンパクトな開近傍$C_x$が存在するから，
+				となる開近傍$U_x$とコンパクトな近傍$C_x$が存在するから，
 				\begin{align}
-					K \subset (C_{y_1} \cap U_{y_1}) \cup \cdots \cup (C_{y_m} \cap U_{y_m})
+					K \subset (C_{y_1}^{\mathrm{o}} \cap U_{y_1}) 
+					\cup \cdots \cup (C_{y_m}^{\mathrm{o}} \cap U_{y_m})
 				\end{align}
 				を満たす$\{y_i\}_{i=1}^m \subset K$に対し
-				$U \coloneqq \bigcup_{i=1}^m C_{y_i} \cap U_{y_i}$
-				とおけば，$\overline{U}$はコンパクトであり
+				$U \coloneqq \bigcup_{i=1}^m C_{y_i}^{\mathrm{o}} \cap U_{y_i}$
+				とおけば，
+				\begin{align}
+					\overline{U} \subset \bigcup_{i=1}^m C_{y_i}
+				\end{align}
+				と定理\ref{thm:closed_subset_of_compact_set_is_compact_on_Hausdorff_space}より
+				$\overline{U}$はコンパクトであり
 				(\refeq{eq:thm_each_point_in_regular_space_has_closesd_local_base})を満たす．
 				\QED
 		\end{description}
@@ -924,6 +931,11 @@
 		が成立し，$S$の正則性が出る．$S$は$T_0$空間でもあるから$T_3$である．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[完全正則なら正則]
+		\end{thm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[完全正則空間とは交わらないコンパクト集合と閉集合が関数で分離される空間]
@@ -1063,6 +1075,46 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{thm}[正則かつ正規なら完全正則]
+		\label{thm:if_regular_and_normal_then_completely_normal}
+			正則かつ正規な(空でない)位相空間は完全正則である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		点$x$と空でない閉集合$F,\ (x \notin F)$に対し，
+		正則なら$x$の閉近傍$E$で$E \cap F = \emptyset$を満たすものが取れる．
+		加えて正規なら，Urysohnの補題より$E$と$F$は関数で分離されるから$x$と$F$も関数で分離される．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[完全正規なら正規]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$T_2$なら$T_1$]
+		\end{thm}
+	\end{screen}
+	\begin{screen}
+		\begin{thm}[$T_3$なら$T_2$]
+		\end{thm}
+	\end{screen}
+	\begin{screen}
+		\begin{thm}[$T_4$なら$T_3$]
+		\end{thm}
+	\end{screen}
+	\begin{screen}
+		\begin{thm}[$T_5$なら$T_4$]
+		\end{thm}
+	\end{screen}
+	\begin{screen}
+		\begin{thm}[$T_6$なら$T_5$]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{dfn}[$G_\delta$集合・$F_\sigma$集合]
 			位相空間の部分集合で，開集合の可算交叉で表されるものを$G_\delta$集合，
 			閉集合の可算和で表されるものを$F_\sigma$集合と呼ぶ．
@@ -1167,8 +1219,9 @@
 				= \Set{\bigcup \mathscr{U}}{\mathscr{U} \subset \mathscr{B}}
 			\end{align}
 			を満たすもの，ただし$\bigcup \emptyset = \emptyset$，
-			を$\mathscr{O}$の開基\index{かいき@開基}や
-			基底\index{きてい@基底}，基\index{き@基}(base)と呼ぶ．基底は一意に定まるものではない．
+			を$\mathscr{O}$の{\bf 開基}\index{かいき@開基}や
+			{\bf 基底}\index{きてい@基底}，{\bf 基}\index{き@基}{\bf (base)}と呼ぶ．
+			基底は一意に定まるものではない．
 			$S \neq \emptyset$のときは$\mathscr{B}$の任意の元は空集合でないとする．
 		\end{dfn}
 	\end{screen}
@@ -1176,14 +1229,14 @@
 	\begin{screen}
 		\begin{dfn}[可算公理]
 			位相空間$S$において，任意の点が高々可算な基本近傍系を持つとき
-			$S$は第一可算公理
+			$S$は{\bf 第一可算公理}
 			\index{だいいちかさんこうり@第一可算公理}
-			(the first axiom of countability)を満たす，或は
+			{\bf (the first axiom of countability)}を満たす，或は
 			$S$は第一可算であるといい，
 			$S$が高々可算な基底を持つとき
-			$S$は第二可算公理
+			$S$は{\bf 第二可算公理}
 			\index{だいにかさんこうり@第二可算公理}
-			(the second axiom of countability)を満たす，或は
+			{\bf (the second axiom of countability)}を満たす，或は
 			$S$は第二可算であるという．
 		\end{dfn}
 	\end{screen}
@@ -1214,9 +1267,9 @@
 	\begin{screen}
 		\begin{dfn}[稠密・可分]
 			位相空間$S$において，$\overline{M} = S$を満たすような部分集合$M$を
-			$S$で稠密\index{ちゅうみつ@稠密}な(dense)部分集合と呼ぶ．
-			また高々可算かつ稠密な部分集合$M$が存在するとき$S$は可分
-			\index{かぶん@可分}である(separable)という．
+			$S$で{\bf 稠密}\index{ちゅうみつ@稠密}な{\bf (dense)}部分集合と呼ぶ．
+			また高々可算かつ稠密な部分集合$M$が存在するとき$S$は{\bf 可分}
+			\index{かぶん@可分}である{\bf (separable)}という．
 		\end{dfn}
 	\end{screen}
 	
@@ -1248,30 +1301,13 @@
 	
 	\begin{screen}
 		\begin{dfn}[局所有限]
-			位相空間$S$の部分集合族$\mathscr{F}$が局所有限
-			\index{きょくしょゆうげん@局所有限}
-			(locally finite)であるとは，
-			任意の$x \in S$が$\mathscr{F}$の高々有限個の元としか交叉しない近傍を持つことである．
-			局所有限な部分集合族の可算和で表される部分集合族を$\sigma$-局所有限
-			\index{しぐまきょくしょゆうげん@$\sigma$-局所有限}な族という．
-		\end{dfn}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{dfn}[細分・パラコンパクト]\mbox{}
-			\begin{description}
-				\item[(1)] $\mathscr{A}$と$\mathscr{B}$を或る集合の被覆とする．
-					任意の$B \in \mathscr{B}$に対し$B \subset A$を満たす
-					$A \in \mathscr{A}$が存在するとき，
-					$\mathscr{B}$を$\mathscr{A}$の細分
-					\index{さいぶん@細分}(refinement)と呼ぶ．
-					位相空間において，被覆の細分で元が全て開集合であるものを
-					開細分\index{かいさいぶん@開細分}と呼ぶ．
-					
-				\item[(2)] 任意の開被覆が局所有限な開細分を持つ
-					位相空間はパラコンパクト\index{ぱらこんぱくと@パラコンパクト}
-					(paracompact)であるという．
-			\end{description}
+			$\mathscr{F}$を位相空間$S$の部分集合族とする．
+			任意の$x \in S$が$\mathscr{F}$の高々有限個の元としか交叉しない近傍を持つとき，
+			$\mathscr{F}$は{\bf 局所有限}\index{きょくしょゆうげん@局所有限}
+			{\bf (locally finite)}であるという．また
+			$\mathscr{F}$が局所有限な部分集合族の可算和で表されるとき，
+			$\mathscr{F}$は{\bf $\sigma$-局所有限}
+			\index{しぐまきょくしょゆうげん@$\sigma$-局所有限}であるという．
 		\end{dfn}
 	\end{screen}
 	
@@ -1337,6 +1373,43 @@
 		逆に第二可算なら可分であるから定理の主張を得る．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[正規かつ$\sigma$-局所有限な基底を持つ$\Longleftrightarrow$完全正規]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[細分・パラコンパクト]\mbox{}
+			\begin{itemize}
+				\item $\mathscr{A}$と$\mathscr{B}$を或る集合の被覆とする．
+					任意の$B \in \mathscr{B}$に対し$B \subset A$を満たす
+					$A \in \mathscr{A}$が存在するとき，
+					$\mathscr{B}$を$\mathscr{A}$の{\bf 細分}
+					\index{さいぶん@細分}{\bf (refinement)}と呼ぶ．
+					位相空間において，被覆の細分で元が全て開(閉)集合であるものを
+					{\bf 開(閉)細分}\index{かいさいぶん@開細分}
+					{\bf (open(closed) refinement)}と呼ぶ．
+					
+				\item 任意の開被覆が局所有限な開細分を持つ
+					位相空間は{\bf パラコンパクト}\index{ぱらこんぱくと@パラコンパクト}
+					{\bf (paracompact)}であるという．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[正則空間の開被覆に対し，$\sigma$-局所有限な開細分が存在する
+		$\Longleftrightarrow$局所有限な開細分が存在する]
+			$S$を正則空間，$\mathscr{S}$を$S$の開被覆とするとき，以下は全て同値になる:
+			\begin{description}
+				\item[(a)] $\mathscr{S}$が$\sigma$-局所有限な開細分を持つ．
+				\item[(b)] $\mathscr{S}$が局所有限な細分を持つ．
+				\item[(c)] $\mathscr{S}$が局所有限な閉細分を持つ．
+				\item[(d)] $\mathscr{S}$が局所有限な開細分を持つ．
+			\end{description}
+		\end{thm}	
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[第二可算空間の任意の基底は可算基を内包する]\label{thm:countable_base_of_second_countable_space}

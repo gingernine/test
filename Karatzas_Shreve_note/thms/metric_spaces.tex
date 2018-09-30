@@ -9,10 +9,10 @@
 			\end{description}
 			を満たす関数$d:S \times S \longrightarrow [0,\infty)$を
 			擬距離\index{ぎきょり@擬距離}(pseudometric)と呼ぶ．これらに加えて
-			\begin{description}
-				\item[(PM4)] $d(x,y) = 0 \quad \Longleftrightarrow \quad x=y,
+			\begin{itemize}
+				\item $d(x,y) = 0 \Longrightarrow x=y,
 				\quad (\forall x,y \in S)$
-			\end{description}
+			\end{itemize}
 			が満たされるとき$d$を距離\index{きょり@距離}(metric)と呼び，
 			$S$と(擬)距離$d$との対$(S,d)$を(擬)距離空間と呼ぶ．また
 			\begin{align}
@@ -122,44 +122,6 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[距離でないと分離性が成り立たない]
-		\label{thm:pseudometric_is_metric_iff_T_0}
-			$(S,d)$を擬距離空間として擬距離位相を入れるとき，
-			\begin{align}
-				\mbox{$d$が距離である} \quad \Longleftrightarrow \quad
-				\mbox{$S$が$T_0$である} \quad \Longleftrightarrow \quad
-				\mbox{$S$が$T_2$である}.
-				\label{eq:thm_pseudometric_is_metric_iff_T_0}
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[第一段] 	$d$が距離なら$S$はHausdorffである．
-				実際，相異なる二点$x,y \in S$に対し
-				\begin{align}
-					B_\epsilon(x) \coloneqq \Set{s \in S}{d(s,x) < \frac{\epsilon}{2}},
-					\quad B_\epsilon(y) \coloneqq \Set{s \in S}{d(s,y) < \frac{\epsilon}{2}},
-					\quad (\epsilon \coloneqq d(x,y))
-				\end{align}
-				で交わらない開球を定めれば，$x$と$y$は
-				$B_\epsilon(x)$と$B_\epsilon(y)$で分離される．
-			
-			\item[第二段]
-				$S$が$T_0$であるとき，相異なる二点$x,y$に対し
-				$x \notin \overline{\{y\}}$或は$y \notin \overline{\{x\}}$となる．
-				$x \notin \overline{\{y\}}$とすれば
-				$\overline{\{y\}} \subset S \backslash B_r(x)$
-				を満たす$r > 0$が存在し，$d(x,y) \geq r > 0$が成り立つから
-				$d$は距離となる．
-				$T_2 \Longrightarrow T_0$より
-				(\refeq{eq:thm_pseudometric_is_metric_iff_T_0})を得る．
-				\QED
-		\end{description}
-	\end{prf}
-	
-	\begin{screen}
 		\begin{thm}[擬距離関数の連続性]\label{thm:continuity_of_pseudometrics}
 			$(S,d)$を擬距離空間として擬距離位相を導入するとき，以下が成り立つ:
 			\begin{description}
@@ -177,30 +139,52 @@
 	
 	\begin{screen}
 		\begin{thm}[擬距離空間は完全正規]
-			任意の擬距離位相空間は完全正規である．特に
-			\begin{align}
-				\mbox{擬距離が距離である} \quad \Longleftrightarrow \quad
-				\mbox{擬距離位相が$T_6$である}.
-			\end{align}
+			任意の擬距離位相空間は完全正規である．特に以下は全て同値である:
+			\begin{description}
+				\item[(a)] 擬距離が距離である．
+				\item[(b)] 擬距離位相が$T_0$である．
+				\item[(c)] 擬距離位相が$T_6$である．
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$(S,d)$を擬距離空間として擬距離位相を入れるとき，$A,B$を交わらない$S$の閉集合として
-		\begin{align}
-			f(x) \coloneqq \frac{d(x,A)}{d(x,A) + d(x,B)},
-			\quad (\forall x \in S)
-		\end{align}
-		により$f:S \longrightarrow \R$を定めれば，
-		定理\ref{thm:continuity_of_pseudometrics}より$f$は連続であり
-		\begin{align}
-			A = f^{-1}(\{0\}),\quad B = f^{-1}(\{1\})
-		\end{align}
-		が満たされるから$S$は完全正規である．また$d$が距離であるとき，
-		定理\ref{thm:pseudometric_is_metric_iff_T_0}より
-		$S$はHausdorffかつ完全正規となるから$T_6$となる．
-		逆に$S$が$T_6$なら$T_0$であるから$d$は距離となる．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$(S,d)$を擬距離空間として擬距離位相を入れるとき，$A,B$を交わらない$S$の閉集合として
+				\begin{align}
+					f(x) \coloneqq \frac{d(x,A)}{d(x,A) + d(x,B)},
+					\quad (\forall x \in S)
+				\end{align}
+				により$f:S \longrightarrow \R$を定めれば，
+				定理\ref{thm:continuity_of_pseudometrics}より$f$は連続であり
+				\begin{align}
+					A = f^{-1}(\{0\}),\quad B = f^{-1}(\{1\})
+				\end{align}
+				が満たされるから$S$は完全正規である．
+				
+			\item[第二段] 
+				$d$が距離なら$S$はHausdorffである．
+				実際，相異なる二点$x,y \in S$に対し
+				\begin{align}
+					B_\epsilon(x) \coloneqq \Set{s \in S}{d(s,x) < \frac{\epsilon}{2}},
+					\quad B_\epsilon(y) \coloneqq \Set{s \in S}{d(s,y) < \frac{\epsilon}{2}},
+					\quad (\epsilon \coloneqq d(x,y))
+				\end{align}
+				で交わらない開球を定めれば，$x$と$y$は
+				$B_\epsilon(x)$と$B_\epsilon(y)$で分離される．
+				従って距離位相は完全正規Hausdorffとなり$(a) \Longrightarrow (c)$を得る．
+				
+			\item[第三段]
+				位相空間が$T_6$なら$T_0$であるから$(c) \Longrightarrow (b)$が従う．
+				また$S$が$T_0$であるとき，相異なる二点$x,y$に対し
+				$x \notin \overline{\{y\}}$又は$y \notin \overline{\{x\}}$となるが，
+				$x \notin \overline{\{y\}}$とすれば
+				$\overline{\{y\}} \subset S \backslash B_r(x)$
+				を満たす$r > 0$が存在し，$d(x,y) \geq r > 0$が成り立つから
+				$d$は距離となる．これにより$(b) \Longrightarrow (a)$が出る．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
@@ -353,8 +337,19 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[Nagata-Smirnov]\label{thm:Nagata_Smirnov_metrizability}
-			位相空間は，$\mbox{$T_3$かつ$\sigma$-局所有限な基底を持つ} \Longleftrightarrow \mbox{距離化可能}$．
+		\begin{thm}[距離化可能性の必要十分条件]\label{thm:Nagata_Smirnov_metrizability}
+			空でない任意の位相空間について以下は同値である:
+			\begin{description}
+				\item[(a)] 擬距離化可能である．
+				\item[(b)] 正則かつ$\sigma$-局所有限な基底を持つ．
+				\item[(c)] 一様化可能であり，両立する近縁系は可算な基本近縁系を持つ．
+			\end{description}
+			特に，次もまた同値となる:
+			\begin{description}
+				\item[(a')] 距離化可能である．
+				\item[(b')] 正則Hausdorff($T_3$)かつ$\sigma$-局所有限な基底を持つ．
+				\item[(c')] Hausdorff一様化可能であり，両立する近縁系は可算な基本近縁系を持つ．
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
