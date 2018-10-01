@@ -1,0 +1,299 @@
+\subsection{可算公理}
+	\begin{screen}
+		\begin{thm}[可算コンパクト性の同値条件]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[開基]
+			位相空間$(S,\mathscr{O})$において，
+			$\mathscr{O}$の部分集合$\mathscr{B}$で
+			\begin{align}
+				\mathscr{O}
+				= \Set{\bigcup \mathscr{U}}{\mathscr{U} \subset \mathscr{B}}
+			\end{align}
+			を満たすもの，ただし$\bigcup \emptyset = \emptyset$，
+			を$\mathscr{O}$の{\bf 開基}\index{かいき@開基}や
+			{\bf 基底}\index{きてい@基底}，{\bf 基}\index{き@基}{\bf (base)}と呼ぶ．
+			基底は一意に定まるものではない．
+			$S \neq \emptyset$のときは$\mathscr{B}$の任意の元は空集合でないとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[可算公理]
+			位相空間$S$において，任意の点が高々可算な基本近傍系を持つとき
+			$S$は{\bf 第一可算公理}
+			\index{だいいちかさんこうり@第一可算公理}
+			{\bf (the first axiom of countability)}を満たす，或は
+			$S$は第一可算であるといい，
+			$S$が高々可算な基底を持つとき
+			$S$は{\bf 第二可算公理}
+			\index{だいにかさんこうり@第二可算公理}
+			{\bf (the second axiom of countability)}を満たす，或は
+			$S$は第二可算であるという．
+		\end{dfn}
+	\end{screen}
+	空集合(要素数0)を含む任意の有限位相空間は，その冪集合が有限集合であるから
+	第二可算公理を満たす．
+	
+	\begin{screen}
+		\begin{thm}[第二可算なら第一可算]
+			空でない第二可算空間は第一可算である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{B}$を空でない第二可算空間$S$の可算基とするとき，任意の$x \in S$に対して
+		\begin{align}
+			\mathscr{U}(x) \coloneqq
+			\Set{B \in \mathscr{B}}{x \in B}
+		\end{align}
+		で可算な基本近傍系が定まる．実際
+		$x$の任意の近傍$U$に対し或る$B \in \mathscr{B}$で
+		\begin{align}
+			x \in B \subset U^{\mathrm{o}}
+		\end{align}
+		が成立し，定義より$B \in \mathscr{U}(x)$が満たされる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[稠密・可分]
+			位相空間$S$において，$\overline{M} = S$を満たすような部分集合$M$を
+			$S$で{\bf 稠密}\index{ちゅうみつ@稠密}な{\bf (dense)}部分集合と呼ぶ．
+			また高々可算かつ稠密な部分集合$M$が存在するとき$S$は{\bf 可分}
+			\index{かぶん@可分}である{\bf (separable)}という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[第二可算なら可分]\label{thm:second_countable_then_separable}
+			第二可算位相空間は可分である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{B}$を第二可算空間$S$の可算基とするとき，
+		$S = \emptyset$なら$\emptyset$は$S$の唯一の部分集合であり，
+		要素数$0$かつ$\overline{\emptyset} = \emptyset = S$を満たすから
+		$S$は可分である．$S \neq \emptyset$のとき，
+		選択関数$\Phi \in \prod \mathscr{B} = \prod_{B \in \mathscr{B}} B$を取り
+		\begin{align}
+			M \coloneqq \Set{\Phi(B)}{B \in \mathscr{B}}
+		\end{align}
+		で可算集合を定めれば，任意の$x \in S$及び$x$の任意の近傍$U$に対し
+		$x \in B \subset U^{\mathrm{o}}$を満たす
+		$B \in \mathscr{B}$が存在して
+		\begin{align}
+			\Phi(B) \in B \cap M \subset U \cap M
+		\end{align}
+		となるから，定理\ref{thm:belongs_to_closure_iff_clusters}より
+		$S = \overline{M}$が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[局所有限]
+			$\mathscr{F}$を位相空間$S$の部分集合族とする．
+			任意の$x \in S$が$\mathscr{F}$の高々有限個の元としか交叉しない近傍を持つとき，
+			$\mathscr{F}$は{\bf 局所有限}\index{きょくしょゆうげん@局所有限}
+			{\bf (locally finite)}であるという．また
+			$\mathscr{F}$が局所有限な部分集合族の可算和で表されるとき，
+			$\mathscr{F}$は{\bf $\sigma$-局所有限}
+			\index{しぐまきょくしょゆうげん@$\sigma$-局所有限}であるという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\sigma$-局所有限な基底が存在すれば第一可算]
+			$\sigma$-局所有限な基底が存在する空でない位相空間は第一可算である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$S$を空でない位相空間，$\mathscr{B} = \bigcup_{n=1}^\infty \mathscr{B}_n$を
+		$\sigma$-局所有限な基底とする(各$\mathscr{B}_n$は局所有限)．
+		任意の$x \in S$で
+		\begin{align}
+			\mathscr{U}_n(x) \coloneqq \Set{B \in \mathscr{B}_n}{x \in B},
+			\quad \mathscr{U}(x) \coloneqq \bigcup_{n=1}^\infty \mathscr{U}_n(x)
+		\end{align}
+		と定めれば，局所有限性より$\mathscr{U}_n(x)$は有限集合であるから
+		$\mathscr{U}(x)$は可算集合である．また$x$の任意の近傍$U$に対し
+		\begin{align}
+			x \in B \subset U^{\mathrm{o}}
+		\end{align}
+		を満たす$B \in \mathscr{B}$が存在し，定義より$B \in \mathscr{U}(x)$
+		が成り立つから$\mathscr{U}(x)$は$x$の可算な基本近傍系をなす．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[可分空間の局所有限な開集合族は高々可算集合]
+		\label{thm:locally_finite_family_of_open_sets_is_countable_in_separable_space}
+			$S$を空でない可分位相空間，
+			$M$を$S$で稠密な高々可算集合，$\mathscr{B}$を
+			$S$の空でない開集合から成る族とするとき，
+			\begin{align}
+				\mathscr{B} = \bigcup_{m \in M} \Set{B \in \mathscr{B}}{m \in B}
+				\label{eq:thm_locally_finite_family_of_open_sets_is_countable_in_separable_space}
+			\end{align}
+			が成立する．特に$\mathscr{B}$が局所有限なら$\mathscr{B}$は高々可算集合である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		稠密性より任意の$E \in \mathscr{B}$は
+		$E \cap M \neq \emptyset$を満たすから，$m \in E \cap M$で$
+		E \in \Set{B \in \mathscr{B}}{m \in B}$となり
+		(\refeq{eq:thm_locally_finite_family_of_open_sets_is_countable_in_separable_space})が出る．
+		$\mathscr{B}$が局所有限なら$\Set{B \in \mathscr{B}}{m \in B}$は全て有限集合となり
+		$\mathscr{B}$は高々可算集合となる．
+		\QED	
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\sigma$-局所有限な基底が存在すれば，可分$\Longleftrightarrow$第二可算]
+			$\sigma$-局所有限な基底が存在する空でない位相空間において，
+			可分であることと第二可算であることは同値になる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		空でない可分位相空間において$\sigma$-局所有限な基底が存在するとき，
+		定理\ref{thm:locally_finite_family_of_open_sets_is_countable_in_separable_space}
+		よりその基底は高々可算集合であるから第二可算性が満たされる．
+		逆に第二可算なら可分であるから定理の主張を得る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[正則かつ$\sigma$-局所有限な基底を持つ$\Longrightarrow$完全正規]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[細分・パラコンパクト]\mbox{}
+			\begin{itemize}
+				\item $\mathscr{A}$と$\mathscr{B}$を或る集合の被覆とする．
+					任意の$B \in \mathscr{B}$に対し$B \subset A$を満たす
+					$A \in \mathscr{A}$が存在するとき，
+					$\mathscr{B}$を$\mathscr{A}$の{\bf 細分}
+					\index{さいぶん@細分}{\bf (refinement)}と呼ぶ．
+					位相空間において，被覆の細分で元が全て開(閉)集合であるものを
+					{\bf 開(閉)細分}\index{かいさいぶん@開細分}
+					{\bf (open(closed) refinement)}と呼ぶ．
+					
+				\item 任意の開被覆が局所有限な開細分を持つ
+					位相空間は{\bf パラコンパクト}\index{ぱらこんぱくと@パラコンパクト}
+					{\bf (paracompact)}であるという．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[正則空間の開被覆に対し，$\sigma$-局所有限な開細分が存在する
+		$\Longleftrightarrow$局所有限な開細分が存在する]
+			$S$を正則空間，$\mathscr{S}$を$S$の開被覆とするとき，以下は全て同値になる:
+			\begin{description}
+				\item[(a)] $\mathscr{S}$が$\sigma$-局所有限な開細分を持つ．
+				\item[(b)] $\mathscr{S}$が局所有限な細分を持つ．
+				\item[(c)] $\mathscr{S}$が局所有限な閉細分を持つ．
+				\item[(d)] $\mathscr{S}$が局所有限な開細分を持つ．
+			\end{description}
+		\end{thm}	
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[第二可算空間の任意の基底は可算基を内包する]\label{thm:countable_base_of_second_countable_space}
+			$\mathscr{B}$を第二可算空間$S$の任意の基底とするとき，或る可算部分集合
+			$\mathscr{B}_0 \subset \mathscr{B}$もまた$S$の基底となる．
+			すなわち第二可算空間はLindel\Ddot{o}f性を持つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{D}$を$S$の可算基とする．
+		任意の開集合$U$に対し或る$\mathscr{B}_U \subset \mathscr{B}$が存在して
+		$U = \bigcup_{V \in \mathscr{B}_U}V$を満たすから，
+		\begin{align}
+			\mathscr{D}_U \coloneqq
+			\Set{W \in \mathscr{D}}{W \subset V,\ V \in \mathscr{B}_U}
+			\label{eq:thm_countable_base_of_second_countable_space_1}
+		\end{align}
+		とおけば$U = \bigcup_{V \in \mathscr{B}_U} V
+			= \bigcup_{V \in \mathscr{B}_U} \bigcup_{\substack{W \in \mathscr{D}_U \\ W \subset V}} W
+			\subset \bigcup_{W \in \mathscr{D}_U} W
+			\subset U$より
+		\begin{align}
+			U = \bigcup_{W \in \mathscr{D}_U} W
+			\label{eq:thm_countable_base_of_second_countable_space_2}
+		\end{align}
+		が成り立つ．ここで(\refeq{eq:thm_countable_base_of_second_countable_space_1})より
+		任意の$W \in \mathscr{D}_U$に対して
+		$\Set{V \in \mathscr{B}}{W \subset V} \neq \emptyset$であるから
+		\begin{align}
+			\Phi_U \in \prod_{W \in \mathscr{D}_U} \Set{V \in \mathscr{B}}{W \subset V}
+		\end{align}
+		が取れる．$\mathscr{B}_U' \coloneqq \Set{\Phi_U(W)}{W \in \mathscr{D}_U}$とすれば
+		$U = \bigcup_{W \in \mathscr{D}_U} W \subset \bigcup_{W \in \mathscr{D}_U} \Phi(W)
+		\subset \bigcup_{V \in \mathscr{B}_U'} V \subset U$より
+		\begin{align}
+			U = \bigcup_{V \in \mathscr{B}_U'} V
+			\label{eq:thm_countable_base_of_second_countable_space_3}
+		\end{align}
+		が満たされ，
+		\begin{align}
+			\mathscr{B}_0 \coloneqq \bigcup_{W \in \mathscr{D}} \mathscr{B}_W'
+		\end{align}
+		と定めれば$\mathscr{B}_0$は求める$S$の可算基となる．実際，任意の開集合$U$に対し
+		(\refeq{eq:thm_countable_base_of_second_countable_space_2})と
+		(\refeq{eq:thm_countable_base_of_second_countable_space_3})より
+		\begin{align}
+			U = \bigcup_{W \in \mathscr{D}_U} W
+			= \bigcup_{W \in \mathscr{D}_U} \bigcup_{V \in \mathscr{B}_W'} V
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[局所コンパクトHausdorff空間が第二可算なら$\sigma$-コンパクト]\label{thm:second_countable_Hausdorff_sigma_compact}
+			$S$が第二可算性をもつ局所コンパクトHausdorff空間なら，
+			次を満たすコンパクト部分集合の列$(K_n)_{n=1}^\infty$が存在する:
+			\begin{align}
+				K_n \subset K_{n+1}^{\mathrm{o}},
+				\quad S = \bigcup_{n=1}^\infty K_n.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		任意の$x \in S$に対して閉包がコンパクトな開近傍$U_x$を取っておく．
+		$\mathscr{O}$を$S$の開集合系として
+		\begin{align}
+			\mathscr{B} \coloneqq
+			\Set{U \in \mathscr{O}}{\mbox{$\overline{U}$がコンパクト}}
+		\end{align}
+		とおけば，$\mathscr{B}$は$\mathscr{O}$の基底となる．実際，
+		任意の$O \in \mathscr{O}$に対し$O \cap U_x \in \mathscr{B}$かつ
+		\begin{align}
+			O = \bigcup_{x \in O} O \cap U_x
+		\end{align}
+		となる．従って定理\ref{thm:countable_base_of_second_countable_space}より
+		或る可算部分集合$\{U_n\}_{n=1}^\infty \subset \mathscr{B}$が
+		$\mathscr{O}$の基底となる．いま，$K_1 \coloneqq \overline{U_1}$として，
+		またコンパクト集合$K_n$が選ばれたとして，
+		$K_n$の有限被覆$\mathscr{U}_n \subset \mathscr{B}_0$を取り
+		\begin{align}
+			K_{n+1} \coloneqq \overline{U_{n+1}} \cup \bigcup_{V \in \mathscr{U}_n} \overline{V}
+		\end{align}
+		とすれば，$K_{n+1}$はコンパクトであり$K_n \subset K_{n+1}^{\mathrm{o}}$を満たす．
+		この操作で$(K_n)_{n=1}^\infty$を構成すれば
+		\begin{align}
+			S = \bigcup_{n=1}^\infty U_n \subset \bigcup_{n=1}^\infty K_n \subset S
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
