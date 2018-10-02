@@ -9,7 +9,7 @@
 					\index{いそうてきにしきべつかのう@位相的に識別可能}である
 					{\bf (topologically distinguishable)}という．
 				\item $A,B \subset S$に対し$\overline{A} \cap B = \emptyset$
-					或は$A \cap \overline{B} = \emptyset$が満たされるとき，
+					かつ$A \cap \overline{B} = \emptyset$が満たされるとき，
 					$A$と$B$は{\bf 分離される}
 					\index{ぶんりされる@(集合が)分離される}
 					{\bf (separeted)}という．点と点，点と集合の分離は一点集合を考える．
@@ -73,6 +73,36 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[部分空間の互いに素な閉集合はもとの空間で分離される]
+		\label{thm:disjoint_relative_closed_sets_are_separated}
+			$S$を位相空間，$T$を$S$の部分集合とする．
+			このとき$T$上の相対閉集合$A,B$に対し，
+			$A \cap B = \emptyset$ならば$A \cap \overline{B} = \emptyset$
+			かつ$\overline{A} \cap B = \emptyset$が成り立つ．ただし上線は$S$における閉包を表す．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$A,B$は一方が空なら分離される．そうでない場合は対偶を示す．
+		$A \cap \overline{B} \neq \emptyset$のとき，
+		$x \in A \cap \overline{B}$を取り，
+		$U$を$x$の$T$における近傍とすれば，
+		$x$の$S$における近傍$V$で$U = T \cap V$を満たすものが存在する．
+		このとき
+		\begin{align}
+			U \cap B = (T \cap V) \cap B = T \cap (V \cap B) = V \cap B
+		\end{align}
+		となるが，一方で$x \in \overline{B}$と定理\ref{thm:belongs_to_closure_iff_clusters}より
+		\begin{align}
+			V \cap B \neq \emptyset
+		\end{align}
+		が成り立ち，$B$は$T$で閉じているから$x \in B$が従う．
+		対称的に$\overline{A} \cap B \neq \emptyset$の場合も
+		$A \cap B \neq \emptyset$が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{dfn}[分離公理]\mbox{}
 			\begin{itemize}
 				\item 任意の二点が位相的に識別可能である位相空間を{\bf $T_0$空間}
@@ -123,13 +153,13 @@
 	
 	\begin{screen}
 		\begin{thm}[$T_1$空間とは一点集合が閉である空間]
-			位相空間$S$に対し，
-			\begin{align}
-				\mbox{$S$が$T_1$}
-				&\quad \Longleftrightarrow \quad \mbox{$S$は$T_0$かつ位相的に識別可能な任意の二点が分離される} \\
-				&\quad \Longleftrightarrow \quad \mbox{$S$の任意の一点集合は閉} \\
-				&\quad \Longleftrightarrow \quad \mbox{$x \in S$が$A \subset S$の集積点であることと$x$の任意の開近傍が$A$と交わることは同値}.
-			\end{align}
+			位相空間$S$に対し，以下は全て同値になる:
+			\begin{description}
+				\item[(a)] $S$が$T_1$である．
+				\item[(b)] $S$が$T_0$であり，位相的に識別可能な任意の二点が分離される．
+				\item[(c)] $S$の任意の一点集合が閉である．
+				\item[(d)] $x \in S$が$A \subset S$の集積点であることと$x$の任意の開近傍が$A$と交わることは同値になる．
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
@@ -144,6 +174,33 @@
 		$U_0 \coloneqq U^{\mathrm{o}},\ 
 		x_0 \in (U^{\mathrm{o}} \backslash \{x\}) \cap A$を出発点とすれば
 		$A$は$U$の無限集合$\{x_n\}_{n=1}^\infty$を含む．
+	\end{prf}
+	
+	$T_1$空間でもHausdorffであるとは限らない．実際，$\N$において
+	\begin{align}
+		\Set{O \subset \N}{\mbox{$O = \emptyset$，又は$\N \backslash O$が有限集合}}
+	\end{align}
+	で位相を定めるとき，一点集合は常に閉となるが，
+	任意の空でない二つの開集合は必ず交叉する(そうでないと有限集合が無限集合を包含することになる)
+	のでHausdorff空間とはならない．一方でHausdorff空間は一般に$T_1$である．
+	
+	\begin{screen}
+		\begin{thm}[$T_2 \Longrightarrow T_1$]
+			Hausdorff空間は$T_1$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$をHausdorff空間の点とする．$x$と異なる任意の点$y$に対して
+		\begin{align}
+			x \in U_y,\quad y \in V_y,\quad U_y \cap V_y = \emptyset
+		\end{align}
+		を満たす開集合$U_y,V_y$が存在し，このとき
+		\begin{align}
+			\{x\} = \bigcap_{y\, :\, x \neq y} V_y^c
+		\end{align}
+		となるから$\{x\}$は閉である．つまりHausdorff空間は$T_1$である．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
@@ -243,6 +300,22 @@
 		\end{align}
 		となるから$\Set{x \in S}{f(x) \neq g(x)}$は$S$の開集合である．
 		従って$E$は閉である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$T_3 \Longrightarrow T_2$]
+			$T_3$空間はHausdorffである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$T_3$空間は$T_0$であるから，相異なる二点$x,y$に対して
+		$x \in \overline{\{y\}}$或は$y \in \overline{\{x\}}$が成り立つ．正則性より
+		\begin{align}
+			f(x) = 0,\quad f(y) = 1
+		\end{align}
+		を満たす連続写像が存在し，$x,y$は$f^{-1}([0,1/2))$と$f^{-1}((1/2,1])$で分離される．
 		\QED
 	\end{prf}
 	
@@ -496,25 +569,41 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[$T_2$なら$T_1$]
+		\begin{thm}[$T_4 \Longrightarrow T_3$]
 		\end{thm}
 	\end{screen}
+	
 	\begin{screen}
-		\begin{thm}[$T_3$なら$T_2$]
+		\begin{thm}[$T_6 \Longrightarrow T_5 \Longrightarrow T_4$]
+			完全正規Hausdorff空間は全部分正規である．
+			特に，全部分正規なら正規であるから
+			$T_6 \Longrightarrow T_5 \Longrightarrow T_4$となる．
 		\end{thm}
 	\end{screen}
-	\begin{screen}
-		\begin{thm}[$T_4$なら$T_3$]
-		\end{thm}
-	\end{screen}
-	\begin{screen}
-		\begin{thm}[$T_5$なら$T_4$]
-		\end{thm}
-	\end{screen}
-	\begin{screen}
-		\begin{thm}[$T_6$なら$T_5$]
-		\end{thm}
-	\end{screen}
+	
+	\begin{prf}
+		$S$を完全正規空間，$T$を$S$の空でない部分集合とするとき，
+		任意に$T$の空でない閉集合$A,B$を取れば，
+		$A,B$の$S$における閉包$\overline{A},\overline{B}$に対し
+		或る連続写像$f,g:S \longrightarrow [0,1]$で
+		\begin{align}
+			\overline{A} = f^{-1}(\{0\}),
+			\quad \overline{B} = g^{-1}(\{0\})
+		\end{align}
+		を満たすものが存在する．
+		$h:S \longrightarrow \R$を$h \coloneqq f - g$で定めれば，
+		定理\ref{thm:disjoint_relative_closed_sets_are_separated}より
+		$A,B$は$S$で分離されるから
+		\begin{align}
+			\begin{cases}
+				h(x) < 0, & (x \in A), \\
+				h(x) > 0, & (x \in B)
+			\end{cases}
+		\end{align}
+		が成り立つ．$A \subset T \cap h^{-1}((-\infty,0))$かつ
+		$B \subset T \cap h^{-1}((0,\infty))$より$A,B$は$T$における開近傍で分離される．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[$G_\delta$集合・$F_\sigma$集合]
