@@ -133,6 +133,7 @@
 	
 	\begin{screen}
 		\begin{thm}[一点を追加すればコンパクト空間となる(Alexandroff拡大)]
+		\label{thm:Alexandroff_compactification}
 			$S$をコンパクトではない位相空間，$x_\infty$を$S$に属さない点とする．
 			このとき$K \coloneqq S \cup \{x_\infty\}$とおいて，
 			$K$の部分集合族$\mathscr{O}$を
@@ -205,11 +206,11 @@
 				\begin{align}
 					\begin{cases}
 						x_\infty \in U \Longrightarrow 
-						\mbox{$i^{-1}(U) = U$は$S$の開集合} & \\
+						\mbox{$i^{-1}(U) = U$は$S$の開集合，} & \\
 						x_\infty \notin U \Longrightarrow
 						\mbox{$S \cap U = S \backslash (K \backslash U)$かつ
 						$K \backslash U$が$S$の閉集合であるから
-						$i^{-1}(U) = S \cap U$は$S$の開集合}
+						$i^{-1}(U) = S \cap U$は$S$の開集合，}
 					\end{cases}
 				\end{align}
 				が成り立つから$i$の連続性も出る．
@@ -222,16 +223,64 @@
 				
 			\item[第四段] $K$がコンパクトであることを示す．
 				$\mathscr{B}$を$K$の開被覆とすれば$x_\infty$を含む
-				$B_0 \in \mathscr{B}$が取れる．$K \backslash B_0$は$S$でコンパクトであり，
-				$\Set{S \cap B}{B \in \mathscr{B}}$は$K \backslash B_0$の
+				$B_\infty \in \mathscr{B}$が取れる．$K \backslash B_\infty$は$S$でコンパクトであり，
+				$\Set{S \cap B}{B \in \mathscr{B}}$は$K \backslash B_\infty$の
 				$S$における開被覆となるから，有限部分集合
 				$\mathscr{B}' \subset \mathscr{B}$で
 				\begin{align}
-					K \backslash B_0 \subset \bigcup \mathscr{B}'
+					K \backslash B_\infty \subset \bigcup \mathscr{B}'
 				\end{align}
-				を満たすものが存在する．$K = B_0 \cup \bigcup \mathscr{B}'$が成り立つから
+				を満たすものが存在する．$K = B_\infty \cup \bigcup \mathscr{B}'$が成り立つから
 				$K$はコンパクトである．
 				
-			\item[第五段] 
+			\item[第五段] (1)を示す．$S$が$T_1$であるとき，任意の$x \in S$に対し
+				$\{x\}$は$S$で閉かつコンパクトであるから$K$で閉じる．また$S \in \mathscr{O}$より
+				$\{x_\infty\} = K \backslash S$は$K$で閉となり
+				$\Longrightarrow$を得る．逆に$K$が$T_1$であるとき，
+				任意の$x \in S$に対し
+				\begin{align}
+					S \backslash \{x\} = S \cap (K \backslash \{x\})
+				\end{align}
+				かつ右辺は$S$の開集合であるから$\{x\}$は$S$の閉集合となり$\Longleftarrow$を得る．
+			
+			\item[第六段] (2)を示す．$S$が局所コンパクトHausdorffであるとして任意に相異なる二点
+				$x,y \in K$を取れば，$x,y \in S$なら$x,y$は$S$の開集合で分離されるが，
+				$S$の開集合は$K$の開集合となるから$x,y$は$K$の開集合で分離されることになる．
+				一方で$x = x_\infty$なら，$y$は$S$でコンパクト(かつ$S$のHausdorff性より閉)な近傍$C$を持ち，
+				$K \backslash C \in \mathscr{O}$が従うから$K \backslash C$は
+				$x_\infty$の開近傍となる．よって$\Longrightarrow$を得る．
+				逆に$K$がHausdorffであるとき，$S$は$K$の部分空間であるから$S$もHausdorffとなる．
+				また任意の$x \in S$に対し，$x$と$x_\infty$は$K$の開集合$U,V$で分離されるが，このとき
+				$K \backslash V$は$S$で閉かつコンパクトとなり，
+				\begin{align}
+					x \in (S \cap U) \subset K \backslash V 
+				\end{align}
+				より$K \backslash V$は$x$の$S$における近傍となるから$S$の局所コンパクト性も出る．
+				
+			\item[第七段] 
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[局所コンパクトHausdorff空間において$T_2 \Longleftrightarrow T_{3{}^1{\mskip -5mu/\mskip -3mu}_2}$]
+		\label{thm:T_2_equals_to_T_3_in_locally_compact_spaces}
+			局所コンパクトHausdorff空間はTychonoffである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$S$をコンパクトHausdorff空間とするとき，$S$の閉集合はコンパクトとなるから
+				定理\ref{thm:Hausdorff_space_two_disjoint_compact_sets_are_separated_by_nbh}
+				より$S$は正則Hausdorffとなり，Urysohnの補題よりTychonoffとなる．
+				
+			\item[第二段]
+				$S$をコンパクトではない局所コンパクトHausdorff空間とすれば，
+				定理\ref{thm:Alexandroff_compactification}より
+				$S$は或るコンパクトHausdorff空間$K$に埋め込まれる．
+				前段より$K$はTychonoffであり，$S$もTychonoffとなる．
+				\QED
 		\end{description}
 	\end{prf}
