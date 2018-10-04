@@ -133,6 +133,26 @@
 	
 	\begin{screen}
 		\begin{thm}[一点を追加すればコンパクト空間となる(Alexandroff拡大)]
+			$S$をコンパクトではない位相空間，$x_\infty$を$S$に属さない点とする．
+			このとき$K \coloneqq S \cup \{x_\infty\}$とおいて，
+			$K$の部分集合族$\mathscr{O}$を
+			\begin{align}
+				U \in \mathscr{O} \overset{\mathrm{def}}{\Longleftrightarrow}
+				\begin{cases}
+					\mbox{$x_\infty \notin U$なら$U$は$S$の開集合，} & \\
+					\mbox{$x_\infty \in U$なら$K \backslash U$は$S$で閉かつコンパクト，} &
+				\end{cases}
+			\end{align}
+			により定めれば，$\mathscr{O}$は$K$上の位相となり，$K$は$S$の
+			($S$から$K$への恒等写像による)コンパクト化となる．
+			また以下が成立する:
+			\begin{description}
+				\item[(1)] $\mbox{$S$が$T_1$} \quad 
+					\Longleftrightarrow \quad \mbox{$K$が$T_1$}$.
+					
+				\item[(2)] $\mbox{$S$が局所コンパクトHausdorff} \quad 
+					\Longleftrightarrow \quad \mbox{$K$がHausdorff}$.
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
@@ -181,6 +201,37 @@
 				
 			\item[第二段] $S$から$K$への恒等写像$i$が埋め込みであることを示す．
 				実際$i$は単射であり，また$\mathscr{O}$が$S$の位相を含むから
-				$i$は開写像でもある．$i$の連続性は
+				$i$は開写像でもある．任意に$U \in \mathscr{O}$を取れば
+				\begin{align}
+					\begin{cases}
+						x_\infty \in U \Longrightarrow 
+						\mbox{$i^{-1}(U) = U$は$S$の開集合} & \\
+						x_\infty \notin U \Longrightarrow
+						\mbox{$S \cap U = S \backslash (K \backslash U)$かつ
+						$K \backslash U$が$S$の閉集合であるから
+						$i^{-1}(U) = S \cap U$は$S$の開集合}
+					\end{cases}
+				\end{align}
+				が成り立つから$i$の連続性も出る．
+				
+			\item[第三段] $S$が$K$で稠密であることを示す．
+				$S$はコンパクトでないから$\{x_\infty\}$は$K$の開集合ではなく，
+				$x_\infty$の任意の近傍は$S$と交わることになる．
+				従って定理\ref{thm:belongs_to_closure_iff_clusters}より
+				$x_\infty \in \overline{S}$となり$\overline{S} = K$を得る．
+				
+			\item[第四段] $K$がコンパクトであることを示す．
+				$\mathscr{B}$を$K$の開被覆とすれば$x_\infty$を含む
+				$B_0 \in \mathscr{B}$が取れる．$K \backslash B_0$は$S$でコンパクトであり，
+				$\Set{S \cap B}{B \in \mathscr{B}}$は$K \backslash B_0$の
+				$S$における開被覆となるから，有限部分集合
+				$\mathscr{B}' \subset \mathscr{B}$で
+				\begin{align}
+					K \backslash B_0 \subset \bigcup \mathscr{B}'
+				\end{align}
+				を満たすものが存在する．$K = B_0 \cup \bigcup \mathscr{B}'$が成り立つから
+				$K$はコンパクトである．
+				
+			\item[第五段] 
 		\end{description}
 	\end{prf}
