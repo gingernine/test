@@ -47,8 +47,9 @@
 			$(\omega,\emptyset,\sigma)$をPeanoシステムとするとき，
 			後継者写像$\sigma$は次を満たす:
 			\begin{description}
-				\item[(1)] $\emptyset \notin \sigma(\omega)$.
-				\item[(2)] 任意の$n,m \in \omega$に対して$\sigma(n) = \sigma(m)$ならば
+				\item[(1)] 任意の$n \in \omega$で$\emptyset \neq \sigma(n)$.
+				\item[(2)] 任意の$n \in \omega$で$n \notin n$.
+				\item[(3)] 任意の$n,m \in \omega$に対して$\sigma(n) = \sigma(m)$ならば
 					$n=m$.
 			\end{description}
 		\end{thm}
@@ -59,10 +60,27 @@
 			\item[(1)] 任意の$n \in \omega$に対し$\sigma(n) = n \cup \{n\}$は
 				$n$を元として持つから空ではない．
 				
-			\item[(2)] $\sigma(n) = \sigma(m)$のとき，
-				$n \in m \cup \{m\}$より$n \in m$または$n = m$であるが，
-				一方で$n \in m$と$n = m$は両立しない．実際$n \in m$かつ$n=m$のとき
-				$n \in n$となるが正則性公理の下でこれは否定される．
+			\item[(2)] $S \coloneqq \Set{n \in \omega}{\mbox{任意の$x$に対し$n \subset x \Longrightarrow x \notin n$}}$とおくとき，
+				先ず$\emptyset \in S$が成り立つ．また$n \in S$に対し
+				\begin{align}
+					\sigma(n) \subset x \quad \Longrightarrow \quad
+					n \subset x \quad \Longrightarrow x \notin n
+				\end{align}
+				となり，一方で$n \notin n$より$\sigma(n) \not\subset n$も満たされるから，
+				$\sigma(n) \subset x$なら$x \notin n \cup \{n\} = \sigma(n)$が従う．
+				これにより$\sigma(n)$は$S$に属するから，
+				数学的帰納法の原理より$S = \omega$が成立する．
+				
+			\item[(3)] $\sigma(n) = \sigma(m)$のとき
+				$n \in m \cup \{m\}$かつ$m \in n \cup \{n\}$が満たされるが，このとき論理式では
+				\begin{align}
+					(n \in m \cup \{m\}) \wedge (m \in n \cup \{n\})
+					&\equiv \left( (n \in m) \vee (n=m) \right) \wedge 
+						\left( (m \in n) \vee (n=m) \right) \\
+					&\equiv \left( (n \in m) \wedge (m \in n) \right) \vee (n = m) \\
+					&\equiv (n = m)
+				\end{align}
+				が成立する((2)より$(n \in m) \wedge (m \in n)$は偽である)．
 		\end{description}
 	\end{prf}
 	
