@@ -33,7 +33,83 @@
 	\end{screen}
 	
 	\begin{screen}
+		等号の公理
+	\end{screen}
+	
+	\begin{screen}
 		\begin{dfn}[Peanoの自然数の公理]
 			
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[後継者写像は単射]\label{thm:successor_mapping_is_injective}
+			$(\omega,\emptyset,\sigma)$をPeanoシステムとするとき，
+			後継者写像$\sigma$は次を満たす:
+			\begin{description}
+				\item[(1)] $\emptyset \notin \sigma(\omega)$.
+				\item[(2)] 任意の$n,m \in \omega$に対して$\sigma(n) = \sigma(m)$ならば
+					$n=m$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 任意の$n \in \omega$に対し$\sigma(n) = n \cup \{n\}$は
+				$n$を元として持つから空ではない．
+				
+			\item[(2)] $\sigma(n) = \sigma(m)$のとき，
+				$n \in m \cup \{m\}$より$n \in m$または$n = m$であるが，
+				一方で$n \in m$と$n = m$は両立しない．実際$n \in m$かつ$n=m$のとき
+				$n \in n$となるが正則性公理の下でこれは否定される．
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[再帰定理]
+			$X$を空でない集合，$a$を$X$の点，$f$を$X$から$X$への写像とし，
+			$(\omega,\emptyset,\sigma)$をPeanoシステムとする．
+			このとき，次を満たすような写像$u:\omega \longrightarrow X$がただ一つ存在する:
+			\begin{align}
+				u(\emptyset) = a,\quad u \circ \sigma = f \circ u.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\omega \times X$の部分集合で，
+		\begin{itemize}
+			\item $(\emptyset,a)$を含む
+			\item $(n,x)$を含むなら$(\sigma(n),f(x))$も含む
+		\end{itemize}
+		を満たすものの全体を$\mathscr{A}$で表し
+		\begin{align}
+			U \coloneqq \bigcap \mathscr{A}
+		\end{align}
+		とおく．このとき$U \in \mathscr{A}$であるが，一方で$U$は
+		$\omega$から$X$への或る写像のグラフになっている．これは
+		\begin{align}
+			S \coloneqq \Set{n \in \omega}{\mbox{$(n,x),(n,y) \in U$なら$x=y$}}
+		\end{align}
+		により定める$S$が$S = \omega$となることを示せばよい．
+		\begin{description}
+			\item[第一段] $\emptyset \in S$を示す．$a$とは異なる任意の$b \in X$に対し，
+				或る$A \in \mathscr{A}$で$(\emptyset,b) \in A$となるとき，
+				\begin{align}
+					A' \coloneqq A \backslash \{(\emptyset,b)\}
+				\end{align}
+				もまた$\mathscr{A}$に属する．実際$(\emptyset,a)$は
+				$A$から除かれていないから$(\emptyset,a) \in \mathscr{A}$，かつ
+				定理\ref{thm:successor_mapping_is_injective}より
+				\begin{align}
+					(n,x) \in A' \quad \Longrightarrow \quad
+					(\sigma(n),f(x)) \neq (\emptyset,b) \quad \Longrightarrow \quad
+					(\sigma(n),f(x)) \in A'
+				\end{align}
+				が満たされる．従って$(\emptyset,b) \notin U$が成り立ち，$b$の任意性より
+				$\emptyset \in S$が得られる．
+				
+			\item[第二段]
+		\end{description}
+	\end{prf}
