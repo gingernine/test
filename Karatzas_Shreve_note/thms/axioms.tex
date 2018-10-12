@@ -36,21 +36,77 @@
 		等号の公理
 	\end{screen}
 	
+\subsection{自然数}
+	`数とは何か'という問いは，つまるところ`自然数とは何者か'まで遡る．
+	John Von Neumann は空集合$\emptyset$を用いて自然数を構成した:
+	\begin{align}
+		0 &\coloneqq \emptyset, \\
+		1 &\coloneqq \{0\} = \{\emptyset\}, \\
+		2 &\coloneqq \{0,1\} = \{\emptyset,\{\emptyset\}\}, \\
+		3 &\coloneqq \{0,1,2\} = \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}, \\
+		&\vdots
+	\end{align}
+	は$0$を出発点とする自然数の構成例である．以下，自然数の体系を詳しく考察する．
+	
 	\begin{screen}
-		\begin{dfn}[Peanoの自然数の公理]
-			
+		\begin{dfn}[Peanoシステム]
+			無限公理により
+			\begin{itemize}
+				\item $\emptyset$を含み
+				\item 任意の要素$n$に対して$n \cup \{n\}$も要素として含む
+			\end{itemize}
+			を満たす集合が存在するが，このような集合を{\bf 後継者集合}
+			\index{こうけいしゃしゅうごう@後継者集合}{\bf (successor set)}と呼ぶ．
+			あらゆる後継者集合の共通部分を$\omega$で表し，写像$\sigma:\omega \longrightarrow
+			\omega$を
+			\begin{align}
+				\sigma:n \longmapsto n \cup \{n\}
+			\end{align}
+			で定めるとき，$\sigma$を{\bf 後継者写像}
+			\index{こうけいしゃしゃぞう@後継者写像}{\bf (successor mapping)}，
+			組$(\omega,\emptyset,\sigma)$を{\bf Peanoシステム}
+			\index{Peanoしすてむ@Peanoシステム}{\bf (Peano system)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[後継者写像は単射]\label{thm:successor_mapping_is_injective}
+		\begin{thm}[数学的帰納法の原理]
+		\label{thm:the_principle_of_mathematical_induction}
+			$(\omega,\emptyset,\sigma)$をPeanoシステムとするとき，
+			任意の後継者集合$S$に対して
+			\begin{align}
+				S \subset \omega \quad \Longrightarrow \quad S = \omega
+			\end{align}
+			が成立する．この性質を{\bf 数学的帰納法の原理}
+			\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
+			{\bf (the principle of mathematical induction)}と呼ぶ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\omega$は最小の後継者集合であるから$\omega \subset S$となり，
+		外延性公理より$S = \omega$が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[後継者写像は全単射]
+		\label{thm:successor_mapping_is_injective}
 			$(\omega,\emptyset,\sigma)$をPeanoシステムとするとき，
 			後継者写像$\sigma$は次を満たす:
 			\begin{description}
 				\item[(1)] 任意の$n \in \omega$で$\emptyset \neq \sigma(n)$.
 				\item[(2)] 任意の$n \in \omega$で$n \notin n$.
-				\item[(3)] 任意の$n,m \in \omega$に対して$\sigma(n) = \sigma(m)$ならば
-					$n=m$.
+				\item[(4)] $\sigma$は$\omega$から$\omega \backslash \{\emptyset\}$
+					への全単射である．
+				
+				\item[(3)] 任意の$n,m \in \omega$に対し，
+					\begin{align}
+						n \in m,\quad n = m,\quad m \in n
+					\end{align}
+					のいずれか一つは成立し，そしてどの二つも両立しない．
+				\item[(5)] $E$を$\omega$の空でない部分集合とするとき，或る$k \in E$が存在して，
+					任意の$m \in E$に対し$k \in m$又は$k = m$を満たす．
 			\end{description}
 		\end{thm}
 	\end{screen}
@@ -85,12 +141,13 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[再帰定理]
+		\begin{thm}[再帰定理]\label{thm:Peano_recursion_theorem}
 			$X$を空でない集合，$a$を$X$の点，$f$を$X$から$X$への写像とし，
 			$(\omega,\emptyset,\sigma)$をPeanoシステムとする．
 			このとき，次を満たすような写像$u:\omega \longrightarrow X$がただ一つ存在する:
 			\begin{align}
 				u(\emptyset) = a,\quad u \circ \sigma = f \circ u.
+				\label{eq:thm_Peano_recursion_theorem}
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -110,9 +167,9 @@
 		\begin{align}
 			S \coloneqq \Set{n \in \omega}{\mbox{$(n,x),(n,y) \in U$なら$x=y$}}
 		\end{align}
-		により定める$S$が$S = \omega$となることを示せばよい．
+		により定める$S$が$\omega$に一致することを示せばよい．
 		\begin{description}
-			\item[第一段] $\emptyset \in S$を示す．$a$とは異なる任意の$b \in X$に対し，
+			\item[第一段] $\emptyset \in S$を示す．$a$とは異なる$b \in X$に対し，
 				或る$A \in \mathscr{A}$で$(\emptyset,b) \in A$となるとき，
 				\begin{align}
 					A' \coloneqq A \backslash \{(\emptyset,b)\}
@@ -125,9 +182,48 @@
 					(\sigma(n),f(x)) \neq (\emptyset,b) \quad \Longrightarrow \quad
 					(\sigma(n),f(x)) \in A'
 				\end{align}
-				が満たされる．従って$(\emptyset,b) \notin U$が成り立ち，$b$の任意性より
-				$\emptyset \in S$が得られる．
+				が満たされる．従って全ての$b \in X,\ (a \neq b)$で
+				$(\emptyset,b) \notin U$が成り立ち$\emptyset \in S$が得られる．
 				
-			\item[第二段]
+			\item[第二段] 
+				任意に$n \in S$を取れば或る$x \in X$がただ一つ対応して$(n,x) \in U$となるが，
+				このとき
+				\begin{align}
+					B \coloneqq (\omega \times X) \backslash \Set{(n,y)}{y \in X,\ x \neq y}
+				\end{align}
+				とおけば$B \in \mathscr{A}$が成り立つ．そして
+				$z \neq f(x)$を満たす任意の$z \in X$に対して
+				\begin{align}
+					B' \coloneqq B \backslash \{(\sigma(n),z)\}
+				\end{align}
+				もまた$\mathscr{A}$に属する．実際$\emptyset \neq \sigma(n)$かつ
+				$(\emptyset,a) \in B$より$(\emptyset,a) \in B'$となり，また$(m,t) \in B'$に対し
+				\begin{align}
+					\begin{cases}
+						m \neq n \ \Longrightarrow \ \sigma(m) \neq \sigma(n)
+						\ \Longrightarrow\ (\sigma(m),f(t)) \in B', & \\
+						m=n\ \Longrightarrow\ t = x\ \Longrightarrow
+						\ (\sigma(m),f(t)) = (\sigma(n),f(x)) \in B'
+					\end{cases}
+				\end{align}
+				が成立する．よって$z \neq f(x)$ならば$(\sigma(n),z) \notin U$が満たされ
+				$\sigma(n) \in S$が従う．
 		\end{description}
+		以上と数学的帰納法の原理より$S = \omega$を得る．すなわち$U$をグラフとする写像
+		$u:\omega \longrightarrow X$が存在し，任意の$n \in \omega$で
+		\begin{align}
+			u(\sigma(n)) = f(x) = f(u(n)),
+			\quad (\mbox{ただし$x$は$(n,x) \in U$を満たすもの})
+		\end{align}
+		となるから$u \circ \sigma = f \circ u$が出る．また
+		写像$v:\omega \longrightarrow X$が$v(\emptyset) = a$かつ
+		$v \circ \sigma = f \circ v$を満たすとき，
+		\begin{itemize}
+			\item $u(\emptyset) = a = v(\emptyset)$,
+			\item $u(n) = v(n) \quad \Longrightarrow \quad 
+				u(\sigma(n)) = f(u(n)) = f(v(n)) = v(\sigma(n))$
+		\end{itemize}
+		が成立するから$u = v$となる．よって(\refeq{eq:thm_Peano_recursion_theorem})
+		を満たす写像は$u$のみである．
+		\QED
 	\end{prf}
