@@ -17,178 +17,136 @@
 	
 	\begin{screen}
 		\begin{dfn}[Peanoシステム]
-			無限公理により
+			次を満たす集合$X,a$と写像$f:X \longrightarrow X$の組$(X,a,f)$を
+			{\bf Peanoシステム}\index{Peanoしすてむ@Peanoシステム}と呼ぶ:
 			\begin{itemize}
-				\item $\emptyset$を含み
-				\item 任意の要素$n$に対して$n \cup \{n\}$も要素として含む
+				\item $a \in X$.
+				\item $a \notin f(X)$.
+				\item $f$は単射である．
+				\item 集合$S$が$a$を含み，かつ$S$の任意の要素$x$に対し$f(x) \in S$となるならば，$S = X$．
 			\end{itemize}
-			を満たす集合が存在するが，このような集合を{\bf 後継者集合}
-			\index{こうけいしゃしゅうごう@後継者集合}{\bf (successor set)}と呼ぶ．
-			あらゆる後継者集合の共通部分を$\omega$で表し，写像$\sigma:\omega \longrightarrow
-			\omega$を
-			\begin{align}
-				\sigma:n \longmapsto n \cup \{n\}
-			\end{align}
-			で定めるとき，$\sigma$を{\bf 後継者写像}
-			\index{こうけいしゃしゃぞう@後継者写像}{\bf (successor mapping)}，
-			組$(\omega,\emptyset,\sigma)$を{\bf Peanoシステム}
-			\index{Peanoしすてむ@Peanoシステム}{\bf (Peano system)}と呼ぶ．
+			四番目の性質は{\bf 数学的帰納法の原理}\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
+			{\bf (the principle of mathematical induction)}と呼ばれる．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[数学的帰納法の原理]
-		\label{thm:the_principle_of_mathematical_induction}
-			$(\omega,\emptyset,\sigma)$をPeanoシステムとするとき，
-			任意の後継者集合$S$に対して
+		\begin{thm}[$\omega$はPeanoシステム]
+			写像$\sigma:\omega \longrightarrow \omega$を
 			\begin{align}
-				S \subset \omega \quad \Longrightarrow \quad S = \omega
+				\sigma = \Set{(n, n \cup \{n\})}{n \in \omega}
 			\end{align}
-			が成立する．この性質を{\bf 数学的帰納法の原理}
-			\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
-			{\bf (the principle of mathematical induction)}と呼ぶ．
+			で定めるとき，$(\omega,\emptyset,\sigma)$はPeanoシステムとなる．
+			この$\sigma$を{\bf 後継者写像}\index{こうけいしゃしゃぞう@後継者写像}{\bf (successor mapping)}と呼ぶ．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\omega$は最小の後継者集合であるから$\omega \subset S$となり，
-		外延性公理より$S = \omega$が出る．
+		$\emptyset \in \omega$である．また任意の自然数$n$に対し$\sigma(n) = n \cup \{n\} \neq \emptyset$となる．
+		任意の自然数$n,m$に対して
+		\begin{align}
+			\sigma(x)=\sigma(y) \Longrightarrow &(x \in y \cup \{y\}) \wedge (y \in x \cup \{x\}) \\
+					&\Longleftrightarrow \left( x \in y \vee x=y \right) \wedge 
+						\left( y \in x \vee y=x \right) \\
+					&\Longleftrightarrow  \left( x \in y \wedge y \in x \right) \vee x = y \\
+					&\Longleftrightarrow x = y
+		\end{align}
+		が成立するから$\sigma$は単射である．
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Peanoシステムの写像は全単射]\label{thm:successor_mapping_is_injective}
+			Peanoシステム$(X,a,f)$の$f$は$X$から$X \backslash \{a\}$への全単射である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$S \coloneqq \{a\} \cup \sigma(X)$とおけば，数学的帰納法の原理より$S = X$が成り立ち$f$の全射性が出る．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[後継者写像は全単射]
-		\label{thm:successor_mapping_is_injective}
-			$(\omega,\emptyset,\sigma)$をPeanoシステムとするとき，
-			後継者写像$\sigma$は次を満たす:
-			\begin{description}
-				\item[(1)] 任意の$n \in \omega$で$\emptyset \neq \sigma(n)$.
-				\item[(2)] 任意の$n \in \omega$で$n \notin n$.
-				\item[(4)] $\sigma$は$\omega$から$\omega \backslash \{\emptyset\}$
-					への全単射である．
-				
-				\item[(3)] 任意の$n,m \in \omega$に対し，
-					\begin{align}
-						n \in m,\quad n = m,\quad m \in n
-					\end{align}
-					のいずれか一つは成立し，そしてどの二つも両立しない．
-				\item[(5)] $E$を$\omega$の空でない部分集合とするとき，或る$k \in E$が存在して，
-					任意の$m \in E$に対し$k \in m$又は$k = m$を満たす．
-			\end{description}
+		\begin{thm}[Peanoシステムの整列性]
+			$(X,a,f)$をPeanoシステムとし，$E$を$X$の空でない部分集合とするとき，$E$の要素$k$で，
+			$E$の任意の要素$m$に対し$k \in m$又は$k = m$を満たすものが存在する．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(1)] 任意の$n \in \omega$に対し$\sigma(n) = n \cup \{n\}$は
-				$n$を元として持つから空ではない．
-				
-			\item[(2)] $S \coloneqq \Set{n \in \omega}{\mbox{任意の$x$に対し$n \subset x \Longrightarrow x \notin n$}}$とおくとき，
-				先ず$\emptyset \in S$が成り立つ．また$n \in S$に対し
-				\begin{align}
-					\sigma(n) \subset x \quad \Longrightarrow \quad
-					n \subset x \quad \Longrightarrow x \notin n
-				\end{align}
-				となり，一方で$n \notin n$より$\sigma(n) \not\subset n$も満たされるから，
-				$\sigma(n) \subset x$なら$x \notin n \cup \{n\} = \sigma(n)$が従う．
-				これにより$\sigma(n)$は$S$に属するから，
-				数学的帰納法の原理より$S = \omega$が成立する．
-				
-			\item[(3)] $\sigma(n) = \sigma(m)$のとき
-				$n \in m \cup \{m\}$かつ$m \in n \cup \{n\}$が満たされるが，このとき論理式では
-				\begin{align}
-					(n \in m \cup \{m\}) \wedge (m \in n \cup \{n\})
-					&\equiv \left( (n \in m) \vee (n=m) \right) \wedge 
-						\left( (m \in n) \vee (n=m) \right) \\
-					&\equiv \left( (n \in m) \wedge (m \in n) \right) \vee (n = m) \\
-					&\equiv (n = m)
-				\end{align}
-				が成立する((2)より$(n \in m) \wedge (m \in n)$は偽である)．
-		\end{description}
-	\end{prf}
-	
 	\begin{screen}
 		\begin{thm}[再帰定理]\label{thm:Peano_recursion_theorem}
-			$X$を空でない集合，$a$を$X$の点，$f$を$X$から$X$への写像とし，
-			$(\omega,\emptyset,\sigma)$をPeanoシステムとする．
-			このとき，次を満たすような写像$u:\omega \longrightarrow X$がただ一つ存在する:
+			$Y$を空でない集合，$b$を$Y$の要素，$g$を$Y$から$Y$への写像とし，
+			$(X,a,f)$をPeanoシステムとする．
+			このとき，次を満たすような写像$u:X \longrightarrow Y$がただ一つ存在する:
 			\begin{align}
-				u(\emptyset) = a,\quad u \circ \sigma = f \circ u.
+				u(a) = b,\quad u \circ f = g \circ u.
 				\label{eq:thm_Peano_recursion_theorem}
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\omega \times X$の部分集合で，
+		$X \times Y$の部分集合で
 		\begin{itemize}
-			\item $(\emptyset,a)$を含む
-			\item $(n,x)$を含むなら$(\sigma(n),f(x))$も含む
+			\item $(a,b)$を含む
+			\item $(x,y)$を含むなら$(f(x),g(y))$も含む
 		\end{itemize}
 		を満たすものの全体を$\mathscr{A}$で表し
 		\begin{align}
-			U \coloneqq \bigcap \mathscr{A}
+			u \coloneqq \bigcap \mathscr{A}
 		\end{align}
-		とおく．このとき$U \in \mathscr{A}$であるが，一方で$U$は
-		$\omega$から$X$への或る写像のグラフになっている．これは
+		とおく．このとき$u \in \mathscr{A}$であるが，一方で$u$は
+		$X$から$Y$への写像になっている．これは
 		\begin{align}
-			S \coloneqq \Set{n \in \omega}{\mbox{$(n,x),(n,y) \in U$なら$x=y$}}
+			S \coloneqq \Set{x \in X}{\mbox{$(x,y),(x,z) \in u$なら$y=z$}}
 		\end{align}
-		により定める$S$が$\omega$に一致することを示せばよい．
+		により定める$S$が$X$に一致することを示せばよい．
 		\begin{description}
-			\item[第一段] $\emptyset \in S$を示す．$a$とは異なる$b \in X$に対し，
-				或る$A \in \mathscr{A}$で$(\emptyset,b) \in A$となるとき，
+			\item[第一段] $a \in S$を示す．$b \neq c$となる$Y$の要素$c$に対し，
+				$\mathscr{A}$の或る元$A$で$(a,c) \in A$となるとき，
 				\begin{align}
-					A' \coloneqq A \backslash \{(\emptyset,b)\}
+					A' \coloneqq A \backslash \{(a,c)\}
 				\end{align}
-				もまた$\mathscr{A}$に属する．実際$(\emptyset,a)$は
-				$A$から除かれていないから$(\emptyset,a) \in \mathscr{A}$，かつ
+				もまた$\mathscr{A}$に属する．実際$(a,b)$は
+				$A$から除かれていないから$(a,b) \in A$，かつ
 				定理\ref{thm:successor_mapping_is_injective}より
 				\begin{align}
-					(n,x) \in A' \quad \Longrightarrow \quad
-					(\sigma(n),f(x)) \neq (\emptyset,b) \quad \Longrightarrow \quad
-					(\sigma(n),f(x)) \in A'
+					(x,y) \in A' \quad \Longrightarrow \quad
+					(f(x),g(y)) \neq (a,b) \quad \Longrightarrow \quad
+					(f(x),g(y)) \in A'
 				\end{align}
-				が満たされる．従って全ての$b \in X,\ (a \neq b)$で
-				$(\emptyset,b) \notin U$が成り立ち$\emptyset \in S$が得られる．
+				が満たされる．従って$b$と異なる$Y$の任意の要素$c$で
+				$(a,c) \notin u$が成り立ち$a \in S$が得られる．
 				
 			\item[第二段] 
-				任意に$n \in S$を取れば或る$x \in X$がただ一つ対応して$(n,x) \in U$となるが，
+				$S$の任意の元$x$に対して或る$Y$の元$y$がただ一つ対応して$(x,y) \in u$となるが，
 				このとき
 				\begin{align}
-					B \coloneqq (\omega \times X) \backslash \Set{(n,y)}{y \in X,\ x \neq y}
+					B \coloneqq (X \times Y) \backslash \Set{(x,z)}{z \in Y,\ y \neq z}
 				\end{align}
 				とおけば$B \in \mathscr{A}$が成り立つ．そして
-				$z \neq f(x)$を満たす任意の$z \in X$に対して
+				$w \neq g(y)$を満たす$Y$の任意の要素$w$に対して
 				\begin{align}
-					B' \coloneqq B \backslash \{(\sigma(n),z)\}
+					B' \coloneqq B \backslash \{(f(x),w)\}
 				\end{align}
-				もまた$\mathscr{A}$に属する．実際$\emptyset \neq \sigma(n)$かつ
-				$(\emptyset,a) \in B$より$(\emptyset,a) \in B'$となり，また$(m,t) \in B'$に対し
-				\begin{align}
-					\begin{cases}
-						m \neq n \ \Longrightarrow \ \sigma(m) \neq \sigma(n)
-						\ \Longrightarrow\ (\sigma(m),f(t)) \in B', & \\
-						m=n\ \Longrightarrow\ t = x\ \Longrightarrow
-						\ (\sigma(m),f(t)) = (\sigma(n),f(x)) \in B'
-					\end{cases}
-				\end{align}
-				が成立する．よって$z \neq f(x)$ならば$(\sigma(n),z) \notin U$が満たされ
-				$\sigma(n) \in S$が従う．
+				もまた$\mathscr{A}$に属する．実際$a \neq f(x)$かつ
+				$(a,b) \in B$より$(a,b) \in B'$となり，また$(s,t) \in B'$に対し
+				\begin{itemize}
+					\item $s \neq x$ならば$f(s) \neq f(x)$より$(f(s),g(t)) \in B'$，
+					\item $s=x$ならば$t = y$より$(f(s),g(t)) = (f(x),g(y)) \in B'$，
+				\end{itemize}
+				が成立する．よって$w \neq g(y)$ならば$(f(x),w) \notin U$となり$f(x) \in S$が従う．
 		\end{description}
-		以上と数学的帰納法の原理より$S = \omega$を得る．すなわち$U$をグラフとする写像
-		$u:\omega \longrightarrow X$が存在し，任意の$n \in \omega$で
+		以上と数学的帰納法の原理より$S = X$を得る．すなわち$u$は写像であり，$u$の任意の元$(x,y)$で
 		\begin{align}
-			u(\sigma(n)) = f(x) = f(u(n)),
-			\quad (\mbox{ただし$x$は$(n,x) \in U$を満たすもの})
+			u(f(x)) = g(y) = g(u(x))
 		\end{align}
-		となるから$u \circ \sigma = f \circ u$が出る．また
-		写像$v:\omega \longrightarrow X$が$v(\emptyset) = a$かつ
-		$v \circ \sigma = f \circ v$を満たすとき，
+		となるから$u \circ f = g \circ u$が成り立つ．また
+		写像$v:\omega \longrightarrow X$が$v(a) = b$かつ
+		$v \circ f = g \circ v$を満たすとき，
 		\begin{itemize}
-			\item $u(\emptyset) = a = v(\emptyset)$,
-			\item $u(n) = v(n) \quad \Longrightarrow \quad 
-				u(\sigma(n)) = f(u(n)) = f(v(n)) = v(\sigma(n))$
+			\item $u(a) = b = v(a)$,
+			\item $u(x) = v(x) \Longrightarrow 
+				u(f(x)) = g(u(x)) = g(v(x)) = v(f(x))$
 		\end{itemize}
 		が成立するから$u = v$となる．よって(\refeq{eq:thm_Peano_recursion_theorem})
 		を満たす写像は$u$のみである．
