@@ -412,19 +412,27 @@
 	\begin{screen}
 		\begin{thm}[Cantorの共通部分定理]\label{thm:Cantor_intersection_theorem}
 			$S$をHausdorff空間とし，
-			$(K_n)_{n=1}^\infty$をコンパクト部分集合の列とする．
-			このとき，任意の$n \geq 1$に対して$\bigcap_{i=1}^n K_i \neq \emptyset$なら
-			$\bigcap_{i=1}^\infty K_i \neq \emptyset$が成り立つ．
+			$\mathcal{K}$をコンパクト部分集合の族とする．
+			このとき，$\mathcal{K}$の空でない任意の有限部分族$\tilde{\mathcal{K}}$
+			に対して$\bigcap \tilde{\mathcal{K}} \neq \emptyset$が成り立つなら
+			$\bigcap \mathcal{K} \neq \emptyset$が成り立つ．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\bigcap_{i=1}^\infty K_i = \emptyset$と仮定すれば，
-		$K_1 \subset \bigcup_{n=1}^\infty K_n^c = S$と$K_1$のコンパクト性より
+		$\bigcap \mathcal{K} = \emptyset$ならば，任意に一つ$\mathcal{K}$の要素$K$を取れば
+		$K \subset \bigcup_{C \in \mathcal{K}} S \backslash C$となり，
+		$K$のコンパクト性より$\mathcal{K}$の或る有限部分族$\mathcal{K}'$が存在して
 		\begin{align}
-			K_1 \subset \bigcup_{n=1}^N K_n^c = \Biggl( \bigcap_{n=1}^N K_n \Biggr)^c
+			K \subset \bigcup_{C \in \mathcal{K}'} S \backslash C 
+			= S \left\backslash \bigcap \mathcal{K}' \right.
 		\end{align}
-		を満たす$N \geq 1$が存在し，$\bigcap_{n=1}^N K_n \subset K_1$より$\bigcap_{n=1}^N K_n = \emptyset$が従う．
+		を満たされる．ここで$\mathcal{K}''$を$\mathcal{K}'$に要素$K$を加えた
+		$\mathcal{K}$の有限部分族とすれば
+		\begin{align}
+			\bigcap \mathcal{K}'' = K \cap \bigcap \mathcal{K}' = \emptyset
+		\end{align}
+		が成り立つ．対偶を取れば定理の主張を得る．
 		\QED
 	\end{prf}
 	

@@ -213,10 +213,14 @@
 		\begin{screen}
 			\begin{dfn}[コンパクトクラス]
 				$X$を空でない集合，$\mathcal{K}$をその部分集合族とする．
-				任意の$\{K_n\}_{n=1}^\infty \subset \mathcal{K}$について，
-				$\bigcap_{n=1}^\infty K_n = \emptyset$なら或る$N \geq 1$が存在して
-				$\bigcap_{n=1}^N K_n = \emptyset$となるとき，
-				$\mathcal{K}$を$X$のコンパクトクラスという．
+				$\mathcal{K}$の任意の可算部分集合$\{K_n\}_{n \in \N}$に対して
+				\begin{align}
+					\bigcap_{n\in\N} K_n = \emptyset
+					\Longrightarrow \exists N \in \N 
+					\left[\bigcap_{n=1}^N K_n = \emptyset\right]
+				\end{align}
+				が成り立つとき，$\mathcal{K}$は$X$上の{\bf コンパクトクラス}
+				\index{こんぱくとくらす@コンパクトクラス}{\bf (compact class)}と呼ばれる．
 			\end{dfn}
 		\end{screen}
 		
@@ -270,41 +274,44 @@
 			\begin{thm}[コンパクトクラスと共通点性]\label{thm:compact_class_intersection}
 				$\mathcal{B}$を集合$X$の上の有限加法族，
 				$\mu$を$\mathcal{B}$上の有限加法的正値測度とする．
-				$X$にコンパクトクラス$\mathcal{K}$が存在するとき，
-				$0 < \mu(B) < \infty$を満たす任意の$B \in \mathcal{B}$及び任意の$\epsilon > 0$に対し
+				$X$上にコンパクトクラス$\mathcal{K}$が存在して，
+				任意の正数$\epsilon$と$0 < \mu(B) < \infty$を満たす$\mathcal{B}$の任意の
+				要素$B$に対し，或る$\mathcal{B}$の要素$A$と$\mathcal{K}$の要素$K$が存在して
 				\begin{align}
-					A \subset K \subset B,
-					\quad \mu(B \backslash A) < \epsilon
+					A \subset K \subset B \wedge \mu(B \backslash A )< \epsilon
 				\end{align}
-				を満たす$A \in \mathcal{B}$と$K \in \mathcal{K}$が存在すれば，
+				が成り立つとき，$\mu$は共通点性(
 				定理\ref{thm:equivalent_conditions_of_countable_additivity}の
-				(a)が満たされる．
+				(a))を持つ．
 			\end{thm}
 		\end{screen}
 		
 		\begin{prf}
-			$(B_n)_{n=1}^\infty$を$\mu(B_1) < \infty$かつ$\bigcap_{n=1}^\infty B_n = \emptyset$
+			$(B_n)_{n \in \N}$を$\mu(B_1) < \infty$かつ$\bigcap_{n\in\N} B_n = \emptyset$
 			を満たす減少列とすれば，或る$N$で$\mu(B_N) = 0$となるとき
 			\begin{align}
-				\mu(B_n) \leq \mu(B_N) = 0,
-				\quad (\forall n \geq N)
+				\forall n \in \N,\quad n \geq N \Longrightarrow \mu(B_n) \leq \mu(B_N) = 0
 			\end{align}
-			より$\lim_{n \to \infty} \mu(B_n) = 0$が従う．
-			全ての$n$で$0 < \mu(B_n)$なら，任意の$\epsilon > 0$に対して
+			が成り立ち$\lim_{n \to \infty} \mu(B_n) = 0$が従う．
+			全ての自然数$n$で$0 < \mu(B_n)$となるなら，任意の正数$\epsilon$に対して
 			\begin{align}
-				A_n \subset K_n \subset B_N,
-				\quad \mu(B_n \backslash A_n) < \frac{\epsilon}{2^n},
-				\quad (n=1,2,\cdots)
+				\forall n \in \N,\quad A_n \subset K_n \subset B_n
+				\wedge \mu(B_n \backslash A_n) < \frac{\epsilon}{2^n}
 			\end{align}
-			を満たす$A_n \in \mathcal{B}$と$K_n \in \mathcal{K}$が存在する．このとき
+			を満たす$\mathcal{B}$の要素$A_n$と$\mathcal{K}$の要素$K_n$が存在する．このとき
 			\begin{align}
-				\bigcap_{n=1}^\infty K_n \subset \bigcap_{n=1}^\infty B_n = \emptyset
+				\bigcap_{n\in\N} K_n \subset \bigcap_{n\in\N} B_n = \emptyset
 			\end{align}
-			より或る$N \geq 1$が存在して$\bigcap_{n=1}^N A_n \subset \bigcap_{n=1}^N K_n = \emptyset$
-			が成立し，任意の$m \geq N$で$B_m \subset \bigcup_{n=1}^N (B_n \cap A_n^c)$となるから
+			が成り立つから，コンパクトクラスの性質より或る1以上の自然数$N$が存在して
+			$\bigcap_{n=1}^N A_n \subset \bigcap_{n=1}^N K_n = \emptyset$
+			が成立し，$N$以上の任意の自然数$m$で$B_m 
+			\subset \left( \bigcup_{n=1}^N B_n \right) \backslash \bigcup_{n=1}^N A_n
+			= \bigcup_{n=1}^N \left(B_n \backslash \bigcup_{n=1}^N A_n \right)
+			\subset \bigcup_{n=1}^N (B_n \backslash A_n)$となるから
 			\begin{align}
-				\mu(B_m) \leq \sum_{n=1}^N \mu(B_n \cap A_n^c) < \epsilon,
-				\quad (\forall m \geq N)
+				\forall m \in \N,\quad
+				m \geq N \Longrightarrow \mu(B_m) 
+				\leq \sum_{n=1}^N \mu(B_n \backslash A_n) < \epsilon
 			\end{align}
 			が従う．
 			\QED

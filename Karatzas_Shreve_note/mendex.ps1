@@ -1,3 +1,3 @@
 platex Karatzas_Shreve_note.tex
-mendex Karatzas_Shreve_note.idx
+makeindex Karatzas_Shreve_note.idx
 pdfplatex Karatzas_Shreve_note.tex

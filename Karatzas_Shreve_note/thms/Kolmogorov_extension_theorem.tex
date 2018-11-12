@@ -1,0 +1,114 @@
+\subsection{Kolmogorovの拡張定理}
+	確率空間を実数空間の上に作ってしまうと，
+	Kolmogorovの拡張定理の証明は論理的にも見た目の上でも煩雑になるようだが，
+	Bogachevが説明する通り，コンパクトクラスの概念を使って
+	一般化されたKolmogorovの拡張定理は主張のみならず証明も洗練されたものとなる．
+	
+	いま，$T$を空でない集合とし，$T$の任意の要素$t$に対して可測空間$(X_t,\mathscr{B}_t)$が
+	定まっていて，$X_t$は空ではないとする．$T$の空でない任意の有限部分集合の全体を
+	$\mathscr{F}$とおくとき，$\mathscr{F}$の任意の要素$\Lambda$に対して
+	\begin{align}
+		X_\Lambda = \prod_{t \in \Lambda} X_t,
+		\quad \mathscr{B}_\Lambda = \bigotimes_{t \in \Lambda} \mathscr{B}_t
+	\end{align}
+	により可測空間$(X_\Lambda,\mathscr{B}_\Lambda)$を定める．また
+	\begin{align}
+		X \coloneqq \prod_{t \in T} X_t,
+		\quad \mathscr{B} \coloneqq \bigotimes_{t \in T} \mathscr{B}_t
+	\end{align}
+	とおく．$\mathscr{F}$の任意の要素$\Lambda,\Lambda'$に対し，
+	$\Lambda \subset \Lambda'$であるとき$X_{\Lambda'}$から
+	$X_{\Lambda}$への射影を$\pi_{\Lambda',\Lambda}$と書き，
+	また$X$から$X_\Lambda$への射影を$\pi_{\Lambda}$と書く．以上が定理の準備となる．
+	
+	定理の首脳部に入る．いま，$\mathscr{F}$の任意の要素$\Lambda$に対する
+	可測空間$(X_\Lambda,\mathscr{B}_\Lambda)$上に有限測度$\mu_\Lambda$が定まっていて
+	\begin{align}
+		\forall \Lambda,\Lambda' \in \mathscr{F},\quad
+		\Lambda \subset \Lambda' \Longrightarrow
+		\mu_{\Lambda'} \circ \pi_{\Lambda',\Lambda}^{-1}
+		= \mu_\Lambda
+	\end{align}
+	が成り立っていると仮定する．この条件を{\bf Kolmogorovの両立条件}
+	\index{Kolmogorovのりょうりつじょうけん@Kolmogorovの両立条件}
+	{\bf (consistency condition)}と呼ぶ．
+	加えて，任意の$t \in T$に対してコンパクトクラス$\mathcal{K}_t \subset \mathscr{B}_t$
+	が存在し，任意の正数$\epsilon$及び$\mu_t(B) > 0$を満たす$\mathscr{B}_t$の任意の要素$B$
+	に対して或る$\mathcal{K}_t$の要素$K$で
+	\begin{align}
+		K \subset B \wedge \mu_t(B \backslash K) < \epsilon
+	\end{align}
+	を満たすものが取れることも仮定する．
+	このとき$(X,\mathscr{B})$上にただ一つの有限測度$\mu$が存在して次が成立する:
+	\begin{align}
+		\forall \Lambda \in \mathscr{F},\quad 
+		\mu \circ \pi_{\Lambda}^{-1} = \mu_\Lambda.
+	\end{align}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\mathscr{B}$を生成する加法族を
+				\begin{align}
+					\mathscr{R} \coloneqq
+					\Set{\pi_\Lambda^{-1}(B)}{B \in \mathscr{B}_\Lambda,\ \Lambda \subset T:\mbox{有限集合}}
+				\end{align}
+				とおき，$\mu$を
+				\begin{align}
+					\mu = \Set{(x,y)}{\exists \Lambda \in \mathscr{F}
+					\exists B \in \mathscr{B}_\Lambda
+					\left(x=\pi_\Lambda^{-1}(B) \wedge y = P_\Lambda(B)\right)}
+				\end{align}
+				により定める．このとき$\mu$はsigle-valuedであり，
+				$\mathscr{R}$上の有限加法的測度となる．
+			
+			\item[第二段]
+				$\mu$がsingle-valuedであることを示す．
+				\begin{align}
+					\pi_\Lambda^{-1}(B) = \pi_{\Lambda'}^{-1}(B')
+				\end{align}
+				であるとき，$\Lambda'' \coloneqq \Lambda \cup \Lambda'$とおけば
+				\begin{align}
+					\pi_{\Lambda''}^{-1}\left( \pi_{\Lambda'',\Lambda}^{-1}(B) \right)
+					= \pi_\Lambda^{-1}(B)
+					= \pi_{\Lambda'}^{-1}(B')
+					= \pi_{\Lambda''}^{-1}\left( \pi_{\Lambda'',\Lambda'}^{-1}(B') \right)
+				\end{align}
+				が成り立つから$\pi_{\Lambda'',\Lambda}^{-1}(B) = \pi_{\Lambda'',\Lambda'}^{-1}(B')$
+				が従い(定理\ref{projective_injective_image_preimage})，整合性条件より
+				\begin{align}
+					\mu_\Lambda(B) 
+					= \mu_{\Lambda''} \circ \pi_{\Lambda'',\Lambda}^{-1}(B)
+					= \mu_{\Lambda''} \circ \pi_{\Lambda'',\Lambda'}^{-1}(B')
+					= \mu_{\Lambda'}(B')
+				\end{align}
+				が満たされ$\mu$の一意性を得る．
+				
+			\item[第三段]
+				$\mu$の加法性を示す．
+				\begin{align}
+					\pi_{\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_2}^{-1}(B_2) = \emptyset
+				\end{align}
+				であるとき，$\Lambda_3 \coloneqq \Lambda_1 \cup \Lambda_2$とおけば
+				\begin{align}
+					\emptyset 
+					= \pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \right)
+					\cap \pi_{\Lambda_3}\left( \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right)
+					= \pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right)
+				\end{align}
+				となるから$\pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2)
+				= \emptyset$が従い(全射の性質)，
+				\begin{align}
+					\mu\left( \pi_{\Lambda_1}^{-1}(B_1) \cup \pi_{\Lambda_2}^{-1}(B_2) \right)
+					&= \mu\left[\pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \right)
+					\cup \pi_{\Lambda_3}\left( \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \right] \\
+					&= \mu\left[ \pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cup \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \right] \\
+					&= \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cup \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \\
+					&= \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \right)
+						+ \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \\
+					&= \mu\left( \pi_{\Lambda_1}^{-1}(B_1) \right)
+						+ \mu\left( \pi_{\Lambda_2}^{-1}(B_2) \right)
+				\end{align}
+				が成立する．
+		\end{description}
+	\end{prf}
