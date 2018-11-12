@@ -1,8 +1,9 @@
 \subsection{Kolmogorovの拡張定理}
-	確率空間を実数空間の上に作ってしまうと，
+	確率空間を実数空間の上に作ってしまうと
 	Kolmogorovの拡張定理の証明は論理的にも見た目の上でも煩雑になるようだが，
 	Bogachevが説明する通り，コンパクトクラスの概念を使って
 	一般化されたKolmogorovの拡張定理は主張のみならず証明も洗練されたものとなる．
+	一見長い証明となるが，内容は抽象的で捉えやすい．
 	
 	いま，$T$を空でない集合とし，$T$の任意の要素$t$に対して可測空間$(X_t,\mathscr{B}_t)$が
 	定まっていて，$X_t$は空ではないとする．$T$の空でない任意の有限部分集合の全体を
@@ -24,17 +25,37 @@
 	定理の首脳部に入る前に次の補題を証明する．
 	\begin{screen}
 		\begin{lem}[射影の可測性]\label{lem:Kolmogorov_extension_theorem}
-			$\mathscr{F}$の任意の要素$\Lambda,\Lambda'$に対し，$\Lambda \subset \Lambda'$であるとき
+			$T$の任意の空でない部分集合$\Lambda,\Lambda'$に対し(有限性は要らない)，$\Lambda \subset \Lambda'$であるとき
 			射影$\pi_{\Lambda',\Lambda}$は$\mathscr{B}_{\Lambda'}/\mathscr{B}_\Lambda$-可測である．
+			また射影$\pi_\Lambda$は$\mathscr{B}/\mathscr{B}_\Lambda$-可測である．
 		\end{lem}
 	\end{screen}
 	
 	\begin{prf}
-		
+		$\Lambda,\Lambda'$を$T$の空でない部分集合とする．このとき，まず$\Lambda$の任意の要素$t$に対し$\pi_{\Lambda,\{t\}}$は
+		$X_\Lambda$から$X_t$への射影であるから，直積$\sigma$-加法族の定義より$\pi_{\Lambda,\{t\}}$は
+		$\mathscr{B}_\Lambda/\mathscr{B}_t$-可測性を持つ．特に$\Lambda=T$の場合
+		\begin{align}
+			\pi_{\Lambda,\{t\}} = \pi_\Lambda,\quad \mathscr{B}_\Lambda = \mathscr{B}
+		\end{align}
+		であるから$\pi_\Lambda$の$\mathscr{B}/\mathscr{B}_\Lambda$-可測性が得られる．
+		また$\Lambda \subset \Lambda'$であるとき，$\Lambda$の任意の要素$t$と$\mathscr{B}_t$の任意の要素$B$に対し
+		\begin{align}
+			\pi_{\Lambda',\Lambda}^{-1}\left(\pi_{\Lambda,\{t\}}^{-1}(B)\right)
+			= \pi_{\Lambda',\{t\}}^{-1}(B) \in \mathscr{B}_{\Lambda'}
+		\end{align}
+		が成立する．従って
+		\begin{align}
+			\bigcup_{t\in\Lambda} \Set{\pi_{\Lambda,\{t\}}^{-1}(B)}{B \in \mathscr{B}_t}
+			\subset \Set{B \in \mathscr{B}_\Lambda}{\pi_{\Lambda',\Lambda}^{-1}(B) \in \mathscr{B}_{\Lambda'}}
+		\end{align}
+		となり，左辺は$\mathscr{B}_\Lambda$を生成し右辺は$\sigma$-加法族であるから
+		$\pi_{\Lambda',\Lambda}$の$\mathscr{B}_{\Lambda'}/\mathscr{B}_\Lambda$-可測性が従う．
+		\QED
 	\end{prf}
 	
-	本節の主題は次の通りである．いま，$\mathscr{F}$の任意の要素$\Lambda$に対する
-	可測空間$(X_\Lambda,\mathscr{B}_\Lambda)$上に有限測度$\mu_\Lambda$が定まっていて
+	本節の主題は次の通りである．いま，$\mathscr{F}$の任意の要素$\Lambda$に対し，
+	$(X_\Lambda,\mathscr{B}_\Lambda)$上に有限測度$\mu_\Lambda$が定まっていて
 	\begin{align}
 		\forall \Lambda,\Lambda' \in \mathscr{F},\quad
 		\Lambda \subset \Lambda' \Longrightarrow
@@ -45,10 +66,10 @@
 	\index{Kolmogorovのりょうりつじょうけん@Kolmogorovの両立条件}
 	{\bf (consistency condition)}と呼ぶ．
 	加えて，任意の$t \in T$に対してコンパクトクラス$\mathcal{K}_t \subset \mathscr{B}_t$
-	が存在し，任意の正数$\epsilon$及び$\mu_t(B) > 0$を満たす$\mathscr{B}_t$の任意の要素$B$
+	が存在し，任意の正数$\epsilon$及び$\mu_{\{t\}}(B) > 0$を満たす$\mathscr{B}_t$の任意の要素$B$
 	に対して或る$\mathcal{K}_t$の要素$K$で
 	\begin{align}
-		K \subset B \wedge \mu_t(B \backslash K) < \epsilon
+		K \subset B \wedge \mu_{\{t\}}(B \backslash K) < \epsilon
 	\end{align}
 	を満たすものが取れることも仮定する．
 	このとき$(X,\mathscr{B})$上にただ一つの有限測度$\mu$が存在して次が成立する:
@@ -92,19 +113,29 @@
 					A \cup A' =  \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda}^{-1}(B) \cup 
 					\pi_{\Lambda'',\Lambda'}^{-1}(B')\right)
 				\end{align}
-				となり$A \cup A' \in \mathscr{R}$が成立する．
+				となり$A \cup A' \in \mathscr{R}$が成立する．以上より$\mathscr{R}$は$X$上の有限加法族をなしている．
+				また$T$の任意の要素$t$に対して$\{t\}$は$\mathscr{F}$に属するから
+				\begin{align}
+					\bigcup_{t \in T}\Set{\pi_{\{t\}}^{-1}(B)}{B \in \mathscr{B}_t} \subset \mathscr{R}
+				\end{align}
+				が成り立ち，左辺は$\mathscr{B}$を生成するので$\mathscr{B} \subset \sigma(\mathscr{R})$を得る．
+				一方で$\mathscr{F}$の任意の要素$\Lambda$に対し$\pi_\Lambda$は
+				$\mathscr{B}/\mathscr{B}_\Lambda$-可測である(補題\ref{lem:Kolmogorov_extension_theorem})
+				から$\mathscr{R} \subset \mathscr{B}$も得られ，以上で
+				\begin{align}
+					\sigma(\mathscr{R}) = \mathscr{B}
+				\end{align}
+				が出る．
 				
-				いま$\mu$を
+			\item[第二段]
+				$\mu$を
 				\begin{align}
 					\mu = \Set{(x,y)}{\exists \Lambda \in \mathscr{F}
 					\exists B \in \mathscr{B}_\Lambda
 					\left(x=\pi_\Lambda^{-1}(B) \wedge y = P_\Lambda(B)\right)}
 				\end{align}
 				により定める．このとき$\mu$はsigle-valuedであり，
-				$\mathscr{R}$上の有限加法的測度となる．
-			
-			\item[第二段]
-				$\mu$がsingle-valuedであることを示す．
+				$\mathscr{R}$上の有限加法的測度となる．まず$\mu$がsingle-valuedであることを示す．
 				\begin{align}
 					\pi_\Lambda^{-1}(B) = \pi_{\Lambda'}^{-1}(B')
 				\end{align}
@@ -123,10 +154,7 @@
 					= \mu_{\Lambda''} \circ \pi_{\Lambda'',\Lambda'}^{-1}(B')
 					= \mu_{\Lambda'}(B')
 				\end{align}
-				が満たされ$\mu$の一意性を得る．
-				
-			\item[第三段]
-				$\mu$の加法性を示す．
+				が満たされ$\mu$の一意性を得る．次に$\mu$の加法性を示す．
 				\begin{align}
 					\pi_{\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_2}^{-1}(B_2) = \emptyset
 				\end{align}
@@ -151,5 +179,8 @@
 						+ \mu\left( \pi_{\Lambda_2}^{-1}(B_2) \right)
 				\end{align}
 				が成立する．
+			
+			\item[第三段]
+				$\mu$が$\mathscr{R}$の上で完全加法的であることを定理\ref{thm:compact_class_intersection}と併せて示す．
 		\end{description}
 	\end{prf}
