@@ -21,7 +21,19 @@
 	$X_{\Lambda}$への射影を$\pi_{\Lambda',\Lambda}$と書き，
 	また$X$から$X_\Lambda$への射影を$\pi_{\Lambda}$と書く．以上が定理の準備となる．
 	
-	定理の首脳部に入る．いま，$\mathscr{F}$の任意の要素$\Lambda$に対する
+	定理の首脳部に入る前に次の補題を証明する．
+	\begin{screen}
+		\begin{lem}[射影の可測性]\label{lem:Kolmogorov_extension_theorem}
+			$\mathscr{F}$の任意の要素$\Lambda,\Lambda'$に対し，$\Lambda \subset \Lambda'$であるとき
+			射影$\pi_{\Lambda',\Lambda}$は$\mathscr{B}_{\Lambda'}/\mathscr{B}_\Lambda$-可測である．
+		\end{lem}
+	\end{screen}
+	
+	\begin{prf}
+		
+	\end{prf}
+	
+	本節の主題は次の通りである．いま，$\mathscr{F}$の任意の要素$\Lambda$に対する
 	可測空間$(X_\Lambda,\mathscr{B}_\Lambda)$上に有限測度$\mu_\Lambda$が定まっていて
 	\begin{align}
 		\forall \Lambda,\Lambda' \in \mathscr{F},\quad
@@ -48,12 +60,41 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$\mathscr{B}$を生成する加法族を
+				$\mathscr{R} = \bigcup_{\Lambda\in\mathscr{F}} \Set{\pi_\Lambda^{-1}(B)}{B \in \mathscr{B}_\Lambda}$
+				で$\mathscr{R}$を定めれば，$\mathscr{R}$は$X$上の有限加法族となり$\mathscr{B}$を生成する．
+				実際
 				\begin{align}
-					\mathscr{R} \coloneqq
-					\Set{\pi_\Lambda^{-1}(B)}{B \in \mathscr{B}_\Lambda,\ \Lambda \subset T:\mbox{有限集合}}
+					X = \pi_\Lambda^{-1}(X_\Lambda) \in \mathscr{R}
 				\end{align}
-				とおき，$\mu$を
+				が成立し，また任意に$\mathscr{R}$の要素$A$を取れば，
+				$A$は或る$\Lambda \in \mathscr{F}$と$B \in \mathscr{B}_\Lambda$を用いて
+				\begin{align}
+					A = \pi_\Lambda^{-1}(B)
+				\end{align}
+				と表され，$X_\Lambda \backslash B \in \mathscr{B}_\Lambda$であるから
+				\begin{align}
+					X \backslash A = \pi_\Lambda^{-1}(X_\Lambda \backslash B) \in \mathscr{R}
+				\end{align}
+				が成り立つ．また任意に$\mathscr{R}$の要素$A,A'$を取れば，
+				或る$\mathscr{F}$の要素$\Lambda$と$\mathscr{B}_\Lambda$の要素$B$及び
+				或る$\mathscr{F}$の要素$\Lambda'$と$\mathscr{B}_{\Lambda'}$の要素$B'$を用いて
+				\begin{align}
+					A = \pi_\Lambda^{-1}(B),\quad A' = \pi_\Lambda^{-1}(B')
+				\end{align}
+				と表され，このとき$\Lambda'' = \Lambda \cup \Lambda'$とおけば
+				\begin{align}
+					A = \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda}^{-1}(B)\right),
+					\quad A' = \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda'}^{-1}(B')\right)
+				\end{align}
+				が成り立つ．補題\ref{lem:Kolmogorov_extension_theorem}より
+				$\pi_{\Lambda'',\Lambda}^{-1}(B)$と$\pi_{\Lambda'',\Lambda'}^{-1}(B')$は共に$\mathscr{B}_{\Lambda''}$に属するので
+				\begin{align}
+					A \cup A' =  \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda}^{-1}(B) \cup 
+					\pi_{\Lambda'',\Lambda'}^{-1}(B')\right)
+				\end{align}
+				となり$A \cup A' \in \mathscr{R}$が成立する．
+				
+				いま$\mu$を
 				\begin{align}
 					\mu = \Set{(x,y)}{\exists \Lambda \in \mathscr{F}
 					\exists B \in \mathscr{B}_\Lambda
