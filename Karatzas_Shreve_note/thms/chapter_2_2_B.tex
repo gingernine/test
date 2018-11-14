@@ -125,5 +125,104 @@
 	\end{align}
 	とおけばよい．
 	
-	\begin{itembox}[l]{Theorem 2.8 memo}
+	\begin{itembox}[l]{Corollary to Theorem 2.8}
+		There is a probability measure $P$ on $(\R^{[0,\infty)},\mathscr{B}(\R^{[0,\infty)}))$,
+		and a stochastic process $W = \Set{W_t,\mathscr{F}_t^W}{t \geq 0}$ on the same space,
+		such that under $P$, $W$ is a Brownian motion.
 	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				Corollary to Theorem 2.2より，$(\R^{[0,\infty)},\mathscr{B}(\R^{[0,\infty)}))$にただ一つの確率測度$P$が存在して，
+				\begin{align}
+					B = \Set{(x,y)}{\exists t \in [0,\infty) \exists \omega \in \R^{[0,\infty)}
+					\left( x=(t,\omega) \wedge y=\omega(t)-\omega(0) \right)}
+				\end{align}
+				で定める写像$B$が$P$の下で
+				\begin{itemize}
+					\item $\R^{[0,\infty)}$の任意の要素$\omega$に対して
+						$B_0(\omega) = 0$，
+					\item 任意の実数$s,t$に対し，$0 \leq s < t$ならば
+						$B_t - B_s$は$\mathscr{F}_s$と独立，
+					\item 任意の実数$s,t$に対し，$0 \leq s < t$ならば
+						$P(B_t - B_s)^{-1}$は平均0で分散が$t-s$の正規分布
+				\end{itemize}
+				となる．Theorem2.8 と Problem2.10 により，1以上の任意の自然数$N$に対し，
+				$[0,N]$上で$B$の修正$W^N$が存在する．
+				\begin{align}
+					\Omega_N &= \Set{\omega \in \R^{[0,\infty)}}{\forall t \in [0,N] \cap \Q,
+					\quad W_t^N(\omega) = B_t(\omega)} \\
+					&= \bigcap_{t \in [0,N] \cap \Q} \Set{\omega \in \R^{[0,\infty)}}{W_t^N(\omega) = B_t(\omega)}
+				\end{align}
+				とおけば，$W^N$は$B$の修正であるから$P(\Omega_N)=1$．ここで
+				$\tilde{\Omega} = \bigcap_{N \in \N}\Omega_N$とおく．
+				0以上の実数$t$と$\tilde{\Omega}$の要素$\omega$が任意に与えられたとき，
+				$t < N$を満たす自然数$N$を取れば，$N$以上の任意の自然数$n$で
+				\begin{align}
+					\forall s \in [0,N] \cap \Q, \quad
+					B_s(\omega) = W^N_s(\omega) \wedge B_s(\omega) = W^n_s(\omega)
+				\end{align}
+				となり，$W^N(\omega)$と$W^n(\omega)$の連続性と定理
+				\ref{thm:equivalence_set_of_two_mappings_into_Hausdorff_space_is_closed}より
+				$W^N(\omega)$と$W^n(\omega)$は$[0,N]$上で一致する．すなわち
+				\begin{align}
+					\forall n \in \N,\quad N \leq n \Longrightarrow W^n_t(\omega)
+					= W^N_t(\omega)
+				\end{align}
+				が成り立つから，このとき$\lim_{n \to \infty} W^n_t(\omega)$が確定する．
+				\begin{align}
+					W_t(\omega) = 
+					\begin{cases}
+						\lim_{n \to \infty} W^n_t(\omega), & (\omega \in \tilde{\Omega}), \\
+						0, & (\omega \in \R^{[0,\infty)} \backslash \tilde{\Omega})
+					\end{cases}
+				\end{align}
+				で$W$を定めれば，$W$は$B$の修正となる．実際，0以上の任意の実数$t$に対し，
+				$t < N$を満たす自然数$N$を取れば
+				\begin{align}
+					\forall \omega \in \tilde{\Omega},\quad 
+					W_t(\omega) = W^N_t(\omega)
+				\end{align}
+				となり，$W^N$が$B$の修正であるから
+				\begin{align}
+					P(W_t \neq B_t) \leq P(W_t \neq W^N_t) + P(W^N_t \neq B_t) = 0
+				\end{align}
+				が成立する．またこの$t$において，$W^N(\omega)$の連続性から$W(\omega)$の$t$での連続性が従う．
+				
+			\item[第二段]
+				前段で定めた$W$が$(\R^{[0,\infty)},\mathscr{B}(\R^{[0,\infty)}),P)$の上の
+				Brown運動であることを示す．まず$P$-a.s.に$W_0 = B_0$である．また
+				$0 \leq s < t$を満たす任意の実数$s,t$に対し，
+				\begin{align}
+					\Omega' = \Set{\omega \in \R^{[0,\infty)}}{W_s(\omega) \neq B_s(\omega) \wedge W_t(\omega) \neq B_t(\omega)}
+				\end{align}
+				とおく．$\borel{\R}$の要素$E,F$が任意に与えられたとして，
+				\begin{align}
+					W_s^{-1}(F) \cap \Omega' = B_s^{-1}(F) \cap \Omega',
+					\quad
+					(W_t-W_s)^{-1}(E) \cap \Omega' = (B_t-B_s)^{-1}(E) \cap \Omega'
+				\end{align}
+				が成り立ち，かつ$P(\Omega') = 1$であるから
+				\begin{align}
+					P\left( W_s^{-1}(F) \right)
+					= P\left( W_s^{-1}(F) \cap \Omega' \right)
+					&= P\left( B_s^{-1}(F) \cap \Omega' \right)
+					= P\left( B_s^{-1}(F) \right), \\
+					P\left( (W_t-W_s)^{-1}(E) \right) &= P\left( (B_t-B_s)^{-1}(E) \right), \label{eq:chapter_2_Corollary_to_Theorem_2_8} \\
+					P\left( W_s^{-1}(F) \cap (W_t-W_s)^{-1}(E) \right)
+					&= P\left( B_s^{-1}(F) \cap (B_t-B_s)^{-1}(E) \right)
+				\end{align}
+				が従い，$B$の独立増分性と併せて
+				\begin{align}
+					P\left( W_s^{-1}(F) \cap (W_t-W_s)^{-1}(E) \right)
+					&= P\left( B_s^{-1}(F) \cap (B_t-B_s)^{-1}(E) \right) \\
+					&= P\left( B_s^{-1}(F) \right) P\left( (B_t-B_s)^{-1}(E) \right) \\
+					&= P\left( W_s^{-1}(F) \right) P\left( (W_t-W_s)^{-1}(E) \right) \\
+				\end{align}
+				となる．以上で$W$の独立増分性が示された．また
+				(\refeq{eq:chapter_2_Corollary_to_Theorem_2_8})から
+				$W_t-W_s$の分布は$B_t-B_s$の分布に一致する．
+				\QED
+		\end{description}
+	\end{prf}
