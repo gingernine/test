@@ -26,7 +26,7 @@
 	\begin{description}
 		\item[対象領域] $V$
 		\item[述語記号] $=,\ \in$
-		\item[論理記号] $\Longrightarrow,\ \wedge,\ \vee,\ \rightharpoondown$
+		\item[論理記号] $\bot,\ \Longrightarrow,\ \wedge,\ \vee,\ \rightharpoondown$
 	\end{description}
 	何が$V$の構成員たりうるかは以後公理によって規定していく．
 	
@@ -68,6 +68,8 @@
 			
 		\item[式] 
 			\begin{itemize}
+				\item $\bot$は$\mathcal{L}$の式である．
+				
 				\item $s,t$を言語$\mathcal{L}$の項とするとき，
 					$s=t,s \in t$は$\mathcal{L}$の式である．
 					
@@ -103,7 +105,7 @@
 			\end{itemize}
 			
 		\item[述語記号] $=,\in$
-		\item[論理記号] $\Longrightarrow,\ \wedge,\ \vee,\ \rightharpoondown$
+		\item[論理記号] $\bot,\ \Longrightarrow,\ \wedge,\ \vee,\ \rightharpoondown$
 	\end{description}
 	
 	述語記号も論理記号も$\mathcal{L}$のものと同じであるが，こうすることで
@@ -111,18 +113,20 @@
 	言語を拡張したことに応じて記号の適用範囲が広がったと見ればよい．
 	
 	\begin{itembox}[l]{研究室にて}
-		ポスドク「言語を拡張するとは，新造語を取り入れることだ．
+		ポスドク「今回の言語の拡張では新造語を取り入れた．
 			身近な例として最近ではネットスラングが国語辞書に載ったりしているね．
 			日常生活で新造語が出来ても文法まではなかなか変わらないように，
-			述語記号や論理記号は言語の拡張で変わるものではない．むしろ変わってしまうと不便で不都合だ．
+			述語記号や論理記号は言語を拡張しても変えなかった．むしろ変えてしまうと不便で不都合だ．
 			対象領域$V$が$\mathcal{L}'$の項になっているのは，
-			新造語が出現して初めて旧来の言語というカテゴリーが意識されたと解釈できるかな．」
+			新造語が出現して初めて旧来の言語というカテゴリーが意識されたと解釈できるかな．
+			まあ実際は別の意図があるのだけれど…」
 	\end{itembox}
 	
 	\begin{screen}
-		\begin{dfn}[集合]
-			言語$L$の対象式を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼ぶ．
-			ただし$V$に属さないものは集合とは呼ばない．
+		\begin{dfn}[類・集合]
+			言語$\mathcal{L}'$の対象を{\bf 類}\index{るい@類}{\bf (class)}と呼び，
+			特に言語$\mathcal{L}$の対象であった類を
+			{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -134,29 +138,44 @@
 		関数や$k$項述語などといったものを取り扱っているのが散見するのが残念だ．
 		モノの数え方すら知らない生まれたばかりの世界に立って色々説明しようというのに，
 		その前準備の段階で数の存在を予定したり関数の概念を前借りしてしまうのは好ましくないし，
-		このように集合論と論理学が循環しているのは勉強する側にとってはただの障壁にしかならない．
-		集合論と述語論理を同時に並行して記述する方がやりやすいのではないだろうか．」
+		そのように集合論と論理学が循環しているのは勉強する側にとってはただの障壁にしかならない．
+		どのみち両者は切り離せないのだから，同時に並行して記述する方がやりやすいのではないだろうか．」
 	\end{itembox}
 	
 	\begin{screen}
-		\begin{axm}[等号の公理]
-			述語記号$=$を{\bf 等号}\index{とうごう@等号}{\bf (equal sign)}と呼ぶが，
-			等号について次が成り立つ:
+		\begin{axm}[類の公理]
 			\begin{align}
-				\forall x (x \in V \Longleftrightarrow x=x).
+				\forall t(A(t) \Longleftrightarrow t \in \Set{x}{A(x)}).
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{dfn}[クラス]
-			$x$のみを自由変数とする論理式を$A(x)$と表すとき，
-			$\Set{x}{A(x)}$なる形式の記号列を{\bf クラス}\index{くらす@クラス}{\bf (class)}と呼び，$y \in \Set{x}{A(x)}$を
+		\begin{axm}[外延性の公理]
 			\begin{align}
-				y \in \Set{x}{A(x)} \Longleftrightarrow A(y)
+				\forall t(t \in A  \Longleftrightarrow t \in B)
+				\Longrightarrow A=B.
 			\end{align}
-			で解釈する．
-		\end{dfn}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{description}
+				\item[(1)] $A=A$
+				\item[(2)] $a = \Set{x}{x \in a}$
+				\item[(3)] $V=\Set{x}{x=x}$
+				\item[(4)] $\Set{x}{A(x)} = \Set{y}{A(y)}$
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[相当性の公理]
+			\begin{align}
+				A=B \Longrightarrow (\varphi(A) \Longleftrightarrow \varphi(B)).
+			\end{align}
+		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
