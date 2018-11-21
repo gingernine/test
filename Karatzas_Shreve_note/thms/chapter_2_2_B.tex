@@ -55,65 +55,100 @@
 		\end{description}
 	\end{prf}
 	
-	\begin{itembox}[l]{Theorem 2.8 修正}
-		Suppose that a process $X = \Set{X_t}{0 \leq t \leq T}$ on a probability space 
-		$(\Omega,\mathscr{F},P)$ satisfies the condition
+	\begin{itembox}[l]{Theorem 2.8 and Problem 2.9}
+		Suppose that a process $X = \Set{X_t}{t \in  [0,T]^d}$ ($d \geq 1$)
+		on a probability space $(\Omega,\mathscr{F},P)$ satisfies the condition
 		\begin{align}
-			E|X_t - X_s|^\alpha \leq C|t-s|^{1 + \beta},
-			\quad 0 \leq s,t \leq T,
+			E|X_t - X_s|^\alpha \leq C\Norm{t-s}{}^{d + \beta},
+			\quad \mbox{where} \Norm{t-s}{} = \operatorname*{max}_{1 \leq i \leq d}|t_i - s_i|,
 		\end{align}
 		for some positive constants $\alpha,\beta$, and $C$. Then there exists a 
-		continuous modification $\tilde{X} = \Set{\tilde{X}_t}{0 \leq t \leq T}$ of $X$, 
+		continuous modification $\tilde{X} = \Set{\tilde{X}_t}{t \in [0,T]^d}$ of $X$, 
 		which is locally H\Ddot{o}lder-continuous with exponent $\gamma$ for every 
 		$\gamma \in (0,\beta/\alpha)$. \textcolor{red}{More precisely, for every $\gamma \in (0,\beta/\alpha)$,
 		\begin{align}
-			\sup{\substack{0 < |t-s| < h(\omega) \\ s,t \in [0,T]}}{\frac{\left| \tilde{X}_t(\omega) - \tilde{X}_s(\omega) \right|}{|t-s|^\gamma}} \leq \frac{2}{1-2^{-\gamma}},
-			\quad \forall \omega \in \Omega^*,
+			\forall \omega \in \Omega^*, \quad \sup{\substack{0 < \Norm{t-s}{} < h(\omega) \\ s,t \in [0,T]^d}}{\frac{\left| \tilde{X}_t(\omega) - \tilde{X}_s(\omega) \right|}{\Norm{t-s}{}^\gamma}} \leq \frac{2}{1-2^{-\gamma}}
 		\end{align}
 		for some $\Omega^* \in \mathscr{F}$ with $P(\Omega^*)=1$ and 
 		positive random variable $h$, where $\Omega^*$ and $h$ depend on $\gamma$.}
 	\end{itembox}
 	
-	\begin{itembox}[l]{Theorem 2.8 memo}
-		証明中の式(2.10)直後の
-		``where $n^*(\omega)$ is a positive, integer-valued random variable''
-		について．
-	\end{itembox}
-	
-	\begin{prf}
-		$\N \coloneqq \{1,2,\cdots\}$とおき，
-		$\N$の冪集合を$2^\N$で表せば，$(\N,2^\N)$は可測空間となる．
-		示せばよいのは$n^*$の$\mathscr{F}/2^\N$-可測性である．
-		ただし，$n^*$は証明文中においてwell-definedでないため，明確な意味を持たせる必要がある．
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$[0,T]^d$における順序$\prec$を
+				\begin{align}
+					s \prec t \Longleftrightarrow \forall i \in \{1,2,\cdots,d\}[ s_i \leq t_i] \wedge \exists i \in \{1,2,\cdots,d\}[ s_i < t_i]
+				\end{align}
+				で定める．$\N$の任意の要素$n$に対して
+				\begin{align}
+					L_n = \Set{\frac{kT}{2^n}}{k=0,1,2,\cdots,2^n-1}
+				\end{align}
+				として$L = \bigcup_{n \in \N} L_n$とおく．$L$は$[0,T]^d$において稠密である．
+				$L_n$の要素$s$に対して
+				\begin{align}
+					R_n(s) = \Set{t \in L_n}{s \prec t \wedge \Norm{t-s}{} = T2^{-n}}
+				\end{align}
+				とおく．つまり，$R_n(s)$とは$s$の各成分を最大$T2^{-n}$だけ動かした順序対の集合である．
+				いま，$L_n$の要素数は$2^{nd}$，$L_n$の各要素$s$に対して
+				$R_n(s)$の要素数は$2^d$である．
+				Chebyshevの不等式より，任意の正数$\epsilon$に対して
+				\begin{align}
+					P\left(|X_t-X_s|\geq\epsilon\right)
+					\leq \epsilon^{-\alpha}E|X_t-X_s|^\alpha
+					\leq C\epsilon^{-\alpha}\Norm{t-s}{}^{d+\beta}
+				\end{align}
+				となり，特に$\epsilon = 2^{-\gamma n}$かつ
+				$\Norm{t-s}{} = T2^{-n}$の場合は
+				\begin{align}
+					P\left(|X_t-X_s|\geq2^{-\gamma n}\right)
+					\leq C 2^{-n(d+\beta - \alpha \gamma)}
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					P\left(\operatorname*{max}_{s \in L_n \wedge t \in R_n(s)}
+					|X_t-X_s|\geq2^{-\gamma n}\right)
+					= P\left(\bigcup_{s \in L_n} \bigcup_{t \in R_n(s)}
+					\{|X_t-X_s|\geq2^{-\gamma n}\}\right)
+					\leq 2^d C T^{d+\beta} 2^{-n(\beta - \alpha \gamma)}
+				\end{align}
+				が成り立つ．$A_n = \left\{\operatorname*{max}_{s \in L_n \wedge t \in R_n(s)}|X_t-X_s|\geq2^{-\gamma n}\right\}$とおけば，Borel-Cantelliの補題より
+				\begin{align}
+					N = \bigcap_{n \in \N} \bigcup_{k \geq n} A_k
+				\end{align}
+				は$P$-零集合となり，
+				\begin{align}
+					\forall \omega \in \Omega \backslash N,\
+					\exists N \in \N,\
+					\forall n \in \N,\quad
+					N \leq n \Longrightarrow \operatorname*{max}_{s \in L_n \wedge t \in R_n(s)}
+					|X_t(\omega) - X_s(\omega)| < 2^{-\gamma n}
+					\label{eq:chapter_2_theorem_2_8_1}
+				\end{align}
+				が満たされる．
+				
+			\item[第二段]
+				$\Omega \backslash N$の要素$\omega$に対して，
+				(\refeq{eq:chapter_2_theorem_2_8_1})を満たす自然数$N$のうち
+				最小なものを$n^*(\omega)$と定める(自然数の整列性)．つまり$n^*$は
 		\begin{align}
-			A_0 \coloneqq \Omega,
-			\quad A_n \coloneqq \Set{\omega \in \Omega}{\max{1 \leq k \leq 2^n}{\left| X_{k/2^n}(\omega) - X_{(k-1)/2^n}(\omega) \right|} \geq 2^{-\gamma n}},
-			\quad (n=1,2,\cdots)
+			n^* = \Biggl\{\ (\omega,n)\ \, : \quad &\omega \in \Omega \wedge n \in \N \wedge \Biggr.\\
+			&\forall m \in \N\left[n \leq m \Longrightarrow \operatorname*{max}_{s \in L_m \wedge t \in R_m(s)}
+					|X_t(\omega) - X_s(\omega)| < 2^{-\gamma m}\right] \wedge \\
+			&\forall N \in \N
+			\Biggl. \left[\forall m \in \N\left[N \leq m \Longrightarrow \operatorname*{max}_{s \in L_m \wedge t \in R_m(s)}
+					|X_t(\omega) - X_s(\omega)| < 2^{-\gamma m}\right] \Longrightarrow n \leq N\right]\ \Biggr\}
 		\end{align}
-		とおくとき，$\Omega^*$は
+		で与えられる写像である．写像$n^*$は$\mathscr{F}/\borel{\R}$-可測性を持つ．実際，
+		任意の自然数$\ell$に対して
 		\begin{align}
-			\Omega^* \coloneqq \bigcup_{\ell =1}^{\infty} \bigcap_{n = \ell}^\infty A_n^c
+			{n^*}^{-1}(\ell) = \left\{ \bigcap_{n = \ell}^\infty A_n^c \right\} \cap \left\{ \bigcap_{1 \leq j \leq \ell-1} \bigcap_{n = j}^\infty A_n \right\}
 		\end{align}
-		により定まる集合である．
-		任意の$\omega \in \Omega^*$に対して或る$\ell \geq 1$が存在し，
-		\begin{align}
-			\max{1 \leq k \leq 2^n}{\left| X_{k/2^n}(\omega) - X_{(k-1)/2^n}(\omega) \right|} < 2^{-\gamma n},
-			\quad (\forall n \geq \ell)
-		\end{align}
-		を満たす．このような$\ell$のうち最小なものを$n^*(\omega)$と定める(自然数の整列性)．
-		\begin{align}
-			n^* = \Biggl\{\ (\omega,y)\ \, : \quad &\omega \in \Omega \wedge y \in \N \wedge \Biggr.\\
-			&\forall n \in \N\left[y \leq n \Longrightarrow \operatorname*{max}_{1 \leq k \leq 2^n}\left|X_{Tk/2^n}(\omega) - X_{T(k-1)/2^n}(\omega)\right| < 2^{-\gamma n}\right] \wedge \\
-			&\forall \ell \in \N
-			\Biggl. \left[\forall n \in \N\left[\ell \leq n \Longrightarrow \operatorname*{max}_{1 \leq k \leq 2^n}\left|X_{Tk/2^n}(\omega) - X_{T(k-1)/2^n}(\omega)\right| < 2^{-\gamma n}\right] \Longrightarrow y \leq \ell\right]\ \Biggr\}
-		\end{align}
-		\begin{align}
-			{n^*}^{-1}(\ell) = \left\{ \bigcap_{n = \ell}^\infty A_n^c \right\} \cap \left\{ \bigcap_{1 \leq j \leq \ell-1} \bigcap_{n = j}^\infty A_n \right\},
-			\quad (\ell =1,2,\cdots)
-		\end{align}
-		が成立し$n^*$の$\mathscr{F}/2^\N$-可測性が従う．
-		\QED
+		を満たす．
+		\end{description}
 	\end{prf}
+	
+	
 	
 	確率変数$h$について，厳密には
 	\begin{align}
