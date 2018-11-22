@@ -59,8 +59,9 @@
 		Suppose that a process $X = \Set{X_t}{t \in  [0,T]^d}$ ($d \geq 1$)
 		on a probability space $(\Omega,\mathscr{F},P)$ satisfies the condition
 		\begin{align}
+			\forall s,t \in [0,T]^d,\quad
 			E|X_t - X_s|^\alpha \leq C\Norm{t-s}{}^{d + \beta},
-			\quad \mbox{where} \Norm{t-s}{} = \operatorname*{max}_{1 \leq i \leq d}|t_i - s_i|,
+			\quad \mbox{where $\Norm{\cdot}{}$ is max norm}
 		\end{align}
 		for some positive constants $\alpha,\beta$, and $C$. Then there exists a 
 		continuous modification $\tilde{X} = \Set{\tilde{X}_t}{t \in [0,T]^d}$ of $X$, 
@@ -76,22 +77,18 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$[0,T]^d$における順序$\prec$を
-				\begin{align}
-					s \prec t \Longleftrightarrow \forall i \in \{1,2,\cdots,d\}[ s_i \leq t_i] \wedge \exists i \in \{1,2,\cdots,d\}[ s_i < t_i]
-				\end{align}
-				で定める．$\N$の任意の要素$n$に対して
+				$\N$の任意の要素$n$に対して
 				\begin{align}
 					L_n = \Set{\frac{kT}{2^n}}{k=0,1,2,\cdots,2^n-1}
 				\end{align}
 				として$L = \bigcup_{n \in \N} L_n$とおく．$L$は$[0,T]^d$において稠密である．
 				$L_n$の要素$s$に対して
 				\begin{align}
-					R_n(s) = \Set{t \in L_n}{s \prec t \wedge \Norm{t-s}{} = T2^{-n}}
+					R_n(s) = \Set{t \in L_n}{\Norm{t-s}{} \leq T2^{-n}}
 				\end{align}
 				とおく．つまり，$R_n(s)$とは$s$の各成分を最大$T2^{-n}$だけ動かした順序対の集合である．
 				いま，$L_n$の要素数は$2^{nd}$，$L_n$の各要素$s$に対して
-				$R_n(s)$の要素数は$2^d$である．
+				$R_n(s)$の要素数は$3^d$である．
 				Chebyshevの不等式より，任意の正数$\epsilon$に対して
 				\begin{align}
 					P\left(|X_t-X_s|\geq\epsilon\right)
@@ -99,7 +96,7 @@
 					\leq C\epsilon^{-\alpha}\Norm{t-s}{}^{d+\beta}
 				\end{align}
 				となり，特に$\epsilon = 2^{-\gamma n}$かつ
-				$\Norm{t-s}{} = T2^{-n}$の場合は
+				$\Norm{t-s}{} \leq T2^{-n}$の場合は
 				\begin{align}
 					P\left(|X_t-X_s|\geq2^{-\gamma n}\right)
 					\leq C 2^{-n(d+\beta - \alpha \gamma)}
@@ -110,9 +107,10 @@
 					|X_t-X_s|\geq2^{-\gamma n}\right)
 					= P\left(\bigcup_{s \in L_n} \bigcup_{t \in R_n(s)}
 					\{|X_t-X_s|\geq2^{-\gamma n}\}\right)
-					\leq 2^d C T^{d+\beta} 2^{-n(\beta - \alpha \gamma)}
+					\leq 3^d C T^{d+\beta} 2^{-n(\beta - \alpha \gamma)}
 				\end{align}
-				が成り立つ．$A_n = \left\{\operatorname*{max}_{s \in L_n \wedge t \in R_n(s)}|X_t-X_s|\geq2^{-\gamma n}\right\}$とおけば，Borel-Cantelliの補題より
+				が成り立つ．$A_n = \left\{\operatorname*{max}_{s \in L_n \wedge t \in R_n(s)}|X_t-X_s|\geq2^{-\gamma n}\right\}$とおけば，$\beta - \alpha \gamma > 0$より
+				$\sum_{n \in \N}P(A_n) < \infty$となるから，Borel-Cantelliの補題より
 				\begin{align}
 					N = \bigcap_{n \in \N} \bigcup_{k \geq n} A_k
 				\end{align}
@@ -130,35 +128,147 @@
 			\item[第二段]
 				$\Omega \backslash N$の要素$\omega$に対して，
 				(\refeq{eq:chapter_2_theorem_2_8_1})を満たす自然数$N$のうち
-				最小なものを$n^*(\omega)$と定める(自然数の整列性)．つまり$n^*$は
-		\begin{align}
-			n^* = \Biggl\{\ (\omega,n)\ \, : \quad &\omega \in \Omega \wedge n \in \N \wedge \Biggr.\\
-			&\forall m \in \N\left[n \leq m \Longrightarrow \operatorname*{max}_{s \in L_m \wedge t \in R_m(s)}
-					|X_t(\omega) - X_s(\omega)| < 2^{-\gamma m}\right] \wedge \\
-			&\forall N \in \N
-			\Biggl. \left[\forall m \in \N\left[N \leq m \Longrightarrow \operatorname*{max}_{s \in L_m \wedge t \in R_m(s)}
-					|X_t(\omega) - X_s(\omega)| < 2^{-\gamma m}\right] \Longrightarrow n \leq N\right]\ \Biggr\}
-		\end{align}
-		で与えられる写像である．写像$n^*$は$\mathscr{F}/\borel{\R}$-可測性を持つ．実際，
-		任意の自然数$\ell$に対して
-		\begin{align}
-			{n^*}^{-1}(\ell) = \left\{ \bigcap_{n = \ell}^\infty A_n^c \right\} \cap \left\{ \bigcap_{1 \leq j \leq \ell-1} \bigcap_{n = j}^\infty A_n \right\}
-		\end{align}
-		を満たす．
+				最小なもの与える写像を$n^*$と書く(順序数の整列性)．つまり$n^*$は
+				\begin{align}
+					n^* = \Biggl\{\ (\omega,n)\ \, : \quad &\omega \in \Omega \wedge n \in \N \wedge \Biggr.\\
+					&\forall m \in \N\left[n \leq m \Longrightarrow \operatorname*{max}_{s \in L_m \wedge t \in R_m(s)}
+						|X_t(\omega) - X_s(\omega)| < 2^{-\gamma m}\right] \wedge \\
+					&\forall N \in \N
+					\Biggl. \left[\forall m \in \N\left[N \leq m \Longrightarrow \operatorname*{max}_{s \in L_m \wedge t \in R_m(s)}
+						|X_t(\omega) - X_s(\omega)| < 2^{-\gamma m}\right] \Longrightarrow n \leq N\right]\ \Biggr\}
+				\end{align}
+				で与えられる写像である．写像$n^*$は$\mathscr{F}/\borel{\R}$-可測性を持つ．実際，任意の自然数$\ell$に対して
+				\begin{align}
+					{n^*}^{-1}(\ell) = \left\{ \bigcap_{n = \ell}^\infty A_n^c \right\} \cap \left\{ \bigcap_{1 \leq j \leq \ell-1} \bigcap_{n = j}^\infty A_n \right\}
+				\end{align}
+				を満たす．$n^*$の定め方より
+				\begin{align}
+					\forall \omega \in \Omega \backslash N,\
+					\forall n \in \N,\quad 
+					n^*(\omega) \leq n \Longrightarrow \operatorname*{max}_{s \in L_n \wedge t \in R_n(s)}|X_t(\omega) - X_s(\omega)| < 2^{-\gamma n}
+					\label{eq:chapter_2_theorem_2_8_2}
+				\end{align}
+				が成立する．
+				
+			\item[第三段]
+				いま，$\Omega \backslash N$の任意の要素$\omega$と$n^*(\omega) \leq n$を満たす
+				任意の自然数$n$が与えられたとすると，
+				\begin{align}
+					\forall m \in \N,\quad
+					n < m \Longrightarrow \forall s,t \in L_m\left[
+					\Norm{t-s}{} < 2^{-n} \Longrightarrow 
+					|X_t(\omega) - X_s(\omega)|<2\sum_{j=n+1}^m 2^{-\gamma j}\right]
+				\end{align}
+				が成立する．実際，$m=n+1$ならば，$L_{n+1}$の任意の要素$s,t$に対し
+				$\Norm{t-s}{} < 2^{-n}$となるのは
+				$t \in R_{n+1}(s)$の場合のみであるから，(\refeq{eq:chapter_2_theorem_2_8_2})
+				より
+				\begin{align}
+					\Norm{t-s}{} < 2^{-n} \Longrightarrow 
+					|X_t(\omega) - X_s(\omega)| < 2^{-\gamma(n+1)}
+					< 2\sum_{j=n+1}^m 2^{-\gamma j}
+				\end{align}
+				となる．$m=M-1$のとき
+				\begin{align}
+					\forall s,t \in L_m\left[
+					\Norm{t-s}{} < 2^{-n} \Longrightarrow 
+					|X_t(\omega) - X_s(\omega)|<2\sum_{j=n+1}^m 2^{-\gamma j}\right]
+				\end{align}
+				が成立すると仮定すると，$\Norm{t-s}{} < 2^{-n}$を満たす$L_M$の任意の要素$s,t$に対し，
+				\begin{itemize}
+					\item $s_i < t_i$ならば
+						$s_i \leq s'_i \leq t'_i \leq t_i$を満たす
+						$\Set{Tk/2^{M-1}}{k\in\{0,1,\cdots,2^{M-1}\}}$の要素$s'_i,t'_i$を取り，
+					
+					\item $s_i = t_i$のときは，$s_i \in \Set{Tk/2^{M-1}}{k\in\{0,1,\cdots,2^{M-1}\}}$ならば
+						$s'_i = s_i,\ t'_i = s_i$とおき，
+						$s_i \notin \Set{Tk/2^{M-1}}{k\in\{0,1,\cdots,2^{M-1}\}}$ならば
+						$s'_i = s_i-1/2^M,\ t'_i = s_i-1/2^M$とおく
+				\end{itemize}
+				として$s'=(s'_1,\cdots,s'_d)$と$t'=(t'_1,\cdots,t'_d)$を定めれば，
+				\begin{align}
+					s',t' \in L_{M-1}\wedge
+					\Norm{s-s'}{} < 1/2^M \wedge \Norm{t-t'}{} < 1/2^M
+					\wedge \Norm{t'-s'}{} < 1/2^n
+				\end{align}
+				が満たされるから
+				\begin{align}
+					|X_s(\omega) - X_{s'}(\omega)| < 2^{-\gamma M},
+					\quad |X_{t'}(\omega) - X_t(\omega)| < 2^{-\gamma M},
+					\quad |X_{t'}(\omega) - X_{s'}(\omega)|  < 2\sum_{j=n+1}^{M-1} 2^{-\gamma j}
+				\end{align}
+				となり
+				\begin{align}
+					|X_t(\omega) - X_s(\omega)|<2\sum_{j=n+1}^M 2^{-\gamma j}
+				\end{align}
+				が成立する．
+			
+			\item[第四段]
+				実確率変数$h$を
+				\begin{align}
+					h(\omega) =
+					\begin{cases}
+						2^{-n^*(\omega)}, & (\omega \in \Omega \backslash N), \\
+						0, & (\omega \in N)
+					\end{cases}
+				\end{align}
+				で定める．このとき
+				\begin{align}
+					\forall \omega \in \Omega \backslash N,\
+					\forall s,t \in L,\quad
+					0 < \Norm{t-s}{} < h(\omega)
+					\Longrightarrow |X_t(\omega)-X_s(\omega)| < \frac{2}{1-2^{-\gamma}}
+					\Norm{t-s}{}^\gamma
+					\label{eq:chapter_2_theorem_2_8_3}
+				\end{align}
+				が成立する．いま$\Omega \backslash N$の要素$\omega$と
+				$L$の要素$s,t$が任意に与えられたとして，$0 < \Norm{t-s}{} < h(\omega)$のとき，
+				$\Norm{t-s}{} < 2^{-n}$を満たす最大の自然数$n$を取れば
+				\begin{align}
+					n^*(\omega) \leq n \wedge 2^{-(n+1)} \leq \Norm{t-s}{} < 2^{-n}
+				\end{align}
+				が成立し，前段の結果より
+				\begin{align}
+					|X_t(\omega) - X_s(\omega)| < 2\sum_{j=n+1}^\infty 2^{-\gamma j}
+					= 2 \frac{2^{-\gamma(n+1)}}{1-2^{-\gamma}}
+					\leq \frac{2}{1-2^{-\gamma}} \Norm{t-s}{}^\gamma
+				\end{align}
+				が従う．
+				
+			\item[第五段]
+				$X$の連続な修正$\tilde{X}$を構成する．$\Omega \backslash N$の要素
+				$\omega$と$[0,T]^d$の要素$t$が任意に与えられたとき，
+				$t$に収束する$L$の列$\{s_n\}_{n\in\N}$を取れば
+				(\refeq{eq:chapter_2_theorem_2_8_3})より$\left\{X_{s_n}(\omega)\right\}_{n\in\N}$はCauchy列をなす．
+				従って$\lim_{n \in \N}X_{s_n}(\omega)$が存在するが，
+				(\refeq{eq:chapter_2_theorem_2_8_3})より$\lim_{n \in \N}X_{s_n}(\omega)$
+				は列$\{s_n\}_{n\in\N}$の取り方に依らずに確定する．
+				この極限を$\tilde{X}_t(\omega)$と書いて
+				\begin{align}
+					\tilde{X} = \Biggl\{\ (x,y)\ \, : \quad \exists \omega \in \Omega \exists t \in [0,T]^d [&x=(t,\omega) \wedge \\
+					&\omega \in \Omega \backslash N \Longrightarrow y = \tilde{X}_t(\omega) \wedge \\
+					&\omega \in N \Longrightarrow y=0] \Biggr\}
+				\end{align}
+				で写像$\tilde{X}$を定めれば，$\tilde{X}$は
+				\begin{align}
+					\forall \omega \in \Omega \backslash N,\
+					\forall s,t \in L,\quad
+					0 < \Norm{t-s}{} < h(\omega)
+					\Longrightarrow |\tilde{X}_t(\omega)-\tilde{X}_s(\omega)| < \frac{2}{1-2^{-\gamma}}
+					\Norm{t-s}{}^\gamma
+				\end{align}
+				を満たし，ゆえに$t$の写像と見て連続であり，かつ$[0,T]^d$の任意の要素$t$において，
+				任意の正数$\epsilon$に対し
+				\begin{align}
+					P\left(\left|X_t - \tilde{X}_t\right| > \epsilon\right)
+					\leq P\left(\left|X_t - X_{s_n}\right| > \epsilon/2\right) 
+						+ P\left(\left|X_{s_n} - \tilde{X}_t\right| > \epsilon/2\right)
+					\longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成立するから$P(X_t \neq \tilde{X}_t) = 1$となる．
+				\QED
 		\end{description}
 	\end{prf}
-	
-	
-	
-	確率変数$h$について，厳密には
-	\begin{align}
-		h(\omega) \coloneqq 
-		\begin{cases}
-			2^{-n^*(\omega)}, & (\omega \in \Omega^*), \\
-			0, & (\omega \in \Omega \backslash \Omega^*)
-		\end{cases}
-	\end{align}
-	とおけばよい．
 	
 	\begin{itembox}[l]{Corollary to Theorem 2.8}
 		There is a probability measure $P$ on $(\R^{[0,\infty)},\mathscr{B}(\R^{[0,\infty)}))$,

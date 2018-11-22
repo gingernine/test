@@ -1,30 +1,42 @@
 \subsection{Kolmogorovの連続変形定理}
 	\begin{screen}
 		\begin{thm}[Kolmogorovの連続変形定理]
-			$(X,\mathscr{B})$を空でない可測空間，
+			$(X,\mathscr{F})$を空でない可測空間，
 			$\mu$をこの上の有限測度で$\mu(X) > 0$，
-			$(S,d)$を完備距離空間，$T$を正数として，
-			$0 \leq t \leq T$を満たす任意の実数$t$に対して
-			$\borel{S}/\mathscr{B}$-可測写像$f_t:X \longrightarrow S$
-			が定まっているとする．また$\alpha,\beta,C$を正数とする．このとき，
+			$(S,d)$を完備距離空間，
+			$(T,\rho)$を全有界距離空間として，以下を仮定する:
+			\begin{itemize}
+				\item $T$の任意の要素$t$に対して$\borel{S}/\mathscr{F}$-可測写像
+					$f_t:X \longrightarrow S$が定まっている．
+					
+				\item 正の実数$\alpha,\beta,C$に対して
+					\begin{align}
+						\forall s,t \in T,\quad
+						\int_X d(f_s,f_t)^\alpha\ d\mu
+						\leq C \rho(s,t)^{1+\beta}
+					\end{align}
+					が成立している．ただし$d(f_s,f_t)$とは写像$X \ni x \longmapsto d(f_s(x),f_t(x))$を表す．
+				
+				\item $1$以上の任意の自然数$n$に対して，$T$は半径$1/n$の球を
+					適切に$n$個取れば覆われる．
+			\end{itemize}
+			このとき，$0 < \gamma < \beta/\alpha$を満たす任意の実数$\gamma$
+			に対して或る$\mu$-零集合$N$が取れて，$T$の任意の要素$t$に対して
+			$\borel{S}/\mathscr{F}$-可測写像$g_t$が存在し，$X$の任意の要素$x$で
+			写像$T \ni t \longmapsto g_t(x)$は連続となり，かつ
 			\begin{align}
-				\forall s,t \in [0,T],\quad
-				\int_X d(f_s(x),f_t(x))^\alpha\ \mu(dx)
-				\leq C |t-s|^{1+\beta}
+				\forall t \in T,\quad \mu(f_t \neq g_t) = 0
 			\end{align}
-			が成り立っているならば，$0 < \gamma < \beta/\alpha$を満たす任意の実数$\gamma$
-			に対して或る$\mu$-零集合$N$が取れて，$0 \leq t \leq T$を満たす任意の実数$t$に対して
-			$\borel{S}/\mathscr{B}$-可測写像$g_t$が存在し，
-			また或る$\mathscr{B}/\borel{\R}$-可測写像$h$も存在して，
+			が成立する．加えて或る$\mathscr{F}/\borel{\R}$-可測写像$h$も存在して，
 			\begin{align}
-				\forall t \in [0,T],\quad \mu(f_t \neq g_t) = 0
-			\end{align}
-			及び
-			\begin{align}
-				\forall x \in X \backslash N\ \forall s,t \in [0,T],\quad
-				|t-s| < h(x) \Longrightarrow
-				d(g_s(x),g_t(x)) < \frac{2}{1-2^{-\gamma}}|t-s|^\gamma
+				\forall x \in X \backslash N,\ \forall s,t \in [0,T],\quad
+				\rho(s,t) < h(x) \Longrightarrow
+				d(g_s(x),g_t(x)) < \frac{2}{1-2^{-\gamma}}\rho(s,t)^\gamma
 			\end{align}
 			が成立する．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		考察中
+	\end{prf}
