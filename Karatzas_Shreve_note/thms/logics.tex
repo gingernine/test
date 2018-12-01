@@ -5,7 +5,8 @@
 			真に受けて論理学の本を眺めてみれば，はじめから集合そのものが出てきたり，
 			変数に数で添え字をつけたり，述語関数などといったものを取り扱っていたりしているものばかりで残念です．
 			論理学を元に集合論を展開しようというのですから，集合論の諸概念を予定して論理学を説明するのは本末転倒です．
-			とはいえ集合論と論理学とは切っても切り離せないのですから，いっそ同時並行でそつなく理解してやりましょう．」
+			とはいえ集合論と論理学とは切っても切り離せないのですから，いっそ同時並行でそつなく理解してやりましょう．
+			(いわゆるメタ数学についてはいまのところ手を出すつもりはありません．)」
 	}
 \subsection{言語}
 	\begin{quote}
@@ -159,8 +160,8 @@
 			\begin{itemize}
 				\item $\mathcal{L}$の対象は$\mathcal{L}'$の対象である．
 				\item $\mathcal{L}$の対象領域$V$は$\mathcal{L}'$の対象である．
-				\item 項$x$のみを自由変項とする$\mathcal{L}$の論理式$A(x)$に対し
-					$\Set{x}{A(x)}$は$\mathcal{L}'$の対象である．
+				\item 項$x$のみを自由変項とする$\mathcal{L}$の論理式$A$に対し
+					$\Set{x}{A}$は$\mathcal{L}'$の対象である．
 				\item 以上で得られる記号列のみが$\mathcal{L}'$の対象である．
 			\end{itemize}
 			
@@ -248,7 +249,7 @@
 	\begin{screen}
 		\begin{thm}[集合でも真類でもない類は存在しない]
 			\begin{align}
-				\forall A\ \left(\ \rightharpoondown (\ A \in V \wedge A \notin V\ )\ \right)
+				\forall a\ \left(\ \rightharpoondown (\ a \in V \wedge a \notin V\ )\ \right)
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -267,7 +268,7 @@
 			空集合の存在公理を満たす集合はただ一つである．つまり次が成立する:
 			\begin{align}
 				\forall x \in V\ \forall y \in V
-				\ (\ (\ \forall z \in V\ (\ z \notin x\ )\ \wedge \forall z \in V
+				\ (\ (\ \forall z \in V\ (\ z \notin x\ ) \wedge \forall z \in V
 				\ (\ z \notin y\ )\ )
 				\Longrightarrow x=y\ ).
 			\end{align}
@@ -283,7 +284,7 @@
 	\begin{screen}
 		\begin{axm}[類の公理]
 			\begin{align}
-				\forall t(A(t) \Longleftrightarrow t \in \Set{x}{A(x)}).
+				\forall t\ (\ t \in \Set{x}{A} \Longleftrightarrow t \in V \wedge (t\, |\, x)A\ ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -291,28 +292,31 @@
 	\begin{screen}
 		\begin{axm}[外延性の公理]
 			\begin{align}
-				\forall t(t \in A  \Longleftrightarrow t \in B)
-				\Longrightarrow A=B.
+				\forall a\ \forall b\ \left(\ \forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+				\Longrightarrow a=b\ \right).
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}
+		\begin{thm}\mbox{}
 			\begin{description}
-				\item[(1)] $A=A$
-				\item[(2)] $a = \Set{x}{x \in a}$
+				\item[(1)] $\forall a\ (\ a=a\ )$
+				\item[(2)] $\forall a \in V\ (\ a = \Set{x}{x \in a}\ )$
 				\item[(3)] $V=\Set{x}{x=x}$
-				\item[(4)] $\Set{x}{A(x)} = \Set{y}{A(y)}$
+				\item[(4)] $\forall a\ (\ a \subset V\ )$
+				\item[(5)] $\Set{x}{A} = \Set{y}{(y\, |\, x)A}$
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{axm}[相等性の公理]
-			\begin{align}
-				A=B \Longrightarrow (\varphi(A) \Longleftrightarrow \varphi(B)).
-			\end{align}
+		\begin{axm}[相等性の公理]\mbox{}
+			\begin{description}
+				\item[(1)] $\forall a\ \forall b\ \forall c\ \left(\ a=b \Longrightarrow (\ c \in a \Longleftrightarrow c \in b\ )\ \right).$
+				\item[(2)] $\forall a\ \forall b\ \forall c\ \left(\ a=b \Longrightarrow (\ c = a \Longleftrightarrow c = b\ )\ \right).$
+				\item[(3)] $\forall a\ \forall b\ \forall c\ \left(\ a=b \Longrightarrow (\ a \in c \Longleftrightarrow b \in c\ )\ \right).$
+			\end{description}
 		\end{axm}
 	\end{screen}
 	
