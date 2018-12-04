@@ -1,0 +1,115 @@
+\section{複素数}
+	\monologue{
+		院生「エジソンは小学生の頃$1+1$が$2$になることを受け入れられず周りの大人を困らせたという逸話が有名ですが，
+			彼の疑問はそもそも数とは何かという問題に帰着しますから，
+			彼の質問攻めを受けた大人が回答に窮したのも無理はないでしょう．
+			しかし数学徒を自任している者ならば，数とは何かと訊ねられたら正確に答える義務があります．
+			さて我々が使える道具は集合論のみですが，前節までの集合論の言葉で数を説明するにはどうしたら良いでしょうか？
+			小中高と無条件に受け入れ(させられ)てきた四則演算が成り立つ世界を，
+			集合の宇宙の中に実現させるにはどうすれば良いのでしょうか？
+			ここで本節の大まかな流れを説明いたしましょう．我々は自然数を
+			${\bf \omega}$の要素として定義し，馴染み深い数字を
+			\begin{align}
+				0 &= \emptyset, \\
+				1 &= \{0\} = \{\emptyset\}, \\
+				2 &= \{0,1\} = \{\emptyset,\{\emptyset\}\}, \\
+				3 &= \{0,1,2\} = \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}, \\
+				&\vdots
+			\end{align}
+			で定めましたが，今度は${\bf \omega}$に集合を継ぎ接ぎして
+			複素数体にまで拡大するのが目標です．
+			はじめに${\bf \omega}$を整数環に拡張しますが，そこでは`半群を群にする操作'を応用します．
+			整数環を有理数体に拡張する際には`環から体を作る操作'を応用し，
+			有理数体を実数体に拡張する際には`Dedekind切断'を行います．
+			実数体が出来たら，次は`'で複素数体の出来上がりです．
+			ここでいくつか解消するべき問題(実数体は${\bf \omega}$を部分集合として含んでいるのか，
+			複素数体は実数体を部分集合として含んでいるのか，など)がありますが，
+			後述に回しましょう．いま述べたように，数の構成には代数学を利用します．
+			いまの私の力では代数学に深入りすることはできませんが，
+			言い訳がましいですけれども，代数学を代数学として勉強するよりは，
+			数の構成を軸に代数の一般論を(ほんの一片ですが)織り交ていく方が
+			(私の拙い経験上よく使う)代数の知識を身に付けるのに効率が良いでしょう．」
+	}
+
+\subsection{整数}
+
+\subsection{有理数}
+
+\subsection{実数}
+	\begin{screen}
+		\begin{dfn}[Dedekind切断]
+			$\Q$の任意の部分集合$A$に対して，順序対$(\Q \backslash A,A)$が
+			{\bf Dedekind切断}\index{Dedekindせつだん@Dedekind切断}{\bf (Dedekind cut)}であるということを
+			\begin{align}
+				\mbox{順序対$(\Q \backslash A,A)$がDedekind切断である} \Longleftrightarrow\ 
+				&A \neq \emptyset \wedge A \neq \Q\ \wedge \\
+				&\forall x \in \Q \backslash A\ \forall y \in A\ (\ x < y\ )\ \wedge \\
+				&\forall x \in A\ \exists y \in A\ (\ y < x\ )
+			\end{align}
+			で定義する．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「Dedekind切断とは数直線を左右に分割する操作をイメージしますね．例えば
+			\begin{align}
+				A = \Set{q \in \Q}{0 < q}
+			\end{align}
+			に対して$(\Q \backslash A,A)$はDedekind切断となります．
+			実数の構成においてこの集合$A$は重要ですから，これを$\Q_+$と表して後で使いましょう．
+			上の定義では$(\Q \backslash A,A)$がDedekind切断であるというとき
+			$A$が最小元をもたないことを条件に入れましたが，ここは
+			`$\Q \backslash A$が最大元を持たない'という条件に取り替えても構いません．」
+	}
+	
+	いま$R = \Set{x}{\mbox{$(\Q \backslash x,x)$はDedekind切断である}}$として$R$を定め，
+	\begin{align}
+		T = \Set{x}{\exists a,b \in R\ (\ x = (a,b) \wedge b \subset a\ )}
+	\end{align}
+	と定める．この$T$は$R$上の全順序となる．
+	任意の$a,b \in R$に対して，$a \not\subset b$ならば
+	或る有理数$x$が$x \in a$かつ$x \notin b$を満たす．
+	このとき$b$の任意の要素$y$に対して$x < y$となり，
+	$x \in a$かつ$x < y$より$y \in a$となるので$b \subset a$が成り立つ．ゆえに
+	\begin{align}
+		\rightharpoondown (a \subset b) \Longrightarrow b \subset a
+	\end{align}
+	が得られた．これは$a \subset b \vee b \subset a$と同値であるから$T$は全順序である．
+	
+	\monologue{
+		さて，高校まで扱ってきた数は`切れ目'がありませんでした．
+		つまり，まるで字間の流れのように数直線は`連続'していたのです．
+		集合論のことばで`数の連続性'を規定するとどうなるでしょう．
+		それには同値な条件がいくつかありますが，今回述べるものは
+		`上に有界な部分集合は上限を有する'という性質です．
+	}
+	
+	$X$を$R$の部分集合で，$X \neq \emptyset$かつ$X$は$R$において上に有界であるとする．
+	このとき$\bigcup X$は$X$の上限となる．
+	
+	\begin{screen}
+		\begin{thm}
+			$\Q$の部分集合$A$に対して$(\Q \backslash A,A)$をDedekind切断とするとき，
+			次が成り立つ:
+			\begin{description}
+				\item[(1)] $\forall q \in \Q\ (\ \exists a \in A\ (\ a < q\ )\Longleftrightarrow q \in A\ )$.
+				\item[(2)] $\forall q \in \Q\ (\ \exists a \in \Q \backslash A\ (\ q < a\ )\Longrightarrow q \in \Q \backslash A\ )$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$q$を任意の有理数とすれば，$A$は最小元を持たないので
+		\begin{align}
+			q \in A \Longrightarrow \exists a \in A\ (\ a < q\ )
+		\end{align}
+		となる．逆に$q \notin A$ならば$A$の任意の要素$a$に対して$q < a$となるから，対偶を取って
+		\begin{align}
+			\exists a \in A\ (\ a < q\ ) \Longrightarrow q \in A
+		\end{align}
+		を得る．$q \notin \Q \backslash A$ならば$A$の任意の要素$a$に対して$a < q$となるから，
+		対偶を取って(2)を得る．
+		\QED
+	\end{prf}
+
+\subsection{複素数}
