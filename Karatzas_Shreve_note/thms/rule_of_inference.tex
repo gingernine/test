@@ -1,15 +1,60 @@
 \subsection{推論規則メモ}
+	$\mathscr{S}$は公理の全体．
 	\begin{screen}
-		\begin{itemize}
-			\item $(\rightharpoondown A) \vee A$
-			\item $\rightharpoondown A$と$A$が共に定理なら$\bot$は定理となる．
-			\item $\bot \Longrightarrow A$
-			\item $(A \vee B) \Longrightarrow ((A \vee C) \Longrightarrow (B \vee C))$
-			\item $A \vee B,\ A \Longrightarrow C,\ B \Longrightarrow C$が全て定理なら
-				$C$は定理である．
-			\item 
-		\end{itemize}
+		\begin{schema}[公理図式群A]
+			何が定理となるかを認める規則:
+			\begin{itemize}
+				\item $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
+				\item $A$を$\mathscr{S}$に追加した下で$B$が定理であるなら，
+					$\mathscr{S}$を公理とした下で$A \Longrightarrow B$は定理である．
+				\item $A \Longrightarrow (A \vee B)$は定理である．
+				\item $A \Longrightarrow (B \vee A)$は定理である．
+				\item $A,B$が共に定理なら$A \wedge B$は定理である．
+				\item $A \wedge B \Longrightarrow A$と
+					$A \wedge B \Longrightarrow B$は定理である．
+				\item $A \vee B,\ A \Longrightarrow C,\ B \Longrightarrow C$が全て定理であるとき$C$は定理である．
+				\item 
+			\end{itemize}	
+		\end{schema}
 	\end{screen}
+	
+	\begin{itembox}[l]{推移律}
+		$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
+		$A \Longrightarrow C$は定理である．
+	\end{itembox}
+	
+	\begin{prf}
+		$A$を公理に追加する．このとき三段論法より$B$が定理となり，
+		再び三段論法より$C$が定理となる．ゆえに$A \Longrightarrow C$は定理である．
+	\end{prf}
+	
+	\begin{itembox}[l]{}
+		$(A \Longrightarrow B) \Longrightarrow 
+		(\ (A \vee C) \Longrightarrow (B \vee C)\ )$は定理である．
+	\end{itembox}
+	
+	\begin{prf}
+		いま$A \Longrightarrow B$を公理に追加する．
+		このとき$A$を公理に追加すれば$B$は定理となり，
+		$B \Longrightarrow (B \vee C)$が定理であるから$B \vee C$も定理となる．
+		これより<<$A \Longrightarrow B$を公理とした下では>>
+		\begin{align}
+			A \Longrightarrow (B \vee C)
+		\end{align}
+		が定理となる．無条件で$C \Longrightarrow (B \vee C)$は定理であるから，
+		よって<<$A \Longrightarrow B$と$A \vee C$を公理とした下では>>
+		$B \vee C$が定理となる．以上より
+		<<$A \Longrightarrow B$を公理とした下では>>
+		\begin{align}
+			(A \vee C) \Longrightarrow (B \vee C)
+		\end{align}
+		が定理となり
+		\begin{align}
+			(A \Longrightarrow B) \Longrightarrow 
+			(\ (A \vee C) \Longrightarrow (B \vee C)\ )
+		\end{align}
+		が定理となる．
+	\end{prf}
 	
 	\begin{itembox}[l]{ならばとまたは}
 		$B \Longrightarrow (A \Longrightarrow B)$は定理である．
@@ -21,13 +66,32 @@
 		従って$B \Longrightarrow (A \Longrightarrow B)$は定理である．
 	\end{prf}
 	
+	\begin{screen}
+		\begin{schema}[公理図式群B]
+			$\bot$に関する規則:
+			\begin{itemize}
+				\item $A$と$\rightharpoondown A$が共に定理なら$\bot$は定理となる．
+				\item $\bot \Longrightarrow A$は定理である．
+			\end{itemize}
+		\end{schema}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{schema}
+			排中律と呼ばれる規則:
+			\begin{itemize}
+				\item $A \vee \rightharpoondown A$は定理である．
+			\end{itemize}
+		\end{schema}
+	\end{screen}
+	
 	\begin{itembox}[l]{ならばとまたは}
 		$A \Longrightarrow B$と$\rightharpoondown A \vee B$は同値．
 	\end{itembox}
 	
 	\begin{prf}
 		$A \Longrightarrow B$が真であると仮定する．
-		$(A \Longrightarrow B) \Longrightarrow (\ (A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)\ )$は公理であるから
+		$(A \Longrightarrow B) \Longrightarrow (\ (A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)\ )$は定理であるから
 		$(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)$
 		は定理となり，排中律より$A \vee \rightharpoondown A$は公理なので
 		$B \vee \rightharpoondown A$は定理，よって$\rightharpoondown A \vee B$は定理である．
