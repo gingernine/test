@@ -152,7 +152,85 @@
 			」
 	}
 	
+	\begin{screen}
+		\begin{thm}[超限帰納法による写像の構成]
+			類$G$を$V$上の写像とするとき，
+			\begin{align}
+				K = \Set{f}{\exists \alpha \in \mathrm{OR}\ \left(\ f:\alpha \longrightarrow V \wedge \forall \beta \in \alpha\ (\ f(\beta) = G(f|_\beta)\ )\ \right)}
+			\end{align}
+			で$K$を定めて$F = \bigcup K$とおけば，
+			\begin{itemize}
+				\item $F$は$\mathrm{OR}$上の写像となる．
+				\item $\forall \alpha \in \mathrm{OR}\ (\ F(\alpha) = G(F|_\alpha)\ )$が成り立つ．
+			\end{itemize}
+		\end{thm}
+	\end{screen}
 	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $F$が写像であることを示す．
+				まず$K$の任意の要素は$V \times V$の部分集合であるから
+				\begin{align}
+					F \subset V \times V
+				\end{align}
+				となる．そして$x,y,z$を任意の集合として
+				$(x,y) \in F$かつ$(x,z) \in F$であるとすれば，
+				$K$の或る要素$f$と$g$が存在して
+				\begin{align}
+					(x,y) \in f \wedge (x,z) \in g
+				\end{align}
+				を満たす．前段より$y = f(x) = g(x) = z$となるので
+				$F$はsingle-valuedである．
+			
+			\item[第二段] $\operatorname{dom}(F) \subset \mathrm{OR}$が成り立つことを示す．
+				実際
+				\begin{align}
+					\operatorname{dom}(F) = \bigcup_{f \in K} \operatorname{dom}(f)
+				\end{align}
+				かつ$\forall f \in K,\ \operatorname{dom}(f) \subset \mathrm{OR}$だから
+				$\operatorname{dom}(F) \subset \mathrm{OR}$．
+				
+			\item[第三段] $\operatorname{Tran}(\operatorname{dom}(F))$であることを示す．
+				実際$y \in x \wedge x \in \operatorname{dom}(F)$であるとき，
+				或る$f \in K$で$x \in \operatorname{dom}(f)$．
+				$\operatorname{dom}(f) \in \mathrm{OR}$より
+				$y \in \operatorname{dom}(f)$．
+				ゆえに$y \in \operatorname{dom}(F)$．
+				
+			\item[第四段] $\forall \alpha \in \operatorname{dom}(F)\ (\ F(\alpha) = G(F|_\alpha)\ )$が成り立つことを示す．
+				実際，$\alpha \in \operatorname*{dom}(F)$なら
+				或る$f$で$\alpha \in \operatorname*{dom}(f)$．
+				$f \subset F$より
+				\begin{align}
+					f(\alpha) = F(\alpha).
+				\end{align}
+				他方$f|_\alpha = f \cap (\alpha \times V)
+				= F \cap (\alpha \times V) = F|_\alpha$より
+				\begin{align}
+					G(f|_\alpha) = G(F|_\alpha)．
+				\end{align}
+				$f(\alpha) = G(f|_\alpha)$と併せて$F(\alpha) = G(F|_\alpha)$を得る．
+			
+			\item[第五段] $\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )
+				\Longrightarrow \alpha \in \operatorname{dom}(F)$が成り立つことを示す．
+				$\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )$
+				が成り立っているとして
+				\begin{align}
+					f = F|_\alpha
+				\end{align}
+				とおけば$f \in K$．このとき$f' = f \cup \{(\alpha,G(f))\}$も
+				$K$に属するので
+				\begin{align}	
+					\alpha \in \operatorname{dom}(f') \subset
+					\operatorname{dom}(F)
+				\end{align}
+				が成立する．前段の結果と超限帰納法より
+				\begin{align}
+					\mathrm{OR} = \operatorname{dom}(F)
+				\end{align}
+				を得る．
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[Peanoシステム]
