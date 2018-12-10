@@ -20,6 +20,21 @@
 			順序数の要素はまた順序数です．また順序数同士に対しては$\in$と$\subsetneq$の概念が一致します．」
 	}
 	
+	\begin{itemize}
+		\item $a \subset \mathrm{OR} \wedge a \neq \emptyset 
+			\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )$.
+		
+		\item $\forall a\ (\ a \in \mathrm{OR} \Longrightarrow a \subset \mathrm{OR}\ )$
+		
+		\item $\forall a\ (\ a \subset \mathrm{OR} \Longrightarrow \bigcup a \in \mathrm{OR}\ )$
+		
+		\item $\forall a,b \in \mathrm{OR}\ (\ a \in b \Longleftrightarrow a \subsetneq b\ )$
+		
+		\item $R = \Set{x}{\exists a,b \in \mathrm{OR}\ (\ x=(a,b) \wedge a \subset b\ )}$は全順序
+		
+		\item $\mathrm{OR} \notin V$.
+	\end{itemize}
+	
 	\begin{screen}
 		\begin{dfn}[差集合]
 			\begin{align}
@@ -47,6 +62,99 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{thm}[超限帰納法]
+			$A$を文字$x$のみを自由変項とする式とするとき，次が成立する:
+			\begin{align}
+				\forall \alpha \in \mathrm{OR}\ 
+				\left(\ \forall \beta \in \alpha\ A(\beta)
+				\Longrightarrow A(\alpha)\ \right)
+				\Longrightarrow \forall \alpha \in \mathrm{OR}\ A(\alpha).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[無限公理]
+			\begin{align}
+				\exists x \in V\ (\ \emptyset \in x \wedge \forall y\ (\ y \in x
+				\Longrightarrow y \cup \{y\} \in x\ )\ ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[極限数の存在定理]
+			極限数は存在する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を無限集合として$b = a \cap \mathrm{OR}$とおくとき，
+		$\bigcup b$が極限数となることを示す．
+		$\alpha \in \bigcup b$なら
+		或る集合$x$が$x \in b \wedge \alpha \in x$を満たす．このとき
+		$\alpha \cup \{\alpha\} \in x$または$\alpha \cup \{\alpha\} = x$となるが，
+		前者の場合は$\alpha \cup \{\alpha\} \in \bigcup b$，
+		後者の場合は$\alpha \cup \{\alpha\} \in x \cup \{x\}$および
+		$x \cup \{x\} \in a$かつ$x \cup \{x\} \in \mathrm{OR}$より
+		$x \cup \{x\} \in b$，ゆえに$\alpha \cup \{\alpha\} \in \bigcup b$，
+		従って$\operatorname*{Tran}(\bigcup b)$が成立．
+	\end{prf}
+	
+	\monologue{
+		院生「無限公理から極限数の存在が示されましたが，無限公理を仮定せず
+			代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
+			どちらを公理とするかは嗜好に依るでしょうが，本稿の論理の流れとしては
+			極限数の存在を公理とした方が自然に感じられますね．しかし
+			無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようですから
+			多数派に合わせるのが良いでしょうか．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[${\bf \omega}$は最小の無限集合]
+		\label{thm:the_principle_of_mathematical_induction}
+			${\bf \omega}$は次の意味で最小の無限集合である:
+			\begin{align}
+				\forall a\ \left(\ \emptyset \in a \wedge \forall x\ 
+				(\ x \in a \Longrightarrow x \cup \{x\} \in a\ ) 
+				\Longrightarrow {\bf \omega} \subset a\ \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\alpha$を任意に与えられた順序数とし，
+		$\alpha$の任意の要素$\beta$に対して
+		\begin{align}
+			\beta \in {\bf \omega} \Longrightarrow \beta \in a
+		\end{align}
+		が成立すると仮定する．このとき$\alpha \in {\bf \omega}$なら
+		$\alpha = \beta \cup \{\beta\}$を満たす順序数$\beta$に対して
+		$\beta \in a$となるから$\alpha \in a$となり，
+		\begin{align}
+			\alpha \in {\bf \omega} \Longrightarrow \alpha \in a
+		\end{align}
+		が従う．超限帰納法により
+		\begin{align}
+			\forall \alpha\ (\ \alpha \in {\bf \omega} \Longrightarrow \alpha \in a\ )
+		\end{align}
+		となるから$\omega \subset a$が出る．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「定理\ref{thm:the_principle_of_mathematical_induction}で示された
+			${\bf \omega}$の性質は{\bf 数学的帰納法の原理}
+			\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
+			{\bf (the principle of mathematical induction)}と呼ばれます．
+			高校数学だとドミノ倒しに喩えられる数学的帰納法ですが，
+			なぜ数学的帰納法による証明が正しいのか簡単に説明いたしましょう．
+			」
+	}
+	
+	
+	
+	\begin{screen}
 		\begin{dfn}[Peanoシステム]
 			次を満たす集合$X,a$と写像$f:X \longrightarrow X$の組$(X,a,f)$を
 			{\bf Peanoシステム}\index{Peanoしすてむ@Peanoシステム}と呼ぶ:
@@ -56,8 +164,6 @@
 				\item $f$は単射である．
 				\item 集合$S$が$a$を含み，かつ$S$の任意の要素$x$に対し$f(x) \in S$となるならば，$S = X$．
 			\end{itemize}
-			四番目の性質は{\bf 数学的帰納法の原理}\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
-			{\bf (the principle of mathematical induction)}と呼ばれる．
 		\end{dfn}
 	\end{screen}
 	
