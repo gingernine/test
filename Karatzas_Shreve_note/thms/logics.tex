@@ -210,7 +210,7 @@
 		\item 式$a = b$を``$a$は$b$に等しい''や``$a$と$b$は等しい''と翻訳する．
 		\item 式$a \in b$を``$a$は$b$の要素である''や``$a$は$b$に属する''と翻訳する．
 		\item 式$A \Longrightarrow B$を``$A$が成り立つならば$B$が成り立つ''と翻訳する．
-		\item 
+		\item 式$\rightharpoondown A$を%``$A$でない''と翻訳する．
 	\end{itemize}
 	
 	\begin{screen}
@@ -284,9 +284,9 @@
 	
 	\begin{screen}
 		\begin{axm}[類の公理]
-			$\Set{x}{A}$とは$A$という性質を持つ集合の全体である:
+			$\Set{x}{A(x)}$とは$A$という性質を持つ集合の全体である:
 			\begin{align}
-				\forall t\ (\ t \in \Set{x}{A} \Longleftrightarrow t \in V \wedge (t\, |\, x)A\ ).
+				\forall t\ (\ t \in \Set{x}{A(x)} \Longleftrightarrow t \in V \wedge A(t)\ ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -309,6 +309,7 @@
 				\item[(3)] $V=\Set{x}{x=x}$
 				\item[(4)] $\forall a\ (\ a \subset V\ )$
 				\item[(5)] $\Set{x}{A} = \Set{y}{(y\, |\, x)A}$
+				\item[(6)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = V$.
 			\end{description}
 		\end{thm}
 	\end{screen}
@@ -324,22 +325,13 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{axm}[論理の公理]\mbox{}
-			\begin{description}
-				\item[(1)] 証明可能な命題は真である．
-				\item[(2)] 任意の命題$A,B$に対し，$A$も$A \Longrightarrow B$も真であるとき$B$は真である．
-				\item[(3)] 任意の命題$A$に対し，$\rightharpoondown A$が真であるとき$A$は偽である．
-			\end{description}
-		\end{axm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}
-			$A$を任意の命題とするとき，
+		\begin{axm}[正則性公理]
+			空でない類は自分自身と交わらない集合を要素に持つ:
 			\begin{align}
-				\mbox{$\rightharpoondown A$が真である} \Longleftrightarrow \mbox{$A$が偽である}.
+				\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+				\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)
 			\end{align}
-		\end{thm}
+		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
@@ -355,7 +347,7 @@
 		$a$を任意に選ばれた集合とするとき，類$\Set{x}{x=a}$は$a$を要素に持つから空ではなく，
 		正則性公理より
 		\begin{align}
-			\exists x\ (\ x = a \wedge x \cap \Set{x}{x=a} = \emptyset\ )
+			\exists t\ (\ t = a \wedge t \cap \Set{x}{x=a} = \emptyset\ )
 		\end{align}
 		が成立する．すなわち$a \cap \Set{x}{x=a} = \emptyset$となり，
 		$a \in \Set{x}{x=a}$と併せて$a \notin a$が従う．
@@ -393,6 +385,3 @@
 				$t \in a^{-1}$が成り立つ．
 		\end{description}
 	\end{prf}
-	
-	
-	自分自身と自分の否定が共に証明可能な命題が存在するとき，その理論体系は矛盾しているという．
