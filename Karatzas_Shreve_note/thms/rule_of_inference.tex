@@ -115,7 +115,87 @@
 	\begin{screen}
 		$A$を式とし，$A$に現れる文字のうち$x$のみが自由変項であるとする．このとき以下は公理である:
 		\begin{description}
+			\item[$\varepsilon$記号の公理] $\varepsilon x A(x)$は対象である．
 			\item[存在記号の公理] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$.
 			\item[全称記号の公理] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$.
+			\item[存在記号の公理] 対象$T$に対して
+				\begin{align}
+					A(T) \Longrightarrow \exists x A(x).
+				\end{align}
 		\end{description}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}
+			$A$と$B$を式とし，$A$，$B$に現れる自由変項は一つのみ．このとき以下は定理である:
+			\begin{itemize}
+				\item $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
+				\item $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
+			\end{itemize}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				公理より
+				\begin{align}
+					\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
+					\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
+				\end{align}
+				は定理である．また
+				\begin{align}
+					A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
+				\end{align}
+				も定理であり，
+				\begin{align}
+					\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
+					\rightharpoondown \forall x A(x)
+				\end{align}
+				も定理となるので$\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$を得る．
+		\end{description}
+		いま$A(x) \vee B(x)$を$C(x)$で代用する．
+		$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
+		\begin{align}
+			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x).
+		\end{align}
+		また公理より
+		\begin{align}
+			\exists x C(x) \Longrightarrow C(\varepsilon x C(x)).
+		\end{align}
+		$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$は同じ記号列であるから
+		\begin{align}
+			C(\varepsilon x C(x)) \Longrightarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x)).
+		\end{align}
+		ここで
+		\begin{align}
+			A(\varepsilon x C(x)) &\Longrightarrow A(\varepsilon x A(x)), \\
+			A(\varepsilon x A(x)) &\Longrightarrow \exists x A(x), \\
+			\exists x A(x) &\Longrightarrow \exists x A(x) \vee \exists x B(x)
+		\end{align}
+		かつ
+		\begin{align}
+			B(\varepsilon x C(x)) &\Longrightarrow B(\varepsilon x B(x)), \\
+			B(\varepsilon x B(x)) &\Longrightarrow \exists x B(x), \\
+			\exists x B(x) &\Longrightarrow \exists x A(x) \vee \exists x B(x).
+		\end{align}
+		以上と場合分けの原理を総合して
+		\begin{align}
+			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x A(x) \vee \exists x B(x)
+		\end{align}
+		を得る．他方，公理より
+		\begin{align}
+			\exists x A(x) &\Longrightarrow A(\varepsilon x A(x)), \\
+			A(\varepsilon x A(x)) &\Longrightarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)), \\
+			A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) &\Longrightarrow C(\varepsilon x A(x)), \\
+			C(\varepsilon x A(x)) &\Longrightarrow C(\varepsilon x C(x)), \\
+			C(\varepsilon x C(x)) &\Longrightarrow \exists x C(x), \\
+			\exists x C(x) &\Longrightarrow \exists x (A(x) \vee B(x))
+		\end{align}
+		同様に$\exists x A(x) \Longrightarrow \exists x (A(x) \vee B(x))$も成り立つので
+		\begin{align}
+			\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
