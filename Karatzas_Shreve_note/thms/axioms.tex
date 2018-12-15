@@ -36,6 +36,102 @@
 	\end{itemize}
 	
 	\begin{screen}
+		\begin{thm}\label{thm:equivalent_condition_of_axiom_of_regularity}
+			次は同値である:
+			\begin{itemize}
+				\item $\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+					\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)$.
+				
+				\item $A$を式とし，$A$に現れる自由変項が唯一つである場合，
+					\begin{align}
+						\forall x\ \left(\ \forall y \in x\ A(y)
+						\Longrightarrow A(x)\ \right)
+						\Longrightarrow \forall x\ A(x).
+					\end{align}
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+		\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)$
+		が成立しているとして，
+		\begin{align}
+			a = \Set{x}{\rightharpoondown A(x)}
+		\end{align}
+		の場合を考える．いま
+		\begin{align}
+			a \neq \emptyset \Longrightarrow 
+			\exists x\ (\ x \in a \wedge x \cap a = \emptyset\ )
+		\end{align}
+		が満たされているが，対偶を取れば
+		\begin{align}
+			\forall x\ (\ x \notin a \vee x \cap a \neq \emptyset\ )
+			\Longrightarrow a = \emptyset
+		\end{align}
+		が成り立ち，$x \cap a \neq \emptyset$は$\exists y \in x\ (y \in a)$となるので
+		\begin{align}
+			\forall x\ (\ \forall y \in x\ (\ y \notin a\ ) \Longrightarrow x \notin a\ )
+			\Longrightarrow a = \emptyset
+		\end{align}
+		が成立する．ところで$x \notin a \Longleftrightarrow A(x)$より
+		\begin{align}
+			\forall x\ \left(\ \forall y \in x\ A(y)
+			\Longrightarrow A(x)\ \right)
+			\Longrightarrow \forall x\ A(x).
+			\label{eq:thm_equivalent_condition_of_axiom_of_regularity_1}
+		\end{align}
+		を得る．逆に(\refeq{eq:thm_equivalent_condition_of_axiom_of_regularity_1})が成り立っている場合，$A(x)$が$x \notin a$であるとすれば
+		\begin{align}
+			\forall x\ \left(\ \forall y \in x \rightharpoondown y \in a\ )
+			\Longrightarrow \rightharpoondown x \in a\ \right)
+			\Longrightarrow \forall x \rightharpoondown x \in a
+		\end{align}
+		対偶を取れば
+		\begin{align}
+			\exists x\ x \in a \Longrightarrow 
+			\exists x\ \left(\ \forall y \in x\ (\ y \notin a\ )\ )
+			\wedge x \in a\ \right)
+		\end{align}
+		となり，$a \neq \emptyset \Longleftrightarrow \exists x\ x \in a$と
+		$x \cap a = \emptyset \Longleftrightarrow \forall y \in x\ (\ y \notin a\ )$
+		と併せて
+		\begin{align}
+			a \neq \emptyset \Longrightarrow 
+			\exists x \in a\ (\ x \cap a = \emptyset\ )
+		\end{align}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{axm}[正則性公理]
+			空でない類は自分自身と交わらない集合を要素に持つ:
+			\begin{align}
+				\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+				\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[いかなる集合も自分自身を要素に持たない]
+			次が成り立つ:
+			\begin{align}
+				\forall x \in V\ (\ x \notin x\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を任意に選ばれた集合とするとき，類$\Set{x}{x=a}$は$a$を要素に持つから空ではなく，
+		正則性公理より
+		\begin{align}
+			\exists t\ (\ t = a \wedge t \cap \Set{x}{x=a} = \emptyset\ )
+		\end{align}
+		が成立する．すなわち$a \cap \Set{x}{x=a} = \emptyset$となり，
+		$a \in \Set{x}{x=a}$と併せて$a \notin a$が従う．
+		\QED
+	\end{prf}
+	\begin{screen}
 		\begin{dfn}[差集合]
 			\begin{align}
 				a \backslash b = \Set{x}{x \in a \wedge x \notin b}
@@ -72,6 +168,24 @@
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		正則性公理より
+		\begin{align}
+			\forall x\ \left(\ \forall y \in x\ A(y)
+			\Longrightarrow A(x)\ \right)
+			\Longrightarrow \forall x\ A(x)
+		\end{align}
+		が成り立つが，$A(x)$を$x \in \mathrm{OR} \Longrightarrow A(x)$に置き換えれば
+		\begin{align}
+			\forall \alpha \in \mathrm{OR}\ 
+			\left(\ \forall \beta \in \alpha\ A(\beta)
+			\Longrightarrow A(\alpha)\ \right)
+			\Longrightarrow \forall \alpha \in \mathrm{OR}\ A(\alpha).
+		\end{align}
+		が出る．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{axm}[無限公理]
