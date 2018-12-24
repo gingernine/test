@@ -211,31 +211,9 @@
 		\item $R = \Set{x}{\exists \alpha,\beta \in \ON\ 
 			(\ x=(\alpha,\beta) \wedge (\ \alpha \in \beta \vee \alpha = \beta\ )\ )}$
 			とおくと$R$は$\ON$において整列順序となる．
-		\item $a \subset \ON$なら，$\bigcup a$は$a$の順序$R$に関する上限となる．
+		\item $a \subset \ON$かつ$a \in \Univ$なら，$\bigcup a$は$a$の順序$R$に関する上限となる．
 		\item $\ON$は集合ではない．
 	\end{itemize}
-	
-	
-	\begin{screen}
-		\begin{thm}[順序数の諸性質]\label{thm:properties_of_ordinal_numbers}\mbox{}
-			\begin{description}
-				\item[(i)] $\forall \alpha\ (\ \alpha \in \ON \Longrightarrow \alpha \subset \ON\ )$
-		
-				\item[(ii)] $a \subset \ON \wedge a \neq \emptyset 
-					\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )$.
-		
-				\item[(iii)] $\forall a\ (\ a \subset \ON \Longrightarrow \bigcup a \in \ON\ )$
-		
-				\item[(iv)] $\forall a,b \in \ON\ (\ a \in b \Longleftrightarrow a \subsetneq b\ )$
-				
-				\item[(v)] $\forall a \in \ON\ (\ a \neq \emptyset \Longrightarrow \emptyset \in a\ )$
-		
-				\item[(vi)] $R = \Set{x}{\exists a,b \in \ON\ (\ x=(a,b) \wedge a \subset b\ )}$は全順序
-		
-				\item[(vii)] $\ON \notin V$.
-			\end{description}
-		\end{thm}
-	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[順序数全体は推移的]\label{thm:On_is_transitive}
@@ -310,16 +288,6 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[$\ON$の整列性]
-			$\ON$の任意の部分集合は次の意味で最小元を持つ:
-			\begin{align}
-				\forall a\ \left(\ a \subset \ON \wedge a \neq \emptyset 
-				\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )\ \right).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
 		\begin{thm}[$\ON$において$\in$と$\subsetneq$は同義]
 		\label{thm:element_and_proper_subset_correspond_between_ordinal_numbers}
 			次が成立する:
@@ -387,13 +355,130 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}
+		\begin{thm}[$\ON$の整列性]\label{thm:On_is_wellordered}
 			\begin{align}
-				\forall \alpha,\beta \in \ON\ 
-				(\ \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\ ).
+				R = \Set{x}{\exists \alpha,\beta \in \ON\ 
+				(\ x=(\alpha,\beta) \wedge (\ \alpha \in \beta \vee \alpha = \beta\ )\ )}
+			\end{align}
+			により$R$を定めると，$R$は$\ON$上の整列順序となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$R$が$\ON$上の順序関係であることを示す．実際
+				定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より
+				\begin{align}
+					R = \Set{x}{\exists \alpha,\beta \in \ON\ 
+						(\ x=(\alpha,\beta) \wedge \alpha \subset \beta\ )}
+				\end{align}
+				が成り立ち，かつ
+				\begin{align}
+				\begin{gathered}
+					\forall \alpha \in \ON\ (\ \alpha \subset \alpha\ ), \\
+					\forall \alpha,\beta \in \ON\ (\ \alpha \subset \beta \wedge 
+					\beta \subset \alpha \Longrightarrow \alpha = \beta\ ), \\
+					\forall \alpha,\beta,\gamma \in \ON\ (\ \alpha \subset \beta
+					\wedge \beta \subset \gamma \Longrightarrow \alpha \subset \gamma\ )
+				\end{gathered}
+				\end{align}
+				も成り立つから$R$は$\ON$上の順序である．
+				
+			\item[第二段]
+				$R$が全順序であることを示す．つまり，
+				\begin{align}
+					\forall \alpha,\beta \in \ON\ 
+					(\ \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\ )
+					\label{eq:thm_On_is_wellordered_1}
+				\end{align}
+				が成り立つことを示す．いま$\alpha$と$\beta$を任意に与えられた順序数とすれば，
+				$\alpha \cap \beta$もまた順序数となる．
+				定理\ref{thm:no_set_is_an_element_of_itself}より
+				$\alpha \cap \beta \notin \alpha \cap \beta$となるから
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \vee
+					\alpha \cap \beta \notin \beta
+				\end{align}
+				が成立する．いま$\alpha \cap \beta \subset \alpha$は満たされているので
+				定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より
+				\begin{align}
+					\alpha \cap \beta \in \alpha \vee
+					\alpha \cap \beta = \alpha
+				\end{align}
+				が成立する．また$\alpha \cap \beta = \alpha \Longrightarrow \alpha \subset \beta$となるから
+				\begin{align}
+					\alpha \cap \beta \notin \alpha
+					\Longrightarrow \alpha \subset \beta
+				\end{align}
+				を得る．同様にして
+				\begin{align}
+					\alpha \cap \beta \notin \beta
+					\Longrightarrow \beta \subset \alpha
+				\end{align}
+				も得られ，場合分け法則より
+				\begin{align}
+					\alpha \subset \beta \vee \beta \subset \alpha
+				\end{align}
+				が成立する．定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より
+				これは
+				\begin{align}
+					\alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha
+				\end{align}
+				と同値であるから(\refeq{eq:thm_On_is_wellordered_1})が成り立つ．
+			
+			\item[第三段]
+				$R$が整列順序であることを示す．$a$を$\ON$の空でない部分集合とするとき，
+				正則性公理より或る集合$x$が
+				\begin{align}
+					x \in a \wedge x \cap a = \emptyset
+				\end{align}
+				を満たすが，この$x$が$a$の最小限である．実際，
+				$a$の任意の要素$y$に対し$y \notin x$となるが，一方で
+				前段の結果より
+				\begin{align}
+					x \in y \vee x = y \vee y \in x
+				\end{align}
+				も満たされるから
+				\begin{align}
+					x \in y \vee x = y
+				\end{align}
+				が成り立つ．よって
+				\begin{align}
+					\forall y \in a\ (\ (x,y) \in R\ )
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$の部分集合は，その合併が上限となる]
+			\begin{align}
+				\forall a\ 
+				(\ a \subset \ON \wedge a \in \Univ \Longrightarrow \bigcup a \in \ON\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		和集合の公理より$\bigcup a \in \Univ$となる．また順序数の推移性より
+		$\bigcup a$の任意の要素は順序数であるから，定理\ref{thm:On_is_wellordered}より
+		\begin{align}
+			\forall x,y \in \bigcup a\ (\ x \in y \vee x = y \vee y \in x\ )
+		\end{align}
+		も成り立つ．最後に$\operatorname{Tran}(\bigcup a)$が成り立つことを示す．
+		$b$を$\bigcup a$の任意の要素とすれば，$a$の或る要素$x$に対して
+		\begin{align}
+			b \in x
+		\end{align}
+		となるが，$x$の推移性より$b \subset x$となり，$x \subset \bigcup a$と併せて
+		\begin{align}
+			b \subset \bigcup a
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[Burali-Forti]
