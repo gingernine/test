@@ -20,21 +20,6 @@
 			順序数の要素はまた順序数です．また順序数同士に対しては$\in$と$\subsetneq$の概念が一致します．」
 	}
 	
-	\begin{itemize}
-		\item $a \subset \ON \wedge a \neq \emptyset 
-			\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )$.
-		
-		\item $\forall a\ (\ a \in \ON \Longrightarrow a \subset \ON\ )$
-		
-		\item $\forall a\ (\ a \subset \ON \Longrightarrow \bigcup a \in \ON\ )$
-		
-		\item $\forall a,b \in \ON\ (\ a \in b \Longleftrightarrow a \subsetneq b\ )$
-		
-		\item $R = \Set{x}{\exists a,b \in \ON\ (\ x=(a,b) \wedge a \subset b\ )}$は全順序
-		
-		\item $\ON \notin V$.
-	\end{itemize}
-	
 	\begin{screen}
 		\begin{thm}\label{thm:equivalent_condition_of_axiom_of_regularity}
 			次は同値である:
@@ -112,25 +97,55 @@
 		\end{axm}
 	\end{screen}
 	
+	\monologue{
+		院生「正則性公理は帰納法の公理とも呼ばれます．
+			たしかに，定理\ref{thm:equivalent_condition_of_axiom_of_regularity}を見れば
+			正則性公理と同値な主張は数学的帰納法の究極の一般形となっていますね．」
+	}
+	
 	\begin{screen}
 		\begin{thm}[いかなる集合も自分自身を要素に持たない]
 			次が成り立つ:
-			\begin{align}
-				\forall x \in V\ (\ x \notin x\ ).
-			\end{align}
+			\begin{itemize}
+				\item $\forall x \in V\ (\ x \notin x\ )$.
+				
+				\item $\forall x,y \in V\ (\ x \notin y \vee y \notin x\ )$.
+				
+				\item $\forall x,y,z \in V\ (\ x \notin y \vee y \notin z \vee z \notin x\ )$.
+			\end{itemize}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$を任意に選ばれた集合とするとき，類$\Set{x}{x=a}$は$a$を要素に持つから空ではなく，
-		正則性公理より
+		$x,y,z$を任意に与えられた集合とする．まず正則性公理より
 		\begin{align}
-			\exists t\ (\ t = a \wedge t \cap \Set{x}{x=a} = \emptyset\ )
+			x \cap \{x\} = \emptyset
 		\end{align}
-		が成立する．すなわち$a \cap \Set{x}{x=a} = \emptyset$となり，
-		$a \in \Set{x}{x=a}$と併せて$a \notin a$が従う．
+		が成り立つから
+		\begin{align}
+			x \notin x
+		\end{align}
+		が出る．また$x \in y$が満たされていると仮定すれば，$y \cap \{x,y\} \neq \emptyset$より
+		\begin{align}
+			x \cap \{x,y\} = \emptyset
+		\end{align}
+		が成り立つから$y \notin x$が従い
+		\begin{align}
+			x \in y \Longrightarrow y \notin x
+		\end{align}
+		となる．すなわち$x \notin y \vee y \notin x$が出る．
+		同様に$x \in y \wedge y \in z$が満たされていると仮定すれば
+		\begin{align}
+			x \cap \{x,y,z\} = \emptyset
+		\end{align}
+		が従うから
+		\begin{align}
+			x \in y \wedge y \in z \Longrightarrow z \notin x
+		\end{align}
+		が成り立ち，$x \notin y \vee y \notin z \vee z \notin x$が得られる．
 		\QED
 	\end{prf}
+	
 	\begin{screen}
 		\begin{dfn}[差集合]
 			\begin{align}
@@ -140,22 +155,134 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[順序数は整列集合]
+		\begin{dfn}[順序数]
+			
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[順序数の諸性質]\label{thm:properties_of_ordinal_numbers}\mbox{}
+			\begin{description}
+				\item[(i)] $\forall \alpha\ (\ \alpha \in \ON \Longrightarrow \alpha \subset \ON\ )$
+		
+				\item[(ii)] $a \subset \ON \wedge a \neq \emptyset 
+					\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )$.
+		
+				\item[(iii)] $\forall a\ (\ a \subset \ON \Longrightarrow \bigcup a \in \ON\ )$
+		
+				\item[(iv)] $\forall a,b \in \ON\ (\ a \in b \Longleftrightarrow a \subsetneq b\ )$
+				
+				\item[(v)] $\forall a \in \ON\ (\ a \neq \emptyset \Longrightarrow \emptyset \in a\ )$
+		
+				\item[(vi)] $R = \Set{x}{\exists a,b \in \ON\ (\ x=(a,b) \wedge a \subset b\ )}$は全順序
+		
+				\item[(vii)] $\ON \notin V$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(i)] $\alpha$を任意に選ばれた順序数とする．$\alpha = \emptyset$ならば空虚な真により
+				\begin{align}
+					\alpha \subset \ON
+				\end{align}
+				が成り立つ．$\alpha \neq \emptyset$の場合，$\alpha$の任意の要素$x$
+				が順序数であることを示す．まず$\alpha$の推移律より
+				\begin{align}
+					\forall y\ (\ y \in x \Longrightarrow y \in \alpha\ )
+				\end{align}
+				が成り立つから
+				\begin{align}
+					x \subset \alpha
+				\end{align}
+				となる．よって
+				\begin{align}
+					\forall y,z \in x\ (\ y \in z \vee y = z \vee z \in y\ )
+				\end{align}
+				が成り立つ．
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[極限数]
+			$\emptyset$でなく，またいずれの順序数の後者でもない順序数を
+			{\bf 極限数}\index{きょくげんすう@極限数}{\bf (limit ordinal)}と呼ぶ．
+			類$\alpha$が極限数であるということを式で表せば
 			\begin{align}
-				\forall x,y\ \left(\ Ord(x) \wedge y \subset x \wedge y \neq \emptyset \Longrightarrow 
-				\exists z \in y\ \forall t \in y\ (\ z=t \vee z \in t\ )\ )\ \right)
+				\alpha \in \ON \wedge \alpha \neq \emptyset
+				\wedge \forall \beta \in \ON\ 
+				(\ \alpha \neq \beta \cup \{\beta\}\ )
+			\end{align}
+			となるが，この$\alpha$についての式を$\operatorname{lim}(\alpha)$と略記する．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「ところで極限数は存在するものなのでしょうか．
+			残念ながら現時点では極限数の存在は保証されません．
+			では次の無限公理を導入してみるとどうなるでしょうか．」
+	}
+	
+	\begin{screen}
+		\begin{axm}[無限公理]
+			空集合を要素に持ち，かつ任意の要素の後者について閉じている集合が存在する:
+			\begin{align}
+				\exists x \in V\ (\ \emptyset \in x \wedge \forall y\ (\ y \in x
+				\Longrightarrow y \cup \{y\} \in x\ )\ ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[極限数は存在する]
+			\begin{align}
+				\exists \alpha \in \ON\ (\ \operatorname{lim}(\alpha)\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf}
+		$a$を無限集合として$b = a \cap \ON$とおくとき，
+		$\bigcup b$が極限数となることを示す．
+		$\alpha \in \bigcup b$なら
+		或る集合$x$が$x \in b \wedge \alpha \in x$を満たす．このとき
+		$\alpha \cup \{\alpha\} \in x$または$\alpha \cup \{\alpha\} = x$となるが，
+		前者の場合は$\alpha \cup \{\alpha\} \in \bigcup b$，
+		後者の場合は$\alpha \cup \{\alpha\} \in x \cup \{x\}$および
+		$x \cup \{x\} \in a$かつ$x \cup \{x\} \in \ON$より
+		$x \cup \{x\} \in b$，ゆえに$\alpha \cup \{\alpha\} \in \bigcup b$，
+		従って$\operatorname*{Tran}(\bigcup b)$が成立．
+	\end{prf}
+	
+	\monologue{
+		院生「無限公理から極限数の存在が示されましたが，無限公理を仮定せず
+			代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
+			どちらを公理とするかは嗜好に依るでしょうが，本稿の論理の流れとしては
+			極限数の存在を公理とした方が自然に感じられますね．しかし
+			無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようですから
+			多数派に合わせるのが良いでしょうか．」
+	}
+	
 	\begin{screen}
-		\begin{thm}
+		\begin{dfn}[自然数]
+			$\ON$の整列性より，
 			\begin{align}
-				\forall x,y\ \left(\ Ord(x) \wedge Tran(y) \Longrightarrow 
-				(\ y \in x \Longleftrightarrow y \subset x)\ \right)
+				\Set{x}{\operatorname{lim}(x)}
 			\end{align}
-		\end{thm}
+			の中で最小の順序数が存在するが，それを
+			\begin{align}
+				{\bf \omega}
+			\end{align}
+			と書く．${\bf \omega}$の要素を{\bf 自然数}\index{しぜんすう@自然数}
+			{\bf (natural number)}と呼び，そして自然数と呼ばれるものはこれらに限られる．
+		\end{dfn}
 	\end{screen}
+	
+	\monologue{
+		院生「${\bf \omega}$とは最小の極限数ですから，その要素である自然数はどれも極限数ではありません．
+			従って$\emptyset$を除く自然数は必ずいずれかの自然数の後者となっているのですね．」
+	}
 	
 	\begin{screen}
 		\begin{thm}[超限帰納法]
@@ -188,163 +315,172 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{axm}[無限公理]
-			\begin{align}
-				\exists x \in V\ (\ \emptyset \in x \wedge \forall y\ (\ y \in x
-				\Longrightarrow y \cup \{y\} \in x\ )\ ).
-			\end{align}
-		\end{axm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[極限数の存在定理]
-			極限数は存在する．
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$a$を無限集合として$b = a \cap \ON$とおくとき，
-		$\bigcup b$が極限数となることを示す．
-		$\alpha \in \bigcup b$なら
-		或る集合$x$が$x \in b \wedge \alpha \in x$を満たす．このとき
-		$\alpha \cup \{\alpha\} \in x$または$\alpha \cup \{\alpha\} = x$となるが，
-		前者の場合は$\alpha \cup \{\alpha\} \in \bigcup b$，
-		後者の場合は$\alpha \cup \{\alpha\} \in x \cup \{x\}$および
-		$x \cup \{x\} \in a$かつ$x \cup \{x\} \in \ON$より
-		$x \cup \{x\} \in b$，ゆえに$\alpha \cup \{\alpha\} \in \bigcup b$，
-		従って$\operatorname*{Tran}(\bigcup b)$が成立．
-	\end{prf}
-	
-	\monologue{
-		院生「無限公理から極限数の存在が示されましたが，無限公理を仮定せず
-			代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
-			どちらを公理とするかは嗜好に依るでしょうが，本稿の論理の流れとしては
-			極限数の存在を公理とした方が自然に感じられますね．しかし
-			無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようですから
-			多数派に合わせるのが良いでしょうか．」
-	}
-	
-	\begin{screen}
-		\begin{thm}[${\bf \omega}$は最小の無限集合]
-		\label{thm:the_principle_of_mathematical_induction}
-			${\bf \omega}$は次の意味で最小の無限集合である:
-			\begin{align}
-				\forall a\ \left(\ \emptyset \in a \wedge \forall x\ 
-				(\ x \in a \Longrightarrow x \cup \{x\} \in a\ ) 
-				\Longrightarrow {\bf \omega} \subset a\ \right).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$\alpha$を任意に与えられた順序数とし，
-		$\alpha$の任意の要素$\beta$に対して
-		\begin{align}
-			\beta \in {\bf \omega} \Longrightarrow \beta \in a
-		\end{align}
-		が成立すると仮定する．このとき$\alpha \in {\bf \omega}$なら
-		$\alpha = \beta \cup \{\beta\}$を満たす順序数$\beta$に対して
-		$\beta \in a$となるから$\alpha \in a$となり，
-		\begin{align}
-			\alpha \in {\bf \omega} \Longrightarrow \alpha \in a
-		\end{align}
-		が従う．超限帰納法により
-		\begin{align}
-			\forall \alpha\ (\ \alpha \in {\bf \omega} \Longrightarrow \alpha \in a\ )
-		\end{align}
-		となるから$\omega \subset a$が出る．
-		\QED
-	\end{prf}
-	
-	\monologue{
-		院生「定理\ref{thm:the_principle_of_mathematical_induction}で示された
-			${\bf \omega}$の性質は{\bf 数学的帰納法の原理}
-			\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
-			{\bf (the principle of mathematical induction)}と呼ばれます．
-			高校数学だとドミノ倒しに喩えられる数学的帰納法ですが，
-			なぜ数学的帰納法による証明が正しいのか簡単に説明いたしましょう．
-			」
-	}
-	
-	\begin{screen}
 		\begin{thm}[超限帰納法による写像の構成]\label{thm:transfinite_recursion_theorem}
 			類$G$を$V$上の写像とするとき，
 			\begin{align}
 				\forall \alpha \in \ON\ (\ F(\alpha) = G(F|_\alpha)\ )
 			\end{align}
-			を満たす写像$F:\ON \longrightarrow V$が存在する．
+			を満たす写像$F:\ON \longrightarrow V$が唯一つ存在する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[] 与えられた$G:V \longrightarrow V$に対して
+			\item[第一段] 与えられた$G:V \longrightarrow V$に対して
 				\begin{align}
 					K = \Set{f}{\exists \alpha \in \ON\ \left(\ f:\alpha \longrightarrow V \wedge \forall \beta \in \alpha\ (\ f(\beta) = G(f|_\beta)\ )\ \right)}
 				\end{align}
 				で$K$を定めるとき，$F = \bigcup K$が求める写像である．
 				
-			\item[第一段] $F$が写像であることを示す．
+			\item[第二段] $F$が写像であることを示す．
 				まず$K$の任意の要素は$V \times V$の部分集合であるから
 				\begin{align}
 					F \subset V \times V
 				\end{align}
-				となる．そして$x,y,z$を任意の集合として
-				$(x,y) \in F$かつ$(x,z) \in F$であるとすれば，
+				となる．$x,y,z$を任意の集合とする．
+				$(x,y) \in F$かつ$(x,z) \in F$のとき，
 				$K$の或る要素$f$と$g$が存在して
 				\begin{align}
 					(x,y) \in f \wedge (x,z) \in g
 				\end{align}
-				を満たす．前段より$y = f(x) = g(x) = z$となるので
-				$F$はsingle-valuedである．
+				を満たすが，ここで$f(x) = g(x)$となることを言うために，
+				$\alpha = \operatorname{dom}(f),\ 
+				\beta = \operatorname{dom}(g)$とおき，
+				\begin{align}
+					\forall \gamma \in \ON\ (\ \gamma \in \alpha \wedge \gamma \in \beta \Longrightarrow f(\gamma) = g(\gamma)\ )
+					\label{eq:thm_transfinite_recursion_theorem_1}
+				\end{align}
+				が成り立つことを示す．いま$\gamma$を任意の順序数とする．$\gamma = \emptyset$の場合は
+				$f|_\gamma = \emptyset$かつ$g|_\gamma = \emptyset$となるから
+				\begin{align}
+					f(\gamma) = G(\emptyset) = g(\gamma)
+				\end{align}
+				が成立する．$\gamma \neq \emptyset$の場合は
+				\begin{align}
+					\forall \xi \in \gamma\ (\ \xi \in \alpha \wedge \xi \in \beta \Longrightarrow f(\xi) = g(\xi)\ )
+				\end{align}
+				が成り立っていると仮定する．このとき$\gamma \in \alpha \wedge \gamma \in \beta$ならば
+				順序数の推移性より$\gamma$の任意の要素$\xi$は$\xi \in \alpha \wedge \xi \in \beta$を満たすから
+				\begin{align}
+					\forall \xi \in \gamma\ (\ f(\xi) = g(\xi)\ )
+				\end{align}
+				が成立する．従って
+				\begin{align}
+					f|_\gamma = g|_\gamma
+				\end{align}
+				が成立するので$f(\gamma) = g(\gamma)$が得られる．超限帰納法より
+				(\refeq{eq:thm_transfinite_recursion_theorem_1})が得られる．
+				以上より
+				\begin{align}
+					y = f(x) = g(x) = z
+				\end{align}
+				となるので$F$はsingle-valuedである．
 			
-			\item[第二段] $\operatorname{dom}(F) \subset \ON$が成り立つことを示す．
+			\item[第三段] $\operatorname{dom}(F) \subset \ON$が成り立つことを示す．
 				実際
 				\begin{align}
 					\operatorname{dom}(F) = \bigcup_{f \in K} \operatorname{dom}(f)
 				\end{align}
-				かつ$\forall f \in K,\ \operatorname{dom}(f) \subset \ON$だから
-				$\operatorname{dom}(F) \subset \ON$．
+				かつ$\forall f \in K\ (\ \operatorname{dom}(f) \subset \ON\ )$だから
+				$\operatorname{dom}(F) \subset \ON$となる．
 				
-			\item[第三段] $\operatorname{Tran}(\operatorname{dom}(F))$であることを示す．
-				実際$y \in x \wedge x \in \operatorname{dom}(F)$であるとき，
-				或る$f \in K$で$x \in \operatorname{dom}(f)$．
-				$\operatorname{dom}(f) \in \ON$より
-				$y \in \operatorname{dom}(f)$．
-				ゆえに$y \in \operatorname{dom}(F)$．
-				
-			\item[第四段] $\forall \alpha \in \operatorname{dom}(F)\ (\ F(\alpha) = G(F|_\alpha)\ )$が成り立つことを示す．
-				実際，$\alpha \in \operatorname*{dom}(F)$なら
-				或る$f$で$\alpha \in \operatorname*{dom}(f)$．
-				$f \subset F$より
+			\item[第四段] $\operatorname{Tran}(\operatorname{dom}(F))$であることを示す．
+				実際任意の集合$x,y$について
 				\begin{align}
-					f(\alpha) = F(\alpha).
+					y \in x \wedge x \in \operatorname{dom}(F)
 				\end{align}
-				他方$f|_\alpha = f \cap (\alpha \times V)
+				が成り立っているとき，或る$f \in K$で$x \in \operatorname{dom}(f)$
+				となり，$\operatorname{dom}(f)$は順序数なので，順序数の推移律から
+				\begin{align}
+					y \in \operatorname{dom}(f)
+				\end{align}
+				が従う．ゆえに$y \in \operatorname{dom}(F)$となる．
+				
+			\item[第五段] $\forall \alpha \in \operatorname{dom}(F)\ (\ F(\alpha) = G(F|_\alpha)\ )$が成り立つことを示す．
+				実際，$\alpha \in \operatorname*{dom}(F)$なら
+				$K$の或る要素$f$に対して$\alpha \in \operatorname*{dom}(f)$となるが，
+				$f \subset F$であるから
+				\begin{align}
+					f(\alpha) = F(\alpha)
+				\end{align}
+				が成り立つ．これにより$f|_\alpha = f \cap (\alpha \times V)
 				= F \cap (\alpha \times V) = F|_\alpha$より
 				\begin{align}
-					G(f|_\alpha) = G(F|_\alpha)．
+					G(f|_\alpha) = G(F|_\alpha)
 				\end{align}
-				$f(\alpha) = G(f|_\alpha)$と併せて$F(\alpha) = G(F|_\alpha)$を得る．
+				も成り立つ．$f(\alpha) = G(f|_\alpha)$と併せて
+				$F(\alpha) = G(F|_\alpha)$を得る．
 			
-			\item[第五段] $\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )
+			\item[第六段] 
+				$\alpha$を任意の順序数として
+				$\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )
 				\Longrightarrow \alpha \in \operatorname{dom}(F)$が成り立つことを示す．
-				$\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )$
-				が成り立っているとして
+				$\alpha = \emptyset$の場合は
 				\begin{align}
-					f = F|_\alpha
+					\forall f \in K\ (\ \operatorname{dom}(f) \neq \emptyset
+					\Longrightarrow \emptyset \in \operatorname{dom}(f)\ )
 				\end{align}
-				とおけば$f \in K$．このとき$f' = f \cup \{(\alpha,G(f))\}$も
+				が満たされるので$\alpha \in \operatorname{dom}(F)$となる
+				(定理\ref{thm:properties_of_ordinal_numbers})．
+				$\alpha \neq \emptyset$の場合，
+				\begin{align}
+					\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )
+				\end{align}
+				が成り立っているとして$f = F|_\alpha$とおけば，$f$は$\alpha$上の写像であり，
+				$\alpha$の任意の要素$\beta$に対して
+				\begin{align}
+					f(\beta)
+					= F|_\alpha(\beta)
+					= F(\beta)
+					= G(F|_\beta)
+					= G(f|_\beta)
+				\end{align}
+				を満たすから$f \in K$である．このとき$f' = f \cup \{(\alpha,G(f))\}$も
 				$K$に属するので
 				\begin{align}	
 					\alpha \in \operatorname{dom}(f') \subset
 					\operatorname{dom}(F)
 				\end{align}
-				が成立する．前段の結果と超限帰納法より
+				が成立する．超限帰納法より
+				\begin{align}
+					\forall \alpha \in \ON\ (\ \alpha \in \operatorname{dom}(F)\ )
+				\end{align}
+				が成立し，前段の結果と併せて
 				\begin{align}
 					\ON = \operatorname{dom}(F)
 				\end{align}
 				を得る．
+				
+			\item[第七段]
+				$F$の一意性を示す．類$H$が
+				\begin{align}
+					H:\ON \longrightarrow V 
+					\wedge \forall \alpha \in \ON\ (\ H(\alpha) = G(H|_\alpha)\ )
+				\end{align}
+				を満たすとき，$F = H$が成り立つことを示す．
+				いま，$\alpha$を任意に与えられた順序数とする．$\alpha = \emptyset$の場合は
+				\begin{align}
+					F|_\emptyset = \emptyset = H|_\emptyset
+				\end{align}
+				より$F(\emptyset) = H(\emptyset)$となる．$\alpha \neq \emptyset$の場合，
+				\begin{align}
+					\forall \beta \in \alpha\ (\ F(\beta) = H(\beta)\ )
+				\end{align}
+				が成り立っていると仮定すれば
+				\begin{align}
+					F|_\alpha = H|_\alpha
+				\end{align}
+				が成り立つから$F(\alpha) = H(\alpha)$となる．以上で
+				\begin{align}
+					\forall \alpha \in \ON\ \left(\ \forall \beta \in \alpha\ 
+					(\ F(\beta) = H(\beta)\ ) \Longrightarrow F(\alpha) = H(\alpha)\ \right)
+				\end{align}
+				が得られた．超限帰納法より
+				\begin{align}
+					\forall \alpha \in \ON\ (\ F(\alpha) = H(\alpha)\ )
+				\end{align}
+				が従い$F = H$が出る．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -464,11 +600,11 @@
 			\end{align}
 			で定めるとき，定理\ref{thm:transfinite_recursion_theorem}より
 			\begin{align}
-				\forall \beta \in \ON\ (\ F_\alpha(\beta) = G_\alpha(F|_\beta)\ )
+				\forall \beta \in \ON\ (\ A_\alpha(\beta) = G_\alpha(A_\alpha|_\beta)\ )
 			\end{align}
-			を満たす写像$F_\alpha:\ON \longrightarrow V$が存在する．ここで
+			を満たす写像$A_\alpha:\ON \longrightarrow V$が唯一つ存在する．ここで
 			\begin{align}
-				\alpha + \beta = F_\alpha (\beta)
+				\alpha + \beta = A_\alpha (\beta)
 			\end{align}
 			と書くと，次が成立する:
 			\begin{itemize}
@@ -540,6 +676,37 @@
 				
 				\item $\forall \alpha,\beta \in \beta\ (\ \alpha \in \beta
 					\Longrightarrow \exists \gamma \in \ON\ (\ \alpha + \gamma = \beta\ )\ )$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[順序数の乗法]
+		\label{thm:the_definition_of_multiplication_of_ordinal_numbers}
+			$\alpha$を$\ON$から任意に選ばれた順序数として，写像$G_\alpha:V \longrightarrow V$を
+			\begin{align}
+				G_\alpha(x) = 
+				\begin{cases}
+					0 & (\operatorname{dom}(x) = \emptyset) \\
+					x(\beta) + \alpha & (\operatorname{dom}(x) = \beta + 1) \\
+					\bigcup_{\gamma \in \operatorname{dom}(x)} x(\gamma) & 
+					(\operatorname{lim}(\operatorname{dom}(x))) \\
+					\emptyset & \mathrm{o.w.}
+				\end{cases}
+			\end{align}
+			で定めるとき，定理\ref{thm:transfinite_recursion_theorem}より
+			\begin{align}
+				\forall \beta \in \ON\ (\ M_\alpha(\beta) = G_\alpha(M_\alpha|_\beta)\ )
+			\end{align}
+			を満たす写像$M_\alpha:\ON \longrightarrow V$が唯一つ存在する．ここで
+			\begin{align}
+				\alpha \cdot \beta = M_\alpha (\beta)
+			\end{align}
+			と書くと，次が成立する:
+			\begin{itemize}
+				\item $\forall \beta \in \ON\ (\ \alpha \cdot \beta \in \ON\ )$.
+				\item $\alpha \in {\bf \omega}$のとき，$\forall \beta \in {\bf \omega}\ 
+				(\ \alpha \cdot \beta \in {\bf \omega}\ )$.
 			\end{itemize}
 		\end{thm}
 	\end{screen}
