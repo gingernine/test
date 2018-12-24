@@ -1,0 +1,504 @@
+\subsection{順序数}
+	\monologue{
+		院生「$1,2,3,\cdots$で表される数字は，集合論において
+			\begin{align}
+				0 &= \emptyset, \\
+				1 &= \{0\} = \{\emptyset\}, \\
+				2 &= \{0,1\} = \{\emptyset,\{\emptyset\}\}, \\
+				3 &= \{0,1,2\} = \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}, \\
+				&\vdots
+			\end{align}
+			で定められます．上の操作を受け継いで``頑張れば手で書き出せる''類を自然数と呼びます．
+			$\emptyset$は集合であり，対集合の公理がありますから$1$もまた集合です．
+			そして和集合の公理を使えば$2$が集合であること，更には$3,4,\cdots$と続く自然数が全て集合であることが判るでしょう．
+			自然数の冪も自然数同士の集合演算もその結果は全て集合になり，我々は
+			そのように素姓が明らかなもののみを集合として扱おうとしていたのです．
+			しかし上の操作をいくら続けたところで``要素を数えられる''集合しか作れません．
+			上の帰納的な方法では``無限個の要素を持つ集合''は作れないのです．
+			というわけで，有限と無限の隔たりを埋めるためには公理が要るでしょう．
+			順序数とは自然数の拡張です．
+			順序数の要素はまた順序数です．また順序数同士に対しては$\in$と$\subsetneq$の概念が一致します．」
+	}
+	
+	\begin{screen}
+		\begin{thm}\label{thm:equivalent_condition_of_axiom_of_regularity}
+			次は同値である:
+			\begin{itemize}
+				\item $\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+					\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)$.
+				
+				\item $A$を式とし，$A$に現れる自由変項が唯一つである場合，
+					\begin{align}
+						\forall x\ \left(\ \forall y \in x\ A(y)
+						\Longrightarrow A(x)\ \right)
+						\Longrightarrow \forall x\ A(x).
+					\end{align}
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+		\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)$
+		が成立しているとして，
+		\begin{align}
+			a = \Set{x}{\rightharpoondown A(x)}
+		\end{align}
+		の場合を考える．いま
+		\begin{align}
+			a \neq \emptyset \Longrightarrow 
+			\exists x\ (\ x \in a \wedge x \cap a = \emptyset\ )
+		\end{align}
+		が満たされているが，対偶を取れば
+		\begin{align}
+			\forall x\ (\ x \notin a \vee x \cap a \neq \emptyset\ )
+			\Longrightarrow a = \emptyset
+		\end{align}
+		が成り立ち，$x \cap a \neq \emptyset$は$\exists y \in x\ (y \in a)$となるので
+		\begin{align}
+			\forall x\ (\ \forall y \in x\ (\ y \notin a\ ) \Longrightarrow x \notin a\ )
+			\Longrightarrow a = \emptyset
+		\end{align}
+		が成立する．ところで$x \notin a \Longleftrightarrow A(x)$より
+		\begin{align}
+			\forall x\ \left(\ \forall y \in x\ A(y)
+			\Longrightarrow A(x)\ \right)
+			\Longrightarrow \forall x\ A(x).
+			\label{eq:thm_equivalent_condition_of_axiom_of_regularity_1}
+		\end{align}
+		を得る．逆に(\refeq{eq:thm_equivalent_condition_of_axiom_of_regularity_1})が成り立っている場合，$A(x)$が$x \notin a$であるとすれば
+		\begin{align}
+			\forall x\ \left(\ \forall y \in x \rightharpoondown y \in a\ )
+			\Longrightarrow \rightharpoondown x \in a\ \right)
+			\Longrightarrow \forall x \rightharpoondown x \in a
+		\end{align}
+		対偶を取れば
+		\begin{align}
+			\exists x\ x \in a \Longrightarrow 
+			\exists x\ \left(\ \forall y \in x\ (\ y \notin a\ )\ )
+			\wedge x \in a\ \right)
+		\end{align}
+		となり，$a \neq \emptyset \Longleftrightarrow \exists x\ x \in a$と
+		$x \cap a = \emptyset \Longleftrightarrow \forall y \in x\ (\ y \notin a\ )$
+		と併せて
+		\begin{align}
+			a \neq \emptyset \Longrightarrow 
+			\exists x \in a\ (\ x \cap a = \emptyset\ )
+		\end{align}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{axm}[正則性公理]
+			空でない類は自分自身と交わらない集合を要素に持つ:
+			\begin{align}
+				\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
+				\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\monologue{
+		院生「正則性公理は帰納法の公理とも呼ばれます．
+			たしかに，定理\ref{thm:equivalent_condition_of_axiom_of_regularity}を見れば
+			正則性公理と同値な主張は数学的帰納法の究極の一般形となっていますね．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[いかなる集合も自分自身を要素に持たない]
+		\label{thm:no_set_is_an_element_of_itself}
+			次が成り立つ:
+			\begin{itemize}
+				\item $\forall x \in V\ (\ x \notin x\ )$.
+				
+				\item $\forall x,y \in V\ (\ x \notin y \vee y \notin x\ )$.
+				
+				\item $\forall x,y,z \in V\ (\ x \notin y \vee y \notin z \vee z \notin x\ )$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x,y,z$を任意に与えられた集合とする．まず正則性公理より
+		\begin{align}
+			x \cap \{x\} = \emptyset
+		\end{align}
+		が成り立つから
+		\begin{align}
+			x \notin x
+		\end{align}
+		が出る．また$x \in y$が満たされていると仮定すれば，$y \cap \{x,y\} \neq \emptyset$より
+		\begin{align}
+			x \cap \{x,y\} = \emptyset
+		\end{align}
+		が成り立つから$y \notin x$が従い
+		\begin{align}
+			x \in y \Longrightarrow y \notin x
+		\end{align}
+		となる．すなわち$x \notin y \vee y \notin x$が出る．
+		同様に$x \in y \wedge y \in z$が満たされていると仮定すれば
+		\begin{align}
+			x \cap \{x,y,z\} = \emptyset
+		\end{align}
+		が従うから
+		\begin{align}
+			x \in y \wedge y \in z \Longrightarrow z \notin x
+		\end{align}
+		が成り立ち，$x \notin y \vee y \notin z \vee z \notin x$が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[差集合]
+			$a,b$を集合するとき，$a$に属するが$b$には属さない集合の全体を
+			$a$から$b$を引いた{\bf 差集合}\index{さしゅうごう@差集合}
+			{\bf (set difference)}と呼び$a \backslash b$と書く:
+			\begin{align}
+				a \backslash b = \Set{x}{x \in a \wedge x \notin b}
+			\end{align}
+			特に$b \subset a$が満たされている場合，$a \backslash b$を
+			$a$から$b$を引いた{\bf 固有差}\index{こゆうさ@固有差}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[順序数]
+			類$a$が{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}
+			であるということを
+			\begin{align}
+				\forall x\ (\ x \in a \Longrightarrow x \subset a\ )
+			\end{align}
+			が満たされることで定義し，この$a$についての式を
+			\begin{align}
+				\operatorname{Tran}(a)
+			\end{align}
+			と略記する．また類$a$が{\bf 順序数}\index{じゅんじょすう@順序数}
+			{\bf (ordinal number)}であるということを
+			\begin{align}
+				a \in \Univ \wedge \operatorname{Tran}(a)
+				\wedge \forall x,y \in a\ (\ x \in y \vee x = y \vee y \in x\ )
+			\end{align}
+			が満たされることで定義し，この$a$についての式を
+			\begin{align}
+				\operatorname{Ord}(a)
+			\end{align}
+			と略記する．そして順序数の全体を
+			\begin{align}
+				\ON = \Set{x}{\operatorname{Ord}(x)}
+			\end{align}
+			と定める．
+		\end{dfn}
+	\end{screen}
+	
+	空虚な真の一例であるが，例えば$0$は順序数の性質を満たす．
+	ここに一つの順序数が得られたが，いま仮に$\alpha$を順序数とすれば
+	\begin{align}
+		\alpha \cup \{\alpha\}
+	\end{align}
+	もまた順序数となることが直ちに判明する(実は
+	\begin{align}
+		\forall \alpha\ (\ \alpha \in \ON \Longleftrightarrow \alpha \cup \{\alpha\} \in \ON\ )
+	\end{align}
+	が成立するが，証明は後述する)．数字の定め方から
+	\begin{align}
+		1 &= 0 \cup \{0\}, \\
+		2 &= 1 \cup \{1\}, \\
+		3 &= 2 \cup \{2\}, \\
+		&\vdots
+	\end{align}
+	が成り立つから，数字は全て順序数である．以下，順序数の性質を列挙するが，長いので主張だけ先に述べておく．
+	\begin{itemize}
+		\item $\ON$は推移的類である．
+		\item $R = \Set{x}{\exists \alpha,\beta \in \ON\ 
+			(\ x=(\alpha,\beta) \wedge (\ \alpha \in \beta \vee \alpha = \beta\ )\ )}$
+			とおくと$R$は$\ON$において整列順序となる．
+		\item $a \subset \ON$なら，$\bigcup a$は$a$の順序$R$に関する上限となる．
+		\item $\ON$は集合ではない．
+	\end{itemize}
+	
+	
+	\begin{screen}
+		\begin{thm}[順序数の諸性質]\label{thm:properties_of_ordinal_numbers}\mbox{}
+			\begin{description}
+				\item[(i)] $\forall \alpha\ (\ \alpha \in \ON \Longrightarrow \alpha \subset \ON\ )$
+		
+				\item[(ii)] $a \subset \ON \wedge a \neq \emptyset 
+					\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )$.
+		
+				\item[(iii)] $\forall a\ (\ a \subset \ON \Longrightarrow \bigcup a \in \ON\ )$
+		
+				\item[(iv)] $\forall a,b \in \ON\ (\ a \in b \Longleftrightarrow a \subsetneq b\ )$
+				
+				\item[(v)] $\forall a \in \ON\ (\ a \neq \emptyset \Longrightarrow \emptyset \in a\ )$
+		
+				\item[(vi)] $R = \Set{x}{\exists a,b \in \ON\ (\ x=(a,b) \wedge a \subset b\ )}$は全順序
+		
+				\item[(vii)] $\ON \notin V$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[順序数全体は推移的]\label{thm:On_is_transitive}
+			$\ON$は推移的類である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} 
+		$\alpha$を任意に選ばれた順序数とする．$\alpha = \emptyset$ならば空虚な真により
+				\begin{align}
+					\alpha \subset \ON
+				\end{align}
+				が成り立つ．$\alpha \neq \emptyset$の場合，$\alpha$の任意の要素$x$
+				が順序数であることを示す．まず$\alpha$は推移的であるから
+				\begin{align}
+					x \subset \alpha
+				\end{align}
+				となり
+				\begin{align}
+					\forall y,z \in x\ (\ y \in z \vee y = z \vee z \in y\ )
+				\end{align}
+				が成り立つ．また$\alpha \subset \Univ$より$x \in \Univ$も成り立つ．
+				最後に
+				\begin{align}
+					\operatorname{Tran}(x)
+				\end{align}
+				が成り立つことを示す．これは
+				\begin{align}
+					\forall y,z\ (\ z \in y \wedge y \in x
+					\Longrightarrow z \in x \ )
+					\label{eq:thm_On_is_transitive_1}
+				\end{align}
+				が成り立つことを示せばよい．いま$y,z$を任意に与えられた集合として
+				\begin{align}
+					z \in y \wedge y \in x
+				\end{align}
+				が成り立っていると仮定すると，$\alpha$の推移性より$z \in \alpha$となるから
+				\begin{align}
+					z \in x \vee z = x \vee x \in z
+				\end{align}
+				が従う．ところで定理\ref{thm:no_set_is_an_element_of_itself}より
+				\begin{align}
+					z \in y \Longrightarrow y \notin z
+				\end{align}
+				が成り立つから，$z \in y$の仮定と併せて$y \notin z$が従う．さらに
+				\begin{align}
+					y \notin z \Longrightarrow z \neq x \vee y \notin x
+				\end{align}
+				が成り立つので$z \neq x \vee y \notin x$も従う．$y \in x$も仮定しているから
+				$(\ z \neq x \vee y \notin x\ ) \wedge y \in x$も成り立ち，
+				\begin{align}
+					(\ z \neq x \vee y \notin x\ ) \wedge y \in x
+					\Longrightarrow z \neq x
+				\end{align}
+				と併せて$z \neq x$が満たされる．他方で，同じく定理\ref{thm:no_set_is_an_element_of_itself}より
+				\begin{align}
+					z \in y \wedge y \in x \Longrightarrow x \notin z
+				\end{align}
+				が成立する．ゆえにいま
+				\begin{align}
+					z \neq x \wedge x \notin z
+				\end{align}
+				が成り立っているが，これは$\rightharpoondown (\ z = x \vee x \in z\ )$と同値であり，かつ
+				\begin{align}
+					(\ z \in x \vee z = x \vee x \in z\ ) \wedge 
+					\rightharpoondown (\ z = x \vee x \in z\ )
+					\Longrightarrow z \in x
+				\end{align}
+				が成り立つので$z \in x$を得る．以上より
+				(\refeq{eq:thm_On_is_transitive_1})が得られた．
+				\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$の整列性]
+			$\ON$の任意の部分集合は次の意味で最小元を持つ:
+			\begin{align}
+				\forall a\ \left(\ a \subset \ON \wedge a \neq \emptyset 
+				\Longrightarrow \exists x \in a\ \forall y \in a\ (\ x \subset y\ )\ \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$において$\in$と$\subsetneq$は同義]
+		\label{thm:element_and_proper_subset_correspond_between_ordinal_numbers}
+			次が成立する:
+			\begin{align}
+				\forall \alpha,\beta \in \ON\ 
+				(\ \alpha \in \beta \Longleftrightarrow \alpha \subsetneq \beta\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\alpha,\beta$を任意に与えられた順序数とする．
+		$\alpha \in \beta$が成り立っているとすれば，$\beta$の推移性より
+		\begin{align}
+			\alpha \subset \beta
+		\end{align}
+		が成り立つ．同時に定理\ref{thm:no_set_is_an_element_of_itself}より
+		$\alpha \neq \beta$となるから
+		\begin{align}
+			\alpha \in \beta \Longrightarrow \alpha \subsetneq \beta
+		\end{align}
+		が成立する．逆に$\alpha \subsetneq \beta$が成り立っているとすれば，
+		正則性公理より$\beta \backslash \alpha$の或る要素$\gamma$が
+		\begin{align}
+			\gamma \cap (\beta \backslash \alpha) = \emptyset
+		\end{align}
+		を満たす．このとき$\alpha = \gamma$が成り立つことを示す．$x$を$\alpha$の任意の要素とすれば，
+		$x,\gamma$は共に$\beta$に属するから
+		\begin{align}
+			x \in \gamma \vee x = \gamma \vee \gamma \in x
+			\label{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1}
+		\end{align}
+		が成り立つ．ところで相等性公理と$\alpha$の推移性から
+		\begin{align}
+			x = \gamma \wedge x \in \alpha &\Longrightarrow \gamma \in \alpha, \\
+			\gamma \in x \wedge x \in \alpha &\Longrightarrow \gamma \in \alpha
+		\end{align}
+		となるから，対偶を取れば
+		\begin{align}
+			\gamma \notin \alpha &\Longrightarrow x \neq \gamma \vee x \notin \alpha, \\
+			\gamma \notin \alpha &\Longrightarrow \gamma \notin x \vee x \notin \alpha, \\
+		\end{align}
+		が従う．いま$\gamma \notin \alpha$と$x \in \alpha$が成り立っているので
+		$x \neq \gamma$と$\gamma \notin x$が共に成立し，
+		(\refeq{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1})と併せて
+		\begin{align}
+			x \in \gamma
+		\end{align}
+		が出るから$\alpha \subset \gamma$を得る．逆に$\gamma$に任意の要素$x$は
+		\begin{align}
+			x \in \beta \wedge x \notin \beta \backslash \alpha
+		\end{align}
+		を満たすから，すなわち$x \in \beta \wedge (\ x \notin \beta \vee x \in \alpha\ )$
+		が満たされる．ゆえに$x \in \alpha$が成り立つから
+		\begin{align}
+			\gamma \subset \alpha
+		\end{align}
+		を得る．以上より$\gamma = \alpha$となり，
+		$\gamma$は$\beta$の要素であるから$\alpha$も$\beta$の要素となる．これで
+		\begin{align}
+			\alpha \subsetneq \beta \Longrightarrow \alpha \in \beta
+		\end{align}
+		も得られた．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\forall \alpha,\beta \in \ON\ 
+				(\ \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Burali-Forti]
+			$\ON$は集合ではない:
+			\begin{align}
+				\ON \notin \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[順序数は自分自身との合併が後者となる]\mbox{}
+			\begin{description}
+				\item[(1)] $\alpha$が順序数であるということと $\alpha \cup \{\alpha\}$が順序数であるということは同値である．
+					\begin{align}
+						\forall \alpha\ (\ \alpha \in \ON \Longleftrightarrow \alpha \cup \{\alpha\} \in \ON\ ).
+					\end{align}
+				
+				\item[(2)] $\alpha$を順序数とすれば，$\ON$において$\alpha \cup \{\alpha\}$は$\alpha$の後者である:
+					\begin{align}
+						\forall \alpha \in \ON\ 
+						\left(\ \forall \beta \in \ON\ (\ \alpha < \beta 
+						\Longrightarrow \alpha \cup \{\alpha\} \leq \beta\ )
+						\ \right).
+					\end{align}
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[極限数]
+			$\emptyset$でなく，またいずれの順序数の後者でもない順序数を
+			{\bf 極限数}\index{きょくげんすう@極限数}{\bf (limit ordinal)}と呼ぶ．
+			類$\alpha$が極限数であるということを式で表せば
+			\begin{align}
+				\alpha \in \ON \wedge \alpha \neq \emptyset
+				\wedge \forall \beta \in \ON\ 
+				(\ \alpha \neq \beta \cup \{\beta\}\ )
+			\end{align}
+			となるが，この$\alpha$についての式を$\operatorname{lim}(\alpha)$と略記する．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「ところで極限数は存在するものなのでしょうか．
+			残念ながら現時点では極限数の存在は保証されません．
+			では次の無限公理を導入してみるとどうなるでしょうか．」
+	}
+	
+	\begin{screen}
+		\begin{axm}[無限公理]
+			空集合を要素に持ち，かつ任意の要素の後者について閉じている集合が存在する:
+			\begin{align}
+				\exists x \in V\ (\ \emptyset \in x \wedge \forall y\ (\ y \in x
+				\Longrightarrow y \cup \{y\} \in x\ )\ ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[極限数は存在する]
+			\begin{align}
+				\exists \alpha \in \ON\ (\ \operatorname{lim}(\alpha)\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を無限集合として$b = a \cap \ON$とおくとき，
+		$\bigcup b$が極限数となることを示す．
+		$\alpha \in \bigcup b$なら
+		或る集合$x$が$x \in b \wedge \alpha \in x$を満たす．このとき
+		$\alpha \cup \{\alpha\} \in x$または$\alpha \cup \{\alpha\} = x$となるが，
+		前者の場合は$\alpha \cup \{\alpha\} \in \bigcup b$，
+		後者の場合は$\alpha \cup \{\alpha\} \in x \cup \{x\}$および
+		$x \cup \{x\} \in a$かつ$x \cup \{x\} \in \ON$より
+		$x \cup \{x\} \in b$，ゆえに$\alpha \cup \{\alpha\} \in \bigcup b$，
+		従って$\operatorname*{Tran}(\bigcup b)$が成立．
+	\end{prf}
+	
+	\monologue{
+		院生「無限公理から極限数の存在が示されましたが，無限公理を仮定せず
+			代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
+			どちらを公理とするかは嗜好に依るでしょうが，本稿の論理の流れとしては
+			極限数の存在を公理とした方が自然に感じられますね．しかし
+			無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようですから
+			多数派に合わせるのが良いでしょうか．」
+	}
+	
+	\begin{screen}
+		\begin{dfn}[自然数]
+			$\ON$の整列性より，
+			\begin{align}
+				\Set{x}{\operatorname{lim}(x)}
+			\end{align}
+			の中で最小の順序数が存在するが，それを
+			\begin{align}
+				{\bf \omega}
+			\end{align}
+			と書く．${\bf \omega}$の要素を{\bf 自然数}\index{しぜんすう@自然数}
+			{\bf (natural number)}と呼び，そして自然数と呼ばれるものはこれらに限られる．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「${\bf \omega}$とは最小の極限数ですから，その要素である自然数はどれも極限数ではありません．
+			従って$\emptyset$を除く自然数は必ずいずれかの自然数の後者となっているのですね．」
+	}
