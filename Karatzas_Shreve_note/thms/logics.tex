@@ -225,18 +225,23 @@
 	
 	\begin{screen}
 		\begin{dfn}[宇宙]
-			文字$V$を{\bf 宇宙}\index{うちゅう@宇宙}{\bf (Universe)}と呼ぶ．
+			\begin{align}
+				\Univ = \Set{x}{x=x}
+			\end{align}
+			で定める$\Univ$を{\bf 宇宙}\index{うちゅう@宇宙}{\bf (Universe)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\monologue{
-		院生「文字$V$を特別扱いするということですね(笑)．宇宙という壮大な言葉が出てきてしまいましたが，
-			集合論の世界は$V$の範囲内で語り尽くせてしまうのですから，
-			現代数学にとって$V$は宇宙そのものなのですね．
+		院生「宇宙という壮大な言葉が出てきてしまいましたが，
+			集合論の世界は$\Univ$の範囲内で語り尽くせてしまうのですから，
+			現代数学にとって$\Univ$は宇宙そのものなのですね．
+			また定理\ref{thm:Universe_and_ordinal_numbers}で$\Univ$の実態が明らかになるでしょう．
+			我々はこの定理で集合とはどういうものかという問いへの答えを得ることになります．
 			ところで，現実世界において人間が把握し得る最大の世界は宇宙空間でしょうが，
 			数学の世界では宇宙の外側を見ることが出来るのです．宇宙の外側に在るものは真類と呼ばれます．
 			実は宇宙そのものも真類の一つなのですが(宇宙が宇宙の外側に在るとは奇妙です)，
-			その話は後述にまかせましょう．」
+			その話も後述にまかせましょう．」
 	}
 	
 	数学の式を日本語に翻訳するとき，慣習上よく使われる訳し方があるので列挙する．
@@ -249,9 +254,9 @@
 	
 	\begin{screen}
 		\begin{dfn}[類・集合]
-			対象のことを{\bf 類}\index{るい@類}{\bf (class)}と呼び直し，
-			特に$V$の要素である類を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼ぶ．
-			また$V$の要素でない類のことを{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+			$\mathcal{L}'$の対象のことを{\bf 類}\index{るい@類}{\bf (class)}と呼び直し，
+			特に$\Univ$の要素である類を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼ぶ．
+			また$\Univ$の要素でない類のことを{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 
@@ -280,79 +285,183 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{axm}[空集合の存在公理]
-			いかなる集合も要素に持たない集合が存在する:
+		\begin{axm}[外延性の公理]
+			全く同じ要素からなる類は等しい:
+			$a,b$を類とするとき，次が成り立つ:
 			\begin{align}
-				\exists x \in V\ \forall y \in V\ (\ y \notin x\ ).
+				\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+				\Longrightarrow a=b.
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[空集合はただ一つ]
-			空集合の存在公理を満たす集合はただ一つである:
+		\begin{thm}[任意の類は自分自身と等しい]\label{thm:any_class_equals_to_itself}
+			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\forall x \in V\ \forall y \in V
-				\ (\ (\ \forall z \in V\ (\ z \notin x\ ) \wedge \forall z \in V
-				\ (\ z \notin y\ )\ )
-				\Longrightarrow x=y\ ).
+				a = a.
 			\end{align}
-			この何も持たない空の集合を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼び$\emptyset$という記号で表す．
 		\end{thm}
 	\end{screen}
 	
-	\monologue{
-		院生「ようやく存在が約束された本物の集合が出てきましたね．
-			あらゆる集合は空集合を元に作られていくのですから，空集合は集合の親とでもいえるのでしょうか．」
-	}
+	\begin{prf}
+		$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in a
+		\end{align}
+		となるから
+		\begin{align}
+			\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+		\end{align}
+		が成り立つ．従って外延性の公理より$a = a$が出る．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{axm}[類の公理]\mbox{}
 			\begin{description}
-				\item[(i)] 類の要素は集合である:
+				\item[(i)] $a,b$を類とするとき，次が成り立つ:
 					\begin{align}
-						\forall a\ \forall x\ (\ x \in a \Longrightarrow x \in V\ ).
+						a \in b \Longrightarrow \exists x\ (\ a = x\ ).
 					\end{align}
+					つまり類の要素は$\mathcal{L}$の或る対象に等しい．
 				
-				\item[(ii)] $\Set{x}{A(x)}$とは$A(x)$を成り立たせる集合$x$の全体である:
+				\item[(ii)] 
 					\begin{align}
-						\forall t\ (\ t \in \Set{x}{A(x)} \Longleftrightarrow t \in V \wedge A(t)\ ).
+						\forall t\ (\ t \in \Set{x}{A(x)} \Longleftrightarrow A(t)\ ).
 					\end{align}
 			\end{description}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{axm}[外延性の公理]
-			全く同じ要素からなる類は等しい:
+		\begin{thm}[$\mathcal{L}$の対象も$\Set{x}{A(x)}$の形で表せる]
+			次が成り立つ:
 			\begin{align}
-				\forall a\ \forall b\ \left(\ \forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
-				\Longrightarrow a=b\ \right).
+				\forall t\ (\ t = \Set{x}{x \in t}\ ).
 			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすると類の公理より
+		\begin{align}
+			\forall s\ (\ s \in \tau \Longleftrightarrow s \in \Set{x}{x \in \tau}\ )
+		\end{align}
+		が成り立つが，このとき外延性の公理より
+		\begin{align}
+			\tau = \Set{x}{x \in \tau}
+		\end{align}
+		が従う．$\tau$の任意性より
+		\begin{align}
+			\forall t\ (\ t = \Set{x}{x \in t}\ )
+		\end{align}
+		を得る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{axm}[相等性の公理]
+			$a,b,c$を類とするとき以下は全て公理である:
+			\begin{description}
+				\item[(i)] $a=b \Longrightarrow (\ c \in a \Longleftrightarrow c \in b\ ).$
+				\item[(ii)] $a=b \Longrightarrow (\ c = a \Longleftrightarrow c = b\ ).$
+				\item[(iii)] $a=b \Longrightarrow (\ a \in c \Longleftrightarrow b \in c\ ).$
+			\end{description}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}\mbox{}
-			\begin{description}
-				\item[(1)] $\forall a\ (\ a=a\ )$
-				\item[(2)] $\forall a \in V\ (\ a = \Set{x}{x \in a}\ )$
-				\item[(3)] $V=\Set{x}{x=x}$
-				\item[(4)] $\forall a\ (\ a \subset V\ )$
-				\item[(5)] $\Set{x}{A} = \Set{y}{(y\, |\, x)A}$
-				\item[(6)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = V$.
-			\end{description}
+		\begin{thm}[$\exists x\ (\ a = x\ )$は$a$が集合であるということを意味する]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\exists x\ (\ a = x\ ) \Longleftrightarrow a \in \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類に対して，まず類の公理より
+		\begin{align}
+			a \in \Univ \Longrightarrow \exists x\ (\ a = x\ )
+		\end{align}
+		が得られる．逆に
+		\begin{align}
+			\exists x\ (\ a = x\ )
+		\end{align}
+		が成り立っていると仮定する．$\mathcal{L}$の対象$\varepsilon x (a = x)$を$\tau$と書けば，
+		定理\ref{thm:any_class_equals_to_itself}より$\tau = \tau$となるので
+		\begin{align}
+			\tau \in \Univ
+		\end{align}
+		が成り立つ．相等性の公理より
+		\begin{align}
+			a \in \Univ
+		\end{align}
+		が従うから$\exists x\ (\ a = x\ ) \Longrightarrow a \in \Univ$も得られる．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「つまり，$\mathcal{L}$の対象か，或いは$\mathcal{L}$の対象と等しい類のみが集合であるということですね．」
+	}
+	
+	\begin{screen}
+		\begin{axm}[空集合の公理]
+			次は公理である:
+			\begin{align}
+				\forall x\ (\ x \notin \emptyset\ ).
+			\end{align}
+			つまり$\emptyset$は$\mathcal{L}$のいかなる対象も要素に持たない．
+			$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
+		\end{axm}
+	\end{screen}
+	
+	\monologue{
+		院生「空集合とは集合の系譜の起点となります．聖書物語でいうところのアダムです．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[$\mathcal{L}$のいかなる対象も要素に持たない類は空集合に等しい]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\forall x\ (\ x \notin a\ ) \Longrightarrow a = \emptyset.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{axm}[相等性の公理]\mbox{}
+		\begin{thm}[空集合はいかなる類も要素に持たない]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a \notin \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a,b$を類とするとき
+		\begin{align}
+			a \in b \Longrightarrow \exists x\ (\ x \in b\ )
+		\end{align}
+		が成り立つから，対偶を取れば
+		\begin{align}
+			\forall x\ (\ x \notin b\ ) \Longrightarrow a \notin b
+		\end{align}
+		が成り立つ．$b$を$\emptyset$に置き換えれば$\forall x\ (\ x \notin \emptyset\ )$は真であるから
+		$a \notin \emptyset$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}\mbox{}
 			\begin{description}
-				\item[(1)] $\forall a\ \forall b\ \forall c\ \left(\ a=b \Longrightarrow (\ c \in a \Longleftrightarrow c \in b\ )\ \right).$
-				\item[(2)] $\forall a\ \forall b\ \forall c\ \left(\ a=b \Longrightarrow (\ c = a \Longleftrightarrow c = b\ )\ \right).$
-				\item[(3)] $\forall a\ \forall b\ \forall c\ \left(\ a=b \Longrightarrow (\ a \in c \Longleftrightarrow b \in c\ )\ \right).$
+				\item[(2)] $\forall a\ (\ a = \Set{x}{x \in a}\ )$
+				\item[(4)] $a \subset V$
+				\item[(5)] $\Set{x}{A} = \Set{y}{(y\, |\, x)A}$
+				\item[(6)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = V$.
 			\end{description}
-		\end{axm}
+		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
