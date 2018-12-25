@@ -1,0 +1,128 @@
+	\begin{screen}
+		\begin{dfn}[Peanoシステム]
+			次を満たす集合$X,a$と写像$f:X \longrightarrow X$の組$(X,a,f)$を
+			{\bf Peanoシステム}\index{Peanoしすてむ@Peanoシステム}と呼ぶ:
+			\begin{itemize}
+				\item $a \in X$.
+				\item $a \notin f(X)$.
+				\item $f$は単射である．
+				\item 集合$S$が$a$を含み，かつ$S$の任意の要素$x$に対し$f(x) \in S$となるならば，$S = X$．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\omega$はPeanoシステム]
+			写像$\sigma:\omega \longrightarrow \omega$を
+			\begin{align}
+				\sigma = \Set{(n, n \cup \{n\})}{n \in \omega}
+			\end{align}
+			で定めるとき，$(\omega,\emptyset,\sigma)$はPeanoシステムとなる．
+			この$\sigma$を{\bf 後継者写像}\index{こうけいしゃしゃぞう@後継者写像}{\bf (successor mapping)}と呼ぶ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\emptyset \in \omega$である．また任意の自然数$n$に対し$\sigma(n) = n \cup \{n\} \neq \emptyset$となる．
+		任意の自然数$n,m$に対して
+		\begin{align}
+			\sigma(x)=\sigma(y) \Longrightarrow &(x \in y \cup \{y\}) \wedge (y \in x \cup \{x\}) \\
+					&\Longleftrightarrow \left( x \in y \vee x=y \right) \wedge 
+						\left( y \in x \vee y=x \right) \\
+					&\Longleftrightarrow  \left( x \in y \wedge y \in x \right) \vee x = y \\
+					&\Longleftrightarrow x = y
+		\end{align}
+		が成立するから$\sigma$は単射である．
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Peanoシステムの写像は全単射]\label{thm:successor_mapping_is_injective}
+			Peanoシステム$(X,a,f)$の$f$は$X$から$X \backslash \{a\}$への全単射である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$S \coloneqq \{a\} \cup \sigma(X)$とおけば，数学的帰納法の原理より$S = X$が成り立ち$f$の全射性が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[再帰定理]\label{thm:Peano_recursion_theorem}
+			$Y$を空でない集合，$b$を$Y$の要素，$g$を$Y$から$Y$への写像とし，
+			$(X,a,f)$をPeanoシステムとする．
+			このとき，次を満たすような写像$u:X \longrightarrow Y$がただ一つ存在する:
+			\begin{align}
+				u(a) = b,\quad u \circ f = g \circ u.
+				\label{eq:thm_Peano_recursion_theorem}
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$X \times Y$の部分集合で
+		\begin{itemize}
+			\item $(a,b)$を含む
+			\item $(x,y)$を含むなら$(f(x),g(y))$も含む
+		\end{itemize}
+		を満たすものの全体を$\mathscr{A}$で表し
+		\begin{align}
+			u \coloneqq \bigcap \mathscr{A}
+		\end{align}
+		とおく．このとき$u \in \mathscr{A}$であるが，一方で$u$は
+		$X$から$Y$への写像になっている．これは
+		\begin{align}
+			S \coloneqq \Set{x \in X}{\mbox{$(x,y),(x,z) \in u$なら$y=z$}}
+		\end{align}
+		により定める$S$が$X$に一致することを示せばよい．
+		\begin{description}
+			\item[第一段] $a \in S$を示す．$b \neq c$となる$Y$の要素$c$に対し，
+				$\mathscr{A}$の或る元$A$で$(a,c) \in A$となるとき，
+				\begin{align}
+					A' \coloneqq A \backslash \{(a,c)\}
+				\end{align}
+				もまた$\mathscr{A}$に属する．実際$(a,b)$は
+				$A$から除かれていないから$(a,b) \in A$，かつ
+				定理\ref{thm:successor_mapping_is_injective}より
+				\begin{align}
+					(x,y) \in A' \quad \Longrightarrow \quad
+					(f(x),g(y)) \neq (a,b) \quad \Longrightarrow \quad
+					(f(x),g(y)) \in A'
+				\end{align}
+				が満たされる．従って$b$と異なる$Y$の任意の要素$c$で
+				$(a,c) \notin u$が成り立ち$a \in S$が得られる．
+				
+			\item[第二段] 
+				$S$の任意の元$x$に対して或る$Y$の元$y$がただ一つ対応して$(x,y) \in u$となるが，
+				このとき
+				\begin{align}
+					B \coloneqq (X \times Y) \backslash \Set{(x,z)}{z \in Y,\ y \neq z}
+				\end{align}
+				とおけば$B \in \mathscr{A}$が成り立つ．そして
+				$w \neq g(y)$を満たす$Y$の任意の要素$w$に対して
+				\begin{align}
+					B' \coloneqq B \backslash \{(f(x),w)\}
+				\end{align}
+				もまた$\mathscr{A}$に属する．実際$a \neq f(x)$かつ
+				$(a,b) \in B$より$(a,b) \in B'$となり，また$(s,t) \in B'$に対し
+				\begin{itemize}
+					\item $s \neq x$ならば$f(s) \neq f(x)$より$(f(s),g(t)) \in B'$，
+					\item $s=x$ならば$t = y$より$(f(s),g(t)) = (f(x),g(y)) \in B'$，
+				\end{itemize}
+				が成立する．よって$w \neq g(y)$ならば$(f(x),w) \notin U$となり$f(x) \in S$が従う．
+		\end{description}
+		以上と数学的帰納法の原理より$S = X$を得る．すなわち$u$は写像であり，$u$の任意の元$(x,y)$で
+		\begin{align}
+			u(f(x)) = g(y) = g(u(x))
+		\end{align}
+		となるから$u \circ f = g \circ u$が成り立つ．また
+		写像$v:\omega \longrightarrow X$が$v(a) = b$かつ
+		$v \circ f = g \circ v$を満たすとき，
+		\begin{itemize}
+			\item $u(a) = b = v(a)$,
+			\item $u(x) = v(x) \Longrightarrow 
+				u(f(x)) = g(u(x)) = g(v(x)) = v(f(x))$
+		\end{itemize}
+		が成立するから$u = v$となる．よって(\refeq{eq:thm_Peano_recursion_theorem})
+		を満たす写像は$u$のみである．
+		\QED
+	\end{prf}
