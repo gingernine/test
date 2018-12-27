@@ -74,6 +74,7 @@
 			$\bot$に関する規則:
 			\begin{itemize}
 				\item $A$と$\rightharpoondown A$が共に定理なら$\bot$は定理となる．
+				\item $A \Longrightarrow \bot$が定理なら$\rightharpoondown A$は定理となる．
 				\item $\bot \Longrightarrow A$は定理である．
 			\end{itemize}
 		\end{schema}
@@ -87,6 +88,34 @@
 			\end{itemize}
 		\end{schema}
 	\end{screen}
+	
+	\begin{itembox}[l]{二重否定の法則}
+		$A \Longleftrightarrow\ \rightharpoondown \rightharpoondown A$
+	\end{itembox}
+	
+	\begin{prf}
+		$A$が成り立っていると仮定する．このとき$\rightharpoondown A$が成り立っていれば
+		$\bot$が定理となるので
+		\begin{align}
+			\rightharpoondown A \Longrightarrow \bot
+		\end{align}
+		が成り立つ．よって$\rightharpoondown \rightharpoondown A$が定理となり，
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
+		\end{align}
+		が得られる．逆に$\rightharpoondown \rightharpoondown A$が成り立っていると仮定すると，
+		$\rightharpoondown A$が成り立っているなら$\bot$が定理となるから
+		$A$も定理となる．すなわちこのとき
+		\begin{align}
+			\rightharpoondown A \Longrightarrow A
+		\end{align}
+		が成り立つ．$A \vee \rightharpoondown A$と$A \Longrightarrow A$も定理であるから
+		$A$が定理となり，
+		\begin{align}
+			\rightharpoondown A \Longrightarrow\ \rightharpoondown A
+		\end{align}
+		も得られる．
+	\end{prf}
 	
 	\begin{itembox}[l]{ならばとまたは}
 		$A \Longrightarrow B$と$\rightharpoondown A \vee B$は同値．
@@ -113,6 +142,60 @@
 			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
 		は定理である．
+	\end{prf}
+	
+	\begin{itembox}[l]{対偶命題は同値}
+		$A \Longrightarrow B$と$\rightharpoondown B \Longrightarrow\ \rightharpoondown A$は同値．
+	\end{itembox}
+	
+	\begin{prf}
+		\begin{align}
+			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
+			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
+			&\Longleftrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A) \\
+			&\Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+		\end{align}
+	\end{prf}
+	
+	\begin{itembox}[l]{De Morganの法則}
+		\begin{itemize}
+			\item $\rightharpoondown (A \vee B) \Longleftrightarrow\ \rightharpoondown A \wedge \rightharpoondown B$.
+			
+			\item $\rightharpoondown (A \wedge B) \Longleftrightarrow\ \rightharpoondown A \vee \rightharpoondown B$.
+		\end{itemize}
+	\end{itembox}
+	
+	\begin{prf}
+		$A \Longrightarrow A \vee B$より
+		\begin{align}
+			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A
+		\end{align}
+		同様に$\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown B$より
+		\begin{align}
+			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A \wedge \rightharpoondown B
+		\end{align}
+		また$A$かつ$\rightharpoondown A \wedge \rightharpoondown B$が成り立っていれば
+		$\bot$より
+		\begin{align}
+			\rightharpoondown A \wedge \rightharpoondown B \Longrightarrow \bot
+		\end{align}
+		すなわち
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		同様に
+		\begin{align}
+			B \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		なので
+		\begin{align}
+			(A \vee B) \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		対偶を取れば
+		\begin{align}
+			\rightharpoondown A \wedge \rightharpoondown B
+			\Longrightarrow\ \rightharpoondown (A \vee B)
+		\end{align}
 	\end{prf}
 	
 	$A$を式とする．

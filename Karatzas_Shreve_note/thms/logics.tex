@@ -42,7 +42,7 @@
 			また文字は対象ではないということも認めます．」
 	}
 	
-	対象と文字を併せて{\bf 項}\index{こう@項}{\bf (term)}と呼び，
+	対象および文字を{\bf 項}\index{こう@項}{\bf (term)}と呼び，
 	対象を用いて作られていた式は対象を項に替えても式と呼ぶことにする．
 	
 	$A$を言語の式とし(式は対象や述語記号，論理記号を組み合わせた記号列のはずであるが，いまは具体的な形は気にしないので$A$で表す)
@@ -168,21 +168,20 @@
 	
 	\begin{screen}
 		\begin{dfn}[宇宙]
-			\begin{align}
-				\Univ = \Set{x}{x=x}
-			\end{align}
-			で定める$\Univ$を{\bf 宇宙}\index{うちゅう@宇宙}{\bf (Universe)}と呼ぶ．
+			$\Univ \coloneqq \Set{x}{x=x}$で定める$\Univ$を{\bf 宇宙}\index{うちゅう@宇宙}{\bf (Universe)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\monologue{
-		院生「宇宙という壮大な言葉が出てきてしまいましたが，
-			集合論の世界は$\Univ$の範囲内で語り尽くせてしまうのですから，
-			現代数学にとって$\Univ$は宇宙そのものなのですね．
+		院生「記号$\coloneqq$は定義記号と呼ばれ，右辺の類を左辺と名付けるという意味で使われます．
+			言語$\mathcal{L}'$の世界においては，式に出てくる$\Set{x}{x=x}$の部分を$\Univ$で置き換えられるようになります．
+			$\Univ$は項として使われる文字ではありませんでしたが，$\coloneqq$の推薦で$\Set{x}{x=x}$の代理人として市民権を得たのですね．
+			さて宇宙という壮大な言葉が出てきましたが，後述する通り$\Univ$は集合の全体のことですから，
+			あらゆるものが集合で説明される現代数学にとって$\Univ$はまさしく宇宙なのですね．
 			また定理\ref{thm:Universe_and_ordinal_numbers}で$\Univ$の実態が明らかになるでしょう．
-			我々はこの定理で集合とはどういうものかという問いへの答えを得ることになります．
+			我々はこの定理で集合とは何者かという問いへの完全な答えを得ることになります．
 			ところで，現実世界において人間が把握し得る最大の世界は宇宙空間でしょうが，
-			数学の世界では宇宙の外側を見ることが出来るのです．宇宙の外側に在るものは真類と呼ばれます．
+			数学の世界では宇宙の外側を見ることが出来るのです．そこは真類と呼ばれるものの世界です．
 			実は宇宙そのものも真類の一つなのですが(宇宙が宇宙の外側に在るとは奇妙です)，
 			その話も後述にまかせましょう．」
 	}
@@ -229,7 +228,6 @@
 	
 	\begin{screen}
 		\begin{axm}[外延性の公理]
-			全く同じ要素からなる類は等しい:
 			$a,b$を類とするとき，次が成り立つ:
 			\begin{align}
 				\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
@@ -265,9 +263,9 @@
 			\begin{description}
 				\item[(i)] $a,b$を類とするとき，次が成り立つ:
 					\begin{align}
-						a \in b \Longrightarrow \exists x\ (\ a = x\ ).
+						a \in b \wedge a \neq b \Longrightarrow \exists x\ (\ a = x\ ).
 					\end{align}
-					つまり類の要素は$\mathcal{L}$の或る対象に等しい．
+					つまり類が別の類の要素であるならば$\mathcal{L}$の或る対象に等しい．
 				
 				\item[(ii)] 
 					\begin{align}
@@ -395,6 +393,57 @@
 		$a \notin \emptyset$が従う．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[部分類]
+			$a,b$を類とするとき，
+			\begin{align}
+				a \subset b \overset{\mathrm{def}}{\Longleftrightarrow}
+				\forall x\ (\ x \in a \Longrightarrow x \in b\ )
+			\end{align}
+			で記号列$a \subset b$を定める．また類$a,b$に対して$a \subset b$が成り立っているとき
+			$a$を$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}と呼び，
+			特に$a$が集合である場合は$a$を$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「定義記号$\coloneqq$と同様に，$\overset{\mathrm{def}}{\Longleftrightarrow}$とは
+			右辺の式を左辺の式で置き換えて良いという意味で使われます．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[類はその部分類の全ての要素を含む]
+			$a,b$を類として，$a$を$b$の部分類とする．このとき，任意の類$c$に対して次が成り立つ:
+			\begin{align}
+				c \in a \Longrightarrow c \in b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$c \in a$が成り立っていると仮定する．このとき$c$に対して
+		\begin{align}
+			c = \tau
+		\end{align}
+		を満たす$\mathcal{L}$の対象$\tau$が存在する．
+		相等性の公理より$\tau \in a$となり，部分類の定義より$\tau \in b$となり，
+		再び相等性の公理より$c \in b$が従う．ゆえに
+		\begin{align}
+			c \in a \Longrightarrow c \in b
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は最大の類である]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a \subset \Univ
+			\end{align}
+		\end{thm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}\mbox{}
