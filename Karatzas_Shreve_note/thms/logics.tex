@@ -173,7 +173,7 @@
 	\end{screen}
 	
 	\monologue{
-		院生「記号$\coloneqq$は定義記号と呼ばれ，右辺の類を左辺と名付けるという意味で使われます．
+		院生「記号$\coloneqq$は定義記号と呼ばれ，右辺の類に左辺の記号列で名前を付けるという意味で使われます．
 			言語$\mathcal{L}'$の世界においては，式に出てくる$\Set{x}{x=x}$の部分を$\Univ$で置き換えられるようになります．
 			$\Univ$は項として使われる文字ではありませんでしたが，$\coloneqq$の推薦で$\Set{x}{x=x}$の代理人として市民権を得たのですね．
 			さて宇宙という壮大な言葉が出てきましたが，後述する通り$\Univ$は集合の全体のことですから，
@@ -218,10 +218,28 @@
 		\end{axm}
 	\end{screen}
 	
+	いま$a,b$を類とするとき，
+	\begin{align}
+		a \notin b \overset{\mathrm{def}}{\Longleftrightarrow}\ \rightharpoondown a \in b
+	\end{align}
+	で$a \notin b$を定める．同様に
+	\begin{align}
+		a \neq b \overset{\mathrm{def}}{\Longleftrightarrow}\ \rightharpoondown a = b
+	\end{align}
+	で$a \neq b$を定める．
+	
+	\monologue{
+		院生「定義記号$\coloneqq$と同様に，`$A \overset{\mathrm{def}}{\Longleftrightarrow} B$'とは
+			式$B$を記号列$A$で置き換えて良いという意味で使われます．また，式中に記号列$A$が出てくるときは，
+			暗黙裡にその$A$を$B$に戻して式の内容を解釈します．
+			$\coloneqq$も$\overset{\mathrm{def}}{\Longleftrightarrow}$も略記することと同じですね．」
+	}
+	
 	\begin{screen}
 		\begin{thm}[集合でも真類でもない類は存在しない]
+			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\forall a\ \left(\ \rightharpoondown (\ a \in V \wedge a \notin V\ )\ \right)
+				\rightharpoondown (\ a \in \Univ \wedge a \notin \Univ\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -404,16 +422,40 @@
 			で記号列$a \subset b$を定める．また類$a,b$に対して$a \subset b$が成り立っているとき
 			$a$を$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}と呼び，
 			特に$a$が集合である場合は$a$を$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}と呼ぶ．
+			また類$a,b$に対して
+			\begin{align}
+				a \subsetneq b \overset{\mathrm{def}}{\Longleftrightarrow}
+				a \subset b \wedge a \neq b
+			\end{align}
+			と定める．
 		\end{dfn}
 	\end{screen}
 	
+	\begin{screen}
+		\begin{thm}[空集合は全ての類に含まれる]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\emptyset \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とする．$\tau$を$\mathcal{L}$の任意の対象とすれば，$\tau \notin \emptyset$が成り立つから
+		\begin{align}
+			\tau \notin \emptyset \vee \tau \in a
+		\end{align}
+		が成り立つ．これは$\tau \in \emptyset \Longrightarrow \tau \in a$が成り立つことと同値であるから，
+		$\tau$の任意性より$\emptyset \subset a$が得られる．
+		\QED
+	\end{prf}
+	
 	\monologue{
-		院生「定義記号$\coloneqq$と同様に，$\overset{\mathrm{def}}{\Longleftrightarrow}$とは
-			右辺の式を左辺の式で置き換えて良いという意味で使われます．」
+		院生「この結果は空虚な真の一例ですね．」
 	}
 	
 	\begin{screen}
-		\begin{thm}[類はその部分類の全ての要素を含む]
+		\begin{thm}[類はその部分類の全ての要素を含む]\label{thm:subclass_contains_all_elements}
 			$a,b$を類として，$a$を$b$の部分類とする．このとき，任意の類$c$に対して次が成り立つ:
 			\begin{align}
 				c \in a \Longrightarrow c \in b.
@@ -440,9 +482,73 @@
 		\begin{thm}[$\Univ$は最大の類である]
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				a \subset \Univ
+				a \subset \Univ.
 			\end{align}
 		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\Univ$は$\mathcal{L}$の対象の全てを要素として持つから
+		\begin{align}
+			\forall x\ (\ x \in a \Longrightarrow x \in \Univ\ )
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[互いに互いの部分類となる類同士は等しい]\label{thm:mutually_sub_classes_are_equivalent}
+			$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				a \subset b \wedge b \subset a \Longleftrightarrow a = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a \subset b \wedge b \subset a$が成り立っていると仮定する．
+		このとき$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が成り立つから$a = b$が従う．逆に$a = b$が成り立っていると仮定すれば，
+		$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が成り立つので$a \subset b$と$b \subset a$が共に従う．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「定理\ref{thm:subclass_contains_all_elements}と定理\ref{thm:mutually_sub_classes_are_equivalent}より，
+			類$a,b$が$a = b$を満たすならば，$a$と$b$は要素に持つ$\mathcal{L}$の対象のみならず，
+			要素に持つ類までも一致するのですね．これは`類は別の類の要素であるならば$\mathcal{L}$の或る要素に等しい'
+			という決まりの帰結です．」
+	}
+	
+	\begin{screen}
+		\begin{dfn}[合併]
+			$a$を集合とするとき，$\mathcal{L}$の或る対象$\tau$が存在して$a = \tau$を満たすが，このとき
+			\begin{align}
+				\bigcup a \coloneqq \Set{x}{\exists \sigma \in \tau\ (\ x \in \sigma\ )}
+			\end{align}
+			で$\bigcup a$を定め，これを$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「$a$が集合であるから，$a$に一致する$\mathcal{L}$の対象を用いて$\bigcup a$を定義できるのですね．
+			つまり，記号列$\exists \sigma \in \tau\ (\ x \in \sigma\ )$が$x$の式として妥当となるのです．」
+	}
+	
+	\begin{screen}
+		\begin{axm}[合併集合の公理]
+			$a$を集合とするとき次が成り立つ:
+			\begin{align}
+				\bigcup a \in \Univ.
+			\end{align}
+		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
