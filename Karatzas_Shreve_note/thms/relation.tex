@@ -1,65 +1,46 @@
 \subsection{関係}
 	\begin{screen}
 		\begin{dfn}[対]
-			$a,b$を集合とするとき，
+			$a,b$を類とするとき，
 			\begin{align}
-				\{a,b\} \coloneqq \Set{t}{t \in \varepsilon x (a = x) \vee t \in \varepsilon x (b = x)}
+				\{a,b\} \coloneqq \Set{x}{x \in a \vee x \in b}
 			\end{align}
 			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
 			特に$\{a,a\}$を$\{a\}$と書く．
 		\end{dfn}
 	\end{screen}
 	
-	$a,b$を集合とするとき，
+	合併を定義したときと同様に，本来$\{a,b\}$は
 	\begin{align}
-		\forall t\ (\ t \in \{a,b\} \Longleftrightarrow t \in a \vee t \in b\ )
+		\Set{x}{\varepsilon a(x) \wedge \varepsilon b(x)}
 	\end{align}
-	が成立する．実際，$a = \varepsilon x (a = x)$と$b = \varepsilon x (b = x)$が成り立つから
+	で定めるのが本式である．しかしこの場合も
 	\begin{align}
-		\forall t\ (\ t \in \varepsilon x (a = x) \vee t \in \varepsilon x (b = x)
-		\Longleftrightarrow t \in a \vee t \in b\ )
+		\forall x\ (\ \varepsilon a(x) \wedge \varepsilon b(x)
+		\Longleftrightarrow x \in a \vee x \in b\ )
 	\end{align}
-	となる．これを根拠にして，$\{a,b\}$を
+	が成立することを根拠にして
 	\begin{align}
 		\Set{x}{x \in a \vee x \in b}
 	\end{align}
-	という記号列で表しても良いことにする．
-	
-	\monologue{
-		院生「一般の集合$a,b$に対して，本来
-			\begin{align}
-				\Set{t}{t \in a \vee t \in b}
-			\end{align}
-			は類として認められません．集合$a,b$が$\mathcal{L}$の対象ではない場合，そもそも
-			\begin{align}
-				t \in a \vee t \in b
-			\end{align}
-			が$\mathcal{L}$の式でないからです．例えば，$\mathcal{L}$の対象$\tau$
-			に対して$\Set{x}{x \in \tau}$は集合ですが$\mathcal{L}$の対象ではありませんね．
-			しかしいちいち$\varepsilon$記号を使っていては見た目が煩雑になりますから，表記上は
-			\begin{align}
-				\Set{t}{t \in a \vee t \in b}
-			\end{align}
-			も認めるのです．定理\ref{thm:every_set_is_equivalent_to_some_individual_in_L}より，
-			集合に対しては$\varepsilon$を省略しても解釈上の不具合は起こりません．」
-	}
+	という表記を認めているのである．正確さも大切であるが，やはり判りやすい方が良いに決まっている．
 	
 	\begin{screen}
 		\begin{axm}[対の公理]
-			$a,b$を集合とするとき，その対もまた集合である:
+			$a,b$を類とするとき次が成り立つ:
 			\begin{align}
-				\{a,b\} \in \Univ.
+				a,b \in \Univ \Longrightarrow \{a,b\} \in \Univ.
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{dfn}[順序対]
-			集合$x,y$に対し，
+			$a,b$を類とするとき，
 			\begin{align}
-				(x,y) = \{\{x\},\{x,y\}\}
+				(a,b) \coloneqq \{\{a\},\{a,b\}\}
 			\end{align}
-			で定義される類$(x,y)$を$x$と$y$の{\bf 順序対}\index{じゅんじょつい@順序対}
+			で定義される類$(a,b)$を$a$と$b$の{\bf 順序対}\index{じゅんじょつい@順序対}
 			{\bf (ordered pair)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
@@ -86,7 +67,7 @@
 	\end{screen}
 	
 	\monologue{
-		院生「対の定義で直面した問題と同様に，本来は$\epsilon$記号を用いて
+		院生「しつこいですが，本来は$\epsilon$記号を用いて
 			\begin{align}
 				a \times b \coloneqq \Set{y}{\exists s,t\ 
 				(\ \varepsilon a(s) \wedge \varepsilon b(t) \wedge y = \varepsilon x (x=(s,t))\ )}
@@ -99,16 +80,17 @@
 					(s,t) = \varepsilon x (x = (s,t))
 				\end{gathered}
 			\end{align}
-			となり
+			となり，$\mathcal{L}$の任意の対象$y$に対して
 			\begin{align}
-				\forall x\ \left(\ x \in (a,b) \Longleftrightarrow
-				\exists s \in a\ \exists t \in b\ (\ x=(s,t)\ )\ \right)
+				&\exists s,t\ 
+				(\ \varepsilon a(s) \wedge \varepsilon b(t) \wedge y = \varepsilon x (x=(s,t))\ ) \\ 
+				&\Longleftrightarrow \exists s \in a\ \exists t \in b\ (\ y=(s,t)\ )
 			\end{align}
-			が満たされますから解釈上の不具合は無いのですね．また類$a$と類$b$のCartesian 積は
+			が満たされますから解釈上の不具合は無いのですね．また$a \times b$は
 			\begin{align}
-				a \times b = \Set{(s,t)}{s \in a \wedge t \in b} 
+				\Set{(s,t)}{s \in a \wedge t \in b} 
 			\end{align}
-			と簡略して書かれることも多いです．
+			と簡略して書かれることも多いです．」
 	}
 	
 	\begin{comment}
@@ -246,17 +228,36 @@
 	
 	\begin{screen}
 		\begin{dfn}[定義域・値・値域]
-			$a$を集合とするとき，$a = \tau$を満たす$\mathcal{L}$の対象$\tau$を取り
+			$a$を類とするとき，
 			\begin{itemize}
-				\item $\operatorname{dom}(a) \coloneqq \Set{x}{\exists y\ (\ (x,y) \in \tau\ )}$
-				\item $\operatorname{ran}(a) \coloneqq \Set{y}{\exists x\ (\ (x,y) \in \tau\ )}$					
+				\item $\operatorname{dom}(a) \coloneqq \Set{x}{\exists y\ (\ (x,y) \in a\ )}$
+				\item $\operatorname{ran}(a) \coloneqq \Set{y}{\exists x\ (\ (x,y) \in a\ )}$					
 			\end{itemize}
 			と定めて，$\operatorname{dom}(a)$を$a$の{\bf 定義域}{\bf (domain)}と呼び，
 			$\operatorname{ran}(a)$を$a$の{\bf 値域}{\bf (range)}と呼ぶ．
 			また$\operatorname{dom}(a)$の要素$t$に対して
 			\begin{align}
-				a(t) \coloneqq \Set{x}{\exists y\ (\ x \in y \wedge (t,y) \in \tau\ )}
+				a(t) \coloneqq \Set{x}{\exists y\ (\ x \in y \wedge (t,y) \in a\ )}
 			\end{align}
-			とおく．
+			とおき，これを$t$の$a$による{\bf 値}\index{あたい@値}{\bf (value)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[single-valued・写像]
+			類$a$に対して
+			\begin{align}
+				\operatorname{Sing}(a) \overset{\mathrm{def}}{\Longleftrightarrow}
+				\forall x,y,z\ (\ (x,y) \in a \wedge (x,z) \in a
+				\Longrightarrow y=z\ )
+			\end{align}
+			で$\operatorname{Sign}(a)$を定め，$\operatorname{Sign}(a)$が成り立つとき
+			$a$は\index{single-valued}{\bf single-valuedである}という．また類$a$に対して
+			\begin{align}
+				\operatorname{Fnc}(a) \overset{\mathrm{def}}{\Longleftrightarrow}
+				a \subset \Univ \times \Univ \wedge \operatorname{Sing}(a)
+			\end{align}
+			で$\operatorname{Sign}(a)$を定め，$\operatorname{Sign}(a)$を満たす類$a$を
+			{\bf 写像}\index{しゃぞう@写像}{\bf (mapping)}と呼ぶ．
 		\end{dfn}
 	\end{screen}

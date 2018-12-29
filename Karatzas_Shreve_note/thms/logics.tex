@@ -19,14 +19,14 @@
 		\item[述語記号] $=,\ \in$
 		\item[論理記号] $\bot,\ \Longrightarrow,\ \wedge,\ \vee,\ \rightharpoondown$
 		\item[量化記号] $\forall,\ \exists$
-		\item[補助記号] $[\ ,\ ]\ ,\ (\ ,\ )\ ,\ \{\ ,\ \}\ ,\ <\ ,\ >\ ,\ |$
+		\item[補助記号] $[\ ,\ ]\ ,\ (\ ,\ )\ ,\ \{\ ,\ \}\ ,\ <\ ,\ >\ ,\ |,\coloneqq,\ \overset{\mathrm{def}}{\Longleftrightarrow}$
 	\end{description}
 	
-	日常言語において，``あｍｔ後右所ｓごぐふぉｓｄあじお''のように無作為に文字を並べただけでは意味不明な
+	日常言語において，``あｍｔ後右所ｓごぐふぉｓｄ''のように無作為に文字を並べただけでは意味不明な
 	文字列が出来上がる．文字列は，何らかの規則に従って並ぶことで単語や文章として成立するのである．
 	数学も同じで，一定の規則に従って並ぶ記号列のみを数学における文章として扱う．
 	数学語において，名詞にあたるものは{\bf 対象}\index{たいしょう@対象}{\bf (individual)}と呼ばれる．
-	述語とは対象同士を結ぶものであり，最小単位の文章を形作る．例えば，対象$s,t$に対し
+	述語とは対象同士を結ぶものであり，最小単位の文章を形成する．例えば$s,t$を対象とするとき
 	\begin{align}
 		s \in t
 	\end{align}
@@ -39,9 +39,9 @@
 		院生「定数$\emptyset$は$\mathcal{L}$の対象の一つです．
 			他の対象がどういうものであるかは後で判明しますが，
 			今のところはその正体は伏せておいて，とりあえず対象は予め定められているものとして話を進めます．
-			また文字は対象ではないということも認めます．説明中は``$x$を対象とする''のように書かれることが多いですが，
-			これは対象の一つを一時的に$x$と書いているだけで，文字$x$が対象であると言っているのではありません．
-			先に約束した通り，文字は$\mathcal{L}$の対象ではありません．
+			また文字は対象ではないということも認めます．説明中は``$s$を対象とする''のように書かれることが多いですが，
+			これは一時的に$s$を対象の一つに代用しているだけで，文字$s$が対象であると言っているのではありません．
+			そもそも先に約束した通り文字は$\mathcal{L}$の対象ではありませんね．
 			このような代用記号のことを{\bf 超記号}と呼びます．対象のみならず式にも超記号を宣言することが多いです．」
 	}
 	
@@ -60,7 +60,7 @@
 			
 		\item[式] 
 			\begin{itemize}
-				\item $\bot$は$\mathcal{L}$の式である．
+				\item `$\bot$'は$\mathcal{L}$の式である．
 				
 				\item $s,t$を項とするとき，`$s=t$'と`$s \in t$'はどちらも式である．
 					
@@ -84,28 +84,26 @@
 				\forall x ((x \in x) \vee (\forall y (\exists x ( y = x ))))
 			\end{align}
 			は式となりますが，同じ式で文字$x$は二回量化されています．
-			同じ文字が複数回量化されてしまうと式を解釈するときに厄介なので，
-			そのような状況を排除するために制限を課しているのですね．
+			これでは式を解釈するときに厄介なので，このような状況を排除するために制約を設けているのですね．
 			では，`以上の操作を繰り返して得られる記号列のみが式である'はどういう意味でしょうか．
 			例えば，最後の制限を外してしまうと
 			\begin{align}
 				\exists (\rightharpoondown (\exists x(\forall y (x = y))))
 			\end{align}
 			という記号列が式であるか式でないかは判別できませんが，
-			最後の規制によりこれは式ではないと判断できます．具体的な問題を考える際は上述のような式は扱わないので
-			形式上の規制と思われますが，体系の完全性など考察する際には必要な規制でしょう．」
+			最後の規制によりこれは式ではないと判断できます．具体的な問題を考える際は上の例のような式は扱わないので，
+			本稿においては殆どご利益の無い形式上の規制となりますが，体系の完全性など考察する際には必要な規制でしょう．」
 	}
 	
 	\monologue{
-		院生「式の定義では，始めに最も簡単な形の式($\bot$や$s=t$)を提示して，
+		院生「式の定義では，始めに最も簡単な形の式(`$\bot$'や`$s=t$')を提示して，
 			以降の段階で新しい式を作り出す手段(論理記号による式の接合)を指定しています．
 			このような定義を{\bf 帰納的な定義}\index{きのうてきなていぎ@帰納的な定義}{\bf (inductive definition)}と呼びます．
-			プログラミングで言うところのfor文の操作と同じですね．
-			また既に量化されている文字が再び量化されるということは起こり得ません．」
+			プログラミングで言うところのfor文の操作と同じですね．」
 	}
 	
 	$A$を式とする．
-	$A$に$a$という文字が現れるとき，$A$に現れる全ての$a$を$x$に置き換えた式を
+	`$t = a$'など$A$に文字$a$が現れるとき，$A$に現れる全ての文字$a$を文字$x$に置き換えた式を
 	\begin{align}
 		(x \mid a)\, A
 	\end{align}
@@ -116,7 +114,7 @@
 	\end{align}
 	で表す．このとき式$A$自体は$(a \mid a)\, A$とも$A(a)$とも書ける．
 	
-	いま文字から成る式を作ったが，例えば$x$のみが量化されていない式$A$に対して
+	いま言語$\mathcal{L}$を設定したばかりであるが，例えば$x$のみが量化されていない式$A$に対して
 	\begin{align}
 		\Set{x}{A(x)}
 	\end{align}
@@ -124,16 +122,15 @@
 	\begin{align}
 		s \in \Set{x}{A(x)},\quad t = \Set{x}{A(x)}
 	\end{align}
-	などと式に組み込んで扱いたい．そこで$\mathcal{L}$を次の言語$\mathcal{L}'$に拡張する．
+	のように式に組み込んで扱いたい．そこで$\mathcal{L}$を言語$\mathcal{L}'$に拡張する．
+	$\mathcal{L}'$の使用文字，定数記号，述語記号，論理記号，量化記号，補助記号は$\mathcal{L}$のものをそのまま継承し，
+	対象・項・式は次のように定める:
 	
 	\begin{description}
 		\item[対象]
 			\begin{itemize}
-				\item 式$A$において文字$x$が現れ，かつ$x$のみが$A$で量化されていないとき，
-					\begin{align}
-						\Set{x}{A(x)}
-					\end{align}
-					は$\mathcal{L}'$の対象である．
+				\item $A$を式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば
+					記号列`$\Set{x}{A(x)}$'は$\mathcal{L}'$の対象である．
 					
 				\item $\mathcal{L}$の対象は$\mathcal{L}'$の対象である．
 				
@@ -148,26 +145,46 @@
 			\begin{itemize}
 				\item $\bot$は$\mathcal{L}'$の式である．
 				
-				\item $s,t$を項とするとき，$s=t,\ s \in t$は式である．
+				\item $s,t$を$\mathcal{L}'$の項とするとき，`$s=t$'と`$s \in t$'はどちらも$\mathcal{L}'$の式である．
 					
-				\item $A,B$を式とするとき，
+				\item $A,B$を$\mathcal{L}'$の式とするとき，
 					$A$では量化されていないが$B$で量化されているといった文字が無いときに限り，
-					$(A) \wedge (B),\ (A) \vee (B),\ (A)\Longrightarrow (B)$は式である．
+					`$(A) \wedge (B)$'，`$(A) \vee (B)$'，`$(A) \Longrightarrow (B)$'はいずれも$\mathcal{L}'$の式である．
 				
-				\item $A$を式とするとき，$\rightharpoondown (A)$は式である．
+				\item $A$を$\mathcal{L}'$の式とするとき，`$\rightharpoondown (A)$'は$\mathcal{L}'$の式である．
 				
-				\item $A$を式とするとき，文字$x$が$A$に現れ，かつ$x$が$A$で量化されていないときに限り
-					$\forall x (A),\ \exists x (A)$は式である．
+				\item $A$を$\mathcal{L}'$の式とするとき，文字$x$が$A$に現れ，かつ$x$が$A$で量化されていないときに限り
+					`$\forall x (A(x))$'と`$\exists x (A(x))$'はどちらも$\mathcal{L}'$の式である．
 				
-				\item 以上の操作を繰り返して得られる記号列のみが式である．
+				\item 以上の操作を繰り返して得られる記号列のみが$\mathcal{L}'$の式である．
 			\end{itemize}
 	\end{description}
 	
-	\begin{screen}
-		\begin{dfn}[閉式]
-			量化されていない文字を含まない式を{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
+	\monologue{
+		院生「$A$を$\mathcal{L}$の式とするとき，$x$が$A$に現れ，かつ$x$のみが$A$で量化されていないならば
+			\begin{align}
+				\Set{x}{A(x)}
+			\end{align}
+			は$\mathcal{L}'$の対象であると決めましたが，いま$A(x)$の中に文字$y$が現れないと仮定すれば，
+			式$A(y)$には文字$y$が現れ，かつ$y$のみが量化されていないことになりますから
+			\begin{align}
+				\Set{y}{A(y)}
+			\end{align}
+			もまた$\mathcal{L}'$の対象となります．このとき$\Set{x}{A(x)}$と$\Set{y}{A(y)}$は$x$と$y$の違いを除いて同じ記号列になりますから，
+			これらを同等な対象として扱いたいものです．実際このことは後述する``類の公理''と``外延性の公理''により保証されます．」
+	}
+	
+	$\mathcal{L}'$の式のうち，量化されていない文字を含まないものを{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
+	定理として考察するものは全て閉式である．また数などの特別な対象や概念は{\bf 枠線付きの定義}により名前を付けていく．
+	一度枠線付きの定義で名前を付けられた対象や概念は，それ以後は本稿においてはその名前で通用する．
+	他方，枠線付きの定義という手続きを踏まなくても，便宜のために説明や証明の途中で対象に名前を付けることがある．それは次のようなものである: 
+	\begin{prf}
+		$\cdots$いま$P \coloneqq \Set{x}{\forall t\ (\ x = t \vee x \in t\ )}$とおく．このとき$\cdots$
+	\end{prf}
+	記号`$\coloneqq$'は{\bf 定義記号}と呼ばれ，右辺の類に左辺の記号列で名前を付けるという意味で使われる．
+	このような文言は多くの説明や証明に出てくるが，実際上の効果として，
+	以後の式に出てくる`$\Set{x}{\forall t\ (\ x = t \vee x \in t\ )}$'の部分を`$P$'で置き換えられるようになる．
+	ただしその場合の定義はその説明や証明の中でのみ通用するものと約束する．
 	
 	\begin{screen}
 		\begin{dfn}[宇宙]
@@ -176,9 +193,7 @@
 	\end{screen}
 	
 	\monologue{
-		院生「記号$\coloneqq$は定義記号と呼ばれ，右辺の類に左辺の記号列で名前を付けるという意味で使われます．
-			言語$\mathcal{L}'$の世界においては，式に出てくる$\Set{x}{x=x}$の部分を$\Univ$で置き換えられるようになります．
-			$\Univ$は項として使われる文字ではありませんでしたが，$\coloneqq$の推薦で$\Set{x}{x=x}$の代理人として市民権を得たのですね．
+		院生「$\Univ$はそもそも式に現れる文字ではありませんでしたが，$\coloneqq$の推薦で$\Set{x}{x=x}$の代理人として市民権を得たのですね．
 			さて宇宙という壮大な言葉が出てきましたが，後述する通り$\Univ$は集合の全体のことですから，
 			あらゆるものが集合で説明される現代数学にとって$\Univ$はまさしく宇宙なのですね．
 			また定理\ref{thm:Universe_and_ordinal_numbers}で$\Univ$の実態が明らかになるでしょう．
@@ -199,14 +214,14 @@
 	
 	\begin{screen}
 		\begin{dfn}[類・集合]
-			$\mathcal{L}'$の対象のことを{\bf 類}\index{るい@類}{\bf (class)}と呼び直し，
+			$\mathcal{L}'$の対象のことを{\bf 類}\index{るい@類}{\bf (class)}と呼び，
 			特に$\Univ$の要素である類を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼ぶ．
 			また$\Univ$の要素でない類のことを{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 
 	\monologue{
-		院生「類は$V$の要素であれば集合と呼ばれ，$V$の要素でなければ真類と呼ばれます．
+		院生「類は$\Univ$の要素であれば集合と呼ばれ，$\Univ$の要素でなければ真類と呼ばれます．
 			では集合であり真類でもある類や，集合でも真類でもない類はあるのでしょうか？
 			答えは``現段階では確定したことは何も言えない''です．
 			質問を変えましょう．集合であり真類でもある類や集合でも真類でもない類の存在を禁止するにはどうしたら良いでしょうか？
@@ -216,9 +231,12 @@
 	}
 	
 	\begin{screen}
-		\begin{axm}[排中律]
-			任意の論理式$A$に対し，$A \vee \rightharpoondown A$が成り立つ．
-		\end{axm}
+		\begin{metaaxm}[排中律]
+			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{align}
+				A \vee \rightharpoondown A.
+			\end{align}
+		\end{metaaxm}
 	\end{screen}
 	
 	いま$a,b$を類とするとき，
@@ -334,7 +352,7 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[$\exists x\ (\ a = x\ )$は$a$が集合であるということを意味する]
+		\begin{thm}[集合とは，$\mathcal{L}$の対象か，或いは$\mathcal{L}$の対象と等しい類のことを指す]
 		\label{thm:every_set_is_equivalent_to_some_individual_in_L}
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
@@ -366,7 +384,8 @@
 	\end{prf}
 	
 	\monologue{
-		院生「つまり，$\mathcal{L}$の対象か，或いは$\mathcal{L}$の対象と等しい類のみが集合であるということですね．」
+		院生「集合は$\mathcal{L}$の対象であるとは限りません．例えば
+			$\mathcal{L}$の対象$\tau$に対して$\Set{x}{x \in \tau}$は集合ですが$\mathcal{L}$の対象ではありませんね．」
 	}
 	
 	\begin{screen}
@@ -533,24 +552,55 @@
 	
 	\begin{screen}
 		\begin{dfn}[合併]
-			$a$を集合とするとき，$\mathcal{L}$の或る対象$\tau$が存在して$a = \tau$を満たすが，このとき
+			$a$を類とするとき
 			\begin{align}
-				\bigcup a \coloneqq \Set{x}{\exists \sigma \in \tau\ (\ x \in \sigma\ )}
+				\bigcup a \coloneqq \Set{x}{\exists t\ (\ \varepsilon a(t) \wedge x \in t\ )}
 			\end{align}
 			で$\bigcup a$を定め，これを$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
+	$a$を類とするとき，
+	\begin{align}
+		\forall x\ \left(\ x \in \bigcup a \Longleftrightarrow \exists t \in a\ (\ x \in t\ )\ \right)
+	\end{align}
+	が成立する．実際，$\varepsilon$記号についての規則と類の公理から
+	\begin{align}
+		\forall t\ \left(\ \varepsilon a(t) \Longleftrightarrow t \in a\ \right)
+	\end{align}
+	が満たされるので，$x$を$\mathcal{L}$の任意の対象とすれば
+	\begin{align}
+		\exists t\ (\ \varepsilon a(t) \wedge x \in t\ )
+		\Longleftrightarrow \exists t\ (\ t \in a \wedge x \in t\ )
+	\end{align}
+	となる．これを根拠にして，$\bigcup a$を
+	\begin{align}
+		\Set{x}{\exists t \in a\ (\ x \in t\ )}
+	\end{align}
+	で表しても良いことにする．もとより，合併の定義はこちらの表記を正当化することを予定したものである．
+	
 	\monologue{
-		院生「$a$が集合であるから，$a$に一致する$\mathcal{L}$の対象を用いて$\bigcup a$を定義できるのですね．
-			つまり，記号列$\exists \sigma \in \tau\ (\ x \in \sigma\ )$が$x$の式として妥当となるのです．」
+		院生「一般の類$a$に対して，本来
+			\begin{align}
+				\Set{x}{\exists t \in a\ (\ x \in t\ )}
+			\end{align}
+			は類として失格です．なぜならば，$a$が$\mathcal{L}$の対象ではない場合はそもそも
+			\begin{align}
+				\exists t \in a\ (\ x \in t\ )
+			\end{align}
+			が$\mathcal{L}$の式でないからです．しかしいちいち$\varepsilon$記号を使っていては見た目が煩雑になりますから，表記上は
+			\begin{align}
+				\Set{x}{\exists t \in a\ (\ x \in t\ )}
+			\end{align}
+			も認めるのです．以後もこのように妥協する場面に直面するでしょう．
+			しかし$\varepsilon$記号のおかげで解釈上の不具合は無いのです．」
 	}
 	
 	\begin{screen}
 		\begin{axm}[合併集合の公理]
-			$a$を集合とするとき次が成り立つ:
+			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\bigcup a \in \Univ.
+				a \in \Univ \Longrightarrow \bigcup a \in \Univ.
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -558,9 +608,6 @@
 	\begin{screen}
 		\begin{thm}\mbox{}
 			\begin{description}
-				\item[(2)] $\forall a\ (\ a = \Set{x}{x \in a}\ )$
-				\item[(4)] $a \subset V$
-				\item[(5)] $\Set{x}{A} = \Set{y}{(y\, |\, x)A}$
 				\item[(6)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = V$.
 			\end{description}
 		\end{thm}
