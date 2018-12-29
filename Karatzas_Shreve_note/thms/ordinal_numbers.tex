@@ -21,33 +21,35 @@
 	}
 	
 	\begin{screen}
-		\begin{thm}\label{thm:equivalent_condition_of_axiom_of_regularity}
-			次は同値である:
-			\begin{itemize}
-				\item $a$を類とするとき次が成り立つ:
+		\begin{thm}[正則性公理の同値条件]
+		\label{thm:equivalent_condition_of_axiom_of_regularity}
+			次の(i)(ii)の主張は同値である:
+			\begin{description}
+				\item[(i)] $a$を類とするとき次が成り立つ:
 					\begin{align}
 						a \neq \emptyset \Longrightarrow 
 						\exists x \in a\ (\ x \cap a = \emptyset\ ).
 					\end{align}
 					
-				\item $A$を式とし，$A$に現れる自由変項が唯一つである場合，
+				\item[(ii)] $A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y$を$A$に現れない文字とする．
+					このとき，$A$に現れる文字で$x$のみが$A$で量化されていない場合，次が成り立つ:
 					\begin{align}
 						\forall x\ \left(\ \forall y \in x\ A(y)
 						\Longrightarrow A(x)\ \right)
-						\Longrightarrow \forall x\ A(x).
+						\Longrightarrow \forall x A(x).
 					\end{align}
-			\end{itemize}
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\forall a\ \left(\ a \neq \emptyset \Longrightarrow 
-		\exists x \in a\ (\ x \cap a = \emptyset\ )\ \right)$
-		が成立しているとして，
+		$A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y$を$A$に現れない文字として，
+		$A$に現れる文字で$x$のみが$A$で量化されていないとする．
+		そして(i)の主張が正しいと仮定し
 		\begin{align}
-			a = \Set{x}{\rightharpoondown A(x)}
+			a \coloneqq \Set{x}{\rightharpoondown A(x)}
 		\end{align}
-		の場合を考える．いま
+		とおく．いま(i)の主張より
 		\begin{align}
 			a \neq \emptyset \Longrightarrow 
 			\exists x\ (\ x \in a \wedge x \cap a = \emptyset\ )
@@ -57,37 +59,38 @@
 			\forall x\ (\ x \notin a \vee x \cap a \neq \emptyset\ )
 			\Longrightarrow a = \emptyset
 		\end{align}
-		が成り立ち，$x \cap a \neq \emptyset$は$\exists y \in x\ (y \in a)$となるので
+		が成り立つ．ここで$x \cap a \neq \emptyset$が$\exists y \in x\ (y \in a)$と同値であることを使えば
 		\begin{align}
 			\forall x\ (\ \forall y \in x\ (\ y \notin a\ ) \Longrightarrow x \notin a\ )
 			\Longrightarrow a = \emptyset
 		\end{align}
-		が成立する．ところで$x \notin a \Longleftrightarrow A(x)$より
+		が成立する．ところで$\forall x\ (\ x \notin a \Longleftrightarrow A(x)\ )$が満たされるので
 		\begin{align}
 			\forall x\ \left(\ \forall y \in x\ A(y)
 			\Longrightarrow A(x)\ \right)
-			\Longrightarrow \forall x\ A(x).
-			\label{eq:thm_equivalent_condition_of_axiom_of_regularity_1}
+			\Longrightarrow \forall x A(x).
 		\end{align}
-		を得る．逆に(\refeq{eq:thm_equivalent_condition_of_axiom_of_regularity_1})が成り立っている場合，$A(x)$が$x \notin a$であるとすれば
+		を得る．逆に(ii)が正しいと仮定する．$a$を類とすれば$x \in a$は文字$x$についての式となり，
+		(ii)の主張より
 		\begin{align}
-			\forall x\ \left(\ \forall y \in x \rightharpoondown y \in a\ )
-			\Longrightarrow \rightharpoondown x \in a\ \right)
-			\Longrightarrow \forall x \rightharpoondown x \in a
+			\forall x\ \left(\ \forall y \in x\ (\ y \notin a\ )
+			\Longrightarrow x \notin a\ \right)
+			\Longrightarrow \forall x\ (\ x \notin a\ )
 		\end{align}
-		対偶を取れば
+		が成立する．ここで対偶を取れば
 		\begin{align}
-			\exists x\ x \in a \Longrightarrow 
-			\exists x\ \left(\ \forall y \in x\ (\ y \notin a\ )\ )
+			\exists x\ (\ x \in a\ ) \Longrightarrow 
+			\exists x\ \left(\ \forall y \in x\ (\ y \notin a\ )
 			\wedge x \in a\ \right)
 		\end{align}
-		となり，$a \neq \emptyset \Longleftrightarrow \exists x\ x \in a$と
-		$x \cap a = \emptyset \Longleftrightarrow \forall y \in x\ (\ y \notin a\ )$
-		と併せて
+		となり，$a \neq \emptyset$と$\exists x\ (\ x \in a\ )$が同値であること，及び
+		$x \cap a = \emptyset$と$\forall y \in x\ (\ y \notin a\ )$が同値であることと併せて
 		\begin{align}
 			a \neq \emptyset \Longrightarrow 
 			\exists x \in a\ (\ x \cap a = \emptyset\ )
 		\end{align}
+		を得る．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
@@ -110,19 +113,19 @@
 		\begin{thm}[いかなる集合も自分自身を要素に持たない]
 		\label{thm:no_set_is_an_element_of_itself}
 			$a,b,c$を類とするとき次が成り立つ:
-			\begin{itemize}
-				\item $a \in \Univ \Longrightarrow a \notin a$.
+			\begin{description}
+				\item[(i)] $a \in \Univ \Longrightarrow a \notin a$.
 				
-				\item $a,b \in \Univ \Longrightarrow a \notin b \vee b \notin a$.
+				\item[(ii)] $a,b \in \Univ \Longrightarrow a \notin b \vee b \notin a$.
 				
-				\item $a,b,c \in \Univ \Longrightarrow a \notin b \vee b \notin c \vee c \notin a$.
-			\end{itemize}
+				\item[(iii)] $a,b,c \in \Univ \Longrightarrow a \notin b \vee b \notin c \vee c \notin a$.
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[第一段] $a$を集合とする．$a = \emptyset$ならば，空集合の公理より
+			\item[(i)] $a$を集合とする．$a = \emptyset$ならば，空集合の公理より
 				\begin{align}
 					\emptyset \notin \emptyset
 				\end{align}
@@ -141,7 +144,7 @@
 				\end{align}
 				が成り立つ．
 			
-			\item[第二段]
+			\item[(ii)]
 		\end{description}
 		また$x \in y$が満たされていると仮定すれば，$y \cap \{x,y\} \neq \emptyset$より
 		\begin{align}
