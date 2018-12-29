@@ -1,29 +1,52 @@
 \subsection{関係}
 	\begin{screen}
-		\begin{dfn}[対集合]
-			$a,b$を集合とするとき，$\mathcal{L}$の或る対象$x,y$が存在して$a = x$かつ$b = y$を満たすが，このとき
+		\begin{dfn}[対]
+			$a,b$を集合とするとき，
 			\begin{align}
-				\{a,b\} \coloneqq \Set{t}{t \in x \wedge t \in y}
+				\{a,b\} \coloneqq \Set{t}{t \in \varepsilon x (a = x) \vee t \in \varepsilon x (b = x)}
 			\end{align}
-			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対集合}と呼ぶ．
+			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{a,a\}$を$\{a\}$と書く．
 		\end{dfn}
 	\end{screen}
 	
+	$a,b$を集合とするとき，
+	\begin{align}
+		\forall t\ (\ t \in \{a,b\} \Longleftrightarrow t \in a \vee t \in b\ )
+	\end{align}
+	が成立する．実際，$a = \varepsilon x (a = x)$と$b = \varepsilon x (b = x)$が成り立つから
+	\begin{align}
+		\forall t\ (\ t \in \varepsilon x (a = x) \vee t \in \varepsilon x (b = x)
+		\Longleftrightarrow t \in a \vee t \in b\ )
+	\end{align}
+	となる．これを根拠にして，$\{a,b\}$を
+	\begin{align}
+		\Set{x}{x \in a \vee x \in b}
+	\end{align}
+	という記号列で表しても良いことにする．
+	
 	\monologue{
-		院生「一般に集合$a,b$に対して
+		院生「一般の集合$a,b$に対して，本来
 			\begin{align}
-				\{a,b\} \coloneqq \Set{t}{t \in a \wedge t \in b}
+				\Set{t}{t \in a \vee t \in b}
 			\end{align}
-			と定めることは出来ません．$a,b$が集合であっても$\mathcal{L}$の対象ではない場合，そもそも
+			は類として認められません．集合$a,b$が$\mathcal{L}$の対象ではない場合，そもそも
 			\begin{align}
-				\Set{t}{t \in a \wedge t \in b}
+				t \in a \vee t \in b
 			\end{align}
-			が$\mathcal{L}'$の対象でないのです．」
+			が$\mathcal{L}$の式でないからです．例えば，$\mathcal{L}$の対象$\tau$
+			に対して$\Set{x}{x \in \tau}$は集合ですが$\mathcal{L}$の対象ではありませんね．
+			しかしいちいち$\varepsilon$記号を使っていては見た目が煩雑になりますから，表記上は
+			\begin{align}
+				\Set{t}{t \in a \vee t \in b}
+			\end{align}
+			も認めるのです．定理\ref{thm:every_set_is_equivalent_to_some_individual_in_L}より，
+			集合に対しては$\varepsilon$を省略しても解釈上の不具合は起こりません．」
 	}
 	
 	\begin{screen}
-		\begin{axm}[対集合の公理]
-			$a,b$を集合とするとき次が成り立つ:
+		\begin{axm}[対の公理]
+			$a,b$を集合とするとき，その対もまた集合である:
 			\begin{align}
 				\{a,b\} \in \Univ.
 			\end{align}
@@ -55,7 +78,7 @@
 		\begin{dfn}[Cartesian積]
 			類$a,b$に対し，$a \times b$を
 			\begin{align}
-				a \times b = \Set{x}{\exists s \in a\ \exists t \in b\ (\ x=(s,t)\ )}
+				a \times b \coloneqq \Set{x}{\exists s \in a\ \exists t \in b\ (\ x=(s,t)\ )}
 			\end{align}
 			で定め，これを$a$と$b$の{\bf Cartesian 積}\index{Cartesian せき@Cartesian 積}
 			{\bf (Cartesian product)}と呼ぶ．
@@ -63,7 +86,25 @@
 	\end{screen}
 	
 	\monologue{
-		院生「類$a$と類$b$のCartesian 積は
+		院生「対の定義で直面した問題と同様に，本来は$\epsilon$記号を用いて
+			\begin{align}
+				a \times b \coloneqq \Set{y}{\exists s,t\ 
+				(\ \varepsilon a(s) \wedge \varepsilon b(t) \wedge y = \varepsilon x (x=(s,t))\ )}
+			\end{align}
+			と定めるのが正式です．しかし$s,t$を$\mathcal{L}$の対象とするとき，
+			\begin{align}
+				\begin{gathered}
+					s \in a \Longleftrightarrow \epsilon a(s), \\
+					t \in b \Longleftrightarrow \epsilon b(t), \\
+					(s,t) = \varepsilon x (x = (s,t))
+				\end{gathered}
+			\end{align}
+			となり
+			\begin{align}
+				\forall x\ \left(\ x \in (a,b) \Longleftrightarrow
+				\exists s \in a\ \exists t \in b\ (\ x=(s,t)\ )\ \right)
+			\end{align}
+			が満たされますから解釈上の不具合は無いのですね．また類$a$と類$b$のCartesian 積は
 			\begin{align}
 				a \times b = \Set{(s,t)}{s \in a \wedge t \in b} 
 			\end{align}
@@ -104,9 +145,15 @@
 	}
 	\end{comment}
 	
+	二つの類を用いて得られる最大のCartesian積は
+	\begin{align}
+		\Set{x}{\exists s,t\ (\ x=(s,t)\ )}
+	\end{align}
+	で与えられ，これは$\Univ \times \Univ$に等しい．
+	
 	\begin{screen}
 		\begin{dfn}[関係]
-			$V \times V$の部分類を{\bf 関係}\index{かんけい@関係}{\bf (relation)}と呼ぶ．
+			$\Univ \times \Univ$の部分類を{\bf 関係}\index{かんけい@関係}{\bf (relation)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
