@@ -176,7 +176,7 @@
 	
 	$\mathcal{L}'$の式のうち，量化されていない文字を含まないものを{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
 	定理として考察するものは全て閉式である．また数などの特別な対象や概念は{\bf 枠線付きの定義}により名前を付けていく．
-	一度枠線付きの定義で名前を付けられた対象や概念は，それ以後は本稿においてはその名前で通用する．
+	一度枠線付きの定義で名前を付けられた対象や概念は，それ以後は本稿においてその名前で通用する．
 	他方，枠線付きの定義という手続きを踏まなくても，便宜のために説明や証明の途中で対象に名前を付けることがある．それは次のようなものである: 
 	\begin{prf}
 		$\cdots$いま$P \coloneqq \Set{x}{\forall t\ (\ x = t \vee x \in t\ )}$とおく．このとき$\cdots$
@@ -352,7 +352,7 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[集合とは，$\mathcal{L}$の対象か，或いは$\mathcal{L}$の対象と等しい類のことを指す]
+		\begin{thm}[集合とは，$\mathcal{L}$の対象か，$\mathcal{L}$の対象と等しい類のことを指す]
 		\label{thm:every_set_is_equivalent_to_some_individual_in_L}
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
@@ -597,8 +597,8 @@
 	}
 	
 	\begin{screen}
-		\begin{axm}[合併集合の公理]
-			$a$を類とするとき次が成り立つ:
+		\begin{axm}[合併の公理]
+			集合の合併は集合である．つまり，$a$を類とするとき次が成り立つ:
 			\begin{align}
 				a \in \Univ \Longrightarrow \bigcup a \in \Univ.
 			\end{align}
@@ -606,12 +606,52 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}\mbox{}
+		\begin{thm}[合併の性質]\mbox{}
 			\begin{description}
-				\item[(6)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = V$.
+				\item[(1)] $\bigcup \emptyset = \emptyset$
+				\item[(2)] $\forall x\ (\ x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\ )$
+				\item[(3)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = \Univ$.
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[交叉]
+			$a$を類とするとき，
+			\begin{align}
+				\bigcap a \coloneqq \Set{x}{\forall t \in a\ (\ x \in t\ )}
+			\end{align}
+			で$\bigcap a$を定め，これを$a$の{\bf 交叉}\index{こうさ@交叉}{\bf (intersection)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[交叉の性質]\mbox{}
+			\begin{description}
+				\item[(1)] $\bigcap \emptyset = \Univ$
+				\item[(2)] $\forall x\ (\ x \in a \cap b \Longleftrightarrow x \in a \wedge x \in b\ )$
+				\item[(3)] $\Set{x}{A(x)} \cap \Set{x}{\rightharpoondown A(x)} = \emptyset$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$を$\mathcal{L}$の任意の対象とするとき，空虚な真より
+		\begin{align}
+			t \in \emptyset \Longrightarrow x \in t
+		\end{align}
+		は$\mathcal{L}$のいかなる対象$t$に対してもに真となる．ゆえに$\forall t \in \emptyset\ (\ x \in t\ )$が成立し
+		\begin{align}
+			\forall x\ (\ x \in \bigcap \emptyset\ )
+		\end{align}
+		が従う．$\forall x\ (\ x \in \Univ\ )$と併せて$\bigcap \emptyset = \Univ$を得る．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「$\bigcup \emptyset$が$\emptyset$に等しいのは受け容れられますが，
+			$\bigcap \emptyset$が$\Univ$に等しいというのは直感に合いません．空虚な真おそるべしです．」
+	}
 	
 	\begin{screen}
 		\begin{thm}

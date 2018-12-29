@@ -109,27 +109,41 @@
 	\begin{screen}
 		\begin{thm}[いかなる集合も自分自身を要素に持たない]
 		\label{thm:no_set_is_an_element_of_itself}
-			次が成り立つ:
+			$a,b,c$を類とするとき次が成り立つ:
 			\begin{itemize}
-				\item $\forall x \in V\ (\ x \notin x\ )$.
+				\item $a \in \Univ \Longrightarrow a \notin a$.
 				
-				\item $\forall x,y \in V\ (\ x \notin y \vee y \notin x\ )$.
+				\item $a,b \in \Univ \Longrightarrow a \notin b \vee b \notin a$.
 				
-				\item $\forall x,y,z \in V\ (\ x \notin y \vee y \notin z \vee z \notin x\ )$.
+				\item $a,b,c \in \Univ \Longrightarrow a \notin b \vee b \notin c \vee c \notin a$.
 			\end{itemize}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$x,y,z$を任意に与えられた集合とする．まず正則性公理より
-		\begin{align}
-			x \cap \{x\} = \emptyset
-		\end{align}
-		が成り立つから
-		\begin{align}
-			x \notin x
-		\end{align}
-		が出る．また$x \in y$が満たされていると仮定すれば，$y \cap \{x,y\} \neq \emptyset$より
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段] $a$を集合とする．$a = \emptyset$ならば，空集合の公理より
+				\begin{align}
+					\emptyset \notin \emptyset
+				\end{align}
+				が成立するので$a \notin a$が従う．
+				$a \neq \emptyset$ならば，正則性公理より$\mathcal{L}$の或る対象$\tau$が存在して
+				\begin{align}
+					\tau \in \{a\} \wedge \tau \cap \{a\} = \emptyset
+				\end{align}
+				を満たす．$\tau \in \{a\}$より$\tau = a$となるので
+				\begin{align}
+					a \cap \{a\} = \emptyset
+				\end{align}
+				が従い，$a \in \{a\}$も満たされるから
+				\begin{align}
+					a \notin a
+				\end{align}
+				が成り立つ．
+			
+			\item[第二段]
+		\end{description}
+		また$x \in y$が満たされていると仮定すれば，$y \cap \{x,y\} \neq \emptyset$より
 		\begin{align}
 			x \cap \{x,y\} = \emptyset
 		\end{align}
@@ -490,6 +504,12 @@
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$\ord{\ON}$は成立しているから$\ON \in \ON$となり，定理\ref{thm:no_set_is_an_element_of_itself}より
+		$\ON \notin \Univ$が従う．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[順序数は自分自身との合併が後者となる]\mbox{}
