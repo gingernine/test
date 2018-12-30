@@ -39,9 +39,8 @@
 		院生「定数$\emptyset$は$\mathcal{L}$の対象の一つです．
 			他の対象がどういうものであるかは後で判明しますが，
 			今のところはその正体は伏せておいて，とりあえず対象は予め定められているものとして話を進めます．
-			また文字は対象ではないということも認めます．説明中は``$s$を対象とする''のように書かれることが多いですが，
+			また文字は対象ではないということも認めます．説明中は``$s$を対象とする''のように書くことが多いですが，
 			これは一時的に$s$を対象の一つに代用しているだけで，文字$s$が対象であると言っているのではありません．
-			そもそも先に約束した通り文字は$\mathcal{L}$の対象ではありませんね．
 			このような代用記号のことを{\bf 超記号}と呼びます．対象のみならず式にも超記号を宣言することが多いです．」
 	}
 	
@@ -70,7 +69,7 @@
 				
 				\item $A$を式とするとき，`$\rightharpoondown (A)$'は式である．
 				
-				\item $A$を式とするとき，文字$x$が$A$に現れ，かつ$x$が$A$で量化されていないときに限り
+				\item $A$を式とし，$x$を$A$に現れる文字とするとき，$x$が$A$で量化されていないときに限り
 					`$\forall x (A)$'と`$\exists x (A)$'はどちらも式である．
 				
 				\item 以上の操作を繰り返して得られる記号列のみが式である．
@@ -153,7 +152,7 @@
 				
 				\item $A$を$\mathcal{L}'$の式とするとき，`$\rightharpoondown (A)$'は$\mathcal{L}'$の式である．
 				
-				\item $A$を$\mathcal{L}'$の式とするとき，文字$x$が$A$に現れ，かつ$x$が$A$で量化されていないときに限り
+				\item $A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$が$A$で量化されていないときに限り
 					`$\forall x (A(x))$'と`$\exists x (A(x))$'はどちらも$\mathcal{L}'$の式である．
 				
 				\item 以上の操作を繰り返して得られる記号列のみが$\mathcal{L}'$の式である．
@@ -170,8 +169,9 @@
 			\begin{align}
 				\Set{y}{A(y)}
 			\end{align}
-			もまた$\mathcal{L}'$の対象となります．このとき$\Set{x}{A(x)}$と$\Set{y}{A(y)}$は$x$と$y$の違いを除いて同じ記号列になりますから，
-			これらを同等な対象として扱いたいものです．実際このことは後述する``類の公理''と``外延性の公理''により保証されます．」
+			もまた$\mathcal{L}'$の対象となります．このとき`$\Set{x}{A(x)}$'と`$\Set{y}{A(y)}$'は$x$と$y$の違いを除いて同じ記号列になりますから，
+			これらを同等な対象として扱いたいものです．同等とは等号で結ばれることですが，
+			このことは後述する``類の公理''と``外延性の公理''により保証されます．」
 	}
 	
 	$\mathcal{L}'$の式のうち，量化されていない文字を含まないものを{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
@@ -201,7 +201,7 @@
 			ところで，現実世界において人間が把握し得る最大の世界は宇宙空間でしょうが，
 			数学の世界では宇宙の外側を見ることが出来るのです．そこは真類と呼ばれるものの世界です．
 			実は宇宙そのものも真類の一つなのですが(宇宙が宇宙の外側に在るとは奇妙です)，
-			その話も後述にまかせましょう．」
+			その話も後述にまかせましょう．ちなみに，宇宙が$\Univ$で表されるのはJohn Von NeumannのVに由来していると思われます．」
 	}
 	
 	数学の式を日本語に翻訳するとき，慣習上よく使われる訳し方があるので列挙する．
@@ -350,6 +350,39 @@
 			\end{description}
 		\end{axm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[外延性の公理は同値関係で成立する]\label{thm:axiom_of_extensionality_equivalent}
+			$a,b$を類とするとき，次が成り立つ:
+			\begin{align}
+				\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+				\Longleftrightarrow a=b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		外延性の公理より$\forall t\ (\ t \in a  \Longrightarrow t \in b\ ) \Longrightarrow a=b$は成り立つので，ここでは
+		\begin{align}
+			a = b \Longrightarrow \forall t\ (\ t \in a  \Longrightarrow t \in b\ )
+			\label{eq:thm_axiom_of_extensionality_equivalent_1}
+		\end{align}
+		が成り立つことを示す．実際，$a = b$であるとき，相等性の公理より$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が満たされるから
+		\begin{align}
+			\forall t\ (\ t \in a  \Longrightarrow t \in b\ )
+		\end{align}
+		が成立する．よって(\refeq{eq:thm_axiom_of_extensionality_equivalent_1})が出る．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「この定理では等しい類同士は同じ$\mathcal{L}$の対象を要素に持つと示されましたが，
+			実はこのとき要素に持つ類まで一致しているのです．そのことは部分類の箇所で説明いたしましょう．」
+	}
 	
 	\begin{screen}
 		\begin{thm}[集合とは，$\mathcal{L}$の対象か，$\mathcal{L}$の対象と等しい類のことを指す]
@@ -546,7 +579,11 @@
 	\monologue{
 		院生「定理\ref{thm:subclass_contains_all_elements}と定理\ref{thm:mutually_sub_classes_are_equivalent}より，
 			類$a,b$が$a = b$を満たすならば，$a$と$b$は要素に持つ$\mathcal{L}$の対象のみならず，
-			要素に持つ類までも一致するのですね．これは`類は別の類の要素であるならば$\mathcal{L}$の或る要素に等しい'
+			要素に持つ類までも一致するのですね．これは
+			\begin{itemize}
+				\item 類は別の類の要素であるならば集合である
+				\item 集合は$\mathcal{L}$の或る要素に等しい
+			\end{itemize}
 			という決まりの帰結です．」
 	}
 	
