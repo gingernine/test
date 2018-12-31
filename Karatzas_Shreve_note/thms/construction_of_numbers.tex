@@ -44,7 +44,7 @@
 		院生「前の節で順序数に対して加法と乗法を定義しましたが，加法も乗法も
 			$\ON \times \ON$上の写像と見れば$\ON$上の二項算法となりますね．
 			この算法は結合律は満たしますが可換律と簡約律を満たしません．
-			しかし二項算法を$\omg$上に制限すれば可換律と簡約律も満たされます．」
+			しかし二項算法を$\omg \times \omg$上に制限すれば可換律と簡約律も満たされます．」
 	}
 	
 	\begin{screen}
@@ -66,6 +66,25 @@
 			\ref{thm:the_definition_of_addition_of_ordinal_numbers}で定めたものである．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$\sigma$が写像であることを示す．$\mathcal{L}$の任意の対象$x,y,z$に対して
+		\begin{align}
+			(x,y),(x,z) \in \sigma
+		\end{align}
+		が成り立っているとすれば，$\omg$の或る要素$n,m,i,j$が存在して
+		\begin{align}
+			(x,y) = ((n,m),n+m) \wedge (x,z) = ((i,j),i+j)
+		\end{align}
+		が成立する．このとき$x=(n,m)$かつ$x=(i,j)$より$(n,m) = (i,j)$が従い，$n=i$かつ$m=j$となるので
+		\begin{align}
+			y = n+m = i+j = z
+		\end{align}
+		となる．よって$\sigma$は$\omg \times \omg$上の二項写像である．
+		$\sigma$が$\omg$への写像であることは定理\ref{thm:the_definition_of_addition_of_ordinal_numbers}より従い，
+		$\sigma$が可換律，結合律，簡約律を満たすことは定理\ref{thm:properties_of_addition_of_ordinal_numbers}より従う．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[一般結合法則]
@@ -149,8 +168,14 @@
 		\end{dfn}
 	\end{screen}
 	
+	$a$が空であれば$R$も$a/R$も空となる．
+	
 	\monologue{
-		院生「商``集合''と名前を付けましたが，後で示す通り集合になっています．」
+		院生「商``集合''と名前を付けましたが，集合であることは後で示します．また上の定義の設定の下では
+			\begin{align}
+				a/R = \Set{x}{\exists y \in a\ (\ x = [y]\ )}
+			\end{align}
+			が成り立ちます．これも後で証明しますが，商集合とは同値類の集まりであるということが判るでしょう．」
 	}
 	
 	\begin{screen}
@@ -158,12 +183,93 @@
 			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
 			$[y]$で表す．このとき次が成り立つ:
 			\begin{description}
-				\item[(1)] $\forall y\ \left(\ y \in [y]\ \right)$
-				\item[(2)] $\forall y,z \in a\ \left(\ (y,z) \in R \Longleftrightarrow [y] = [z]\ \right)$
-				\item[(3)] $\forall y,z \in a\ \left(\ [y] \neq [z] \Longleftrightarrow [y] \cap [z] = \emptyset\ \right)$
+				\item[(1)] $\forall y \in a\ \left(\ [y] \subset a\ \right)$
+				\item[(2)] $\forall y \in a\ \left(\ y \in [y]\ \right)$
+				\item[(3)] $\forall y,z \in a\ \left(\ (y,z) \in R \Longleftrightarrow [y] = [z]\ \right)$
+				\item[(4)] $\forall y,z \in a\ \left(\ (y,z) \notin R \Longleftrightarrow [y] \cap [z] = \emptyset\ \right)$
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf} $a$が空であれば空虚な真より(1)(2)(3)(4)は全て成立する．以下では$a \neq \emptyset$として証明する．
+		\begin{description}
+			\item[(1)] $s,t$を$\mathcal{L}$の任意の対象とするとき，$s \in a$であれば
+				\begin{align}
+					t \in [s] \Longrightarrow (s,t) \in R
+				\end{align}
+				が成り立つ．$R \subset a \times a$より
+				\begin{align}
+					(s,t) \in R \Longrightarrow t \in a
+				\end{align}
+				が従い
+				\begin{align}
+					t \in [s] \Longrightarrow t \in a
+				\end{align}
+				が得られる．$t$の任意性より
+				\begin{align}
+					[s] \subset a
+				\end{align}
+				となり，$s$の任意性より(1)が出る．
+				
+			\item[(2)] $t$を$\mathcal{L}$の任意の対象とするとき，$t \in a$であれば
+				\begin{align}
+					(t,t) \in R
+				\end{align}
+				となるから$t \in [t]$が成立する．$t$の任意性より
+				\begin{align}
+					\forall y \in a\ \left(\ y \in [y]\ \right)
+				\end{align}
+				が得られる．
+				
+			\item[(3)] $s,t$を$\mathcal{L}$の任意の対象として，$s,t \in a$であると仮定する．
+				\begin{align}
+					(s,t) \in R
+				\end{align}
+				が成り立っているとき，$\tau$を$\mathcal{L}$の任意の対象とすれば
+				\begin{align}
+					\tau \in [s] \Longleftrightarrow (\tau,s) \in R
+				\end{align}
+				となり，$R$の推移律より$(\tau,s) \in R$ならば$(\tau,t) \in R$となるから
+				\begin{align}
+					\tau \in [s] \Longrightarrow \tau \in [t]
+				\end{align}
+				が従う．同様に$\tau \in [t] \Longrightarrow \tau \in [s]$も成り立つので
+				$[s] = [t]$となり
+				\begin{align}
+					(s,t) \in R \Longrightarrow [s] = [t]
+				\end{align}
+				が得られる．逆に$[s] = [t]$が成り立っているとき，$s \in [s]$より$s \in [t]$が従い
+				\begin{align}
+					[s] = [t] \Longrightarrow (s,t) \in R
+				\end{align}
+				も得られる．$s,t$の任意性より(2)が出る．
+			
+			\item[(4)] $s,t$を$\mathcal{L}$の任意の対象として，$s,t \in a$であると仮定する．
+				\begin{align}
+					[s] \cap [t] \neq \emptyset
+				\end{align}
+				が成り立っているとき，$[s] \cap [t]$の要素を$u$とすれば
+				\begin{align}
+					(s,u) \in R \wedge (u,t) \in R
+				\end{align}
+				となるので$(s,t) \in R$が従う．ゆえに
+				\begin{align}
+					(s,t) \notin R \Longrightarrow [s] \cap [t] = \emptyset
+				\end{align}
+				が得られる．逆に$(s,t) \in R$が成り立っているとき，(2)より$[s] = [t]$となるから
+				\begin{align}
+					[s] \cap [t] \neq \emptyset \Longrightarrow (s,t) \in R
+				\end{align}
+				も得られる．$s,t$の任意性より(3)が出る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\monologue{
+		院生「(1)の主張は{\bf 同値類は空でない}ということですね．
+			(2)の主張は{\bf 同値な要素の同値類は一致する}ということで，
+			(2)と(3)を併せれば{\bf 同値類同士は一致していなければ交わらない}と言えます．」
+	}
 	
 	\begin{screen}
 		\begin{dfn}[商写像]
@@ -185,23 +291,73 @@
 	}
 	
 	\begin{screen}
-		\begin{thm}[商写像は全射である]
-			$a$を集合とし，$R$を$a$上の同値関係するとき，$a$から$a/R$への商写像は写像であり，さらに言えば全射である．
+		\begin{thm}[商写像は全射である]\label{thm:quotient_mapping_is_a_surjection}
+			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
+			$[y]$で表す．このとき次が成り立つ:
+			\begin{align}
+				\forall x\ \left(\ x \in a/R \Longleftrightarrow \exists y \in a\ (\ x=[y]\ )\ \right).
+				\label{eq:thm_quotient_mapping_is_a_surjection}
+			\end{align}
+			特に$a$から$a/R$への商写像は写像であり，さらに言えば全射である．
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$a$が空である場合は$a/R$が空となるので，空虚な真より(\refeq{eq:thm_quotient_mapping_is_a_surjection})
+		が成り立つ．また商写像も空となり，空写像は空集合から空集合への全単射であるから
+		主張は全て従う．以下では$a$が空でない場合で証明する．
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[商集合の性質]
 			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
 			$[y]$で表す．このとき次が成り立つ:
 			\begin{description}
-				\item[(1)] $\forall x\ \left(\ x \in a/R \Longleftrightarrow \exists y \in a\ (\ x=[y]\ )\ \right)$
-				\item[(2)] $a/R \in \Univ$
-				\item[(3)] ${\displaystyle a = \bigcup (a/R)}$
+				\item[(1)] $a/R \in \Univ$
+				\item[(2)] $a = \bigcup (a/R)$
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf} $a$が空であれば$a/R$は空となり(1)が成立する．また$\emptyset = \bigcup \emptyset$より
+		(2)も成立する．以下では$a$が空でない場合で証明する．
+		\begin{description}
+			\item[(1)] $a/R$は$a$から$a/R$への商写像の値域であるから，置換公理より$a/R \in \Univ$が従う．
+			\item[(2)] $\tau$を$\mathcal{L}$の任意の対象とすれば，$\tau \in a$ならば
+				\begin{align}
+					\tau \in [\tau]
+				\end{align}
+				となるから$\tau \in \bigcup (a/R)$が成立する．ゆえに
+				\begin{align}
+					\tau \in a \Longrightarrow \tau \in \bigcup (a/R)
+				\end{align}
+				が得られる．逆に$\tau \in \bigcup (a/R)$が成り立っているとすれば
+				$\tau$に対して$a$の或る要素$y$が取れて$\tau \in [y]$となるが，
+				$[y] \subset a$より$\tau \in a$が従うので
+				\begin{align}
+					\tau \in \bigcup (a/R) \Longrightarrow \tau \in a
+				\end{align}
+				も得られる．$\tau$の任意性より$a = \bigcup (a/R)$が出る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[半群の群への拡張]\label{thm:extension_of_semigroup}
+			$(a,o)$を簡約的可換半群とするとき，次を満たす群$(G,\Gamma)$が存在する:
+			\begin{itemize}
+				\item $a \subset G$.
+				\item $\forall x,y \in a\ (\ o(x,y) = \Gamma(x,y)\ )$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[整数]
+			$(\omg,\sigma)$が生成する群を$(\Z,\cdot)$で表す．そして$\Z$の要素を
+			{\bf 整数}\index{せいすう@整数}{\bf (integer)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
 	
 \subsection{有理数}
 	\begin{screen}
