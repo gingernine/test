@@ -110,27 +110,32 @@
 	}
 	
 	\begin{screen}
-		\begin{thm}[いかなる集合も自分自身を要素に持たない]
+		\begin{thm}[いかなる類も自分自身を要素に持たない]
 		\label{thm:no_set_is_an_element_of_itself}
 			$a,b,c$を類とするとき次が成り立つ:
 			\begin{description}
-				\item[(i)] $a \in \Univ \Longrightarrow a \notin a$.
+				\item[(i)] $a \notin a$.
 				
-				\item[(ii)] $a,b \in \Univ \Longrightarrow a \notin b \vee b \notin a$.
+				\item[(ii)] $a \notin b \vee b \notin a$.
 				
-				\item[(iii)] $a,b,c \in \Univ \Longrightarrow a \notin b \vee b \notin c \vee c \notin a$.
+				\item[(iii)] $a \notin b \vee b \notin c \vee c \notin a$.
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(i)] $a$を集合とする．$a = \emptyset$ならば，空集合の公理より
+			\item[(i)] $a$を類とする．類の公理の対偶より
+				\begin{align}
+					\forall x\ (\ a \neq x\ ) \Longrightarrow a \notin a
+				\end{align}
+				が満たされるので，$a$が真類であれば$a \notin a$となる．
+				$a = \emptyset$ならば，空集合の公理より
 				\begin{align}
 					\emptyset \notin \emptyset
 				\end{align}
 				が成立するので$a \notin a$が従う．
-				$a \neq \emptyset$ならば，正則性公理より$\mathcal{L}$の或る対象$\tau$が存在して
+				$a$が空でない集合ならば，正則性公理より$\mathcal{L}$の或る対象$\tau$が存在して
 				\begin{align}
 					\tau \in \{a\} \wedge \tau \cap \{a\} = \emptyset
 				\end{align}
@@ -142,27 +147,70 @@
 				が従う．
 			
 			\item[(ii)]
+				$a \in b$が成り立っていると仮定すれば，$a$は集合であるから
+				\begin{align}
+					a \in \{a,b\}
+				\end{align}
+				が成立する．ゆえに$b \cap \{a,b\} \neq \emptyset$が従う．他方，正則性公理より
+				\begin{align}
+					\tau \in \{a,b\} \wedge \tau \cap \{a,b\} = \emptyset
+				\end{align}
+				を満たす$\mathcal{L}$の対象$\tau$が取れる．ここで$\tau \in \{a,b\}$より
+				\begin{align}
+					\tau=a \vee \tau=b
+				\end{align}
+				が成り立つが，$b \cap \{a,b\} \neq \emptyset$より$\tau \neq b$であるから
+				$\tau = a$となり
+				\begin{align}
+					a \cap \{a,b\} = \emptyset
+				\end{align}
+				が従う．$b$が真類ならば類の公理より$b \notin a$となり，$b$が集合ならば
+				$b \in \{a,b\}$となるので，いずれにせよ
+				\begin{align}
+					b \notin a
+				\end{align}
+				が成立する．以上で
+				\begin{align}
+					a \in b \Longrightarrow b \notin a
+				\end{align}
+				が得られたが，これはすなわち$a \notin b \vee b \notin a$が示されたことになる．
+				
+			\item[(iii)]
+				$a \in b \wedge b \in c$が満たされていると仮定すれば，$a,b$は集合であるから
+				\begin{align}
+					a,b \in \{a,b,c\}
+				\end{align}
+				が成立する．ゆえに$b \cap \{a,b,c\} = \emptyset$と$c \cap \{a,b,c\} \neq \emptyset$が従う．
+				他方，正則性公理より
+				\begin{align}
+					\tau \in \{a,b,c\} \wedge \tau \cap \{a,b,c\} = \emptyset
+				\end{align}
+				を満たす$\mathcal{L}$の対象$\tau$が取れる．ここで$\tau \in \{a,b,c\}$より
+				\begin{align}
+					\tau = a \vee \tau = b \vee \tau = a
+				\end{align}
+				が成り立つが，$b \cap \{a,b,c\} \neq \emptyset$と$c \cap \{a,b,c\} \neq \emptyset$
+				より$\tau \neq b$かつ$\tau \neq c$となる．よって$\tau = a$となり
+				\begin{align}
+					a \cap \{a,b,c\} = \emptyset
+				\end{align}
+				が従う．$c$が真類ならば類の公理より$c \notin a$となり，$c$が集合ならば$c \in \{a,b,c\}$となるので，
+				いずれにせよ
+				\begin{align}
+					c \notin a
+				\end{align}
+				が成立する．以上で
+				\begin{align}
+					a \in b \wedge b \in c \Longrightarrow c \notin a
+				\end{align}
+				が得られる．
+				\QED
 		\end{description}
-		また$x \in y$が満たされていると仮定すれば，$y \cap \{x,y\} \neq \emptyset$より
-		\begin{align}
-			x \cap \{x,y\} = \emptyset
-		\end{align}
-		が成り立つから$y \notin x$が従い
-		\begin{align}
-			x \in y \Longrightarrow y \notin x
-		\end{align}
-		となる．すなわち$x \notin y \vee y \notin x$が出る．
-		同様に$x \in y \wedge y \in z$が満たされていると仮定すれば
-		\begin{align}
-			x \cap \{x,y,z\} = \emptyset
-		\end{align}
-		が従うから
-		\begin{align}
-			x \in y \wedge y \in z \Longrightarrow z \notin x
-		\end{align}
-		が成り立ち，$x \notin y \vee y \notin z \vee z \notin x$が得られる．
-		\QED
 	\end{prf}
+	
+	\monologue{
+		院生「$\Univ \notin \Univ$が成り立ちますから{\bf 宇宙は集合ではない}のですね．」
+	}
 	
 	\begin{screen}
 		\begin{dfn}[差集合]

@@ -302,9 +302,8 @@
 			\begin{description}
 				\item[(i)] $a,b$を類とするとき，次が成り立つ:
 					\begin{align}
-						a \in b \wedge a \neq b \Longrightarrow \exists x\ (\ a = x\ ).
+						a \in b \Longrightarrow \exists x\ (\ a = x\ ).
 					\end{align}
-					つまり類が別の類の要素であるならば$\mathcal{L}$の或る対象に等しい．
 				
 				\item[(ii)] 
 					\begin{align}
@@ -381,7 +380,7 @@
 	
 	\monologue{
 		院生「この定理では等しい類同士は同じ$\mathcal{L}$の対象を要素に持つと示されましたが，
-			実はこのとき要素に持つ類まで一致しているのです．そのことは部分類の箇所で説明いたしましょう．」
+			実はこのとき要素に持つ集合まで一致しているのです．そのことは部分類の箇所で説明いたしましょう．」
 	}
 	
 	\begin{screen}
@@ -395,20 +394,19 @@
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類に対して，まず類の公理より
+		$a$を類とするとき，まず類の公理より
 		\begin{align}
 			a \in \Univ \Longrightarrow \exists x\ (\ a = x\ )
 		\end{align}
-		が得られる．逆に
+		が得られる．逆に$\exists x\ (\ a = x\ )$が成り立っていると仮定する．
 		\begin{align}
-			\exists x\ (\ a = x\ )
+			\tau \coloneqq \varepsilon x (a = x)
 		\end{align}
-		が成り立っていると仮定する．$\mathcal{L}$の対象$\varepsilon x (a = x)$を$\tau$と書けば，
-		定理\ref{thm:any_class_equals_to_itself}より$\tau = \tau$となるので
+		とおけば，定理\ref{thm:any_class_equals_to_itself}より$\tau = \tau$となるので
 		\begin{align}
 			\tau \in \Univ
 		\end{align}
-		が成り立つ．相等性の公理より
+		が成り立つ．そして相等性の公理より
 		\begin{align}
 			a \in \Univ
 		\end{align}
@@ -418,7 +416,8 @@
 	
 	\monologue{
 		院生「集合は$\mathcal{L}$の対象であるとは限りません．例えば
-			$\mathcal{L}$の対象$\tau$に対して$\Set{x}{x \in \tau}$は集合ですが$\mathcal{L}$の対象ではありませんね．」
+			$\mathcal{L}$の対象$\tau$に対して$\Set{x}{x \in \tau}$は集合ですが$\mathcal{L}$の対象ではありませんね．
+			また類の公理の一つ目の主張は{\bf ``要素となりうる類は集合である''}と言い換えられますね．」
 	}
 	
 	\begin{screen}
@@ -511,7 +510,7 @@
 	}
 	
 	\begin{screen}
-		\begin{thm}[類はその部分類の全ての要素を含む]\label{thm:subclass_contains_all_elements}
+		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]\label{thm:subclass_contains_all_elements}
 			$a,b$を類として，$a$を$b$の部分類とする．このとき，任意の類$c$に対して次が成り立つ:
 			\begin{align}
 				c \in a \Longrightarrow c \in b.
@@ -520,13 +519,12 @@
 	\end{screen}
 	
 	\begin{prf}
-		$c \in a$が成り立っていると仮定する．このとき$c$に対して
+		$c \in a$が成り立っていると仮定すれば$\exists x\ (\ c = x\ )$が成り立つ．このとき
 		\begin{align}
-			c = \tau
+			\tau \coloneqq \varepsilon x(c=x)
 		\end{align}
-		を満たす$\mathcal{L}$の対象$\tau$が存在する．
-		相等性の公理より$\tau \in a$となり，部分類の定義より$\tau \in b$となり，
-		再び相等性の公理より$c \in b$が従う．ゆえに
+		とおくと，相等性の公理より$\tau \in a$となり，
+		$a \subset b$より$\tau \in b$となり，再び相等性の公理より$c \in b$となるから
 		\begin{align}
 			c \in a \Longrightarrow c \in b
 		\end{align}
@@ -581,10 +579,10 @@
 			類$a,b$が$a = b$を満たすならば，$a$と$b$は要素に持つ$\mathcal{L}$の対象のみならず，
 			要素に持つ類までも一致するのですね．これは
 			\begin{itemize}
-				\item 類は別の類の要素であるならば集合である
+				\item 要素となりうる類は集合である
 				\item 集合は$\mathcal{L}$の或る要素に等しい
 			\end{itemize}
-			という決まりの帰結です．」
+			からの帰結です．」
 	}
 	
 	\begin{screen}
