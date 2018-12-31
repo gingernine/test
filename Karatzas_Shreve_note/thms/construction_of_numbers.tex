@@ -26,22 +26,182 @@
 
 \subsection{整数}
 	\begin{screen}
-		\begin{dfn}[商類]
-			$a$を類とし，$R$を$a$上の同値関係とする．$x$を$a$の要素とするとき
+		\begin{dfn}[二項算法]
+			$a$を類とするとき，$a \times a$から$a$への写像を$a$上の{\bf 二項算法}\index{にこうさんぽう@二項算法}
+			{\bf (binary operation)}や単に{\bf 算法}\index{さんぽう@算法}{\bf (operation)}と呼ぶ．
+			特に$a$が集合であれば，置換公理より$a$上の算法は集合である．
+		\end{dfn}
+	\end{screen}
+	
+	二項算法については以降よく使う法則名があるので列挙する．いま，$a$を類とし，$o$を$a$上の二項算法とする．
+	\begin{description}
+		\item[可換律\index{かかんりつ@可換律} (commutative law)] $\forall x,y \in a\ \left(\ o(x,y) = o(y,x)\ \right)$.
+		\item[結合律\index{けつごうりつ@結合律} (associative law)] $\forall x,y,z \in a\ \left(\ o(o(x,y),z) = o(x,o(y,z))\ \right)$.
+		\item[簡約律\index{かんやくりつ@簡約律} (cancellation law)] $\forall x,y,z \in a\ \left(\ o(x,z) = o(y,z) \Longrightarrow x = y\ \right)$.
+	\end{description}
+	
+	\monologue{
+		院生「前の節で順序数に対して加法と乗法を定義しましたが，加法も乗法も
+			$\ON \times \ON$上の写像と見れば$\ON$上の二項算法となりますね．
+			この算法は結合律は満たしますが可換律と簡約律を満たしません．
+			しかし二項算法を$\omg$上に制限すれば可換律と簡約律も満たされます．」
+	}
+	
+	\begin{screen}
+		\begin{dfn}[半群]
+			$a$を集合とし，$o$を$a$上の二項算法とする．$o$が結合律を満たしているとき，対$(a,o)$を
+			(代数的){\bf 半群}\index{はんぐん@半群}{\bf (semigroup)}と呼ぶ．
+			また$o$が可換律を満たすとき$(a,o)$を可換半群と呼び，
+			$o$が簡約律を満たすとき$(a,o)$を簡約的半群と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\omg$は加法に関して半群となる]
+			$\omg$上の二項算法を
+			\begin{align}
+				\sigma \coloneqq \Set{x}{\exists n,m \in \omg\ (\ x=((n,m),n+m)\ )}
+			\end{align}
+			で定めれば，$(\omg,\sigma)$は簡約的可換半群となる．ただし$+$は定理
+			\ref{thm:the_definition_of_addition_of_ordinal_numbers}で定めたものである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[一般結合法則]
+			空でない集合$S$に次を満たす二項演算$\ast:S \times S \longrightarrow S$
+			が定義されているとき，$a_1,a_2,a_3,a_4$を$S$の元として，
+			$a_1,a_2,a_3,a_4$の並びを替えずに$\ast$で評価していくと
+			\begin{align}
+				(a_1 \ast (a_2 \ast a_3)) \ast a_4,
+				\quad ((a_1 \ast &a_2) \ast a_3) \ast a_4,
+				\quad (a_1 \ast a_2) \ast (a_3 \ast a_4), \\
+				\quad a_1 \ast (a_2 \ast (a_3 \ast a_4)),
+				&\quad a_1 \ast ((a_2 \ast a_3) \ast a_4)
+			\end{align}
+			の5通りの評価法が考えうるが(括弧の中を優先して評価する)，これは
+			\begin{align}
+				a_1 \ast a_2 \ast a_3 \ast a_4
+			\end{align}
+			の3つの$\ast$に演算の順番を付けることに対応している．
+			特に，この場合は$\ast$が結合律を満たしていれば5通りの評価は全て同値になる．
+			一般に$n$個の$a_1,a_2,\cdots,a_n \in S$を取りこれらに対して$n-1$回の評価を行うとき，
+			$a_1,a_2,\cdots,a_n$の並びを替えない限り演算の順番をどう設定しても
+			得られる結果に影響しない(最終的な評価がただ一つに確定する)ならば，
+			$\ast$は{\bf 一般結合法則}\index{いっぱんけつごうほうそく@一般結合法則}
+			{\bf (generalized associative law)}を満たすという．またその結果を
+			\begin{align}
+				a_1 \ast a_2 \ast \cdots \ast a_n
+			\end{align}
+			と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[結合法則から一般結合法則が従う]
+		\label{thm:generalized_associative_law_on_semigroup}
+			$(S,\ast)$を半群とするとき$\ast$は一般結合法則を満たす．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$n > 3$を選ぶとき，
+		任意の$k$個$(3 \leq k < n)$の元に対する演算の結果が評価順に依存しないと仮定すると
+		$n$個の元に対する演算の結果も評価順に依存せず確定することを示す．
+		$a_1,a_2,\cdots,a_n \in S$に対し，並びを替えずに$n-1$回評価するとき，
+		$n-1$回目の演算は
+		\begin{align}
+			(\mbox{$a_1,a_2,\cdots,a_k$に対する評価}) \ast
+			(\mbox{$a_{k+1},a_{k+2},\cdots,a_n$に対する評価})
+			\label{eq:thm_generalized_associative_law_on_semigroup}
+		\end{align}
+		となる．ただし$k$は$1 \leq k \leq n-1$を満たす．仮定より第一項と第二項について
+		\begin{align}
+			\mbox{(第一項)} &= (\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_k, \\
+			\mbox{(第二項)} &= a_{k+1} \ast (\cdots(a_{n-2} \ast (a_{n-1} \ast a_n))\cdots)
+		\end{align}
+		が成り立つから，ここで$\ast$の結合律を繰り返し用いることにより
+		\begin{align}
+			(\refeq{eq:thm_generalized_associative_law_on_semigroup}) 
+			&= ((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_k) \ast (a_{k+1} \ast (\cdots(a_{n-2} \ast (a_{n-1} \ast a_n))\cdots)) \\
+			&= (((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_k) \ast a_{k+1}) \ast (a_{k+2} \ast (\cdots(a_{n-2} \ast (a_{n-1} \ast a_n))\cdots)) \\
+			&\vdots \\
+			&= ((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_{n-2}) \ast (a_{n-1} \ast a_n) \\
+			&= (((\cdots((a_1 \ast a_2) \ast a_3)\cdots) \ast a_{n-2}) \ast a_{n-1}) \ast a_n
+		\end{align}
+		が得られる．$3$個の元の演算は評価順に依らないから，数学的帰納法より$\ast$は一般結合法則を満たす．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[商集合]
+			$a$を集合とし，$R$を$a$上の同値関係とする．$x$を$a$の要素とするとき
 			\begin{align}
 				\Set{y}{(y,x) \in R}
 			\end{align}
-			を$x$の{\bf 同値類}\index{どうちるい@同値類}{\bf (equivalence class)}と呼び，
-			$[x]$などで表す．また$[x]$の要素を$[x]$の{\bf 代表}と呼ぶ．
-			また
+			を$x$の$R$に関する{\bf 同値類}\index{どうちるい@同値類}{\bf (equivalence class)}と呼び，
+			$[x]$などで表す．また
 			\begin{align}
 				a / R \coloneqq \Set{x}{\exists y \in a\ \forall z\ (\ (y,z) \in R \Longleftrightarrow z \in x\ )}
 			\end{align}
-			で定められる類$a/R$を，$a$を$R$で割った{\bf 商類}\index{しょうるい@商類}
-			{\bf (quotient class)}と呼び，$a$が集合であるときはそれを
+			で定められる類$a/R$を，$a$を$R$で割った
 			{\bf 商集合}\index{しょうしゅうごう@商集合}{\bf (quotient set)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	\monologue{
+		院生「商``集合''と名前を付けましたが，後で示す通り集合になっています．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[同値類の性質]
+			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
+			$[y]$で表す．このとき次が成り立つ:
+			\begin{description}
+				\item[(1)] $\forall y\ \left(\ y \in [y]\ \right)$
+				\item[(2)] $\forall y,z \in a\ \left(\ (y,z) \in R \Longleftrightarrow [y] = [z]\ \right)$
+				\item[(3)] $\forall y,z \in a\ \left(\ [y] \neq [z] \Longleftrightarrow [y] \cap [z] = \emptyset\ \right)$
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[商写像]
+			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
+			$[y]$で表す．このとき
+			\begin{align}
+				f \coloneqq \Set{x}{\exists t \in a\ \left(\ x=(t,[t])\ \right)}
+			\end{align}
+			で定められる$f$を{\bf 商写像}\index{しょうしゃぞう@商写像}{\bf (quotient mapping)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「$f$が写像であることを述べる前に商写像と名前を付けましたが，以下に示す通り
+			$f$は$a$から$a/R$への全射となっています．また商写像は
+			{\bf 自然な全射}\index{しぜんなぜんしゃ@自然な全射}{\bf (natural surjection)}や
+			{\bf 標準的全射}\index{ひょうじゅんてきぜんしゃ@標準的全射}{\bf (canonical surjection)}
+			とも呼ばれます．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[商写像は全射である]
+			$a$を集合とし，$R$を$a$上の同値関係するとき，$a$から$a/R$への商写像は写像であり，さらに言えば全射である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[商集合の性質]
+			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
+			$[y]$で表す．このとき次が成り立つ:
+			\begin{description}
+				\item[(1)] $\forall x\ \left(\ x \in a/R \Longleftrightarrow \exists y \in a\ (\ x=[y]\ )\ \right)$
+				\item[(2)] $a/R \in \Univ$
+				\item[(3)] ${\displaystyle a = \bigcup (a/R)}$
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
 	
 \subsection{有理数}
 	\begin{screen}
