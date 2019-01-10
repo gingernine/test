@@ -243,16 +243,62 @@
 	
 	\begin{screen}
 		\begin{metathm}
+			いかなる対象$\tau$に対しても
+			\begin{align}
+				\forall x A(x) \Longrightarrow A(\tau)
+			\end{align}
+			が成り立つ．逆に，いかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすれば公理より
+		\begin{align}
+			\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
+			\left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立つから，対偶を取って
+		\begin{align}
+			A \left( \varepsilon x \rightharpoondown A(x) \right)
+			\Longrightarrow A(\tau)
+		\end{align}
+		を得る．公理より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
+		$\forall x A(x)$は同値であるから
+		\begin{align}
+			\forall x A(x) \Longrightarrow A(\tau)
+		\end{align}
+		が出る．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，
+		特に
+		\begin{align}
+			A \left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立つので$\forall x A(x)$も成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}
 			$A$と$B$を式とし，$A$，$B$に現れる自由変項は一つのみ．このとき以下は定理である:
 			\begin{itemize}
-				\item $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
-				\item $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
-				\item いかなる対象$\tau$に対しても
+				\item $\mathcal{L}$の任意の対象$\tau$に対して
+					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
 					\begin{align}
-						\forall x A(x) \Longrightarrow A(\tau)
+						\exists x A(x) \Longleftrightarrow \exists x B(x).
 					\end{align}
-					が成り立つ．また，いかなる対象$\tau$に対しても$A(\tau)$が成り立てば
-					$\forall x A(x)$が成り立つ．
+				
+				\item $\mathcal{L}$の任意の対象$\tau$に対して
+					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
+					\begin{align}
+						\forall x A(x) \Longleftrightarrow \forall x B(x).
+					\end{align}
+					
+				\item $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
+				
+				\item $\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)$.
+				
+				\item $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
+				
+				\item $\forall x ( A(x) \wedge B(x) ) \Longleftrightarrow \forall x A(x) \wedge \forall x B(x)$.
 			\end{itemize}
 		\end{metathm}
 	\end{screen}
@@ -260,52 +306,68 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
+				$\mathcal{L}$の任意の対象$\tau$に対して
+				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
+				このとき$\exists x A(x)$が成り立っていると仮定すると，
+				\begin{align}
+					\tau \coloneqq \varepsilon x A(x)
+				\end{align}
+				とおけば公理より$A(\tau)$が成立するから$B(\tau)$も成立し，
+				再び公理より$\exists x \rightharpoondown \rightharpoondown A(x)$が成り立つので
+				\begin{align}
+					\exists x A(x) \Longrightarrow \exists x B(x)
+				\end{align}
+				が得られる．同様にして$\exists x B(x) \Longrightarrow \exists x A(x)$も得られる．
+				
+			\item[第二段]
+				$\mathcal{L}$の任意の対象$\tau$に対して
+				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
+				$\forall x A(x)$が成り立っていると仮定するとき，
+				$\tau$を$\mathcal{L}$の任意の対象とすれば$A(\tau)$が成り立つから$B(\tau)$も成立し，
+				$\tau$の任意性より$\forall x B(x)$が成り立つ．よって
+				\begin{align}
+					\forall x A(x) \Longrightarrow \forall x B(x)
+				\end{align}
+				が得られる．同様にして$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
+				
+			\item[第三段]
 				公理より
 				\begin{align}
 					\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
 					\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
 				\end{align}
-				は定理である．また
+				は定理である．同様に公理より
 				\begin{align}
 					A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
 				\end{align}
-				も定理であり，
+				もまた定理であり，
 				\begin{align}
 					\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
 					\rightharpoondown \forall x A(x)
 				\end{align}
-				も定理となるので$\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$を得る．
+				が定理となるので$\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$を得る．
 			
-			\item[第三段]
-				$\tau$を対象とすると，公理より
+			\item[第四段]
+				前段の結果より
 				\begin{align}
-					\rightharpoondown A(\tau)
-					\Longrightarrow \exists x \rightharpoondown A(x)
+					\forall x \rightharpoondown A(x) \Longleftrightarrow
+					\rightharpoondown \exists x \rightharpoondown \rightharpoondown A(x)
 				\end{align}
-				が成立する．一方で第一段の結果より
+				が成り立ち，また第一段の結果より
 				\begin{align}
-					\exists x \rightharpoondown A(x) \Longleftrightarrow
-					\rightharpoondown \forall x A(x)
+					\exists x \rightharpoondown \rightharpoondown A(x)
+					\Longleftrightarrow \exists x A(x)
 				\end{align}
-				が成り立つから
+				も成り立つから
 				\begin{align}
-					\rightharpoondown A(\tau) \Longrightarrow
-					\rightharpoondown \forall x A(x)
+					\forall x \rightharpoondown A(x) \Longleftrightarrow
+					\rightharpoondown \exists x A(x)
 				\end{align}
-				を得る．対偶を取れば
-				\begin{align}
-					\forall x A(x) \Longrightarrow A(\tau)
-				\end{align}
-				が出る．またいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，
-				特に対象$\varepsilon x \rightharpoondown A(x)$に対して
-				\begin{align}
-					A(\varepsilon x \rightharpoondown A(x))
-				\end{align}
-				が成り立つので$\forall x A(x)$が成立する．
-		\end{description}
-		
-		いま$A(x) \vee B(x)$を$C(x)$で代用する．
-		$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
+				が得られる．
+			
+			\item[第五段]
+				いま$c(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x) \vee B(x)$とおけば，
+				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
 		\begin{align}
 			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x).
 		\end{align}
@@ -347,5 +409,19 @@
 			\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
 		\end{align}
 		が成立する．
-		\QED
+			
+			\item[第六段]
+				簡略して説明すれば
+				\begin{align}
+					\forall x \left( A(x) \wedge B(x) \right)
+					&\Longleftrightarrow\ \rightharpoondown \exists x \rightharpoondown \left( A(x) \wedge B(x) \right) & (\mbox{第三段の結果の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \exists x \left( \rightharpoondown A(x) \vee \rightharpoondown B(x) \right) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \exists x \rightharpoondown A(x) \vee \exists x \rightharpoondown B(x) \right) & (\mbox{前段の結果}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \rightharpoondown \forall x A(x) \vee \rightharpoondown \forall x B(x) \right) & (\mbox{第三段の結果}) \\
+					&\Longleftrightarrow\ \rightharpoondown \rightharpoondown \forall x A(x) \wedge \rightharpoondown \rightharpoondown \forall x B(x) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
+				\end{align}
+				となる．
+				\QED
+		\end{description}
 	\end{prf}
