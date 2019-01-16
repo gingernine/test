@@ -1,0 +1,176 @@
+\subsection{イデアル}
+	\monologue{
+		院生「まず和の記号$\sum$を定めましょう．例えば，いま実数の列
+			\begin{align}
+				a_0,\ a_1,\ a_2,\ a_3,\ \cdots
+			\end{align}
+			が与えられたとすれば，その$n$個の和
+			\begin{align}
+				a_0 + a_1 + \cdots + a_{n-1}
+			\end{align}
+			を$\sum$を用いて
+			\begin{align}
+				\sum_{i=0}^{n-1} a_i
+			\end{align}
+			と書くように定めれば便利です．$n$個の和とは直感的には添え字を順に辿って$n$個の要素を
+			合計すれば良いだけですが，その操作を$\mathcal{L}'$の言葉で表現しなくては数学ではありません．
+			我々が使える道具の中で，順番に足すという再帰的な操作を表現するには写像の概念が最適でしょう．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[再帰定理]
+			$X$を集合，$a$を$X$の要素とし，また$\omg$の各要素$n$に対して
+			$X$から$X$への写像$\varphi_n$が定まっていて
+			\begin{align}
+				\forall n,m \in \omg\ (\ n=m \Longrightarrow \varphi_n = \varphi_m\ )
+			\end{align}
+			が満たされているとする．このとき
+			或る集合$f$が一意的に存在して以下を満たす:
+			\begin{itemize}
+				\item $f:\omg \longrightarrow X$.
+				\item $f(0) = a$.
+				\item $\forall n \in \omg\ \left(\ f(n+1) = \varphi_n(f(n))\ \right)$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\omg \times X$の部分集合で，$(0,a)$を要素に持ち，
+		かつ$\omg$の任意の要素$n$と$X$の任意の要素$x$に対して
+		$(n,x)$を要素に持つなら$(n+1,\varphi_n(x))$も要素に持つ
+		ものの全体を$\mathscr{A}$とおく．式で書けば
+		\begin{align}
+			\mathscr{A} \coloneqq
+			\{\, A \mid \quad &A \subset \omg \times X \\
+			&\wedge (0,a) \in A \\
+			&\wedge \forall n \in \omg\ \forall x \in X
+			\ (\ (n,x) \in A \Longrightarrow (n+1,\varphi_n(x)) \in A\ )\, \}
+		\end{align}
+		で定められる．そして定理の主張を満たす写像は
+		\begin{align}
+			f \coloneqq \bigcap \mathscr{A}
+		\end{align}
+		で与えられる．その定め方より$f \in \mathscr{A}$であるから，
+		あとは$\dom{f} = \omg$と$\sing{f}$が成り立つことを示せばよい．
+		\begin{description}
+			\item[第一段]
+				$\dom{f} = \omg$を示す．実際，$(0,a) \in f$より$0 \in \dom{f}$であり，
+				また任意の集合$n$に対して$n \in \dom{f}$と仮定すれば，
+				$X$の或る要素$x$が存在して$(n,x) \in f$となるが，$f \in \mathscr{A}$であるから
+				\begin{align}
+					(n+1,\varphi_n(x)) \in f
+				\end{align}
+				が成り立つので$n+1 \in \dom{f}$となる．よって
+				定理\ref{thm:the_principle_of_mathematical_induction}より
+				$\dom{f} = \omg$が従う．
+				
+			\item[第二段]
+				$\sing{f}$を示すために
+				\begin{align}
+					S \coloneqq \Set{n \in \omg}{\forall x,y \in X\ 
+					(\ (n,x),(n,y) \in f \Longrightarrow x = y\ )}
+				\end{align}
+				で定める$S$が$\omg$と一致することを示す．まず，
+				$a \neq x$を満たす$X$の任意の要素$x$に対して
+				\begin{align}
+					(\omg \times X) \backslash (0,x) \in \mathscr{A}
+				\end{align}
+				となるから
+				\begin{align}
+					\forall x \in X\ (\ a \neq x \Longrightarrow (0,x) \notin f\ )
+				\end{align}
+				が得られ，$0 \in S$が従う．次に
+				\begin{align}
+					\forall n\ \left(\ n \in S \Longrightarrow n+1 \in S\ \right)
+				\end{align}
+				が成り立つことを示す．いま$n$を任意に与えられた集合として$n \in S$を仮定するとき，
+				$X$の要素$x$が唯一つ存在して$(n,x) \in f$となる．ここで
+				\begin{align}
+					B \coloneqq (\omg \times X) \backslash 
+					\Set{(n,t)}{t \in X \wedge t \neq x}
+				\end{align}
+				とおくと，$y$を$\varphi_n(x) \neq y$を満たす$X$の任意の要素とすれば
+				\begin{align}
+					B \backslash (n+1,y) \in \mathscr{A}
+				\end{align}
+				が成り立つ．実際，$(0,a) \in B$かつ$(0,a) \neq (n+1,y)$より
+				\begin{align}
+					(0,a) \in B \backslash (n+1,y)
+				\end{align}
+				となり，また$\omg$の任意の要素$m$と
+				$X$の任意の要素$z$に対して$(m,z) \in B \backslash (n+1,y)$と仮定すれば，
+				\begin{itemize}
+					\item $n=m$のとき，$(m,z) = (n,z)$となり，
+						\begin{align}
+							x \neq z \Longrightarrow (n,z) \notin B
+						\end{align}
+						が満たされているから$z = x$となる．よって$(m+1,\varphi_m(z))
+						= (n+1,\varphi_n(x))$となり，$(n+1,\varphi_n(x)) \neq 
+						(n+1,y)$より
+						\begin{align}
+							(m+1,\varphi_m(z)) \in B \backslash (n+1,y)
+						\end{align}
+						が成立する．
+						
+					\item $n \neq m$ならば$(m+1,\varphi_m(z)) \neq (n+1,y)$となるから
+						\begin{align}
+							(m+1,\varphi_m(z)) \in B \backslash (n+1,y)
+						\end{align}
+						が成立する．
+				\end{itemize}
+				よって$n+1 \in S$が成り立ち，
+				定理\ref{thm:the_principle_of_mathematical_induction}より
+				$S = \omg$が得られる．
+		\end{description}
+		最後に$f$の一意性を示す．$g$を
+		\begin{itemize}
+			\item $g:\omg \longrightarrow X$.
+			\item $g(0) = a$.
+			\item $\forall n \in \omg\ \left(\ g(n+1) = \varphi_n(g(n)) \ \right)$
+		\end{itemize}
+		を満たす集合とすれば，
+		\begin{align}
+			\begin{gathered}
+				g(0) = f(0), \\
+				\forall n \in \omg\ \left(\ g(n) = f(n) \Longrightarrow
+				g(n+1) = \varphi_n(g(n)) = \varphi_n(f(n)) = f(n+1)\ \right)
+			\end{gathered}
+		\end{align}
+		が成り立つから$f = g$が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[イデアル]
+			$(R,\sigma,\mu)$を環とするとき，$R$の部分集合$J$が
+			\begin{itemize}
+				\item $\forall a,b \in J\ (\ \sigma(a,b) \in J\ )$
+				\item $\forall a \in J\ \forall r \in R\ (\ \mu(r,a) \in J\ )$
+			\end{itemize}
+			を満たすとき，$J$を$R$の{\bf 左イデアル}\index{ひたりいである@左イデアル}{\bf (left ideal)}と呼ぶ．
+			また二つ目の条件を
+			\begin{itemize}
+				\item $\forall a \in J\ \forall r \in R\ (\ \mu(a,r) \in J\ )$
+			\end{itemize}
+			に取り替えた場合，$J$を$R$の{\bf 右イデアル}\index{みぎいである@右イデアル}{\bf (right ideal)}と呼ぶ．
+			左イデアルであり右イデアルでもある部分集合を{\bf イデアル}\index{いである@イデアル}{\bf (ideal)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	考察対象は主に左イデアルである．左右を反転させれば左イデアルに関する結果は右イデアルにも当てはまる．
+	
+	\begin{screen}
+		\begin{thm}[左イデアルは加法に関して群をなす]
+			$(R,\sigma,\mu)$を環とし，$J$をこの環の左イデアルとするとき，
+			\begin{align}
+				\sigma_J \coloneqq \sigma|_{J \times J}
+			\end{align}
+			とおけば$(J,\sigma_J)$は可換群となる．
+		\end{thm}
+	\end{screen}
+	
+	\monologue{
+		院生「つまり，左イデアルとは左側からの掛け算で閉じている加法部分群であると言えますね．」
+	}
+	
+	

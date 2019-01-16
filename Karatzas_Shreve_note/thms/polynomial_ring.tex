@@ -1,0 +1,119 @@
+\subsection{多項式環}
+	$(R,\sigma,\mu)$を可換環として，その零元と単位元をそれぞれ$\zeta$と$\epsilon$で表す．
+	また$\zeta \neq \epsilon$と仮定する．すなわち$(R,\sigma,\mu)$は零環ではない．いま
+	\begin{align}
+		\tilde{P} \coloneqq \Set{f}{f:\omg \longrightarrow R \wedge 
+		\exists n \in \omg\ \forall m \in \omg\ (\ n < m \Longrightarrow f(m) = \zeta\ )}
+	\end{align}
+	により集合$\tilde{P}$を定める．$\tilde{P}$とは$\omg$から$R$への写像のうち
+	或る自然数以降は$\zeta$に張り付いてしまう写像の全体である．$a$を$R$の要素として
+	\begin{align}
+		\varphi_a \coloneqq \Set{x}{\exists n \in \omg\ (\ n = 0 \Longrightarrow x = (0,a)
+		\wedge n \neq 0 \Longrightarrow x = (n,\zeta)\ )}
+	\end{align}
+	として$\varphi_a$を定めれば，$\varphi_a$は$\omg$から$R$への写像であり
+	\begin{align}
+		\varphi_a(n) = 
+		\begin{cases}
+			a, & (n=0), \\
+			\zeta, & (n \neq 0)
+		\end{cases}
+	\end{align}
+	を満たすから$\tilde{P}$の要素でもある．ここで
+	\begin{align}
+		\varphi \coloneqq \Set{x}{\exists a \in R\ \left(\ x=(a,\varphi_a)\ \right)}
+	\end{align}
+	として$\varphi$を定めれば
+	\underline{$\varphi$は$R$から$\tilde{P}$への埋め込み(単射環準同型)となる}．
+	
+	\begin{prf}
+	\end{prf}
+	
+	\monologue{
+		院生［唐突に出てきた$\tilde{P}$ですが，なぜわざわざ波線記号を載せているのか，
+		本節の主題である多項式と$\tilde{P}$がどう関係しているかということを説明していきます．
+		以降も回りくどい説明が続きますから，多項式環が得られる過程を簡略して述べましょう．いま
+		\begin{align}
+			X \coloneqq \Set{x}{\exists n \in \omg\ (\ n = 1 \Longrightarrow x=(1,\epsilon) \wedge n \neq 1 \Longrightarrow x=(n,\zeta)\ )}
+		\end{align}
+		とおくと，$X$は
+		\begin{align}
+			X(n) =
+			\begin{cases}
+				\epsilon, & (n = 1), \\
+				\zeta, & (n \neq 1)
+			\end{cases}
+		\end{align}
+		を満たす$\omg$から$R$への写像ですから$\tilde{P}$の要素です．ちなみに
+		$X$を点列の様式で(不正確な書き方ですが直感的に解釈するには都合が良いでしょう)
+		\begin{align}
+			(\zeta,\ \epsilon,\ \zeta,\ \zeta,\ \zeta,\ \cdots)
+		\end{align}
+		と書いてみましょう．すると$X^2$や$X^3$は
+		\begin{align}
+			&(\zeta,\ \zeta,\ \epsilon,\ \zeta,\ \zeta,\ \cdots), \\
+			&(\zeta,\ \zeta,\ \zeta,\ \epsilon,\ \zeta,\ \cdots)
+		\end{align}
+		と表すことが出来ますし，特に$R$の要素$a$に対して$\varphi(a) \cdot X^n$は
+		\begin{align}
+			(\zeta, \zeta,\ \cdots,\ \zeta,\ a,\ \zeta,\ \zeta,\ \cdots)
+		\end{align}
+		と書くことが出来ますね．ここで$f$を$\tilde{P}$の要素とすれば，$f$は$R$の有限個の要素
+		$a_0,a_1,\cdots.a_m$を用いて
+		\begin{align}
+			(a_0,\ a_1,\ \cdots,\ a_m,\ \zeta,\ \zeta,\ \zeta,\ \cdots)
+		\end{align}
+		と表すことが出来ますから
+		\begin{align}
+			f = \varphi(a_0) + \varphi(a_1) \cdot X + \varphi(a_2) \cdot X^2 + \cdots + \varphi(a_m) \cdot X^m
+		\end{align}
+		が成り立つのです．こうして$X$の冪を有限個連ねた式が出来ましたが，これは
+		まだ多項式の卵の段階です．$\varphi$が余計ですから少し手を加えて整形しますと，
+		多項式環というものが得られるという寸法です．」
+	}
+	
+	上で作った$\tilde{P}$に対して
+	\begin{align}
+		P \coloneqq \left( \tilde{P} \backslash (\varphi \ast R) \right) \cup R
+	\end{align}
+	と定める．$P$とは$\tilde{P}$の$R$が埋め込まれた部分を$R$そのものに置き換えた集合である．
+	また$\tilde{P}$から$P$への写像を
+	\begin{align}
+		h \coloneqq \{\, x \mid \quad \exists f \in \tilde{P}\ 
+		&(\\
+		&\quad \exists a \in R\ (\ f = \varphi(a)\ ) \Longrightarrow x = (f,a) \\
+		&\quad \wedge f \notin \varphi \ast R \Longrightarrow x = (f,f)\\
+		&)\, \}
+	\end{align}
+	で定めれば$h$は全単射となる．$h$は$\varphi \ast R$の要素には$\varphi$で対応する$R$の要素を
+	当て，$\varphi \ast R$の外側では恒等写像となっている．また
+	\begin{align}
+		\sigma_P &\coloneqq \Set{x}{\exists f,g \in P\ \left(\ 
+			x=((f,g),h(h^{-1}(f)+h^{-1}(g)))\ \right)}, \\
+		\mu_P &\coloneqq \Set{x}{\exists f,g \in P\ \left(\ 
+			x=((f,g),h(h^{-1}(f) \cdot h^{-1}(g)))\ \right)}
+	\end{align}
+	と定めれば，
+	\underline{$\sigma_P$と$\mu_P$をそれぞれ加法と乗法として$(P,\sigma_P,\mu_P)$は可換環となる}.
+	
+	\monologue{
+		院生「下線部の証明の前に注意しておきます．$\sigma_P$も$\mu_P$も
+		定義式に括弧が多くて見づらいですが，見やすいように書けば$P$の要素$f,g$に対して
+		\begin{align}
+			\sigma_P(f,g) &= h(h^{-1}(f)+h^{-1}(g)), \\
+			\mu_P(f,g) &= h(h^{-1}(f) \cdot h^{-1}(g))
+		\end{align}
+		としているのです．つまり，$P$上の算法は$h$で$\tilde{P}$に引き戻して計算したものを
+		再び$h$で移すことにより定めているのですね．ゆえに，$h$が環同型となることは殆ど明らかでしょう．」
+	}
+	
+	\begin{prf}
+	\end{prf}
+	
+	またこのとき\underline{$(\tilde{P},\tilde{\sigma},\tilde{\mu})$と$(P,\sigma_P,\mu_P)$は
+	環として$h$によって同型に対応する}．
+	
+	\begin{prf}	
+	\end{prf}
+	
+	$f$を$P$から任意に選ばれた要素とするとき，
