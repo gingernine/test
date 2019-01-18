@@ -1,4 +1,4 @@
-\subsection{推論規則メモ}
+\section{推論規則メモ}
 	
 	\begin{screen}
 		\begin{metaaxm}[基本的な推論規則]
@@ -17,6 +17,11 @@
 			\end{description}	
 		\end{metaaxm}
 	\end{screen}
+	
+	\monologue{
+		院生「演繹法則について，``$A$を公理に追加する''ことを``$A$が成り立っていると仮定する''
+		などの言明により示唆することが多いです．」
+	}
 	
 	\begin{screen}
 		\begin{metathm}[推移律]
@@ -103,6 +108,14 @@
 		\end{metaaxm}
 	\end{screen}
 	
+	$A$と$B$を$\mathcal{L}'$の式とするとき，
+	\begin{align}
+		(A \Longleftrightarrow B) \overset{\mathrm{def}}{\Longleftrightarrow}
+		(A \Longrightarrow B \wedge B \Longrightarrow A)
+	\end{align}
+	により$\Longleftrightarrow$を定め，式`$A \Longleftrightarrow B$'を
+	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
+	
 	\begin{screen}
 		\begin{metathm}[二重否定の法則]
 			$A$を$\mathcal{L}'$の閉式とするとき，
@@ -116,22 +129,27 @@
 		\begin{align}
 			\rightharpoondown A \Longrightarrow \bot
 		\end{align}
-		が成り立つ．よって$\rightharpoondown \rightharpoondown A$が定理となり，
+		が成り立ち，否定の導出より$\rightharpoondown \rightharpoondown A$が定理となる．従って
 		\begin{align}
 			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
 		\end{align}
 		が得られる．逆に$\rightharpoondown \rightharpoondown A$が成り立っていると仮定すると，
-		$\rightharpoondown A$が成り立っているなら$\bot$が定理となるから
-		$A$も定理となる．すなわちこのとき
+		$\rightharpoondown A$が成り立っているなら$\bot$が定理となり，
+		また$\bot$からはあらゆる閉式が導かれるので$A$も定理となる．すなわちこのとき
 		\begin{align}
 			\rightharpoondown A \Longrightarrow A
 		\end{align}
-		が成り立つ．$A \vee \rightharpoondown A$と$A \Longrightarrow A$も定理であるから
-		$A$が定理となり，
+		が成り立つ．$A \Longrightarrow A$も定理であるから場合分け法則より
 		\begin{align}
-			\rightharpoondown A \Longrightarrow\ \rightharpoondown A
+			(A \vee \rightharpoondown A) \Longrightarrow A
 		\end{align}
-		も得られる．
+		が成り立ち，排中律より$A \vee \rightharpoondown A$は正しいので三段論法より$A$は定理となる．
+		これにより
+		\begin{align}
+			\rightharpoondown \rightharpoondown A \Longrightarrow\ A
+		\end{align}
+		も得られた．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
