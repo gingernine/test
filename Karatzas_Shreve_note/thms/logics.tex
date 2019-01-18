@@ -1,3 +1,4 @@
+	\begin{comment}
 	\begin{quote}
 		初めに言(ことば)があった。言は神と共にあった。言は神であった。\\
 		この言は、初めに神と共にあった。\\
@@ -9,6 +10,7 @@
 	前者は我々が神の視点で創る世界のことばであり，後者は神である我々の世界のことばであるが，
 	後者は論理と言い換える方が適当である．
 	我々が創る世界は集合論と呼ばれ，数や関数など高校まで初等的に与えられてきたあらゆる概念がその世界の中で説明し直されることになる．
+	\end{comment}
 	
 \subsection{言語}
 	
@@ -224,7 +226,7 @@
 	\monologue{
 		院生「類は$\Univ$の要素であれば集合と呼ばれ，$\Univ$の要素でなければ真類と呼ばれます．
 			では集合であり真類でもある類や，集合でも真類でもない類はあるのでしょうか？
-			答えは``現段階では確定したことは何も言えない''です．
+			実は我々はまだこれに答える術を持っていません．
 			質問を変えましょう．集合であり真類でもある類や集合でも真類でもない類の存在を禁止するにはどうしたら良いでしょうか？
 			我々は，数学において中庸が無いということや矛盾が起きるということをどう表現しようかという問題に直面しているのです．
 			この問題の解決への方便として{\bf 推論規則}\index{すいろんきそく@推論規則}
@@ -258,6 +260,310 @@
 	}
 	
 	\begin{screen}
+		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a \in \Univ \vee a \notin \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律を適用することにより従う．
+		\QED
+	\end{prf}
+	
+	排中律をそのまま適用することにより上の定理は導かれたが，``集合でも真類でもない類は存在しない''という主張はまだ得られない．
+	以下はこの言明を証明することを目標にしてしばらく推論規則の話が続くが，提示される規則はどれも基本的すぎるあまり
+	通常は無断で使用されてしまうものである．
+	
+	\begin{screen}
+		\begin{metaaxm}[基本的な推論規則]
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
+			\begin{description}
+				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
+				\item[演繹法則] $A$を公理に追加した下で$B$が定理であるなら，
+					$A$を外した公理系で$A \Longrightarrow B$は定理である．
+				\item[$\vee$の導入1] $A \Longrightarrow (A \vee B)$は定理である．
+				\item[$\vee$の導入2] $A \Longrightarrow (B \vee A)$は定理である．
+				\item[$\wedge$の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
+				\item[$\wedge$の除去1] $A \wedge B \Longrightarrow A$は定理である．
+				\item[$\wedge$の除去2] $A \wedge B \Longrightarrow B$は定理である．
+				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
+					$(A \vee B) \Longrightarrow C$は定理である．
+			\end{description}	
+		\end{metaaxm}
+	\end{screen}
+	
+	\monologue{
+		院生「演繹法則について，``$A$を公理に追加する''ことを``$A$が成り立っていると仮定する''
+		などの言明により示唆することが多いです．」
+	}
+	
+	\begin{screen}
+		\begin{metathm}[可換律]
+			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
+			\begin{itemize}
+				\item $(A \vee B) \Longrightarrow (B \vee A)$.
+				\item $(A \wedge B) \Longrightarrow (B \wedge A)$.
+			\end{itemize}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$\vee$の導入により$A \Longrightarrow (B \vee A)$と$B \Longrightarrow (A \vee B)$は定理であるから，場合分け法則より
+		\begin{align}
+			(A \vee B) \Longrightarrow (B \vee A)
+		\end{align}
+		は定理である．また，$\wedge$の除去より
+		$A \wedge B \Longrightarrow A$と$A \wedge B \Longrightarrow B$は定理であるから，
+		いま$A \wedge B$が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．すなわち
+		$B \wedge A$が定理となるので，演繹法則より
+		\begin{align}
+			(A \wedge B) \Longrightarrow (B \wedge A)
+		\end{align}
+		は定理である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[推移律]
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
+			$A \Longrightarrow C$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A$を公理に追加する．このとき三段論法より$B$が定理となり，
+		再び三段論法より$C$が定理となる．ゆえに$A \Longrightarrow C$は定理である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}\label{metathm:rule_of_inference_1}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$(A \Longrightarrow B) \Longrightarrow 
+			(\ (A \vee C) \Longrightarrow (B \vee C)\ )$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		いま$A \Longrightarrow B$を公理に追加する．
+		このとき$A$を公理に追加すれば$B$は定理となり，
+		$B \Longrightarrow (B \vee C)$が定理であるから$B \vee C$も定理となる．
+		これより$A \Longrightarrow B$を公理とした下では
+		\begin{align}
+			A \Longrightarrow (B \vee C)
+		\end{align}
+		が定理となる．他方で$C \Longrightarrow (B \vee C)$は定理であるから，
+		場合分け法則より$A \Longrightarrow B$を公理とした下では
+		\begin{align}
+			(A \vee C) \Longrightarrow (B \vee C)
+		\end{align}
+		が定理となる．従って演繹法則より
+		\begin{align}
+			(A \Longrightarrow B) \Longrightarrow 
+			(\ (A \vee C) \Longrightarrow (B \vee C)\ )
+		\end{align}
+		は定理となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}\label{metathm:rule_of_inference_2}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，
+			$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$B$を公理に追加した場合，$A$を公理に追加しても$B$は真であるから，このとき
+		\begin{align}
+			A \Longrightarrow B
+		\end{align}
+		は定理となる．従って演繹法則より$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「$A$を$\mathcal{L}'$の閉式とするとき，``$A$は定理である''という言明は
+		``$A$が成り立つ''や``$A$は正しい''や``$A$は真である''などとも書かれます．」
+	}
+	
+	\begin{screen}
+		\begin{metaaxm}[矛盾]
+			$A$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
+			\begin{description}
+				\item[矛盾の発生] $A$と$\rightharpoondown A$が共に定理なら$\bot$は定理となる．
+				\item[否定の導出] $A \Longrightarrow \bot$が定理なら$\rightharpoondown A$は定理となる．
+				\item[矛盾からはあらゆる式が導かれる] $\bot \Longrightarrow A$は定理である．
+			\end{description}
+		\end{metaaxm}
+	\end{screen}
+	
+	$A$と$B$を$\mathcal{L}'$の式とするとき，
+	\begin{align}
+		(A \Longleftrightarrow B) \overset{\mathrm{def}}{\Longleftrightarrow}
+		(A \Longrightarrow B \wedge B \Longrightarrow A)
+	\end{align}
+	により$\Longleftrightarrow$を定め，式`$A \Longleftrightarrow B$'を
+	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
+	
+	\begin{screen}
+		\begin{metathm}[二重否定の法則]
+			$A$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longleftrightarrow\ \rightharpoondown \rightharpoondown A$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A$が成り立っていると仮定する．このとき$\rightharpoondown A$が成り立っていれば
+		$\bot$が定理となるので
+		\begin{align}
+			\rightharpoondown A \Longrightarrow \bot
+		\end{align}
+		が成り立ち，否定の導出より$\rightharpoondown \rightharpoondown A$が定理となる．従って
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
+		\end{align}
+		が得られる．逆に$\rightharpoondown \rightharpoondown A$が成り立っていると仮定すると，
+		$\rightharpoondown A$が成り立っているなら$\bot$が定理となり，
+		また$\bot$からはあらゆる閉式が導かれるので$A$も定理となる．すなわちこのとき
+		\begin{align}
+			\rightharpoondown A \Longrightarrow A
+		\end{align}
+		が成り立つ．$A \Longrightarrow A$も定理であるから場合分け法則より
+		\begin{align}
+			(A \vee \rightharpoondown A) \Longrightarrow A
+		\end{align}
+		が成り立ち，排中律より$A \vee \rightharpoondown A$は正しいので三段論法より$A$は定理となる．
+		これにより
+		\begin{align}
+			\rightharpoondown \rightharpoondown A \Longrightarrow\ A
+		\end{align}
+		も得られた．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[背理法の原理]
+			$A$を$\mathcal{L}'$の閉式とするとき，
+			$\rightharpoondown A \Longrightarrow \bot$が成り立つならば$A$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$\rightharpoondown A \Longrightarrow \bot$が成り立つとき，否定の導出より
+		$\rightharpoondown \rightharpoondown A$が成り立つが，二重否定の法則より
+		$A$も成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[ならばとまたは]\label{metathm:rule_of_inference_3}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B).
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow B$が真であると仮定する．このとき，推論規則\ref{metathm:rule_of_inference_1}より
+		\begin{align}
+			(A \Longrightarrow B) \Longrightarrow 
+			(\ (A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)\ )
+		\end{align}
+		は定理であるから$(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)$
+		は定理となり，排中律より$B \vee \rightharpoondown A$は定理となる．そして可換律より$\rightharpoondown A \vee B$は定理となるので
+		\begin{align}
+			(A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
+		\end{align}
+		が得られた．また$\rightharpoondown A$が真であると仮定すると，
+		この下で$A$を公理に追加すれば$\bot$が定理となり，$\bot$からは$B$が導かれるので$B$も定理となる．従って
+		\begin{align}
+			(\rightharpoondown A) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		は定理である．一方で推論規則\ref{metathm:rule_of_inference_2}より$B \Longrightarrow (A \Longrightarrow B)$も定理であるから，
+		場合分けの法則より
+		\begin{align}
+			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が成り立つ．以上で$(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B)$が得られた．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[対偶命題は同値]
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A).
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		推論規則\ref{metathm:rule_of_inference_3}，可換律，二重否定の法則を順に用いれば
+		\begin{align}
+			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
+			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
+			&\Longleftrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A) \\
+			&\Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[De Morganの法則]
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{itemize}
+				\item $\rightharpoondown (A \vee B) \Longleftrightarrow\ \rightharpoondown A \wedge \rightharpoondown B$.
+			
+				\item $\rightharpoondown (A \wedge B) \Longleftrightarrow\ \rightharpoondown A \vee \rightharpoondown B$.
+			\end{itemize}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow A \vee B$より
+		\begin{align}
+			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A
+		\end{align}
+		同様に$\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown B$より
+		\begin{align}
+			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A \wedge \rightharpoondown B
+		\end{align}
+		また$A$かつ$\rightharpoondown A \wedge \rightharpoondown B$が成り立っていれば
+		$\bot$より
+		\begin{align}
+			\rightharpoondown A \wedge \rightharpoondown B \Longrightarrow \bot
+		\end{align}
+		すなわち
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		同様に
+		\begin{align}
+			B \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		なので
+		\begin{align}
+			(A \vee B) \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		対偶を取れば
+		\begin{align}
+			\rightharpoondown A \wedge \rightharpoondown B
+			\Longrightarrow\ \rightharpoondown (A \vee B)
+		\end{align}
+	\end{prf}
+	
+	\monologue{
+		院生「以上で``集合でも真類でもない類は存在しない''という言明を証明する準備が整いました．」
+	}
+	
+	\begin{screen}
 		\begin{thm}[集合でも真類でもない類は存在しない]
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
@@ -265,6 +571,235 @@
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{prf}
+		$a$を類とするとき，排中律より$a \in \Univ \vee a \notin \Univ$が成り立つが，可換律より
+		\begin{align}
+			a \notin \Univ \vee a \in \Univ
+		\end{align}
+		も成立する．そしてDe Morganの法則より
+		\begin{align}
+			\rightharpoondown (\ \rightharpoondown a \notin \Univ \wedge \rightharpoondown a \in \Univ\ )
+		\end{align}
+		が成り立つが，二重否定の法則より$\rightharpoondown a \notin \Univ$と$a \in \Univ$は同値となるので
+		\begin{align}
+			\rightharpoondown (\ a \in \Univ \wedge a \notin \Univ\ )
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「我々は式を作る際に$\forall$と$\exists$を量化記号として採用していましたから，
+			次は量化記号が推論操作の上でどのような意味を持つのかを規定しましょう．」
+	}
+	
+	\begin{screen}
+		\begin{metaaxm}[量化記号]
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば以下を認める:
+			\begin{description}
+				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の対象である．
+				\item[存在記号の公理] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$.
+				\item[全称記号の公理] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$.
+				\item[存在記号の公理] $\tau$を$\mathcal{L}$の対象とするとき
+					\begin{align}
+						A(\tau) \Longrightarrow \exists x A(x).
+					\end{align}
+			\end{description}
+		\end{metaaxm}
+	\end{screen}
+	
+	\monologue{
+		院生「$\varepsilon$記号はHilbertのイプシロン関数と呼ばれる概念を参考にしたもので，
+			量化記号の働きを形式的に表現するのに便利です．また
+			``$\varepsilon x A(x)$は$\mathcal{L}$の対象である''という言明において，
+			$\mathcal{L}$の対象であるという点がミソです...」
+	}
+	
+	\begin{screen}
+		\begin{metathm}
+			$\mathcal{L}$のいかなる対象$\tau$に対しても
+			\begin{align}
+				\forall x A(x) \Longrightarrow A(\tau)
+			\end{align}
+			が成り立つ．逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすれば公理より
+		\begin{align}
+			\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
+			\left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立つから，対偶を取って
+		\begin{align}
+			A \left( \varepsilon x \rightharpoondown A(x) \right)
+			\Longrightarrow A(\tau)
+		\end{align}
+		を得る．公理より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
+		$\forall x A(x)$は同値であるから
+		\begin{align}
+			\forall x A(x) \Longrightarrow A(\tau)
+		\end{align}
+		が出る．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，
+		特に
+		\begin{align}
+			A \left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立つので$\forall x A(x)$も成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
+			\begin{itemize}
+				\item $\mathcal{L}$の任意の対象$\tau$に対して
+					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
+					\begin{align}
+						\exists x A(x) \Longleftrightarrow \exists x B(x).
+					\end{align}
+				
+				\item $\mathcal{L}$の任意の対象$\tau$に対して
+					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
+					\begin{align}
+						\forall x A(x) \Longleftrightarrow \forall x B(x).
+					\end{align}
+					
+				\item $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
+				
+				\item $\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)$.
+				
+				\item $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
+				
+				\item $\forall x ( A(x) \wedge B(x) ) \Longleftrightarrow \forall x A(x) \wedge \forall x B(x)$.
+			\end{itemize}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\mathcal{L}$の任意の対象$\tau$に対して
+				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
+				このとき$\exists x A(x)$が成り立っていると仮定すると，
+				\begin{align}
+					\tau \coloneqq \varepsilon x A(x)
+				\end{align}
+				とおけば公理より$A(\tau)$が成立するから$B(\tau)$も成立し，
+				再び公理より$\exists x \rightharpoondown \rightharpoondown A(x)$が成り立つので
+				\begin{align}
+					\exists x A(x) \Longrightarrow \exists x B(x)
+				\end{align}
+				が得られる．同様にして$\exists x B(x) \Longrightarrow \exists x A(x)$も得られる．
+				
+			\item[第二段]
+				$\mathcal{L}$の任意の対象$\tau$に対して
+				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
+				$\forall x A(x)$が成り立っていると仮定するとき，
+				$\tau$を$\mathcal{L}$の任意の対象とすれば$A(\tau)$が成り立つから$B(\tau)$も成立し，
+				$\tau$の任意性より$\forall x B(x)$が成り立つ．よって
+				\begin{align}
+					\forall x A(x) \Longrightarrow \forall x B(x)
+				\end{align}
+				が得られる．同様にして$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
+				
+			\item[第三段]
+				公理より
+				\begin{align}
+					\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
+					\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
+				\end{align}
+				は定理である．同様に公理より
+				\begin{align}
+					A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
+				\end{align}
+				もまた定理であり，
+				\begin{align}
+					\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
+					\rightharpoondown \forall x A(x)
+				\end{align}
+				が定理となるので$\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$を得る．
+			
+			\item[第四段]
+				前段の結果より
+				\begin{align}
+					\forall x \rightharpoondown A(x) \Longleftrightarrow
+					\rightharpoondown \exists x \rightharpoondown \rightharpoondown A(x)
+				\end{align}
+				が成り立ち，また第一段の結果より
+				\begin{align}
+					\exists x \rightharpoondown \rightharpoondown A(x)
+					\Longleftrightarrow \exists x A(x)
+				\end{align}
+				も成り立つから
+				\begin{align}
+					\forall x \rightharpoondown A(x) \Longleftrightarrow
+					\rightharpoondown \exists x A(x)
+				\end{align}
+				が得られる．
+			
+			\item[第五段]
+				いま$c(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x) \vee B(x)$とおけば，
+				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
+		\begin{align}
+			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x).
+		\end{align}
+		また公理より
+		\begin{align}
+			\exists x C(x) \Longrightarrow C(\varepsilon x C(x)).
+		\end{align}
+		$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$は同じ記号列であるから
+		\begin{align}
+			C(\varepsilon x C(x)) \Longrightarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x)).
+		\end{align}
+		ここで
+		\begin{align}
+			A(\varepsilon x C(x)) &\Longrightarrow A(\varepsilon x A(x)), \\
+			A(\varepsilon x A(x)) &\Longrightarrow \exists x A(x), \\
+			\exists x A(x) &\Longrightarrow \exists x A(x) \vee \exists x B(x)
+		\end{align}
+		かつ
+		\begin{align}
+			B(\varepsilon x C(x)) &\Longrightarrow B(\varepsilon x B(x)), \\
+			B(\varepsilon x B(x)) &\Longrightarrow \exists x B(x), \\
+			\exists x B(x) &\Longrightarrow \exists x A(x) \vee \exists x B(x).
+		\end{align}
+		以上と場合分けの原理を総合して
+		\begin{align}
+			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x A(x) \vee \exists x B(x)
+		\end{align}
+		を得る．他方，公理より
+		\begin{align}
+			\exists x A(x) &\Longrightarrow A(\varepsilon x A(x)), \\
+			A(\varepsilon x A(x)) &\Longrightarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)), \\
+			A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) &\Longrightarrow C(\varepsilon x A(x)), \\
+			C(\varepsilon x A(x)) &\Longrightarrow C(\varepsilon x C(x)), \\
+			C(\varepsilon x C(x)) &\Longrightarrow \exists x C(x), \\
+			\exists x C(x) &\Longrightarrow \exists x (A(x) \vee B(x))
+		\end{align}
+		同様に$\exists x A(x) \Longrightarrow \exists x (A(x) \vee B(x))$も成り立つので
+		\begin{align}
+			\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
+		\end{align}
+		が成立する．
+			
+			\item[第六段]
+				簡略して説明すれば
+				\begin{align}
+					\forall x \left( A(x) \wedge B(x) \right)
+					&\Longleftrightarrow\ \rightharpoondown \exists x \rightharpoondown \left( A(x) \wedge B(x) \right) & (\mbox{第三段の結果の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \exists x \left( \rightharpoondown A(x) \vee \rightharpoondown B(x) \right) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \exists x \rightharpoondown A(x) \vee \exists x \rightharpoondown B(x) \right) & (\mbox{前段の結果}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \rightharpoondown \forall x A(x) \vee \rightharpoondown \forall x B(x) \right) & (\mbox{第三段の結果}) \\
+					&\Longleftrightarrow\ \rightharpoondown \rightharpoondown \forall x A(x) \wedge \rightharpoondown \rightharpoondown \forall x B(x) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
+				\end{align}
+				となる．
+				\QED
+		\end{description}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{axm}[外延性の公理]
