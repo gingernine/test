@@ -1,97 +1,114 @@
 \subsection{推論規則メモ}
-	\monologue{
-		院生「本来集合論のページに書きたい内容ですが，取り急ぎここにメモしておきます．」
-	}
-	$\mathscr{S}$は公理の全体．
+	
 	\begin{screen}
-		\begin{schema}[公理図式群A]
-			何が定理となるかを認める規則:
-			\begin{itemize}
-				\item $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
-				\item $A$を$\mathscr{S}$に追加した下で$B$が定理であるなら，
-					$\mathscr{S}$を公理とした下で$A \Longrightarrow B$は定理である．
-				\item $A \Longrightarrow (A \vee B)$は定理である．
-				\item $A \Longrightarrow (B \vee A)$は定理である．
-				\item $A,B$が共に定理なら$A \wedge B$は定理である．
-				\item $A \wedge B \Longrightarrow A$と
-					$A \wedge B \Longrightarrow B$は定理である．
-				\item $A \vee B,\ A \Longrightarrow C,\ B \Longrightarrow C$が全て定理であるとき$C$は定理である．
-				\item 
-			\end{itemize}	
-		\end{schema}
+		\begin{metaaxm}[基本的な推論規則]
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
+			\begin{description}
+				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
+				\item[演繹法則] $A$を公理に追加した下で$B$が定理であるなら，
+					元の公理系で$A \Longrightarrow B$は定理である．
+				\item[$\vee$の導入1] $A \Longrightarrow (A \vee B)$は定理である．
+				\item[$\vee$の導入2] $A \Longrightarrow (B \vee A)$は定理である．
+				\item[$\wedge$の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
+				\item[$\wedge$の除去1] $A \wedge B \Longrightarrow A$は定理である．
+				\item[$\wedge$の除去2] $A \wedge B \Longrightarrow B$は定理である．
+				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
+					$(A \vee B) \Longrightarrow C$は定理である．
+			\end{description}	
+		\end{metaaxm}
 	\end{screen}
 	
-	\begin{itembox}[l]{推移律}
-		$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
-		$A \Longrightarrow C$は定理である．
-	\end{itembox}
+	\begin{screen}
+		\begin{metathm}[推移律]
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
+			$A \Longrightarrow C$は定理である．
+		\end{metathm}
+	\end{screen}
 	
 	\begin{prf}
 		$A$を公理に追加する．このとき三段論法より$B$が定理となり，
 		再び三段論法より$C$が定理となる．ゆえに$A \Longrightarrow C$は定理である．
+		\QED
 	\end{prf}
 	
-	\begin{itembox}[l]{}
-		$(A \Longrightarrow B) \Longrightarrow 
-		(\ (A \vee C) \Longrightarrow (B \vee C)\ )$は定理である．
-	\end{itembox}
+	\begin{screen}
+		\begin{metathm}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$(A \Longrightarrow B) \Longrightarrow 
+			(\ (A \vee C) \Longrightarrow (B \vee C)\ )$は定理である．
+		\end{metathm}
+	\end{screen}
 	
 	\begin{prf}
 		いま$A \Longrightarrow B$を公理に追加する．
 		このとき$A$を公理に追加すれば$B$は定理となり，
 		$B \Longrightarrow (B \vee C)$が定理であるから$B \vee C$も定理となる．
-		これより<<$A \Longrightarrow B$を公理とした下では>>
+		これより$A \Longrightarrow B$を公理とした下では
 		\begin{align}
 			A \Longrightarrow (B \vee C)
 		\end{align}
-		が定理となる．無条件で$C \Longrightarrow (B \vee C)$は定理であるから，
-		よって<<$A \Longrightarrow B$と$A \vee C$を公理とした下では>>
-		$B \vee C$が定理となる．以上より
-		<<$A \Longrightarrow B$を公理とした下では>>
+		が定理となる．他方で$C \Longrightarrow (B \vee C)$は定理であるから，
+		場合分け法則より$A \Longrightarrow B$を公理とした下では
 		\begin{align}
 			(A \vee C) \Longrightarrow (B \vee C)
 		\end{align}
-		が定理となり
+		が定理となる．従って演繹法則より
 		\begin{align}
 			(A \Longrightarrow B) \Longrightarrow 
 			(\ (A \vee C) \Longrightarrow (B \vee C)\ )
 		\end{align}
-		が定理となる．
-	\end{prf}
-	
-	\begin{itembox}[l]{ならばとまたは}
-		$B \Longrightarrow (A \Longrightarrow B)$は定理である．
-	\end{itembox}
-	
-	\begin{prf}
-		$B$を公理に追加した場合，$A$を公理に追加しても$B$は真であるから
-		$A \Longrightarrow B$は<$B$を公理に追加した場合の>定理となる．
-		従って$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		は定理となる．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{schema}[公理図式群B]
-			$\bot$に関する規則:
-			\begin{itemize}
-				\item $A$と$\rightharpoondown A$が共に定理なら$\bot$は定理となる．
-				\item $A \Longrightarrow \bot$が定理なら$\rightharpoondown A$は定理となる．
-				\item $\bot \Longrightarrow A$は定理である．
-			\end{itemize}
-		\end{schema}
+		\begin{metathm}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，
+			$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$B$を公理に追加した場合，$A$を公理に追加しても$B$は真であるから，このとき
+		\begin{align}
+			A \Longrightarrow B
+		\end{align}
+		は定理となる．従って演繹法則より$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「$A$を$\mathcal{L}'$の閉式とするとき，``$A$は定理である''という言明は
+		``$A$が成り立つ''や``$A$は正しい''や``$A$となる''などとも書かれます．」
+	}
+	
+	\begin{screen}
+		\begin{metaaxm}[矛盾]
+			$A$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
+			\begin{description}
+				\item[矛盾の発生] $A$と$\rightharpoondown A$が共に定理なら$\bot$は定理となる．
+				\item[否定の導出] $A \Longrightarrow \bot$が定理なら$\rightharpoondown A$は定理となる．
+				\item[矛盾からはあらゆる式が導かれる] $\bot \Longrightarrow A$は定理である．
+			\end{description}
+		\end{metaaxm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{schema}
-			排中律と呼ばれる規則:
+		\begin{metaaxm}[排中律]
+			$A$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
 			\begin{itemize}
 				\item $A \vee \rightharpoondown A$は定理である．
 			\end{itemize}
-		\end{schema}
+		\end{metaaxm}
 	\end{screen}
 	
-	\begin{itembox}[l]{二重否定の法則}
-		$A \Longleftrightarrow\ \rightharpoondown \rightharpoondown A$
-	\end{itembox}
+	\begin{screen}
+		\begin{metathm}[二重否定の法則]
+			$A$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longleftrightarrow\ \rightharpoondown \rightharpoondown A$は定理である．
+		\end{metathm}
+	\end{screen}
 	
 	\begin{prf}
 		$A$が成り立っていると仮定する．このとき$\rightharpoondown A$が成り立っていれば
@@ -115,6 +132,20 @@
 			\rightharpoondown A \Longrightarrow\ \rightharpoondown A
 		\end{align}
 		も得られる．
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[背理法の原理]
+			$A$を$\mathcal{L}'$の閉式とするとき，
+			$\rightharpoondown A \Longrightarrow \bot$が成り立つならば$A$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$\rightharpoondown A \Longrightarrow \bot$が成り立つとき，否定の導出より
+		$\rightharpoondown \rightharpoondown A$が成り立つが，二重否定の法則より
+		$A$も成立する．
+		\QED
 	\end{prf}
 	
 	\begin{itembox}[l]{ならばとまたは}
@@ -197,36 +228,6 @@
 			\Longrightarrow\ \rightharpoondown (A \vee B)
 		\end{align}
 	\end{prf}
-	
-	$A$を式とする．
-	$A$に$a$という文字が現れるとき，$A$に現れる全ての$a$を$x$に置き換えた式を
-	\begin{align}
-		(x \mid a)\, A
-	\end{align}
-	で表す．特に$A$に現れる文字で量化されていないものが$a$のみであるとき，
-	$(x \mid a)\, A$を
-	\begin{align}
-		A(x)
-	\end{align}
-	で表す．このとき式$A$自体は$(a \mid a)\, A$とも$A(a)$とも書ける．
-	
-	\monologue{
-		院生「記号$\emptyset$を対象として下さい．この下で例えば式$A$が
-			\begin{align}
-				(\ a \in \emptyset \vee a = \emptyset \vee \emptyset \in a\ ) \wedge
-				\forall \alpha\ \forall \beta\ 
-				(\ \beta \in \alpha \wedge \alpha \in a
-				\Longrightarrow \beta \in a\ )
-			\end{align}
-			であるとき，量化されていない自由変項は$a$のみですから，$a$を文字$x$に置き換えた$A(x)$は
-			\begin{align}
-				(\ x \in \emptyset \vee x = \emptyset \vee \emptyset \in x\ ) \wedge
-				\forall \alpha\ \forall \beta\ 
-				(\ \beta \in \alpha \wedge \alpha \in x
-				\Longrightarrow \beta \in x\ )
-			\end{align}
-			となりますね．」
-	}
 	
 	\begin{screen}
 		$A$を式とし，$A$に現れる文字のうち$x$のみが自由変項であるとする．このとき以下は公理である:
