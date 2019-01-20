@@ -289,7 +289,7 @@
 	通常は無断で使用されてしまうものである．
 	
 	\begin{screen}
-		\begin{metaaxm}[基本的な推論規則]
+		\begin{metaaxm}[基本的な推論規則]\label{metaaxm:fundamental_rules_of_inference}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
 			\begin{description}
 				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
@@ -310,6 +310,17 @@
 		院生「演繹法則について，``$A$を公理に追加する''ことを``$A$が成り立っていると仮定する''
 		などの言明により示唆することが多いです．」
 	}
+	
+	\begin{screen}
+		\begin{metathm}[反射律]\label{metathm:reflective_law_of_implication}
+			$A$を$\mathcal{L}'$の閉式とするとき$A \Longrightarrow A$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A$を公理に追加すれば$A$は成立するので，演繹法則より$A \Longrightarrow A$は定理である．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{metathm}[可換律]
@@ -398,21 +409,29 @@
 		\QED
 	\end{prf}
 	
-	\monologue{
-		院生「$A$を$\mathcal{L}'$の閉式とするとき，``$A$は定理である''という言明は
-		``$A$が成り立つ''や``$A$は正しい''や``$A$は真である''などとも書かれます．」
-	}
+	\begin{screen}
+		\begin{dfn}[矛盾]
+			論理式$\bot$を{\bf 矛盾}\index{むじゅん@矛盾}{\bf (contradiction)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
-		\begin{metaaxm}[矛盾]
-			$A$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
+		\begin{metaaxm}[矛盾に関する規則]\label{metaaxm:rules_of_contradiction}
+			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
 			\begin{description}
-				\item[矛盾の発生] $A$と$\rightharpoondown A$が共に定理なら$\bot$は定理となる．
-				\item[否定の導出] $A \Longrightarrow \bot$が定理なら$\rightharpoondown A$は定理となる．
-				\item[矛盾からはあらゆる式が導かれる] $\bot \Longrightarrow A$は定理である．
+				\item[矛盾の発生] $A$と$\rightharpoondown A$が共に成り立つなら$\bot$が成り立つ:
+					$(A \wedge \rightharpoondown A) \Longrightarrow \bot$.
+				\item[否定の導出] $A$が$\bot$を導くなら$\rightharpoondown A$が成り立つ:
+					$(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A$.
+				\item[矛盾からはあらゆる式が導かれる] $\bot \Longrightarrow A$.
 			\end{description}
 		\end{metaaxm}
 	\end{screen}
+	
+	\monologue{
+		院生「$A$を$\mathcal{L}'$の閉式とするとき，式$A \Longrightarrow \bot$を
+			``$A$は{\bf 偽である}\index{ぎ@偽}{\bf (false)}''と翻訳します．」
+	}
 	
 	$A$と$B$を$\mathcal{L}'$の式とするとき，
 	\begin{align}
@@ -421,6 +440,29 @@
 	\end{align}
 	により$\Longleftrightarrow$を定め，式`$A \Longleftrightarrow B$'を
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
+	
+	\begin{screen}
+		\begin{metathm}[偽であることと否定は同値]\label{metathm:false_and_negation_are_equivalent}
+			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow \bot) \Longleftrightarrow\ \rightharpoondown A.
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$\rightharpoondown A$が成り立っていると仮定する．このとき$A$が成り立っていれば
+		推論規則\ref{metaaxm:rules_of_contradiction}より$\bot$が成立するから，演繹法則より
+		\begin{align}
+			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+		\end{align}
+		が成り立つ．一方で推論規則\ref{metaaxm:rules_of_contradiction}より
+		\begin{align}
+			(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A.
+		\end{align}
+		が満たされているので$(A \Longrightarrow \bot)$と$\rightharpoondown A$は同値である．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{metathm}[二重否定の法則]
@@ -445,7 +487,7 @@
 		\begin{align}
 			\rightharpoondown A \Longrightarrow A
 		\end{align}
-		が成り立つ．$A \Longrightarrow A$も定理であるから場合分け法則より
+		が成り立つ．反射律より$A \Longrightarrow A$も定理であるから場合分け法則より
 		\begin{align}
 			(A \vee \rightharpoondown A) \Longrightarrow A
 		\end{align}
@@ -482,7 +524,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		$A \Longrightarrow B$が真であると仮定する．このとき，推論規則\ref{metathm:rule_of_inference_1}より
+		$A \Longrightarrow B$が真であると仮定する．このとき，推論法則\ref{metathm:rule_of_inference_1}より
 		\begin{align}
 			(A \Longrightarrow B) \Longrightarrow 
 			(\ (A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)\ )
@@ -497,7 +539,7 @@
 		\begin{align}
 			(\rightharpoondown A) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
-		は定理である．一方で推論規則\ref{metathm:rule_of_inference_2}より$B \Longrightarrow (A \Longrightarrow B)$も定理であるから，
+		は定理である．一方で推論法則\ref{metathm:rule_of_inference_2}より$B \Longrightarrow (A \Longrightarrow B)$も定理であるから，
 		場合分けの法則より
 		\begin{align}
 			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
@@ -505,6 +547,15 @@
 		が成り立つ．以上で$(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B)$が得られた．
 		\QED
 	\end{prf}
+	
+	\monologue{
+		院生「$A,B$を$\mathcal{L}'$の閉式とするとき，$A$が偽であれば$\rightharpoondown A$が成立する
+			(推論規則\ref{metaaxm:rules_of_contradiction})ので
+			$\rightharpoondown A \vee B$が成立します(推論規則\ref{metaaxm:fundamental_rules_of_inference})．
+			すなわちこのとき$A \Longrightarrow B$が成り立つのですが，式の解釈としては
+			``偽な式からはあらゆる式が導かれる''となりますね．この現象を
+			{\bf 空虚な真}\index{くうきょなしん@空虚な真}{\bf (vacuous truth)}と呼びます．」
+	}
 	
 	\begin{screen}
 		\begin{metathm}[対偶命題は同値]
@@ -526,6 +577,10 @@
 		が成り立つ．
 		\QED
 	\end{prf}
+	
+	\monologue{
+		院生「対偶命題を述べるときには``対偶を取る''と表現することが多いです．」
+	}
 	
 	\begin{screen}
 		\begin{metathm}[De Morganの法則]
@@ -630,13 +685,13 @@
 	}
 	
 	\begin{screen}
-		\begin{metaaxm}[量化記号]
+		\begin{metaaxm}[量化記号に関する規則]\label{metaaxm:rules_of_quantifiers}
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば以下を認める:
 			\begin{description}
 				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の或る対象に代用される．
 				\item[存在記号の規則] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$が成り立つ.
 				\item[全称記号の規則] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$が成り立つ.
-				\item[存在記号の規則] $\tau$を$\mathcal{L}$の対象とするとき
+				\item[存在記号の基本性質] $\tau$を$\mathcal{L}$の対象とするとき
 					$A(\tau) \Longrightarrow \exists x A(x)$が成り立つ．
 			\end{description}
 		\end{metaaxm}
@@ -646,11 +701,12 @@
 		院生「$\varepsilon$記号はHilbertのイプシロン関数と呼ばれる概念を参考にしたもので，
 			量化記号の働きを形式的に表現するのに便利です．また
 			``$\varepsilon x A(x)$は$\mathcal{L}$の対象である''という言明において，
-			$\mathcal{L}$の対象であるという点がミソです...」
+			$\mathcal{L}$の対象であるという点がミソです...
+			なぜミソなのか忘れましたがこうでないと後で不具合が起きた記憶があります．」
 	}
 	
 	\begin{screen}
-		\begin{metathm}
+		\begin{metathm}[全称記号の基本性質]\label{metathm:fundamental_law_of_universal_quantifier}
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
 			$\forall x A(x)$が成り立つならば$\mathcal{L}$のいかなる対象$\tau$に対しても$ A(\tau)$が成り立つ．
 			逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
@@ -658,7 +714,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\tau$を$\mathcal{L}$の任意の対象とすれば，存在記号に関する規則より
+		$\tau$を$\mathcal{L}$の任意の対象とすれば，存在記号に関する推論規則より
 		\begin{align}
 			\begin{gathered}
 				\rightharpoondown A(\tau) \Longrightarrow\ \exists x \rightharpoondown A(x), \\
@@ -666,7 +722,7 @@
 				\left( \varepsilon x \rightharpoondown A(x) \right)
 			\end{gathered}
 		\end{align}
-		が成り立つから，推論規則\ref{metathm:transitive_law_of_implication}より
+		が成り立つから，推論法則\ref{metathm:transitive_law_of_implication}より
 		$\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
 				\left( \varepsilon x \rightharpoondown A(x) \right)$が成り立つ．
 		そして対偶を取って
@@ -674,7 +730,7 @@
 			A \left( \varepsilon x \rightharpoondown A(x) \right)
 			\Longrightarrow A(\tau)
 		\end{align}
-		が成り立つ．全称記号に関する規則より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
+		が成り立つ．全称記号に関する推論規則より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
 		$\forall x A(x)$は同値であるから
 		\begin{align}
 			\forall x A(x) \Longrightarrow A(\tau)
@@ -687,8 +743,15 @@
 		\QED
 	\end{prf}
 	
+	\monologue{
+		院生「推論法則\ref{metathm:fundamental_law_of_universal_quantifier}を根拠にして，
+			当面は$\forall x A(x)$という式を``$\mathcal{L}$の任意の対象$x$に対して
+			$A(x)$が成立する''と翻訳することにします．また後述する相等性の公理によれば，
+			これは``任意の集合$x$に対して$A(x)$が成立する''と翻訳しても同義です．」
+	}
+	
 	\begin{screen}
-		\begin{metathm}
+		\begin{metathm}[量化記号の諸性質]
 			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
 			\begin{itemize}
 				\item $\mathcal{L}$の任意の対象$\tau$に対して
@@ -717,29 +780,40 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$\mathcal{L}$の任意の対象$\tau$に対して
+				いま，$\mathcal{L}$の任意の対象$\tau$に対して
 				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
-				このとき$\exists x A(x)$が成り立っていると仮定すると，
+				ここで$\exists x A(x)$が成り立っていると仮定すると，
 				\begin{align}
 					\tau \coloneqq \varepsilon x A(x)
 				\end{align}
-				とおけば公理より$A(\tau)$が成立するから$B(\tau)$も成立し，
-				再び公理より$\exists x \rightharpoondown \rightharpoondown A(x)$が成り立つので
+				とおけば推論規則\ref{metaaxm:rules_of_quantifiers}より$A(\tau)$が成立し，
+				他方で推論規則\ref{metaaxm:fundamental_rules_of_inference}により
+				\begin{align}
+					A(\tau) \Longrightarrow B(\tau)
+				\end{align}
+				が満たされるので$B(\tau)$が成立する．
+				再び推論規則\ref{metaaxm:rules_of_quantifiers}より$\exists x B(x)$が成り立つので
 				\begin{align}
 					\exists x A(x) \Longrightarrow \exists x B(x)
 				\end{align}
-				が得られる．同様にして$\exists x B(x) \Longrightarrow \exists x A(x)$も得られる．
+				が得られる．$A$と$B$の立場を入れ替えれば$\exists x B(x) \Longrightarrow \exists x A(x)$も得られる．
 				
 			\item[第二段]
-				$\mathcal{L}$の任意の対象$\tau$に対して
+				いま，$\mathcal{L}$の任意の対象$\tau$に対して
 				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
-				$\forall x A(x)$が成り立っていると仮定するとき，
-				$\tau$を$\mathcal{L}$の任意の対象とすれば$A(\tau)$が成り立つから$B(\tau)$も成立し，
-				$\tau$の任意性より$\forall x B(x)$が成り立つ．よって
+				ここで$\forall x A(x)$が成り立っていると仮定すると，
+				推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+				$\mathcal{L}$の任意の対象$\tau$に対して$A(\tau)$が成立し，
+				他方で
+				\begin{align}
+					A(\tau) \Longrightarrow B(\tau)
+				\end{align}
+				が満たされるので$B(\tau)$が成立する．このとき$\tau$の任意性と
+				推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より$\forall x B(x)$が成り立つから
 				\begin{align}
 					\forall x A(x) \Longrightarrow \forall x B(x)
 				\end{align}
-				が得られる．同様にして$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
+				が得られる．$A$と$B$の立場を入れ替えれば$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
 				
 			\item[第三段]
 				公理より
@@ -857,27 +931,29 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\mathcal{L}$の任意の対象$\tau$に対して
+		$\mathcal{L}$の任意の対象$\tau$に対して，推論規則\ref{metathm:reflective_law_of_implication}より
 		\begin{align}
 			\tau \in a \Longleftrightarrow \tau \in a
 		\end{align}
-		となるから
+		が成り立つから，$\tau$の任意性と推論規則\ref{metathm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
 			\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
 		\end{align}
-		が成り立つ．従って外延性の公理より$a = a$が出る．
+		が成り立つ．従って外延性の公理より$a = a$が得られる．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{axm}[類の公理]\mbox{}
+		\begin{axm}[類の公理] 以下を公理とする:
 			\begin{description}
-				\item[(i)] $a,b$を類とするとき，次が成り立つ:
+				\item[(i)] 要素となりうる類は集合である．つまり，$a,b$を類とするとき次が成り立つ．
 					\begin{align}
 						a \in b \Longrightarrow \exists x\ (\ a = x\ ).
 					\end{align}
-				
-				\item[(ii)] 
+					
+					
+				\item[(ii)] $A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$t$を$A(x)$に現れない文字とし，
+					$x$のみが$A$で量化されていないとする．このとき次が成り立つ．
 					\begin{align}
 						\forall t\ (\ t \in \Set{x}{A(x)} \Longleftrightarrow A(t)\ ).
 					\end{align}
@@ -956,7 +1032,8 @@
 	}
 	
 	\begin{screen}
-		\begin{thm}[集合とは，$\mathcal{L}$の対象か，$\mathcal{L}$の対象と等しい類のことを指す]
+		\begin{thm}[$\Univ$は集合の全体である]
+		\label{thm:V_is_the_whole_of_sets}
 		\label{thm:every_set_is_equivalent_to_some_individual_in_L}
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
@@ -988,8 +1065,8 @@
 	
 	\monologue{
 		院生「集合は$\mathcal{L}$の対象であるとは限りません．例えば
-			$\mathcal{L}$の対象$\tau$に対して$\Set{x}{x \in \tau}$は集合ですが$\mathcal{L}$の対象ではありませんね．
-			また類の公理の一つ目の主張は{\bf ``要素となりうる類は集合である''}と言い換えられますね．」
+			$\tau$を$\mathcal{L}$の対象とすれば$\Set{x}{x \in \tau}$は集合ですが，
+			これは言語を$\mathcal{L}'$に拡張した際に導入された表記なので$\mathcal{L}$の対象ではありませんね．」
 	}
 	
 	\begin{screen}
