@@ -751,35 +751,35 @@
 	}
 	
 	\begin{screen}
-		\begin{metathm}[量化記号の諸性質]
+		\begin{metathm}[量化記号の諸性質]\label{metathm:properties_of_quantifiers}
 			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
-			\begin{itemize}
-				\item $\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{description}
+				\item[(a)] $\mathcal{L}$の任意の対象$\tau$に対して
 					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
 					\begin{align}
 						\exists x A(x) \Longleftrightarrow \exists x B(x).
 					\end{align}
 				
-				\item $\mathcal{L}$の任意の対象$\tau$に対して
+				\item[(b)] $\mathcal{L}$の任意の対象$\tau$に対して
 					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
 					\begin{align}
 						\forall x A(x) \Longleftrightarrow \forall x B(x).
 					\end{align}
 					
-				\item $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
+				\item[(c)] $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
 				
-				\item $\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)$.
+				\item[(d)] $\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)$.
 				
-				\item $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
+				\item[(e)] $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
 				
-				\item $\forall x ( A(x) \wedge B(x) ) \Longleftrightarrow \forall x A(x) \wedge \forall x B(x)$.
-			\end{itemize}
+				\item[(f)] $\forall x ( A(x) \wedge B(x) ) \Longleftrightarrow \forall x A(x) \wedge \forall x B(x)$.
+			\end{description}
 		\end{metathm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[第一段]
+			\item[(a)]
 				いま，$\mathcal{L}$の任意の対象$\tau$に対して
 				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
 				ここで$\exists x A(x)$が成り立っていると仮定すると，
@@ -798,7 +798,7 @@
 				\end{align}
 				が得られる．$A$と$B$の立場を入れ替えれば$\exists x B(x) \Longrightarrow \exists x A(x)$も得られる．
 				
-			\item[第二段]
+			\item[(b)]
 				いま，$\mathcal{L}$の任意の対象$\tau$に対して
 				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
 				ここで$\forall x A(x)$が成り立っていると仮定すると，
@@ -815,94 +815,106 @@
 				\end{align}
 				が得られる．$A$と$B$の立場を入れ替えれば$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
 				
-			\item[第三段]
-				公理より
+			\item[(c)]
+				推論規則\ref{metaaxm:rules_of_quantifiers}より
 				\begin{align}
 					\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
 					\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
 				\end{align}
-				は定理である．同様に公理より
+				は定理である．同様に推論規則\ref{metaaxm:rules_of_quantifiers}より
 				\begin{align}
 					A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
 				\end{align}
-				もまた定理であり，
+				もまた定理であり，対偶を取れば
 				\begin{align}
 					\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
 					\rightharpoondown \forall x A(x)
 				\end{align}
 				が定理となるので$\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$を得る．
 			
-			\item[第四段]
+			\item[(d)]
 				前段の結果より
 				\begin{align}
-					\forall x \rightharpoondown A(x) \Longleftrightarrow
+					\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
 					\rightharpoondown \exists x \rightharpoondown \rightharpoondown A(x)
 				\end{align}
-				が成り立ち，また第一段の結果より
+				が成り立ち，また二重否定の法則と(a)より
 				\begin{align}
 					\exists x \rightharpoondown \rightharpoondown A(x)
 					\Longleftrightarrow \exists x A(x)
 				\end{align}
-				も成り立つから
+				も成り立つから，推論法則\ref{metathm:transitive_law_of_implication}と併せて
 				\begin{align}
-					\forall x \rightharpoondown A(x) \Longleftrightarrow
+					\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
 					\rightharpoondown \exists x A(x)
 				\end{align}
 				が得られる．
 			
-			\item[第五段]
+			\item[(e)]
 				いま$c(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x) \vee B(x)$とおけば，
 				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
-		\begin{align}
-			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x).
-		\end{align}
-		また公理より
-		\begin{align}
-			\exists x C(x) \Longrightarrow C(\varepsilon x C(x)).
-		\end{align}
-		$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$は同じ記号列であるから
-		\begin{align}
-			C(\varepsilon x C(x)) \Longrightarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x)).
-		\end{align}
-		ここで
-		\begin{align}
-			A(\varepsilon x C(x)) &\Longrightarrow A(\varepsilon x A(x)), \\
-			A(\varepsilon x A(x)) &\Longrightarrow \exists x A(x), \\
-			\exists x A(x) &\Longrightarrow \exists x A(x) \vee \exists x B(x)
-		\end{align}
-		かつ
-		\begin{align}
-			B(\varepsilon x C(x)) &\Longrightarrow B(\varepsilon x B(x)), \\
-			B(\varepsilon x B(x)) &\Longrightarrow \exists x B(x), \\
-			\exists x B(x) &\Longrightarrow \exists x A(x) \vee \exists x B(x).
-		\end{align}
-		以上と場合分けの原理を総合して
-		\begin{align}
-			\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x A(x) \vee \exists x B(x)
-		\end{align}
-		を得る．他方，公理より
-		\begin{align}
-			\exists x A(x) &\Longrightarrow A(\varepsilon x A(x)), \\
-			A(\varepsilon x A(x)) &\Longrightarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)), \\
-			A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) &\Longrightarrow C(\varepsilon x A(x)), \\
-			C(\varepsilon x A(x)) &\Longrightarrow C(\varepsilon x C(x)), \\
-			C(\varepsilon x C(x)) &\Longrightarrow \exists x C(x), \\
-			\exists x C(x) &\Longrightarrow \exists x (A(x) \vee B(x))
-		\end{align}
-		同様に$\exists x A(x) \Longrightarrow \exists x (A(x) \vee B(x))$も成り立つので
-		\begin{align}
-			\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
-		\end{align}
-		が成立する．
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x)
+					\label{eq:metathm_properties_of_quantifiers_1}
+				\end{align}
+				が成立する．また推論法則\ref{metathm:transitive_law_of_implication}より
+				\begin{align}
+					\exists x C(x) \Longrightarrow C(\varepsilon x C(x))
+					\label{eq:metathm_properties_of_quantifiers_2}
+				\end{align}
+				が成立する．$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$
+				は同じ記号列であるから
+				\begin{align}
+					C(\varepsilon x C(x)) \Longrightarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\label{eq:metathm_properties_of_quantifiers_3}
+				\end{align}
+				が成立する．ここで推論法則\ref{metathm:transitive_law_of_implication}と
+				推論規則\ref{metaaxm:fundamental_rules_of_inference}より
+				\begin{align}
+					A(\varepsilon x C(x)) &\Longrightarrow \exists x A(x) \\
+						&\Longrightarrow \exists x A(x) \vee \exists x B(x), \\
+					B(\varepsilon x C(x)) &\Longrightarrow \exists x B(x) \\
+						&\Longrightarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が成立するので，場合分け法則より
+				\begin{align}
+					A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\Longrightarrow \exists x A(x) \vee \exists x B(x)
+					\label{eq:metathm_properties_of_quantifiers_4}
+				\end{align}
+				が成り立つ．(\refeq{eq:metathm_properties_of_quantifiers_1})
+				(\refeq{eq:metathm_properties_of_quantifiers_2})
+				(\refeq{eq:metathm_properties_of_quantifiers_3})
+				(\refeq{eq:metathm_properties_of_quantifiers_4})
+				に推論法則\ref{metathm:transitive_law_of_implication}を順次適用すれば
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が得られる．他方，推論規則\ref{metaaxm:rules_of_quantifiers}より
+				\begin{align}
+					\exists x A(x) &\Longrightarrow A(\varepsilon x A(x)) \\
+						&\Longrightarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) \\
+						&\Longrightarrow C(\varepsilon x A(x)) \\
+						&\Longrightarrow C(\varepsilon x C(x)) \\
+						&\Longrightarrow \exists x C(x) \\
+						&\Longrightarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				が成立し，$A$を$B$に置き換えれば
+				$\exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))$も成り立つので，
+				場合分け法則より
+				\begin{align}
+					\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				も得られる．
 			
-			\item[第六段]
+			\item[(f)]
 				簡略して説明すれば
 				\begin{align}
 					\forall x \left( A(x) \wedge B(x) \right)
-					&\Longleftrightarrow\ \rightharpoondown \exists x \rightharpoondown \left( A(x) \wedge B(x) \right) & (\mbox{第三段の結果の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \exists x \rightharpoondown \left( A(x) \wedge B(x) \right) & (\mbox{(c)の対偶}) \\
 					&\Longleftrightarrow\ \rightharpoondown \exists x \left( \rightharpoondown A(x) \vee \rightharpoondown B(x) \right) & (\mbox{De Morganの法則}) \\
-					&\Longleftrightarrow\ \rightharpoondown \left( \exists x \rightharpoondown A(x) \vee \exists x \rightharpoondown B(x) \right) & (\mbox{前段の結果}) \\
-					&\Longleftrightarrow\ \rightharpoondown \left( \rightharpoondown \forall x A(x) \vee \rightharpoondown \forall x B(x) \right) & (\mbox{第三段の結果}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \exists x \rightharpoondown A(x) \vee \exists x \rightharpoondown B(x) \right) & (\mbox{(e)の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \rightharpoondown \forall x A(x) \vee \rightharpoondown \forall x B(x) \right) & (\mbox{(c)の結果}) \\
 					&\Longleftrightarrow\ \rightharpoondown \rightharpoondown \forall x A(x) \wedge \rightharpoondown \rightharpoondown \forall x B(x) & (\mbox{De Morganの法則}) \\
 					&\Longleftrightarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
 				\end{align}
@@ -915,7 +927,7 @@
 		\begin{axm}[外延性の公理]
 			$a,b$を類とするとき，次が成り立つ:
 			\begin{align}
-				\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+				\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
 				\Longrightarrow a=b.
 			\end{align}
 		\end{axm}
@@ -931,13 +943,13 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\mathcal{L}$の任意の対象$\tau$に対して，推論規則\ref{metathm:reflective_law_of_implication}より
+		$\mathcal{L}$の任意の対象$\tau$に対して，推論法則\ref{metathm:reflective_law_of_implication}より
 		\begin{align}
 			\tau \in a \Longleftrightarrow \tau \in a
 		\end{align}
-		が成り立つから，$\tau$の任意性と推論規則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		が成り立つから，$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+			\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
 		\end{align}
 		が成り立つ．従って外延性の公理より$a = a$が得られる．
 		\QED
