@@ -103,8 +103,7 @@
 			プログラミングで言うところのfor文の操作と同じですね．」
 	}
 	
-	$A$を式とする．
-	`$t = a$'など$A$に文字$a$が現れるとき，$A$に現れる全ての文字$a$を文字$x$に置き換えた式を
+	$A$を式とする．$A$が`$t = a$'という式である場合など，$A$に文字$a$が現れるとき，$A$に現れる全ての文字$a$を文字$x$に置き換えた式を
 	\begin{align}
 		(x \mid a)\, A
 	\end{align}
@@ -195,7 +194,7 @@
 	\end{screen}
 	
 	\monologue{
-		院生「$\Univ$はそもそも式に現れる文字ではありませんでしたが，$\coloneqq$の推薦で$\Set{x}{x=x}$の代理人として市民権を得たのですね．
+		院生「$\Univ$はそもそも式に現れる記号ではありませんでしたが，$\coloneqq$の推薦で$\Set{x}{x=x}$の代理人として市民権を得たのですね．
 			このように既定の用語から定められる記号を{\bf 派生記号}と呼びます．
 			さて宇宙という壮大な言葉が出てきましたが，後述する通り$\Univ$は集合の全体のことですから，
 			あらゆるものが集合で説明される現代数学にとって$\Univ$はまさしく宇宙なのですね．
@@ -217,15 +216,22 @@
 	
 	\begin{screen}
 		\begin{dfn}[類・集合]
-			$\mathcal{L}'$の対象のことを{\bf 類}\index{るい@類}{\bf (class)}と呼び，
-			特に$\Univ$の要素である類を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼ぶ．
-			また$\Univ$の要素でない類のことを{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+			$\mathcal{L}'$の対象のことを{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．また$a$を類とするとき，
+			\begin{align}
+				\exists x\ (\ a = x\ )
+			\end{align}
+			が成り立つとき$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
+			\begin{align}
+				\rightharpoondown \exists x\ (\ a = x\ )
+			\end{align}
+			が成り立つとき$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
-
+	
 	\monologue{
-		院生「類は$\Univ$の要素であれば集合と呼ばれ，$\Univ$の要素でなければ真類と呼ばれます．
-			では集合であり真類でもある類や，集合でも真類でもない類はあるのでしょうか？
+		院生「後述することですが宇宙は集合の全体に一致します．つまり$\Univ$の要素である類は集合であり，
+			逆に類が集合であるならば$\Univ$の要素であるのです．
+			さてここで次の問題を考えましょう．集合であり真類でもある類や，集合でも真類でもない類は存在するのかという問題です．
 			実は我々はまだこれに答える術を持っていません．
 			質問を変えましょう．集合であり真類でもある類や集合でも真類でもない類の存在を禁止するにはどうしたら良いでしょうか？
 			我々は，数学において中庸が無いということや矛盾が起きるということをどう表現しようかという問題に直面しているのです．
@@ -235,12 +241,17 @@
 	
 	\begin{screen}
 		\begin{metaaxm}[排中律]
-			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			$A$を$\mathcal{L}'$の閉式とするとき次は定理である:
 			\begin{align}
 				A \vee \rightharpoondown A.
 			\end{align}
 		\end{metaaxm}
 	\end{screen}
+	
+	\monologue{
+		院生「排中律の言明は``どんな閉式でも持ってくれば，その式に対して排中律が適用される''という意味です．
+		このように無際限に存在し得る定理を一括して表現する書き方を{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼びます．」
+	}
 	
 	いま$a,b$を類とするとき，
 	\begin{align}
@@ -261,9 +272,9 @@
 	
 	\begin{screen}
 		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
-			$a$を類とするとき次が成り立つ:
+			$a$を類とするとき次は定理である:
 			\begin{align}
-				a \in \Univ \vee a \notin \Univ.
+				\exists x\ (\ a=x\ ) \vee \rightharpoondown \exists x\ (\ a=x\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -287,8 +298,8 @@
 				\item[$\vee$の導入1] $A \Longrightarrow (A \vee B)$は定理である．
 				\item[$\vee$の導入2] $A \Longrightarrow (B \vee A)$は定理である．
 				\item[$\wedge$の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
-				\item[$\wedge$の除去1] $A \wedge B \Longrightarrow A$は定理である．
-				\item[$\wedge$の除去2] $A \wedge B \Longrightarrow B$は定理である．
+				\item[$\wedge$の除去1] $(A \wedge B) \Longrightarrow A$は定理である．
+				\item[$\wedge$の除去2] $(A \wedge B) \Longrightarrow B$は定理である．
 				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
 					$(A \vee B) \Longrightarrow C$は定理である．
 			\end{description}	
@@ -317,7 +328,7 @@
 		\end{align}
 		は定理である．また，$\wedge$の除去より
 		$A \wedge B \Longrightarrow A$と$A \wedge B \Longrightarrow B$は定理であるから，
-		いま$A \wedge B$が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．すなわち
+		いま$A \wedge B$が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．このとき
 		$B \wedge A$が定理となるので，演繹法則より
 		\begin{align}
 			(A \wedge B) \Longrightarrow (B \wedge A)
@@ -327,7 +338,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[推移律]
+		\begin{metathm}[推移律]\label{metathm:transitive_law_of_implication}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
 			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
 			$A \Longrightarrow C$は定理である．
@@ -335,7 +346,8 @@
 	\end{screen}
 	
 	\begin{prf}
-		$A$を公理に追加する．このとき三段論法より$B$が定理となり，
+		$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理であるとして，
+		$A$が成り立っていると仮定する．このとき三段論法より$B$が定理となり，
 		再び三段論法より$C$が定理となる．ゆえに$A \Longrightarrow C$は定理である．
 		\QED
 	\end{prf}
@@ -588,44 +600,44 @@
 		\begin{thm}[集合でも真類でもない類は存在しない]
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\rightharpoondown (\ a \in \Univ \wedge a \notin \Univ\ ).
+				\rightharpoondown (\ \exists x\ (\ a=x\ ) \wedge \rightharpoondown \exists x\ (\ a=x\ )\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類とするとき，排中律より$a \in \Univ \vee a \notin \Univ$が成り立つが，可換律より
+		$a$を類とするとき，排中律より$\exists x\ (\ a=x\ ) \vee \rightharpoondown \exists x\ (\ a=x\ )$
+		が成り立ち，可換律より
 		\begin{align}
-			a \notin \Univ \vee a \in \Univ
+			\rightharpoondown \exists x\ (\ a=x\ ) \vee \exists x\ (\ a=x\ )
 		\end{align}
 		も成立する．そしてDe Morganの法則より
 		\begin{align}
-			\rightharpoondown (\ \rightharpoondown a \notin \Univ \wedge \rightharpoondown a \in \Univ\ )
+			\rightharpoondown (\ \rightharpoondown \rightharpoondown \exists x\ (\ a=x\ ) \wedge \rightharpoondown \exists x\ (\ a=x\ )\ )
 		\end{align}
-		が成り立つが，二重否定の法則より$\rightharpoondown a \notin \Univ$と$a \in \Univ$は同値となるので
+		が成り立つが，二重否定の法則より$\rightharpoondown \rightharpoondown \exists x\ (\ a=x\ )$と
+		$\exists x\ (\ a=x\ )$は同値となるので
 		\begin{align}
-			\rightharpoondown (\ a \in \Univ \wedge a \notin \Univ\ )
+			\rightharpoondown (\ \exists x\ (\ a=x\ ) \wedge \rightharpoondown \exists x\ (\ a=x\ )\ )
 		\end{align}
 		が成り立つ．
 		\QED
 	\end{prf}
 	
 	\monologue{
-		院生「我々は式を作る際に$\forall$と$\exists$を量化記号として採用していましたから，
-			次は量化記号が推論操作の上でどのような意味を持つのかを規定しましょう．」
+		院生「我々は$\exists$の意味には触れずにここまで来ましたが，
+			次は量化記号が推論操作の上でどのような働きを持つのかを規定しましょう．」
 	}
 	
 	\begin{screen}
 		\begin{metaaxm}[量化記号]
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば以下を認める:
 			\begin{description}
-				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の対象である．
-				\item[存在記号の公理] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$.
-				\item[全称記号の公理] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$.
-				\item[存在記号の公理] $\tau$を$\mathcal{L}$の対象とするとき
-					\begin{align}
-						A(\tau) \Longrightarrow \exists x A(x).
-					\end{align}
+				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の或る対象に代用される．
+				\item[存在記号の規則] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$が成り立つ.
+				\item[全称記号の規則] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$が成り立つ.
+				\item[存在記号の規則] $\tau$を$\mathcal{L}$の対象とするとき
+					$A(\tau) \Longrightarrow \exists x A(x)$が成り立つ．
 			\end{description}
 		\end{metaaxm}
 	\end{screen}
@@ -639,32 +651,35 @@
 	
 	\begin{screen}
 		\begin{metathm}
-			$\mathcal{L}$のいかなる対象$\tau$に対しても
-			\begin{align}
-				\forall x A(x) \Longrightarrow A(\tau)
-			\end{align}
-			が成り立つ．逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			$\forall x A(x)$が成り立つならば$\mathcal{L}$のいかなる対象$\tau$に対しても$ A(\tau)$が成り立つ．
+			逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{prf}
-		$\tau$を$\mathcal{L}$の任意の対象とすれば公理より
+		$\tau$を$\mathcal{L}$の任意の対象とすれば，存在記号に関する規則より
 		\begin{align}
-			\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
-			\left( \varepsilon x \rightharpoondown A(x) \right)
+			\begin{gathered}
+				\rightharpoondown A(\tau) \Longrightarrow\ \exists x \rightharpoondown A(x), \\
+				\exists x \rightharpoondown A(x) \Longrightarrow\ \rightharpoondown A
+				\left( \varepsilon x \rightharpoondown A(x) \right)
+			\end{gathered}
 		\end{align}
-		が成り立つから，対偶を取って
+		が成り立つから，推論規則\ref{metathm:transitive_law_of_implication}より
+		$\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
+				\left( \varepsilon x \rightharpoondown A(x) \right)$が成り立つ．
+		そして対偶を取って
 		\begin{align}
 			A \left( \varepsilon x \rightharpoondown A(x) \right)
 			\Longrightarrow A(\tau)
 		\end{align}
-		を得る．公理より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
+		が成り立つ．全称記号に関する規則より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
 		$\forall x A(x)$は同値であるから
 		\begin{align}
 			\forall x A(x) \Longrightarrow A(\tau)
 		\end{align}
-		が出る．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，
-		特に
+		が成り立つ．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，特に
 		\begin{align}
 			A \left( \varepsilon x \rightharpoondown A(x) \right)
 		\end{align}
