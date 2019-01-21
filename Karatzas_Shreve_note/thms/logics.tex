@@ -1395,7 +1395,73 @@
 	\end{itemize}
 	として記号列$\varepsilon a(x)$を定める．$\varepsilon$記号を用いているのは，
 	量化記号に関する推論規則で$\varepsilon$記号を定めたときと動機が似ているためである．
-	早速この記法を用いて合併を定義する．
+	早速この記法を用いて次を定義する．
+	
+	\begin{screen}
+		\begin{dfn}[対]
+			$a,b$を類とするとき，
+			\begin{align}
+				\{a,b\} \coloneqq \Set{x}{x = a \vee x = b}
+			\end{align}
+			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{a,a\}$を$\{a\}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	合併を定義したときと同様に，本来$\{a,b\}$は
+	\begin{align}
+		\Set{x}{x = \varepsilon t(a=t) \vee x = \varepsilon t(b=t)}
+	\end{align}
+	で定めるのが本式である．しかしこの場合も
+	\begin{align}
+		\forall x\ (\ x = \varepsilon t(a=t) \vee x = \varepsilon t(b=t)
+		\Longleftrightarrow x = a \vee x = b\ )
+	\end{align}
+	が成立することを根拠にして
+	\begin{align}
+		\Set{x}{x = a \vee x = b}
+	\end{align}
+	という表記を認めているのである．正確さも大切であるが，やはり判りやすい方が良いに決まっている．
+	
+	\begin{screen}
+		\begin{axm}[対の公理]
+			集合同士の対は集合である．つまり，$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				a,b \in \Univ \Longrightarrow \{a,b\} \in \Univ.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[真類の対は空・集合は自分を構成要素とする対に属する]
+			$a,b$を類とするとき次が成り立つ:
+			\begin{itemize}
+				\item $a,b \notin \Univ \Longrightarrow \{a,b\} = \emptyset.$
+				\item $a \in \Univ \Longrightarrow a \in \{a,b\}.$
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a,b \notin \Univ$ならば
+		\begin{align}
+			\forall x\ (\ a \neq x\ ) \wedge \forall x\ (\ b \neq x\ )
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\forall x\ (\ x \notin \{a,b\}\ )
+		\end{align}
+		となり$\{a,b\} = \emptyset$が従う．次に$a$が集合であると仮定する．このとき
+		\begin{align}
+			\tau \coloneqq \varepsilon x(a = x)
+		\end{align}
+		とおけば$\tau = a \vee \tau = b$が成り立つので
+		\begin{align}
+			\tau \in \{a,b\}
+		\end{align}
+		となる．そして相等性の公理より$a \in \{a,b\}$が従う．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[合併]
@@ -1452,11 +1518,17 @@
 			しかし$\varepsilon$記号を用いれば正式な形に書き直せるのですから解釈上の不具合は無いのです．」
 	}
 	
+	$a,b$を類とするとき，その対の合併を
+	\begin{align}
+		a \cup b \overset{\mathrm{def}}{\Longleftrightarrow} \bigcup \{a,b\}
+	\end{align}
+	と書く．
+	
 	\begin{screen}
 		\begin{axm}[合併の公理]
 			集合の合併は集合である．つまり，$a$を類とするとき次が成り立つ:
 			\begin{align}
-				a \in \Univ \Longrightarrow \bigcup a \in \Univ.
+				\exists x\ (\ a=x\ ) \Longrightarrow \exists x\ (\ \bigcup a = x\ ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -1464,9 +1536,9 @@
 	\begin{screen}
 		\begin{thm}[合併の性質]\mbox{}
 			\begin{description}
-				\item[(1)] $\bigcup \emptyset = \emptyset$
-				\item[(2)] $\forall x\ (\ x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\ )$
-				\item[(3)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = \Univ$.
+				\item[(i)] $\bigcup \emptyset = \emptyset$
+				\item[(ii)] $\forall x\ (\ x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\ )$
+				\item[(iii)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = \Univ$.
 			\end{description}
 		\end{thm}
 	\end{screen}
@@ -1480,6 +1552,12 @@
 			で$\bigcap a$を定め，これを$a$の{\bf 交叉}\index{こうさ@交叉}{\bf (intersection)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	$a,b$を類とするとき，その対の合併を
+	\begin{align}
+		a \cap b \overset{\mathrm{def}}{\Longleftrightarrow} \bigcap \{a,b\}
+	\end{align}
+	と書く．
 	
 	\begin{screen}
 		\begin{thm}[交叉の性質]\mbox{}
