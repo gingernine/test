@@ -1,136 +1,731 @@
-\subsection{Dynkin族定理}
 	\begin{screen}
-		\begin{dfn}[乗法族・Dynkin族]\label{def:Dynkin_system_theorem}
-			集合$X$の部分集合の族$\mathscr{A}$が
-			任意の$A,B \in \mathscr{A}$に対し$A \cap B \in \mathscr{A}$を満たすとき
-			$\mathscr{A}$を$X$上の乗法族($\pi$-system)という．
-			$X$の部分集合の族$\mathscr{D}$が
+		\begin{axm}[外延性の公理]
+			$a,b$を類とするとき，次が成り立つ:
+			\begin{align}
+				\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+				\Longrightarrow a=b.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[任意の類は自分自身と等しい]\label{thm:any_class_equals_to_itself}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a = a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathcal{L}$の任意の対象$\tau$に対して，推論法則\ref{metathm:reflective_law_of_implication}より
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in a
+		\end{align}
+		が成り立つから，$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+		\end{align}
+		が成り立つ．従って外延性の公理より$a = a$が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{axm}[類の公理] 以下を公理とする:
 			\begin{description}
-				\item[(D1)] $X \in \mathscr{D}$,
-				\item[(D2)] $A,B \in \mathscr{D},
-					\ A \subset B \quad \Longrightarrow \quad B \backslash A \in \mathscr{D}$,
-				\item[(D3)] $\{A_n\}_{n=1}^\infty \subset \mathscr{D},
-					\ A_n \cap A_m = \emptyset\ (n \neq m)
-					\quad \Longrightarrow \quad \bigcup_{n=1}^\infty A_n \in \mathscr{D}$,
+				\item[(i)] 要素となりうる類は集合である．つまり，$a,b$を類とするとき次が成り立つ．
+					\begin{align}
+						a \in b \Longrightarrow \set{a}.
+					\end{align}
+					
+					
+				\item[(ii)] $A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$t$を$A(x)$に現れない文字とし，
+					$x$のみが$A$で量化されていないとする．このとき次が成り立つ．
+					\begin{align}
+						\forall t\ (\ t \in \Set{x}{A(x)} \Longleftrightarrow A(t)\ ).
+					\end{align}
 			\end{description}
-			を満たすとき，$\mathscr{D}$を$X$上のDynkin族(Dynkin system)という．
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\mathcal{L}$の対象も$\Set{x}{A(x)}$の形で表せる]
+			次が成り立つ:
+			\begin{align}
+				\forall y\ \left(\ y = \Set{x}{x \in y}\ \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすると類の公理より
+		\begin{align}
+			\forall s\ (\ s \in \tau \Longleftrightarrow s \in \Set{x}{x \in \tau}\ )
+		\end{align}
+		が成り立つから，外延性の公理より
+		\begin{align}
+			\tau = \Set{x}{x \in \tau}
+		\end{align}
+		が従う．$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall y\ \left(\ y = \Set{x}{x \in y}\ \right)
+		\end{align}
+		を得る．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「集合は$\mathcal{L}$の対象であるとは限りません．例えば$\tau$を$\mathcal{L}$の対象とすれば
+			\begin{align}
+				\tau = \Set{x}{x \in \tau}
+			\end{align}
+			が成り立つので，推論規則\ref{metaaxm:rules_of_quantifiers}と集合の定義より
+			$\Set{x}{x \in \tau}$は集合であるとわかりますが，
+			これは言語を$\mathcal{L}'$に拡張した際に導入された表記なので$\mathcal{L}$の対象ではありませんね．」
+	}
+	
+	\begin{screen}
+		\begin{axm}[相等性の公理]
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，
+			$x$のみが$A$で量化されていないとする．このとき$a,b$を類とすれば次が成り立つ:
+			\begin{align}
+				a = b \Longrightarrow (\ A(a) \Longleftrightarrow A(b)\ ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[外延性の公理は同値関係で成立する]\label{thm:axiom_of_extensionality_equivalent}
+			$a,b$を類とするとき，次が成り立つ:
+			\begin{align}
+				\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+				\Longleftrightarrow a=b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a = b$が成り立っていると仮定すれば，相等性の公理より$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が満たされるから，このとき
+		\begin{align}
+			\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+		\end{align}
+		が成立する．よって演繹法則より
+		\begin{align}
+			a = b \Longrightarrow \forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+		\end{align}
+		が成り立つ．外延性の公理と併せれば定理の主張が得られる．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「等しい類同士は同じ$\mathcal{L}$の対象を要素に持つと示されましたが，
+			このとき要素に持つ集合まで一致します．これは相等性の公理から明らかでしょうが，
+			詳しくは部分類の箇所で説明いたしましょう．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は集合の全体である]
+		\label{thm:V_is_the_whole_of_sets}
+		\label{thm:every_set_is_equivalent_to_some_individual_in_L}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \Longleftrightarrow a \in \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とするとき，まず類の公理より
+		\begin{align}
+			a \in \Univ \Longrightarrow \set{a}
+		\end{align}
+		が得られる．逆に$\exists x\ (\ a = x\ )$が成り立っていると仮定する．このとき
+		\begin{align}
+			\tau \coloneqq \varepsilon x (\ a = x\ )
+		\end{align}
+		とおけば，定理\ref{thm:any_class_equals_to_itself}より$\tau = \tau$となるので，類の公理より
+		\begin{align}
+			\tau \in \Univ
+		\end{align}
+		が成り立つ．そして相等性の公理より
+		\begin{align}
+			a \in \Univ
+		\end{align}
+		が従うから$\set{a} \Longrightarrow a \in \Univ$も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[空集合]
+			$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{dfn}[Dynkin族定理]\label{thm:Dynkin_system_theorem}
-			集合$X$上の乗法族$\mathscr{A}$に対し，
-			$\mathscr{A}$を含む最小のDynkin族を$\delta(\mathscr{A})$と書くとき，
+		\begin{axm}[空集合の公理]
+			$\emptyset$は$\mathcal{L}$のいかなる対象も要素に持たない:
 			\begin{align}
-				\delta(\mathscr{A}) = \sigma(\mathscr{A}).
+				\forall x\ (\ x \notin \emptyset\ ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\monologue{
+		院生「空集合は集合の系譜の起点となります．聖書物語でいうところのアダムです．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[$\mathcal{L}$のいかなる対象も要素に持たない類は空集合に等しい]
+		\label{thm:uniqueness_of_emptyset}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\forall x\ (\ x \notin a\ ) \Longrightarrow a = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類として$\forall x\ (\ x \notin a\ )$が成り立っていると仮定する．このとき
+		$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \notin a$と
+		$\tau \notin \emptyset$が共に満たされ，推論規則\ref{metaaxm:fundamental_rules_of_inference}より
+		$\tau \notin a \vee \tau \in \emptyset$と$\tau \notin a \vee \tau \in \emptyset$
+		が成り立ち，推論法則\ref{metathm:rule_of_inference_3}より
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in \emptyset, \quad
+			\tau \in \emptyset \Longrightarrow \tau \in a
+		\end{align}
+		が成り立つ．よって$\tau \in a \Longleftrightarrow \tau \in \emptyset$が成立し，
+		$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}を適用して
+		\begin{align}
+			\forall x\ (\ x \in a \Longleftrightarrow x \in \emptyset\ )
+		\end{align}
+		が得られる．ゆえに外延性の公理より$a = \emptyset$が成立し，演繹法則より定理の主張が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[空集合はいかなる類も要素に持たない]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a \notin \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a,b$を類とするとき，類の公理より
+		\begin{align}
+			a \in b \Longrightarrow \set{a}
+		\end{align}
+		が成立する．このとき$\tau \coloneqq \varepsilon x (\ a = x\ )$とおけば$a = \tau$が成り立つので
+		相等性の公理より$\tau \in b$が成立し，推論規則\ref{metaaxm:rules_of_quantifiers}より
+		$\exists x\ (\ x \in b\ )$が成り立つ．よって演繹法則より
+		\begin{align}
+			a \in b \Longrightarrow \exists x\ (\ x \in b\ )
+		\end{align}
+		が成り立つから，対偶を取り推論法則\ref{metathm:properties_of_quantifiers}を適用すれば
+		\begin{align}
+			\forall x\ (\ x \notin b\ ) \Longrightarrow a \notin b
+		\end{align}
+		が成り立つ．$b$を$\emptyset$に置き換えれば$\forall x\ (\ x \notin \emptyset\ )$が満たされるので
+		三段論法より$a \notin \emptyset$が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[部分類]
+			$a,b$を類とするとき，
+			\begin{align}
+				a \subset b \overset{\mathrm{def}}{\Longleftrightarrow}
+				\forall x\ (\ x \in a \Longrightarrow x \in b\ )
+			\end{align}
+			と定める．式$a \subset b$を``$a$は$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}である''
+			と翻訳し，特に$a$が集合である場合は``$a$は$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である''と翻訳する．
+			また類$a,b$に対して次を定める:
+			\begin{align}
+				a \subsetneq b \overset{\mathrm{def}}{\Longleftrightarrow}
+				a \subset b \wedge a \neq b.
 			\end{align}
 		\end{dfn}
+	\end{screen}
+	
+	空虚な真の一例として次の結果を得る．
+	
+	\begin{screen}
+		\begin{thm}[空集合は全ての類に含まれる]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\emptyset \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とする．$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \notin \emptyset$が成り立つから，
+		推論規則\ref{metaaxm:fundamental_rules_of_inference}を適用して
+		\begin{align}
+			\tau \notin \emptyset \vee \tau \in a
+		\end{align}
+		が成り立つ．これは$\tau \in \emptyset \Longrightarrow \tau \in a$が成り立つことと同値であり，
+		$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\ (\ x \in \emptyset \Longrightarrow x \in a\ )
+		\end{align}
+		が成立する．以上から$\emptyset \subset a$が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]\label{thm:subclass_contains_all_elements}
+			$a,b,c$を類とすれば次が成り立つ:
+			\begin{align}
+				a \subset b \Longrightarrow (\ c \in a \Longrightarrow c \in b\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}	
+		いま$a \subset b$が成り立っているとする．このとき$c \in a$が成り立っていると仮定すれば
+		類の公理より$\set{c}$が成り立つ．ここで
+		\begin{align}
+			\tau \coloneqq \varepsilon x(\ c=x\ )
+		\end{align}
+		とおくと相等性の公理より$\tau \in a$が成り立ち，
+		$a \subset b$と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
+		$\tau \in b$が従う．再び相等性の公理を適用すれば$c \in b$が成り立つので，
+		演繹法則より$a \subset b$が成り立っている下で
+		\begin{align}
+			c \in a \Longrightarrow c \in b
+		\end{align}
+		が成立する．再び演繹法則を適用すれば定理の主張が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は最大の類である]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a \subset \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:any_class_equals_to_itself}と類の公理より
+		$\tau \in \Univ$が成立するので，推論規則\ref{metaaxm:fundamental_rules_of_inference}より
+		\begin{align}
+			\tau \notin a \vee \tau \in \Univ
+		\end{align}
+		が成立する．このとき推論法則\ref{metathm:rule_of_inference_3}より
+		$\tau \in a \Longrightarrow \tau \in \Univ$が成立し，$\tau$の任意性と
+		推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
+		\begin{align}
+			\forall x\ (\ x \in a \Longrightarrow x \in \Univ\ )
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[互いに互いの部分類となる類同士は等しい]\label{thm:mutually_sub_classes_are_equivalent}
+			$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				a \subset b \wedge b \subset a \Longleftrightarrow a = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a \subset b \wedge b \subset a$が成り立っていると仮定する．
+		このとき$\tau$を$\mathcal{L}$の任意の対象とすれば，
+		$a \subset b$と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		$\tau \in a \Longrightarrow \tau \in b$が成立し，他方で
+		$b \subset a$と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		$\tau \in b \Longrightarrow \tau \in a$が成立するので
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が成り立つ．$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}および
+		外延性の公理より$a = b$が出るので，演繹法則より
+		\begin{align}
+			a \subset b \wedge b \subset a \Longrightarrow a = b
+		\end{align}
+		が得られる．逆に$a = b$が満たされていれば，
+		$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \in a \Longrightarrow \tau \in b$と
+		$\tau \in b \Longrightarrow \tau \in a$が共に成り立つので，
+		推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		$a \subset b$と$b \subset a$が共に従う．よって演繹法則より
+		\begin{align}
+			a = b \Longrightarrow a \subset b \wedge b \subset a
+		\end{align}
+		も得られる．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「定理\ref{thm:subclass_contains_all_elements}と定理\ref{thm:mutually_sub_classes_are_equivalent}より，
+			類$a,b$が$a = b$を満たすならば，$a$と$b$は要素に持つ$\mathcal{L}$の対象のみならず，
+			要素に持つ類までも一致するのですね．これは
+			\begin{itemize}
+				\item 要素となりうる類は集合である
+				\item 集合は$\mathcal{L}$の或る対象に等しい
+			\end{itemize}
+			からの帰結です．」
+	}
+	
+	次の話題に進む前に新しい推論法則を提示しておく．
+	
+	\begin{screen}
+		\begin{metathm}[量化記号の性質(ロ)]\label{metathm:properties_of_quantifiers_2}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
+			\begin{description}
+				\item[(a)] $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
+				
+				\item[(b)] $\forall x ( A(x) \wedge B(x) ) \Longleftrightarrow \forall x A(x) \wedge \forall x B(x)$.
+			\end{description}
+		\end{metathm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[第一段]
-				$\delta(\mathscr{C})$が交演算で閉じていれば
-				$\delta(\mathscr{C})$は$\sigma$-加法族となる．実際任意の$A \in \delta(\mathscr{A})$に対し
+			\item[(a)]
+				いま$c(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x) \vee B(x)$とおけば，
+				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
 				\begin{align}
-					A^c = X \backslash A \in \delta(\mathscr{A})
+					\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x)
+					\label{eq:metathm_properties_of_quantifiers_1}
 				\end{align}
-				となるから，$\delta(\mathscr{C})$が交演算で閉じていれば任意の
-				$A_n \in \delta(\mathscr{C})\ (n=1,2,\cdots)$に対し
+				が成立する．また推論法則\ref{metathm:transitive_law_of_implication}より
 				\begin{align}
-					\bigcup_{n=1}^{\infty} A_n
-					= \bigcup_{n=1}^{\infty} A_1^c \cap A_2^c \cap \cdots \cap A_{n-1}^c \cap A_n
-					\in \delta(\mathscr{C})
+					\exists x C(x) \Longrightarrow C(\varepsilon x C(x))
+					\label{eq:metathm_properties_of_quantifiers_2}
 				\end{align}
-				が従う．$\sigma$-加法族はDynkin族であるから
-				$\sigma(\mathscr{C}) \subset \delta(\mathscr{C})$も成り立ち
-				$\sigma(\mathscr{C}) = \delta(\mathscr{C})$が得られる．
+				が成立する．$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$
+				は同じ記号列であるから
+				\begin{align}
+					C(\varepsilon x C(x)) \Longrightarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\label{eq:metathm_properties_of_quantifiers_3}
+				\end{align}
+				が成立する．ここで推論法則\ref{metathm:transitive_law_of_implication}と
+				推論規則\ref{metaaxm:fundamental_rules_of_inference}より
+				\begin{align}
+					A(\varepsilon x C(x)) &\Longrightarrow \exists x A(x) \\
+						&\Longrightarrow \exists x A(x) \vee \exists x B(x), \\
+					B(\varepsilon x C(x)) &\Longrightarrow \exists x B(x) \\
+						&\Longrightarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が成立するので，場合分け法則より
+				\begin{align}
+					A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\Longrightarrow \exists x A(x) \vee \exists x B(x)
+					\label{eq:metathm_properties_of_quantifiers_4}
+				\end{align}
+				が成り立つ．(\refeq{eq:metathm_properties_of_quantifiers_1})
+				(\refeq{eq:metathm_properties_of_quantifiers_2})
+				(\refeq{eq:metathm_properties_of_quantifiers_3})
+				(\refeq{eq:metathm_properties_of_quantifiers_4})
+				に推論法則\ref{metathm:transitive_law_of_implication}を順次適用すれば
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が得られる．他方，推論規則\ref{metaaxm:rules_of_quantifiers}より
+				\begin{align}
+					\exists x A(x) &\Longrightarrow A(\varepsilon x A(x)) \\
+						&\Longrightarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) \\
+						&\Longrightarrow C(\varepsilon x A(x)) \\
+						&\Longrightarrow C(\varepsilon x C(x)) \\
+						&\Longrightarrow \exists x C(x) \\
+						&\Longrightarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				が成立し，$A$を$B$に置き換えれば
+				$\exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))$も成り立つので，
+				場合分け法則より
+				\begin{align}
+					\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				も得られる．
 			
-			\item[第二段]
-				$\delta(\mathscr{C})$が交演算について閉じていることを示す．いま，
+			\item[(b)]
+				簡略して説明すれば
 				\begin{align}
-					\mathscr{D}_1 \coloneqq
-					\Set{B \in \delta(\mathscr{C})}{ A \cap B \in \delta(\mathscr{C}),\ 
-					\forall A \in \mathscr{C}}
+					\forall x \left( A(x) \wedge B(x) \right)
+					&\Longleftrightarrow\ \rightharpoondown \exists x \rightharpoondown \left( A(x) \wedge B(x) \right) & (\mbox{推論法則\ref{metathm:properties_of_quantifiers}(c)の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \exists x \left( \rightharpoondown A(x) \vee \rightharpoondown B(x) \right) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \exists x \rightharpoondown A(x) \vee \exists x \rightharpoondown B(x) \right) & (\mbox{前段の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \rightharpoondown \forall x A(x) \vee \rightharpoondown \forall x B(x) \right) & (\mbox{推論法則\ref{metathm:properties_of_quantifiers}(c)}) \\
+					&\Longleftrightarrow\ \rightharpoondown \rightharpoondown \forall x A(x) \wedge \rightharpoondown \rightharpoondown \forall x B(x) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
 				\end{align}
-				により定める$\mathscr{D}_1$はDynkin族であり$\mathscr{C}$を含むから
-				\begin{align}
-					\delta(\mathscr{C}) \subset \mathscr{D}_1
-				\end{align}
-				が成立する．従って
-				\begin{align}
-					\mathscr{D}_2 \coloneqq
-					\Set{B \in \delta(\mathscr{C})}{ A \cap B \in \delta(\mathscr{C}),\ 
-					\forall A \in \delta(\mathscr{C})}
-				\end{align}
-				によりDynkin族$\mathscr{D}_2$を定めれば，$\mathscr{C} \subset \mathscr{D}_2$が満たされ
-				\begin{align}
-					\delta(\mathscr{C}) \subset \mathscr{D}_2
-				\end{align}
-				が得られる．よって$\delta(\mathscr{C})$は交演算について閉じている．
+				となる．
 				\QED
 		\end{description}
 	\end{prf}
 	
+	\monologue{
+		院生「我々は$\mathcal{L}$の式$A$を用いて$\Set{x}{A(x)}$の記法を導入しましたが，
+			今後は$\mathcal{L}'$の式$B$に対しても$\Set{x}{B(x)}$の形で書けると便利なことが多いです．
+			同然ながらそれは$B$が同値な$\mathcal{L}$の式で表現できることが条件です．
+			ここで真価を発揮するのは$\varepsilon$記号です．後述する通り，
+			$\varepsilon$記号は量化記号の意味を表現するのに便利であるだけでなく，
+			$\mathcal{L}'$の式を同値な$\mathcal{L}$の式に書き直す際にも有能なのです．」
+	}
+	
+	$a$を類とするとき，$a$は$\mathcal{L}$の対象であるか$\Set{x}{A(x)}$の形をしている．そこで，文字$x$に対し
+	\begin{itemize}
+		\item $a$が$\mathcal{L}$の対象ならば$\varepsilon a(x) \overset{\mathrm{def}}{\Longleftrightarrow} x \in a$，
+		\item $a$が$\Set{x}{A(x)}$の形をしていれば$\varepsilon a(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x)$，
+	\end{itemize}
+	として記号列$\varepsilon a(x)$を定める．$\varepsilon$記号を用いているのは，
+	量化記号に関する推論規則で$\varepsilon$記号を定めたときと動機が似ているためである．
+	早速この記法を用いて次を定義する．
+	
 	\begin{screen}
-		\begin{thm}
-			集合$X$の部分集合族$\mathscr{D}$が
-			の定義\ref{def:Dynkin_system_theorem}の(D1),(D2)を満たしているとき，
-			$\mathscr{D}$が(D3)を満たすことと
-			$\mathscr{D}$が増大列の可算和で閉じることは同値である．
+		\begin{dfn}[対]
+			$a,b$を類とするとき，
+			\begin{align}
+				\{a,b\} \coloneqq \Set{x}{
+					\forall t\ \left(\ t \in x \Longleftrightarrow \varepsilon a(t)\ \right) \vee 
+					\forall t\ \left(\ t \in x \Longleftrightarrow \varepsilon b(t)\ \right)}
+			\end{align}
+			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{a,a\}$を$\{a\}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	$a,b$を類とするとき
+	\begin{align}
+		\forall x\ \left(\ x = a \vee x = b \Longleftrightarrow 
+			\forall t\ \left(\ t \in x \Longleftrightarrow \varepsilon a(t)\ \right) \vee 
+			\forall t\ \left(\ t \in x \Longleftrightarrow \varepsilon b(t)\ \right)\ 
+		\right)
+	\end{align}
+	が成立する．これを根拠にして，$\{a,b\}$を
+	\begin{align}
+		\Set{x}{x = a \vee x = b}
+	\end{align}
+	という表しても良いことにする．もとより，対の定義はこちらの表記を正当化することを予期したものである．
+	
+	\begin{screen}
+		\begin{axm}[対の公理]
+			集合同士の対は集合である．つまり，$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \wedge \set{b} \Longrightarrow 
+				\set{\{a,b\}}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[真類の対は空・集合は自分を構成要素とする対に属する]
+			$a,b$を類とするとき次が成り立つ:
+			\begin{itemize}
+				\item $\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longrightarrow \{a,b\} = \emptyset.$
+				\item $\set{a} \Longrightarrow a \in \{a,b\}.$
+			\end{itemize}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\mathscr{D}$が可算直和について閉じているとする．このとき
-		単調増大列$A_1 \subset A_2 \subset \cdots$を取り
+		いま$\rightharpoondown \set{a} \wedge \rightharpoondown \set{b}$が成り立っているとする．
+		このとき推論法則\ref{metathm:properties_of_quantifiers}より
 		\begin{align}
-			B_1 \coloneqq A_1,
-			\quad B_n \coloneqq A_n \backslash A_{n-1},
-			\quad (n \geq 2)
+			\forall x\ (\ a \neq x\ ) \wedge \forall x\ (\ b \neq x\ )
 		\end{align}
-		とおけば(D2)より$B_n \in \mathscr{D},\ (\forall n \geq 1)$が満たされ，
-		$n \neq m$なら$B_n \cap B_m = \emptyset$となるから
+		が成り立ち，推論法則\ref{metathm:properties_of_quantifiers_2}より
 		\begin{align}
-			\bigcup_{n=1}^{\infty} A_n = \bigcup_{n=1}^{\infty} B_n \in \mathscr{D} 
+			\forall x\ (\ a \neq x \wedge b \neq x\ )
 		\end{align}
-		が成立する．逆に$\mathscr{D}$が増大列の可算和で閉じているとする．
-		(D1)(D2)より互いに素な$A,B \in \mathscr{D}$に対し
-		$A^c \in \mathscr{D}$及び$A^c \cap B^c = A^c \backslash B\in \mathscr{D}$が成り立つから，
-		$\mathscr{D}$の互いに素な集合列$(B_n)_{n=1}^{\infty}$を取れば
+		が成立する．他方で
 		\begin{align}
-			B_1^c \cap B_2^c \cap \cdots \cap B_n^c
-			= \left( \cdots \left( \left( B_1^c \cap B_2^c \right) \cap B_3^c \right) \cap \cdots \cap B_{n-1}^c \right) \cap B_n^c
-			\in \mathscr{D},
-			\quad (n=1,2,\cdots)
+			\forall x\ \left(\ a = x \vee b = x \Longleftrightarrow x \in \{a,b\}\ \right)
 		\end{align}
-		が得られる．よって
+		が満たされているので，ここで$\chi$を$\mathcal{L}$の任意の対象とすれば
+		$\wedge$の除去と対偶命題の同値性から
 		\begin{align}
-			D_n \coloneqq \bigcup_{i=1}^n B_i = X \backslash \Biggl( \bigcap_{i=1}^n B_i^c \Biggr),
-			\quad (n=1,2,\cdots)
+			a \neq \chi \vee b \neq \chi \Longrightarrow \chi \notin \{a,b\}
 		\end{align}
-		により$\mathscr{D}$の単調増大列$(D_n)_{n=1}^{\infty}$を定めれば
+		が成り立ち，$a \neq \chi \wedge b \neq \chi$も満たされているので三段論法より$\chi \notin \{a,b\}$が成立する．
+		そして$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\bigcup_{n=1}^{\infty} B_n = \bigcup_{n=1}^{\infty} D_n \in \mathscr{D}
+			\forall x\ (\ x \notin \{a,b\}\ )
 		\end{align}
-		が成立する．
+		が成立し，定理\ref{thm:uniqueness_of_emptyset}より$\{a,b\} = \emptyset$が従うので，演繹法則を適用して
+		\begin{align}
+			\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longrightarrow \{a,b\} = \emptyset
+		\end{align}
+		が得られる．次に$\set{a}$が成立していると仮定する．このとき存在記号に関する規則より
+		\begin{align}
+			a = \varepsilon x(\ a = x\ ) \Longleftrightarrow \set{a}
+		\end{align}
+		が成り立つので，$\tau \coloneqq \varepsilon x(\ a = x\ )$とおけば
+		三段論法より$\tau = a$が成立し，$\vee$の導入より$\tau = a \vee \tau = b$が成り立ち
+		\begin{align}
+			\tau \in \{a,b\}
+		\end{align}
+		となる．そして相等性の公理より$a \in \{a,b\}$が従う．ここで演繹法則を適用すれば
+		\begin{align}
+			\set{a} \Longrightarrow a \in \{a,b\}
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
-
-\subsection{上限下限}
+	
 	\begin{screen}
-		\begin{thm}[上限の冪と冪の上限]\label{thm:exponentiation_of_supremum_supremum_of_exponentiation}
-			任意の空でない$S \subset [0,\infty)$と$t > 0$に対し次が成立する:
+		\begin{dfn}[合併]
+			$a$を類とするとき
 			\begin{align}
-				(\sup{}{S})^t = \sup{}{\Set{s^t}{s \in S}}.
+				\bigcup a \coloneqq \Set{x}{\exists t\ (\ \varepsilon a(t) \wedge x \in t\ )}
 			\end{align}
+			で$\bigcup a$を定め，これを$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$a$を類とするとき，
+	\begin{align}
+		\forall x\ \left(\ x \in \bigcup a \Longleftrightarrow \exists t \in a\ (\ x \in t\ )\ \right)
+	\end{align}
+	が成立する．実際，$\varepsilon$記号の定め方と類の公理から
+	\begin{align}
+		\forall t\ \left(\ \varepsilon a(t) \Longleftrightarrow t \in a\ \right)
+	\end{align}
+	が満たされるので，$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば同値関係の遺伝性質より
+	\begin{align}
+		\varepsilon a(\tau) \wedge \chi \in \tau \Longleftrightarrow \tau \in a \wedge \chi \in \tau
+	\end{align}
+	が成立する．このとき$\tau$の任意性と推論法則\ref{metathm:properties_of_quantifiers}より
+	\begin{align}
+		\exists t\ (\ \varepsilon a(t) \wedge \chi \in t\ )
+		\Longleftrightarrow \exists t\ (\ t \in a \wedge \chi \in t\ )
+	\end{align}
+	が成立し，$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+	\begin{align}
+		\forall x\ \left(\ \exists t\ (\ \varepsilon a(t) \wedge x \in t\ )
+		\Longleftrightarrow \exists t\ (\ t \in a \wedge x \in t\ )\ \right)
+	\end{align}
+	が成立する．これを根拠にして，$\bigcup a$を
+	\begin{align}
+		\Set{x}{\exists t \in a\ (\ x \in t\ )}
+	\end{align}
+	で表しても良いことにする．正確さも大切であるが，やはり判りやすい方が良いに決まっている．
+	
+	\monologue{
+		院生「一般の類$a$に対して，本来
+			\begin{align}
+				\Set{x}{\exists t \in a\ (\ x \in t\ )}
+			\end{align}
+			は類として失格です．なぜならば，$a$が$\mathcal{L}$の対象ではない場合はそもそも
+			\begin{align}
+				\exists t \in a\ (\ x \in t\ )
+			\end{align}
+			が$\mathcal{L}$の式でないからです．しかしいちいち$\varepsilon$記号を使っていては見た目が煩雑になりますから，表記上は
+			\begin{align}
+				\Set{x}{\exists t \in a\ (\ x \in t\ )}
+			\end{align}
+			も認めるのです．以後もこのように妥協する場面に直面するでしょうが，
+			しかし$\varepsilon$記号を用いれば正式な形に書き直せるのですから解釈上の不具合は無いのです．」
+	}
+	
+	$a,b$を類とするとき，その対の合併を
+	\begin{align}
+		a \cup b \overset{\mathrm{def}}{\Longleftrightarrow} \bigcup \{a,b\}
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{axm}[合併の公理]
+			集合の合併は集合である．つまり，$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \Longrightarrow \set{\bigcup a}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[合併の性質]\mbox{}
+			\begin{description}
+				\item[(i)] $\bigcup \emptyset = \emptyset$
+				\item[(ii)] $\forall x\ (\ x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\ )$
+				\item[(iii)] $\Set{x}{A(x)} \cup \Set{x}{\rightharpoondown A(x)} = \Univ$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[交叉]
+			$a$を類とするとき，
+			\begin{align}
+				\bigcap a \coloneqq \Set{x}{\forall t \in a\ (\ x \in t\ )}
+			\end{align}
+			で$\bigcap a$を定め，これを$a$の{\bf 交叉}\index{こうさ@交叉}{\bf (intersection)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$a,b$を類とするとき，その対の合併を
+	\begin{align}
+		a \cap b \overset{\mathrm{def}}{\Longleftrightarrow} \bigcap \{a,b\}
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{thm}[交叉の性質]\mbox{}
+			\begin{description}
+				\item[(1)] $\bigcap \emptyset = \Univ$
+				\item[(2)] $\forall x\ (\ x \in a \cap b \Longleftrightarrow x \in a \wedge x \in b\ )$
+				\item[(3)] $\Set{x}{A(x)} \cap \Set{x}{\rightharpoondown A(x)} = \emptyset$.
+			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$S=\{0\}$なら両辺0で一致するので，$S$は$\{0\}$より真に大きいとする．このとき
-		任意の$s \in S$に対し$s^t \leq (\sup{}{S})^t$となるから$\sup{}{\Set{s^t}{s \in S}} \leq (\sup{}{S})^t$が従う．
-		また任意の$(\sup{}{S})^t > \alpha > 0$に対し$s > \alpha^{1/t}$を満たす$s \in S$が存在し
-		$(\sup{}{S})^t \geq s^t > \alpha$となるから$\sup{}{\Set{s^t}{s \in S}} = (\sup{}{S})^t$が得られる．
+		$x$を$\mathcal{L}$の任意の対象とするとき，空虚な真より
+		\begin{align}
+			t \in \emptyset \Longrightarrow x \in t
+		\end{align}
+		は$\mathcal{L}$のいかなる対象$t$に対してもに真となる．ゆえに$\forall t \in \emptyset\ (\ x \in t\ )$が成立し
+		\begin{align}
+			\forall x\ (\ x \in \bigcap \emptyset\ )
+		\end{align}
+		が従う．$\forall x\ (\ x \in \Univ\ )$と併せて$\bigcap \emptyset = \Univ$を得る．
 		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「$\bigcup \emptyset$が$\emptyset$に等しいのは受け容れられますが，
+			$\bigcap \emptyset$が$\Univ$に等しいというのは直感に合いません．空虚な真おそるべしです．」
+	}
+	
+	\begin{screen}
+		\begin{thm}
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $a^{-1}$の任意の要素$t$に対し或る$V$の要素$x,y$が存在して
+				\begin{align}
+					(x,y) \in a \wedge t = (y,x)
+				\end{align}
+				を満たす．$((x,y),(y,x)) \in f$より$((x,y),t) \in f$が成り立つから
+				$t \in f \ast a$となる．逆に$f \ast a$の任意の要素$t$に対して
+				$a$の或る要素$x$が存在して
+				\begin{align}
+					x \in a \wedge (x,t) \in f
+				\end{align}
+				となる．$x$に対し$V$の或る要素$a,b$が存在して$x=(a,b)$となるので
+				\begin{align}
+					((a,b),t) \in f
+				\end{align}
+				となり，$V$の或る要素$c,d$が存在して
+				\begin{align}
+					((a,b),t) = ((c,d),(d,c))
+				\end{align}
+				となる．$(a,b) = (c,d)$より$a=c$かつ$b=d$となり，
+				$t = (d,c)$かつ$(d,c)=(b,a)$より$t=(b,a)$，従って
+				$t \in a^{-1}$が成り立つ．
+		\end{description}
 	\end{prf}
