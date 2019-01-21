@@ -229,14 +229,15 @@
 	\end{screen}
 	
 	\monologue{
-		院生「後述することですが宇宙は集合の全体に一致します．つまり$\Univ$の要素である類は集合であり，
+		院生「集合とは$\mathcal{L}$の対象か$\mathcal{L}$の対象に等しい類のことを指すのですね．
+			また後述することですが宇宙は集合の全体に一致します．つまり$\Univ$の要素である類は集合であり，
 			逆に類が集合であるならば$\Univ$の要素であるのです．
 			さてここで次の問題を考えましょう．集合であり真類でもある類や，集合でも真類でもない類は存在するのかという問題です．
 			実は我々はまだこれに答える術を持っていません．
 			質問を変えましょう．集合であり真類でもある類や集合でも真類でもない類の存在を禁止するにはどうしたら良いでしょうか？
 			我々は，数学において中庸が無いということや矛盾が起きるということをどう表現しようかという問題に直面しているのです．
 			この問題の解決への方便として{\bf 推論規則}\index{すいろんきそく@推論規則}
-			{\bf (rule of inference)}と呼ばれるものを導入します．」
+			{\bf (rule of inference)}を導入します．」
 	}
 	
 	\begin{screen}
@@ -364,33 +365,83 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}\label{metathm:rule_of_inference_1}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
-			$(A \Longrightarrow B) \Longrightarrow 
-			(\ (A \vee C) \Longrightarrow (B \vee C)\ )$は定理である．
+		\begin{metathm}[含意は遺伝する]\label{metathm:rule_of_inference_1}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \Longrightarrow B) \Longrightarrow ( (A \vee C) \Longrightarrow (B \vee C) )$.
+				
+				\item[(b)] $(A \Longrightarrow B) \Longrightarrow ( (A \wedge C) \Longrightarrow (B \wedge C) )$.
+				
+				\item[(c)] $(A \Longrightarrow B) \Longrightarrow ( (B \Longrightarrow C) \Longrightarrow (A \Longrightarrow C) )$.
+				
+				\item[(c)] $(A \Longrightarrow B) \Longrightarrow ( (C \Longrightarrow A) \Longrightarrow (C \Longrightarrow B) )$.
+			\end{description}
 		\end{metathm}
 	\end{screen}
 	
-	\begin{prf}
-		いま$A \Longrightarrow B$を公理に追加する．
-		このとき$A$を公理に追加すれば$B$は定理となり，
-		$B \Longrightarrow (B \vee C)$が定理であるから$B \vee C$も定理となる．
-		これより$A \Longrightarrow B$を公理とした下では
-		\begin{align}
-			A \Longrightarrow (B \vee C)
-		\end{align}
-		が定理となる．他方で$C \Longrightarrow (B \vee C)$は定理であるから，
-		場合分け法則より$A \Longrightarrow B$を公理とした下では
-		\begin{align}
-			(A \vee C) \Longrightarrow (B \vee C)
-		\end{align}
-		が定理となる．従って演繹法則より
-		\begin{align}
-			(A \Longrightarrow B) \Longrightarrow 
-			(\ (A \vee C) \Longrightarrow (B \vee C)\ )
-		\end{align}
-		は定理となる．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)]
+				いま$A \Longrightarrow B$と$A$が成り立っていると仮定する．
+				このとき三段論法より$B$が成立し，他方で$\vee$の導入より
+				$B \Longrightarrow (B \vee C)$が成り立つので再び三段論法から$B \vee C$が成立する．
+				ここに演繹法則を適用すれば，$A \Longrightarrow B$を成り立っている下で
+				\begin{align}
+					A \Longrightarrow (B \vee C)
+				\end{align}
+				が成り立つ．$\vee$の導入より$C \Longrightarrow (B \vee C)$も成り立っているから，
+				場合分け法則より$A \Longrightarrow B$が成り立っている下で
+				\begin{align}
+					(A \vee C) \Longrightarrow (B \vee C)
+				\end{align}
+				が定理となり，ここに演繹法則を適用して
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow 
+					( (A \vee C) \Longrightarrow (B \vee C) )
+				\end{align}
+				が得られる．
+				
+			\item[(b)]
+				いま$A \Longrightarrow B$と$A \wedge C$が成り立っていると仮定する．このとき
+				$\wedge$の除去より$A$と$C$が成り立ち，三段論法より$B$が成り立つので，$\wedge$の導入より
+				$B \wedge C$が成立する．ここに演繹法則を適用すれば，$A \Longrightarrow B$が成り立っている下で
+				\begin{align}
+					(A \wedge C) \Longrightarrow (B \wedge C)
+				\end{align}
+				が成立する．再び演繹法則を適用すれば
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow ( (A \wedge C) \Longrightarrow (B \wedge C) )
+				\end{align}
+				が得られる．
+				
+			\item[(c)]
+				いま$A \Longrightarrow B$，$B \Longrightarrow C$および
+				$A$が成り立っていると仮定する．このとき三段論法より$B$が成り立つので再び三段論法より
+				$C$が成立する．ゆえに演繹法則より$A \Longrightarrow B$と$B \Longrightarrow C$が
+				成り立っている下で
+				\begin{align}
+					A \Longrightarrow C
+				\end{align}
+				が成立し，演繹法則を更に順次適用すれば
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow ( (B \Longrightarrow C) \Longrightarrow (A \Longrightarrow C) )
+				\end{align}
+				が得られる．
+				
+			\item[(d)]
+				いま$A \Longrightarrow B$，$C \Longrightarrow A$および
+				$C$が成り立っていると仮定する．このとき三段論法より$A$が成り立つので再び三段論法より$B$が成立し，
+				ここに演繹法則を適用すれば，$A \Longrightarrow B$と$C \Longrightarrow A$が成立している下で
+				\begin{align}
+					C \Longrightarrow B
+				\end{align}
+				が成立する．演繹法則を更に順次適用すれば
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow ( (C \Longrightarrow A) \Longrightarrow (C \Longrightarrow B) )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
@@ -442,6 +493,39 @@
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
 	
 	\begin{screen}
+		\begin{metathm}[同値関係の遺伝性質]\label{metathm:hereditary_of_equivalence}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \Longleftrightarrow B) \Longrightarrow ((A \vee C) \Longleftrightarrow (B \vee C))$.
+				\item[(b)] $(A \Longleftrightarrow B) \Longrightarrow ((A \wedge C) \Longleftrightarrow (B \wedge C))$.
+				\item[(c)] $(A \Longleftrightarrow B) \Longrightarrow ((B \Longrightarrow C) \Longleftrightarrow (A \Longrightarrow C))$.
+				
+				\item[(d)] $(A \Longleftrightarrow B) \Longrightarrow ((C \Longrightarrow A) \Longleftrightarrow (C \Longrightarrow B))$.
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		まず(a)を示す．いま$A \Longleftrightarrow B$が成り立っていると仮定する．このとき$A \Longrightarrow B$と
+		$B \Longrightarrow A$が共に成立し，他方で含意の遺伝性質より
+		\begin{align}
+			&(A \Longrightarrow B) \Longrightarrow ((A \vee C) \Longrightarrow (B \vee C)), \\
+			&(B \Longrightarrow A) \Longrightarrow ((B \vee C) \Longrightarrow (A \vee C))
+		\end{align}
+		が成立するから三段論法より$(A \vee C) \Longrightarrow (B \vee C)$と
+		$(B \vee C) \Longrightarrow (A \vee C)$が共に成立する．ここに$\wedge$の導入を適用すれば
+		\begin{align}
+			(A \vee C) \Longleftrightarrow (B \vee C)
+		\end{align}
+		が成立し，演繹法則を適用すれば
+		\begin{align}
+			(A \Longleftrightarrow B) \Longrightarrow ((A \vee C) \Longleftrightarrow (B \vee C))
+		\end{align}
+		が得られる．(b)(c)(d)も含意の遺伝性を適用すれば得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{metathm}[偽であることと否定は同値]\label{metathm:false_and_negation_are_equivalent}
 			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
 			\begin{align}
@@ -483,7 +567,8 @@
 		\end{align}
 		が得られる．逆に$\rightharpoondown \rightharpoondown A$が成り立っていると仮定すると，
 		$\rightharpoondown A$が成り立っているなら$\bot$が定理となり，
-		また$\bot$からはあらゆる閉式が導かれるので$A$も定理となる．すなわちこのとき
+		また$\bot$からはあらゆる閉式が導かれるので$A$も定理となる．
+		ここに推論法則\ref{metathm:transitive_law_of_implication}を適用すれば
 		\begin{align}
 			\rightharpoondown A \Longrightarrow A
 		\end{align}
@@ -524,23 +609,25 @@
 	\end{screen}
 	
 	\begin{prf}
-		$A \Longrightarrow B$が真であると仮定する．このとき，推論法則\ref{metathm:rule_of_inference_1}より
+		$A \Longrightarrow B$が成り立っていると仮定する．含意の遺伝性質より
 		\begin{align}
 			(A \Longrightarrow B) \Longrightarrow 
-			(\ (A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)\ )
+			((A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A))
 		\end{align}
-		は定理であるから$(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)$
-		は定理となり，排中律より$B \vee \rightharpoondown A$は定理となる．そして可換律より$\rightharpoondown A \vee B$は定理となるので
+		が満たされているから三段論法より$(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)$
+		は定理となり，ここに排中律と三段論法を適用すれば$B \vee \rightharpoondown A$が定理となる．
+		ここで可換律より$\rightharpoondown A \vee B$が成り立つので，演繹法則を適用して
 		\begin{align}
 			(A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
 		\end{align}
-		が得られた．また$\rightharpoondown A$が真であると仮定すると，
+		が得られる．また$\rightharpoondown A$が成り立っていると仮定すると，
 		この下で$A$を公理に追加すれば$\bot$が定理となり，$\bot$からは$B$が導かれるので$B$も定理となる．従って
+		演繹法則より
 		\begin{align}
 			(\rightharpoondown A) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
-		は定理である．一方で推論法則\ref{metathm:rule_of_inference_2}より$B \Longrightarrow (A \Longrightarrow B)$も定理であるから，
-		場合分けの法則より
+		が成り立つ．一方で推論法則\ref{metathm:rule_of_inference_2}より
+		$B \Longrightarrow (A \Longrightarrow B)$が定理であるから，場合分けの法則より
 		\begin{align}
 			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
@@ -999,14 +1086,23 @@
 		\QED
 	\end{prf}
 	
+	\monologue{
+		院生「集合は$\mathcal{L}$の対象であるとは限りません．例えば$\tau$を$\mathcal{L}$の対象とすれば
+			\begin{align}
+				\tau = \Set{x}{x \in \tau}
+			\end{align}
+			が成り立つので，推論規則\ref{metaaxm:rules_of_quantifiers}と集合の定義より
+			$\Set{x}{x \in \tau}$は集合であるとわかりますが，
+			これは言語を$\mathcal{L}'$に拡張した際に導入された表記なので$\mathcal{L}$の対象ではありませんね．」
+	}
+	
 	\begin{screen}
 		\begin{axm}[相等性の公理]
-			$a,b,c$を類とするとき以下は全て公理である:
-			\begin{description}
-				\item[(i)] $a=b \Longrightarrow (\ c \in a \Longleftrightarrow c \in b\ ).$
-				\item[(ii)] $a=b \Longrightarrow (\ c = a \Longleftrightarrow c = b\ ).$
-				\item[(iii)] $a=b \Longrightarrow (\ a \in c \Longleftrightarrow b \in c\ ).$
-			\end{description}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，
+			$x$のみが$A$で量化されていないとする．このとき$a,b$を類とすれば次が成り立つ:
+			\begin{align}
+				a = b \Longrightarrow (\ A(a) \Longleftrightarrow A(b)\ ).
+			\end{align}
 		\end{axm}
 	\end{screen}
 	
@@ -1059,11 +1155,11 @@
 		\begin{align}
 			a \in \Univ \Longrightarrow \exists x\ (\ a = x\ )
 		\end{align}
-		が得られる．逆に$\exists x\ (\ a = x\ )$が成り立っていると仮定する．
+		が得られる．逆に$\exists x\ (\ a = x\ )$が成り立っていると仮定する．このとき
 		\begin{align}
 			\tau \coloneqq \varepsilon x (a = x)
 		\end{align}
-		とおけば，定理\ref{thm:any_class_equals_to_itself}より$\tau = \tau$となるので
+		とおけば，定理\ref{thm:any_class_equals_to_itself}より$\tau = \tau$となるので，類の公理より
 		\begin{align}
 			\tau \in \Univ
 		\end{align}
@@ -1075,20 +1171,18 @@
 		\QED
 	\end{prf}
 	
-	\monologue{
-		院生「集合は$\mathcal{L}$の対象であるとは限りません．例えば
-			$\tau$を$\mathcal{L}$の対象とすれば$\Set{x}{x \in \tau}$は集合ですが，
-			これは言語を$\mathcal{L}'$に拡張した際に導入された表記なので$\mathcal{L}$の対象ではありませんね．」
-	}
+	\begin{screen}
+		\begin{dfn}[空集合]
+			$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{axm}[空集合の公理]
-			次は公理である:
+			$\emptyset$は$\mathcal{L}$のいかなる対象も要素に持たない:
 			\begin{align}
 				\forall x\ (\ x \notin \emptyset\ ).
 			\end{align}
-			つまり$\emptyset$は$\mathcal{L}$のいかなる対象も要素に持たない．
-			$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
 		\end{axm}
 	\end{screen}
 	
@@ -1105,6 +1199,25 @@
 		\end{thm}
 	\end{screen}
 	
+	\begin{prf}
+		$a$を類として$\forall x\ (\ x \notin a\ )$が成り立っていると仮定する．このとき
+		$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \notin a$と
+		$\tau \notin \emptyset$が共に満たされ，推論規則\ref{metaaxm:fundamental_rules_of_inference}より
+		$\tau \notin a \vee \tau \in \emptyset$と$\tau \notin a \vee \tau \in \emptyset$
+		が成り立ち，推論法則\ref{metathm:rule_of_inference_3}より
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in \emptyset, \quad
+			\tau \in \emptyset \Longrightarrow \tau \in a
+		\end{align}
+		が成り立つ．よって$\tau \in a \Longleftrightarrow \tau \in \emptyset$が成立し，
+		$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}を適用して
+		\begin{align}
+			\forall x\ (\ x \in a \Longleftrightarrow x \in \emptyset\ )
+		\end{align}
+		が得られる．ゆえに外延性の公理より$a = \emptyset$が成立し，演繹法則より定理の主張が従う．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
 		\begin{thm}[空集合はいかなる類も要素に持たない]
 			$a$を類とするとき次が成り立つ:
@@ -1115,16 +1228,22 @@
 	\end{screen}
 	
 	\begin{prf}
-		$a,b$を類とするとき
+		$a,b$を類とするとき，類の公理より
+		\begin{align}
+			a \in b \Longrightarrow \exists x\ (\ a = x\ )
+		\end{align}
+		が成立する．このとき$\tau \coloneqq \varepsilon x (\ a = x\ )$とおけば$a = \tau$が成り立つので
+		相等性の公理より$\tau \in b$が成立し，推論規則\ref{metaaxm:rules_of_quantifiers}より
+		$\exists x\ (\ x \in b\ )$が成り立つ．よって演繹法則より
 		\begin{align}
 			a \in b \Longrightarrow \exists x\ (\ x \in b\ )
 		\end{align}
-		が成り立つから，対偶を取れば
+		が成り立つから，対偶を取り推論法則\ref{metathm:properties_of_quantifiers}を適用すれば
 		\begin{align}
 			\forall x\ (\ x \notin b\ ) \Longrightarrow a \notin b
 		\end{align}
-		が成り立つ．$b$を$\emptyset$に置き換えれば$\forall x\ (\ x \notin \emptyset\ )$は真であるから
-		$a \notin \emptyset$が従う．
+		が成り立つ．$b$を$\emptyset$に置き換えれば$\forall x\ (\ x \notin \emptyset\ )$が満たされるので
+		三段論法より$a \notin \emptyset$が出る．
 		\QED
 	\end{prf}
 	
@@ -1135,9 +1254,8 @@
 				a \subset b \overset{\mathrm{def}}{\Longleftrightarrow}
 				\forall x\ (\ x \in a \Longrightarrow x \in b\ )
 			\end{align}
-			で記号列$a \subset b$を定める．また類$a,b$に対して$a \subset b$が成り立っているとき
-			$a$を$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}と呼び，
-			特に$a$が集合である場合は$a$を$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}と呼ぶ．
+			と定める．式$a \subset b$を``$a$は$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}である''
+			と翻訳し，特に$a$が集合である場合は``$a$は$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である''と翻訳する．
 			また類$a,b$に対して
 			\begin{align}
 				a \subsetneq b \overset{\mathrm{def}}{\Longleftrightarrow}
@@ -1146,6 +1264,8 @@
 			と定める．
 		\end{dfn}
 	\end{screen}
+	
+	空虚な真の一例として次の結果を得る．
 	
 	\begin{screen}
 		\begin{thm}[空集合は全ての類に含まれる]
@@ -1157,39 +1277,43 @@
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類とする．$\tau$を$\mathcal{L}$の任意の対象とすれば，$\tau \notin \emptyset$が成り立つから
+		$a$を類とする．$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \notin \emptyset$が成り立つから，
+		推論規則\ref{metaaxm:fundamental_rules_of_inference}を適用して
 		\begin{align}
 			\tau \notin \emptyset \vee \tau \in a
 		\end{align}
-		が成り立つ．これは$\tau \in \emptyset \Longrightarrow \tau \in a$が成り立つことと同値であるから，
-		$\tau$の任意性より$\emptyset \subset a$が得られる．
+		が成り立つ．これは$\tau \in \emptyset \Longrightarrow \tau \in a$が成り立つことと同値であり，
+		$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\ (\ x \in \emptyset \Longrightarrow x \in a\ )
+		\end{align}
+		が成立する．以上から$\emptyset \subset a$が得られる．
 		\QED
 	\end{prf}
 	
-	\monologue{
-		院生「この結果は空虚な真の一例ですね．」
-	}
-	
 	\begin{screen}
 		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]\label{thm:subclass_contains_all_elements}
-			$a,b$を類として，$a$を$b$の部分類とする．このとき，任意の類$c$に対して次が成り立つ:
+			$a,b,c$を類とすれば次が成り立つ:
 			\begin{align}
-				c \in a \Longrightarrow c \in b.
+				a \subset b \Longrightarrow (\ c \in a \Longrightarrow c \in b\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$c \in a$が成り立っていると仮定すれば$\exists x\ (\ c = x\ )$が成り立つ．このとき
+	\begin{prf}	
+		いま$a \subset b$が成り立っているとする．このとき$c \in a$が成り立っていると仮定すれば
+		類の公理より$\exists x\ (\ c = x\ )$が成り立つ．ここで
 		\begin{align}
-			\tau \coloneqq \varepsilon x(c=x)
+			\tau \coloneqq \varepsilon x(\ c=x\ )
 		\end{align}
-		とおくと，相等性の公理より$\tau \in a$となり，
-		$a \subset b$より$\tau \in b$となり，再び相等性の公理より$c \in b$となるから
+		とおくと相等性の公理より$\tau \in a$が成り立ち，
+		$a \subset b$と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
+		$\tau \in b$が従う．再び相等性の公理を適用すれば$c \in b$が成り立つので，
+		演繹法則より$a \subset b$が成り立っている下で
 		\begin{align}
 			c \in a \Longrightarrow c \in b
 		\end{align}
-		が得られる．
+		が成立する．再び演繹法則を適用すれば定理の主張が得られる．
 		\QED
 	\end{prf}
 	
@@ -1203,11 +1327,18 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\Univ$は$\mathcal{L}$の対象の全てを要素として持つから
+		$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:any_class_equals_to_itself}と類の公理より
+		$\tau \in \Univ$が成立するので，推論規則\ref{metaaxm:fundamental_rules_of_inference}より
+		\begin{align}
+			\tau \notin a \vee \tau \in \Univ
+		\end{align}
+		が成立する．このとき推論法則\ref{metathm:rule_of_inference_3}より
+		$\tau \in a \Longrightarrow \tau \in \Univ$が成立し，$\tau$の任意性と
+		推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
 		\begin{align}
 			\forall x\ (\ x \in a \Longrightarrow x \in \Univ\ )
 		\end{align}
-		が成り立つ．
+		が従う．
 		\QED
 	\end{prf}
 	
@@ -1222,16 +1353,28 @@
 	
 	\begin{prf}
 		$a \subset b \wedge b \subset a$が成り立っていると仮定する．
-		このとき$\mathcal{L}$の任意の対象$\tau$に対して
+		このとき$\tau$を$\mathcal{L}$の任意の対象とすれば，
+		$a \subset b$と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		$\tau \in a \Longrightarrow \tau \in b$が成立し，他方で
+		$b \subset a$と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		$\tau \in b \Longrightarrow \tau \in a$が成立するので
 		\begin{align}
 			\tau \in a \Longleftrightarrow \tau \in b
 		\end{align}
-		が成り立つから$a = b$が従う．逆に$a = b$が成り立っていると仮定すれば，
-		$\mathcal{L}$の任意の対象$\tau$に対して
+		が成り立つ．$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}および
+		外延性の公理より$a = b$が出るので，演繹法則より
 		\begin{align}
-			\tau \in a \Longleftrightarrow \tau \in b
+			a \subset b \wedge b \subset a \Longrightarrow a = b
 		\end{align}
-		が成り立つので$a \subset b$と$b \subset a$が共に従う．
+		が得られる．逆に$a = b$が満たされていれば，
+		$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \in a \Longrightarrow \tau \in b$と
+		$\tau \in b \Longrightarrow \tau \in a$が共に成り立つので，
+		推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		$a \subset b$と$b \subset a$が共に従う．よって演繹法則より
+		\begin{align}
+			a = b \Longrightarrow a \subset b \wedge b \subset a
+		\end{align}
+		も得られる．
 		\QED
 	\end{prf}
 	
