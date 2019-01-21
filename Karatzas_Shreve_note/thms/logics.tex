@@ -1256,12 +1256,11 @@
 			\end{align}
 			と定める．式$a \subset b$を``$a$は$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}である''
 			と翻訳し，特に$a$が集合である場合は``$a$は$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である''と翻訳する．
-			また類$a,b$に対して
+			また類$a,b$に対して次を定める:
 			\begin{align}
 				a \subsetneq b \overset{\mathrm{def}}{\Longleftrightarrow}
-				a \subset b \wedge a \neq b
+				a \subset b \wedge a \neq b.
 			\end{align}
-			と定める．
 		\end{dfn}
 	\end{screen}
 	
@@ -1389,6 +1388,15 @@
 			からの帰結です．」
 	}
 	
+	$a$を類とするとき，$a$は$\mathcal{L}$の対象であるか$\Set{x}{A(x)}$の形をしている．そこで，文字$x$に対し
+	\begin{itemize}
+		\item $a$が$\mathcal{L}$の対象ならば$\varepsilon a(x) \overset{\mathrm{def}}{\Longleftrightarrow} x \in a$，
+		\item $a$が$\Set{x}{A(x)}$の形をしていれば$\varepsilon a(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x)$，
+	\end{itemize}
+	として記号列$\varepsilon a(x)$を定める．$\varepsilon$記号を用いているのは，
+	量化記号に関する推論規則で$\varepsilon$記号を定めたときと動機が似ているためである．
+	早速この記法を用いて合併を定義する．
+	
 	\begin{screen}
 		\begin{dfn}[合併]
 			$a$を類とするとき
@@ -1403,20 +1411,29 @@
 	\begin{align}
 		\forall x\ \left(\ x \in \bigcup a \Longleftrightarrow \exists t \in a\ (\ x \in t\ )\ \right)
 	\end{align}
-	が成立する．実際，$\varepsilon$記号についての規則と類の公理から
+	が成立する．実際，$\varepsilon$記号の定め方と類の公理から
 	\begin{align}
 		\forall t\ \left(\ \varepsilon a(t) \Longleftrightarrow t \in a\ \right)
 	\end{align}
-	が満たされるので，$x$を$\mathcal{L}$の任意の対象とすれば
+	が満たされるので，$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば同値関係の遺伝性質より
 	\begin{align}
-		\exists t\ (\ \varepsilon a(t) \wedge x \in t\ )
-		\Longleftrightarrow \exists t\ (\ t \in a \wedge x \in t\ )
+		\varepsilon a(\tau) \wedge \chi \in \tau \Longleftrightarrow \tau \in a \wedge \chi \in \tau
 	\end{align}
-	となる．これを根拠にして，$\bigcup a$を
+	が成立する．このとき$\tau$の任意性と推論法則\ref{metathm:properties_of_quantifiers}より
+	\begin{align}
+		\exists t\ (\ \varepsilon a(t) \wedge \chi \in t\ )
+		\Longleftrightarrow \exists t\ (\ t \in a \wedge \chi \in t\ )
+	\end{align}
+	が成立し，$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+	\begin{align}
+		\forall x\ \left(\ \exists t\ (\ \varepsilon a(t) \wedge x \in t\ )
+		\Longleftrightarrow \exists t\ (\ t \in a \wedge x \in t\ )\ \right)
+	\end{align}
+	が成立する．これを根拠にして，$\bigcup a$を
 	\begin{align}
 		\Set{x}{\exists t \in a\ (\ x \in t\ )}
 	\end{align}
-	で表しても良いことにする．もとより，合併の定義はこちらの表記を正当化することを予定したものである．
+	で表しても良いことにする．もとより，合併の定義はこちらの表記を正当化することを予期したものである．
 	
 	\monologue{
 		院生「一般の類$a$に対して，本来
@@ -1431,8 +1448,8 @@
 			\begin{align}
 				\Set{x}{\exists t \in a\ (\ x \in t\ )}
 			\end{align}
-			も認めるのです．以後もこのように妥協する場面に直面するでしょう．
-			しかし$\varepsilon$記号のおかげで解釈上の不具合は無いのです．」
+			も認めるのです．以後もこのように妥協する場面に直面するでしょうが，
+			しかし$\varepsilon$記号を用いれば正式な形に書き直せるのですから解釈上の不具合は無いのです．」
 	}
 	
 	\begin{screen}
