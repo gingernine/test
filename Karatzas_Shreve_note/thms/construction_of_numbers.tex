@@ -34,9 +34,9 @@
 	
 	二項算法については以降よく使う法則名があるので列挙する．いま，$a$を類とし，$o$を$a$上の二項算法とする．
 	\begin{description}
-		\item[可換律\index{かかんりつ@可換律} (commutative law)] $\forall x,y \in a\ \left(\ o(x,y) = o(y,x)\ \right)$.
-		\item[結合律\index{けつごうりつ@結合律} (associative law)] $\forall x,y,z \in a\ \left(\ o(o(x,y),z) = o(x,o(y,z))\ \right)$.
-		\item[簡約律\index{かんやくりつ@簡約律} (cancellation law)] $\forall x,y,z \in a\ \left(\ o(x,z) = o(y,z) \Longrightarrow x = y\ \right)$.
+		\item[可換律\index{かかんりつ@可換律} (commutative law)] $\forall x,y \in a\, \left(\, o(x,y) = o(y,x)\, \right)$.
+		\item[結合律\index{けつごうりつ@結合律} (associative law)] $\forall x,y,z \in a\, \left(\, o(o(x,y),z) = o(x,o(y,z))\, \right)$.
+		\item[簡約律\index{かんやくりつ@簡約律} (cancellation law)] $\forall x,y,z \in a\, \left(\, o(x,z) = o(y,z) \Longrightarrow x = y\, \right)$.
 	\end{description}
 	
 	\monologue{
@@ -59,30 +59,58 @@
 		\begin{thm}[$\omg$は加法に関して半群となる]
 			$\omg$上の二項算法を
 			\begin{align}
-				\sigma \coloneqq \Set{x}{\exists n,m \in \omg\ (\ x=((n,m),n+m)\ )}
+				\sigma \coloneqq \Set{x}{\exists n,m \in \omg\, (\, x=((n,m),n+m)\, )}
 			\end{align}
 			で定めれば，$(\omg,\sigma)$は簡約的可換半群となる．ただし$+$は定理
 			\ref{thm:the_definition_of_addition_of_ordinal_numbers}で定めたものである．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$\sigma$が写像であることを示す．$\mathcal{L}$の任意の対象$x,y,z$に対して
-		\begin{align}
-			(x,y),(x,z) \in \sigma
-		\end{align}
-		が成り立っているとすれば，$\omg$の或る要素$n,m,i,j$が存在して
-		\begin{align}
-			(x,y) = ((n,m),n+m) \wedge (x,z) = ((i,j),i+j)
-		\end{align}
-		が成立する．このとき$x=(n,m)$かつ$x=(i,j)$より$(n,m) = (i,j)$が従い，$n=i$かつ$m=j$となるので
-		\begin{align}
-			y = n+m = i+j = z
-		\end{align}
-		となる．よって$\sigma$は$\omg \times \omg$上の二項写像である．
-		$\sigma$が$\omg$への写像であることは定理\ref{thm:the_definition_of_addition_of_ordinal_numbers}より従い，
-		$\sigma$が可換律，結合律，簡約律を満たすことは定理\ref{thm:properties_of_addition_of_ordinal_numbers}より従う．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\dom{\sigma} = \omg \times \omg$となることを示す．
+				$\chi$を$\mathcal{L}$の任意の対象として$\chi \in \dom{\sigma}$が成り立っているとすれば
+				\begin{align}
+					\exists y\, (\, (\chi,y) \in \sigma\, )
+				\end{align}
+				が成り立つから，ここで$\tau \coloneqq \varepsilon y\, (\, (\chi,y) \in \sigma\, )$とおけば
+				\begin{align}
+					(\chi,\tau) \in \sigma
+				\end{align}
+				が成立する．このとき$\omg$の或る要素$n,m$が存在して$(\chi,\tau) = ((n,m),n+m)$となるので
+				\begin{align}
+					\chi = (n,m)
+				\end{align}
+				が成り立ち$\chi \in \omg \times \omg$が従う．逆に$\chi \in \omg \times \omg$が成り立っているとすれば
+				$\omg$の或る要素$\nu,\mu$が存在して$\chi = (\nu,\mu)$が成り立ち，このとき
+				\begin{align}
+					(\chi,\nu + \mu) \in \sigma
+				\end{align}
+				が成り立つので$\chi \in \dom{\sigma}$が従う．以上で
+				\begin{align}
+					\chi \in \dom{\sigma} \Longleftrightarrow \chi \in \omg \times \omg
+				\end{align}
+				が得られ，$\chi$の任意性と外延性の公理から$\dom{\sigma} = \omg \times \omg$が出る．
+				
+			\item[第二段]
+				$\sigma$が写像であることを示す．$\mathcal{L}$の任意の対象$x,y,z$に対して
+				\begin{align}
+					(x,y) \in \omg \wedge (x,z) \in \sigma
+				\end{align}
+				が成り立っているとすれば，$\omg$の或る要素$n,m,\nu,\mu$が存在して
+				\begin{align}
+					(x,y) = ((n,m),n+m) \wedge (x,z) = ((\nu,\mu),\nu+\mu)
+				\end{align}
+				が成立する．このとき$x=(n,m)$かつ$x=(\nu,\mu)$より$(n,m) = (\nu,\mu)$が従い，$n=\nu$かつ$m=\mu$となるので
+				\begin{align}
+					y = n+m = \nu+\mu = z
+				\end{align}
+				となる．よって$\sigma$は$\omg \times \omg$上の二項写像である．
+				$\sigma$が$\omg$への写像であることは定理\ref{thm:the_definition_of_addition_of_ordinal_numbers}より従い，
+				$\sigma$が可換律，結合律，簡約律を満たすことは定理\ref{thm:properties_of_addition_of_ordinal_numbers}より従う．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
