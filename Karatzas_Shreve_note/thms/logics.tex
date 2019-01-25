@@ -38,12 +38,13 @@
 	論理記号とは式同士を繋ぐ役割を持つ．
 	
 	\monologue{
-		院生「定数$\emptyset$は$\mathcal{L}$の対象の一つです．
-			他の対象がどういうものであるかは後で判明しますが，
+		院生「対象がどういうものであるかは後で判明しますが，
 			今のところはその正体は伏せておいて，とりあえず対象は予め存在しているものとして話を進めます．
-			また{\bf 文字は対象ではない}ということも認めます．説明中は``$s$を対象とする''のように書くことが多いですが，
-			これは一時的に`$s$'を対象の一つに代用しているだけで，文字`$s$'が対象であると言っているのではありません．
-			このような代用記号のことを{\bf 超記号}と呼びます．対象のみならず式にも超記号を宣言することが多いです．」
+			また{\bf $\mathcal{L}$の対象は記号列で表せない}ということも認めます．
+			$\emptyset$を定数としましたが，これは記号`$\emptyset$'が$\mathcal{L}$の或る特別な対象に付けられた
+			名称であるという意味です．また説明中は``$s$を対象とする''のように書くことが多いですが，
+			これは一時的に$s$を対象の一つに代用しているだけで，文字`$s$'が対象であると言っているのではありません．
+			このような代用記号のことを{\bf 超記号}と呼びます．式にも超記号を宣言することが多いです．」
 	}
 	
 	対象および文字を{\bf 項}\index{こう@項}{\bf (term)}と呼び，
@@ -103,16 +104,16 @@
 			プログラミングで言うところのfor文の操作と同じですね．」
 	}
 	
-	$A$を式とする．$A$が`$t = a$'という式である場合など，$A$に文字$a$が現れるとき，$A$に現れる全ての文字$a$を文字$x$に置き換えた式を
+	$A$を式とし，$a$と$x$を項とする(ここでの$A,a,x$はどれも超記号である)．
+	$A$が`$t = a$'という式である場合など式中に項$a$が現れるとき，$A$に現れる全ての項$a$を項$x$に置き換えた式を
 	\begin{align}
 		(x \mid a)\, A
 	\end{align}
-	で表す．特に$A$に現れる文字で量化されていないものが$a$のみであるとき，
-	$(x \mid a)\, A$を
+	で表す．特に$a$が文字であり，かつ$A$に現れる文字で量化されていないものが$a$のみであるとき，$(x \mid a)\, A$を
 	\begin{align}
 		A(x)
 	\end{align}
-	で表す．このとき式$A$自体は$(a \mid a)\, A$とも$A(a)$とも書ける．
+	とも書く．このとき式$A$自体は$(a \mid a)\, A$とも$A(a)$とも書ける．
 	
 	いま言語$\mathcal{L}$を設定したばかりであるが，例えば$x$のみが量化されていない式$A$に対して
 	\begin{align}
@@ -161,11 +162,11 @@
 	\end{description}
 	
 	\monologue{
-		院生「$A$を$\mathcal{L}$の式とするとき，$x$が$A$に現れ，かつ$x$のみが$A$で量化されていないならば
+		院生「$A$を$\mathcal{L}$の式とするとき，文字$x$が$A$に現れ，かつ$x$のみが$A$で量化されていないならば
 			\begin{align}
 				\Set{x}{A(x)}
 			\end{align}
-			は$\mathcal{L}'$の対象であると決めましたが，いま$A(x)$の中に文字$y$が現れないと仮定すれば，
+			は$\mathcal{L}'$の対象であると決めましたが，いま$A(x)$の中に文字$y$が現れないならば，
 			式$A(y)$には文字$y$が現れ，かつ$y$のみが量化されていないことになりますから
 			\begin{align}
 				\Set{y}{A(y)}
@@ -311,7 +312,7 @@
 	}
 	
 	\begin{screen}
-		\begin{metathm}[反射律]\label{metathm:reflective_law_of_implication}
+		\begin{metathm}[含意の反射律]\label{metathm:reflective_law_of_implication}
 			$A$を$\mathcal{L}'$の閉式とするとき$A \Longrightarrow A$は定理である．
 		\end{metathm}
 	\end{screen}
@@ -322,7 +323,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[可換律]
+		\begin{metathm}[含意の可換律]
 			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
 			\begin{itemize}
 				\item $(A \vee B) \Longrightarrow (B \vee A)$.
@@ -348,7 +349,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[推移律]\label{metathm:transitive_law_of_implication}
+		\begin{metathm}[含意の推移律]\label{metathm:transitive_law_of_implication}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
 			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
 			$A \Longrightarrow C$は定理である．
@@ -791,7 +792,7 @@
 	}
 	
 	\begin{screen}
-		\begin{metathm}[全称記号の基本性質]\label{metathm:fundamental_law_of_universal_quantifier}
+		\begin{metathm}[全称記号と任意性]\label{metathm:fundamental_law_of_universal_quantifier}
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
 			$\forall x A(x)$が成り立つならば$\mathcal{L}$のいかなる対象$\tau$に対しても$ A(\tau)$が成り立つ．
 			逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
