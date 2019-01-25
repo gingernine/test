@@ -193,6 +193,11 @@
 	}
 	
 	\begin{screen}
+		\begin{dfn}[上限]
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{dfn}[整列集合]
 			$x$が{\bf 整列集合}\index{せいれつしゅうごう@整列集合}{\bf (wellordered set)}
 			であるとは，$x$が集合$a$と$a$上の順序$R$の対$(a,R)$に等しく，
@@ -207,6 +212,21 @@
 		\end{thm}
 	\end{screen}
 	
+	\monologue{
+		院生「$A(x)$という式を満たすような$x$が`{\bf 唯一つ存在する}'という概念を定義しましょう．
+			当然$A(x)$を満たす$x$が存在していなくてはいけませんから$\exists x A(x)$は満たされるべきですが，
+			これに加えて`$y$と$z$に対して$A(y)$と$A(z)$が成り立つなら$y=z$である'という条件を付けるのです．
+			しかしこのままでは`唯一つである'ことを表す式は長くなりますから，新しい記号$\exists !$を用意して簡略します．
+			ちなみに，`唯一つである'ことは`{\bf 一意に存在する}'などの言明によっても示唆されます．」
+	}
+	
+	$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$A$に文字$y,z$が現れないとするとき，
+	\begin{align}
+		\exists!x A(x) \overset{\mathrm{def}}{\Longleftrightarrow}
+		\exists x A(x) \wedge \forall y,z\, (\, A(y) \wedge A(z) \Longrightarrow y=z\, )
+	\end{align}
+	で$\exists !$の意味を定める．
+	
 	\begin{screen}
 		\begin{dfn}[定義域・値・値域]
 			$a$を類とするとき，
@@ -216,29 +236,134 @@
 			\end{align}
 			と定めて，$\dom{a}$を$a$の{\bf 定義域}{\bf (domain)}と呼び，
 			$\ran{a}$を$a$の{\bf 値域}{\bf (range)}と呼ぶ．
-			また$\dom{a}$の要素$t$に対して
+			また
 			\begin{align}
-				a(t) \coloneqq \Set{x}{\exists y\, (\, x \in y \wedge (t,y) \in a\, )}
+				a(t) \coloneqq \Set{x}{\exists! y\, (\, x \in y \wedge (t,y) \in a\, )}
 			\end{align}
 			とおき，これを$t$の$a$による{\bf 値}\index{あたい@値}{\bf (value)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{dfn}[single-valued・写像]
-			類$a$に対して
+		\begin{dfn}[写像]
+			$a$を類とするとき
 			\begin{align}
 				\sing{a} \overset{\mathrm{def}}{\Longleftrightarrow}
-				\forall x,y,z\ (\ (x,y) \in a \wedge (x,z) \in a
-				\Longrightarrow y=z\ )
+				\forall x,y,z\, (\, (x,y) \in a \wedge (x,z) \in a
+				\Longrightarrow y=z\, )
 			\end{align}
 			で$\sing{a}$を定め，$\sing{a}$が成り立つとき
-			$a$は\index{single-valued}{\bf single-valuedである}という．また類$f$に対して
+			$a$は\index{single-valued}{\bf single-valuedである}という．また$f$を類とするとき
 			\begin{align}
 				\fnc{f} \overset{\mathrm{def}}{\Longleftrightarrow}
 				f \subset \Univ \times \Univ \wedge \sing{f}
 			\end{align}
-			で$\fnc{f}$を定め，$\fnc{f}$を満たす類$f$を
-			{\bf 写像}\index{しゃぞう@写像}{\bf (mapping)}と呼ぶ．
+			で$\fnc{f}$を定め，$\fnc{f}$が成り立つとき$f$を
+			{\bf 写像}\index{しゃぞう@写像}{\bf (mapping)}と呼ぶ．特に$f,a,b$を類とするとき
+			\begin{align}
+				f:a \longrightarrow b \overset{\mathrm{def}}{\Longleftrightarrow}
+				\fnc{f} \wedge \dom{f} = a \wedge \ran{f} \subset b
+			\end{align}
+			と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[写像の値]\label{thm:value_of_a_mapping}
+			$a$を類とするとき
+			\begin{align}
+				\forall t\, \left(\, t \in \dom{a} \wedge \exists ! y\, (\, (t,y) \in a\, ) \Longrightarrow (t,a(t)) \in a\, \right)
+			\end{align}
+			が成り立つ．特に次が従う:
+			\begin{align}
+				\fnc{a} \Longrightarrow \forall t\, \left(\, t \in \dom{a} \Longrightarrow (t,a(t)) \in a\, \right).
+				\label{eq:thm_value_of_a_mapping_2}
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象として，
+		$\tau \in \dom{a} \wedge \exists! y\, (\, (\tau,y) \in a\, )$が成り立っていると仮定する．
+		このとき
+		\begin{align}
+			\nu \coloneqq \varepsilon y\, (\, (\tau,y) \in a\, )
+		\end{align}
+		とおけば，$\exists y\, (\, (\tau,y) \in a\, ) \Longleftrightarrow (\tau,\nu) \in a$が成り立つので
+		\begin{align}
+			(\tau,\nu) \in a
+		\end{align}
+		が満たされる．ここで
+		\begin{align}
+			a(\tau) = \nu
+		\end{align}
+		が成立することを示す．$\chi$を$\mathcal{L}$の任意の対象として$\chi \in a(\tau)$が成り立っているとすると，
+		\begin{align}
+			\exists y\, (\, \chi \in y \wedge (\tau,y) \in a\, )
+		\end{align}
+		が成り立つので$\mu \coloneqq \varepsilon y\, (\, \chi \in y \wedge (\tau,y) \in a\, )$とおけば
+		\begin{align}
+			\chi \in \mu \wedge (\tau,\mu) \in a
+		\end{align}
+		が成り立つ．いま$\exists! y\, (\, (\tau,y) \in a\, )$が満たされているので
+		\begin{align}
+			\nu = \mu
+		\end{align}
+		が従い，相等性の公理より$\chi \in \nu$となる．逆に$\chi \in \nu$が成り立っていれば
+		$\chi \in \nu \wedge (\tau,\nu) \in a$が従うので
+		\begin{align}
+			\chi \in a(t)
+		\end{align}
+		が成り立つ．以上から$a(\tau) = \nu$が出る．このとき
+		\begin{align}
+			(\tau,\nu) = (\tau,a(\tau))
+		\end{align}
+		が成立するので$(\tau,a(\tau)) \in a$となり，演繹法則を適用して
+		\begin{align}
+			\tau \in \dom{a} \wedge \exists! y\, (\, (\tau,y) \in a\, )
+			\Longrightarrow (\tau,a(\tau)) \in a
+		\end{align}
+		が得られ，$\tau$の任意性より
+		\begin{align}
+			\forall t\, \left(\, t \in \dom{a} \wedge \exists ! y\, (\, (t,y) \in a\, ) \Longrightarrow (t,a(t)) \in a\, \right)
+			\label{eq:thm_value_of_a_mapping}
+		\end{align}
+		が得られる．また$\fnc{a}$が成り立っていると仮定するとき，$\tau$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\tau \in \dom{a}
+		\end{align}
+		が満たされているとすれば
+		\begin{align}
+			\exists ! y\, (\, (\tau,y) \in a\, )
+		\end{align}
+		が成立する．実際，$\tau \in \dom{a}$より$\exists y\, (\, (\tau,y) \in a\, )$が成り立ち，
+		また$\sing{a}$より
+		\begin{align}
+			\forall z,w\, (\, (\tau,z) \in a \wedge (\tau,w) \in a \Longrightarrow z=w\, )
+		\end{align}
+		も成り立つ．従って(\refeq{eq:thm_value_of_a_mapping})より$(\tau,a(\tau)) \in a$が従い，
+		演繹法則と$\tau$の任意性から
+		\begin{align}
+			\forall t\, \left(\, t \in \dom{a} \Longrightarrow (t,a(t)) \in a\, \right)
+		\end{align}
+		が成立する．もう一度演繹法則を適用すれば(\refeq{eq:thm_value_of_a_mapping_2})が出る．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「上の証明で$\varepsilon y\, (\, (\tau,y) \in a\, )$と書いていますが，元の式で書き直せば
+			\begin{align}
+				\varepsilon y\, \left(\, \Set{x}{\forall s\, (\, s \in x \Longleftrightarrow s = \tau\, ) \vee \forall t\, (\, t \in x \Longleftrightarrow t=\tau \vee t=y\, )} \in a\, \right)
+			\end{align}
+			となりますね．」
+	}
+	
+	\begin{screen}
+		\begin{dfn}[像・原像]
+			$a,b$を類とするとき
+			\begin{align}
+				a \ast b \coloneqq \Set{x}{\exists t \in b\, (\, t=a(t)\, )} 
+			\end{align}
+			
 		\end{dfn}
 	\end{screen}

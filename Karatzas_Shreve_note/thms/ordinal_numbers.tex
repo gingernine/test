@@ -25,25 +25,25 @@
 		\label{thm:equivalent_condition_of_axiom_of_regularity}
 			次の(i)(ii)の主張は同値である:
 			\begin{description}
-				\item[(i)] $a$を類とするとき次が成り立つ:
+				\item[(i)] $a$を類とするとき
 					\begin{align}
 						a \neq \emptyset \Longrightarrow 
-						\exists x \in a\ (\ x \cap a = \emptyset\ ).
+						\exists x \in a\, (\, x \cap a = \emptyset\, ).
 					\end{align}
 					
-				\item[(ii)] $A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y$を$A$に現れない文字とする．
-					このとき，$A$に現れる文字で$x$のみが$A$で量化されていない場合，次が成り立つ:
+				\item[(ii)] $A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y,z$を$A$に現れない文字とする．
+					このとき，$A$に現れる文字で$x$のみが$A$で量化されていない場合
 					\begin{align}
-						\forall x\ \left(\ \forall y \in x\ A(y)
-						\Longrightarrow A(x)\ \right)
-						\Longrightarrow \forall x A(x).
+						\forall x\, \left(\, \forall y \in x\, A(y)
+						\Longrightarrow A(x)\, \right)
+						\Longrightarrow \forall z A(z).
 					\end{align}
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y$を$A$に現れない文字として，
+		$A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y,z$を$A$に現れない文字として，
 		$A$に現れる文字で$x$のみが$A$で量化されていないとする．
 		そして(i)の主張が正しいと仮定し
 		\begin{align}
@@ -52,44 +52,52 @@
 		とおく．いま(i)の主張より
 		\begin{align}
 			a \neq \emptyset \Longrightarrow 
-			\exists x\ (\ x \in a \wedge x \cap a = \emptyset\ )
+			\exists x\, (\, x \in a \wedge x \cap a = \emptyset\, )
 		\end{align}
 		が満たされているが，対偶を取れば
 		\begin{align}
-			\forall x\ (\ x \notin a \vee x \cap a \neq \emptyset\ )
+			\forall x\, (\, x \notin a \vee x \cap a \neq \emptyset\, )
 			\Longrightarrow a = \emptyset
 		\end{align}
-		が成り立つ．ここで$x \cap a \neq \emptyset$が$\exists y \in x\ (y \in a)$と同値であることを使えば
+		が成り立つ．ここで
 		\begin{align}
-			\forall x\ (\ \forall y \in x\ (\ y \notin a\ ) \Longrightarrow x \notin a\ )
+			\begin{gathered}
+				x \cap a \neq \emptyset \Longleftrightarrow \exists y \in x\, (\, y \in a\, ), \\
+				\left(\, \exists y \in x\, (\, y \in a\, ) \vee x \notin a\, \right)
+				\Longleftrightarrow \left(\, \forall y \in x\, (\, y \notin a\, ) \Longrightarrow x \notin a\, \right)
+			\end{gathered}
+		\end{align}
+		が成立することを使えば
+		\begin{align}
+			\forall x\, (\, \forall y \in x\, (\, y \notin a\, ) \Longrightarrow x \notin a\, )
 			\Longrightarrow a = \emptyset
 		\end{align}
-		が成立する．ところで$\forall x\ (\ x \notin a \Longleftrightarrow A(x)\ )$が満たされるので
+		が成立する．ところで$\forall x\, (\, x \notin a \Longleftrightarrow A(x)\, )$が満たされるので
 		\begin{align}
-			\forall x\ \left(\ \forall y \in x\ A(y)
-			\Longrightarrow A(x)\ \right)
-			\Longrightarrow \forall x A(x).
+			\forall x\, \left(\, \forall y \in x\, A(y)
+			\Longrightarrow A(x)\, \right)
+			\Longrightarrow \forall z A(z).
 		\end{align}
 		を得る．逆に(ii)が正しいと仮定する．$a$を類とすれば$x \in a$は文字$x$についての式となり，
 		(ii)の主張より
 		\begin{align}
-			\forall x\ \left(\ \forall y \in x\ (\ y \notin a\ )
-			\Longrightarrow x \notin a\ \right)
-			\Longrightarrow \forall x\ (\ x \notin a\ )
+			\forall x\, \left(\, \forall y \in x\, (\, y \notin a\, )
+			\Longrightarrow x \notin a\, \right)
+			\Longrightarrow \forall z\, (\, z \notin a\, )
 		\end{align}
 		が成立する．ここで対偶を取れば
 		\begin{align}
-			\exists x\ (\ x \in a\ ) \Longrightarrow 
-			\exists x\ \left(\ \forall y \in x\ (\ y \notin a\ )
-			\wedge x \in a\ \right)
+			\exists z\, (\, x \in a\, ) \Longrightarrow 
+			\exists x\, \left(\, \forall y \in x\, (\, y \notin a\, )
+			\wedge x \in a\, \right)
 		\end{align}
-		となり，$a \neq \emptyset$と$\exists x\ (\ x \in a\ )$が同値であること，及び
-		$x \cap a = \emptyset$と$\forall y \in x\ (\ y \notin a\ )$が同値であることと併せて
+		となり，$a \neq \emptyset$と$\exists z\, (\, z \in a\, )$が同値であること，及び
+		$x \cap a = \emptyset$と$\forall y \in x\, (\, y \notin a\, )$が同値であることと併せて
 		\begin{align}
 			a \neq \emptyset \Longrightarrow 
-			\exists x \in a\ (\ x \cap a = \emptyset\ )
+			\exists x \in a\, (\, x \cap a = \emptyset\, )
 		\end{align}
-		を得る．
+		が従う．
 		\QED
 	\end{prf}
 	
@@ -98,7 +106,7 @@
 			$a$を類とするとき，$a$は空でなければ自分自身と交わらない要素を持つ:
 			\begin{align}
 				a \neq \emptyset \Longrightarrow 
-				\exists x \in a\ (\ x \cap a = \emptyset\ ).
+				\exists x \in a\, (\, x \cap a = \emptyset\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -213,14 +221,16 @@
 	}
 	
 	\begin{screen}
-		\begin{dfn}[差集合]
-			$a,b$を集合するとき，$a$に属するが$b$には属さない集合の全体を
-			$a$から$b$を引いた{\bf 差集合}\index{さしゅうごう@差集合}
-			{\bf (set difference)}と呼び$a \backslash b$と書く:
+		\begin{dfn}[類の差]
+			$a,b$を類するとき，$a$に属するが$b$には属さない集合の全体を
+			$a$から$b$を引いた{\bf 差類}\index{さるい@差類}
+			{\bf (class difference)}と呼び，これを$a \backslash b$と書いて
 			\begin{align}
-				a \backslash b = \Set{x}{x \in a \wedge x \notin b}
+				a \backslash b \coloneqq \Set{x}{x \in a \wedge x \notin b}
 			\end{align}
-			特に$b \subset a$が満たされている場合，$a \backslash b$を
+			で定める．特に$a \backslash b$が集合であるときこれを
+			{\bf 差集合}\index{さしゅうごう@差集合}{\bf (set difference)}と呼ぶ．
+			また$b \subset a$が満たされている場合，$a \backslash b$を
 			$a$から$b$を引いた{\bf 固有差}\index{こゆうさ@固有差}と呼ぶ．
 		\end{dfn}
 	\end{screen}
@@ -230,14 +240,14 @@
 			類$a$に対して
 			\begin{align}
 				\operatorname{Tran}(a) \overset{\mathrm{def}}{\Longleftrightarrow}
-				\forall t\ (\ t \in a \Longrightarrow t \subset a\ )
+				\forall t\, (\, t \in a \Longrightarrow t \subset a\, )
 			\end{align}
 			で$\operatorname{Tran}(a)$を定め，$\operatorname{Tran}(a)$を満たす類$a$を
 			{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}と呼ぶ．また類$a$に対して
 			\begin{align}
 				\operatorname{Ord}(a) \overset{\mathrm{def}}{\Longleftrightarrow}
 				\operatorname{Tran}(a)
-				\wedge \forall s,t \in a\ (\ s \in t \vee s = t \vee t \in s\ )
+				\wedge \forall s,t \in a\, (\, s \in t \vee s = t \vee t \in s\, )
 			\end{align}
 			により$\operatorname{Ord}(a)$を定め，
 			\begin{align}
@@ -266,8 +276,8 @@
 	が成り立つから，数字は全て順序数である．以下，順序数の性質を列挙するが，長いので主張だけ先に述べておく．
 	\begin{itemize}
 		\item $\ON$は推移的類である．
-		\item $R = \Set{x}{\exists \alpha,\beta \in \ON\ 
-			(\ x=(\alpha,\beta) \wedge (\ \alpha \in \beta \vee \alpha = \beta\ )\ )}$
+		\item $R \coloneqq \Set{x}{\exists \alpha,\beta \in \ON\, 
+			(\, x=(\alpha,\beta) \wedge (\, \alpha \in \beta \vee \alpha = \beta\, )\, )}$
 			とおくと$R$は$\ON$において整列順序となる．
 		\item $a \subset \ON$かつ$a \in \Univ$なら，$\bigcup a$は$a$の順序$R$に関する上限となる．
 		\item $\ON$は集合ではない．
@@ -275,7 +285,7 @@
 	
 	\begin{screen}
 		\begin{thm}[順序数全体は推移的]\label{thm:On_is_transitive}
-			$\ON$は推移的類である．
+			$\tran{\ON}$が成立する．
 		\end{thm}
 	\end{screen}
 	
@@ -546,16 +556,38 @@
 	
 	\begin{screen}
 		\begin{thm}[Burali-Forti]
-			$\ON$は集合ではない:
-			\begin{align}
-				\ON \notin \Univ.
-			\end{align}
+			$\ON$は集合ではない．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\ord{\ON}$は成立しているから$\ON \in \ON$となり，定理\ref{thm:no_set_is_an_element_of_itself}より
-		$\ON \notin \Univ$が従う．
+		いま$\set{\ON}$が成立していると仮定する．このとき$\exists x\, (\, \ON = x\, )$が成立するので
+		\begin{align}
+			\tau \coloneqq \varepsilon x\, (\, \ON = x\, )
+		\end{align}
+		とおけば$\ON = \tau$となる．よって相等性の公理より
+		\begin{align}
+			\ord{\tau}
+		\end{align}
+		が成立し，他方で類の公理と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\ord{\tau} \Longleftrightarrow \tau \in \ON
+		\end{align}
+		が満たされているので$\tau \in \ON$が従う．再び相等性の公理を適用して
+		\begin{align}
+			\ON \in \ON
+		\end{align}
+		が成立し，ここで演繹法則を適用して
+		\begin{align}
+			\set{\ON} \Longrightarrow \ON \in \ON
+			\label{eq:Burali_Forti}
+		\end{align}
+		が得られる．ところで定理\ref{thm:no_set_is_an_element_of_itself}より$\ON \notin \ON$が成り立っているので，
+		式(\refeq{eq:Burali_Forti})の対偶と併せて
+		\begin{align}
+			\rightharpoondown \set{\ON}
+		\end{align}
+		が出る．
 		\QED
 	\end{prf}
 	
