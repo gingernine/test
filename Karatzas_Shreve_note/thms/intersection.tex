@@ -1,0 +1,192 @@
+\subsection{交叉}
+	\begin{screen}
+		\begin{dfn}[交叉]
+			$a$を類とするとき，
+			\begin{align}
+				\bigcap a \coloneqq \Set{x}{\forall t \in a\, (\, x \in t\, )}
+			\end{align}
+			で$\bigcap a$を定め，これを$a$の{\bf 交叉}\index{こうさ@交叉}{\bf (intersection)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「交叉の正式な定義は
+			\begin{align}
+				\bigcap a \coloneqq \Set{x}{\forall t\, (\, \varepsilon a(t) \Longrightarrow x \in t\, )}
+			\end{align}
+			です．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[空集合の交叉は宇宙となる]\label{thm:union_of_the_emptyset_is_the_Universe}
+			次が成立する:
+			\begin{align}
+				\bigcap \emptyset = \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$を$\mathcal{L}$の任意の対象とするとき，空虚な真より
+		\begin{align}
+			t \in \emptyset \Longrightarrow x \in t
+		\end{align}
+		は$\mathcal{L}$のいかなる対象$t$に対してもに真となる．ゆえに$\forall t \in \emptyset\ (\ x \in t\ )$が成立し
+		\begin{align}
+			\forall x\ (\ x \in \bigcap \emptyset\ )
+		\end{align}
+		が従う．$\forall x\ (\ x \in \Univ\ )$と併せて$\bigcap \emptyset = \Univ$を得る．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		院生「$\bigcup \emptyset$が$\emptyset$に等しいのは受け容れられますが，
+			$\bigcap \emptyset$が$\Univ$に等しいというのは不思議に感じられます．」
+	}
+	
+	\begin{screen}
+		\begin{thm}[交叉は任意の元に含まれる]
+			$a$を類とするとき次が成立する:
+			\begin{align}
+				\forall x\, (\, x \in a \Longrightarrow \bigcap a \subset x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	$a,b$を類とするとき，その対の合併を
+	\begin{align}
+		a \cap b \coloneqq \bigcap \{a,b\}
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\forall x\, (\, x \in a \cap b \Longleftrightarrow x \in a \wedge x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[交叉の可換律]
+			\begin{align}
+				a \cap b = b \cap a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[対の交叉が空ならばその構成要素は共通元を持たない]
+		\label{thm:if_pair_is_empty_then_its_members_do_not_intersect}
+			$a,b$を類とするとき次が成立する:
+			\begin{align}
+				a \cap b = \emptyset \Longrightarrow \forall x\, (\, x \in a \Longrightarrow x \notin b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま$\exists x\, (\, x \in a \wedge x \in b\, )$が成り立っているとする．
+		\begin{align}
+			\chi \coloneqq \varepsilon x\, (\, x \in a \wedge x \in b\, )
+		\end{align}
+		とおけば，存在記号に関する規則より
+		\begin{align}
+			\chi \in a \wedge \chi \in b
+		\end{align}
+		が成立し，$\wedge$の除去により$\chi \in a$と$\chi \in b$が共に成立する．
+		ここで$\tau$を$\mathcal{L}$の任意の対象とすれば
+		定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\tau \in \{a,b\} \Longrightarrow \tau = a \vee \tau = b
+		\end{align}
+		が成立し，他方で相等性の公理より$\tau = a \Longrightarrow \chi \in \tau$と
+		$\tau = b \Longrightarrow \chi \in \tau$が成り立つので場合分け法則から
+		\begin{align}
+			\tau = a \vee \tau = b \Longrightarrow \chi \in \tau
+		\end{align}
+		も満たされ，含意の推移律より
+		\begin{align}
+			\tau \in \{a,b\} \Longrightarrow \chi \in \tau
+		\end{align}
+		が従う．そして$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
+		\begin{align}
+			\forall t\, \left(\, t \in \{a,b\} \Longrightarrow \chi \in t\, \right)
+		\end{align}
+		が成立する．これにより
+		\begin{align}
+			\chi \in a \cap b
+		\end{align}
+		が従い，存在記号に関する規則より
+		\begin{align}
+			\exists x\, (\, x \in a \cap b\, )
+		\end{align}
+		となるから定理\ref{thm:uniqueness_of_emptyset}より
+		\begin{align}
+			a \cap b \neq \emptyset
+		\end{align}
+		が従う．ここに再び演繹法則を適用すれば
+		\begin{align}
+			\exists x\, (\, x \in a \wedge x \in b\, ) \Longrightarrow a \cap b \neq \emptyset
+		\end{align}
+		が得られる．ところで$\sigma$を$\mathcal{L}$の任意の対象とすれば，De Morganの法則と
+		推論法則\ref{metathm:rule_of_inference_3}より
+		\begin{align}
+			\sigma \in a \wedge \sigma \in b 
+			&\Longleftrightarrow\, \rightharpoondown (\, \sigma \notin a \vee \sigma \notin b\, ) \\
+			&\Longleftrightarrow\, \rightharpoondown (\, \sigma \in a \Longrightarrow \sigma \notin b\, )
+		\end{align}
+		が成り立つので含意の推移律から
+		\begin{align}
+			\sigma \in a \wedge \sigma \in b \Longleftrightarrow\,
+			\rightharpoondown (\, \sigma \in a \Longrightarrow \sigma \notin b\, )
+		\end{align}
+		となり，推論法則\ref{metathm:properties_of_quantifiers}より
+		\begin{align}
+			\exists x\, (\, x \in a \wedge x \in b\, ) \Longleftrightarrow
+			\exists x\, \rightharpoondown (\, x \in a \Longrightarrow x \notin b\, )
+		\end{align}
+		が成立する．よって含意の推移律より
+		\begin{align}
+			\exists x\, \rightharpoondown (\, x \in a \Longrightarrow x \notin b\, )
+			\Longrightarrow a \cap b \neq \emptyset
+		\end{align}
+		が成立し，この対偶を取り推論法則\ref{metathm:properties_of_quantifiers}を適用すれば
+		\begin{align}
+			a \cap b = \emptyset \Longrightarrow \forall x\, (\, x \in a \Longrightarrow x \notin b\, )
+		\end{align}
+		が出てくる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $a^{-1}$の任意の要素$t$に対し或る$V$の要素$x,y$が存在して
+				\begin{align}
+					(x,y) \in a \wedge t = (y,x)
+				\end{align}
+				を満たす．$((x,y),(y,x)) \in f$より$((x,y),t) \in f$が成り立つから
+				$t \in f \ast a$となる．逆に$f \ast a$の任意の要素$t$に対して
+				$a$の或る要素$x$が存在して
+				\begin{align}
+					x \in a \wedge (x,t) \in f
+				\end{align}
+				となる．$x$に対し$V$の或る要素$a,b$が存在して$x=(a,b)$となるので
+				\begin{align}
+					((a,b),t) \in f
+				\end{align}
+				となり，$V$の或る要素$c,d$が存在して
+				\begin{align}
+					((a,b),t) = ((c,d),(d,c))
+				\end{align}
+				となる．$(a,b) = (c,d)$より$a=c$かつ$b=d$となり，
+				$t = (d,c)$かつ$(d,c)=(b,a)$より$t=(b,a)$，従って
+				$t \in a^{-1}$が成り立つ．
+		\end{description}
+	\end{prf}

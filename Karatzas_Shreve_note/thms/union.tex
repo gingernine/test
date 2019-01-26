@@ -1,0 +1,126 @@
+\subsection{合併}
+	\begin{screen}
+		\begin{dfn}[合併]
+			$a$を類とするとき
+			\begin{align}
+				\bigcup a \coloneqq \Set{x}{\exists t \in a\, (\, x \in t\, )}
+				\label{eq:definition_of_union_1}
+			\end{align}
+			で$\bigcup a$を定め，これを$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	類$a$の合併も
+	\begin{align}
+		\bigcup a \coloneqq \Set{x}{\exists t\, (\, \varepsilon a(t) \wedge x \in t\, )}
+	\end{align}
+	と定めるのが本式である．しかし
+	\begin{align}
+		\forall x\, \left(\, \exists t\, (\, \varepsilon a(t) \wedge x \in t\, )
+		\Longleftrightarrow \exists t \in a\, (\, x \in t\, )\, \right)
+		\label{eq:definition_of_union_2}
+	\end{align}
+	が成立するので式(\refeq{eq:definition_of_union_1})を受け入れているのである．
+	実際，式(\refeq{eq:a_meaning_of_epsilon_notation})より
+	\begin{align}
+		\forall t\, \left(\, \varepsilon a(t) \Longleftrightarrow t \in a\, \right)
+	\end{align}
+	が満たされるので，$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば同値関係の遺伝性質より
+	\begin{align}
+		\varepsilon a(\tau) \wedge \chi \in \tau \Longleftrightarrow \tau \in a \wedge \chi \in \tau
+	\end{align}
+	が成立する．このとき$\tau$の任意性と推論法則\ref{metathm:properties_of_quantifiers}より
+	\begin{align}
+		\exists t\, (\, \varepsilon a(t) \wedge \chi \in t\, )
+		\Longleftrightarrow \exists t\, (\, t \in a \wedge \chi \in t\, )
+	\end{align}
+	が成立し，$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+	(\refeq{eq:definition_of_union_2})が得られる．正確さも大切だが，やはり判りやすい方が良い．
+	
+	\begin{screen}
+		\begin{axm}[合併の公理]
+			集合の合併は集合である．つまり，$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \Longrightarrow \set{\bigcup a}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空集合の合併は空]\label{thm:the_union_of_the_emptyset_is_empty}
+			次が成立する:
+			\begin{align}
+				\bigcup \emptyset = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+				$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば，
+				空集合の公理と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+				$\chi \notin \emptyset$が成立し，さらに$\vee$の導入より
+				\begin{align}
+					\chi \notin \emptyset \vee \tau \notin \chi
+				\end{align}
+				が成立する．
+				ここで$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+				\begin{align}
+					\forall x\, (\, x \notin \emptyset \vee \tau \notin \emptyset\, )
+				\end{align}
+				が成り立つ．ここで推論法則\ref{metathm:properties_of_quantifiers}とDe Morganの法則より
+				\begin{align}
+					\forall x\, (\, x \notin \emptyset \vee \tau \notin \emptyset\, )
+					&\Longleftrightarrow \forall x\, \rightharpoondown (\, x \in \emptyset \wedge \tau \in \emptyset\, ) \\
+					&\Longleftrightarrow\, \rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in \emptyset\, )
+				\end{align}
+				が成立するので，三段論法より$\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in \emptyset\, )$が成立する．
+				他方で合併の定義の対偶を取れば
+				\begin{align}
+					\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in \emptyset\, )
+					\Longleftrightarrow \tau \notin \bigcup \emptyset
+				\end{align}
+				が満たされるので，再び三段論法より$\tau \notin \bigcup \emptyset$が成立する．
+				$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+				\begin{align}
+					\forall t\, (\, t \notin \bigcup \emptyset\, )
+				\end{align}
+				が成立し，定理\ref{thm:uniqueness_of_emptyset}より
+				\begin{align}
+					\bigcup \emptyset = \emptyset
+				\end{align}
+				が従う．
+				\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[合併は任意の要素より大きい]\label{thm:union_is_bigger_than_any_member}
+			$a$を類とするとき次が成立する:
+			\begin{align}
+				\forall x\, (\, x \in a \Longrightarrow x \subset \bigcup a\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	$a,b$を類とするとき，その対の合併を
+	\begin{align}
+		a \cup b \overset{\mathrm{def}}{\Longleftrightarrow} \bigcup \{a,b\}
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{thm}
+			$a,b$を類とするとき次が成立する:
+			\begin{align}
+				\forall x\, (\, x \in a \cup b \Longrightarrow x \in a \vee x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[合併の可換律]
+			$a,b$を類とするとき次が成立する:
+			\begin{align}
+				a \cup b = b \cup a.
+			\end{align}
+		\end{thm}
+	\end{screen}
