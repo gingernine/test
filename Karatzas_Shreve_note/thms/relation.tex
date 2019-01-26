@@ -27,7 +27,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[順序対の相等性]
+		\begin{thm}[順序対の相等性]\label{thm:equality_of_ordered_pairs}
 			$a,b,c,d$を類とするとき次が成り立つ:
 			\begin{align}
 				\set{a} \wedge \set{b} \wedge \set{c} \wedge \set{d} \Longrightarrow
@@ -110,9 +110,118 @@
 	
 	二つの類を用いて得られる最大のCartesian積は
 	\begin{align}
-		\Set{x}{\exists s,t\ (\ x=(s,t)\ )}
+		\Set{x}{\exists s,t\, (\, x=(s,t)\, )}
 	\end{align}
 	で与えられ，これは$\Univ \times \Univ$に等しい．
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$のCartesian積]
+			次が成り立つ:
+			\begin{align}
+				\Univ \times \Univ = \Set{x}{\exists s,t\, (\, x=(s,t)\, )}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\Univ \times \Univ$は形式的には$\Set{x}{\exists s,t \in \Univ\, (\, x=(s,t)\, )}$で定められるが，
+		正式には
+		\begin{align}
+			\Set{x}{\exists s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge x=(s,t)\, )\, \right)}
+		\end{align}
+		で定められる．ここで$\chi$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\exists s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge \chi=(s,t)\, )\, \right)
+			\Longleftrightarrow \exists s\, \left(\, \exists t\, (\, \chi=(s,t)\, )\, \right)
+			\label{eq:thm_Cartesian_product_of_the_Universe}
+		\end{align}
+		が成り立つことを示す．いま$\exists s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge \chi=(s,t)\, )\, \right)$が成り立っていると仮定する．このとき
+		\begin{align}
+			\sigma \coloneqq \varepsilon s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge \chi=(s,t)\, )\, \right)
+		\end{align}
+		とおけば存在記号に関する規則より
+		\begin{align}
+			\sigma = \sigma \wedge \exists t\, (\, t=t \wedge \chi=(\sigma,t)\, )
+		\end{align}
+		が成立し，このとき$\wedge$の除去より$\exists t\, (\, t=t \wedge \chi=(\sigma,t)\, )$が成り立つので
+		\begin{align}
+			\tau \coloneqq \varepsilon t\, (\, t=t \wedge \chi=(\sigma,t)\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			\tau = \tau \wedge \chi = (\sigma,\tau)
+		\end{align}
+		が成立する．$\wedge$の除去より$\chi = (\sigma,\tau)$となり，存在記号に関する規則より
+		\begin{align}
+			\exists t\, (\, \chi = (\sigma,t)\, )
+		\end{align}
+		が成立し，再び存在記号に関する規則から
+		\begin{align}
+			\exists s\, \left(\, \exists t\, (\, \chi = (s,t)\, )\, \right)
+		\end{align}
+		が成立する．ここで演繹法則を適用すれば
+		\begin{align}
+			\exists s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge \chi=(s,t)\, )\, \right)
+			\Longrightarrow \exists s\, \left(\, \exists t\, (\, \chi=(s,t)\, )\, \right)
+		\end{align}
+		が得られる．逆に$\exists s\, \left(\, \exists t\, (\, \chi=(s,t)\, )\, \right)$が成り立っているとすると，
+		\begin{align}
+			\sigma' \coloneqq \varepsilon s\, \left(\, \exists t\, (\, \chi=(s,t)\, )\, \right)
+		\end{align}
+		とおけば存在記号に関する規則より
+		\begin{align}
+			\exists t\, (\, \chi=(\sigma',t)\, )
+		\end{align}
+		が成立し，
+		\begin{align}
+			\tau' \coloneqq \varepsilon t\, (\, \chi=(\sigma',t)\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			\chi = (\sigma',\tau')
+		\end{align}
+		が成立する．ここで定理\ref{thm:any_class_equals_to_itself}より$\tau' = \tau'$が満たされるので
+		$\wedge$の導入により
+		\begin{align}
+			\tau' = \tau' \wedge \chi = (\sigma',\tau')
+		\end{align}
+		が成り立ち，存在記号に関する規則より
+		\begin{align}
+			\exists t\, (\, t = t \wedge \chi = (\sigma',t)\, )
+		\end{align}
+		が成り立つ．同じく$\sigma' = \sigma'$も満たされて
+		\begin{align}
+			\sigma' = \sigma' \wedge \exists t\, (\, t = t \wedge \chi = (\sigma',t)\, )
+		\end{align}
+		が成り立ち，存在記号に関する規則より
+		\begin{align}
+			\exists s\, \left(\, s = s \wedge \exists t\, (\, t = t \wedge \chi = (s,t)\, )\, \right)
+		\end{align}
+		が成立する．ここに演繹法則を適用すれば
+		\begin{align}
+			\exists s\, \left(\, \exists t\, (\, \chi = (s,t)\, )\, \right)
+			\Longrightarrow \exists s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge \chi=(s,t)\, )\, \right)
+		\end{align}
+		が得られる．以上より式(\refeq{eq:thm_Cartesian_product_of_the_Universe})が成立する．ところで類の公理より
+		\begin{align}
+			\begin{gathered}
+				\chi \in \Univ \times \Univ \Longleftrightarrow \exists s\, \left(\, s = s \wedge \exists t\, (\, t=t \wedge \chi=(s,t)\, )\, \right), \\
+				\chi \in \Set{x}{\exists s,t\, (\, x=(s,t)\, )} \Longleftrightarrow
+				\exists s\, \left(\, \exists t\, (\, \chi=(s,t)\, )\, \right)
+			\end{gathered}
+		\end{align}
+		が成り立つので，含意の推移律から
+		\begin{align}
+			\chi \in \Univ \times \Univ \Longleftrightarrow \chi \in \Set{x}{\exists s,t\, (\, x=(s,t)\, )}
+		\end{align}
+		が成立する．そして$\chi$の任意性と
+		推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
+		\begin{align}
+			\forall y\, \left(\, y \in \Univ \times \Univ \Longleftrightarrow y \in \Set{x}{\exists s,t\, (\, x=(s,t)\, )}\, \right)
+		\end{align}
+		が従い，外延性の公理より定理の主張が得られる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[関係]
@@ -377,9 +486,78 @@
 		このとき$\chi$を$\mathcal{L}$の任意の対象として$\chi \in f$が満たされているとすれば，
 		$f \subset \Univ \times \Univ$より
 		\begin{align}
-			\exists s,t \in \Univ\, (\, \chi = (s,t)\, )
+			\exists s\, \left(\, \exists t\, (\, \chi = (s,t)\, )\, \right)
 		\end{align}
-		が成立する．
+		が成立する．ここで
+		$\sigma \coloneqq \varepsilon s\, \left(\, \exists t\, (\, \chi = (s,t)\, )\, \right)$とおけば
+		存在記号に関する規則より
+		\begin{align}
+			\exists t\, (\, \chi = (\sigma,t)\, )
+		\end{align}
+		が成立し，更に$\tau \coloneqq \varepsilon t\, (\, \chi = (\sigma,t)\, )$とおけば
+		\begin{align}
+			\chi = (\sigma,\tau)
+		\end{align}
+		が成立する．$\chi \in f$と相等性の公理より
+		\begin{align}
+			(\sigma,\tau) \in f
+		\end{align}
+		が従い，存在記号に関する規則より
+		\begin{align}
+			\exists y\, (\, (\sigma,y) \in f\, )
+		\end{align}
+		が成立するので
+		\begin{align}
+			\sigma \in \dom{f}
+		\end{align}
+		となる．このとき$\fnc{f}$と定理\ref{thm:value_of_a_mapping}より
+		\begin{align}
+			(\sigma,f(\sigma)) \in f
+		\end{align}
+		が成立し，$(\sigma,\tau) \in f \wedge (\sigma,f(\sigma)) \in f$と$\sing{f}$が満たされるので
+		\begin{align}
+			\tau = f(\sigma)
+		\end{align}
+		が成り立つ．他方で$\forall t\, \left(\, t \in \dom{f} \Longrightarrow f(t) = g(t)\, \right)$と
+		推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			f(\sigma) = g(\sigma)
+		\end{align}
+		が満たされ，相等性の公理より
+		\begin{align}
+			\tau = g(\sigma)
+		\end{align}
+		が成り立つ．また$\sigma \in \dom{f}$と相等性の公理より
+		\begin{align}
+			\sigma \in \dom{g}
+		\end{align}
+		が成り立ち，定理\ref{thm:value_of_a_mapping}より
+		\begin{align}
+			(\sigma,g(\sigma)) \in g
+		\end{align}
+		となるが，$\tau = g(\sigma)$と定理\ref{thm:equality_of_ordered_pairs}より
+		\begin{align}
+			(\sigma,g(\sigma)) = (\sigma,\tau)
+		\end{align}
+		が満たされるので，相等性の公理より
+		\begin{align}
+			(\sigma,\tau) \in g
+		\end{align}
+		が成り立ち，再び相等性の公理より$\chi \in g$が成り立つ．ここで演繹法則を適用すれば
+		\begin{align}
+			\chi \in f \Longrightarrow \chi \in g
+		\end{align}
+		が得られる．$f$と$g$の立場を替えれば$\chi \in g \Longrightarrow \chi \in f$も得られ，
+		$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \in f \Longleftrightarrow x \in g\, )
+		\end{align}
+		が従う．そして外延性の公理より
+		\begin{align}
+			f = g
+		\end{align}
+		が出てくる．最後に演繹法則を二回適用すれば定理の主張が得られる．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
