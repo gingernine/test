@@ -118,7 +118,7 @@
 	}
 	
 	\begin{screen}
-		\begin{metathm}[論理和・論理積の結合律]\label{metathm:associative_law}
+		\begin{metathm}[論理和・論理積の分配律]\label{metathm:associative_law}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
 			\begin{description}
 				\item[(イ)] $(A \vee B) \wedge C \Longleftrightarrow (A \wedge C) \vee (B \wedge C)$.
@@ -130,7 +130,8 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(イ)] いま$(A \vee B) \wedge C$が成立していると仮定する．
-				このとき論理積の除去により$A \vee B$と$C$が成り立つ．ここで$A$が成り立っているとすれば，論理積の導入により
+				このとき論理積の除去により$A \vee B$と$C$が同時に成り立つ．ここで$A$が成り立っているとすれば，
+				論理積の導入により
 				\begin{align}
 					A \wedge C
 				\end{align}
@@ -187,7 +188,36 @@
 				が得られる．
 				
 			\item[(ロ)]
-				
+				(イ)の結果を$\rightharpoondown A,\rightharpoondown B,\rightharpoondown C$に適用すれば
+				\begin{align}
+					(\rightharpoondown A \vee \rightharpoondown B) \wedge \rightharpoondown C
+					\Longleftrightarrow (\rightharpoondown A \wedge \rightharpoondown C) 
+						\vee (\rightharpoondown B \wedge \rightharpoondown C)
+				\end{align}
+				が得られる．ここでDe Morganの法則と同値記号の遺伝性質から
+				\begin{align}
+					(\rightharpoondown A \vee \rightharpoondown B) \wedge \rightharpoondown C
+					&\Longleftrightarrow\ \rightharpoondown (A \wedge B) \wedge \rightharpoondown C \\
+					&\Longleftrightarrow\ \rightharpoondown ((A \wedge B) \vee C)
+				\end{align}
+				が成立し，一方で
+				\begin{align}
+					(\rightharpoondown A \wedge \rightharpoondown C) 
+						\vee (\rightharpoondown B \wedge \rightharpoondown C)
+					&\Longleftrightarrow\ \rightharpoondown (A \vee C) \vee \rightharpoondown (B \vee C) \\
+					&\Longleftrightarrow\ \rightharpoondown ((A \vee C) \wedge (B \vee C))
+				\end{align}
+				も成立するから，含意の推移律より
+				\begin{align}
+					\rightharpoondown ((A \wedge B) \vee C)
+					\Longleftrightarrow\ \rightharpoondown ((A \vee C) \wedge (B \vee C))
+				\end{align}
+				が従う．最後に対偶を取れば
+				\begin{align}
+					(A \wedge B) \vee C \Longleftrightarrow (A \vee C) \wedge (B \vee C)
+				\end{align}
+				が得られる．
+				\QED
 		\end{description}
 	\end{prf}
 	
@@ -195,10 +225,45 @@
 		\begin{metathm}[選言三段論法]\label{metathm:disjunctive_syllogism}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
 			\begin{align}
-				(A \vee B) \wedge \rightharpoondown A \Longrightarrow B.
+				(A \vee B) \wedge \rightharpoondown B \Longrightarrow A.
 			\end{align}
 		\end{metathm}
 	\end{screen}
+	
+	\begin{prf}
+		分配律(推論法則\ref{metathm:associative_law})より
+		\begin{align}
+			(A \vee B) \wedge \rightharpoondown B
+			\Longrightarrow (A \wedge \rightharpoondown B) \vee (B \wedge \rightharpoondown B)
+		\end{align}
+		が成立する．ここで矛盾に関する規則から
+		\begin{align}
+			B \wedge \rightharpoondown B \Longrightarrow \bot
+		\end{align}
+		が満たされるので
+		\begin{align}
+			(A \wedge \rightharpoondown B) \vee (B \wedge \rightharpoondown B)
+			\Longrightarrow (A \wedge \rightharpoondown B) \vee \bot
+		\end{align}
+		が従う．また，論理積の除去より
+		\begin{align}
+			(A \wedge \rightharpoondown B) \Longrightarrow A
+		\end{align}
+		が成り立ち，他方で矛盾に関する規則より
+		\begin{align}
+			\bot \Longrightarrow A
+		\end{align}
+		も成り立つから，場合分け法則より
+		\begin{align}
+			(A \wedge \rightharpoondown B) \vee \bot \Longrightarrow A
+		\end{align}
+		が従う．以上の式と含意の推移律から
+		\begin{align}
+			(A \vee B) \wedge \rightharpoondown B \Longrightarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[いかなる類も自分自身を要素に持たない]

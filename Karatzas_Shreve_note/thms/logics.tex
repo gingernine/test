@@ -378,6 +378,26 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{metathm}[二式が同時に導かれるならその論理積が導かれる]
+		\label{metathm:conjunction_of_consequences}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理ならば
+			$A \Longrightarrow (B \wedge C)$は定理である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理であるとき，
+		$A$が成り立っていると仮定する．このとき三段論法より$B$と$C$が同時に成り立つので，
+		論理積の導入より$B \wedge C$が成り立つ．従って演繹法則より
+		\begin{align}
+			A \Longrightarrow (B \wedge C)
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{metathm}[含意は遺伝する]\label{metathm:rule_of_inference_1}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下が成り立つ:
 			\begin{description}
@@ -395,19 +415,20 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[(a)]
-				いま$A \Longrightarrow B$と$A$が成り立っていると仮定する．
-				このとき三段論法より$B$が成立し，他方で$\vee$の導入より
-				$B \Longrightarrow (B \vee C)$が成り立つので再び三段論法から$B \vee C$が成立する．
-				ここに演繹法則を適用すれば，$A \Longrightarrow B$を成り立っている下で
+				いま$A \Longrightarrow B$が成り立っていると仮定する．
+				論理和の導入により
+				\begin{align}
+					C \Longrightarrow (B \vee C)
+				\end{align}
+				は定理であるから，含意の推移律より
 				\begin{align}
 					A \Longrightarrow (B \vee C)
 				\end{align}
-				が成り立つ．$\vee$の導入より$C \Longrightarrow (B \vee C)$も成り立っているから，
-				場合分け法則より$A \Longrightarrow B$が成り立っている下で
+				が従い，場合分け法則より
 				\begin{align}
 					(A \vee C) \Longrightarrow (B \vee C)
 				\end{align}
-				が定理となり，ここに演繹法則を適用して
+				が成立する．ここに演繹法則を適用して
 				\begin{align}
 					(A \Longrightarrow B) \Longrightarrow 
 					( (A \vee C) \Longrightarrow (B \vee C) )
@@ -415,15 +436,25 @@
 				が得られる．
 				
 			\item[(b)]
-				いま$A \Longrightarrow B$と$A \wedge C$が成り立っていると仮定する．このとき
-				$\wedge$の除去より$A$と$C$が成り立ち，三段論法より$B$が成り立つので，$\wedge$の導入より
-				$B \wedge C$が成立する．ここに演繹法則を適用すれば，$A \Longrightarrow B$が成り立っている下で
+				いま$A \Longrightarrow B$が成り立っていると仮定する．論理積の除去より
+				\begin{align}
+					(A \wedge C) \Longrightarrow A
+				\end{align}
+				は定理であるから，含意の推移律より
+				\begin{align}
+					(A \wedge C) \Longrightarrow B
+				\end{align}
+				が従い，他方で論理積の除去より
+				\begin{align}
+					(A \wedge C) \Longrightarrow C
+				\end{align}
+				も満たされる．そして推論法則\ref{metathm:conjunction_of_consequences}から
 				\begin{align}
 					(A \wedge C) \Longrightarrow (B \wedge C)
 				\end{align}
-				が成立する．再び演繹法則を適用すれば
+				が成り立ち，演繹法則より
 				\begin{align}
-					(A \Longrightarrow B) \Longrightarrow ( (A \wedge C) \Longrightarrow (B \wedge C) )
+					(A \Longrightarrow B) \Longrightarrow ((A \wedge C) \Longrightarrow (B \wedge C))
 				\end{align}
 				が得られる．
 				
@@ -500,7 +531,7 @@
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
 	
 	\begin{screen}
-		\begin{metathm}[同値関係の遺伝性質]\label{metathm:hereditary_of_equivalence}
+		\begin{metathm}[同値記号の遺伝性質]\label{metathm:hereditary_of_equivalence}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
 			\begin{description}
 				\item[(a)] $(A \Longleftrightarrow B) \Longrightarrow ((A \vee C) \Longleftrightarrow (B \vee C))$.
