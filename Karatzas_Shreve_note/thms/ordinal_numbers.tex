@@ -118,22 +118,105 @@
 	}
 	
 	\begin{screen}
+		\begin{metathm}[論理和・論理積の結合律]\label{metathm:associative_law}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{description}
+				\item[(イ)] $(A \vee B) \wedge C \Longleftrightarrow (A \wedge C) \vee (B \wedge C)$.
+				\item[(ロ)] $(A \wedge B) \vee C \Longleftrightarrow (A \vee C) \wedge (B \vee C)$.
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(イ)] いま$(A \vee B) \wedge C$が成立していると仮定する．
+				このとき論理積の除去により$A \vee B$と$C$が成り立つ．ここで$A$が成り立っているとすれば，論理積の導入により
+				\begin{align}
+					A \wedge C
+				\end{align}
+				が成り立つので演繹法則より
+				\begin{align}
+					A \Longrightarrow (A \wedge C)
+				\end{align}
+				が成立する．他方で論理和の導入より
+				\begin{align}
+					(A \wedge C) \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				も成り立つので，含意の推移律から
+				\begin{align}
+					A \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が従う．$A$と$B$を入れ替えれば
+				\begin{align}
+					B \Longrightarrow (B \wedge C) \vee (A \wedge C)
+				\end{align}
+				が成り立つが，論理和の可換律より
+				\begin{align}
+					(B \wedge C) \vee (A \wedge C) \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					B \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が従う．よって場合分け法則から
+				\begin{align}
+					(A \vee B) \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が成立するが，いま$A \vee B$は満たされているので三段論法より
+				\begin{align}
+					(A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が成立する．ここに演繹法則を適用すれば
+				\begin{align}
+					(A \vee B) \wedge C \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が得られる．次に$A \wedge C$が成り立っていると仮定する．このとき
+				$A$が成り立つので$A \vee B$も成立し，同時に$C$も成り立つので
+				$(A \vee B) \wedge C$が成立する．すなわち
+				\begin{align}
+					A \wedge C \Longrightarrow (A \vee B) \wedge C
+				\end{align}
+				が成立する．$A$と$B$を入れ替えれば
+				\begin{align}
+					B \wedge C \Longrightarrow (A \vee B) \wedge C
+				\end{align}
+				も成立するので
+				\begin{align}
+					(A \wedge C) \vee (B \wedge C) \Longrightarrow (A \vee B) \wedge C
+				\end{align}
+				が得られる．
+				
+			\item[(ロ)]
+				
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[選言三段論法]\label{metathm:disjunctive_syllogism}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{align}
+				(A \vee B) \wedge \rightharpoondown A \Longrightarrow B.
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{thm}[いかなる類も自分自身を要素に持たない]
 		\label{thm:no_set_is_an_element_of_itself}
 			$a,b,c$を類とするとき次が成り立つ:
 			\begin{description}
-				\item[(i)] $a \notin a$.
+				\item[(イ)] $a \notin a$.
 				
-				\item[(ii)] $a \notin b \vee b \notin a$.
+				\item[(ロ)] $a \notin b \vee b \notin a$.
 				
-				\item[(iii)] $a \notin b \vee b \notin c \vee c \notin a$.
+				\item[(ハ)] $a \notin b \vee b \notin c \vee c \notin a$.
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(i)] $a$を類とする．まず類の公理の対偶より
+			\item[(イ)] $a$を類とする．まず類の公理の対偶より
 				\begin{align}
 					\rightharpoondown \set{a} \Longrightarrow a \notin a
 				\end{align}
@@ -154,7 +237,9 @@
 				\begin{align}
 					a \cap \{a\} = \emptyset
 				\end{align}
-				が成り立つ．$a \in \{a\}$であるから$a \notin a$が従い，演繹法則から
+				が成り立つ．$a \in \{a\}$であるから
+				定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
+				$a \notin a$が従い，演繹法則から
 				\begin{align}
 					\set{a} \Longrightarrow a \notin a
 				\end{align}
@@ -168,36 +253,98 @@
 				\end{align}
 				が出る．
 			
-			\item[(ii)]
-				$a \in b$が成り立っていると仮定すれば，$a$は集合であるから
+			\item[(ロ)]
+				類の公理より
+				\begin{align}
+					a \in b \Longrightarrow \set{a}
+				\end{align}
+				となり，定理\ref{thm:pair_of_proper_classes_is_emptyset}より
+				\begin{align}
+					\set{a} \Longrightarrow a \in \{a,b\}
+				\end{align}
+				となるので，
+				\begin{align}
+					a \in b \Longrightarrow a \in \{a,b\}
+				\end{align}
+				が成立する．また定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
+				\begin{align}
+					a \in b \wedge a \in \{a,b\} 
+					&\Longrightarrow \exists x\, \left(\, x \in b \wedge x \in \{a,b\}\, \right) \\
+					&\Longrightarrow b \cap \{a,b\} \neq \emptyset
+				\end{align}
+				が成立する．他方で正則性公理より
+				\begin{align}
+					a \in \{a,b\} &\Longrightarrow \exists x\, \left(\, x \in \{a,b\}\, \right) \\
+					&\Longrightarrow \{a,b\} \neq \emptyset \\
+					&\Longrightarrow \exists x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
+				\end{align}
+				も成立する．以上を踏まえて$a \in b$が成り立っていると仮定する．このとき
 				\begin{align}
 					a \in \{a,b\}
 				\end{align}
-				が成立する．ゆえに$b \cap \{a,b\} \neq \emptyset$が従う．他方，正則性公理より
+				が成立するので
 				\begin{align}
-					\tau \in \{a,b\} \wedge \tau \cap \{a,b\} = \emptyset
+					b \cap \{a,b\} \neq \emptyset
 				\end{align}
-				を満たす$\mathcal{L}$の対象$\tau$が取れる．ここで$\tau \in \{a,b\}$より
+				も成り立ち，さらに
 				\begin{align}
-					\tau=a \vee \tau=b
+					\exists x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
 				\end{align}
-				が成り立つが，$b \cap \{a,b\} \neq \emptyset$より$\tau \neq b$であるから
-				$\tau = a$となり
+				も満たされる．ここで
+				\begin{align}
+					\chi \coloneqq \varepsilon x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
+				\end{align}
+				とおけば$\chi \in \{a,b\}$から
+				\begin{align}
+					\chi = a \vee \chi = b
+				\end{align}
+				が従うが，相等性の公理より
+				\begin{align}
+					\chi = b \Longrightarrow b \cap \{a,b\} = \emptyset
+				\end{align}
+				となるので，$b \cap \{a,b\} \neq \emptyset$と併せて
+				\begin{align}
+					\chi \neq b
+				\end{align}
+				が成立する．選言三段論法(推論法則\ref{metathm:disjunctive_syllogism})より
+				\begin{align}
+					(\chi = a \vee \chi = b) \wedge \chi \neq b \Longrightarrow \chi = a
+				\end{align}
+				となるから
+				\begin{align}
+					\chi = a
+				\end{align}
+				が従い，相等性の公理より
 				\begin{align}
 					a \cap \{a,b\} = \emptyset
 				\end{align}
-				が従う．$b$が真類ならば類の公理より$b \notin a$となり，$b$が集合ならば
-				$b \in \{a,b\}$となるので，いずれにせよ
+				が成立する．いま類の公理より
+				\begin{align}
+					\rightharpoondown \set{b} \Longrightarrow b \notin a
+				\end{align}
+				が満たされ，他方で定理\ref{thm:pair_of_proper_classes_is_emptyset}より
+				\begin{align}
+					\set{b} \Longrightarrow b \in \{a,b\},
+				\end{align}
+				$a \cap \{a,b\}$の仮定と定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
+				\begin{align}
+					b \in \{a,b\} = \emptyset \Longrightarrow b \notin a
+				\end{align}
+				が満たされるので
+				\begin{align}
+					\set{b} \Longrightarrow b \notin a
+				\end{align}
+				が成立する．従って
 				\begin{align}
 					b \notin a
 				\end{align}
-				が成立する．以上で
+				が従い，演繹法則より
 				\begin{align}
 					a \in b \Longrightarrow b \notin a
 				\end{align}
-				が得られたが，これはすなわち$a \notin b \vee b \notin a$が示されたことになる．
+				が得られる．これは$a \notin b \vee b \notin a$と同値である．
 				
-			\item[(iii)]
+			\item[(ハ)]
 				$a \in b \wedge b \in c$が満たされていると仮定すれば，$a,b$は集合であるから
 				\begin{align}
 					a,b \in \{a,b,c\}
@@ -575,33 +722,35 @@
 	\end{screen}
 	
 	\begin{prf}
-		いま$\set{\ON}$が成立していると仮定する．このとき$\exists x\, (\, \ON = x\, )$が成立するので
+		$a$を類とするとき
 		\begin{align}
-			\tau \coloneqq \varepsilon x\, (\, \ON = x\, )
+			\ord{a} \Longrightarrow \left(\, \set{a} \Longrightarrow a \in \ON\, \right)
+			\label{eq:Burali_Forti_1}
 		\end{align}
-		とおけば$\ON = \tau$となる．よって相等性の公理より
+		が成り立つことを示す．いま$\ord{a}$と$\set{a}$が成立していると仮定する．
+		このとき$\exists x\, (\, a = x\, )$が成立するので
+		\begin{align}
+			\tau \coloneqq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば$a = \tau$となり，相等性の公理より
 		\begin{align}
 			\ord{\tau}
 		\end{align}
-		が成立し，他方で類の公理と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		が成立する．ここで類の公理より
 		\begin{align}
 			\ord{\tau} \Longleftrightarrow \tau \in \ON
 		\end{align}
-		が満たされているので$\tau \in \ON$が従う．再び相等性の公理を適用して
+		が成り立つので$\tau \in \ON$が従い，再び相等性の公理から
 		\begin{align}
-			\ON \in \ON
+			a \in \ON
 		\end{align}
-		が成立し，ここで演繹法則を適用して
-		\begin{align}
-			\set{\ON} \Longrightarrow \ON \in \ON
-			\label{eq:Burali_Forti}
-		\end{align}
-		が得られる．ところで定理\ref{thm:no_set_is_an_element_of_itself}より$\ON \notin \ON$が成り立っているので，
-		式(\refeq{eq:Burali_Forti})の対偶と併せて
+		が成立する．以上で式(\refeq{eq:Burali_Forti_1})が得られた．
+		$\ON$は$\ord{\ON}$も$\ON \notin \ON$
+		(定理\ref{thm:no_set_is_an_element_of_itself})も満たすので
 		\begin{align}
 			\rightharpoondown \set{\ON}
 		\end{align}
-		が出る．
+		が成立する．
 		\QED
 	\end{prf}
 	
@@ -676,12 +825,11 @@
 	\end{prf}
 	
 	\monologue{
-		院生「無限公理から極限数の存在が示されましたが，無限公理を仮定せず
+		院生「無限公理から極限数の存在が示されましたが，無限公理の
 			代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
-			どちらを公理とするかは嗜好に依るでしょうが，本稿の論理の流れとしては
-			極限数の存在を公理とした方が自然に感じられますね．しかし
-			無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようですから
-			多数派に合わせるのが良いでしょうか．」
+			すなわち無限公理の主張と極限数が存在するという主張は同値なのです．
+			本稿の流れでは極限数の存在を公理とした方が自然に感じられますね．
+			しかし無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようです．」
 	}
 	
 	\begin{screen}
@@ -692,25 +840,25 @@
 			\end{align}
 			の中で最小の順序数が存在するが，それを
 			\begin{align}
-				{\bf \omega}
+				\omg
 			\end{align}
-			と書く．また${\bf \omega}$の要素を{\bf 自然数}\index{しぜんすう@自然数}{\bf (natural number)}と呼ぶ．
+			と書く．また$\omg$の要素を{\bf 自然数}\index{しぜんすう@自然数}{\bf (natural number)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\monologue{
-		院生「${\bf \omega}$とは最小の極限数ですから，その要素である自然数はどれも極限数ではありません．
+		院生「$\omg$とは最小の極限数ですから，その要素である自然数はどれも極限数ではありません．
 			従って$\emptyset$を除く自然数は必ずいずれかの自然数の後者となっているのですね．」
 	}
 	
 	\begin{screen}
-		\begin{thm}[${\bf \omega}$は最小の無限集合]
+		\begin{thm}[$\omg$は最小の無限集合]
 		\label{thm:the_principle_of_mathematical_induction}
-			${\bf \omega}$は次の意味で最小の無限集合である:
+			$\omg$は次の意味で最小の無限集合である:
 			\begin{align}
 				\forall a\ \left(\ \emptyset \in a \wedge \forall x\ 
 				(\ x \in a \Longrightarrow x \cup \{x\} \in a\ ) 
-				\Longrightarrow {\bf \omega} \subset a\ \right).
+				\Longrightarrow \omg \subset a\ \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
