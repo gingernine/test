@@ -293,6 +293,15 @@
 	以下はこの言明を証明することを目標にしてしばらく推論規則の話が続くが，提示される規則はどれも基本的すぎるあまり
 	通常は無断で使用されてしまうものである．
 	
+	ここで論理記号の名称を書いておく．
+	\begin{itemize}
+		\item $\bot$を{\bf 矛盾}\index{むじゅん@矛盾}{\bf (contradiction)}と呼ぶ．
+		\item $\vee$を{\bf 論理和}\index{ろんりわ@論理和}{\bf (logical disjunction)}と呼ぶ．
+		\item $\wedge$を{\bf 論理積}\index{ろんりせき@論理積}{\bf (logical conjunction)}と呼ぶ．
+		\item $\Longrightarrow$を{\bf 含意}\index{がんい@含意}{\bf (implication)}と呼ぶ．
+		\item $\rightharpoondown$を{\bf 否定}\index{ひてい@否定}{\bf (negation)}と呼ぶ．
+	\end{itemize}
+	
 	\begin{screen}
 		\begin{metaaxm}[基本的な推論規則]\label{metaaxm:fundamental_rules_of_inference}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
@@ -300,11 +309,11 @@
 				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
 				\item[演繹法則] $A$を公理に追加した下で$B$が定理であるなら，
 					$A$を外した公理系で$A \Longrightarrow B$は定理である．
-				\item[$\vee$の導入1] $A \Longrightarrow (A \vee B)$は定理である．
-				\item[$\vee$の導入2] $A \Longrightarrow (B \vee A)$は定理である．
-				\item[$\wedge$の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
-				\item[$\wedge$の除去1] $(A \wedge B) \Longrightarrow A$は定理である．
-				\item[$\wedge$の除去2] $(A \wedge B) \Longrightarrow B$は定理である．
+				\item[論理和の導入イ] $A \Longrightarrow (A \vee B)$は定理である．
+				\item[論理和の導入ロ] $A \Longrightarrow (B \vee A)$は定理である．
+				\item[論理積の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
+				\item[論理積の除去イ] $(A \wedge B) \Longrightarrow A$は定理である．
+				\item[論理積の除去ロ] $(A \wedge B) \Longrightarrow B$は定理である．
 				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
 					$(A \vee B) \Longrightarrow C$は定理である．
 			\end{description}	
@@ -328,7 +337,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[含意の可換律]
+		\begin{metathm}[論理和・論理積の可換律]
 			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
 			\begin{itemize}
 				\item $(A \vee B) \Longrightarrow (B \vee A)$.
@@ -465,12 +474,6 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{dfn}[矛盾]
-			論理式$\bot$を{\bf 矛盾}\index{むじゅん@矛盾}{\bf (contradiction)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
-	
-	\begin{screen}
 		\begin{metaaxm}[矛盾に関する規則]\label{metaaxm:rules_of_contradiction}
 			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
 			\begin{description}
@@ -604,7 +607,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[ならばとまたは]\label{metathm:rule_of_inference_3}
+		\begin{metathm}[含意は否定と論理和で表せる]\label{metathm:rule_of_inference_3}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
 				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B).
@@ -620,7 +623,7 @@
 		\end{align}
 		が満たされているから三段論法より$(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)$
 		は定理となり，ここに排中律と三段論法を適用すれば$B \vee \rightharpoondown A$が定理となる．
-		ここで可換律より$\rightharpoondown A \vee B$が成り立つので，演繹法則を適用して
+		ここで論理和の可換律より$\rightharpoondown A \vee B$が成り立つので，演繹法則を適用して
 		\begin{align}
 			(A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
 		\end{align}
@@ -658,7 +661,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		推論法則\ref{metathm:rule_of_inference_3}，可換律，二重否定の法則を順に用いれば
+		推論法則\ref{metathm:rule_of_inference_3}，論理和の可換律，二重否定の法則を順に用いれば
 		\begin{align}
 			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
 			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
@@ -753,7 +756,7 @@
 	
 	\begin{prf}
 		$a$を類とするとき，排中律より$\set{a} \vee \rightharpoondown \set{a}$
-		が成り立ち，可換律より
+		が成り立ち，論理和の可換律より
 		\begin{align}
 			\rightharpoondown \set{a} \vee \set{a}
 		\end{align}
@@ -872,13 +875,13 @@
 				\begin{align}
 					\tau \coloneqq \varepsilon x A(x)
 				\end{align}
-				とおけば推論規則\ref{metaaxm:rules_of_quantifiers}より$A(\tau)$が成立し，
-				他方で推論規則\ref{metaaxm:fundamental_rules_of_inference}により
+				とおけば存在記号に関する規則(推論規則\ref{metaaxm:rules_of_quantifiers})より$A(\tau)$が成立し，
+				他方で$\wedge$の除去により
 				\begin{align}
 					A(\tau) \Longrightarrow B(\tau)
 				\end{align}
 				が満たされるので$B(\tau)$が成立する．
-				再び推論規則\ref{metaaxm:rules_of_quantifiers}より$\exists x B(x)$が成り立つので
+				再び存在記号に関する規則より$\exists x B(x)$が成り立つので
 				\begin{align}
 					\exists x A(x) \Longrightarrow \exists x B(x)
 				\end{align}
