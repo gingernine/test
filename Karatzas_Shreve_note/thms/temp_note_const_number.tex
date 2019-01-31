@@ -58,7 +58,31 @@
 		&= \sigma_\pi\left(\pi(s),\pi(\sigma(t,u))\right) \\
 		&= \sigma_\pi\left(x,\sigma_\pi(y,z)\right)
 	\end{align}
-	が成り立つ．
+	が成り立つ．$a$を$A$の要素として
+	\begin{align}
+		\forall x \in A\, (\, \sigma(a,x) = \sigma(x,a) = x\, )
+	\end{align}
+	を満たすとする．$a$を単位元と呼ぶが，このとき
+	\begin{align}
+		\sigma_\pi(\pi(x),\pi(a)) = \pi(\sigma(x,a)) = \pi(x)
+	\end{align}
+	かつ
+	\begin{align}
+		\sigma_\pi(\pi(a),\pi(x)) = \pi(\sigma(a,x)) = \pi(x)
+	\end{align}
+	が成り立つので$\pi(a)$は$A/R$の単位元となる．また$A$の要素$x,y,z$に対して
+	\begin{align}
+		\sigma(x,y) = \sigma(y,x) = z
+	\end{align}
+	となるとき，
+	\begin{align}
+		\sigma_\pi(\pi(x),\pi(y)) = \pi(\sigma(x,y)) = \pi(z)
+	\end{align}
+	かつ
+	\begin{align}
+		\sigma_\pi(\pi(y),\pi(x)) = \pi(\sigma(y,x)) = \pi(z)
+	\end{align}
+	が成り立つ．この関係は{\bf 逆元は$\pi$で移した先でも逆元となる}ことを示唆している．
 	
 \subsubsection{同型定理}
 	$A,A'$を集合，$\sigma,\sigma'$をそれぞれ$A,A'$上の算法とし，
@@ -232,7 +256,7 @@
 	\begin{align}
 		h(x) = 
 		\begin{cases}
-			x & (x \in G) \\
+			x & (x \notin \varphi \ast S) \\
 			\varphi^{-1}(x) & (x \in \varphi \ast S)
 		\end{cases}
 	\end{align}
@@ -289,17 +313,168 @@
 		Q \coloneqq (R \times R \backslash \{\zeta\}) / \Phi
 	\end{align}
 	とおく．そして$(x,y) \in R \times R \backslash \{\zeta\}$の同値類を$[x,y]$と書く．
-	$Q$上の算法を
+	$R \times R \backslash \{\zeta\}$上の算法を
 	\begin{align}
-		\sigma_Q &\coloneqq \Set{x}{\exists a,c \in R\, \exists b,d \in R \backslash \{\zeta\}\, \left(\, x=(([a,b],[c,d]),[\sigma(\mu(a,c),\mu(b,c)),\mu(b,d)])\, \right)}, \\
-		\mu_Q &\coloneqq \Set{x}{\exists a,c \in R\, \exists b,d \in R \backslash \{\zeta\}\, \left(\, x=(([a,b],[c,d]),[\mu(a,c),\mu(b,d)])\, \right)}
+		\sigma_P &\coloneqq \Set{x}{\exists a,c \in R\, \exists b,d \in R \backslash \{\zeta\}\, \left(\, x=(((a,b),(c,d)),(\sigma(\mu(a,c),\mu(b,c)),\mu(b,d)))\, \right)}, \\
+		\mu_P &\coloneqq \Set{x}{\exists a,c \in R\, \exists b,d \in R \backslash \{\zeta\}\, \left(\, x=(((a,b),(c,d)),(\mu(a,c),\mu(b,d)))\, \right)}
 	\end{align}
-	で定める．このとき$(Q,\sigma_Q,\mu_Q)$は体となる．
-	
-	$\sigma_Q,\mu_Q$は可換である．
+	で定める．煩雑でわかりづらいが，これは分数の計算法則
 	\begin{align}
-		\sigma_Q([x,y],[x',y']) = [\sigma(\mu(x,y'),\mu(y,x')),\mu(y,y')]
-		= 
+		a/b + c/d = (ad + bd)/(bd),\quad a/b \cdot c/d = (ac)/(bd)
 	\end{align}
+	を一般形式化したものに過ぎない．
+	\begin{align}
+		((a,b),(a',b')) \in \Phi \wedge ((c,d),(c',d')) \in \Phi
+	\end{align}
+	が成り立っているとき
+	\begin{align}
+		\left(\sigma_P((a,b),(c,d)),\sigma_P((a',b'),(c',d'))\right) \in \Phi
+	\end{align}
+	が成り立つ．実際
+	\begin{align}
+		\mu(\mu(a,d),\mu(b',d')) &= \mu(\mu(\mu(a,d),b'),d') \\
+		&= \mu(\mu(\mu(d,a),b'),d') \\
+		&= \mu(\mu(d,\mu(a,b')),d') \\
+		&= \mu(\mu(d,\mu(a',b)),d') \\
+		&= \mu(\mu(d,\mu(a',b)),d') \\
+		&= \mu(\mu(d,\mu(b,a')),d') \\
+		&= \mu(\mu(\mu(d,b),a'),d') \\
+		&= \mu(\mu(d,b),\mu(a',d')) \\
+		&= \mu(\mu(a',d'),\mu(d,b)) \\
+		&= \mu(\mu(a',d'),\mu(b,d)) \\
+	\end{align}
+	かつ
+	\begin{align}
+		\mu(\mu(c,b),\mu(b',d')) &= \mu(\mu(b,c),\mu(b',d')) \\
+		&= \mu(b,\mu(c,\mu(b',d'))) \\
+		&= \mu(b,\mu(c,\mu(d',b'))) \\
+		&= \mu(b,\mu(\mu(c,d'),b')) \\
+		&= \mu(b,\mu(\mu(c',d),b')) \\
+		&= \mu(b,\mu(\mu(d,c'),b')) \\
+		&= \mu(b,\mu(d,\mu(c',b'))) \\
+		&= \mu(\mu(b,d),\mu(c',b')) \\
+		&= \mu(\mu(c',b'),\mu(b,d)) \\
+	\end{align}
+	が成り立つから
+	\begin{align}
+		\mu\left(\sigma(\mu(a,d),\mu(c,b)),\mu(b',d')\right)
+		&= \sigma\left(\mu(\mu(a,d),\mu(b',d')),\mu(\mu(c,b),\mu(b',d'))\right) \\
+		&= \sigma\left(\mu(\mu(a',d'),\mu(b,d)),\mu(\mu(c',b'),\mu(b,d))\right) \\
+		&= \mu\left(\sigma(\mu(a',d'),\mu(c',b')),\mu(b,d)\right)
+	\end{align}
+	が満たされる．同時に
+	\begin{align}
+		\left(\mu_P((a,b),(c,d)),\mu_P((a',b'),(c',d'))\right) \in \Phi
+	\end{align}
+	も満たされる．なぜならば，
+	\begin{align}
+		\mu(\mu(a,c),\mu(b',d')) &= \mu(a,\mu(c,\mu(b',d'))) \\
+		&= \mu(a,\mu(c,\mu(d',b'))) \\
+		&= \mu(a,\mu(\mu(c,d'),b')) \\
+		&= \mu(a,\mu(b',\mu(c,d'))) \\
+		&= \mu(\mu(a,b'),\mu(c,d')) \\
+		&= \mu(\mu(a',b),\mu(c',d)) \\
+		&= \mu(\mu(a',c'),\mu(b,d))
+	\end{align}
+	が成り立つからである．
+	以上より$Q$上の算法は$\sigma_P,\mu_P$から整合的に定められる．それらを
+	$\sigma_Q,\mu_Q$と書けば，$\sigma_P,\mu_P$はそれぞれ可換かつ結合的であるから
+	$\sigma_Q,\mu_Q$もそれらの性質を持つ．
+	\begin{align}
+		(\zeta,\epsilon)
+	\end{align}
+	は$\sigma_P$に関する単位元であり，
+	\begin{align}
+		(\epsilon,\epsilon)
+	\end{align}
+	は$\mu_P$に関する単位元である．実際，
+	\begin{align}
+		&\sigma_P((x,y),(\zeta,\epsilon))
+		= (\sigma(\mu(x,\epsilon),\mu(\zeta,y)),\mu(y,\epsilon))
+		= (\sigma(x,\zeta),y)
+		= (x,y), \\
+		&\sigma_P((\zeta,\epsilon),(x,y))
+		= (\sigma(\mu(\zeta,y),\mu(x,\epsilon)),\mu(\epsilon,y))
+		= (\sigma(\zeta,x),y)
+		= (x,y)
+	\end{align}
+	が成り立ち，また
+	\begin{align}
+		&\mu_P((x,y),(\epsilon,\epsilon)) = (\mu(x,\epsilon),\mu(y,\epsilon)) = (x,y), \\
+		&\mu_P((\epsilon,\epsilon),(x,y)) = (\mu(\epsilon,x),\mu(\epsilon,y)) = (x,y)
+	\end{align}
+	も成り立つ．よって
+	\begin{align}
+		\zeta_Q \coloneqq [\zeta,\epsilon]
+	\end{align}
+	とおけば$\zeta_Q$は$\sigma_Q$に関する単位元となり，
+	\begin{align}
+		\epsilon_Q \coloneqq [\epsilon,\epsilon]
+	\end{align}
+	とおけば$\epsilon_Q$は$\mu_Q$に関する単位元となる．
+	$x$と$y$を$R \times R \backslash \{\zeta\}$の要素とすれば
+	\begin{align}
+		[x,y] = \zeta_Q \Longleftrightarrow x = \zeta
+	\end{align}
+	が満たされるので，
+	\begin{align}
+		[x,y] \neq \zeta_Q
+	\end{align}
+	ならば
+	\begin{align}
+		(y,x) \in R \times R \backslash \{\zeta\}
+	\end{align}
+	となり，
+	\begin{align}
+		\mu_P([x,y],[y,x]) = [\mu(x,y),\mu(y,x)] = [\mu(x,y),\mu(x,y)] = \epsilon_Q
+	\end{align}
+	かつ
+	\begin{align}
+		\mu_P([y,x],[x,y]) = [\mu(y,x),\mu(x,y)] = [\mu(x,y),\mu(x,y)] = \epsilon_Q
+	\end{align}
+	が成立する．従って{\bf $Q$の非零元は可逆である}．$R$から$Q$への環準同型を
+	\begin{align}
+		\varphi(x) = [x,\epsilon]
+	\end{align}
+	で定める．このとき$\varphi$は単射である．実際，
+	\begin{align}
+		\varphi(x) = \varphi(y) &\Longrightarrow [x,\epsilon] = [y,\epsilon]
+		&\Longrightarrow x = \mu(x,\epsilon) = \mu(\epsilon,y) = y
+	\end{align}
+	となる．
+	\begin{align}
+		\tilde{Q} \coloneqq (Q \backslash \varphi \ast R) \cup R
+	\end{align}
+	とおいて
+	\begin{align}
+		h(x) = 
+		\begin{cases}
+			x & (x \notin \varphi \ast R) \\
+			\varphi^{-1}(x) & (x \in \varphi \ast R)
+		\end{cases}
+	\end{align}
+	で$Q$から$\tilde{Q}$への全単射を定め，$Q$の算法を$h$により$\tilde{Q}$に移し，それらを
+	$\tilde{\sigma},\tilde{\mu}$と書けば，$(\tilde{Q},\tilde{\sigma},\tilde{\mu})$は体となる．
+	\begin{align}
+		R &\subset \tilde{Q}, \\
+		\sigma &\subset \tilde{\sigma}, \\
+		\mu &\subset \tilde{\mu}
+	\end{align}
+	となるので$(\tilde{Q},\tilde{\sigma},\tilde{\mu})$は$(R,\sigma,\mu)$の純粋な拡張であり，
+	$x$を$\tilde{Q}$の任意の要素とすれば
+	\begin{align}
+		h^{-1}(x) = [s,t] = \mu_P([s,\epsilon],[\epsilon,t]) = \mu_P(\varphi(s),\varphi(t)^{-1})
+	\end{align}
+	から
+	\begin{align}
+		x = \mu(s,t^{-1})
+	\end{align}
+	と書ける．すなわち$(\tilde{Q},\tilde{\sigma},\tilde{\mu})$は
+	\begin{align}
+		R &\subset \tilde{Q}, \\
+		\sigma &\subset \tilde{\sigma}, \\
+		\mu &\subset \tilde{\mu}
+	\end{align}
+	を満たす最小の体である．これを{\bf 整域$(R,\sigma,\mu)$が生成する体}と呼ぶことにする．
 	
 \newpage
