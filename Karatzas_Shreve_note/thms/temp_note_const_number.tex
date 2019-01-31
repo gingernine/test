@@ -3,17 +3,62 @@
 	整理のためにメモだけ置いておく．$\mathcal{L}'$の文法等にはこだわらず大雑把に．
 	
 \subsubsection{商集合の算法}
-	$A$を集合とし，$\sigma$を$A$上の算法とし，$R$を$A$上の同値関係とする．また
-	$A$から$A/R$への商写像を$\pi$と書く．このとき
+	商集合に対して，割る前の集合上の算法と整合的な算法を定義する．
+	$A$を集合とし，$\sigma$を$A$上の算法とし，$R$を$A$上の同値関係とし，
+	$A$から$A/R$への商写像を$\pi$と書く．また
+	\begin{align}
+		\pi(x) = \pi(x') \wedge \pi(y) = \pi(y')
+		\Longrightarrow \pi\left(\sigma(x,y)\right) = \pi\left(\sigma(x',y')\right)
+	\end{align}
+	が満たされているとする．このとき
 	\begin{align}
 		\sigma_\pi \coloneqq \Set{x}{\exists s,t \in A\, 
 		\left(\, x=((\pi(s),\pi(t)),\pi(\sigma(s,t)))\, \right)}
 	\end{align}
 	と定めると，$\sigma_\pi$は$A/R$上の算法となり
 	\begin{align}
-		\sigma(\pi(s),\pi(t)) = \pi(\sigma(s,t))
+		\sigma_\pi(\pi(s),\pi(t)) = \pi(\sigma(s,t))
 	\end{align}
-	を満たす．
+	を満たす．実際，$(x,y) \in \sigma_\pi$かつ$(x,z) \in \sigma_\pi$であれば，
+	$A$の或る要素$s,t,s',t'$が存在して
+	\begin{align}
+		(x,y) = ((\pi(s),\pi(t)),\pi(\sigma(s,t)))
+	\end{align}
+	と
+	\begin{align}
+		(x,z) = ((\pi(s'),\pi(t')),\pi(\sigma(s',t')))
+	\end{align}
+	を満たすが，
+	\begin{align}
+		(\pi(s),\pi(t)) = (\pi(s'),\pi(t'))
+	\end{align}
+	から
+	\begin{align}
+		\pi(s) = \pi(s') \wedge \pi(t) = \pi(t')
+	\end{align}
+	が従い，
+	\begin{align}
+		y = \pi(\sigma(s,t))) = \pi(\sigma(s',t'))) = z
+	\end{align}
+	となるので$\sigma_\pi$は写像である．また$\sigma$が可換なら$\sigma_\pi$も可換となる．実際，
+	\begin{align}
+		\sigma_\pi(\pi(x),\pi(y)) = \pi(\sigma(x,y))
+		= \pi(\sigma(y,x)) = \sigma_\pi(\pi(y),\pi(x))
+	\end{align}
+	が成り立つ．同様に$\sigma$が結合的なら$\sigma_\pi$も結合的となる．実際，
+	\begin{align}
+		x = \pi(s),\quad y = \pi(t),\quad z = \pi(u)
+	\end{align}
+	のとき
+	\begin{align}
+		\sigma_\pi\left(\sigma_\pi(x,y),z\right)
+		&= \sigma_\pi\left(\pi(\sigma(s,t)),\pi(u)\right) \\
+		&= \pi\left(\sigma(\sigma(s,t),u)\right) \\
+		&= \pi\left(\sigma(s,\sigma(t,u))\right) \\
+		&= \sigma_\pi\left(\pi(s),\pi(\sigma(t,u))\right) \\
+		&= \sigma_\pi\left(x,\sigma_\pi(y,z)\right)
+	\end{align}
+	が成り立つ．
 	
 \subsubsection{同型定理}
 	$A,A'$を集合，$\sigma,\sigma'$をそれぞれ$A,A'$上の算法とし，
