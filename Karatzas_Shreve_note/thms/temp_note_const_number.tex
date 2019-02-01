@@ -133,7 +133,76 @@
 	\end{align}
 	が成り立つ．すなわち$g$は同型写像である．
 	
+\subsubsection{算法の移し方}
+	$A,A'$を集合とし，$\sigma$を$A$上の算法とし，$h$を$A$から$A'$への全単射とする．
+	このとき
+	\begin{align}
+		\sigma'(x,y) \coloneqq h\left(\sigma(h^{-1}(x),h^{-1}(y))\right)
+	\end{align}
+	により$A'$上の算法を定めれば，
+	\begin{description}
+		\item[(1)] $\sigma$が可換なら$\sigma'$も可換となる．
+		\item[(2)] $\sigma$が結合的なら$\sigma'$も結合的となる．
+		\item[(3)] $a$が$A$の$\sigma$に関する単位元なら
+			$h(a)$は$A'$の$\sigma'$に関する単位元となる．
+		\item[(4)] $A$の要素$x$の$\sigma$に関する逆元を$-x$と書けば
+			$h(-x)$は$h(x)$の$\sigma'$に関する逆元となる．
+			ただし$A$の$\sigma$に関する単位元を$a$とする．
+	\end{description}
 	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] $x,y$を$A'$の要素とすれば
+				\begin{align}
+					\sigma'(x,y) &= h\left(\sigma(h^{-1}(x),h^{-1}(y))\right) \\
+					&= h\left(\sigma(h^{-1}(y),h^{-1}(x))\right) \\
+					&= \sigma'(y,x)
+				\end{align}
+				が成立する．
+				
+			\item[(2)] $x,y,z$を$A'$の要素とすれば
+				\begin{align}
+					\sigma'\left( \sigma'(x,y),z \right)
+					&= \sigma'\left( h\left(\sigma(h^{-1}(x),h^{-1}(y))\right),z \right) \\
+					&= h\left(\sigma\left(h^{-1}\left( h\left(\sigma\left(h^{-1}(x),h^{-1}(y)\right)\right) \right),h^{-1}(z)\right)\right) \\
+					&= h\left(\sigma\left(\sigma\left(h^{-1}(x),h^{-1}(y)\right),h^{-1}(z)\right)\right) \\
+					&= h\left(\sigma\left(h^{-1}(x),\sigma\left(h^{-1}(y),h^{-1}(z)\right)\right)\right) \\
+					&= h\left(\sigma\left(h^{-1}(x),h^{-1}\left(h\left(\sigma\left(h^{-1}(y),h^{-1}(z)\right)\right)\right)\right)\right) \\
+					&= \sigma'\left( x,h\left(\sigma(h^{-1}(y),h^{-1}(z))\right) \right) \\
+					&= \sigma'\left(x,\sigma'\left(y,z\right)\right)
+				\end{align}
+				が成立する．
+			
+			\item[(3)] $x$を$A'$の要素とすれば
+				\begin{align}
+					\sigma'(x,h(a)) &= h\left(\sigma(h^{-1}(x),a)\right) \\
+					&= h\left(h^{-1}(x)\right) \\
+					&= x
+				\end{align}
+				と
+				\begin{align}
+					\sigma'(h(a),x) &= h\left(\sigma(a,h^{-1}(x))\right) \\
+					&= h\left(h^{-1}(x)\right) \\
+					&= x
+				\end{align}
+				が成立する．
+				
+			\item[(4)] $x$を$A'$の要素として
+				\begin{align}
+					y \coloneqq h\left(-h^{-1}(x)\right)
+				\end{align}
+				とおけば
+				\begin{align}
+					\sigma'(x,y) = h\left(\sigma(h^{-1}(x),-h^{-1}(x))\right) = h(a)
+				\end{align}
+				と
+				\begin{align}
+					\sigma'(y,x) = h\left(\sigma(-h^{-1}(x),h^{-1}(x))\right) = h(a)
+				\end{align}
+				が成立する．
+		\end{description}
+	\end{prf}
+
 \subsubsection{整数}
 	$(S,o)$を可換半群とするとき，$S \times S$上の同値関係を
 	\begin{align}
