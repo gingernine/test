@@ -89,13 +89,30 @@
 		\end{axm}
 	\end{screen}
 	
+	\monologue{
+		院生「選択公理をもって本稿の公理は出尽くしました．次の整列可能定理は
+			いかなる集合の上にも整列順序が定まることを保証するものです．主張は
+			\begin{align}
+				\forall x\ \exists \alpha \in \ON\ 
+				\exists f\ \left( f:\alpha \bij x \right)
+			\end{align}
+			ですが，いま$a$を集合として
+			\begin{align}
+				g \coloneqq \varepsilon f\ \left( f:\alpha \bij a \right)
+			\end{align}
+			とおき，
+			\begin{align}
+				R \coloneqq \Set{x}{\exists s,t \in a\, \left(\, g^{-1}(s) \subset g^{-1}(t) \wedge x = (s,t)\, \right)}
+			\end{align}
+			で$a$上の関係を定めれば，$R$は$a$上の整列順序となります．」
+	}
 	
 	\begin{screen}
-		\begin{thm}[整列可能定理]
+		\begin{thm}[整列可能定理]\label{thm:well_ordering_theorem}
 			任意の集合は，或る順序数と全単射で結ばれる:
 			\begin{align}
 				\forall x\ \exists \alpha \in \ON\ 
-				\exists f\ \left( f:\alpha \bij x \right).
+				\exists f\, \left(\, f:\alpha \bij x\, \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -107,7 +124,7 @@
 				空写像$\emptyset$が$\emptyset$から$\chi$への全単射となる．従って
 				\begin{align}
 					\chi = \emptyset \Longrightarrow \exists \alpha \in \ON\ 
-				\exists f\ \left( f:\alpha \bij \chi \right)
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
 				\end{align}
 				が成立する．
 				
@@ -156,10 +173,135 @@
 			\item[第三段]
 				$S$を類とするとき
 				\begin{align}
-					\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq a\, \right)
-					\Longrightarrow F \ast S \subset a \wedge
+					\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq \chi\, \right)
+					\Longrightarrow \set{F \ast S} \wedge
 					F|_S:S \bij F \ast S \wedge \set{S}
+					\label{eq:thm_well_ordering_theorem_1}
 				\end{align}
-				が成り立つことを示す．
+				が成り立つことを示す．いま
+				\begin{align}
+					\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq \chi\, \right)
+				\end{align}
+				が成り立っているとする．このとき
+				\begin{align}
+					F(\emptyset) = g(\emptyset) \in \chi
+				\end{align}
+				が成立し，また$\alpha$を任意の順序数とすれば，
+				\begin{align}
+					\forall \beta \in \alpha\, \left(\, \beta \in S \Longrightarrow F(\beta) \in \chi\, \right)
+				\end{align}
+				が満たされているとき
+				\begin{align}
+					\alpha \in S &\Longrightarrow \alpha \subset S \\
+					&\Longrightarrow \forall \beta \in \alpha\, (\, \beta \in S\, ) \\
+					&\Longrightarrow \forall \beta \in \alpha\, (\, F(\beta) \in \chi\, ) \\
+					&\Longrightarrow F \ast \alpha \subset \chi, \\
+					\alpha \in S &\Longrightarrow F \ast \alpha \neq \chi
+				\end{align}
+				より
+				\begin{align}
+					\alpha \in S \Longrightarrow F(\alpha) \in \chi
+				\end{align}
+				が成立する．よって超限帰納法より
+				\begin{align}
+					\forall \alpha \in S\, (\, F(\alpha) \in \chi\, )
+				\end{align}
+				となる．従って
+				\begin{align}
+					F \ast S \subset \chi
+				\end{align}
+				が得られる．そして$\chi$は集合であるから
+				\begin{align}
+					\set{F \ast S}
+				\end{align}
+				が出る．次に$F|_S$が単射であることを示す．$\beta,\gamma \in S$に対し，
+				$\beta \neq \gamma$ならば
+				\begin{align}
+					\beta \in \gamma \vee \gamma \in \beta
+				\end{align}
+				が成り立つ．$\beta \in \gamma$の場合
+				\begin{align}
+					F(\gamma) = g(F \ast \gamma) \in \chi \backslash (F \ast \gamma)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					F(\gamma) \notin F \ast \gamma
+				\end{align}
+				が従う．他方で
+				\begin{align}
+					F(\beta) \in F \ast \gamma
+				\end{align}
+				が満たされるので
+				\begin{align}
+					F(\gamma) \neq F(\beta)
+				\end{align}
+				が満たされる．よって
+				\begin{align}
+					\beta \in \gamma \Longrightarrow F(\gamma) \neq F(\beta)
+				\end{align}
+				が成立する．$\beta$と$\gamma$を入れ替えれば
+				\begin{align}
+					\gamma \in \beta \Longrightarrow F(\gamma) \neq F(\beta)
+				\end{align}
+				も得られるので，場合分け法則より
+				\begin{align}
+					\beta \neq \gamma \Longrightarrow F(\gamma) \neq F(\beta)
+				\end{align}
+				が成り立つ．よって$F|_S$は単射である．このとき
+				\begin{align}
+					F|_S:S \bij F \ast S
+				\end{align}
+				となり
+				\begin{align}
+					S = {F|_S}^{-1}(F \ast S)
+				\end{align}
+				が成り立つので，置換公理より
+				\begin{align}
+					\set{S}
+				\end{align}
+				が出る．
+				
+			\item[第四段]
+				Burali-Fortiの定理より
+				\begin{align}
+					\rightharpoondown \set{\ON}
+				\end{align}
+				が成り立つので，式(\refeq{eq:thm_well_ordering_theorem_1})の対偶から
+				\begin{align}
+					\rightharpoondown \ord{\ON} \vee 
+					\exists \alpha \in \ON\, \left(\, F \ast \alpha = \chi\, \right)
+				\end{align}
+				が従う．一方で
+				\begin{align}
+					\ord{\ON}
+				\end{align}
+				は正しいので，選言三段論法より
+				\begin{align}
+					\exists \alpha \in \ON\, \left(\, F \ast \alpha = \chi\, \right)
+				\end{align}
+				が成立する．
+				\begin{align}
+					\gamma \coloneqq \mu \alpha \, \left(\, F \ast \alpha = \chi\, \right)
+				\end{align}
+				とおけば式(\refeq{eq:thm_well_ordering_theorem_1})より
+				\begin{align}
+					F|_\gamma:\gamma \bij \chi
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\chi \neq \emptyset \Longrightarrow \exists \alpha \in \ON\ 
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				も得られた．場合分け法則より
+				\begin{align}
+					\chi = \emptyset \vee \chi \neq \emptyset \Longrightarrow \exists \alpha \in \ON\ 
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				が成立し，排中律から
+				\begin{align}
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				は真となる．そして$\chi$の任意性より定理の主張が出る．
+				\QED
 		\end{description}
 	\end{prf}
