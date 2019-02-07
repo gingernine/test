@@ -64,21 +64,102 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{dfn}[選択関数]
+			$a$を集合とするとき，
+			\begin{align}
+				f \fon a \wedge \forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )
+			\end{align}
+			を満たす写像$f$を$a$上の{\bf 選択関数}\index{せんたくかんすう@選択関数}{\bf (choice function)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		院生「$a = \emptyset$ならば空写像が$a$上の選択関数となりますね．空集合だけでなく，
+			どの集合の上にも選択関数が存在することを保証するのが選択公理です．」
+	}
+	
+	\begin{screen}
+		\begin{axm}[選択公理]
+			いかなる集合の上にも選択関数が存在する:
+			\begin{align}
+				\forall a\, \exists f\ \left(\ 
+				f \fon a \wedge \forall x \in a\ 
+				(\ x \neq \emptyset \Longrightarrow f(x) \in x\ )\ \right). 
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	
+	\begin{screen}
 		\begin{thm}[整列可能定理]
 			任意の集合は，或る順序数と全単射で結ばれる:
 			\begin{align}
-				\forall a\ \exists \alpha \in \ON\ 
-				\exists f\ \left( f:\alpha \bij a \right).
+				\forall x\ \exists \alpha \in \ON\ 
+				\exists f\ \left( f:\alpha \bij x \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$S$を類とするとき
-		\begin{align}
-			\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq a\, \right)
-			\Longrightarrow F \ast S \subset a \wedge
-			F|_S:S \bij F \ast S \wedge \set{S}
-		\end{align}
-		が成り立つ．
+	\begin{prf} $\chi$を任意に与えられた$\mathcal{L}$の対象とする．
+		\begin{description}
+			\item[第一段]
+				$\chi = \emptyset$の場合，
+				空写像$\emptyset$が$\emptyset$から$\chi$への全単射となる．従って
+				\begin{align}
+					\chi = \emptyset \Longrightarrow \exists \alpha \in \ON\ 
+				\exists f\ \left( f:\alpha \bij \chi \right)
+				\end{align}
+				が成立する．
+				
+			\item[第二段]
+				$\chi \neq \emptyset$の場合，
+				\begin{align}
+					P \coloneqq \dirpro{\chi} \backslash \{\chi\}
+				\end{align}
+				とおけば
+				\begin{align}
+					\forall p \in P\, (\, \chi \backslash p \neq \emptyset\, )
+				\end{align}
+				が満たされるので，選択公理より
+				\begin{align}
+					g \fon P \wedge \forall p \in P\, (\, g(p) \in \chi \backslash p\, ) 
+				\end{align}
+				を満たす写像$g$が存在する．
+				\begin{align}
+					G \coloneqq \Set{z}{\exists s\, \left(\, 
+						\left(\, \ran{s} \subset \chi \Longrightarrow z=(s,g(\ran{s}))\, \right) 
+						\wedge \left(\, \ran{s} \not\subset \chi \Longrightarrow z=(s,\emptyset)\, \right)\, \right)}
+				\end{align}
+				で$\Univ$上の写像$G$を定めれば
+				\begin{align}
+					\forall \alpha \in \ON\, \left(\, F(\alpha) = G(F|_\alpha)\, \right)
+				\end{align}
+				を満たす類$F$が存在して，$G$の定め方より
+				\begin{align}
+					\alpha \in \ON \Longrightarrow F(\alpha) = 
+					\begin{cases}
+						g(F \ast \alpha) & (F \ast \alpha \subsetneq \chi) \\
+						\emptyset & (F \ast \alpha = a \vee F \ast \alpha \not\subset \chi)
+					\end{cases}
+				\end{align}
+				が成立する．
+				\begin{align}
+					\forall \alpha \in \ON\, \left(\, 
+					F \ast \alpha \subsetneq \chi \Longrightarrow g(F \ast \alpha) \in \chi\, \right)
+				\end{align}
+				が満たさるので
+				\begin{align}
+					F:\ON \longrightarrow \chi \cup \{\emptyset\}
+				\end{align}
+				が成立することに注意しておく．
+			
+			\item[第三段]
+				$S$を類とするとき
+				\begin{align}
+					\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq a\, \right)
+					\Longrightarrow F \ast S \subset a \wedge
+					F|_S:S \bij F \ast S \wedge \set{S}
+				\end{align}
+				が成り立つことを示す．
+		\end{description}
 	\end{prf}
