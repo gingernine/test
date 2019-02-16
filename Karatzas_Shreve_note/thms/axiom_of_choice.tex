@@ -14,8 +14,8 @@
 			次は同値である．
 			\begin{description}
 				\item[(イ)] $\forall a\, \exists f\, \left(\, f \fon a \wedge \forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )\, \right)$
-				\item[(ロ)] $\forall a\, \forall h\, \left[\, h \fon a \wedge \forall x \in a\, (\, h(x) \neq \emptyset\, )
-				\Longrightarrow \prod_{x \in a} h(x) \neq \emptyset\, \right]$
+				\item[(ロ)] $\forall a\, \forall h\, \left(\, h \fon a \wedge \forall x \in a\, (\, h(x) \neq \emptyset\, )
+				\Longrightarrow \prod_{x \in a} h(x) \neq \emptyset\, \right)$
 			\end{description}
 		\end{thm}
 	\end{screen}
@@ -132,12 +132,23 @@
 		\begin{description}
 			\item[第一段]
 				$\chi = \emptyset$の場合，
-				空写像$\emptyset$が$\emptyset$から$\chi$への全単射となる．従って
 				\begin{align}
-					\chi = \emptyset \Longrightarrow \exists \alpha \in \ON\ 
+					\emptyset: \emptyset \bij \chi
+				\end{align}
+				が満たされるから
+				\begin{align}
+					\exists f\, \left(\, f:\emptyset \bij \chi\, \right)
+				\end{align}
+				が成立し，$\emptyset$は$\ON$の要素であるから
+				\begin{align}
+					\exists \alpha \in \ON\, \exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				が従う．以上より
+				\begin{align}
+					\chi = \emptyset \Longrightarrow \exists \alpha \in \ON\, 
 					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
 				\end{align}
-				が成立する．
+				が成り立つ．
 				
 			\item[第二段]
 				$\chi \neq \emptyset$の場合，
@@ -155,8 +166,8 @@
 				を満たす写像$g$が存在する．
 				\begin{align}
 					G \coloneqq \Set{z}{\exists s\, \left(\, 
-						\left(\, \ran{s} \subset \chi \Longrightarrow z=(s,g(\ran{s}))\, \right) 
-						\wedge \left(\, \ran{s} \not\subset \chi \Longrightarrow z=(s,\emptyset)\, \right)\, \right)}
+						\left(\, \ran{s} \in P \Longrightarrow z=(s,g(\ran{s}))\, \right) 
+						\wedge \left(\, \ran{s} \notin P \Longrightarrow z=(s,\emptyset)\, \right)\, \right)}
 				\end{align}
 				で$\Univ$上の写像$G$を定めれば
 				\begin{align}
@@ -179,7 +190,11 @@
 				\begin{align}
 					F:\ON \longrightarrow \chi \cup \{\emptyset\}
 				\end{align}
-				が成立することに注意しておく．
+				が成立することに注意しておく．以下，適当な順序数$\gamma$を選べば
+				\begin{align}
+					F|_\gamma
+				\end{align}
+				が$\gamma$から$\chi$への全単射となることを示す．
 			
 			\item[第三段]
 				$S$を類とするとき
@@ -225,8 +240,11 @@
 				\begin{align}
 					\set{F \ast S}
 				\end{align}
-				が出る．次に$F|_S$が単射であることを示す．$\beta,\gamma \in S$に対し，
-				$\beta \neq \gamma$ならば
+				が出る．次に$F|_S$が単射であることを示す．$\ord{S}$から
+				\begin{align}
+					S \subset \ON
+				\end{align}
+				が満たされるので，$\beta,\gamma \in S$に対して$\beta \neq \gamma$ならば
 				\begin{align}
 					\beta \in \gamma \vee \gamma \in \beta
 				\end{align}
