@@ -7,21 +7,20 @@
 	\begin{screen}
 		\begin{thm}[任意の無限集合は可算集合を含む]
 			\begin{align}
-				\forall a\ \left(\ \exists \alpha \in \ON \backslash {\bf \omega}\ (\  \alpha \simeq a\ )
-				\Longrightarrow \exists b\ (\ b \subset a \wedge {\bf \omega} \simeq b\ )\ \right).
+				\forall a\ \left(\ \exists \alpha \in \ON \backslash {\bf \omega}\ (\  \alpha \eqp a\ )
+				\Longrightarrow \exists b\ (\ b \subset a \wedge {\bf \omega} \eqp b\ )\ \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{dfn}[対等]
-			$a,b$を集合とするとき，$a$から$b$への全単射が存在するとき
-			$a$と$b$は対等であるといい，
+			$a,b$を類とするとき，$a$と$b$が{\bf 対等である}\index{たいとう@対等}{\bf (equipotent)}ということを
 			\begin{align}
-				a \simeq b \overset{\mathrm{def}}{\Longleftrightarrow} 
+				a \eqp b \overset{\mathrm{def}}{\Longleftrightarrow} 
 				\exists f\, \left(\, f: a \bij b\, \right)
 			\end{align}
-			と定める．
+			で定める．
 		\end{dfn}
 	\end{screen}
 	
@@ -29,7 +28,7 @@
 		\begin{thm}[対等関係は同値関係]
 			$\Univ$上の関係$R$を
 			\begin{align}
-				R \coloneqq \Set{x}{\exists s,t\, (\, x=(s,t) \wedge s \simeq t\, )}
+				R \coloneqq \Set{x}{\exists s,t\, (\, x=(s,t) \wedge s \eqp t\, )}
 			\end{align}
 			で定めるとき，$R$は$\Univ$上の同値関係となる．
 		\end{thm}
@@ -39,15 +38,16 @@
 		\begin{dfn}[濃度・基数]
 			$a$を類とするとき，$a$と対等な順序数のうち最小のもの，つまり
 			\begin{align}
-				\# a \coloneqq \mu \alpha\, (\, a \simeq \alpha\, )
+				\card{a} \coloneqq \mu \alpha\, (\, a \eqp \alpha\, )
 			\end{align}
-			で定める$\# a$を$a$の濃度と呼び，
+			で定める$\card{a}$を$a$の{\bf 濃度}\index{のうど@濃度}{\bf (cardinal)}と呼び，
 			\begin{align}
-				\# \alpha = \alpha
+				\card{\alpha} = \alpha
 			\end{align}
-			を満たす順序数$\alpha$を基数と呼ぶ．また
+			を満たす順序数$\alpha$を{\bf 基数}\index{きすう@基数}{\bf (cardinal number)}と呼ぶ．
+			また基数の全体を
 			\begin{align}
-				\CN \coloneqq \Set{x}{\exists \alpha \in \ON\, (\, \#\alpha = \alpha\, )}
+				\CN \coloneqq \Set{x}{\exists \alpha \in \ON\, (\, \card{\alpha} = \alpha \wedge x = \alpha\, )}
 			\end{align}
 			とおく．
 		\end{dfn}
@@ -57,14 +57,194 @@
 		院生「整列可能定理の結果より，全ての集合には濃度が定められるのですね．」
 	}
 	
+	
+	
+	\begin{screen}
+		\begin{thm}[順序数はその濃度より小さくない]\label{thm:ordinal_number_is_not_less_than_its_cardinal}
+			\begin{align}
+				\forall \alpha \in \ON\, \left(\, \card{\alpha} \leq \alpha\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$上の恒等写像は$\alpha$から$\alpha$への全単射であるから
+		\begin{align}
+			\alpha \in \Set{\beta}{\beta \in \ON \wedge \beta \eqp \alpha}
+		\end{align}
+		が満たされる．従って
+		\begin{align}
+			\card{\alpha} \leq \alpha
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[濃度は基数]\label{thm:cardinal_is_cardinal_number}
+			次が成り立つ:
+			\begin{align}
+				\forall a\, \left(\, \card{a} = \card{\card{a}}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$を集合とする．まず定理\ref{thm:ordinal_number_is_not_less_than_its_cardinal}より
+		\begin{align}
+			\card{\card{a}} \leq \card{a}
+		\end{align}
+		が満たされる．他方で
+		\begin{align}
+			a \eqp \card{a} \wedge \card{a} \eqp \card{\card{a}}
+		\end{align}
+		が成り立っているので
+		\begin{align}
+			a \eqp \card{\card{a}}
+		\end{align}
+		が従い
+		\begin{align}
+			\card{a} \leq \card{\card{a}}
+		\end{align}
+		も満たされる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\CN$は濃度の全体である]
+			次が成り立つ:
+			\begin{align}
+				\CN = \Set{x}{\exists a\, \left(\, x = \card{a}\, \right)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$を$\CN$の任意の要素とすれば
+		\begin{align}
+			\alpha = \card{\alpha}
+		\end{align}
+		となるから，
+		\begin{align}
+			\exists a\, \left(\, \alpha = \card{a}\, \right)
+		\end{align}
+		が満たされ
+		\begin{align}
+			\alpha \in \Set{x}{\exists a\, \left(\, x = \card{a}\, \right)}
+		\end{align}
+		が従う．逆に$\alpha$を$\Set{x}{\exists a\, \left(\, x = \card{a}\, \right)}$の任意の要素とすれば，
+		或る集合$a$が存在して
+		\begin{align}
+			\alpha = \card{a}
+		\end{align}
+		となる．このとき定理\ref{thm:cardinal_is_cardinal_number}より
+		\begin{align}
+			\card{a} = \card{\card{a}}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\exists \beta \in \ON\, (\, \card{\beta} = \beta \wedge \card{a} = \beta\, )
+		\end{align}
+		が満たされ
+		\begin{align}
+			\alpha = \card{a} \in \CN
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			次が成り立つ:
+			\begin{align}
+				\forall a\, \forall b\, \left(\, a \eqp b \Longleftrightarrow \card{a} = \card{b}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a \eqp b$が成り立っていると仮定する．このとき
+		\begin{align}
+			\card{a} \eqp a \wedge a \eqp b
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\card{a} \eqp b
+		\end{align}
+		が従い，
+		\begin{align}
+			\card{b} \leq \card{a}
+		\end{align}
+		となる．$a$と$b$を入れ替えれば
+		\begin{align}
+			\card{a} \leq \card{b}
+		\end{align}
+		も得られ，
+		\begin{align}
+			\card{a} = \card{b}
+		\end{align}
+		が成立する．以上より
+		\begin{align}
+			a \eqp b \Longrightarrow \card{a} = \card{b}
+		\end{align}
+		が示された．逆に$\card{a} = \card{b}$が成り立っていると仮定する．このとき
+		\begin{align}
+			f_1 &\coloneqq \varepsilon f\, \left(\, f:a \bij \card{a}\, \right), \\
+			f_2 &\coloneqq \Set{x}{\exists s \in \card{a}\, (\,x = (s,s)\, )}, \\
+			f_3 &\coloneqq \varepsilon f\, \left(\, f:\card{b} \bij b\, \right)
+		\end{align}
+		とおけば$f_1,f_2,f_3$はどれも全単射であるから，
+		\begin{align}
+			g \coloneqq (f_3 \circ f_2) \circ f_1
+		\end{align}
+		は$a$から$b$への全単射となる．よって$a \eqp b$が従い
+		\begin{align}
+			\card{a} = \card{b} \Longrightarrow a \eqp b
+		\end{align}
+		も示された．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\forall a\, \forall b\, \left(\, a \subset b \Longrightarrow \card{a} \leq \card{b}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
 	\begin{screen}
 		\begin{thm}[真類の濃度は$0$]
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\rightharpoondown \set{a} \Longrightarrow \# a = 0.
+				\rightharpoondown \set{a} \Longrightarrow \card{a} = 0.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Cantorの定理]
+			集合の冪の濃度は集合の濃度より真に大きい:
+			\begin{align}
+				\forall a\, \left(\, \card{a} < \card{\dirpro{a}}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\CN$は集合でない]
+			\begin{align}
+				\rightharpoondown \set{\CN}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			S \subset \ON \wedge \set{S} \Longrightarrow \card{\bigcup S} \notin S
+		\end{align}
+		が成り立つことを示す．
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[自然数は基数]
@@ -107,7 +287,7 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
+	\begin{sketch}
 		いま$\gamma,\delta$を$\ON$の要素として
 		\begin{align}
 			\gamma < \delta
@@ -146,4 +326,4 @@
 			\forall \gamma, \delta \in \ON\, (\, \gamma < \delta \Longrightarrow F(\gamma) < F(\delta)\, )
 		\end{align}
 		が得られる．またこの結果より$F$が単射であることも従う．
-	\end{prf}
+	\end{sketch}
