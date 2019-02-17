@@ -354,11 +354,24 @@
 			$\ran{a}$を$a$の{\bf 値域}{\bf (range)}と呼ぶ．
 			また
 			\begin{align}
-				a(t) \coloneqq \Set{x}{\exists! y\, (\, x \in y \wedge (t,y) \in a\, )}
+				a(t) \coloneqq \Set{x}{\exists y\, (\, x \in y \wedge (t,y) \in a\, )}
 			\end{align}
 			とおき，これを$t$の$a$による{\bf 値}\index{あたい@値}{\bf (value)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	メモ;
+	\begin{align}
+		a(t) \coloneqq \Set{x}{\exists y\, (\, x \in y \wedge (t,y) \in a\, )}
+	\end{align}
+	と定めたら
+	\begin{align}
+		\fnc{a} \Longleftrightarrow \rel{a} \wedge 
+		\forall s,t \in \dom{a}\, (\, s=t \Longrightarrow a(s) = a(t)\, )
+	\end{align}
+	が言える?
+	$\Longrightarrow$なら言える．OK.
+	逆は怪しい．蓋しNG.
 	
 	\begin{screen}
 		\begin{dfn}[写像] $f,a,b$を類とするとき，以下の概念と$\mathcal{L}'$における派生記号を定める．
@@ -414,99 +427,86 @@
 		\begin{thm}[写像の値は順序対になったときに写像に属する]\label{thm:value_of_a_mapping}
 			$a$を類とするとき
 			\begin{align}
-				\forall t\, \left(\, t \in \dom{a} \wedge \exists ! y\, (\, (t,y) \in a\, ) \Longrightarrow (t,a(t)) \in a\, \right)
+				\sing{a} \Longrightarrow \forall t \in \dom{a}\, \left(\, (t,a(t)) \in a\, \right)
 			\end{align}
-			が成り立つ．特に次が従う:
-			\begin{align}
-				\fnc{a} \Longrightarrow \forall t\, \left(\, t \in \dom{a} \Longrightarrow (t,a(t)) \in a\, \right).
-				\label{eq:thm_value_of_a_mapping_2}
-			\end{align}
+			が成り立つ．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$\tau$を$\mathcal{L}$の任意の対象として，
-		$\tau \in \dom{a} \wedge \exists! y\, (\, (\tau,y) \in a\, )$が成り立っていると仮定する．
-		このとき
+	\begin{sketch}
+		$\sing{a}$が成り立っていると仮定する．このとき$t$を$\dom{a}$の任意の要素とすれば，
 		\begin{align}
-			\nu \coloneqq \varepsilon y\, (\, (\tau,y) \in a\, )
+			(t,\eta) \in a
 		\end{align}
-		とおけば，$\exists y\, (\, (\tau,y) \in a\, ) \Longleftrightarrow (\tau,\nu) \in a$が成り立つので
+		を満たす$\eta$が取れる．この$\eta$が$a(t)$に等しいことを示せば良い．
+		いま$x$を任意の集合とする．
 		\begin{align}
-			(\tau,\nu) \in a
+			x \in \eta
 		\end{align}
-		が満たされる．ここで
+		が成り立っているとすると
 		\begin{align}
-			a(\tau) = \nu
+			\exists y\, (\, x \in y \wedge (t,y) \in a\, )
 		\end{align}
-		が成立することを示す．$\chi$を$\mathcal{L}$の任意の対象として$\chi \in a(\tau)$が成り立っているとすると，
+		が従うので
 		\begin{align}
-			\exists y\, (\, \chi \in y \wedge (\tau,y) \in a\, )
+			x \in a(t)
 		\end{align}
-		が成り立つので$\mu \coloneqq \varepsilon y\, (\, \chi \in y \wedge (\tau,y) \in a\, )$とおけば
+		となる．ゆえに先ず
 		\begin{align}
-			\chi \in \mu \wedge (\tau,\mu) \in a
+			x \in \eta \Longrightarrow x \in a(t)
 		\end{align}
-		が成り立つ．いま$\exists! y\, (\, (\tau,y) \in a\, )$が満たされているので
+		が得られた．逆に
 		\begin{align}
-			\nu = \mu
+			x \in a(t)
 		\end{align}
-		が従い，相等性の公理より$\chi \in \nu$となる．逆に$\chi \in \nu$が成り立っていれば
-		$\chi \in \nu \wedge (\tau,\nu) \in a$が従うので
+		が成り立っているとき，
 		\begin{align}
-			\chi \in a(t)
+			\xi \coloneqq \varepsilon y\, (\, x \in y \wedge (t,y) \in a\, )
 		\end{align}
-		が成り立つ．以上から$a(\tau) = \nu$が出る．このとき
+		とおけば
 		\begin{align}
-			(\tau,\nu) = (\tau,a(\tau))
+			x \in \xi \wedge (t,\xi) \in a
 		\end{align}
-		が成立するので$(\tau,a(\tau)) \in a$となり，演繹法則を適用して
+		が満たされるが，$(t,\eta) \in a$と$\sing{a}$より
 		\begin{align}
-			\tau \in \dom{a} \wedge \exists! y\, (\, (\tau,y) \in a\, )
-			\Longrightarrow (\tau,a(\tau)) \in a
+			\xi = \eta
 		\end{align}
-		が得られ，$\tau$の任意性より
+		となるので，相等性の公理から
 		\begin{align}
-			\forall t\, \left(\, t \in \dom{a} \wedge \exists ! y\, (\, (t,y) \in a\, ) \Longrightarrow (t,a(t)) \in a\, \right)
-			\label{eq:thm_value_of_a_mapping}
+			x \in \eta
 		\end{align}
-		が得られる．また$\fnc{a}$が成り立っていると仮定するとき，$\tau$を$\mathcal{L}$の任意の対象として
+		も成立する．ゆえに
 		\begin{align}
-			\tau \in \dom{a}
+			x \in a(t) \Longrightarrow x \in \eta
 		\end{align}
-		が満たされているとすれば
+		も得られた．$x$の任意性と外延性の公理から
 		\begin{align}
-			\exists ! y\, (\, (\tau,y) \in a\, )
+			a(t) = \eta
 		\end{align}
-		が成立する．実際，$\tau \in \dom{a}$より$\exists y\, (\, (\tau,y) \in a\, )$が成り立ち，
-		また$\sing{a}$より
+		が従う．このとき
 		\begin{align}
-			\forall z,w\, (\, (\tau,z) \in a \wedge (\tau,w) \in a \Longrightarrow z=w\, )
+			(t,\eta) = (t,a(t))
 		\end{align}
-		も成り立つ．従って(\refeq{eq:thm_value_of_a_mapping})より$(\tau,a(\tau)) \in a$が従い，
-		演繹法則と$\tau$の任意性から
+		となり，$(t,\eta) \in a$と相等性の公理から
 		\begin{align}
-			\forall t\, \left(\, t \in \dom{a} \Longrightarrow (t,a(t)) \in a\, \right)
+			(t,a(t)) \in a
 		\end{align}
-		が成立する．もう一度演繹法則を適用すれば(\refeq{eq:thm_value_of_a_mapping_2})が出る．
+		が満たされる．以上を総合すれば
+		\begin{align}
+			\sing{a} \Longrightarrow \forall t \in \dom{a}\, \left(\, (t,a(t)) \in a\, \right)
+		\end{align}
+		が出る．
 		\QED
-	\end{prf}
-	
-	\monologue{
-		院生「上の証明で$\varepsilon y\, (\, (\tau,y) \in a\, )$と書いていますが，元の式で書き直せば
-			\begin{align}
-				\varepsilon y\, \left(\, \Set{x}{\forall s\, (\, s \in x \Longleftrightarrow s = \tau\, ) \vee \forall t\, (\, t \in x \Longleftrightarrow t=\tau \vee t=y\, )} \in a\, \right)
-			\end{align}
-			となりますね．」
-	}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[定義域と値が一致する写像は等しい]
 			$f,g$を類とするとき次が成り立つ:
 			\begin{align}
-				&\left(\, \fnc{f} \wedge \fnc{g}\, \right) \wedge 
-				\left(\, \dom{f} = \dom{g}\, \right) \\
-				&\Longrightarrow \left(\, \forall t\, \left(\, t \in \dom{f} \Longrightarrow f(t) = g(t)\, \right) \Longrightarrow f = g\, \right).
+				&\fnc{f} \wedge \fnc{g} \\
+				&\Longrightarrow  
+				\left(\, \dom{f} = \dom{g} \wedge
+				\forall t \in \dom{f}\, \left(\, f(t) = g(t)\, \right) \Longrightarrow f = g\, \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
