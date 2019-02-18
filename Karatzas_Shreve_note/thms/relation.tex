@@ -360,76 +360,27 @@
 		\end{dfn}
 	\end{screen}
 	
-	メモ;
-	\begin{align}
-		a(t) \coloneqq \Set{x}{\exists y\, (\, x \in y \wedge (t,y) \in a\, )}
-	\end{align}
-	と定めたら
-	\begin{align}
-		\fnc{a} \Longleftrightarrow \rel{a} \wedge 
-		\forall s,t \in \dom{a}\, (\, s=t \Longrightarrow a(s) = a(t)\, )
-	\end{align}
-	が言える?
-	$\Longrightarrow$なら言える．OK.
-	逆は怪しい．蓋しNG.
-	
 	\begin{screen}
-		\begin{dfn}[写像] $f,a,b$を類とするとき，以下の概念と$\mathcal{L}'$における派生記号を定める．
-			\begin{itemize}
-				\item $f$が\index{single-valued}{\bf single-valuedである}ということ:
-					\begin{align}
-						\sing{f} \overset{\mathrm{def}}{\Longleftrightarrow}
-						\forall x,y,z\, (\, (x,y) \in f \wedge (x,z) \in f
-						\Longrightarrow y=z\, ).
-					\end{align}
-					
-				\item $f$が{\bf 写像}\index{しゃぞう@写像}{\bf (mapping)}であるということ:
-					\begin{align}
-						\fnc{f} \overset{\mathrm{def}}{\Longleftrightarrow}
-						\rel{f} \wedge \sing{f}.
-					\end{align}
-				
-				\item $f$が$a$上の写像であるということ:
-					\begin{align}
-						f \fon a \overset{\mathrm{def}}{\Longleftrightarrow}
-						\fnc{f} \wedge \dom{f} = a.
-					\end{align}
-					
-				\item $f$が$a$から$b$への写像であるということ:
-					\begin{align}
-						f:a \longrightarrow b \overset{\mathrm{def}}{\Longleftrightarrow}
-						f \fon a \wedge \ran{f} \subset b.
-					\end{align}
-				
-				\item $f$が$a$から$b$への{\bf 単射}\index{たんしゃ@単射}{\bf (injection)}であるということ:
-					\begin{align}
-						f:a \inj b \overset{\mathrm{def}}{\Longleftrightarrow}
-						f:a \longrightarrow b \wedge \forall x,y,z\, (\, (x,z) \in f \wedge (y,z) \in f
-						\Longrightarrow x=y\, ).
-					\end{align}
-					
-				\item $f$が$a$から$b$への{\bf 全射}\index{ぜんしゃ@全射}{\bf (surjection)}であるということ:
-					\begin{align}
-						f:a \srj b \overset{\mathrm{def}}{\Longleftrightarrow}
-						f:a \longrightarrow b \wedge \forall y \in b\, \exists x \in a\, (\, (x,y) \in f\, ).
-					\end{align}
-					
-				\item $f$が$a$から$b$への{\bf 全単射}\index{ぜんたんしゃ@全単射}{\bf (bijection)}であるということ:
-					\begin{align}
-						f:a \bij b \overset{\mathrm{def}}{\Longleftrightarrow}
-						f:a \inj b \wedge f:a \srj b.
-					\end{align}
-			\end{itemize}
+		\begin{dfn}[single-valued]
+			$a$を類とするとき，$a$が\index{single-valued}{\bf single-valuedである}ということを
+			\begin{align}
+				\sing{a} \overset{\mathrm{def}}{\Longleftrightarrow}
+				\forall x,y,z\, (\, (x,y) \in a \wedge (x,z) \in a \Longrightarrow y=z\, )
+			\end{align}
+			で定める．
 		\end{dfn}
 	\end{screen}
 	
+	\monologue{
+		院生「写像とはsingle-valuedな関係として定義されるので，」
+	}
+	
 	\begin{screen}
-		\begin{thm}[写像の値は順序対になったときに写像に属する]\label{thm:value_of_a_mapping}
+		\begin{thm}[値とは要素となる順序対の片割れである]\label{thm:value_and_ordered_pair}
 			$a$を類とするとき
 			\begin{align}
-				\sing{a} \Longrightarrow \forall t \in \dom{a}\, \left(\, (t,a(t)) \in a\, \right)
+				\sing{a} \Longrightarrow \forall t \in \dom{a}\, \left(\, (t,a(t)) \in a\, \right).
 			\end{align}
-			が成り立つ．
 		\end{thm}
 	\end{screen}
 	
@@ -498,6 +449,90 @@
 		が出る．
 		\QED
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[single-valuedならば値は一意]
+		\label{thm:uniqueness_of_values}
+			$a$を類とするとき
+			\begin{align}
+				\sing{a} \Longrightarrow
+				\forall s,t \in \dom{a}\, (\, s=t \Longrightarrow a(s) = a(t)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\sing{a}$が成り立っていると仮定する．$s,t$を$\dom{a}$の任意の要素とすれば，
+		定理\ref{thm:value_and_ordered_pair}より
+		\begin{align}
+			(s,a(s)) \in a \wedge (t,a(t)) \in a
+		\end{align}
+		が成立する．このとき
+		\begin{align}
+			s = t
+		\end{align}
+		ならば
+		\begin{align}
+			(s,a(s)) = (t,a(s))
+		\end{align}
+		となるので
+		\begin{align}
+			(t,a(s)) \in a
+		\end{align}
+		が従い，$\sing{a}$と$(t,a(t)) \in a$から
+		\begin{align}
+			a(s) = a(t)
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			s=t \Longrightarrow a(s) = a(t)
+		\end{align}
+		が示された．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[写像] $f,a,b$を類とするとき，以下の概念と$\mathcal{L}'$における派生記号を定める．
+			\begin{itemize}
+				\item $f$が{\bf 写像}\index{しゃぞう@写像}{\bf (mapping)}であるということ:
+					\begin{align}
+						\fnc{f} \overset{\mathrm{def}}{\Longleftrightarrow}
+						\rel{f} \wedge \sing{f}.
+					\end{align}
+				
+				\item $f$が$a$上の写像であるということ:
+					\begin{align}
+						f \fon a \overset{\mathrm{def}}{\Longleftrightarrow}
+						\fnc{f} \wedge \dom{f} = a.
+					\end{align}
+					
+				\item $f$が$a$から$b$への写像であるということ:
+					\begin{align}
+						f:a \longrightarrow b \overset{\mathrm{def}}{\Longleftrightarrow}
+						f \fon a \wedge \ran{f} \subset b.
+					\end{align}
+				
+				\item $f$が$a$から$b$への{\bf 単射}\index{たんしゃ@単射}{\bf (injection)}であるということ:
+					\begin{align}
+						f:a \inj b \overset{\mathrm{def}}{\Longleftrightarrow}
+						f:a \longrightarrow b \wedge \forall x,y,z\, (\, (x,z) \in f \wedge (y,z) \in f
+						\Longrightarrow x=y\, ).
+					\end{align}
+					
+				\item $f$が$a$から$b$への{\bf 全射}\index{ぜんしゃ@全射}{\bf (surjection)}であるということ:
+					\begin{align}
+						f:a \srj b \overset{\mathrm{def}}{\Longleftrightarrow}
+						f:a \longrightarrow b \wedge \forall y \in b\, \exists x \in a\, (\, (x,y) \in f\, ).
+					\end{align}
+					
+				\item $f$が$a$から$b$への{\bf 全単射}\index{ぜんたんしゃ@全単射}{\bf (bijection)}であるということ:
+					\begin{align}
+						f:a \bij b \overset{\mathrm{def}}{\Longleftrightarrow}
+						f:a \inj b \wedge f:a \srj b.
+					\end{align}
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[定義域と値が一致する写像は等しい]
