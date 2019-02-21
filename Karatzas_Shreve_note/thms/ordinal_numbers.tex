@@ -938,6 +938,62 @@
 	}
 	
 	\begin{screen}
+		\begin{thm}[超限帰納法]\label{thm:transfinite_induction}
+			$A$を$\mathcal{L}'$の式，$\alpha$を$A$に現れる文字，$\beta$を$A$に現れない文字とする．
+			このとき，$A$に現れる文字で$\alpha$のみが$A$で量化されていない場合，次が成り立つ:
+			\begin{align}
+				\forall \alpha \in \ON\ 
+				\left(\ \forall \beta \in \alpha\ A(\beta)
+				\Longrightarrow A(\alpha)\ \right)
+				\Longrightarrow \forall \alpha \in \ON\ A(\alpha).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		正則性公理と定理\ref{thm:equivalent_condition_of_axiom_of_regularity}より
+		\begin{align}
+			\forall \alpha\ \left(\ \forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ )
+			\Longrightarrow (\ \alpha \in \ON \Longrightarrow A(\alpha)\ )\ \right)
+			\Longrightarrow \forall \alpha\ (\ \alpha \in \ON \Longrightarrow A(\alpha)\ )
+		\end{align}
+		が成り立つ．このとき$\alpha$を$\mathcal{L}$の任意の対象とすれば，
+		\begin{align}
+			\begin{gathered}
+				\forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ )
+				\Longrightarrow (\ \alpha \in \ON \Longrightarrow A(\alpha)\ ), \\
+				\forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ ) \wedge \alpha \in \ON \Longrightarrow A(\alpha)
+			\end{gathered}
+		\end{align}
+		は同値であり，他方で順序数の要素は順序数である(定理\ref{thm:On_is_transitive})から
+		\begin{align}
+			\begin{gathered}
+				\forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ ) \wedge \alpha \in \ON, \\
+				\alpha \in \ON \wedge \forall \beta \in \alpha\ A(\beta)
+			\end{gathered}
+		\end{align}
+		も同値である．従って
+		\begin{align}
+			\alpha \in \ON \wedge \forall \beta \in \alpha\ A(\beta)
+			\Longrightarrow A(\alpha)
+		\end{align}
+		が成り立ち，またこれは
+		\begin{align}
+			\alpha \in \ON \Longrightarrow \left(\ \forall \beta \in \alpha\ A(\beta)
+			\Longrightarrow A(\alpha)\ \right)
+		\end{align}
+		と同値である．$\alpha$の任意性より
+		\begin{align}
+			\forall \alpha \in \ON\ 
+			\left(\ \forall \beta \in \alpha\ A(\beta)
+			\Longrightarrow A(\alpha)\ \right)
+			\Longrightarrow \forall \alpha \in \ON\ A(\alpha).
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+
+	\begin{screen}
 		\begin{thm}[$\omg$は最小の無限集合]
 		\label{thm:the_principle_of_mathematical_induction}
 			$\omg$は次の意味で最小の無限集合である:
