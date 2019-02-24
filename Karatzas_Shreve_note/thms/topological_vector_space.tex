@@ -438,6 +438,141 @@
 
 \subsection{局所凸空間}
 	\begin{screen}
+		\begin{thm}[近縁系で導入する一様位相が線型位相となるとき]
+		\label{thm:entourages_introducing_vector_topology}
+			$(X,\Phi,\sigma,\mu)$を線型空間とし，
+			$\zeta$を$X$の$\sigma$に関する単位元とし，
+			$\mathscr{V}$を$X$上の近縁系とする．
+			$\mathscr{V}$の基本近縁系$\mathscr{U}$で
+			\begin{itemize}
+				\item $\bigcap \mathscr{U} = \Set{(x,x)}{x \in X}$,
+				\item $\forall U \in \mathscr{U}\, \left(\, x + U_\zeta \subset U_x\, \right)$,
+				\item $\forall U \in \mathscr{U}\, \forall \alpha \in \Phi\,
+					\exists V \in \mathscr{U} \left(\, \alpha \neq 0 \Longrightarrow V \subset \alpha U_\zeta\, \right)$,
+				\item $\forall U \in \mathscr{U}\, \forall \alpha \in \Phi\,
+					\left(\, |\alpha| \leq 1 \Longrightarrow \alpha U_\zeta \subset U_\zeta\, \right)$,
+				\item $\forall U \in \mathscr{U}\, \left(\, \forall x \in X\, 
+				\exists s \in ]0,\infty[\, (\, x \in s U_\zeta\, )\, \right)$
+			\end{itemize}
+			を満たすものが取れるとき，$\mathscr{V}$により導入する$X$上の一様位相は線型位相となる．
+			ただし
+			\begin{align}
+				U_x \coloneqq \Set{y}{(x,y) \in U}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] 一様位相が不変位相であることを示す．
+				$x$を$X$の要素とする．$x$において
+				\begin{align}
+					\Set{U_x}{U \in \mathscr{U}}
+				\end{align}
+				は基本近傍系となるが，
+				\begin{align}
+					\forall U \in \mathscr{U}\, \left(\, x + U_\zeta \subset U_x\, \right)
+				\end{align}
+				が満たされているので
+				\begin{align}
+					\Set{x + U_\zeta}{U \in \mathscr{U}}
+				\end{align}
+				も$x$の基本近傍系となる．従って一様位相は不変位相である．
+				
+			\item[第二段]
+				加法$\sigma$が$(\zeta,\zeta)$において連続となることを示す．
+				$B$を$\zeta$の近傍とすれば，
+				\begin{align}
+					U_\zeta \subset B
+				\end{align}
+				なる$\mathscr{U}$の要素$U$が取れる．また
+				\begin{align}
+					W \circ W \subset U
+				\end{align}
+				なる$\mathscr{U}$の要素$W$も取れる．このとき
+				\begin{align}
+					W_\zeta \times W_\zeta \subset \sigma^{-1} \ast B
+				\end{align}
+				が成立する．実際，
+				\begin{align}
+					(x,y) \in W_\zeta \times W_\zeta
+					\label{eq:thm_entourages_introducing_vector_topology}
+				\end{align}
+				なる$x,y$に対し，
+				\begin{align}
+					y \in W_\zeta
+				\end{align}
+				から
+				\begin{align}
+					x + y \in x + W_\zeta
+				\end{align}
+				となり
+				\begin{align}
+					x + y \in W_x
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					(\zeta,x) \in W \wedge (x,x+y) \in W
+				\end{align}
+				となり
+				\begin{align}
+					(\zeta,x+y) \in W
+				\end{align}
+				が従う．よって
+				\begin{align}
+					x+y \in U_\zeta
+				\end{align}
+				が成り立ち，(\refeq{eq:thm_entourages_introducing_vector_topology})
+				が示された．
+				
+			\item[第三段]
+				$x$と$\alpha$をそれぞれ$X$と$\Phi$の要素として，
+				スカラ倍$\mu$が$(\alpha,x)$で連続となることを示す．
+				$B$を$\alpha x$の近傍とする．このとき
+				\begin{align}
+					-\alpha x + B
+				\end{align}
+				は$\zeta$の近傍となるので，
+				\begin{align}
+					U_\zeta \subset -\alpha x + B 
+				\end{align}
+				を満たす$\mathscr{U}$の要素$U$が取れる．$U$に対し
+				\begin{align}
+					W \circ W \subset U
+				\end{align}
+				なる$\mathscr{U}$の要素$W$を取り，
+				\begin{align}
+					x \in s W_\zeta
+				\end{align}
+				なる正数$s$を取り
+				\begin{align}
+					t \coloneqq s/(1+|\alpha|s)
+				\end{align}
+				とおく．このとき
+				\begin{align}
+					y \in x+t W_\zeta \wedge |\beta - \alpha| < 1/s
+					\Longrightarrow \beta y - \alpha x
+					&= \beta (y-x) + (\beta - \alpha)x \\
+					&\in \beta t W_\zeta + (\beta - \alpha) s W_\zeta \\
+					&\subset W_\zeta + W_\zeta \\
+					&\subset U_\zeta \\
+					&\subset -\alpha x + B
+				\end{align}
+				が成立する．ゆえに
+				\begin{align}
+					y \in x+t W_\zeta \wedge |\beta - \alpha| < 1/s
+					\Longrightarrow \beta y \in B
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\mu^{-1} \ast B
+				\end{align}
+				が$(\alpha,x)$の近傍であることが示された．
+				
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{dfn}[局所凸・Frechet空間]
 			位相線型空間の0の基本近傍系で全ての元が凸であるものが存在するとき，
 			その空間は局所凸\index{きょくしょとつ@局所凸}である(locally convex)といい

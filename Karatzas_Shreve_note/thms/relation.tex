@@ -627,12 +627,84 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{dfn}[像・原像]
-			$a,b$を類とするとき
+		\begin{dfn}[反転]
+			$a$を類とするとき，その{\bf 反転}\index{はんてん@反転}{\bf (inverse)}を
 			\begin{align}
-				a \ast b \coloneqq \Set{x}{\exists t \in b\, (\, x=a(t)\, )} 
+				a^{-1} \coloneqq 
+				\Set{x}{\exists s,t\, (\, x=(s,t) \wedge (t,s) \in a\, )}
 			\end{align}
+			で定める．
 		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[像・原像]
+			$a,b$を類とするとき，$b$の$a$による像を
+			\begin{align}
+				a \ast b \coloneqq \Set{y}{\exists x \in b\, (\, (x,y) \in a\, )} 
+			\end{align}
+			で定める．また
+			\begin{align}
+				a^{-1} \ast b
+			\end{align}
+			を$b$の$a$による原像と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[原像はそこに写される定義域の要素の全体]
+			$a,b$を類とするとき，
+			\begin{align}
+				a^{-1} \ast b = \Set{x}{\exists y \in b\, (\, (x,y) \in a\, )}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$x$を$a^{-1} \ast b$の要素とすれば，
+		\begin{align}
+			(y,x) \in a^{-1}
+		\end{align}
+		を満たす$b$の要素$y$が取れる．このとき
+		\begin{align}
+			(x,y) \in a
+		\end{align}
+		となるので
+		\begin{align}
+			\exists y \in b\, (\, (x,y) \in a\, )
+		\end{align}
+		が成立し
+		\begin{align}
+			x \in \Set{x}{\exists y \in b\, (\, (x,y) \in a\, )}
+		\end{align}
+		が従う．逆に$x$を$\Set{x}{\exists y \in b\, (\, (x,y) \in a\, )}$の要素とすれば，
+		\begin{align}
+			(x,y) \in a
+		\end{align}
+		を満たす$b$の要素$y$が取れる．このとき
+		\begin{align}
+			(y,x) \in a^{-1}
+		\end{align}
+		となるので
+		\begin{align}
+			\exists y \in b\, (\, (y,x) \in a^{-1}\, )
+		\end{align}
+		が成立し
+		\begin{align}
+			x \in a^{-1} \ast b
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[single-valuedな類の像は値の全体]
+			$a,b$を類とするとき，
+			\begin{align}
+				\sing{a} \wedge b \subset \dom{a} \Longrightarrow
+				a \ast b = \Set{x}{\exists t \in b\, (\, x = a(t)\, )}.
+			\end{align}
+		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
@@ -726,4 +798,14 @@
 		\end{dfn}
 	\end{screen}
 	
-	
+	\begin{screen}
+		\begin{dfn}[合成]
+			$a,b$を類とするとき，$a$と$b$の{\bf 合成}\index{ごうせい@合成}{\bf (composition)}を
+			\begin{align}
+				a \circ b \coloneqq 
+				\Set{x}{\exists s,t\, \left(\, x=(s,t) \wedge
+				\exists u\, \left(\, (s,u) \in a \wedge (u,t) \in b\, \right)\, \right)}
+			\end{align}
+			で定める．
+		\end{dfn}
+	\end{screen}

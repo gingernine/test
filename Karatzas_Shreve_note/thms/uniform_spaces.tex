@@ -7,51 +7,50 @@
 	一様構造が導入された空間では各点に共通する近傍概念が定義されるため`近さ'の相対比較が可能になり，
 	一様連続，一様収束，完備，全有界といった性質が定式化される．
 	
-	始めに次の集合演算を定義する．
-	$S$を集合とするとき，任意の$V \subset S \times S$に対して，
-	その反転$V^{-1}$を
-	\begin{align}
-		V^{-1} \coloneqq \Set{(y,x)}{(x,y) \in V}
-	\end{align}
-	により定め，また$S \times S$における二項演算$\circ$を
-	\begin{align}
-		U \circ V \coloneqq
-		\Set{(x,z)}{\mbox{或る$y \in S$で$(x,y) \in U$かつ$(y,z) \in V$となる}},
-		\quad (U,V \subset S \times S)
-	\end{align}
-	で定める．このとき演算$\circ$について次が成り立つ:
-	$V,W \subset S \times S$を空でない部分集合とすれば
-	\begin{align}
-		W \circ W \subset V
-		\quad \Longleftrightarrow \quad
-		\mbox{任意の$x,y,z \in S$に対し$(x,y),(y,z) \in W$なら$(x,z) \in V$}.
-	\end{align}
-	
 	\begin{screen}
 		\begin{dfn}[近縁系]\label{dfn:uniform_structure}
-			$S$を空でない集合とする．次の(US1)$\sim$(US5)を満たす
-			$S \times S$の部分集合族$\mathscr{V}$を
-			$S$の{\bf 近縁系}\index{きんえんけい@近縁系}{\bf (system of entourages)}
+			$S$を集合とし，$\mathscr{V}$を$S$上の関係の族とする．
+			$\mathscr{V}$が次の(US1)$\sim$(US5)を満たすとき，これを
+			$S$上の{\bf 近縁系}\index{きんえんけい@近縁系}{\bf (system of entourages)}
 			や{\bf 一様構造}\index{いちようこうぞう@一様構造}{\bf (uniform structure)}と呼び，
 			対$(S,\mathscr{V})$を{\bf 一様空間}\index{いちようくうかん@一様空間}
 			{\bf (uniform space)}と呼ぶ:
 			\begin{description}
-				\item[(US1)] $\mathscr{V} \neq \emptyset$かつ任意の$V \in \mathscr{V}$は
-					$\Set{(x,x)}{x \in S} \subset V$を満たす．
-					
-				\item[(US2)] 任意の$V \subset S \times S$に対し
-					$V \in \mathscr{V} \Longleftrightarrow V^{-1} \in \mathscr{V}$.
-				\item[(US3)] 任意の$U,V \in \mathscr{V}$に対し$U \cap V \in \mathscr{V}$．
-				\item[(US4)] 任意の$V \in \mathscr{V}$に対し或る$W \in \mathscr{V}$が存在して$W \circ W \subset V$．またこれは次と同値である:
+				\item[(US1)] $\mathscr{V}$は空でなく，また
+					$\mathscr{V}$の要素は$S$上の恒等写像を含む:
 					\begin{align}
-						\forall V \in \mathscr{V};\ 
-						\exists W \in \mathscr{V};\ 
-						\forall x,y,z \in S;\quad
-						(x,y),(y,z) \in W \Longrightarrow (x,z) \in V.
+						\mathscr{V} \neq \emptyset
+						\wedge \forall V \in \mathscr{V}\,
+						\left(\, \Set{x}{\exists s \in S\, \left(\, x=(s,s)\, \right)} \subset V\, \right).
 					\end{align}
 					
-				\item[(US5)] 任意の$V \subset \mathscr{V}$に対し
-					$V \subset R$なら$R \in \mathscr{V}$.
+				\item[(US2)] $\mathscr{V}$は反転で閉じる:
+					\begin{align}
+						\forall V \in \mathscr{V} 
+						\left(\, V^{-1} \in \mathscr{V}\, \right).
+					\end{align}
+					
+				\item[(US3)] $\mathscr{V}$は交叉で閉じる:
+					\begin{align}
+						\forall U,V \in \mathscr{V}\, \left(\, 
+						U \cap V \in \mathscr{V}\, \right).
+					\end{align}
+					
+				\item[(US4)] $\mathscr{V}$の任意の要素は$\mathscr{V}$の或る要素の合成を含む:
+					\begin{align}
+						\forall V \in \mathscr{V}\, 
+						\exists W \in \mathscr{V}\,
+						\left(\, W \circ W \subset V\, \right). 
+					\end{align}
+					
+				\item[(US5)] $S$上の関係は$\mathscr{V}$の要素を含めばそれ自身も
+					$\mathscr{V}$に属する:
+					\begin{align}
+						\forall R\,
+						\left( R \subset S \times S \wedge 
+						\exists V \in \mathscr{V}\, \left(\, V \subset R\, \right)
+						\Longrightarrow R \in \mathscr{V}\, \right).
+					\end{align}
 			\end{description}
 			$\mathscr{V}$の元を{\bf 近縁}\index{きんえん@近縁}{\bf (entourage)}と呼び，
 			近縁$V$が$V = V^{-1}$を満たすとき$V$は{\bf 対称}\index{たいしょう@対称}
