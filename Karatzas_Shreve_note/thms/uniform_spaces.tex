@@ -478,12 +478,16 @@
 	\begin{screen}
 		\begin{thm}[完全正則なら一様化可能]
 			$S$を空でない完全正則空間とし，$C(S,\R)$で$S$から$\R$への連続写像の全体を表す．
-			任意の連続写像$f \in C(S,\R)$と$B_r \coloneqq \Set{(\alpha,\beta) \in \R \times \R}{|\alpha - \beta| < r},\ (r > 0)$に対し
+			$f \in C(S,\R)$と$r > 0$に対し
 			\begin{align}
-				V(f,r) \coloneqq \Set{(x,y) \in S \times S}{(f(x),f(y)) \in B_r}
+				V(f,r) \coloneqq \Set{(x,y) \in S \times S}{\left| f(x) - f(y) \right| < r}
 			\end{align}
-			と定義して，これらの有限交叉の全体を$\mathscr{A} \coloneqq
-				\Set{\bigcap_{i=1}^n V(f_i,r_i)}{f_i \in C(S,\R),\ r_i \in (0,\infty),\ n \in \N}$とおくとき，
+			と定義して，これらの有限交叉の全体を
+			\begin{align}
+				\mathscr{A} \coloneqq
+				\Set{\bigcap_{i=1}^n V(f_i,r_i)}{f_i \in C(S,\R),\ r_i \in (0,\infty),\ n \in \N}
+			\end{align}
+			とおくとき，
 			\begin{align}
 				\mathscr{V} \coloneqq
 				\Set{V \subset S \times S}{\mbox{$V$は$\mathscr{A}$の元を少なくとも一つ含む}}
@@ -495,12 +499,15 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段] $\mathscr{V}$が近縁系であることを示す．$C(S,\R)$は空でないから
-				$\mathscr{V}$も空でなく，また任意の$f \in C(S,\R)$と$r > 0$で
 				\begin{align}
-					(f(x),f(x)) \in B_r, \quad (\forall x \in S) 
+					\mathscr{V} \neq \emptyset
+				\end{align}
+				であり，また任意の$f \in C(S,\R)$と$r > 0$で
+				\begin{align}
+					\left| f(x) - f(x) \right| < r, \quad (\forall x \in S) 
 				\end{align}
 				となるから定義\ref{dfn:uniform_structure}の(US1)が満たされる．
-				$B_r$の対称性より$V(f,r)$も対称となるから
+				$V(f,r)$は対称であるから
 				\begin{align}
 					\bigcap_{i=1}^n V(f_i,r_i) \subset V
 					\quad \Longleftrightarrow \quad
@@ -508,7 +515,10 @@
 				\end{align}
 				が従い(US2)も満たされる．$\mathscr{A}$が有限交叉で閉じるから
 				$\mathscr{V}$も有限交叉で閉じる．
-				$\bigcap_{i=1}^n V(f_i,r_i) \subset V$のとき
+				\begin{align}
+					\bigcap_{i=1}^n V(f_i,r_i) \subset V
+				\end{align}
+				のとき
 				\begin{align}
 					W \coloneqq \bigcap_{i=1}^n V(f_i,r_i/2)
 				\end{align}
@@ -519,21 +529,26 @@
 					&\quad \Longrightarrow \quad
 					|f(x) - f(z)| < r_i,\ (1 \leq i \leq n)
 				\end{align}
-				となるから$W \circ W \subset \bigcap_{i=1}^n V(f_i,B_{r_i}) \subset V$
+				となるから
+				\begin{align}
+					W \circ W \subset \bigcap_{i=1}^n V(f_i,r_i) \subset V
+				\end{align}
 				が成立し，$\mathscr{V}$は上位の包含関係で閉じるから(US5)も満たされる．
 				
 			\item[第二段]
-				任意の$x \in S$と$V \in \mathscr{V}$に対し
+				$x \in S$と$V \in \mathscr{V}$に対し
 				\begin{align}
 					V_x \coloneqq \Set{y \in S}{(x,y) \in V}
 				\end{align}
-				と定めるとき，$\mathscr{V}(x) \coloneqq \Set{V_x}{V \in \mathscr{V}}$
+				と定めるとき，
+				\begin{align}
+					\mathscr{V}(x) \coloneqq \Set{V_x}{V \in \mathscr{V}}
+				\end{align}
 				がもとの位相において$x$の基本近傍系となることを示す．実際
 				\begin{align}
-					V(f,r)_x = \Set{y \in S}{(f(x),f(y)) \in B_r}
-					= \Set{y \in S}{|f(x)-f(y)|< r}
+					V(f,r)_x = \Set{y \in S}{|f(x)-f(y)|< r}
 				\end{align}
-				より$V(f,r)_x$は$x$の開近傍となるから$\mathscr{U}(x)$の元は
+				より$V(f,r)_x$は$x$の開近傍となるから$\mathscr{V}(x)$の元は
 				$x$の近傍であり，さらに$x$の任意の近傍$U$に対し
 				\begin{align}
 					g(y) = \begin{cases}
@@ -547,7 +562,11 @@
 					|g(y)| = |g(y) - g(x)| < 1 \quad \Longrightarrow \quad
 					y \in U^{\mathrm{o}}
 				\end{align}
-				となるから$V(g,B_1)_x \subset U$が従う．以上より
+				となるから
+				\begin{align}
+					V(g,1)_x \subset U
+				\end{align}
+				が従う．以上より
 				$\mathscr{V}(x)$はもとの位相で$x$の基本近傍系となるが，
 				一方で$\mathscr{V}$の導入する一様位相においても
 				$\mathscr{V}(x)$は$x$の基本近傍系をなすから二つの位相は一致する．
