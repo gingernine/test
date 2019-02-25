@@ -428,32 +428,43 @@
 			x \in \bigcap_{i=1}^n f_i^{-1}(O_i) \subset S \backslash F
 		\end{align}
 		を満たす$f_i \in \mathscr{C}$と$\R$の開集合$O_i,\ (i=1,\cdots,n)$が取れる．
-		ここで$j$を$f_j(x) \in O_j$を満たす添数とすれば
+		このとき各$i$で
 		\begin{align}
-			g_j(f_j(x)) = 1;\quad g_i(f_i(y)) = 0,\quad (y \in S \backslash f_i^{-1}(O_i),
-			\ i=1,\cdots,n)
+			g_i:\R \longrightarrow [0,1]
 		\end{align}
-		を満たす連続写像$g_i:\R \longrightarrow [0,1]$が存在する($\R$は完全正則であるから)．
+		かつ
 		\begin{align}
-			h \coloneqq \operatorname{max}\{g_1 \circ f_1,\, g_2 \circ f_2,\cdots,g_n \circ f_n\}
+			g_i(f_i(x)) = 1
 		\end{align}
-		により写像$h:S \longrightarrow [0,1]$を定めれば，
-		$h$は$\mathscr{C}$-始位相に関して連続であり，
-		$h(x)=1$かつ$C$上で$0$となる．
+		かつ
+		\begin{align}
+			y \in S \backslash f_i^{-1}(O_i)
+			\Longrightarrow g_i(f_i(y)) = 0
+		\end{align}
+		を満たす連続写像$g_i$が存在する($\R$は完全正則であるから)．
+		\begin{align}
+			x \in S \Longrightarrow h(x) = \operatorname{min}\left\{g_1(f_1(x)),\, g_2(f_2(x)),\cdots,g_n(f_n(x))\right\}
+		\end{align}
+		なる写像$h$を定めれば，$h$は
+		\begin{align}
+			h:S \longrightarrow [0,1]
+		\end{align}
+		を満たし，$\mathscr{C}$-始位相に関して連続であり，
+		$h(x)=1$かつ$F$上で$0$となる．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{thm}[完全正則空間の位相は実連続写像全体の始位相に一致する]
-			$(S,\mathscr{O})$を空でない位相空間，$C(S)$を実連続写像の全体とし，
-			$\mathscr{Z} \coloneqq \Set{f^{-1}(\{0\})}{f \in C(S)}$とおくとき，
-			以下は同値となる:
+			$(S,\mathscr{O})$を位相空間とし，$C(S)$を実連続写像の全体とし，
+			\begin{align}
+				\mathscr{Z} \coloneqq \Set{\bigcap_{f \in \mathscr{F}} f^{-1}\ast\{0\}}{\mathscr{F} \subset C(S) \wedge \mathscr{F} \neq \emptyset}
+			\end{align}
+			とおくとき，以下は同値となる:
 			\begin{description}
 				\item[(a)] $S$が完全正則である．
 				\item[(b)] $S$の$C(S)$-始位相が$\mathscr{O}$に一致する．
-				\item[(c)] $S$の閉集合全体と
-					$\Set{\bigcap \mathscr{F}}{\mathscr{F} \subset \mathscr{Z}}$が一致する
-					(ただし$\bigcap \emptyset = \emptyset$)．
+				\item[(c)] $S$の閉集合全体と$\mathscr{Z}$が一致する．
 			\end{description}
 		\end{thm}
 	\end{screen}
@@ -462,9 +473,18 @@
 		\begin{description}
 			\item[$(a) \Longrightarrow (c)$]
 				$S$が完全正則であるとき，$C=\emptyset$なら
-				$f:S \longrightarrow \{1\}$により，
-				$C = S$なら$\tilde{f}:S \longrightarrow \{0\}$により
-				$C = f^{-1}(\{0\})$となる．$C$が$\emptyset$でも$S$でもない閉集合であるとき，
+				\begin{align}
+					f:S \longrightarrow \{1\}
+				\end{align}
+				なる$f$により，$C = S$なら
+				\begin{align}
+					f:S \longrightarrow \{0\}
+				\end{align}
+				なる$f$により
+				\begin{align}
+					C = f^{-1} \ast \{0\}
+				\end{align}
+				となる．$C$が$\emptyset$でも$S$でもない閉集合であるとき，
 				任意の$x \in S \backslash C$に対し或る$f_x \in C(S)$で
 				\begin{align}
 					f_x(y) = \begin{cases}
@@ -472,28 +492,43 @@
 						0, & (y \in C)
 					\end{cases}
 				\end{align}
-				を満たすものが存在する．このとき$C \subset \bigcup_{x \in S \backslash C} f_x^{-1}(\{0\})$となるが，
-				一方で$x \notin C$なら$x \notin f_x^{-1}(\{0\})$より
+				を満たすものが存在する．このとき
 				\begin{align}
-					C = \bigcap_{x \in S \backslash C} f_x^{-1}(\{0\})
-					\in \Set{\bigcap \mathscr{F}}{\mathscr{F} \subset \mathscr{Z}}
+					C \subset \bigcap_{x \in S \backslash C} f_x^{-1} \ast \{0\}
 				\end{align}
-				が成り立つ．一方で$f \in C(S)$に対し$f^{-1}(\{0\})$は閉であるから
-				$\Set{\bigcap \mathscr{F}}{\mathscr{F} \subset \mathscr{Z}}$
-				は$S$の閉集合の族であり，$(c)$が満たされる．
+				となるが，一方で
+				\begin{align}
+					x \notin C \Longrightarrow x \notin f_x^{-1} \ast \{0\}
+				\end{align}
+				も成り立つので
+				\begin{align}
+					C = \bigcap_{x \in S \backslash C} f_x^{-1} \ast \{0\}
+				\end{align}
+				が成り立つ．従って
+				\begin{align}
+					C \in \mathscr{Z}
+				\end{align}
+				となる．一方で$f \in C(S)$に対し$f^{-1} \ast \{0\}$は閉であるから
+				$\mathscr{Z}$は$S$の閉集合の族であり$(c)$が満たされる．
 				
 			\item[$(c) \Longrightarrow (b)$]
-				$C(S)$-始位相は
+				$C(S)$の要素は$\mathscr{O}$に関して連続であり，
+				$C(S)$-始位相は$C(S)$のすべての要素を連続にする最弱の位相であるから，
 				\begin{align}
-					\bigcup_{f \in C(S)} \Set{f^{-1}(O)}{\mbox{$O$は$\R$の開集合}}
+					\mbox{$C(S)$-始位相} \subset \mathscr{O}
 				\end{align}
-				で生成されるから$\mathscr{O}$より弱い位相である．
-				一方で$(c)$が満たされているとき，任意の空でない$O \in \mathscr{O}$に対し
-				或る$\mathscr{F} \subset \Set{f^{-1}(\{0\})}{f \in C(S)}$が存在して
+				が成り立つ．一方で$(c)$が満たされているとき，
+				$O$を$\mathscr{O}$の要素とすると
 				\begin{align}
-					O = \bigcup_{f \in \mathscr{F}} f^{-1}(\R \backslash \{0\})
+					S \backslash O = \bigcap_{f \in \mathscr{F}} f^{-1}\ast\{0\}
 				\end{align}
-				となるから，$O$は$C(S)$-始位相においても開集合となり$(b)$が出る．
+				を満たす$\subset \Set{f^{-1}(\{0\})}{f \in C(S)}$の部分集合$\mathscr{F}$が存在して，
+				\begin{align}
+					O = \bigcup_{f \in \mathscr{F}} f^{-1} \ast (\R \backslash \{0\})
+				\end{align}
+				となる．各$f$で$f^{-1} \ast (\R \backslash \{0\})$は
+				$C(S)$-始位相の要素であるから，その合併である$O$も
+				$C(S)$-始位相の要素である．ゆえに$(b)$が従う．
 			
 			\item[$(b) \Longrightarrow (a)$] 
 				定理\ref{thm:initial_topology_of_continuous_functions_is_completely_regular}
