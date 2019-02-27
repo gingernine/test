@@ -452,15 +452,176 @@
 	
 	メモ:
 	\begin{itemize}
-		\item $S$を集合，$\mathscr{F}$を$S$上の実数値関数の集合とする．
+		\item $S$を集合，$\mathscr{F}$を$S$上の実数値関数の空でない集合とする．
 		\item $\mathscr{F}$-一様位相を$\mathscr{F}$から作る近縁系で導入する$S$上の一様位相とする．
 		\item $\mathscr{F}$-一様位相と$\mathscr{F}$-始位相は一致していることは示せると思う．
-		\item $S$に元から位相が入っていて，それによって完全正則空間となっているなら，
-			その位相は$C(S)$-始位相に一致しているから$C(S)$-一様位相に一致している．
+		\item $S$に元から位相が入っていて，それによって完全正則空間となっているとする．
+			$C(S)$を$S$上の実数値連続関数の全体とすると，
+			$S$の位相は$C(S)$-始位相に一致しているから$C(S)$-一様位相に一致している．
 			すなわち完全正則なら一様化可能．
 		\item $S$に近縁系$\mathscr{V}$が定まっているとき，$C(S)$を$\mathscr{V}$に関して連続な
 			$S$上の実数値関数の全体とすると，$C(S)$で創る近縁系と$\mathscr{V}$は一致するか?
 	\end{itemize}
+	
+	\begin{screen}
+		\begin{thm}[写像の族で作る一様位相は始位相に一致する]
+		\label{thm:uniform_topology_generated_by_mappings_coincides_with_initial_topology}
+			$S$を集合とし，$(T,\mathscr{V})$を一様空間とし，
+			$T$に$\mathscr{V}$で一様位相を導入する．
+			$\mathscr{U}$を$\mathscr{V}$の基本近縁系とし，
+			$\mathscr{U}$の要素は全て対象であるとする．
+			$\mathscr{F}$を$S$から$T$への写像の空でない集合とする．
+			$\mathscr{F}$の要素$f$と$\mathscr{U}$の要素$U$に対して
+			\begin{align}
+				V(f,U) \coloneqq \Set{(x,y) \in S \times S}{(f(x),f(y)) \in U}
+			\end{align}
+			と定義し，$V(f,U)$の全体を
+			\begin{align}
+				\mathscr{A} \coloneqq \Set{V(f,U)}{f \in \mathscr{F},\ U \in \mathscr{U}}
+			\end{align}
+			とおいて，$\mathscr{A}$の空でない有限部分集合の交叉の全体を
+			\begin{align}
+				\mathscr{B} \coloneqq \Set{\bigcap A}{A \subset \mathscr{A},\ 
+				A \neq \emptyset,\ \exists n \in \Natural\, (\, A \eqp n\, )}
+			\end{align}
+			とおく．このとき
+			\begin{align}
+				\mathscr{W} \coloneqq 
+				\Set{W}{W \subset S \times S \wedge \exists B \in \mathscr{B}\, (\, B \subset W\, )}
+			\end{align}
+			で定める$\mathscr{W}$は$S$上の近縁系となり，$\mathscr{W}$で導入する一様位相と
+			$\mathscr{F}$-始位相は一致する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] $\mathscr{W}$が近縁系となることを示す．
+				$\mathscr{F} \neq \emptyset$より，$f$を$\mathscr{F}$の要素とすれば
+				\begin{align}
+					V(f,T \times T) \in \mathscr{W}
+				\end{align}
+				となるので
+				\begin{align}
+					\mathscr{W} \neq \emptyset
+				\end{align}
+				である．また任意の$f \in \mathscr{F}$と$U \in \mathscr{U}$で
+				\begin{align}
+					x \in S &\Longrightarrow (f(x),f(x)) \in U \\
+					&\Longrightarrow (x,x) \in V(f,U)
+				\end{align}
+				となるから
+				\begin{align}
+					\Set{(x,x)}{x \in S} \subset V(f,U)
+				\end{align}
+				となり，
+				\begin{align}
+					W \in \mathscr{W} \Longrightarrow \Set{(x,x)}{x \in S} \subset W
+				\end{align}
+				が従う．ゆえに定義\ref{dfn:uniform_structure}の(US1)が満たされる．
+				$W$を$\mathscr{W}$の要素とすれば
+				\begin{align}
+					\bigcap_{i=1}^n V(f_i,U_i) \subset W
+				\end{align}
+				なる$f_i$と$U_i$が取れて
+				\begin{align}
+					\left(\bigcap_{i=1}^n V(f_i,U_i)\right)^{-1} \subset W^{-1}
+				\end{align}
+				となるが，$U_i$はどれも対称なので
+				\begin{align}
+					\left(\bigcap_{i=1}^n V(f_i,U_i)\right)^{-1}
+					= \bigcap_{i=1}^n V(f_i,r_i)^{-1}
+					= \bigcap_{i=1}^n V(f_i,U_i)
+				\end{align}
+				が成り立ち
+				\begin{align}
+					W^{-1} \in \mathscr{W}
+				\end{align}
+				が従い(US2)も満たされる．
+				$W,W'$を$\mathscr{W}$の要素とすれば
+				\begin{align}
+					\bigcap A \subset W,\quad
+					\bigcap A' \subset W'
+				\end{align}
+				なる$\mathscr{A}$の有限部分集合$A,A'$が取れるが，このとき
+				\begin{align}
+					\bigcap (A \cup A') \in \mathscr{B}
+				\end{align}
+				かつ
+				\begin{align}
+					\bigcap (A \cup A') \subset W \cap W'
+				\end{align}
+				が成り立つので(US3)も満たされる．$W$を$\mathscr{W}$の要素とすれば
+				\begin{align}
+					\bigcap_{i=1}^n V(f_i,U_i) \subset W
+				\end{align}
+				なる$f_i$と$U_i$が取れるが，各$U_i$に対して
+				\begin{align}
+					\tilde{U}_i \circ \tilde{U}_i \subset U_i
+				\end{align}
+				を満たす$\mathscr{U}$の要素$\tilde{U}_i$を取り
+				\begin{align}
+					\tilde{W} \coloneqq \bigcap_{i=1}^n V(f_i,\tilde{U}_i)
+				\end{align}
+				とおけば，各$i$で
+				\begin{align}
+					(x,z),(z,y) \in \tilde{W} 
+					&\Longrightarrow (f_i(x),f_i(z)),(f_i(z),f_i(y)) \in \tilde{U}_i \\
+					&\Longrightarrow (f_i(x),f_i(y)) \in U_i \\
+					&\Longrightarrow (x,y) \in V(f_i,U_i)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					W \circ W \subset \bigcap_{i=1}^n V(f_i,U_i) \subset V
+				\end{align}
+				が成立する．ゆえに(US4)も満たされる．
+				$\mathscr{W}$は上位の包含関係で閉じるから(US5)も満たされる．
+				
+			\item[第二段]
+				$f$を$\mathscr{F}$の要素とするとき，
+				$f$が一様位相に関して$S$から$T$へ連続写像であることを示す．
+				$x$を$S$の要素とし，$V$を$x$の近傍とする．このとき
+				\begin{align}
+					\Set{t \in T}{(f(x),t) \in U} \subset V
+				\end{align}
+				を満たす$\mathscr{U}$の要素$U$が取れて
+				\begin{align}
+					\Set{y \in S}{(f(x),f(y)) \in U}
+					\subset f^{-1} \ast \Set{t \in T}{(f(x),t) \in U}
+				\end{align}
+				が成立する．
+				\begin{align}
+					\Set{y \in S}{(f(x),f(y)) \in U}
+					= \Set{y}{(x,y) \in V(f,U)}
+				\end{align}
+				が成り立つので，ゆえに$f(x)$の任意の近傍は$f$によって$x$の近傍に引き戻される
+				ことになり，$f$の$x$における連続性が従う．$x$の任意性より$f$は$S$上で連続である．
+				以上より
+				\begin{align}
+					\mbox{$\mathscr{F}$-始位相}
+					\subset \mbox{$\mathscr{W}$による一様位相}
+				\end{align}
+				が成り立つ．また$O$を$\mathscr{W}$による一様位相での開集合とし，
+				$x$を$O$の要素とすれば，
+				\begin{align}
+					x \subset \bigcap_{i=1}^n V(f_i,U_i)_x \subset O
+				\end{align}
+				を満たす$f_i$と$U_i$が取れる．
+				\begin{align}
+					V(f_i,U_i)_x = f_i^{-1} \ast \Set{t \in T}{(f_i(x),t) \in U_i}
+				\end{align}
+				より$V(f_i,U_i)_x$は始位相に関して$x$の近傍であるから
+				$\bigcap_{i=1}^n V(f_i,U_i)_x$も始位相に関して$x$の近傍である．
+				ゆえに$O$は始位相に関して開集合である．
+				以上で
+				\begin{align}
+					\mbox{$\mathscr{F}$-始位相}
+					= \mbox{$\mathscr{W}$による一様位相}
+				\end{align}
+				が示された．
+				\QED
+		\end{description}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[一様位相空間は完全正則]
@@ -494,97 +655,29 @@
 			\begin{align}
 				V(f,r) \coloneqq \Set{(x,y) \in S \times S}{\left| f(x) - f(y) \right| < r}
 			\end{align}
-			と定義して，これらの有限交叉の全体を
+			と定義し，$V(f,U)$の全体を
 			\begin{align}
-				\mathscr{A} \coloneqq
-				\Set{\bigcap_{i=1}^n V(f_i,r_i)}{f_i \in C(S,\R),\ r_i \in (0,\infty),\ n \in \N}
+				\mathscr{A} \coloneqq \Set{V(f,r)}{f \in C(S,\R),\ r > 0}
 			\end{align}
-			とおくとき，
+			とおいて，$\mathscr{A}$の空でない有限部分集合の交叉の全体を
+			\begin{align}
+				\mathscr{B} \coloneqq \Set{\bigcap A}{A \subset \mathscr{A},\ 
+				A \neq \emptyset,\ \exists n \in \Natural\, (\, A \eqp n\, )}
+			\end{align}
+			とおく．このとき
 			\begin{align}
 				\mathscr{V} \coloneqq
 				\Set{V}{V \subset S \times S \wedge
-				\exists A \in \mathscr{A}\, \left(\, A \subset V\, \right)}
+				\exists B \in \mathscr{B}\, \left(\, B \subset V\, \right)}
 			\end{align}
 			は$S$上の近縁系となり$S$の位相と両立する．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[第一段] $\mathscr{V}$が近縁系であることを示す．$C(S,\R)$は空でないから
-				\begin{align}
-					\mathscr{V} \neq \emptyset
-				\end{align}
-				であり，また任意の$f \in C(S,\R)$と$r > 0$で
-				\begin{align}
-					\left| f(x) - f(x) \right| < r, \quad (\forall x \in S) 
-				\end{align}
-				となるから定義\ref{dfn:uniform_structure}の(US1)が満たされる．
-				$V(f,r)$は対称であるから
-				\begin{align}
-					\bigcap_{i=1}^n V(f_i,r_i) \subset V
-					\quad \Longleftrightarrow \quad
-					\bigcap_{i=1}^n V(f_i,r_i) = \bigcap_{i=1}^n V(f_i,r_i)^{-1} \subset V^{-1}
-				\end{align}
-				が従い(US2)も満たされる．$\mathscr{A}$が有限交叉で閉じるから
-				$\mathscr{V}$も有限交叉で閉じる．
-				\begin{align}
-					\bigcap_{i=1}^n V(f_i,r_i) \subset V
-				\end{align}
-				のとき
-				\begin{align}
-					W \coloneqq \bigcap_{i=1}^n V(f_i,r_i/2)
-				\end{align}
-				とおけば
-				\begin{align}
-					(x,y),(y,z) \in W &\quad \Longrightarrow \quad
-					|f(x) - f(y)|,|f(y)-f(z)| < r_i/2,\ (1 \leq i \leq n) \\
-					&\quad \Longrightarrow \quad
-					|f(x) - f(z)| < r_i,\ (1 \leq i \leq n)
-				\end{align}
-				となるから
-				\begin{align}
-					W \circ W \subset \bigcap_{i=1}^n V(f_i,r_i) \subset V
-				\end{align}
-				が成立し，$\mathscr{V}$は上位の包含関係で閉じるから(US5)も満たされる．
-				
-			\item[第二段]
-				$x \in S$と$V \in \mathscr{V}$に対し
-				\begin{align}
-					V_x \coloneqq \Set{y \in S}{(x,y) \in V}
-				\end{align}
-				と定めるとき，
-				\begin{align}
-					\mathscr{V}(x) \coloneqq \Set{V_x}{V \in \mathscr{V}}
-				\end{align}
-				がもとの位相において$x$の基本近傍系となることを示す．実際
-				\begin{align}
-					V(f,r)_x = \Set{y \in S}{|f(x)-f(y)|< r}
-				\end{align}
-				より$V(f,r)_x$は$x$の開近傍となるから$\mathscr{V}(x)$の元は
-				$x$の近傍であり，さらに$x$の任意の近傍$U$に対し
-				\begin{align}
-					g(y) = \begin{cases}
-						0, & (x=y),\\
-						1, & (y \in S \backslash U^{\mathrm{o}})
-					\end{cases}
-				\end{align}
-				を満たす$g \in C(S,\R)$が取れるが(完全正則性による)，このとき
-				\begin{align}
-					y \in V(g,1)_x \quad \Longrightarrow \quad
-					|g(y)| = |g(y) - g(x)| < 1 \quad \Longrightarrow \quad
-					y \in U^{\mathrm{o}}
-				\end{align}
-				となるから
-				\begin{align}
-					V(g,1)_x \subset U
-				\end{align}
-				が従う．以上より
-				$\mathscr{V}(x)$はもとの位相で$x$の基本近傍系となるが，
-				一方で$\mathscr{V}$の導入する一様位相においても
-				$\mathscr{V}(x)$は$x$の基本近傍系をなすから二つの位相は一致する．
-				\QED
-		\end{description}
+	\begin{prf}
+		定理\ref{thm:uniform_topology_generated_by_mappings_coincides_with_initial_topology}より$\mathscr{V}$による一様位相と$C(S)$-始位相は一致する．
+		そして完全正則性より$C(S)$-始位相は$S$の元の位相に一致する．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
