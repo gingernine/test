@@ -407,15 +407,89 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{dfn}[位相線型空間における同程度連続性]
-			$X,Y$を位相線形空間，$\mathscr{F}$を$X$から$Y$への連続線型写像の族とする．
-			このとき，$\mathscr{F}$が同程度連続であるとは，$0 \in Y$の任意の近傍$V$に対し
+		\begin{thm}[位相線型空間上の同程度連続性]
+		\label{thm:equicontinuity_on_topological_vector_spaces}
+			$X,Y$を位相線型空間とし，$\zeta_X,\zeta_Y$をそれぞれ$X,Y$の零元とし，$\mathscr{F}$を$X$から$Y$への線型写像の族とする．
+			また$\mathscr{B}_X,\mathscr{B}_Y$をそれぞれ$X,Y$の局所基とする．そして
 			\begin{align}
-				f(U) \subset V,\quad (\forall f \in \mathscr{F})
+				\mathscr{V}_X &\coloneqq \Set{V}{\exists B \in \mathscr{B}_X\, \left(\, 
+					\Set{(x,y)}{x,y \in X \wedge y-x \in B} \subset V\, \right)}, \\
+				\mathscr{V}_Y &\coloneqq \Set{V}{\exists B \in \mathscr{B}_Y\, \left(\, 
+					\Set{(x,y)}{x,y \in Y \wedge y-x \in B} \subset V\, \right)}
 			\end{align}
-			を満たす$0 \in X$の近傍$U$が存在することである．
-		\end{dfn}
+			で$X,Y$上の近縁系を定める．このとき
+			\begin{description}
+				\item[(a)] $\forall x \in X\, \forall V \in \mathscr{V}_Y\, \exists U \in \mathscr{V}_X\, \forall f \in \mathscr{F}\,
+					\forall y \in X\, \left(\, (x,y) \in U \Longrightarrow (f(x),f(y)) \in V\, \right)$
+					
+				\item[(b)] $\forall V \in \mathscr{V}_Y\, \exists U \in \mathscr{V}_X\, \forall f \in \mathscr{F}\,
+					\forall y \in X\, \left(\, (\zeta_X,y) \in U \Longrightarrow (\zeta_Y,f(y)) \in V\, \right)$
+					
+				\item[(c)] $\forall B \in \mathscr{B}_Y\, \exists C \in \mathscr{B}_X\, \forall f \in \mathscr{F}\, 
+					\left(\, f \ast C \subset B\, \right)$
+				
+				\item[(d)] $\forall V \in \mathscr{V}_Y\, \exists U \in \mathscr{V}_X\, \forall f \in \mathscr{F}\,
+					\forall x,y \in X\, \left(\, (x,y) \in U \Longrightarrow (f(x),f(y)) \in V\, \right)$
+			\end{description}
+			は全て同値である．
+		\end{thm}
 	\end{screen}
+	
+	式(a)は$\mathscr{F}$が同程度連続であるということを表す．
+	
+	式(b)は$\mathscr{F}$が零元において同程度連続であるということを表す．
+	
+	式(c)は$\mathscr{F}$の要素の像が一様に抑えられることを表す．
+	
+	式(d)は$\mathscr{F}$が一様同程度連続であるということを表す．
+	
+	この定理は，位相線型空間上の線型写像の集合については零元における同程度連続性から一様同程度連続性が導かれることを主張しているが，
+	同じ主張は位相群で成立する．その場合$\mathscr{F}$は群準同型写像の集合とすればよい．
+	
+	\begin{sketch}
+		(a)から(b)は直ちに従う．
+		(b)が成立しているとする．$B$を$\mathscr{B}_Y$の要素として取り，
+		\begin{align}
+			V_B \coloneqq \Set{(x,y)}{x,y \in Y \wedge y - x \in B}
+		\end{align}
+		とおくと，$\mathscr{V}_X$の或る要素$U$が取れて
+		\begin{align}
+			\forall f \in \mathscr{F}\, \forall y \in X\, (\, (\zeta_X,y) \in U
+			&\Longrightarrow (\zeta_Y,f(y)) \in V_B \\
+			&\Longrightarrow f(y) \in B\, )
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			C \subset \Set{y}{y \in X \wedge (\zeta_X,y) \in U}
+		\end{align}
+		なる$\mathscr{B}_X$の要素$C$を取れば
+		\begin{align}
+			\forall f \in \mathscr{F}\, \left(\, f \ast C \subset B\, \right)
+		\end{align}
+		が従う．
+		
+		次に(c)が成立しているとする．$V$を$\mathscr{V}_Y$の要素とすると
+		\begin{align}
+			\Set{(x,y)}{x,y \in Y \wedge y - x \in B} \subset V
+		\end{align}
+		を満たす$\mathscr{B}_Y$の要素$B$が取れる．$B$に対し
+		\begin{align}
+			\forall f \in \mathscr{F}\, \left(\, f \ast C \subset B\, \right)
+		\end{align}
+		を満たす$\mathscr{B}_X$の要素$C$が取れるが，
+		\begin{align}
+			U \coloneqq \Set{(x,y)}{x,y \in X \wedge y - x \in C}
+		\end{align}
+		とおくと
+		\begin{align}
+			\forall f \in \mathscr{F}\, \forall x,y \in X\, (\, (x,y) \in U 
+			&\Longrightarrow y - x \in C \\
+			&\Longrightarrow f(y) - f(x) \in B \\
+			&\Longrightarrow (f(x),f(y)) \in V\, )
+		\end{align}
+		が従う．一様同程度連続ならば同程度連続であるから定理の主張が得られる．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[同程度連続な写像族の有界性]
