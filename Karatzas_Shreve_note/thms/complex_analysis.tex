@@ -20,7 +20,7 @@
 	\end{align}
 	と表す．ここで
 	\begin{align}
-		\operatorname{difl}_{f,\alpha}(a)
+		\operatorname{deriv}_{f,\alpha}(a)
 		\defarrow
 		\forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
 		\forall z \in \dom{f}\, 
@@ -31,11 +31,11 @@
 	
 	\begin{screen}
 		\begin{thm}[微係数の一意性]
-			$f$を$\Holomorphic{\Omega}$の要素とし，$\alpha,\beta$を$\Omega$の要素とする．このとき
+			$f$を$\Holomorphic{\Omega}$の要素とし，$\alpha$を$\Omega$の要素とする．このとき
 			\begin{align}
-				\alpha = \beta \Longrightarrow 
-				\varepsilon a \operatorname{difl}_{f,\alpha}(a)
-				= \varepsilon a \operatorname{difl}_{f,\beta}(a)
+				\forall a,b \in \C\, 
+				\left(\, \operatorname{deriv}_{f,\alpha}(a) \wedge \operatorname{deriv}_{f,\alpha}(b)
+				\Longrightarrow a = b\, \right)
 			\end{align}
 			が成り立つ．
 		\end{thm}
@@ -46,7 +46,7 @@
 			$f$を$\Holomorphic{\Omega}$の要素とするとき，
 			\begin{align}
 				f' \defeq \Set{x}{\exists \alpha \in \Omega\, 
-				\left(\, x=(\alpha,\varepsilon a \operatorname{difl}_{f,\alpha}(a))\, \right)}
+				\exists a \in \C\, \left(\, x=(\alpha,a) \wedge \operatorname{deriv}_{f,\alpha}(a)\, \right)}
 			\end{align}
 			で定める写像を$f$の{\bf 導関数}\index{どうかんすう@導関数}{\bf (derivative function)}と呼ぶ．
 		\end{dfn}
@@ -140,7 +140,52 @@
 		\QED
 	\end{sketch}
 	
-\subsection{級数展開}
+\subsection{解析関数}
+	\begin{screen}
+		\begin{dfn}[計数測度]
+			可測空間$(\Natural,\dirpro{\Natural})$において，
+			\begin{align}
+				\mu_c \defeq \Set{x}{\exists a\, \left(\, a \subset \Natural \wedge x = (a,\card{a})\, \right)}
+			\end{align}
+			により定める測度$\mu_c$を{\bf 計数測度}\index{けいすうそくど@計数測度}{\bf (counting measure)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[級数]
+			$f$を$\Natural$上の$\C$値関数とする．
+			\begin{align}
+				\exists \alpha \in \C\, \left(\, 
+				\sum_{k=0}^n f(k) \longrightarrow \alpha\, \right)
+			\end{align}
+			が成り立つとき，
+			\begin{align}
+				\sum_{n=0}^\infty f(n) \defeq \lim_{n \to \infty} \sum_{k=0}^n f(k)
+			\end{align}
+			と書いてこれを$f$の{\bf 級数}\index{きゅうすう@級数}{\bf (series)}と呼ぶ．また
+			\begin{align}
+				\exists \alpha \in \C\, \left(\, 
+				\sum_{k=0}^n |f(k)| \longrightarrow \alpha\, \right)
+			\end{align}
+			が成り立つとき$f$の級数は{\bf 絶対収束する}\index{ぜったいしゅうそく@絶対収束}{\bf (absolutely converge)}という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[級数は積分]
+			$\Natural$上の$\C$値関数$f$に対して
+			\begin{align}
+				\sum_{n=0}^\infty |f(n)| < \infty
+				\Longleftrightarrow \int_\Natural |f|\ d\mu_c < \infty
+			\end{align}
+			が成り立ち，かつこのとき
+			\begin{align}
+				\sum_{n=0}^\infty f(n) = \int_\Natural f\ d\mu_c
+			\end{align}
+			が成立する．
+		\end{thm}
+	\end{screen}
+	
 	$\alpha$を複素数とし，$r$を正数とするとき，中心$\alpha$半径$r$の円板を
 	\begin{align}
 		D(\alpha;r) \defeq \Set{z}{z \in \C \wedge |z - \alpha| < r}
@@ -178,7 +223,7 @@
 			で定義する．つまり，解析的とは局所的に収束級数展開可能であるということである．
 			$\Omega$上の解析関数の全体を
 			\begin{align}
-				\Analytic{\Omega} \defarrow
+				\Analytic{\Omega} \defeq
 				\Set{f}{f:\Omega \longrightarrow \C \wedge f \analytic \Omega}
 			\end{align}
 			で定める．
@@ -189,7 +234,7 @@
 	\begin{align}
 		\Holomorphic{\Omega} = \Analytic{\Omega}
 	\end{align}
-	が成立する．
+	が成立する．解析関数は，後述できないかもしれないWeierstrass解析関数とは別物である．
 	
 \subsection{複素積分}
 	$\gamma$を$[\alpha,\beta]$から$\C$への区分的$C^1$関数，
@@ -214,3 +259,24 @@
 		\int_\gamma f \defeq \int_{\ran{\gamma}} f\ d\mu \gamma^{-1}
 	\end{align}
 	で定義する．
+	
+	\begin{screen}
+		\begin{thm}[正則関数に対する微積分学の基本定理]
+			$f$を$H(\Omega)$の要素とし，$f'$が連続であるとし，$\gamma$を$[\alpha,\beta]$から$\Omega$への積分路とする．このとき
+			\begin{align}
+				\int_{\gamma} f' = f(\gamma(\beta)) - f(\gamma(\alpha))
+			\end{align}
+			が成立する．特に$\gamma$が閉積分路なら積分値は$0$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		微積分学の基本定理より
+		\begin{align}
+			\int_{\gamma} f'
+			= \int_{[\alpha,\beta]} f'(\gamma(t)) \cdot \gamma'(t)\ dt
+			= f(\gamma(\beta)) - f(\gamma(\alpha))
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
