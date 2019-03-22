@@ -491,7 +491,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}\label{metathm:rule_of_inference_2}
+		\begin{metathm}[正しい式は仮定を選ばない]\label{metathm:rule_of_inference_2}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，
 			$B \Longrightarrow (A \Longrightarrow B)$は定理である．
 		\end{metathm}
@@ -505,24 +505,6 @@
 		は定理となる．従って演繹法則より$B \Longrightarrow (A \Longrightarrow B)$は定理である．
 		\QED
 	\end{prf}
-	
-	\begin{screen}
-		\begin{metaaxm}[矛盾に関する規則]\label{metaaxm:rules_of_contradiction}
-			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
-			\begin{description}
-				\item[矛盾の発生] $A$と$\rightharpoondown A$が共に成り立つなら$\bot$が成り立つ:
-					$(A \wedge \rightharpoondown A) \Longrightarrow \bot$.
-				\item[否定の導出] $A$が$\bot$を導くなら$\rightharpoondown A$が成り立つ:
-					$(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A$.
-				\item[矛盾からはあらゆる式が導かれる] $\bot \Longrightarrow A$.
-			\end{description}
-		\end{metaaxm}
-	\end{screen}
-	
-	\monologue{
-		院生「$A$を$\mathcal{L}'$の閉式とするとき，式$A \Longrightarrow \bot$を
-			``$A$は{\bf 偽である}\index{ぎ@偽}{\bf (false)}''と翻訳します．」
-	}
 	
 	$A$と$B$を$\mathcal{L}'$の式とするとき，
 	\begin{align}
@@ -566,10 +548,36 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[偽であることと否定は同値]\label{metathm:false_and_negation_are_equivalent}
+		\begin{metaaxm}[矛盾と否定に関する規則]\label{metaaxm:rules_of_contradiction}
+			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			\begin{description}
+				\item[矛盾の発生] 否定が共に成り立つとき矛盾が導かれる:
+					\begin{align}
+						(A \wedge \rightharpoondown A) \Longrightarrow \bot.
+					\end{align}
+				\item[否定の導出] 矛盾が導かれるとき否定が成り立つ:
+					\begin{align}
+						(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A.
+					\end{align}
+				\item[二重否定の法則] 二重に否定された式は元の式を導く:
+					\begin{align}
+						\rightharpoondown \rightharpoondown A \Longrightarrow A.
+					\end{align}
+			\end{description}
+		\end{metaaxm}
+	\end{screen}
+	
+	\monologue{
+		院生「$A$を$\mathcal{L}'$の閉式とするとき，式$A \Longrightarrow \bot$を
+			``$A$は{\bf 偽である}\index{ぎ@偽}{\bf (false)}''と翻訳します．」
+	}
+	
+	否定の導出の逆は定理として得られる．
+	\begin{screen}
+		\begin{metathm}[否定が正しい式は偽である]\label{metathm:false_and_negation_are_equivalent}
 			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
 			\begin{align}
-				(A \Longrightarrow \bot) \Longleftrightarrow\ \rightharpoondown A.
+				\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot).
 			\end{align}
 		\end{metathm}
 	\end{screen}
@@ -580,48 +588,38 @@
 		\begin{align}
 			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
 		\end{align}
-		が成り立つ．一方で推論規則\ref{metaaxm:rules_of_contradiction}より
-		\begin{align}
-			(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A.
-		\end{align}
-		が満たされているので$(A \Longrightarrow \bot)$と$\rightharpoondown A$は同値である．
+		が成り立つ．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[二重否定の法則]
-			$A$を$\mathcal{L}'$の閉式とするとき，
-			$A \Longleftrightarrow\ \rightharpoondown \rightharpoondown A$は定理である．
+		\begin{metathm}[矛盾からはあらゆる式が導かれる]\label{metathm:contradiction_derives_any_formula}
+			$A$を$\mathcal{L}'$の閉式とするとき
+			\begin{align}
+				\bot \Longrightarrow A
+			\end{align}
+			が成り立つ．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{prf}
-		$A$が成り立っていると仮定する．このとき$\rightharpoondown A$が成り立っていれば
-		$\bot$が定理となるので
+		推論法則\ref{metathm:rule_of_inference_2}より
 		\begin{align}
-			\rightharpoondown A \Longrightarrow \bot
+			\bot \Longrightarrow (\rightharpoondown A \Longrightarrow \bot)
 		\end{align}
-		が成り立ち，否定の導出より$\rightharpoondown \rightharpoondown A$が定理となる．従って
+		が成り立つ．また否定の導出より
 		\begin{align}
-			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
+			(\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown \rightharpoondown A
 		\end{align}
-		が得られる．逆に$\rightharpoondown \rightharpoondown A$が成り立っていると仮定すると，
-		$\rightharpoondown A$が成り立っているなら$\bot$が定理となり，
-		また$\bot$からはあらゆる閉式が導かれるので$A$も定理となる．
-		ここに推論法則\ref{metathm:transitive_law_of_implication}を適用すれば
+		も成り立ち，さらに二重否定の法則から
 		\begin{align}
-			\rightharpoondown A \Longrightarrow A
+			\rightharpoondown \rightharpoondown A \Longrightarrow A
 		\end{align}
-		が成り立つ．反射律より$A \Longrightarrow A$も定理であるから場合分け法則より
+		も成り立つ．上の式に含意の推移律を適用すれば
 		\begin{align}
-			(A \vee \rightharpoondown A) \Longrightarrow A
+			\bot \Longrightarrow A
 		\end{align}
-		が成り立ち，排中律より$A \vee \rightharpoondown A$は正しいので三段論法より$A$は定理となる．
-		これにより
-		\begin{align}
-			\rightharpoondown \rightharpoondown A \Longrightarrow\ A
-		\end{align}
-		も得られた．
+		が得られる．
 		\QED
 	\end{prf}
 	
@@ -640,6 +638,32 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{metathm}[矛盾を導く式はあらゆる式を導く]\label{metathm:formula_leading_to_contradiction_derives_any_formula}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B).
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow \bot$が成り立っているとする．推論法則\ref{metathm:contradiction_derives_any_formula}より
+		\begin{align}
+			\bot \Longrightarrow B
+		\end{align}
+		が満たされるので，含意の推移律より
+		\begin{align}
+			A \Longrightarrow B
+		\end{align}
+		が成り立つ．従って演繹法則を適用すれば
+		\begin{align}
+			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{metathm}[含意は否定と論理和で表せる]\label{metathm:rule_of_inference_3}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
@@ -654,20 +678,36 @@
 			(A \Longrightarrow B) \Longrightarrow 
 			((A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A))
 		\end{align}
-		が満たされているから三段論法より$(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)$
-		は定理となり，ここに排中律と三段論法を適用すれば$B \vee \rightharpoondown A$が定理となる．
+		が満たされているから三段論法より
+		\begin{align}
+			(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)
+		\end{align}
+		は定理となり，ここに排中律と三段論法を適用すれば
+		\begin{align}
+			B \vee \rightharpoondown A
+		\end{align}
+		が定理となる．
 		ここで論理和の可換律より$\rightharpoondown A \vee B$が成り立つので，演繹法則を適用して
 		\begin{align}
 			(A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
 		\end{align}
-		が得られる．また$\rightharpoondown A$が成り立っていると仮定すると，
-		この下で$A$を公理に追加すれば$\bot$が定理となり，$\bot$からは$B$が導かれるので$B$も定理となる．従って
-		演繹法則より
+		が得られる．また矛盾に関する推論規則より
 		\begin{align}
-			(\rightharpoondown A) \Longrightarrow (A \Longrightarrow B)
+			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
 		\end{align}
-		が成り立つ．一方で推論法則\ref{metathm:rule_of_inference_2}より
-		$B \Longrightarrow (A \Longrightarrow B)$が定理であるから，場合分けの法則より
+		が成り立ち，同時に推論法則\ref{metathm:formula_leading_to_contradiction_derives_any_formula}より
+		\begin{align}
+			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		も成り立つので，含意の推移律より
+		\begin{align}
+			\rightharpoondown A \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が成立する．他方で推論法則\ref{metathm:rule_of_inference_2}より
+		\begin{align}
+			B \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		も成り立つから，場合分けの法則より
 		\begin{align}
 			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
@@ -685,6 +725,33 @@
 	}
 	
 	\begin{screen}
+		\begin{metathm}[二重否定の法則の逆が成り立つ]
+			$A$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				A \Longrightarrow\ \rightharpoondown \rightharpoondown A.
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律より
+		\begin{align}
+			\rightharpoondown A \vee \rightharpoondown \rightharpoondown A
+		\end{align}
+		が成立し，また推論法則\ref{metathm:rule_of_inference_3}より
+		\begin{align}
+			(\rightharpoondown A \vee \rightharpoondown \rightharpoondown A)
+			\Longrightarrow (A \Longrightarrow\ \rightharpoondown \rightharpoondown A)
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{metathm}[対偶命題は同値]
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
@@ -694,7 +761,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		推論法則\ref{metathm:rule_of_inference_3}，論理和の可換律，二重否定の法則を順に用いれば
+		推論法則\ref{metathm:rule_of_inference_3}，論理和の可換律，二重否定の法則(とその逆)を順に用いれば
 		\begin{align}
 			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
 			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
