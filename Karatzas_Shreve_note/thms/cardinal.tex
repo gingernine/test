@@ -278,6 +278,103 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{thm}[単射が存在すれば全射が存在し，全射が存在すれば単射が存在する]
+			\begin{align}
+				\forall a\, \forall b\,
+				\left[\, \exists f\, \left(\, f:a \inj b\, \right)
+				\Longleftrightarrow \exists g\, \left(\, g:b \srj a\, \right)\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a,b$を集合とする．
+		\begin{align}
+			\exists f\, \left(\, f:a \inj b\, \right)
+		\end{align}
+		が成り立っているとき，
+		\begin{align}
+			f \defeq \varepsilon f\, \left(\, f:a \inj b\, \right)
+		\end{align}
+		とおいて，$a$の要素$a_0$を取り
+		\begin{align}
+			g \defeq \Set{x}{\exists y \in b\, \left(\, y \in f \ast a \Longrightarrow x=(y,f^{-1}(y))
+			\wedge y \notin f \ast a \Longrightarrow x=(y,a_0)\, \right)}
+		\end{align}
+		で$g$を定めれば，
+		\begin{align}
+			g:b \srj a
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			\exists f\, \left(\, f:a \inj b\, \right)
+				\Longrightarrow \exists g\, \left(\, g:b \srj a\, \right)
+		\end{align}
+		が成り立つ．逆に
+		\begin{align}
+			\exists g\, \left(\, g:b \srj a\, \right)
+		\end{align}
+		が成り立っているとき，
+		\begin{align}
+			g \defeq \varepsilon g\, \left(\, g:b \srj a\, \right)
+		\end{align}
+		とおいて
+		\begin{align}
+			h \defeq \Set{t}{\exists x \in a\, \left(\, t=(x,\Set{y}{y \in b \wedge x = g(y)})\, \right)}
+		\end{align}
+		で$h$を定めれば，
+		\begin{align}
+			h \fon a
+		\end{align}
+		かつ
+		\begin{align}
+			\forall x \in a\, (\, h(x) \neq \emptyset\, )
+		\end{align}
+		が成り立つので
+		\begin{align}
+			f \fon a \wedge \forall x \in a\, (\, f(x) \in h(x)\, )
+		\end{align}
+		なる$f$が取れる．
+		\begin{align}
+			f(x) = f(x') \Longrightarrow x = g(f(x)) = g(f(x')) = x'
+		\end{align}
+		が成り立つので$f$は単射である．従って
+		\begin{align}
+			\exists g\, \left(\, g:b \srj a\, \right)
+			\Longrightarrow \exists f\, \left(\, f:a \inj b\, \right)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[全射が存在すれば濃度は大きい]
+			\begin{align}
+				\forall a\, \forall b\, \left(\, \exists f\, \left(\, f:a \srj  b\, \right)
+				\Longrightarrow \card{b} \leq \card{a}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a,b$を集合とするとき，
+		\begin{align}
+			\exists f\, \left(\, f:a \srj b\, \right)
+			\Longrightarrow \exists g\, \left(\, g:b \inj  a\, \right)
+		\end{align}
+		と
+		\begin{align}
+			\exists g\, \left(\, g:b \inj a\, \right) \Longrightarrow \card{b} \leq \card{a}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\exists f\, \left(\, f:a \srj b\, \right) \Longrightarrow \card{b} \leq \card{a}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{thm}[真類の濃度は$0$]
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
