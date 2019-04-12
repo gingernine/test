@@ -1,0 +1,310 @@
+\section{可予測過程}
+	$\mathbf{T}$は$[0,\infty)$か$[0,T]$を表すものとする．
+	$(\Omega, \mathscr{F}, P)$を確率空間とし，$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$をフィルトレーションとする．
+	
+	\begin{itemize}
+		\item $f:\mathbf{T} \times \Omega \longrightarrow \R$.
+		
+		\item 各$\omega \in \Omega$で，
+			\begin{align}
+				\mathbf{T} \ni s \longmapsto f(s,\omega)
+			\end{align}
+			が各$t \in \mathbf{T} \backslash \{0\}$において左連続.
+			
+		\item 各$t \in \mathbf{T}$で
+			\begin{align}
+				\Omega \ni \omega \longmapsto f(t,\omega)
+			\end{align}
+			は$\mathscr{F}_t/\borel{\R}$-可測．
+	\end{itemize}
+	
+	なる$f$の全体を$\mathscr{L}_{\mathbf{T}}$で表す．また$\mathscr{L}_{\mathbf{T}}$の全ての要素を可測にする
+	$\mathbf{T} \times \Omega$上の最小の$\sigma$-加法族を$\mathscr{P}_{\mathbf{T}}$で表す:
+	\begin{align}
+		\mathscr{P}_{\mathbf{T}} \defeq 
+		\sigma\left(\Set{f^{-1}(A)}{f \in \mathscr{L}_{\mathbf{T}} \wedge A \in \borel{\R}}\right).
+	\end{align}
+	
+	$\mathbf{T} \times \Omega$上の実数値写像で$\mathscr{P}_{\mathbf{T}}/\borel{\R}$-可測なるものを
+	$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 可予測過程}\index{かよそくかてい@可予測過程}{\bf (predictable process)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{thm}[$\mathscr{P}_{\mathbf{T}}$を生成する乗法族]\label{thm:pi_system_generating_predictable_sets}
+			$\{0\} \times B\ (B \in \mathscr{F}_0)$または$(u,v] \times B\ ((u,v] \subset \mathbf{T},\ B \in \mathscr{F}_u)$
+			なる形の集合の全体を$\mathscr{U}_{\mathbf{T}}$とおくとき，
+			$\mathscr{U}_{\mathbf{T}}$は乗法族であって
+			\begin{align}
+				\sigma\left(\mathscr{U}_{\mathbf{T}}\right) = \mathscr{P}_{\mathbf{T}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] $\mathscr{U}_{\mathbf{T}}$が乗法族であることを示す．
+				$A,B$を$\mathscr{U}_{\mathbf{T}}$から任意に選ばれた要素とする．$A$が
+				\begin{align}
+					A = \{0\} \times A'
+				\end{align}
+				なる形の場合は，$B$が
+				\begin{align}
+					B = (a,b] \times B'
+				\end{align}
+				なる形なら
+				\begin{align}
+					A \cap B = \emptyset
+				\end{align}
+				となり，$B$が
+				\begin{align}
+					B = \{0\} \times B'
+				\end{align}
+				なる形なら
+				\begin{align}
+					A \cap B = \{0\} \times (A' \cap B')
+				\end{align}
+				となるので，いずれにせよ
+				\begin{align}
+					A \cap B \in \mathscr{U}_{\mathbf{T}}
+				\end{align}
+				となる．$A$が
+				\begin{align}
+					A = (u,v] \times A'
+				\end{align}
+				なる形の場合は，$B$が
+				\begin{align}
+					B = (a,b] \times B'
+				\end{align}
+				なる形なら，$(u,v] \cap (a,b]$は重なれば区間，重ならないなら空となり$A \cap B$も空となる．重なる場合
+				\begin{align}
+					(u,v] \cap (a,b] = (\max{\{u,a\}}, \min{\{v,b\}}]
+				\end{align}
+				となるが，このとき
+				\begin{align}
+					A' \in \mathscr{F}_{\max{\{u,a\}}} \wedge B' \in \mathscr{F}_{\max{\{u,a\}}}
+				\end{align}
+				となるので
+				\begin{align}
+					A \cap B = (\max{\{u,a\}}, \min{\{v,b\}}] \times (A' \cap B') \in \mathscr{U}_{\mathbf{T}}
+				\end{align}
+				が成り立つ．以上より$\mathscr{U}_{\mathbf{T}}$が乗法族であることが示された．
+			
+			\item[第二段]
+				$\sigma\left(\mathscr{U}_{\mathbf{T}}\right) = \mathscr{P}_{\mathbf{T}}$を示す．
+				$A$を$\mathscr{U}_{\mathbf{T}}$から任意に選ばれた要素とすると，
+				\begin{align}
+					\defunc_A \in \mathscr{L}_{\mathbf{T}}
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					A = \defunc_A^{-1}(\{1\}) \in \mathscr{P}_{\mathbf{T}}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\mathscr{U}_{\mathbf{T}} \subset \mathscr{P}_{\mathbf{T}}
+				\end{align}
+				が従い
+				\begin{align}
+					\sigma\left(\mathscr{U}_{\mathbf{T}}\right) \subset \mathscr{P}_{\mathbf{T}}
+				\end{align}
+				が得られる．次に$\phi$を$\mathscr{L}_{\mathbf{T}}$から任意に選ばれた要素とする．
+				ここで$\mathbf{T} = [0,\infty)$の場合と$\mathbf{T} = [0,T]$の場合に分ける．
+				\begin{description}
+					\item[(a)] $\mathbf{T} = [0,\infty)$の場合，自然数$n$に対して
+						\begin{align}
+							\phi^n(t,\omega)
+							= \phi(0,\omega)\defunc_{\{0\}}(t) + 
+							\sum_{j=0}^{n2^n-1}\phi(j/2^n,\omega) \defunc_{(j/2^n,(j+1)/2^n]}(t)
+						\end{align}
+						で$\phi^n$を定めると，
+						\begin{align}
+							\forall t \in \mathbf{T}\, \forall \omega \in \Omega\,
+							\phi^n(t,\omega) \longrightarrow \phi(t,\omega)
+							\quad (n \longrightarrow \infty)
+						\end{align}
+						が成り立つ．他方で$\borel{\R}$の任意の要素$E$に対して
+						\begin{align}
+							{\phi^n}^{-1}(E)
+							= \{0\} \times \phi_0^{-1}(E) \cup 
+							\bigcup_{j=0}^{n2^n-1} (j/2^n,(j+1)/2^n] \times \phi_{j/2^n}^{-1}(E)
+						\end{align}
+						が成り立つので，$\phi^n$は$\sigma\left(\mathscr{U}_{\mathbf{T}}\right)/\borel{\R}$-可測である．
+						ゆえに$\phi$も$\sigma\left(\mathscr{U}_{\mathbf{T}}\right)/\borel{\R}$-可測である．
+						$\phi$の任意性より
+						\begin{align}
+							\Set{f^{-1}(A)}{f \in \mathscr{L}_{\mathbf{T}} \wedge A \in \borel{\R}}
+							\subset \sigma\left(\mathscr{U}_{\mathbf{T}}\right)
+						\end{align}
+						が従うので
+						\begin{align}
+							\mathscr{P}_{\mathbf{T}} \subset \sigma\left(\mathscr{U}_{\mathbf{T}}\right)
+						\end{align}
+						が得られる．
+						
+					\item[(b)] $\mathbf{T} = [0,T]$の場合，自然数$n$に対して
+						\begin{align}
+							\phi^n(t,\omega)
+							= \phi(0,\omega)\defunc_{\{0\}}(t) + 
+							\sum_{j=0}^{n2^n-1}\phi(jT/2^n,\omega) \defunc_{(jT/2^n,(j+1)T/2^n]}(t)
+						\end{align}
+						で$\phi^n$を定めると，$(\phi^n)_{n\in\Natural}$は$\phi$に各点収束し，
+						$\phi^n$は$\sigma\left(\mathscr{U}_{\mathbf{T}}\right)/\borel{\R}$-可測で，
+						$\phi$の$\sigma\left(\mathscr{U}_{\mathbf{T}}\right)/\borel{\R}$-可測性が従い
+						\begin{align}
+							\mathscr{P}_{\mathbf{T}} \subset \sigma\left(\mathscr{U}_{\mathbf{T}}\right)
+						\end{align}
+						が得られる．\QED
+				\end{description}
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[右連続化したフィルトレーションに関する可予測過程は元のフィルトレーションに適合する]
+		\label{thm:predictable_process_adapted_to_right_continuous_filtration}
+			$\{\mathscr{G}_t\}_{t \in \mathbf{T}}$をフィルトレーションとし，各$t \in \mathbf{T}$で
+			\begin{align}
+				\mathscr{F}_t \coloneqq \mathscr{G}_{t+},
+			\end{align}
+			ただし$\mathbf{T} = [0,T]$の場合は
+			\begin{align}
+				\mathscr{F}_T \coloneqq \mathscr{G}_{T}
+			\end{align}
+			として右連続なフィルトレーション$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を定める．
+			このとき$f$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-可予測過程とすると，
+			各$t \in \mathbf{T} \backslash \{0\}$で
+			\begin{align}
+				\Omega \ni \omega \longmapsto f(t,\omega)
+			\end{align}
+			は$\mathscr{G}_t/\borel{\R}$-可測である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\mathbf{T} \times \Omega$上のDynkin族を
+		\begin{align}
+			\mathscr{D} \defeq \Set{A \in \mathscr{P}_{\mathbf{T}}}{
+			\mbox{各$t \in \mathbf{T} \backslash \{0\}$で$\Omega \ni \omega \longmapsto \defunc_A(t,\omega)$が
+			$\mathscr{G}_t/\borel{\R}$-可測}}
+		\end{align}
+		で定める．このとき
+		\begin{align}
+			\mathscr{U}_{\mathbf{T}} \subset \mathscr{D}
+			\label{fom:thm_predictable_process_adapted_to_right_continuous_filtration}
+		\end{align}
+		が成り立てばDynkin族定理と定理\ref{thm:pi_system_generating_predictable_sets}より
+		\begin{align}
+			\mathscr{P}_{\mathbf{T}} = \sigma\left(\mathscr{U}_{\mathbf{T}}\right) = \mathscr{D}
+		\end{align}
+		が成立する．すると$\mathscr{P}_{\mathbf{T}}$-可測単関数に対して定理の主張が満たされ，
+		その各点収束極限で表せる$\mathscr{P}_{\mathbf{T}}$-可測関数に対しても定理の主張が満たされる．
+		いま，$A$を$\mathscr{U}_{\mathbf{T}}$から任意に選ばれた要素とする．
+		\begin{description}
+			\item[(a)]
+				$A = \{0\} \times B$なる形の場合，$t \in \mathbf{T} \backslash \{0\}$なる$t$を取ると
+				\begin{align}
+					\Omega \ni \omega \longmapsto \defunc_A(t,\omega)
+				\end{align}
+				は恒等的に$0$となる．ゆえに$\mathscr{G}_t/\borel{\R}$-可測である．
+				
+			\item[(b)]
+				$A = (u,v] \times B$なる形の場合，$t \in \mathbf{T} \backslash \{0\}$なる$t$を取ると，
+				\begin{align}
+					t \leq u \vee v < t
+				\end{align}
+				なら
+				\begin{align}
+					\Omega \ni \omega \longmapsto \defunc_A(t,\omega)
+				\end{align}
+				は恒等的に$0$となるから$\mathscr{G}_t/\borel{\R}$-可測である．
+				\begin{align}
+					u < t \leq v
+				\end{align}
+				なら
+				\begin{align}
+					\Omega \ni \omega \longmapsto \defunc_A(t,\omega)
+				\end{align}
+				は$\defunc_B$に一致し，$\defunc_B$は$\mathscr{G}_u/\borel{\R}$-可測なので
+				$\mathscr{G}_t/\borel{\R}$-可測である．
+		\end{description}
+		以上より
+		\begin{align}
+			A \in \mathscr{D}
+		\end{align}
+		が成立するので，(\refeq{fom:thm_predictable_process_adapted_to_right_continuous_filtration})が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[可予測過程と停止時刻の合成の可測性]\label{thm:composition_of_predictable_process_and_stopping_time}
+			$f$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-可予測過程とし，
+			$\tau$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-停止時刻とし，
+			$f_\tau$を
+			\begin{align}
+				f_\tau: \Omega \ni \omega \longmapsto f(\tau(\omega),\omega)
+			\end{align}
+			なる写像とする．このとき$f_\tau$は$\mathscr{F}_\tau/\borel{\R}$-可測である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$t$を$\mathbf{T}$から任意に選ばれた要素とし，$E$を$\borel{\R}$から任意に選ばれた要素とするとき，
+		\begin{align}
+			\Set{\omega \in \Omega}{f|_{[0,t] \times \Omega}(\tau(\omega),\omega) \in E} \cap \{\tau \leq t\}
+			\in \mathscr{F}_t
+		\end{align}
+		が成り立てばよい．ところで左辺は
+		\begin{align}
+			\Set{\omega \in \Omega}{f(\tau(\omega) \wedge t,\omega) \in E} \cap \{\tau \leq t\}
+		\end{align}
+		に一致する．$\tau \wedge t$は$\mathscr{F}_t/\borel{[0,t]}$-可測なので
+		\begin{align}
+			\Omega \ni \omega \longmapsto (\tau(\omega) \wedge t,\omega)
+		\end{align}
+		は$\mathscr{F}_t/\borel{[0,t]} \otimes \mathscr{F}_t$-可測であるから，
+		$f|_{[0,t] \times \Omega}$が$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R}$-可測であることを示せば良い．
+		ここで
+		\begin{align}
+			\mathscr{D} \defeq \Set{A \in \mathscr{P}_{\mathbf{T}}}{
+			\mbox{$\defunc_A|_{[0,t] \times \Omega}$が$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R}$-可測}}
+		\end{align}
+		としてDynkin族を定める．
+		\begin{align}
+			\mathscr{U}_{\mathbf{T}} \subset \mathscr{D}
+			\label{fom:thm_composition_of_predictable_process_and_stopping_time}
+		\end{align}
+		が成り立てば，Dynkin族定理と定理\ref{thm:pi_system_generating_predictable_sets}より
+		\begin{align}
+			\mathscr{P}_{\mathbf{T}} = \sigma\left(\mathscr{U}_{\mathbf{T}}\right) = \mathscr{D}
+		\end{align}
+		が成立する．いま，$A$を$\mathscr{U}_{\mathbf{T}}$から任意に選ばれた要素とする．
+		\begin{description}
+			\item[(a)]
+				$A = \{0\} \times B$なる形の場合，
+				\begin{align}
+					\defunc_A|_{[0,t] \times \Omega} = \defunc_A
+				\end{align}
+				が成り立ち，また$\{0\} \in \borel{[0,t]}$かつ$B \in \mathscr{F}_0 \subset \mathscr{F}_t$であるから
+				$\defunc_A|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R}$-可測である．
+				
+			\item[(b)]
+				$A = (u,v] \times B$なる形の場合，
+				\begin{align}
+					t \leq u
+				\end{align}
+				なら$\defunc_A|_{[0,t] \times \Omega}$は恒等的に$0$となり，
+				\begin{align}
+					u < t
+				\end{align}
+				なら
+				\begin{align}
+					\defunc_A|_{[0,t] \times \Omega} = \defunc_{(u,\min{\{v,t\}}] \times B}
+				\end{align}
+				となり，$(u,\min{v,t}] \in \borel{[0,t]}$かつ$B \in \mathscr{F}_u \subset \mathscr{F}_t$となるので
+				$\defunc_A|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R}$-可測である．
+		\end{description}
+		以上より
+		\begin{align}
+			A \in \mathscr{D}
+		\end{align}
+		が成立するので，(\refeq{fom:thm_composition_of_predictable_process_and_stopping_time})が従う．
+		\QED
+	\end{sketch}
