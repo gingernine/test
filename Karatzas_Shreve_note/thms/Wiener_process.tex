@@ -1,0 +1,221 @@
+\section{Gauss過程}
+	$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上の確率過程とする．
+	$X$が連続な確率過程であって，かつ
+	\begin{itemize}
+		\item $s,t$を$s < t$なる$\mathbf{T}$の要素とするとき
+			\begin{align}
+				A \in \borel{\R} \Longrightarrow
+				P\left((X_t-X_s)^{-1}(A)\right)
+				= \int_A \frac{1}{\sqrt{2\pi(t-s)}} \exp\left(-\frac{x^2}{2(t-s)}\right)\ dx
+			\end{align}
+			が成り立つ．
+		
+		\item $s,t$を$s < t$なる$\mathbf{T}$の要素とするとき$X_t - X_s$が$\mathscr{F}^X_s$と独立.
+			
+		\item $P$-a.sに$X_0 = 0$.
+	\end{itemize}
+	が満たされるとき，$X$を$(\Omega,\mathscr{F},P)$上のGauss過程と呼ぶ．
+	$X$が$(\Omega,\mathscr{F},P)$上のGauss過程であって，さらに
+	\begin{align}
+		s,t \in \mathbf{T} \Longrightarrow \int_\Omega X_s \cdot X_t\ dP = \min{\{s,t\}}
+	\end{align}
+	を満たすとき，$X$を$(\Omega,\mathscr{F},P)$上のWiener過程と呼ぶ．
+	
+	\begin{screen}
+		\begin{dfn}[座標過程]
+			$F$を$\mathbf{T}$上の$\R$値写像の集合とする．このとき
+			\begin{align}
+				X \defeq \Set{((t,w),w(t))}{t \in \mathbf{T} \wedge w \in F}
+			\end{align}
+			で定める$X$を$F$による座標過程と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[筒集合]
+			$F$を$\mathbf{T}$上の$\R$値写像の集合とするとき，
+			\begin{align}
+				\cyl{F} \defeq 
+				\Set{x}{\exists t \in \mathbf{T}\, \exists A \in \borel{\R}\, 
+				\left(\, x = \Set{w \in F}{w(t) \in A}\, \right)}
+			\end{align}
+			で定める集合を$F$の筒集合族と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[座標過程は可測]\label{thm:coordinate_process_is_stochastic}
+			$F$を$\mathbf{T}$上の$\R$値写像の集合とし，$X$を$F$による座標過程とする．このとき
+			各$t \in \mathbf{T}$で$X_t$は$\sigma(\cyl{F})/\borel{\R}$-可測である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$t$を$\mathbf{T}$の要素とし，$A$を$\borel{\R}$の要素とするとき，
+		\begin{align}
+			\Set{w \in F}{X_t(w) \in A}
+			= \Set{w \in F}{w(t) \in A}
+			\in \cyl{F}
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上の確率過程とするとき，
+	$\Omega$の要素$\omega$に対してそのパス
+	\begin{align}
+		\mathbf{T} \ni t \longmapsto X_t(\omega)
+	\end{align}
+	を対応させる写像，つまり
+	\begin{align}
+		\Omega \ni \omega \longmapsto \Set{(t,X_t(\omega))}{t \in \mathbf{T}}
+	\end{align}
+	なる写像を$X_\bullet$と書く．
+	
+	\begin{screen}
+		\begin{thm}[$X_\bullet$は可測]
+			$F$を$\mathbf{T}$上の$\R$値写像の集合とし，$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上の確率過程とする．このとき
+			\begin{align}
+				\forall \omega \in \Omega\, \left(\, X_\bullet(\omega) \in F\, \right)
+			\end{align}
+			ならば$X_\bullet$は$\mathscr{F}/\sigma(\cyl{F})$-可測である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$E$を$\cyl{F}$の要素として
+		\begin{align}
+			X_\bullet^{-1}(E) \in \mathscr{F}
+		\end{align}
+		が成り立つことを示す．$A$は筒集合であるから，
+		\begin{align}
+			E = \Set{w \in F}{w(t) \in A}
+		\end{align}
+		を満たす$\mathbf{T}$の要素$t$および$\borel{\R}$の要素$A$が取れる．
+		このとき
+		\begin{align}
+			X_\bullet^{-1}(E) = \Set{\omega \in \Omega}{X_\bullet(\omega) \in E}
+			= \Set{\omega \in \Omega}{X_t(\omega) \in A}
+		\end{align}
+		が成り立ち，$X$は確率過程であるので右辺は$\mathscr{F}$に属する．いま
+		\begin{align}
+			\cyl{F} \subset \Set{E \in \sigma(\cyl{F})}{X_\bullet^{-1}(E) \in \mathscr{F}}
+		\end{align}
+		が満たされることが分かったので$X_\bullet$は$\mathscr{F}/\sigma(\cyl{F})$-可測である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[連続写像の全体の筒集合族はBorel集合族を生成する]
+			$C$を$\mathbf{T}$上の実連続写像の全体とするとき
+			\begin{align}
+				\sigma(\cyl{C}) = \borel{C}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}\label{thm:Wiener_process_on_continuous_functions}
+			$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上のGauss過程とし，
+			$C$を$\mathbf{T}$上の実連続写像の全体とし，
+			$B$を$C$による座標過程とする．また
+			\begin{align}
+				\mu_X \defeq P X_\bullet^{-1}
+			\end{align}
+			と定める．このとき$B$は$(C,\borel{C},\mu_X)$上のGauss過程である．
+			さらに$X$が$(\Omega,\mathscr{F},P)$上のWiener過程ならば$B$も$(C,\borel{C},\mu_X)$上のWiener過程である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				定理\ref{thm:coordinate_process_is_stochastic}より$B$は連続な確率過程である．
+				また
+				\begin{align}
+					\Set{w \in C}{B_0(w)=0} = \Set{w \in C}{w(0) = 0}
+				\end{align}
+				なので
+				\begin{align}
+					X_\bullet^{-1}\left(\Set{w \in C}{B_0(w)=0}\right)
+					= \Set{\omega \in \Omega}{X_0(\omega) = 0}
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\mu_X\left(\Set{w \in C}{B_0(w)=0}\right) = 0
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段]
+				$s,t$を$s < t$なる$\mathbf{T}$の要素とするとき，
+				\begin{align}
+					(B_t - B_s) \circ X_\bullet = X_t - X_s
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\mu_X (B_t - B_s)^{-1}
+					= P \left((B_t - B_s) \circ X_\bullet\right)^{-1}
+					= P (X_t - X_s)^{-1}
+				\end{align}
+				が成り立つ．すなわち
+				\begin{align}
+					A \in \borel{\R} \Longrightarrow
+					\mu_X\left((B_t-B_s)^{-1}(A)\right)
+					= \int_A \frac{1}{\sqrt{2\pi(t-s)}} \exp\left(-\frac{x^2}{2(t-s)}\right)\ dx
+				\end{align}
+				も満たされる．
+			
+			\item[第三段]
+				$B_t - B_s$と$\mathscr{F}_s^B$が独立であることを示す．$t \in \mathbf{T}$なる$r$と$\borel{\R}$の要素$E$に対して
+				\begin{align}
+					X_\bullet^{-1}(B_t^{-1}(E)) = X_t^{-1}(E)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\Set{x}{\exists r \in [0,s]\, \exists E \in \borel{\R}\, \left(\, x=B_r^{-1}(E)\, \right)}
+					\subset \Set{A \in \mathscr{F}_s^B}{X_\bullet^{-1}(A) \in \mathscr{F}^X_s}
+				\end{align}
+				が成り立つ．左辺は$\mathscr{F}_s^B$を生成するので
+				\begin{align}
+					A \in \mathscr{F}_s^B \Longrightarrow X_\bullet^{-1}(A) \in \mathscr{F}^X_s
+				\end{align}
+				が成り立つ．$X_t-X_s$と$\mathscr{F}^X_s$の独立性を使えば，
+				\begin{align}
+					U \in \borel{\R} \wedge A \in \mathscr{F}_s^B \Longrightarrow
+					\mu_X\left((B_t-B_s)^{-1}(U) \cap A\right)
+					&= P X_\bullet^{-1}\left((B_t-B_s)^{-1}(U) \cap A\right) \\
+					&= P \left( X_\bullet^{-1}\left((B_t-B_s)^{-1}(U)\right) \cap X_\bullet^{-1}(A)\right) \\
+					&= P \left( (X_t-X_s)^{-1}(U) \cap X_\bullet^{-1}(A)\right) \\
+					&= P \left( (X_t-X_s)^{-1}(U) \right) P X_\bullet^{-1}(A) \\
+					&= \mu_X\left((B_t-B_s)^{-1}(U) \right) \mu_X(A)
+				\end{align}
+				が成立し，$B_t-B_s$と$\mathscr{F}^B_s$との独立性が従う．
+				
+			\item[第四段]
+				$f:\R^2 \ni (x,y) \longmapsto x \cdot y$なる$f$に対して
+				\begin{align}
+					\int_C f \circ (B_t,B_s)\ d\mu_X = 
+					\int_{\R^2} f\ d\mu_X(B_t,B_s)^{-1}
+				\end{align}
+				が成り立つ．ただし$\mu_X(B_t,B_s)^{-1}$の意味は
+				\begin{align}
+					A \in \borel{\R^2} \Longrightarrow
+					\mu_X(B_t,B_s)^{-1}(A) = \mu_X\left(\Set{w \in C}{(B_t(w),B_s(w)) \in A} \right)
+				\end{align}
+				である．他方で
+				\begin{align}
+					\mu_X(B_t,B_s)^{-1} = P (X_t,X_s)^{-1}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\int_C f \circ (B_t,B_s)\ d\mu_X = 
+					\int_{\R^2} f\ dP(X_t,X_s)^{-1}
+					= \int_\Omega f \circ (X_t,X_s)\ dP
+				\end{align}
+				が従う．ゆえに，$W$がWiener過程であるときは$B$もまたWiener過程である．
+				\QED
+		\end{description}
+	\end{sketch}
