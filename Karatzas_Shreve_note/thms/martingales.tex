@@ -1,0 +1,173 @@
+\section{確率過程}
+	$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T}$を$[0,\infty[,[0,\infty],[0,T]$のいずれかとする．
+	また$(S,d)$を距離空間とする．$X$を$\mathbf{T} \times \Omega$上の$S$値写像とするとき，
+	$\mathbf{T}$の要素$t$に対して
+	\begin{align}
+		X_t \defeq \Set{(\omega,X(t,\omega))}{\omega \in \Omega}
+	\end{align}
+	により$X_t$を定める．つまり$X_t$は
+	\begin{align}
+		\omega \longmapsto X(t,\omega)
+	\end{align}
+	なる写像である．
+	
+	\begin{screen}
+		\begin{dfn}[確率過程]
+			集合$X$が
+			\begin{itemize}
+				\item $X:\mathbf{T} \times \Omega \longrightarrow S$.
+				\item $t$を$\mathbf{T}$から任意に選ばれた要素とするとき$X_t$が$\mathscr{F}/\borel{S}$-可測である．
+			\end{itemize}
+			を満たすとき，$X$を$(\Omega,\mathscr{F},P)$上の$S$値{\bf 確率過程}{\bf (stochastic process)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$\omega$を$\Omega$の要素とするとき，
+	\begin{align}
+		\mathbf{T} \ni t \longmapsto X_t(\omega)
+	\end{align}
+	なる写像を$\omega$の{\bf 標本路}{\bf (sample path)}と呼ぶ．標本路の性質に対して
+	確率過程$X$の呼び名が分かれる:
+	\begin{itemize}
+		\item $\Omega$の全ての要素の標本路が$RCLL$である場合，$X$を$RCLL$な$S$値確率過程と呼ぶ．
+		\item $\Omega$の全ての要素の標本路が連続である場合，$X$を連続な$S$値確率過程と呼ぶ．
+		\item 標本路が$P$-a.s.に\footnotemark$RCLL$である場合，$X$を$P$-a.s.に$RCLL$な$S$値確率過程と呼ぶ．
+		\item 標本路が$P$-a.s.に連続である場合，$X$を$P$-a.s.に連続な$S$値確率過程と呼ぶ．
+	\end{itemize}
+	
+	\footnotetext{
+		``$P$-a.s.に''とは，或る$P$-零集合$N$が取れて，$\Omega \backslash N$のすべての要素に対して
+		それ以下の式が満たされる場合の接頭句である．
+	}
+	
+	\begin{screen}
+		\begin{dfn}[適合]
+			$X$を$(\Omega,\mathscr{F},P)$上の$S$値確率過程とし，
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとするとき，
+			\begin{itemize}
+				\item $t$を$\mathbf{T}$から任意に選ばれた要素とするとき$X_t$が$\mathscr{F}_t/\borel{S}$-可測
+			\end{itemize}
+			であるなら$X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$に{\bf 適合している}
+			{\bf (adapted to $\{\mathscr{F}_t\}_{t \in \mathbf{T}}$)}という．または
+			$X$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合な$(\Omega,\mathscr{F},P)$上の$S$値確率過程と呼ぶ．
+		\end{dfn}
+	\end{screen}
+		
+	実数値確率過程$X$が$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-優マルチンゲールであるとは，
+	\begin{itemize}
+		\item $X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$に適合していて，かつ$\mathbf{T}$の各要素$t$で$X_t$は可積分である．
+		\item $s,t$を$\mathbf{T}$の要素とするとき，$s \leq t$ならば$P$-a.s.に$\cexp{X_t}{\mathscr{F}_s} \leq X_s$である．
+			つまり
+			\begin{align}
+				s \leq t \Longrightarrow 
+				\forall E \in \mathscr{F}_s \left[ \int_E \cexp{X_t}{\mathscr{F}_s}\ dP \leq \int_E X_s\ dP\right].
+			\end{align}
+	\end{itemize}
+	が満たされていることを指す．二つ目の条件が
+	\begin{itemize}
+		\item $s,t$を$\mathbf{T}$の要素とするとき，$s \leq t$ならば$P$-a.s.に$X_s \leq \cexp{X_t}{\mathscr{F}_s}$である．
+	\end{itemize}
+	に置き換わった場合，$X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールと呼ばれ，
+	$X$が$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-優マルチンゲールであり$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールでもある場合，
+	つまり二つ目の条件が
+	\begin{itemize}
+		\item $s,t$を$\mathbf{T}$の要素とするとき，$s \leq t$ならば$P$-a.s.に$X_s = \cexp{X_t}{\mathscr{F}_s}$である．
+	\end{itemize}
+	に置き換わった場合，$X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールと呼ばれる．
+	
+	以下性質を列挙する:
+	\begin{itembox}[l]{優マルチンゲールの正負を反転したものは劣マルチンゲール}
+		$X$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-優マルチンゲールとするとき，
+		$-X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールである．逆も然り．
+	\end{itembox}
+	
+	\begin{prf}
+		$-X$の適合性及び$-X_t$可積分性は$X$に対する仮定より従う．
+		$s,t$を$s \leq t$なる$\mathbf{T}$の要素とし，$E$を$\mathscr{F}_s$の要素とするとき，
+		\begin{align}
+			\int_E X_t\ dP \leq \int_E X_s\ dP
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			\int_E -X_s\ dP \leq \int_E -X_t\ dP
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			\int_E -X_s\ dP \leq \int_E \cexp{-X_t}{\mathscr{F}_s}\ dP
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{マルチンゲールは期待値が一定}
+		$X$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールとするとき，
+		\begin{align}
+			\forall t \in \mathbf{T}\, (\, E(X_t) = E(X_0)\, ).
+		\end{align}
+	\end{itembox}
+	
+	\begin{prf}
+		$t$を$\mathbf{T}$の要素とすれば$P$-a.s.に$\cexp{X_t}{\mathscr{F}_0} = X_0$となるので
+		\begin{align}
+			E(X_t) = E(\cexp{X_t}{\mathscr{F}_0}) = E(X_0)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{期待値が一定な優マルチンゲールはマルチンゲール}
+		$X$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-優マルチンゲールとするとき，
+		\begin{align}
+			\forall t \in \mathbf{T}\, (\, E(X_t) = E(X_0)\, )
+		\end{align}
+		ならば$X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールである．
+	\end{itembox}
+	
+	\begin{prf}
+		$s,t$を$\mathbf{T}$の要素とし，$s \leq t$とする．このとき$P$-a.s.に
+		\begin{align}
+			0 \leq X_s - \cexp{X_t}{\mathscr{F}_s}
+		\end{align}
+		が成り立つので，$P$-a.s.に
+		\begin{align}
+			X_s - \cexp{X_t}{\mathscr{F}_s} = \left| X_s - \cexp{X_t}{\mathscr{F}_s} \right|
+		\end{align}
+		となる．ゆえに
+		\begin{align}
+			0 = E\left(X_s - \cexp{X_t}{\mathscr{F}_s}\right)
+			= E\left| X_s - \cexp{X_t}{\mathscr{F}_s} \right|
+		\end{align}
+		が成り立つので，$P$-a.s.に
+		\begin{align}
+			X_s = \cexp{X_t}{\mathscr{F}_s}
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{Jensenの不等式の応用:マルチンゲール}
+		$X$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールとし，$f$を
+		$f:\R \longrightarrow \R$なる凸関数(resp. 凹関数)とする．このとき
+		\begin{align}
+			\forall t \in \mathbf{T}\, (\, E|f \circ X_t| < \infty\, )
+		\end{align}
+		ならば$f \circ X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲール(resp. 優マルチンゲール)である．
+	\end{itembox}
+	
+	\begin{prf}
+		$s,t$を$s \leq t$なる$\mathbf{T}$の要素とする．
+		Jensenの不等式(定理\ref{thm:Jensen_inequality_for_convex_functions})より，$P$-a.s.の$\omega( \in \Omega)$に対し
+		\begin{align}
+			f(X_s(\omega)) = f(\cexp{X_t}{\mathscr{F}_s}(\omega)) \leq \cexp{f \circ X_t}{\mathscr{F}_s}(\omega)
+		\end{align}
+		が成り立つ．$f$が凹関数である場合，$-f$は凸関数であるから$P$-a.s.の$\omega( \in \Omega)$に対し
+		\begin{align}
+			-f(X_s(\omega)) = -f(\cexp{X_t}{\mathscr{F}_s}(\omega)) \leq \cexp{-f \circ X_t}{\mathscr{F}_s}(\omega)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\cexp{f \circ X_t}{\mathscr{F}_s}(\omega) \leq f(X_s(\omega))
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}

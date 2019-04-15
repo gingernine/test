@@ -62,7 +62,7 @@
 	\end{sketch}
 	
 	$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上の確率過程とするとき，
-	$\Omega$の要素$\omega$に対してそのパス
+	$\Omega$の要素$\omega$に対してその標本路
 	\begin{align}
 		\mathbf{T} \ni t \longmapsto X_t(\omega)
 	\end{align}
@@ -219,3 +219,59 @@
 				\QED
 		\end{description}
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[座標過程をGauss過程とする測度の一意性]
+			$C$を$\mathbf{T}$上の実連続写像の全体とし，$B$を$C$による座標過程とし，
+			$\mu_1,\mu_2$を$\borel{C}$上の確率測度とする．このとき$B$が
+			$(C,\borel{C},\mu_1)$上のGauss過程であり，かつ
+			$(C,\borel{C},\mu_2)$上のGauss過程でもあるならば，
+			$\mu_1 = \mu_2$が成り立つ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{prf}
+		$\borel{C} = \sigma(\cyl{C})$であるから，
+		\begin{align}
+			\mathscr{A} \defeq \Set{x}{\exists n \in \Natural\, \exists A\, 
+			\left(\, A:n \longrightarrow \cyl{C} \wedge x = \bigcap_{i \in n}A(i)\, \right)}
+		\end{align}
+		により$\cyl{C}$の有限交叉の全体を定めれば
+		\begin{align}
+			\borel{C} = \sigma(\mathscr{A})
+		\end{align}
+		が成立する．$\mathscr{A}$は乗法族であるので，
+		\begin{align}
+			\mathscr{A} \subset \Set{E \in \borel{C}}{\mu_1(E) = \mu_2(E)}
+		\end{align}
+		が成り立つことを示せばDynkin族定理より$\mu_1 = \mu_2$が従う．いま$E$を$\mathscr{A}$の要素とする．
+		このとき$E$は空か$\cyl{C}$の要素か，或いは
+		\begin{align}
+			t_1 < t_2 < \cdots < t_n
+		\end{align}
+		なる$\mathbf{T}$の要素$t_1,\cdots,t_n$と$\borel{\R}$の要素$A_1,\cdots,A_n$により
+		\begin{align}
+			E = B_{t_1}^{-1}(A_1) \cap B_{t_2}^{-1}(A_2) \cap \cdots \cap B_{t_n}^{-1}(A_n)
+		\end{align}
+		なる形で表される．ここで$E$は
+		\begin{align}
+			E = \Set{w \in C}{\left(B_{t_1}(w),B_{t_2}(w),\cdots,B_{t_n}(w)\right) \in A_1 \times A_2 \times \cdots \times A_n}
+		\end{align}
+		と書き直される．$\varphi$を
+		\begin{align}
+			\varphi:\R^n \ni (x_1,x_2,\cdots,x_n) \longmapsto (x_1,x_2-x_1,\cdots,x_n - x_{n-1})
+		\end{align}
+		なる写像とすれば，$\varphi$は$\R^n$から$\R^n$への同相写像であり
+		\begin{align}
+			\varphi \ast \left(A_1 \times A_2 \times \cdots \times A_n\right)
+			= 
+		\end{align}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[Wiener測度]
+			$C$を$\mathbf{T}$上の実連続写像の全体とし，$B$を$C$による座標過程とし，
+			$\mu_w$を$\borel{C}$上の確率測度とする．このとき$B$が$(C,\borel{C},\mu_w)$上のWiener過程であるなら
+			$\mu_w$を$\borel{C}$上の{\bf Wiener測度}\index{Wienerそくど@Wiener測度}{\bf (Wiener measure)}と呼ぶ．
+		\end{dfn}
+	\end{screen}

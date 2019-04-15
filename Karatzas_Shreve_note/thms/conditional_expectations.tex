@@ -62,16 +62,16 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[Jensenの不等式]
+		\begin{thm}[Jensenの不等式]\label{thm:Jensen_inequality_for_convex_functions}
 			$(X,\mathscr{F},\mu)$を測度空間，
 			$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族とし，
 			$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとする．
 			このとき，任意の$\mathscr{F}/\borel{\R}$-可測関数$f$と
 			凸関数$\varphi:\R \longrightarrow \R$に対し，
-			$f,\varphi(f)$が$\mu$-可積分なら次が成立する:
+			$f,\varphi \circ f$が$\mu$-可積分なら次が成立する:
 			\begin{align}
-				\varphi\left(\cexp{f}{\mathscr{G}} \right)
-				\leq \cexp{\varphi(f)}{\mathscr{G}}.
+				\varphi \circ \cexp{f}{\mathscr{G}}
+				\leq \cexp{\varphi \circ f}{\mathscr{G}}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -268,6 +268,38 @@
 				となり，$1 \leq p < \infty$の場合も込めて(\refeq{eq:thm_properties_of_conditional_expectations_3})が従う．
 				\QED
 		\end{description}
+	\end{prf}
+	
+	$\varphi:\R \longrightarrow \R$なる写像$\varphi$で，$-\varphi$が凸であるものを
+	{\bf 凹関数}\index{おうかんすう@凹関数}{\bf (concave function)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{thm}[凹関数に対するJensenの不等式]\label{thm:Jensen_inequality_for_concave_functions}
+			$(X,\mathscr{F},\mu)$を測度空間，
+			$\mathscr{G} \subset \mathscr{F}$を部分$\sigma$-加法族とし，
+			$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限であるとする．
+			このとき，任意の$\mathscr{F}/\borel{\R}$-可測関数$f$と
+			凹関数$\varphi:\R \longrightarrow \R$に対し，
+			$f,\varphi \circ f$が$\mu$-可積分なら次が成立する:
+			\begin{align}
+				\cexp{\varphi \circ f}{\mathscr{G}}
+				\leq \varphi \circ \cexp{f}{\mathscr{G}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:Jensen_inequality_for_concave_functions}より
+		$\mu$-a.e.の$x( \in X)$で
+		\begin{align}
+			-\varphi\left(\cexp{f}{\mathscr{G}}(x)\right) \leq \cexp{-\varphi \circ f}{\mathscr{G}}(x)
+		\end{align}
+		が成立する．条件付き期待値は線形作用素であるから
+		\begin{align}
+			\cexp{\varphi \circ f}{\mathscr{G}}(x) \leq \varphi\left(\cexp{f}{\mathscr{G}}(x)\right)
+		\end{align}
+		が従う．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
