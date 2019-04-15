@@ -1,5 +1,5 @@
 \section{Gauss過程}
-	$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上の確率過程とする．
+	$(\Omega,\mathscr{F},P)$を確率空間とし，$X$をこの上の実数値確率過程とする．
 	$X$が連続な確率過程であって，かつ
 	\begin{itemize}
 		\item $s,t$を$s < t$なる$\mathbf{T}$の要素とするとき
@@ -221,51 +221,134 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{dfn}[座標過程をGauss過程とする測度の一意性]
+		\begin{dfn}[座標過程をGauss過程とする確率測度の一意性]
 			$C$を$\mathbf{T}$上の実連続写像の全体とし，$B$を$C$による座標過程とし，
 			$\mu_1,\mu_2$を$\borel{C}$上の確率測度とする．このとき$B$が
 			$(C,\borel{C},\mu_1)$上のGauss過程であり，かつ
 			$(C,\borel{C},\mu_2)$上のGauss過程でもあるならば，
-			$\mu_1 = \mu_2$が成り立つ．
+			$\mu_1 = \mu_2$．
 		\end{dfn}
 	\end{screen}
 	
-	\begin{prf}
-		$\borel{C} = \sigma(\cyl{C})$であるから，
-		\begin{align}
-			\mathscr{A} \defeq \Set{x}{\exists n \in \Natural\, \exists A\, 
-			\left(\, A:n \longrightarrow \cyl{C} \wedge x = \bigcap_{i \in n}A(i)\, \right)}
-		\end{align}
-		により$\cyl{C}$の有限交叉の全体を定めれば
-		\begin{align}
-			\borel{C} = \sigma(\mathscr{A})
-		\end{align}
-		が成立する．$\mathscr{A}$は乗法族であるので，
-		\begin{align}
-			\mathscr{A} \subset \Set{E \in \borel{C}}{\mu_1(E) = \mu_2(E)}
-		\end{align}
-		が成り立つことを示せばDynkin族定理より$\mu_1 = \mu_2$が従う．いま$E$を$\mathscr{A}$の要素とする．
-		このとき$E$は空か$\cyl{C}$の要素か，或いは
-		\begin{align}
-			t_1 < t_2 < \cdots < t_n
-		\end{align}
-		なる$\mathbf{T}$の要素$t_1,\cdots,t_n$と$\borel{\R}$の要素$A_1,\cdots,A_n$により
-		\begin{align}
-			E = B_{t_1}^{-1}(A_1) \cap B_{t_2}^{-1}(A_2) \cap \cdots \cap B_{t_n}^{-1}(A_n)
-		\end{align}
-		なる形で表される．ここで$E$は
-		\begin{align}
-			E = \Set{w \in C}{\left(B_{t_1}(w),B_{t_2}(w),\cdots,B_{t_n}(w)\right) \in A_1 \times A_2 \times \cdots \times A_n}
-		\end{align}
-		と書き直される．$\varphi$を
-		\begin{align}
-			\varphi:\R^n \ni (x_1,x_2,\cdots,x_n) \longmapsto (x_1,x_2-x_1,\cdots,x_n - x_{n-1})
-		\end{align}
-		なる写像とすれば，$\varphi$は$\R^n$から$\R^n$への同相写像であり
-		\begin{align}
-			\varphi \ast \left(A_1 \times A_2 \times \cdots \times A_n\right)
-			= 
-		\end{align}
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\mu_1$と$\mu_2$が$\cyl{C}$上で一致することを示す．$E$を$\cyl{C}$の要素とすれば，
+				\begin{align}
+					E = \Set{w \in C}{w(t) \in A}
+				\end{align}
+				なる$\mathbf{T}$の要素$t$と$\borel{\R}$の要素$A$が取れる．すなわち
+				\begin{align}
+					E = B_t^{-1}(A)
+				\end{align}
+				が成り立つ．いま，仮定より
+				\begin{align}
+					\mu_1(B_t - B_0 \in A) = \int_A \frac{1}{\sqrt{2\pi t}} \exp\left(-\frac{x^2}{2t}\right)\ dx
+					= \mu_2(B_t - B_0 \in A)
+				\end{align}
+				が満たされているが，同時に
+				\begin{align}
+					&\mu_1(N_1) = 0 \wedge \forall w \in C \backslash N_1\, \left(\, B_0(w) = 0\, \right) \\
+					&\wedge \\
+					&\mu_2(N_2) = 0 \wedge \forall w \in C \backslash N_2\, \left(\, B_0(w) = 0\, \right)
+				\end{align}
+				なる$N_1,N_2$が取れるので，
+				\begin{align}
+					\mu_1(B_t \in A) &= \mu_1\left(\{B_t \in A\} \cap (C \backslash N_1)\right) \\
+					&= \mu_1\left(\{B_t - B_0 \in A\} \cap (C \backslash N_1)\right) \\
+					&= \mu_1(B_t - B_0 \in A) \\
+					&= \mu_2(B_t - B_0 \in A) \\
+					&= \mu_2\left(\{B_t - B_0 \in A\} \cap (C \backslash N_2)\right) \\
+					&= \mu_2\left(\{B_t \in A\} \cap (C \backslash N_2)\right) \\
+					&= \mu_2(B_t \in A)
+				\end{align}
+				が成立する．ゆえに$\mu_1$と$\mu_2$は$\cyl{C}$上で一致する
+				
+			\item[第二段]
+				いま$n$を$2$以上の自然数とし，$t_1,t_2,\cdots,t_n$を
+				\begin{align}
+					t_1 < t_2 < \cdots < t_n
+				\end{align}
+				なる$\mathbf{T}$の要素とする．このとき
+				\begin{align}
+					E \in \borel{\R^n} \Longrightarrow
+					&\mu_1\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right) \in E\right\}\right) \\
+					&= \mu_2\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right) \in E\right\}\right)
+				\end{align}
+				が成り立つことを示す．ところで
+				\begin{align}
+					E_1 \times E_2 \times \cdots \times E_n \quad (E_1, E_2,\cdots ,E_n \in \borel{\R})
+				\end{align}
+				の形の集合の全体は$\borel{\R^n}$を生成する乗法族をなすから，
+				これに対して
+				\begin{align}
+					&\mu_1\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right) \in E_1 \times E_2 \times \cdots \times E_n\right\}\right) \\
+					&= \mu_2\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right) \in E_1 \times E_2 \times \cdots \times E_n\right\}\right)
+				\end{align}
+				が成り立つことを示せば良い．実際，仮定より
+				\begin{align}
+					\mu_1\left(B_{t_i}-B_{t_{i-1}} \in E_i\right)
+					&= \int_{E_i} \frac{1}{\sqrt{2\pi(t_i-t_{i-1})}} \exp\left(-\frac{x^2}{2(t_i-t_{i-1})}\right)\ dx \\
+					&= \mu_2(B_{t_i}-B_{t_{i-1}} \in E_i)
+				\end{align}
+				が成り立ち，かつ$B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n} - B_{t_{n-1}}$は
+				$\mu_1$に関しても$\mu_2$に関しても独立なので，
+				\begin{align}
+					&\mu_1\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right) \in E_1 \times E_2 \times \cdots \times E_n\right\}\right) \\
+					&= \mu_1\left(B_{t_1} \in E_1\right) \cdot \mu_1\left(B_{t_2}-B_{t_{1}} \in E_2\right) 
+					\cdot \cdots \cdot \mu_1\left(B_{t_n}-B_{t_{n-1}} \in E_n\right) \\
+					&= \mu_2\left(B_{t_1} \in E_1\right) \cdot \mu_2\left(B_{t_2}-B_{t_{1}} \in E_2\right) 
+					\cdot \cdots \cdot \mu_2\left(B_{t_n}-B_{t_{n-1}} \in E_n\right) \\
+					&= \mu_2\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right) \in E_1 \times E_2 \times \cdots \times E_n\right\}\right)
+				\end{align}
+				が得られる．
+				
+			\item[第三段]
+				$\borel{C} = \sigma(\cyl{C})$であるから，
+				\begin{align}
+					\mathscr{A} \defeq \Set{x}{\exists n \in \Natural\, \exists A\, 
+					\left(\, A:n \longrightarrow \cyl{C} \wedge x = \bigcap_{i \in n}A(i)\, \right)}
+				\end{align}
+				により$\cyl{C}$の有限交叉の全体を定めれば
+				\begin{align}
+					\borel{C} = \sigma(\mathscr{A})
+				\end{align}
+				が成立する．$\mathscr{A}$は乗法族であるので，
+				\begin{align}
+					\mathscr{A} \subset \Set{E \in \borel{C}}{\mu_1(E) = \mu_2(E)}
+				\end{align}
+				が成り立つことを示せばDynkin族定理より$\mu_1 = \mu_2$が従う．いま$E$を$\mathscr{A}$の要素とする．
+				このとき$E$は空か$\cyl{C}$の要素か，或いは
+				\begin{align}
+					t_1 < t_2 < \cdots < t_n
+				\end{align}
+				なる$\mathbf{T}$の要素$t_1,\cdots,t_n$と$\borel{\R}$の要素$A_1,\cdots,A_n$により
+				\begin{align}
+					E = B_{t_1}^{-1}(A_1) \cap B_{t_2}^{-1}(A_2) \cap \cdots \cap B_{t_n}^{-1}(A_n)
+				\end{align}
+				なる形で表される．最後の場合，$E$は
+				\begin{align}
+					E = \Set{w \in C}{\left(B_{t_1}(w),B_{t_2}(w),\cdots,B_{t_n}(w)\right) \in A_1 \times A_2 \times \cdots \times A_n}
+				\end{align}
+				と書き直される．ここで$\varphi$を
+				\begin{align}
+					\varphi:\R^n \ni (x_1,x_2,\cdots,x_n) \longmapsto (x_1,x_2-x_1,\cdots,x_n - x_{n-1})
+				\end{align}
+				なる写像とすれば，$\varphi$は$\R^n$から$\R^n$への同相写像であるから
+				\begin{align}
+					\varphi \ast \left(A_1 \times A_2 \times \cdots \times A_n\right) \in \borel{\R^n}
+				\end{align}
+				が満たされる．そして第二段の結果より
+				\begin{align}
+					\mu_1(E) &= \mu_1\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right)
+					\in \varphi \ast \left(A_1 \times A_2 \times \cdots \times A_n\right)\right\}\right) \\
+					&= \mu_2\left(\left\{\left(B_{t_1},B_{t_2}-B_{t_1},\cdots,B_{t_n}-B_{t_{n-1}}\right)
+					\in \varphi \ast \left(A_1 \times A_2 \times \cdots \times A_n\right)\right\}\right) \\
+					&= \mu_2(E)
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
