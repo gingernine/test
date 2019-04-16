@@ -2,7 +2,7 @@
 		\begin{axm}[外延性の公理]
 			$a,b$を類とするとき，次が成り立つ:
 			\begin{align}
-				\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+				\forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
 				\Longrightarrow a=b.
 			\end{align}
 		\end{axm}
@@ -24,9 +24,9 @@
 		\end{align}
 		が成り立つから，$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+			\forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
 		\end{align}
-		が成り立つ．従って外延性の公理より$a = a$が得られる．
+		が成り立つ．外延性の公理と三段論法より$a = a$が得られる．
 		\QED
 	\end{prf}
 	
@@ -102,7 +102,7 @@
 		\begin{thm}[外延性の公理は同値関係で成立する]\label{thm:axiom_of_extensionality_equivalent}
 			$a,b$を類とするとき，次が成り立つ:
 			\begin{align}
-				\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+				\forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
 				\Longleftrightarrow a=b.
 			\end{align}
 		\end{thm}
@@ -115,11 +115,11 @@
 		\end{align}
 		が満たされるから，推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\forall x\ (\ x \in a  \Longleftrightarrow x \in b\ )
+			\forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
 		\end{align}
 		が成立する．よって演繹法則より
 		\begin{align}
-			a = b \Longrightarrow \forall t\ (\ t \in a  \Longleftrightarrow t \in b\ )
+			a = b \Longrightarrow \forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
 		\end{align}
 		が成り立つ．外延性の公理と併せれば定理の主張が得られる．
 		\QED
@@ -165,18 +165,51 @@
 	
 	\begin{screen}
 		\begin{dfn}[空集合]
-			$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
+			$\emptyset \defeq \Set{x}{x \neq x}$で定める類$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{axm}[空集合の公理]
-			$\emptyset$は$\mathcal{L}$のいかなる対象も要素に持たない:
+			$\emptyset$は集合である:
 			\begin{align}
-				\forall x\ (\ x \notin \emptyset\ ).
+				\set{\emptyset}.
 			\end{align}
 		\end{axm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空集合は$\mathcal{L}$のいかなる対象も要素に持たない]\label{thm:emptyset_has_nothing}
+			\begin{align}
+				\forall x\, (\, x \notin \emptyset\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\tau$を$\mathscr{L}$の対象とするとき，類の公理より
+		\begin{align}
+			\tau \in \emptyset \Longrightarrow \tau \neq \tau
+		\end{align}
+		が成り立つから，対偶を取れば
+		\begin{align}
+			\tau = \tau \Longrightarrow \tau \notin \emptyset
+		\end{align}
+		が成り立つ(推論法則\ref{thm:contraposition_is_true})．定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\tau = \tau
+		\end{align}
+		は正しいので，三段論法より
+		\begin{align}
+			\tau \notin \emptyset
+		\end{align}
+		が成り立つ．そして$\tau$の任意性より
+		\begin{align}
+			\forall x\, (\, x \notin \emptyset\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
 	
 	\monologue{
 		院生「空集合は集合の系譜の起点となります．聖書物語でいうところのアダムです．」
@@ -194,32 +227,60 @@
 	
 	\begin{prf}
 		$a$を類として$\forall x\, (\, x \notin a\, )$が成り立っていると仮定する．このとき
-		$\tau$を$\mathcal{L}$の任意の対象とすれば$\tau \notin a$と
-		$\tau \notin \emptyset$が共に満たされ，推論規則\ref{metaaxm:fundamental_rules_of_inference}より
-		$\tau \notin a \vee \tau \in \emptyset$と$\tau \notin a \vee \tau \in \emptyset$
-		が成り立ち，推論法則\ref{metathm:rule_of_inference_3}より
+		$\tau$を$\mathcal{L}$の任意の対象とすれば
 		\begin{align}
-			\tau \in a \Longrightarrow \tau \in \emptyset, \quad
+			\tau \notin a \vee \tau \in \emptyset
+		\end{align}
+		と
+		\begin{align}
+			\tau \notin \emptyset \vee \tau \in a
+		\end{align}
+		が共に成り立つので，推論法則\ref{metathm:rule_of_inference_3}より
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in \emptyset
+		\end{align}
+		と
+		\begin{align}
 			\tau \in \emptyset \Longrightarrow \tau \in a
 		\end{align}
-		が成り立つ．よって$\tau \in a \Longleftrightarrow \tau \in \emptyset$が成立し，
-		$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}を適用して
+		が共に成り立つ．よって
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in \emptyset
+		\end{align}
+		が成立し，$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
 		\begin{align}
 			\forall x\, (\, x \in a \Longleftrightarrow x \in \emptyset\, )
 		\end{align}
-		が得られる．ゆえに外延性の公理より$a = \emptyset$が成立し，演繹法則より
+		が得られる．ゆえに外延性の公理より
+		\begin{align}
+			a = \emptyset
+		\end{align}
+		が成立し，演繹法則より
 		\begin{align}
 			\forall x\, (\, x \notin a\, ) \Longrightarrow a = \emptyset
 		\end{align}
-		が従う．逆に$a = \emptyset$が成り立っていると仮定する．ここで$\chi$を$\mathcal{L}$の任意の対象とすれば
+		が得られる．逆に$a = \emptyset$が成り立っていると仮定する．ここで$\chi$を$\mathcal{L}$の任意の対象とすれば，
 		相等性の公理より
 		\begin{align}
 			\chi \in a \Longrightarrow \chi \in \emptyset
 		\end{align}
-		が成立し，対偶を取れば$\chi \notin \emptyset \Longrightarrow \chi \notin a$が成り立つ．
-		空集合の公理より$\chi \notin \emptyset$は満たされているので三段論法より$\chi \notin a$が成立し，
-		$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
-		$\forall x\, (\, x \notin a\, )$が成立する．ここに演繹法則を適用して
+		が成立するので，対偶を取れば
+		\begin{align}
+			\chi \notin \emptyset \Longrightarrow \chi \notin a
+		\end{align}
+		が成り立つ．定理\ref{thm:emptyset_has_nothing}より
+		\begin{align}
+			\chi \notin \emptyset
+		\end{align}
+		が満たされているので，三段論法より
+		\begin{align}
+			\chi \notin a
+		\end{align}
+		が成立し，$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \notin a\, )
+		\end{align}
+		が成立する．ここに演繹法則を適用して
 		\begin{align}
 			a = \emptyset \Longrightarrow \forall x\, (\, x \notin a\, )
 		\end{align}
@@ -238,35 +299,43 @@
 	\end{screen}
 	
 	\begin{prf}
-		$a,b$を類とするとき，類の公理より
+		いま$a \in b$が成り立っていると仮定する．このとき類の公理と三段論法より
 		\begin{align}
-			a \in b \Longrightarrow \set{a}
+			\set{a}
 		\end{align}
-		が成立する．いま$\set{a}$が成り立っていると仮定する．
-		このとき$\tau \coloneqq \varepsilon x (\ a = x\ )$とおけば
-		存在記号に関する規則から$a = \tau$が成り立つので，
-		相等性の公理より$\tau \in b$が従い，存在記号に関する規則より
+		が成立する．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば，存在記号に関する規則から
+		\begin{align}
+			a = \tau
+		\end{align}
+		が成り立つので，相等性の公理より
+		\begin{align}
+			\tau \in b
+		\end{align}
+		が従い，存在記号に関する規則より
 		\begin{align}
 			\exists x\, (\, x \in b\, )
 		\end{align}
 		が成り立つ．よって演繹法則から
 		\begin{align}
-			\set{a} \Longrightarrow \exists x\, (\, x \in b\, )
-		\end{align}
-		が成り立ち，含意の推移律から
-		\begin{align}
 			a \in b \Longrightarrow \exists x\, (\, x \in b\, )
 		\end{align}
-		が従う．この対偶を取り推論法則\ref{metathm:properties_of_quantifiers}を適用すれば
+		が成り立つ．この対偶を取り推論法則\ref{metathm:properties_of_quantifiers}を適用すれば
 		\begin{align}
 			\forall x\, (\, x \notin b\, ) \Longrightarrow a \notin b
 		\end{align}
 		が得られる．定理\ref{thm:uniqueness_of_emptyset}より
-		$b = \emptyset \Longrightarrow \forall x\, (\, x \notin b\, )$も成り立ち，含意の推移律から
+		\begin{align}
+			b = \emptyset \Longrightarrow \forall x\, (\, x \notin b\, )
+		\end{align}
+		も正しいので，含意の推移律から
 		\begin{align}
 			b = \emptyset \Longrightarrow a \notin b
 		\end{align}
-		が従う．
+		が得られる．
 		\QED
 	\end{prf}
 	
