@@ -19,7 +19,7 @@
 \section{言語}
 	本稿の世界を展開するために使用する言語は二つある．一つは自然言語である日本語であり，もう一つは
 	記号のみで創られた人工的な言語である．その人工的な言語は，記号列が数学の式として成立するための文法を指定し，
-	我々はそこで組み立てられた式のみを考察対象とする．日本語はメタ言語とも呼ばれ，式の解釈を与えたり人工的な言語を補助するために使われる．
+	我々はそこで組み立てられた式のみを考察対象とする．日本語はメタ言語とも呼ばれ，式を解釈したり人工言語を補助するために使われる．
 	
 	まず，人工的な言語である$\mathcal{L}$を設定する．以下は$\mathcal{L}$を構成する要素である:
 	\begin{description}
@@ -32,7 +32,7 @@
 		\item[定義記号] $\defeq,\ \defarrow$
 	\end{description}
 	
-	日常言語において，``あｍｔ後右所ｓごぐふぉｓｄ''のように無作為に文字を並べただけでは意味不明な
+	自然言語において，``あｍｔ後右所ｓごぐふぉｓｄ''のように無作為に文字を並べただけでは意味不明な
 	文字列が出来上がる．文字列は，何らかの規則に従って並ぶことで単語や文章として成立するのである．
 	数学も同じで，一定の規則に従って並ぶ記号列のみを$\mathcal{L}$の文章として扱う．
 	$\mathcal{L}$において，名詞にあたるものは{\bf 対象}\index{たいしょう@対象}{\bf (individual)}と呼ばれる．
@@ -47,8 +47,8 @@
 	\monologue{
 		院生「対象がどういうものであるかは後で判明しますが，
 			今のところはその実態は伏せておいて，とりあえず対象は予め存在しているものとして話を進めます．
-			また{\bf $\mathcal{L}$の対象は記号列で表せない}ということも認めます．
-			また説明中は``$s$を対象とする''のように書くことが多いですが，
+			また{\bf $\mathcal{L}$の対象は上で指定した記号の組み合わせでは表せない}ということも認めます．
+			説明中は``$s$を対象とする''のように書くことが多いですが，
 			これは一時的に$s$を対象の一つに代用しているだけで，文字`$s$'が対象であると言っているのではありません．
 			このような代用記号のことを{\bf 超記号}と呼びます．式にも超記号を宣言することが多いです．」
 	}
@@ -70,43 +70,47 @@
 			\begin{itemize}
 				\item `$\bot$'は$\mathcal{L}$の式である．
 				
-				\item $s,t$を項とするとき，`$s=t$'と`$s \in t$'はどちらも式である．
+				\item $s,t$を$\mathcal{L}$の項とするとき，`$s=t$'と`$s \in t$'はどちらも$\mathcal{L}$の式である．
 					
-				\item $A,B$を式とするとき，
+				\item $A,B$がすでに$\mathcal{L}$の式であると判明しているとき，
 					%$A$では量化されていないが$B$で量化されているといった文字が無いときに限り，
-					`$(A) \wedge (B)$'，`$(A) \vee (B)$'，`$(A) \Longrightarrow (B)$'はいずれも式である．
+					`$(A) \wedge (B)$'，`$(A) \vee (B)$'，`$(A) \Longrightarrow (B)$'はいずれも$\mathcal{L}$の式である．
 				
-				\item $A$を式とするとき，`$\rightharpoondown (A)$'は式である．
+				\item $A$がすでに$\mathcal{L}$の式であると判明しているとき，`$\rightharpoondown (A)$'は$\mathcal{L}$の式である．
 				
-				\item $A$を式とし，$x$を$A$に現れる文字とするとき，$x$が$A$で量化されていないときに限り
-					`$\forall x (A)$'と`$\exists x (A)$'はどちらも式である．
+				\item $A$がすでに$\mathcal{L}$の式であると判明していて，$x$を$A$に現れる文字とするとき，$x$が$A$で量化されていないときに限り
+					`$\forall x (A)$'と`$\exists x (A)$'はどちらも$\mathcal{L}$の式である．
 				
-				\item 以上の操作を繰り返して得られる記号列のみが式である．
+				\item 以上の操作を繰り返して得られる記号列のみが$\mathcal{L}$の式である．
 			\end{itemize}
 	\end{description}
 	
+	\begin{comment}
+		`$A$では量化されていないが$B$で量化されているといった文字が無いときに限り'という
+		制限は何のためにあるのでしょうか．例えばこの制限を外すと
+		\begin{align}
+			(\forall x ((x \in x) \vee (\forall y (\exists x ( y = x )))))
+		\end{align}
+		は式となりますが，同じ式で文字$x$は二回量化されています．
+		これでは式を解釈するときに厄介なので，このような状況を排除するために制約を設けているのですね．
+		では，
+	\end{comment}
+	
 	\monologue{
-		院生「`$A$では量化されていないが$B$で量化されているといった文字が無いときに限り'という
-			制限は何のためにあるのでしょうか．例えばこの制限を外すと
-			\begin{align}
-				(\forall x ((x \in x) \vee (\forall y (\exists x ( y = x )))))
-			\end{align}
-			は式となりますが，同じ式で文字$x$は二回量化されています．
-			これでは式を解釈するときに厄介なので，このような状況を排除するために制約を設けているのですね．
-			では，`以上の操作を繰り返して得られる記号列のみが式である'はどういう意味でしょうか．
+		院生「`以上の操作を繰り返して得られる記号列のみが式である'はどういう意味でしょうか．
 			例えば，最後の制限を外してしまうと
 			\begin{align}
 				\exists (\rightharpoondown (\exists x(\forall y (x = y))))
 			\end{align}
 			という記号列が式であるか式でないかは判別できませんが，
-			最後の規制によりこれは式ではないと判断できます．具体的な問題を考える際は上の例のような式は扱わないので，
-			本稿においては殆どご利益の無い形式上の規制となりますが，体系の完全性など考察する際には必要な規制でしょう．」
+			最後の規制によりこれは式ではないと判断できます．」%具体的な問題を考える際は上の例のような式は扱わないので，
+			%本稿においては殆どご利益の無い形式上の規制となりますが，体系の完全性など考察する際には必要な規制でしょう．」
 	}
 	
 	\monologue{
 		院生「式の定義では，始めに最も簡単な形の式(`$\bot$'や`$s=t$')を提示して，
 			以降の段階で新しい式を作り出す手段(論理記号による式の接合)を指定しています．
-			このような定義を{\bf 帰納的な定義}\index{きのうてきなていぎ@帰納的な定義}{\bf (inductive definition)}と呼びます．」
+			このような定義を{\bf 帰納的定義}\index{きのうてきていぎ@帰納的定義}{\bf (inductive definition)}と呼びます．」
 	}
 	
 	$A$を式とし，$a$と$x$を項とする(ここでの$A,a,x$はどれも超記号である)．
@@ -154,14 +158,14 @@
 				
 				\item $s,t$を$\mathcal{L}'$の項とするとき，`$(s=t)$'と`$(s \in t)$'はどちらも$\mathcal{L}'$の式である．
 					
-				\item $A,B$を$\mathcal{L}'$の式とするとき，
-					$A$では量化されていないが$B$で量化されているといった文字が無いときに限り，
-					`$(A \wedge B)$'，`$(A \vee B)$'，`$(A \Longrightarrow B)$'はいずれも$\mathcal{L}'$の式である．
+				\item $A,B$がすでに$\mathcal{L}'$の式であると判明しているとき，
+					%$A$では量化されていないが$B$で量化されているといった文字が無いときに限り，
+					`$(A) \wedge (B)$'，`$(A) \vee (B)$'，`$(A) \Longrightarrow (B)$'はいずれも$\mathcal{L}'$の式である．
 				
-				\item $A$を$\mathcal{L}'$の式とするとき，`$(\rightharpoondown A)$'は$\mathcal{L}'$の式である．
+				\item $A$がすでに$\mathcal{L}'$の式であると判明しているとき，`$\rightharpoondown (A)$'は$\mathcal{L}'$の式である．
 				
-				\item $A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$が$A$で量化されていないときに限り
-					`$(\forall x A(x))$'と`$(\exists x A(x))$'はどちらも$\mathcal{L}'$の式である．
+				\item $A$がすでに$\mathcal{L}'$の式であると判明していて，$x$を$A$に現れる文字とするとき，$x$が$A$で量化されていないときに限り
+					`$\forall x (A(x))$'と`$\exists x (A(x))$'はどちらも$\mathcal{L}'$の式である．
 				
 				\item 以上の操作を繰り返して得られる記号列のみが$\mathcal{L}'$の式である．
 			\end{itemize}
@@ -249,12 +253,12 @@
 	}
 	
 	\begin{screen}
-		\begin{metaaxm}[排中律]
+		\begin{logicalaxm}[排中律]
 			$A$を$\mathcal{L}'$の閉式とするとき次は定理である:
 			\begin{align}
 				A \vee \rightharpoondown A.
 			\end{align}
-		\end{metaaxm}
+		\end{logicalaxm}
 	\end{screen}
 	
 	\monologue{
@@ -307,7 +311,7 @@
 	\end{itemize}
 	
 	\begin{screen}
-		\begin{metaaxm}[基本的な推論規則]\label{metaaxm:fundamental_rules_of_inference}
+		\begin{logicalaxm}[基本的な推論規則]\label{logicalaxm:fundamental_rules_of_inference}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
 			\begin{description}
 				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
@@ -321,8 +325,10 @@
 				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
 					$(A \vee B) \Longrightarrow C$は定理である．
 			\end{description}	
-		\end{metaaxm}
+		\end{logicalaxm}
 	\end{screen}
+	
+	推論規則のうち，三段論法，演繹法則，論理積の導入，場合分け法則は超数学的な言明となっている．
 	
 	\monologue{
 		院生「演繹法則について，``$A$を公理に追加する''ことを``$A$が成り立っていると仮定する''
@@ -363,9 +369,9 @@
 	\end{itembox}
 	
 	\begin{screen}
-		\begin{metathm}[含意の反射律]\label{metathm:reflective_law_of_implication}
+		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
 			$A$を$\mathcal{L}'$の閉式とするとき$A \Longrightarrow A$は定理である．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -374,13 +380,13 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[論理和・論理積の可換律]
+		\begin{logicalthm}[論理和・論理積の可換律]
 			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
 			\begin{itemize}
 				\item $(A \vee B) \Longrightarrow (B \vee A)$.
 				\item $(A \wedge B) \Longrightarrow (B \wedge A)$.
 			\end{itemize}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -400,11 +406,11 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[含意の推移律]\label{metathm:transitive_law_of_implication}
+		\begin{logicalthm}[含意の推移律]\label{logicalthm:transitive_law_of_implication}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
 			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
 			$A \Longrightarrow C$は定理である．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -415,12 +421,12 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[二式が同時に導かれるならその論理積が導かれる]
-		\label{metathm:conjunction_of_consequences}
+		\begin{logicalthm}[二式が同時に導かれるならその論理積が導かれる]
+		\label{logicalthm:conjunction_of_consequences}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
 			$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理ならば
 			$A \Longrightarrow (B \wedge C)$は定理である．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -435,7 +441,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[含意は遺伝する]\label{metathm:rule_of_inference_1}
+		\begin{logicalthm}[含意は遺伝する]\label{logicalthm:rule_of_inference_1}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下が成り立つ:
 			\begin{description}
 				\item[(a)] $(A \Longrightarrow B) \Longrightarrow ( (A \vee C) \Longrightarrow (B \vee C) )$.
@@ -446,7 +452,7 @@
 				
 				\item[(c)] $(A \Longrightarrow B) \Longrightarrow ( (C \Longrightarrow A) \Longrightarrow (C \Longrightarrow B) )$.
 			\end{description}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
@@ -485,7 +491,7 @@
 				\begin{align}
 					(A \wedge C) \Longrightarrow C
 				\end{align}
-				も満たされる．そして推論法則\ref{metathm:conjunction_of_consequences}から
+				も満たされる．そして推論法則\ref{logicalthm:conjunction_of_consequences}から
 				\begin{align}
 					(A \wedge C) \Longrightarrow (B \wedge C)
 				\end{align}
@@ -526,10 +532,10 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[正しい式は仮定を選ばない]\label{metathm:rule_of_inference_2}
+		\begin{logicalthm}[正しい式は仮定を選ばない]\label{logicalthm:rule_of_inference_2}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，
 			$B \Longrightarrow (A \Longrightarrow B)$は定理である．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -550,7 +556,7 @@
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
 	
 	\begin{screen}
-		\begin{metathm}[同値記号の遺伝性質]\label{metathm:hereditary_of_equivalence}
+		\begin{logicalthm}[同値記号の遺伝性質]\label{logicalthm:hereditary_of_equivalence}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
 			\begin{description}
 				\item[(a)] $(A \Longleftrightarrow B) \Longrightarrow ((A \vee C) \Longleftrightarrow (B \vee C))$.
@@ -559,7 +565,7 @@
 				
 				\item[(d)] $(A \Longleftrightarrow B) \Longrightarrow ((C \Longrightarrow A) \Longleftrightarrow (C \Longrightarrow B))$.
 			\end{description}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -583,7 +589,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metaaxm}[矛盾と否定に関する規則]\label{metaaxm:rules_of_contradiction}
+		\begin{logicalaxm}[矛盾と否定に関する規則]\label{logicalaxm:rules_of_contradiction}
 			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
 			\begin{description}
 				\item[矛盾の発生] 否定が共に成り立つとき矛盾が導かれる:
@@ -599,7 +605,7 @@
 						\rightharpoondown \rightharpoondown A \Longrightarrow A.
 					\end{align}
 			\end{description}
-		\end{metaaxm}
+		\end{logicalaxm}
 	\end{screen}
 	
 	\monologue{
@@ -609,17 +615,17 @@
 	
 	否定の導出の逆は定理として得られる．
 	\begin{screen}
-		\begin{metathm}[否定が正しい式は偽である]\label{metathm:false_and_negation_are_equivalent}
+		\begin{logicalthm}[否定が正しい式は偽である]\label{logicalthm:false_and_negation_are_equivalent}
 			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
 			\begin{align}
 				\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot).
 			\end{align}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
 		$\rightharpoondown A$が成り立っていると仮定する．このとき$A$が成り立っていれば
-		推論規則\ref{metaaxm:rules_of_contradiction}より$\bot$が成立するから，演繹法則より
+		推論規則\ref{logicalaxm:rules_of_contradiction}より$\bot$が成立するから，演繹法則より
 		\begin{align}
 			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
 		\end{align}
@@ -628,17 +634,17 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[矛盾からはあらゆる式が導かれる]\label{metathm:contradiction_derives_any_formula}
+		\begin{logicalthm}[矛盾からはあらゆる式が導かれる]\label{logicalthm:contradiction_derives_any_formula}
 			$A$を$\mathcal{L}'$の閉式とするとき
 			\begin{align}
 				\bot \Longrightarrow A
 			\end{align}
 			が成り立つ．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		推論法則\ref{metathm:rule_of_inference_2}より
+		推論法則\ref{logicalthm:rule_of_inference_2}より
 		\begin{align}
 			\bot \Longrightarrow (\rightharpoondown A \Longrightarrow \bot)
 		\end{align}
@@ -659,10 +665,10 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[背理法の原理]
+		\begin{logicalthm}[背理法の原理]
 			$A$を$\mathcal{L}'$の閉式とするとき，
 			$\rightharpoondown A \Longrightarrow \bot$が成り立つならば$A$は定理である．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -673,16 +679,16 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[矛盾を導く式はあらゆる式を導く]\label{metathm:formula_leading_to_contradiction_derives_any_formula}
+		\begin{logicalthm}[矛盾を導く式はあらゆる式を導く]\label{logicalthm:formula_leading_to_contradiction_derives_any_formula}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
 				(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B).
 			\end{align}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$A \Longrightarrow \bot$が成り立っているとする．推論法則\ref{metathm:contradiction_derives_any_formula}より
+		$A \Longrightarrow \bot$が成り立っているとする．推論法則\ref{logicalthm:contradiction_derives_any_formula}より
 		\begin{align}
 			\bot \Longrightarrow B
 		\end{align}
@@ -699,12 +705,12 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[含意は否定と論理和で表せる]\label{metathm:rule_of_inference_3}
+		\begin{logicalthm}[含意は否定と論理和で表せる]\label{logicalthm:rule_of_inference_3}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
 				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B).
 			\end{align}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -730,7 +736,7 @@
 		\begin{align}
 			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
 		\end{align}
-		が成り立ち，同時に推論法則\ref{metathm:formula_leading_to_contradiction_derives_any_formula}より
+		が成り立ち，同時に推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula}より
 		\begin{align}
 			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
@@ -738,7 +744,7 @@
 		\begin{align}
 			\rightharpoondown A \Longrightarrow (A \Longrightarrow B)
 		\end{align}
-		が成立する．他方で推論法則\ref{metathm:rule_of_inference_2}より
+		が成立する．他方で推論法則\ref{logicalthm:rule_of_inference_2}より
 		\begin{align}
 			B \Longrightarrow (A \Longrightarrow B)
 		\end{align}
@@ -752,20 +758,20 @@
 	
 	\monologue{
 		院生「$A,B$を$\mathcal{L}'$の閉式とするとき，$A$が偽であれば$\rightharpoondown A$が成立する
-			(推論規則\ref{metaaxm:rules_of_contradiction})ので
-			$\rightharpoondown A \vee B$が成立します(推論規則\ref{metaaxm:fundamental_rules_of_inference})．
+			(推論規則\ref{logicalaxm:rules_of_contradiction})ので
+			$\rightharpoondown A \vee B$が成立します(推論規則\ref{logicalaxm:fundamental_rules_of_inference})．
 			すなわちこのとき$A \Longrightarrow B$が成り立つのですが，式の解釈としては
 			``偽な式からはあらゆる式が導かれる''となりますね．この現象を
 			{\bf 空虚な真}\index{くうきょなしん@空虚な真}{\bf (vacuous truth)}と呼びます．」
 	}
 	
 	\begin{screen}
-		\begin{metathm}[二重否定の法則の逆が成り立つ]
+		\begin{logicalthm}[二重否定の法則の逆が成り立つ]
 			$A$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
 				A \Longrightarrow\ \rightharpoondown \rightharpoondown A.
 			\end{align}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -773,7 +779,7 @@
 		\begin{align}
 			\rightharpoondown A \vee \rightharpoondown \rightharpoondown A
 		\end{align}
-		が成立し，また推論法則\ref{metathm:rule_of_inference_3}より
+		が成立し，また推論法則\ref{logicalthm:rule_of_inference_3}より
 		\begin{align}
 			(\rightharpoondown A \vee \rightharpoondown \rightharpoondown A)
 			\Longrightarrow (A \Longrightarrow\ \rightharpoondown \rightharpoondown A)
@@ -787,16 +793,16 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{metathm}[対偶命題は同値]\label{thm:contraposition_is_true}
+		\begin{logicalthm}[対偶命題は同値]\label{thm:contraposition_is_true}
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{align}
 				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A).
 			\end{align}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		推論法則\ref{metathm:rule_of_inference_3}，論理和の可換律，二重否定の法則(とその逆)を順に用いれば
+		推論法則\ref{logicalthm:rule_of_inference_3}，論理和の可換律，二重否定の法則(とその逆)を順に用いれば
 		\begin{align}
 			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
 			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
@@ -812,14 +818,14 @@
 	}is
 	
 	\begin{screen}
-		\begin{metathm}[De Morganの法則]
+		\begin{logicalthm}[De Morganの法則]
 			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
 			\begin{itemize}
 				\item $\rightharpoondown (A \vee B) \Longleftrightarrow\ \rightharpoondown A \wedge \rightharpoondown B$.
 			
 				\item $\rightharpoondown (A \wedge B) \Longleftrightarrow\ \rightharpoondown A \vee \rightharpoondown B$.
 			\end{itemize}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -913,7 +919,7 @@
 	}
 	
 	\begin{screen}
-		\begin{metaaxm}[量化記号に関する規則]\label{metaaxm:rules_of_quantifiers}
+		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば以下を認める:
 			\begin{description}
 				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の或る対象に代用される．
@@ -922,7 +928,7 @@
 				\item[存在記号の基本性質] $\tau$を$\mathcal{L}$の対象とするとき
 					$A(\tau) \Longrightarrow \exists x A(x)$が成り立つ．
 			\end{description}
-		\end{metaaxm}
+		\end{logicalaxm}
 	\end{screen}
 	
 	\begin{comment}
@@ -936,11 +942,11 @@
 	\end{comment}
 	
 	\begin{screen}
-		\begin{metathm}[全称記号と任意性]\label{metathm:fundamental_law_of_universal_quantifier}
+		\begin{logicalthm}[全称記号と任意性]\label{logicalthm:fundamental_law_of_universal_quantifier}
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
 			$\forall x A(x)$が成り立つならば$\mathcal{L}$のいかなる対象$\tau$に対しても$ A(\tau)$が成り立つ．
 			逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
@@ -952,7 +958,7 @@
 				\left( \varepsilon x \rightharpoondown A(x) \right)
 			\end{gathered}
 		\end{align}
-		が成り立つから，推論法則\ref{metathm:transitive_law_of_implication}より
+		が成り立つから，推論法則\ref{logicalthm:transitive_law_of_implication}より
 		$\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
 				\left( \varepsilon x \rightharpoondown A(x) \right)$が成り立つ．
 		そして対偶を取って
@@ -974,14 +980,14 @@
 	\end{prf}
 	
 	\monologue{
-		院生「推論法則\ref{metathm:fundamental_law_of_universal_quantifier}を根拠にして，
+		院生「推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}を根拠にして，
 			当面は$\forall x A(x)$という式を``$\mathcal{L}$の任意の対象$x$に対して
 			$A(x)$が成立する''と翻訳することにします．また後述する相等性の公理によれば，
 			これは``任意の集合$x$に対して$A(x)$が成立する''と翻訳しても同義です．」
 	}
 	
 	\begin{screen}
-		\begin{metathm}[量化記号の性質(イ)]\label{metathm:properties_of_quantifiers}
+		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
 			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
 			\begin{description}
 				\item[(a)] $\mathcal{L}$の任意の対象$\tau$に対して
@@ -1000,7 +1006,7 @@
 				
 				\item[(d)] $\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)$.
 			\end{description}
-		\end{metathm}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
@@ -1012,7 +1018,7 @@
 				\begin{align}
 					\tau \defeq \varepsilon x A(x)
 				\end{align}
-				とおけば存在記号に関する規則(推論規則\ref{metaaxm:rules_of_quantifiers})より$A(\tau)$が成立し，
+				とおけば存在記号に関する規則(推論規則\ref{logicalaxm:rules_of_quantifiers})より$A(\tau)$が成立し，
 				他方で$\wedge$の除去により
 				\begin{align}
 					A(\tau) \Longrightarrow B(\tau)
@@ -1028,26 +1034,26 @@
 				いま，$\mathcal{L}$の任意の対象$\tau$に対して
 				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
 				ここで$\forall x A(x)$が成り立っていると仮定すると，
-				推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
+				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
 				$\mathcal{L}$の任意の対象$\tau$に対して$A(\tau)$が成立し，
 				他方で
 				\begin{align}
 					A(\tau) \Longrightarrow B(\tau)
 				\end{align}
 				が満たされるので$B(\tau)$が成立する．このとき$\tau$の任意性と
-				推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より$\forall x B(x)$が成り立つから
+				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より$\forall x B(x)$が成り立つから
 				\begin{align}
 					\forall x A(x) \Longrightarrow \forall x B(x)
 				\end{align}
 				が得られる．$A$と$B$の立場を入れ替えれば$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
 				
 			\item[(c)]
-				推論規則\ref{metaaxm:rules_of_quantifiers}より
+				推論規則\ref{logicalaxm:rules_of_quantifiers}より
 				\begin{align}
 					\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
 					\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
 				\end{align}
-				は定理である．同様に推論規則\ref{metaaxm:rules_of_quantifiers}より
+				は定理である．同様に推論規則\ref{logicalaxm:rules_of_quantifiers}より
 				\begin{align}
 					A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
 				\end{align}
@@ -1069,7 +1075,7 @@
 					\exists x \rightharpoondown \rightharpoondown A(x)
 					\Longleftrightarrow \exists x A(x)
 				\end{align}
-				も成り立つから，推論法則\ref{metathm:transitive_law_of_implication}と併せて
+				も成り立つから，推論法則\ref{logicalthm:transitive_law_of_implication}と併せて
 				\begin{align}
 					\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
 					\rightharpoondown \exists x A(x)

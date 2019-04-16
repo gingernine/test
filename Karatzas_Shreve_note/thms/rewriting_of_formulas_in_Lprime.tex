@@ -1,14 +1,15 @@
-\subsection{式の書き換え}
+\section{構造的帰納法}
 	\monologue{
 		院生「我々は$\mathcal{L}$の式$A$を用いて$\Set{x}{A(x)}$の記法を導入しましたが，
-			$\mathcal{L}'$の式$B$に対しても$\Set{x}{B(x)}$の形で書けると便利なことが多いです．
-			ただし後者の記法は$B$と同値な$\mathcal{L}$の式$B'$によって
+			$\mathcal{L}$の式しか使えないというのは往々にして不便です．なので
+			$\mathcal{L}'$の式$B$に対しても$\Set{x}{B(x)}$を類として導入しましょう．
+			ただし後者の記法は$B$と同値な$\mathcal{L}$の式$\mathcal{L}B$によって
 			\begin{align}
-				\Set{x}{B(x)} \coloneqq \Set{x}{B'(x)}
+				\Set{x}{B(x)} \defeq \Set{x}{\mathcal{L}B(x)}
 			\end{align}
-			で定められるものとします．$\mathcal{L}'$の式が与えられたらそれを
-			或る手続きで$\mathcal{L}$の式に書き換えていくのですが，
-			そこで真価を発揮するのは$\varepsilon$記号です．」
+			で定められるものとします．$\mathcal{L}'$の式が与えられたら，それを
+			式の構成法に基づいた或る手続きで$\mathcal{L}$の式に書き換えていくのですが，
+			その操作は``超数学的''な厄介さを伴っています．」
 	}
 	
 	$a$を類とするとき，$a$は$\mathcal{L}$の対象であるか$\Set{x}{A(x)}$の形をしている．そこで，文字$x$に対し
@@ -25,122 +26,115 @@
 	量化記号に関する推論規則で$\varepsilon$記号を定めたときと導入の動機が似ているためである．
 	
 	次に$B$を$\mathcal{L}'$の式として，$B$を$\mathcal{L}$の式に書き換える手続きを指定する．
+	直感的には，
+	\begin{align}
+		s \in t
+	\end{align}
+	と
+	\begin{align}
+		s = t
+	\end{align}
+	の形の原始的な$\mathcal{L}'$の式が$\mathcal{L}$の式に書き換えることが出来て，かつ，
+	$A,B$が$\mathcal{L}'$の式であって，それぞれ$\mathcal{L}$の式$\mathcal{L}A$と$\mathcal{L}B$に書き換えることが出来るなら
+	\begin{align}
+		\mathcal{L}((A) \vee (B)) &\defarrow (\mathcal{L}A) \vee (\mathcal{L}B), \\
+		\mathcal{L}((A) \wedge (B)) &\defarrow (\mathcal{L}A) \wedge (\mathcal{L}B), \\
+		\mathcal{L}((A) \Longrightarrow (B)) &\defarrow (\mathcal{L}A) \Longrightarrow (\mathcal{L}B), \\
+		\mathcal{L}(\rightharpoondown (A)) &\defarrow\ \rightharpoondown (\mathcal{L}A), \\
+		\mathcal{L}(\forall x (A)) &\defarrow \forall x (\mathcal{L}A), \\
+		\mathcal{L}(\exists x (A)) &\defarrow \exists x (\mathcal{L}A), \\
+	\end{align}
+	と定めることにすると，$\mathcal{L}'$の式は全て$\mathcal{L}$の式に書き換えることが出来そうである．
+	しかしこれはあくまで直感の域を出ず，また式で表現できないメタ的な操作であるため正否を断言できない．
+	蓋し神のみぞ知る領域なのである．本稿では極力直感に頼った議論を排除したい．
+	なので，``この操作により$\mathcal{L}'$の式は全て$\mathcal{L}$の式に書き換えることが可能である''ということを
+	次の超数学的な言明によって保証することにする．
+	
+	\begin{screen}
+		\begin{metaaxm}[構造的帰納法]
+			
+		\end{metaaxm}
+	\end{screen}
+	
+	構造的帰納法により，以下の手続きで$\mathcal{L}'$の式は全て$\mathcal{L}$の式に書き換えられる．
+	
 	\begin{description}
-		\item[step1] $B$が$\mathcal{L}$の式であるとき，
-			\begin{align}
-				\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow} B
-			\end{align}
-			と定める．そうでない場合の対応を以下に示す．
-			
-		\item[step2] $s,t$を$\mathcal{L}'$の項として，$B$が
-			\begin{align}
-				s \in t
-			\end{align}
-			であるとき，
+		\item[第一段階] $s,t$を$\mathcal{L}'$の項とするとき，
 			\begin{itemize}
-				\item $s,t$が共に$\mathcal{L}$の項であるとき
+				\item $s$も$t$も$\mathcal{L}$の項であるとき，
 					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						s \in t,
+						\mathcal{L}(s \in t) &\defarrow s \in t, \\
+						\mathcal{L}(s = t) &\defarrow s = t
 					\end{align}
-				
-				\item $s$が$\mathcal{L}$の項ではなく，$t$が$\mathcal{L}$の項であるとき
-					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\varepsilon x\, (\, s=x\, ) \in t,
-					\end{align}
-				
-				\item $s$が$\mathcal{L}$の項であり，$t$が$\mathcal{L}$の項でないとき
-					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\varepsilon t(s),
-					\end{align}
+					と定める．
 					
-				\item $s$も$t$も$\mathcal{L}$の項でないとき
+				\item $s$が$\mathcal{L}$の項であって，$t$が$\mathcal{L}$の項でないとき，$t$は内包的記法
 					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\varepsilon t(\varepsilon x\, (\, s=x\, )),
+						\Set{x}{T(x)}
 					\end{align}
-			\end{itemize}
-			と定める．一方で$B$が
-			\begin{align}
-				s = t
-			\end{align}
-			であるとき，
-			\begin{itemize}
-				\item $s,t$が共に$\mathcal{L}$の項であるとき
+					なる形で表されているから
 					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						s = t,
+						\mathcal{L}(s \in t) &\defarrow T(s), \\
+						\mathcal{L}(s = t) &\defarrow \forall x\, (\, x \in s \Longleftrightarrow T(x)\, )
 					\end{align}
-				
-				\item $s$が$\mathcal{L}$の項ではなく，$t$が$\mathcal{L}$の項であるとき，
-					$s$が集合なら
-					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\varepsilon x\, (\, s=x\, ) = t,
-					\end{align}
-					$s$が真類なら
-					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\forall u\, \left(\, \varepsilon s(u) \Longleftrightarrow u \in t\, \right),
-					\end{align}
-				
-				\item $s$が$\mathcal{L}$の項であり，$t$が$\mathcal{L}$の項でないとき，
-					$t$が集合なら
-					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						s = \varepsilon x\, (\, t=x\, ),
-					\end{align}
-					$t$が真類なら
-					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\forall u\, \left(\, u \in s \Longleftrightarrow \varepsilon t(u)\, \right),
-					\end{align}
+					と定める．
 					
-				\item $s$も$t$も$\mathcal{L}$の項でないとき，
-					$s,t$がどちらも集合なら
+				\item $s$が$\mathcal{L}$の項でなくて，$t$が$\mathcal{L}$の項であるとき，
 					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\varepsilon x\, (\, s=x\, ) = \varepsilon x\, (\, t=x\, ),
+						\mathcal{L}(s \in t) \defarrow \set{s} \wedge \varepsilon x\, (\, x = s\, ) \in t
 					\end{align}
-					$s,t$の一方でも真類なら
+					と定め，また$s$は内包的記法
 					\begin{align}
-						\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-						\forall u\, \left(\, \varepsilon s(u) \Longleftrightarrow \varepsilon t(u)\, \right),
+						\Set{x}{S(x)}
 					\end{align}
+					なる形で表されているから
+					\begin{align}
+						\mathcal{L}(s = t) \defarrow \forall x\, (\, S(x) \Longleftrightarrow x \in t\, )
+					\end{align}
+					と定める．
 			\end{itemize}
-			と定める．
-			
-		\item[step3] $P,Q$を$\mathcal{L}'$の式として，$B$が
+		
+		\item[第二段階] $A,B$が$\mathcal{L}'$の式であって，それぞれすでに$\mathcal{L}$の式への書き換えが得られているならば，
+			その書き換えた式を$\mathcal{L}A$と$\mathcal{L}B$で表すとして
 			\begin{align}
-				P \vee Q,\quad P \wedge Q,\quad P \Longrightarrow Q,\quad \rightharpoondown P
-			\end{align}
-			であるとき，
-			\begin{align}
-				\mathcal{L}P,\mathcal{L}Q
-			\end{align}
-			をそれぞれ$P,Q$から得られた$\mathcal{L}$の式として，各場合に応じて
-			\begin{align}
-				\mathcal{L}B \overset{\mathrm{def}}{\Longleftrightarrow}
-				\begin{cases}
-					\mathcal{L}P \vee \mathcal{L}Q & \\
-					\mathcal{L}P \wedge \mathcal{L}Q & \\
-					\mathcal{L}P \Longrightarrow \mathcal{L}Q & \\
-					\rightharpoondown \mathcal{L}P &
-				\end{cases}
+				\mathcal{L}((A) \vee (B)) &\defarrow (\mathcal{L}A) \vee (\mathcal{L}B), \\
+				\mathcal{L}((A) \wedge (B)) &\defarrow (\mathcal{L}A) \wedge (\mathcal{L}B), \\
+				\mathcal{L}((A) \Longrightarrow (B)) &\defarrow (\mathcal{L}A) \Longrightarrow (\mathcal{L}B), \\
+				\mathcal{L}(\rightharpoondown (A)) &\defarrow\ \rightharpoondown (\mathcal{L}A), \\
+				\mathcal{L}(\forall x (A)) &\defarrow \forall x (\mathcal{L}A), \\
+				\mathcal{L}(\exists x (A)) &\defarrow \exists x (\mathcal{L}A), \\
 			\end{align}
 			と定める．
 	\end{description}
 	
-	$B$を$\mathcal{L}'$の式とし，$x$を$B$に現れる文字とし，
-	$B$に現れる文字で$x$のみが量化されていないとき，
+	以降は$B$を$\mathcal{L}'$の式とするとき，上の手続きで得られる$\mathcal{L}$の式を$\mathcal{L}B$と表す．
+	
+	\begin{screen}
+		\begin{metathm}[式の書き換えの同値性]
+			$B$を$\mathcal{L}'$の式とし，$x$を$B$に現れる文字とし，
+			$B$に現れる文字で$x$のみが量化されていないとき，
+			\begin{align}
+				\forall x\, \left(\, B(x) \Longleftrightarrow \mathcal{L}B(x)\, \right).
+			\end{align}
+		\end{metathm}
+	\end{screen}
+	
+	メタ定理の``証明''は$\mathcal{L}'$における証明とは別物であるから，解説としておく．
+	
+	
+	\begin{screen}
+		\begin{dfn}[$\mathcal{L}'$の式に対する内包的記法]
+			$B$を$\mathcal{L}'$の式とし，$x$を$B$に現れる文字とし，$B$に現れる文字で$x$のみが量化されていないとき，
+			\begin{align}
+				\Set{x}{B(x)} \defeq \Set{x}{\mathcal{L}B(x)}
+			\end{align}
+			と定義する．
+		\end{dfn}
+	\end{screen}
+	
+	上の定義において，$t$を$B(x)$に現れない文字とすれば
 	\begin{align}
-		\Set{x}{B(x)} \coloneqq \Set{x}{\mathcal{L}B(x)}
-	\end{align}
-	と定義する．このとき$y$を$B(x)$に現れない文字とすれば
-	\begin{align}
-		\forall y\, \left(\, B(y) \Longleftrightarrow y \in \Set{x}{B(x)}\, \right)
+		\forall t\, \left(\, B(t) \Longleftrightarrow t \in \Set{x}{B(x)}\, \right)
 	\end{align}
 	が成立する．
 	
