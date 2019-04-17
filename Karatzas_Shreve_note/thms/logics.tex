@@ -46,7 +46,7 @@
 	
 	\monologue{
 		院生「対象がどういうものであるかは後で判明しますが，
-			今のところはその実態は伏せておいて，とりあえず対象は予め存在しているものとして話を進めます．
+			今のところはその実態は伏せておいて，とりあえず対象は存在しているものとして話を進めます．
 			また{\bf $\mathcal{L}$の対象は上で指定した記号の組み合わせでは表せない}ということも認めます．
 			説明中は``$s$を対象とする''のように書くことが多いですが，
 			これは一時的に$s$を対象の一つに代用しているだけで，文字`$s$'が対象であると言っているのではありません．
@@ -931,15 +931,10 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	\begin{comment}
-	\monologue{
-		院生「$\varepsilon$記号はHilbertのイプシロン関数と呼ばれる概念を参考にしたもので，
-			量化記号の働きを形式的に表現するのに便利です．また
-			``$\varepsilon x A(x)$は$\mathcal{L}$の対象である''という言明において，
-			$\mathcal{L}$の対象であるという点がミソです...
-			なぜミソなのか忘れましたがこうでないと後で不具合が起きた記憶があります．」
-	}
-	\end{comment}
+	$\varepsilon$記号はHilbertのイプシロン関数と呼ばれるもので，
+	量化記号の働きを形式的に表現するには簡便かつ有能である．
+	また$\varepsilon$記号が指定する対象を$\mathcal{L}$のものと約束することで，
+	$\exists$と$\forall$の作用範囲を$\mathcal{L}$の対象全体に制限している．
 	
 	\begin{screen}
 		\begin{logicalthm}[全称記号と任意性]\label{logicalthm:fundamental_law_of_universal_quantifier}
@@ -952,26 +947,32 @@
 	\begin{prf}
 		$\tau$を$\mathcal{L}$の任意の対象とすれば，存在記号に関する推論規則より
 		\begin{align}
-			\begin{gathered}
-				\rightharpoondown A(\tau) \Longrightarrow\ \exists x \rightharpoondown A(x), \\
-				\exists x \rightharpoondown A(x) \Longrightarrow\ \rightharpoondown A
-				\left( \varepsilon x \rightharpoondown A(x) \right)
-			\end{gathered}
+			\rightharpoondown A(\tau) \Longrightarrow\ \exists x \rightharpoondown A(x)
+		\end{align}
+		と
+		\begin{align}
+			\exists x \rightharpoondown A(x) \Longrightarrow\ \rightharpoondown A
+			\left( \varepsilon x \rightharpoondown A(x) \right)
 		\end{align}
 		が成り立つから，推論法則\ref{logicalthm:transitive_law_of_implication}より
-		$\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
-				\left( \varepsilon x \rightharpoondown A(x) \right)$が成り立つ．
-		そして対偶を取って
+		\begin{align}
+			\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
+			\left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立ち，対偶を取って
 		\begin{align}
 			A \left( \varepsilon x \rightharpoondown A(x) \right)
 			\Longrightarrow A(\tau)
 		\end{align}
-		が成り立つ．全称記号に関する推論規則より$A \left( \varepsilon x \rightharpoondown A(x) \right)$と
-		$\forall x A(x)$は同値であるから
+		が成り立つ．全称記号に関する推論規則より
+		\begin{align}
+			\forall x A(x) \Longrightarrow A \left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が満たされているので
 		\begin{align}
 			\forall x A(x) \Longrightarrow A(\tau)
 		\end{align}
-		が成り立つ．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，特に
+		が従う．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，特に
 		\begin{align}
 			A \left( \varepsilon x \rightharpoondown A(x) \right)
 		\end{align}

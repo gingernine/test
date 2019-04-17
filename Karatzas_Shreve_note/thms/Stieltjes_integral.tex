@@ -1,48 +1,58 @@
 \section{Stieltjes積分}
-\subsection{$\R^d$上のStieltjes測度}
-	$\R$の左半開区間とは$(a,b],\ (-\infty \leq a \leq b \leq \infty)$を指す．ただし
+\subsection{$\R$上のStieltjes測度}
+	$\R$の左半開区間とは，$a < b$なる実数$a$と$b$によって
 	\begin{align}
-		(a,b] =
-		\begin{cases}
-			\emptyset, & a=b, \\
-			(-\infty,b], & a=-\infty,\ b < \infty, \\
-			(a,\infty), & -\infty < a,\ b = \infty, \\
-			(-\infty,\infty), & a=-\infty,\ b = \infty, \\
-		\end{cases}
+		]a,b]
 	\end{align}
-	と考える．ここで$d \geq 1$に対し$\left(a_1,b_1\right] \times \left(a_2,b_2\right] \times
-	\cdots \times \left(a_d,b_d\right]$の形の集合を$\R^d$の左半開区間として
+	で表される区間か，もしくは
 	\begin{align}
-		\mathfrak{F} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \subset \R^d:\mbox{左半開区間},\ n=1,2,\cdots}
+		\begin{gathered}
+			]-\infty,b],\\ 
+			]a,\infty[,\\ 
+			\R
+		\end{gathered}
 	\end{align}
-	とおけば，$\mathfrak{F}$は$\borel{\R^d}$を生成し，
-	また定理\ref{thm:forming_finitely_additive_class}より$\R^d$の上の加法族となる．
-	$f_\lambda:\R \longrightarrow \R,\ (\lambda = 1,\cdots,d)$を単調非減少関数として，
-	任意の空でない左半開区間$I = \left(a_1,b_1\right] \times \left(a_2,b_2\right] \times
-	\cdots \times \left(a_d,b_d\right] \subset \R^d$に対し
+	のいずれかを指す．いま，$\R$の左半開区間の全体を
 	\begin{align}
-		m_0(I) \coloneqq \prod_{\lambda=1}^d 
-		\sup{}{\Set{f_\lambda(\beta_\lambda) - f_\lambda(\alpha_\lambda)}{
-			\left(\alpha_\lambda,\beta_\lambda\right] \subset \left(a_\lambda,b_\lambda\right],
-			\ -\infty < \alpha_\lambda < \beta_\lambda < \infty}}
+		LHO \defeq \{\, x \mid \quad &\exists a,b \in \R\, (\, a < b \wedge x=]a,b] \, ) \\
+		&\vee \exists b \in \R\, (\, x = ]-\infty,b]\, ) \\
+		&\vee \exists a \in \R\, (\, x = ]a,\infty]\, ) \\
+		&\vee x = \R\, \}
 	\end{align}
-	とおき，$I = \emptyset$なら$m_0(I) \coloneqq 0$とすれば，定理\ref{thm:forming_finitely_additive_class}より
+	とおき，$LHO$の有限非交和の全体から成る集合を
 	\begin{align}
-		\mu_0(F) \coloneqq \sum_{i=1}^n m_0(I_i),
-		\quad (\forall F = I_1 + I_2 + \cdots + I_n \in \mathfrak{F})
-		\label{eq:Lebesgue_Stieltjes_measure_on_Rd}
+		\mathfrak{F} \defeq \Set{\bigcup u}{u \subset LHO \wedge \Fin{u} 
+		\wedge \forall s,t \in u\, (\, s \cap t = \emptyset\, )}
 	\end{align}
-	により$\mathfrak{F}$上の有限加法的測度が定まる．また，任意の$n \geq 1$に対して
+	とおけば，$\mathfrak{F}$は$\borel{\R}$を生成し，
+	また定理\ref{thm:forming_finitely_additive_class}より$\R$の上の加法族となる．
+	$f$を
 	\begin{align}
-		\mu_0((-n,n] \times \cdots \times (-n,n]) 
-		= \prod_{\lambda=1}^d \left\{f_\lambda(n) - f_\lambda(-n)\right\} < \infty
+		f:\R \longrightarrow \R
 	\end{align}
-	となるから$\mu_0$は$\mathfrak{F}$上で$\sigma$-有限的である．
+	なる単調非減少関数とする．$\R$の空でない左半開区間$I$に対し
+	\begin{align}
+		\sup{}{\Set{f(b) - f(a)}{a,b \in \R \wedge a < b \wedge ]a,b] \subset I}}
+	\end{align}
+	を対応させ，$\emptyset$に対して$0$を対応させる写像を$m$とおく．このとき
+	\begin{align}
+		\mu_0:\mathfrak{F} \longrightarrow [0,\infty]
+	\end{align}
+	なる写像$\mu_0$を
+	\begin{align}
+		\bigcup u \longmapsto \sum_{s \in u}m(s)
+	\end{align}
+	なる関係により定めれば，定理\ref{thm:forming_finitely_additive_class}より
+	$\mu_0$は$\mathfrak{F}$上の有限加法的測度をなす．また，$n \geq 1$なる任意の自然数$n$に対して
+	\begin{align}
+		\mu_0((-n,n]) = f(n) - f(-n) < \infty
+	\end{align}
+	となるから，$\mu_0$は$\mathfrak{F}$上で$\sigma$-有限的である．
 	
 	\begin{screen}
 		\begin{thm}[右連続性と完全加法性]
-			単調非減少関数$f_\lambda:\R \longrightarrow \R,\ (\lambda=1,\cdots,d)$を用いて定める$\mu_0$について，
-			全ての$f_\lambda$が右連続であることと$\mu_0$が$\mathfrak{F}$の上で完全加法的であることは同値である．
+			単調非減少関数$f$を用いて定めた$\mu_0$について，
+			$f$が$\R$の各点で右連続であることと$\mu_0$が$\mathfrak{F}$の上で完全加法的であることは同値である．
 		\end{thm}
 	\end{screen}
 	
@@ -84,77 +94,109 @@
 		\end{description}
 	\end{prf}
 	
+	$f$が右連続であれば，定理\ref{thm:appendix_Kolmogorov_Hopf}より$\mu_0$は
+	$\borel{\R}$の上の$\sigma$-有限測度$\mu$に一意に拡張され，このとき
+	\begin{align}
+		\forall a,b \in \R\, \left(\, a < b \Longrightarrow \mu(]a,b]) = f(b) - f(a)\, \right)
+	\end{align}
+	が成立する．また，測度の一致の定理よりこの関係を満たす$\borel{\R}$上の測度は$\mu$に限られる．
+	
 	\begin{screen}
 		\begin{dfn}[Lebesgue-Stieltjes測度]
-			右連続かつ単調非減少な関数の族$(f_\lambda)_{\lambda=1}^d$により構成する$(\R^d,\mathfrak{F},\mu_0)$は，
-			定理\ref{thm:Caratheodory_extension_theorem}と定理\ref{thm:outer_measure_finitely_additive_measure}より
-			完備測度空間$(\R^d,\mathfrak{M},\mu^*)$に拡張される．
-			この$\mu^*$を$(f_\lambda)_{\lambda=1}^d$の$d$次元Lebesgue-Stieltjes測度と呼び，
-			特に$f_\lambda$が全て恒等写像の場合$d$次元Lebesgue測度と呼ぶ．
+			$f$を$\R$上の右連続単調非減少な$\R$値関数とするとき，
+			\begin{align}
+				\forall a,b \in \R\, \left(\, a < b \Longrightarrow \mu(]a,b]) = f(b) - f(a)\, \right)
+			\end{align}
+			を満たす$\borel{\R}$の上の測度$\mu$が唯一つ存在する．
+			このとき$(\R,\borel{\R},\mu)$のLebesgue拡大で得られる完備測度を
+			$f$による$1$次元Lebesgue-Stieltjes測度と呼び，
+			特に$f$が$\R$上の恒等写像の場合はそれを$f$による$1$次元Lebesgue測度と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
-	$f_\lambda$が全て右連続であれば
-	定理\ref{thm:appendix_Kolmogorov_Hopf}より$\mu_0$は
-	$(\R^d,\borel{\R^d})$の上の$\sigma$-有限測度$\mu$に一意に拡張され，このとき
-	\begin{align}
-		\left(\R^d,\overline{\borel{\R^d}},\overline{\mu}\right) 
-		= \left(\R^d,\mathfrak{M},\mu^*\right)
-	\end{align}
-	が成立する．この拡張測度$\mu$を$(f_\lambda)_{\lambda=1}^d$のBorel-Stieltjes測度と呼ぶ．
-	
 \subsection{任意の区間上のStieltjes測度}
-	$I_\lambda,\ (\lambda=1,\cdots,d)$を$\R$の区間，つまり
-	$(a,b),(a,b],[a,b),[a,b],\ (-\infty \leq a \leq b \leq \infty)$のいずれかとするとき，
+	$I$を$\R$の区間とする．つまり$I$は，$a < b$なる実数$a,b$によって
 	\begin{align}
-		I \coloneqq I_1 \times \cdots \times I_d
+		\begin{gathered}
+			]a,b[, \\
+			]a,b],\\ 
+			[a,b[,\\ 
+			[a,b]
+		\end{gathered}
 	\end{align}
-	の形の集合$I$を$\R^d$の区間と呼ぶ．
-	いま，各$\lambda=1,\cdots,d$に対し，$f_\lambda$を$I_\lambda$上で定義された右連続単調非減少な，
-	ただし$I_\lambda$が有界なら$I_\lambda$上で有界な関数として
+	のいずれかで表されるか，もしくは
 	\begin{align}
-		a_\lambda \coloneqq \inf{}{\Set{f_\lambda(x)}{\inf{}{I_\lambda} < x < \sup{}{I_\lambda}}},
-		\quad b_\lambda \coloneqq \sup{}{\Set{f_\lambda(x)}{\inf{}{I_\lambda} < x < \sup{}{I_\lambda}}}
+		\begin{gathered}
+			]-\infty,a[, \\
+			]-\infty,a], \\
+			[a,\infty[, \\
+			]a,\infty[, \\
+			\R
+		\end{gathered}
 	\end{align}
-	とおけば，$\inf{}{I_\lambda} \in I_\lambda$なら$a_\lambda = f_\lambda(\inf{}{I_\lambda})$，
-	$\sup{}{I_\lambda} \in I_\lambda$なら$b_\lambda = f_\lambda(\sup{}{I_\lambda})$であるから
+	のいずれかで表される．
+	いま，$f$を$I$上で定義された右連続単調非減少とし，$I$が有界であるときは$f$は$I$上で有界な関数とする．
 	\begin{align}
-		\hat{f}_\lambda(x) \coloneqq 
+		\inf{}{I} \in \R
+	\end{align}
+	ならば
+	\begin{align}
+		\alpha \defeq \inf{}{\Set{f(x)}{\inf{}{I} < x < \sup{}{I}}}
+	\end{align}
+	とおき，同様に
+	\begin{align}
+		\sup{}{I} \in \R
+	\end{align}
+	ならば
+	\begin{align}
+		\beta \defeq \sup{}{\Set{f(x)}{\inf{}{I} < x < \sup{}{I}}}
+	\end{align}
+	とおく．そして$\R$上の右連続単調非減少関数$\hat{f}$を
+	\begin{align}
+		x \longmapsto 
 		\begin{cases}
-			a_\lambda & -\infty < x \leq \inf{}{I_\lambda} \\
-			f_\lambda(x) & \inf{}{I_\lambda} < x < \sup{}{I_\lambda} \\
-			b_\lambda & \sup{}{I_\lambda} \leq x < \infty
+			\alpha & \mbox{if }-\infty < x \leq \inf{}{I_\lambda} \\
+			f(x) & \mbox{if }\inf{}{I_\lambda} < x < \sup{}{I_\lambda} \\
+			\beta & \mbox{if }\sup{}{I_\lambda} \leq x < \infty
 		\end{cases}
 	\end{align}
-	は$f_\lambda$の拡張となり，$\left( \hat{f}_\lambda \right)_{\lambda=1}^d$に対して
-	Borel-Stieltjes測度空間$(\R^d,\borel{\R^d},\mu)$が定まる．
-	定理\ref{thm:Borel_algebra_of_relative_topology}より
+	なる関係で定める．すると前節の結果より$\borel{\R}$上の正値測度$\hat{\mu}$で
+	\begin{align}
+		\forall a,b \in \R\, \left(\, a < b \Longrightarrow \hat{\mu}(]a,b]) = \hat{f}(b) - \hat{f}(a)\, \right)
+	\end{align}
+	を満たすものが取れる．定理\ref{thm:Borel_algebra_of_relative_topology}より
 	\begin{align}
 		\borel{I} = \Set{I \cap E}{E \in \borel{\R^d}} \subset \borel{\R^d}
 	\end{align}
 	が成り立つから，
 	\begin{align}
-		\mu_I(I \cap E) \coloneqq \mu(I \cap E),
-		\quad (\forall E \in \borel{\R^d})
+		\borel{I} \ni E \longmapsto \hat{\mu}(E)
 	\end{align}
-	とおけば$(I,\borel{I},\mu_I)$は測度空間となる．この$\mu_I$もまた
-	$(f_\lambda)_{\lambda=1}^d$のBorel-Stieltjes測度と呼ぶ．
+	なる写像を$\mu$とおけば，$\mu$は$\borel{I}$上の測度となる．
+	\begin{align}
+		\inf{}{I} \in I
+	\end{align}
+	のとき
+	\begin{align}
+		a \defeq \inf{}{I}
+	\end{align}
+	とおくと
+	\begin{align}
+		\mu(\{a\}) = \hat{\mu}(\{a\}) = 0
+	\end{align}
+	が成り立ち，また
+	\begin{align}
+		]u,v] \subset I
+	\end{align}
+	なる任意の有界左半開区間に対しては
+	\begin{align}
+		\mu(]u,v]) = f(v) - f(u)
+	\end{align}
+	が成り立つ．そして$]u,v]$の形の$I$の部分区間の全体，$\inf{}{I} \in I$の場合は
+	それに$\{a\}$を加えたもの，は$\borel{I}$を生成する乗法族をなすため，
+	$f$に対して上の関係を満たす(加えて$\inf{}{I} \in I$の場合は
+	$\{a\}$の測度が$0$である)ような$\borel{I}$上の測度はただ一つである．
 	
-	\begin{screen}
-		\begin{thm}[Borel-Stiletjes測度の一意性]
-			$f_\lambda$を区間$I_\lambda \subset \R$で定義された右連続な単調非減少関数，
-			$\mu$を$(f_\lambda)_{\lambda=1}^d$のBorel-Stieltjes測度とするとき，
-			任意の$(\alpha_1,\beta_1] \times \cdots \times (\alpha_d,\beta_d]
-			,\ (-\infty < \alpha_\lambda < \beta_\lambda < \infty,\ (\alpha_\lambda,\beta_\lambda] \subset I_\lambda)$に対して
-			\begin{align}
-				\mu\left((\alpha_1,\beta_1] \times \cdots \times (\alpha_d,\beta_d]\right) 
-				= \prod_{\lambda=1}^d \left\{ f_\lambda(\beta_\lambda) - f_\lambda(\alpha_\lambda) \right\}
-				\label{eq:thm_uniqueness_of_Borel_Stieltjes_measure}
-			\end{align}
-			が満たされる．また$(f_\lambda)_{\lambda=1}^d$に対し(\refeq{eq:thm_uniqueness_of_Borel_Stieltjes_measure})を満たす
-			$(I,\borel{I})$上の測度は唯一つである．
-		\end{thm}
-	\end{screen}
 	
 \subsection{Stieltjes積分}
 	\begin{screen}
