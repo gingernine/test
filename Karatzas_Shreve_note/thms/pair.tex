@@ -1,5 +1,97 @@
 \section{対}
 	\begin{screen}
+		\begin{dfn}[対]
+			$a,b$を類とするとき，
+			\begin{align}
+				\{a,b\} \defeq \Set{x}{a = x \vee b = x}
+			\end{align}
+			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{a,a\}$を$\{a\}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	対の定義の
+	\begin{align}
+		a = x \vee b = x \label{form:definition_of_pairings}
+	\end{align}
+	の部分は$\mathcal{L}$の式とは限らない．例えば$a$が
+	\begin{align}
+		\Set{x}{A(x)}
+	\end{align}
+	で表される類で，$b$が
+	\begin{align}
+		\Set{x}{B(x)}
+	\end{align}
+	で表される類であるとき，(\refeq{form:definition_of_pairings})は次の$\mathcal{L}$の式
+	\begin{align}
+		\forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )
+	\end{align}
+	と書き換えられる．そして
+	\begin{align}
+		\Set{x}{a = x \vee b = x}
+	\end{align}
+	は
+	\begin{align}
+		\Set{x}{\forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )}
+	\end{align}
+	によって定められているのであった．
+	
+	\begin{screen}
+		\begin{thm}[対は表示されている要素しか持たない]
+		\label{thm:pair_members_are_exactly_the_given_two}
+			$a$と$b$を類とするとき次が成立する:
+			\begin{align}
+				\forall x\, (\, x \in \{a,b\} \Longleftrightarrow a=x \vee b=x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	この定理はメタ的な定理\ref{metathm:rewritten_formula_is_equivalent}を適用しただけの主張であるが，
+	直接確認することも出来る．実際，$a$が
+	\begin{align}
+		\Set{x}{A(x)}
+	\end{align}
+	で表される類で，$b$が
+	\begin{align}
+		\Set{x}{B(x)}
+	\end{align}
+	で表される類であるとき，$\chi$を$\mathcal{L}$の任意の対象とすれば
+	\begin{align}
+		\forall t\, (\, A(t) \Longleftrightarrow t \in \chi\, ) \Longleftrightarrow a = \chi
+	\end{align}
+	と
+	\begin{align}
+		\forall t\, (\, B(t) \Longleftrightarrow t \in \chi\, ) \Longleftrightarrow b = \chi
+	\end{align}
+	から
+	\begin{align}
+		\forall t\, (\, A(t) \Longleftrightarrow t \in \chi\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in \chi\, )
+		\Longleftrightarrow
+		a = \chi \vee b = \chi
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\forall x\, \left(\, \forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )
+		\Longleftrightarrow
+		a = x \vee a = x\, \right)
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		\begin{axm}[対の公理]
+			集合同士の対は集合である．つまり，$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \wedge \set{b} \Longrightarrow 
+				\set{\{a,b\}}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
 		\begin{logicalthm}[量化記号の性質(ロ)]\label{logicalthm:properties_of_quantifiers_2}
 			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
 			\begin{description}
@@ -84,37 +176,6 @@
 				\QED
 		\end{description}
 	\end{prf}
-	
-	\begin{screen}
-		\begin{dfn}[対]
-			$a,b$を類とするとき，
-			\begin{align}
-				\{a,b\} \defeq \Set{x}{a = x \vee b = x}
-			\end{align}
-			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
-			特に$\{a,a\}$を$\{a\}$と書く．
-		\end{dfn}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[対は表示されている要素しか持たない]
-		\label{thm:pair_members_are_exactly_the_given_two}
-			$a$と$b$を類とするとき次が成立する:
-			\begin{align}
-				\forall x\, (\, x \in \{a,b\} \Longleftrightarrow x=a \vee x=b\, ).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{axm}[対の公理]
-			集合同士の対は集合である．つまり，$a,b$を類とするとき次が成り立つ:
-			\begin{align}
-				\set{a} \wedge \set{b} \Longrightarrow 
-				\set{\{a,b\}}.
-			\end{align}
-		\end{axm}
-	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[真類の対は空]
