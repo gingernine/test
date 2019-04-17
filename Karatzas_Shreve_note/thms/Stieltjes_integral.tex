@@ -172,7 +172,7 @@
 	\begin{align}
 		\borel{I} \ni E \longmapsto \hat{\mu}(E)
 	\end{align}
-	なる写像を$\mu$とおけば，$\mu$は$\borel{I}$上の測度となる．
+	なる写像を$\mu$とおけば$\mu$は$\borel{I}$上の測度となる．
 	\begin{align}
 		\inf{}{I} \in I
 	\end{align}
@@ -197,6 +197,12 @@
 	$f$に対して上の関係を満たす(加えて$\inf{}{I} \in I$の場合は
 	$\{a\}$の測度が$0$である)ような$\borel{I}$上の測度はただ一つである．
 	
+\subsection{複素Stiletjes測度}
+	$I$を$\R$の区間とし，$f$を$I$上の複素数値右連続有界変動関数とする．
+	このとき$f$の実部虚部は共に右連続有界変動となり，
+	それぞれ$I$上の右連続単調非減少関数に分解される．
+	分解して得られた関数に対してStieltjes測度を構成し，
+	それらを合算すれば，$\borel{I}$上の複素測度が得られる．
 	
 \subsection{Stieltjes積分}
 	\begin{screen}
@@ -207,12 +213,75 @@
 	
 	\begin{screen}
 		\begin{thm}[時間変更]
-			$u:[a,b] \longrightarrow \R$を非減少連続関数，
-			$A:[u(a),u(b)] \longrightarrow \R$を非減少右連続関数とするとき，
-			任意の$\borel{[u(a),u(b)]}/\borel{\R}$-可測関数$f$に対し
+			$u$を$[a,b]$から$\R$への非減少連続関数とし，
+			$A$を$[u(a),u(b)]$から$\R$への非減少右連続関数とし，
+			$f$を$[u(a),u(b)]$から$[0,\infty[$への$\borel{[u(a),u(b)]}/\borel{[0,\infty[}$-可測関数とする．
+			このとき
 			\begin{align}
 				\int_{[a,b]} f(u(s))\ dA_{u(s)} = \int_{[u(a),u(b)]} f(t)\ dA_t
 			\end{align}
-			が成立する．ここで左辺は$s \longrightarrow A(u(s))$により作るLebesgue-Stieltjes測度による積分を表す．
+			が成立する．ただし右辺は$A$のBorel-Stieltjes測度による積分を表し，
+			ここで左辺は$A \circ u$のBorel-Stieltjes測度による積分を表す．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		$\mu_A$を$A$のBorel-Stieltjes測度とし，$\mu_{A_u}$を$A \circ u$のBorel-Stieltjes測度とするとき，
+		左辺の積分は
+		\begin{align}
+			\int_{[a,b]} f \circ u\ d\mu_{A_u} = \int_{[a,b]} f\ d\mu_{A_u}u^{-1}
+		\end{align}
+		と書けるので，
+		\begin{align}
+			\mu_A = \mu_{A_u} u^{-1}
+		\end{align}
+		が成り立つことを示せばよい．これは$\{u(a)\}$に対する測度と$]s,t]$なる形の部分区間の測度が一致することを見ればよい．
+		まずStieltjes測度の構成法より
+		\begin{align}
+			\mu_A(\{u(a)\}) = 0
+		\end{align}
+		が満たされる．他方で
+		\begin{align}
+			\alpha \defeq \sup{}{\left( u^{-1} \ast \{u(a)\} \right)}
+		\end{align}
+		とおけば
+		\begin{align}
+			[a,\alpha] = u^{-1} \ast \{u(a)\}
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			\mu_{A_u} \left( u^{-1} \ast \{u(a)\} \right)
+			= \mu_{A_u}([a,\alpha])
+			= A(u(\alpha)) - A(u(a)) + \mu_{A_u}(\{a\})
+			= 0
+		\end{align}
+		が成り立つ．以上で
+		\begin{align}
+			\mu_A(\{u(a)\}) = \mu_{A_u} \left( u^{-1} \ast \{u(a)\} \right)
+		\end{align}
+		が示された．次に$]s,t]$を$[u(a),u(b)]$の部分区間とする．
+		\begin{align}
+			\mu_A(]s,t]) = A(t) - A(s)
+		\end{align}
+		となる．他方で
+		\begin{align}
+			\alpha &\defeq \sup{}{\left( u^{-1} \ast \{s\} \right)}, \\
+			\beta &\defeq \sup{}{\left( u^{-1} \ast \{t\} \right)}
+		\end{align}
+		とおけば
+		\begin{align}
+			]\alpha,\beta] = u^{-1} \ast ]s,t]
+		\end{align}
+		となり，
+		\begin{align}
+			\mu_{A_u} \left( u^{-1} \ast ]s,t] \right) = \mu_{A_u}(]\alpha,\beta])
+			= A(u(\beta)) - A(u(\alpha))
+			= A(t) - A(s)
+		\end{align}
+		が成り立つ．以上で
+		\begin{align}
+			\mu_A(]s,t]) = \mu_{A_u} \left( u^{-1} \ast ]s,t] \right)
+		\end{align}
+		が示された．
+		\QED
+	\end{sketch}
