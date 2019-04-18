@@ -1,32 +1,54 @@
 \subsection{位相}
 	\begin{screen}
 		\begin{dfn}[位相]
-			集合$S$の部分集合族$\mathscr{O}$が
-			以下を満たすとき，$\mathscr{O}$を$S$の{\bf 位相}
-			\index{いそう@位相}{\bf (topology)}，或は{\bf 開集合系}
-			\index{かいしゅうごうけい@開集合系}と呼ぶ:
+			$S$を集合とし，$\mathscr{O}$を$\power{S}$の部分集合とする．
+			$\mathscr{O}$が以下の三カ条を満たすとき，$\mathscr{O}$を$S$上の{\bf 位相}
+			\index{いそう@位相}{\bf (topology)}と呼ぶ:
 			\begin{description}
-				\item[(O1)] $\emptyset, S \in \mathscr{O}$,
-				\item[(O2)] $O_1,O_2 \in \mathscr{O} 
-					\quad \Longrightarrow \quad O_1 \cap O_2 \in \mathscr{O}$,
-				\item[(O3)] $\displaystyle\mathscr{U} \subset \mathscr{O}
-					\quad \Longrightarrow \quad \bigcup \mathscr{U} = 
-					\bigcup_{U \in \mathscr{U}} U \in \mathscr{O}$.
+				\item[(O1)] $\mathscr{O}$は$S$と空集合を要素に持つ:
+					\begin{align}
+						\emptyset \in \mathscr{O} \wedge S \in \mathscr{O}.
+					\end{align}
+				\item[(O2)] $\mathscr{O}$は交叉で閉じる:
+					\begin{align}
+						\forall u,v\, \left(\, u,v \in \mathscr{O} \Longrightarrow u \cap v \in \mathscr{O}\, \right).
+					\end{align}
+				\item[(O3)] $\mathscr{O}$は部分集合の合併で閉じる:
+					\begin{align}
+						\forall U\, \left(\, U \subset \mathscr{O} \Longrightarrow \bigcup U \in \mathscr{O} \right).
+					\end{align}
 			\end{description}
-			また$\mathscr{O}$の元を$S$の{\bf 開集合}
-			\index{かいしゅうごう@開集合}{\bf (open set)}と呼び，
-			補集合が開である集合を{\bf 閉集合}\index{へいしゅうごう@閉集合}
-			{\bf (closed set)}と呼ぶ．
+			そして対
+			\begin{align}
+				(S,\mathscr{O})
+			\end{align}
+			を{\bf 位相空間}\index{いそうくうかん@位相空間}{\bf (topological space)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
-	$\R\mbox{ (resp. $\C$)}$において，部分集合$O$で
-	\begin{itemize}
-		\item $O = \emptyset$，又は任意の$x \in O$に対し或る$r_x > 0$が存在して
-			$\Set{y \in \R \mbox{ (resp. $\C$)}}{|x-y| < r_x} \subset O$となる
-	\end{itemize}
-	を満たすものの全体を$\mathscr{O}$とおくと，$\mathscr{O}$は$\R\mbox{ (resp. $\C$)}$
-	の位相となる．以後$\R$と$\C$には暗黙の裡にこの位相が入る．
+	\begin{screen}
+		\begin{dfn}[開集合・閉集合]
+			$(S,\mathscr{O})$を位相空間とするとき，$\mathscr{O}$の要素を$S$の{\bf 開集合}
+			\index{かいしゅうごう@開集合}{\bf (open set)}と呼び，
+			補集合が開である$S$の部分集合，つまり
+			\begin{align}
+				A \subset S \wedge S \backslash A \in \mathscr{O}
+			\end{align}
+			なる$A$を$S$の{\bf 閉集合}\index{へいしゅうごう@閉集合}{\bf (closed set)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$\C$の部分集合族を
+	\begin{align}
+		\mathscr{O}_\C \defeq \Set{O}{O \subset \C \wedge \forall x \in O\, \exists r \in \R_+\, 
+		\left(\, \forall y \in \C\, (\, |y-x| < r \Longrightarrow y \in O\, )\, \right)}
+	\end{align}
+	で定めると，これは$\C$上の位相となる．以降は$\mathscr{O}_\C$を$\C$の通常の位相として考える．
+	つまり，$\C$の部分集合$O$は，$O$の要素$x$が与えられたときに
+	\begin{align}
+		\Set{y \in \C}{|x-y| < r} \subset O
+	\end{align}
+	なる正の実数$r$が取れるなら$\C$の通常の開集合と見做される．
 	
 	\begin{screen}
 		\begin{dfn}[内部・閉包]
@@ -348,6 +370,25 @@
 			\index{ぶぶんいそうくうかん@部分位相空間}{\bf (topological subspace)}と呼び，
 			紛れが無ければ単に{\bf 部分空間}\index{ぶぶんくうかん@部分空間}とも呼ぶ．
 		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[$\R$上の位相]
+			$\R$上の位相は$\C$上の位相の相対位相として定める:
+			\begin{align}
+				\mathscr{O}_\R \defeq \Set{O \cap \R}{O \in \mathscr{O}_\C}.
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\R$の開集合はボールから成る]
+			$O$を$\R$の部分集合とするとき，
+			\begin{align}
+				O \in \mathscr{O}_\R \Longleftrightarrow
+				\forall x \in O\, \exists r \in \R_+\, \left(\, \Set{y \in \R}{|x-y| < r} \subset O\, \right).
+			\end{align}
+		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
