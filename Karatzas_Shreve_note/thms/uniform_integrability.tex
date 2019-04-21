@@ -1,92 +1,111 @@
 \section{一様可積分性}
 	\begin{screen}
+		\begin{dfn}[一様可積分]
+			$(X,\mathscr{F},\mu)$を測度空間とし，$\mathscr{U}$を$\mathscr{L}^1(X,\mathscr{F},\mu)$の部分集合とする．
+			\begin{itemize}
+				\item $\mathscr{U}$が$\mathscr{L}^1(X,\mathscr{F},\mu)$で有界である:
+					\begin{align}
+						\sup{f \in \mathscr{U}}\int_X|f|\ d\mu < \infty.
+					\end{align}
+				
+				\item $\epsilon$を任意に与えられた正数とすると，次を満たす正数$\delta$が取れる:
+					\begin{align}
+						\forall f \in \mathscr{U}\, \forall B \in \mathscr{F}\, \left(\, \mu(B) < \delta
+						\Longrightarrow \int_B |f|\ d\mu < \epsilon\, \right).
+					\end{align}
+			\end{itemize}
+			が満たされているとき，$\mathscr{U}$は{\bf 一様可積分}\index{いちようかせきぶん@一様可積分}
+			{\bf (uniformly integrable)}であるという．
+		\end{dfn}
+	\end{screen}
+	
+	一様可積分な集合の部分集合もまた一様可積分である．
+	
+	\begin{screen}
 	\begin{thm}[一様可積分性の同値条件]\label{thm:appendix_uniform_integrability_equivalence}
-		$(X,\mathscr{F},\mu)$を測度空間とし，$\mu(X)<\infty$とする．
-		任意の添数集合$\Lambda$に対して$(f_\lambda)_{\lambda \in \Lambda}$を
-		$\mathscr{F}/\borel{\C}$-可測関数の族とするとき，次の(1)と(2)は同値である:
+		$(X,\mathscr{F},\mu)$を測度空間とし，$\mathscr{U}$を$\mathscr{L}^1(X,\mathscr{F},\mu)$の部分集合とする．
+		このとき次の(1)と(2)が成り立つ:
 		\begin{description}
-			\item[(1)] $(f_\lambda)_{\lambda \in \Lambda}$が一様可積分．
-			\item[(2)] 
+			\item[(1)] $\mathscr{U}$が一様可積分であるとき，$\epsilon$を任意に与えられた正数とすると，次を満たす正数$a$が取れる:
 				\begin{align}
-					\sup{\lambda \in \Lambda}\int_X|f_\lambda|\ d\mu < \infty
-					\label{eq:thm_appendix_uniform_integrability_equivalence_1}
+					\forall f \in \mathscr{U}\, \forall \lambda \in \R_+\,
+					\left(\, a < \lambda \Longrightarrow \int_{\{|f| > \lambda\}} |f|\ d\mu < \epsilon\, \right).
 				\end{align}
-				かつ，任意の$\epsilon > 0$に対し或る$\delta > 0$が存在して次を満たす:
+			
+			\item[(2)] $\mu(X) < \infty$の場合(1)の逆が成立する．つまり，
 				\begin{align}
-					\mu(B) < \delta
-					\Rightarrow \sup{\lambda \in \Lambda}\int_B |f_\lambda|\ d\mu < \epsilon.
-					\label{eq:thm_appendix_uniform_integrability_equivalence_2}
+					\forall \epsilon \in \R_+\, \exists a \in \R_+\, 
+					\forall f \in \mathscr{U}\, \forall \lambda \in \R_+\,
+					\left(\, a < \lambda \Longrightarrow \int_{\{|f| > \lambda\}} |f|\ d\mu < \epsilon\, \right)
 				\end{align}
+				が成り立つとき$\mathscr{U}$は一様可積分である．
 		\end{description}
 	\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
+	\begin{sketch}\mbox{}
 		\begin{description}
-			\item[第一段]
-				$(1) \Rightarrow (2)$を示す．任意の$a > 0$に対して
+			\item[(1)]
+				$\mathscr{U}$が一様可積分であるとする．
+				いま$\epsilon$を任意に与えられた正数とする．このとき
 				\begin{align}
-					\int_X |f_\lambda|\ d\mu
-					= \int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu
-						+ \int_{\{|f_\lambda| \leq a\}} |f_\lambda|\ d\mu
-					\leq \sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu
-						+ a\mu(X)
+					\forall f \in \mathscr{U}\, \forall B \in \mathscr{F}\, \left(\, \mu(B) < \delta
+					\Longrightarrow \int_B |f|\ d\mu < \epsilon\, \right)
 				\end{align}
-				が成り立ち，一様可積分性より或る$a > 0$に対して
+				を満たす$\delta$が取れる．ここで
 				\begin{align}
-					\sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu < \infty
+					\frac{1}{a}\sup{f \in \mathscr{U}}{\int_X|f|\ d\mu} < \delta
 				\end{align}
-				となるから(\refeq{eq:thm_appendix_uniform_integrability_equivalence_1})が従う．
-				また任意の$B \in \mathscr{F}$に対して
+				を満たす正の実数$a$を取れば，$a < \lambda$なる正数$\lambda$と$\mathscr{U}$の任意の要素$f$に対して
 				\begin{align}
-					\int_B |f_\lambda|\ d\mu
-					= \int_{\{|f_\lambda|>a\} \cap B} |f_\lambda|\ d\mu
-						+ \int_{\{|f_\lambda| \leq a\} \cap B} |f_\lambda|\ d\mu
-					\leq \sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu
-						+ a\mu(B)
+					\mu(|f| > \lambda) \leq \frac{1}{\lambda} \int_X |f|\ d\mu < \delta
 				\end{align}
-				が成り立つから，任意の$\epsilon > 0$に対して
+				となるので
 				\begin{align}
-					\sup{\lambda \in \Lambda}\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu < \frac{\epsilon}{2}
+					\forall f \in \mathscr{U}\, \forall \lambda \in \R_+\,
+					\left(\, a < \lambda \Longrightarrow \int_{\{|f| > \lambda\}} |f|\ d\mu < \epsilon\, \right)
 				\end{align}
-				を満たす$a > 0$を取り$\delta \coloneqq \epsilon/(2a)$とおけば
-				(\refeq{eq:thm_appendix_uniform_integrability_equivalence_2})が成立する．
-				
-			\item[第二段]
-				$(2) \Rightarrow (1)$を示す．任意の$a > 0$に対して
+				が成立する．
+			
+			\item[(2)]
+				いま$\epsilon$を任意に与えられた正数とする．このとき
 				\begin{align}
-					\mu(|f_\lambda| > a) \leq \frac{1}{a} \int_X |f_\lambda|\ d\mu
-					\leq \frac{1}{a}\sup{\lambda \in \Lambda}{\int_X|f_\lambda|\ d\mu}
+					\forall f \in \mathscr{U}\, 
+					\left(\, \int_{\{|f| > a\}} |f|\ d\mu < \frac{\epsilon}{2}\, \right)
 				\end{align}
-				が成立するから，(\refeq{eq:thm_appendix_uniform_integrability_equivalence_2})
-				を満たす$\delta > 0$に対し或る$a_0 > 0$が存在して
+				を満たす正数$a$が取れる．$f$を$\mathscr{U}$の任意の要素とし，$B$を$\mathscr{F}$の任意の要素とすれば
 				\begin{align}
-					\mu(|f_\lambda| > a) < \delta,
-					\quad (\forall \lambda \in \Lambda,\ \forall a > a_0)
-				\end{align}
-				となり
+					\int_B |f|\ d\mu
+					= \int_{\{|f|>a\} \cap B} |f|\ d\mu
+						+ \int_{\{|f| \leq a\} \cap B} |f|\ d\mu
+					\leq \frac{\epsilon}{2} + a\mu(B)
+				\end{align}				
+				が成り立つから，
 				\begin{align}
-					\int_{\{|f_\lambda|>a\}} |f_\lambda|\ d\mu < \epsilon,
-					\quad (\forall \lambda \in \Lambda,\ \forall a > a_0)
+					\sup{f \in \mathscr{U}}\int_X|f|\ d\mu < \infty
 				\end{align}
-				が従う．
+				及び
+				\begin{align}
+					\forall B \in \mathscr{F}\, \left(\, \mu(B) < \frac{\epsilon}{2a}
+					\Longrightarrow \int_B |f|\ d\mu < \epsilon\, \right)
+				\end{align}
+				が成立する．すなわち$\mathscr{U}$は一様可積分である．
 				\QED
 		\end{description}
-	\end{prf}
+	\end{sketch}
 	
 	\begin{screen}
 	\begin{thm}[一様可積分性と平均収束]\label{lem:uniformly_integrable_and_convergence_in_mean}
-		$(X,\mathscr{F},\mu)$を$\sigma$-有限測度空間とし，
-		$(f_n)_{n=1}^\infty$を$\mathscr{F}/\borel{\C}$-可測関数の族とする．
-		$(f_n)_{n=1}^\infty$が$\mu$-a.e.に$\C$で収束するとき，つまり或る零集合$A$が存在して，
+		$(X,\mathscr{F},\mu)$を正値測度空間とし，
 		\begin{align}
-			f \coloneqq \lim_{n \to \infty} f_n \defunc_A
+			\mu(X) < \infty
 		\end{align}
-		により$\mathscr{F}/\borel{\C}$-可測関数が定まるとき，
-		次の(1)と(2)は同値である:
+		とする．また$\{f_n\}_{n=1}^\infty$を$\mathscr{L}^1(X,\mathscr{F},\mu)$の部分集合とし，
+		$A$を$\mu$-零集合とし，$X \backslash A$の各点$x$で$(f_n(x))_{n=1}^\infty$が
+		$\C$で収束するとする．このとき次の(1)と(2)は同値である:
 		\begin{description}
-			\item[(1)] $(f_n)_{n=1}^\infty$が一様可積分．
-			\item[(2)] $f$は$\mu$-可積分で次を満たす:
+			\item[(1)] $\{f_n\}_{n=1}^\infty$が一様可積分．
+			\item[(2)] $f \defeq \lim_{n \to \infty} f_n \defunc_A$と$f$を定めると，$f$は可積分で
 				\begin{align}
 					\int_X |f - f_n|\ d\mu 
 					\longrightarrow 0
@@ -98,11 +117,10 @@
 	
 	\begin{screen}
 	\begin{thm}[一様可積分性と条件付き期待値]\label{lem:uniformly_integrability_and_conditional_expectations}
-		$(X,\mathscr{F},\mu)$を測度空間とする．
-		部分$\sigma$-加法族$\mathscr{G} \subset \mathscr{F}$に対し
-		$\left. \mu \right|_{\mathscr{G}}$が$\sigma$-有限なら，
-		$\mu$-可積分関数$f:X \longrightarrow \R$に対し
-		$\left( \cexp{f}{\mathscr{G}} \right)_{\mathscr{G} \subset \mathscr{F}}$は一様可積分である．
+		$(X,\mathscr{F},\mu)$を測度空間とし，$\mu(X) < \infty$とし，
+		$f$を$\mathscr{L}^1(X,\mathscr{F},\mu)$の要素とする．
+		また$\mathscr{S}$を$X$上の$\sigma$-加法族であり$\mathscr{F}$の部分集合であるものの全体とする．
+		このとき$\left\{ \cexp{f}{\mathscr{G}} \right\}_{\mathscr{G} \in \mathscr{S}}$は一様可積分である．
 	\end{thm}
 	\end{screen}
 	
