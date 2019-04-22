@@ -1,25 +1,29 @@
 \section{一様可積分性}
 	\begin{screen}
 		\begin{dfn}[一様可積分]
-			$(X,\mathscr{F},\mu)$を測度空間とし，$\mathscr{U}$を$\mathscr{L}^1(X,\mathscr{F},\mu)$の部分集合とする．
+			$(X,\mathscr{F},\mu)$を正値測度空間とし，$\mathscr{U}$を$\mathscr{L}^1(X,\mathscr{F},\mu)$の部分集合とする．
 			\begin{itemize}
-				\item $\mathscr{U}$が$\mathscr{L}^1(X,\mathscr{F},\mu)$で有界である:
-					\begin{align}
-						\sup{f \in \mathscr{U}}\int_X|f|\ d\mu < \infty.
-					\end{align}
-				
 				\item $\epsilon$を任意に与えられた正数とすると，次を満たす正数$\delta$が取れる:
 					\begin{align}
 						\forall f \in \mathscr{U}\, \forall B \in \mathscr{F}\, \left(\, \mu(B) < \delta
 						\Longrightarrow \int_B |f|\ d\mu < \epsilon\, \right).
 					\end{align}
 			\end{itemize}
-			が満たされているとき，$\mathscr{U}$は{\bf 一様可積分}\index{いちようかせきぶん@一様可積分}
-			{\bf (uniformly integrable)}であるという．
+			が満たされているとき，$\mathscr{U}$は{\bf 同程度可積分である}\index{どうていどかせきぶん@同程度可積分}
+			{\bf (equi-integrable)}という．同程度可積分性に加えて次の式
+			\begin{itemize}
+				\item $\mathscr{U}$が$\mathscr{L}^1(X,\mathscr{F},\mu)$で有界である:
+					\begin{align}
+						\exists b \in \R_+\, \forall f \in \mathscr{U}\, 
+						\left(\, \int_X|f|\ d\mu < b\, \right).
+					\end{align}
+			\end{itemize}
+			が満たされているとき，$\mathscr{U}$は{\bf 一様可積分である}\index{いちようかせきぶん@一様可積分}
+			{\bf (uniformly integrable)}という．
 		\end{dfn}
 	\end{screen}
 	
-	一様可積分な集合の部分集合もまた一様可積分である．
+	同程度可積分な集合の部分集合もまた同程度可積分であり，一様可積分な集合の部分集合もまた一様可積分である．
 	
 	\begin{screen}
 	\begin{thm}[一様可積分性の同値条件]\label{thm:appendix_uniform_integrability_equivalence}
@@ -163,12 +167,124 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[Dunford-Pettis]
+		\begin{thm}[Dunford-Pettis]\label{thm:Dunford_Pettis}
 			$(X,\mathcal{B},\mu)$を確率空間とし，$\mathscr{F}$を$\mathscr{L}^1(X,\mathcal{B},\mu)$の
-			セミノルムに関して有界な部分集合とする．このとき，$\mathscr{F}$が一様可積分であることと，
+			セミノルムに関して有界な部分集合とする．また$q_1$を$\mathscr{L}^1(X,\mathcal{B},\mu)$から$L^1(X,\mathcal{B},\mu)$への商写像とする．
+			このとき，$\mathscr{F}$が同程度可積分であることと，
 			\begin{align}
-				\Set{[f] \in L^1(X,\mathcal{B},\mu)}{f \in \mathscr{F}}
+				\mathscr{F}^q \defeq \Set{q_1(f)}{f \in \mathscr{F}}
 			\end{align}
 			が$L^1(X,\mathcal{B},\mu)$において弱位相に関して相対コンパクトであることは同値である．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		$q_\infty$を$\mathscr{L}^\infty(X,\mathcal{B},\mu)$から$L^\infty(X,\mathcal{B},\mu)$への商写像とする．
+		\begin{align}
+			T:L^1(X,\mathcal{B},\mu) \longrightarrow L^\infty(X,\mathcal{B},\mu)^*
+		\end{align}
+		なる写像$T$を
+		\begin{align}
+			T(q_1(f)):q_\infty(g) \longmapsto \int_X fg\ d\mu
+		\end{align}
+		なる関係により定めれば，$T$は等長線型である．従って
+		\begin{align}
+			T \ast \mathscr{F}^q
+		\end{align}
+		は$L^\infty(X,\mathcal{B},\mu)^*$において作用素ノルムに関して有界である．
+		ゆえにこの集合は$L^\infty(X,\mathcal{B},\mu)^*$の零元を中心とした或る大きさの閉球に含まれるが，
+		Banach-Alaogluの定理よりその閉球は汎弱位相でコンパクトである．ゆえに
+		\begin{align}
+			\mathscr{H}
+		\end{align}
+		を$T \ast \mathscr{F}^q$の汎弱位相に関する閉包とすれば，$\mathscr{H}$は汎弱コンパクトである．
+		なので
+		\begin{itemize}
+			\item $\mathscr{H}$が$\ran{T}$に含まれていること．
+			\item $T^{-1}|_{\mathscr{H}}$が$L^1(X,\mathcal{B},\mu)$の弱位相と
+				$L^\infty(X,\mathcal{B},\mu)^*$の半弱位相に関して連続であること．
+		\end{itemize}
+		が示されれば，
+		\begin{align}
+			T^{-1} \ast \mathscr{H}
+		\end{align}
+		が$L^1(X,\mathcal{B},\mu)$の弱位相に関してコンパクトとなり，他方で弱位相はHausdorffなので
+		$\mathscr{F}^q$の弱閉包は$T^{-1} \ast \mathscr{H}$に含まれ，
+		$\mathscr{F}^q$が弱位相に関して相対コンパクトであることが従う．
+	\end{sketch}
+	
+	\begin{description}
+		\item[第一段] $\mathscr{H}$が$\ran{T}$に含まれていることを示す．
+			$\varphi$を$\mathscr{H}$の要素とすれば，
+			定理\ref{thm:closed_set_is_set_of_limits_of_some_net}より
+			有向集合$(\Lambda,\preceq)$と
+			\begin{align}
+				\{\varphi_\lambda\}_{\lambda \in \Lambda} \subset T \ast \mathscr{F}^q
+			\end{align}
+			を満たすネット$(\varphi_\lambda)_{\lambda \in \Lambda}$が取れて，
+			\begin{align}
+				\varphi_\lambda \longrightarrow \varphi
+			\end{align}
+			が汎弱位相に関して成立する．選択公理より$\Lambda$の各要素$\lambda$に対して
+			\begin{align}
+				q_1(f_\lambda) = T^{-1}(\varphi_\lambda)
+			\end{align}
+			となる$f_\lambda$が取れる．仮定より
+			\begin{align}
+				\{f_\lambda\}_{\lambda \in \Lambda}
+			\end{align}
+			は同程度可積分であるから，$\epsilon$を任意に与えられた正数とすれば，
+			\begin{align}
+				\forall A \in \mathcal{B}\, \forall \lambda \in \Lambda\, 
+				\left(\, \mu(A) < \delta \Longrightarrow \int_A |f_\lambda|\ d\mu < \epsilon\, \right)
+			\end{align}
+			を満たす正数$\delta$が取れる．$\varphi_\lambda \longrightarrow \varphi$より
+			\begin{align}
+				\varphi_\lambda(\defunc_A) \longrightarrow \varphi(\defunc_A)
+			\end{align}
+			が$\C$の位相で成立するので
+			\begin{align}
+				\forall A \in \mathcal{B}\, 
+				\left(\, \mu(A) < \delta \Longrightarrow |\varphi(\defunc_A)| \leq \epsilon\, \right)
+			\end{align}
+			が従い，
+			\begin{align}
+				\mathcal{B} \ni A \longmapsto \varphi(\defunc_A)
+			\end{align}
+			の可算加法性が従い，定理\ref{thm:dual_space_of_L_p}より
+			\begin{align}
+				\varphi = T(q_1(f))
+			\end{align}
+			を満たす$f$が取れる．すなわち
+			\begin{align}
+				\varphi \in \ran{T}
+			\end{align}
+			が成り立つ．以上で
+			\begin{align}
+				\mathscr{H} \subset \ran{T}
+			\end{align}
+			が示された．
+		
+		\item[第二段] $\varphi$を$\mathscr{H}$の要素とし，$\varphi$において$T^{-1}|_{\mathscr{H}}$が連続であることを示す．
+			$(\varphi_\lambda)_{\lambda \in \Lambda}$を汎弱位相に関して
+			\begin{align}
+				\varphi_\lambda \longrightarrow \varphi
+			\end{align}
+			を満たす$\mathscr{H}$上のネットとすれば，
+			\begin{align}
+				g \in L^\infty(X,\mathcal{B},\mu) \Longrightarrow \varphi_\lambda(g) \longrightarrow \varphi(g)
+			\end{align}
+			が成り立つので，定理\ref{thm:dual_space_of_L_p}と併せて
+			\begin{align}
+				\Phi \in L^1(X,\mathcal{B},\mu)^* \Longrightarrow 
+				\Phi\left( T^{-1}(\varphi_\lambda) \right) \longrightarrow \Phi\left( T^{-1}(\varphi) \right)
+			\end{align}
+			が成り立つ．ゆえに，弱位相の意味で
+			\begin{align}
+				T^{-1}(\varphi_\lambda) \longrightarrow T^{-1}(\varphi)
+			\end{align}
+			が成り立つ．ゆえに$T^{-1}|_{\mathscr{H}}$は，$L^1(X,\mathcal{B},\mu)$の弱位相と
+			$L^\infty(X,\mathcal{B},\mu)^*$の半弱位相に関して$\varphi$において連続である．
+			$\varphi$の任意性より$T^{-1}|_{\mathscr{H}}$は$\mathscr{H}$上で連続である．
+			\QED
+	\end{description}
