@@ -1,4 +1,4 @@
-\subsection{有限加法的測度の拡張}
+\subsection{加法的正値測度}
 		\begin{screen}
 			\begin{thm}[有限加法的な正値測度空間の生成]\label{thm:forming_finitely_additive_class}
 				$X$を集合，$\mathcal{A}$を集合$X$上の乗法族で$X$を含むものとする．
@@ -138,13 +138,13 @@
 		
 		\begin{screen}
 			\begin{thm}[有限加法的な正値測度により定まる外測度]\label{thm:outer_measure_finitely_additive_measure}
-				$(X,\mathcal{B},\mu_0)$を有限加法的な正値測度空間とするとき，
+				$X$を集合とし，$\mathcal{B}$を$X$上の加法族とし，$\mu_0$を$\mathcal{B}$上の加法的正値測度とする．
+				このとき
 				\begin{align}
-					\mu(A) \coloneqq \inf{}{}\Set{\sum_{n=1}^\infty \mu_0(B_n)}{B_n \in \mathcal{B},\ A \subset \bigcup_{n=1}^\infty B_n},
-					\quad (\forall A \subset X)
+					\power{X} \ni A \longmapsto \inf{}{}\Set{\sum_{n=1}^\infty \mu_0(B_n)}{B_n \in \mathcal{B},\ A \subset \bigcup_{n=1}^\infty B_n}
 				\end{align}
-				で定める$\mu$は$X$の外測度である．また$\mu_0$が$\mathcal{B}$の上で完全加法的ならば
-				$\mu$は$\mu_0$の拡張となる．
+				なる関係で定める写像を$\mu$とすれば，$\mu$は$X$の外測度である．
+				また$\mu_0$が$\mathcal{B}$の上で完全加法的ならば$\mu$は$\mu_0$の拡張となる．
 			\end{thm}
 		\end{screen}
 		
@@ -224,36 +224,36 @@
 		
 		\begin{screen}
 			\begin{thm}[Kolmogorov-Hopf]\label{thm:appendix_Kolmogorov_Hopf}
-				$(X,\mathcal{B},\mu_0)$を有限加法的な正値測度空間とすれば，
-				定理\ref{thm:outer_measure_finitely_additive_measure}より
+				$X$を集合とし，$\mathcal{B}$を$X$上の加法族とし，$\mu_0$を$\mathcal{B}$上の加法的正値測度とする．また$\tilde{\mu}$を
 				\begin{align}
-					\tilde{\mu}(A) \coloneqq \inf{}{}\Set{\sum_{n=1}^\infty \mu_0(B_n)}{B_n \in \mathcal{B},\ A \subset \bigcup_{n=1}^\infty B_n},
-					\quad (\forall A \subset X)
+					\power{X} \ni A \longmapsto 
+					\inf{}{}\Set{\sum_{n=1}^\infty \mu_0(B_n)}{B_n \in \mathcal{B},\ A \subset \bigcup_{n=1}^\infty B_n}
 				\end{align}
-				により$X$上に外測度が定まる．このとき$\mathcal{B}^*$を$\tilde{\mu}$-可測集合として
-				$\mu^* \coloneqq\left.\tilde{\mu}\right|_{\mathcal{B}^*},
-				\ \mu \coloneqq \left.\tilde{\mu}\right|_{\sigma[\mathcal{B}]}$おけば以下が成り立つ:
+				なる関係で定める外測度とする(定理\ref{thm:outer_measure_finitely_additive_measure})．
+				このとき$\mathcal{B}^*$を$\tilde{\mu}$-可測集合として
+				$\mu^* \defeq \left.\tilde{\mu}\right|_{\mathcal{B}^*},
+				\ \mu \defeq \left.\tilde{\mu}\right|_{\sigma(\mathcal{B})}$おけば以下が成り立つ:
 				\begin{description}
-					\item[(1)] $\sigma[\mathcal{B}] \subset \mathcal{B}^*$が成り立つ．
+					\item[(1)] $\sigma(\mathcal{B}) \subset \mathcal{B}^*.$
 					
 					\item[(2)] $\mu_0$が$\mathcal{B}$上で$\sigma$-加法的なら
-						$\mu$は$\mu_0$の拡張となっている:
+						$\mu$は$\mu_0$の拡張である．
 						\begin{align}
 							\mu_0(B) = \mu(B),\quad (\forall B \in \mathcal{B}).
 							\label{eq:appendix_finite_additive_measure_expansion_1}
 						\end{align}
 						
-					\item[(3)] $\mu_0$が$\mathcal{B}$上で$\sigma$-有限的であるとき，
+					\item[(3)] $\mu_0$が$\sigma$-有限であるとき，
 						(\refeq{eq:appendix_finite_additive_measure_expansion_1})を満たすような
-						$\left( X,\sigma[\mathcal{B}] \right)$上の測度は存在しても唯一つである．
+						$\left( X,\sigma(\mathcal{B}) \right)$上の正値測度は唯一つである．
 					
-					\item[(4)] $\mu_0$が$\mathcal{B}$上で$\sigma$-加法的かつ$\sigma$-有限的ならば，
-						$\mu$は$\mu_0$の$\left( X,\sigma[\mathcal{B}] \right)$への唯一つの拡張測度であり，
-						このとき$\left( X,\mathcal{B}^*,\mu^* \right)$は$(X,\sigma[\mathcal{B}],\mu)$の
+					\item[(4)] $\mu_0$が$\mathcal{B}$上で完全加法的かつ$\sigma$-有限ならば，
+						$\sigma(\mathcal{B})$上の正値測度で$\mu_0$の拡張となっているものは$\mu$のみであり，
+						また$\left( X,\mathcal{B}^*,\mu^* \right)$は$(X,\sigma(\mathcal{B}),\mu)$の
 						Lebesgue拡大に一致する:
 						\begin{align}
 							\left( X,\mathcal{B}^*,\mu^* \right) 
-							= \left( X,\overline{\sigma[\mathcal{B}]},\overline{\mu} \right).
+							= \left( X,\overline{\sigma(\mathcal{B})},\overline{\mu} \right).
 							\label{eq:appendix_finite_additive_measure_expansion_5}
 						\end{align}
 				\end{description}
@@ -361,6 +361,7 @@
 			\end{description}
 		\end{prf}
 	
+\subsection{積測度}
 	本稿では`Cartesian 積'と`直積'は分けていて，
 	Cartesian 積は$\times$で表される集合とし，直積は写像の集合としている．
 	`Cartesian 積'と`直積'で別に積$\sigma$-加法族を定義する必要がある．

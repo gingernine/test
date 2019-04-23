@@ -1,10 +1,4 @@
 \section{拡張定理}
-	確率空間を実数空間の上に作ってしまうと
-	Kolmogorovの拡張定理の証明は論理的にも見た目の上でも煩雑になるようだが，
-	Bogachevが説明する通り，コンパクトクラスの概念を使って
-	一般化されたKolmogorovの拡張定理は主張のみならず証明も洗練されたものとなる．
-	一見長い証明となるが，内容は抽象的で捉えやすい．
-	
 	いま，$T$を空でない集合とし，$T$の任意の要素$t$に対して可測空間$(X_t,\mathscr{B}_t)$が
 	定まっていて，また
 	\begin{align}
@@ -182,6 +176,43 @@
 				が成立する．
 			
 			\item[第三段]
-				$\mu$が$\mathscr{R}$の上で完全加法的であることを定理\ref{thm:compact_class_intersection}と併せて示す．
+				$\mu$が$\mathscr{R}$の上で完全加法的であることを示す．
+				\begin{align}
+					\bigcup_{t \in T} \Set{\pi_t^{-1} \ast K}{K \in \mathcal{K}_t}
+				\end{align}
+				の有限和の全体を$\mathcal{K}$とおけば$\mathcal{K}$はコンパクトクラスである．また
+				\begin{align}
+					\mathscr{D} \defeq 
+					\Set{B \in \mathscr{B}}{\forall \epsilon \in \R_+\, \exists K \in \mathcal{K}\, 
+					\left(\, \mu(B \backslash K) < \epsilon\, \right)}
+				\end{align}
+				は$X$上のDynkin族である．なので，$\mathscr{B}_{t_i}$の要素$B_i$に対して
+				\begin{align}
+					\bigcap_{i=1}^n \pi_{t_i}^{-1} \ast B_i \in \mathscr{D}
+				\end{align}
+				が成り立つことを示せば
+				\begin{align}
+					\mathscr{D} = \mathscr{B}
+				\end{align}
+				が成り立つ．実際，$\epsilon$を任意に与えられた正数とすれば，各$B_i$に対して
+				\begin{align}
+					K_i \subset B_i \wedge \mu_{t_i}(B_i \backslash K_i) < \epsilon
+				\end{align}
+				を満たす$K_i$が取れて，
+				\begin{align}
+					\bigcup_{i=1}^n \pi_{t_i}^{-1} \ast K_i \in \mathcal{K}
+				\end{align}
+				かつ
+				\begin{align}
+					\mu\left( \bigcap_{i=1}^n \pi_{t_i}^{-1} \ast B_i \backslash 
+					\bigcup_{i=1}^n \pi_{t_i}^{-1} \ast K_i \right)
+					= \mu\left( \bigcap_{i=1}^n \pi_{t_i}^{-1} \ast (B_i \backslash K_i) \right)
+					< \epsilon
+				\end{align}
+				が成り立つ．よって$\mathscr{D} = \mathscr{B}$が成立し，
+				定理\ref{thm:finite_intersection_property_and_common_point_property}と
+				定理\ref{thm:equivalent_conditions_of_countable_additivity_for_finite_measure}より
+				$\mu$の完全加法性が従う．
+				\QED
 		\end{description}
 	\end{prf}
