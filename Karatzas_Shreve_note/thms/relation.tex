@@ -813,30 +813,111 @@
 	によって定められる集合であって，$(x_i)_{i \in a}$とは別物である．
 	
 	\begin{screen}
-		\begin{thm}[全射・単射・像・原像]\label{projective_injective_image_preimage}
-			$f$を集合$A$から集合$B$への写像とするとき，
-			\begin{description}
-				\item[(1)] 任意の$U \subset A$に対し$f^{-1}\left(f(U)\right) \supset U$が成立し，
-					特に$f$が単射なら$f^{-1}\left(f(U)\right) = U$となる．
-				\item[(2)] 任意の$V \subset B$に対し$f\left(f^{-1}(V)\right) \subset V$が成立し，
-					特に$f$が全射なら$f\left(f^{-1}(V)\right) = V$となる．
-			\end{description}
+		\begin{thm}[全射ならば原像の像で元に戻る]\label{projective_injective_image_preimage}
+			$f,a,b,v$を類とする．$f$が$a$から$b$への写像であるとき
+			\begin{align}
+				v \subset b \Longrightarrow f \ast \left(f^{-1} \ast v\right) \subset v
+			\end{align}
+			が成立し，特に$f$が全射なら
+			\begin{align}
+				f \ast \left(f^{-1} \ast v\right) = v
+			\end{align}
+			が成り立つ．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(1)] 任意の$x \in U$で$f(x) \in f(U)$となるから
-				$x \in f^{-1}\left(f(U)\right)$が成立する．
-				$f$が単射であれば，任意の$x \in f^{-1}\left(f(U)\right)$に対し
-				$f(x) \in f(U)$となるから或る$x_1 \in U$で$f(x) = f(x_1)$となり，
-				単射性より$x = x_1 \in U$が成り立つ．
-				
-			\item[(2)] 任意に$y \in f\left(f^{-1}(V)\right)$を取れば，
-				或る$x \in f^{-1}(V)$で$y = f(x) \in V$となる．$f$が全射であるとき，
-				任意の$y \in V$に対し或る$x \in A$が$y = f(x)$を満たすから，
-				$x \in f^{-1}(V)$となり$y \in f\left(f^{-1}(V)\right)$が従う．
-				\QED
-		\end{description}
-	\end{prf}
+	\begin{sketch}
+		$y$を$f \ast \left(f^{-1} \ast v\right)$の要素とすると，
+		\begin{align}
+			y = f(x)
+		\end{align}
+		を満たす$f^{-1} \ast v$の要素$x$が取れて
+		\begin{align}
+			f(x) \in v
+		\end{align}
+		が成り立つから
+		\begin{align}
+			y \in v
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			f \ast \left(f^{-1} \ast v\right) \subset v
+		\end{align}
+		が成立する．$f$が全射であるとき，$y$を$v$の要素とすれば
+		\begin{align}
+			y = f(x)
+		\end{align}
+		を満たす$a$の要素$x$が取れて，
+		\begin{align}
+			x \in f^{-1} \ast v
+		\end{align}
+		が成り立つので
+		\begin{align}
+			y \in f \ast \left(f^{-1} \ast v\right)
+		\end{align}
+		が従う．ゆえに$f$が全射である場合には
+		\begin{align}
+			v \subset f \ast \left(f^{-1} \ast v\right)
+		\end{align}
+		も成立して
+		\begin{align}
+			v = f \ast \left(f^{-1} \ast v\right)
+		\end{align}
+		となる．
+		\QED
+	\end{sketch}
 	
+	\begin{screen}
+		\begin{thm}[単射ならば像の原像で元に戻る]\label{projective_injective_image_preimage_2}
+			$f,a,b,u$を類とする．$f$が$a$から$b$への写像であるとき
+			\begin{align}
+				u \subset a \Longrightarrow u \subset f^{-1} \ast \left(f \ast u\right)
+			\end{align}
+			が成立し，特に$f$が単射なら
+			\begin{align}
+				u = f^{-1} \ast \left(f \ast u\right)
+			\end{align}
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$x$を$u$の要素とすると
+		\begin{align}
+			f(x) \in f \ast u
+		\end{align}
+		が成り立つから
+		\begin{align}
+			x \in f^{-1} \ast \left(f \ast u\right)
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			u \subset f^{-1} \ast \left(f \ast u\right)
+		\end{align}
+		が成立する．$y$を$f^{-1} \ast \left(f \ast u\right)$の要素とすれば
+		\begin{align}
+			f(y) \in f \ast u
+		\end{align}
+		が成り立って
+		\begin{align}
+			f(y) = f(z)
+		\end{align}
+		を満たす$u$の要素$z$が取れる．ゆえに，$f$が単射であるとき
+		\begin{align}
+			y = z
+		\end{align}
+		となって
+		\begin{align}
+			y \in u
+		\end{align}
+		が従い，
+		\begin{align}
+			f^{-1} \ast \left(f \ast u\right) \subset u
+		\end{align}
+		が成立する．ゆえに，$f$が単射であれば
+		\begin{align}
+			u = f^{-1} \ast \left(f \ast u\right)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}

@@ -19,34 +19,32 @@
 	$X_{\Lambda}$への射影を$\pi_{\Lambda',\Lambda}$と書き，
 	また$X$から$X_\Lambda$への射影を$\pi_{\Lambda}$と書く．以上が準備となる．
 	
-	定理の首脳部に入る前に次の補題を証明する．
+	定理の首脳部に入る前に次を証明しておく．
 	\begin{screen}
 		\begin{lem}[射影の可測性]\label{lem:Kolmogorov_extension_theorem}
-			$T$の任意の空でない部分集合$\Lambda,\Lambda'$に対し(有限性は要らない)，$\Lambda \subset \Lambda'$であるとき
+			$\Lambda$と$\Lambda'$を$\Lambda \subset \Lambda'$なる$T$の空でない部分集合とするとき，
 			射影$\pi_{\Lambda',\Lambda}$は$\mathscr{B}_{\Lambda'}/\mathscr{B}_\Lambda$-可測である．
 			また射影$\pi_\Lambda$は$\mathscr{B}/\mathscr{B}_\Lambda$-可測である．
 		\end{lem}
 	\end{screen}
 	
 	\begin{prf}
-		$\Lambda,\Lambda'$を$T$の空でない部分集合とする．このとき，まず$\Lambda$の任意の要素$t$に対し$\pi_{\Lambda,\{t\}}$は
+		$t$を$\Lambda$の要素とすれば$\pi_{\Lambda,\{t\}}$は
 		$X_\Lambda$から$X_t$への射影であるから，直積$\sigma$-加法族の定義より$\pi_{\Lambda,\{t\}}$は
-		$\mathscr{B}_\Lambda/\mathscr{B}_t$-可測性を持つ．特に$\Lambda=T$の場合
+		$\mathscr{B}_\Lambda/\mathscr{B}_t$-可測である．
+		特に$\pi_\Lambda$は$\mathscr{B}/\mathscr{B}_\Lambda$-可測である．
+		また$\Lambda \subset \Lambda'$であるとき，
+		$t$を$\Lambda$の要素として$B$を$\mathscr{B}_t$の要素とすれば
 		\begin{align}
-			\pi_{\Lambda,\{t\}} = \pi_\Lambda,\quad \mathscr{B}_\Lambda = \mathscr{B}
+			\pi_{\Lambda',\Lambda}^{-1} \ast \left(\pi_{\Lambda,\{t\}}^{-1} \ast B\right)
+			= \pi_{\Lambda',\{t\}}^{-1} \ast B
 		\end{align}
-		であるから$\pi_\Lambda$の$\mathscr{B}/\mathscr{B}_\Lambda$-可測性が得られる．
-		また$\Lambda \subset \Lambda'$であるとき，$\Lambda$の任意の要素$t$と$\mathscr{B}_t$の任意の要素$B$に対し
+		が成立するので
 		\begin{align}
-			\pi_{\Lambda',\Lambda}^{-1}\left(\pi_{\Lambda,\{t\}}^{-1}(B)\right)
-			= \pi_{\Lambda',\{t\}}^{-1}(B) \in \mathscr{B}_{\Lambda'}
+			\bigcup_{t\in\Lambda} \Set{\pi_{\Lambda,\{t\}}^{-1} \ast B}{B \in \mathscr{B}_t}
+			\subset \Set{B \in \mathscr{B}_\Lambda}{\pi_{\Lambda',\Lambda}^{-1} \ast B \in \mathscr{B}_{\Lambda'}}
 		\end{align}
-		が成立する．従って
-		\begin{align}
-			\bigcup_{t\in\Lambda} \Set{\pi_{\Lambda,\{t\}}^{-1}(B)}{B \in \mathscr{B}_t}
-			\subset \Set{B \in \mathscr{B}_\Lambda}{\pi_{\Lambda',\Lambda}^{-1}(B) \in \mathscr{B}_{\Lambda'}}
-		\end{align}
-		となり，左辺は$\mathscr{B}_\Lambda$を生成し右辺は$\sigma$-加法族であるから
+		が成り立つ．左辺は$\mathscr{B}_\Lambda$を生成し右辺は$\sigma$-加法族であるから
 		$\pi_{\Lambda',\Lambda}$の$\mathscr{B}_{\Lambda'}/\mathscr{B}_\Lambda$-可測性が従う．
 		\QED
 	\end{prf}
@@ -76,47 +74,71 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$\mathscr{R} = \bigcup_{\Lambda\in\mathscr{F}} \Set{\pi_\Lambda^{-1}(B)}{B \in \mathscr{B}_\Lambda}$
-				で$\mathscr{R}$を定めれば，$\mathscr{R}$は$X$上の有限加法族となり$\mathscr{B}$を生成する．
-				実際
+				集合$\mathscr{R}$を
 				\begin{align}
-					X = \pi_\Lambda^{-1}(X_\Lambda) \in \mathscr{R}
+					\mathscr{R} \defeq \bigcup_{\Lambda\in\mathscr{F}} \Set{\pi_\Lambda^{-1} \ast B}{B \in \mathscr{B}_\Lambda}
 				\end{align}
-				が成立し，また任意に$\mathscr{R}$の要素$A$を取れば，
-				$A$は或る$\Lambda \in \mathscr{F}$と$B \in \mathscr{B}_\Lambda$を用いて
+				により定めれば，$\mathscr{R}$は$X$上の加法族となり$\mathscr{B}$を生成する．まず
 				\begin{align}
-					A = \pi_\Lambda^{-1}(B)
+					X = \pi_\Lambda^{-1} \ast X_\Lambda
 				\end{align}
-				と表され，$X_\Lambda \backslash B \in \mathscr{B}_\Lambda$であるから
+				より$X$は$\mathscr{R}$の要素である．また$A$を$\mathscr{R}$の要素とすれば
 				\begin{align}
-					X \backslash A = \pi_\Lambda^{-1}(X_\Lambda \backslash B) \in \mathscr{R}
+					A = \pi_\Lambda^{-1} \ast B
 				\end{align}
-				が成り立つ．また任意に$\mathscr{R}$の要素$A,A'$を取れば，
-				或る$\mathscr{F}$の要素$\Lambda$と$\mathscr{B}_\Lambda$の要素$B$及び
-				或る$\mathscr{F}$の要素$\Lambda'$と$\mathscr{B}_{\Lambda'}$の要素$B'$を用いて
+				を満たす$\mathscr{F}$の要素$\Lambda$と$\mathscr{B}_\Lambda$の要素$B$が取れて，このとき
 				\begin{align}
-					A = \pi_\Lambda^{-1}(B),\quad A' = \pi_\Lambda^{-1}(B')
+					X \backslash A = \pi_\Lambda^{-1} \ast (X_\Lambda \backslash B)
 				\end{align}
-				と表され，このとき$\Lambda'' = \Lambda \cup \Lambda'$とおけば
+				が成り立つので
 				\begin{align}
-					A = \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda}^{-1}(B)\right),
-					\quad A' = \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda'}^{-1}(B')\right)
+					X \backslash A \in \mathscr{R}
 				\end{align}
-				が成り立つ．補題\ref{lem:Kolmogorov_extension_theorem}より
-				$\pi_{\Lambda'',\Lambda}^{-1}(B)$と$\pi_{\Lambda'',\Lambda'}^{-1}(B')$は共に$\mathscr{B}_{\Lambda''}$に属するので
+				も成り立つ．$A$と$A'$を$\mathscr{R}$の要素とすれば，
+				\begin{align}
+					A = \pi_\Lambda^{-1} \ast B
+				\end{align}
+				を満たす$\mathscr{F}$の要素$\Lambda$と$\mathscr{B}_\Lambda$の要素$B$が取れて，かつ
+				\begin{align}
+					A' = \pi_{\Lambda'}^{-1} \ast B'
+				\end{align}
+				を満たする$\mathscr{F}$の要素$\Lambda'$と$\mathscr{B}_{\Lambda'}$の要素$B'$も取れる．
+				ここで
+				\begin{align}
+					\Lambda'' \defeq \Lambda \cup \Lambda'
+				\end{align}
+				とおけば
+				\begin{align}
+					A = \pi_{\Lambda''}^{-1} \ast \left(\pi_{\Lambda'',\Lambda}^{-1} \ast B\right)
+				\end{align}
+				と
+				\begin{align}
+					A' = \pi_{\Lambda''}^{-1} \ast \left(\pi_{\Lambda'',\Lambda'}^{-1} \ast B'\right)
+				\end{align}
+				が成り立つ．よって
 				\begin{align}
 					A \cup A' =  \pi_{\Lambda''}^{-1}\left(\pi_{\Lambda'',\Lambda}^{-1}(B) \cup 
 					\pi_{\Lambda'',\Lambda'}^{-1}(B')\right)
 				\end{align}
-				となり$A \cup A' \in \mathscr{R}$が成立する．以上より$\mathscr{R}$は$X$上の有限加法族をなしている．
-				また$T$の任意の要素$t$に対して$\{t\}$は$\mathscr{F}$に属するから
+				となるが，補題\ref{lem:Kolmogorov_extension_theorem}より
+				$\pi_{\Lambda'',\Lambda}^{-1}(B)$と$\pi_{\Lambda'',\Lambda'}^{-1}(B')$は共に$\mathscr{B}_{\Lambda''}$に属するので
+				\begin{align}
+					A \cup A' \in \mathscr{R}
+				\end{align}
+				が成立する．以上より$\mathscr{R}$は$X$上の加法族である．また
 				\begin{align}
 					\bigcup_{t \in T}\Set{\pi_{\{t\}}^{-1}(B)}{B \in \mathscr{B}_t} \subset \mathscr{R}
 				\end{align}
-				が成り立ち，左辺は$\mathscr{B}$を生成するので$\mathscr{B} \subset \sigma(\mathscr{R})$を得る．
-				一方で$\mathscr{F}$の任意の要素$\Lambda$に対し$\pi_\Lambda$は
-				$\mathscr{B}/\mathscr{B}_\Lambda$-可測である(補題\ref{lem:Kolmogorov_extension_theorem})
-				から$\mathscr{R} \subset \mathscr{B}$も得られ，以上で
+				が成り立つが，左辺は$\mathscr{B}$を生成するので
+				\begin{align}
+					\mathscr{B} \subset \sigma(\mathscr{R})
+				\end{align}
+				を得る．一方で$\mathscr{F}$の任意の要素$\Lambda$に対し$\pi_\Lambda$は
+				$\mathscr{B}/\mathscr{B}_\Lambda$-可測であるから
+				\begin{align}
+					\mathscr{R} \subset \mathscr{B}
+				\end{align}
+				も成り立ち
 				\begin{align}
 					\sigma(\mathscr{R}) = \mathscr{B}
 				\end{align}
@@ -125,53 +147,65 @@
 			\item[第二段]
 				$\mu$を
 				\begin{align}
-					\mu = \Set{(x,y)}{\exists \Lambda \in \mathscr{F}
-					\exists B \in \mathscr{B}_\Lambda
-					\left(x=\pi_\Lambda^{-1}(B) \wedge y = P_\Lambda(B)\right)}
+					\mathscr{R} \ni \pi_\Lambda^{-1} \ast B \longmapsto P_\Lambda(B)
 				\end{align}
-				により定める．このとき$\mu$はsigle-valuedであり，
-				$\mathscr{R}$上の有限加法的測度となる．まず$\mu$がsingle-valuedであることを示す．
+				なる関係により定めると，$\mu$は写像であって，また$\mathscr{R}$の上の加法的である．
+				まず$\mu$が写像であることを示す．
 				\begin{align}
-					\pi_\Lambda^{-1}(B) = \pi_{\Lambda'}^{-1}(B')
+					\pi_\Lambda^{-1} \ast B = \pi_{\Lambda'}^{-1} \ast B'
 				\end{align}
-				であるとき，$\Lambda'' \coloneqq \Lambda \cup \Lambda'$とおけば
+				が成り立っているとき，
 				\begin{align}
-					\pi_{\Lambda''}^{-1}\left( \pi_{\Lambda'',\Lambda}^{-1}(B) \right)
-					= \pi_\Lambda^{-1}(B)
-					= \pi_{\Lambda'}^{-1}(B')
-					= \pi_{\Lambda''}^{-1}\left( \pi_{\Lambda'',\Lambda'}^{-1}(B') \right)
+					\Lambda'' \defeq \Lambda \cup \Lambda'
 				\end{align}
-				が成り立つから$\pi_{\Lambda'',\Lambda}^{-1}(B) = \pi_{\Lambda'',\Lambda'}^{-1}(B')$
-				が従い(定理\ref{projective_injective_image_preimage})，整合性条件より
+				とおけば
+				\begin{align}
+					\pi_{\Lambda''}^{-1} \ast \left( \pi_{\Lambda'',\Lambda}^{-1} \ast B \right)
+					= \pi_\Lambda^{-1} \ast B
+					= \pi_{\Lambda'}^{-1} \ast B'
+					= \pi_{\Lambda''}^{-1} \ast \left( \pi_{\Lambda'',\Lambda'}^{-1} \ast B' \right)
+				\end{align}
+				が成り立つ．ここで$\pi_{\Lambda''}$は全射なので定理\ref{projective_injective_image_preimage}より
+				\begin{align}
+					\pi_{\Lambda'',\Lambda}^{-1}(B) = \pi_{\Lambda'',\Lambda'}^{-1}(B')
+				\end{align}
+				が従い，両立条件から
 				\begin{align}
 					\mu_\Lambda(B) 
-					= \mu_{\Lambda''} \circ \pi_{\Lambda'',\Lambda}^{-1}(B)
-					= \mu_{\Lambda''} \circ \pi_{\Lambda'',\Lambda'}^{-1}(B')
+					= \mu_{\Lambda''} \pi_{\Lambda'',\Lambda}^{-1}(B)
+					= \mu_{\Lambda''} \pi_{\Lambda'',\Lambda'}^{-1}(B')
 					= \mu_{\Lambda'}(B')
 				\end{align}
-				が満たされ$\mu$の一意性を得る．次に$\mu$の加法性を示す．
+				が成り立つ．ゆえに$\mu$は写像である．次に$\mu$の加法性を示す．
 				\begin{align}
 					\pi_{\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_2}^{-1}(B_2) = \emptyset
 				\end{align}
-				であるとき，$\Lambda_3 \coloneqq \Lambda_1 \cup \Lambda_2$とおけば
+				であるとき，
+				\begin{align}
+					\Lambda_3 \defeq \Lambda_1 \cup \Lambda_2
+				\end{align}
+				とおけば
 				\begin{align}
 					\emptyset 
-					= \pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \right)
-					\cap \pi_{\Lambda_3}\left( \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right)
-					= \pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right)
+					= \pi_{\Lambda_3}^{-1} \ast \left( \pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \right)
+					\cap \pi_{\Lambda_3} \ast \left( \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 \right)
+					= \pi_{\Lambda_3}^{-1} \ast \left( \pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \cap \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 \right)
 				\end{align}
-				となるから$\pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cap \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2)
-				= \emptyset$が従い(全射の性質)，
+				が成り立って，$\pi_{\Lambda_3}$が全射であるので
 				\begin{align}
-					\mu\left( \pi_{\Lambda_1}^{-1}(B_1) \cup \pi_{\Lambda_2}^{-1}(B_2) \right)
-					&= \mu\left[\pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \right)
-					\cup \pi_{\Lambda_3}\left( \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \right] \\
-					&= \mu\left[ \pi_{\Lambda_3}^{-1}\left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cup \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \right] \\
-					&= \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \cup \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \\
-					&= \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_1}^{-1}(B_1) \right)
-						+ \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_2}^{-1}(B_2) \right) \\
-					&= \mu\left( \pi_{\Lambda_1}^{-1}(B_1) \right)
-						+ \mu\left( \pi_{\Lambda_2}^{-1}(B_2) \right)
+					\pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \cap \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 = \emptyset
+				\end{align}
+				が従う．よって両立条件と併せて
+				\begin{align}
+					\mu\left( \pi_{\Lambda_1}^{-1} \ast B_1 \cup \pi_{\Lambda_2}^{-1} \ast B_2 \right)
+					&= \mu\left[\pi_{\Lambda_3}^{-1} \ast \left( \pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \right)
+					\cup \pi_{\Lambda_3} \ast \left( \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 \right) \right] \\
+					&= \mu\left[ \pi_{\Lambda_3}^{-1} \ast \left( \pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \cup \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 \right) \right] \\
+					&= \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \cup \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 \right) \\
+					&= \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_1}^{-1} \ast B_1 \right)
+						+ \mu_{\Lambda_3} \left( \pi_{\Lambda_3,\Lambda_2}^{-1} \ast B_2 \right) \\
+					&= \mu\left( \pi_{\Lambda_1}^{-1} \ast B_1 \right)
+						+ \mu\left( \pi_{\Lambda_2}^{-1} \ast B_2 \right)
 				\end{align}
 				が成立する．
 			
@@ -180,21 +214,29 @@
 				\begin{align}
 					\bigcup_{t \in T} \Set{\pi_t^{-1} \ast K}{K \in \mathcal{K}_t}
 				\end{align}
-				の有限和の全体を$\mathcal{K}$とおけば$\mathcal{K}$はコンパクトクラスである．また
+				の有限和の全体を$\mathcal{K}$とおけば$\mathcal{K}$はコンパクトクラスである(未証明)．また
 				\begin{align}
 					\mathscr{D} \defeq 
 					\Set{B \in \mathscr{B}}{\forall \epsilon \in \R_+\, \exists K \in \mathcal{K}\, 
 					\left(\, \mu(B \backslash K) < \epsilon\, \right)}
 				\end{align}
-				は$X$上のDynkin族である．なので，$\mathscr{B}_{t_i}$の要素$B_i$に対して
+				は$X$上のDynkin族である．ここで
+				\begin{align}
+					\bigcup_{t \in T} \Set{\pi_t^{-1} \ast B}{B \in \mathscr{B}_t}
+				\end{align}
+				の有限交叉の全体は$\mathscr{B}$を生成する乗法族となるので，
+				$\bigcap_{i=1}^n \pi_{t_i}^{-1} \ast B_i$をその要素とするとき
 				\begin{align}
 					\bigcap_{i=1}^n \pi_{t_i}^{-1} \ast B_i \in \mathscr{D}
+					\label{Kolmogorov_extension_theorem_1}
 				\end{align}
 				が成り立つことを示せば
 				\begin{align}
 					\mathscr{D} = \mathscr{B}
 				\end{align}
-				が成り立つ．実際，$\epsilon$を任意に与えられた正数とすれば，各$B_i$に対して
+				が成り立ち，定理\ref{thm:finite_intersection_property_and_common_point_property}と
+				定理\ref{thm:equivalent_conditions_of_countable_additivity_for_finite_measure}より
+				$\mu$の完全加法性が従う．$\epsilon$を任意に与えられた正数とすれば，各$B_i$に対して
 				\begin{align}
 					K_i \subset B_i \wedge \mu_{t_i}(B_i \backslash K_i) < \epsilon
 				\end{align}
@@ -209,10 +251,7 @@
 					= \mu\left( \bigcap_{i=1}^n \pi_{t_i}^{-1} \ast (B_i \backslash K_i) \right)
 					< \epsilon
 				\end{align}
-				が成り立つ．よって$\mathscr{D} = \mathscr{B}$が成立し，
-				定理\ref{thm:finite_intersection_property_and_common_point_property}と
-				定理\ref{thm:equivalent_conditions_of_countable_additivity_for_finite_measure}より
-				$\mu$の完全加法性が従う．
+				が成り立つ．すなわち(\refeq{Kolmogorov_extension_theorem_1})が成り立つ．
 				\QED
 		\end{description}
 	\end{prf}
