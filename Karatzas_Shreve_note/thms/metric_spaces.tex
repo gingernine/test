@@ -439,28 +439,45 @@
 \subsection{範疇定理}
 	\begin{screen}
 		\begin{thm}[Cantorの共通部分定理]\label{thm:Cantor_intersection_theorem}
-			$S$をHausdorff空間とし，
-			$\mathcal{K}$をコンパクト部分集合の族とする．
-			このとき，$\mathcal{K}$の空でない任意の有限部分族$\tilde{\mathcal{K}}$
-			に対して$\bigcap \tilde{\mathcal{K}} \neq \emptyset$が成り立つなら
-			$\bigcap \mathcal{K} \neq \emptyset$が成り立つ．
+			$(S,\mathscr{O}_S)$をHausdorff空間とし，
+			$\mathcal{K}$を$S$のコンパクト部分集合から成る集合とする．
+			このとき，$\mathcal{K}$の空でない任意の有限部分集合$U$
+			に対して$\bigcap U \neq \emptyset$が成り立つなら
+			$\bigcap \mathcal{K} \neq \emptyset$が成り立つ．つまり
+			\begin{align}
+				\forall U\, \left(\, U \subset \mathcal{K} \wedge \exists n \in \Natural\, (\, U \eqp n\, )
+				\Longrightarrow \bigcap U \neq \emptyset\, \right)
+				\Longrightarrow \bigcap \mathcal{K} \neq \emptyset.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$\bigcap \mathcal{K} = \emptyset$ならば，任意に一つ$\mathcal{K}$の要素$K$を取れば
-		$K \subset \bigcup_{C \in \mathcal{K}} S \backslash C$となり，
-		$K$のコンパクト性より$\mathcal{K}$の或る有限部分族$\mathcal{K}'$が存在して
+		いま
 		\begin{align}
-			K \subset \bigcup_{C \in \mathcal{K}'} S \backslash C 
-			= S \left\backslash \bigcap \mathcal{K}' \right.
+			\bigcap \mathcal{K} = \emptyset
 		\end{align}
-		を満たされる．ここで$\mathcal{K}''$を$\mathcal{K}'$に要素$K$を加えた
-		$\mathcal{K}$の有限部分族とすれば
+		が成り立っているとする．このとき$K$を$\mathcal{K}$の要素とすれば
+		\begin{align}
+			K \subset \bigcup_{C \in \mathcal{K}} S \backslash C
+		\end{align}
+		となる．Hausdorff性より
+		\begin{align}
+			C \in \mathcal{K} \Longrightarrow S \backslash C \in \mathscr{O}_S
+		\end{align}
+		が成り立つので，$K$のコンパクト性より
+		\begin{align}
+			K \subset \bigcup_{C \in \mathcal{K}'} S \backslash C
+		\end{align}
+		を満たす$\mathcal{K}$の或る有限部分集合$\mathcal{K}'$が取れる．
+		\begin{align}
+			\mathcal{K}'' \defeq \mathcal{K}' \cup \{K\}
+		\end{align}
+		とおけば$\mathcal{K}''$は$\mathcal{K}$の有限部分集合であり，また
 		\begin{align}
 			\bigcap \mathcal{K}'' = K \cap \bigcap \mathcal{K}' = \emptyset
 		\end{align}
-		が成り立つ．対偶を取れば定理の主張を得る．
+		を満たす．
 		\QED
 	\end{prf}
 	

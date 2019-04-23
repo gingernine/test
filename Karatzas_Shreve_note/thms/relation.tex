@@ -47,32 +47,11 @@
 		\end{dfn}
 	\end{screen}
 	
-	\monologue{
-		院生「しつこいですが，本来は$\varepsilon$記号を用いて
-			\begin{align}
-				a \times b \coloneqq \Set{y}{\exists s,t\ 
-				(\ \varepsilon a(s) \wedge \varepsilon b(t) \wedge y = \varepsilon x (x=(s,t))\ )}
-			\end{align}
-			と定めるのが正式です．しかし$s,t$を$\mathcal{L}$の対象とするとき，
-			\begin{align}
-				\begin{gathered}
-					s \in a \Longleftrightarrow \epsilon a(s), \\
-					t \in b \Longleftrightarrow \epsilon b(t), \\
-					(s,t) = \varepsilon x (x = (s,t))
-				\end{gathered}
-			\end{align}
-			となり，$\mathcal{L}$の任意の対象$y$に対して
-			\begin{align}
-				&\exists s,t\ 
-				(\ \varepsilon a(s) \wedge \varepsilon b(t) \wedge y = \varepsilon x (x=(s,t))\ ) \\ 
-				&\Longleftrightarrow \exists s \in a\ \exists t \in b\ (\ y=(s,t)\ )
-			\end{align}
-			が満たされますから解釈上の不具合は無いのですね．また$a \times b$は
-			\begin{align}
-				\Set{(s,t)}{s \in a \wedge t \in b} 
-			\end{align}
-			と簡略して書かれることも多いです．」
-	}
+	$a \times b$は
+	\begin{align}
+		\Set{(s,t)}{s \in a \wedge t \in b} 
+	\end{align}
+	と簡略して書かれることも多い．
 	
 	\begin{comment}
 	\monologue{
@@ -809,3 +788,55 @@
 			で定める．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[族・系]\label{dfn:family_collection}
+			$x$を集合$a$から集合$b$への写像とするとき，
+			$x$のことを``$a$を添字集合\index{てんじしゅうごう@添字集合}(index set)とする
+			$b$の族\index{ぞく@族}(family) (或は系\index{けい@系}(collection))''とも呼び，
+			$x(i)$を$x_i$と書いて
+			\begin{align}
+				(x_i)_{i \in a} \defeq x
+			\end{align}
+			とも表記する．
+		\end{dfn}
+	\end{screen}
+	族$(x_i)_{i \in a}$は写像$x$と同じであるが，一方で
+	丸括弧を中括弧に替えた
+	\begin{align}
+		\{x_i\}_{i \in a}
+	\end{align}
+	は
+	\begin{align}
+		\Set{x(i)}{i \in a}
+	\end{align}
+	によって定められる集合であって，$(x_i)_{i \in a}$とは別物である．
+	
+	\begin{screen}
+		\begin{thm}[全射・単射・像・原像]\label{projective_injective_image_preimage}
+			$f$を集合$A$から集合$B$への写像とするとき，
+			\begin{description}
+				\item[(1)] 任意の$U \subset A$に対し$f^{-1}\left(f(U)\right) \supset U$が成立し，
+					特に$f$が単射なら$f^{-1}\left(f(U)\right) = U$となる．
+				\item[(2)] 任意の$V \subset B$に対し$f\left(f^{-1}(V)\right) \subset V$が成立し，
+					特に$f$が全射なら$f\left(f^{-1}(V)\right) = V$となる．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 任意の$x \in U$で$f(x) \in f(U)$となるから
+				$x \in f^{-1}\left(f(U)\right)$が成立する．
+				$f$が単射であれば，任意の$x \in f^{-1}\left(f(U)\right)$に対し
+				$f(x) \in f(U)$となるから或る$x_1 \in U$で$f(x) = f(x_1)$となり，
+				単射性より$x = x_1 \in U$が成り立つ．
+				
+			\item[(2)] 任意に$y \in f\left(f^{-1}(V)\right)$を取れば，
+				或る$x \in f^{-1}(V)$で$y = f(x) \in V$となる．$f$が全射であるとき，
+				任意の$y \in V$に対し或る$x \in A$が$y = f(x)$を満たすから，
+				$x \in f^{-1}(V)$となり$y \in f\left(f^{-1}(V)\right)$が従う．
+				\QED
+		\end{description}
+	\end{prf}
+	

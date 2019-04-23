@@ -1,4 +1,4 @@
-\subsection{Kolmogorovの拡張定理}
+\section{拡張定理}
 	確率空間を実数空間の上に作ってしまうと
 	Kolmogorovの拡張定理の証明は論理的にも見た目の上でも煩雑になるようだが，
 	Bogachevが説明する通り，コンパクトクラスの概念を使って
@@ -6,21 +6,24 @@
 	一見長い証明となるが，内容は抽象的で捉えやすい．
 	
 	いま，$T$を空でない集合とし，$T$の任意の要素$t$に対して可測空間$(X_t,\mathscr{B}_t)$が
-	定まっていて，$X_t$は空ではないとする．$T$の空でない任意の有限部分集合の全体を
-	$\mathscr{F}$とおくとき，$\mathscr{F}$の任意の要素$\Lambda$に対して
+	定まっていて，また
 	\begin{align}
-		X_\Lambda = \prod_{t \in \Lambda} X_t,
-		\quad \mathscr{B}_\Lambda = \bigotimes_{t \in \Lambda} \mathscr{B}_t
+		\forall t \in T\, (\, X_t \neq \emptyset\, )
+	\end{align}
+	が満たされているとする．$\mathscr{F}$を$T$の空でない任意の有限部分集合の全体として，$\mathscr{F}$の任意の要素$\Lambda$に対して
+	\begin{align}
+		X_\Lambda \defeq \prod_{t \in \Lambda} X_t,
+		\quad \mathscr{B}_\Lambda \defeq \bigotimes_{t \in \Lambda} \mathscr{B}_t
 	\end{align}
 	により可測空間$(X_\Lambda,\mathscr{B}_\Lambda)$を定める．また
 	\begin{align}
-		X \coloneqq \prod_{t \in T} X_t,
-		\quad \mathscr{B} \coloneqq \bigotimes_{t \in T} \mathscr{B}_t
+		X \defeq \prod_{t \in T} X_t,
+		\quad \mathscr{B} \defeq \bigotimes_{t \in T} \mathscr{B}_t
 	\end{align}
 	とおく．$\mathscr{F}$の任意の要素$\Lambda,\Lambda'$に対し，
 	$\Lambda \subset \Lambda'$であるとき$X_{\Lambda'}$から
 	$X_{\Lambda}$への射影を$\pi_{\Lambda',\Lambda}$と書き，
-	また$X$から$X_\Lambda$への射影を$\pi_{\Lambda}$と書く．以上が定理の準備となる．
+	また$X$から$X_\Lambda$への射影を$\pi_{\Lambda}$と書く．以上が準備となる．
 	
 	定理の首脳部に入る前に次の補題を証明する．
 	\begin{screen}
@@ -54,29 +57,27 @@
 		\QED
 	\end{prf}
 	
-	本節の主題は次の通りである．いま，$\mathscr{F}$の任意の要素$\Lambda$に対し，
-	$(X_\Lambda,\mathscr{B}_\Lambda)$上に有限測度$\mu_\Lambda$が定まっていて
+	本節の主題は次である．いま，$\mathscr{F}$の任意の要素$\Lambda$に対し，
+	$(X_\Lambda,\mathscr{B}_\Lambda)$上に確率測度$\mu_\Lambda$が定まっていて
 	\begin{align}
 		\forall \Lambda,\Lambda' \in \mathscr{F},\quad
 		\Lambda \subset \Lambda' \Longrightarrow
-		\mu_{\Lambda'} \circ \pi_{\Lambda',\Lambda}^{-1}
+		\mu_{\Lambda'} \pi_{\Lambda',\Lambda}^{-1}
 		= \mu_\Lambda
 	\end{align}
-	が成り立っていると仮定する．この条件を{\bf Kolmogorovの両立条件}
-	\index{Kolmogorovのりょうりつじょうけん@Kolmogorovの両立条件}
+	が成り立っているとする．この式を{\bf 両立条件}\index{りょうりつじょうけん@両立条件}
 	{\bf (consistency condition)}と呼ぶ．
-	加えて，$T$の任意の要素$t$に対して$\mathscr{B}_t$に含まれるコンパクトクラス$\mathcal{K}_t$
-	が存在し，任意の正数$\epsilon$及び$\mu_{\{t\}}(B) > 0$を満たす$\mathscr{B}_t$の任意の要素$B$
-	に対して或る$\mathcal{K}_t$の要素$K$で
+	加えて，$T$の任意の要素$t$に対して$\mathscr{B}_t$に含まれるコンパクトクラス$\mathcal{K}_t$が取れて，
+	任意の正数$\epsilon$と$\mathscr{B}_t$の任意の要素$B$に対して
 	\begin{align}
 		K \subset B \wedge \mu_{\{t\}}(B \backslash K) < \epsilon
 	\end{align}
-	を満たすものが取れることも仮定する．
-	このとき$(X,\mathscr{B})$上にただ一つの有限測度$\mu$が存在して次が成立する:
+	なる$\mathcal{K}_t$の要素$K$が取れるとする．このとき，
 	\begin{align}
 		\forall \Lambda \in \mathscr{F},\quad 
-		\mu \circ \pi_{\Lambda}^{-1} = \mu_\Lambda.
+		\mu \pi_{\Lambda}^{-1} = \mu_\Lambda.
 	\end{align}
+	を満たす$(X,\mathscr{B})$上の確率測度$\mu$が唯一つだけ取れる．
 	
 	\begin{prf}\mbox{}
 		\begin{description}
