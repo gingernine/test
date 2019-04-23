@@ -442,7 +442,60 @@
 	\end{screen}
 	
 	\begin{sketch}
-		
+		$p$を
+		\begin{align}
+			X \times Y \ni (x,y) \longmapsto x
+		\end{align}
+		なる関係で定める写像とし，$q$を
+		\begin{align}
+			X \times Y \ni (x,y) \longmapsto y
+		\end{align}
+		なる関係で定める写像とする．$O$を$X$の開集合とすれば
+		\begin{align}
+			p^{-1} \ast O
+		\end{align}
+		は$X \times Y$の開集合となるから，
+		\begin{align}
+			\mathscr{O}_X \subset \Set{A \in \borel{X}}{p^{-1} \ast A \in \borel{X \times Y}}
+		\end{align}
+		が従い，右辺は$\sigma$-加法族なので
+		\begin{align}
+			A \in \borel{X} \Longrightarrow p^{-1} \ast A \in \borel{X \times Y}
+		\end{align}
+		が成立する．同様にして
+		\begin{align}
+			B \in \borel{Y} \Longrightarrow q^{-1} \ast B \in \borel{X \times Y}
+		\end{align}
+		が成立するので，
+		\begin{align}
+			\Set{A \times B}{A \in \borel{X} \wedge B \in \borel{Y}} \subset \borel{X \times Y}
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\borel{X} \otimes \borel{Y} \subset \borel{X \times Y}
+		\end{align}
+		が得られる．逆の包含関係を示す．$\mathscr{B}_X$を$\mathscr{O}_X$の可算開基とし，$\mathscr{B}_Y$を$\mathscr{O}_Y$の可算開基とすれば，
+		\begin{align}
+			\mathscr{B} \defeq \Set{U \times V}{U \in \mathscr{B}_X \wedge V \in \mathscr{B}_Y}
+		\end{align}
+		とおけば$\mathscr{B}$は$X \times Y$の位相の可算開基となり，また
+		\begin{align}
+			\mathscr{B} \subset \borel{X} \otimes \borel{Y}
+		\end{align}
+		が成立する．$O$を$X \times Y$の開集合とすれば
+		\begin{align}
+			O = \bigcup \mathscr{U}
+		\end{align}
+		を満たす$\mathscr{B}$の部分集合$\mathscr{U}$が取れるので
+		\begin{align}
+			O \in \borel{X} \otimes \borel{Y}
+		\end{align}
+		となる．ゆえに$X \times Y$の位相は$\borel{X} \otimes \borel{Y}$に含まれるので
+		\begin{align}
+			\borel{X \times Y} \subset \borel{X} \otimes \borel{Y}
+		\end{align}
+		も得られた．
+		\QED
 	\end{sketch}
 	
 	$(X,\mathscr{O}_X)$と$(Y,\mathscr{O}_Y)$と$(Z,\mathscr{O}_Z)$を第二可算位相空間とすれば，
@@ -457,9 +510,9 @@
 	\begin{screen}
 		\begin{thm}[第二可算空間の直積のBorel集合族]\label{thm:Borel_algebra_of_products_of_second_countable_spaces}
 			$\Lambda$を空でない高々可算集合，
-			$(S_\lambda)_{\lambda \in \Lambda}$を空でない第二可算空間の族とする．
-			$S \coloneqq \prod_{\lambda \in \Lambda} S_\lambda$とおいて
-			直積位相を導入すれば，$S$も第二可算空間となりまた次が成立する:
+			$\{(S_\lambda,\mathscr{O}_\lambda)\}_{\lambda \in \Lambda}$を第二可算空間の族とする．
+			$S \defeq \prod_{\lambda \in \Lambda} S_\lambda$とおいて
+			直積位相を導入すれば次が成立する:
 			\begin{align}
 				\borel{S} = \bigotimes_{\lambda \in \Lambda} \borel{S_\lambda}.
 				\label{eq:lem1_for_chap_1_exercise_1_8_1}
@@ -471,7 +524,7 @@
 \begin{prf}
 	各$S_\lambda$の開集合系及び可算基を$\mathscr{O}_\lambda,\ \mathscr{B}_\lambda$，
 	$S$の開集合系を$\mathscr{O}$とし，
-	また$\lambda$射影を$p_\lambda:S \longrightarrow S_\lambda$と書く．
+	また$\lambda$射影を$p_\lambda$と書く．
 	先ず，任意の$O_\lambda \in \mathscr{O}_\lambda$に対して
 	$p_\lambda^{-1}(O_\lambda) \in \mathscr{O}$
 	が満たされるから
@@ -489,23 +542,7 @@
 		\mathscr{B} \coloneqq 
 		\Set{\bigcap_{\lambda \in \Lambda'} p_\lambda^{-1}(B_\lambda)}{B_\lambda \in \mathscr{B}_\lambda,\ \Lambda' \subset \Lambda:finite\ subset}
 	\end{align}
-	は$\mathscr{O}$の基底の一つである．実際，任意に$O \in \mathscr{O}$を取れば，
-	任意の$x \in O$に対し或る有限集合$\Lambda' \subset \Lambda$が存在して
-	\begin{align}
-		x \in \bigcap_{\lambda \in \Lambda'} p_\lambda^{-1} (O_\lambda) \subset O
-	\end{align}
-	が成立するが，更に$S_\lambda$の第二可算性より或る
-	$\mathscr{B}'_\lambda \subset \mathscr{B}_\lambda\ (\lambda \in \Lambda')$が存在して
-	\begin{align}
-		x \in \bigcap_{\lambda \in \Lambda'} p_\lambda^{-1} (O_\lambda)
-		= \bigcap_{\lambda \in \Lambda'} \bigcup_{B_{\lambda} \in \mathscr{B}'_\lambda} p_\lambda^{-1} (B_{\lambda})
-	\end{align}
-	が満たされる．すなわち，任意の$O \in \mathscr{O}$は
-	\begin{align}
-		O = \bigcup_{E \in \mathscr{B}'} E,
-		\quad (\exists\mathscr{B}' \subset \mathscr{B})
-	\end{align}
-	と表される．$\mathscr{B}$は高々可算の濃度を持ち
+	は$\mathscr{O}$の基底となり，$\mathscr{B}$は高々可算の濃度を持つ
 	\footnote{
 		$L_0 \coloneqq 
 		\Set{\Lambda'}{\Lambda' \subset \Lambda:finite\ subset}$は
@@ -515,8 +552,11 @@
 		$(x_1,\cdots,x_n) \in L$に対し$\{x_1,\cdots,x_n\} \in L_0$を対応させる
 		$f:L \longrightarrow L_0$を考えれば全射であるから
 		$\card{L_0} \leq \card{L} \leq \aleph_0$が従う．
-	}，
-	$\mathscr{B} \subset \prod_{\lambda \in \Lambda} \borel{S_\lambda}$が満たされるから
+	}．
+	\begin{align}
+		\mathscr{B} \subset \bigotimes_{\lambda \in \Lambda} \borel{S_\lambda}
+	\end{align}
+	が成り立つから
 	\begin{align}
 		\mathscr{O} \subset \bigotimes_{\lambda \in \Lambda} \borel{S_\lambda}
 	\end{align}
@@ -526,185 +566,187 @@
 		
 		\begin{screen}
 			\begin{thm}[積測度]
-				測度空間の族$\left((X_i,\mathscr{F}_i,\mu_i)\right)_{i=1}^n$に対し，
-				$\left( \prod_{i=1}^n X_i,\ \bigotimes_{i=1}^n \mathscr{F}_i \right)$上の
-				測度$\mu$で
+				$(X,\mathscr{F},\mu)$と$(Y,\mathscr{G},\nu)$を
+				$\sigma$-有限な正値測度空間とすると，
+				$\left( X \times Y,\mathscr{F} \otimes \mathscr{G} \right)$上の
+				$\sigma$-有限な正値測度$m$で
 				\begin{align}
-					\mu(A_1 \times \cdots \times A_n)
-					= \mu_1(A_1) \cdots \mu_n(A_n),
-					\quad (\forall A_i \in \mathscr{F}_i,\ i=1,\cdots,n)
+					\forall A \in \mathscr{F}\, \forall B \in \mathscr{G}\,
+					\left(\, m(A \times B) = \mu(A) \cdot \nu(B)\, \right)
 				\end{align}
-				を満たすものが存在する．この$\mu$を$(\mu_i)_{i=1}^n$の
-				積測度と呼び$\bigotimes_{i=1}^n \mu_i = \mu_1 \otimes \cdots \otimes \mu_n$と書く．
-				全ての$\mu_i$が$\sigma$-有限なら積測度$\mu$は唯一つ存在し$\sigma$-有限となる．
+				を満たすものが唯一つ存在する．この$m$を$\mu$と$\nu$の積測度と呼び
+				\begin{align}
+					\mu \otimes \nu
+				\end{align}
+				と書く．
 			\end{thm}
 		\end{screen}
 		
 		\begin{prf}
-			$\bigotimes_{i=1}^n \mathscr{F}_i$を生成する乗法族を
+			$\mathscr{F} \otimes \mathscr{G}$を生成する乗法族を
 			\begin{align}
-				\mathcal{A} \coloneqq
-				\Set{A_1 \times \cdots \times A_n}{A_i \in \mathscr{F}_i,\ i=1,\cdots,n}
+				\mathscr{A} \defeq \Set{A \times B}{A \in \mathscr{F} \wedge B \in \mathscr{G}}
 			\end{align}
-			とおけば，定理\ref{thm:forming_finitely_additive_class}より
-			\begin{align}
-				\mathcal{B} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \in \mathcal{A},\ n=1,2,\cdots}
-			\end{align}
-			は$\prod_{i=1}^n X_i$の上の加法族となり$\bigotimes_{i=1}^n \mathscr{F}_i$を生成する．
+			として，$\mathscr{B}$を$\mathscr{A}$の有限非交和の全体とすれば，
+			定理\ref{thm:forming_finitely_additive_class}より$\mathscr{B}$
+			は$X \times Y$上の有限加法族となり$\mathscr{F} \otimes \mathscr{G}$を生成する．
 		\end{prf}
 		
 		\begin{screen}
-			\begin{thm}[完備測度空間の直積空間]\label{thm:product_space_of_complete_measure_space}
-				$\left( (X_i,\mathcal{B}_i,\mu_i) \right)_{i=1}^n$を$\sigma$-有限な測度空間の族とし，
-				$(X_i,\mathcal{B}_i,\mu_i)$のLebesgue拡大を$\left( X_i,\mathfrak{M}_i,m_i \right)$と書く．
+			\begin{thm}[直積空間のLebesgue拡大はLebesgue拡大の直積空間のLebesgue拡大に一致する]
+			\label{thm:product_space_of_complete_measure_space}
+				$(X_1,\mathcal{B}_1,\mu_1)$と$(X_2,\mathcal{B}_2,\mu_2)$を$\sigma$-有限な測度空間とし，
+				$\left( X_1,\mathfrak{M}_1,m_1 \right)$を$(X_1,\mathcal{B}_1,\mu_1)$のLebesgue拡大とし，
+				$\left( X_2,\mathfrak{M}_2,m_2 \right)$を$(X_2,\mathcal{B}_2,\mu_2)$のLebesgue拡大とする．
 				このとき次が成り立つ:
 				\begin{align}
-					\left( X_1 \times \cdots \times X_n, \overline{\mathcal{B}_1 \otimes \cdots \otimes \mathcal{B}_n}, \overline{\mu_1 \otimes \cdots \otimes \mu_n} \right)
-					= \left( X_1 \times \cdots \times X_n, \overline{\mathfrak{M}_1 \otimes \cdots \otimes \mathfrak{M}_n}, \overline{m_1 \otimes \cdots \otimes m_n} \right).
+					\left( X_1 \times X_2, \overline{\mathcal{B}_1 \otimes \mathcal{B}_2}, \overline{\mu_1 \otimes \mu_2} \right)
+					= \left( X_1 \times X_2, \overline{\mathfrak{M}_1 \otimes \mathfrak{M}_2}, \overline{m_1 \otimes m_2} \right).
 				\end{align}
 			\end{thm}
 		\end{screen}
 		
-		\begin{prf} $X \coloneqq \prod_{i=1}^n X_i,\ 
-			\mathcal{B} \coloneqq \bigotimes_{i=1}^n \mathcal{B}_i,\ 
-			\mathfrak{M} \coloneqq \bigotimes_{i=1}^n \mathfrak{M}_i,\ 
-			\mu \coloneqq \bigotimes_{i=1}^n \mu_i,\ 
-			m \coloneqq  \bigotimes_{i=1}^n m_i$と表記する．
+		\begin{prf}\mbox{}
 			\begin{description}
 				\item[第一段]
-					$\mathcal{B}_i \subset \mathfrak{M}_i,\ (i=1,\cdots,n)$より
-					$\mathcal{B} \subset \mathfrak{M}$
-					が従う．このとき
+					$\mathcal{B}_1 \subset \mathfrak{M}_1$と$\mathcal{B}_2 \subset \mathfrak{M}_2$から
 					\begin{align}
-						\mu(B) 
-						= m(B),
-						\quad (\forall B \in \mathcal{B})
+						\mathcal{B}_1 \otimes \mathcal{B}_2 \subset \mathfrak{M}_1 \otimes \mathfrak{M}_2
+					\end{align}
+					が成立する．ここで
+					\begin{align}
+						B \in \mathcal{B}_1 \otimes \mathcal{B}_2 \Longrightarrow
+						\mu_1 \otimes \mu_2(B) = m_1 \otimes m_2(B)
 						\label{eq:thm_product_space_of_complete_measure_space_1}
 					\end{align}
-					が成り立つことを示す．いま，$\sigma$-有限の仮定により各$i$に対し
+					が成り立つことを示す．$\sigma$-有限の仮定により，
 					\begin{align}
-						\mu_i(X^k_i) < \infty,
-						\quad X^k_i \in \mathcal{B}_i,
-						\ (\forall k = 1,2,\cdots),
-						\quad X^k_1 \subset X^k_2 \subset \cdots
+						\forall n \in \Natural\, \left(\, \mu_1(U_n) < \infty\, \right)
 					\end{align}
-					を満たす増大列$\left( X^k_i \right)_{k=1}^\infty$が存在し，
+					かつ
 					\begin{align}
-						X^k \coloneqq X^k_1 \times \cdots \times X^k_n,
-						\quad (k=1,2,\cdots)
+						X_1 = \bigcup_{n \in \Natural} U_n
 					\end{align}
-					により$\mathcal{B}$の増大列$(X^k)_{k=1}^\infty$を定めれば
+					を満たす$\mathcal{B}_1$の部分集合$\left\{ U_n \right\}_{n \in \Natural}$と，
 					\begin{align}
-						X = \bigcup_{k=1}^\infty X^k,
-						\quad \mu(X^k)
-						= \mu_1(X^k_1) \cdots \mu_n(X^k_n) < \infty;
-						\quad (k=1,2,\cdots)
+						\forall n \in \Natural\, \left(\, \mu_2(V_n) < \infty\, \right)
 					\end{align}
-					が満たされる．ここで$\mathcal{B}$を生成する乗法族を
+					かつ
 					\begin{align}
-						\mathcal{A} \coloneqq
-						\Set{B_1 \times \cdots \times B_n}{B_i \in \mathcal{B}_i,\ i=1,\cdots,n}
+						X_2 = \bigcup_{n \in \Natural} V_n
 					\end{align}
-					とおけば，$\mathcal{A}$は$\left\{ X^k \right\}_{k=1}^\infty$を含み，かつ
-					任意の$B_1 \times \cdots \times B_n \in \mathcal{A}$に対して
+					を満たす$\mathcal{B}_2$の部分集合$\left\{ V_n \right\}_{n \in \Natural}$が取れる．このとき
 					\begin{align}
-						\mu(B_1 \times \cdots \times B_n)
-						= \mu_1(B_1) \cdots \mu_n(B_n)
-						= m_1(B_1) \cdots m_n(B_n)
-						= m(B_1 \times \cdots \times B_n)
+						\forall n \in \Natural\, \left(\, \mu_1 \otimes \mu_2(U_n \times V_n) < \infty\, \right)
 					\end{align}
-					となるから，定理\ref{thm:identity_theorem_of_measures}より
-					(\refeq{eq:thm_product_space_of_complete_measure_space_1})が出る．
+					かつ
+					\begin{align}
+						\forall n \in \Natural\, \left(\, m_1 \otimes m_2(U_n \times V_n) < \infty\, \right)
+					\end{align}
+					かつ
+					\begin{align}
+						X_1 \times X_2 = \bigcup_{n \in \Natural} (U_n \times V_n)
+					\end{align}
+					が成立し，また
+					\begin{align}
+						A \in \mathcal{B}_1 \wedge B \in \mathcal{B}_2
+						\Longrightarrow 
+						\mu_1 \otimes \mu_2(A \times B) = \mu_1(A) \cdot \mu_2(B)
+						= m_1(A) \cdot m_2(B)
+						= m_1 \otimes m_2(A \times B)
+					\end{align}
+					も成り立つから，定理\ref{thm:identity_theorem_of_measures}より
+					(\refeq{eq:thm_product_space_of_complete_measure_space_1})が従う．
 					
 				\item[第二段]
-					この段と次の段で$\left(X, \overline{\mathcal{B}}, \overline{\mu} \right)$
-					が$\left( X, \mathfrak{M}, m \right)$の完備拡張であることを示す．まず
+					次に
 					\begin{align}
-						\mathfrak{M}
-						\subset \overline{\mathcal{B}}
+						\mathfrak{M}_1 \otimes \mathfrak{M}_2
+						\subset \overline{\mathcal{B}_1 \otimes \mathcal{B}_2}
 						\label{eq:thm_product_space_of_complete_measure_space_2}
 					\end{align}
-					が成り立つことを示す．任意の$E_j \in \mathfrak{M}_j$に対し，
+					が成り立つことを示す．$E$を$\mathfrak{M}_1$の要素とすると，
 					\begin{align}
-						B^1_j \subset E_j \subset B^2_j,
-						\quad \mu_j\left( B^2_j - B^1_j \right) = 0
+						A \subset E \subset B \wedge \mu_1( B \backslash A ) = 0
 					\end{align}
-					を満たす$B^1_j,B^2_j \in \mathcal{B}_j$が存在する．
-					このとき，$X$から$X_j$への射影を$p_j$と書けば
+					を満たす$\mathcal{B}_1$の要素$A$と$B$が取れる．このとき
 					\begin{align}
-						p_j^{-1}\left(B^1_j\right) \subset p_j^{-1}(E_j) \subset p_j^{-1}\left(B^2_j\right),
-						\quad p_j^{-1}\left(B^1_j\right),p_j^{-1}\left(B^2_j\right) \in \mathcal{B}
+						A \times X_2 \subset E \times X_2 \subset B \times X_2
 					\end{align}
 					及び
 					\begin{align}
-						\mu\left(p_j^{-1}\left(B^2_j\right)-p_j^{-1}\left(B^1_j\right)\right)
-						= \mu_1(X_1) \cdots \mu_j\left(B^2_j - B^1_j\right) \cdots \mu_n(X_n)
+						\mu_1 \otimes \mu_2\left((B \times X_2) \backslash (A \times X_2)\right)
+						= \mu_1( B \backslash A ) \cdot \mu_2(X_2)
 						= 0
 					\end{align}
 					が成り立つから
 					\begin{align}
-						p_j^{-1}(E_j) \in \overline{\mathcal{B}}
+						E \times X_2 \in \overline{\mathcal{B}_1 \otimes \mathcal{B}_2}
 					\end{align}
-					が従い，
+					が成立する．$F$を$\mathfrak{M}_2$の要素とすれば同様にして
 					\begin{align}
-						E_1 \times \cdots \times E_n
-						= \bigcap_{i=1}^n p_i^{-1}(E_i),
-						\quad (E_i \in \mathfrak{M}_i,\ i=1,\cdots,n)
+						X_1 \times F \in \overline{\mathcal{B}_1 \otimes \mathcal{B}_2}
 					\end{align}
-					と積$\sigma$-加法族の定義より(\refeq{eq:thm_product_space_of_complete_measure_space_2})が得られる．
+					が成立するので
+					\begin{align}
+						E \in \mathfrak{M}_1 \wedge F \in \mathfrak{M}_2
+						\Longrightarrow E \times F \in \overline{\mathcal{B}_1 \otimes \mathcal{B}_2}
+					\end{align}
+					が成立し，積$\sigma$-加法族の定義より(\refeq{eq:thm_product_space_of_complete_measure_space_2})が従う．
 				
 				\item[第三段]
-					任意の$E \in \mathfrak{M}$に対し
+					次に
 					\begin{align}
-						m(E)
-						= \overline{\mu}(E)
+						E \in \mathfrak{M}_1 \otimes \mathfrak{M}_2
+						\Longrightarrow m_1 \otimes m_2(E) = \overline{\mu_1 \otimes \mu_2}(E)
 					\end{align}
-					が成り立つことを示す．実際，(\refeq{eq:thm_product_space_of_complete_measure_space_2})より
-					$E \in \mathfrak{M}$なら$E \in \overline{\mathcal{B}}$
-					となるから，
+					が成り立つことを示す．$E$を$\mathfrak{M}_1 \otimes \mathfrak{M}_2$の要素とすると，
+					(\refeq{eq:thm_product_space_of_complete_measure_space_2})より
 					\begin{align}
-						B_1 \subset E \subset B_2,
-						\quad \mu(B_2-B_1) = 0,
-						\quad \overline{\mu}(E)
-						= \mu(B_1)
+						A \subset E \subset B \wedge \mu_1 \otimes \mu_2(B \backslash A) = 0
 						\label{eq:thm_product_space_of_complete_measure_space_3}
 					\end{align}
-					を満たす$B_1,B_2 \in \mathcal{B}$が存在し，このとき
-					(\refeq{eq:thm_product_space_of_complete_measure_space_1})より
+					なる$\mathcal{B}_1 \otimes \mathcal{B}_2$の要素$A$と$B$が取れて，
+					(\refeq{eq:thm_product_space_of_complete_measure_space_1})と併せて
 					\begin{align}
-						m(E-B_1)
-						\leq m(B_2-B_1)
-						= \mu(B_2-B_1)
-						= 0
+						\overline{\mu_1 \otimes \mu_2}(E)
+						= \mu_1 \otimes \mu_2(A)
+						= m_1 \otimes m_2(A)
+						\leq m_1 \otimes m_2(E)
 					\end{align}
-					が成立し
+					かつ
 					\begin{align}
-						m(E)
-						= m(B_1)
-						= \mu(B_1)
-						= \overline{\mu}(E)
+						m_1 \otimes m_2(E)
+						\leq m_1 \otimes m_2(B)
+						= \mu_1 \otimes \mu_2(B)
+						= \overline{\mu_1 \otimes \mu_2}(E)
 					\end{align}
-					が得られる．
+					が成立する．ゆえに
+					\begin{align}
+						m_1 \otimes m_2(E) = \overline{\mu_1 \otimes \mu_2}(E)
+					\end{align}
+					が得られた．
 					
 				\item[第四段]
-					前段の結果より
-					$\left(X, \overline{\mathcal{B}}, \overline{\mu} \right)$
-					は$\left( X, \mathfrak{M}, m \right)$
-					の完備拡張であるから，
+					最後に
 					\begin{align}
-						\overline{\mathfrak{M}}
-						\supset \overline{\mathcal{B}}
+						\overline{\mathcal{B}_1 \otimes \mathcal{B}_2} \subset 
+						\overline{\mathfrak{M}_1 \otimes \mathfrak{M}_2}
 					\end{align}
-					を示せば定理の主張を得る．実際，
-					任意の$E \in \overline{\mathcal{B}}$に対し
-					(\refeq{eq:thm_product_space_of_complete_measure_space_3})を満たす
-					$B_1,B_2 \in \mathcal{B}$を取れば，
+					を示せば定理の主張が得られる．$E$を$\overline{\mathcal{B}}$の要素とすれば
 					\begin{align}
-						m(B_2-B_1)
-						= \mu(B_2-B_1)
-						= 0
+						A \subset E \subset B \wedge \mu_1 \otimes \mu_2(B \backslash A) = 0
 					\end{align}
-					が成り立ち$E \in \overline{\mathfrak{M}}$が従う．
+					を満たす$\mathcal{B}_1 \otimes \mathcal{B}_2$の要素$A$と$B$が取れて，
+					(\refeq{eq:thm_product_space_of_complete_measure_space_1})より
+					\begin{align}
+						m_1 \otimes m_2(B \backslash A) = \mu_1 \otimes \mu_2(B \backslash A) = 0
+					\end{align}
+					が成立する．すなわち
+					\begin{align}
+						E \in \overline{\mathfrak{M}_1 \otimes \mathfrak{M}_2}
+					\end{align}
+					が成立する．
 					\QED
 			\end{description}
 		\end{prf}

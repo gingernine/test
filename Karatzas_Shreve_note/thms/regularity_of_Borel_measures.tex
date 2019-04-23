@@ -1,0 +1,454 @@
+\subsection{正則性}
+		\begin{screen}
+			\begin{dfn}[正値測度の正則性]
+				$(X,\mathscr{O}_X)$を位相空間とし，$\mathscr{K}_X$を$X$のコンパクト部分集合の全体とする．
+				また$\mathcal{B}$を$X$上の$\sigma$-加法族で$\borel{X}$を含むものとし，
+				$\mu$を$\mathcal{B}$上の正値測度とする．
+				\begin{itemize}
+					\item $E$を$\mathcal{B}$の要素とするとき，
+						\begin{align}
+							\forall \epsilon \in \R_+\, \exists K \in \mathscr{K}_X^,
+							\left(\, K \subset E \wedge \mu(E \backslash K) < \epsilon\, \right)
+						\end{align}
+						が満たされるなら$E$は$\mu$に関して{\bf $K$-正則}\index{$K$-せいそく@$K$-正則}{\bf ($K$-regular)}であるという．
+						
+					\item $E$を$\mathcal{B}$の要素とするとき，
+						\begin{align}
+							\mu(E) = \inf{}{\Set{\mu(O)}{O \in \mathscr{O}_X \wedge E \subset O}}
+						\end{align}
+						が満たされるなら$E$は$\mu$に関して{\bf 外部正則}\index{がいぶせいそく@外部正則}{\bf (outer regular)}であるという．
+						
+					\item $E$を$\mathcal{B}$の要素とするとき，
+						\begin{align}
+							\mu(E) = \sup{}{\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset E}}
+						\end{align}
+						が満たされるなら$E$は$\mu$に関して{\bf 内部正則}\index{ないぶせいそく@内部正則}{\bf (inner regular)}であるという．
+					
+					\item $\mathcal{B}$の全ての要素が外部正則で，かつ開集合及び$\mu$の測度が実数値である$\mathcal{B}$の全ての要素が
+						内部正則であるとき，$\mu$は{\bf 正則な}\index{せいそくせいちそくど@正則正値測度}正値測度と呼ばれる．
+				\end{itemize}
+			\end{dfn}
+		\end{screen}
+		
+		\begin{screen}
+			\begin{thm}[$C_c$上のRieszの表現定理]
+			\end{thm}
+		\end{screen}
+		
+		\begin{screen}
+			\begin{thm}[$\sigma$-有限な正則測度は開集合と閉集合で近似できる]
+				$(X,\mathscr{O}_X)$を位相空間とし，
+				$\mu$を$\borel{X}$上の$\sigma$-有限で正則な正値測度とする．
+				このとき，正数$\epsilon$とBorel集合$E$が任意に与えられれば
+				\begin{align}
+					F \subset E \subset G \wedge \mu(G \backslash F) < \epsilon
+				\end{align}
+				を満たす閉集合$F$と開集合$G$が取れる．
+			\end{thm}
+		\end{screen}
+		
+		\begin{sketch}
+			$\mu$は$\sigma$-有限なので
+			\begin{align}
+				X = \bigcup_{n=0}^\infty X_n
+			\end{align}
+			かつ
+			\begin{align}
+				\forall n \in \Natural\, (\, X_n \subset X_{n+1}\, )
+			\end{align}
+			を満たす$\borel{X}$の部分集合$\{X_n\}_{n \in \Natural}$が取れる．
+			いま$\epsilon$を正の実数とし，$E$を$\borel{X}$の要素とする．
+			\begin{align}
+				E_n \defeq X_n \cap E
+			\end{align}
+			とおけば，$\mu$の正則性より
+			\begin{align}
+				E_n \subset G_n \wedge \mu(G_n \backslash E_n) < \frac{\epsilon}{2^n}
+			\end{align}
+			を満たす開集合$G_n$が取れる．
+			\begin{align}
+				G \defeq \bigcup_{n \in \Natural} G_n
+			\end{align}
+			とおけば，$G$は開集合であって，
+			\begin{align}
+				G \backslash E \subset \bigcup_{n \in \Natural} (G_n \backslash E_n)
+			\end{align}
+			を満たすので
+			\begin{align}
+				\mu(G \backslash E) < \epsilon
+			\end{align}
+			が成り立つ．$X \backslash E$に対しても
+			\begin{align}
+				\mu(O \backslash (X \backslash E)) < \epsilon
+			\end{align}
+			を満たす開集合$O$が取れるので，
+			\begin{align}
+				F \defeq X \backslash O
+			\end{align}
+			とおけば，$F$は閉集合であって
+			\begin{align}
+				\mu(E \backslash F) < \epsilon
+			\end{align}
+			を満たす．
+			\QED
+		\end{sketch}
+		
+		\begin{screen}
+			\begin{thm}[閉集合と開集合で近似できるなら正則]
+				$(X,\mathscr{O}_X)$を位相空間とし，
+				$\mu$を$\borel{X}$上の正値測度とする．
+				また正数$\epsilon$とBorel集合$E$が任意に与えられたとき
+				\begin{align}
+					F \subset E \subset G \wedge \mu(G \backslash F) < \epsilon
+				\end{align}
+				を満たす閉集合$F$と開集合$G$が取れるとする．このとき，
+				\begin{itemize}
+					\item 全てのBorel集合は$\mu$に関して外部正則である．
+					
+					\item $X$が$\sigma$-コンパクトであるなら，全てのBorel集合は$\mu$に関して内部正則でもある．
+					
+					\item $X$が$\mu$に関して$K$-正則であるなら，$\mu$-測度有限な全てのBorel集合は$\mu$に関して内部正則でもある．
+				\end{itemize}
+			\end{thm}
+		\end{screen}
+		
+		\begin{sketch} $E$を$\borel{X}$の要素とする．
+			\begin{description}
+				\item[第一段] $E$が外部正則であることを示す．
+					\begin{align}
+						\mu(E) = \infty
+					\end{align}
+					ならば$E \subset O$なる全ての開集合$O$に対し
+					\begin{align}
+						\mu(O) = \infty
+					\end{align}
+					となるので$E$は$\mu$に関して外部正則である．
+					\begin{align}
+						\mu(E) < \infty
+					\end{align}
+					ならば，任意の正数$\epsilon$に対して
+					\begin{align}
+						E \subset G \wedge \mu(G) < \mu(E) + \epsilon
+					\end{align}
+					を満たす開集合$G$が取れるので，この場合も$E$は$\mu$に関して外部正則である．
+				
+				\item[第二段] $X$が$\sigma$-コンパクトで$\mu(E) = \infty$のとき$E$が内部正則であることを示す．
+					\begin{align}
+						F \subset E \wedge \mu(E \backslash F) < 1
+					\end{align}
+					を満たす閉集合$F$が取れるが，
+					\begin{align}
+						\mu(F) = \infty
+					\end{align}
+					である．$X$が$\sigma$-コンパクトである場合，
+					\begin{align}
+						X = \bigcup_{n=0}^\infty K_n
+					\end{align}
+					かつ
+					\begin{align}
+						\forall n \in \Natural\, (\, K_n \subset K_{n+1}\, )
+					\end{align}
+					を満たす$\mathscr{K}_X$の部分集合$\{K_n\}_{n \in \Natural}$が取れて
+					\begin{align}
+						\mu(F) = \lim_{n \to \infty} \mu(K_n \cap F)
+					\end{align}
+					が成立するので，
+					\begin{align}
+						\sup{}{\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset F}} = \infty
+					\end{align}
+					が従う．
+					\begin{align}
+						\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset F} \subset
+						\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset E}
+					\end{align}
+					なので
+					\begin{align}
+						\sup{}{\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset E}} = \infty
+					\end{align}
+					も成立する．ゆえに$E$は$\mu$に関して内部正則である．
+				
+				\item[第三段] $\mu(E) < \infty$のとき，任意の正数$\epsilon$に対して
+					\begin{align}
+						F \subset E \wedge \mu(E) - \epsilon < \mu(F)
+					\end{align}
+					を満たす閉集合$F$が取れる．$X$が$\sigma$-コンパクトであるとき，
+					$\{K_n\}_{n \in \Natural}$を前段のものとすると
+					\begin{align}
+						\mu(E) - \epsilon < \mu(K_n \cap F)
+					\end{align}
+					なる自然数$n$が取れる．$K_n \cap F$はコンパクトであるから，この場合$E$は$\mu$に関して内部正則である．
+					$X$が$\mu$に関して$K$-正則なら
+					\begin{align}
+						\mu(X \backslash K) < \epsilon
+					\end{align}
+					なるコンパクト部分集合$K$が取れて，
+					\begin{align}
+						\mu(E \backslash (F \cap K))
+						\leq \mu(E \backslash F) + \mu(E \backslash K)
+						< 2\epsilon
+					\end{align}
+					が成立するので，この場合も$E$は$\mu$に関して内部正則である．
+					\QED
+			\end{description}
+		\end{sketch}
+		
+		\begin{screen}
+			\begin{thm}[正値Borel測度の正則性定理]\label{thm:regularity_theorem_for_positive_Borel_measures}
+				$(X,\mathscr{O}_X)$をHausdorff位相空間とし，$\mathscr{K}_X$を$X$のコンパクト部分集合の全体とし，
+				$X$は$\sigma$-コンパクトであって$X$の開集合は全て$F_\sigma$であるとする．
+				また$\mu$を$\borel{X}$上の正値測度とする．
+				このとき
+				\begin{align}
+					\forall K \in \mathscr{K}_X\, \left(\, \mu(K) < \infty\, \right)
+				\end{align}
+				ならば$\mu$は正則である．
+			\end{thm}
+		\end{screen}
+		
+		\begin{sketch}
+			いま
+			\begin{align}
+				S \defeq \{\, E \in \borel{X} \mid \quad &
+				\mu(E) = \inf{}{\Set{\mu(O)}{O \in \mathscr{O}_X \wedge E \subset O}} \\
+				&\wedge \left[\, E \in \mathscr{O}_X \vee \mu(E) < \infty 
+					\Longrightarrow
+					\mu(E) = \sup{}{\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset E}}\, \right]\, \}
+			\end{align}
+			とおく．$S$が$\mathscr{O}_X$を含む$\sigma$-加法族であることが示されれば
+			\begin{align}
+				\borel{X} = S
+			\end{align}
+			が成り立ち定理の主張が得られる．
+			\begin{description}
+				\item[第一段] $S$が$\mathscr{O}_X$を含むことを示す．$E$を$X$の開集合とすれば
+					\begin{align}
+						\mu(E) \in \Set{\mu(O)}{O \in \mathscr{O}_X \wedge E \subset O}
+					\end{align}
+					が成り立つので
+					\begin{align}
+						\mu(E) = \inf{}{\Set{\mu(O)}{O \in \mathscr{O}_X \wedge E \subset O}}
+					\end{align}
+					が成立する．また$E$は$\sigma$-コンパクトなので，
+					\begin{align}
+						E = \bigcup_{n=0}^\infty K_n
+					\end{align}
+					かつ
+					\begin{align}
+						\forall n \in \Natural\, (\, K_n \subset K_{n+1}\, )
+					\end{align}
+					を満たす$\mathscr{K}_X$の部分集合$\{K_n\}_{n \in \Natural}$が取れる．
+					これに対し
+					\begin{align}
+						\mu(E) = \lim_{n \to \infty} \mu(K_n)
+					\end{align}
+					が成立するので
+					\begin{align}
+						\mu(E) = \sup{}{\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset E}}
+					\end{align}
+					も成り立つ．ゆえに
+					\begin{align}
+						\mathscr{O}_X \subset S
+					\end{align}
+					である．
+					
+				\item[第二段] $S$が$\sigma$-加法族であることを示す．
+					$S$は開集合を全て含むので
+					\begin{align}
+						X \in S \wedge \emptyset \in S
+					\end{align}
+					が満たされる．いま$E$を$S$の要素とする．そして
+					\begin{align}
+						\mu(E) < \infty
+					\end{align}
+					であるとする．このとき任意の正の実数$\epsilon$に対して
+					\begin{align}
+						K \subset E \wedge \mu(E \backslash K) < \epsilon
+					\end{align}
+					を満たす$X$のコンパクト部分集合$K$が取れて，
+					\begin{align}
+						\mu((X \backslash K) \backslash (X \backslash E)) < \epsilon
+					\end{align}
+					が成り立ち，またHausdorff性より$X \backslash K$は開集合なので
+					\begin{align}
+						\mu(X \backslash E) = \inf{}{\Set{\mu(O)}{O \in \mathscr{O}_X \wedge X \backslash E \subset O}}
+					\end{align}
+					が成り立つ．また任意の正の実数$\epsilon$に対して
+					\begin{align}
+						E \subset O \wedge \mu(O) - \mu(E) < \epsilon
+					\end{align}
+					を満たす開集合$O$が取れて，他方で
+					\begin{align}
+						X = \bigcup_{n \in \Natural} K_n
+						\label{thm_regularity_theorem_for_positive_Borel_measures_1}
+					\end{align}
+					かつ
+					\begin{align}
+						\forall n \in \Natural\, (\, K_n \subset K_{n+1}\, )
+						\label{thm_regularity_theorem_for_positive_Borel_measures_2}
+					\end{align}
+					を満たす$\mathscr{K}_X$の部分集合$\{K_n\}_{n \in \Natural}$が取れる．ここで
+					\begin{align}
+						\mu(X \backslash E) < \infty
+					\end{align}
+					ならば
+					\begin{align}
+						\mu(X \backslash E) - \mu(X \backslash O) < \epsilon
+					\end{align}
+					と
+					\begin{align}
+						\mu(X \backslash O) = \lim_{n \to \infty} \mu((X \backslash O) \cap K_n)
+					\end{align}
+					が成り立つので，
+					\begin{align}
+						\mu(X \backslash E) - \mu((X \backslash O) \cap K_n) < \epsilon
+					\end{align}
+					を満たす$n$が取れる．$(X \backslash O) \cap K_n$はコンパクトであるから
+					\begin{align}
+						\mu(X \backslash E) = \sup{}{\Set{\mu(K)}{K \in \mathscr{K}_X \wedge K \subset X \backslash E}}
+					\end{align}
+					が従う．以上より
+					\begin{align}
+						\mu(E) < \infty \Longrightarrow X \backslash E \in S
+					\end{align}
+					が得られた．
+					\begin{align}
+						\mu(E) = \infty
+					\end{align}
+					のとき，(\refeq{thm_regularity_theorem_for_positive_Borel_measures_1})と
+					(\refeq{thm_regularity_theorem_for_positive_Borel_measures_2})を満たす
+					$\{K_n\}_{n \in \Natural}$に対して
+					\begin{align}
+						E_n \defeq E \cap K_n
+					\end{align}
+					とおけば，$E_n$の測度は有限なので
+					\begin{align}
+						X \backslash E_n \in S
+					\end{align}
+					が成り立つ．$\epsilon$を任意の正の実数とすると
+					\begin{align}
+						\mu(O_n \backslash X \backslash E_n
+					\end{align}
+			\end{description}
+		\end{sketch}
+		
+		\begin{screen}
+			\begin{thm}[正則正値測度空間のLebesgue拡大も正則正値測度空間]
+				
+			\end{thm}
+		\end{screen}
+		
+		\begin{itembox}[l]{完備可分距離空間上のBorel確率測度の正則性}
+		$(S,d)$を完備可分距離空間とし，$P$を$\borel{S}$上の
+		確率測度とするとき，$P$は正則である．
+	\end{itembox}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$S$が$P$に関して$K$-正則であることを示す．
+				$S$の可分性により稠密な部分集合$\{x_n\}_{n=1}^\infty$が存在する．
+				\begin{align}
+					B_n^k \coloneqq \Set{x \in S}{d(x,x_n) \leq \frac{1}{k}},
+					\quad (n,k=1,2,\cdots)
+				\end{align}
+				とおけば，任意の$k$に対して
+				\begin{align}
+					P\Biggl( S - \bigcup_{n=1}^N B_n^k \Biggr)
+					\longrightarrow 0,
+					\quad (N \longrightarrow \infty)
+				\end{align}
+				が満たされる．いま，任意に$\epsilon > 0$を取れば
+				各$k$に対し或る$N_k \in \N$が存在して
+				\begin{align}
+					P\Biggl( S - \bigcup_{n=1}^{N_k} B_n^k \Biggr)
+					< \frac{\epsilon}{2^{k+1}}
+				\end{align}
+				が成立し，
+				\begin{align}
+					K \coloneqq \bigcap_{k=1}^\infty \left[ \bigcup_{n=1}^{N_k} B_n^k \right]
+				\end{align}
+				により$K$を定めれば，$K$は閉集合の積であるから閉，すなわち完備である．
+				また
+				\begin{align}
+					K \subset \bigcup_{n=1}^{N_k} B_n^k,
+					\quad (\forall k=1,2,\cdots)
+				\end{align}
+				より$K$は全有界部分集合である．
+				$K$は相対距離に関して完備かつ全有界であるから相対位相に関してコンパクトであり，
+				従って$S$のコンパクト部分集合である．そして次が成立する:
+				\begin{align}
+					P(S - K)
+					= P\Biggl( \bigcup_{k=1}^\infty \left[S - \bigcup_{n=1}^{N_k} B_n^k \right] \Biggr)
+					\leq \sum_{k=1}^\infty P\Biggl(S - \bigcup_{n=1}^{N_k} B_n^k\Biggr)
+					< \epsilon.
+				\end{align}
+				
+				
+			\item[第二段]
+				任意の$A \in \borel{S}$と$\epsilon > 0$に対して，
+				或る閉集合$F$及び開集合$G$が存在して
+				\begin{align}
+					F \subset A \subset G,
+					\quad P(G - F) < \epsilon
+				\end{align}
+				を満たすことを示す．
+				\begin{align}
+					\mathscr{B} \coloneqq \Set{A \in \borel{S}}{\mbox{任意の$\epsilon$に対し上式を満たす開集合と閉集合が存在する．}}
+				\end{align}
+				とおけば，$\mathscr{B}$は$\open{S}$を含む$\sigma$-加法族である．
+				実際，任意の開集合$G \neq \emptyset$に対し
+				\begin{align}
+					F_n \coloneqq \Set{x \in S}{d(x,G^c) \geq \frac{1}{n}},
+					\quad (n=1,2,\cdots)
+				\end{align}
+				により閉集合系$(F_n)_{n=1}^\infty$を定めれば
+				$\bigcup_{n=1}^\infty F_n = G$が成り立つから
+				\begin{align}
+					\open{S} \subset \mathscr{B}
+				\end{align}
+				が従う．また前段の結果より
+				$S \in \mathscr{B}$となり，かつ
+				\begin{align}
+					F \subset A \subset G \quad \Rightarrow \quad 
+					G^c \subset A^c \subset F^c
+				\end{align}
+				より$\mathscr{B}$は補演算で閉じている．更に$A_n \in \mathscr{B},\ (n=1,2,\cdots)$を取れば，
+				任意の$\epsilon > 0$に対して
+				\begin{align}
+					F_n \subset A_n \subset G_n,
+					\quad P(G_n - F_n) < \frac{\epsilon}{2^{n+1}}
+				\end{align}
+				を満たす閉集合$F_n$と開集合$G_n$が存在し，
+				\begin{align}
+					P\Biggl( \bigcup_{n=1}^\infty G_n - \bigcup_{n=1}^\infty F_n \Biggr)
+					\leq P\Biggl( \bigcup_{n=1}^\infty(G_n - F_n) \Biggr)
+					< \epsilon
+				\end{align}
+				が成り立つから十分大きな$N \in \N$に対して
+				\begin{align}
+					P\Biggl( \bigcup_{n=1}^\infty G_n - \bigcup_{n=1}^N F_n \Biggr)
+					< \epsilon
+				\end{align}
+				となる．$\bigcup_{n=1}^N F_n$は閉集合であり$\bigcup_{n=1}^\infty G_n$
+				は開集合であるから$\bigcup_{n=1}^\infty A_n \in \mathscr{B}$が従う．
+				
+			\item[第三段]
+				任意の$A \in \borel{S}$と$\epsilon > 0$に対し，
+				或る閉集合$F$と開集合$G$及びコンパクト集合$K$が存在して
+				\begin{align}
+					F \subset A \subset G,
+					\quad P(G - F) < \frac{\epsilon}{2},
+					\quad P(S - K) < \frac{\epsilon}{2}
+				\end{align}
+				を満たす．特に$F \cap K$はコンパクトであり，このとき
+				$F \cap K \subset A \subset G$かつ
+				\begin{align}
+					P(G - F \cap K)
+					\leq P(G - F) + P(G - K)
+					\leq P(G - F) + P(S - K)
+					< \epsilon
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
+	\end{prf}
