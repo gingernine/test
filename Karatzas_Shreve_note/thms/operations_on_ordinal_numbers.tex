@@ -1,0 +1,150 @@
+本稿では
+\begin{align}
+	\omg \subset \Z \subset \Q \subset \R \subset \C
+\end{align}
+となるように構成する．当然，加減乗除も$\ON$に定めた加法と乗法の純粋な延長として定めていく．
+`埋め込めば拡張となる'ように数を構成している文献もあるが，それでは詰めが甘くもどかしい．
+
+\section{加法}
+	超限帰納法による再帰的定義を応用することで，順序数の全体$\ON$上に``足し算''と``掛け算''を定めることが出来る．
+	それぞれ主に``加法''と``乗法''と呼ばれ，これらの延長が複素数に対する通常の四則演算に発展していく．
+	
+	\begin{screen}
+		\begin{dfn}[順序数の加法]
+			$\alpha$を順序数とし，$\Univ$上の写像$G_\alpha$を
+			\begin{align}
+				x \longmapsto 
+				\begin{cases}
+					\alpha & (\operatorname{dom}(x) = \emptyset) \\
+					x(\beta) \cup \{x(\beta)\} & (
+					\exists \beta \in \ON\, (\, \operatorname{dom}(x) = \beta \cup \{\beta\}\, )) \\
+					\bigcup \operatorname{ran}(x) & \mathrm{o.w.}
+				\end{cases}
+			\end{align}
+			なる関係により定めると，
+			\begin{align}
+				\forall \beta \in \ON\, (\, A_\alpha(\beta) = G_\alpha(A_\alpha|_\beta)\, )
+			\end{align}
+			を満たす$\ON$上の写像$A_\alpha$が取れる．ここで
+			\begin{align}
+				+ \defeq \Set{((\alpha,\beta),y)}{\alpha \in \ON \wedge \beta \in \ON \wedge y = A_\alpha (\beta)}
+			\end{align}
+			により写像$+$を定める．$\alpha$と$\beta$を順序数とするとき
+			\begin{align}
+				+(\alpha,\beta)
+			\end{align}
+			は
+			\begin{align}
+				\alpha + \beta
+			\end{align}
+			とも表記されるが，このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[順序数の加法]\label{thm:the_definition_of_addition_of_ordinal_numbers}
+			次が成立する:
+			\begin{itemize}
+				\item $\forall \alpha,\alpha' \in \ON\, \left(\, \alpha = \alpha' \Longrightarrow A_\alpha = A_{\alpha'}\, \right)$.
+				\item $\forall \beta \in \ON\, (\, \alpha + \beta \in \ON\, )$.
+				\item $\alpha \in {\bf \omega}$のとき，$\forall \beta \in {\bf \omega}\, (\, \alpha + \beta \in {\bf \omega}\, )$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま$\beta$を任意に与えられた順序数とする．このとき，
+		\begin{align}
+			\forall \gamma \in \beta\ (\ \alpha + \gamma \in \ON\ )
+		\end{align}
+		が成り立っていると仮定すると，$\beta = \gamma + 1$と表せるとき
+		\begin{align}
+			\alpha + \beta 
+			= G_\alpha (F_\alpha|_\beta)
+			= F_\alpha(\gamma) + 1
+			= (\alpha + \gamma) + 1 \in \ON
+		\end{align}
+		となり，$\beta$が極限数のときは
+		\begin{align}
+			\alpha + \beta = \operatorname*{sup}_{\gamma \in \beta} (\alpha + \gamma)
+			= \bigcup \Set{\alpha + \gamma}{\gamma \in \beta}
+			\in \ON
+		\end{align}
+		となるので，
+		\begin{align}
+			\forall \beta \in \ON\ \left(\ \forall \gamma \in \beta\ (\ \alpha + \gamma \in \ON\ ) \Longrightarrow \alpha + \beta \in \ON\ \right)
+		\end{align}
+		が得られた．超限帰納法により
+		\begin{align}
+			\forall \beta \in \ON\ (\ \alpha + \beta \in \ON\ )
+		\end{align}
+		が成立する．また$\alpha \in {\bf \omega}$のとき，
+		\begin{align}
+			a = \Set{\beta \in {\bf \omega}}{\alpha + \beta \in {\bf \omega}}
+		\end{align}
+		とおけば
+		\begin{align}
+			\emptyset \in a \wedge \forall x\ (\ x \in a \Longrightarrow x \cup \{x\} \in a\ )
+		\end{align}
+		となるので${\bf \omega} \subset a$が従う．よって
+		\begin{align}
+			\forall \beta \in {\bf \omega}\ 
+			(\ \alpha + \beta \in {\bf \omega}\ )
+		\end{align}
+		も成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[加法の性質]
+		\label{thm:properties_of_addition_of_ordinal_numbers}
+			定理\ref{thm:the_definition_of_addition_of_ordinal_numbers}で定めた
+			加法は以下の性質を持つ:
+			\begin{itemize}
+				\item $\forall \alpha \in \ON\ (\ \alpha + 0 = 0 + \alpha = \alpha\ )$,
+				
+				\item $\forall \alpha \in \ON\ (\ \alpha + 1 = \alpha \cup \{\alpha\}\ )$,
+				
+				\item $\forall \alpha,\beta,\gamma \in \ON\ (\ (\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)\ )$,
+				
+				\item $\forall \alpha,\beta \in {\bf \omega}\ (\ \alpha + \beta = \beta + \alpha\ )$,
+				
+				\item $\forall \alpha,\beta,\gamma \in \ON\ (\ \beta \in \gamma
+					\Longrightarrow \alpha + \beta \in \alpha + \gamma\ )$,
+				
+				\item $\forall \alpha,\beta \in \beta\ (\ \alpha \in \beta
+					\Longrightarrow \exists \gamma \in \ON\ (\ \alpha + \gamma = \beta\ )\ )$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+
+\section{乗法}
+	\begin{screen}
+		\begin{thm}[順序数の乗法]
+		\label{thm:the_definition_of_multiplication_of_ordinal_numbers}
+			$\alpha$を$\ON$から任意に選ばれた順序数として，$\Univ$上の写像$G_\alpha$を
+			\begin{align}
+				G_\alpha(x) = 
+				\begin{cases}
+					0 & (\operatorname{dom}(x) = \emptyset) \\
+					x(\beta) + \alpha & (
+					\exists \beta \in \ON\ (\ \operatorname{dom}(x) = \beta \cup \{\beta\}\ )) \\
+					\bigcup \operatorname{ran}(x) & \mathrm{o.w.}
+				\end{cases}
+			\end{align}
+			で定めるとき，定理\ref{thm:transfinite_recursion_theorem}より
+			\begin{align}
+				\forall \beta \in \ON\ (\ M_\alpha(\beta) = G_\alpha(M_\alpha|_\beta)\ )
+			\end{align}
+			を満たす$\ON$上の写像$M_\alpha$が唯一つ存在する．ここで
+			\begin{align}
+				\alpha \cdot \beta = M_\alpha (\beta)
+			\end{align}
+			と書くと，次が成立する:
+			\begin{itemize}
+				\item $\forall \beta \in \ON\ (\ \alpha \cdot \beta \in \ON\ )$.
+				\item $\alpha \in {\bf \omega}$のとき，$\forall \beta \in {\bf \omega}\ 
+				(\ \alpha \cdot \beta \in {\bf \omega}\ )$.
+			\end{itemize}
+		\end{thm}
+	\end{screen}

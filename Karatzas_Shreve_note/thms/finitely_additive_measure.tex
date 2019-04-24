@@ -1,20 +1,31 @@
 \subsection{加法的正値測度}
 		\begin{screen}
-			\begin{thm}[有限加法的な正値測度空間の生成]\label{thm:forming_finitely_additive_class}
-				$X$を集合，$\mathcal{A}$を集合$X$上の乗法族で$X$を含むものとする．
+			\begin{thm}[加法的な正値測度空間の生成]\label{thm:forming_finitely_additive_class}
+				$X$を集合とし，$\mathscr{A}$を$X$上の乗法族で$X$を含むものとし，
+				$\mathscr{B}$を$\mathscr{A}$の要素の有限非交和の全体とする．つまり
 				\begin{align}
-					\mathcal{B} \coloneqq \Set{\sum_{i=1}^n I_i}{I_i \in \mathcal{A},\ n=1,2,\cdots}
+					\mathscr{B} \defeq \Set{\bigcup u}{u \subset \mathscr{A} \wedge \exists n \in \Natural\,
+					(\, u \eqp n\, ) \wedge \forall i,j \in u\, (\, i \neq j \Longrightarrow i \cap j = \emptyset\, )}
 				\end{align}
-				は$X\backslash I \in \mathcal{B},\ (\forall I \in \mathcal{A})$のとき
-				$X$上の有限加法族となる．
-				また$I \in \mathcal{A}$が$I = \sum_{j=1}^m J_j,\ (J_j \in \mathcal{A},\ m \in \N)$
-				で表されるとき$m(I) = \sum_{j=1}^m m(J_j)$を満たすような
-				写像$m:\mathcal{A} \longrightarrow [0,\infty],\ (m(\emptyset)=0)$が与えられれば，
+				である．$\mathscr{B}$は
 				\begin{align}
-					\mu(B) \coloneqq \sum_{i=1}^n m(I_i),
-					\quad (B=I_1 + \cdots + I_n \in \mathcal{B})
+					\forall i \in \mathscr{A}\, (\, X\backslash i \in \mathscr{B}\, )
 				\end{align}
-				で定める$\mu$はwell-derinedであり$\mathcal{B}$の上の有限加法的な正値測度となる．
+				を満たすとき$X$上の加法族となる．また$m$を$m:\mathscr{A} \longrightarrow [0,\infty]$なる写像で
+				\begin{align}
+					m(\emptyset) = 0
+				\end{align}
+				と
+				\begin{align}
+					\forall i \in \mathscr{A}\, \forall u\, \left(\, 
+					\bigcup u \in \mathscr{B} \wedge i = \bigcup u \Longrightarrow 
+					m(i) = \sum_{j \in u} m(j)\, \right)
+				\end{align}
+				を満たすものとすると，
+				\begin{align}
+					\mathscr{B} \ni \bigcup u \longmapsto \sum_{i \in u} m(i)
+				\end{align}
+				なる関係で定める$\mu$は$\mathscr{B}$の上の加法的な正値測度となる．
 			\end{thm}
 		\end{screen}
 		
@@ -23,7 +34,7 @@
 			$\emptyset = X \backslash X \in \mathcal{B}$より$\emptyset \in \mathcal{A}$である．
 			\begin{description}
 				\item[第一段]
-					$\mathcal{B}$が有限加法族であることを示す．
+					$\mathscr{B}$が加法族であることを示す．
 					$\mathcal{A} \subset \mathcal{B}$より$X \in \mathcal{B}$となる．$A,B \in \mathcal{B}$が
 					\begin{align}
 						A = I_1 + I_2 + \cdots + I_n,
@@ -76,7 +87,7 @@
 			\begin{dfn}[外測度]\label{def:outer_measure}
 				$X$の冪集合$\mathcal{P}(X)$の上で定義される$[0,\infty]$-値写像$\mu$が
 				\begin{description}
-					\item[(OM1)] $\mu(\emptyset) = 0,\quad 0 \leq \mu(A) \leq \infty,\ (\forall A \subset X)$,
+					\item[(OM1)] $\mu(\emptyset) = 0$,
 					\item[(OM2) (単調性)] $A \subset B \quad \Longrightarrow \quad \mu(A) \leq \mu(B)$,
 					\item[(OM3) (劣加法性)] $\mu\left( \bigcup_{n=1}^\infty A_n \right) \leq \sum_{n=1}^\infty \mu(A_n),\ (A_n \subset X,\ n=1,2,\cdots)$
 				\end{description}
