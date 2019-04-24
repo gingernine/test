@@ -6,7 +6,57 @@
 `埋め込めば拡張となる'ように数を構成している文献もあるが，それでは詰めが甘くもどかしい．
 
 \section{加法}
-	超限帰納法による再帰的定義を応用することで，順序数の全体$\ON$上に``足し算''と``掛け算''を定めることが出来る．
+	$\alpha$と$\beta$を順序数とするとき，$\alpha$に$\beta$を``足す''という操作を導入したい．つまり，
+	足し算の記号
+	\begin{align}
+		+
+	\end{align}
+	を何らかの意味で定めて
+	\begin{align}
+		\alpha + \beta
+	\end{align}
+	を実行したいのである．先ずは簡単に，$\beta$が$0$の場合は
+	\begin{align}
+		\alpha + 0 \defeq \alpha
+	\end{align}
+	と定めてしまう．$\beta$が$1$の場合は，ちょうど
+	\begin{align}
+		\alpha \cup \{\alpha\}
+	\end{align}
+	が$\alpha$の直後の元であったからこれを$\alpha + 1$を定めることにする．
+	$\alpha + 2$も$\alpha + 1$の直後の元として
+	\begin{align}
+		\alpha + 2 \defeq (\alpha + 1) + 1
+	\end{align}
+	で定めることにして，この調子で
+	\begin{align}
+		&\alpha + 3 \defeq (\alpha + 2) + 1 \\
+		&\alpha + 4 \defeq (\alpha + 3) + 1 \\
+		&\alpha + 5 \defeq (\alpha + 4) + 1
+	\end{align}
+	としていくわけであるが，例えば$\beta$が$\Natural$である場合，$\Natural$が極限数であるから上の操作をいくら続けても
+	\begin{align}
+		\alpha + \Natural
+	\end{align}
+	に到達することは不可能であるが，仕方が無いから一番自然な方法として
+	\begin{align}
+		\Set{\alpha + k}{k \in \Natural}
+	\end{align}
+	の上限を$\alpha + \Natural$と定める．以上の操作をヒントにして，$\alpha + \beta$は
+	\begin{itemize}
+		\item $\beta$に対して$\beta = \gamma + 1$を満たす順序数$\gamma$が取れるなら
+			\begin{align}
+				\alpha + \beta \defeq (\alpha + \gamma) + 1,
+			\end{align}
+		
+		\item $\beta$が極限数なら
+			\begin{align}
+				\alpha + \beta \defeq \bigcup \Set{\alpha + \gamma}{\gamma \in \beta},
+			\end{align}
+	\end{itemize}
+	で定められる．意味的には再帰操作を繰り返しているのだから，それを$\mathcal{L}'$のことばで表すためには
+	\ref{sec:recursive_definition}節の方法を応用すれば良い．
+	また次節で述べることであるが``足し算''と同様にすれば$\ON$上に``掛け算''も定めることが出来る．
 	それぞれ主に``加法''と``乗法''と呼ばれ，これらの延長が複素数に対する通常の四則演算に発展していく．
 	
 	\begin{screen}
@@ -15,10 +65,9 @@
 			\begin{align}
 				x \longmapsto 
 				\begin{cases}
-					\alpha & (\operatorname{dom}(x) = \emptyset) \\
-					x(\beta) \cup \{x(\beta)\} & (
-					\exists \beta \in \ON\, (\, \operatorname{dom}(x) = \beta \cup \{\beta\}\, )) \\
-					\bigcup \operatorname{ran}(x) & \mathrm{o.w.}
+					\alpha & \mbox{if } \operatorname{dom}(x) = \emptyset \\
+					x(\beta) \cup \{x(\beta)\} & \mbox{if } \beta \in \ON \wedge \operatorname{dom}(x) = \beta \cup \{\beta\} \\
+					\bigcup \operatorname{ran}(x) & \mbox{o.w.}
 				\end{cases}
 			\end{align}
 			なる関係により定めると，
@@ -29,20 +78,54 @@
 			\begin{align}
 				+ \defeq \Set{((\alpha,\beta),y)}{\alpha \in \ON \wedge \beta \in \ON \wedge y = A_\alpha (\beta)}
 			\end{align}
-			により写像$+$を定める．$\alpha$と$\beta$を順序数とするとき
-			\begin{align}
-				+(\alpha,\beta)
-			\end{align}
-			は
-			\begin{align}
-				\alpha + \beta
-			\end{align}
-			とも表記されるが，このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．
+			により$+$を定め，これを$\ON$上の{\bf 加法}\index{かほう@加法}{\bf (summation)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
+	$\alpha$を順序数とすれば，$G_\alpha$とは正式には
+	\begin{align}
+		\{\, (x,y) \mid \quad &\left(\, \dom{x} = \emptyset \Longrightarrow y = \alpha\, \right) \\
+		&\wedge \forall \beta \in \ON\, \left(\, \dom{x} = \beta \cup \{\beta\} \Longrightarrow y = x(\beta) \cup \{x(\beta)\}\, \right) \\
+		&\wedge \left[\, \dom{x} \neq \emptyset \wedge \forall \beta \in \ON\, \left(\, \dom{x} \neq \beta \cup \{\beta\}\, \right)
+		\Longrightarrow y = \ran{x}\, \right]\, \}
+	\end{align}
+	によって定められた写像である．そして$A_\alpha$とは
+	\begin{align}
+		\ON \ni \beta \longmapsto
+		\begin{cases}
+			\alpha & \mbox{if } \beta = \emptyset \\
+			(\alpha + \gamma) \cup \{\alpha + \gamma\} & \mbox{if } \gamma \in \ON \wedge \beta = \gamma \cup \{\gamma\} \\
+			\bigcup \Set{\alpha + \gamma}{\gamma \in \beta} & \mbox{if } \limo{\beta}
+		\end{cases}
+	\end{align}
+	を満たす写像である．
+	
 	\begin{screen}
-		\begin{thm}[順序数の加法]\label{thm:the_definition_of_addition_of_ordinal_numbers}
+		\begin{thm}[$+$は写像である]
+			次が成り立つ．
+			\begin{align}
+				+:\ON \times \ON \longrightarrow \ON.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
+	
+	$\alpha$と$\beta$を順序数とするとき
+	\begin{align}
+		+(\alpha,\beta)
+	\end{align}
+	は
+	\begin{align}
+		\alpha + \beta
+	\end{align}
+	とも表記される．このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．
+	また$\alpha + \beta$なる順序数を$\alpha$と$\beta$の{\bf 和}\index{わ@和}{\bf (sum)}とも呼ぶ．
+	
+	\begin{screen}
+		\begin{thm}[自然数の和は自然数]\label{thm:the_definition_of_addition_of_ordinal_numbers}
 			次が成立する:
 			\begin{itemize}
 				\item $\forall \alpha,\alpha' \in \ON\, \left(\, \alpha = \alpha' \Longrightarrow A_\alpha = A_{\alpha'}\, \right)$.

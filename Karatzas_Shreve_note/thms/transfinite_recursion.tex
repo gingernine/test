@@ -1,4 +1,5 @@
 \section{再帰的定義}
+\label{sec:recursive_definition}
 	類$G$を$\Univ$上の写像とするとき，
 	\begin{align}
 		K = \Set{f}{\exists \alpha \in \ON\ \left(\ f:\alpha \longrightarrow V \wedge \forall \beta \in \alpha\ (\ f(\beta) = G(f|_\beta)\ )\ \right)}
@@ -211,12 +212,19 @@
 		\begin{align}
 			G(x) = 
 			\begin{cases}
-				a_0 & \mbox{if } (\dom{x} = \emptyset) \\
-				(x(k),a(\dom{x})) & \mbox{if } (\dom{x} = k+1 \wedge k \in \Natural) \\
+				a_0 & \mbox{if } \dom{x} = \emptyset \\
+				(x(k),a(\dom{x})) & \mbox{if } \dom{x} = k \cup \{k\} \wedge k \in \Natural \\
 				\emptyset & \mbox{o.w.}
 			\end{cases}
 		\end{align}
-		によって定めてみると，$\ON$上の写像$p$で
+		によって定めてみると，つまり$G$とは
+		\begin{align}
+			\{\, (x,y) \mid \quad &\left(\, \dom{x} = \emptyset \Longrightarrow y = a_0\, \right) \\
+		&\wedge \forall k \in \Natural\, \left(\, \dom{x} = k \cup \{k\} \Longrightarrow y = (x(k),a(\dom{x}))\, \right) \\
+		&\wedge \left[\, \dom{x} \neq \emptyset \wedge \forall k \in \Natural\, \left(\, \dom{x} \neq k \cup \{k\}\, \right)
+		\Longrightarrow y = \emptyset\, \right]\, \}
+		\end{align}
+		のことであるが，$\ON$上の写像$p$で
 		\begin{align}
 			p(n) =
 			\begin{cases}
