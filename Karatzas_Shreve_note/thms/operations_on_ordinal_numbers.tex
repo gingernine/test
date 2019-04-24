@@ -34,11 +34,11 @@
 		&\alpha + 4 \defeq (\alpha + 3) + 1 \\
 		&\alpha + 5 \defeq (\alpha + 4) + 1
 	\end{align}
-	としていくわけであるが，例えば$\beta$が$\Natural$である場合，$\Natural$が極限数であるから上の操作をいくら続けても
+	としていくわけであるが，例えば$\beta$が$\Natural$である場合，$\Natural$は極限数であるから上の操作をいくら続けても
 	\begin{align}
 		\alpha + \Natural
 	\end{align}
-	に到達することは不可能であるが，仕方が無いから一番自然な方法として
+	に到達することは不可能である．仕方が無いから一番自然な方法として
 	\begin{align}
 		\Set{\alpha + k}{k \in \Natural}
 	\end{align}
@@ -101,16 +101,218 @@
 	を満たす写像である．
 	
 	\begin{screen}
-		\begin{thm}[$+$は写像である]
-			次が成り立つ．
+		\begin{thm}[$+$は$\ON$への全射である]\label{thm:summation_on_ordinal_numbers_is_a_mapping}
+			$+$は$\ON \times \ON$から$\ON$への全射である:
 			\begin{align}
-				+:\ON \times \ON \longrightarrow \ON.
+				+:\ON \times \ON \srj \ON.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] $\dom{+} = \ON \times \ON$が成り立つことを示す．
+				$x$を$\dom{+}$の要素とすれば
+				\begin{align}
+					(x,y) \in +
+				\end{align}
+				を満たす集合$y$が取れる．このとき
+				\begin{align}
+					x = (\alpha,\beta)
+				\end{align}
+				を満たす順序数$\alpha$と$\beta$が取れて，
+				\begin{align}
+					(\alpha, \beta) \in \ON \times \ON
+				\end{align}
+				なので
+				\begin{align}
+					x \in \ON \times \ON
+				\end{align}
+				が成り立つ．次に$x$を$\ON \times \ON$の要素とする．このとき
+				\begin{align}
+					x = (\alpha,\beta)
+				\end{align}
+				を満たす順序数$\alpha$と$\beta$が取れて，
+				\begin{align}
+					((\alpha,\beta),A_\alpha(\beta)) \in +
+				\end{align}
+				が成り立つから
+				\begin{align}
+					(\alpha,\beta) \in \dom{+}
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					x \in \dom{+}
+				\end{align}
+				が従う．$x$の任意性から
+				\begin{align}
+					\dom{+} = \ON \times \ON
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段] $+$がsingle-valuedであることを示す．
+				$\alpha,\alpha',\beta,\beta'$を順序数とするとき
+				\begin{align}
+					(\alpha,\beta) = (\alpha',\beta') \Longrightarrow A_\alpha(\beta) = A_{\alpha'}(\beta')
+				\end{align}
+				が成り立つことを示せば良いが，これは
+				\begin{align}
+					\alpha  = \alpha' \Longrightarrow A_\alpha = A_{\alpha'}
+					\label{form:thm_summation_on_ordinal_numbers_is_a_mapping_1}
+				\end{align}
+				が成り立つことを示せば良い．ところで$A_\alpha$と$A_{\alpha'}$はどちらも$\ON$を定義域とする写像なので，
+				\begin{align}
+					\alpha  = \alpha' \Longrightarrow 
+					\forall \beta \in \ON\, \left(\, A_\alpha(\beta) = A_{\alpha'}(\beta)\, \right)
+				\end{align}
+				を示せば定理\ref{thm:two_functions_with_same_domain_and_values_coincide}より
+				(\refeq{form:thm_summation_on_ordinal_numbers_is_a_mapping_1})が従う．いま
+				\begin{align}
+					\alpha = \alpha'
+				\end{align}
+				であるとする．そして
+				\begin{align}
+					\beta \in \ON\, \left(\, A_\alpha(\beta) = A_{\alpha'}(\beta)\, \right)
+					\label{form:thm_summation_on_ordinal_numbers_is_a_mapping_2}
+				\end{align}
+				なることは超限帰納法により証明する．まず
+				\begin{align}
+					A_\alpha(\emptyset) = \alpha
+				\end{align}
+				と
+				\begin{align}
+					A_{\alpha'}(\emptyset) = \alpha'
+				\end{align}
+				から
+				\begin{align}
+					A_\alpha(\emptyset) = A_{\alpha'}(\emptyset)
+				\end{align}
+				が従う．次に$\beta$を任意に与えられた$0$でない順序数として，
+				\begin{align}
+					\forall \gamma \in \beta\, \left(\, A_\alpha(\gamma) = A_{\alpha'}(\gamma)\, \right)
+				\end{align}
+				が成り立っているとする．このとき
+				\begin{align}
+					\beta = \gamma \cup \{\gamma\}
+				\end{align}
+				なる順序数$\gamma$が取れるなら
+				\begin{align}
+					A_\alpha(\beta) = A_\alpha(\gamma) \cup \left\{A_\alpha(\gamma)\right\}
+				\end{align}
+				かつ
+				\begin{align}
+					A_{\alpha'}(\beta) = A_{\alpha'}(\gamma) \cup \left\{A_{\alpha'}(\gamma)\right\}
+				\end{align}
+				が成立し，いま
+				\begin{align}
+					A_\alpha(\gamma) = A_{\alpha'}(\gamma)
+				\end{align}
+				なので
+				\begin{align}
+					A_\alpha(\beta) = A_{\alpha'}(\beta)
+				\end{align}
+				が従う．
+				\begin{align}
+					\limo{\beta}
+				\end{align}
+				であるときは
+				\begin{align}
+					A_\alpha(\beta) = \bigcup \Set{A_\alpha(\gamma)}{\gamma \in \beta}
+				\end{align}
+				かつ
+				\begin{align}
+					A_{\alpha'}(\beta) = \bigcup \Set{A_{\alpha'}(\gamma)}{\gamma \in \beta}
+				\end{align}
+				が成立して
+				\begin{align}
+					A_\alpha(\beta) = A_{\alpha'}(\beta)
+				\end{align}
+				が従う．ゆえに超限帰納法より(\refeq{form:thm_summation_on_ordinal_numbers_is_a_mapping_2})が従う．
+				
+			\item[第三段] $\ran{+} \subset \ON$であることを示す．
+				$y$を$\ran{+}$の要素とする．このとき
+				\begin{align}
+					(x,y) \in +
+				\end{align}
+				を満たす集合$x$が取れて，
+				\begin{align}
+					x = (\alpha,\beta)
+				\end{align}
+				を満たす順序数$\alpha$と$\beta$が取れて
+				\begin{align}
+					y = A_\alpha(\beta)
+				\end{align}
+				が成り立つ．ゆえに，
+				\begin{align}
+					\forall \gamma \in \ON\, \left(\, A_\alpha(\gamma) \in \ON\, \right)
+					\label{form:thm_summation_on_ordinal_numbers_is_a_mapping_3}
+				\end{align}
+				なることを示せば良い．これは超限帰納法により示す．まず
+				\begin{align}
+					A_\alpha(\emptyset) = \alpha
+				\end{align}
+				より
+				\begin{align}
+					A_\alpha(\emptyset) \in \ON
+				\end{align}
+				が成り立つ．次に$\gamma$を任意に与えられた$0$でない順序数として，
+				\begin{align}
+					\forall \delta \in \gamma\, \left(\, A_\alpha(\delta) \in \ON\, \right)
+				\end{align}
+				が成り立っているとする．このとき
+				\begin{align}
+					\gamma = \delta \cup \{\delta\}
+				\end{align}
+				なる順序数$\delta$が取れるなら
+				\begin{align}
+					A_\alpha(\gamma) = A_\alpha(\delta) \cup \left\{A_\alpha(\delta)\right\}
+				\end{align}
+				が成立し，定理\ref{thm:latter_element_is_ordinal}より
+				\begin{align}
+					A_\alpha(\gamma) \in \ON
+				\end{align}
+				が従う．
+				\begin{align}
+					\limo{\gamma}
+				\end{align}
+				であるときは
+				\begin{align}
+					A_\alpha(\gamma) = \bigcup \Set{A_\alpha(\delta)}{\delta \in \gamma}
+				\end{align}
+				が成立して，定理\ref{thm:union_of_set_of_ordinal_numbers_is_ordinal}より
+				\begin{align}
+					A_\alpha(\gamma) \in \ON
+				\end{align}
+				が従う．ゆえに超限帰納法より(\refeq{form:thm_summation_on_ordinal_numbers_is_a_mapping_3})が従う．
+				ゆえに
+				\begin{align}
+					y \in \ON
+				\end{align}
+				が成り立ち
+				\begin{align}
+					\ran{+} \subset \ON
+				\end{align}
+				が得られた．
+				
+			\item[第四段] $\ran{+} = \ON$を示す．実際，$\alpha$を順序数とすれば
+				\begin{align}
+					\alpha = +(\alpha,0)
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\alpha \in \ran{+}
+				\end{align}
+				が成り立ち
+				\begin{align}
+					\ON \subset \ran{+}
+				\end{align}
+				が従う．前段の結果と併せて
+				\begin{align}
+					\ran{+} = \ON
+				\end{align}
+				を得る．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	$\alpha$と$\beta$を順序数とするとき
@@ -125,13 +327,10 @@
 	また$\alpha + \beta$なる順序数を$\alpha$と$\beta$の{\bf 和}\index{わ@和}{\bf (sum)}とも呼ぶ．
 	
 	\begin{screen}
-		\begin{thm}[自然数の和は自然数]\label{thm:the_definition_of_addition_of_ordinal_numbers}
-			次が成立する:
-			\begin{itemize}
-				\item $\forall \alpha,\alpha' \in \ON\, \left(\, \alpha = \alpha' \Longrightarrow A_\alpha = A_{\alpha'}\, \right)$.
-				\item $\forall \beta \in \ON\, (\, \alpha + \beta \in \ON\, )$.
-				\item $\alpha \in {\bf \omega}$のとき，$\forall \beta \in {\bf \omega}\, (\, \alpha + \beta \in {\bf \omega}\, )$.
-			\end{itemize}
+		\begin{thm}[自然数の和は自然数]\label{thm:sum_of_natural_numbers_is_a_natural_number}
+			\begin{align}
+				\forall n, m \in \Natural\, (\, n + m \in \Natural\, ).
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
@@ -179,10 +378,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[加法の性質]
-		\label{thm:properties_of_addition_of_ordinal_numbers}
-			定理\ref{thm:the_definition_of_addition_of_ordinal_numbers}で定めた
-			加法は以下の性質を持つ:
+		\begin{thm}[加法の性質]\mbox{}
 			\begin{itemize}
 				\item $\forall \alpha \in \ON\ (\ \alpha + 0 = 0 + \alpha = \alpha\ )$,
 				
