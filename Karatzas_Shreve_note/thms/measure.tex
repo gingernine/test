@@ -1,70 +1,316 @@
 \section{測度}
 	\subsection{Lebesgue拡大}
 		\begin{screen}
-			\begin{dfn}[Lebesgue拡大]
-				$(X,\mathcal{B},\mu)$を測度空間とするとき，
+			\begin{thm}[最小の完備拡大が取れる]
+				$(X,\mathscr{A},\mu)$を正値測度空間とする．このとき
 				\begin{align}
-					\overline{\mathcal{B}} &\coloneqq
-					\Set{B \subset X}{\exists A_1,A_2 \in \mathcal{B},\ \mbox{s.t.}\quad A_1 \subset B \subset A_2,\ \mu(A_2 \backslash A_1)=0 }, \\
-					\overline{\mu}(B) &\coloneqq \mu(A_1) \quad (\forall B \in \overline{\mathcal{B}},\ \mbox{$A_1$ as in above})
+					\mathscr{B} \defeq
+					\Set{B}{B \subset X \wedge \exists A,C \in \mathscr{A}\,
+					\left(\, A \subset B \subset C \wedge \mu(C \backslash A)=0\, \right) }
 				\end{align}
-				により得られる完備測度空間$\left( X,\overline{\mathcal{B}},\overline{\mu} \right)$を
-				$(X,\mathcal{B},\mu)$のLebesgue拡大と呼ぶ．
+				により定める$\mathscr{B}$は$X$上の$\sigma$-加法族となる．また
+				$B$を$\mathscr{B}$の要素とすると
+				\begin{align}
+					A \subset B \subset C \wedge \mu(C \backslash A)=0
+				\end{align}
+				なる$\mathscr{A}$の要素$A$と$C$が取れるが，$B$に対して
+				$\mu(A)$を対応させる関係，つまり
+				\begin{align}
+					\Set{(x,y)}{x \in \mathscr{B} \wedge \exists a,c \in \mathscr{A}\, 
+					\left(\, a \subset x \subset c \wedge y = \mu(a)\, \right)}
+				\end{align}
+				なる関係を$\nu$とすれば，$\nu$は$\mathscr{B}$上の完備な正値測度である．
+				そして$(X,\mathscr{C},\lambda)$を
+				\begin{align}
+					\mathscr{A} \subset \mathscr{C} \wedge \mu \subset \lambda
+				\end{align}
+				を満たす完備な正値測度空間とすると，
+				\begin{align}
+					\mathscr{B} \subset \mathscr{C} \wedge \nu \subset \lambda
+				\end{align}
+				が成立する．つまり$(X,\mathscr{B},\nu)$は$(X,\mathscr{A},\mu)$の完備拡大のうちで最小である．
+			\end{thm}
+		\end{screen}
+		
+		\begin{sketch}\mbox{}
+			\begin{description}
+				\item[第一段] $\mathscr{B}$が$\sigma$-加法族であることを示す．まず
+					\begin{align}
+						X \in \mathscr{A}
+					\end{align}
+					と
+					\begin{align}
+						X \subset X \subset X
+					\end{align}
+					と
+					\begin{align}
+						\mu(X \backslash X) = \mu(\emptyset) = 0
+					\end{align}
+					が成り立つので$X$は$\mathscr{B}$に属する．$B$を$\mathscr{B}$の要素とすれば
+					\begin{align}
+						A \subset B \subset C \wedge \mu(C \backslash A)=0
+					\end{align}
+					なる$\mathscr{A}$の要素$A$と$C$が取れて，このとき
+					\begin{align}
+						(X \backslash C) \subset (X \backslash B) \subset (X \backslash A) 
+					\end{align}
+					と
+					\begin{align}
+						\mu\left((X \backslash A)\backslash (X \backslash C)\right) 
+						= \mu(C \backslash A) 
+						= 0
+					\end{align}
+					が成り立つから
+					\begin{align}
+						X \backslash B \in \mathscr{B}
+					\end{align}
+					が成り立つ．つまり$\mathscr{B}$は補演算で閉じる．
+					$\{B_n\}_{n \in \Natural}$を$\mathscr{B}$の部分集合とすれば，各自然数$n$で
+					\begin{align}
+						A_n \subset B_n \subset C_n \wedge \mu(C_n \backslash A_n)=0
+					\end{align}
+					を満たす$\mathscr{A}$の要素$A_n$と$C_n$が取れる．このとき
+					\begin{align}
+						\bigcup_{n \in \Natural} A_n 
+						\subset \bigcup_{n \in \Natural} B_n
+						\subset \bigcup_{n \in \Natural} C_n
+					\end{align}
+					が成り立ち，また
+					\begin{align}
+						\bigcup_{n \in \Natural} C_n \backslash \bigcup_{n \in \Natural} A_n
+						\subset \bigcup_{n \in \Natural} (C_n \backslash A_n)
+					\end{align}
+					より
+					\begin{align}
+						\mu\left( \bigcup_{n \in \Natural} C_n \backslash \bigcup_{n \in \Natural} A_n \right)
+						\leq \sum_{n \in \Natural} \mu(C_n \backslash A_n)
+						= 0
+					\end{align}
+					も成り立つから
+					\begin{align}
+						\bigcup_{n \in \Natural} B_n \in \mathscr{B}
+					\end{align}
+					も成立する．ゆえに$\mathscr{B}$は可算合併でも閉じる．ゆえに$\mathscr{B}$は$\sigma$-加法族である．
+					
+				\item[第二段]
+					$\nu$が写像であることを示す．$(x,y)$と$(x,z)$を$\nu$の要素とする．このとき
+					\begin{align}
+						x = B
+					\end{align}
+					なる$\mathscr{B}$の要素$B$が取れて，また
+					\begin{align}
+						A_1 \subset B \subset C_1 \wedge \mu(C_1 \backslash A_1)=0
+					\end{align}
+					なる$\mathscr{A}$の要素$A_1$と$C_1$と，
+					\begin{align}
+						A_2 \subset B \subset C_2 \wedge \mu(C_2 \backslash A_2)=0
+					\end{align}
+					なる$\mathscr{A}$の要素$A_2$と$C_2$も取れる．そして
+					\begin{align}
+						A_1 \subset B \subset C_2
+					\end{align}
+					から
+					\begin{align}
+						\mu(A_1) \leq \mu(C_2) = \mu(A_2)
+					\end{align}
+					が成り立ち，
+					\begin{align}
+						A_2 \subset B \subset C_1
+					\end{align}
+					から
+					\begin{align}
+						\mu(A_2) \leq \mu(C_1) = \mu(A_1)
+					\end{align}
+					も成り立つので，
+					\begin{align}
+						y = \mu(A_1) = \mu(A_2) = z
+					\end{align}
+					が成立する．ゆえに$\nu$は写像である．
+					
+				\item[第三段] $\nu$の定義域が$\mathscr{B}$に等しいことを示す．
+					$x$を$\dom{\nu}$の要素とすると，
+					\begin{align}
+						x = B
+					\end{align}
+					なる$\mathscr{B}$の要素$B$が取れるので
+					\begin{align}
+						x \in \mathscr{B}
+					\end{align}
+					が従う．$x$を$\mathscr{B}$の要素とすると，
+					\begin{align}
+						A \subset x \subset C \wedge \mu(C \backslash A)=0
+					\end{align}
+					なる$\mathscr{A}$の要素$A$と$C$が取れるので
+					\begin{align}
+						(x,\mu(A)) \in \nu
+					\end{align}
+					が成り立ち
+					\begin{align}
+						x \in \dom{\nu}
+					\end{align}
+					が従う．$x$の任意性から
+					\begin{align}
+						\dom{\nu} = \mathscr{B}
+					\end{align}
+					が得られる．
+				
+				\item[第四段]	$(X,\mathscr{B},\nu)$が$(X,\mathscr{A},\mu)$の完備拡大のうちで最小であることを示す．
+					$B$を$\mathscr{B}$の要素とすると
+					\begin{align}
+						A \subset x \subset C \wedge \mu(C \backslash A)=0
+					\end{align}
+					なる$\mathscr{A}$の要素$A$と$C$が取れる．ここで
+					\begin{align}
+						\mu \subset \lambda
+					\end{align}
+					より
+					\begin{align}
+						C \backslash A
+					\end{align}
+					は$\lambda$-零集合なので，$\lambda$の完備性より
+					\begin{align}
+						B \backslash A \in \mathscr{C}
+					\end{align}
+					が成立する．よって
+					\begin{align}
+						B = B \cup (B \backslash A) \in \mathscr{C}
+					\end{align}
+					が成立する．よって
+					\begin{align}
+						\mathscr{B} \subset \mathscr{C}
+					\end{align}
+					が成立する．また
+					\begin{align}
+						\nu(B) = \mu(A) = \lambda(A) = \lambda(A) + \lambda(B \backslash A) = \lambda(B)
+					\end{align}
+					が成立するので
+					\begin{align}
+						\nu \subset \lambda
+					\end{align}
+					も成立する．
+					\QED
+			\end{description}
+		\end{sketch}
+		
+		\begin{screen}
+			\begin{dfn}[Lebesgue拡大]
+				$(X,\mathscr{A},\mu)$を正値測度空間とするとき，その最小の完備拡大として取れる
+				正値測度空間を$(X,\mathscr{A},\mu)$の{\bf Lebesgue拡大}\index{Lebesgueかくだい@Lebesgue拡大}と呼ぶ．
+				Lebesgue拡大は往々にして
+				\begin{align}
+					\left( X,\overline{\mathscr{A}},\overline{\mu} \right)
+				\end{align}
+				のように上線を載せて書かれる．
 			\end{dfn}
 		\end{screen}
-		$\overline{\mu}$はwell-definedである．実際，$B \subset X$に対し
-		$A_1,A_2,B_1,B_2 \in \mathcal{B}$が
-		\begin{align}
-			&A_1 \subset B \subset A_2, \quad \mu(A_2 \backslash A_1) = 0, \\
-			&B_1 \subset B \subset B_2, \quad \mu(B_2 \backslash B_1) = 0,
-		\end{align}
-		を満たすとき，$A_1 \cup B_1 \subset B \subset A_2 \cap B_2$となるが，
-		\begin{align}
-			(A_2 \cap B_2) \cap (A_1 \cup B_1)^c
-			\subset A_2 \backslash A_1
-		\end{align}
-		より$\mu(A_1 \cup B_1) = \mu(A_2 \cap B_2)$が従い
-		\begin{align}
-			\mu(A_2) &= \mu(A_1) \leq \mu(A_1 \cup B_1) = \mu(A_2 \cap B_2) \leq \mu(B_2), \\
-			\mu(B_2) &= \mu(B_1) \leq \mu(A_1 \cup B_1) = \mu(A_2 \cap B_2) \leq \mu(A_2)
-		\end{align}
-		が成り立つから$\mu(A_2) = \mu(B_2)$が出る．
-		また，任意の$B \subset X$について
-		\begin{align}
-			\overline{\mathcal{B}}
-			= \Set{B \subset X}{\exists A,N \in \mathcal{B},\ \mbox{s.t.}\quad \mu(N)=0,
-			\ B \cap A^c, A \cap B^c \subset N}
-			\label{eq:appendix_Lebesgue_expansion_note_1}
-		\end{align}
-		が成立する．実際，$B \in \overline{\mathcal{B}}$なら
-		$A_1 \subset B \subset A_2$かつ$\mu(A_2 \backslash A_1) = 0$を満たす$A_1,A_2 \in \mathcal{B}$が存在するから
-		\begin{align}
-			A = A_2, \quad N = A_2 \backslash A_1
-		\end{align}
-		として$(\subset)$を得る．逆に右辺を満たす$A,N$が存在するとき，
-		\begin{align}
-			A \cap N^c &\subset A \cap B \subset B 
-			\subset A \cup (A^c \cap B)
-			\subset A \cup N
-		\end{align}
-		より$A_1 = A\cap N^c,\ A_2 = A \cup N$として$(\supset)$を得る．
+		
+		\begin{screen}
+			\begin{thm}[Lebesgue拡大の可測集合族の対称差による表現]
+				$(X,\mathscr{A},\mu)$を正値測度空間とし，
+				$\left( X,\overline{\mathscr{A}},\overline{\mu} \right)$をそのLebesgue拡大とする．
+				このとき
+				\begin{align}
+					\tilde{\mathscr{A}} \defeq \Set{B}{B \subset X \wedge \exists A,N \in \mathscr{A}\, 
+					\left(\, \mu(N) = 0 \wedge B \backslash A \subset N \wedge
+					A \backslash B \subset N\, \right)}
+				\end{align}
+				は$\overline{\mathscr{A}}$に一致する．
+			\end{thm}
+		\end{screen}
+		
+		\begin{sketch}
+			$B$を$\overline{\mathscr{A}}$の要素とすると
+			\begin{align}
+				A \subset B \subset C \wedge \mu(C \backslash A)=0
+			\end{align}
+			なる$\mathscr{A}$の要素$A$と$C$が取れる．
+			\begin{align}
+				N \defeq C \backslash A
+			\end{align}
+			とおけば，
+			\begin{align}
+				\mu(N) = 0
+			\end{align}
+			かつ
+			\begin{align}
+				B \backslash A \subset N
+			\end{align}
+			かつ
+			\begin{align}
+				A \backslash B = \emptyset \subset N
+			\end{align}
+			が成り立つので
+			\begin{align}
+				B \in \tilde{\mathscr{A}}
+			\end{align}
+			が成立する．次に$B$を$\tilde{\mathscr{A}}$の要素とすると，
+			\begin{align}
+				\mu(N) = 0 \wedge B \backslash A \subset N \wedge A \backslash B \subset N
+			\end{align}
+			なる$\mathscr{A}$の要素$A$と$N$が取れる．ここで
+			\begin{align}
+				\forall x \in A\, (\, x \notin B \Longrightarrow x \in N\, )
+			\end{align}
+			が成り立つから，
+			\begin{align}
+				A \backslash N \subset B
+			\end{align}
+			が成立する．他方で
+			\begin{align}
+				\forall x \in B\, (\, x \notin A \Longrightarrow x \in N\, )
+			\end{align}
+			が成り立つから，
+			\begin{align}
+				B \subset A \cup N
+			\end{align}
+			が成立する．また
+			\begin{align}
+				(A \cup N) \backslash (A \backslash N)
+				= (A \cup N) \cap ((X \backslash A) \cup N)
+			\end{align}
+			であるから，$x$を$(A \cup N) \backslash (A \backslash N)$の要素とすると
+			\begin{align}
+				x \in A
+			\end{align}
+			ならば
+			\begin{align}
+				x \notin A \vee x \in N
+			\end{align}
+			と併せて
+			\begin{align}
+				x \in N
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				(A \cup N) \backslash (A \backslash N) \subset N
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				A \backslash N \subset B \subset A \cup N \wedge
+				\mu\left( (A \cup N) \backslash (A \backslash N) \right) = 0
+			\end{align}
+			が満たされ
+			\begin{align}
+				B \in \overline{\mathscr{A}}
+			\end{align}
+			となる．以上より
+			\begin{align}
+				\overline{\mathscr{A}} = \tilde{\mathscr{A}}
+			\end{align}
+			が得られた．
+			\QED
+		\end{sketch}
 		
 		\begin{screen}
 			\begin{lem}[可分値写像による可測写像の一様近似]\label{lem:approximation_of_countably_valued_mappings_on_dist_space}
-				$(X,\mathcal{B},\mu)$を測度空間，$(S,d)$を可分距離空間とする．このとき
-				任意の$\mathcal{B}/\borel{S}$-可測写像$f$に対し，
-				$S$の可算稠密集合に値を取る$\mathcal{B}/\borel{S}$-可測写像列$(f_n)_{n=1}^\infty$が存在して，
-				次の意味で$f$を一様に近似する:
-				\begin{align}
-					\sup{x \in X}{d\left(f_n(x),f(x)\right)} \longrightarrow 0
-					\quad (n \longrightarrow \infty).
-					\label{eq:lem_approximation_of_countably_valued_mappings_on_dist_space}
-				\end{align}
+				$(X,\mathcal{B},\mu)$を正値測度空間とし，$(S,d)$を可分距離空間とし，
+				$f$を$\mathcal{B}/\borel{S}$-可測写像とする．このとき
+				$S$の可算稠密集合に値を取る$\mathcal{B}/\borel{S}$-可測写像列で，$f$に一様収束するものが取れる．
 			\end{lem}
 		\end{screen}
 		
 		\begin{prf}
-			$S$の可算稠密な部分集合を$\{a_k\}_{k=1}^\infty$とする．
+			$\{a_k\}_{k=1}^\infty$を$S$の可算稠密な部分集合をとする．
 			任意の$n \geq 1$に対し
 			\begin{align}
 				B_n^k \coloneqq \Set{s \in S}{d(s,a_k) < \frac{1}{n}},
@@ -92,7 +338,7 @@
 				d\left(f_n(x),f(x)\right) < \frac{1}{n},
 				\quad (\forall x \in X)
 			\end{align}
-			が満たされ(\refeq{eq:lem_approximation_of_countably_valued_mappings_on_dist_space})が従う．
+			が満たされる．
 			\QED
 		\end{prf}
 		
