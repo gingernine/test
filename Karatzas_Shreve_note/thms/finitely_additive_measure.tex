@@ -1,6 +1,6 @@
 \subsection{加法的正値測度}
 		\begin{screen}
-			\begin{thm}[加法的な正値測度空間の生成]\label{thm:forming_finitely_additive_class}
+			\begin{thm}[加法族と加法的測度の構成]\label{thm:forming_finitely_additive_class}
 				$X$を集合とし，$\mathscr{A}$を$X$上の乗法族とし，
 				$\mathscr{B}$を$\mathscr{A}$の要素の有限非交和の全体とする．つまり
 				\begin{align}
@@ -44,11 +44,11 @@
 					\begin{align}
 						A = \bigcup u
 					\end{align}
-					なる$\power{\mathscr{A}}$の有限部分集合$u$と
+					なる$\mathscr{A}$の有限部分集合$u$と
 					\begin{align}
 						B = \bigcup v
 					\end{align}
-					なる$\power{\mathscr{A}}$の有限部分集合$v$が，
+					なる$\mathscr{A}$の有限部分集合$v$が，
 					$u$も$v$もそれに属する相異なる二つの要素がどれも互いに素であるように取れる．
 					\begin{align}
 						A \cap B = \emptyset
@@ -93,39 +93,53 @@
 					となる．以上より$\mathscr{B}$は$X$上の加法族である．
 					
 				\item[第二段]
-					$\mu$が写像であることを示す．実際，$A$と$B$を$\mathscr{B}$の要素とすると，
+					$\mu$が加法的な写像であることを示す．実際，$A$と$B$を$\mathscr{B}$の要素とすると，
 					\begin{align}
 						A = \bigcup u
 					\end{align}
-					なる$\power{\mathscr{A}}$の有限部分集合$u$と
+					なる$\mathscr{A}$の有限部分集合$u$と
 					\begin{align}
 						B = \bigcup v
 					\end{align}
-					なる$\power{\mathscr{A}}$の有限部分集合$v$が，
-					$u$も$v$もそれに属する相異なる二つの要素がどれも互いに素であるように取れて，
+					なる$\mathscr{A}$の有限部分集合$v$が，
+					$u$も$v$もそれに属する相異なる二つの要素がどれも互いに素であるように取れる．そして
 					\begin{align}
 						A = B
 					\end{align}
+					ならば，$i$を$u$の要素とすれば
+					\begin{align}
+						i = \bigcup \Set{i \cap j}{j \in v}
+					\end{align}
+					が成り立ち
+					\begin{align}
+						m(i) = \sum_{j \in v} m(i \cap j)
+					\end{align}
+					が満たされれ，同様に$j$を$v$の要素とすれば
+					\begin{align}
+						m(j) = \sum_{i \in u} m(i \cap j)
+					\end{align}
+					も満たされるので，
+					\begin{align}
+						\sum_{i \in u} m(i) = \sum_{i \in u} \sum_{j \in v} m(i \cap j)
+						= \sum_{j \in v} \sum_{i \in u} m(i \cap j)
+						= \sum_{j \in v} m(j)
+					\end{align}
+					が成立する．ゆえに$\mu$は写像である．また
+					\begin{align}
+						A \cap B = \emptyset
+					\end{align}
 					ならば
 					\begin{align}
-						f
-					\end{align}
-					
-					(\refeq{eq:thm_forming_finitely_additive_class_4})の$A,B \in \mathcal{B}$に対して，
-					$A = B$のとき
-					\begin{align}
-						\sum_{i=1}^n m(I_i)
-						= \sum_{i=1}^n \sum_{j=1}^m m(I_i \cap J_j)
-						= \sum_{j=1}^m \sum_{i=1}^n m(I_i \cap J_j)
-						= \sum_{j=1}^m m(J_j)
-					\end{align}
-					が成り立つから$\mu$はwell-definedであり，また$A \cap B = \emptyset$のとき
-					\begin{align}
-						\mu(A + B)
-						=  m(I_1) + \cdots + m(I_n) + m(J_1) + \cdots + m(J_m)
+						\mu(A \cup B)
+						=  \sum_{k \in u \cup v} m(k)
+						= \sum_{i \in u} m(i) + \sum_{j \in v} m(j)
 						= \mu(A) + \mu(B)
 					\end{align}
-					となり$\mu$の有限加法性が出る．$\mu$は$m$の拡張であるから$\mu(\emptyset) = 0$も従う．
+					が成り立つので$\mu$は加法的である．$\mu$は$m$の拡張であるから
+					\begin{align}
+						\mu(\emptyset) = 0
+					\end{align}
+					も満たされる．ゆえに$\mu$は$\mathscr{B}$上の加法的正値測度である．
 					\QED
 			\end{description}
 		\end{prf}
