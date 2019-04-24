@@ -1,17 +1,17 @@
 \subsection{加法的正値測度}
 		\begin{screen}
 			\begin{thm}[加法的な正値測度空間の生成]\label{thm:forming_finitely_additive_class}
-				$X$を集合とし，$\mathscr{A}$を$X$上の乗法族で$X$を含むものとし，
+				$X$を集合とし，$\mathscr{A}$を$X$上の乗法族とし，
 				$\mathscr{B}$を$\mathscr{A}$の要素の有限非交和の全体とする．つまり
 				\begin{align}
 					\mathscr{B} \defeq \Set{\bigcup u}{u \subset \mathscr{A} \wedge \exists n \in \Natural\,
 					(\, u \eqp n\, ) \wedge \forall i,j \in u\, (\, i \neq j \Longrightarrow i \cap j = \emptyset\, )}
 				\end{align}
-				である．$\mathscr{B}$は
+				である．$\mathscr{A}$が$\emptyset$を要素に持ち，$\mathscr{B}$が
 				\begin{align}
 					\forall i \in \mathscr{A}\, (\, X\backslash i \in \mathscr{B}\, )
 				\end{align}
-				を満たすとき$X$上の加法族となる．また$m$を$m:\mathscr{A} \longrightarrow [0,\infty]$なる写像で
+				を満たすとき，$\mathscr{B}$は$X$上の加法族となる．さらに$m$を$m:\mathscr{A} \longrightarrow [0,\infty]$なる写像で
 				\begin{align}
 					m(\emptyset) = 0
 				\end{align}
@@ -29,41 +29,88 @@
 			\end{thm}
 		\end{screen}
 		
-		\begin{prf} $X \backslash I \in \mathcal{B},\ (\forall I \in \mathcal{A})$及び
-			$m:\mathcal{A} \longrightarrow [0,\infty]$が与えられたとする．このとき
-			$\emptyset = X \backslash X \in \mathcal{B}$より$\emptyset \in \mathcal{A}$である．
+		\begin{prf}\mbox{}
 			\begin{description}
 				\item[第一段]
-					$\mathscr{B}$が加法族であることを示す．
-					$\mathcal{A} \subset \mathcal{B}$より$X \in \mathcal{B}$となる．$A,B \in \mathcal{B}$が
+					$\mathscr{B}$が加法族であることを示す．まず
 					\begin{align}
-						A = I_1 + I_2 + \cdots + I_n,
-						\quad B = J_1 + J_2 + \cdots + J_m
-						\label{eq:thm_forming_finitely_additive_class_4}
+						\emptyset \in \mathscr{A}
 					\end{align}
-					と表されているとき，$A \cap B = \emptyset$なら
+					より
 					\begin{align}
-						A + B = I_1 + I_2 + \cdots + I_n + J_1 + J_2 + \cdots + J_m \in \mathcal{A}
-						\label{eq:thm_forming_finitely_additive_class_1}
+						X = X \backslash \emptyset \in \mathscr{B}
 					\end{align}
-					となり，そうでない場合$I_i \cap J_j \in \mathcal{A}$より
+					が成り立つ．$A$と$B$を$\mathscr{B}$の要素とすると，
 					\begin{align}
-						A \cap B = \sum_{i=1}^n\sum_{j=1}^m I_i \cap J_i \in \mathcal{B}
-						\label{eq:thm_forming_finitely_additive_class_2}
+						A = \bigcup u
 					\end{align}
-					となるから$\mathcal{B}$は交演算で閉じ，$X \backslash I_i \in \mathcal{B}$であるから
+					なる$\power{\mathscr{A}}$の有限部分集合$u$と
 					\begin{align}
-						X \backslash A = (X \backslash I_1) \cap \cdots \cap (X \backslash I_n) \in \mathcal{B}
-						\label{eq:thm_forming_finitely_additive_class_3}
+						B = \bigcup v
 					\end{align}
-					が従う．(\refeq{eq:thm_forming_finitely_additive_class_1})，
-					(\refeq{eq:thm_forming_finitely_additive_class_2})，
-					(\refeq{eq:thm_forming_finitely_additive_class_3})
-					より$A \cup B = A + B \cap (X \backslash A) \in \mathcal{B}$が成り立ち，
-					$\mathcal{B}$は集合和でも閉じる．
-		
+					なる$\power{\mathscr{A}}$の有限部分集合$v$が，
+					$u$も$v$もそれに属する相異なる二つの要素がどれも互いに素であるように取れる．
+					\begin{align}
+						A \cap B = \emptyset
+					\end{align}
+					なら$u \cup v$の相異なる二つの要素は互いに素であるから
+					\begin{align}
+						\bigcup (u \cup v) \in \mathscr{B}
+					\end{align}
+					が成立し，
+					\begin{align}
+						A \cup B = \bigcup (u \cup v)
+					\end{align}
+					であるから$A \cup B$も$\mathscr{B}$に属する．つまり$\mathscr{B}$は非交和で閉じる．
+					また$\mathscr{A}$は交演算で閉じるので，$i$を$u$の要素とすれば
+					\begin{align}
+						\bigcup \Set{i \cap j}{j \in v} \in \mathscr{B}
+					\end{align}
+					となる．そして
+					\begin{align}
+						A \cap B = \bigcup_{i \in u} \left( \bigcup \Set{i \cap j}{j \in v} \right)
+					\end{align}
+					が成り立つが，$\mathscr{B}$が非交和で閉じるので右辺は$\mathscr{B}$の要素であり
+					\begin{align}
+						A \cap B \in \mathscr{B}
+					\end{align}
+					が従う．ゆえに$\mathscr{B}$は交演算で閉じる．
+					\begin{align}
+						X \backslash A = \bigcap_{i \in u} (X \backslash i)
+					\end{align}
+					が成り立つが，$X \backslash i$は全て$\mathscr{B}$の要素であり，$\mathscr{B}$は交演算で閉じるから
+					\begin{align}
+						X \backslash A \in \mathscr{B}
+					\end{align}
+					が成り立つ．ゆえに$\mathscr{B}$は補演算で閉じる．
+					\begin{align}
+						A \cup B = A \cup (B \cap (X \backslash A))
+					\end{align}
+					であるから，$\mathscr{B}$が補演算と交演算と非交和で閉じることにより
+					\begin{align}
+						A \cup B \in \mathscr{B}
+					\end{align}
+					となる．以上より$\mathscr{B}$は$X$上の加法族である．
+					
 				\item[第二段]
-					$\mu$がwell-definedかつ有限加法的であることを示す．実際
+					$\mu$が写像であることを示す．実際，$A$と$B$を$\mathscr{B}$の要素とすると，
+					\begin{align}
+						A = \bigcup u
+					\end{align}
+					なる$\power{\mathscr{A}}$の有限部分集合$u$と
+					\begin{align}
+						B = \bigcup v
+					\end{align}
+					なる$\power{\mathscr{A}}$の有限部分集合$v$が，
+					$u$も$v$もそれに属する相異なる二つの要素がどれも互いに素であるように取れて，
+					\begin{align}
+						A = B
+					\end{align}
+					ならば
+					\begin{align}
+						f
+					\end{align}
+					
 					(\refeq{eq:thm_forming_finitely_additive_class_4})の$A,B \in \mathcal{B}$に対して，
 					$A = B$のとき
 					\begin{align}
