@@ -1,18 +1,59 @@
 \section{再帰的定義}
 \label{sec:recursive_definition}
-	類$G$を$\Univ$上の写像とするとき，
+	例えば
 	\begin{align}
-		K = \Set{f}{\exists \alpha \in \ON\ \left(\ f:\alpha \longrightarrow V \wedge \forall \beta \in \alpha\ (\ f(\beta) = G(f|_\beta)\ )\ \right)}
+		a_1,\quad a_2,\quad a_3,\quad a_4,\quad \cdots\quad a_n,\quad \cdots
 	\end{align}
-	とおいて
+	なる列が与えられたときに，その$n$重の順序対を
 	\begin{align}
-		F = \bigcup K
+		(a_1,a_2,\cdots,a_n)
 	\end{align}
-	と定めると，$F$は$\ON$上の写像であって
+	などと書くことがある．まあ
 	\begin{align}
-		\forall \alpha \in \ON\ (\ F(\alpha) = G(F|_\alpha)\ )
+		(a_0,a_1)
 	\end{align}
-	を満たす．また$\ON$上の写像で上式を満たすのは$F$のみである．
+	ならば単なる順序対であり，
+	\begin{align}
+		(a_0,a_1,a_2)
+	\end{align}
+	も
+	\begin{align}
+		((a_0,a_1),a_2)
+	\end{align}
+	で定められ，
+	\begin{align}
+		(a_0,a_1,a_2,a_3)
+	\end{align}
+	も
+	\begin{align}
+		(((a_0,a_1),a_2),a_3)
+	\end{align}
+	で定められる．このように具体的に全ての要素を書き出せるうちは何も問題は無い．
+	ただし，同じ操作を$n$回反復するということを表現するために
+	\begin{align}
+		\cdots
+	\end{align}
+	なる不明瞭な記号を無断で用いることは$\mathcal{L}'$において許されない．
+	そもそもまだ``$n$回の反復''をどんな式で表現したら良いかもわからないのである．
+	次の定理は，このような再帰的な操作が$\mathcal{L}'$で可能であることを保証する．
+	
+	\begin{screen}
+		\begin{thm}[超限帰納法による写像の構成]
+			類$G$を$\Univ$上の写像とするとき，
+			\begin{align}
+				K \defeq \Set{f}{\exists \alpha \in \ON\ \left(\ f:\alpha \longrightarrow V \wedge \forall \beta \in \alpha\ (\ f(\beta) = G(f|_\beta)\ )\ \right)}
+			\end{align}
+			とおいて
+			\begin{align}
+				F \defeq \bigcup K
+			\end{align}
+			と定めると，$F$は$\ON$上の写像であって
+			\begin{align}
+				\forall \alpha \in \ON\ (\ F(\alpha) = G(F|_\alpha)\ )
+			\end{align}
+			を満たす．また$\ON$上の写像で上式を満たすのは$F$のみである．
+		\end{thm}
+	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
@@ -184,32 +225,7 @@
 		のような記法の集合論的意味付けを考察する．
 	\end{itembox}
 	
-		\begin{align}
-			(a_0,a_1)
-		\end{align}
-		ならば単なる順序対であり，
-		\begin{align}
-			(a_0,a_1,a_2)
-		\end{align}
-		も
-		\begin{align}
-			((a_0,a_1),a_2)
-		\end{align}
-		で定められ，
-		\begin{align}
-			(a_0,a_1,a_2,a_3)
-		\end{align}
-		も
-		\begin{align}
-			(((a_0,a_1),a_2),a_3)
-		\end{align}
-		で定められるように，具体的に全ての要素を書き出せるうちは何も問題は無い．
-		ただし，同じ操作を$n$回反復するということを表現するために
-		\begin{align}
-			\cdots
-		\end{align}
-		なる不明瞭な記号を無断で用いることは$\mathcal{L}'$において許されない．
-		そこで$\Univ$上の写像$G$を
+		$\Univ$上の写像$G$を
 		\begin{align}
 			G(x) = 
 			\begin{cases}

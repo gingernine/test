@@ -199,43 +199,131 @@
 		\QED
 	\end{prf}
 	
+	
+	以後本稿では超限帰納法を頻繁に扱うので，ここでその{\bf 利用方法}を述べておく．
+	順序数に対する何らかの言明$A$が与えられたとき，それがいかなる順序数に対しても真であることを示したいとする．往々にして
+	\begin{align}
+		\forall \alpha \in \ON\, A(\alpha)
+	\end{align}
+	をいきなり示すのは難しく，一方で
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta)
+	\end{align}
+	から
+	\begin{align}
+		A(\alpha)
+	\end{align}
+	を導くことは容易い．それは順序数の``順番''的な性質の良さによるが，超限帰納法のご利益は
+	\begin{align}
+		\forall \alpha \in \ON\, \left(\, \forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)\, \right)
+	\end{align}
+	が成り立つことさえ示してしまえばいかなる順序数に対しても$A$が真となってくれるところにある．
+	
+	$\alpha$を任意に与えられた順序数とするとき，
+	\begin{align}
+		\alpha = 0
+	\end{align}
+	であると空虚な真によって
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta)
+	\end{align}
+	は必ず真となるから，まずは
+	\begin{align}
+		A(0)
+	\end{align}
+	が成り立つことを示さなければならない．$A(0)$が偽であると
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta) \wedge \rightharpoondown A(0)
+	\end{align}
+	が真となって
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta) \Longrightarrow A(0)
+	\end{align}
+	が偽となってしまうからである．$\alpha$が$0$でないときは素直に
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta)
+	\end{align}
+	が成り立つとき
+	\begin{align}
+		A(\alpha)
+	\end{align}
+	が成り立つことを示せば良い．以上超限帰納法の利用法をまとめると，
+	
+	\begin{itembox}[l]{超限帰納法の利用手順}
+		順序数に対する何らかの言明$A$が与えられて，それがいかなる順序数に対しても真なることを示したいならば，
+		\begin{itemize}
+			\item まずは$A(0)$が成り立つことを示し，
+			\item 次は$\alpha$を$0$でない順序数として
+				$\forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)$が成り立つことを示す．
+		\end{itemize}
+	\end{itembox}
+	
 	\begin{screen}
 		\begin{thm}[数学的帰納法の原理]
 		\label{thm:the_principle_of_mathematical_induction}
-			$\omg$は次の意味で最小の無限集合である:
+			$\Natural$は次の意味で最小の無限集合である:
 			\begin{align}
-				\forall a\ \left(\ \emptyset \in a \wedge \forall x\ 
-				(\ x \in a \Longrightarrow x \cup \{x\} \in a\ ) 
-				\Longrightarrow \omg \subset a\ \right).
+				\forall a\, \left[\, \emptyset \in a \wedge \forall x\, 
+				(\, x \in a \Longrightarrow x \cup \{x\} \in a\, ) 
+				\Longrightarrow \Natural \subset a\, \right].
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		超限帰納法で示す．いま$a$を
+		$a$を集合とし，
 		\begin{align}
-			\emptyset \in a \wedge \forall x\ 
-			(\ x \in a \Longrightarrow x \cup \{x\} \in a\ )
+			\emptyset \in a \wedge \forall x\, 
+			(\, x \in a \Longrightarrow x \cup \{x\} \in a\, )
+			\label{fom:thm_the_principle_of_mathematical_induction_1}
 		\end{align}
-		を満たす類とし，また$\alpha$を任意に与えられた順序数とする．
-		$\alpha = \emptyset$の場合は$\emptyset \in a$より
+		が成り立っているとする．このとき
+		\begin{align}
+			\forall \alpha \in \ON\, (\, \alpha \in \Natural \Longrightarrow \alpha \in a\, )
+		\end{align}
+		が成り立つことを超限帰納法で示す．まずは
+		\begin{align}
+			0 \in a
+		\end{align}
+		から
 		\begin{align}
 			\emptyset \in \omega \Longrightarrow \emptyset \in a
 		\end{align}
-		が成立する．$\alpha \neq \emptyset$の場合，$\alpha$の任意の要素$\beta$に対して
+		が成立する．次に$\alpha$を任意に与えられた$0$でない順序数とする．
 		\begin{align}
-			\beta \in {\bf \omega} \Longrightarrow \beta \in a
+			\forall \beta \in \alpha\, (\, \beta \in {\bf \omega} \Longrightarrow \beta \in a\, )
+			\label{fom:thm_the_principle_of_mathematical_induction_2}
 		\end{align}
-		が成り立つと仮定する．このとき，$\alpha \in {\bf \omega}$なら
-		$\alpha$は極限数でないから$\alpha = \beta \cup \{\beta\}$を満たす順序数$\beta$が取れて，
-		仮定より$\beta \in a$となり$\alpha \in a$が従う．以上で
+		が成り立っているとすると，
 		\begin{align}
-			\forall \alpha \in \ON\ (\ \forall \beta \in \alpha\ (\ \beta \in {\bf \omega} \Longrightarrow \beta \in a\ ) \Longrightarrow (\ \alpha \in {\bf \omega} \Longrightarrow \alpha \in a\ )\ )
+			\alpha \in \Natural
+		\end{align}
+		なら$\alpha$は極限数でないから
+		\begin{align}
+			\alpha = \beta \cup \{\beta\}
+		\end{align}
+		を満たす自然数$\beta$が取れて，(\refeq{fom:thm_the_principle_of_mathematical_induction_2})より
+		\begin{align}
+			\beta \in a
+		\end{align}
+		が成り立ち，(\refeq{fom:thm_the_principle_of_mathematical_induction_1})より
+		\begin{align}
+			\alpha \in a
+		\end{align}
+		が従う．以上で
+		\begin{align}
+			\forall \alpha \in \ON\, \left[\ 
+				\forall \beta \in \alpha\, (\, \beta \in \Natural \Longrightarrow \beta \in a\, )
+				\Longrightarrow (\, \alpha \in \Natural \Longrightarrow \alpha \in a\, )\, \right]
 		\end{align}
 		が得られた．超限帰納法により
 		\begin{align}
-			\forall \alpha \in \ON\ (\ \alpha \in {\bf \omega} \Longrightarrow \alpha \in a\ )
+			\forall \alpha \in \ON\, (\, \alpha \in \Natural \Longrightarrow \alpha \in a\, )
 		\end{align}
-		となるから$\omega \subset a$が出る．
+		が成り立つから
+		\begin{align}
+			\omega \subset a
+		\end{align}
+		が従う．
 		\QED
 	\end{prf}
