@@ -1,26 +1,5 @@
-\subsection{実数}
-	実数体の構成はなかなかうまくいかない．
-	Artin-Schreier理論によれば順序体には実閉包が存在し，特に有理数体の実閉包が実数体として定められる．
-	実閉包の存在の証明にはZornの補題が使われる．
-	他方でDedeind切断による実数の構成は選択公理を使わないので，
-	この方法で実数体を構成すれば複素数体の構成までは選択公理なしで記述できる．
-	しかしDedeind切断による方法は，厚顔無恥な言い方をすれば泥臭い．
-	しかしZornの補題はまだ使いたくない．
-	Artin-Schreierの定理は任意の順序体に対しての実閉包の存在を主張しているが，
-	例えばArchimedes的順序体の実閉包の存在はZornの補題なしで，華麗に証明できるのか？見通しが立たない．
-	
-	もう一つ問題がある．実閉体がleast upper bound propertyを満たすかどうかがまだわからない． 
-	いかなる実閉体もleast upper bound propertyを満たすのか，実閉体がArchimedes的ならばleast upper bound propertyを満たすのか，
-	どういう状況でどう証明すれば良いのかまだ把握していない．
-	
-	\begin{itembox}[l]{実閉体メモ}
-		体が実体であることと順序付け可能であることは同値．
-		
-		体$F$について，$F$が実閉体であること，$F$のいかなる要素$x$にも$\sqrt{x}$か$\sqrt{-x}$が存在してかつ奇数次の多項式が$F$で解を持つこと，
-		平方の全体を正の要素として順序付け可能であること，
-		$F$が実体で$F(\sqrt{-1})$が代数閉体であること，
-		は同値．
-	\end{itembox}
+\subsection{イデアル}
+	$(R,\sigma_R,\mu_R)$をEuclid整域とする．つまり
 
 \subsection{多項式環}
 	$(R,\sigma_R,\mu_R)$を可換環とする．また$\zeta_R$を$R$の零元とし，
@@ -38,9 +17,9 @@
 	\end{align}
 	を満たす最小の自然数$n$が取れるが，その自然数を$f$の次数と呼び
 	\begin{align}
-		\deg_{(R,\sigma_R,\mu_R)}{f}
+		\deg{f}
 	\end{align}
-	と書く．さらに言えば，$\deg_{(R,\sigma_R,\mu_R)}$とは$f$に対して
+	と書く．さらに言えば，$\deg$とは$f$に対して
 	\begin{align}
 		\mu n\, \left[\, \forall m \in \Natural\, (\, n < m \Longrightarrow f(m) = \zeta_R\, )\, \right]
 	\end{align}
@@ -78,7 +57,7 @@
 	\end{align}
 	なる写像であって，さらに
 	\begin{align}
-		\Natural \ni n \defeq \deg_{(R,\sigma_R,\mu_R)}{f}
+		n \defeq \deg{f}
 	\end{align}
 	とおけば
 	\begin{align}
@@ -148,6 +127,14 @@
 	と書けたわけであるが，このとき
 	\begin{align}
 		h(f) = \sum_{i \in n} \mu_X \left(f(i),X^i\right)
+	\end{align}
+	が成立する．特に
+	\begin{align}
+		f \notin \varphi \ast R
+	\end{align}
+	ならば
+	\begin{align}
+		f = \sum_{i \in n} \mu_X \left(f(i),X^i\right)
 	\end{align}
 	が成立する．
 	
@@ -220,17 +207,38 @@
 	\end{align}
 	が満たされる．
 	
-	ここで$q$は，適当な自然数$n$を取って
+	$q$は既約多項式であるから
 	\begin{align}
-		\sum_{i \in n} \mu_X \left(q(i),X^i\right)
+		q \notin \varphi \ast R
 	\end{align}
-	と表される．
+	が満たされ，ゆえに適当な自然数$n$を取って
+	\begin{align}
+		q = \sum_{i \in n} \mu_X \left(q(i),X^i\right)
+	\end{align}
+	と表される．ここで
 	\begin{align}
 		\alpha \defeq \psi(X)
 	\end{align}
-	とおくと，
+	とおいて，$\zeta_E$を$(E,\sigma_E,\mu_E)$の零元とすると，
 	\begin{align}
+		\zeta_E = \psi(q)
+		= \sum_{i \in n} \mu_E \left(\psi(q(i)),\alpha^i\right)
 	\end{align}
+	が成立する．$\psi$は$R$の上で単射であって，かつ
+	\begin{align}
+		X \notin R
+	\end{align}
+	なので，
+	\begin{align}
+		\alpha \notin \psi \ast R
+	\end{align}
+	が成り立ち
+	\begin{align}
+		\zeta_R = J(\zeta_E)
+		= \sum_{i \in n} \mu_F \left(q(i),\alpha^i\right)
+	\end{align}
+	が従う．ゆえに{\bf $\alpha$は$R$上の多項式$q$の解である}．
+	
 	
 \subsection{複素数}
 	複素数体は$(\R,+_\R,\cdot_\R)$を単拡大して得られる．
@@ -238,15 +246,23 @@
 	\begin{align}
 		1 +_X X^2
 	\end{align}
-	(中置記法)は既約多項式となり，単拡大の際にはこれを用いる．$\C$の要素でこの多項式の解となるものを
+	(中置記法)は既約多項式となり，単拡大の際にはこれを用いる．複素数体とは前小節で言うところの
+	\begin{align}
+		(F,\sigma_F,\mu_F)
+	\end{align}
+	にあたり，これを
+	\begin{align}
+		(\C,+_\C,\cdot_\C)
+	\end{align}
+	と書く．$\C$の要素で$1 +_X X^2$の解となるもの，つまり前小節の$\alpha$に当たるものを
 	\begin{align}
 		\imag
 	\end{align}
-	と書くと，つまり$\imag$とは
+	と書くと
 	\begin{align}
 		0 = 1 +_\C \imag^2
 	\end{align}
-	を満たす$\C$の要素であるが，複素数は全て
+	を満たされる．また複素数は全て
 	\begin{align}
 		x +_\C (y \cdot_\C \imag)
 	\end{align}
