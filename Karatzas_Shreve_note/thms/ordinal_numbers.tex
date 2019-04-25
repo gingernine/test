@@ -18,101 +18,6 @@
 	そこでキーになるのは順序数と呼ばれる概念である．
 	
 	\begin{screen}
-		\begin{thm}[集合の帰納法]
-		\label{thm:equivalent_condition_of_axiom_of_regularity}
-			次の(i)(ii)の主張は同値である:
-			\begin{description}
-				\item[(i)] $a$を類とするとき
-					\begin{align}
-						a \neq \emptyset \Longrightarrow 
-						\exists x \in a\, (\, x \cap a = \emptyset\, ).
-					\end{align}
-					
-				\item[(ii)] $A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y,z$を$A$に現れない文字とする．
-					このとき，$A$に現れる文字で$x$のみが$A$で量化されていない場合
-					\begin{align}
-						\forall x\, \left(\, \forall y \in x\, A(y)
-						\Longrightarrow A(x)\, \right)
-						\Longrightarrow \forall z A(z).
-					\end{align}
-			\end{description}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$A$を$\mathcal{L}'$の式，$x$を$A$に現れる文字，$y,z$を$A$に現れない文字として，
-		$A$に現れる文字で$x$のみが$A$で量化されていないとする．
-		そして(i)の主張が正しいと仮定し
-		\begin{align}
-			a \coloneqq \Set{x}{\rightharpoondown A(x)}
-		\end{align}
-		とおく．いま(i)の主張より
-		\begin{align}
-			a \neq \emptyset \Longrightarrow 
-			\exists x\, (\, x \in a \wedge x \cap a = \emptyset\, )
-		\end{align}
-		が満たされているが，対偶を取れば
-		\begin{align}
-			\forall x\, (\, x \notin a \vee x \cap a \neq \emptyset\, )
-			\Longrightarrow a = \emptyset
-		\end{align}
-		が成り立つ．ここで
-		\begin{align}
-			\begin{gathered}
-				x \cap a \neq \emptyset \Longleftrightarrow \exists y \in x\, (\, y \in a\, ), \\
-				\left(\, \exists y \in x\, (\, y \in a\, ) \vee x \notin a\, \right)
-				\Longleftrightarrow \left(\, \forall y \in x\, (\, y \notin a\, ) \Longrightarrow x \notin a\, \right)
-			\end{gathered}
-		\end{align}
-		が成立することを使えば
-		\begin{align}
-			\forall x\, (\, \forall y \in x\, (\, y \notin a\, ) \Longrightarrow x \notin a\, )
-			\Longrightarrow a = \emptyset
-		\end{align}
-		が成立する．ところで$\forall x\, (\, x \notin a \Longleftrightarrow A(x)\, )$が満たされるので
-		\begin{align}
-			\forall x\, \left(\, \forall y \in x\, A(y)
-			\Longrightarrow A(x)\, \right)
-			\Longrightarrow \forall z A(z).
-		\end{align}
-		を得る．逆に(ii)が正しいと仮定する．$a$を類とすれば，(ii)の主張より
-		\begin{align}
-			\forall x\, \left(\, \forall y \in x\, (\, y \notin a\, )
-			\Longrightarrow\ x \notin a\, \right)
-			\Longrightarrow \forall z\, (\, z \notin a\, )
-		\end{align}
-		が成立する．ここで対偶を取れば
-		\begin{align}
-			\exists z\, (\, z \in a\, ) \Longrightarrow 
-			\exists x\, \left(\, \forall y \in x\, (\, y \notin a\, ) \wedge x \in a\, \right)
-		\end{align}
-		となり，$a \neq \emptyset$と$\exists z\, (\, z \in a\, )$が同値であること，及び
-		$x \cap a = \emptyset$と$\forall y \in x\, (\, y \notin a\, )$が同値であることと併せて
-		\begin{align}
-			a \neq \emptyset \Longrightarrow 
-			\exists x \in a\, (\, x \cap a = \emptyset\, )
-		\end{align}
-		が従う．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{axm}[正則性公理]
-			$a$を類とするとき，$a$は空でなければ自分自身と交わらない要素を持つ:
-			\begin{align}
-				a \neq \emptyset \Longrightarrow 
-				\exists x \in a\, (\, x \cap a = \emptyset\, ).
-			\end{align}
-		\end{axm}
-	\end{screen}
-	
-	\monologue{
-		正則性公理は帰納法の公理とも呼ばれます．
-		たしかに，定理\ref{thm:equivalent_condition_of_axiom_of_regularity}を見れば
-		正則性公理と同値な主張は数学的帰納法の究極の一般形となっていますね．
-	}
-	
-	\begin{screen}
 		\begin{logicalthm}[論理和・論理積の結合律]\label{logicalthm:associative_law}
 			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
 			\begin{description}
@@ -269,6 +174,16 @@
 		が得られる．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{axm}[正則性公理]
+			$a$を類とするとき，$a$は空でなければ自分自身と交わらない要素を持つ:
+			\begin{align}
+				a \neq \emptyset \Longrightarrow 
+				\exists x \in a\, (\, x \cap a = \emptyset\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[いかなる類も自分自身を要素に持たない]
