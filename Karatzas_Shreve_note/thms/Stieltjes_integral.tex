@@ -60,38 +60,74 @@
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
+				$\mu_0$が$\mathfrak{F}$の上で完全加法的であるとする．
+				$a$を実数とし，$\epsilon$を任意に与えられた正の実数とする．
+				\begin{align}
+					\emptyset = \bigcap_{n \in \Natural \backslash \{0\}} \left]a,a + \frac{1}{n}\right] 
+				\end{align}
+				が成立するから
+				\begin{align}
+					\mu_0\left(\left]a,a + \frac{1}{n}\right]  \right) < \epsilon
+				\end{align}
+				を満たす自然数$n$が取れて，このとき
+				\begin{align}
+					a < b < a+\frac{1}{n}
+				\end{align}
+				なる実数$b$に対して
+				\begin{align}
+					|f(b) - f(a)| = \mu_0\left(]a,b]\right) \leq \mu_0\left(\left]a,a + \frac{1}{n}\right]  \right) < \epsilon
+				\end{align}
+				が成り立つ．ゆえに$f$は$a$において右連続である．$a$の任意性から$f$は$\R$で右連続である．
 				
 			\item[第二段]
-				$f$が右連続であるとし，
+				$f$が右連続であるとする．また$I$を$\R$の左半開区間で
 				\begin{align}
-					I = (a_1,b_1] \times \cdots \times (a_d,b_d],
-					\quad (-\infty \leq a_\lambda \leq b_\lambda \leq \infty,\ 
-					\lambda = 1,\cdots,d)
+					\mu_0(I) < \infty
 				\end{align}
-				を取る．$0 < \mu_0(I) < \infty$のとき，任意の$\epsilon > 0$に対し
+				を満たすものとする．
 				\begin{align}
-					I_\epsilon \coloneqq 
-					\left(\alpha_{1,\epsilon},\beta_{1,\epsilon}\right]
-					\times \cdots \times
-					\left(\alpha_{d,\epsilon},\beta_{d,\epsilon}\right],
-					\quad (-\infty < \alpha_{\lambda,\epsilon} < \beta_{\lambda,\epsilon} < \infty),
-					\quad I_\epsilon \subset I,
-					\quad \mu(I \backslash I_\epsilon) < \epsilon
+					I = ]a,b]
 				\end{align}
-				を満たす左半開区間$I_\epsilon$が存在し，
+				なる実数$a,b$が取れる場合，
+				$\epsilon$を任意に与えられた正の実数とすれば，$f$の右連続性から
 				\begin{align}
-					I_\epsilon \subset 
-					K_\epsilon \coloneqq \left[\alpha_{1,\epsilon},\beta_{1,\epsilon}\right]
-					\times \cdots \times
-					\left[\alpha_{d,\epsilon},\beta_{d,\epsilon}\right]
-					\subset I
+					a < \delta < b \wedge f(\delta) - f(a) < \epsilon
 				\end{align}
-				かつ$K_\epsilon$はコンパクト集合である．
+				なる$\delta$が取れる．
+				\begin{align}
+					a < \delta' < \delta
+				\end{align}
+				なる$\delta'$を取れば
+				\begin{align}
+					I \backslash [\delta',b] \subset (a,\delta]
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\mu_0\left( I \backslash [\delta',b] \right) \leq f(\delta) - f(a) < \epsilon
+				\end{align}
+				が成立する．
+				\begin{align}
+					I = ]-\infty,b]
+				\end{align}
+				なる実数$b$が取れる場合，
+				\begin{align}
+					I = ]a,\infty[
+				\end{align}
+				なる実数$a$が取れる場合，
+				\begin{align}
+					I = \R
+				\end{align}
+				の場合，
 				
-				定理\ref{thm:compact_class_Haudorff}より
-				$\R^d$のコンパクト集合全体はコンパクトクラスとなるから，
-				定理\ref{thm:compact_class_intersection}より
-				定理\ref{thm:equivalent_conditions_of_countable_additivity}の(a)が満たされる．
+				
+				つまり，$\mu_0$-測度が有限な左半開区間の測度はコンパクト集合の測度で近似出来る．
+				$\R$のコンパクト集合全体はコンパクトクラスであるから，
+				定理\ref{thm:finite_intersection_property_and_common_point_property}より$\mu_0$は共通点性を満たす．
+				また
+				\begin{align}
+					\mu_0(\R) = \infty
+				\end{align}
+				のとき，
 		\end{description}
 	\end{prf}
 	
@@ -114,6 +150,24 @@
 			特に$f$が$\R$上の恒等写像の場合はそれを$f$による$1$次元Lebesgue測度と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	$\R^2$の上のLebesgue測度の構成では，まず$1$次元のLebesgue測度から
+	\begin{align}
+		\borel{\R} \otimes \borel{\R}
+	\end{align}
+	の上の積測度$\mu$を構成する．$(\R,\mathscr{O}_\R)$の第二可算性より
+	\begin{align}
+		\borel{\R^2} = \borel{\R} \otimes \borel{\R}
+	\end{align}
+	が成り立つので$\mu$は$\R^2$のBorel測度ということになる．そして
+	$\left(\R^2,\borel{\R^2},\mu\right)$をLebesgue拡大して得られる完備な正値測度を
+	$2$次元のLebesgue測度として定義する．
+	$\R^3$の上のLebesgue測度も
+	\begin{align}
+		\borel{\R^2} \otimes \borel{\R}
+	\end{align}
+	の上の積測度を構成してからLebesgue拡大を施して得られる．以下反復すれば$\R^n$の上のLebesgue測度も得られる．が，
+	その反復作業の妥当性は\ref{sec:recursive_definition}節の再帰的定義によって保障されるものである．
 	
 	次に任意の区間上のStieltjes測度を構成する．
 	$I$を$\R$の区間とする．つまり$I$は，$a < b$なる実数$a,b$によって
@@ -218,7 +272,7 @@
 		\begin{thm}[時間変更]
 			$u$を$[a,b]$から$\R$への非減少連続関数とし，
 			$A$を$[u(a),u(b)]$から$\R$への非減少右連続関数とし，
-			$f$を$[u(a),u(b)]$から$[0,\infty[$への$\borel{[u(a),u(b)]}/\borel{[0,\infty[}$-可測関数とする．
+			$f$を$[u(a),u(b)]$から$\R_+$への$\borel{[u(a),u(b)]}/\borel{\R_+}$-可測関数とする．
 			このとき
 			\begin{align}
 				\int_{[a,b]} f(u(s))\ dA_{u(s)} = \int_{[u(a),u(b)]} f(t)\ dA_t
