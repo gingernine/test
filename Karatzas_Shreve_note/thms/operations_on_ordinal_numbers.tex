@@ -12,33 +12,33 @@
 \end{align}
 が満たされ，それぞれの集合に定める乗法を
 \begin{align}
-	\cdot_\Natural,\quad \cdot_\Z,\quad \cdot_\Q.\quad \cdot_\R,\quad \cdot_\C
+	\bullet_\Natural,\quad \bullet_\Z,\quad \bullet_\Q.\quad \bullet_\R,\quad \bullet_\C
 \end{align}
 と書けば
 \begin{align}
-	\cdot_\Natural \subset \cdot_\Z \subset \cdot_\Q \subset \cdot_\R \subset \cdot_\C
+	\bullet_\Natural \subset \bullet_\Z \subset \bullet_\Q \subset \bullet_\R \subset \bullet_\C
 \end{align}
-が満たされるように構成する．これらは$\ON$に定められる加法と乗法が大元となっていて，$\ON$に定める加法を$+$とし，乗法を$\cdot$とすれば，
+が満たされるように構成する．これらは$\ON$に定められる加法と乗法が大元となっていて，$\ON$に定める加法を$+$とし，乗法を$\bullet$とすれば，
 $\Natural$上の加法と乗法とは
 \begin{align}
 	+_\Natural \defeq +|_{\Natural \times \Natural}
 \end{align}
 と
 \begin{align}
-	\cdot_\Natural \defeq \cdot|_{\Natural \times \Natural}
+	\bullet_\Natural \defeq \bullet|_{\Natural \times \Natural}
 \end{align}
 によって定義されるものである．
 順序についても，$\Natural$の順序は$\ON$の順序の制限で，つまり
 \begin{align}
-	O_\Natural \defeq \Set{(n,m)}{n,m \in \Natural \wedge (\, n \in m \vee n = m\, )}
+	\leq_\Natural\ \defeq\ \leq|_{\Natural \times \Natural}
 \end{align}
 で定められるが，残りの$\Z,\Q,\R$に定める順序を
 \begin{align}
-	O_\Z,\quad O_\Q,\quad O_\R
+	\leq_\Z,\quad \leq_\Q,\quad \leq_\R
 \end{align}
 と書けば
 \begin{align}
-	O_\Natural \subset O_\Z \subset O_\Q \subset O_\R
+	\leq_\Natural\ \subset\ \leq_\Z\ \subset\ \leq_\Q\ \subset\ \leq_\R
 \end{align}
 が満たされるようにする．`埋め込めば拡張となる'ように数を構成している文献もあるが，それでは詰めが甘くもどかしい．
 このように構成すると，例えば測度論の本では
@@ -358,18 +358,29 @@ $\Natural$上の加法と乗法とは
 		\end{description}
 	\end{sketch}
 	
-	\begin{itembox}[l]{中置記法}
+	\begin{itembox}[l]{加法の中置記法}
 		$\alpha$と$\beta$を順序数とするとき
 		\begin{align}
 			+(\alpha,\beta)
 		\end{align}
-		は
+		を
 		\begin{align}
 			\alpha + \beta
 		\end{align}
-		とも表記される．このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．
-		また$\alpha + \beta$なる順序数を$\alpha$と$\beta$の{\bf 和}\index{わ@和}{\bf (sum)}と呼ぶ．
+		とも表記する．また$\alpha + \beta$なる順序数を$\alpha$と$\beta$の{\bf 和}\index{わ@和}{\bf (sum)}と呼ぶ．
 	\end{itembox}
+	
+	加法の性質を列挙しておく:
+	\begin{itemize}
+		\item $\forall \alpha \in \ON\, \left(\, \alpha + 0 = 0 + \alpha = \alpha\, \right)$.
+		\item $\forall \alpha \in \ON\, \left(\, \alpha + 1 = \alpha \cup \{\alpha\}\, \right)$.
+		\item $\forall \alpha,\beta,\gamma \in \ON\, \left[\, (\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)\, \right]$.
+		\item $\forall \alpha,\beta,\gamma \in \ON\, (\, \beta < \gamma \Longrightarrow \alpha + \beta < \alpha + \gamma\, )$.
+		\item $\forall \alpha,\beta \in \ON\, \left[\, \alpha < \beta
+				\Longrightarrow \exists \gamma \in \ON\, (\, \gamma < \beta \wedge \alpha + \gamma = \beta\, )\, \right]$.
+		\item $\forall n, m \in \Natural\, (\, n + m \in \Natural\, )$.
+		\item $\forall n,m \in \Natural\ (\, n + m = m + n\, )$.
+	\end{itemize}
 	
 	\begin{screen}
 		\begin{thm}[順序数は$0$を足しても$0$に足しても変わらない]
@@ -379,6 +390,67 @@ $\Natural$上の加法と乗法とは
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		$\alpha$を順序数とすると
+		\begin{align}
+			\alpha + 0 = A_\alpha(0)
+		\end{align}
+		より
+		\begin{align}
+			\alpha + 0 = \alpha
+		\end{align}
+		が成立する．次に
+		\begin{align}
+			0 + \alpha = \alpha
+		\end{align}
+		が成り立つことを超限帰納法により証明する．まず加法の定め方より
+		\begin{align}
+			0 + 0 = 0
+		\end{align}
+		が成立する．次に$\alpha$を任意に与えられた$0$でない順序数とし，
+		\begin{align}
+			\forall \beta \in \alpha\, (\, 0 + \beta = \beta\, )
+		\end{align}
+		が満たされているとする．
+		\begin{align}
+			\alpha = \beta \cup \{\beta\}
+		\end{align}
+		なる順序数$\beta$が取れるときは
+		\begin{align}
+			0 + \alpha = (0 + \beta) \cup \{0 + \beta\}
+		\end{align}
+		となるが，
+		\begin{align}
+			(0 + \beta) \cup \{0 + \beta\} = \beta \cup \{\beta\}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			0 + \alpha = \alpha
+		\end{align}
+		が従う．
+		\begin{align}
+			\limo{\alpha}
+		\end{align}
+		であるときは
+		\begin{align}
+			0 + \alpha = \bigcup \Set{0 + \beta}{\beta \in \alpha}
+		\end{align}
+		となるが，$\limo{\alpha}$であるから
+		\begin{align}
+			\alpha = \bigcup \Set{\beta}{\beta \in \alpha}
+		\end{align}
+		が成り立ち
+		\begin{align}
+			0 + \alpha = \alpha
+		\end{align}
+		が従う．ゆえに，超限帰納法により
+		\begin{align}
+			\forall \alpha \in \ON\, (\, 0 + \alpha = \alpha\, )
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
 		\begin{thm}[後者は$1$を足したもの]
 			\begin{align}
@@ -387,6 +459,23 @@ $\Natural$上の加法と乗法とは
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		$\alpha$を順序数とする．加法の定め方から
+		\begin{align}
+			\alpha + 1 = (\alpha + 0) \cup \{\alpha + 0\}
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			\alpha + 0 = \alpha
+		\end{align}
+		なので
+		\begin{align}
+			\alpha + 1 = \alpha \cup \{\alpha\}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
 		\begin{thm}[加法は結合的]
 			\begin{align}
@@ -394,6 +483,35 @@ $\Natural$上の加法と乗法とは
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$と$\beta$を順序数とする．そして
+		\begin{align}
+			\forall \gamma \in \ON\, \left[\, (\alpha + \beta) + \gamma = \alpha + (\beta + \gamma)\, \right]
+		\end{align}
+		が成り立つことを超限帰納法により示す．まず
+		\begin{align}
+			(\alpha + \beta) + 0 = \alpha + \beta
+		\end{align}
+		かつ
+		\begin{align}
+			\alpha + (\beta + 0) = \alpha + \beta
+		\end{align}
+		が成り立つので
+		\begin{align}
+			(\alpha + \beta) + 0 = \alpha + (\beta + 0)
+		\end{align}
+		が成り立つ．次に$\gamma$を任意に与えられた$0$でない順序数とし，
+		\begin{align}
+			\forall \delta \in \gamma\, \left[\, (\alpha + \beta) + \delta = \alpha + (\beta + \delta)\, \right]
+		\end{align}
+		が成り立っているとする．
+		\begin{align}
+			\gamma = \delta \cup \{\delta\}
+		\end{align}
+		なる順序数$\delta$が取れるときは，
+		
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[和は順序を保存する]

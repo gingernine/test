@@ -107,9 +107,9 @@
 	\end{screen}
 	
 	\monologue{
-		院生「正則性公理は帰納法の公理とも呼ばれます．
-			たしかに，定理\ref{thm:equivalent_condition_of_axiom_of_regularity}を見れば
-			正則性公理と同値な主張は数学的帰納法の究極の一般形となっていますね．」
+		正則性公理は帰納法の公理とも呼ばれます．
+		たしかに，定理\ref{thm:equivalent_condition_of_axiom_of_regularity}を見れば
+		正則性公理と同値な主張は数学的帰納法の究極の一般形となっていますね．
 	}
 	
 	\begin{screen}
@@ -470,23 +470,22 @@
 	
 	\begin{screen}
 		\begin{dfn}[順序数]
-			類$a$に対して
+			類$a$に対して，$a$が{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}であるということを
 			\begin{align}
-				\operatorname{Tran}(a) \overset{\mathrm{def}}{\Longleftrightarrow}
+				\operatorname{Tran}(a) \defarrow
 				\forall s\, (\, s \in a \Longrightarrow s \subset a\, )
 			\end{align}
-			で$\operatorname{Tran}(a)$を定め，$\operatorname{Tran}(a)$を満たす類$a$を
-			{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}と呼ぶ．また類$a$に対して
+			で定める．また$a$が{\bf 順序数}\index{じゅんじょすう@順序数}{\bf (ordinal number)}であるということを
 			\begin{align}
-				\operatorname{Ord}(a) \overset{\mathrm{def}}{\Longleftrightarrow}
+				\operatorname{Ord}(a) \defarrow
 				\operatorname{Tran}(a)
 				\wedge \forall t,u \in a\, (\, t \in u \vee t = u \vee u \in t\, )
 			\end{align}
-			により$\operatorname{Ord}(a)$を定め，
+			で定める．順序数の全体を
 			\begin{align}
-				\ON \coloneqq \Set{x}{\operatorname{Ord}(x)}
+				\ON \defeq \Set{x}{\operatorname{Ord}(x)}
 			\end{align}
-			とおく．$\ON$の要素を{\bf 順序数}\index{じゅんじょすう@順序数}{\bf (ordinal number)}と呼ぶ．
+			とおく．
 		\end{dfn}
 	\end{screen}
 	
@@ -495,24 +494,45 @@
 	\begin{align}
 		\alpha \cup \{\alpha\}
 	\end{align}
-	もまた順序数となることが直ちに判明する(実は
-	\begin{align}
-		\forall \alpha\ (\ \alpha \in \ON \Longleftrightarrow \alpha \cup \{\alpha\} \in \ON\ )
-	\end{align}
-	が成立するが，証明は後述する)．数字の定め方から
+	もまた順序数となることが直ちに判明する．数字の定め方から
 	\begin{align}
 		1 &= 0 \cup \{0\}, \\
 		2 &= 1 \cup \{1\}, \\
 		3 &= 2 \cup \{2\}, \\
 		&\vdots
 	\end{align}
-	が成り立つから，数字は全て順序数である．以下，順序数の性質を列挙するが，長いので主張だけ先に述べておく．
+	が成り立つから，数字は全て順序数である．
+	
+	\begin{itembox}[l]{中置記法について}
+		いま$\ON$上の関係を
+		\begin{align}
+			\leq\ \defeq \Set{x}{\exists \alpha,\beta \in \ON\, 
+			(\, x=(\alpha,\beta) \wedge (\, \alpha \in \beta \vee \alpha = \beta\, )\, )}
+		\end{align}
+		と定める．このとき
+		\begin{align}
+			(x,y) \in\ \leq
+		\end{align}
+		なることを往々にして
+		\begin{align}
+			x \leq y
+		\end{align}
+		とも書くが，このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．同様にして，
+		\begin{align}
+			(x,y) \in\ \leq \wedge x \neq y
+		\end{align}
+		なることを
+		\begin{align}
+			x < y
+		\end{align}
+		とも書く．
+	\end{itembox}
+	
+	以下順序数の性質を列挙するが，長いので主張だけ先に述べておく．
 	\begin{itemize}
 		\item $\ON$は推移的類である．
-		\item $R \coloneqq \Set{x}{\exists \alpha,\beta \in \ON\, 
-			(\, x=(\alpha,\beta) \wedge (\, \alpha \in \beta \vee \alpha = \beta\, )\, )}$
-			とおくと$R$は$\ON$において整列順序となる．
-		\item $a \subset \ON$かつ$a \in \Univ$なら，$\bigcup a$は$a$の順序$R$に関する上限となる．
+		\item $\leq$は$\ON$において整列順序となる．
+		\item $a$を$a \subset \ON$なる集合とすると，$\bigcup a$は$a$の$\leq$に関する上限となる．
 		\item $\ON$は集合ではない．
 	\end{itemize}
 	
@@ -773,8 +793,8 @@
 	\begin{screen}
 		\begin{thm}[$\ON$の部分集合の合併は順序数となる]\label{thm:union_of_set_of_ordinal_numbers_is_ordinal}
 			\begin{align}
-				\forall a\ 
-				(\ a \subset \ON \wedge a \in \Univ \Longrightarrow \bigcup a \in \ON\ ).
+				\forall a\,
+				\left(\, a \subset \ON \Longrightarrow \bigcup a \in \ON\, \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -857,195 +877,3 @@
 			\end{align}
 		\end{thm}
 	\end{screen}
-	
-	\begin{screen}
-		\begin{dfn}[極限数]
-			$\emptyset$でなく，またいずれの順序数の後者でもない順序数を
-			{\bf 極限数}\index{きょくげんすう@極限数}{\bf (limit ordinal)}と呼ぶ．
-			類$\alpha$が極限数であるということを式で表せば
-			\begin{align}
-				\alpha \in \ON \wedge \alpha \neq \emptyset
-				\wedge \forall \beta \in \ON\ 
-				(\ \alpha \neq \beta \cup \{\beta\}\ )
-			\end{align}
-			となるが，この$\alpha$についての式を$\operatorname{lim}(\alpha)$と略記する．
-		\end{dfn}
-	\end{screen}
-	
-	\monologue{
-		院生「ところで極限数は存在するものなのでしょうか．
-			残念ながら現時点では極限数の存在は保証されません．
-			では次の無限公理を導入してみるとどうなるでしょうか．」
-	}
-	
-	\begin{screen}
-		\begin{axm}[無限公理]
-			空集合を要素に持ち，かつ任意の要素の後者について閉じている集合が存在する:
-			\begin{align}
-				\exists x \in V\ (\ \emptyset \in x \wedge \forall y\ (\ y \in x
-				\Longrightarrow y \cup \{y\} \in x\ )\ ).
-			\end{align}
-		\end{axm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[極限数は存在する]
-			\begin{align}
-				\exists \alpha \in \ON\ (\ \operatorname{lim}(\alpha)\ ).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$a$を無限集合として$b = a \cap \ON$とおくとき，
-		$\bigcup b$が極限数となることを示す．
-		$\alpha \in \bigcup b$なら
-		或る集合$x$が$x \in b \wedge \alpha \in x$を満たす．このとき
-		$\alpha \cup \{\alpha\} \in x$または$\alpha \cup \{\alpha\} = x$となるが，
-		前者の場合は$\alpha \cup \{\alpha\} \in \bigcup b$，
-		後者の場合は$\alpha \cup \{\alpha\} \in x \cup \{x\}$および
-		$x \cup \{x\} \in a$かつ$x \cup \{x\} \in \ON$より
-		$x \cup \{x\} \in b$，ゆえに$\alpha \cup \{\alpha\} \in \bigcup b$，
-		従って$\operatorname*{Tran}(\bigcup b)$が成立．
-	\end{prf}
-	
-	\monologue{
-		院生「無限公理から極限数の存在が示されましたが，無限公理の
-			代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
-			すなわち無限公理の主張と極限数が存在するという主張は同値なのです．
-			本稿の流れでは極限数の存在を公理とした方が自然に感じられますね．
-			しかし無限公理の方が主張が簡単ですし，他の書物ではこちらを公理としているようです．」
-	}
-	
-	\begin{screen}
-		\begin{dfn}[自然数]
-			$\ON$の整列性より，
-			\begin{align}
-				\Set{x}{\operatorname{lim}(x)}
-			\end{align}
-			の中で最小の順序数が存在するが，それを
-			\begin{align}
-				\Natural
-			\end{align}
-			と書く．{\bf 自然数}\index{しぜんすう@自然数}{\bf (natural number)}とは$\Natural$の要素のことである．
-		\end{dfn}
-	\end{screen}
-
-	\begin{screen}
-		\begin{dfn}[無限]\label{def:infinity}
-			本稿においては，{\bf 無限}\index{むげん@無限}{\bf (infinity)}を表す記号$\infty$を
-			\begin{align}
-				\infty \defeq \Natural
-			\end{align}
-			によって定める．
-		\end{dfn}
-	\end{screen}
-		
-	\monologue{
-		院生「$\omg$とは最小の極限数ですから，その要素である自然数はどれも極限数ではありません．
-			従って$\emptyset$を除く自然数は必ずいずれかの自然数の後者となっているのですね．」
-	}
-	
-	\begin{screen}
-		\begin{thm}[超限帰納法]\label{thm:transfinite_induction}
-			$A$を$\mathcal{L}'$の式，$\alpha$を$A$に現れる文字，$\beta$を$A$に現れない文字とする．
-			このとき，$A$に現れる文字で$\alpha$のみが$A$で量化されていない場合，次が成り立つ:
-			\begin{align}
-				\forall \alpha \in \ON\ 
-				\left(\ \forall \beta \in \alpha\ A(\beta)
-				\Longrightarrow A(\alpha)\ \right)
-				\Longrightarrow \forall \alpha \in \ON\ A(\alpha).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		正則性公理と定理\ref{thm:equivalent_condition_of_axiom_of_regularity}より
-		\begin{align}
-			\forall \alpha\ \left(\ \forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ )
-			\Longrightarrow (\ \alpha \in \ON \Longrightarrow A(\alpha)\ )\ \right)
-			\Longrightarrow \forall \alpha\ (\ \alpha \in \ON \Longrightarrow A(\alpha)\ )
-		\end{align}
-		が成り立つ．このとき$\alpha$を$\mathcal{L}$の任意の対象とすれば，
-		\begin{align}
-			\begin{gathered}
-				\forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ )
-				\Longrightarrow (\ \alpha \in \ON \Longrightarrow A(\alpha)\ ), \\
-				\forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ ) \wedge \alpha \in \ON \Longrightarrow A(\alpha)
-			\end{gathered}
-		\end{align}
-		は同値であり，他方で順序数の要素は順序数である(定理\ref{thm:On_is_transitive})から
-		\begin{align}
-			\begin{gathered}
-				\forall \beta \in \alpha\ (\ \beta \in \ON \Longrightarrow A(\beta)\ ) \wedge \alpha \in \ON, \\
-				\alpha \in \ON \wedge \forall \beta \in \alpha\ A(\beta)
-			\end{gathered}
-		\end{align}
-		も同値である．従って
-		\begin{align}
-			\alpha \in \ON \wedge \forall \beta \in \alpha\ A(\beta)
-			\Longrightarrow A(\alpha)
-		\end{align}
-		が成り立ち，またこれは
-		\begin{align}
-			\alpha \in \ON \Longrightarrow \left(\ \forall \beta \in \alpha\ A(\beta)
-			\Longrightarrow A(\alpha)\ \right)
-		\end{align}
-		と同値である．$\alpha$の任意性より
-		\begin{align}
-			\forall \alpha \in \ON\ 
-			\left(\ \forall \beta \in \alpha\ A(\beta)
-			\Longrightarrow A(\alpha)\ \right)
-			\Longrightarrow \forall \alpha \in \ON\ A(\alpha).
-		\end{align}
-		が得られる．
-		\QED
-	\end{prf}
-
-	\begin{screen}
-		\begin{thm}[$\omg$は最小の無限集合]
-		\label{thm:the_principle_of_mathematical_induction}
-			$\omg$は次の意味で最小の無限集合である:
-			\begin{align}
-				\forall a\ \left(\ \emptyset \in a \wedge \forall x\ 
-				(\ x \in a \Longrightarrow x \cup \{x\} \in a\ ) 
-				\Longrightarrow \omg \subset a\ \right).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		超限帰納法で示す．いま$a$を
-		\begin{align}
-			\emptyset \in a \wedge \forall x\ 
-			(\ x \in a \Longrightarrow x \cup \{x\} \in a\ )
-		\end{align}
-		を満たす類とし，また$\alpha$を任意に与えられた順序数とする．
-		$\alpha = \emptyset$の場合は$\emptyset \in a$より
-		\begin{align}
-			\emptyset \in \omega \Longrightarrow \emptyset \in a
-		\end{align}
-		が成立する．$\alpha \neq \emptyset$の場合，$\alpha$の任意の要素$\beta$に対して
-		\begin{align}
-			\beta \in {\bf \omega} \Longrightarrow \beta \in a
-		\end{align}
-		が成り立つと仮定する．このとき，$\alpha \in {\bf \omega}$なら
-		$\alpha$は極限数でないから$\alpha = \beta \cup \{\beta\}$を満たす順序数$\beta$が取れて，
-		仮定より$\beta \in a$となり$\alpha \in a$が従う．以上で
-		\begin{align}
-			\forall \alpha \in \ON\ (\ \forall \beta \in \alpha\ (\ \beta \in {\bf \omega} \Longrightarrow \beta \in a\ ) \Longrightarrow (\ \alpha \in {\bf \omega} \Longrightarrow \alpha \in a\ )\ )
-		\end{align}
-		が得られた．超限帰納法により
-		\begin{align}
-			\forall \alpha \in \ON\ (\ \alpha \in {\bf \omega} \Longrightarrow \alpha \in a\ )
-		\end{align}
-		となるから$\omega \subset a$が出る．
-		\QED
-	\end{prf}
-	
-	\monologue{
-		院生「定理\ref{thm:the_principle_of_mathematical_induction}で示された
-			${\bf \omega}$の性質は{\bf 数学的帰納法の原理}
-			\index{すうがくてききのうほうのげんり@数学的帰納法の原理}
-			{\bf (the principle of mathematical induction)}と呼ばれます．」
-	}

@@ -1,93 +1,50 @@
-	
-\section{整数}
+\section{半群}
 	\begin{screen}
-		\begin{dfn}[二項算法]
-			$a$を類とするとき，$a \times a$から$a$への写像を$a$上の{\bf 二項算法}\index{にこうさんぽう@二項算法}
-			{\bf (binary operation)}や単に{\bf 算法}\index{さんぽう@算法}{\bf (operation)}と呼ぶ．
-			特に$a$が集合であれば，置換公理より$a$上の算法は集合である．
+		\begin{dfn}[算法]
+			$a$を類とするとき，$a \times a$から$a$への写像を$a$上の
+			{\bf 算法}\index{さんぽう@算法}{\bf (operation)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
-	いま，$a$を類とし，$o$を$a$上の二項算法とする．
+	いま，$a$を類とし，$o$を$a$上の算法とする．
 	\begin{description}
 		\item[可換律\index{かかんりつ@可換律} (commutative law)] $\forall x,y \in a\, \left(\, o(x,y) = o(y,x)\, \right)$.
 		\item[結合律\index{けつごうりつ@結合律} (associative law)] $\forall x,y,z \in a\, \left(\, o(o(x,y),z) = o(x,o(y,z))\, \right)$.
 		\item[簡約律\index{かんやくりつ@簡約律} (cancellation law)] $\forall x,y,z \in a\, \left(\, o(x,z) = o(y,z) \Longrightarrow x = y\, \right)$.
 	\end{description}
 	
-	\monologue{
-		院生「前の節で順序数に対して加法と乗法を定義しましたが，加法も乗法も
-			$\ON \times \ON$上の写像と見れば$\ON$上の二項算法となりますね．
-			この算法は結合律は満たしますが可換律と簡約律を満たしません．
-			しかし二項算法を$\omg \times \omg$上に制限すれば可換律と簡約律も満たされます．」
-	}
+	$\ON$上の加法と乗法は$\ON$上の算法である．
+	それらは結合律を満たす一方で可換律と簡約律は満たさないが，
+	定義域を$\Natural \times \Natural$上に制限すれば全てを満たすようになる．ここで
+	\begin{align}
+		+_\Natural \defeq +|_{\Natural \times \Natural}
+	\end{align}
+	及び
+	\begin{align}
+		\cdot_\Natural \defeq \cdot|_{\Natural \times \Natural}
+	\end{align}
+	として$\Natural$上の加法と乗法を定義する．
 	
 	\begin{screen}
 		\begin{dfn}[半群]
-			$a$を集合とし，$o$を$a$上の二項算法とする．$o$が結合律を満たしているとき，対$(a,o)$を
-			(代数的){\bf 半群}\index{はんぐん@半群}{\bf (semigroup)}と呼ぶ．
-			また$o$が可換律を満たすとき$(a,o)$を可換半群と呼び，
-			$o$が簡約律を満たすとき$(a,o)$を簡約的半群と呼ぶ．
+			$a$を集合とし，$o$を$a$上の算法とする．$o$が結合律を満たしているとき対$(a,o)$を
+			{\bf 半群}\index{はんぐん@半群}{\bf (semi-group)}と呼ぶ．
+			また$o$が結合律と可換律を満たすとき$(a,o)$を
+			{\bf 可換半群}\index{かかんはんぐん@可換半群}{\bf (commutative semi-group)}と呼び，
+			$o$が結合律と簡約律を満たすとき$(a,o)$を
+			{\bf 簡約的半群}\index{かんやくてきはんぐん@簡約的半群}{\bf (cancellable semi-group)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[$\omg$は加法に関して半群となる]
-			$\omg$上の二項算法を
-			\begin{align}
-				\sigma \coloneqq \Set{x}{\exists n,m \in \omg\, (\, x=((n,m),n+m)\, )}
-			\end{align}
-			で定めれば，$(\omg,\sigma)$は簡約的可換半群となる．ただし$+$は定理
-			\ref{thm:the_definition_of_addition_of_ordinal_numbers}で定めたものである．
+			$(\Natural,+_\Natural)$は簡約的可換半群である．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[第一段]
-				$\dom{\sigma} = \omg \times \omg$となることを示す．
-				$\chi$を$\mathcal{L}$の任意の対象として$\chi \in \dom{\sigma}$が成り立っているとすれば
-				\begin{align}
-					\exists y\, (\, (\chi,y) \in \sigma\, )
-				\end{align}
-				が成り立つから，ここで$\tau \coloneqq \varepsilon y\, (\, (\chi,y) \in \sigma\, )$とおけば
-				\begin{align}
-					(\chi,\tau) \in \sigma
-				\end{align}
-				が成立する．このとき$\omg$の或る要素$n,m$が存在して$(\chi,\tau) = ((n,m),n+m)$となるので
-				\begin{align}
-					\chi = (n,m)
-				\end{align}
-				が成り立ち$\chi \in \omg \times \omg$が従う．逆に$\chi \in \omg \times \omg$が成り立っているとすれば
-				$\omg$の或る要素$\nu,\mu$が存在して$\chi = (\nu,\mu)$が成り立ち，このとき
-				\begin{align}
-					(\chi,\nu + \mu) \in \sigma
-				\end{align}
-				が成り立つので$\chi \in \dom{\sigma}$が従う．以上で
-				\begin{align}
-					\chi \in \dom{\sigma} \Longleftrightarrow \chi \in \omg \times \omg
-				\end{align}
-				が得られ，$\chi$の任意性と外延性の公理から$\dom{\sigma} = \omg \times \omg$が出る．
-				
-			\item[第二段]
-				$\sigma$が写像であることを示す．$\mathcal{L}$の任意の対象$x,y,z$に対して
-				\begin{align}
-					(x,y) \in \omg \wedge (x,z) \in \sigma
-				\end{align}
-				が成り立っているとすれば，$\omg$の或る要素$n,m,\nu,\mu$が存在して
-				\begin{align}
-					(x,y) = ((n,m),n+m) \wedge (x,z) = ((\nu,\mu),\nu+\mu)
-				\end{align}
-				が成立する．このとき$x=(n,m)$かつ$x=(\nu,\mu)$より$(n,m) = (\nu,\mu)$が従い，$n=\nu$かつ$m=\mu$となるので
-				\begin{align}
-					y = n+m = \nu+\mu = z
-				\end{align}
-				となる．よって$\sigma$は$\omg \times \omg$上の二項写像である．
-				$\sigma$が$\omg$への写像であることは定理\ref{thm:the_definition_of_addition_of_ordinal_numbers}より従い，
-				$\sigma$が可換律，結合律，簡約律を満たすことは定理\ref{thm:properties_of_addition_of_ordinal_numbers}より従う．
-				\QED
-		\end{description}
-	\end{prf}
+	\begin{sketch}
+		
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{dfn}[一般結合法則]
@@ -154,7 +111,8 @@
 		が得られる．$3$個の元の演算は評価順に依らないから，数学的帰納法より$\ast$は一般結合法則を満たす．
 		\QED
 	\end{prf}
-	
+
+\section{整数}
 	\begin{screen}
 		\begin{dfn}[商集合]
 			$a$を集合とし，$R$を$a$上の同値関係とする．$x$を$a$の要素とするとき
@@ -357,7 +315,7 @@
 	
 	\begin{screen}
 		\begin{dfn}[整数]
-			$(\omg,\sigma)$が生成する群を$(\Z,\cdot)$で表す．そして$\Z$の要素を
+			$(\omg,\sigma)$が生成する群を$(\Z,+)$で表す．そして$\Z$の要素を
 			{\bf 整数}\index{せいすう@整数}{\bf (integer)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
