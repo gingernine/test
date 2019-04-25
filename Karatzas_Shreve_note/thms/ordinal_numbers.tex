@@ -731,7 +731,11 @@
 	
 	\begin{screen}
 		\begin{thm}[$\ON$の整列性]\label{thm:On_is_wellordered}
-			$\leq$は$\ON$上の整列順序である．
+			$\leq$は$\ON$上の整列順序である．また次が成り立つ．
+			\begin{align}
+				\forall \alpha,\beta \in \ON\,
+				\left(\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, \right).
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
@@ -819,25 +823,44 @@
 				が成立する．ゆえに$\leq$は全順序である．
 			
 			\item[第三段]
-				$\leq$が整列順序であることを示す．$a$を$\ON$の空でない部分集合とするとき，
-				正則性公理より$a$の或る要素$x$が
+				$\leq$が整列順序であることを示す．$a$を$\ON$の空でない部分集合とする．このとき正則性公理より
+				\begin{align}
+					x \in a \wedge x \cap a = \emptyset
+				\end{align}
+				を満たす集合$x$が取れるが，この$x$が$a$の最小限である．実際，任意に$a$から要素$y$を取ると
 				\begin{align}
 					x \cap a = \emptyset
 				\end{align}
-				を満たすが，この$x$が$a$の最小限である．実際，$a$の任意の要素$y$に対して
-				前段の結果より
+				から
+				\begin{align}
+					y \notin x
+				\end{align}
+				が従い，また前段の結果より
 				\begin{align}
 					x \in y \vee x = y \vee y \in x
 				\end{align}
-				となるが，一方で$y \notin x$も満たされるから
+				も成り立つので，選言三段論法より
 				\begin{align}
 					x \in y \vee x = y
+					\label{eq:thm_On_is_wellordered_6}
 				\end{align}
-				が成り立つ．よって
+				が成り立つ．$y$は推移的であるから
 				\begin{align}
-					\forall y \in a\ (\ (x,y) \in R\ )
+					x \in y \Longrightarrow x \subset y
 				\end{align}
-				が成立する．
+				が成立して，また
+				\begin{align}
+					x = y \Longrightarrow x \subset y
+				\end{align}
+				も成り立つから，(\refeq{eq:thm_On_is_wellordered_6})と場合分け法則から
+				\begin{align}
+					(x,y) \in\ \leq
+				\end{align}
+				が従う．$y$の任意性より
+				\begin{align}
+					\forall y \in a\, \left[\, (x,y) \in\ \leq\, \right]
+				\end{align}
+				が成立するので$x$は$a$の最小限である．
 				\QED
 		\end{description}
 	\end{prf}
@@ -871,37 +894,32 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[Burali-Forti]
-			$\ON$は集合ではない．
+		\begin{thm}[Burali-Forti]\label{thm:Burali_Forti}
+			\begin{align}
+				\rightharpoondown \set{\ON}.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類とするとき
+		$a$を類とするとき，定理\ref{thm:satisfactory_set_is_an_element}より
 		\begin{align}
 			\ord{a} \Longrightarrow \left(\, \set{a} \Longrightarrow a \in \ON\, \right)
+		\end{align}
+		が成り立つ．定理\ref{thm:On_is_transitive}と定理\ref{thm:On_is_wellordered}より
+		\begin{align}
+			\ord{\ON}
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\set{\ON} \Longrightarrow \ON \in \ON
 			\label{eq:Burali_Forti_1}
 		\end{align}
-		が成り立つことを示す．いま$\ord{a}$と$\set{a}$が成立していると仮定する．
-		このとき$\exists x\, (\, a = x\, )$が成立するので
+		が従い，また定理\ref{thm:no_set_is_an_element_of_itself}より
 		\begin{align}
-			\tau \coloneqq \varepsilon x\, (\, a = x\, )
+			\ON \notin \ON
 		\end{align}
-		とおけば$a = \tau$となり，相等性の公理より
-		\begin{align}
-			\ord{\tau}
-		\end{align}
-		が成立する．ここで類の公理より
-		\begin{align}
-			\ord{\tau} \Longleftrightarrow \tau \in \ON
-		\end{align}
-		が成り立つので$\tau \in \ON$が従い，再び相等性の公理から
-		\begin{align}
-			a \in \ON
-		\end{align}
-		が成立する．以上で式(\refeq{eq:Burali_Forti_1})が得られた．
-		$\ON$は$\ord{\ON}$も$\ON \notin \ON$
-		(定理\ref{thm:no_set_is_an_element_of_itself})も満たすので
+		も成り立つので，(\refeq{eq:Burali_Forti_1})の対偶から
 		\begin{align}
 			\rightharpoondown \set{\ON}
 		\end{align}
