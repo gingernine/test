@@ -46,11 +46,11 @@
 	\end{align}
 	を対応させる写像である．$f$と$g$を$P$の要素とするとき
 	\begin{align}
-		n \longmapsto \sigma_R(f(n),g(n))
+		\Natural \ni n \longmapsto \sigma_R(f(n),g(n))
 	\end{align}
 	なる写像を対応させる関係を$P$の加法として定め，
 	\begin{align}
-		n \longmapsto \sum_{i \in n+1} \mu_R(f(i),g(n-i))
+		\Natural \ni n \longmapsto \sum_{i \in n+1} \mu_R(f(i),g(n-i))
 	\end{align}
 	なる写像を対応させる関係を$P$の乗法として定める．$P$の加法を
 	\begin{align}
@@ -62,7 +62,7 @@
 	\end{align}
 	と書く．$P$の特別な要素として，
 	\begin{align}
-		n \longmapsto
+		\Natural \ni n \longmapsto
 		\begin{cases}
 			\epsilon_R & \mbox{if } n = 1 \\
 			\zeta_R & \mbox{if } n \neq 1
@@ -70,7 +70,7 @@
 	\end{align}
 	なる写像を$X$と定める．このとき自然数$i$に対して$X^i$は
 	\begin{align}
-		n \longmapsto
+		\Natural \ni n \longmapsto
 		\begin{cases}
 			\epsilon_R & \mbox{if } n = i \\
 			\zeta_R & \mbox{if } n \neq i
@@ -78,7 +78,7 @@
 	\end{align}
 	なる写像であって，さらに
 	\begin{align}
-		n \defeq \deg_{(R,\sigma_R,\mu_R)}{f}
+		\Natural \ni n \defeq \deg_{(R,\sigma_R,\mu_R)}{f}
 	\end{align}
 	とおけば
 	\begin{align}
@@ -88,7 +88,7 @@
 	
 	ここで$R$の要素$r$に対して
 	\begin{align}
-		n \longmapsto
+		\Natural \ni n \longmapsto
 		\begin{cases}
 			r & \mbox{if } n = 0 \\
 			\zeta_R & \mbox{if } n \neq 0
@@ -99,14 +99,80 @@
 		R[X] \defeq \left(P \backslash \varphi \ast R\right) \cup R
 	\end{align}
 	と定める．
+	\begin{align}
+		P \ni f \longmapsto
+		\begin{cases}
+			\varphi^{-1}(f) & \mbox{if } f \in \varphi \ast R \\
+			f & \mbox{if } f \notin \varphi \ast R
+		\end{cases}
+	\end{align}
+	なる写像を$h$とすると
+	\begin{align}
+		h:P \bij R[X]
+	\end{align}
+	が成立して，この$h$によって$P$の算法を$R[X]$に移すことが出来る．つまり，
+	$f$と$g$を$R[X]$の要素とするとき
+	\begin{align}
+		h\left( \sigma_P\left(h^{-1}(f),h^{-1}(g)\right) \right)
+	\end{align}
+	なる要素を対応させる関係を$R[X]$の加法として定め，
+	\begin{align}
+		h\left( \mu_P\left(h^{-1}(f),h^{-1}(g)\right) \right)
+	\end{align}
+	なる要素を対応させる関係を$R[X]$の乗法として定める．$R[X]$の加法を
+	\begin{align}
+		\sigma_X
+	\end{align}
+	と書き，$R[X]$の乗法を
+	\begin{align}
+		\mu_X
+	\end{align}
+	と書くことにする．すると$h$は$(P,\sigma_P,\mu_P)$から$(R[X],\sigma_X,\mu_X)$への環同型となり，しかも
+	\begin{align}
+		R \subset R[X]
+	\end{align}
+	かつ
+	\begin{align}
+		\sigma_R \subset \sigma_X
+	\end{align}
+	かつ
+	\begin{align}
+		\mu_R \subset \mu_X
+	\end{align}
+	が満たされる．
+	
+	$f$を$P$の要素とすると，適当な自然数$n$を取って
+	\begin{align}
+		f = \sum_{i \in n} \mu_P \left(\varphi(f(i)),X^i\right)
+	\end{align}
+	と書けたわけであるが，このとき
+	\begin{align}
+		h(f) = \sum_{i \in n} \mu_X \left(f(i),X^i\right)
+	\end{align}
+	が成立する．
+	
+	$(R,\sigma_R,\mu_R)$が整域ならば$(R[X],\sigma_X,\mu_X)$もまた整域である．
+
+\subsection{単拡大}
+	前小節の記号を継承する．$(R,\sigma_R,\mu_R)$が体であるとき，
+	$(R[X],\sigma_X,\mu_X)$はEuclid整域となる．従って，
+	$q$を$R[X]$の既約多項式とし，$q$の生成するイデアルを
+	\begin{align}
+		(q)
+	\end{align}
+	と書くことにすると，商環
+	\begin{align}
+		R[X]/(q)
+	\end{align}
+	は体となる．
 	
 \subsection{複素数}
-	実数が構成できたとすれば，複素数体は$\R$を単純拡大して得られる．
+	実数が構成できたとすれば，複素数体は$(\R,+_\R,\cdot_\R)$を単拡大して得られる．
 	そうして得られた複素数は
 	\begin{align}
 		\alpha + \beta i
 	\end{align}
-	なる形で一意に表される．単純拡大とは別に$\R \times \R$に適当な算法を導入して複素数体(に同型な体)を構成する方法もあるが，
-	単純拡大の方がエレガントに感じられる．
+	なる形で一意に表される．単拡大とは別に$\R \times \R$に適当な算法を導入して複素数体(に同型な体)を構成する方法もあるが，
+	単拡大の方がエレガントに感じられる．
 
 \newpage
