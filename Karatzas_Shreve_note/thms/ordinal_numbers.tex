@@ -383,18 +383,17 @@
 		\begin{dfn}[順序数]
 			類$a$に対して，$a$が{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}であるということを
 			\begin{align}
-				\operatorname{Tran}(a) \defarrow
+				\tran{a} \defarrow
 				\forall s\, (\, s \in a \Longrightarrow s \subset a\, )
 			\end{align}
-			で定める．また$a$が{\bf 順序数}\index{じゅんじょすう@順序数}{\bf (ordinal number)}であるということを
+			で定める．また$a$が(集合であるならば){\bf 順序数}\index{じゅんじょすう@順序数}{\bf (ordinal number)}であるということを
 			\begin{align}
-				\operatorname{Ord}(a) \defarrow
-				\operatorname{Tran}(a)
-				\wedge \forall t,u \in a\, (\, t \in u \vee t = u \vee u \in t\, )
+				\ord{a} \defarrow
+				\tran{a} \wedge \forall t,u \in a\, (\, t \in u \vee t = u \vee u \in t\, )
 			\end{align}
 			で定める．順序数の全体を
 			\begin{align}
-				\ON \defeq \Set{x}{\operatorname{Ord}(x)}
+				\ON \defeq \Set{x}{\ord{x}}
 			\end{align}
 			とおく．
 		\end{dfn}
@@ -417,7 +416,7 @@
 	いま$\ON$上の関係を
 	\begin{align}
 		\leq\ \defeq \Set{x}{\exists \alpha,\beta \in \ON\, 
-		(\, x=(\alpha,\beta) \wedge (\, \alpha \in \beta \vee \alpha = \beta\, )\, )}
+		(\, x=(\alpha,\beta) \wedge \alpha \subset \beta\, )}
 	\end{align}
 	と定める．
 		
@@ -451,7 +450,8 @@
 	\end{itemize}
 	
 	\begin{screen}
-		\begin{thm}
+		\begin{thm}[推移的で$\in$が全順序となる類は$\ON$に含まれる]
+		\label{thm:transitive_totally_ordered_class_is_contained_in_ON}
 			$S$を類とするとき
 			\begin{align}
 				\ord{S} \Longrightarrow S \subset \ON.
@@ -459,142 +459,271 @@
 		\end{thm}
 	\end{screen}
 	
-	$S \in \ON$ならば$\ord{S}$が成り立つので$S \subset \ON$となる．従って$\ON$は推移的類である．
+	\begin{sketch}
+		$x$を$S$の要素とする．まず
+		\begin{align}
+			\forall s,t \in x\, (\, s \in t \vee s = t \vee t \in s\, )
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_1}
+		\end{align}
+		が成り立つことを示す．実際$S$の推移性より
+		\begin{align}
+			x \subset S
+		\end{align}
+		が成り立つので，$x$の要素は全て$S$の要素となり
+		(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_1})が満たされる．次に
+		\begin{align}
+			\tran{x}
+		\end{align}
+		が成り立つことを示す．$y$を$x$の要素とする．また$z$を$y$の要素とする．このとき
+		\begin{align}
+			x \subset S
+		\end{align}
+		から
+		\begin{align}
+			y \in S
+		\end{align}
+		が成り立つので
+		\begin{align}
+			y \subset S
+		\end{align}
+		が成り立ち，ゆえに
+		\begin{align}
+			z \in S
+		\end{align}
+		となる．従って
+		\begin{align}
+			z \in x \vee z = x \vee x \in z
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_2}
+		\end{align}
+		が成立する．ところで定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			z \in y \Longrightarrow y \notin z
+		\end{align}
+		が成り立つから
+		\begin{align}
+			y \notin z
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_3}
+		\end{align}
+		が成立する．また相当性の公理から
+		\begin{align}
+			z = x \vee y \in x \Longrightarrow y \in z
+		\end{align}
+		が成り立つので，その対偶と(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_2})から
+		\begin{align}
+			z \neq x \vee y \notin x
+		\end{align}
+		も満たされる．いま
+		\begin{align}
+			y \in x
+		\end{align}
+		が成り立っていて，さらに選言三段論法より
+		\begin{align}
+			(\, z \neq x \vee y \notin x\, ) \wedge y \in x \Longrightarrow z \neq x
+		\end{align}
+		も成り立つから，
+		\begin{align}
+			z \neq x
+		\end{align}
+		が成立する．他方で定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			z \in y \wedge y \in x \Longrightarrow x \notin z
+		\end{align}
+		が成立するから，ゆえにいま
+		\begin{align}
+			z \neq x \wedge x \notin z
+		\end{align}
+		が，つまり
+		\begin{align}
+			\rightharpoondown (\, z = x \vee x \in z\, )
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_4}
+		\end{align}
+		が成立している．ここで選言三段論法より
+		\begin{align}
+			(\, z \in x \vee z = x \vee x \in z\, ) \wedge 
+			\rightharpoondown (\, z = x \vee x \in z\, )
+			\Longrightarrow z \in x
+		\end{align}
+		も成り立つので，(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_3})と
+		(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_4})と併せて
+		\begin{align}
+			z \in x
+		\end{align}
+		が従う．以上より，$y$を$x$の要素とすれば
+		\begin{align}
+			\forall z \in y\, (\, z \in y \Longrightarrow z \in x\, )
+		\end{align}
+		が成り立ち，ゆえに
+		\begin{align}
+			y \subset x
+		\end{align}
+		が成り立つ．ゆえに$x$は推移的である．ゆえに
+		\begin{align}
+			\ord{x}
+		\end{align}
+		が成立し
+		\begin{align}
+			x \in \ON
+		\end{align}
+		となる．$x$の任意性より
+		\begin{align}
+			S \subset \ON
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[順序数全体は推移的]\label{thm:On_is_transitive}
+		\begin{thm}[$\ON$は推移的]\label{thm:On_is_transitive}
 			$\tran{\ON}$が成立する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf} 
-		$\alpha$を任意に選ばれた順序数とする．$\alpha = \emptyset$ならば空虚な真により
-				\begin{align}
-					\alpha \subset \ON
-				\end{align}
-				が成り立つ．$\alpha \neq \emptyset$の場合，$\alpha$の任意の要素$x$
-				が順序数であることを示す．まず$\alpha$は推移的であるから
-				\begin{align}
-					x \subset \alpha
-				\end{align}
-				となり
-				\begin{align}
-					\forall y,z \in x\ (\ y \in z \vee y = z \vee z \in y\ )
-				\end{align}
-				が成り立つ．また$\alpha \subset \Univ$より$x \in \Univ$も成り立つ．
-				最後に
-				\begin{align}
-					\operatorname{Tran}(x)
-				\end{align}
-				が成り立つことを示す．これは
-				\begin{align}
-					\forall y,z\ (\ z \in y \wedge y \in x
-					\Longrightarrow z \in x \ )
-					\label{eq:thm_On_is_transitive_1}
-				\end{align}
-				が成り立つことを示せばよい．いま$y,z$を任意に与えられた集合として
-				\begin{align}
-					z \in y \wedge y \in x
-				\end{align}
-				が成り立っていると仮定すると，$\alpha$の推移性より$z \in \alpha$となるから
-				\begin{align}
-					z \in x \vee z = x \vee x \in z
-				\end{align}
-				が従う．ところで定理\ref{thm:no_set_is_an_element_of_itself}より
-				\begin{align}
-					z \in y \Longrightarrow y \notin z
-				\end{align}
-				が成り立つから，$z \in y$の仮定と併せて$y \notin z$が従う．さらに
-				\begin{align}
-					y \notin z \Longrightarrow z \neq x \vee y \notin x
-				\end{align}
-				が成り立つので$z \neq x \vee y \notin x$も従う．$y \in x$も仮定しているから
-				$(\ z \neq x \vee y \notin x\ ) \wedge y \in x$も成り立ち，
-				\begin{align}
-					(\ z \neq x \vee y \notin x\ ) \wedge y \in x
-					\Longrightarrow z \neq x
-				\end{align}
-				と併せて$z \neq x$が満たされる．他方で，同じく定理\ref{thm:no_set_is_an_element_of_itself}より
-				\begin{align}
-					z \in y \wedge y \in x \Longrightarrow x \notin z
-				\end{align}
-				が成立する．ゆえにいま
-				\begin{align}
-					z \neq x \wedge x \notin z
-				\end{align}
-				が成り立っているが，これは$\rightharpoondown (\ z = x \vee x \in z\ )$と同値であり，かつ
-				\begin{align}
-					(\ z \in x \vee z = x \vee x \in z\ ) \wedge 
-					\rightharpoondown (\ z = x \vee x \in z\ )
-					\Longrightarrow z \in x
-				\end{align}
-				が成り立つので$z \in x$を得る．以上より
-				(\refeq{eq:thm_On_is_transitive_1})が得られた．
-				\QED
+		$x$を順序数とすると
+		\begin{align}
+			\ord{x}
+		\end{align}
+		が成り立つので，定理\ref{thm:transitive_totally_ordered_class_is_contained_in_ON}から
+		\begin{align}
+			x \subset \ON
+		\end{align}
+		が成立する．ゆえに$\ON$は推移的である．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[$\ON$において$\in$と$\subsetneq$は同義]
+		\begin{thm}[$\ON$において$\in$と$<$は同義]
 		\label{thm:element_and_proper_subset_correspond_between_ordinal_numbers}
-			次が成立する:
 			\begin{align}
-				\forall \alpha,\beta \in \ON\ 
-				(\ \alpha \in \beta \Longleftrightarrow \alpha \subsetneq \beta\ ).
+				\forall \alpha,\beta \in \ON\,
+				(\, \alpha \in \beta \Longleftrightarrow \alpha < \beta\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
 		$\alpha,\beta$を任意に与えられた順序数とする．
-		$\alpha \in \beta$が成り立っているとすれば，$\beta$の推移性より
+		\begin{align}
+			\alpha \in \beta
+		\end{align}
+		が成り立っているとすると，順序数の推移性より
 		\begin{align}
 			\alpha \subset \beta
 		\end{align}
-		が成り立つ．同時に定理\ref{thm:no_set_is_an_element_of_itself}より
-		$\alpha \neq \beta$となるから
+		が成り立つ．定理\ref{thm:no_set_is_an_element_of_itself}より
 		\begin{align}
-			\alpha \in \beta \Longrightarrow \alpha \subsetneq \beta
+			\alpha \neq \beta
 		\end{align}
-		が成立する．逆に$\alpha \subsetneq \beta$が成り立っているとすれば，
-		正則性公理より$\beta \backslash \alpha$の或る要素$\gamma$が
+		も成り立つから
 		\begin{align}
-			\gamma \cap (\beta \backslash \alpha) = \emptyset
+			\alpha < \beta
 		\end{align}
-		を満たす．このとき$\alpha = \gamma$が成り立つことを示す．$x$を$\alpha$の任意の要素とすれば，
+		が成り立つ．ゆえに
+		\begin{align}
+			\alpha \in \beta \Longrightarrow \alpha < \beta
+		\end{align}
+		が成立する．逆に
+		\begin{align}
+			\alpha < \beta
+		\end{align}
+		が成り立っているとすると
+		\begin{align}
+			\beta \backslash \alpha \neq \emptyset
+		\end{align}
+		が成り立つので，正則性公理より
+		\begin{align}
+			\gamma \in \beta \backslash \alpha \wedge \gamma \cap (\beta \backslash \alpha) = \emptyset
+		\end{align}
+		を満たす$\gamma$が取れる．このとき
+		\begin{align}
+			\alpha = \gamma
+		\end{align}
+		が成り立つことを示す．$x$を$\alpha$の任意の要素とすれば，
 		$x,\gamma$は共に$\beta$に属するから
 		\begin{align}
 			x \in \gamma \vee x = \gamma \vee \gamma \in x
 			\label{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1}
 		\end{align}
-		が成り立つ．ところで相等性公理と$\alpha$の推移性から
+		が成り立つ．ところで相等性の公理から
 		\begin{align}
-			x = \gamma \wedge x \in \alpha &\Longrightarrow \gamma \in \alpha, \\
-			\gamma \in x \wedge x \in \alpha &\Longrightarrow \gamma \in \alpha
+			x = \gamma \wedge x \in \alpha \Longrightarrow \gamma \in \alpha
 		\end{align}
-		となるから，対偶を取れば
+		が成り立ち，$\alpha$の推移性から
 		\begin{align}
-			\gamma \notin \alpha &\Longrightarrow x \neq \gamma \vee x \notin \alpha, \\
-			\gamma \notin \alpha &\Longrightarrow \gamma \notin x \vee x \notin \alpha, \\
+			\gamma \in x \wedge x \in \alpha \Longrightarrow \gamma \in \alpha
 		\end{align}
-		が従う．いま$\gamma \notin \alpha$と$x \in \alpha$が成り立っているので
-		$x \neq \gamma$と$\gamma \notin x$が共に成立し，
-		(\refeq{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1})と併せて
+		が成り立つから，それぞれ対偶を取れば
+		\begin{align}
+			\gamma \notin \alpha \Longrightarrow x \neq \gamma \vee x \notin \alpha
+		\end{align}
+		と
+		\begin{align}
+			\gamma \notin \alpha \Longrightarrow \gamma \notin x \vee x \notin \alpha
+		\end{align}
+		が成立する．いま
+		\begin{align}
+			\gamma \notin \alpha
+		\end{align}
+		が成り立っているので
+		\begin{align}
+			x \neq \gamma \vee x \notin \alpha
+		\end{align}
+		と
+		\begin{align}
+			\gamma \notin x \vee x \notin \alpha
+		\end{align}
+		が共に成り立ち，また
+		\begin{align}
+			x \in \alpha
+		\end{align}
+		でもあるから選言三段論法より
+		\begin{align}
+			x \neq \gamma
+		\end{align}
+		と
+		\begin{align}
+			\gamma \notin x
+		\end{align}
+		が共に成立する．そして(\refeq{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1})と
+		選言三段論法より
 		\begin{align}
 			x \in \gamma
 		\end{align}
-		が出るから$\alpha \subset \gamma$を得る．逆に$\gamma$に任意の要素$x$は
+		が従うので
+		\begin{align}
+			\alpha \subset \gamma
+		\end{align}
+		が得られる．逆に$x$を$\gamma$に任意の要素とすると
 		\begin{align}
 			x \in \beta \wedge x \notin \beta \backslash \alpha
 		\end{align}
-		を満たすから，すなわち$x \in \beta \wedge (\ x \notin \beta \vee x \in \alpha\ )$
-		が満たされる．ゆえに$x \in \alpha$が成り立つから
+		が成り立つから，すなわち
+		\begin{align}
+			x \in \beta \wedge (\, x \notin \beta \vee x \in \alpha\, )
+		\end{align}
+		が成立する．ゆえに選言三段論法より
+		\begin{align}
+			x \in \alpha
+		\end{align}
+		が成り立ち，$x$の任意性より
 		\begin{align}
 			\gamma \subset \alpha
 		\end{align}
-		を得る．以上より$\gamma = \alpha$となり，
-		$\gamma$は$\beta$の要素であるから$\alpha$も$\beta$の要素となる．これで
+		となる．従って
 		\begin{align}
-			\alpha \subsetneq \beta \Longrightarrow \alpha \in \beta
+			\gamma = \alpha
+		\end{align}
+		が成立し，
+		\begin{align}
+			\gamma \in \beta
+		\end{align}
+		なので
+		\begin{align}
+			\alpha \in \beta
+		\end{align}
+		が成り立つ．以上で
+		\begin{align}
+			\alpha < \beta \Longrightarrow \alpha \in \beta
 		\end{align}
 		も得られた．
 		\QED
@@ -602,79 +731,95 @@
 	
 	\begin{screen}
 		\begin{thm}[$\ON$の整列性]\label{thm:On_is_wellordered}
-			\begin{align}
-				R = \Set{x}{\exists \alpha,\beta \in \ON\ 
-				(\ x=(\alpha,\beta) \wedge (\ \alpha \in \beta \vee \alpha = \beta\ )\ )}
-			\end{align}
-			により$R$を定めると，$R$は$\ON$上の整列順序となる．
+			$\leq$は$\ON$上の整列順序である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$R$が$\ON$上の順序関係であることを示す．実際，
-				定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より
+				$\alpha,\beta,\gamma$を順序数とすれば
 				\begin{align}
-					R = \Set{x}{\exists \alpha,\beta \in \ON\ 
-						(\ x=(\alpha,\beta) \wedge \alpha \subset \beta\ )}
+					\alpha \subset \alpha
 				\end{align}
-				が成り立ち，かつ
+				かつ
 				\begin{align}
-				\begin{gathered}
-					\forall \alpha \in \ON\ (\ \alpha \subset \alpha\ ), \\
-					\forall \alpha,\beta \in \ON\ (\ \alpha \subset \beta \wedge 
-					\beta \subset \alpha \Longrightarrow \alpha = \beta\ ), \\
-					\forall \alpha,\beta,\gamma \in \ON\ (\ \alpha \subset \beta
-					\wedge \beta \subset \gamma \Longrightarrow \alpha \subset \gamma\ )
-				\end{gathered}
+					\alpha \subset \beta \wedge \beta \subset \alpha \Longrightarrow \alpha = \beta
 				\end{align}
-				も成り立つから$R$は$\ON$上の順序である．
+				かつ
+				\begin{align}
+					\alpha \subset \beta \wedge \beta \subset \gamma \Longrightarrow \alpha \subset \gamma
+				\end{align}
+				が成り立つ．ゆえに$\leq$は$\ON$上の順序である．
 				
 			\item[第二段]
-				$R$が全順序であることを示す．つまり，
+				$\leq$が全順序であることを示す．$\alpha$と$\beta$を順序数とする．このとき
 				\begin{align}
-					\forall \alpha,\beta \in \ON\ 
-					(\ \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\ )
-					\label{eq:thm_On_is_wellordered_1}
+					\ord{\alpha \cap \beta}
 				\end{align}
-				が成り立つことを示す．いま$\alpha$と$\beta$を任意に与えられた順序数とすれば，
-				$\alpha \cap \beta$もまた順序数となる．
-				定理\ref{thm:no_set_is_an_element_of_itself}より
-				$\alpha \cap \beta \notin \alpha \cap \beta$となるから
+				が成り立ち，他方で定理\ref{thm:no_set_is_an_element_of_itself}より
 				\begin{align}
-					\alpha \cap \beta \notin \alpha \vee
-					\alpha \cap \beta \notin \beta
+					\alpha \cap \beta \notin \alpha \cap \beta
 				\end{align}
-				が成立する．いま$\alpha \cap \beta \subset \alpha$は満たされているので
-				定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より
+				が満たされるので
 				\begin{align}
-					\alpha \cap \beta \in \alpha \vee
-					\alpha \cap \beta = \alpha
+					\alpha \cap \beta \notin \alpha \vee \alpha \cap \beta \notin \beta
+					\label{eq:thm_On_is_wellordered_5}
 				\end{align}
-				が成立する．また$\alpha \cap \beta = \alpha \Longrightarrow \alpha \subset \beta$となるから
+				が成立する．ところで
 				\begin{align}
-					\alpha \cap \beta \notin \alpha
-					\Longrightarrow \alpha \subset \beta
+					\alpha \cap \beta \subset \alpha
 				\end{align}
-				を得る．同様にして
+				は正しいので定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}から
 				\begin{align}
-					\alpha \cap \beta \notin \beta
-					\Longrightarrow \beta \subset \alpha
+					\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha
 				\end{align}
-				も得られ，場合分け法則より
+				が成立する．従って
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \Longrightarrow 
+					(\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha) \wedge \alpha \cap \beta \notin \alpha
+					\label{eq:thm_On_is_wellordered_2}
+				\end{align}
+				が成り立ち，他方で選言三段論法より
+				\begin{align}
+					(\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha) \wedge \alpha \cap \beta \notin \alpha
+					\Longrightarrow \alpha \cap \beta = \alpha
+					\label{eq:thm_On_is_wellordered_3}
+				\end{align}
+				も成り立ち，かつ
+				\begin{align}
+					\alpha \cap \beta = \alpha \Longrightarrow \alpha \subset \beta
+					\label{eq:thm_On_is_wellordered_4}
+				\end{align}
+				も成り立つので，(\refeq{eq:thm_On_is_wellordered_2})と(\refeq{eq:thm_On_is_wellordered_3})と
+				(\refeq{eq:thm_On_is_wellordered_4})から
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \Longrightarrow \alpha \subset \beta
+				\end{align}
+				が得られる．同様にして
+				\begin{align}
+					\alpha \cap \beta \notin \beta \Longrightarrow \beta \subset \alpha
+				\end{align}
+				も得られる．さらに論理和の規則から
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \Longrightarrow \alpha \subset \beta \vee \beta \subset \alpha
+				\end{align}
+				と
+				\begin{align}
+					\alpha \cap \beta \notin \beta \Longrightarrow \alpha \subset \beta \vee \beta \subset \alpha
+				\end{align}
+				が従うので，(\refeq{eq:thm_On_is_wellordered_5})と場合分け法則より
 				\begin{align}
 					\alpha \subset \beta \vee \beta \subset \alpha
 				\end{align}
-				が成立する．定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より
-				これは
+				が成立して
 				\begin{align}
-					\alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha
+					(\alpha,\beta) \in\ \leq \vee (\beta,\alpha) \in\ \leq
 				\end{align}
-				と同値であるから(\refeq{eq:thm_On_is_wellordered_1})が成り立つ．
+				が成立する．ゆえに$\leq$は全順序である．
 			
 			\item[第三段]
-				$R$が整列順序であることを示す．$a$を$\ON$の空でない部分集合とするとき，
+				$\leq$が整列順序であることを示す．$a$を$\ON$の空でない部分集合とするとき，
 				正則性公理より$a$の或る要素$x$が
 				\begin{align}
 					x \cap a = \emptyset
@@ -696,13 +841,6 @@
 				\QED
 		\end{description}
 	\end{prf}
-	
-	順序数$\alpha,\beta$に対し，$\alpha \in \beta$であることを$\alpha < \beta$と書き，
-	$\alpha \in \beta \vee \alpha = \beta$であることを$\alpha \leq \beta$と書く．すなわち
-	\begin{align}
-		\alpha \leq \beta \Longleftrightarrow (\alpha,\beta) \in R
-	\end{align}
-	が成り立つ．ただし$R$は定理\ref{thm:On_is_wellordered}の順序$R$である．
 	
 	\begin{screen}
 		\begin{thm}[$\ON$の部分集合の合併は順序数となる]\label{thm:union_of_set_of_ordinal_numbers_is_ordinal}

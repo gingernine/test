@@ -1,0 +1,68 @@
+\section{実数}
+	\begin{screen}
+		\begin{dfn}[Dedekind切断]
+			$\Q$の任意の部分集合$A$に対して，順序対$(\Q \backslash A,A)$が
+			{\bf Dedekind切断}\index{Dedekindせつだん@Dedekind切断}{\bf (Dedekind cut)}であるということを
+			\begin{align}
+				\mbox{順序対$(\Q \backslash A,A)$がDedekind切断である} \Longleftrightarrow\ 
+				&A \neq \emptyset \wedge A \neq \Q\ \wedge \\
+				&\forall x \in \Q \backslash A\ \forall y \in A\ (\ x < y\ )\ \wedge \\
+				&\forall x \in A\ \exists y \in A\ (\ y < x\ )
+			\end{align}
+			で定義する．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		Dedekind切断とは数直線を左右に分割する操作をイメージしますね．例えば
+		\begin{align}
+			A = \Set{q \in \Q}{0 < q}
+		\end{align}
+		に対して$(\Q \backslash A,A)$はDedekind切断となります．
+		実数の構成においてこの集合$A$は重要ですから，これを$\Q_+$と表して後で使いましょう．
+		上の定義では$(\Q \backslash A,A)$がDedekind切断であるというとき
+		$A$が最小元をもたないことを条件に入れましたが，ここは
+		`$\Q \backslash A$が最大元を持たない'という条件に取り替えても構いません．
+	}
+	
+	いま$R = \Set{x}{\mbox{$(\Q \backslash x,x)$はDedekind切断である}}$として$R$を定め，
+	\begin{align}
+		T = \Set{x}{\exists a,b \in R\ (\ x = (a,b) \wedge b \subset a\ )}
+	\end{align}
+	と定める．この$T$は$R$上の全順序となる．
+	任意の$a,b \in R$に対して，$a \not\subset b$ならば
+	或る有理数$x$が$x \in a$かつ$x \notin b$を満たす．
+	このとき$b$の任意の要素$y$に対して$x < y$となり，
+	$x \in a$かつ$x < y$より$y \in a$となるので$b \subset a$が成り立つ．ゆえに
+	\begin{align}
+		\rightharpoondown (a \subset b) \Longrightarrow b \subset a
+	\end{align}
+	が得られた．これは$a \subset b \vee b \subset a$と同値であるから$T$は全順序である．
+	
+	$X$を$R$の部分集合で，$X \neq \emptyset$かつ$X$は$R$において上に有界であるとする．
+	このとき$\bigcup X$は$X$の上限となる．
+	
+	\begin{screen}
+		\begin{thm}
+			$\Q$の部分集合$A$に対して$(\Q \backslash A,A)$をDedekind切断とするとき，
+			次が成り立つ:
+			\begin{description}
+				\item[(1)] $\forall q \in \Q\ (\ \exists a \in A\ (\ a < q\ )\Longleftrightarrow q \in A\ )$.
+				\item[(2)] $\forall q \in \Q\ (\ \exists a \in \Q \backslash A\ (\ q < a\ )\Longrightarrow q \in \Q \backslash A\ )$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$q$を任意の有理数とすれば，$A$は最小元を持たないので
+		\begin{align}
+			q \in A \Longrightarrow \exists a \in A\ (\ a < q\ )
+		\end{align}
+		となる．逆に$q \notin A$ならば$A$の任意の要素$a$に対して$q < a$となるから，対偶を取って
+		\begin{align}
+			\exists a \in A\ (\ a < q\ ) \Longrightarrow q \in A
+		\end{align}
+		を得る．$q \notin \Q \backslash A$ならば$A$の任意の要素$a$に対して$a < q$となるから，
+		対偶を取って(2)を得る．
+		\QED
+	\end{prf}
