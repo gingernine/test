@@ -5,133 +5,29 @@
 			\begin{align}
 				\Set{y}{(y,x) \in R}
 			\end{align}
-			を$x$の$R$に関する{\bf 同値類}\index{どうちるい@同値類}{\bf (equivalence class)}と呼び，
-			$[x]$などで表す．また
+			を$x$の$R$に関する{\bf 同値類}\index{どうちるい@同値類}{\bf (equivalence class)}と呼ぶ．また
 			\begin{align}
-				a / R \coloneqq \Set{x}{\exists y \in a\ \forall z\ (\ (y,z) \in R \Longleftrightarrow z \in x\ )}
+				a / R \defeq \Set{x}{\exists y \in a\, \forall z\, \left(\, (y,z) \in R \Longleftrightarrow z \in x\, \right)}
 			\end{align}
-			で定められる類$a/R$を，$a$を$R$で割った
-			{\bf 商集合}\index{しょうしゅうごう@商集合}{\bf (quotient set)}と呼ぶ．
+			で定める類を，$a$を$R$で割った{\bf 商集合}\index{しょうしゅうごう@商集合}{\bf (quotient set)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	$a$が空であれば$R$も$a/R$も空となる．
 	
-	\monologue{
-		商``集合''と名前を付けましたが，集合であることは後で示します．また上の定義の設定の下では
-		\begin{align}
-			a/R = \Set{x}{\exists y \in a\ (\ x = [y]\ )}
-		\end{align}
-		が成り立ちます．これも後で証明しますが，つまり商集合とは同値類を全て集めたものであるということです．
-	}
-	
-	\begin{screen}
-		\begin{thm}[同値類の性質]
-			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
-			$[y]$で表す．このとき次が成り立つ:
-			\begin{description}
-				\item[(1)] $\forall y \in a\ \left(\ [y] \subset a\ \right)$
-				\item[(2)] $\forall y \in a\ \left(\ y \in [y]\ \right)$
-				\item[(3)] $\forall y,z \in a\ \left(\ (y,z) \in R \Longleftrightarrow [y] = [z]\ \right)$
-				\item[(4)] $\forall y,z \in a\ \left(\ (y,z) \notin R \Longleftrightarrow [y] \cap [z] = \emptyset\ \right)$
-			\end{description}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf} $a$が空であれば空虚な真より(1)(2)(3)(4)は全て成立する．以下では$a \neq \emptyset$として証明する．
-		\begin{description}
-			\item[(1)] $s,t$を$\mathcal{L}$の任意の対象とするとき，$s \in a$であれば
-				\begin{align}
-					t \in [s] \Longrightarrow (s,t) \in R
-				\end{align}
-				が成り立つ．$R \subset a \times a$より
-				\begin{align}
-					(s,t) \in R \Longrightarrow t \in a
-				\end{align}
-				が従い
-				\begin{align}
-					t \in [s] \Longrightarrow t \in a
-				\end{align}
-				が得られる．$t$の任意性より
-				\begin{align}
-					[s] \subset a
-				\end{align}
-				となり，$s$の任意性より(1)が出る．
-				
-			\item[(2)] $t$を$\mathcal{L}$の任意の対象とするとき，$t \in a$であれば
-				\begin{align}
-					(t,t) \in R
-				\end{align}
-				となるから$t \in [t]$が成立する．$t$の任意性より
-				\begin{align}
-					\forall y \in a\ \left(\ y \in [y]\ \right)
-				\end{align}
-				が得られる．
-				
-			\item[(3)] $s,t$を$\mathcal{L}$の任意の対象として，$s,t \in a$であると仮定する．
-				\begin{align}
-					(s,t) \in R
-				\end{align}
-				が成り立っているとき，$\tau$を$\mathcal{L}$の任意の対象とすれば
-				\begin{align}
-					\tau \in [s] \Longleftrightarrow (\tau,s) \in R
-				\end{align}
-				となり，$R$の推移律より$(\tau,s) \in R$ならば$(\tau,t) \in R$となるから
-				\begin{align}
-					\tau \in [s] \Longrightarrow \tau \in [t]
-				\end{align}
-				が従う．同様に$\tau \in [t] \Longrightarrow \tau \in [s]$も成り立つので
-				$[s] = [t]$となり
-				\begin{align}
-					(s,t) \in R \Longrightarrow [s] = [t]
-				\end{align}
-				が得られる．逆に$[s] = [t]$が成り立っているとき，$s \in [s]$より$s \in [t]$が従い
-				\begin{align}
-					[s] = [t] \Longrightarrow (s,t) \in R
-				\end{align}
-				も得られる．$s,t$の任意性より(2)が出る．
-			
-			\item[(4)] $s,t$を$\mathcal{L}$の任意の対象として，$s,t \in a$であると仮定する．
-				\begin{align}
-					[s] \cap [t] \neq \emptyset
-				\end{align}
-				が成り立っているとき，$[s] \cap [t]$の要素を$u$とすれば
-				\begin{align}
-					(s,u) \in R \wedge (u,t) \in R
-				\end{align}
-				となるので$(s,t) \in R$が従う．ゆえに
-				\begin{align}
-					(s,t) \notin R \Longrightarrow [s] \cap [t] = \emptyset
-				\end{align}
-				が得られる．逆に$(s,t) \in R$が成り立っているとき，(2)より$[s] = [t]$となるから
-				\begin{align}
-					[s] \cap [t] \neq \emptyset \Longrightarrow (s,t) \in R
-				\end{align}
-				も得られる．$s,t$の任意性より(3)が出る．
-				\QED
-		\end{description}
-	\end{prf}
-	
-	\monologue{
-		(1)の主張は{\bf 同値類は空でない}ということです．
-		(2)の主張は{\bf 同値な要素の同値類は一致する}ということで，
-		(2)と(3)を併せれば{\bf 同値類同士は一致していなければ交わらない}と言えます．
-	}
-	
 	\begin{screen}
 		\begin{dfn}[商写像]
-			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
-			$[y]$で表す．このとき
+			$a$を集合とし，$R$を$a$上の同値関係とする．このとき，
 			\begin{align}
-				f \coloneqq \Set{x}{\exists t \in a\ \left(\ x=(t,[t])\ \right)}
+				a \ni x \longmapsto \Set{y}{(y,x) \in R}
 			\end{align}
-			で定められる$f$を{\bf 商写像}\index{しょうしゃぞう@商写像}{\bf (quotient mapping)}と呼ぶ．
+			なる関係を$a$から$a/R$への{\bf 商写像}\index{しょうしゃぞう@商写像}{\bf (quotient mapping)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\monologue{
-		$f$が写像であることを述べる前に商写像と名前を付けましたが，以下に示す通り
-		$f$は$a$から$a/R$への全射となっています．また商写像は
+		写像であることを述べる前に商写像と名前を付けましたが，以下に示す通り
+		商写像は$a$から$a/R$への全射となっています．また商写像は
 		{\bf 自然な全射}\index{しぜんなぜんしゃ@自然な全射}{\bf (natural surjection)}や
 		{\bf 標準的全射}\index{ひょうじゅんてきぜんしゃ@標準的全射}{\bf (canonical surjection)}
 		とも呼ばれます．
@@ -139,52 +35,348 @@
 	
 	\begin{screen}
 		\begin{thm}[商写像は全射である]\label{thm:quotient_mapping_is_a_surjection}
-			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
-			$[y]$で表す．このとき次が成り立つ:
-			\begin{align}
-				\forall x\ \left(\ x \in a/R \Longleftrightarrow \exists y \in a\ (\ x=[y]\ )\ \right).
-				\label{eq:thm_quotient_mapping_is_a_surjection}
-			\end{align}
-			特に$a$から$a/R$への商写像は写像であり，さらに言えば全射である．
+			$a$を集合とし，$R$を$a$上の同値関係とする．このとき
+			$a$から$a/R$への商写像は全射である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$が空である場合は$a/R$が空となるので，空虚な真より(\refeq{eq:thm_quotient_mapping_is_a_surjection})
-		が成り立つ．また商写像も空となり，空写像は空集合から空集合への全単射であるから
-		主張は全て従う．以下では$a$が空でない場合で証明する．
+		$a$が空である場合は$a/R = \emptyset$も空となる．この場合$a$上には空写像しか定まらないが，
+		定理\ref{thm:emptyset_is_a_mapping}より空写像は$a$から$a/R$への全射である．
+		\begin{align}
+			a \neq \emptyset
+		\end{align}
+		であるとし，また$q$を$a$から$a/R$への商写像とする．
+		\begin{description}
+		\item[第一段] $q$が写像であることを示す．
+		$x,y,z$を集合として
+		\begin{align}
+			(x,y) \in q \wedge (x,z) \in q
+		\end{align}
+		が成り立っているとすると，
+		\begin{align}
+			s = x \wedge y = \Set{\tau}{(\tau,s) \in R}
+		\end{align}
+		なる$a$の要素$s$と，
+		\begin{align}
+			t = x \wedge y = \Set{\tau}{(\tau,t) \in R}
+		\end{align}
+		なる$a$の要素$t$が取れる．このとき
+		\begin{align}
+			s = t
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\Set{\tau}{(\tau,s) \in R} = \Set{\tau}{(\tau,t) \in R}
+		\end{align}
+		が従い
+		\begin{align}
+			y = z
+		\end{align}
+		が成立する．ゆえに$q$は写像である．
+		
+		\item[第二段] $q$の定義域が$a$に等しいことを示す．
+		$x$を集合とするとき，
+		\begin{align}
+			x \in \dom{q}
+		\end{align}
+		ならば
+		\begin{align}
+			(x,y) \in q
+		\end{align}
+		なる集合$y$が取れるが，このとき
+		\begin{align}
+			s = x \wedge y = \Set{\tau}{(\tau,s) \in R}
+		\end{align}
+		なる$a$の要素$s$が取れて
+		\begin{align}
+			x \in a
+		\end{align}
+		が従う．$x$が
+		\begin{align}
+			x \in a
+		\end{align}
+		を満たすならば，
+		\begin{align}
+			y \defeq \Set{\tau}{(\tau,x) \in R}
+		\end{align}
+		とおけば
+		\begin{align}
+			(x,y) \in q
+		\end{align}
+		が成り立つので
+		\begin{align}
+			x \in \dom{q}
+		\end{align}
+		となる．$x$の任意性ゆえに
+		\begin{align}
+			a = \dom{q}
+		\end{align}
+		が従う．ゆえに$q$は$a$上の写像である．
+		
+		\item[第三段] $q$が$a/R$への写像であることを示す．
+			$x$を$a$の要素とすると
+			\begin{align}
+				t \defeq q(x)
+			\end{align}
+			とおくと，
+			\begin{align}
+				t = \Set{y}{(y,x) \in R}
+			\end{align}
+			が成り立つ．すると
+			\begin{align}
+				\forall z\, \left(\, (z,x) \in R \Longleftrightarrow z \in t\, \right)
+			\end{align}
+			が成り立って
+			\begin{align}
+				\exists y \in a\, \forall z\, \left(\, (z,y) \in R \Longleftrightarrow z \in t\, \right)
+			\end{align}
+			が満たされる．ゆえに
+			\begin{align}
+				t \in a/R
+			\end{align}
+			が成立し
+			\begin{align}
+				q(x) \in a/R
+			\end{align}
+			が従う．ゆえに$q$は$a/R$への写像である．
+			
+		\item[第四段] $q$が全射であることを示す．
+			$y$を$a/R$の要素とすると
+			\begin{align}
+				s \in a\, \forall t\, \left(\, (s,t) \in R \Longleftrightarrow t \in y\, \right)
+			\end{align}
+			を満たす集合$s$が取れて，外延性の公理より
+			\begin{align}
+				y = \Set{t}{(s,t) \in R}
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				(s,y) \in q
+			\end{align}
+			が満たされる．よって$q$は全射である．
+			\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[商集合の性質]
-			$a$を集合とし，$R$を$a$上の同値関係として，$y$を$a$の要素とするとき$y$の$R$に関する同値類を
-			$[y]$で表す．このとき次が成り立つ:
-			\begin{description}
-				\item[(1)] $a/R \in \Univ$
-				\item[(2)] $a = \bigcup (a/R)$
-			\end{description}
+		\begin{thm}[要素は自分の同値類に属する]\label{thm:element_is_contained_in_its_equivalence_class}
+			$a$を集合とし，$R$を$a$上の同値関係とし，$q$を$a$から$a/R$への商写像とする．このとき
+			\begin{align}
+				\forall x \in a\, (\, x \in q(x)\, ).
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf} $a$が空であれば$a/R$は空となり(1)が成立する．また$\emptyset = \bigcup \emptyset$より
-		(2)も成立する．以下では$a$が空でない場合で証明する．
-		\begin{description}
-			\item[(1)] $a/R$は$a$から$a/R$への商写像の値域であるから，置換公理より$a/R \in \Univ$が従う．
-			\item[(2)] $\tau$を$\mathcal{L}$の任意の対象とすれば，$\tau \in a$ならば
-				\begin{align}
-					\tau \in [\tau]
-				\end{align}
-				となるから$\tau \in \bigcup (a/R)$が成立する．ゆえに
-				\begin{align}
-					\tau \in a \Longrightarrow \tau \in \bigcup (a/R)
-				\end{align}
-				が得られる．逆に$\tau \in \bigcup (a/R)$が成り立っているとすれば
-				$\tau$に対して$a$の或る要素$y$が取れて$\tau \in [y]$となるが，
-				$[y] \subset a$より$\tau \in a$が従うので
-				\begin{align}
-					\tau \in \bigcup (a/R) \Longrightarrow \tau \in a
-				\end{align}
-				も得られる．$\tau$の任意性より$a = \bigcup (a/R)$が出る．
-				\QED
-		\end{description}
+	\begin{sketch}
+		$x$を$a$の要素とすると，
+		\begin{align}
+			q(x) = \Set{y}{(y,x) \in R}
+		\end{align}
+		が成立する．$R$は同値関係なので
+		\begin{align}
+			(x,x) \in R
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			x \in \Set{y}{(y,x) \in R}
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			x \in q(x)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[商集合の合併は割る前の集合に一致する]
+			$a$を集合とし，$R$を$a$上の同値関係とする．このとき$a/R$は集合であって，また
+			\begin{align}
+				a = \bigcup (a/R).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$q$を$a$から$a/R$への商写像とすると，定理\ref{thm:quotient_mapping_is_a_surjection}より
+		\begin{align}
+			q \ast a = a/R
+		\end{align}
+		が成り立つから，置換公理より
+		\begin{align}
+			\set{a/R}
+		\end{align}
+		が成立する．$x$を集合とするとき，
+		\begin{align}
+			x \in a
+		\end{align}
+		ならば
+		\begin{align}
+			x \in q(x)
+		\end{align}
+		が成り立つから
+		\begin{align}
+			x \in \bigcup (a/R)
+		\end{align}
+		が従う．逆に
+		\begin{align}
+			x \in \bigcup (a/R)
+		\end{align}
+		ならば
+		\begin{align}
+			x \in q(y)
+		\end{align}
+		を満たす集合$y$が取れるが，このとき
+		\begin{align}
+			(x,y) \in R
+		\end{align}
+		が成立するので
+		\begin{align}
+			x \in a
+		\end{align}
+		が成立する．$x$の任意性より
+		\begin{align}
+			a = \bigcup (a/R)
+		\end{align}
+		となる．
+		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[同値な要素同士の同値類は一致する]\label{thm:equivalence_classes_of_equivalent_elements_coincide}
+			$a$を集合とし，$R$を$a$上の同値関係とし，$q$を$a$から$a/R$への商写像とする．このとき
+			\begin{align}
+				\forall x,y \in a\, \left(\, (x,y) \in R \Longleftrightarrow q(x) = q(y)\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$が空であれば空虚な真より定理は成立する．以下では$a$は空でないとして証明する．
+		$x$と$y$を$a$の要素とする．
+		\begin{align}
+			(x,y) \in R
+		\end{align}
+		が成り立っているとすると，$z$を
+		\begin{align}
+			z \in q(x)
+		\end{align}
+		なる集合とすれば
+		\begin{align}
+			(z,x) \in R
+		\end{align}
+		が成り立ち，同値関係の推移性より
+		\begin{align}
+			(z,y) \in R
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			z \in q(y)
+		\end{align}
+		が成立し，$z$の任意性より
+		\begin{align}
+			q(x) \subset q(y)
+		\end{align}
+		となる．$x$と$y$の立場を入れ替えれば
+		\begin{align}
+			q(y) \subset q(x)
+		\end{align}
+		も成り立つから
+		\begin{align}
+			q(x) = q(y)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			(x,y) \in R \Longrightarrow q(x) = q(y)
+		\end{align}
+		が成り立つ．逆に
+		\begin{align}
+			q(x) = q(y)
+		\end{align}
+		が成り立っているとすると，定理\ref{thm:element_is_contained_in_its_equivalence_class}より
+		\begin{align}
+			x \in q(x)
+		\end{align}
+		が成り立つので
+		\begin{align}
+			x \in q(y)
+		\end{align}
+		となる．ゆえに
+		\begin{align}
+			(x,y) \in R
+ 		\end{align}
+ 		が従う．ゆえに
+ 		\begin{align}
+			q(x) = q(y) \Longrightarrow (x,y) \in R
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[同値類は一致していなければ交わらない]
+			$a$を集合とし，$R$を$a$上の同値関係とし，$q$を$a$から$a/R$への商写像とする．このとき
+			\begin{align}
+				\forall x,y \in a\, \left(\, q(x) \neq q(y) \Longleftrightarrow q(x) \cap q(y) = \emptyset\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$が空であれば空虚な真より定理は成立する．以下では$a$は空でないとして証明する．
+		$x$と$y$を$a$の要素とする．
+		\begin{align}
+			q(x) = q(y)
+		\end{align}
+		が成り立っているとすると，定理\ref{thm:element_is_contained_in_its_equivalence_class}より
+		\begin{align}
+			x \in q(x)
+		\end{align}
+		が成り立つので
+		\begin{align}
+			x \in q(y)
+		\end{align}
+		となる．ゆえに
+		\begin{align}
+			q(x) \cap q(y) \neq \emptyset
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			q(x) = q(y) \Longrightarrow q(x) \cap q(y) \neq \emptyset
+		\end{align}
+		が成立する．逆に
+		\begin{align}
+			q(x) \cap q(y) \neq \emptyset
+		\end{align}
+		が成り立っているとすると，
+		\begin{align}
+			z \in q(x) \cap q(y)
+		\end{align}
+		を満たす集合$z$が取れて
+		\begin{align}
+			(x,z) \in R
+		\end{align}
+		かつ
+		\begin{align}
+			(y,z) \in R
+		\end{align}
+		が成り立つ．このとき同値関係の可換律より
+		\begin{align}
+			(z,y) \in R
+		\end{align}
+		が成り立って，同値関係の推移律より
+		\begin{align}
+			(x,y) \in R
+		\end{align}
+		が従い，定理\ref{thm:equivalence_classes_of_equivalent_elements_coincide}より
+		\begin{align}
+			q(x) = q(y)
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			q(x) \cap q(y) \neq \emptyset \Longrightarrow q(x) = q(y)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}

@@ -1,83 +1,158 @@
 \section{多項式環}
-	$(R,\sigma,\mu)$を可換環として，その零元と単位元をそれぞれ$\zeta$と$\epsilon$で表す．
-	また$\zeta \neq \epsilon$と仮定する．すなわち$(R,\sigma,\mu)$は零環ではない．いま
+	$(R,\sigma_R,\mu_R)$を可換環とする．また$\zeta_R$を$R$の零元とし，
+	$\epsilon_R$を$R$の単位元とする．
+	$P$を$\Natural$上の$R$-値写像で有限個の自然数を除いて
+	$\zeta_R$に張り付くものの全体とする．つまり$P$は
 	\begin{align}
-		\tilde{P} \coloneqq \Set{f}{f:\omg \longrightarrow R \wedge 
-		\exists n \in \omg\ \forall m \in \omg\ (\ n < m \Longrightarrow f(m) = \zeta\ )}
+		P \defeq \Set{f}{f:\Natural \longrightarrow R \wedge
+		\exists n \in \Natural\, \forall m \in \Natural\,
+		(\, n < m \Longrightarrow f(m) = \zeta_R\, )}
 	\end{align}
-	により集合$\tilde{P}$を定める．$\tilde{P}$とは$\omg$から$R$への写像のうち
-	或る自然数以降は$\zeta$に張り付いてしまう写像の全体である．$a$を$R$の要素として
+	で定められる．$f$を$P$の要素とするとき
 	\begin{align}
-		\varphi_a \coloneqq \Set{x}{\exists n \in \omg\ (\ n = 0 \Longrightarrow x = (0,a)
-		\wedge n \neq 0 \Longrightarrow x = (n,\zeta)\ )}
+		\forall m \in \Natural\, (\, n < m \Longrightarrow f(m) = \zeta_R\, )
 	\end{align}
-	として$\varphi_a$を定めれば，$\varphi_a$は$\omg$から$R$への写像であり
+	を満たす最小の自然数$n$が取れるが，その自然数を$f$の次数と呼び
 	\begin{align}
-		\varphi_a(n) = 
+		\deg{f}
+	\end{align}
+	と書く．さらに言えば，$\deg$とは$f$に対して
+	\begin{align}
+		\mu n\, \left[\, \forall m \in \Natural\, (\, n < m \Longrightarrow f(m) = \zeta_R\, )\, \right]
+	\end{align}
+	を対応させる写像である．$f$と$g$を$P$の要素とするとき
+	\begin{align}
+		\Natural \ni n \longmapsto \sigma_R(f(n),g(n))
+	\end{align}
+	なる写像を対応させる関係を$P$の加法として定め，
+	\begin{align}
+		\Natural \ni n \longmapsto \sum_{i \in n+1} \mu_R(f(i),g(n-i))
+	\end{align}
+	なる写像を対応させる関係を$P$の乗法として定める．$P$の加法を
+	\begin{align}
+		\sigma_P
+	\end{align}
+	と書き，$P$の乗法を
+	\begin{align}
+		\mu_P
+	\end{align}
+	と書く．\underline{このとき$(P,\sigma_P,\mu_P)$は可換環である}．
+	
+	\begin{sketch}
+	\end{sketch}
+	
+	$P$の特別な要素として，
+	\begin{align}
+		\Natural \ni n \longmapsto
 		\begin{cases}
-			a, & (n=0), \\
-			\zeta, & (n \neq 0)
+			\epsilon_R & \mbox{if } n = 1 \\
+			\zeta_R & \mbox{if } n \neq 1
 		\end{cases}
 	\end{align}
-	を満たすから$\tilde{P}$の要素でもある．ここで
+	なる写像を$X$と定める．このとき自然数$i$に対して$X^i$は
 	\begin{align}
-		\varphi \coloneqq \Set{x}{\exists a \in R\ \left(\ x=(a,\varphi_a)\ \right)}
+		\Natural \ni n \longmapsto
+		\begin{cases}
+			\epsilon_R & \mbox{if } n = i \\
+			\zeta_R & \mbox{if } n \neq i
+		\end{cases}
 	\end{align}
-	として$\varphi$を定めれば
-	\underline{$\varphi$は$R$から$\tilde{P}$への埋め込み(単射環準同型)となる}．
+	なる写像であって，さらに
+	\begin{align}
+		n \defeq \deg{f}
+	\end{align}
+	とおけば
+	\begin{align}
+		f = \sum_{i \in n} \mu_P \left(\varphi(f(i)),X^i\right)
+	\end{align}
+	が成立する．
 	
-	\begin{prf}
-	\end{prf}
+	ここで$R$の要素$r$に対して
+	\begin{align}
+		\Natural \ni n \longmapsto
+		\begin{cases}
+			r & \mbox{if } n = 0 \\
+			\zeta_R & \mbox{if } n \neq 0
+		\end{cases}
+	\end{align}
+	なる写像を対応させる関係を$\varphi$とすると，\underline{$\varphi$は$R$から$P$への埋め込みである．}
 	
-	上で作った$\tilde{P}$に対して
-	\begin{align}
-		P \coloneqq \left( \tilde{P} \backslash (\varphi \ast R) \right) \cup R
-	\end{align}
-	と定める．$P$とは$\tilde{P}$の$R$が埋め込まれた部分を$R$そのものに置き換えた集合である．
-	また$\tilde{P}$から$P$への写像を
-	\begin{align}
-		h \coloneqq \{\, x \mid \quad \exists f \in \tilde{P}\ 
-		&(\\
-		&\quad \exists a \in R\ (\ f = \varphi(a)\ ) \Longrightarrow x = (f,a) \\
-		&\quad \wedge f \notin \varphi \ast R \Longrightarrow x = (f,f)\\
-		&)\, \}
-	\end{align}
-	で定めれば$h$は全単射となる．$h$は$\varphi \ast R$の要素には$\varphi$で対応する$R$の要素を
-	当て，$\varphi \ast R$の外側では恒等写像となっている．また
-	\begin{align}
-		\sigma_P &\coloneqq \Set{x}{\exists f,g \in P\ \left(\ 
-			x=((f,g),h(h^{-1}(f)+h^{-1}(g)))\ \right)}, \\
-		\mu_P &\coloneqq \Set{x}{\exists f,g \in P\ \left(\ 
-			x=((f,g),h(h^{-1}(f) \cdot h^{-1}(g)))\ \right)}
-	\end{align}
-	と定めれば，
-	\underline{$\sigma_P$と$\mu_P$をそれぞれ加法と乗法として$(P,\sigma_P,\mu_P)$は可換環となる}.
+	\begin{sketch}
+	\end{sketch}
 	
-	\begin{prf}
-	\end{prf}
-	
-	またこのとき\underline{$(\tilde{P},\tilde{\sigma},\tilde{\mu})$と$(P,\sigma_P,\mu_P)$は
-	環として$h$によって同型に対応する}．
-	
-	\begin{prf}
-	\end{prf}
-	
-	$f$を$P$から任意に選ばれた要素とするとき，$h^{-1}(f)$は$\tilde{P}$の要素となるから，
-	或る自然数$m$及び$m+1$個の$R$の要素$a_0,a_1,\cdots,a_m$が存在して
+	そして
 	\begin{align}
-		h^{-1}(f) = \varphi(a_0) + \varphi(a_1) \cdot X + \varphi(a_2) \cdot X^2 + \cdots + \varphi(a_m) \cdot X^m
+		R[X] \defeq \left(P \backslash \varphi \ast R\right) \cup R
 	\end{align}
-	と書ける．$h$は環同型であるから，このとき
+	と定める．
 	\begin{align}
-		f = a_0 + a_1 \cdot X + \cdot a_2 \cdot X^2 + \cdots + a_m \cdot X^m
+		P \ni f \longmapsto
+		\begin{cases}
+			\varphi^{-1}(f) & \mbox{if } f \in \varphi \ast R \\
+			f & \mbox{if } f \notin \varphi \ast R
+		\end{cases}
 	\end{align}
-	が成り立つ．ゆえに$P$の任意の要素は$R$の要素を係数とする$X$の多項式として書ける．
-	この$(P,\sigma_P,\mu_P)$を$R$上の
-	{\bf 多項式環}\index{たこうしきかん@多項式環}{\bf (polynomial ring)}と呼び，特に$P$を
+	なる写像を$h$とすると
 	\begin{align}
-		R[X]
+		h:P \bij R[X]
 	\end{align}
-	と書く．また$X$のことを{\bf 不定元}\index{ふていげん@不定元}{\bf (indeterminate)}と呼ぶ．
+	が成立して，この$h$によって$P$の算法を$R[X]$に移すことが出来る．つまり，
+	$f$と$g$を$R[X]$の要素とするとき
+	\begin{align}
+		h\left( \sigma_P\left(h^{-1}(f),h^{-1}(g)\right) \right)
+	\end{align}
+	なる要素を対応させる関係を$R[X]$の加法として定め，
+	\begin{align}
+		h\left( \mu_P\left(h^{-1}(f),h^{-1}(g)\right) \right)
+	\end{align}
+	なる要素を対応させる関係を$R[X]$の乗法として定める．$R[X]$の加法を
+	\begin{align}
+		\sigma_X
+	\end{align}
+	と書き，$R[X]$の乗法を
+	\begin{align}
+		\mu_X
+	\end{align}
+	と書くことにする．すると$h$は$(P,\sigma_P,\mu_P)$から$(R[X],\sigma_X,\mu_X)$への環同型となり，しかも
+	\begin{align}
+		R \subset R[X]
+	\end{align}
+	かつ
+	\begin{align}
+		\sigma_R \subset \sigma_X
+	\end{align}
+	かつ
+	\begin{align}
+		\mu_R \subset \mu_X
+	\end{align}
+	が満たされる．
+	
+	$f$を$P$の要素とすると，適当な自然数$n$を取って
+	\begin{align}
+		f = \sum_{i \in n} \mu_P \left(\varphi(f(i)),X^i\right)
+	\end{align}
+	と書けたわけであるが，このとき
+	\begin{align}
+		h(f) = \sum_{i \in n} \mu_X \left(f(i),X^i\right)
+	\end{align}
+	が成立する．特に
+	\begin{align}
+		f \notin \varphi \ast R
+	\end{align}
+	ならば
+	\begin{align}
+		f = \sum_{i \in n} \mu_X \left(f(i),X^i\right)
+	\end{align}
+	が成立する．
+	
+	\begin{align}
+		(R[X],\sigma_X,\mu_X)
+	\end{align}
+	のことを$R$上の{\bf 多項式環}\index{たこうしきかん@多項式環}{\bf (polynomial ring)}と呼び，
+	\begin{align}
+		X
+	\end{align}
+	のことをその{\bf 不定元}\index{ふていげん@不定元}{\bf (indeterminate)}と呼ぶ．
 	
 	\begin{screen}
 		\begin{thm}[整域上の多項式環は整域]
@@ -85,27 +160,12 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$(R,\sigma,\mu)$を整域とし，その多項式環を
-		$\left( R[X],\tilde{\sigma},\tilde{\mu} \right)$をその多項式環とする．
-		また$(R,\sigma,\mu)$の零元と単位元を$\zeta,\epsilon$で表し，
-		$\left( R[X],\tilde{\sigma},\tilde{\mu} \right)$の零元と単位元を
-		$\tilde{\zeta},\tilde{\epsilon}$で表す．
-		$f,g$を$R[X]$の任意の要素とすれば，
-		\begin{align}
-			f \neq \tilde{\zeta} \wedge g \neq \tilde{\zeta}
-		\end{align}
-		が満たされているとき
-		
-		
-	\end{prf}
-	
 	\begin{screen}
 		\begin{thm}[体の上の多項式環はEuclid整域]
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[Euclid整域は単項イデアル整域]
+		\begin{thm}[Euclid整域は主環]
 		\end{thm}
 	\end{screen}
