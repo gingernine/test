@@ -170,7 +170,7 @@
 	この二つの不等式から次を得る．
 	
 	\begin{screen}
-		\begin{thm}[劣マルチンゲールのパスは有界区間上で有界]
+		\begin{thm}[劣マルチンゲールのパスは有界区間上で有界]\label{thm:path_of_submartingale_is_bounded_on_bounded_interval}
 			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$とし，
 			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
 			$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールとする．
@@ -557,6 +557,93 @@
  	
  	ここで
  	\begin{align}
+ 		D \defeq \bigcup_{n \in \Natural} \Set{\frac{k}{2^n}}{k \in \Natural}
+ 	\end{align}
+ 	及び
+ 	\begin{align}
  		B \defeq \bigcup_{N=1}^\infty \bigcup_{\substack{\alpha,\beta \in \Q \\ \alpha < \beta}} B_{\alpha,\beta}^{(N)}
  	\end{align}
- 	とおけば$B$は$P$-零集合であって，
+ 	とおけば，$B$は$P$-零集合であって，また上で示したことと
+ 	\begin{align}
+ 		D^N = D \cap [0,N]
+ 	\end{align}
+ 	が成り立つことにより
+ 	\begin{align}
+ 		\Set{\omega \in \Omega}{\exists t \in ]0,\infty[\, \left(\, 
+ 		\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+ 		< \inf{\substack{s \in D \\ s < t}}{\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)}}\, \right)}
+ 		\subset B
+ 	\end{align}
+ 	と
+ 	\begin{align}
+ 		\Set{\omega \in \Omega}{\exists t \in [0,\infty[\, \left(\, 
+ 		\sup{\substack{s \in D \\ t < s}}{\inf{\substack{u \in D \\ t < u < s}}{X_u(\omega)}} 
+ 		< \inf{\substack{s \in D \\ t < s}}{\sup{\substack{u \in D \\ t < u < s}}{X_u(\omega)}}\, \right)}
+ 		\subset B
+ 	\end{align}
+ 	が成立する．また定理\ref{thm:path_of_submartingale_is_bounded_on_bounded_interval}より
+ 	$P$-零集合$A$で，$\omega$を$\Omega \backslash A$の要素とし$N$を正の自然数とすれば
+	\begin{align}
+		- \infty < \inf{t \in D \cap [0,N]}X_t(\omega) \wedge \sup{t \in D \cap [0,N]}X_t(\omega) < \infty
+	\end{align}
+	が成り立つようにできるものが取れる．つまり，
+	\begin{align}
+		\omega \in \Omega \backslash (A \cup B)
+	\end{align}
+	なる$\omega$に対しては，$]0,\infty[$の各要素$t$において
+	\begin{align}
+		\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} \in \R
+	\end{align}
+	かつ
+	\begin{align}
+		\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+		= \inf{\substack{s \in D \\ t < s}}{\sup{\substack{u \in D \\ t < u < s}}{X_u(\omega)}}
+	\end{align}
+	が成立し，$[0,\infty[$の各要素$t$において
+	\begin{align}
+		\sup{\substack{s \in D \\ t < s}}{\inf{\substack{u \in D \\ t < u < s}}{X_u(\omega)}} \in \R
+	\end{align}
+	かつ
+	\begin{align}
+		\sup{\substack{s \in D \\ t < s}}{\inf{\substack{u \in D \\ t < u < s}}{X_u(\omega)}} 
+		= \inf{\substack{s \in D \\ t < s}}{\sup{\substack{u \in D \\ t < u < s}}{X_u(\omega)}}
+	\end{align}
+	が成立する．以上をまとめると，
+	
+	\begin{screen}
+		\begin{thm}[劣マルチンゲールの殆ど全てのパスが各点で実数値の左極限及び右極限を持つ]
+			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$とし，
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
+			$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールとする．
+			また
+			\begin{align}
+				D \defeq \bigcup_{n \in \Natural} \Set{\frac{k}{2^n}}{k \in \Natural}
+			\end{align}
+			とおく．このとき$P$-零集合$B$で次を満たすものが取れる:
+			
+			$\omega$を$\Omega \backslash B$の要素とすれば
+			\begin{description}
+				\item[左極限] $]0,\infty[$の各要素$t$において
+					\begin{align}
+						\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} \in \R
+					\end{align}
+					かつ
+					\begin{align}
+						\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+						= \inf{\substack{s \in D \\ t < s}}{\sup{\substack{u \in D \\ t < u < s}}{X_u(\omega)}}
+					\end{align}
+					が成り立つ．
+				
+				\item[右極限] $[0,\infty[$の各要素$t$において
+					\begin{align}
+						\sup{\substack{s \in D \\ t < s}}{\inf{\substack{u \in D \\ t < u < s}}{X_u(\omega)}} \in \R
+					\end{align}
+					かつ
+					\begin{align}
+						\sup{\substack{s \in D \\ t < s}}{\inf{\substack{u \in D \\ t < u < s}}{X_u(\omega)}} 
+						= \inf{\substack{s \in D \\ t < s}}{\sup{\substack{u \in D \\ t < u < s}}{X_u(\omega)}}
+					\end{align}
+					が成り立つ．
+			\end{description}
+		\end{thm}
+	\end{screen}
