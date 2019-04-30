@@ -4,7 +4,7 @@
 	$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
 	$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールとする．
 	
-	いま$\lambda$と正の実数とし，$N$を$0$でない自然数とする．また$[0,N]$の稠密な部分集合を
+	いま$\lambda$を正の実数とし，$N$を$0$でない自然数とする．また$[0,N]$の稠密な部分集合を
 	\begin{align}
 		D^N \defeq \bigcup_{n \in \Natural} \Set{\frac{k}{2^n}}{k \in \{0,1,\cdots,N \cdot 2^n\}}
 	\end{align}
@@ -369,89 +369,194 @@
  		\end{align}
  	\end{itembox}
  	
- 	$\omega$を$\Omega$の要素として
+ 	\begin{sketch}
+ 		$\omega$を$\Omega$の要素として
+ 		\begin{align}
+ 			j \defeq U_F^{\alpha,\beta;X}(\omega)
+ 		\end{align}
+ 		とおく．
+ 		\begin{description}
+ 			\item[第一段]
+ 				$j = 0$のとき，
+ 				\begin{align}
+ 					\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+	 				&= 0 \\
+	 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+	 			\end{align}
+	 			が満たされる．
+	 		
+	 		\item[第二段]
+	 			$j = 1$のとき，
+	 			\begin{align}
+	 				\sigma_1(\omega) \leq N < \tau_2(\omega)
+	 			\end{align}
+	 			ならば
+	 			\begin{align}
+	 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+	 				&= X_N(\omega) - X_{\sigma_1(\omega)}(\omega) \\
+	 				&= \alpha - X_{\sigma_1(\omega)}(\omega) + X_N(\omega) - \alpha \\
+	 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+	 			\end{align}
+	 			が成立し，
+	 			\begin{align}
+	 				\tau_2(\omega) \leq N < \sigma_2(\omega)
+	 			\end{align}
+	 			ならば
+	 			\begin{align}
+	 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+ 					&= X_{\tau_2(\omega)}(\omega) - X_{\sigma_1(\omega)}(\omega) \\
+ 					&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) \\
+ 					&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 				\end{align}
+ 				が成立する．
+ 			
+ 			\item[第三段]
+ 				$2 \leq j$のとき，
+ 				\begin{align}
+ 					\sigma_j(\omega) \leq N < \tau_{j+1}(\omega)
+ 				\end{align}
+ 				ならば
+ 				\begin{align}
+ 					&\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right) \\
+ 					&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right)
+ 					+ X_N(\omega) - X_{\sigma_j(\omega)}(\omega) \\
+ 					&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right)
+ 					+ \alpha - X_{\sigma_j(\omega)}(\omega) + X_N(\omega) - \alpha \\
+ 					&\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 				\end{align}
+ 				が成立し， 	
+ 				\begin{align}
+ 					\tau_{j+1}(\omega) \leq N < \sigma_{j+1}(\omega)
+ 				\end{align}
+ 				ならば
+ 				\begin{align}
+ 					&\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right) \\
+ 					&= \sum_{i=1}^{j} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) \\
+ 					&\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 				\end{align}
+ 				が成立する．
+ 		\end{description}
+ 			
+ 		ゆえに$\Omega$の任意の要素$\omega$において
+ 		\begin{align}
+ 			\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+ 			\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 		\end{align}
+ 		が成立する．左辺の各項については任意抽出定理より
+ 		\begin{align}
+ 			0 \leq E\left(X_{\min{}{\{\tau_{i+1},N\}}} - X_{\min{}{\{\sigma_i,N\}}}\right)
+ 		\end{align}
+ 		が成り立つため，
+ 		\begin{align}
+ 			0 \leq (\alpha-\beta) \cdot E\left(U_F^{\alpha,\beta;X}\right) + E(X_N^+) + |\alpha|
+ 		\end{align}
+	 	が成立する．移項して
+	 	\begin{align}
+	 		E\left( U_F^{\alpha,\beta;X} \right) \leq \frac{E(X_N^+) + |\alpha|}{\beta - \alpha}
+	 	\end{align}
+	 	を得る．
+	 	\QED
+	 \end{sketch}
+ 	
+ 	$n$を自然数として
  	\begin{align}
- 		j \defeq U_F^{\alpha,\beta;X}(\omega)
+ 		D_n^N \defeq \Set{\frac{k}{2^n}}{k \in \{0,1,2,\cdots,N \cdot 2^n\}}
  	\end{align}
- 	とおく．
- 	\begin{description}
- 		\item[第一段]
- 			$j = 0$のとき，
- 			\begin{align}
- 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
- 				&= 0 \\
- 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
- 			\end{align}
- 			が満たされる．
- 		
- 		\item[第二段]
- 			$j = 1$のとき，
- 			\begin{align}
- 				\sigma_1(\omega) \leq N < \tau_2(\omega)
- 			\end{align}
- 			ならば
- 			\begin{align}
- 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
- 				&= X_N(\omega) - X_{\sigma_1(\omega)}(\omega) \\
- 				&= \alpha - X_{\sigma_1(\omega)}(\omega) + X_N(\omega) - \alpha \\
- 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
- 			\end{align}
- 			が成立し，
- 			\begin{align}
- 				\tau_2(\omega) \leq N < \sigma_2(\omega)
- 			\end{align}
- 			ならば
- 			\begin{align}
- 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
- 				&= X_{\tau_2(\omega)}(\omega) - X_{\sigma_1(\omega)}(\omega) \\
- 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) \\
- 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
- 			\end{align}
- 			が成立する．
- 		
- 		\item[第三段]
- 			$2 \leq j$のとき，
- 			\begin{align}
- 				\sigma_j(\omega) \leq N < \tau_{j+1}(\omega)
- 			\end{align}
- 			ならば
- 			\begin{align}
- 				&\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right) \\
- 				&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right)
- 				+ X_N(\omega) - X_{\sigma_j(\omega)}(\omega) \\
- 				&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right)
- 				+ \alpha - X_{\sigma_j(\omega)}(\omega) + X_N(\omega) - \alpha \\
- 				&\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
- 			\end{align}
- 			が成立し， 	
- 			\begin{align}
- 				\tau_{j+1}(\omega) \leq N < \sigma_{j+1}(\omega)
- 			\end{align}
- 			ならば
- 			\begin{align}
- 				&\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right) \\
- 				&= \sum_{i=1}^{j} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) \\
- 				&\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
- 			\end{align}
- 			が成立する．
- 	\end{description}
- 		
- 	ゆえに$\Omega$の任意の要素$\omega$において
+ 	と定めれば
  	\begin{align}
- 		\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
- 		\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 		E\left( U_{D_n^N}^{\alpha,\beta;X} \right) \leq \frac{E(X_N^+) + |\alpha|}{\beta - \alpha}
  	\end{align}
- 	が成立する．左辺の各項については任意抽出定理より
+ 	が成立する．ところで
  	\begin{align}
- 		0 \leq E\left(X_{\min{}{\{\tau_{i+1},N\}}} - X_{\min{}{\{\sigma_i,N\}}}\right)
+ 		\left\{U_{D_n^N}^{\alpha,\beta;X}\right\}_{n \in \Natural}
  	\end{align}
- 	が成り立つため，
+ 	は単調増大列であるから，
  	\begin{align}
- 		0 \leq (\alpha-\beta) \cdot E\left(U_F^{\alpha,\beta;X}\right) + E(X_N^+) + |\alpha|
+ 		U_{D^N}^{\alpha,\beta;X} \defeq \lim_{n \to \infty} U_{D_n^N}^{\alpha,\beta;X}
  	\end{align}
- 	が成立する．移項して
+ 	と定めれば
  	\begin{align}
- 		E\left( U_F^{\alpha,\beta;X} \right) \leq \frac{E(X_N^+) + |\alpha|}{\beta - \alpha}
+ 		E\left( U_{D^N}^{\alpha,\beta;X} \right) \leq \frac{E(X_N^+) + |\alpha|}{\beta - \alpha}
  	\end{align}
- 	を得る．
- 	\QED
+ 	が成立する．すなわち
+ 	\begin{align}
+ 		P\left(U_{D^N}^{\alpha,\beta;X} = \infty\right) = 0
+ 	\end{align}
+ 	である．ここで
+ 	\begin{align}
+ 		D^N \defeq \bigcup_{n \in \Natural} D_n^N
+ 	\end{align}
+ 	及び
+ 	\begin{align}
+ 		B_{\alpha,\beta}^{(N)} \defeq \left\{ U_{D^N}^{\alpha,\beta;X} = \infty \right\}
+ 	\end{align}
+ 	とおけば
+ 	
+ 	\begin{itembox}[l]{$[0,N]$上では殆ど全てのパスが各点で左極限を持つ}
+ 		\begin{align}
+ 			\Set{\omega \in \Omega}{\exists t \in (0,N]\, \left(\, 
+ 			\sup{\substack{s \in D^N \\ s < t}}{\inf{\substack{u \in D^N \\ s < u < t}}{X_u(\omega)}} 
+ 			< \inf{\substack{s \in D^N \\ s < t}}{\sup{\substack{u \in D^N \\ s < u < t}}{X_u(\omega)}}\, \right)}
+ 			\subset \bigcup_{\substack{\alpha,\beta \in \Q \\ \alpha < \beta}} B_{\alpha,\beta}^{(N)}.
+ 		\end{align}
+ 	\end{itembox}
+ 	
+ 	\begin{sketch}
+ 		$\omega$を左辺の集合の要素とする．つまり，
+ 		\begin{align}
+ 			t \in (0,N]
+ 		\end{align}
+ 		なる$t$で，そこにおいて
+ 		\begin{align}
+ 			\sup{\substack{s \in D^N \\ s < t}}{\inf{\substack{u \in D^N \\ s < u < t}}{X_u(\omega)}} 
+ 			< \inf{\substack{s \in D^N \\ s < t}}{\sup{\substack{u \in D^N \\ s < u < t}}{X_u(\omega)}}
+ 		\end{align}
+ 		となるものが取れる．
+ 		\begin{align}
+ 			\sup{\substack{s \in D^N \\ s < t}}{\inf{\substack{u \in D^N \\ s < u < t}}{X_u(\omega)}} 
+ 			< \alpha < \beta < \inf{\substack{s \in D^N \\ s < t}}{\sup{\substack{u \in D^N \\ s < u < t}}{X_u(\omega)}}
+ 		\end{align}
+ 		を満たす有理数$\alpha$と$\beta$を取る．また$M$を任意に選ばれた$0$でない自然数とする．このとき
+ 		\begin{align}
+ 			s_1 < t_1 < s_2 < t_2 < \cdots < s_M < t_M
+ 		\end{align}
+ 		なる$D^N$の点列を，$\{1,2,\cdots,M\}$の各要素$i$で
+ 		\begin{align}
+ 			X_{s_i}(\omega) < \alpha \wedge \beta < X_{t_i}(\omega)
+ 		\end{align}
+ 		を満たすように取れる．ゆえに，
+ 		\begin{align}
+ 			\{s_1,t_1,\cdots,s_M,t_M\} \subset D^N_n
+ 		\end{align}
+ 		なる自然数$n$を取れば
+ 		\begin{align}
+ 			M \leq U_{D_n^N}^{\alpha,\beta;X}(\omega)
+ 		\end{align}
+ 		が成立する．ゆえに
+ 		\begin{align}
+ 			M \leq U_{D^N}^{\alpha,\beta;X}(\omega)
+ 		\end{align}
+ 		が成立する．$M$の任意性ゆえに
+ 		\begin{align}
+ 			U_{D^N}^{\alpha,\beta;X}(\omega) = \infty
+ 		\end{align}
+ 		が成立する．
+ 		\QED
+ 	\end{sketch}
+ 	
+ 	同様の証明で次も得られる．
+ 	
+ 	\begin{itembox}[l]{$[0,N]$上では殆ど全てのパスが各点で右極限を持つ}
+ 		\begin{align}
+ 			\Set{\omega \in \Omega}{\exists t \in [0,N)\, \left(\, 
+ 			\sup{\substack{s \in D^N \\ t < s}}{\inf{\substack{u \in D^N \\ t < u < s}}{X_u(\omega)}} 
+ 			< \inf{\substack{s \in D^N \\ t < s}}{\sup{\substack{u \in D^N \\ t < u < s}}{X_u(\omega)}}\, \right)}
+ 			\subset \bigcup_{\substack{\alpha,\beta \in \Q \\ \alpha < \beta}} B_{\alpha,\beta}^{(N)}.
+ 		\end{align}
+ 	\end{itembox}
+ 	
+ 	ここで
+ 	\begin{align}
+ 		B \defeq \bigcup_{N=1}^\infty \bigcup_{\substack{\alpha,\beta \in \Q \\ \alpha < \beta}} B_{\alpha,\beta}^{(N)}
+ 	\end{align}
+ 	とおけば$B$は$P$-零集合であって，
