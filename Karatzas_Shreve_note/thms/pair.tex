@@ -10,34 +10,6 @@
 		\end{dfn}
 	\end{screen}
 	
-	対の定義の
-	\begin{align}
-		a = x \vee b = x \label{form:definition_of_pairings}
-	\end{align}
-	の部分は$\mathcal{L}$の式とは限らない．例えば$a$が
-	\begin{align}
-		\Set{x}{A(x)}
-	\end{align}
-	で表される類で，$b$が
-	\begin{align}
-		\Set{x}{B(x)}
-	\end{align}
-	で表される類であるとき，(\refeq{form:definition_of_pairings})は次の$\mathcal{L}$の式
-	\begin{align}
-		\forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
-		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )
-	\end{align}
-	と書き換えられる．そして
-	\begin{align}
-		\Set{x}{a = x \vee b = x}
-	\end{align}
-	は
-	\begin{align}
-		\Set{x}{\forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
-		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )}
-	\end{align}
-	によって定められているのであった．
-	
 	\begin{screen}
 		\begin{thm}[対は表示されている要素しか持たない]
 		\label{thm:pair_members_are_exactly_the_given_two}
@@ -67,17 +39,17 @@
 	\end{align}
 	から
 	\begin{align}
-		\forall t\, (\, A(t) \Longleftrightarrow t \in \chi\, ) \vee
-		\forall t\, (\, B(t) \Longleftrightarrow t \in \chi\, )
+		\left[\, \forall t\, (\, A(t) \Longleftrightarrow t \in \chi\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in \chi\, )\, \right]
 		\Longleftrightarrow
-		a = \chi \vee b = \chi
+		\left[\, a = \chi \vee b = \chi\, \right]
 	\end{align}
 	が成り立つので，
 	\begin{align}
-		\forall x\, \left(\, \forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
-		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )
+		\forall x\, \left[\, \left[\, \forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )\, \right]
 		\Longleftrightarrow
-		a = x \vee a = x\, \right)
+		\left[\, a = x \vee b = x\, \right]\, \right]
 	\end{align}
 	が成立する．
 	
@@ -178,87 +150,124 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[真類の対は空]
-		\label{thm:pair_of_proper_classes_is_emptyset}
-			$a,b$を類とするとき次が成り立つ:
-			\begin{description}
-				\item[(イ)] $\set{a} \Longrightarrow a \in \{a,b\}.$
-				
-				\item[(ロ)] $\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longleftrightarrow \{a,b\} = \emptyset.$
-			\end{description}
+		\begin{thm}[集合は対の要素たりうる]\label{thm:set_is_an_element_of_its_pair}
+			$a,b$を類とするとき，
+			\begin{align}
+				\set{a} \Longrightarrow a \in \{a,b\}.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(イ)]
-				まず存在記号に関する規則より
-				\begin{align}
-					\set{a} \Longrightarrow a = \varepsilon x(\, a = x\, )
-				\end{align}
-				も成り立つ．ここで$\set{a}$が成り立っていると仮定して$\tau \coloneqq \varepsilon x(\, a = x\, )$とおけば，
-				三段論法より$\tau = a$が成立し，$\vee$の導入より$\tau = a \vee \tau = b$が成り立つ．
-				(\refeq{eq:definition_of_a_pair_of_classes})と
-				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-				$\mathcal{L}$の対象である$\tau$に対しては
-				\begin{align}
-					\tau = a \vee \tau = b \Longleftrightarrow \tau \in \{a,b\}
-				\end{align}
-				が満たされるので，三段論法より$\tau \in \{a,b\}$が成り立ち，相等性の公理より
-				\begin{align}
-					a \in \{a,b\}
-				\end{align}
-				が従う．ここに演繹法則を適用すれば(i)が得られる．
-			
-			\item[(ロ)]
-				いま$\rightharpoondown \set{a} \wedge \rightharpoondown \set{b}$が成り立っているとする．
-				このとき推論法則\ref{logicalthm:properties_of_quantifiers}より
-				\begin{align}
-					\forall x\, (\, a \neq x\, ) \wedge \forall x\, (\, b \neq x\, )
-				\end{align}
-				が成り立ち，推論法則\ref{logicalthm:properties_of_quantifiers_2}より
-				\begin{align}
-					\forall x\, (\, a \neq x \wedge b \neq x\, )
-				\end{align}
-				が成立する．ここで$\chi$を$\mathcal{L}$の任意の対象とすれば，
-				(\refeq{eq:definition_of_a_pair_of_classes})と
-				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-				\begin{align}
-					a = \chi \vee b = \chi \Longleftrightarrow \chi \in \{a,b\}
-				\end{align}
-				が成立し，$\wedge$の除去と対偶命題の同値性から
-				\begin{align}
-					a \neq \chi \wedge b \neq \chi \Longrightarrow \chi \notin \{a,b\}
-				\end{align}
-				が成り立つ．いま$a \neq \chi \wedge b \neq \chi$が満たされているので三段論法より
-				$\chi \notin \{a,b\}$が成立し，$\chi$の任意性と
-				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-				\begin{align}
-					\forall x\, (\, x \notin \{a,b\}\, )
-				\end{align}
-				が成立する．このとき定理\ref{thm:uniqueness_of_emptyset}より$\{a,b\} = \emptyset$が従うので，演繹法則を適用して
-				\begin{align}
-					\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longrightarrow \{a,b\} = \emptyset
-				\end{align}
-				が得られる．一方で(i)の結果と定理\ref{thm:emptyset_does_not_contain_any_class}より
-				\begin{align}
-					\set{a} \Longrightarrow a \in \{a,b\} \Longrightarrow \{a,b\} \neq \emptyset
-				\end{align}
-				が成り立ち，同様に$\set{b} \Longrightarrow \{a,b\} \neq \emptyset$も成り立つので
-				場合分け法則より
-				\begin{align}
-					\set{a} \vee \set{b} \Longrightarrow \{a,b\} \neq \emptyset
-				\end{align}
-				が成立する．この対偶を取りDe Morganの法則を適用すれば
-				\begin{align}
-					\{a,b\} = \emptyset \Longrightarrow\, \rightharpoondown \set{a} \wedge \rightharpoondown \set{b}
-				\end{align}
-				も得られる．
-				\QED
-		\end{description}
-	\end{prf}
+	\begin{sketch}
+		いま
+		\begin{align}
+			\set{a}
+		\end{align}
+		が成り立っているとする．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば，存在記号に関する規則より
+		\begin{align}
+			a = \tau
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\tau = a \vee \tau = b
+		\end{align}
+		も成り立つ．ゆえに
+		\begin{align}
+			\tau \in \{a,b\}
+		\end{align}
+		が成り立ち，相当性の公理より
+		\begin{align}
+			a \in \{a,b\}
+		\end{align}
+		が従う．そして演繹法則より\
+		\begin{align}
+			\set{a} \Longrightarrow a \in \{a,b\}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
 	
-	\monologue{
-		上の定理から{\bf 集合は或る類の要素である}という真な言明が得られます．
-		実際，$a$を集合とすれば$\{a\}$も集合となり，そして$a \in \{a\}$が成り立ちますね．
-	}
+	$a$を集合とすれば対の公理より$\{a\}$も集合となり，定理\ref{thm:set_is_an_element_of_its_pair}より
+	\begin{align}
+		a \in \{a\}
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		\begin{thm}[真類同士の対は空]\label{thm:pair_of_proper_classes_is_emptyset}
+			$a,b$を類とするとき，
+			\begin{align}
+				\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longleftrightarrow \{a,b\} = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\rightharpoondown \set{a} \wedge \rightharpoondown \set{b}
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			\forall x\, (\, a \neq x\, ) \wedge \forall x\, (\, b \neq x\, )
+		\end{align}
+		が成立し，推論法則\ref{logicalthm:properties_of_quantifiers_2}より
+		\begin{align}
+			\forall x\, (\, a \neq x \wedge b \neq x\, )
+		\end{align}
+		が成立する．すなわち$\chi$を$\mathcal{L}$の任意の対象とすれば
+		\begin{align}
+			a \neq \chi \wedge b \neq \chi
+		\end{align}
+		が成立する．他方で
+		\begin{align}
+			a \neq \chi \wedge b \neq \chi \Longleftrightarrow \chi \notin \{a,b\}
+		\end{align}
+		も満たされているので，三段論法より
+		\begin{align}
+			\chi \notin \{a,b\}
+		\end{align}
+		が成立する．$\chi$の任意性より
+		\begin{align}
+			\forall x\, (\, x \notin \{a,b\}\, )
+		\end{align}
+		が成立し，定理\ref{thm:uniqueness_of_emptyset}
+		\begin{align}
+			\{a,b\} = \emptyset
+		\end{align}
+		が従う．そして演繹法則を適用して
+		\begin{align}
+			\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longrightarrow \{a,b\} = \emptyset
+		\end{align}
+		が得られる．逆に，定理\ref{thm:set_is_an_element_of_its_pair}から
+		\begin{align}
+			\set{a} \Longrightarrow a \in \{a,b\}
+		\end{align}
+		が成り立ち，定理\ref{thm:emptyset_does_not_contain_any_class}から
+		\begin{align}
+			a \in \{a,b\} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		が成り立つので，含意の推移律より
+		\begin{align}
+			\set{a} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		が成立する．同様に
+		\begin{align}
+			\set{b} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		も成り立つから，場合分け法則より
+		\begin{align}
+			\set{a} \vee \set{b} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		が成立し，この対偶を取って
+		\begin{align}
+			\{a,b\} = \emptyset \Longrightarrow\ \rightharpoondown \set{a} \wedge \rightharpoondown \set{b}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	

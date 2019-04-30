@@ -1,12 +1,12 @@
 \section{合併}
 	\begin{screen}
 		\begin{dfn}[合併]
-			$a$を類とするとき
+			$a$を類とするとき，$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}を
 			\begin{align}
-				\bigcup a \coloneqq \Set{x}{\exists t \in a\, (\, x \in t\, )}
+				\bigcup a \defeq \Set{x}{\exists t \in a\, (\, x \in t\, )}
 				\label{eq:definition_of_union_1}
 			\end{align}
-			で$\bigcup a$を定め，これを$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}と呼ぶ．
+			で定める．
 		\end{dfn}
 	\end{screen}
 	
@@ -29,40 +29,47 @@
 	\end{screen}
 	
 	\begin{prf}
-				$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば，
-				空集合の公理と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
-				$\chi \notin \emptyset$が成立し，さらに$\vee$の導入より
-				\begin{align}
-					\chi \notin \emptyset \vee \tau \notin \chi
-				\end{align}
-				が成立する．
-				ここで$\chi$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
-				\begin{align}
-					\forall x\, (\, x \notin \emptyset \vee \tau \notin \emptyset\, )
-				\end{align}
-				が成り立つ．ここで推論法則\ref{metathm:properties_of_quantifiers}とDe Morganの法則より
-				\begin{align}
-					\forall x\, (\, x \notin \emptyset \vee \tau \notin \emptyset\, )
-					&\Longleftrightarrow \forall x\, \rightharpoondown (\, x \in \emptyset \wedge \tau \in \emptyset\, ) \\
-					&\Longleftrightarrow\, \rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in \emptyset\, )
-				\end{align}
-				が成立するので，三段論法より$\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in \emptyset\, )$が成立する．
-				他方で合併の定義の対偶を取れば
-				\begin{align}
-					\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in \emptyset\, )
-					\Longleftrightarrow \tau \notin \bigcup \emptyset
-				\end{align}
-				が満たされるので，再び三段論法より$\tau \notin \bigcup \emptyset$が成立する．
-				$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}より
-				\begin{align}
-					\forall t\, (\, t \notin \bigcup \emptyset\, )
-				\end{align}
-				が成立し，定理\ref{thm:uniqueness_of_emptyset}より
-				\begin{align}
-					\bigcup \emptyset = \emptyset
-				\end{align}
-				が従う．
-				\QED
+		$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:emptyset_has_nothing}より
+		\begin{align}
+			\chi \notin \emptyset
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\chi \notin \emptyset \vee \tau \notin \chi
+		\end{align}
+		が成立し，$\chi$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
+		\end{align}
+		が成り立つ．ここで推論法則\ref{logicalthm:properties_of_quantifiers}より
+		\begin{align}
+			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
+			&\Longleftrightarrow \forall x\, \rightharpoondown (\, x \in \emptyset \wedge \tau \in x\, ) \\
+			&\Longleftrightarrow\, \rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+		\end{align}
+		が成立するので，三段論法より
+		\begin{align}
+			\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+		\end{align}
+		が従う．他方で合併の定義から
+		\begin{align}
+			\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+			\Longleftrightarrow \tau \notin \bigcup \emptyset
+		\end{align}
+		が満たされているので，再び三段論法より
+		\begin{align}
+			\tau \notin \bigcup \emptyset
+		\end{align}
+		が従う．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall t\, (\, t \notin \bigcup \emptyset\, )
+		\end{align}
+		が成立し，定理\ref{thm:uniqueness_of_emptyset}より
+		\begin{align}
+			\bigcup \emptyset = \emptyset
+		\end{align}
+		が従う．
+		\QED
 	\end{prf}
 	
 	\begin{screen}
@@ -74,9 +81,51 @@
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		$\chi$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\chi \in a
+			\label{fom:thm_union_is_bigger_than_any_member_1}
+		\end{align}
+		であるとする．また$\tau$も$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\tau \in \chi
+		\end{align}
+		であるとする．このとき
+		\begin{align}
+			\chi \in a \wedge \tau \in \chi
+		\end{align}
+		が成立するので，存在記号の規則より
+		\begin{align}
+			\exists x\, \left(\, x \in a \wedge \tau \in x\, \right)
+		\end{align}
+		が成り立ち
+		\begin{align}
+			\tau \in \bigcup a
+		\end{align}
+		が従う．$\tau$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
+		\begin{align}
+			\forall t\, (\, t \in \chi \Longrightarrow t \in \bigcup a\, )
+		\end{align}
+		すなわち
+		\begin{align}
+			\chi \subset \bigcup a
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\chi \in a \Longrightarrow \chi \subset \bigcup a
+		\end{align}
+		が従い，$\chi$も任意に与えられていたので
+		\begin{align}
+			\forall x\, (\, x \in a \Longrightarrow x \subset \bigcup a\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
 	$a,b$を類とするとき，その対の合併を
 	\begin{align}
-		a \cup b \overset{\mathrm{def}}{\Longleftrightarrow} \bigcup \{a,b\}
+		a \cup b \defeq \bigcup \{a,b\}
 	\end{align}
 	と書く．
 	
