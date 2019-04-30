@@ -260,7 +260,7 @@
 	\begin{align}
 		\Omega \ni \omega \longmapsto \min{}{\Set{t \in F}{\tau_i(\omega) < t \wedge \beta < X_t(\omega)}}
 	\end{align}
-	なる関係を$\sigma_i$と定める．ただし
+	なる関係を$\sigma_i$とし，$\tau_{n+1}$及び$\sigma_n$まで定める．ただし
 	\begin{align}
 		\min{}{\emptyset} = \infty
 	\end{align}
@@ -290,7 +290,7 @@
 	\begin{align}
 		k \in \{1,2,\cdots,n\}
 	\end{align}
-	のとき
+	に対して
 	\begin{align}
 		\left\{\tau_1 = t_k\right\} = \left(\bigcap_{j=0}^{k-1} \left\{\alpha \leq X_{t_j}\right\}\right) 
 		\cap \left\{ X_{t_j}< \alpha \right\}
@@ -307,7 +307,7 @@
 	\begin{align}
 		k \in \{2,\cdots,n\}
 	\end{align}
-	のとき
+	に対して
 	\begin{align}
 		\left\{\sigma_1 = t_k\right\} = 
 		\bigcup_{r=0}^{k-1}\left( \left\{\tau_1=t_r\right\} \cap \bigcap_{j=r}^{k-1} \left\{X_{t_j} \leq \beta\right\} \cap \left\{\beta < X_{t_k}\right\} \right)
@@ -325,7 +325,7 @@
 	\begin{align}
 		k \in \{2 \cdot i - 1,2 \cdot i,\cdots,n\}
 	\end{align}
-	のとき
+	に対して
 	\begin{align}
 		\left\{\tau_i = t_k\right\} = 
 		\bigcup_{r=2 \cdot i-3}^{k-1}\left( \left\{\sigma_{i-1}=t_r\right\} \cap \bigcap_{j=r}^{k-1} \left\{\alpha \leq X_{t_j}\right\} \cap \left\{X_{t_k} < \alpha\right\} \right)
@@ -342,7 +342,7 @@
 	\begin{align}
 		k \in \{2 \cdot i,2 \cdot i+1,\cdots,n\}
 	\end{align}
-	のとき
+	に対して
 	\begin{align}
 		\left\{\sigma_i = t_k\right\} = 
 		\bigcup_{r=2 \cdot i-2}^{k-1}\left( \left\{\tau_i=t_r\right\} \cap \bigcap_{j=r}^{k-1} \left\{X_{t_j} \leq \beta\right\} \cap \left\{\beta < X_{t_k}\right\} \right)
@@ -352,3 +352,103 @@
 		k \in \{2 \cdot i - 1,2 \cdot i,\cdots,n\} \Longrightarrow \left\{\sigma_i = t_k\right\} \in \mathscr{F}_{t_k}
  	\end{align}
  	が成立するので，$\sigma_i$もまた$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-停止時刻である．
+ 	
+ 	また$j$を自然数とすれば
+ 	\begin{align}
+ 		\left\{U_F^{\alpha,\beta;X} = j\right\} = \{\sigma_j < \infty\} \cap \{\sigma_{j+1} = \infty\}
+ 	\end{align}
+ 	が成り立つので$U_F^{\alpha,\beta;X}$は$\mathscr{F}/\borel{\R}$-可測である．
+ 	
+ 	\begin{itembox}[l]{Doobの上渡回数定理}
+ 		$U_F^{\alpha,\beta;X}$は次を満たす．
+ 		\begin{align}
+ 			E\left( U_F^{\alpha,\beta;X} \right) \leq \frac{E(X_N^+) + |\alpha|}{\beta - \alpha}.
+ 		\end{align}
+ 	\end{itembox}
+ 	
+ 	$\omega$を$\Omega$の要素として
+ 	\begin{align}
+ 		j \defeq U_F^{\alpha,\beta;X}(\omega)
+ 	\end{align}
+ 	とおく．
+ 	\begin{description}
+ 		\item[第一段]
+ 			$j = 0$のとき，
+ 			\begin{align}
+ 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+ 				&= 0 \\
+ 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 			\end{align}
+ 			が満たされる．
+ 		
+ 		\item[第二段]
+ 			$j = 1$のとき，
+ 			\begin{align}
+ 				\sigma_1(\omega) \leq N < \tau_2(\omega)
+ 			\end{align}
+ 			ならば
+ 			\begin{align}
+ 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+ 				&= X_N(\omega) - X_{\sigma_1(\omega)}(\omega) \\
+ 				&= \alpha - X_{\sigma_1(\omega)}(\omega) + X_N(\omega) - \alpha \\
+ 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 			\end{align}
+ 			が成立し，
+ 			\begin{align}
+ 				\tau_2(\omega) \leq N < \sigma_2(\omega)
+ 			\end{align}
+ 			ならば
+ 			\begin{align}
+ 				\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+ 				&= X_{\tau_2(\omega)}(\omega) - X_{\sigma_1(\omega)}(\omega) \\
+ 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) \\
+ 				&\leq (\alpha - \beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 			\end{align}
+ 			が成立する．
+ 		
+ 		\item[第三段]
+ 			$2 \leq j$のとき，
+ 			\begin{align}
+ 				\sigma_j(\omega) \leq N < \tau_{j+1}(\omega)
+ 			\end{align}
+ 			ならば
+ 			\begin{align}
+ 				&\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right) \\
+ 				&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right)
+ 				+ X_N(\omega) - X_{\sigma_j(\omega)}(\omega) \\
+ 				&= \sum_{i=1}^{j-1} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right)
+ 				+ \alpha - X_{\sigma_j(\omega)}(\omega) + X_N(\omega) - \alpha \\
+ 				&\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 			\end{align}
+ 			が成立し， 	
+ 			\begin{align}
+ 				\tau_{j+1}(\omega) \leq N < \sigma_{j+1}(\omega)
+ 			\end{align}
+ 			ならば
+ 			\begin{align}
+ 				&\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right) \\
+ 				&= \sum_{i=1}^{j} \left( X_{\tau_{i+1}(\omega)}(\omega) - X_{\sigma_i(\omega)}(\omega) \right) \\
+ 				&\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 			\end{align}
+ 			が成立する．
+ 	\end{description}
+ 		
+ 	ゆえに$\Omega$の任意の要素$\omega$において
+ 	\begin{align}
+ 		\sum_{i=1}^n \left( X_{\min{}{\{\tau_{i+1}(\omega),N\}}}(\omega) - X_{\min{}{\{\sigma_i(\omega),N\}}}(\omega) \right)
+ 		\leq (\alpha-\beta) \cdot U_F^{\alpha,\beta;X}(\omega) + X_N^+(\omega) + |\alpha|
+ 	\end{align}
+ 	が成立する．左辺の各項については任意抽出定理より
+ 	\begin{align}
+ 		0 \leq E\left(X_{\min{}{\{\tau_{i+1},N\}}} - X_{\min{}{\{\sigma_i,N\}}}\right)
+ 	\end{align}
+ 	が成り立つため，
+ 	\begin{align}
+ 		0 \leq (\alpha-\beta) \cdot E\left(U_F^{\alpha,\beta;X}\right) + E(X_N^+) + |\alpha|
+ 	\end{align}
+ 	が成立する．移項して
+ 	\begin{align}
+ 		E\left( U_F^{\alpha,\beta;X} \right) \leq \frac{E(X_N^+) + |\alpha|}{\beta - \alpha}
+ 	\end{align}
+ 	を得る．
+ 	\QED
