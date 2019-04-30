@@ -152,14 +152,7 @@
 	
 	\begin{screen}
 		\begin{thm}[Doobの下限不等式]\label{thm:Doob_inf_bounded_inequality}
-			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$とし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
-			$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールとする．
-			このとき，$\lambda$と正の実数とし，$N$を$0$でない自然数として
-			\begin{align}
-				D^N \defeq \bigcup_{n \in \Natural} \Set{\frac{k}{2^n}}{k \in \{0,1,\cdots,N \cdot 2^n\}}
-			\end{align}
-			とおけば，
+			設定と記号は定理\ref{thm:Doob_sup_bounded_inequality}の物を継承する．このとき
 			\begin{align}
 				P\left(\inf{t \in D^N}{X_t} < -\lambda\right)
 				\leq \frac{1}{\lambda} \cdot \left[E\left(X_N^+\right) - E(X_0)\right].
@@ -783,7 +776,54 @@
 				が従う．ゆえに$Y$は$\{\mathscr{F}_{t+}\}_{t \in \mathbf{T}}$-劣マルチンゲールである．
 				
 			\item[第四段]
-				$Y$が$RCLL$であることを示す．
+				$Y$が$RCLL$であることを示す．$\omega$を$\Omega \backslash B$の要素とし，$t$を$\mathbf{T}$の要素とする．
+				$\epsilon$を任意に与えられた正の実数とすると，
+				\begin{align}
+					r \in D \wedge t < r < t + \delta \Longrightarrow
+					\left|Y_t(\omega) - X_r(\omega)\right| < \epsilon
+				\end{align}
+				を満たす正の実数$\delta$が取れる．このとき$s$を
+				\begin{align}
+					t < s < t+\delta
+				\end{align}
+				なる任意の実数とすると，
+				\begin{align}
+					r \in D \wedge s < r < t + \delta \wedge \left|Y_s(\omega) - X_r(\omega)\right| < \epsilon
+				\end{align}
+				なる実数$r$を取れば
+				\begin{align}
+					\left|Y_t(\omega) - Y_s(\omega)\right|
+					\leq \left|Y_t(\omega) - X_r(\omega)\right| + \left|X_r(\omega) - Y_s(\omega)\right|
+					< 2 \cdot \epsilon
+				\end{align}
+				が成立する．ゆえに$Y$は右連続である．次に左極限の存在を示すが，ここで
+				\begin{align}
+					Z_t(\omega) \defeq \sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+				\end{align}
+				とおき，また
+				\begin{align}
+					0 < t
+				\end{align}
+				であるとする．$\epsilon$を任意に与えられた正の実数とすると，
+				\begin{align}
+					r \in D \wedge t - \delta < r < t \Longrightarrow
+					\left|Z_t(\omega) - X_r(\omega)\right| < \epsilon
+				\end{align}
+				を満たす正の実数$\delta$が取れる．このとき$s$を
+				\begin{align}
+					t - \delta < s < t
+				\end{align}
+				なる任意の実数とすると，
+				\begin{align}
+					r \in D \wedge s < r < t \wedge \left|Y_s(\omega) - X_r(\omega)\right| < \epsilon
+				\end{align}
+				なる実数$r$を取れば
+				\begin{align}
+					\left|Z_t(\omega) - Y_s(\omega)\right|
+					\leq \left|Z_t(\omega) - X_r(\omega)\right| + \left|X_r(\omega) - Y_s(\omega)\right|
+					< 2 \cdot \epsilon
+				\end{align}
+				が成立する．ゆえに$Y$は$t$で左極限を持ち，それは$Z_t$に一致する．
 				
 			\item[第五段]
 				$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が右連続であって，かつ
