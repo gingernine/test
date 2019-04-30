@@ -612,16 +612,9 @@
 	
 	\begin{screen}
 		\begin{thm}[劣マルチンゲールの殆ど全てのパスが各点で実数値の左極限及び右極限を持つ]
-			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$とし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
-			$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールとする．
-			また
-			\begin{align}
-				D \defeq \bigcup_{n \in \Natural} \Set{\frac{k}{2^n}}{k \in \Natural}
-			\end{align}
-			とおく．このとき$P$-零集合$B$で次を満たすものが取れる:
-			
-			$\omega$を$\Omega \backslash B$の要素とすれば
+		\label{thm:almost_all_paths_of_submartingale_have_left_and_right_limits}
+			定理\ref{thm:path_of_submartingale_is_bounded_on_bounded_interval}の設定と記号を継承する．
+			このとき$P$-零集合$B$で次を満たすものが取れる．$\omega$を$\Omega \backslash B$の要素とすれば
 			\begin{description}
 				\item[左極限] $]0,\infty[$の各要素$t$において
 					\begin{align}
@@ -647,3 +640,190 @@
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	本節の主題は次の定理である．
+	
+	\begin{screen}
+		\begin{thm}[劣マルチンゲールの右極限を取った写像は$RCLL$な劣マルチンゲールで修正となりうる]
+		\label{thm:right_limit_process_is_a_RCLL_submartingale}
+			設定と記号は定理\ref{thm:almost_all_paths_of_submartingale_have_left_and_right_limits}のものを継承する．
+			また$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．このとき$\mathbf{T} \times \Omega$上の写像$Y$を
+			\begin{align}
+				(t,\omega) \longmapsto 
+				\begin{cases}
+					\displaystyle \sup{\substack{s \in D \\ t < s}}{\inf{\substack{u \in D \\ t < u < s}}{X_u(\omega)}} 
+					& \mbox{if } \omega \in \Omega \backslash B \\
+					0 & \mbox{if } \omega \in B
+				\end{cases}
+			\end{align}
+			なる関係により定めると，$Y$は$(\Omega,\mathscr{F},P)$上の$RCLL$な
+			$\{\mathscr{F}_{t+}\}_{t \in \mathbf{T}}$-劣マルチンゲールである．
+			また$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が右連続であって，かつ
+			\begin{align}
+				\mathbf{T} \ni t \longmapsto EX_t
+			\end{align}
+			も右連続であるとき，$Y$は$(\Omega,\mathscr{F},P)$上の$RCLL$な
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールで，$X$の修正である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$Y$が$\{\mathscr{F}_{t+}\}_{t \in \mathbf{T}}$-適合であることを示す．$t$を$\mathbf{T}$の要素とする．
+				また$\{t_n\}_{n \in \Natural}$を前段の物とする．
+				\begin{align}
+					t < u
+				\end{align}
+				なる実数$u$を任意に取れば，
+				\begin{align}
+					\forall n \in \Natural\, (\, N < n \Longrightarrow t_n < u\, )
+				\end{align}
+				なる自然数$N$が取れる．このとき
+				\begin{align}
+					N < n
+				\end{align}
+				なる自然数$n$に対して$X_{t_n}$は$\mathscr{F}_u/\borel{\R}$-可測であり，仮定より
+				\begin{align}
+					B \in \mathscr{F}_u
+				\end{align}
+				となるから
+				\begin{align}
+					X_{t_n} \defunc_{\Omega \backslash B}
+				\end{align}
+				もまた$\mathscr{F}_u/\borel{\R}$-可測である．そして
+				\begin{align}
+					\left\{X_{t_n} \defunc_{\Omega \backslash B}\right\}_{N < n}
+				\end{align}
+				は$Y_t$に各点収束するので，定理\ref{lem:measurability_metric_space}より$Y_t$も$\mathscr{F}_u/\borel{\R}$-可測である．
+				\begin{align}
+					t < u
+				\end{align}
+				なる実数$u$の任意性より$Y_t$の$\mathscr{F}_{t+}/\borel{\R}$-可測性が従う．
+			
+			\item[第二段] $t$を$\mathbf{T}$の要素とするとき，
+				\begin{align}
+					A \in \mathscr{F}_t \Longrightarrow \int_A X_t\ dP \leq \int_A Y_t\ dP
+					\label{fom:thm_right_limit_process_is_a_RCLL_submartingale_1}
+				\end{align}
+				が成り立つことを示す．
+				\begin{align}
+					\forall n \in \Natural\, \left(\, t < t_n\, \right)
+				\end{align}
+				かつ
+				\begin{align}
+					\forall n \in \Natural\, \left(\, t_{n+1} \leq t_n\, \right)
+				\end{align}
+				かつ
+				\begin{align}
+					\lim_{n \to \infty} t_n = t
+				\end{align}
+				を満たす$D$の部分集合$\{t_n\}_{n \in \Natural}$を取ると，
+				\begin{align}
+					\left\{X_{t_n}\right\}_{n \in \Natural}
+				\end{align}
+				は一様可積分であって，かつ$\Omega \backslash B$上で
+				\begin{align}
+					Y_t(\omega) = \lim_{n \to \infty} X_{t_n}(\omega)
+				\end{align}
+				が成立するので，定理\ref{lem:uniformly_integrable_and_convergence_in_mean}より
+				\begin{align}
+					E|Y_t| < \infty
+				\end{align}
+				かつ
+				\begin{align}
+					E\left|Y_t - X_{t_n}\right| \longrightarrow 0 \quad (n \longrightarrow \infty)
+					\label{fom:thm_right_limit_process_is_a_RCLL_submartingale_2}
+				\end{align}
+				が成立する．$A$を$\mathscr{F}_t$の任意の要素とすると，$X$の劣マルチンゲール性より全ての自然数$n$で
+				\begin{align}
+					\int_A X_t\ dP \leq \int_A X_{t_n}\ dP
+				\end{align}
+				が成立するので
+				\begin{align}
+					\int_A X_t\ dP \leq \int_A Y_t\ dP
+				\end{align}
+				が従う．ゆえに(\refeq{fom:thm_right_limit_process_is_a_RCLL_submartingale_1})が得られた．
+				
+			\item[第三段]
+				$Y$が$\{\mathscr{F}_{t+}\}_{t \in \mathbf{T}}$-劣マルチンゲールであることを示す．
+				$s$と$t$を
+				\begin{align}
+					s < t
+				\end{align}
+				なる$\mathbf{T}$の要素として，
+				\begin{align}
+					\forall n \in \Natural\, \left(\, s < s_n < t\, \right)
+				\end{align}
+				かつ
+				\begin{align}
+					\forall n \in \Natural\, \left(\, s_{n+1} \leq s_n\, \right)
+				\end{align}
+				かつ
+				\begin{align}
+					\lim_{n \to \infty} s_n = s
+				\end{align}
+				を満たす$D$の部分集合$\{s_n\}_{n \in \Natural}$を取る．$A$を$\mathscr{F}_{s+}$の要素とすると，
+				任意の自然数$n$に対して
+				\begin{align}
+					A \in \mathscr{F}_{s_n}
+				\end{align}
+				が成り立つので，$X$の劣マルチンゲール性と(\refeq{fom:thm_right_limit_process_is_a_RCLL_submartingale_1})から
+				\begin{align}
+					\int_A X_{s_n}\ dP \leq \int_A X_t\ dP \leq \int_A Y_t\ dP
+				\end{align}
+				が成立する．他方で
+				\begin{align}
+					E\left|Y_s - X_{s_n}\right| \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				が成立するので
+				\begin{align}
+					\int_A Y_s\ dP \leq \int_A Y_t\ dP
+				\end{align}
+				が従う．ゆえに$Y$は$\{\mathscr{F}_{t+}\}_{t \in \mathbf{T}}$-劣マルチンゲールである．
+				
+			\item[第四段]
+				$Y$が$RCLL$であることを示す．
+				
+			\item[第五段]
+				$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が右連続であって，かつ
+				\begin{align}
+					\mathbf{T} \ni t \longmapsto EX_t
+				\end{align}
+				も右連続であるとき，$Y$が$X$の修正であることを示す．$t$を$\mathbf{T}$の要素として，
+				\begin{align}
+					\forall n \in \Natural\, \left(\, t < t_n\, \right)
+				\end{align}
+				かつ
+				\begin{align}
+					\forall n \in \Natural\, \left(\, t_{n+1} \leq t_n\, \right)
+				\end{align}
+				かつ
+				\begin{align}
+					\lim_{n \to \infty} t_n = t
+				\end{align}
+				を満たす$D$の部分集合$\{t_n\}_{n \in \Natural}$を取る．このとき
+				\begin{align}
+					EX_t = \lim_{n \to \infty} EX_{t_n}
+				\end{align}
+				が成立し，一方で(\refeq{fom:thm_right_limit_process_is_a_RCLL_submartingale_2})から
+				\begin{align}
+					EY_t = \lim_{n \to \infty} EX_{t_n}
+				\end{align}
+				も成り立つから
+				\begin{align}
+					EX_t = EY_t
+				\end{align}
+				が成り立つ．またいまは$Y_t$が$\mathscr{F}_t/\borel{\R}$-可測であるから，
+				(\refeq{fom:thm_right_limit_process_is_a_RCLL_submartingale_1})より
+				\begin{align}
+					X_t \leq Y_t
+				\end{align}
+				が$P$-a.s.に成立する．ゆえに
+				\begin{align}
+					X_t = Y_t
+				\end{align}
+				が$P$-a.s.に成立する．ゆえに$Y$は$X$の修正である．
+				\QED
+		\end{description}
+	\end{sketch}
