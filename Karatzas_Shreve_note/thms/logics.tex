@@ -381,6 +381,7 @@
 	
 	\begin{screen}
 		\begin{logicalthm}[論理和・論理積の可換律]
+		\label{logicalthm:commutative_law_of_disjunction_and_conjunction}
 			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
 			\begin{itemize}
 				\item $(A \vee B) \Longrightarrow (B \vee A)$.
@@ -390,14 +391,35 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\vee$の導入により$A \Longrightarrow (B \vee A)$と$B \Longrightarrow (A \vee B)$は定理であるから，場合分け法則より
+		$\vee$の導入により
+		\begin{align}
+			A \Longrightarrow (B \vee A)
+		\end{align}
+		と
+		\begin{align}
+			B \Longrightarrow (A \vee B)
+		\end{align}
+		は定理であるから，場合分け法則より
 		\begin{align}
 			(A \vee B) \Longrightarrow (B \vee A)
 		\end{align}
 		は定理である．また，$\wedge$の除去より
-		$A \wedge B \Longrightarrow A$と$A \wedge B \Longrightarrow B$は定理であるから，
-		いま$A \wedge B$が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．このとき
-		$B \wedge A$が定理となるので，演繹法則より
+		\begin{align}
+			A \wedge B \Longrightarrow A
+		\end{align}
+		と
+		\begin{align}
+			A \wedge B \Longrightarrow B
+		\end{align}
+		は定理であるから，いま
+		\begin{align}
+			A \wedge B
+		\end{align}
+		が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．このとき
+		\begin{align}
+			B \wedge A
+		\end{align}
+		が定理となるので，演繹法則より
 		\begin{align}
 			(A \wedge B) \Longrightarrow (B \wedge A)
 		\end{align}
@@ -554,6 +576,32 @@
 	\end{align}
 	により$\Longleftrightarrow$を定め，式`$A \Longleftrightarrow B$'を
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の可換律]\label{logicalthm:commutative_law_of_equivalence}
+			$A$と$B$を$\mathcal{L}'$の閉式とするとき
+			\begin{align}
+				(A \Longleftrightarrow B) \Longrightarrow (B \Longleftrightarrow A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		$A \Longleftrightarrow B$が成り立っているならば，推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction}より
+		\begin{align}
+			B \Longrightarrow A \wedge A \Longrightarrow B
+		\end{align}
+		が成立する．すなわち
+		\begin{align}
+			B \Longleftrightarrow A
+		\end{align}
+		が成立する．そして演繹法則から
+		\begin{align}
+			(A \Longleftrightarrow B) \Longrightarrow (B \Longleftrightarrow A)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{logicalthm}[同値記号の遺伝性質]\label{logicalthm:hereditary_of_equivalence}
