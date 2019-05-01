@@ -1402,6 +1402,69 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[稠密な部分集合上の一様連続写像の延長]
+			$(X,\mathscr{V})$と$(Y,\mathscr{U})$を一様空間とし，$\mathscr{O}_X$を$\mathscr{V}$で導入する$X$上の位相とし，
+			$\mathscr{O}_Y$を$\mathscr{U}$で導入する$Y$上の位相とする．
+			また$E$を$\mathscr{O}_X$に関して$X$の稠密な部分集合とし，
+			\begin{align}
+				\mathscr{V}_E \defeq \Set{v \cap (E \times E)}{v \in \mathscr{V}}
+			\end{align}
+			で$E$上の近縁系を定めて，$f$を$E$上の$\mathscr{V}_E/\mathscr{U}$-一様連続写像とする．このとき
+			$(Y,\mathscr{O}_Y)$が完備かつHausdorffであれば，
+			\begin{align}
+				g:X \longrightarrow Y \wedge g|_E = f
+			\end{align}
+			かつ$\mathscr{V}/\mathscr{U}$-一様連続である$g$が取れる．そしてこれを満たす写像は$g$のみである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$x$を$X$の要素とすれば，$\mathscr{O}_X$に関して
+		\begin{align}
+			x_\lambda \longrightarrow x
+		\end{align}
+		となる$E$上のネット$(x_\lambda)_\lambda$が取れる．このとき$f$の一様連続性から
+		\begin{align}
+			(f(x_\lambda))_\lambda
+		\end{align}
+		が$Y$上のCauchyネットとなるため，
+		\begin{align}
+			f(x_\lambda) \longrightarrow y
+		\end{align}
+		なる$Y$の要素$y$が取れる．この対応関係を$g$とすれば，$(Y,\mathscr{O}_Y)$のHausdorff性より
+		\begin{align}
+			g:X \longrightarrow Y
+		\end{align}
+		が成立する．$g$が$\mathscr{V}/\mathscr{U}$-一様連続であることを示す．$u$を$\mathscr{U}$の要素とし，
+		\begin{align}
+			w \circ w \circ w \subset u
+		\end{align}
+		なる近縁$w$を取る．$w$に対して
+		\begin{align}
+			\forall x,y\, \left[\, (x,y) \in v \cap (E \times E) \Longrightarrow (f(x),f(y)) \in w\, \right]
+		\end{align}
+		を満たす$\mathscr{V}$の要素$v$が取れる．いま$x$と$y$を$X$の要素とすれば，
+		\begin{align}
+			x' \in E \wedge (x,x') \in v \wedge (g(x),f(x')) \in w
+		\end{align}
+		なる$x'$と
+		\begin{align}
+			y' \in E \wedge (y',y) \in v \wedge (f(y'),g(y)) \in w
+		\end{align}
+		なる$y'$が取れるので
+		\begin{align}
+			(g(x),g(y)) \in u
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			\forall x,y\, \left[\, (x,y) \in v \Longrightarrow (g(x),g(y)) \in u\, \right]
+		\end{align}
+		が成立するので，$g$は$\mathscr{V}/\mathscr{U}$-一様連続である．
+		$g$の一意性は定理\ref{thm:equivalence_set_of_two_mappings_into_Hausdorff_space_is_closed}より従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{dfn}[同程度連続]
 			$X,Y$を集合とし，$\mathscr{V}_X,\mathscr{V}_Y$をそれぞれ$X,Y$上の近縁系とする．
 			また$\mathscr{F}$を$X$から$Y$への写像の集合とする．$x$を$X$の要素とするとき，$\mathscr{F}$が$x$において{\bf 同程度連続}

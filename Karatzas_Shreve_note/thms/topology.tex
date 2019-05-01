@@ -1,42 +1,113 @@
 \section{位相}
+	位相とは，集合から二つの要素が与えられたとき，その要素同士がどれだけ``近い''のかを測るためのモノサシたる構造である．
+	位相構造が与えられると，例えば次のような概念が生まれる．
+	
+	$a$と$b$を集合として，それぞれに位相構造が定まっているとする．そして$f$を$a$から$b$への写像とし，$x$を$a$の要素とする．
+	いま$a$と$b$には位相構造が定まっているので，$x$と$f(x)$のそれぞれに対して``近所''というものが把握できるわけであるが，
+	ここで$f(x)$の近所をどんなに``狭く''取ったとしても，$x$の近所で，そこの任意の要素$y$で
+	\begin{align}
+		f(y) \in \mbox{$f(x)$の近所}
+	\end{align}
+	となるものが取れるとする．つまりイメージとしては，$x$の近所をどんどん狭く取って$f$で移していくと，
+	その像は$f(x)$に``収束''していく．このとき，$f$の値は$f(x)$の近くで``ズレが抑えられていく''から，
+	まるで$f(x)$の周りで値が``連続的''に繋がっているという意味で``$f$は$x$で連続である''と言われる．
+	
 	\begin{screen}
 		\begin{dfn}[位相]
 			$S$を集合とし，$\mathscr{O}$を$\power{S}$の部分集合とする．
 			$\mathscr{O}$が以下の三カ条を満たすとき，$\mathscr{O}$を$S$上の{\bf 位相}
-			\index{いそう@位相}{\bf (topology)}と呼ぶ:
+			\index{いそう@位相}{\bf (topology)}や{\bf 位相構造}
+			\index{いそうこうぞう@位相構造}{\bf (topological structure)}と呼ぶ:
 			\begin{description}
 				\item[(O1)] $\mathscr{O}$は$S$と空集合を要素に持つ:
 					\begin{align}
 						\emptyset \in \mathscr{O} \wedge S \in \mathscr{O}.
 					\end{align}
-				\item[(O2)] $\mathscr{O}$は交叉で閉じる:
+				\item[(O2)] $\mathscr{O}$は要素の対の交叉で閉じる．つまり，$u$と$v$を$\mathscr{O}$の要素とすると
 					\begin{align}
-						\forall u,v\, \left(\, u,v \in \mathscr{O} \Longrightarrow u \cap v \in \mathscr{O}\, \right).
+						u \cap v \in \mathscr{O}.
 					\end{align}
-				\item[(O3)] $\mathscr{O}$は部分集合の合併で閉じる:
+				\item[(O3)] $\mathscr{O}$は部分集合の合併で閉じる．つまり，$w$を$\mathscr{O}$の部分集合とすると
 					\begin{align}
-						\forall U\, \left(\, U \subset \mathscr{O} \Longrightarrow \bigcup U \in \mathscr{O} \right).
+						\bigcup w \in \mathscr{O}.
 					\end{align}
 			\end{description}
-			そして対
+			そして対$(S,\mathscr{O})$を{\bf 位相空間}\index{いそうくうかん@位相空間}{\bf (topological space)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$S$を集合とするとき，$\power{S}$と$\{\emptyset,S\}$は共に$S$上の自明な位相構造であり，
+	それぞれ{\bf 離散位相}\index{りさんいそう@離散位相}{\bf (discrete topology)}及び
+	{\bf 密着位相}\index{みっちゃくいそう@密着位相}{\bf (indiscrete topology)}と呼ばれる．
+	通常このような位相を考えることはないが，位相構造は少なくとも一つ取れるという証拠であるため
+	以下に続く話が空論ではないと安心できる．
+	
+	\begin{screen}
+		\begin{dfn}[開集合と閉集合]
+			$(S,\mathscr{O})$を位相空間とするとき，$\mathscr{O}$の要素を$(S,\mathscr{O})$の{\bf 開集合}
+			\index{かいしゅうごう@開集合}{\bf (open set)}と呼び，
+			補集合が開である$S$の部分集合，つまり
 			\begin{align}
-				(S,\mathscr{O})
+				S \backslash a \in \mathscr{O}
 			\end{align}
-			を{\bf 位相空間}\index{いそうくうかん@位相空間}{\bf (topological space)}と呼ぶ．
+			なる$S$の部分集合$a$を$(S,\mathscr{O})$の{\bf 閉集合}\index{へいしゅうごう@閉集合}{\bf (closed set)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{dfn}[開集合・閉集合]
-			$(S,\mathscr{O})$を位相空間とするとき，$\mathscr{O}$の要素を$S$の{\bf 開集合}
-			\index{かいしゅうごう@開集合}{\bf (open set)}と呼び，
-			補集合が開である$S$の部分集合，つまり
+		\begin{thm}[閉集合の全体は要素の対の合併と空でない部分集合の交叉で閉じる]
+		\label{thm:union_of_two_closed_sets_is_closed_and_intersection_of_closed_sets_is_closed}
+			$(S,\mathscr{O})$を位相空間とし，$(S,\mathscr{O})$の閉集合の全体を
 			\begin{align}
-				A \subset S \wedge S \backslash A \in \mathscr{O}
+				\mathscr{A} \defeq \Set{a}{a \subset S \wedge S \backslash a \in \mathscr{O}}
 			\end{align}
-			なる$A$を$S$の{\bf 閉集合}\index{へいしゅうごう@閉集合}{\bf (closed set)}と呼ぶ．
-		\end{dfn}
+			とおく．このとき，$u$と$v$を$\mathscr{A}$の要素とすると
+			\begin{align}
+				u \cup v \in \mathscr{A}.
+			\end{align}
+			かつ，$w$を$\mathscr{A}$の部分集合とすると
+			\begin{align}
+				w \neq \emptyset \Longrightarrow \bigcap w \in \mathscr{A}.
+			\end{align}
+		\end{thm}
 	\end{screen}
+	
+	ちなみに$w = \emptyset$の場合は$\bigcap w = \Univ$となる(定理\ref{thm:union_of_the_emptyset_is_the_Universe}と
+	定理\ref{thm:intersections_of_equal_classes_are_equal})．
+	
+	\begin{sketch}
+		$u$と$v$を$\mathscr{A}$の要素とする．定理\ref{thm:difference_of_union_of_two_classes_is_intersection_of_two_differences}より
+		\begin{align}
+			S \backslash (u \cup v) = (S \backslash u) \cap (S \backslash v)
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			(S \backslash u) \cap (S \backslash v) \in \mathscr{O}
+		\end{align}
+		であるから
+		\begin{align}
+			u \cup v \in \mathscr{A}
+		\end{align}
+		が成立する．また$w$を$\mathscr{A}$の空でない部分集合とすると，
+		定理\ref{thm:difference_of_intersection_is_union_of_differences_of_elements}より
+		\begin{align}
+			S \backslash \bigcap w = \bigcup \Set{S \backslash a}{a \in w}
+		\end{align}
+		が成り立ち，かつ
+		\begin{align}
+			\Set{S \backslash a}{a \in w} \subset \mathscr{O}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\bigcup \Set{S \backslash a}{a \in w} \in \mathscr{O}
+		\end{align}
+		が成り立ち
+		\begin{align}
+			\bigcap w \in \mathscr{A}
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
 	
 	$\C$の部分集合族を
 	\begin{align}
@@ -51,41 +122,181 @@
 	なる正の実数$r$が取れるなら$\C$の通常の開集合と見做される．
 	
 	\begin{screen}
-		\begin{dfn}[内部・閉包]
-			位相空間の部分集合$A$に対し，
-			$A$に含まれる最大の開集合を$A$の{\bf 内部}\index{ないぶ@内部}{\bf (interior)}と呼び
-			$A^{\mathrm{o}}$や$A^i$で表す．また
-			$A$を含む最大の閉集合を$A$の{\bf 閉包}\index{へいほう@閉包}{\bf (closure)}と呼び
-			$\overline{A}$や$A^a$で表す．特に，
+		\begin{dfn}[$\C$の位相]
+			$\C$の位相構造を
 			\begin{align}
-				\mbox{$A$が開}\ \Longleftrightarrow\ 
-				A = A^\mathrm{o},
-				\quad \mbox{$A$が閉}\ \Longleftrightarrow\ 
-				A = \overline{A}.
-				\label{eq:dfn_interior_closure}
+				\mathscr{O}_\C \defeq \Set{O}{O \subset \C \wedge \forall x \in O\, \exists r \in \R_+\, 
+				\left(\, \forall y \in \C\, (\, |y-x| < r \Longrightarrow y \in O\, )\, \right)}
 			\end{align}
+			で定める．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
+		\begin{dfn}[内部・閉包]
+			$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$(S,\mathscr{O})$の閉集合の全体とし，$A$を$S$の部分集合とする．
+			このとき，$A$に含まれる$(S,\mathscr{O})$の開集合の全体の合併を
+			$A$の$\mathscr{O}$に関する{\bf 内部}\index{ないぶ@内部}{\bf (interior)}と呼び，
+			$A$を含む$(S,\mathscr{O})$の閉集合の全体の交叉を
+			$A$の$\mathscr{O}$に関する{\bf 閉包}\index{へいほう@閉包}{\bf (closure)}と呼ぶ．つまり，
+			\begin{align}
+				\bigcup \Set{u \in \mathscr{O}}{u \subset A}
+			\end{align}
+			が$A$の$\mathscr{O}$に関する内部であり，
+			\begin{align}
+				\bigcap \Set{a \in \mathscr{A}}{A \subset a}
+			\end{align}
+			が$A$の$\mathscr{O}$に関する閉包である．
+		\end{dfn}
+	\end{screen}
+	
+	$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$(S,\mathscr{O})$の閉集合の全体とし，$A$を$S$の部分集合とするとき，
+	$A$の$\mathscr{O}$に関する内部を
+	\begin{align}
+		A^{\mathrm{o}}
+	\end{align}
+	と書くと
+	\begin{align}
+		A^{\mathrm{o}} \in \mathscr{O} \wedge A^{\mathrm{o}} \subset A \wedge 
+		\forall v \in \mathscr{O}\, \left(\, v \subset A \Longrightarrow v \subset A^{\mathrm{o}}\, \right)
+		\label{fom:interior_is_the_largest_open_subset}
+	\end{align}
+	が成立する．実際，
+	\begin{align}
+		\Set{u \in \mathscr{O}}{u \subset A} \subset \mathscr{O}
+	\end{align}
+	であるから
+	\begin{align}
+		A^{\mathrm{o}} \in \mathscr{O}
+	\end{align}
+	となり，また定理\ref{thm:union_of_subsets_is_subclass}より
+	\begin{align}
+		A^{\mathrm{o}} \subset A
+	\end{align}
+	が成立し，また$v$を
+	\begin{align}
+		v \subset A
+	\end{align}
+	なる$(S,\mathscr{O})$の開集合とすれば
+	\begin{align}
+		v \in \Set{u \in \mathscr{O}}{u \subset A}
+	\end{align}
+	となるので，定理\ref{thm:union_is_bigger_than_any_member}より
+	\begin{align}
+		v \subset A^{\mathrm{o}}
+	\end{align}
+	が成立する．つまり，{\bf $A$の$\mathscr{O}$に関する内部は，$A$に含まれる$(S,\mathscr{O})$の開集合のうちで包含関係に関して最大のものである．}
+	
+	また$A$の$\mathscr{O}$に関する閉包を
+	\begin{align}
+		\overline{A}
+	\end{align}
+	と書くと
+	\begin{align}
+		\overline{A} \in \mathscr{A} \wedge A \subset \overline{A} \wedge
+		\forall v \in \mathscr{A}\, \left(\, A \subset v \Longrightarrow \overline{A} \subset v\, \right)
+		\label{fom:closure_is_the_smallest_closed_set}
+	\end{align}
+	が成立する．実際，
+	\begin{align}
+		S \in \Set{a \in \mathscr{A}}{A \subset a}
+	\end{align}
+	であるから
+	\begin{align}
+		\Set{a \in \mathscr{A}}{A \subset a} \neq \emptyset
+	\end{align}
+	であって，かつ
+	\begin{align}
+		\Set{a \in \mathscr{A}}{A \subset a} \subset \mathscr{A}
+	\end{align}
+	なので，定理\ref{thm:union_of_two_closed_sets_is_closed_and_intersection_of_closed_sets_is_closed}より
+	\begin{align}
+		\overline{A} \in \mathscr{A}
+	\end{align}
+	が成立する．また定理\ref{thm:if_obtained_by_all_elements_then_obtained_by_intersection}より
+	\begin{align}
+		A \subset \overline{A}
+	\end{align}
+	が成立する．また$v$を
+	\begin{align}
+		A \subset v
+	\end{align}
+	なる$(S,\mathscr{O})$の閉集合とすれば
+	\begin{align}
+		v \in \Set{a \in \mathscr{A}}{A \subset a}
+	\end{align}
+	となるので，定理\ref{thm:intersection_is_obtained_by_all_elements}より
+	\begin{align}
+		\overline{A} \subset v
+	\end{align}
+	が成立する．つまり，{\bf $A$の$\mathscr{O}$に関する閉包は，$A$を含む$(S,\mathscr{O})$の閉集合のうちで包含関係に関して最小のものである．}
+	
+	\begin{screen}
 		\begin{thm}[内部の補集合は補集合の閉包]
 		\label{thm:topology_note_closure_interior}
-			$A$を位相空間の部分集合とするとき次が成り立つ．
+			$(S,\mathscr{O})$を位相空間とし，$A$を$S$の部分集合とする．また
 			\begin{align}
-				A^{ic} = A^{ca},
-				\quad A^{cic} = A^a,
-				\quad A^{ci} = A^{ac}.
+				A^c \defeq S \backslash A
 			\end{align}
+			と書き，$A$の$\mathscr{O}$に関する内部を
+			\begin{align}
+				A^i
+			\end{align}
+			と書き，$A$の$\mathscr{O}$に関する閉包を
+			\begin{align}
+				A^a
+			\end{align}
+			と書き，$(A^i)^c$など連鎖する場合は括弧を省略して$A^{ic}$と書く．このとき次が成り立つ．
+			\begin{itemize}
+				\item $A^{ic} = A^{ca}.$
+				\item $A^{cic} = A^a.$
+				\item $A^{ci} = A^{ac}.$
+			\end{itemize}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$A^i \subset A$より$A^{ic} \supset A^c$が従い，
-		$A^{ic}$が閉であるから$A^{ic} \supset A^{ca}$となる．
-		一方で$A^c \subset A^{ca}$より$A \supset A^{cac}$が従い，
-		$A^{cac}$は開であるから$A^i \supset A^{cac}$すなわち
-		$A^{ic} \subset A^{ca}$となる．
-		$A$を$A^c$に替えれば残りの関係も得られる．
+		(\refeq{fom:interior_is_the_largest_open_subset})より
+		\begin{align}
+			A^i \subset A
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A^c \subset A^{ic}
+		\end{align}
+		が従い，$A^{ic}$は$(S,\mathscr{O})$の閉集合であるから(\refeq{fom:closure_is_the_smallest_closed_set})より
+		\begin{align}
+			A^{ca} \subset A^{ic} 
+		\end{align}
+		が成立する．一方で
+		\begin{align}
+			A^c \subset A^{ca}
+		\end{align}
+		であるから
+		\begin{align}
+			A^{cac} \subset A
+		\end{align}
+		が成り立ち，$A^{cac}$は$(S,\mathscr{O})$の開集合なので(\refeq{fom:interior_is_the_largest_open_subset})より
+		\begin{align}
+			A^{cac} \subset A^i
+		\end{align}
+		となる．すなわち
+		\begin{align}
+			A^{ic} \subset A^{ca}
+		\end{align}
+		となる．以上で
+		\begin{align}
+			A^{ic} = A^{ca}
+		\end{align}
+		が得られた．この式で$A$を$A^c$に替えれば
+		\begin{align}
+			A^{cic} = A^a
+		\end{align}
+		が得られ，ゆえに
+		\begin{align}
+			A^{ci} = A^{ac}
+		\end{align}
+		も得られる．
 		\QED
 	\end{prf}
 	
@@ -319,7 +530,7 @@
 		$x \notin \overline{A}$なら
 		$\overline{A}^c$は$A$と交わらない$x$の開近傍となるから
 		(\refeq{eq:thm_belongs_to_closure_iff_clusters})が出る．
-		また(\refeq{eq:dfn_interior_closure})より
+		また
 		\begin{align}
 			\mbox{$A$が閉} \quad \Longleftrightarrow \quad A = \overline{A}
 			\quad \Longleftrightarrow \quad

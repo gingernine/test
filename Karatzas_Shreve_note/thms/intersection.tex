@@ -4,7 +4,7 @@
 	\begin{align}
 		\bigcap a
 	\end{align}
-	と書く．また若干奇妙な結果として，空集合の交叉は宇宙に一致する．
+	と書く．またいささか奇妙な結果であるが，空虚な真の為せる業により空の交叉は宇宙に一致する．
 	
 	\begin{screen}
 		\begin{dfn}[交叉]
@@ -65,19 +65,41 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[交叉は任意の元に含まれる]
-			$a$を類とするとき次が成立する:
+		\begin{thm}[交叉は全ての要素に含まれる]
+		\label{thm:intersection_is_obtained_by_all_elements}
+			$a$を類とするとき
 			\begin{align}
 				\forall x\, (\, x \in a \Longrightarrow \bigcap a \subset x\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	$a,b$を類とするとき，その対の合併を
-	\begin{align}
-		a \cap b \coloneqq \bigcap \{a,b\}
-	\end{align}
-	と書く．
+	\begin{screen}
+		\begin{thm}[全ての要素に共通して含まれる類は交叉にも含まれる]
+		\label{thm:if_obtained_by_all_elements_then_obtained_by_intersection}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\forall x \in a\, (\, b \subset x\, ) \Longrightarrow b \subset \bigcap a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[等しい類の交叉は等しい]\label{thm:intersections_of_equal_classes_are_equal}
+			$a$と$b$を類とするとき
+			\begin{align}
+				a = b \Longrightarrow \bigcap a = \bigcap b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{itembox}[l]{対の交叉}
+		$a$と$b$を類とするとき，その対の交叉を
+		\begin{align}
+			a \cap b \defeq \bigcap \{a,b\}
+		\end{align}
+		と書く．
+	\end{itembox}
 	
 	\begin{screen}
 		\begin{thm}
@@ -100,84 +122,114 @@
 		\label{thm:if_pair_is_empty_then_its_members_do_not_intersect}
 			$a,b$を類とするとき次が成立する:
 			\begin{align}
-				a \cap b = \emptyset \Longrightarrow \forall x\, (\, x \in a \Longrightarrow x \notin b\, ).
+				a \cap b = \emptyset \Longleftrightarrow \forall x\, (\, x \in a \Longrightarrow x \notin b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		いま$\exists x\, (\, x \in a \wedge x \in b\, )$が成り立っているとする．
+	\begin{sketch}
+		定理\ref{thm:uniqueness_of_emptyset}より
 		\begin{align}
-			\chi \coloneqq \varepsilon x\, (\, x \in a \wedge x \in b\, )
+			a \cap b = \emptyset \Longleftrightarrow \forall x\, \left(\, x \notin a \cap b\, \right)
 		\end{align}
-		とおけば，存在記号に関する規則より
+		が成立する．また
 		\begin{align}
-			\chi \in a \wedge \chi \in b
+			\forall x\, \left(\, x \notin a \cap b \Longleftrightarrow x \notin a \vee x \notin b\, \right)
 		\end{align}
-		が成立し，$\wedge$の除去により$\chi \in a$と$\chi \in b$が共に成立する．
-		ここで$\tau$を$\mathcal{L}$の任意の対象とすれば
-		定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		かつ
 		\begin{align}
-			\tau \in \{a,b\} \Longrightarrow \tau = a \vee \tau = b
+			\forall x\, \left(\, (\, x \notin a \vee x \notin b\, ) \Longleftrightarrow (\, x \in a \Longrightarrow x \notin b\, )\, \right)
 		\end{align}
-		が成立し，他方で相等性の公理より$\tau = a \Longrightarrow \chi \in \tau$と
-		$\tau = b \Longrightarrow \chi \in \tau$が成り立つので場合分け法則から
+		が成り立つので
 		\begin{align}
-			\tau = a \vee \tau = b \Longrightarrow \chi \in \tau
+			\forall x\, \left(\, x \notin a \cap b \Longleftrightarrow (\, x \in a \Longrightarrow x \notin b\, )\, \right)
 		\end{align}
-		も満たされ，含意の推移律より
+		が成立し，
 		\begin{align}
-			\tau \in \{a,b\} \Longrightarrow \chi \in \tau
+			\forall x\, \left(\, x \notin a \cap b\, \right) \Longleftrightarrow 	
+			\forall x\, (\, x \in a \Longrightarrow x \notin b\, )
 		\end{align}
-		が従う．そして$\tau$の任意性と推論法則\ref{metathm:fundamental_law_of_universal_quantifier}から
+		が従う．ゆえに
 		\begin{align}
-			\forall t\, \left(\, t \in \{a,b\} \Longrightarrow \chi \in t\, \right)
+			a \cap b = \emptyset \Longleftrightarrow \forall x\, (\, x \in a \Longrightarrow x \notin b\, ).
 		\end{align}
-		が成立する．これにより
-		\begin{align}
-			\chi \in a \cap b
-		\end{align}
-		が従い，存在記号に関する規則より
-		\begin{align}
-			\exists x\, (\, x \in a \cap b\, )
-		\end{align}
-		となるから定理\ref{thm:uniqueness_of_emptyset}より
-		\begin{align}
-			a \cap b \neq \emptyset
-		\end{align}
-		が従う．ここに再び演繹法則を適用すれば
-		\begin{align}
-			\exists x\, (\, x \in a \wedge x \in b\, ) \Longrightarrow a \cap b \neq \emptyset
-		\end{align}
-		が得られる．ところで$\sigma$を$\mathcal{L}$の任意の対象とすれば，De Morganの法則と
-		推論法則\ref{metathm:rule_of_inference_3}より
-		\begin{align}
-			\sigma \in a \wedge \sigma \in b 
-			&\Longleftrightarrow\ \rightharpoondown (\, \sigma \notin a \vee \sigma \notin b\, ) \\
-			&\Longleftrightarrow\ \rightharpoondown (\, \sigma \in a \Longrightarrow \sigma \notin b\, )
-		\end{align}
-		が成り立つので含意の推移律から
-		\begin{align}
-			\sigma \in a \wedge \sigma \in b \Longleftrightarrow\
-			\rightharpoondown (\, \sigma \in a \Longrightarrow \sigma \notin b\, )
-		\end{align}
-		となり，推論法則\ref{metathm:properties_of_quantifiers}より
-		\begin{align}
-			\exists x\, (\, x \in a \wedge x \in b\, ) \Longleftrightarrow
-			\exists x\, \rightharpoondown (\, x \in a \Longrightarrow x \notin b\, )
-		\end{align}
-		が成立する．よって含意の推移律より
-		\begin{align}
-			\exists x\, \rightharpoondown (\, x \in a \Longrightarrow x \notin b\, )
-			\Longrightarrow a \cap b \neq \emptyset
-		\end{align}
-		が成立し，この対偶を取り推論法則\ref{metathm:properties_of_quantifiers}を適用すれば
-		\begin{align}
-			a \cap b = \emptyset \Longrightarrow \forall x\, (\, x \in a \Longrightarrow x \notin b\, )
-		\end{align}
-		が出てくる．
+		が得られる．
 		\QED
-	\end{prf}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[差類]
+			$a,b$を類するとき，$a$に属するが$b$には属さない集合の全体を
+			$a$から$b$を引いた{\bf 差類}\index{さるい@差類}
+			{\bf (class difference)}と呼び，記号は
+			\begin{align}
+				a \backslash b \defeq \Set{x}{x \in a \wedge x \notin b}
+			\end{align}
+			で定める．特に$a \backslash b$が集合であるときこれを
+			{\bf 差集合}\index{さしゅうごう@差集合}{\bf (set difference)}と呼ぶ．
+			%また$b \subset a$が満たされている場合，$a \backslash b$を
+			%$a$から$b$を引いた{\bf 固有差}\index{こゆうさ@固有差}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$\set{a} \Longrightarrow \set{a \backslash b}$
+	
+	\begin{screen}
+		\begin{thm}[合併を引いた類は要素の差の交叉で書ける]
+		\label{thm:difference_of_union_is_intersection_of_differences_of_elements}
+			$a$と$b$を類とするとき
+			\begin{align}
+				a \backslash \bigcup b = \bigcap \Set{a \backslash t}{t \in b}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\monologue{
+		上の定理の式で
+		\begin{align}
+			\Set{a \backslash t}{t \in b}
+		\end{align}
+		と書いていますが，これは
+		\begin{align}
+			\Set{x}{\exists t \in b\, (\, x=a \backslash t\, )}
+		\end{align}
+		の略記です．ところがこれもまだ略記されたもので，正しく書くと
+		\begin{align}
+			\Set{x}{\exists t \in b\, 
+			\forall s\, (\, s \in x \Longleftrightarrow s \in a \wedge s \notin t\, )}
+		\end{align}
+		となります．以降も煩雑さを避けるためにこのように略記します．
+	}
+	
+	\begin{screen}
+		\begin{thm}[二つの類の合併の差類は差類同士の交叉]
+		\label{thm:difference_of_union_of_two_classes_is_intersection_of_two_differences}
+			$a$と$b$と$c$を類とするとき
+			\begin{align}
+				a \backslash (b \cup c) = (a \backslash b) \cap (a \backslash c).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[交叉を引いた類は要素の差の合併で書ける]
+		\label{thm:difference_of_intersection_is_union_of_differences_of_elements}
+			$a$と$b$を類とするとき
+			\begin{align}
+				a \backslash \bigcap b = \bigcup \Set{a \backslash t}{t \in b}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[二つの類の交叉の差類は差類同士の合併]
+		\label{thm:difference_of_intersection_of_two_classes_is_union_of_two_differences}
+			$a$と$b$と$c$を類とするとき
+			\begin{align}
+				a \backslash (b \cap c) = (a \backslash b) \cup (a \backslash c).
+			\end{align}
+		\end{thm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}
