@@ -290,40 +290,93 @@
 		\begin{screen}
 			\begin{thm}[$T_6$空間に値を取る可測写像列の各点極限で定める写像は可測]
 			\label{lem:measurability_metric_space}
-				$S$を$T_6$空間，$(X,\mathcal{B})$を可測空間とする．
-				$\mathcal{B}/\borel{S}$-可測写像列$(f_n)_{n=1}^{\infty}$が各点収束すれば，
-				$f \coloneqq \lim_{n \to \infty} f_n$で定める$f$もまた可測$\mathcal{B}/\borel{S}$となる．
+				$(S,\mathscr{O})$を$T_6$空間とし，$(X,\mathscr{F})$を可測空間とし，
+				$\{f_n\}_{n \in \Natural}$を$\mathscr{F}/\borel{S}$-可測写像の族とする．
+				$(f_n)_{n \in \Natural}$が各点収束するとき，
+				\begin{align}
+					X \ni x \longmapsto \lim_{n \to \infty} f_n(x)
+				\end{align}
+				なる関係で定める写像$f$は$\mathscr{F}/\borel{S}$-可測である．
 			\end{thm}
 		\end{screen}
 	
 		\begin{prf}
-			$S$の任意の閉集合$A$に対し，
-			定理\ref{thm:perfectly_normal_Hausdorff_is_normal_and_closed_is_G_delta}より
-			次を満たす閉集合の系$(A_m)_{m=1}^{\infty}$が取れる:
+			$a$を$(S,\mathscr{O})$の閉集合とする．
 			\begin{align}
-				A = \bigcap_{m=1}^\infty A_m 
-				= \bigcap_{m=1}^\infty A_m^{\mathrm{o}}.
+				f^{-1} \ast a = \emptyset
 			\end{align}
-			$f(x) \in A$なら任意の$m \in \N$に対し或る$N = N(x,m) \in \N$が存在して
-			$f_n(x) \in A_m^{\mathrm{o}},\ (\forall n \geq N)$となるから
+			ならば
 			\begin{align}
-				f^{-1}(A) \subset \bigcap_{m \geq 1} \bigcup_{N \geq 1} \bigcap_{n \geq N} f_n^{-1}(A_m)
-				\label{eq:lem_measurability_metric_space}
+				f^{-1} \ast a \in \mathscr{F}
 			\end{align}
-			が従う．$f(x) \notin A$なら
-			或る$m \geq 1$で$f(x) \notin A_m$となり，
-			或る$N \in \N$に対し
-			$f_n(x) \notin A_m,\ (\forall n \geq N)$が成り立ち
+			となる．
 			\begin{align}
-				f^{-1}(A^c) \subset \bigcup_{m \geq 1} \bigcup_{N \geq 1} \bigcap_{n \geq N} f_n^{-1}(A_m^c)
-				\subset \bigcup_{m \geq 1} \bigcap_{N \geq 1} \bigcup_{n \geq N} f_n^{-1}(A_m^c)
+				f^{-1} \ast a \neq \emptyset
 			\end{align}
-			が従う．(\refeq{eq:lem_measurability_metric_space})と併せれば
+			であるとき，定理\ref{thm:perfectly_normal_Hausdorff_is_normal_and_closed_is_G_delta}より
 			\begin{align}
-				f^{-1}(A) = \bigcap_{m \geq 1} \bigcup_{N \geq 1} \bigcap_{n \geq N} f_n^{-1}(A_m)
-				\in \mathcal{B}
+				a = \bigcap_{n \in \Natural} {a_n}^{\mathrm{o}}
 			\end{align}
-			が成立し，$S$の閉集合は$f$により$\mathcal{B}$の元に引き戻されるから$f$の$\mathcal{B}/\borel{S}$-可測性が出る．
+			を満たす$(S,\mathscr{O})$の閉集合族$\{a_n\}_{n \in \Natural}$が取れる．$x$を
+			\begin{align}
+				x \in f^{-1} \ast a
+			\end{align}
+			なる集合とすると，$m$を任意に与えられた自然数とするとき
+			\begin{align}
+				\forall n \in \Natural\, \left[\, N < n \Longrightarrow f_n(x) \in {a_m}^{\mathrm{o}}\, \right]
+			\end{align}
+			を満たす自然数$N$が取れるから，
+			\begin{align}
+				x \in \bigcap_{m \in \Natural} \bigcup_{N \in \Natural} \bigcap_{\substack{n \in \Natural \\ N < n}} 
+				f_n^{-1} \ast a_m
+			\end{align}
+			が成立する．$x$の任意性ゆえに
+			\begin{align}
+				f^{-1} \ast a \subset 
+				\bigcap_{m \in \Natural} \bigcup_{N \in \Natural} \bigcap_{\substack{n \in \Natural \\ N < n}} f_n^{-1} \ast a_m
+				\label{fom:lem_measurability_metric_space_1}
+			\end{align}
+			が得られる．次に
+			\begin{align}
+				x \in f^{-1} \ast (S \backslash a)
+			\end{align}
+			であるとすると，
+			\begin{align}
+				f(x) \in S \backslash a_m
+			\end{align}
+			なる自然数$m$が取れて，
+			\begin{align}
+				\forall n \in \Natural\, \left[\, N < n \Longrightarrow f_n(x) \in S \backslash a_m\, \right]
+			\end{align}
+			なる自然数$N$が取れる．ゆえに
+			\begin{align}
+				x \in \bigcup_{m \in \Natural} \bigcup_{N \in \Natural} \bigcap_{\substack{n \in \Natural \\ N < n}} 
+				f_n^{-1} \ast (S \backslash a_m)
+			\end{align}
+			が成り立つが，
+			\begin{align}
+				\bigcup_{m \in \Natural} \bigcup_{N \in \Natural} \bigcap_{\substack{n \in \Natural \\ N < n}} 
+				f_n^{-1} \ast (S \backslash a_m)
+				\subset \bigcup_{m \in \Natural} \bigcap_{N \in \Natural} \bigcup_{\substack{n \in \Natural \\ N < n}} 
+				f_n^{-1} \ast (S \backslash a_m)
+			\end{align}
+			が成り立つので
+			\begin{align}
+				f^{-1} \ast (S \backslash a) \subset
+				\bigcup_{m \in \Natural} \bigcap_{N \in \Natural} \bigcup_{\substack{n \in \Natural \\ N < n}} 
+				f_n^{-1} \ast (S \backslash a_m) 
+			\end{align}
+			が従う．(\refeq{fom:lem_measurability_metric_space_1})と併せれば
+			\begin{align}
+				f^{-1} \ast a =
+				\bigcap_{m \in \Natural} \bigcup_{N \in \Natural} \bigcap_{\substack{n \in \Natural \\ N < n}} f_n^{-1} \ast a_m
+			\end{align}
+			が成立し，
+			\begin{align}
+				f^{-1} \ast a \in \mathscr{F}
+			\end{align}
+			が従う．以上より$(S,\mathscr{O})$の閉集合は全て$f$で$\mathscr{F}$の要素に引き戻されるので，
+			$f$は$\mathscr{F}/\borel{S}$-可測である．
 			\QED
 		\end{prf}
 		
