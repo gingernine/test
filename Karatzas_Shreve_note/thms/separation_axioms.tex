@@ -610,69 +610,135 @@
 	
 	\begin{screen}
 		\begin{thm}[完全正規空間とは正規かつ閉集合が全て$G_\delta$である空間]
-		\label{thm:perfectly_normal_Hausdorff_is_normal_and_closed_is_G_delta}\mbox{}
-			\begin{description}
-				\item[(1)]
-					$F$を完全正規空間の閉集合とすれば，次を満たす閉集合系$(F_n)_{n=1}^\infty$が存在する:
-					\begin{align}
-						F = \bigcap_{n=1}^\infty F_n,
-						\quad F_n^{\mathrm{o}} \supset F_{n+1}. 
-					\end{align}
-					
-				\item[(2)]
-					位相空間において，完全正規であることと，正規かつ任意の閉集合が$G_\delta$であることは同値である．
-			\end{description}
+		\label{thm:perfectly_normal_Hausdorff_is_normal_and_closed_is_G_delta}
+			$(S,\mathscr{O})$を位相空間とする．このとき，$(S,\mathscr{O})$が完全正規であることと，
+			$(S,\mathscr{O})$が正規でかつ$(S,\mathscr{O})$の全ての閉集合が$G_\delta$であることは同値である．
+			また$(S,\mathscr{O})$が完全正規であるならば，$a$を$(S,\mathscr{O})$の閉集合とすると
+			\begin{align}
+				\forall n \in \Natural\, (\, b_{n+1} \subset {b_n}^{\mathrm{o}}\, )
+			\end{align}
+			かつ
+			\begin{align}
+				b = \bigcap_{n \in \Natural} b_n
+			\end{align}
+			を満たす$(S,\mathscr{O})$の閉集合族$\{b_n\}_{n \in \Natural}$が取れる．
+			ただし${}^\mathrm{o}$は$\mathscr{O}$に関する内部の意味である．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$S$を完全正規空間，$A,B$を互いに交わらない$S$の閉集合とすれば，
-		$A=f^{-1}(\{0\}),\ B = f^{-1}(\{1\})$を満たす連続関数
-		$f:S \longrightarrow \R$が存在する．このとき
-		$U \coloneqq f^{-1}([0,1/2)),\ V \coloneqq f^{-1}((1/2,1])$
-		で開集合$U,V$を定めれば
+	\begin{sketch}
+		$(S,\mathscr{O})$が完全正規であるとする．$u$と$v$を
 		\begin{align}
-			A \subset U,\quad B \subset V,\quad U \cap V = \emptyset
+			u \cap v = \emptyset
 		\end{align}
-		となるから$S$は正規である．また$F$を閉集合とすれば
-		或る連続関数$g:S \longrightarrow \R,\ (\emptyset = g^{-1}(\{1\}))$により
+		なる$(S,\mathscr{O})$の閉集合とすると，
 		\begin{align}
-			F = g^{-1}(\{0\}) 
-			= g^{-1}\Biggl(\bigcap_{n=1}^\infty\left[0,n^{-1}\right)\Biggr)
-			= \bigcap_{n=1}^\infty g^{-1}\left(\left[0,n^{-1}\right)\right)
+			u = f^{-1} \ast \{0\}
 		\end{align}
-		が成立するから$F$は$G_\delta$である．特に，このとき
-		$F_n \coloneqq g^{-1}\left(\left[0,n^{-1}\right]\right)$とおけば
+		かつ
 		\begin{align}
-			F = \bigcap_{n=1}^\infty g^{-1}\left(\left[0,n^{-1}\right]\right)
-			= \bigcap_{n=1}^\infty F_n,
-			\quad F_n^{\mathrm{o}} \supset g^{-1}\left(\left[0,n^{-1}\right)\right)
-			\supset g^{-1}\left(\left[0,(n+1)^{-1}\right]\right)
-			= F_{n+1}
+			v = f^{-1} \ast \{1\}
 		\end{align}
-		となり(1)の主張が得られる．逆に$S$が正規かつ
-		閉集合が全て$G_\delta$であるとき，任意の交わらない閉集合$A,B$に対し
-		$A = \bigcap_{n=1}^\infty U_n,\ B = \bigcap_{n=1}^\infty V_n$
-		を満たす開集合系$(U_n)_{n=1}^\infty,\ (V_n)_{n=1}^\infty$が取れて，
-		定理\ref{thm:Urysohn_lemma}より各$n \geq 1$で
+		を満たす$\mathscr{O}/\mathscr{O}_\R$-連続写像$f$が取れる．ここで
 		\begin{align}
-			f_n(A) = \{0\},\quad f_n(S \backslash U_n) = \{1\},
-			\quad g_n(B) = \{0\},\quad g_n(S \backslash V_n) = \{1\}
+			\alpha \defeq f^{-1} \ast \left] -\infty,\frac{1}{2} \right[
 		\end{align}
-		を満たす連続写像$f_n,g_n:S \longrightarrow [0,1]$が存在する．
-		ここで連続写像を$f \coloneqq \sum_{n=1}^\infty 2^{-n} f_n,\ 
-		g \coloneqq \sum_{n=1}^\infty 2^{-n} g_n$で定めれば
+		及び
 		\begin{align}
-			\begin{cases}
-				f(x) = 0, & (x \in A), \\
-				f(x) > 0, & (x \notin A),
-			\end{cases}
-			\quad \begin{cases}
-				g(x) = 0, & (x \in B), \\
-				g(x) > 0, & (x \notin B),
-			\end{cases}
+			\beta \defeq f^{-1} \ast \left] \frac{1}{2},\infty \right[
 		\end{align}
-		となり，$h \coloneqq f/(f+g)$とおけば$A = h^{-1}(\{0\}),\ B = h^{-1}(\{1\})$が成立する．
-		従って$S$は完全正規である．
+		とおけば，$\alpha$と$\beta$は$(S,\mathscr{O})$の開集合であって
+		\begin{align}
+			u \subset \alpha 
+		\end{align}
+		かつ
+		\begin{align}
+			v \subset \beta
+		\end{align}
+		かつ
+		\begin{align}
+			\alpha \cap \beta = \emptyset
+		\end{align}
+		を満たすから，$(S,\mathscr{O})$は正規空間である．いま$a$を$(S,\mathscr{O})$の閉集合とすると，
+		\begin{align}
+			a = g^{-1} \ast \{0\}
+		\end{align}
+		かつ
+		\begin{align}
+			\emptyset = g^{-1} \ast \{1\}
+		\end{align}
+		なる$\mathscr{O}/\mathscr{O}_\R$-連続写像$g$が取れるが，
+		\begin{align}
+			\{0\} = \bigcap_{n \in \Natural} \left]\frac{-1}{n+1},\frac{1}{n+1}\right[
+		\end{align}
+		が成り立つので
+		\begin{align}
+			a = \bigcap_{n \in \Natural} g^{-1} \ast \left]\frac{-1}{n+1},\frac{1}{n+1}\right[
+		\end{align}
+		が成立する．ゆえに$a$は$G_\delta$である．また
+		\begin{align}
+			\Natural \ni n \longmapsto g^{-1} \ast \left[\frac{-1}{n+1},\frac{1}{n+1}\right]
+		\end{align}
+		なる関係を$b$とすれば，$b_n$は全て$(S,\mathscr{O})$の閉集合であって
+		\begin{align}
+			a = \bigcap_{n \in \Natural} b_n,
+		\end{align}
+		かつ全ての自然数$n$で
+		\begin{align}
+			b_n \subset g^{-1} \ast \left]\frac{-1}{n+2},\frac{1}{n+2}\right[ \subset {b_{n+1}}^{\mathrm{o}}
+		\end{align}
+		となるので，定理の後半の主張が得られた．
+		
+		逆に$(S,\mathscr{O})$が正規でかつ$(S,\mathscr{O})$の全ての閉集合が$G_\delta$であるとして，
+		$u$と$v$を
+		\begin{align}
+			u \cap v = \emptyset
+		\end{align}
+		なる$(S,\mathscr{O})$の閉集合とする．
+		\begin{align}
+			u = \bigcap_{n \in \Natural} a_n
+		\end{align}
+		なる$(S,\mathscr{O})$の開集合族$\{a_n\}_{n \in \Natural}$と
+		\begin{align}
+			v = \bigcap_{n \in \Natural} b_n
+		\end{align}
+		なる$(S,\mathscr{O})$の開集合族$\{b_n\}_{n \in \Natural}$が取れる．
+		定理\ref{thm:Urysohn_lemma}より各自然数$n$で
+		\begin{align}
+			f_n \ast u = \{0\} \wedge f_n \ast (S \backslash a_n) = \{1\} \wedge \ran{f_n} \subset [0,1]
+		\end{align}
+		なる$\mathscr{O}/\mathscr{O}_\R$-連続写像$f_n$と
+		\begin{align}
+			g_n \ast v = \{0\} \wedge g_n \ast (S \backslash b_n) = \{1\} \wedge \ran{g_n} \subset [0,1]
+		\end{align}
+		なる$\mathscr{O}/\mathscr{O}_\R$-連続写像$g_n$が取れるから，
+		\begin{align}
+			S \ni x \longmapsto \sum_{n=0}^\infty \frac{1}{2^n} f_n(x)
+		\end{align}
+		なる写像を$f$として，
+		\begin{align}
+			S \ni x \longmapsto \sum_{n=0}^\infty \frac{1}{2^n} g_n(x)
+		\end{align}
+		なる写像を$g$とすれば，$f$と$g$は共に$\mathscr{O}/\mathscr{O}_\R$-連続であって，
+		\begin{align}
+			x \in u \Longrightarrow f(x) = 0 \wedge x \in S \backslash u \Longrightarrow 0 < f(x)
+		\end{align}
+		及び
+		\begin{align}
+			x \in v \Longrightarrow g(x) = 0 \wedge x \in S \backslash v \Longrightarrow 0 < g(x)
+		\end{align}
+		を満たす．そして
+		\begin{align}
+			S \ni x \longmapsto \frac{f(x)}{f(x) + g(x)}
+		\end{align}
+		なる写像を$h$とおけば
+		\begin{align}
+			u = h^{-1} \ast \{0\}
+		\end{align}
+		かつ
+		\begin{align}
+			v = h^{-1} \ast \{1\}
+		\end{align}
+		が成立する．ゆえに$(S,\mathscr{O})$は完全正規である．
 		\QED
-	\end{prf}
+	\end{sketch}

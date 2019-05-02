@@ -29,8 +29,12 @@
 	なる写像を$\omega$の{\bf 標本路}{\bf (sample path)}と呼ぶ．標本路の性質に対して
 	確率過程$X$の呼び名が分かれる:
 	\begin{itemize}
+		\item $\Omega$の全ての要素の標本路が右連続である場合，$X$を右連続な$S$値確率過程と呼ぶ．
+		\item $\Omega$の全ての要素の標本路が左連続である場合，$X$を左連続な$S$値確率過程と呼ぶ．
 		\item $\Omega$の全ての要素の標本路が$RCLL$である場合，$X$を$RCLL$な$S$値確率過程と呼ぶ．
 		\item $\Omega$の全ての要素の標本路が連続である場合，$X$を連続な$S$値確率過程と呼ぶ．
+		\item 標本路が$P$-a.s.に右連続である場合，$X$を$P$-a.s.に右連続な$S$値確率過程と呼ぶ．
+		\item 標本路が$P$-a.s.に左連続である場合，$X$を$P$-a.s.に左連続な$S$値確率過程と呼ぶ．
 		\item 標本路が$P$-a.s.に$RCLL$である場合，$X$を$P$-a.s.に$RCLL$な$S$値確率過程と呼ぶ．
 		\item 標本路が$P$-a.s.に連続である場合，$X$を$P$-a.s.に連続な$S$値確率過程と呼ぶ．
 	\end{itemize}
@@ -57,6 +61,84 @@
 			$X$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合な$(\Omega,\mathscr{F},P)$上の$S$値確率過程と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[右連続または左連続な適合過程は発展的可測]
+			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T}$を$[0,\infty[$または$[0,T]$とし，
+			$(S,d)$を距離空間とし，$X$を$(\Omega,\mathscr{F},P)$上の$S$値確率過程とする．このとき，
+			$X$が右連続(または左連続)かつ$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合であるなら$X$は
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-発展的可測である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] $X|_{\{0\} \times \Omega}$について，$A$を$\borel{S}$の任意の要素とすると
+				\begin{align}
+					{X|_{\{0\} \times \Omega}}^{-1} \ast A
+					= \{0\} \times \left( X_0^{-1} \ast A \right)
+				\end{align}
+				が成り立ち，$X$が$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合であるので
+				\begin{align}
+					\{0\} \times \left( X_0^{-1} \ast A \right) \in \borel{\{0\}} \otimes \mathscr{F}_0
+				\end{align}
+				が成立する．ゆえに$X|_{\{0\} \times \Omega}$は
+				$\borel{\{0\}} \otimes \mathscr{F}_0/\borel{S}$-可測である．
+				
+			\item[第二段] $t$を
+				\begin{align}
+					0 < t
+				\end{align}
+				なる$\mathbf{T}$の要素とする．そして$n$を自然数として，$X$が右連続である場合は
+				\begin{align}
+					[0,t] \times \Omega \ni (s,\omega) \longmapsto
+					\begin{cases}
+						X(0,\omega) & \mbox{if } s=0 \\
+						X\left(\frac{1}{2^n}t,\omega\right) & \mbox{if } s \in \left]0,\frac{1}{2^n}t\right] \\
+						\vdots & \\
+						X\left(\frac{2^n-1}{2^n}t,\omega\right) & \mbox{if } s \in \left]\frac{2^n-2}{2^n}t,\frac{2^n-1}{2^n}t\right] \\
+						X\left(t,\omega\right) & \mbox{if } s \in \left]\frac{2^n-1}{2^n}t,t\right]
+					\end{cases}
+				\end{align}
+				なる関係を$Y_n$と定め，$X$が左連続である場合は
+				\begin{align}
+					[0,t] \times \Omega \ni (s,\omega) \longmapsto
+					\begin{cases}
+						X(0,\omega) & \mbox{if } s \in \left[0,\frac{1}{2^n}t\right[ \\
+						X\left(\frac{1}{2^n}t,\omega\right) & \mbox{if } s \in \left[\frac{1}{2^n}t,\frac{2}{2^n}t\right[ \\
+						\vdots & \\
+						X\left(\frac{2^n-1}{2^n}t,\omega\right) & \mbox{if } s \in \left[\frac{2^n-1}{2^n}t,t\right[ \\
+						X\left(t,\omega\right) & \mbox{if } s = t \\
+					\end{cases}
+				\end{align}
+				なる関係を$Y_n$と定める．$A$を$\borel{S}$の任意の要素とすると，$X$が右連続の場合は
+				\begin{align}
+					Y_n^{-1} \ast A
+					= \{0\} \times \left( X_0^{-1} \ast A \right) \cup
+					\bigcup_{j=1}^{2^n} \left]\frac{j-1}{2^n}t,\frac{j}{2^n}t\right] \times \left( X_{\frac{j}{2^n}t}^{-1} \ast A \right)
+				\end{align}
+				となり，$X$が左連続の場合は
+				\begin{align}
+					Y_n^{-1} \ast A
+					= \{t\} \times \left( X_t^{-1} \ast A \right) \cup
+					\bigcup_{j=1}^{2^n} \left[\frac{j-1}{2^n}t,\frac{j}{2^n}t\right[ \times \left( X_{\frac{j-1}{2^n}t}^{-1} \ast A \right)
+				\end{align}
+				となるので，いずれの場合も
+				\begin{align}
+					Y_n^{-1} \ast A \in \borel{[0,t]} \otimes \mathscr{F}_t
+				\end{align}
+				が成立する．ゆえに$Y_n$は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{S}$-可測である．
+				またいずれの場合も
+				\begin{align}
+					\forall s \in [0,t]\, \forall \omega \in \Omega\,
+					\left(\, \lim_{n \to \infty} Y_n(s,\omega) = X|_{[0,t] \times \Omega}(s,\omega)\, \right)
+				\end{align}
+				が成立するので，定理\ref{lem:measurability_metric_space}より
+				$X|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{S}$-可測である．
+				\QED
+		\end{description}
+		
+	\end{sketch}
 	
 	実数値確率過程$X$が$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-優マルチンゲールであるとは，
 	\begin{itemize}
