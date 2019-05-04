@@ -1,4 +1,4 @@
-\section{二次変分}
+\section{二乗可積分マルチンゲール}
 	\begin{screen}
 		\begin{dfn}[二乗可積分マルチンゲール]
 			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
@@ -14,11 +14,11 @@
 			を満たすものとするとき，$X$を二乗可積分な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールと呼ぶ．また
 			$(\Omega,\mathscr{F},P)$上の二乗可積分な右連続$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールの全体を
 			\begin{align}
-				\mathscr{M}^{\mathbf{T}}
+				\mathscr{M}_{\mathbf{T}}
 			\end{align}
 			として，同様に$(\Omega,\mathscr{F},P)$上の二乗可積分な連続$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールの全体を
 			\begin{align}
-				\mathscr{M}^{\mathbf{T}}_c
+				\mathscr{M}_{\mathbf{T}}^c
 			\end{align}
 			とする．
 		\end{dfn}
@@ -30,7 +30,7 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[$\mathscr{M}_2$の線型構造]
+		\begin{thm}[$\mathscr{M}_{\mathbf{T}}$の線型構造]
 			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
 			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
 			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．
@@ -38,39 +38,26 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[$\mathscr{M}_2$の擬距離構造]\label{thm:pseudo_metric_on_square_integrable_martingales}
-			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
+		\begin{thm}[$\mathscr{M}_{\mathbf{T}}$は完備な擬距離空間]\label{thm:pseudo_metric_on_square_integrable_martingales}
+			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,T]$とし，
 			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．このとき
 			\begin{align}
-				\mathbf{T} = [0,T]
+				\mathscr{M}_{\mathbf{T}} \times \mathscr{M}_{\mathbf{T}} \ni (X,Y) \longmapsto
+				\left\{\int_\Omega |X_T-Y_T|^2\ dP\right\}^{\frac{1}{2}}
 			\end{align}
-			であるとき
-			\begin{align}
-				\mathscr{M}^{\mathbf{T}} \times \mathscr{M}^{\mathbf{T}} \ni (X,Y) \longmapsto
-				\Norm{X_T - Y_T}{2}
-			\end{align}
-			なる関係を$d$とし，
-			\begin{align}
-				\mathbf{T} = [0,\infty[
-			\end{align}
-			であるとき
-			\begin{align}
-				\mathscr{M}^{\mathbf{T}} \times \mathscr{M}^{\mathbf{T}} \ni (X,Y) \longmapsto
-				\sum_{n \in \Natural} \frac{1}{2^n} \cdot \min \left\{ \Norm{X_n - Y_n}{2},1 \right\}
-			\end{align}
-			なる関係を$d$とすると，いずれの場合も$\left(\mathscr{M}^{\mathbf{T}},d\right)$は完備な擬距離空間となる．
-			また$\mathscr{M}^{\mathbf{T}}_c$はその閉集合となる．
+			なる関係を$d$とすると，$\left(\mathscr{M}_{\mathbf{T}},d\right)$は完備な擬距離空間である．
+			また$\mathscr{M}_{\mathbf{T}}^c$はその完備な部分集合である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}\mbox{}
 		\begin{description}
-			\item[第一段] $T = [0,T]$であるとする．いま
+			\item[第一段] いま
 				\begin{align}
-					\Natural \ni n \longmapsto X^{(n)} \in \mathscr{M}^{\mathbf{T}}
+					\Natural \ni n \longmapsto X^{(n)} \in \mathscr{M}_{\mathbf{T}}
 				\end{align}
-				なる関係を$\left(\mathscr{M}^{\mathbf{T}},d\right)$のCauchy列とする．このとき
+				なる関係を$\left(\mathscr{M}_{\mathbf{T}},d\right)$のCauchy列とする．すると
 				\begin{align}
 					\forall k \in \Natural\, \left[\, d\left( X^{(n_k)},X^{(n_{k+1})} \right) < \frac{1}{2^{k+1}}\, \right]
 				\end{align}
@@ -85,7 +72,7 @@
 					< \frac{1}{4^k}
 					\label{fom:thm_pseudo_metric_on_square_integrable_martingales_2}
 				\end{align}
-				が成立する．自然数$k$に対して
+				が成立する．従って，自然数$k$に対して
 				\begin{align}
 					E_k \defeq \left\{ \frac{1}{2^k} \leq \sup{t \in [0,T]}{\left|X_t^{(n_k)} - X_t^{(n_{k+1})}\right|} \right\}
 				\end{align}
@@ -116,7 +103,8 @@
 					\end{cases} 
 				\end{align}
 				で定める関係を$X$とする．
-				
+			
+			\item[第二段]
 				$X$のパスが右連続(または連続)であることを示す．$\omega$を$\Omega \backslash E$の要素とすれば
 				(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_1})より
 				\begin{align}
@@ -125,14 +113,15 @@
 				\end{align}
 				を満たす自然数$N$が取れるので，パスは一様収束している．ゆえに
 				\begin{align}
-					\left\{X^{(n)}\right\} \subset \mathscr{M}^{\mathbf{T}}
+					\left\{X^{(n)}\right\} \subset \mathscr{M}_{\mathbf{T}}
 				\end{align}
 				ならば$X$は右連続であり，
 				\begin{align}
-					\left\{X^{(n)}\right\} \subset \mathscr{M}_c^{\mathbf{T}}
+					\left\{X^{(n)}\right\} \subset \mathscr{M}^c_{\mathbf{T}}
 				\end{align}
 				ならば$X$は連続である．
-				
+			
+			\item[第三段]
 				$X$が$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合であることを示す．
 				$t$を$\mathbf{T}$の任意の要素とすれば
 				\begin{align}
@@ -146,6 +135,7 @@
 				なので，各自然数$k$で$X_t^{(n_k)} \defunc_{\Omega \backslash E}$は$\mathscr{F}_t/\borel{\R}$-可測である．
 				よって定理\ref{lem:measurability_metric_space}より$X_t$は$\mathscr{F}_t/\borel{\R}$-可測である．
 				
+			\item[第四段]
 				$X$が二乗可積分な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールであることを示す．
 				$t$を$\mathbf{T}$の任意の要素とすれば，Fatouの補題と
 				(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_1})より
@@ -159,12 +149,16 @@
  				\end{align}
  				が成立する．ゆえにMinkowskiの不等式から
  				\begin{align}
- 					\Norm{X_t}{2} \leq \Norm{X_t - X_t^{(n_k)}}{2} + \Norm{X_t^{(n_k)}}{2} < \infty
+ 					\left\{\int_\Omega |X_t|^2\ dP\right\}^{\frac{1}{2}}
+ 					\leq \left\{\int_\Omega \left|X_t - X^{(n_k)}_t\right|^2\ dP\right\}^{\frac{1}{2}}
+ 					+ \left\{\int_\Omega \left|X^{(n_k)}_t\right|^2\ dP\right\}^{\frac{1}{2}}
+ 					< \infty
  				\end{align}
  				が成立する．またH\Ddot{o}lderの不等式から
  				\begin{align}
  					\int_\Omega \left|X_t-X_t^{(n_k)}\right|\ dP
- 					\leq \Norm{X_t - X_t^{(n_k)}}{2} \longrightarrow 0\quad (k \longrightarrow \infty)
+ 					\leq \left\{\int_\Omega \left|X_t - X^{(n_k)}_t\right|^2\ dP\right\}^{\frac{1}{2}}
+ 					\longrightarrow 0\quad (k \longrightarrow \infty)
  				\end{align}
  				が成り立つ．ゆえに，いま$s$と$t$を
  				\begin{align}
@@ -177,10 +171,11 @@
  					= \int_A X_s\ dP
  				\end{align}
  				が成り立つ．
- 				
+ 			
+ 			\item[第五段]
  				以上より
  				\begin{align}
- 					X \in \mathscr{M}^{\mathbf{T}}
+ 					X \in \mathscr{M}_{\mathbf{T}}
  				\end{align}
  				である．最後に，(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_3})より
  				\begin{align}
@@ -192,9 +187,7 @@
  					d\left(X,X^{(n)}\right) \longrightarrow 0\quad (n \longrightarrow \infty)
  				\end{align}
  				が従う．
- 				
-			\item[第二段] $T = [0,\infty[$であるとする．
-				
+ 				\QED
 		\end{description}
 	\end{sketch}
 	
@@ -204,14 +197,36 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}
+		\begin{thm}[二乗可積分マルチンゲールは局所マルチンゲール]
 			\begin{align}
-				\mathscr{M}^{\mathbf{T}} \subset \mathscr{M}^{\mathbf{T}}_{loc}.
+				\mathscr{M}_{\mathbf{T}} \subset \mathscr{M}^{loc}_{\mathbf{T}}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		
+	\end{sketch}
+	
 	\begin{screen}
-		\begin{thm}[マルチンゲールの二乗過程は増大過程とマルチンゲールに分解できる]
+		\begin{dfn}[増大過程]
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[マルチンゲールの二乗過程は自然増大過程とマルチンゲールに分解できる]
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
