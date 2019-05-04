@@ -83,6 +83,7 @@
 					\int_\Omega \left\{ \sup{t \in [0,T]}{\left|X_t^{(n_k)} - X_t^{(n_{k+1})}\right|} \right\}^2\ dP
 					\leq 4 \int_\Omega \left|X_T^{(n_k)} - X_T^{(n_{k+1})}\right|^2\ dP
 					< \frac{1}{4^k}
+					\label{fom:thm_pseudo_metric_on_square_integrable_martingales_2}
 				\end{align}
 				が成立する．自然数$k$に対して
 				\begin{align}
@@ -116,8 +117,8 @@
 				\end{align}
 				で定める関係を$X$とする．
 				
-				$X$のパスが右連続(または連続)であることを示す．
-				$\omega$を$\Omega \backslash E$の要素とすれば(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_1})より
+				$X$のパスが右連続(または連続)であることを示す．$\omega$を$\Omega \backslash E$の要素とすれば
+				(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_1})より
 				\begin{align}
 					\forall k \in \Natural\,
 					\left[\, N < k \Longrightarrow \sup{t \in [0,T]}{\left|X_t^{(n_k)}(\omega) - X_t(\omega)\right|} \leq \frac{1}{2^k}\, \right]
@@ -145,8 +146,53 @@
 				なので，各自然数$k$で$X_t^{(n_k)} \defunc_{\Omega \backslash E}$は$\mathscr{F}_t/\borel{\R}$-可測である．
 				よって定理\ref{lem:measurability_metric_space}より$X_t$は$\mathscr{F}_t/\borel{\R}$-可測である．
 				
-				$X$が$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールであることを示す．
-				
+				$X$が二乗可積分な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールであることを示す．
+				$t$を$\mathbf{T}$の任意の要素とすれば，Fatouの補題と
+				(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_1})より
+				任意の自然数$k$で
+				\begin{align}
+					\int_\Omega \left|X_t-X_t^{(n_k)}\right|^2\ dP
+					\leq \sup{n \in \Natural}{\inf{\substack{j \in \Natural \\ n < j}}{
+					\int_\Omega \left|X_t^{(n_j)}-X_t^{(n_k)}\right|^2\ dP}}
+					\leq \frac{1}{4^k}
+					\label{fom:thm_pseudo_metric_on_square_integrable_martingales_3}
+ 				\end{align}
+ 				が成立する．ゆえにMinkowskiの不等式から
+ 				\begin{align}
+ 					\Norm{X_t}{2} \leq \Norm{X_t - X_t^{(n_k)}}{2} + \Norm{X_t^{(n_k)}}{2} < \infty
+ 				\end{align}
+ 				が成立する．またH\Ddot{o}lderの不等式から
+ 				\begin{align}
+ 					\int_\Omega \left|X_t-X_t^{(n_k)}\right|\ dP
+ 					\leq \Norm{X_t - X_t^{(n_k)}}{2} \longrightarrow 0\quad (k \longrightarrow \infty)
+ 				\end{align}
+ 				が成り立つ．ゆえに，いま$s$と$t$を
+ 				\begin{align}
+ 					s < t
+ 				\end{align}
+ 				なる$\mathbf{T}$の要素とすれば，$\mathscr{F}_s$の任意の要素$A$で
+ 				\begin{align}
+ 					\int_A X_t\ dP = \lim_{k \to \infty} \int_A X^{(n_k)}_t\ dP
+ 					= \lim_{k \to \infty} \int_A X^{(n_k)}_s\ dP
+ 					= \int_A X_s\ dP
+ 				\end{align}
+ 				が成り立つ．
+ 				
+ 				以上より
+ 				\begin{align}
+ 					X \in \mathscr{M}^{\mathbf{T}}
+ 				\end{align}
+ 				である．最後に，(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_3})より
+ 				\begin{align}
+ 					d\left(X,X^{(n_k)}\right) = \int_\Omega \left|X_T-X_T^{(n_k)}\right|^2\ dP
+ 					\longrightarrow 0\quad (k \longrightarrow \infty)
+ 				\end{align}
+ 				が成り立つので$X$は$d$に関して$k \longmapsto X^{(n_k)}$の極限である．ゆえに
+ 				\begin{align}
+ 					d\left(X,X^{(n)}\right) \longrightarrow 0\quad (n \longrightarrow \infty)
+ 				\end{align}
+ 				が従う．
+ 				
 			\item[第二段] $T = [0,\infty[$であるとする．
 				
 		\end{description}
