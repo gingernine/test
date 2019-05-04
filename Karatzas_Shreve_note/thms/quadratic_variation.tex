@@ -1,26 +1,33 @@
 \section{二乗可積分マルチンゲール}
+	本節では$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
+	$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとする．
+	
 	\begin{screen}
 		\begin{dfn}[二乗可積分マルチンゲール]
-			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとする．
-			$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールで，
-			\begin{align}
-				\forall t \in \mathbf{T}\, \left(\, E\left(|X_t|^2\right) < \infty\, \right)
-			\end{align}
-			かつ
-			\begin{align}
-				\forall \omega \in \Omega\, \left(\, X(0,\omega) = 0\, \right)
-			\end{align}
-			を満たすものとするとき，$X$を二乗可積分な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールと呼ぶ．また
-			$(\Omega,\mathscr{F},P)$上の二乗可積分な右連続$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールの全体を
+			$(\Omega,\mathscr{F},P)$上の右連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールで，
+			$\Omega$の任意の要素$\omega$に対して$(0,\omega)$に$0$を対応させるものの全体を
 			\begin{align}
 				\mathscr{M}_{\mathbf{T}}
 			\end{align}
-			として，同様に$(\Omega,\mathscr{F},P)$上の二乗可積分な連続$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールの全体を
+			とおく．$\mathscr{M}_{\mathbf{T}}$の要素のうち連続であるものの全体を
 			\begin{align}
-				\mathscr{M}_{\mathbf{T}}^c
+				\mathscr{M}^c_{\mathbf{T}}
 			\end{align}
-			とする．
+			とおく．$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールで
+			\begin{align}
+				\forall t \in \mathbf{T}\, \left(\, E\left(|X_t|^2\right) < \infty\, \right)
+			\end{align}
+			を満たすものとするとき，$X$を{\bf 二乗可積分}{\bf (square integrable)}な
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールと呼ぶ．
+			$\mathscr{M}_{\mathbf{T}}$の要素のうち二乗可積分であるものの全体を
+			\begin{align}
+				\mathscr{M}^2_{\mathbf{T}}
+			\end{align}
+			とおき，また
+			\begin{align}
+				\mathscr{M}^{2,c}_{\mathbf{T}} \defeq \mathscr{M}^c_{\mathbf{T}} \cap \mathscr{M}^2_{\mathbf{T}}
+			\end{align}
+			とおく．
 		\end{dfn}
 	\end{screen}
 	
@@ -30,24 +37,33 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[$\mathscr{M}_{\mathbf{T}}$の線型構造]
-			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．
+		\begin{thm}[$\mathscr{M}^2_{\mathbf{T}}$の線型構造]
+			$X$と$Y$を$\mathscr{M}^2_{\mathbf{T}}$の要素とするとき，$(X,Y)$に対して
+			\begin{align}
+				(t,\omega) \longmapsto X(t,\omega) + Y(t,\omega)
+			\end{align}
+			なる写像を対応させる関係$+_m$を$\mathscr{M}^2_{\mathbf{T}}$上の加法とし，
+			また$\alpha$を実数とするときに$(\alpha,X)$に対して
+			\begin{align}
+				(t,\omega) \longmapsto \alpha \cdot X(t,\omega)
+			\end{align}
+			なる写像を対応させる関係$s$をスカラ倍とすれば，
+			\begin{align}
+				\left(\left(\mathscr{M}^2_{\mathbf{T}},+_m \right),(\R,+,\bullet),s\right)
+			\end{align}
+			は線型空間である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[$\mathscr{M}_{\mathbf{T}}$は完備な擬距離空間]\label{thm:pseudo_metric_on_square_integrable_martingales}
-			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,T]$とし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．このとき
+		\begin{thm}[$\mathscr{M}^2_{\mathbf{T}}$は完備な擬距離空間]\label{thm:pseudo_metric_on_square_integrable_martingales}
+			$\mathbf{T} = [0,T]$とし，$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．このとき
 			\begin{align}
-				\mathscr{M}_{\mathbf{T}} \times \mathscr{M}_{\mathbf{T}} \ni (X,Y) \longmapsto
+				\mathscr{M}^2_{\mathbf{T}} \times \mathscr{M}^2_{\mathbf{T}} \ni (X,Y) \longmapsto
 				\left\{\int_\Omega |X_T-Y_T|^2\ dP\right\}^{\frac{1}{2}}
 			\end{align}
-			なる関係を$d$とすると，$\left(\mathscr{M}_{\mathbf{T}},d\right)$は完備な擬距離空間である．
-			また$\mathscr{M}_{\mathbf{T}}^c$はその完備な部分集合である．
+			なる関係を$d$とすると，$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$は完備な擬距離空間である．
+			また$\mathscr{M}^{2,c}_{\mathbf{T}}$はその完備な部分集合である．
 		\end{thm}
 	\end{screen}
 	
@@ -55,9 +71,9 @@
 		\begin{description}
 			\item[第一段] いま
 				\begin{align}
-					\Natural \ni n \longmapsto X^{(n)} \in \mathscr{M}_{\mathbf{T}}
+					\Natural \ni n \longmapsto X^{(n)} \in \mathscr{M}^2_{\mathbf{T}}
 				\end{align}
-				なる関係を$\left(\mathscr{M}_{\mathbf{T}},d\right)$のCauchy列とする．すると
+				なる関係を$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$のCauchy列とする．すると
 				\begin{align}
 					\forall k \in \Natural\, \left[\, d\left( X^{(n_k)},X^{(n_{k+1})} \right) < \frac{1}{2^{k+1}}\, \right]
 				\end{align}
@@ -113,11 +129,11 @@
 				\end{align}
 				を満たす自然数$N$が取れるので，パスは一様収束している．ゆえに
 				\begin{align}
-					\left\{X^{(n)}\right\} \subset \mathscr{M}_{\mathbf{T}}
+					\left\{X^{(n)}\right\} \subset \mathscr{M}^2_{\mathbf{T}}
 				\end{align}
 				ならば$X$は右連続であり，
 				\begin{align}
-					\left\{X^{(n)}\right\} \subset \mathscr{M}^c_{\mathbf{T}}
+					\left\{X^{(n)}\right\} \subset \mathscr{M}^{2,c}_{\mathbf{T}}
 				\end{align}
 				ならば$X$は連続である．
 			
@@ -175,7 +191,7 @@
  			\item[第五段]
  				以上より
  				\begin{align}
- 					X \in \mathscr{M}_{\mathbf{T}}
+ 					X \in \mathscr{M}^2_{\mathbf{T}}
  				\end{align}
  				である．最後に，(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_3})より
  				\begin{align}
@@ -192,6 +208,122 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{dfn}[増大過程]
+			$A$が$\mathbf{T} \times \Omega$上の$\R$値写像であって，かつ
+			\begin{itemize}
+				\item $\forall \omega \in \Omega\, (\, A_0(\omega) = 0\, )$
+				\item $A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合
+				\item $A$のすべてのパスが単調非減少
+			\end{itemize}
+			を満たすとき，$A$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 増大過程}
+			\index{ぞうだいかてい@増大過程}{\bf (increasing process)}と呼ぶ．
+			$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程の全体を
+			\begin{align}
+				\mathscr{A}^+_{\mathbf{T}}
+			\end{align}
+			で表し，区別不能性で類別した商集合を
+			\begin{align}
+				\mathfrak{A}^+_{\mathbf{T}}
+			\end{align}
+			で表す．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{comment}
+	\begin{screen}
+		\begin{dfn}[ナチュラル]
+			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T}$を$[0,\infty[$か$[0,T]$とし，
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとする．
+			$A$が$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程であって，
+			かつ$M$を任意に与えられた$(\Omega,\mathscr{F},P)$上の有界かつ$RCLL$な
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールとするときに
+			\begin{align}
+				\forall t \in \mathbf{T}\, 
+				\left[\, E(M_t A_t) = E \int_{(0,t]} M_{s-}\ dA_s\, \right]
+			\end{align}
+			を満たすならば，$A$は{\bf ナチュラル}\index{ナチュラル}{\bf (natural)}であるという．
+		\end{dfn}
+	\end{screen}
+	\end{comment}
+	
+	\begin{screen}
+		\begin{thm}[局所マルチンゲールの二乗過程は増大過程と局所マルチンゲールに分解できる]
+			$\mathbf{T} = [0,T]$とし，$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．
+			このとき，$X$を$\mathscr{M}^{loc}_{\mathbf{T}}$の要素とすれば，
+			$\mathfrak{A}^+_{\mathbf{T}}$の要素$Q$が唯一つ取れて，
+			$Q$の任意の要素$A$に対して
+			\begin{align}
+				X^2 - A \in \mathscr{M}^{loc}_{\mathbf{T}}
+			\end{align}
+			となる．特に
+			\begin{align}
+				X \in \mathscr{M}^{c,loc}_{\mathbf{T}}
+			\end{align}
+			であれば$Q$の中から連続なものが取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1-1] $X$が有界であるとする．つまりいま
+				\begin{align}
+					\forall t \in \mathbf{T}\, \forall \omega \in \Omega\,
+					\left(\, |X(t,\omega)| \leq b\, \right)
+				\end{align}
+				を満たす実数$b$が取れる．
+			
+			\item[step1-2] $n$を自然数とし，
+				\begin{align}
+					(t,\omega) \longmapsto \sum_{j=0}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}}(\omega)
+					- X_{\min\left\{t,\frac{j}{2^n}T\right\}}(\omega)\right)^2
+				\end{align}
+				なる写像を$A^{(n)}$とする．このとき
+				\begin{align}
+					X^2 - A^{(n)} \in \mathscr{M}^2_{\mathbf{T}}
+				\end{align}
+				であることを示す．まず$X$の右連続性より$A^{(n)}$も右連続である．また$X$が連続である場合は$A^{(n)}$も連続である．
+				全ての$j$で
+				\begin{align}
+					X_{\min\left\{t,\frac{j}{2^n}T\right\}}
+				\end{align}
+				は$\mathscr{F}_t/\borel{\R}$-可測なので，$X^2-A^{(n)}$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合である．
+				いまは$X$も$A^{(n)}$も有界であるから，$\mathbf{T}$の任意の要素$t$で
+				\begin{align}
+					\int_{\Omega} \left|X_t^2-A_t^{(n)}\right|^2\ dP < \infty
+				\end{align}
+				が成立する．$s$と$t$を
+				\begin{align}
+					s < t
+				\end{align}
+				なる$\mathbf{T}$の要素とする．そして
+				\begin{align}
+					\frac{k}{2^n}T \leq s < \frac{k+1}{2^n}T
+				\end{align}
+				を満たす$k$を取る．このとき
+				\begin{align}
+					A^{(n)}_t - A^{(n)}_s
+					&= \sum_{j=k}^{2^n-1} \left\{
+					\left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{t,\frac{j}{2^n}T\right\}}\right)^2
+					- \left(X_{\min\left\{s,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{s,\frac{j}{2^n}T\right\}}\right)^2\right\} \\
+					&= \sum_{j=k+1}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{t,\frac{j}{2^n}T\right\}}\right)^2
+					+ \left(X_{\min\left\{t,\frac{k+1}{2^n}T\right\}} - X_{\frac{k}{2^n}T}\right)^2
+					- \left(X_s - X_{\frac{k}{2^n}T}\right)^2
+				\end{align}
+				が成り立ち，また
+				\begin{align}
+					j \in \{k+1,K+2,\cdots,2^n-1\}
+				\end{align}
+				なる各$j$で$P$-a.s.に
+				\begin{align}
+					\cexp{ \left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{t,\frac{j}{2^n}T\right\}}\right)^2}{\mathscr{F}_s}
+					= \cexp{ X^2_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X^2_{\min\left\{t,\frac{j}{2^n}T\right\}}}{\mathscr{F}_s}
+				\end{align}
+				
+				
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{dfn}[局所マルチンゲール]
 		\end{dfn}
 	\end{screen}
@@ -199,7 +331,7 @@
 	\begin{screen}
 		\begin{thm}[二乗可積分マルチンゲールは局所マルチンゲール]
 			\begin{align}
-				\mathscr{M}_{\mathbf{T}} \subset \mathscr{M}^{loc}_{\mathbf{T}}.
+				\mathscr{M}^2_{\mathbf{T}} \subset \mathscr{M}^{loc}_{\mathbf{T}}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -208,25 +340,3 @@
 		
 	\end{sketch}
 	
-	\begin{screen}
-		\begin{dfn}[増大過程]
-		\end{dfn}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		
-	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}[マルチンゲールの二乗過程は自然増大過程とマルチンゲールに分解できる]
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		
-	\end{sketch}

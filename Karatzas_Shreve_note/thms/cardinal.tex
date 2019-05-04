@@ -15,39 +15,45 @@
 	
 	\begin{screen}
 		\begin{dfn}[対等]
-			$a,b$を類とするとき，$a$と$b$が{\bf 対等である}\index{たいとう@対等}{\bf (equipotent)}ということを
+			$\Univ$上の関係$\eqp$を
 			\begin{align}
-				a \eqp b \overset{\mathrm{def}}{\Longleftrightarrow} 
-				\exists f\, \left(\, f: a \bij b\, \right)
+				\eqp\ \defeq \Set{x}{\exists s,t\, \left[\, x=(s,t) \wedge 
+				\exists f\, \left(\, f: s \bij t\, \right)\, \right]}
 			\end{align}
-			で定める．
+			で定める．$a$と$b$を集合とするとき，
+			\begin{align}
+				(a,b) \in\ \eqp
+			\end{align}
+			なる式を``$a$と$b$は{\bf 対等である}\index{たいとう@対等}{\bf (equipotent)}''と翻訳し，中置記法によって
+			\begin{align}
+				a \eqp b
+			\end{align}
+			とも書く．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[対等関係は同値関係]
-			$\Univ$上の関係$R$を
-			\begin{align}
-				R \coloneqq \Set{x}{\exists s,t\, (\, x=(s,t) \wedge s \eqp t\, )}
-			\end{align}
-			で定めるとき，$R$は$\Univ$上の同値関係となる．
+			$\eqp$は$\Univ$上の同値関係である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{dfn}[濃度・基数]
-			$a$を類とするとき，$a$と対等な順序数のうち最小のもの，つまり
+			集合$a$に対して，$a$と対等な順序数のうち最小のものを対応させる関係を
 			\begin{align}
-				\card{a} \coloneqq \mu \alpha\, (\, a \eqp \alpha\, )
+				\card{} \defeq \Set{x}{\exists a\, \exists \alpha \in \ON\, 
+				\left[\, x=(a,\alpha) \wedge a \eqp \alpha \wedge
+				\forall \beta \in \ON\, \left(\, a \eqp \beta \Longrightarrow \alpha \leq \beta\, \right)\, \right]}
 			\end{align}
-			で定める$\card{a}$を$a$の{\bf 濃度}\index{のうど@濃度}{\bf (cardinal)}と呼び，
+			で定める．$\card{a}$を$a$の{\bf 濃度}\index{のうど@濃度}{\bf (cardinal)}と呼び，
 			\begin{align}
 				\card{\alpha} = \alpha
 			\end{align}
 			を満たす順序数$\alpha$を{\bf 基数}\index{きすう@基数}{\bf (cardinal number)}と呼ぶ．
 			また基数の全体を
 			\begin{align}
-				\CN \coloneqq \Set{x}{\exists \alpha \in \ON\, (\, \card{\alpha} = \alpha \wedge x = \alpha\, )}
+				\CN \defeq \Set{\alpha}{\alpha \in \ON \wedge \card{\alpha} = \alpha}
 			\end{align}
 			とおく．
 		\end{dfn}
@@ -375,15 +381,6 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[真類の濃度は$0$]
-			$a$を類とするとき次が成り立つ:
-			\begin{align}
-				\rightharpoondown \set{a} \Longrightarrow \card{a} = 0.
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
 		\begin{thm}[対等な集合同士は冪も対等]
 			\begin{align}
 				\forall a\, \forall b\, \left(\, a \eqp b \Longrightarrow \dirpro{a} \eqp \dirpro{b}\, \right).
@@ -524,7 +521,10 @@
 			\end{align}
 			とおく(`I' は Infinite の意)．$\Univ$上の写像$G$を
 			\begin{align}
-				G \coloneqq \Set{x}{\exists s\, \left(\, x=(s,\mu \alpha\, (\, \alpha \in \InfCN \backslash \ran{s}\, )\, \right)}
+				G \defeq \Set{x}{\exists s\, \exists \alpha \in \ON\, 
+				\left[\, x=(s,\alpha) \wedge \alpha \in \InfCN \backslash \ran{s} \wedge
+				\forall \beta \in \ON\, \left(\, \beta \in \InfCN \backslash \ran{s}
+				\Longrightarrow \beta \leq \alpha\, \right)\, \right]}
 			\end{align}
 			で定めるとき，超限帰納法による写像の構成から
 			\begin{align}
