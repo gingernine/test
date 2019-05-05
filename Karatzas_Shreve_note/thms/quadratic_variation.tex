@@ -160,7 +160,7 @@
 			\item[第四段]
 				$X$が二乗可積分な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールであることを示す．
 				$t$を$\mathbf{T}$の任意の要素とすれば，Fatouの補題と
-				(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_1})より
+				(\refeq{fom:thm_pseudo_metric_on_square_integrable_martingales_2})より
 				任意の自然数$k$で
 				\begin{align}
 					\int_\Omega \left|X_t-X_t^{(n_k)}\right|^2\ dP
@@ -424,6 +424,7 @@
 				なる$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$のCauchy列$h$で，任意の自然数$n$で
 				\begin{align}
 					h(n) \in \conv{\Set{X^2-A^{(k)}}{k \in \Natural \wedge n \leq k}}
+					\label{fom:thm_decomposition_of_local_martingales_3}
 				\end{align}
 				を満たすものが取れて，定理\ref{thm:pseudo_metric_on_square_integrable_martingales}より
 				\begin{align}
@@ -445,7 +446,7 @@
 				とおく．定め方より$A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合であって，右連続でもあり，特に$X$が連続なら$A$も連続である．
 				あとは$A$の増大性を示せばよい．いま任意の自然数$k$に対し
 				\begin{align}
-					d(h(n_k),M) < \frac{1}{2^{k+1}}
+					d(h(n_k),M) < \frac{1}{4^{k+1}}
 				\end{align}
 				を満たす部分列
 				\begin{align}
@@ -456,10 +457,113 @@
 					\int_\Omega \left\{\sup{t \in [0,T]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|}\right\}^2\ dP
 					&= \int_\Omega \left\{\sup{t \in [0,T]}{\left|h(n_k)_t - M_t\right|}\right\}^2\ dP \\
 					&\leq 4 \cdot \int_\Omega \left|h(n_k)_T - M_T\right|^2\ dP \\
-					&< \frac{1}{4^k}
+					&< \frac{1}{8^k}
 				\end{align}
-				が成り立つ．
+				が成り立つ．従って，自然数$k$に対して
+				\begin{align}
+					E_k \defeq \left\{ \frac{1}{2^k} \leq \sup{t \in [0,T]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|} \right\}
+				\end{align}
+				とおけば
+				\begin{align}
+					P(E_k) < \frac{1}{2^k}
+				\end{align}
+				が成立するので，Borel-Cantelliの補題より
+				\begin{align}
+					E \defeq \bigcap_{n \in \Natural} \bigcup_{\substack{k \in \Natural \\ n < k}} E_k
+				\end{align}
+				で定める$E$は$P$-零集合である．いま$\omega$を$\Omega \backslash E$の要素とする．すると
+				\begin{align}
+					\forall k \in \Natural\,
+					\left[\, K < k \Longrightarrow \sup{t \in [0,T]}{\left|\left(X^2_t(\omega) - h(n_k)_t(\omega)\right) - A_t(\omega)\right|} < \frac{1}{2^k}\, \right]
+					\label{fom:thm_decomposition_of_local_martingales_4}
+				\end{align}
+				を満たす自然数$K$が取れる．ここで
+				\begin{align}
+					D_k \defeq \Set{\frac{j}{2^{n_k}}T}{j \in \{0,1,\cdots,2^{n_k}\}}
+				\end{align}
+				とおき
+				\begin{align}
+					D \defeq \bigcup_{k \in \Natural} D_k
+				\end{align}
+				とおく．$s$と$t$を
+				\begin{align}
+					s < t
+				\end{align}
+				なる$D$の要素とするとき
+				\begin{align}
+					s \in D_N \wedge t \in D_N
+				\end{align}
+				を満たす自然数$N$が取れるが，このとき
+				\begin{align}
+					N \leq k
+				\end{align}
+				なる任意の自然数$k$に対して
+				\begin{align}
+					X^2_s(\omega) - h(n_k)_s(\omega) \leq X^2_t(\omega) - h(n_k)_t(\omega)
+				\end{align}
+				が成り立つ．なぜならば(\refeq{fom:thm_decomposition_of_local_martingales_3})より
+				\begin{align}
+					X^2 - h(n_k) \in \conv{\Set{A^{(j)}}{j \in \Natural \wedge n_k \leq j}}
+				\end{align}
+				となるためである．そして(\refeq{fom:thm_decomposition_of_local_martingales_4})と併せて
+				\begin{align}
+					A_s(\omega) \leq A_t(\omega)
+				\end{align}
+				が従う．$s$と$t$が
+				\begin{align}
+					s < t
+				\end{align}
+				なる$\mathbf{T}$の要素であるときは，
+				\begin{align}
+					\{t_n\}_{n \in \Natural} \subset [t,T] \cap D
+				\end{align}
+				かつ
+				\begin{align}
+					t_n \downarrow t
+				\end{align}
+				を満たす$\{t_n\}_{n \in \Natural}$と
+				\begin{align}
+					\{s_n\}_{n \in \Natural} \subset [s,t) \cap D
+				\end{align}
+				かつ
+				\begin{align}
+					s_n \downarrow s
+				\end{align}
+				を満たす$\{s_n\}_{n \in \Natural}$を取れば
+				\begin{align}
+					\forall n \in \Natural\, \left(\, A_{s_n}(\omega) \leq A_{t_n}(\omega)\, \right)
+				\end{align}
+				が成り立ち，また$A$は右連続であるから
+				\begin{align}
+					A_s(\omega) \leq A_t(\omega)
+				\end{align}
+				が従う．ちなみに$\Omega$の任意の要素$\omega$で
+				\begin{align}
+					X^2_0(\omega) - h(n_k)_0(\omega) = 0
+				\end{align}
+				が成り立つので(\refeq{fom:thm_decomposition_of_local_martingales_4})から
+				\begin{align}
+					\omega \in \Omega \backslash E \Longrightarrow A_0(\omega) = 0
+				\end{align}
+				も満たされる．最後に，
+				\begin{align}
+					(t,\omega) \longmapsto
+					\begin{cases}
+						A_t(\omega) & \mbox{if } \omega \in \Omega \backslash E \\
+						0 & \mbox{if } \omega \in E
+					\end{cases}
+				\end{align}
+				なる写像を$\tilde{A}$とすれば，
+				\begin{align}
+					\tilde{A} \in \mathscr{A}^+_{\mathbf{T}}
+				\end{align}
+				かつ
+				\begin{align}
+					X^2 - \tilde{A} \in \mathscr{M}^2_{\mathbf{T}}
+				\end{align}
+				が成立する．とくに$X$が連続である場合は$\tilde{A}$も連続である．
 				
+			\item[step2-1]
 		\end{description}
 	\end{sketch}
 	
