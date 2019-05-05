@@ -1,6 +1,11 @@
 \section{二乗可積分マルチンゲール}
 	本節では$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$か$[0,T]$とし，
 	$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとする．
+	また$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が完備であるとは
+	\begin{align}
+		\Set{a}{a \in \mathscr{F} \wedge P(a) = 0} \subset \mathscr{F}_0
+	\end{align}
+	が成り立っていることである．
 	
 	\begin{screen}
 		\begin{dfn}[二乗可積分マルチンゲール]
@@ -15,7 +20,7 @@
 			\end{align}
 			とおく．$X$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールで
 			\begin{align}
-				\forall t \in \mathbf{T}\, \left(\, E\left(|X_t|^2\right) < \infty\, \right)
+				\forall t \in \mathbf{T}\, \left(\, \int_\Omega |X_t|^2\ dP < \infty\, \right)
 			\end{align}
 			を満たすものとするとき，$X$を{\bf 二乗可積分}{\bf (square integrable)}な
 			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールと呼ぶ．
@@ -248,6 +253,7 @@
 	
 	\begin{screen}
 		\begin{thm}[局所マルチンゲールの二乗過程は増大過程と局所マルチンゲールに分解できる]
+		\label{thm:decomposition_of_local_martingales}
 			$\mathbf{T} = [0,T]$とし，$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．
 			このとき，$X$を$\mathscr{M}^{loc}_{\mathbf{T}}$の要素とすれば，
 			$\mathfrak{A}^+_{\mathbf{T}}$の要素$Q$が唯一つ取れて，
@@ -345,7 +351,66 @@
 				となる．ゆえに$X^2 - A^{(n)}$は二乗可積分マルチンゲールである．
 				
 			\item[step1-3]
-				$X^2 - A^{(n)}$が$\mathscr{M}^2_{\mathbf{T}}$で有界であることを示す．
+				任意の自然数$n$に対して
+				\begin{align}
+					\int_\Omega \left|X_T^2 - A_T^{(n)}\right|^2\ dP
+					\leq 14 \cdot b^2 \cdot \int_\Omega \left|X_T\right|^2\ dP
+				\end{align}
+				が成り立つことを示す．いま
+				\begin{align}
+					M \defeq X^2 - A^{(n)}
+				\end{align}
+				とおけば
+				\begin{align}
+					\int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP
+					&= \int_\Omega \left(M_{\frac{j+1}{2^n}} - M_{\frac{j}{2^n}} \right)^2\ dP \\
+					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\left(A^{(n)}_{\frac{j+1}{2^n}} - A^{(n)}_{\frac{j}{2^n}}\right) \right\}^2\ dP \\
+					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\int_\Omega \left|M_T\right|^2\ dP
+					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP \\
+						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP \\
+						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP \\
+					\label{fom:thm_decomposition_of_local_martingales_1}
+				\end{align}
+				が成り立つ．ここで
+				\begin{align}
+					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP
+					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+				\end{align}
+				かつ
+				\begin{align}
+					\int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP
+					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+				\end{align}
+				かつ
+				\begin{align}
+					\int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
+					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
+					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+				\end{align}
+				が成り立つので
+				\begin{align}
+					(\refeq{fom:thm_decomposition_of_local_martingales_1})
+					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
+					&= 14 \cdot b^2 \cdot \int_\Omega \left|X_T\right|^2\ dP
+				\end{align}
+				が成立する．
+				
+			\item[step1-4]
+				$\mathscr{M}^2_{\mathbf{T}}$に定理\ref{thm:pseudo_metric_on_square_integrable_martingales}の
+				擬距離$d$を定めるとき，step1-3より
+				\begin{align}
+					\left\{X^2 - A^{(n)}\right\}_{n \in \Natural}
+				\end{align}
+				は$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$で有界である．ゆえにKomlosの補題より
 				
 		\end{description}
 	\end{sketch}
