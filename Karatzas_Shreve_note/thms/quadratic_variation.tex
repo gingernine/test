@@ -61,7 +61,8 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[$\mathscr{M}^2_{\mathbf{T}}$は完備な擬距離空間]\label{thm:pseudo_metric_on_square_integrable_martingales}
+		\begin{thm}[$\mathscr{M}^2_{\mathbf{T}}$は完備な擬距離空間]
+		\label{thm:pseudo_metric_on_square_integrable_martingales}
 			$\mathbf{T} = [0,T]$とし，$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は完備であるとする．このとき
 			\begin{align}
 				\mathscr{M}^2_{\mathbf{T}} \times \mathscr{M}^2_{\mathbf{T}} \ni (X,Y) \longmapsto
@@ -80,7 +81,7 @@
 				\end{align}
 				なる関係を$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$のCauchy列とする．すると
 				\begin{align}
-					\forall k \in \Natural\, \left[\, d\left( X^{(n_k)},X^{(n_{k+1})} \right) < \frac{1}{2^{k+1}}\, \right]
+					\forall k \in \Natural\, \left[\, d\left( X^{(n_k)},X^{(n_{k+1})} \right) < \frac{1}{4^{k+1}}\, \right]
 				\end{align}
 				を満たす部分列
 				\begin{align}
@@ -90,7 +91,7 @@
 				\begin{align}
 					\int_\Omega \left\{ \sup{t \in [0,T]}{\left|X_t^{(n_k)} - X_t^{(n_{k+1})}\right|} \right\}^2\ dP
 					\leq 4 \int_\Omega \left|X_T^{(n_k)} - X_T^{(n_{k+1})}\right|^2\ dP
-					< \frac{1}{4^k}
+					< \frac{1}{8^k}
 					\label{fom:thm_pseudo_metric_on_square_integrable_martingales_2}
 				\end{align}
 				が成立する．従って，自然数$k$に対して
@@ -218,7 +219,7 @@
 			\begin{itemize}
 				\item $\forall \omega \in \Omega\, (\, A_0(\omega) = 0\, )$
 				\item $A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合
-				\item $A$のすべてのパスが単調非減少
+				\item $A$のすべてのパスが右連続かつ単調非減少
 			\end{itemize}
 			を満たすとき，$A$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 増大過程}
 			\index{ぞうだいかてい@増大過程}{\bf (increasing process)}と呼ぶ．
@@ -286,9 +287,9 @@
 				なる写像を$A^{(n)}$とする．このとき
 				\begin{align}
 					X^2 - A^{(n)} \in \mathscr{M}^2_{\mathbf{T}}
+					\label{fom:thm_decomposition_of_local_martingales_2}
 				\end{align}
-				であることを示す．まず$X$の右連続性より$A^{(n)}$も右連続である．また$X$が連続である場合は$A^{(n)}$も連続である．
-				全ての$j$で
+				であることを示す．まず$X$の右連続性より$A^{(n)}$も右連続である．また全ての$j$で
 				\begin{align}
 					X_{\min\left\{t,\frac{j}{2^n}T\right\}}
 				\end{align}
@@ -348,7 +349,13 @@
 				\begin{align}
 					\cexp{X^2_t - A^{(n)}_t}{\mathscr{F}_s} = X^2_s - A^{(n)}_s
 				\end{align}
-				となる．ゆえに$X^2 - A^{(n)}$は二乗可積分マルチンゲールである．
+				となる．以上で(\refeq{fom:thm_decomposition_of_local_martingales_2})が得られたが，
+				$X$が連続である場合は$A^{(n)}$も連続であるから
+				\begin{align}
+					X^2 - A^{(n)} \in \mathscr{M}^{2,c}_{\mathbf{T}}
+					\label{fom:thm_decomposition_of_local_martingales_3}
+				\end{align}
+				が成立する．
 				
 			\item[step1-3]
 				任意の自然数$n$に対して
@@ -362,44 +369,44 @@
 				\end{align}
 				とおけば
 				\begin{align}
-					\int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP
-					&= \int_\Omega \left(M_{\frac{j+1}{2^n}} - M_{\frac{j}{2^n}} \right)^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(A^{(n)}_{\frac{j+1}{2^n}} - A^{(n)}_{\frac{j}{2^n}}\right) \right\}^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP
+					\int_\Omega M_{\frac{j+1}{2^n}T}^2 - M_{\frac{j}{2^n}T}^2\ dP
+					&= \int_\Omega \left(M_{\frac{j+1}{2^n}T} - M_{\frac{j}{2^n}T} \right)^2\ dP \\
+					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} -
+					\left(A^{(n)}_{\frac{j+1}{2^n}T} - A^{(n)}_{\frac{j}{2^n}T}\right) \right\}^2\ dP \\
+					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} -
+					\left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2 \right\}^2\ dP
 				\end{align}
 				が成り立つから，
 				\begin{align}
 					\int_\Omega \left|M_T\right|^2\ dP
-					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP \\
-						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP \\
-						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}T}^2 - M_{\frac{j}{2^n}T}^2\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} -
+					\left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2 \right\}^2\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right\}^2\ dP \\
+						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right) \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2\ dP \\
+						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^4\ dP
 					\label{fom:thm_decomposition_of_local_martingales_1}
 				\end{align}
 				が成り立つ．ここで
 				\begin{align}
-					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP
-					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right\}^2\ dP
+					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP
 				\end{align}
 				かつ
 				\begin{align}
-					\int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP
-					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+					\int_\Omega \left( X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right) \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2\ dP
+					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP
 				\end{align}
 				かつ
 				\begin{align}
-					\int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
-					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
-					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+					\int_\Omega \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^4\ dP
+					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP \\
+					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP
 				\end{align}
 				が成り立つので
 				\begin{align}
 					(\refeq{fom:thm_decomposition_of_local_martingales_1})
-					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
+					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP \\
 					&= 14 \cdot b^2 \cdot \int_\Omega \left|X_T\right|^2\ dP
 				\end{align}
 				が成立する．
@@ -411,6 +418,47 @@
 					\left\{X^2 - A^{(n)}\right\}_{n \in \Natural}
 				\end{align}
 				は$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$で有界である．ゆえにKomlosの補題より
+				\begin{align}
+					h:\Natural \longrightarrow \mathscr{M}^2_{\mathbf{T}}
+				\end{align}
+				なる$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$のCauchy列$h$で，任意の自然数$n$で
+				\begin{align}
+					h(n) \in \conv{\Set{X^2-A^{(k)}}{k \in \Natural \wedge n \leq k}}
+				\end{align}
+				を満たすものが取れて，定理\ref{thm:pseudo_metric_on_square_integrable_martingales}より
+				\begin{align}
+					d(h(n),M) \longrightarrow 0\quad (n \longrightarrow \infty)
+				\end{align}
+				なる$\mathscr{M}^2_{\mathbf{T}}$の要素$M$が取れる．特に$X$が連続である場合は，
+				(\refeq{fom:thm_decomposition_of_local_martingales_3})より
+				\begin{align}
+					\left\{X^2 - A^{(n)}\right\}_{n \in \Natural} \subset \mathscr{M}^{2,c}_{\mathbf{T}}
+				\end{align}
+				が成り立つから，極限$M$を
+				\begin{align}
+					M \in \mathscr{M}^{2,c}_{\mathbf{T}}
+				\end{align}
+				なるものとして取れる．ここで
+				\begin{align}
+					A \defeq X^2 - M
+				\end{align}
+				とおく．定め方より$A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合であって，右連続でもあり，特に$X$が連続なら$A$も連続である．
+				あとは$A$の増大性を示せばよい．いま任意の自然数$k$に対し
+				\begin{align}
+					d(h(n_k),M) < \frac{1}{2^{k+1}}
+				\end{align}
+				を満たす部分列
+				\begin{align}
+					\Natural \ni k \longmapsto h(n_k)
+				\end{align}
+				を取ると，Doobの劣マルチンゲール不等式より任意の自然数$k$で
+				\begin{align}
+					\int_\Omega \left\{\sup{t \in [0,T]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|}\right\}^2\ dP
+					&= \int_\Omega \left\{\sup{t \in [0,T]}{\left|h(n_k)_t - M_t\right|}\right\}^2\ dP \\
+					&\leq 4 \cdot \int_\Omega \left|h(n_k)_T - M_T\right|^2\ dP \\
+					&< \frac{1}{4^k}
+				\end{align}
+				が成り立つ．
 				
 		\end{description}
 	\end{sketch}
