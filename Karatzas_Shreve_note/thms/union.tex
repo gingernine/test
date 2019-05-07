@@ -76,7 +76,7 @@
 		\begin{align}
 			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
 		\end{align}
-		が成り立つ．ここで推論法則\ref{logicalthm:properties_of_quantifiers}より
+		が成り立つ．ここで推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}より
 		\begin{align}
 			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
 			&\Longleftrightarrow \forall x\, \rightharpoondown (\, x \in \emptyset \wedge \tau \in x\, ) \\
@@ -108,10 +108,10 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[合併は任意の要素より大きい]\label{thm:union_is_bigger_than_any_member}
-			$a$を類とするとき次が成立する:
+		\begin{thm}[要素の部分集合は合併の部分集合]\label{thm:union_is_bigger_than_any_member}
+			$a$を類とするとき
 			\begin{align}
-				\forall x\, (\, x \in a \Longrightarrow x \subset \bigcup a\, ).
+				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \Longrightarrow x \subset \bigcup a\, \right].
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -119,28 +119,36 @@
 	\begin{sketch}
 		$\chi$を$\mathcal{L}$の任意の対象として
 		\begin{align}
-			\chi \in a
+			\exists t \in a\, (\, x \subset t\, )
 			\label{fom:thm_union_is_bigger_than_any_member_1}
 		\end{align}
-		であるとする．また$\tau$も$\mathcal{L}$の任意の対象として
+		であるとする．ここで
 		\begin{align}
-			\tau \in \chi
+			\tau \defeq \varepsilon t\, (\, t \in a \wedge \chi \subset t\, )
 		\end{align}
-		であるとする．このとき
+		とおく．$s$を$\mathcal{L}$の任意の対象として
 		\begin{align}
-			\chi \in a \wedge \tau \in \chi
+			s \in \chi
+		\end{align}
+		であるとすると，
+		\begin{align}
+			\chi \subset \tau
+		\end{align}
+		より
+		\begin{align}
+			\tau \in a \wedge s \in \tau
 		\end{align}
 		が成立するので，存在記号の規則より
 		\begin{align}
-			\exists x\, \left(\, x \in a \wedge \tau \in x\, \right)
+			\exists t\, \left(\, t \in a \wedge s \in t\, \right)
 		\end{align}
 		が成り立ち
 		\begin{align}
-			\tau \in \bigcup a
+			s \in \bigcup a
 		\end{align}
-		が従う．$\tau$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
+		が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
 		\begin{align}
-			\forall t\, (\, t \in \chi \Longrightarrow t \in \bigcup a\, )
+			\forall s\, (\, s \in \chi \Longrightarrow s \in \bigcup a\, )
 		\end{align}
 		すなわち
 		\begin{align}
@@ -148,11 +156,11 @@
 		\end{align}
 		が成り立つ．ゆえに
 		\begin{align}
-			\chi \in a \Longrightarrow \chi \subset \bigcup a
+			\exists t \in a\, \left(\, \chi \subset t\, \right) \Longrightarrow \chi \subset \bigcup a
 		\end{align}
 		が従い，$\chi$も任意に与えられていたので
 		\begin{align}
-			\forall x\, (\, x \in a \Longrightarrow x \subset \bigcup a\, )
+			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \Longrightarrow x \subset \bigcup a\, \right]
 		\end{align}
 		が得られる．
 		\QED

@@ -229,7 +229,7 @@
 		我々はまだ$\exists$が持つ意味を規定していませんが，先に述べてしまうと上の定義は
 		{\bf 集合とは$\mathcal{L}$の対象か$\mathcal{L}$の対象に等しい類のことを指す}
 		と解釈できます．また後述することですが宇宙は集合の全体に一致します．つまり$\Univ$の要素である類は集合であり，
-		逆に類が集合であるならば$\Univ$の要素であるのです．
+		逆に類が集合であるならば$\Univ$の要素であるのです(定理\ref{thm:V_is_the_whole_of_sets})．
 	}
 	
 \section{推論}
@@ -667,9 +667,8 @@
 		\begin{logicalthm}[矛盾からはあらゆる式が導かれる]\label{logicalthm:contradiction_derives_any_formula}
 			$A$を$\mathcal{L}'$の閉式とするとき
 			\begin{align}
-				\bot \Longrightarrow A
+				\bot \Longrightarrow A.
 			\end{align}
-			が成り立つ．
 		\end{logicalthm}
 	\end{screen}
 	
@@ -1019,99 +1018,140 @@
 	
 	\begin{screen}
 		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
-			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
-			\begin{description}
-				\item[(a)] $\mathcal{L}$の任意の対象$\tau$に対して
-					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
-					\begin{align}
-						\exists x A(x) \Longleftrightarrow \exists x B(x).
-					\end{align}
-				
-				\item[(b)] $\mathcal{L}$の任意の対象$\tau$に対して
-					$A(\tau) \Longleftrightarrow B(\tau)$となるとき次が成り立つ:
-					\begin{align}
-						\forall x A(x) \Longleftrightarrow \forall x B(x).
-					\end{align}
-					
-				\item[(c)] $\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$.
-				
-				\item[(d)] $\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)$.
-			\end{description}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
+			$\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{align}
+				A(\tau) \Longleftrightarrow B(\tau)
+			\end{align}
+			が成り立っているとき，
+			\begin{align}
+				\exists x A(x) \Longleftrightarrow \exists x B(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x A(x) \Longleftrightarrow \forall x B(x)
+			\end{align}
+			が成り立つ．
 		\end{logicalthm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(a)]
-				いま，$\mathcal{L}$の任意の対象$\tau$に対して
-				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
-				ここで$\exists x A(x)$が成り立っていると仮定すると，
-				\begin{align}
-					\tau \defeq \varepsilon x A(x)
-				\end{align}
-				とおけば存在記号に関する規則(推論規則\ref{logicalaxm:rules_of_quantifiers})より$A(\tau)$が成立し，
-				他方で$\wedge$の除去により
-				\begin{align}
-					A(\tau) \Longrightarrow B(\tau)
-				\end{align}
-				が満たされるので$B(\tau)$が成立する．
-				再び存在記号に関する規則より$\exists x B(x)$が成り立つので
-				\begin{align}
-					\exists x A(x) \Longrightarrow \exists x B(x)
-				\end{align}
-				が得られる．$A$と$B$の立場を入れ替えれば$\exists x B(x) \Longrightarrow \exists x A(x)$も得られる．
-				
-			\item[(b)]
-				いま，$\mathcal{L}$の任意の対象$\tau$に対して
-				$A(\tau) \Longleftrightarrow B(\tau)$が満たされているとする．
-				ここで$\forall x A(x)$が成り立っていると仮定すると，
-				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-				$\mathcal{L}$の任意の対象$\tau$に対して$A(\tau)$が成立し，
-				他方で
-				\begin{align}
-					A(\tau) \Longrightarrow B(\tau)
-				\end{align}
-				が満たされるので$B(\tau)$が成立する．このとき$\tau$の任意性と
-				推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より$\forall x B(x)$が成り立つから
-				\begin{align}
-					\forall x A(x) \Longrightarrow \forall x B(x)
-				\end{align}
-				が得られる．$A$と$B$の立場を入れ替えれば$\forall x B(x) \Longrightarrow \forall x A(x)$も得られる．
-				
-			\item[(c)]
-				推論規則\ref{logicalaxm:rules_of_quantifiers}より
-				\begin{align}
-					\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
-					\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
-				\end{align}
-				は定理である．同様に推論規則\ref{logicalaxm:rules_of_quantifiers}より
-				\begin{align}
-					A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
-				\end{align}
-				もまた定理であり，対偶を取れば
-				\begin{align}
-					\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
-					\rightharpoondown \forall x A(x)
-				\end{align}
-				が定理となるので$\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)$を得る．
-			
-			\item[(d)]
-				前段の結果より
-				\begin{align}
-					\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
-					\rightharpoondown \exists x \rightharpoondown \rightharpoondown A(x)
-				\end{align}
-				が成り立ち，また二重否定の法則と(a)より
-				\begin{align}
-					\exists x \rightharpoondown \rightharpoondown A(x)
-					\Longleftrightarrow \exists x A(x)
-				\end{align}
-				も成り立つから，推論法則\ref{logicalthm:transitive_law_of_implication}と併せて
-				\begin{align}
-					\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
-					\rightharpoondown \exists x A(x)
-				\end{align}
-				が得られる．
-				\QED
-		\end{description}
+	\begin{prf}
+		いま，$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \Longleftrightarrow B(\tau)
+			\label{logicalthm:properties_of_quantifiers_1}
+		\end{align}
+		が成り立っているとする．
+		ここで
+		\begin{align}
+			\exists x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		\begin{align}
+			\tau \defeq \varepsilon x A(x)
+		\end{align}
+		とおけば存在記号に関する規則より
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．再び存在記号に関する規則より
+		\begin{align}
+			\exists x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\exists x A(x) \Longrightarrow \exists x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\exists x B(x) \Longrightarrow \exists x A(x)
+		\end{align}
+		も得られる．今度は
+		\begin{align}
+			\forall x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\forall x A(x) \Longrightarrow \forall x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\forall x B(x) \Longrightarrow \forall x A(x)
+		\end{align}
+		も得られる．
+		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する De Morgan の法則]\label{logicalthm:De_Morgan_law_for_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			\begin{align}
+				\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
+			\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
+		\end{align}
+		は定理である．他方で推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
+		\end{align}
+		もまた定理であり，この対偶を取れば
+		\begin{align}
+			\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
+			\rightharpoondown \forall x A(x)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)
+		\end{align}
+		が従う．$A$を$\rightharpoondown A$に置き換えれば
+		\begin{align}
+			\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
+			\rightharpoondown \exists x \rightharpoondown \rightharpoondown A(x)
+		\end{align}
+		が成り立ち，また$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \Longleftrightarrow\ \rightharpoondown \rightharpoondown A(\tau)
+		\end{align}
+		が成り立つので，推論法則\ref{logicalthm:properties_of_quantifiers}より
+		\begin{align}
+			\exists x \rightharpoondown \rightharpoondown A(x)
+			\Longleftrightarrow \exists x A(x)
+		\end{align}
+		も成り立つ．ゆえに
+		\begin{align}
+			\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
+			\rightharpoondown \exists x A(x)
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
