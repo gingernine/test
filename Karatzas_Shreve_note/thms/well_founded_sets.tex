@@ -4,14 +4,14 @@
 		x \longmapsto
 		\begin{cases}
 			\emptyset & \mbox{if } \operatorname{dom}(x) = \emptyset \\
-			x(\beta) \cup \power{x(\beta)} & \mbox{if } \beta \in \ON \wedge \operatorname{dom}(x) = \beta \cup \{\beta\} \\
+			\power{x(\beta)} & \mbox{if } \beta \in \ON \wedge \operatorname{dom}(x) = \beta \cup \{\beta\} \\
 			\bigcup \operatorname{ran}(x) & \mathrm{o.w.}
 		\end{cases}
 	\end{align}
 	なる関係により定めると，つまり正式には
 	\begin{align}
 		\{\, (x,y) \mid \quad &\left(\, \dom{x} = \emptyset \Longrightarrow y = \alpha\, \right) \\
-		&\wedge \forall \beta \in \ON\, \left(\, \dom{x} = \beta \cup \{\beta\} \Longrightarrow y = x(\beta) \cup \power{x(\beta)}\, \right) \\
+		&\wedge \forall \beta \in \ON\, \left(\, \dom{x} = \beta \cup \{\beta\} \Longrightarrow y = \power{x(\beta)}\, \right) \\
 		&\wedge \left[\, \dom{x} \neq \emptyset \wedge \forall \beta \in \ON\, \left(\, \dom{x} \neq \beta \cup \{\beta\}\, \right)
 		\Longrightarrow y = \bigcup \ran{x}\, \right]\, \}
 	\end{align}
@@ -20,54 +20,6 @@
 		\forall \alpha \in \ON\, (\, R(\alpha) = G(R|_\alpha)\, )
 	\end{align}
 	を満たす$\ON$上の写像$R$が取れる．本節ではこの$R$が考察対象となる．
-	
-	\begin{screen}
-		\begin{thm}
-			\begin{align}\label{thm:R_alpha_plus_1_equals_to_power_of_R_alpha}
-				\forall \alpha \in \ON\ 
-				\left(\ R(\alpha + 1) = \operatorname{P}(R(\alpha))\ \right)
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[第一段] $R(\alpha + 1) = R(\alpha) \cup \operatorname{P}(R(\alpha))$
-				となることを示す．
-				
-			\item[第二段] $\alpha$を任意に与えられた空でない順序数とするとき，
-				\begin{align}
-					\forall \beta \in \alpha\ 
-					\left(\ R(\beta + 1) \subset \operatorname{P}(R(\beta))\ \right)
-					\Longrightarrow R(\alpha + 1) \subset \operatorname{P}(R(\alpha))
-				\end{align}
-				が成り立つことを示す．いま
-				\begin{align}
-					\forall \beta \in \alpha\ 
-					\left(\ R(\beta + 1) \subset \operatorname{P}(R(\beta))\ \right)
-					\label{eq:thm_R_alpha_plus_1_equals_to_power_of_R_alpha}
-				\end{align}
-				が成り立つと仮定する．$x$を$R(\alpha + 1)$の任意の要素とすれば，前段の結果より
-				\begin{align}
-					x \in R(\alpha) \vee x \subset R(\alpha)
-				\end{align}
-				となる．$x \in R(\alpha)$であるとき，$\alpha$の或る要素$\beta$に対し
-				$x \in R(\beta)$となる．前段の結果より$x \in R(\beta + 1)$となり，
-				(\refeq{eq:thm_R_alpha_plus_1_equals_to_power_of_R_alpha})より
-				$x \subset R(\beta)$となるが，
-				\begin{align}
-					x \subset R(\beta) &\Longrightarrow x \subset R(\alpha), \\
-					x \subset R(\alpha) &\Longrightarrow x \in \operatorname{P}(R(\alpha))
-				\end{align}
-				と併せて$x \in \operatorname{P}(R(\alpha))$が成り立つ．
-				一方で$x \subset R(\alpha)$であるときも$x \in \operatorname{P}(R(\alpha))$
-				となるから
-				\begin{align}
-					R(\alpha + 1) \subset \operatorname{P}(R(\alpha))
-				\end{align}
-				が従う．超限帰納法より定理の主張が得られる．
-		\end{description}
-	\end{prf}
 	
 	\begin{screen}
 		\begin{dfn}[整礎集合]
@@ -132,7 +84,11 @@
 		\begin{align}
 			a \subset R(\beta)
 		\end{align}
-		が成り立ち，そして定理\ref{thm:R_alpha_plus_1_equals_to_power_of_R_alpha}より
+		が成り立ち，そして
+		\begin{align}
+			R\left(\beta \cup \{\beta\}\right) = \power{R(\beta)}
+		\end{align}
+		であるから
 		\begin{align}
 			a \in R\left(\beta \cup \{\beta\}\right)
 		\end{align}
