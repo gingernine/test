@@ -11,7 +11,7 @@
 \subsection{線型位相}
 	\begin{screen}
 		\begin{dfn}[位相線型空間]\label{def:topological_vector_space}
-			$\left((X,\sigma_X),(\Phi,+,\bullet),s\right)$を線型空間とし，
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s\right)$を線型空間とし，
 			$\mathscr{O}_X$を$X$上の位相とする．また
 			$\mathscr{O}_{X \times X}$を$\mathscr{O}_X$から作られる$X \times X$上の積位相とし，
 			$\mathscr{O}_{\Phi \times X}$を$\mathscr{O}_\Phi$と$\mathscr{O}_X$から作られる$\Phi \times X$上の積位相とする．
@@ -21,31 +21,170 @@
 			\end{description}
 			が満たされるとき，$\mathscr{O}_X$を$X$上の{\bf 線型位相}\index{せんけいいそう@線型位相}{\bf (vector topology)}と呼び，
 			\begin{align}
-				\left((X,\sigma_X),(\Phi,+,\bullet),s,\mathscr{O}_X\right)
+				\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)
+				\label{pair_topological_vector_space}
 			\end{align}
 			を{\bf 位相線型空間}\index{いそうせんけいくうかん@位相線型空間}
-			{\bf (topological vector space)}と呼ぶ．
+			{\bf (topological vector space)}と呼ぶ．また
+			$(X,\mathscr{O}_X)$がHausdorffであるとき，(\refeq{pair_topological_vector_space})を
+			Hausdorff位相線型空間と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
+	$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とするとき，
+	$\sigma_X$は連続であるから，$a$を$X$の任意の要素として
+	\begin{align}
+		X \ni x \longmapsto \sigma_X(x,a)
+		\label{partial_continuity_of_summation_of_topological_vector_spaces_1}
+	\end{align}
+	なる写像を
+	\begin{align}
+		\sigma_X^a
+	\end{align}
+	とおけば，これは$\mathscr{O}_X/\mathscr{O}_X$-連続である．さらにこのとき，
+	\begin{align}
+		\sigma_X^{-a}
+	\end{align}
+	なる写像は$\sigma_X^a$の逆写像であって，かつ$\mathscr{O}_X/\mathscr{O}_X$-連続なので，
+	$\sigma_X^a$は$X$から$X$への$\mathscr{O}_X$に関する同相写像である．また，$\sigma_X$は可換であるから
+	\begin{align}
+		X \ni x \longmapsto \sigma_X(a,x)
+	\end{align}
+	なる写像は$\sigma_X^a$に一致する．ゆえにこれも同相である．同様に
+	\begin{align}
+		\Phi \ni \alpha \longmapsto s(\alpha,a)
+	\end{align}
+	なる写像は$\mathscr{O}_\Phi/\mathscr{O}_X$-連続であり，$\alpha$を$\Phi$の任意の要素とすると
+	\begin{align}
+		X \ni x \longmapsto s(\alpha,x)
+	\end{align}
+	なる写像は$\mathscr{O}_X/\mathscr{O}_X$-連続である．
+	
+	
 	\begin{screen}
-		\begin{thm}[位相線型空間は$T_3$]\label{thm:tvs_T_3_space}
-			$X$を位相線型空間とするとき，コンパクト部分集合$K \subset X$と
-			閉集合$C \subset X$に対し，$K \cap C = \emptyset$なら或る0の開近傍$V$が存在して
-			次を満たす:
-			\begin{align}
-				(K + V) \cap (C + V) = \emptyset.
-				\label{eq:thm_tvs_T_3_space}
-			\end{align}
+		\begin{dfn}[局所基]
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とするとき，
+			$X$の零元の基本近傍系を$\mathscr{B}$は{\bf 局所基}\index{きょくしょき@局所基}{\bf (local base)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s\right)$を線型空間とし，
+	$A$を$X$の部分集合とする．このとき，
+	\begin{align}
+		|\alpha| \leq 1
+	\end{align}
+	なる$\Phi$の任意の要素$\alpha$に対して
+	\begin{align}
+		\Set{s(\alpha,x)}{x \in A} \subset A
+	\end{align}
+	が成り立つならば，$A$を$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s\right)$の
+	{\bf 均衡集合}\index{きんこうしゅうごう@均衡集合}{\bf (balanced set)}と呼ぶ．
+	$A$が均衡であることを直感的に書けば
+	\begin{align}
+		\forall \alpha \in \Phi\,
+		\left(\, |\alpha| \leq 1 \Longrightarrow \alpha A \subset A\, \right)
+	\end{align}
+	ということになる．例えば$X$が$\R^2$ならば均衡集合とは円のことを指し，$X$が$\R^3$ならば球のことを指す．
+	
+	\begin{screen}
+		\begin{thm}[均衡な局所基が取れる]
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とする．
+			このとき，$X$の零元の基本近傍系で，そのすべての要素が均衡であるものが取れる．
 		\end{thm}
 	\end{screen}
 	
-	実際は位相線型空間は一様化可能であるから，$T_0$ならTychonoffである．
+	\begin{sketch}
+		
+	\end{sketch}
 	
-	\begin{prf}
-		$K = \emptyset$なら$K + V = \emptyset$となり(\refeq{eq:thm_tvs_T_3_space})が成立する．
-		$K \neq \emptyset$の場合，任意に$x \in K$を取れば
-	\end{prf}
+	次に述べることは{\bf 位相線型空間が一様化可能である}ということである．
+	いま$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とし，
+	\begin{align}
+		0_X
+	\end{align}
+	を$X$の零元とし，
+	\begin{align}
+		\mathscr{B}
+	\end{align}
+	を$0_X$の基本近傍系とし，$\mathscr{B}$の要素は全て均衡であるとする．
+	ここで$\mathscr{B}$の要素$b$に対して
+	\begin{align}
+		\Set{(x,y) \in X \times X}{\sigma_X(x,-y) \in b}
+	\end{align}
+	で定められる集合の，$\mathscr{B}$のすべての要素に亘る全体を$\mathscr{U}$と定める．つまり
+	\begin{align}
+		\mathscr{U} \defeq \Set{u}{\exists b \in \mathscr{B}\,
+		\left[\, \forall x,y \in X\, \left(\, (x,y) \in u \Longleftrightarrow\sigma_X(x,-y) \in b\, \right)\, \right]}
+	\end{align}
+	と定める．すると，
+	\begin{align}
+		\mathscr{V} \defeq \Set{v}{v \subset X \times X \wedge \exists u \in \mathscr{U}\,
+		\left(\, u \subset v\, \right)}
+	\end{align}
+	で定める$\mathscr{V}$は$X$上の近縁系となる．実際，
+	\begin{description}
+		\item[(a)] $\mathscr{B}$は空ではないので
+			\begin{align}
+				\mathscr{U} \neq \emptyset
+			\end{align}
+			である．ゆえに
+			\begin{align}
+				\mathscr{V} \neq \emptyset
+			\end{align}
+			である．また$v$を$\mathscr{V}$の任意の要素とすると
+			\begin{align}
+				\Set{(x,y)}{x \in X \wedge y \in X \wedge \sigma_X(x,-y) \in b} \subset v
+			\end{align}
+			を満たす$\mathscr{B}$の要素$b$が取れるが，$X$の任意の要素$x$に対して
+			\begin{align}
+				\sigma_X(x,-x) = 0_X \in b
+			\end{align}
+			が成り立つので
+			\begin{align}
+				\Set{(x,x)}{x \in X} \subset v
+			\end{align}
+			が成立する．
+			
+		\item[(b)] $v$を$\mathscr{V}$の任意の要素とする．このとき
+			\begin{align}
+				\Set{(x,y)}{x \in X \wedge y \in X \wedge \sigma_X(x,-y) \in b} \subset v
+			\end{align}
+			を満たす$\mathscr{B}$の要素$b$が取れる．
+			\begin{align}
+				u \defeq \Set{(x,y)}{x \in X \wedge y \in X \wedge \sigma_X(x,-y) \in b}
+			\end{align}
+			とおけば
+			\begin{align}
+				u^{-1} = \Set{(y,x)}{x \in X \wedge y \in X \wedge \sigma_X(x,-y) \in b}
+			\end{align}
+			となるが，$b$は均衡なので
+			\begin{align}
+				\forall x,y \in X\, \left[\, \sigma_X(x,-y) \in b \Longleftrightarrow \sigma_X(y,-x) \in b\, \right]
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				u^{-1} = \Set{(y,x)}{x \in X \wedge y \in X \wedge \sigma_X(y,-x) \in b}
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				u^{-1} \in \mathscr{U}
+			\end{align}
+			が成り立つ．
+			\begin{align}
+				u^{-1} \subset v^{-1}
+			\end{align}
+			であるから
+			\begin{align}
+				v^{-1} \in \mathscr{V}
+			\end{align}
+			が従う．
+			
+		\item[(c)] 
+	\end{description}
+	
+	
+	位相線型空間は一様化可能であるから，$(X,\mathscr{O}_X)$は$T_0$ならTychonoffである．
+	
 	
 	\begin{screen}
 		\begin{thm}[平行移動・スカラ倍は連続]\label{thm:continuity_of_translations_multiples}
