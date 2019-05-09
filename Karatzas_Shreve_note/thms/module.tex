@@ -1,4 +1,8 @@
-	この節では，$\left(R,\sigma_R,\mu_R\right)$を環とするとき，$R$の要素$x$の$\sigma_R$に関する逆元を
+	この節では，$\left(X,\sigma_X\right)$を群とするとき，$X$の要素$x$の逆元を
+	\begin{align}
+		-x
+	\end{align}
+	と書く．また$\left(R,\sigma_R,\mu_R\right)$を環とするとき，$R$の要素$x$の$\sigma_R$に関する逆元を
 	\begin{align}
 		-x
 	\end{align}
@@ -6,7 +10,7 @@
 	\begin{align}
 		x^{-1}
 	\end{align}
-	と書く．
+	と書く．逆元の書き方が同じだが混乱する危険はおそらく無い．
 	
 	\begin{screen}
 		\begin{dfn}[加群]
@@ -47,6 +51,70 @@
 	\end{itemize}
 	と見やすくなる．$s$は{\bf スカラ倍}\index{すからばい@スカラ倍}{\bf (scalar multiplication)}と呼ばれるが，
 	異なる算法の間に分配則と結合則を既定しているに過ぎない．
+	
+	\begin{screen}
+		\begin{thm}[$0$倍すればゼロ]\label{thm:zero_multiplication_is_zero}
+			$\left((X,\sigma_X),(R,\sigma_R,\mu_R),s\right)$を加群とし，
+			$0_X$を$(X,\sigma_X)$の単位元とし，$0_R$を$\sigma_R$に関する単位元とする．このとき，$X$の任意の要素$x$に対して
+			\begin{align}
+				s\left(0_R,x\right) = 0_X.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$0_R$は$\sigma_R$に関する単位元なので
+		\begin{align}
+			\sigma_R\left(0_R,0_R\right) = 0_R
+		\end{align}
+		が成り立つ．ゆえに$x$を$X$の要素とすると
+		\begin{align}
+			s\left(0_R,x\right) &= s\left(\sigma_R\left(0_R,0_R\right),x\right) \\
+			&= \sigma_X\left(s\left(0_R,x\right),s\left(0_R,x\right)\right)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			0_X &= \sigma_X\left(-s\left(0_R,x\right),s\left(0_R,x\right)\right) \\
+			&= \sigma_X\left(-s\left(0_R,x\right),\sigma_X\left(s\left(0_R,x\right),s\left(0_R,x\right)\right)\right) \\
+			&= \sigma_X\left(\sigma_X\left(-s\left(0_R,x\right),s\left(0_R,x\right)\right),s\left(0_R,x\right)\right) \\
+			&= \sigma_X\left(0_X,s\left(0_R,x\right)\right) \\
+			&= s\left(0_R,x\right)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[ゼロには何を掛けてもゼロ]\label{thm:zero_multiplied_is_zero}
+			$\left((X,\sigma_X),(R,\sigma_R,\mu_R),s\right)$を加群とし，
+			$0_X$を$(X,\sigma_X)$の単位元とする．このとき，$R$の任意の要素$r$に対して
+			\begin{align}
+				s\left(r,0_X\right) = 0_X.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$0_X$は$(X,\sigma_X)$の単位元なので
+		\begin{align}
+			\sigma_X\left(0_X,0_X\right) = 0_X
+		\end{align}
+		が成り立つ．ゆえに$r$を$R$の要素とすると
+		\begin{align}
+			s\left(r,0_X\right) &= s\left(r,\sigma_X\left(0_X,0_X\right)\right) \\
+			&= \sigma_X\left(s\left(r,0_X\right),s\left(r,0_X\right)\right)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			0_X &= \sigma_X\left(-s\left(r,0_X\right),s\left(r,0_X\right)\right) \\
+			&= \sigma_X\left(-s\left(r,0_X\right),\sigma_X\left(s\left(r,0_X\right),s\left(r,0_X\right)\right)\right) \\
+			&= \sigma_X\left(\sigma_X\left(-s\left(r,0_X\right),s\left(r,0_X\right)\right),s\left(r,0_X\right)\right) \\
+			&= \sigma_X\left(0_X,s\left(r,0_X\right)\right) \\
+			&= s\left(r,0_X\right)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[逆元は$-1$倍に等しい]\label{thm:inverse_element_equals_to_its_minus}

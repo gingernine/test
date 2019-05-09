@@ -77,7 +77,7 @@
 	つまり，{\bf 位相線型空間のスケール変換は，$0$倍でない限り同相である．}
 	
 	\begin{screen}
-		\begin{thm}[位相線型空間は位相群]
+		\begin{thm}[位相線型空間は位相群]\label{thm:topological_vector_space_is_topological_group}
 			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とするとき，
 			$\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)$は位相群である．
 		\end{thm}
@@ -250,62 +250,75 @@
 		\QED
 	\end{sketch}
 	
-	位相線型空間は一様化可能であるから，$(X,\mathscr{O}_X)$は$T_0$ならTychonoffである．
+	位相群に対して示した事柄を位相線型空間に対しても述べ直しておく．
 	
 	\begin{screen}
-		\begin{thm}[平行移動不変位相]
-			$\tau$を線型空間$X$の位相とする．
-			任意の$V \subset X$と$x \in X$に対して
+		\begin{thm}[位相線型空間の位相は局所基で決まる]
+		\label{thm:topologies_on_topological_vector_spaces_are_invariant}
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とし，
+			$\mathscr{B}$を$\left(X,\sigma_X\right)$の単位元の基本近傍系とする．また$x$を$X$の任意の要素とする．このとき，
 			\begin{align}
-				V \in \tau \quad \Longleftrightarrow \quad
-				x + V \in \tau
+				\Set{\sigma_X(x,y)}{y \in b}
 			\end{align}
-			が満たされるとき，$\tau$は平行移動不変である(translation invariant)という．
-			定理\ref{thm:continuity_of_translations_multiples}より
-			位相線型空間において平行移動は同相写像となるから線型位相は平行移動不変である．
+			を$\mathscr{B}$の全ての要素に亘って取ったものの全体は$x$の基本近傍系である．
 		\end{thm}
 	\end{screen}
 	
-	\begin{screen}
-		\begin{thm}[平行移動不変位相は0の基本近傍系で決まる]
-			$\tau$を線型空間$X$の平行移動不変位相，
-			$\mathscr{U}$を$0 \in X$の基本近傍系とするとき，
-			任意の$x \in X$に対して
-			\begin{align}
-				\mathscr{U}(x) \defeq
-				\Set{x + U}{U \in \mathscr{U}}
-			\end{align}
-			は$x$の基本近傍系となる．すなわち次が成立する:
-			\begin{align}
-				\tau = 
-				\Set{O \subset X}{\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
-				$x+U_x \subset O$を満たす$U_x \in \mathscr{U}$が存在する}}.
-			\end{align}
-		\end{thm}
-	\end{screen}
+	言い換えれば，
+	\begin{align}
+		\Set{u}{\exists b \in \mathscr{B}\, 
+		\forall z\, \left[\, z \in u \Longleftrightarrow \exists y \in b\, \left(\, z=\sigma_X(x,y)\, \right) \, \right]}
+		\label{fom:thm_topologies_on_topological_vector_spaces_are_invariant}
+	\end{align}
+	が$x$の基本近傍系であるということである．
 	
-	\begin{prf}
-		$V$を$x$の任意の近傍とすれば
-		定理\ref{thm:continuity_of_translations_multiples}より
-		$-x + V^{\mathrm{o}}$は$0$の開近傍となる．このとき或る
-		$U \in \mathscr{U}$が
-		\begin{align}
-			U \subset -x + V^{\mathrm{o}} \subset -x + V
-		\end{align}
-		を満たし$x + U \subset V$が従うから
-		$\mathscr{U}(x)$は$x$の基本近傍系をなしている．
-		このとき定理\ref{thm:a_local_base_restores_the_topology}より
-		\begin{align}
-			O \in \tau &\quad \Longleftrightarrow \quad
-			\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
-				$U \subset O$を満たす$U \in \mathscr{U}(x)$が存在する} \\
-			&\quad \Longleftrightarrow \quad
-			\mbox{$O = \emptyset$，或は任意の$x \in O$に対し
-				$x+U_x\subset O$を満たす$U_x \in \mathscr{U}$が存在する} \\
-		\end{align}
-		が成立する．
+	\begin{sketch}
+		定理\ref{thm:topological_vector_space_is_topological_group}より
+		$\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)$は位相群であるから，
+		定理\ref{thm:topologies_on_topological_groups_are_invariant}より
+		(\refeq{fom:thm_topologies_on_topological_vector_spaces_are_invariant})は$x$の基本近傍系である．
 		\QED
-	\end{prf}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[位相線型空間は一様化可能である]\label{thm:topological_vector_spaces_are_uniformazable}
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とし，
+			$\mathscr{B}$を$\left(X,\sigma_X\right)$の単位元の基本近傍系とし，そのすべての要素が均衡しているとする．ここで
+			\begin{align}
+				\mathscr{U} \defeq \Set{u}{\exists b \in \mathscr{B}\,
+				\left[\, \forall x,y \in X\, \left(\, (x,y) \in u \Longleftrightarrow\sigma_X(x,-y) \in b\, \right)\, \right]}
+			\end{align}
+			とおいて
+			\begin{align}
+				\mathscr{V} \defeq \Set{v}{v \subset X \times X \wedge \exists u \in \mathscr{U}\, \left(\, u \subset v\, \right)}
+			\end{align}
+			と定めると，$\mathscr{V}$は$X$上の近縁系であって$\mathscr{O}_X$と両立する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\mathscr{B}$の要素$b$は均衡しているので
+		\begin{align}
+			\forall x \in b\, (\, -x \in b\, )
+		\end{align}
+		を満たす．また$\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)$は位相群であるから，
+		定理\ref{thm:topological_groups_are_uniformazable}より
+		$\mathscr{V}$は$X$上の近縁系であって$\mathscr{O}_X$と両立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[位相線型空間は$T_0$ならばTychonoffである]
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とするとき，
+			$\left(X,\mathscr{O}_X\right)$は$T_0$ならばTychonoffである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:topological_vector_spaces_are_uniformazable}と
+		定理\ref{thm:T_0_iff_T_2_on_uniform_topological_space}から従う
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{dfn}[平行移動不変距離・絶対斉次距離]
