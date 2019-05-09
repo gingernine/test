@@ -35,7 +35,6 @@
 	$\sigma_X$は連続であるから，$a$を$X$の任意の要素として
 	\begin{align}
 		X \ni x \longmapsto \sigma_X(x,a)
-		\label{partial_continuity_of_summation_of_topological_vector_spaces_1}
 	\end{align}
 	なる写像を
 	\begin{align}
@@ -46,20 +45,33 @@
 		\sigma_X^{-a}
 	\end{align}
 	なる写像は$\sigma_X^a$の逆写像であって，かつ$\mathscr{O}_X/\mathscr{O}_X$-連続なので，
-	$\sigma_X^a$は$X$から$X$への$\mathscr{O}_X$に関する同相写像である．また，$\sigma_X$は可換であるから
+	$\sigma_X^a$は$\mathscr{O}_X$に関する同相写像である．また，$\sigma_X$は可換であるから
 	\begin{align}
 		X \ni x \longmapsto \sigma_X(a,x)
 	\end{align}
-	なる写像は$\sigma_X^a$に一致する．ゆえにこれも同相である．同様に
+	なる写像は$\sigma_X^a$に一致する．ゆえにこれも同相である．つまり，{\bf 位相線型空間の平行移動は同相である．}
+	
+	同様に$x$を$X$の任意の要素とすると
 	\begin{align}
-		\Phi \ni \alpha \longmapsto s(\alpha,a)
+		\Phi \ni \alpha \longmapsto s(\alpha,x)
 	\end{align}
 	なる写像は$\mathscr{O}_\Phi/\mathscr{O}_X$-連続であり，$\alpha$を$\Phi$の任意の要素とすると
 	\begin{align}
 		X \ni x \longmapsto s(\alpha,x)
+		\label{partial_continuity_of_summation_of_topological_vector_spaces_1}
 	\end{align}
-	なる写像は$\mathscr{O}_X/\mathscr{O}_X$-連続である．
-	
+	なる写像は$\mathscr{O}_X/\mathscr{O}_X$-連続である．とくに
+	\begin{align}
+		\alpha \neq 0
+	\end{align}
+	ならば
+	\begin{align}
+		X \ni x \longmapsto s(\alpha^{-1},x)
+	\end{align}
+	なる写像は(\refeq{partial_continuity_of_summation_of_topological_vector_spaces_1})の逆写像であり，
+	かつ$\mathscr{O}_X/\mathscr{O}_X$-連続であるから，(\refeq{partial_continuity_of_summation_of_topological_vector_spaces_1})
+	は$\mathscr{O}_X$に関する同相写像である．
+	つまり，{\bf 位相線型空間のスケール変換は，$0$倍でない限り同相である．}
 	
 	\begin{screen}
 		\begin{dfn}[局所基]
@@ -89,12 +101,128 @@
 	\begin{screen}
 		\begin{thm}[均衡な局所基が取れる]
 			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とする．
-			このとき，$X$の零元の基本近傍系で，そのすべての要素が均衡であるものが取れる．
+			このとき，$X$の零元の基本近傍系で，そのすべての要素が均衡集合であるものが取れる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		
+		$0_X$を$X$の零元とし，$v$を$0_X$の近傍とする．$s$は$\mathscr{O}_{\Phi \times X}/\mathscr{O}_X$-連続であるから，
+		\begin{align}
+			\Set{\alpha \in \Phi}{|\alpha| < \delta} \times w \subset s^{-1} \ast v
+		\end{align}
+		を満たす正の実数$\delta$と$0_X$の開近傍$w$が取れる．ここで
+		\begin{align}
+			u \defeq \bigcup_{\substack{\alpha \in \Phi \\ 0 < |\alpha| < \delta}} \Set{s(\alpha,x)}{x \in w}
+		\end{align}
+		とおくと，$u$は$0_X$の均衡な開近傍であって，
+		\begin{align}
+			u \subset v
+		\end{align}
+		を満たす．
+		\begin{description}
+			\item[step1] $u$は開集合である．実際
+				\begin{align}
+					0 < |\alpha| < \delta
+				\end{align}
+				なる$\alpha$に対して
+				\begin{align}
+					X \ni x \longmapsto s(\alpha,x)
+				\end{align}
+				なる写像を$s^\alpha$とおけば，$s^\alpha$は$\mathscr{O}_X$に関して同相であって，かつ
+				\begin{align}
+					s^\alpha \ast w = \Set{s(\alpha,x)}{x \in w}
+				\end{align}
+				であるから，
+				\begin{align}
+					\Set{s(\alpha,x)}{x \in w} \in \mathscr{O}_X
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					0_X \in w
+				\end{align}
+				より
+				\begin{align}
+					0_X \in \Set{s(\alpha,x)}{x \in w}
+				\end{align}
+				も成り立つ．ゆえに$u$は$0_X$の開近傍である．
+				
+			\item[step2] $u$が$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s\right)$の均衡集合であることを示す．
+				いま$\beta$を
+				\begin{align}
+					|\beta| \leq 1
+				\end{align}
+				なる$\Phi$の要素とし，$x$を$u$の要素とする．このとき
+				\begin{align}
+					x = s(\alpha,y)
+				\end{align}
+				かつ
+				\begin{align}
+					0 < |\alpha| < \delta
+				\end{align}
+				かつ
+				\begin{align}
+					y \in w
+				\end{align}
+				を満たす$\alpha$と$y$が取れて
+				\begin{align}
+					s(\beta,x) = s(\beta,s(\alpha,y) = s(\beta \cdot \alpha,y)
+				\end{align}
+				が成り立つ．
+				\begin{align}
+					\beta = 0
+				\end{align}
+				ならば
+				\begin{align}
+					s(\beta \cdot \alpha,y) = 0_X \in u
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\beta \neq 0
+				\end{align}
+				ならば
+				\begin{align}
+					0 < |\beta \cdot \alpha| < \delta
+				\end{align}
+				が成り立つので
+				\begin{align}
+					s(\beta \cdot \alpha,y) \in s^{\beta \cdot \alpha} \ast w \subset u
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					|\beta| \leq 1 \Longrightarrow \Set{s(\beta,x)}{x \in u} \subset u
+				\end{align}
+				が成り立つ．ゆえに$u$は均衡している．
+				
+			\item[step3] 定理\ref{thm:union_of_subsets_is_subclass}より
+				\begin{align}
+					u \subset v
+				\end{align}
+				が成立する．
+		\end{description}
+		$0_X$の近傍の全体を
+		\begin{align}
+			\mathscr{B}
+		\end{align}
+		とおき，$\mathscr{B}$の要素$v$に対して，$v$に含まれる均衡な$0_X$の近傍の全体，つまり
+		\begin{align}
+			\Set{u}{u \in \mathscr{B} \wedge u \subset v \wedge 
+			\forall \alpha \in \Phi\, \forall x \in u\, \left(\, |\alpha| \leq 1 \Longrightarrow
+			s(\alpha,x) \in u\, \right)}
+		\end{align}
+		なる集合を対応させる関係を$h$とおくと，上の結果から
+		\begin{align}
+			\forall v \in \mathscr{B}\, \left(\, h(v) \neq \emptyset\, \right)
+		\end{align}
+		が成り立つ．ゆえに定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より
+		\begin{align}
+			f \in \prod_{v \in \mathscr{B}} h(v)
+		\end{align}
+		なる集合$f$が取れる．そして
+		\begin{align}
+			\left\{f(v)\right\}_{v \in \mathscr{B}}
+		\end{align}
+		は$0_X$の基本近傍系であり，その全ての要素は均衡している．
+		\QED
 	\end{sketch}
 	
 	次に述べることは{\bf 位相線型空間が一様化可能である}ということである．
@@ -111,7 +239,7 @@
 	\begin{align}
 		\Set{(x,y) \in X \times X}{\sigma_X(x,-y) \in b}
 	\end{align}
-	で定められる集合の，$\mathscr{B}$のすべての要素に亘る全体を$\mathscr{U}$と定める．つまり
+	で定められる集合を，$\mathscr{B}$のすべての要素に亘って取ったものの全体を$\mathscr{U}$と定める．つまり
 	\begin{align}
 		\mathscr{U} \defeq \Set{u}{\exists b \in \mathscr{B}\,
 		\left[\, \forall x,y \in X\, \left(\, (x,y) \in u \Longleftrightarrow\sigma_X(x,-y) \in b\, \right)\, \right]}
@@ -185,31 +313,6 @@
 	
 	位相線型空間は一様化可能であるから，$(X,\mathscr{O}_X)$は$T_0$ならTychonoffである．
 	
-	
-	\begin{screen}
-		\begin{thm}[平行移動・スカラ倍は連続]\label{thm:continuity_of_translations_multiples}
-			$(X,\tau)$を位相線型空間とするとき以下が成立する．
-			\begin{description}
-				\item[(1)] 任意の$a \in X$に対し$X \ni x \longmapsto a + x \in X$は
-					同相写像である．
-					
-				\item[(2)] 任意の$\alpha \in \Phi$に対し
-					$X \ni x \longmapsto \alpha x \in X$は連続であり，
-					特に$\alpha \neq 0$のとき同相写像となる．
-					
-				\item[(3)] 任意の$x \in X$に対し
-					$\Phi \ni \alpha \longmapsto \alpha x \in X$は連続である．
-			\end{description}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		連続性は定理\ref{thm:multivariable_continuous_mapping_is_one_variable_continuous}より従う．
-		また，(1)(2)において$x \longmapsto -a+x,\ x \longmapsto \alpha^{-1}x$
-		が逆写像となる．
-		\QED
-	\end{prf}
-	
 	\begin{screen}
 		\begin{thm}[平行移動不変位相]
 			$\tau$を線型空間$X$の位相とする．
@@ -221,17 +324,6 @@
 			が満たされるとき，$\tau$は平行移動不変である(translation invariant)という．
 			定理\ref{thm:continuity_of_translations_multiples}より
 			位相線型空間において平行移動は同相写像となるから線型位相は平行移動不変である．
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[位相線型空間は一様空間]
-			$\mathscr{B}$を位相線型空間$(X,\tau)$の0ベクトルの均衡な基本近傍系とするとき，
-			\begin{align}
-				\Phi \defeq
-				\Set{\Set{(x,y)}{x,y \in X,\ x-y \in B}}{B \in \mathscr{B}}
-			\end{align}
-			は近縁系となり，この近縁系が定める位相は$\tau$に一致する．
 		\end{thm}
 	\end{screen}
 	
