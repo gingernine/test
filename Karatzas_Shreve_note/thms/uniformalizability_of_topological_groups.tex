@@ -1,7 +1,13 @@
+	この節では，$\left(X,\sigma_X\right)$を群とするとき，$X$の要素$x$の逆元を
+	\begin{align}
+		-x
+	\end{align}
+	と書く．
+	
 \subsection{一様化可能性}
 	\begin{screen}
 		\begin{dfn}[位相群]\label{def:topological_group}
-			$\left(X,\sigma_X\right)$を群とし，$\mathscr{O}_X$を$X$上の位相とする．また
+			$\left(X,\sigma_X\right)$をAbel群とし，$\mathscr{O}_X$を$X$上の位相とする．また
 			$\mathscr{O}_{X \times X}$を$\mathscr{O}_X$から作られる$X \times X$上の積位相とする．
 			\begin{description}
 				\item[(tg1)] $\sigma_X$が$\mathscr{O}_{X \times X}/\mathscr{O}_X$-連続である．
@@ -434,21 +440,119 @@
 		\end{align}
 		が成り立つことを示せば良い．$s$を$\mathscr{U}_1$の任意の要素とすれば，
 		\begin{align}
-			s = \Set{y}{(x,y) \in v}
+			s = \Set{z}{(x,z) \in v}
 		\end{align}
 		なる$\mathscr{V}$の要素$v$が取れて，更に
 		\begin{align}
 			\Set{(p,q)}{p \in X \wedge q \in X \wedge \sigma_X(p,-q) \in b} \subset v
 		\end{align}
-		を満たす$\mathscr{B}$の要素$b$が取れる．ここで$y$を$b$の要素とすれば
+		を満たす$\mathscr{B}$の要素$b$が取れる．ここで$y$を$b$の要素とすれば，
 		\begin{align}
 			\sigma_X\left(x,-\sigma_X\left(x,y\right)\right)
-			= \sigma_X\left(x,\sigma_X\left(-y,-x\right)\right)
+			&= \sigma_X\left(x,\sigma_X\left(-y,-x\right)\right) \\
+			&= \sigma_X\left(x,\sigma_X\left(-x,-y\right)\right) \\
+			&= \sigma_X\left(\sigma_X\left(x,-x\right),-y\right) \\
+			&= -y
 		\end{align}
+		より
+		\begin{align}
+			\sigma_X\left(x,-\sigma_X\left(x,y\right)\right) \in b
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\left(x,\sigma_X\left(x,y\right)\right) \in \Set{(p,q)}{p \in X \wedge q \in X \wedge \sigma_X(p,-q) \in b}
+		\end{align}
+		が従い，
+		\begin{align}
+			\left(x,\sigma_X\left(x,y\right)\right) \in v
+		\end{align}
+		が従い，
+		\begin{align}
+			\sigma_X\left(x,y\right) \in s
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			t \defeq \Set{\sigma_X(x,y)}{y \in b}
+		\end{align}
+		により$\mathscr{U}_2$の要素を定めれば
+		\begin{align}
+			t \subset s
+		\end{align}
+		となる．これで(\refeq{fom:thm_topological_groups_are_uniformazable_1})が得られた．
+		次に$t$を$\mathscr{U}_2$の任意の要素とすれば，
+		\begin{align}
+			t = \Set{\sigma_X(x,y)}{y \in b}
+		\end{align}
+		を満たす$\mathscr{B}$の要素$b$が取れる．ここで
+		\begin{align}
+			v \defeq \Set{(p,q)}{p \in X \wedge q \in X \wedge \sigma_X(p,-q) \in b}
+		\end{align}
+		とおいて
+		\begin{align}
+			s \defeq \Set{z}{(x,z) \in v}
+		\end{align}
+		により$\mathscr{U}_1$の要素$s$を定める．$z$を$s$の任意の要素とすると
+		\begin{align}
+			\sigma_X(x,-z) \in b
+		\end{align}
+		が成り立つが，ここで
+		\begin{align}
+			y \defeq \sigma_X(x,-z)
+		\end{align}
+		とおくと，
+		\begin{align}
+			\sigma_X(x,-z) = y,
+		\end{align}
+		よって
+		\begin{align}
+			\sigma_X\left(\sigma_X\left(x,-z\right),-y\right) = \sigma_X\left(y,-y\right) = 0_X,
+		\end{align}
+		よって
+		\begin{align}
+			\sigma_X\left(\sigma_X\left(-z,x\right),-y\right) = 0_X,
+		\end{align}
+		よって
+		\begin{align}
+			\sigma_X\left(-z,\sigma_X\left(x,-y\right)\right) = 0_X,
+		\end{align}
+		よって
+		\begin{align}
+			\sigma_X\left(z,\sigma_X\left(-z,\sigma_X\left(x,-y\right)\right)\right) = \sigma_X\left(z,0_X\right) = z,
+		\end{align}
+		よって
+		\begin{align}
+			\sigma_X\left(\sigma_X\left(z,-z\right),\sigma_X\left(x,-y\right)\right) = z,
+		\end{align}
+		よって
+		\begin{align}
+			\sigma_X\left(x,-y\right) = z
+		\end{align}
+		が成り立つ．ただし$0_X$は$\left(X,\sigma_X\right)$の単位元である．加えて
+		\begin{align}
+			-y \in b
+		\end{align}
+		も成り立つので
+		\begin{align}
+			z \in t
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			s \subset t
+		\end{align}
+		が従うから(\refeq{fom:thm_topological_groups_are_uniformazable_2})も得られた．
+		\QED
 	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[位相群は$T_0$ならばTychonoffである]
-			
+			$\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)$を位相群とするとき，
+			$\left(X,\mathscr{O}_X\right)$は$T_0$ならばTychonoffである．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:topological_groups_are_uniformazable}より$\left(X,\mathscr{O}_X\right)$は一様化可能であり，
+		定理\ref{thm:T_0_iff_T_2_on_uniform_topological_space}より一様位相空間では
+		$T_0$であることとTychonoffであることは同値である．
+		\QED
+	\end{sketch}
