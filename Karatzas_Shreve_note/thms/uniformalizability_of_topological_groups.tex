@@ -16,8 +16,7 @@
 				\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)
 				\label{pair_topological_group}
 			\end{align}
-			の三つ組を{\bf 位相群}\index{いそうぐん@位相群}{\bf (topological group)}と呼ぶ．また
-			$(X,\mathscr{O}_X)$がHausdorffであるとき，(\refeq{pair_topological_group})をHausdorff位相群と呼ぶ．
+			の三つ組を{\bf 位相群}\index{いそうぐん@位相群}{\bf (topological group)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -324,6 +323,7 @@
 	
 	\begin{screen}
 		\begin{thm}[位相群の位相は局所基で決まる]
+		\label{thm:topologies_on_topological_groups_are_invariant}
 			$\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)$を位相群とし，
 			$\mathscr{B}$を$\left(X,\sigma_X\right)$の単位元の基本近傍系とする．また$x$を$X$の任意の要素とする．このとき，
 			\begin{align}
@@ -390,7 +390,7 @@
 	
 	一様化可能性についての言明をまとめるが，式で見づらくなっているところは上で意訳してある．
 	\begin{screen}
-		\begin{thm}[位相群は一様化可能である]
+		\begin{thm}[位相群は一様化可能である]\label{thm:topological_groups_are_uniformazable}
 			$\left(\left(X,\sigma_X\right),\mathscr{O}_X\right)$を位相群とし，
 			$\mathscr{B}$を$\left(X,\sigma_X\right)$の単位元の基本近傍系とし，
 			\begin{align}
@@ -405,10 +405,50 @@
 			\begin{align}
 				\mathscr{V} \defeq \Set{v}{v \subset X \times X \wedge \exists u \in \mathscr{U}\, \left(\, u \subset v\, \right)}
 			\end{align}
-			と定めると，$\mathscr{V}$は$X$上の近縁系となり$\mathscr{O}_X$と両立する．
+			と定めると，$\mathscr{V}$は$X$上の近縁系であって$\mathscr{O}_X$と両立する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		
+		$\mathscr{V}$が$X$上の近縁系であることは既に示したので，両立することを示す．$x$を$X$の要素とすると，
+		$\mathscr{V}$で導入する位相において
+		\begin{align}
+			\mathscr{U}_1 \defeq
+			\Set{u}{\exists v \in \mathscr{V}\, \forall y\, \left(\, y \in u \Longleftrightarrow (x,y) \in v\, \right)}
+		\end{align}
+		は$x$の基本近傍系である．他方で定理\ref{thm:topologies_on_topological_groups_are_invariant}より
+		\begin{align}
+			\mathscr{U}_2 \defeq
+			\Set{u}{\exists b \in \mathscr{B}\, 
+			\forall z\, \left[\, z \in u \Longleftrightarrow \exists y \in b\, \left(\, z=\sigma_X(x,y)\, \right) \, \right]}
+		\end{align}
+		は$\mathscr{O}_X$に関して$x$の基本近傍系である．ゆえに
+		\begin{align}
+			\forall s \in \mathscr{U}_1\, \exists t \in \mathscr{U}_2\, (\, t \subset s\, )
+			\label{fom:thm_topological_groups_are_uniformazable_1}
+		\end{align}
+		と
+		\begin{align}
+			\forall t \in \mathscr{U}_2\, \exists s \in \mathscr{U}_1\, (\, s \subset t\, )
+			\label{fom:thm_topological_groups_are_uniformazable_2}
+		\end{align}
+		が成り立つことを示せば良い．$s$を$\mathscr{U}_1$の任意の要素とすれば，
+		\begin{align}
+			s = \Set{y}{(x,y) \in v}
+		\end{align}
+		なる$\mathscr{V}$の要素$v$が取れて，更に
+		\begin{align}
+			\Set{(p,q)}{p \in X \wedge q \in X \wedge \sigma_X(p,-q) \in b} \subset v
+		\end{align}
+		を満たす$\mathscr{B}$の要素$b$が取れる．ここで$y$を$b$の要素とすれば
+		\begin{align}
+			\sigma_X\left(x,-\sigma_X\left(x,y\right)\right)
+			= \sigma_X\left(x,\sigma_X\left(-y,-x\right)\right)
+		\end{align}
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[位相群は$T_0$ならばTychonoffである]
+			
+		\end{thm}
+	\end{screen}
