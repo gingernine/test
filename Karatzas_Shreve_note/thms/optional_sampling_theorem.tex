@@ -13,7 +13,49 @@
 	を満たすものとするとき，これを$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 停止時刻}\index{ていしじこく@停止時刻}{\bf (stopping time)}と呼ぶ．
 	
 	\begin{screen}
+		\begin{thm}[発展的可測過程と停止時刻の合成の可測性]
+		\label{thm:composition_of_progressively_measurable_process_and_stopping_time}
+			$f$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-発展的可測過程とし，
+			$\tau$を$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-停止時刻とし，
+			$f_\tau$を
+			\begin{align}
+				\Omega \ni \omega \longmapsto f(\tau(\omega),\omega)
+			\end{align}
+			なる関係で定める写像とする．このとき$f_\tau$は$\mathscr{F}_\tau/\borel{\R}$-可測である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$t$を$\mathbf{T}$から任意に選ばれた要素とし，$E$を$\borel{\R}$から任意に選ばれた要素とする．
+		\begin{align}
+			f_\tau^{-1} \ast E = \Set{\omega \in \Omega}{f(\tau(\omega),\omega) \in E} 
+		\end{align}
+		なので
+		\begin{align}
+			\Set{\omega \in \Omega}{f(\tau(\omega),\omega) \in E} \cap \{\tau \leq t\}
+			\in \mathscr{F}_t
+		\end{align}
+		が成り立てばよい．ところで左辺は
+		\begin{align}
+			\Set{\omega \in \Omega}{f|_{[0,t] \times \Omega}(\tau(\omega) \wedge t,\omega) \in E} \cap \{\tau \leq t\}
+		\end{align}
+		に一致する．$\tau \wedge t$は$\mathscr{F}_t/\borel{[0,t]}$-可測なので
+		\begin{align}
+			\Omega \ni \omega \longmapsto (\tau(\omega) \wedge t,\omega)
+		\end{align}
+		は$\mathscr{F}_t/\borel{[0,t]} \otimes \mathscr{F}_t$-可測であり，
+		$f|_{[0,t] \times \Omega}$は$\borel{[0,t]} \otimes \mathscr{F}_t/\borel{\R}$-可測である．
+		ゆえに
+		\begin{align}
+			\Set{\omega \in \Omega}{f|_{[0,t] \times \Omega}(\tau(\omega) \wedge t,\omega) \in E} \in \mathscr{F}_t
+		\end{align}
+		が成り立つ．ゆえに$f_\tau$は$\mathscr{F}_\tau/\borel{\R}$-可測である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[離散時間の任意抽出定理]
 			
 		\end{thm}
 	\end{screen}
+	
