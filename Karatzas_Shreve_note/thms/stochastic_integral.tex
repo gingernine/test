@@ -9,72 +9,109 @@
 		M \in \mathscr{M}^2_{\mathbf{T}}
 	\end{align}
 	の場合は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$は右連続であるとする．
-	また$\inprod<M>$の$\omega$に対する標本路$\inprod<M>_\bullet(\omega)$で構成する
-	$\borel{\mathbf{T}}$上のStieltjes測度を
+	また$\inprod<M>$の$\omega$に対する標本路(表記法はP. \pageref{def:omega_to_path_mapping})
+	\begin{align}
+		\inprod<M>_\bullet(\omega)
+	\end{align}
+	で構成する$\borel{\mathbf{T}}$上のStieltjes測度を
 	\begin{align}
 		s_{M,\omega}
 	\end{align}
 	と書く．
 	
-	\begin{screen}
-		\begin{thm}
-			$\Omega$の各要素$\omega$に対して
-			\begin{align}
-				s_{M,\omega}(\mathbf{T}) < \infty.
-			\end{align}
-		\end{thm}
-	\end{screen}
+	本節の始めでは，可予測集合$A$に対して
+	\begin{align}
+		\int_\Omega \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)
+	\end{align}
+	という積分を正当化する．
 	
-	\begin{prf}
-		$\inprod<M>$は実数値確率過程なので
-		\begin{align}
-			s_{M,\omega}(\mathbf{T}) = \inprod<M>_T(\omega) < \infty
-		\end{align}
-		が成り立つ．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{thm}
-			$A$を$\mathscr{P}_{\mathbf{T}}$の要素とすれば，$\Omega$の各要素$\omega$で
-			\begin{align}
-				\mathbf{T} \ni t \longmapsto \defunc_A(t,\omega)
-			\end{align}
-			は$\borel{\mathbf{T}}/\borel{\R}$-可測である．
-		\end{thm}
-	\end{screen}
+	いま$A$を$\mathscr{P}_{\mathbf{T}}$の要素とすれば，$\Omega$の各要素$\omega$で
+	\begin{align}
+		\mathbf{T} \ni t \longmapsto \defunc_A(t,\omega)
+	\end{align}
+	なる写像は$\borel{\mathbf{T}}/\borel{\R}$-可測である．ゆえに
+	\begin{align}
+		\int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
+	\end{align}
+	という積分は各$\omega$で存在している．実際この積分は
+	\begin{align}
+		\int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
+		\leq \int_{\mathbf{T}} \defunc_{\mathbf{T} \times \Omega}(t,\omega)\ s_{M,\omega}(dt)
+		= \inprod<M>_T(\omega)
+	\end{align}
+	なる不等式を満たすから実数値で確定している．
 	
 	測度$s_{M,\omega}$は$\omega$に依存しているため，
 	\begin{align}
 		\Omega \ni \omega \longmapsto \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
-		\quad (A \in \mathscr{P}_{\mathbf{T}})
 	\end{align}
-	の可測性はFubiniの定理の適用では得られない．しかし以下が示される．
+	の可測性はFubiniの定理の適用では得られない．だが以下が示される．
 	
-	\begin{screen}
-		\begin{thm}
-			$A$を$\mathscr{P}_{\mathbf{T}}$の要素とすれば
-			\begin{align}
-				\Omega \ni \omega \longmapsto \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
-			\end{align}
-			は$\mathscr{F}/\borel{\R}$-可測である．
-		\end{thm}
-	\end{screen}
+	\begin{itembox}[l]{Stieltjes積分は$\omega$の関数として可測}
+		$A$を$\mathscr{P}_{\mathbf{T}}$の要素とすれば
+		\begin{align}
+			\Omega \ni \omega \longmapsto \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
+		\end{align}
+		は$\mathscr{F}_T/\borel{\R}$-可測である．
+	\end{itembox}
 	
-	\begin{prf}
-	\end{prf}
+	\begin{sketch}
+		いま
+		\begin{align}
+			\mathscr{D} \defeq
+			\Set{A \in \mathscr{P}_{\mathbf{T}}}{\mbox{$\omega \longmapsto \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)$が$\mathscr{F}_T/\borel{\R}$-可測}}
+		\end{align}
+		によりDynkin族を定めて，また$A$を$\mathscr{U}_{\mathbf{T}}$の要素とする．$\mathscr{F}_0$の要素$B$によって
+		\begin{align}
+			A = \{0\} \times B
+		\end{align}
+		が成り立っているとき，$\Omega$の任意の要素$\omega$に対して
+		\begin{align}
+			\int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
+			&= \defunc_B(\omega) \cdot \int_{\mathbf{T}} \defunc_{\{0\}}(t)\ s_{M,\omega}(dt) \\
+			&= \defunc_B(\omega) \cdot \left(\inprod<M>_0(\omega) - \inprod<M>_0(\omega)\right) \\
+			&= 0
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A \in \mathscr{D}
+		\end{align}
+		が成り立つ．
+		\begin{align}
+			s < t
+		\end{align}
+		なる$\mathbf{T}$の要素と$\mathscr{F}_s$の要素$B$によって
+		\begin{align}
+			A = ]s,t] \times B
+		\end{align}
+		が成り立っているとき，$\Omega$の任意の要素$\omega$に対して
+		\begin{align}
+			\int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)
+			&= \defunc_B(\omega) \cdot \int_{\mathbf{T}} \defunc_{]s,t]}(t)\ s_{M,\omega}(dt) \\
+			&= \defunc_B(\omega) \cdot \left(\inprod<M>_t(\omega) - \inprod<M>_s(\omega)\right)
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A \in \mathscr{D}
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\mathscr{U}_{\mathbf{T}} \subset \mathscr{D}
+		\end{align}
+		が成り立つ．ゆえにDynkin族定理より
+		\begin{align}
+			\mathscr{P}_{\mathbf{T}} = \mathscr{D}
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
 	
 	$\mathscr{P}_{\mathbf{T}}$上の写像$\nu_M$を
 	\begin{align}
-		\nu_M \defeq \Set{(A,y)}{A \in \mathscr{P}_{\mathbf{T}} \wedge y = 
-		\int_\Omega \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)}
+		\mathscr{P}_{\mathbf{T}} \ni A \longmapsto
+		\int_\Omega \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)
 	\end{align}
-	で定める．つまり$\nu_M$は
-	\begin{align}
-		A \in \mathscr{P}_{\mathbf{T}} \Longrightarrow
-		\nu_M(A) = \int_\Omega \int_{\mathbf{T}} \defunc_A(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)
-	\end{align}
-	を満たす．
+	なる関係により定める．
 	
 	\begin{screen}
 		\begin{thm}[二乗可積分マルチンゲールで構成する測度]
@@ -82,14 +119,59 @@
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		先ず
+		\begin{align}
+			\int_\Omega \int_{\mathbf{T}} \defunc_{\mathbf{T} \times \Omega}(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)
+			= \int_\Omega \inprod<M>_T\ dP
+		\end{align}
+		が成り立つが，
+		\begin{align}
+			M^2 - \inprod<M>
+		\end{align}
+		はマルチンゲールであり$M_T^2$は可積分なので
+		\begin{align}
+			\int_\Omega \inprod<M>_T\ dP < \infty
+		\end{align}
+		が従う．ゆえに$\nu_M$は有限値しか取らない．また
+		\begin{align}
+			\left\{A_n\right\}_{n \in \Natural}
+		\end{align}
+		を互いに素な$\mathscr{P}_{\mathbf{T}}$の部分集合とすると，$\Omega$の任意の要素$\omega$に対して
+		単調収束定理より
+		\begin{align}
+			\int_{\mathbf{T}} \defunc_{\bigcup_{n \in \Natural}A_n}(t,\omega)\ s_{M,\omega}(dt)
+			= \sum_{n \in \Natural} \int_{\mathbf{T}} \defunc_{A_n}(t,\omega)\ s_{M,\omega}(dt)
+		\end{align}
+		が成り立ち，再び単調収束定理より
+		\begin{align}
+			\int_\Omega \sum_{n \in \Natural} \int_{\mathbf{T}} \defunc_{A_n}(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)
+			= \sum_{n \in \Natural} \int_\Omega \int_{\mathbf{T}} \defunc_{A_n}(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega)
+		\end{align}
+		が成り立つ．ゆえに$\nu_M$は
+		\begin{align}
+			\bigcup_{n \in \Natural} A_n \longmapsto \sum_{n \in \Natural} \nu_M(A_n)
+		\end{align}
+		を満たす．ゆえに$\nu_M$は$\mathscr{P}_{\mathbf{T}}$上の正値有限測度である．
+		\QED
+	\end{sketch}
+	
+	$\mathscr{L}^1(\mathbf{T} \times \Omega,\mathscr{P}_{\mathbf{T}},\nu_M)$を
+	$\mathscr{L}^1(\nu_M)$と略記する．
+	
 	\begin{screen}
 		\begin{thm}[可積分可予測過程の積分表現]
+			$f$を$\mathscr{L}^1(\nu_M)$の要素とすると
 			\begin{align}
-				f \in \mathscr{L}^1(\nu_M) \Longrightarrow 
-				\int_{\mathbf{T} \times \Omega} f\ d\nu_M = \int_\Omega \int_{\mathbf{T}} f(t,\omega)\ s_{M,\omega}(dt)\ dP.
+				\int_{\mathbf{T} \times \Omega} f\ d\nu_M 
+				= \int_\Omega \int_{\mathbf{T}} f(t,\omega)\ s_{M,\omega}(dt)\ P(d\omega).
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
 	
 	\begin{comment}
 	いま，$\mathscr{P}_{\mathbf{T}}$の要素に対する定義関数の全体の線型包を$\mathscr{S}$と定める:
