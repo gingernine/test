@@ -29,6 +29,7 @@
 	
 	\begin{screen}
 		\begin{thm}[左不変擬距離位相は平行移動不変である]
+		\label{thm:topology_induced_by_left_invariant_metric_is_invariant}
 			$\left(X,\sigma_X\right)$を群とし，$d$を$X$上の左不変擬距離とし，
 			$\mathscr{O}_X$を$d$による擬距離位相とする．このとき，
 			$X$の任意の部分集合$u$と$X$の任意の要素$x$に対して
@@ -38,27 +39,189 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		任意の$\delta>0$と$a \in X$に対し
-		$B_\delta(a) \defeq \Set{x \in X}{d(x,a) < \delta}$と書けば，
-		任意の$y \in X$で
-		\begin{align}
-			z \in y + B_\delta(a)
-			\quad \Longleftrightarrow \quad
-			d(z-y,a) < \delta
-			\quad \Longleftrightarrow \quad
-			d(z,y+a) < \delta
-			\quad \Longleftrightarrow \quad
-			z \in B_\delta(y+a)
-		\end{align}
-		が成り立つ．従って，部分集合$U$が$U = \bigcup_{a \in U}B_{\delta_a}(a)$と書けるとき
-		任意の$x \in X$に対し
-		\begin{align}
-			x + U = \bigcup_{a \in U} \left(x+B_{\delta_a}(a)\right)
-			= \bigcup_{a \in U} B_{\delta_a}(x+a)
-		\end{align}
-		となるから，$U$が開集合であることと$x + U$が開集合であることは同値になる．
-		\QED
+	これは直感的に書けば
+	\begin{align}
+		u \in \mathscr{O}_X \Longleftrightarrow x + u \in \mathscr{O}_X
+	\end{align}
+	が成り立つということである．
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$a$と$x$を$X$の要素とし，$r$を正の実数とすると，
+				\begin{align}
+					\Set{\sigma_X\left(x,y\right)}{y \in X \wedge d(a,y) < r} 
+					= \Set{z \in X}{d\left(\sigma_X(x,a),z\right) < r}
+					\label{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_1}
+				\end{align}
+				が成り立つ．これを直感的に書けば
+				\begin{align}
+					B_r(a) \defeq \Set{y \in X}{d(a,y) < r}
+				\end{align}
+				と表すときに
+				\begin{align}
+					x + B_r(a) = B_r(x+a)
+				\end{align}
+				が成り立つということであるが，実際$y$を
+				\begin{align}
+					d(a,y) < r
+				\end{align}
+				なる$X$の要素とすれば
+				\begin{align}
+					d\left(\sigma_X(x,a),\sigma_X\left(x,y\right)\right)
+					= d\left(a,y\right)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\sigma_X\left(x,y\right) \in B_r(x+a)
+				\end{align}
+				が成り立つ．逆に$z$を
+				\begin{align}
+					d\left(\sigma_X(x,a),z\right) < r
+				\end{align}
+				なる$X$の要素とすれば，
+				\begin{align}
+					y \defeq \sigma_X(-x,z)
+				\end{align}
+				とおくと
+				\begin{align}
+					d\left(a,y\right) &= d\left(a,\sigma_X(-x,z)\right) \\
+					&= d\left(\sigma_X\left(x,a\right),\sigma_X\left(x,\sigma_X(-x,z)\right)\right) \\
+					&= d\left(\sigma_X\left(x,a\right),z\right)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					y \in B_r(a)
+				\end{align}
+				が従う．また
+				\begin{align}
+					z = \sigma_X\left(x,\sigma_X(-x,z)\right) = \sigma_X\left(x,y\right)
+				\end{align}
+				であるから
+				\begin{align}
+					z \in x + B_r(a)
+				\end{align}
+				が従う．以上で(\refeq{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_1})が得られた．
+				
+			\item[第二段]
+				$(X,d)$の開球の全体を$\mathscr{B}$とおく．つまり$\mathscr{B}$とは
+				\begin{align}
+					\Set{u}{\exists a \in X\, \exists r \in \R_+\, \forall x \in X\, 
+					\left(\, x \in u \Longleftrightarrow d(a,x) < r\, \right)}
+				\end{align}
+				なる集合である．$\mathscr{B}$は$\mathscr{O}_X$の基底であるから，
+				$u$を開集合とすれば
+				\begin{align}
+					v \subset \mathscr{B}
+				\end{align}
+				かつ
+				\begin{align}
+					u = \bigcup v
+				\end{align}
+				を満たす$v$が取れる．ここで$b$を$v$の要素としたときの
+				\begin{align}
+					\Set{\sigma_X\left(x,y\right)}{y \in b} \in \mathscr{B}
+				\end{align}
+				なる集合を$v$のすべての要素に亘って取ったものの全体を$w$とすると，つまり
+				\begin{align}
+					w \defeq \Set{c}{\exists b \in v\, \forall z\,
+					\left[\, z \in c \Longleftrightarrow \exists y \in b\, \left(\, z=\sigma_X\left(x,y\right)\, \right)\, \right]}
+				\end{align}
+				と定めると，(\refeq{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_1})より
+				\begin{align}
+					w \subset \mathscr{B}
+				\end{align}
+				が成り立つ．そして
+				\begin{align}
+					\Set{\sigma_X(x,y)}{y \in u} = \bigcup w
+					\label{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_2}
+				\end{align}
+				が成り立つ．実際，$y$を$u$の要素とすれば，
+				\begin{align}
+					y \in b
+				\end{align}
+				なる$v$の要素$b$が取れて
+				\begin{align}
+					\sigma_X(x,y) \in \Set{\sigma_X\left(x,z\right)}{z \in b}
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\sigma_X(x,y) \in w
+				\end{align}
+				が従う．逆に$z$を$w$の要素とすれば，$y$と$b$で
+				\begin{align}
+					b \in v
+				\end{align}
+				かつ
+				\begin{align}
+					y \in b
+				\end{align}
+				かつ
+				\begin{align}
+					z = \sigma_X(x,y)
+				\end{align}
+				を満たすものが取れて，
+				\begin{align}
+					y \in \bigcup v
+				\end{align}
+				が成り立つので
+				\begin{align}
+					z \in \Set{\sigma_X(x,y)}{y \in u}
+				\end{align}
+				が従う．ゆえに(\refeq{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_2})が従う．ゆえに
+				\begin{align}
+					u \in \mathscr{O}_X \Longrightarrow \Set{\sigma_X(x,y)}{y \in u} \in \mathscr{O}_X
+				\end{align}
+				が得られた．
+				
+			\item[第三段]
+				ここで
+				\begin{align}
+					v \defeq \Set{\sigma_X(x,y)}{y \in u}
+				\end{align}
+				とおくとき，
+				\begin{align}
+					u = \Set{\sigma_X(-x,z)}{z \in v}
+					\label{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_3}
+				\end{align}
+				が成り立つ．実際$s$を$u$の要素とすれば，
+				\begin{align}
+					\sigma_X(x,s) \in v
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\sigma_X\left(-x,\sigma_X(x,s)\right) \in \Set{\sigma_X(-x,z)}{z \in v}
+				\end{align}
+				が成り立つが，
+				\begin{align}
+					s = \sigma_X\left(-x,\sigma_X(x,s)\right)
+				\end{align}
+				であるから
+				\begin{align}
+					s \in \Set{\sigma_X(-x,z)}{z \in v}
+				\end{align}
+				が従う．逆に$z$を$v$の要素とするとき，
+				\begin{align}
+					z = \sigma_X\left(x,y\right)
+				\end{align}
+				を満たす$u$の要素$y$が取れて
+				\begin{align}
+					\sigma_X\left(-x,z\right)
+					= \sigma_X\left(-x,\sigma_X\left(x,y\right)\right)
+					= y
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\sigma_X\left(-x,z\right) \in u
+				\end{align}
+				が従う．ゆえに(\refeq{fom:thm_topology_induced_by_left_invariant_metric_is_invariant_2})が得られた．
+				ゆえに，前段の結果より
+				\begin{align}
+					\Set{\sigma_X(x,y)}{y \in u} \in \mathscr{O}_X \Longrightarrow u \in \mathscr{O}_X
+				\end{align}
+				が得られた．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	位相群においてその位相と両立する距離が左不変であるとは限らない．
