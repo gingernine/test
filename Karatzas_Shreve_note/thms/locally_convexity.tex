@@ -2,7 +2,7 @@
 	\begin{screen}
 		\begin{thm}[ゼロの近傍をスケール変換すれば空間全体を覆うことが出来る]
 		\label{thm:neighbor_of_zero_is_absorbing}
-			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を線型位相空間とし，
+			$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とし，
 			$0_X$を$\left(X,\sigma_X\right)$の単位元とし，
 			$u$を$0_X$の近傍とし，$x$を$X$の要素とする．このとき
 			\begin{align}
@@ -12,6 +12,12 @@
 			を満たす正の実数$r$が取れる．
 		\end{thm}
 	\end{screen}
+	
+	直感的に書き直せば，$x$に対して
+	\begin{align}
+		r < t \Longrightarrow x \in t \cdot u
+	\end{align}
+	を満たす実数$r$が取れるということである．
 	
 	\begin{sketch}
 		スケール変換は連続であるから，
@@ -46,10 +52,10 @@
 		\QED
 	\end{sketch}
 	
-	位相線型空間は一様化可能であるが，本節では逆に線型空間に対して線型位相を導入しうる近縁系とはどのようなものであるかを考察する．
+	位相線型空間は一様化可能であるが，本節では逆に{\bf 線型位相を導入しうる近縁系とはどのようなものであるか}を考察する．
 	そのような近縁系が具えているべき条件を見つけるには，位相線型空間を一様化する近縁系が持つ性質を洗い出せば良い．
 	
-	いま$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を線型位相空間とし，
+	いま$\left(\left(X,\sigma_X\right),(\Phi,+,\bullet),s,\mathscr{O}_X\right)$を位相線型空間とし，
 	$0_X$を$\left(X,\sigma_X\right)$の単位元とし，
 	\begin{align}
 		\mathscr{B}
@@ -155,8 +161,8 @@
 			を満たす正の実数$r$が取れる．
 	\end{description}
 	
-	以上で$\mathscr{U}$の性質を四つ抜き出したが，逆にこれらを全て揃えている基本近縁系が取れるなら
-	近縁系は線型位相を作り出すのである．
+	以上で$\mathscr{U}$の性質を四つ抜き出したが，逆にこれらを全て揃えている基本近縁系が取れるなら，
+	近縁系によって導入する一様位相は線型位相である．
 	
 	\begin{screen}
 		\begin{thm}[線型位相を導入する近縁系]
@@ -254,22 +260,61 @@
 				が成り立つ．ゆえに(\refeq{fom:thm_entourages_introducing_vector_topology_1})が得られた．
 				ゆえに$\sigma_X$は$\left(0_X,0_X\right)$で連続である．
 				
-			\item[第三段] $x$と$y$を$X$の要素として，$\sigma_X$が$\left(x,y\right)$において連続であることを示す．
-				
-			\item[第一段] 一様位相が不変位相であることを示す．
-				$x$を$X$の要素とする．$x$において
+			\item[第三段] $x$と$y$を$X$の要素として，$\sigma_X$が$(x,y)$において連続であることを示す．
+				いま$b$を$\sigma_X\left(x,y\right)$の近傍とすると
 				\begin{align}
-					\Set{U_x}{U \in \mathscr{U}}
+					u\left[\sigma_X(x,y)\right] \subset b
 				\end{align}
-				は基本近傍系となるが，
+				を満たす$\mathscr{U}$の要素$u$が取れて，また
 				\begin{align}
-					\forall U \in \mathscr{U}\, \left(\, x + U_\zeta \subset U_x\, \right)
+					w \circ w \subset u
 				\end{align}
-				が満たされているので
+				を満たす$\mathscr{U}$の要素$w$も取れる．そして
 				\begin{align}
-					\Set{x + U_\zeta}{U \in \mathscr{U}}
+					w[x]
 				\end{align}
-				も$x$の基本近傍系となる．従って一様位相は不変位相である．
+				は$x$の近傍であり，
+				\begin{align}
+					w[y]
+				\end{align}
+				は$y$の近傍である．そして(a)より
+				\begin{align}
+					w[x] = \Set{\sigma_X(x,p)}{(0_X,p) \in w}
+				\end{align}
+				であるから，$s$を$w[x]$の要素とすれば
+				\begin{align}
+					s = \sigma_X(x,p)
+				\end{align}
+				なる$X$の要素$p$が取れて，同様に$t$を$w[y]$の要素とすれば
+				\begin{align}
+					t = \sigma_X(y,q)
+				\end{align}
+				なる$X$の要素$q$が取れる．このとき前段の結果より
+				\begin{align}
+					\left(0_X,\sigma_X\left(p,q\right)\right) \in u
+				\end{align}
+				が成り立ち，かつ
+				\begin{align}
+					\sigma_X(s,t) &= \sigma_X\left(\sigma_X\left(x,p\right),\sigma_X\left(y,q\right)\right) \\
+					&= \sigma_X\left(\sigma_X\left(\sigma_X\left(x,p\right),y\right),q\right) \\
+					&= \sigma_X\left(\sigma_X\left(x,\sigma_X\left(p,y\right)\right),q\right) \\
+					&= \sigma_X\left(\sigma_X\left(x,\sigma_X\left(y,p\right)\right),q\right) \\
+					&= \sigma_X\left(\sigma_X\left(\sigma_X\left(x,y\right),p\right),q\right) \\
+					&= \sigma_X\left(\sigma_X\left(x,y\right),\sigma_X\left(p,q\right)\right) \\
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\sigma_X(s,t) \in \Set{\sigma_X\left(\sigma_X\left(x,y\right),z\right)}{(0_X,z) \in u}
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\sigma_X(s,t) \in u\left[\sigma_X(x,y)\right]
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					w[x] \times w[y] \subset \sigma_X^{-1} \ast b
+				\end{align}
+				が従う．ゆえに$\sigma_X$は$(x,y)$において連続である．
 				
 			\item[第三段]
 				$x$と$\alpha$をそれぞれ$X$と$\Phi$の要素として，
