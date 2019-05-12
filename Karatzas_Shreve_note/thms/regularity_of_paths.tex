@@ -871,7 +871,7 @@
 	最後に，{\bf 右連続な劣マルチンゲールは殆ど全てのパスが$RCLL$である}ことを証明して本節を終える．
 	
 	\begin{screen}
-		\begin{thm}[パスの正則性]
+		\begin{thm}[パスの正則性]\label{thm:regularity_of_paths_of_sub_martingales}
 			$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T} \defeq [0,\infty[$とし，
 			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとし，
 			$X$を$(\Omega,\mathscr{F},P)$上の右連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-劣マルチンゲールとする．
@@ -896,12 +896,153 @@
 		\begin{align}
 			\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}}
 			= \sup{s < t}{\inf{s < u < t}{X_u(\omega)}}
+			\label{fom:thm_regularity_of_paths_of_sub_martingales_1}
 		\end{align}
 		かつ
 		\begin{align}
 			\inf{\substack{s \in D \\ s < t}}{\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)}}
 			= \inf{s < t}{\sup{s < u < t}{X_u(\omega)}}
+			\label{fom:thm_regularity_of_paths_of_sub_martingales_2}
 		\end{align}
 		が成り立つことを示す．
-		
+		\begin{description}
+			\item[(\refeq{fom:thm_regularity_of_paths_of_sub_martingales_1})のスケッチ]
+				$s$を
+				\begin{align}
+					s < t
+				\end{align}
+				なる$D$の要素とすると，
+				\begin{align}
+					\inf{s < u < t}{X_u(\omega)} \leq \inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}
+				\end{align}
+				が成り立つ．$\alpha$を
+				\begin{align}
+					\inf{s < u < t}{X_u(\omega)} < \alpha
+				\end{align}
+				を満たす任意に与えられた実数とすれば，
+				\begin{align}
+					s < u < t
+				\end{align}
+				かつ
+				\begin{align}
+					X_u(\omega) < \alpha
+				\end{align}
+				を満たす実数$u$が取れるが，パスの右連続性から
+				\begin{align}
+					s < v < t
+				\end{align}
+				かつ
+				\begin{align}
+					X_v(\omega) < \alpha
+				\end{align}
+				を満たす$D$の要素$v$が取れるので
+				\begin{align}
+					\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)} < \alpha
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\inf{s < u < t}{X_u(\omega)} = \inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+					\leq \sup{s < t}{\inf{s < u < t}{X_u(\omega)}}
+				\end{align}
+				が成り立つ．$\alpha$を
+				\begin{align}
+					\alpha < \sup{s < t}{\inf{s < u < t}{X_u(\omega)}}
+				\end{align}
+				を満たす任意に与えられた実数とすれば
+				\begin{align}
+					\alpha < \inf{s < u < t}{X_u(\omega)}
+				\end{align}
+				を満たす実数$s$が取れるが，このとき$r$を
+				\begin{align}
+					s \leq r < t
+				\end{align}
+				なる$D$の要素として取れば
+				\begin{align}
+					\alpha < \inf{\substack{u \in D \\ r < u < t}}{X_u(\omega)}
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\alpha < \sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\sup{\substack{s \in D \\ s < t}}{\inf{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} 
+					= \sup{s < t}{\inf{s < u < t}{X_u(\omega)}}
+				\end{align}
+				が得られた．
+				
+			\item[(\refeq{fom:thm_regularity_of_paths_of_sub_martingales_2})のスケッチ]
+				$s$を
+				\begin{align}
+					s < t
+				\end{align}
+				なる$D$の要素とすると，
+				\begin{align}
+					\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)} \leq \sup{s < u < t}{X_u(\omega)}
+				\end{align}
+				が成り立つ．$\alpha$を
+				\begin{align}
+					\alpha < \sup{s < u < t}{X_u(\omega)}
+				\end{align}
+				を満たす任意に与えられた実数とすれば，
+				\begin{align}
+					s < u < t
+				\end{align}
+				かつ
+				\begin{align}
+					\alpha < X_u(\omega)
+				\end{align}
+				を満たす実数$u$が取れるが，パスの右連続性から
+				\begin{align}
+					s < v < t
+				\end{align}
+				かつ
+				\begin{align}
+					\alpha < X_v(\omega)
+				\end{align}
+				を満たす$D$の要素$v$が取れるので
+				\begin{align}
+					\alpha < \sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)}
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)} = \sup{s < u < t}{X_u(\omega)}
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\inf{s < t}{\sup{s < u < t}{X_u(\omega)}} \leq
+					\inf{\substack{s \in D \\ s < t}}{\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)}}
+				\end{align}
+				が成り立つ．$\alpha$を
+				\begin{align}
+					\inf{s < t}{\sup{s < u < t}{X_u(\omega)}} < \alpha
+				\end{align}
+				を満たす任意に与えられた実数とすれば
+				\begin{align}
+					\sup{s < u < t}{X_u(\omega)} < \alpha
+				\end{align}
+				を満たす実数$s$が取れるが，このとき$r$を
+				\begin{align}
+					s \leq r < t
+				\end{align}
+				なる$D$の要素として取れば
+				\begin{align}
+					\sup{\substack{u \in D \\ r < u < t}}{X_u(\omega)} < \alpha
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\inf{\substack{s \in D \\ s < t}}{\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)}} < \alpha
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\inf{s < t}{\sup{s < u < t}{X_u(\omega)}} =
+					\inf{\substack{s \in D \\ s < t}}{\sup{\substack{u \in D \\ s < u < t}}{X_u(\omega)}}
+				\end{align}
+				が得られた．
+				\QED
+		\end{description}
 	\end{sketch}
