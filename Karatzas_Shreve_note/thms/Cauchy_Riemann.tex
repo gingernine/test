@@ -106,7 +106,7 @@
 	$\Omega$を$\C$の開集合とし，$f$を$\Omega$上の複素数値関数とし，
 	$z$を$\Omega$の要素とし，$x$と$y$を
 	\begin{align}
-		z = x + i \cdot y
+		z = x + \isym \cdot y
 	\end{align}
 	なる実数とする．また
 	\begin{align}
@@ -118,7 +118,7 @@
 	\end{align}
 	なる写像を$v$とし，写像$\varphi$を
 	\begin{align}
-		\R^2 \ni (a,b) \longmapsto a + i \cdot b
+		\R^2 \ni (a,b) \longmapsto a + \isym \cdot b
 	\end{align}
 	なる関係で定める．そして
 	\begin{align}
@@ -134,21 +134,21 @@
 	\end{align}
 	とおき，同様に$\partial_1 v$と$\partial_2 v$を定める．このとき
 	\begin{align}
-		\partial_1 u = \partial_2 v
+		\partial_1 u + \isym \cdot \partial_1 v = \partial_2 v - \isym \cdot \partial_2 u
 	\end{align}
-	と
-	\begin{align}
-		\partial_2 u = -\partial_1 v
-	\end{align}
-	の二つの式を{\bf Cauchy-Riemann方程式}と呼ぶ．
-	
+	を{\bf Cauchy-Riemann方程式}と呼ぶ．
 	
 	\begin{screen}
 		\begin{thm}[複素微分可能であることとCauchy-Riemann方程式]
 			記号は全て上で設定したものとする．
 			$f$が$z$で複素微分可能であることと，
 			$u \circ \varphi$と$v \circ \varphi$が共に$(x,y)$で全微分可能であって
-			かつCauchy-Riemann方程式が成り立つことは同値である．
+			かつCauchy-Riemann方程式が成り立つことは同値である．また$f$が$z$で複素微分可能であるなら
+			\begin{align}
+				\lim_{h \to 0} \frac{f(z+h) - f(z)}{h}
+				= \partial_1 u + \isym \cdot \partial_1 v
+				= \partial_2 v - \isym \cdot \partial_2 u.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
@@ -159,12 +159,12 @@
 				\begin{align}
 					&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h \in \C\, \\
 					&\left[\, |h| < \delta \Longrightarrow 
-					\left|f(z+h) - f(z) - (\alpha + i \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
+					\left|f(z+h) - f(z) - (\alpha + \isym \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
 				\end{align}
 				を満たす実数$\alpha$と$\beta$が取れる．このとき，
 				$h$と$k$を実数とすれば
 				\begin{align}
-					&f(z + (h + i \cdot k)) - f(z) - (\alpha + i \cdot \beta) \cdot (h + i \cdot k) \\
+					&f(z + (h + \isym \cdot k)) - f(z) - (\alpha + \isym \cdot \beta) \cdot (h + \isym \cdot k) \\
 					&= \left\{u(\varphi(x+h,y+k)) - u(\varphi(x,y))
 					- \alpha \cdot h + \beta \cdot k\right\} \\
 					&\quad + i \cdot \left\{v(\varphi(x+h,y+k)) - v(\varphi(x,y))
@@ -175,7 +175,7 @@
 				\begin{align}
 					\forall h \in \C\, 
 					\left[\, |h| < \delta \Longrightarrow 
-					\left|f(z+h) - f(z) - (\alpha + i \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
+					\left|f(z+h) - f(z) - (\alpha + \isym \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
 				\end{align}
 				を満たす正の実数$\delta$を取ると，任意の実数$h$と$k$に対して
 				\begin{align}
@@ -185,8 +185,8 @@
 				\begin{align}
 					&\left|u(\varphi(x+h,y+k)) - u(\varphi(x,y))
 					- \alpha \cdot h + \beta \cdot k\right| \\
-					&\leq \left|f(z + (h + i \cdot k))- f(z)
-					- (\alpha + i \cdot \beta) \cdot (h + i \cdot k)\right| &\mbox{(\refeq{fom:Cauchy_Riemann_1})より} \\
+					&\leq \left|f(z + (h + \isym \cdot k))- f(z)
+					- (\alpha + \isym \cdot \beta) \cdot (h + \isym \cdot k)\right| &\mbox{(\refeq{fom:Cauchy_Riemann_1})より} \\
 					&< \epsilon \cdot \sqrt{h^2 + k^2}
 				\end{align}
 				が成立する．ゆえに$u \circ \varphi$は$(x,y)$において全微分可能である．
@@ -246,7 +246,7 @@
 				\end{align}
 				であれば
 				\begin{align}
-					&\left|f(z+h) - f(z) - (\partial_1 u + i \cdot \partial_1 v) \cdot h\right| \\
+					&\left|f(z+h) - f(z) - (\partial_1 u + \isym \cdot \partial_1 v) \cdot h\right| \\
 					&\leq \left|u(z+h) - u(z) - \partial_1 u \cdot \Re{h} + \partial_1 v \cdot \Im{h}\right| \\
 					&\quad + \left|v(z+h) - v(z) - \partial_1 v \cdot \Re{h} - \partial_1 u \cdot \Im{h}\right| \\
 					&< 2 \cdot \epsilon \cdot |h|

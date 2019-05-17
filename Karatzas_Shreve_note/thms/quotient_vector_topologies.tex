@@ -19,7 +19,7 @@
 	\end{align}
 	は線型空間をなしている．ここで
 	\begin{align}
-		\Psi \defeq \Set{(x,y)}{x \in X \wedge y \in X \wedge \sigma_X(x,-y) \in N}
+		\Psi \defeq \Set{(x,y)}{x \in X \wedge y \in X \wedge \sigma_X(-x,y) \in N}
 	\end{align}
 	とおくと$\Psi$は$X$上の同値関係である．実際
 	\begin{align}
@@ -39,7 +39,7 @@
 	\end{align}
 	なるとき，
 	\begin{align}
-		\sigma_X(y,-x) = -\sigma_X(x,-y) \in N
+		\sigma_X(-y,x) = -\sigma_X(-x,y) \in N
 	\end{align}
 	が成り立つから
 	\begin{align}
@@ -51,7 +51,7 @@
 	\end{align}
 	なるとき，
 	\begin{align}
-		\sigma_X(x,-z) = \sigma_X\left(\sigma_X(x,-y),\sigma_X(y,-z)\right) \in N
+		\sigma_X(-x,z) = \sigma_X\left(\sigma_X(-x,y),\sigma_X(-y,z)\right) \in N
 	\end{align}
 	が成り立つから
 	\begin{align}
@@ -67,24 +67,24 @@
 	\end{align}
 	が成り立っているとする．$\sigma_X$の結合律より
 	\begin{align}
-		\sigma_X\left(\sigma_X(x,y),-\sigma_X(a,b)\right)
-		&= \sigma_X\left(\sigma_X(x,y),\sigma_X(-b,-a)\right) \\
-		&= \sigma_X\left(x,\sigma_X\left(y,\sigma_X(-b,-a)\right)\right) \\
-		&= \sigma_X\left(x,\sigma_X\left(\sigma_X(y,-b),-a\right)\right) \\
-		&= \sigma_X\left(x,\sigma_X\left(-a,\sigma_X(y,-b)\right)\right) \\
-		&= \sigma_X\left(\sigma_X(x,-a),\sigma_X(y,-b)\right)
+		\sigma_X\left(-\sigma_X(x,y),\sigma_X(a,b)\right)
+		&= \sigma_X\left(\sigma_X(-y,-x),\sigma_X(a,b)\right) \\
+		&= \sigma_X\left(-y,\sigma_X\left(-x,\sigma_X(a,b)\right)\right) \\
+		&= \sigma_X\left(-y,\sigma_X\left(\sigma_X(-x,a),b\right)\right) \\
+		&= \sigma_X\left(-y,\sigma_X\left(b,\sigma_X(-x,a)\right)\right) \\
+		&= \sigma_X\left(\sigma_X(-y,b),\sigma_X(-x,a)\right)
 	\end{align}
 	が成り立つが，いま
 	\begin{align}
-		\sigma_X(x,-a) \in N \wedge \sigma_X(y,-b) \in N
+		\sigma_X(-x,a) \in N \wedge \sigma_X(-y,b) \in N
 	\end{align}
 	であるから
 	\begin{align}
-		\sigma_X\left(\sigma_X(x,-a),\sigma_X(y,-b)\right) \in N
+		\sigma_X\left(\sigma_X(-y,b),\sigma_X(-x,a)\right) \in N
 	\end{align}
 	が成り立ち
 	\begin{align}
-		\sigma_X\left(\sigma_X(x,y),-\sigma_X(a,b)\right) \in N
+		\sigma_X\left(-\sigma_X(x,y),\sigma_X(a,b)\right) \in N
 	\end{align}
 	が従う．ゆえに
 	\begin{align}
@@ -98,21 +98,21 @@
 	\end{align}
 	が成り立っているとする．スカラ倍の規則より
 	\begin{align}
-		\sigma_X\left(s(\alpha,x),-s(\alpha,y)\right)
-		&= \sigma_X\left(s(\alpha,x),s(\alpha,-y)\right) \\
-		&= s\left(\alpha,\sigma_X(x,-y)\right)
+		\sigma_X\left(-s(\alpha,x),s(\alpha,y)\right)
+		&= \sigma_X\left(s(\alpha,-x),s(\alpha,y)\right) \\
+		&= s\left(\alpha,\sigma_X(-x,y)\right)
 	\end{align}
 	が成り立つが，いま
 	\begin{align}
-		\sigma_X(x,-y) \in N
+		\sigma_X(-x,y) \in N
 	\end{align}
 	であるから
 	\begin{align}
-		s\left(\alpha,\sigma_X(x,-y)\right) \in N
+		s\left(\alpha,\sigma_X(-x,y)\right) \in N
 	\end{align}
 	が成り立ち
 	\begin{align}
-		\sigma_X\left(s(\alpha,x),-s(\alpha,y)\right) \in N
+		\sigma_X\left(-s(\alpha,x),s(\alpha,y)\right) \in N
 	\end{align}
 	が従う．ゆえに
 	\begin{align}
@@ -173,11 +173,11 @@
 				\end{align}
 				を満たす$v$の要素$y$が取れる．すなわち
 				\begin{align}
-					\sigma_X(z,-y) \in N
+					\sigma_X(-y,z) \in N
 				\end{align}
 				が成り立ち，
 				\begin{align}
-					z = \sigma_X\left(\sigma_X(z,-y),y\right)
+					z = \sigma_X\left(\sigma_X(-y,z),y\right)
 				\end{align}
 				も成り立つので
 				\begin{align}
@@ -193,7 +193,7 @@
 				\end{align}
 				を満たす$N$の要素$x$と$v$の要素$y$が取れるが，
 				\begin{align}
-					x = \sigma_X(z,-y) \in N
+					x = \sigma_X(-y,z) \in N
 				\end{align}
 				より
 				\begin{align}
@@ -374,6 +374,31 @@
 					\subset v
 				\end{align}
 				が成立する．以上より$\mathscr{U}(x)$は$\mathscr{O}_q$に関しても$x$の基本近傍系である．
+				
+			\item[第六段]
+				$N$が$(X,\mathscr{O}_X)$の閉集合であるとき，$x$を$X_q$の要素とすれば
+				\begin{align}
+					x = q(\eta)
+				\end{align}
+				を満たす$X$の要素$\eta$が取れるが，このとき
+				\begin{align}
+					q^{-1} \ast \{x\} = \Set{\xi}{\exists n \in N\, \left(\, \xi = \sigma_X(\eta,n)\, \right)}
+				\end{align}
+				が成立する．$N$は閉であり，
+				\begin{align}
+					X \ni a \longmapsto \sigma_X(x,a)
+				\end{align}
+				なる写像は$\mathscr{O}_X$に関して同相写像であるので，
+				\begin{align}
+					\Set{y}{\exists n \in N\, \left(\, y = \sigma_X(\eta,n)\, \right)}
+				\end{align}
+				もまた$(X,\mathscr{O}_X)$の閉集合である．従って
+				\begin{align}
+					\{x\}
+				\end{align}
+				は$(X_q,\mathscr{O}_q)$の閉集合である．ゆえに
+				$(X_q,\mathscr{O}_q)$は$T_1$空間であり，$\mathscr{O}_q$は一様位相なので
+				$(X_q,\mathscr{O}_q)$はTychonoffである．
 				\QED
 		\end{description}
 	\end{sketch}
@@ -416,8 +441,7 @@
 					\end{align}
 					で定める$\mathscr{B}_q$は$\left((X_q,\sigma_q),\mathscr{O}_q\right)$の局所基である．
 				
-				\item $N$が$(X,\mathscr{O}_X)$の閉集合で$(X,\mathscr{O}_X)$がHausdorffなら，
-					$(X_q,\mathscr{O}_q)$もHausdorffである．
+				\item $N$が$(X,\mathscr{O}_X)$の閉集合ならば$(X_q,\mathscr{O}_q)$はTychonoffである．
 			\end{itemize}
 		\end{thm}
 	\end{screen}
