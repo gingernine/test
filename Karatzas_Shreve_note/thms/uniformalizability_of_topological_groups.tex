@@ -193,13 +193,40 @@
 	で定められる集合を，$\mathscr{B}$のすべての要素に亘って取ったものの全体を$\mathscr{U}$と定める．つまり
 	\begin{align}
 		\mathscr{U} \defeq \Set{u}{\exists b \in \mathscr{B}\,
-		\left[\, \forall x,y \in X\, \left(\, (x,y) \in u \Longleftrightarrow\sigma_X(-x,y) \in b\, \right)\, \right]}
+		\left[\, \forall z\, \left(\, z \in u \Longleftrightarrow \exists x,y \in X\, 
+		\left(\, z=(x,y) \wedge \sigma_X(-x,y) \in b\, \right)\, \right)\, \right]}
 	\end{align}
 	と定める．すると，
 	\begin{align}
 		\mathscr{V} \defeq \Set{v}{v \subset X \times X \wedge \exists u \in \mathscr{U}\, \left(\, u \subset v\, \right)}
 	\end{align}
-	で定める$\mathscr{V}$は$X$上の近縁系となる．実際，
+	で定める$\mathscr{V}$は$X$上の近縁系となる．実際は少し緩めた仮定の下で次のことが言える．
+	
+	\begin{screen}
+		\begin{thm}[加法がゼロで連続ならば近縁系が作られる]
+		\label{thm:summation_is_continuous_at_zero_then_there_exists_a_entourages}
+			$\left(X,\sigma_X\right)$を群とし，$0_X$を$\left(X,\sigma_X\right)$の単位元とし，
+			$\mathscr{O}_X$を$X$上の位相とし，$\sigma_X$は$(0_X,0_X)$において$\mathscr{O}_X$に関して連続であるとする．
+			また$\mathscr{B}$を$0_X$の基本近傍系とし，$\mathscr{B}$のすべての要素は逆元で閉じているとする．つまり
+			\begin{align}
+				\forall b \in \mathscr{B}\, \left[\, \forall x\, (\, x \in b \Longrightarrow -x \in b\, )\, \right].
+			\end{align}
+			このとき
+			\begin{align}
+				\mathscr{U} \defeq \Set{u}{\exists b \in \mathscr{B}\,
+				\left[\, \forall z\, \left(\, z \in u \Longleftrightarrow \exists x,y \in X\, 
+				\left(\, z=(x,y) \wedge \sigma_X(-x,y) \in b\, \right)\, \right)\, \right]}
+			\end{align}
+			と定めて
+			\begin{align}
+				\mathscr{V} \defeq \Set{v}{v \subset X \times X \wedge \exists u \in \mathscr{U}\, 
+				\left(\, u \subset v\, \right)}
+			\end{align}
+			と定めると，$\mathscr{V}$は$X$上の近縁系をなす．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
 	\begin{description}
 		\item[(a)] $\mathscr{B}$は空ではないので
 			\begin{align}
@@ -240,10 +267,6 @@
 				\sigma_X(-x,y) = -\sigma_X(-y,x)
 			\end{align}
 			かつ$b$は逆元で閉じているので
-			\begin{align}
-				\forall x,y \in X\, \left[\, \sigma_X(-x,y) \in b \Longleftrightarrow \sigma_X(-y,x) \in b\, \right]
-			\end{align}
-			が成り立つ．ゆえに
 			\begin{align}
 				u^{-1} = \Set{(y,x)}{x \in X \wedge y \in X \wedge \sigma_X(-y,x) \in b}
 			\end{align}
@@ -287,9 +310,9 @@
 			\begin{align}
 				\Set{(x,y)}{x \in X \wedge y \in X \wedge \sigma_X(-x,y) \in b} \subset v
 			\end{align}
-			を満たす$\mathscr{B}$の要素$b$が取れて，$\sigma_X$は連続なので
+			を満たす$\mathscr{B}$の要素$b$が取れて，$\sigma_X$は$(0_X,0_X)$において連続なので
 			\begin{align}
-				a \times c \subset \sigma_X^{-1} \ast b
+				a \times c \subset {\sigma_X}^{-1} \ast b
 			\end{align}
 			を満たす$\mathscr{B}$の要素$a$と$c$が取れる．ここで
 			\begin{align}
@@ -351,6 +374,8 @@
 			が従う．
 			\QED
 	\end{description}
+	\end{sketch}
+	
 	以上より$\mathscr{V}$が$X$上の近縁系であることが示された．後は$\mathscr{V}$により導入する一様位相が
 	$\mathscr{O}_X$と両立することを示せば一様化可能性が言えるが，それは次の定理から従う．
 	
