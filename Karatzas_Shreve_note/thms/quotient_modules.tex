@@ -1,0 +1,157 @@
+\subsection{商加群}
+	\begin{screen}
+		\begin{thm}[商加群]\label{thm:quotient_module}
+			$\left(\left(X,\sigma_X\right),\left(R,\sigma_R,\mu_R\right),s\right)$を加群とし，
+			$\Psi$を$X$上の同値関係とし，
+			\begin{align}
+				X_q \defeq X/\Psi
+			\end{align}
+			とおく．また$q$を$X$から$X_q$への商写像とする．
+			同値関係が$\sigma_X$と$s$によって不変であるとき，つまり
+			\begin{align}
+				\forall x,y,a,b \in X\,
+				\left[\, (x,a) \in \Psi \wedge (y,b) \in \Psi \Longrightarrow 
+				\left(\sigma_X(x,y), \sigma_X(a,b)\right) \in \Psi\, \right]
+				\label{fom:thm_quotient_module_1}
+			\end{align}
+			と
+			\begin{align}
+				\forall r \in R\, \forall x,y \in X\,
+				\left[\, (x,y) \in \Psi \Longrightarrow 
+				\left(s(r,x), s(r,y)\right) \in \Psi\, \right]
+				\label{fom:thm_quotient_module_2}
+			\end{align}
+			が満たされているとき，
+			\begin{align}
+				X_q \times X_q \ni \left(q(x),q(y)\right) \longmapsto q\left(\sigma_X(x,y)\right)
+			\end{align}
+			なる関係を$\sigma_q$とし，
+			\begin{align}
+				R \times X_q \ni \left(\alpha,q(x)\right) \longmapsto q\left(s(\alpha,x)\right)
+			\end{align}
+			なる関係を$s_q$とすると，
+			\begin{align}
+				\left(\left(X_q,\sigma_q\right),\left(R,\sigma_R,\mu_R\right),s_q\right)
+			\end{align}
+			は加群である．
+		\end{thm}
+	\end{screen}
+	
+	$\sigma_q$とは
+	\begin{align}
+		\sigma_q \defeq \Set{z}{\exists x,y \in X\, 
+		\left[\, z=\left(\left(q(x),q(y)\right),q\left(\sigma_X(x,y)\right)\right)\, \right]}
+	\end{align}
+	により定められた集合であり，$s_q$とは
+	\begin{align}
+		\sigma_q \defeq \Set{z}{\exists \alpha \in R\, \exists x \in X\, 
+		\left[\, z=\left(\left(\alpha,q(x)\right),q\left(s(\alpha,x)\right)\right)\, \right]}
+	\end{align}
+	により定められた集合である．
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] $\left(X_q,\sigma_q\right)$がAbel群であることを示す．
+			
+			\item[第二段] $s_q$が 
+				\begin{align}
+					s_q:R \times X_q \longrightarrow X_q
+				\end{align}
+				を満たすことを示す．$x$と$y$と$z$を任意に与えられた集合とし，
+				\begin{align}
+					(x,y) \in s_q \wedge (x,z) \in s_q
+				\end{align}
+				とする．このとき$R$の要素$r$と$t$，および$X$の要素$a$と$b$で
+				\begin{align}
+					(x,y) = \left((r,q(a)),q(s(r,a))\right)
+				\end{align}
+				かつ
+				\begin{align}
+					(x,z) = \left((t,q(b)),q(s(t,b))\right)
+				\end{align}
+				を満たすものが取れる．ここで
+				\begin{align}
+					(r,q(a)) = x = (t,q(b))
+				\end{align}
+				より
+				\begin{align}
+					(a,b) \in \Phi
+				\end{align}
+				と
+				\begin{align}
+					\left(s(r,a), s(t,b)\right) = \left(s(r,a), s(r,b)\right) 
+				\end{align}
+				が成り立つので，(\refeq{fom:thm_quotient_module_2})より
+				\begin{align}
+					\left(s(r,a), s(t,b)\right) \in \Psi
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					y = q(s(r,a)) = q(s(t,b)) = z
+				\end{align}
+				が従う．ゆえに$s_q$は写像である．また$x$を$\dom{s_q}$の要素とすれば
+				\begin{align}
+					(x,y) \in s_q
+				\end{align}
+				なる集合$y$と
+				\begin{align}
+					(x,y) = \left(\left(\alpha,q(z)\right),q\left(s(\alpha,z)\right)\right)
+				\end{align}
+				を満たす$R$の要素$\alpha$及び$X$の要素$z$が取れて
+				\begin{align}
+					x \in R \times X_q
+				\end{align}
+				となる．ゆえに
+				\begin{align}
+					\dom{s_q} \subset R \times X_q
+				\end{align}
+				である．逆に$x$を$R \times X_q$の要素とすれば
+				\begin{align}
+					x = \left(\alpha,q(z)\right)
+				\end{align}
+				を満たす$R$の要素$\alpha$及び$X$の要素$z$が取れて，このとき
+				\begin{align}
+					\left(\left(\alpha,q(z)\right),q\left(s(\alpha,z)\right)\right) \in s_q
+				\end{align}
+				が成り立つので
+				\begin{align}
+					x \in \dom{s_q}
+				\end{align}
+				となる．以上で
+				\begin{align}
+					\dom{s_q} = R \times X_q
+				\end{align}
+				が得られた．ゆえに$s_q$は$R \times X_q$から$X_q$への写像である．
+				
+			\item[第三段] $s_q$がスカラ倍であることを示す．
+				いま$\alpha$と$\beta$を$R$の要素とし，$x$と$y$を$X_q$の要素とする．ここで
+				\begin{align}
+					x = q(\eta)
+				\end{align}
+				と
+				\begin{align}
+					y = q(\xi)
+				\end{align}
+				を満たす$X$の要素$\eta$と$\xi$を取る．まず
+				\begin{align}
+					s_q\left(\sigma_R(\alpha,\beta),x\right)
+					&= q\left(s\left(\sigma_R(\alpha,\beta),\eta\right)\right) \\
+					&= q\left(\sigma_X\left(s(\alpha,\eta),s(\beta,\eta)\right)\right) \\
+					&= \sigma_q\left(q\left(s(\alpha,\eta)\right),q\left(s(\beta,\eta)\right)\right) \\
+					&= \sigma_q\left(s_q(\alpha,x),s_q(\beta,x)\right)
+				\end{align}
+				が成立する．また
+				\begin{align}
+					s_q\left(\alpha,\sigma_q(x,y)\right)
+					&= s_q\left(\alpha,q\left(\sigma_X(\eta,\xi)\right)\right) \\
+					&= q\left(s\left(\alpha,\sigma_X(\eta,\xi)\right)\right) \\
+					&= q\left(\sigma_X(s(\alpha,\eta),s(\alpha,\xi))\right) \\
+					&= \sigma_q\left(q\left(s(\alpha,\eta)\right),q\left(s(\alpha,\xi)\right)\right) \\
+					&= \sigma_q\left(s_q(\alpha,x),s_q(\alpha,y)\right)
+				\end{align}
+				も成立する．また
+				\begin{align}
+					f
+				\end{align}
+		\end{description}
+	\end{sketch}
