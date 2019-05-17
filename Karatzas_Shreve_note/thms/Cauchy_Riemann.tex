@@ -1,6 +1,6 @@
 \subsection{Cauchy-Riemann方程式}
 	\begin{screen}
-		\begin{dfn}[全微分可能]
+		\begin{dfn}[全微分可能]\label{def:totally_differentiability}
 			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，
 			$u$を$D$上の実数値関数とする．このとき
 			\begin{align}
@@ -15,30 +15,15 @@
 		\end{dfn}
 	\end{screen}
 	
-	$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，$u$を$D$上の実数値関数とし，
-	$u$が$(x,y)$で全微分可能であるとする．このとき
-	\begin{align}
-		&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h,k \in \R\, \\
-		&\sqrt{h^2 + k^2} < \delta \Longrightarrow
-		\left|u(x+h,y+k) - u(x,y) - \alpha \cdot h - \beta \cdot k\right| 
-		< \epsilon \cdot \sqrt{h^2 + k^2}
-	\end{align}
-	を満たす実数$\alpha$と$\beta$が取れるが，同時に
+	(\refeq{fom:def_totally_differentiability})の$\alpha$と$\beta$が一意に定まることを示す．
+	定義\ref{def:totally_differentiability}の設定の下で
 	\begin{align}
 		&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h,k \in \R\, \\
 		&\sqrt{h^2 + k^2} < \delta \Longrightarrow
 		\left|u(x+h,y+k) - u(x,y) - \gamma \cdot h - \zeta \cdot k\right| 
 		< \epsilon \cdot \sqrt{h^2 + k^2}
 	\end{align}
-	を満たす実数$\gamma$と$\zeta$が取れる場合
-	\begin{align}
-		\alpha = \gamma
-	\end{align}
-	かつ
-	\begin{align}
-		\beta = \zeta
-	\end{align}
-	が成り立つ．実際，$\epsilon$を任意に与えられた正の実数とすると
+	を満たす実数$\gamma$と$\zeta$が取れる場合，$\epsilon$を任意に与えられた正の実数とすると
 	\begin{align}
 		\forall h,k \in \R\,
 		\left[\, \sqrt{h^2 + k^2} < \delta \Longrightarrow
@@ -59,33 +44,79 @@
 	ならば
 	\begin{align}
 		\left|u(x+h,y) - u(x,y) - \alpha \cdot h\right| < \epsilon \cdot |h|
+		\label{fom:totally_differentiable_then_partially_differentiable}
 	\end{align}
 	かつ
+	\begin{align}
+		\left|u(x+h,y) - u(x,y) - \gamma \cdot h\right| < \epsilon \cdot |h|
+	\end{align}
+	が成り立つので
+	\begin{align}
+		\left|\alpha \cdot h - \gamma \cdot h\right| < \epsilon \cdot |h|
+	\end{align}
+	が従う．すなわち
+	\begin{align}
+		\left|\alpha - \gamma\right| < \epsilon
+	\end{align}
+	が従う．$\epsilon$の任意性より
+	\begin{align}
+		\alpha = \gamma
+	\end{align}
+	が出る．同様にして
+	\begin{align}
+		\beta = \zeta
+	\end{align}
+	も得られる．また(\refeq{fom:totally_differentiable_then_partially_differentiable})は
+	$u$が第一変数に関して偏微分可能であることを示している．これについてまとめると
 	
 	\begin{screen}
 		\begin{thm}[全微分可能なら偏微分可能]
+			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，
+			$u$を$D$上の実数値関数とする．このとき$u$が$(x,y)$で全微分可能ならば，
+			$u$は第一変数と第二変数に関して$(x,y)$で偏微分可能である．
+			また$u$が$(x,y)$で全微分可能であるとき，
+			\begin{align}
+				\partial_1 u \defeq \lim_{h \to 0} \frac{u(x+h,y) - u(x,y)}{h}
+			\end{align}
+			および
+			\begin{align}
+				\partial_2 u \defeq \lim_{k \to 0} \frac{u(x,y+k) - u(x,y)}{k}
+			\end{align}
+			とおけば
+			\begin{align}
+				&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h,k \in \R\, \\
+				&\sqrt{h^2 + k^2} < \delta \Longrightarrow
+				\left|u(x+h,y+k) - u(x,y) - \partial_1 u \cdot h - \partial_2 u \cdot k\right| 
+				< \epsilon \cdot \sqrt{h^2 + k^2}
+			\end{align}
+			が成立する．
 		\end{thm}
 	\end{screen}
 	
+	偏微分可能であるからと言って全微分可能であるとは限らないが，次の条件の下では全微分可能である．
+	
 	\begin{screen}
 		\begin{thm}[偏導関数が連続なら全微分可能]
+			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，$u$を$D$上の実数値関数とする．
+			また$D$の各要素$(s,t)$において$u$は第一変数と第二変数それぞれに関して偏微分可能であるとする．
+			
 		\end{thm}
 	\end{screen}
 
-	$D$を$\C$の開集合とし，$f$を$D$上の複素数値関数とし，
-	$z$を$D$の要素とし，$x$と$y$を
+	$\Omega$を$\C$の開集合とし，$f$を$\Omega$上の複素数値関数とし，
+	$z$を$\Omega$の要素とし，$x$と$y$を
 	\begin{align}
 		z = x + i \cdot y
 	\end{align}
 	なる実数とする．また
 	\begin{align}
-		D \ni z \longmapsto \Re{f(z)}
+		\Omega \ni z \longmapsto \Re{f(z)}
 	\end{align}
 	なる写像を$u$とし，
 	\begin{align}
-		D \ni z \longmapsto \Im{f(z)}
+		\Omega \ni z \longmapsto \Im{f(z)}
 	\end{align}
-	なる写像を$v$とし，$\varphi$を
+	なる写像を$v$とし，写像$\varphi$を
 	\begin{align}
 		\R^2 \ni (a,b) \longmapsto a + i \cdot b
 	\end{align}
