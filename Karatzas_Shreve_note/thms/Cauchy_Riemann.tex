@@ -6,18 +6,17 @@
 	とおく．
 	
 	\begin{screen}
-		\begin{dfn}[全微分可能]\label{def:totally_differentiability}
-			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，
-			$u$を$D$上の実数値関数とする．このとき
+		\begin{dfn}[全微分]\label{def:totally_differentiability}
+			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，$u$を$D$上の実数値関数とする．このとき
 			\begin{align}
 				&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h,k \in \R\, \\
 				&\sqrt{h^2 + k^2} < \delta \Longrightarrow
-				\left|u(x+h,y+k) - u(x,y) - \alpha \cdot h - \beta \cdot k\right| 
+				\left|u(a+h,b+k) - u(a,b) - \alpha \cdot h - \beta \cdot k\right| 
 				< \epsilon \cdot \sqrt{h^2 + k^2}
 				\label{fom:def_totally_differentiability}
 			\end{align}
 			を満たす実数$\alpha$と$\beta$が取れるなら，
-			$u$は$(x,y)$において{\bf 全微分可能である}\index{ぜんびぶんかのう@全微分可能}{\bf (totally differentiable)}という．
+			$u$は$(a,b)$において{\bf 全微分可能である}\index{ぜんびぶんかのう@全微分可能}{\bf (totally differentiable)}という．
 		\end{dfn}
 	\end{screen}
 	
@@ -26,21 +25,21 @@
 	\begin{align}
 		&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h,k \in \R\, \\
 		&\sqrt{h^2 + k^2} < \delta \Longrightarrow
-		\left|u(x+h,y+k) - u(x,y) - \gamma \cdot h - \zeta \cdot k\right| 
+		\left|u(a+h,b+k) - u(a,b) - \gamma \cdot h - \zeta \cdot k\right| 
 		< \epsilon \cdot \sqrt{h^2 + k^2}
 	\end{align}
 	を満たす実数$\gamma$と$\zeta$が取れる場合，$\epsilon$を任意に与えられた正の実数とすると
 	\begin{align}
 		\forall h,k \in \R\,
 		\left[\, \sqrt{h^2 + k^2} < \delta \Longrightarrow
-		\left|u(x+h,y+k) - u(x,y) - \alpha \cdot h - \beta \cdot k\right| 
+		\left|u(a+h,b+k) - u(a,b) - \alpha \cdot h - \beta \cdot k\right| 
 		< \epsilon \cdot \sqrt{h^2 + k^2}\, \right]
 	\end{align}
 	かつ
 	\begin{align}
 		\forall h,k \in \R\,
 		\left[\, \sqrt{h^2 + k^2} < \delta \Longrightarrow
-		\left|u(x+h,y+k) - u(x,y) - \gamma \cdot h - \zeta \cdot k\right| 
+		\left|u(a+h,b+k) - u(a,b) - \gamma \cdot h - \zeta \cdot k\right| 
 		< \epsilon \cdot \sqrt{h^2 + k^2}\, \right]
 	\end{align}
 	を満たす正の実数$\delta$が取れるが，このとき
@@ -49,12 +48,12 @@
 	\end{align}
 	ならば
 	\begin{align}
-		\left|u(x+h,y) - u(x,y) - \alpha \cdot h\right| < \epsilon \cdot |h|
+		\left|u(a+h,b) - u(a,b) - \alpha \cdot h\right| < \epsilon \cdot |h|
 		\label{fom:totally_differentiable_then_partially_differentiable}
 	\end{align}
 	かつ
 	\begin{align}
-		\left|u(x+h,y) - u(x,y) - \gamma \cdot h\right| < \epsilon \cdot |h|
+		\left|u(a+h,b) - u(a,b) - \gamma \cdot h\right| < \epsilon \cdot |h|
 	\end{align}
 	が成り立つので
 	\begin{align}
@@ -64,7 +63,7 @@
 	\begin{align}
 		\left|\alpha - \gamma\right| < \epsilon
 	\end{align}
-	が従う．$\epsilon$の任意性より
+	が従う．そして$\epsilon$の任意性より
 	\begin{align}
 		\alpha = \gamma
 	\end{align}
@@ -73,83 +72,108 @@
 		\beta = \zeta
 	\end{align}
 	も得られる．また(\refeq{fom:totally_differentiable_then_partially_differentiable})は
-	$u$が第一変数に関して偏微分可能であることを示している．これについてまとめると
+	$u$が第一変数に関して微分可能であることを示している．これについて
+	
+	\begin{screen}
+		\begin{dfn}[偏微分]\label{def:partially_differentiability}
+			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，$u$を$D$上の実数値関数とする．このとき
+			\begin{align}
+				&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h \in \R\, \\
+				&|h| < \delta \Longrightarrow
+				\left|u(a+h,b) - u(a,b) - \alpha \cdot h\right| < \epsilon \cdot |h|
+			\end{align}
+			を満たす実数$\alpha$が取れるなら，$u$は$(a,b)$において第一変数に関して
+			{\bf 偏微分可能である}\index{へんびぶんかのう@偏微分可能}{\bf (partially differentiable)}という．
+			同様に
+			\begin{align}
+				&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall k \in \R\, \\
+				&|k| < \delta \Longrightarrow
+				\left|u(a,b+k) - u(a,b) - \beta \cdot k\right| < \epsilon \cdot |k|
+			\end{align}
+			を満たす実数$\beta$が取れるなら，$u$は$(a,b)$において第二変数に関して偏微分可能であるという．
+		\end{dfn}
+	\end{screen}
+	
+	以上をまとめると
 	
 	\begin{screen}
 		\begin{thm}[全微分可能なら偏微分可能]
-			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，
-			$u$を$D$上の実数値関数とする．このとき$u$が$(x,y)$で全微分可能ならば，
-			$u$は第一変数と第二変数に関して$(x,y)$で偏微分可能である．
-			また$u$が$(x,y)$で全微分可能であるとき，
+			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，
+			$u$を$D$上の実数値関数とする．$u$が$(a,b)$で全微分可能であるとき，
+			$u$は第一変数と第二変数に関して$(a,b)$で偏微分可能であって，そして
 			\begin{align}
-				\partial_1 u \defeq \lim_{h \to 0} \frac{u(x+h,y) - u(x,y)}{h}
+				\partial_1 u(a,b) \defeq \lim_{h \to 0} \frac{u(a+h,b) - u(a,b)}{h}
 			\end{align}
 			および
 			\begin{align}
-				\partial_2 u \defeq \lim_{k \to 0} \frac{u(x,y+k) - u(x,y)}{k}
+				\partial_2 u(a,b) \defeq \lim_{k \to 0} \frac{u(a,b+k) - u(a,b)}{k}
 			\end{align}
 			とおけば
 			\begin{align}
 				&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h,k \in \R\, \\
 				&\sqrt{h^2 + k^2} < \delta \Longrightarrow
-				\left|u(x+h,y+k) - u(x,y) - \partial_1 u \cdot h - \partial_2 u \cdot k\right| 
+				\left|u(a+h,b+k) - u(a,b) - \partial_1 u(a,b) \cdot h - \partial_2 u(a,b) \cdot k\right| 
 				< \epsilon \cdot \sqrt{h^2 + k^2}
 			\end{align}
 			が成立する．
 		\end{thm}
 	\end{screen}
 	
-	偏微分可能であるからと言って全微分可能であるとは限らないが，次の条件の下では全微分可能である．
-	
-	\begin{screen}
-		\begin{thm}[偏導関数が連続なら全微分可能]
-			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，$u$を$D$上の実数値関数とする．
-			また$D$の各要素$(s,t)$において$u$は第一変数と第二変数それぞれに関して偏微分可能であるとする．
-			
-		\end{thm}
-	\end{screen}
-
-	$\Omega$を$\C$の開集合とし，$f$を$\Omega$上の複素数値関数とし，
-	$z$を$\Omega$の要素とし，$x$と$y$を
+	いま，$\Omega$を$\C$の空でない開集合とし，$f$を$\Omega$上の複素数値関数とし，$\zeta$を$\Omega$の要素とし，$a$と$b$を
 	\begin{align}
-		z = x + \isym \cdot y
+		\zeta = a + \isym \cdot b
 	\end{align}
-	なる実数とする．また
+	を満たす実数とする．ここで
 	\begin{align}
-		\Omega \ni z \longmapsto \Re{f(z)}
+		\R^2 \ni (x,y) \longmapsto x + \isym \cdot y
+	\end{align}
+	なる関係により定める写像を$\varphi$とすると，$\varphi$は$\R^2$から$\C$への同相写像であるから
+	\begin{align}
+		D \defeq \varphi^{-1} \ast \Omega
+	\end{align}
+	で定める$D$は$\R^2$の開集合である．また
+	\begin{align}
+		D \ni (x,y) \longmapsto \Re{f(x + \isym \cdot y)}
 	\end{align}
 	なる写像を$u$とし，
 	\begin{align}
-		\Omega \ni z \longmapsto \Im{f(z)}
+		D \ni (x,y) \longmapsto \Im{f(x + \isym \cdot y)}
 	\end{align}
-	なる写像を$v$とし，写像$\varphi$を
+	なる写像を$v$とすると，その定め方より$\Omega$の任意の要素$z$に対して
 	\begin{align}
-		\R^2 \ni (a,b) \longmapsto a + \isym \cdot b
+		f(z) = u(\varphi^{-1}(z)) + \isym \cdot v(\varphi^{-1}(z))
 	\end{align}
-	なる関係で定める．この設定の下で，$u \circ \varphi$と$v \circ \varphi$が$(x,y)$で全微分可能であるとき
+	が成立する．同じことであるが，$D$の任意の要素$(x,y)$に対して
 	\begin{align}
-		\partial_1 u \defeq \lim_{h \to 0} \frac{u(\varphi(x+h,y)) - u(\varphi(x,y))}{h}
+		f(x + \isym \cdot y) = u(x,y) + \isym \cdot v(x,y)
+	\end{align}
+	も成立する．
+	
+	この設定の下で，$u$と$v$が$(a,b)$で全微分可能であるとき
+	\begin{align}
+		\partial_1 u(a,b) \defeq \lim_{h \to 0} \frac{u(a+h,b) - u(a,b)}{h}
 	\end{align}
 	および
 	\begin{align}
-		\partial_2 u \defeq \lim_{k \to 0} \frac{u(\varphi(x,y+k)) - u(\varphi(x,y))}{k}
+		\partial_2 u(a,b) \defeq \lim_{k \to 0} \frac{u(a,b+k) - u(a,b)}{k}
 	\end{align}
-	とおき，同様に$\partial_1 v$と$\partial_2 v$を定める．このとき
+	と定めて，同様に$\partial_1 v(a,b)$と$\partial_2 v(a,b)$を定める．このとき
 	\begin{align}
-		\partial_1 u + \isym \cdot \partial_1 v = \partial_2 v - \isym \cdot \partial_2 u
+		\partial_1 u(a,b) + \isym \cdot \partial_1 v(a,b)
+		= \partial_2 v(a,b) - \isym \cdot \partial_2 u(a,b)
 	\end{align}
 	を{\bf Cauchy-Riemann方程式}と呼ぶ．
 	
 	\begin{screen}
 		\begin{thm}[複素微分可能であることとCauchy-Riemann方程式]
 			記号は全て上で設定したものとする．
-			$f$が$z$で複素微分可能であることと，
-			$u \circ \varphi$と$v \circ \varphi$が共に$(x,y)$で全微分可能であって
-			かつCauchy-Riemann方程式が成り立つことは同値である．また$f$が$z$で複素微分可能であるなら
+			$f$が$\zeta$で複素微分可能であることと，
+			$u$と$v$が共に$(a,b)$で全微分可能であって
+			かつCauchy-Riemann方程式が成り立つことは同値である．また$f$が$\zeta$で複素微分可能であるとき，
+			その微分係数を$f'(\zeta)$と書けば
 			\begin{align}
-				\lim_{h \to 0} \frac{f(z+h) - f(z)}{h}
-				= \partial_1 u + \isym \cdot \partial_1 v
-				= \partial_2 v - \isym \cdot \partial_2 u.
+				f'(\zeta) &= \partial_1 u(a,b) + \isym \cdot \partial_1 v(a,b) \\
+				&= \partial_2 v(a,b) - \isym \cdot \partial_2 u(a,b).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -157,103 +181,119 @@
 	\begin{sketch}\mbox{}
 		\begin{description}
 			\item[第一段]
-				いま$f$が$z$で複素微分可能であるとする．すると
+				$f$が$\zeta$で複素微分可能であるとする．すると
 				\begin{align}
 					&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h \in \C\, \\
 					&\left[\, |h| < \delta \Longrightarrow 
-					\left|f(z+h) - f(z) - (\alpha + \isym \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
+					\left|f(\zeta+h) - f(\zeta) - (\alpha + \isym \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
 				\end{align}
-				を満たす実数$\alpha$と$\beta$が取れる．このとき，
+				を満たす実数$\alpha$と$\beta$が取れる．また，
 				$h$と$k$を実数とすれば
 				\begin{align}
-					&f(z + (h + \isym \cdot k)) - f(z) - (\alpha + \isym \cdot \beta) \cdot (h + \isym \cdot k) \\
-					&= \left\{u(\varphi(x+h,y+k)) - u(\varphi(x,y))
+					&f(\zeta + (h + \isym \cdot k)) - f(\zeta) - (\alpha + \isym \cdot \beta) \cdot (h + \isym \cdot k) \\
+					&= \left\{u(a+h,b+k) - u(a,b)
 					- \alpha \cdot h + \beta \cdot k\right\} \\
-					&\quad + i \cdot \left\{v(\varphi(x+h,y+k)) - v(\varphi(x,y))
+					&\quad + i \cdot \left\{v(a+h,b+k) - v(a,b)
 					- \beta \cdot h - \alpha \cdot k\right\}
 					\label{fom:Cauchy_Riemann_1}
 				\end{align}
-				が成り立つ．ここで$\epsilon$を任意に与えられた正の実数とする．
+				が成り立つ．いま$\epsilon$を任意に与えられた正の実数とする．
 				\begin{align}
 					\forall h \in \C\, 
 					\left[\, |h| < \delta \Longrightarrow 
-					\left|f(z+h) - f(z) - (\alpha + \isym \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
+					\left|f(\zeta+h) - f(\zeta) - (\alpha + \isym \cdot \beta) \cdot h\right| < \epsilon \cdot |h|\, \right]
 				\end{align}
 				を満たす正の実数$\delta$を取ると，任意の実数$h$と$k$に対して
 				\begin{align}
 					\sqrt{h^2 + k^2} < \delta
 				\end{align}
-				であれば
+				ならば
 				\begin{align}
-					&\left|u(\varphi(x+h,y+k)) - u(\varphi(x,y))
-					- \alpha \cdot h + \beta \cdot k\right| \\
-					&\leq \left|f(z + (h + \isym \cdot k))- f(z)
+					&\left|u(a+h,b+k) - u(a,b) - \alpha \cdot h + \beta \cdot k\right| \\
+					&\leq \left|f(\zeta + (h + \isym \cdot k))- f(\zeta)
 					- (\alpha + \isym \cdot \beta) \cdot (h + \isym \cdot k)\right| &\mbox{(\refeq{fom:Cauchy_Riemann_1})より} \\
 					&< \epsilon \cdot \sqrt{h^2 + k^2}
 				\end{align}
-				が成立する．ゆえに$u \circ \varphi$は$(x,y)$において全微分可能である．
+				が成立する．ゆえに$u$は$(a,b)$において全微分可能である．
 				同様に任意の実数$h$と$k$に対して
 				\begin{align}
 					\sqrt{h^2 + k^2} < \delta \Longrightarrow
-					&\left|v(\varphi(x+h,y+k)) - v(\varphi(x,y))
-					- \beta \cdot h - \alpha \cdot k\right| \\
+					&\left|v(a+h,b+k) - v(a,b) - \beta \cdot h - \alpha \cdot k\right| \\
 					&< \epsilon \cdot \sqrt{h^2 + k^2}
 				\end{align}
-				も成り立つので，$v \circ \varphi$もまた$(x,y)$において全微分可能である．
-				そして
+				も成り立つので，$v$もまた$(a,b)$において全微分可能である．そして
 				\begin{align}
-					\partial_1 u = \alpha = \partial_2 v
+					\partial_1 u(a,b) = \alpha = \partial_2 v(a,b)
 				\end{align}
 				かつ
 				\begin{align}
-					\partial_2 u = - \beta = -\partial_1 v
+					\partial_2 u(a,b) = - \beta = -\partial_1 v(a,b)
 				\end{align}
 				が成り立つ．
 			
 			\item[第二段]
-				逆に$u \circ \varphi$と$v \circ \varphi$が$(x,y)$で全微分可能であって，かつ
+				$u$と$v$が$(a,b)$で全微分可能であって，かつ
 				\begin{align}
-					\partial_1 u = \partial_2 v
+					\partial_1 u(a,b) = \partial_2 v(a,b)
 				\end{align}
 				と
 				\begin{align}
-					\partial_2 u = -\partial_1 v
+					\partial_2 u(a,b) = -\partial_1 v(a,b)
 				\end{align}
-				が成り立っているとき，$f$が$z$で複素微分可能であることを示す．
+				が成り立っているとき，$f$が$\zeta$で複素微分可能であることを示す．
 				いま$\epsilon$を任意に与えられた正の実数とする．
 				すると，任意の複素数$h$に対して
 				\begin{align}
-					|h| < \delta_1 \Longrightarrow
-					\left|u(z+h) - u(z) - \partial_1 u \cdot \Re{h} - \partial_2 u \cdot \Im{h}\right| < \epsilon \cdot |h|
+					&|h| < \delta_1  \\
+					&\Longrightarrow
+					\left|u(\varphi^{-1}(\zeta+h)) - u(\varphi^{-1}(\zeta)) 
+					- \partial_1 u(a,b) \cdot \Re{h} - \partial_2 u(a,b) \cdot \Im{h}\right| < \epsilon \cdot |h|
 				\end{align}
 				を満たす正の実数$\delta_1$と，
 				\begin{align}
-					|h| < \delta_2 \Longrightarrow
-					\left|v(z+h) - v(z) - \partial_1 v \cdot \Re{h} - \partial_2 v \cdot \Im{h}\right| < \epsilon \cdot |h|
+					&|h| < \delta_2 \\
+					&\Longrightarrow
+					\left|v(\varphi^{-1}(\zeta+h)) - v(\varphi^{-1}(\zeta)) 
+					- \partial_1 v(a,b) \cdot \Re{h} - \partial_2 v(a,b) \cdot \Im{h}\right| < \epsilon \cdot |h|
 				\end{align}
-				を満たす正の実数$\delta_2$が取れる．ここで
-				Cauchy-Riemannの関係式から
+				を満たす正の実数$\delta_2$が取れる．ここでCauchy-Riemannの関係式から
 				\begin{align}
-					|h| < \delta_1 \Longrightarrow
-					\left|u(z+h) - u(z) - \partial_1 u \cdot \Re{h} + \partial_1 v \cdot \Im{h}\right| < \epsilon \cdot |h|
+					&|h| < \delta_1 \\
+					&\Longrightarrow
+					\left|u(\varphi^{-1}(\zeta+h)) - u(\varphi^{-1}(\zeta)) 
+					- \partial_1 u(a,b) \cdot \Re{h} + \partial_1 v(a,b) \cdot \Im{h}\right| < \epsilon \cdot |h|
 				\end{align}
 				かつ
 				\begin{align}
-					|h| < \delta_2 \Longrightarrow
-					\left|v(z+h) - v(z) - \partial_1 v \cdot \Re{h} - \partial_1 u \cdot \Im{h}\right| < \epsilon \cdot |h|
+					&|h| < \delta_2 \\
+					&\Longrightarrow
+					\left|v(\varphi^{-1}(\zeta+h)) - v(\varphi^{-1}(\zeta)) 
+					- \partial_1 v(a,b) \cdot \Re{h} - \partial_1 u(a,b) \cdot \Im{h}\right| < \epsilon \cdot |h|
 				\end{align}
 				が成り立つので，任意の複素数$h$に対して
 				\begin{align}
 					|h| < \min{\{\delta_1,\delta_2\}}
 				\end{align}
-				であれば
+				ならば
 				\begin{align}
-					&\left|f(z+h) - f(z) - (\partial_1 u + \isym \cdot \partial_1 v) \cdot h\right| \\
-					&\leq \left|u(z+h) - u(z) - \partial_1 u \cdot \Re{h} + \partial_1 v \cdot \Im{h}\right| \\
-					&\quad + \left|v(z+h) - v(z) - \partial_1 v \cdot \Re{h} - \partial_1 u \cdot \Im{h}\right| \\
+					&\left|f(\zeta+h) - f(\zeta) - (\partial_1 u(a,b) + \isym \cdot \partial_1 v(a,b)) \cdot h\right| \\
+					&\leq \left|u(\varphi^{-1}(\zeta+h)) - u(\varphi^{-1}(\zeta)) 
+					- \partial_1 u(a,b) \cdot \Re{h} + \partial_1 v(a,b) \cdot \Im{h}\right| \\
+					&\quad + \left|v(\varphi^{-1}(\zeta+h)) - v(\varphi^{-1}(\zeta)) 
+					- \partial_1 v(a,b) \cdot \Re{h} - \partial_1 u(a,b) \cdot \Im{h}\right| \\
 					&< 2 \cdot \epsilon \cdot |h|
 				\end{align}
-				が成立する．ゆえに$f$は$z$で複素微分可能である．
+				が成立する．ゆえに$f$は$\zeta$で複素微分可能である．
 				\QED
 		\end{description}
 	\end{sketch}
+	
+	偏微分可能であるからと言って全微分可能であるとは限らないが，次の条件の下では全微分可能である．
+	
+	\begin{screen}
+		\begin{thm}[偏導関数が全微分可能なら元の関数も全微分可能]
+			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，$u$を$D$上の実数値関数とする．
+			また$D$の各要素$(s,t)$において$u$は第一変数と第二変数それぞれに関して偏微分可能であるとする．
+			
+		\end{thm}
+	\end{screen}
