@@ -127,6 +127,49 @@
 	\end{screen}
 	
 	\begin{sketch}
+		いま$\epsilon$を任意に与えられた正の実数とする．$\partial_1 u$と$\partial_2 u$は$(a,b)$で連続であるから，
+		任意の実数$h$と$k$に対して
+		\begin{align}
+			\sqrt{h^2 + k^2} < \delta \Longrightarrow \left|\partial_1 u(a+h,b+k) - \partial_1 u(a,b)\right| 
+			< \frac{\epsilon}{2}
+		\end{align}
+		かつ
+		\begin{align}
+			\sqrt{h^2 + k^2} < \delta \Longrightarrow \left|\partial_2 u(a+h,b+k) - \partial_2 u(a,b)\right| 
+			< \frac{\epsilon}{2}
+		\end{align}
+		を満たす正の実数$\delta$が取れる．ここで$h$と$k$を
+		\begin{align}
+			\sqrt{h^2 + k^2} < \delta
+		\end{align}
+		を満たす実数とすると，平均値の定理より
+		\begin{align}
+			0 < \theta < 1
+		\end{align}
+		かつ
+		\begin{align}
+			u(a+h,b+k) - u(a,b+k) = \partial_1 u(a+\theta \cdot h,b+k) \cdot h
+		\end{align}
+		を満たす実数$\theta$と，
+		\begin{align}
+			0 < \eta < 1
+		\end{align}
+		かつ
+		\begin{align}
+			u(a,b+k) - u(a,b) = \partial_2 u(a,b+ \eta \cdot k) \cdot k
+		\end{align}
+		を満たす実数$\eta$が取れて，このとき
+		\begin{align}
+			&\left|u(a+h,b+k) - u(a,b) - \partial_1 u(a,b) \cdot h - \partial_2 u(a,b) \cdot k\right| \\
+			&= \left|u(a+h,b+k) - u(a,b+k) - \partial_1 u(a,b) \cdot h 
+			+ u(a,b+k) - u(a,b) - \partial_2 u(a,b) \cdot k\right| \\
+			&= \left|\partial_1 u(a+\theta \cdot h,b+k) \cdot h - \partial_1 u(a,b) \cdot h
+			+ \partial_2 u(a,b+ \eta \cdot k) \cdot k - \partial_2 u(a,b) \cdot k\right| \\
+			&< \frac{\epsilon}{2} \cdot |h| + \frac{\epsilon}{2} \cdot |k| \\
+			&\leq \epsilon \cdot \sqrt{h^2 + k^2}
+		\end{align}
+		が成立する．ゆえに$u$は$(a,b)$において全微分可能である．
+		\QED
 	\end{sketch}
 	
 \subsection{Cauchy-Riemann方程式}
@@ -144,7 +187,7 @@
 		D \defeq \Set{\varphi^{-1}(z)}{z \in \Omega}
 	\end{align}
 	で定める$D$は$\R^2$の開集合である．これは位相空間論を知っていれば常識であるが，
-	基礎工のカリキュラムがわからないので，ここでは$D$と$\Omega$ほぼ同質なものであると言うことを把握すれば良い．また
+	基礎工のカリキュラムがわからないので，ここでは$D$と$\Omega$はほぼ同質な集合であるということを把握すれば良い．また
 	\begin{align}
 		D \ni (x,y) \longmapsto \Re{f(x + \isym \cdot y)}
 	\end{align}
@@ -374,7 +417,41 @@
 	\begin{align}
 		\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
 	\end{align}
-	と書き換えられる．以上より次の結果が従う．
+	と書き換えられる．ここで定理\ref{thm:differentiable_iff_Cauchy_Riemann_equation_holds}の主張と併せて整理すると，
+	
+	\begin{itembox}[l]{$f$が$\zeta$で微分可能であるとき}
+		$u$と$v$は$(a,b)$で全微分可能でありCauchy-Riemann方程式が成立するので，
+		$f \circ \varphi$は$(a,b)$で第一変数と第二変数に関して偏微分可能であって
+		\begin{align}
+			\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
+		\end{align}
+		が成立する．
+	\end{itembox}
+	
+	しかし$f \circ \varphi$が$(a,b)$で第一変数と第二変数に関して偏微分可能であって
+	\begin{align}
+		\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
+	\end{align}
+	が成立しているからといって，$u$と$v$が$(a,b)$で全微分可能であるとは限らない．
+	定理\ref{thm:continuously_partially_differentiable_then_totally_differentiable}より，
+	$u$と$v$が$(a,b)$で全微分可能であるためには$\partial_1 u,\partial_2 u,\partial_1 v,\partial_2 v$が全て
+	$(a,b)$で連続であれば十分である．ところで，$(x,y)$を$D$の要素とするとき，$f \circ \varphi$が$(x,y)$において第一変数に関して偏微分可能であれば
+	\begin{align}
+		\partial_1 (f \circ \varphi)(x,y) = \partial_1 u(x,y) + \isym \cdot \partial_1 v(x,y)
+	\end{align}
+	が成立し，$f \circ \varphi$が$(x,y)$において第二変数に関して偏微分可能であれば
+	\begin{align}
+		\partial_2 (f \circ \varphi)(x,y) = \partial_2 u(x,y) + \isym \cdot \partial_2 v(x,y)
+	\end{align}
+	が成立する．よって$f \circ \varphi$が$D$の各点で第一変数と第二変数に関して偏微分可能であって，かつ
+	第一変数と第二変数に関する偏導関数が共に$(a,b)$で連続であれば，$u$と$v$は共に$(a,b)$で全微分可能である．
+	更にこのとき
+	\begin{align}
+		\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
+	\end{align}
+	が満たされていればCauchy-Riemannの方程式も満たされるので，$f$は$\zeta$で微分可能である．
+	
+	以上の結果をまとめると
 	
 	\begin{screen}
 		\begin{thm}[微分可能性と連続偏微分可能性]
@@ -382,14 +459,13 @@
 			記号は全て上で設定したものとする．このとき，
 			\begin{itemize}
 				\item $f$が$\zeta$で微分可能であるならば，
-					$f \circ \varphi$が$(a,b)$で第一変数と第二変数に関して偏微分可能であって
+					$f \circ \varphi$は$(a,b)$で第一変数と第二変数に関して偏微分可能であって
 					\begin{align}
-						\partial_1 f(\varphi(a,b)) + \isym \cdot \partial_2 f(\varphi(a,b)) = 0
+						\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
 					\end{align}
 					が成り立つ．
 				\item $f \circ \varphi$が$D$の各点で第一変数と第二変数に関して偏微分可能であって，
-					その導関数$\partial_1 (f \circ \varphi)$と$\partial_2 (f \circ \varphi)$が
-					共に$(a,b)$で連続であり，かつ
+					その偏導関数$\partial_1 (f \circ \varphi)$と$\partial_2 (f \circ \varphi)$が共に$(a,b)$で連続であり，かつ
 					\begin{align}
 						\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
 					\end{align}
@@ -398,7 +474,7 @@
 		\end{thm}
 	\end{screen}
 	
-	無断で偏微分の順序を入れ替えている答案が多かったので念のため次の結果を載せておきます．
+	無断で偏微分の順序を入れ替えている答案が多かったので念のため次のYoungの定理を載せておきます．
 	
 	\begin{screen}
 		\begin{thm}[偏導関数が全微分可能なら偏微分は順序を替えても等しい]
