@@ -1,4 +1,4 @@
-\subsection{Cauchy-Riemann方程式}
+\subsection{全微分}
 	\begin{screen}
 		\begin{dfn}[全微分]\label{def:totally_differentiability}
 			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，$u$を$D$上の実数値関数とする．このとき
@@ -113,6 +113,24 @@
 		\end{thm}
 	\end{screen}
 	
+	第一変数と第二変数に関して偏微分可能であるからといって全微分可能であるとは限らないが，
+	偏導関数が局所的に存在して連続であれば全微分可能である．
+	
+	\begin{screen}
+		\begin{thm}[偏導関数が連続であれば全微分可能]
+		\label{thm:continuously_partially_differentiable_then_totally_differentiable}
+			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，$u$を$D$上の実数値関数とする．
+			また$u$は$D$の各要素において第一変数と第二変数に関して偏微分可能であるとし，その偏導関数をそれぞれ
+			$\partial_1 u,\partial_2 u$と書く．このとき，
+			$\partial_1 u$と$\partial_2 u$が$(a,b)$において連続であれば$u$は$(a,b)$において全微分可能である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+	\end{sketch}
+	
+\subsection{Cauchy-Riemann方程式}
+	
 	いま，$\Omega$を$\C$の空でない開集合とし，$f$を$\Omega$上の複素数値関数とし，$\zeta$を$\Omega$の要素とし，$a$と$b$を
 	\begin{align}
 		\zeta = a + \isym \cdot b
@@ -123,9 +141,10 @@
 	\end{align}
 	なる関係により定める写像を$\varphi$とすると，$\varphi$は$\R^2$から$\C$への同相写像であるから
 	\begin{align}
-		D \defeq \varphi^{-1} \ast \Omega
+		D \defeq \Set{\varphi^{-1}(z)}{z \in \Omega}
 	\end{align}
-	で定める$D$は$\R^2$の開集合である．また
+	で定める$D$は$\R^2$の開集合である．これは位相空間論を知っていれば常識であるが，
+	基礎工のカリキュラムを知らないので，ここでは$D$と$\Omega$ほぼ同質なものであると言うことを把握すれば良い．また
 	\begin{align}
 		D \ni (x,y) \longmapsto \Re{f(x + \isym \cdot y)}
 	\end{align}
@@ -160,6 +179,7 @@
 	
 	\begin{screen}
 		\begin{thm}[微分可能であることとCauchy-Riemann方程式]
+		\label{thm:differentiable_iff_Cauchy_Riemann_equation_holds}
 			記号は全て上で設定したものとする．
 			$f$が$\zeta$で微分可能であることと，
 			$u$と$v$が共に$(a,b)$で全微分可能であって
@@ -282,6 +302,102 @@
 		\end{description}
 	\end{sketch}
 	
+	$u$と$v$が$(a,b)$において第一変数に関して偏微分可能であるとき，$f \circ \varphi$もまた
+	$(a,b)$において第一変数に関して偏微分可能であって
+	\begin{align}
+		\lim_{h \to 0} \frac{f(\varphi(a+h,b)) - f(\varphi(a,b))}{h} = \partial_1 u(a,b) + \isym \cdot \partial_1 v(a,b)
+		\label{fom:Cauchy_Riemann_2}
+	\end{align}
+	が成立する．実際，$\epsilon$を任意に与えられた正の実数とすると
+	\begin{align}
+		|h| < \delta \Longrightarrow \left|u(a+h,b) - u(a,b) - h \cdot \partial_1 u(a,b)\right| < \frac{\epsilon}{2} \cdot |h|
+	\end{align}
+	かつ
+	\begin{align}
+		|h| < \delta \Longrightarrow \left|v(a+h,b) - v(a,b) - h \cdot \partial_1 v(a,b)\right| < \frac{\epsilon}{2} \cdot |h|
+	\end{align}
+	を満たす正の実数$\delta$が取れるので，任意の複素数$h$に対して
+	\begin{align}
+		|h| < \delta
+	\end{align}
+	であれば
+	\begin{align}
+		&\left|f(\varphi(a+h,b)) - f(\varphi(a,b)) - h \cdot (\partial_1 u(a,b) + \isym \cdot \partial_1 v(a,b))\right| \\
+		&\leq \left|u(a+h,b) - u(a,b) - h \cdot \partial_1 u(a,b)\right|
+		 + \left|v(a+h,b) - v(a,b) - h \cdot \partial_1 v(a,b)\right| \\
+		&< \epsilon \cdot |h|
+	\end{align}
+	が成立する．逆に$f \circ \varphi$が$(a,b)$において第一変数に関して偏微分可能であるなら
+	$u$と$v$も$(a,b)$において第一変数に関して偏微分可能であって，そのとき(\refeq{fom:Cauchy_Riemann_2})が成立する．
+	実際，
+	\begin{align}
+		\alpha + \isym \cdot \beta = \lim_{h \to 0} \frac{f(\varphi(a+h,b)) - f(\varphi(a,b))}{h}
+	\end{align}
+	を満たす実数$\alpha$と$\beta$を取ると，$\epsilon$を任意に与えられた正の実数とすると
+	\begin{align}
+		|h| < \delta \Longrightarrow \left|f(\varphi(a+h,b)) - f(\varphi(a,b)) - (\alpha + \isym \cdot \beta) \cdot h\right| 
+		< \epsilon \cdot |h|
+	\end{align}
+	を満たす正の実数$\delta$が取れる．ここで
+	\begin{align}
+		|h| < \delta
+	\end{align}
+	を満たす複素数$h$に対して
+	\begin{align}
+		&f(\varphi(a+h,b)) - f(\varphi(a,b)) - (\alpha + \isym \cdot \beta) \cdot h \\
+		&= \left\{u(a+h,b) - u(a,b) - \alpha \cdot h\right\}
+		+ \isym \cdot \left\{v(a+h,b) - v(a,b) - \beta \cdot h\right\}
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\left| u(a+h,b) - u(a,b) - \alpha \cdot h\right| < \epsilon \cdot |h|
+	\end{align}
+	と
+	\begin{align}
+		\left| v(a+h,b) - v(a,b) - \beta \cdot h\right| < \epsilon \cdot |h|
+	\end{align}
+	が従う．
+	同様に，$u$と$v$が$(a,b)$において第二変数に関して偏微分可能であることと
+	$f \circ \varphi$が$(a,b)$において第二変数に関して偏微分可能であることは同値であって，いずれの場合も
+	\begin{align}
+		\lim_{k \to 0} \frac{f(\varphi(a,b+k)) - f(\varphi(a,b))}{k} = \partial_2 u(a,b) + \isym \cdot \partial_2 v(a,b)
+	\end{align}
+	が成立する．ここで$f \circ \varphi$が$(a,b)$において第一変数に関して偏微分可能であるとき
+	\begin{align}
+		\partial_1 (f \circ \varphi) (a,b) \defeq \lim_{h \to 0} \frac{f(\varphi(a+h,b)) - f(\varphi(a,b))}{h}
+	\end{align}
+	と定めて，$f \circ \varphi$が$(a,b)$において第二変数に関して偏微分可能であるとき
+	\begin{align}
+		\partial_2 (f \circ \varphi) (a,b) \defeq \lim_{k \to 0} \frac{f(\varphi(a,b+k)) - f(\varphi(a,b))}{k}
+	\end{align}
+	と定めることにすると，Cauchy-Riemann方程式は
+	\begin{align}
+		\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
+	\end{align}
+	と書き換えられる．以上より次の結果が従う．
+	
+	\begin{screen}
+		\begin{thm}[微分可能性と連続偏微分可能性]
+		\label{thm:differentiable_iff_continuously_partially_differentiable}
+			記号は全て上で設定したものとする．このとき，
+			\begin{itemize}
+				\item $f$が$\zeta$で微分可能であるならば，
+					$f \circ \varphi$が$(a,b)$で第一変数と第二変数に関して偏微分可能であって
+					\begin{align}
+						\partial_1 f(\varphi(a,b)) + \isym \cdot \partial_2 f(\varphi(a,b)) = 0
+					\end{align}
+					が成り立つ．
+				\item $f \circ \varphi$が$D$の各点で第一変数と第二変数に関して偏微分可能であって，
+					その導関数$\partial_1 (f \circ \varphi)$と$\partial_2 (f \circ \varphi)$が
+					共に$(a,b)$で連続であり，かつ
+					\begin{align}
+						\partial_1 (f \circ \varphi) (a,b) + \isym \cdot \partial_2 (f \circ \varphi)(a,b) = 0
+					\end{align}
+					を満たすならば，$f$は$\zeta$で微分可能である．
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
 	無断で偏微分の順序を入れ替えている答案が多かったので念のため次の結果を載せておきます．
 	
 	\begin{screen}
@@ -376,7 +492,7 @@
 		\begin{align}
 			\sqrt{2} \cdot |h| < \min\{\delta,\eta\}
 		\end{align}
-		を満たす任意の実数$h$に対して
+		を満たす任意の正の実数$h$に対して
 		\begin{align}
 			\left|\partial_2 \partial_1 u(a,b) \cdot h - \partial_1 \partial_2 u(a,b) \cdot h\right|
 			&\leq \left|\frac{\Delta(h,k)}{h} - \partial_2 \partial_1 u(a,b) \cdot h\right| 
