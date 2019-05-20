@@ -1,2 +1,137 @@
 \subsection{級数}
 	
+	$a$が$\Natural$から$\C$への写像であるとき，つまり$a$が
+	\begin{align}
+		a: \Natural \longrightarrow \C
+	\end{align}
+	を満たすとき，$a$を{\bf 複素数列}と呼ぶ．$a$が複素数列であるときは
+	\begin{align}
+		a(n)
+	\end{align}
+	の代わりに
+	\begin{align}
+		a_n
+	\end{align}
+	と書いて，また$a$を
+	\begin{align}
+		(a_n)_{n \in \Natural}
+	\end{align}
+	とも表す．ここで$\C$における総和記号$\sum$の直感的意味を書いておくと，まず$0$に対して
+	\begin{align}
+		\sum_{k=0}^0 a_k \defeq a_0
+	\end{align}
+	と定め，次に$1$に対して
+	\begin{align}
+		\sum_{k=0}^1 a_k \defeq a_0 + a_1
+	\end{align}
+	と定め，次に$2$に対して
+	\begin{align}
+		\sum_{k=0}^2 a_k \defeq (a_0 + a_1) + a_2
+	\end{align}
+	と定め，$3$に対して
+	\begin{align}
+		\sum_{k=0}^3 a_k \defeq ((a_0 + a_1) + a_2) + a_3 = \left(\sum_{k=0}^2 a_k\right) + a_3
+	\end{align}
+	と定める．このような再帰的定義によって各自然数$n$に対して
+	\begin{align}
+		\sum_{k=0}^n a_k
+	\end{align}
+	なる複素数を対応させることは可能である．厳密な意味付けには超限帰納法を用いるがキリがないので略．
+	\begin{align}
+		\Natural \ni n \longmapsto \sum_{k=0}^n a_k
+	\end{align}
+	なる関係により定まる複素数列を$s$とするとき，$s$が$\C$で収束するなら，つまり
+	\begin{align}
+		|s_n - \alpha| \longrightarrow 0\quad (n \longrightarrow \infty)
+	\end{align}
+	を満たす複素数$\alpha$が取れるなら
+	\begin{align}
+		\sum_{n=0}^\infty a_n \defeq \alpha
+	\end{align}
+	と定め，これを$(a_n)_{n \in \Natural}$の{\bf 級数}\index{きゅうすう@級数}{\bf (series)}と呼ぶ．
+	言い換えれば$\sum_{n=0}^\infty a_n$とは$s$が収束する場合の極限のことである．今度は
+	\begin{align}
+		\Natural \ni n \longmapsto \sum_{k=0}^n |a_k|
+	\end{align}
+	なる関係により定まる実数列を$t$とする．当然のようだが$t$が$\R$で収束すれば$s$は$\C$で収束する．実際，$t$が収束するなら
+	$\epsilon$を任意に与えられた正の実数とすれば
+	\begin{align}
+		\forall n,m \in \Natural\, \left(\, N < n \wedge N < m \Longrightarrow 
+		|t_n - t_m| < \epsilon\, \right)
+	\end{align}
+	を満たす自然数$N$が取れる．このとき，
+	\begin{align}
+		n < m
+	\end{align}
+	かつ
+	\begin{align}
+		N < n \wedge N < m
+	\end{align}
+	を満たす任意の自然数$n$と$m$に対して
+	\begin{align}
+		|s_m - s_n| = \left|\sum_{k=n+1}^m a_k\right| \leq \sum_{k=n+1}^m |a_k| = t_m - t_n < \epsilon
+	\end{align}
+	が成立するので$s$は$\C$のCauchy列である．$\C$において絶対値に関するCauchy列は収束するので$s$は$\C$で収束する．
+	$t$が収束することを
+	$\sum_{n=0}^\infty a_n$は$\C$で{\bf 絶対収束する}\index{ぜったいしゅうそく@絶対収束}{\bf (absolutely converge)}という．
+	
+	\begin{screen}
+		\begin{thm}[d'Alembertの収束判定法]
+			$a$を複素数列とし，すべての自然数$n$で$a_n \neq 0$であるとする．このとき
+			\begin{align}
+				\lim_{n \to \infty} \frac{|a_{n+1}|}{|a_n|} < 1
+			\end{align}
+			ならば$\sum_{n=0}^\infty a_n$は$\C$で絶対収束する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[Cauchyの冪根判定法]
+			$a$を複素数列とする．このとき
+			\begin{align}
+				\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|a_k|}}} < 1
+				\label{fom:Cauchy_root_test_1}
+			\end{align}
+			ならば$\sum_{n=0}^\infty a_n$は$\C$で絶対収束する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[絶対収束する数列の和とスケール変換も絶対収束する]
+			$a$と$b$を複素数列とし，$\alpha$を複素数とする．$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が$\C$で絶対収束するとき，
+			\begin{align}
+				\sum_{n=0}^\infty (a_n + b_n)
+			\end{align}
+			も$\C$で絶対収束する．また$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するとき
+			\begin{align}
+				\sum_{n=0}^\infty \alpha \cdot a_n
+			\end{align}
+			も$\C$で絶対収束する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[絶対収束級数の畳み込み]\label{thm:convolution_of_absolutely_convergent_series}
+			$a$と$b$を複素数列とする．$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が$\C$で絶対収束するならば
+			$\sum_{n=0}^\infty \sum_{k=0}^n a_k \cdot b_{n-k}$も$\C$で絶対収束して
+			\begin{align}
+				\left(\sum_{n=0}^\infty a_n\right) \cdot \left(\sum_{n=0}^\infty b_n\right)
+				= \sum_{n=0}^\infty \sum_{k=0}^n a_k \cdot b_{n-k}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+	\end{sketch}
+	

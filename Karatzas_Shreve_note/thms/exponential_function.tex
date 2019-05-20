@@ -1,5 +1,27 @@
 \subsection{指数関数}
 	
+	$z$を複素数とするとき，
+	\begin{align}
+		\Natural \ni n \longmapsto \sum_{k=0}^n \frac{1}{k!} \cdot z^k
+	\end{align}
+	なる複素数列は$\C$で収束する．さらに言えば
+	\begin{align}
+		\sum_{n=0}^\infty \frac{1}{n!} \cdot z^n
+	\end{align}
+	は絶対収束する．実際，$z \neq 0$であるとき
+	\begin{align}
+		\left|\frac{n!}{z^n} \cdot \frac{z^{n+1}}{(n+1)!}\right|
+		= \frac{|z|}{n+1}
+		\longrightarrow 0\quad (n \longrightarrow \infty)
+	\end{align}
+	が成り立つので，d'Alembertの収束判定法から絶対収束することが従う．
+	$z=0$ならば$1$以上の自然数$n$の項は$0$であるから級数は絶対収束する．
+	指数関数とは複素数$z$に対して絶対収束級数
+	\begin{align}
+		\sum_{n = 0}^\infty \frac{1}{n!} \cdot z^n
+	\end{align}
+	を対応させる写像として定義される．
+	
 	\begin{screen}
 		\begin{dfn}[指数関数]
 			複素数$z$に対して
@@ -28,31 +50,22 @@
 		\begin{thm}[指数法則]
 			$a$と$b$を複素数とするとき
 			\begin{align}
-				e^{a + b} = e^a \cdot e^b.
+				e^a \cdot e^b = e^{a + b}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{screen}
-		\begin{dfn}[微分]
-			$\Omega$を$\C$の部分集合とし，$a$を$\Omega$の要素とし，$f$を$\Omega$上の複素数値関数とする．このとき
-			\begin{align}
-				\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h \in \C\,
-				\left[\, |h| < \delta \wedge a + h \in \Omega \Longrightarrow 
-				|f(a+h) - f(a) - \alpha \cdot h| < \epsilon \cdot |h|\, \right]
-			\end{align}
-			を満たす複素数$\alpha$が取れるなら，$f$は$a$で{\bf 微分可能である}\index{びぶんかのう@微分可能}{\bf (differentiable)}という．
-		\end{dfn}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[指数関数は微分しても不変]
-			$z$を複素数とするとき
-			\begin{align}
-				\exp' = \exp
-			\end{align}
-		\end{thm}
-	\end{screen}
+	\begin{sketch}
+		定理\ref{thm:convolution_of_absolutely_convergent_series}より
+		\begin{align}
+			\left(\sum_{n=0}^\infty \frac{1}{n!} \cdot a^n\right) \cdot \left(\sum_{k=0}^\infty \frac{1}{k!} \cdot b^k\right)
+			&= \sum_{n=0}^\infty \sum_{k=0}^n \frac{1}{k!} \cdot a^k \cdot \frac{1}{(n-k)!} \cdot b^{n-k} \\
+			&= \sum_{n=0}^\infty \frac{1}{n!} \cdot \left( \sum_{k=0}^n \frac{n!}{k! \cdot (n-k)!} \cdot a^k \cdot b^{n-k} \right) \\
+			&= \sum_{n=0}^\infty \frac{1}{n!} \cdot (a+b)^n
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[指数関数は$0$を取らない]
@@ -68,7 +81,7 @@
 		\begin{align}
 			e^z \cdot e^{-z} = e^0 = 1
 		\end{align}
-		が成り立つ．ゆえに
+		が成り立つ．つまり$e^{-z}$という逆元が取れるので
 		\begin{align}
 			e^z \neq 0
 		\end{align}
@@ -180,4 +193,4 @@
 	\end{align}
 	を満たす実数$y$が取れる．これを複素数の{\bf 極形式}\index{きょくけいしき@極形式}{\bf (polar form)}と呼び，
 	この$y$を$w$の{\bf 偏角}\index{へんかく@偏角}{\bf (argument)}と呼ぶ．ただし$y$は一意に定まるものではない．
-	
+	正確に言えば，$w$の偏角とは上式を満たす実数$y$の全体のことを指す．
