@@ -90,16 +90,121 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[指数関数は実数上で単調増大かつ一対一対応]
+		\begin{thm}[指数関数は実数上で単調増大かつ一対一対応]\label{thm:real_valued_exponential_function}
 			$\exp$を実数上に制限した写像
 			\begin{align}
 				\R \ni x \longmapsto e^x
 			\end{align}
-			は単調増大かつ$\R$から$\R_+$への全単射である．
+			は単調増大かつ$\R$から$\R_+$への全単射である．そして
+			\begin{align}
+				e^x \longrightarrow \infty \quad (x \longrightarrow \infty)
+			\end{align}
+			かつ
+			\begin{align}
+				e^x \longrightarrow 0 \quad (x \longrightarrow -\infty)
+			\end{align}
+			も成り立つ．
 		\end{thm}
 	\end{screen}
 	
-	
+	\begin{sketch}
+		指数関数の定義より，$x = 0$であれば
+		\begin{align}
+			e^0 = 1
+		\end{align}
+		が従う．また$x$が正の実数であれば
+		\begin{align}
+			e^{x} \in \R_+
+		\end{align}
+		が従う．$x$が負の実数であるとき，$-x$は正の実数であるから
+		\begin{align}
+			e^{-x} \in \R_+
+		\end{align}
+		が成り立ち，他方で
+		\begin{align}
+			e^{x} = 1/e^{-x}
+		\end{align}
+		であるから
+		\begin{align}
+			e^{x} \in \R_+
+		\end{align}
+		が従う．ゆえに$\exp$は$\R$から$\R_+$への写像である．また$x$と$y$を
+		\begin{align}
+			x < y
+		\end{align}
+		を満たす実数とすれば，定理\ref{thm:linearity_of_absolutely_convergent_series}より
+		\begin{align}
+			e^{y} - e^{x} = \sum_{n=0}^{\infty} \frac{1}{n!} \cdot (y^n - x^n) 
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			0 < y - x < \sum_{n=0}^{\infty} \frac{1}{n!} \cdot (y^n - x^n) 
+		\end{align}
+		も成り立つから$\exp$は単調増大である．任意の正の実数$x$に対して
+		\begin{align}
+			x < \sum_{n=0}^{\infty} \frac{1}{n!} \cdot x^n = e^{x}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			e^x \longrightarrow \infty \quad (x \longrightarrow \infty)
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			e^{-x} = 1/e^{x}
+		\end{align}
+		であるから
+		\begin{align}
+			e^x \longrightarrow 0 \quad (x \longrightarrow -\infty)
+		\end{align}
+		も満たされる．次に実数$x$に対して
+		\begin{align}
+			e^x = 1 \Longrightarrow x=0
+			\label{fom:thm_real_valued_exponential_function}
+		\end{align}
+		が成り立つことを示す．実際，$0 < x$であれば
+		\begin{align}
+			1 < 1 + x < \sum_{n=0}^{\infty} \frac{1}{n!} \cdot x^n = e^{x}
+		\end{align}
+		が成り立ち，$x < 0$であれば
+		\begin{align}
+			1 < e^{-x}
+		\end{align}
+		から
+		\begin{align}
+			e^{x} < 1
+		\end{align}
+		が従うので(\refeq{fom:thm_real_valued_exponential_function})が成立する．よって
+		\begin{align}
+			e^x = e^y
+		\end{align}
+		ならば
+		\begin{align}
+			e^{x - y} = 1
+		\end{align}
+		となって
+		\begin{align}
+			x = y
+		\end{align}
+		が従う．ゆえに$\exp$は単射である．また$y$を任意に与えられた正の実数とすると，
+		$1 < y$ならば
+		\begin{align}
+			e^{0} < y < e^{y}
+		\end{align}
+		が成り立つので，$\exp$の連続性と中間値の定理から
+		\begin{align}
+			y = e^{x}
+		\end{align}
+		を満たす実数$x$が取れる．$y < 1$ならば
+		\begin{align}
+			\frac{1}{y} = e^{x}
+		\end{align}
+		を満たす実数$x$が取れるので
+		\begin{align}
+			y = e^{-x}
+		\end{align}
+		が成立する．ゆえに$\exp$は全射である．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{dfn}[三角関数]
