@@ -1,10 +1,4 @@
 \subsection{Cauchy-Riemann方程式}
-	本節では
-	\begin{align}
-		\R_+ \defeq \Set{x \in \R}{0 < x}
-	\end{align}
-	とおく．
-	
 	\begin{screen}
 		\begin{dfn}[全微分]\label{def:totally_differentiability}
 			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，$u$を$D$上の実数値関数とする．このとき
@@ -165,11 +159,11 @@
 	を{\bf Cauchy-Riemann方程式}と呼ぶ．
 	
 	\begin{screen}
-		\begin{thm}[複素微分可能であることとCauchy-Riemann方程式]
+		\begin{thm}[微分可能であることとCauchy-Riemann方程式]
 			記号は全て上で設定したものとする．
-			$f$が$\zeta$で複素微分可能であることと，
+			$f$が$\zeta$で微分可能であることと，
 			$u$と$v$が共に$(a,b)$で全微分可能であって
-			かつCauchy-Riemann方程式が成り立つことは同値である．また$f$が$\zeta$で複素微分可能であるとき，
+			かつCauchy-Riemann方程式が成り立つことは同値である．また$f$が$\zeta$で微分可能であるとき，
 			その微分係数を$f'(\zeta)$と書けば
 			\begin{align}
 				f'(\zeta) &= \partial_1 u(a,b) + \isym \cdot \partial_1 v(a,b) \\
@@ -181,7 +175,7 @@
 	\begin{sketch}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$f$が$\zeta$で複素微分可能であるとする．すると
+				$f$が$\zeta$で微分可能であるとする．すると
 				\begin{align}
 					&\forall \epsilon \in \R_+\, \exists \delta \in \R_+\, \forall h \in \C\, \\
 					&\left[\, |h| < \delta \Longrightarrow 
@@ -240,7 +234,7 @@
 				\begin{align}
 					\partial_2 u(a,b) = -\partial_1 v(a,b)
 				\end{align}
-				が成り立っているとき，$f$が$\zeta$で複素微分可能であることを示す．
+				が成り立っているとき，$f$が$\zeta$で微分可能であることを示す．
 				いま$\epsilon$を任意に与えられた正の実数とする．
 				すると，任意の複素数$h$に対して
 				\begin{align}
@@ -283,17 +277,120 @@
 					- \partial_1 v(a,b) \cdot \Re{h} - \partial_1 u(a,b) \cdot \Im{h}\right| \\
 					&< 2 \cdot \epsilon \cdot |h|
 				\end{align}
-				が成立する．ゆえに$f$は$\zeta$で複素微分可能である．
+				が成立する．ゆえに$f$は$\zeta$で微分可能である．
 				\QED
 		\end{description}
 	\end{sketch}
 	
-	偏微分可能であるからと言って全微分可能であるとは限らないが，次の条件の下では全微分可能である．
+	無断で偏微分の順序を入れ替えている答案が多かったので念のため次の結果を載せておきます．
 	
 	\begin{screen}
-		\begin{thm}[偏導関数が全微分可能なら元の関数も全微分可能]
-			$D$を$\R^2$の開集合とし，$(x,y)$を$D$の要素とし，$u$を$D$上の実数値関数とする．
-			また$D$の各要素$(s,t)$において$u$は第一変数と第二変数それぞれに関して偏微分可能であるとする．
-			
+		\begin{thm}[偏導関数が全微分可能なら偏微分は順序を替えても等しい]
+			$D$を$\R^2$の開集合とし，$(a,b)$を$D$の要素とし，$u$を$D$上の実数値関数とする．
+			また$u$は$D$の各要素で第一変数と第二変数それぞれに関して偏微分可能であるとし，
+			$u$の第一変数に関する導関数を$\partial_1 u$とし，第二変数に関する導関数を$\partial_2 u$とする．
+			このとき，$\partial_1 u$と$\partial_2 u$が共に$(a,b)$で全微分可能であるならば
+			\begin{align}
+				\partial_1 \partial_2 u(a,b) = \partial_2 \partial_1 u(a,b)
+			\end{align}
+			が成り立つ．ただし$\partial_1 \partial_2 u(a,b)$と$\partial_2 \partial_1 u(a,b)$は
+			\begin{align}
+				\partial_1 \partial_2 u(a,b) \defeq \lim_{h \to 0} \frac{\partial_2 u(a+h,b) - \partial_2 u(a,b)}{h}
+			\end{align}
+			および
+			\begin{align}
+				\partial_2 \partial_1 u(a,b) \defeq \lim_{k \to 0} \frac{\partial_1 u(a,b+k) - \partial_1 u(a,b)}{k}
+			\end{align}
+			で定められた実数である．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		いま$\epsilon$を任意に与えられた正の実数とする．$D$は開集合であるから，任意の実数$h$と$k$に対して
+		\begin{align}
+			\sqrt{h^2 + k^2} < r \Longrightarrow (a+h,b+k) \in D
+		\end{align}
+		を満たす正の実数$r$が取れる．ここで
+		\begin{align}
+			\sqrt{h^2 + k^2} < r
+		\end{align}
+		を満たす実数$h$と$k$に対して
+		\begin{align}
+			\Delta(h,k) \defeq \left\{u(a+h,b+k) - u(a+h,b)\right\} - \left\{u(a,b+k) - u(a,b)\right\}
+		\end{align}
+		とおく．$\Delta(h,k)$とは
+		\begin{align}
+			(a,a+h) \ni x \longmapsto u(x,b+k) - u(x,b)
+		\end{align}
+		なる写像の差であるから，平均値の定理より
+		\begin{align}
+			0 < \theta < 1
+		\end{align}
+		かつ
+		\begin{align}
+			\Delta(h,k) = h \cdot \left[\left\{\partial_1 u(a+\theta \cdot h,b+k) - \partial_1 u(a+ \theta \cdot h,b)\right\} 
+			- \left\{\partial_1 u(a,b+k) - \partial_1 u(a,b)\right\}\right]
+		\end{align}
+		を満たす実数$\theta$が取れる．また$\partial_1 u$の全微分可能性より
+		\begin{align}
+			&\sqrt{h^2 + k^2} < \delta_1 \\
+			&\Longrightarrow \left|\partial_1 u(a+\theta \cdot h,b+k) - \partial_1 u(a,b) 
+			- \partial_1 \partial_1 u(a,b) \cdot (\theta \cdot h) - \partial_2 \partial_1 u(a,b) \cdot k\right|
+			< \epsilon \cdot \sqrt{h^2 + k^2}
+		\end{align}
+		を満たす正の実数$\delta_1(< r)$と，
+		\begin{align}
+			&|h| < \delta_2 \\
+			&\Longrightarrow \left|\partial_1 u(a+\theta \cdot h,b) - \partial_1 u(a,b) 
+			- \partial_1 \partial_1 u(a,b) \cdot (\theta \cdot h)\right|
+			< \epsilon \cdot |h|
+		\end{align}
+		を満たす正の実数$\delta_2(< r)$が取れるので，
+		\begin{align}
+			\delta \defeq \min\{\delta_1,\delta_2\}
+		\end{align}
+		とおけば
+		\begin{align}
+			\sqrt{h^2 + k^2} < \delta
+		\end{align}
+		を満たす任意の実数$h$と$k$に対して
+		\begin{align}
+			&\left|\frac{\Delta(h,k)}{h} - \partial_2 \partial_1 u(a,b) \cdot k\right| \\
+			&\leq \left|\partial_1 u(a+\theta \cdot h,b+k) - \partial_1 u(a,b) 
+			- \partial_1 \partial_1 u(a,b) \cdot (\theta \cdot h) - \partial_2 \partial_1 u(a,b) \cdot k\right| \\
+			&\quad + \left|\partial_1 u(a+\theta \cdot h,b) - \partial_1 u(a,b) 
+			- \partial_1 \partial_1 u(a,b) \cdot (\theta \cdot h)\right| \\
+			&< 2 \cdot \epsilon \cdot \sqrt{h^2 + k^2}
+		\end{align}
+		が成立する．他方で
+		\begin{align}
+			\Delta(h,k) = \left\{u(a+h,b+k) - u(a,b+k)\right\} - \left\{u(a+h,b) - u(a,b)\right\}
+		\end{align}
+		も成り立つので，上の内容で第一変数と第二変数の立場を入れ替えれば
+		\begin{align}
+			\sqrt{h^2 + k^2} < \eta \Longrightarrow 
+			\left|\frac{\Delta(h,k)}{k} - \partial_1 \partial_2 u(a,b) \cdot h\right| 
+			< 2 \cdot \epsilon \cdot \sqrt{h^2 + k^2}
+		\end{align}
+		を満たす正の実数$\eta$が取れる．従って，
+		\begin{align}
+			\sqrt{2} |h| < \min\{\delta,\eta\}
+		\end{align}
+		を満たす任意の実数$h$に対して
+		\begin{align}
+			\left|\partial_2 \partial_1 u(a,b) \cdot h - \partial_1 \partial_2 u(a,b) \cdot h\right|
+			&\leq \left|\frac{\Delta(h,k)}{h} - \partial_2 \partial_1 u(a,b) \cdot h\right| 
+			+ \left|\frac{\Delta(h,k)}{h} - \partial_1 \partial_2 u(a,b) \cdot h\right| \\
+			&< 4 \sqrt{2} \epsilon |h|
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			\left|\partial_2 \partial_1 u(a,b) - \partial_1 \partial_2 u(a,b)\right| < 4 \sqrt{2} \epsilon
+		\end{align}
+		が従い，$\epsilon$は任意に与えられていたので
+		\begin{align}
+			\partial_2 \partial_1 u(a,b) = \partial_1 \partial_2 u(a,b)
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
