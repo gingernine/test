@@ -94,7 +94,57 @@
 	となる．
 	
 	\begin{sketch}
-		
+		$1$より小さい極限が存在するとき，
+		\begin{align}
+			\alpha \defeq \lim_{n \to \infty} \frac{|a_{n+1}|}{|a_n|}
+		\end{align}
+		とおけば
+		\begin{align}
+			\forall n \in \Natural\, 
+			\left[\, N \leq n \Longrightarrow \frac{|a_{n+1}|}{|a_n|} < \frac{1+\alpha}{2}\, \right]
+		\end{align}
+		を満たす自然数$N$が取れる．ここで
+		\begin{align}
+			\rho \defeq \frac{1+\alpha}{2}
+		\end{align}
+		とおく．$n$を
+		\begin{align}
+			N \leq n
+		\end{align}
+		を満たす任意の自然数とすると，
+		\begin{align}
+			\frac{|a_{n+1}|}{|a_n|} < \rho = \frac{\rho^{n+1}}{\rho^n}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\frac{|a_{n+1}|}{\rho^{n+1}} < \frac{|a_n|}{\rho^n}
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			\frac{|a_n|}{\rho^n} \leq \frac{|a_N|}{\rho^N}
+		\end{align}
+		が成立する．すなわち，
+		\begin{align}
+			M \defeq \frac{|a_N|}{\rho^N}
+		\end{align}
+		とおけば
+		\begin{align}
+			N \leq n
+		\end{align}
+		を満たす任意の自然数$n$で
+		\begin{align}
+			|a_n| \leq M \cdot \rho^n
+		\end{align}
+		が満たされて，
+		\begin{align}
+			\sum_{n=N}^\infty M \cdot \rho^n = M \cdot \frac{\rho^N}{1-\rho} < \infty
+		\end{align}
+		であるから
+		\begin{align}
+			\sum_{n=N}^\infty |a_n| < \infty
+		\end{align}
+		が従う．よって$\sum_{n=0}^\infty a_n$は$\C$で絶対収束する．
+		\QED
 	\end{sketch}
 	
 	\begin{screen}
@@ -135,7 +185,7 @@
 	\begin{screen}
 		\begin{thm}[絶対収束級数の畳み込み]\label{thm:convolution_of_absolutely_convergent_series}
 			$a$と$b$を複素数列とする．$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が$\C$で絶対収束するならば
-			$\sum_{n=0}^\infty \sum_{k=0}^n a_k \cdot b_{n-k}$も$\C$で絶対収束して
+			$\sum_{n=0}^\infty \sum_{k=0}^n a_k \cdot b_{n-k}$が$\C$で収束して
 			\begin{align}
 				\left(\sum_{n=0}^\infty a_n\right) \cdot \left(\sum_{n=0}^\infty b_n\right)
 				= \sum_{n=0}^\infty \sum_{k=0}^n a_k \cdot b_{n-k}.
