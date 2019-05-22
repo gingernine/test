@@ -152,8 +152,10 @@
 		\end{dfn}
 	\end{screen}
 	
+	例えば$\pvlog$は$-1$で不連続．
+	
 	\begin{screen}
-		\begin{thm}[$\pvlog$の正則性]
+		\begin{thm}[$\pvlog$の正則性]\label{thm:pv_log_is_holomorphic}
 			$\pvlog$は$\C^*$上で正則であって，$z$を$\C^*$の要素とすると
 			\begin{align}
 				\pvlog'{z} = \frac{1}{z}.
@@ -165,8 +167,120 @@
 		\begin{description}
 			\item[第一段]
 				$z$を$\C^*$の要素として，$\pvlog$が$z$で連続であることを示す．
-				
-				
+				定理\ref{thm:real_valued_exponential_function}より
+				\begin{align}
+					e^{\theta} = \frac{|z|}{2}
+				\end{align}
+				を満たす実数$\theta$と
+				\begin{align}
+					e^{\eta} = \frac{3}{2} \cdot |z|
+				\end{align}
+				を満たす実数$\eta$が取れる．$\exp$は$\R$上で単調増大であって，かつ
+				\begin{align}
+					|z| = |e^{\pvlog{z}}| = e^{\Re{\pvlog{z}}}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\theta < \Re{\pvlog{z}} < \eta
+				\end{align}
+				が満たされる．また$z$は$\C^*$の要素なので
+				\begin{align}
+					-\pi < \Im{z} < \pi
+				\end{align}
+				も満たされる．従って
+				\begin{align}
+					\forall w \in \C\,
+					\left[\, |\pvlog{z} - w| < \epsilon_0
+					\Longrightarrow \left(\, \theta < \Re{w} < \eta
+					\wedge -\pi < \Im{w} < \pi\, \right)\, \right]
+				\end{align}
+				を満たす正の実数$\epsilon_0$が取れる．いま$\epsilon$を
+				\begin{align}
+					\epsilon \leq \epsilon_0
+				\end{align}
+				を満たす正の実数とする．ここで
+				\begin{align}
+					A \defeq \Set{w \in \C}{-\pi \leq \Im{w} \leq \pi}
+				\end{align}
+				及び
+				\begin{align}
+					B \defeq \Set{w \in \C}{\theta \leq \Re{w} \leq \eta}
+				\end{align}
+				及び
+				\begin{align}
+					C \defeq \Set{w \in \C}{\epsilon \leq |w - \pvlog{z}|}
+				\end{align}
+				とおけば，$A$と$B$と$C$は共に$\C$の閉集合であって，
+				\begin{align}
+					K \defeq A \cap B \cap C
+				\end{align}
+				で定める$K$は$\C$のコンパクト部分集合である．
+				\begin{align}
+					\C \ni w \longmapsto |e^{w} - z|
+				\end{align}
+				は連続なので，$K$上で最小値を取る．その最小値を$\rho$とおけば
+				\begin{align}
+					|e^{\xi} - z| = \rho
+				\end{align}
+				を満たす$K$の要素$\xi$が取れるが，
+				\begin{align}
+					e^{w} = z
+				\end{align}
+				を満たす$K$の要素$w$は$\pvlog{z}$に限られるので
+				\begin{align}
+					0 < |e^{\xi} - z| = \rho
+				\end{align}
+				が成り立つ．他方で
+				\begin{align}
+					\Re{w} < \theta
+				\end{align}
+				を満たす複素数$w$に対しては
+				\begin{align}
+					\frac{|z|}{2} \leq |z| - |e^{w}| \leq |e^{w} - z|
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\eta < \Re{w}
+				\end{align}
+				を満たす複素数$w$に対しては
+				\begin{align}
+					\frac{|z|}{2} \leq |e^{w}| - |z| \leq |e^{w} - z|
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					\forall w\,
+					\left[\, w \in A \cap C \Longrightarrow 
+					\min\left\{\rho,\frac{|z|}{2}\right\} \leq |e^{w} - z|\, \right]
+					\label{fom:thm_pv_log_is_holomorphic}
+				\end{align}
+				を得る．ここで
+				\begin{align}
+					\delta \defeq \min\left\{\rho,\frac{|z|}{2}\right\}
+				\end{align}
+				とおく．$\zeta$を任意に与えられた複素数とすると，
+				\begin{align}
+					\epsilon \leq |\pvlog{\zeta} - \pvlog{z}|
+				\end{align}
+				であるとき
+				\begin{align}
+					\pvlog{\zeta} \in A \cap C
+				\end{align}
+				が成り立つので，このとき(\refeq{fom:thm_pv_log_is_holomorphic})より
+				\begin{align}
+					\delta \leq |e^{\pvlog{\zeta}} - z| = |\zeta - z|
+				\end{align}
+				が成立する．すなわち
+				\begin{align}
+					\forall \zeta \in \C\, \left(\,
+					\epsilon \leq |\pvlog{\zeta} - \pvlog{z}| 
+					\Longrightarrow \delta \leq |\zeta - z|\, \right)
+				\end{align}
+				が成立する．この対偶を取れば
+				\begin{align}
+					\forall \zeta \in \C\, \left(\,
+					|\zeta - z| < \delta \Longrightarrow |\pvlog{\zeta} - \pvlog{z}| < \epsilon\, \right)
+				\end{align}
+				が従う．ゆえに$\pvlog$は$z$において連続である．
 				
 			\item[第二段]
 				$z$を$\C^*$の要素として，$\pvlog$が$z$で微分可能であって，その微分係数が
@@ -178,8 +292,6 @@
 				
 		\end{description}
 	\end{sketch}
-	
-	
 	
 	\begin{screen}
 		\begin{thm}[冪関数の主値は$\C^*$上で正則]
