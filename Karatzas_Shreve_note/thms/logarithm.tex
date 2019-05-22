@@ -2,12 +2,13 @@
 	
 	$z$を複素数とするとき，$z$の{\bf 対数}\index{たいすう@対数}{\bf (logarithm)}とは
 	\begin{align}
-		z = \exp{(w)}
+		z = \exp{w}
 	\end{align}
-	を満たす複素数$w$のことを指すが，$\exp$は周期関数であるからそのような$w$は無限個存在する．
-	対数関数とは指数関数の逆写像にあたるもので，複素数$z$に対して対数の全体を対応させる写像である．つまり$z$に対し
+	を満たす複素数$w$のことを指すが，$\exp$は周期関数であるからそのような$w$は整数の数だけ，
+	つまり可算無限個存在する．対数関数とは指数関数の逆写像にあたるもので，
+	複素数$z$に対して対数の全体を対応させる写像である．つまり$z$に対し
 	\begin{align}
-		\Set{w \in \C}{z = \exp{(w)}}
+		\Set{w \in \C}{z = \exp{w}}
 	\end{align}
 	なる$\C$の部分集合を対応させる写像であるが，正確には``関数''ではない．出端からアイデンティティが崩壊しているが，
 	ちなみに関数と写像の違いは値が数であるか否かである．対数関数は写像ではあるが関数ではなく，
@@ -17,28 +18,130 @@
 	
 	まずは$0$でない複素数$z$に対して
 	\begin{align}
-		\Set{w \in \C}{z = \exp{(w)}} \neq \emptyset
+		\Set{w \in \C}{z = \exp{w}} \neq \emptyset
 	\end{align}
-	であることを示す．
+	であることを示す．ちなみに定理\ref{thm:inversion_of_exp_z_is_exp_minus_z}より
+	\begin{align}
+		\Set{w \in \C}{0 = \exp{w}} = \emptyset
+	\end{align}
+	が成り立つ．
+	
+	\begin{screen}
+		\begin{thm}[絶対値が$1$の複素数は$e$の純虚数乗で表せる]
+		\label{thm:complex_number_with_absolute_value_1_is_exp_pure_imaginary}
+			$z$を複素数とすると，
+			\begin{align}
+				|z| = 1
+			\end{align}
+			ならば
+			\begin{align}
+				z = e^{\isym \cdot y}
+			\end{align}
+			を満たす実数$y$が取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$z$を
+		\begin{align}
+			|z| = 1
+		\end{align}
+		を満たす複素数とする．
+		\begin{align}
+			z = u + \isym \cdot v
+		\end{align}
+		を満たす実数$u$と$v$を取ると，
+		\begin{align}
+			u^2 + v^2 = 1
+		\end{align}
+		であるから
+		\begin{align}
+			-1 \leq u \leq 1
+		\end{align}
+		が成立する．ところで
+		\begin{align}
+			\cos{0} = 1
+		\end{align}
+		かつ
+		\begin{align}
+			\cos{\pi} = -1
+		\end{align}
+		かつ
+		\begin{align}
+			[0,\pi] \ni t \longmapsto \cos{t}
+		\end{align}
+		は連続であるから，中間値の定理より
+		\begin{align}
+			u = \cos{\theta}
+		\end{align}
+		を満たす実数$\theta$が取れる．
+		\begin{align}
+			\sin^2{\theta} = 1 - \cos^2{\theta} = 1 - u^2 = v^2
+		\end{align}
+		が成り立つので
+		\begin{align}
+			v = \sin{\theta} \vee v = -\sin{\theta}
+		\end{align}
+		が従うが，
+		\begin{align}
+			v = \sin{\theta}
+		\end{align}
+		の場合は
+		\begin{align}
+			z = \cos{\theta} + \isym \cdot \sin{\theta} = e^{\isym \cdot \theta}
+		\end{align}
+		が成り立ち，
+		\begin{align}
+			v = -\sin{\theta}
+		\end{align}
+		の場合は
+		\begin{align}
+			z = \cos{\theta} + \isym \cdot (-\sin{\theta})
+			= \cos{(-\theta)} + \isym \cdot \sin{(-\theta)}
+			= e^{\isym \cdot (-\theta)}
+		\end{align}
+		が成り立つので，いずれの場合も
+		\begin{align}
+			\exists y \in \R\, \left(\, z = e^{\isym \cdot y}\, \right)
+		\end{align}
+		が満たされる．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[$0$でない複素数には対数が存在する]
 			$z$を$0$でない複素数とすると，
 			\begin{align}
-				z = \exp{(w)}
+				z = \exp{w}
 			\end{align}
 			を満たす複素数$w$が取れる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
+		$z$を$0$でない複素数とすると，
+		定理\ref{thm:complex_number_with_absolute_value_1_is_exp_pure_imaginary}より
+		\begin{align}
+			\frac{z}{|z|} = e^{\isym \cdot y}
+		\end{align}
+		を満たす実数$y$が取れる．また
+		定理\ref{thm:real_valued_exponential_function}より
+		\begin{align}
+			|z| = e^{x}
+		\end{align}
+		を満たす実数$x$が取れるので
+		\begin{align}
+			z = |z| \cdot e^{\isym \cdot y} = e^{x + \isym \cdot y}
+		\end{align}
+		が成立する．
+		\QED
 	\end{sketch}
 	
 	\begin{screen}
 		\begin{dfn}[対数関数]
 			複素数$z$に対して
 			\begin{align}
-				\Set{w \in \C}{z = \exp{(w)}}
+				\Set{w \in \C}{z = \exp{w}}
 			\end{align}
 			を対応させる$\C$上の写像を{\bf 対数関数}\index{たいすうかんすう@対数関数}{\bf (logarithmic function)}と呼び，
 			\begin{align}
