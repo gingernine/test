@@ -3,6 +3,7 @@
 		\item $(ab)^n = a^n b^n$
 		\item $a^{n+m} = a^n a^m$
 		\item $|ab| = |a||b|$
+		\item $|a + b| \leq |a| + |b|$
 	\end{itemize}
 	
 \subsection{級数}
@@ -226,35 +227,81 @@
 	\begin{screen}
 		\begin{thm}[絶体絶命する級数の実部は実部の級数，虚部は虚部の級数]
 		\label{thm:absolutely_convergent_series_is_sum_of_series_of_real_and_imaginary_part}
-			$a$を複素数列とする．$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するならば，
-			$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$は共に$\C$で
-			絶対収束して
+			$a$を複素数列とする．$\sum_{n=0}^\infty a_n$が$\C$で絶対収束することと，
+			$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$が共に$\C$で
+			絶対収束することは同値である．また$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するならば
 			\begin{align}
 				\sum_{n=0}^\infty a_n = \sum_{n=0}^\infty \Re{a_n} + \isym \cdot \sum_{n=0}^\infty \Im{a_n}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するならば，任意の自然数$N$で
+		\begin{align}
+			\sum_{n=0}^N |\Re{a_n}|
+			\leq \sum_{n=0}^N |a_n|
+			\leq \sum_{n=0}^\infty |a_n|
+		\end{align}
+		および
+		\begin{align}
+			\sum_{n=0}^N |\Im{a_n}|
+			\leq \sum_{n=0}^N |a_n|
+			\leq \sum_{n=0}^\infty |a_n|
+		\end{align}
+		が成立するので$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$は共に$\C$で
+		絶対収束する．逆に$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$が共に
+		$\C$で絶対収束するとき，定理\ref{thm:linearity_of_absolutely_convergent_series}より
+		$\sum_{n=0}^\infty a_n$は$\C$で絶対収束して，かつ
+		\begin{align}
+			\sum_{n=0}^\infty a_n
+			&= \sum_{n=0}^\infty (\Re{a_n} + \isym \cdot \Im{a_n}) \\
+			&= \sum_{n=0}^\infty \Re{a_n} + \sum_{n=0}^\infty \isym \cdot \Im{a_n}\\
+			&= \sum_{n=0}^\infty \Re{a_n} + \isym \cdot \sum_{n=0}^\infty \Im{a_n}
+		\end{align}
+		も成立する．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
-		\begin{thm}[絶体絶命する級数の共役は共役の級数]
+		\begin{thm}[絶体絶命する級数の共役は共役の級数に一致する]
 		\label{thm:conjugate_of_absolutely_convergent_series_is_series_of_conjugate}
 			$a$を複素数列とする．$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するならば
 			$\sum_{n=0}^\infty \overline{a_n}$も$\C$で絶対収束して
 			\begin{align}
-				\overline{\sum_{n=0}^\infty a_n} 
-				= \sum_{n=0}^\infty \overline{a_n}.
+				\sum_{n=0}^\infty \overline{a_n} = \overline{\sum_{n=0}^\infty a_n}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するならば，
+		定理\ref{thm:absolutely_convergent_series_is_sum_of_series_of_real_and_imaginary_part}より
+		$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$は共に$\C$で
+		絶対収束するので，定理\ref{thm:linearity_of_absolutely_convergent_series}より
+		$\sum_{n=0}^\infty (- \isym) \cdot \Im{a_n}$も$\C$で絶対収束して
+		$\sum_{n=0}^\infty \overline{a_n}$も$\C$で絶対収束する．またこのとき
+		\begin{align}
+			\sum_{n=0}^\infty \overline{a_n}
+			&= \sum_{n=0}^\infty (\Re{a_n} - \isym \cdot \Im{a_n}) \\
+			&= \sum_{n=0}^\infty \Re{a_n} + \sum_{n=0}^\infty (-\isym) \cdot \Im{a_n} \\
+			&= \sum_{n=0}^\infty \Re{a_n} + (-\isym) \cdot \sum_{n=0}^\infty \Im{a_n} \\
+			&= \sum_{n=0}^\infty \Re{a_n} - \isym \cdot \sum_{n=0}^\infty \Im{a_n} \\
+			&= \overline{\sum_{n=0}^\infty a_n}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
 	
 	$a$と$b$を複素数列とするとき，
 	\begin{align}
 		\sum_{n=0}^\infty \sum_{k=0}^n a_k \cdot b_{n-k}
 	\end{align}
-	なる級数が$\C$で存在しているなら，これを$a$と$b$の{\bf Cauchy積}\index{Cauchy積}{\bf (Cauchy product)}と呼ぶ．
+	なる級数が$\C$で存在しているなら，これを$a$と$b$の{\bf Cauchy積}\index{Cauchy積}{\bf (Cauchy product)}と呼ぶ．Cauchy積が収束するためには$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が
+	共に$\C$で絶対収束すれば十分であるが，次のMetensの定理はこれより緩い条件の下でCauchy積の収束を保証する．
 	
 	\begin{screen}
-		\begin{thm}[一方が絶対収束していればCauchy積も収束する(Mertens)]\label{thm:convolution_of_absolutely_convergent_series}
+		\begin{thm}[一方が絶対収束していればCauchy積も収束する]\label{thm:convolution_of_absolutely_convergent_series}
 			$a$と$b$を複素数列とし，$\alpha$を
 			\begin{align}
 				\Natural \ni n \longmapsto \sum_{k=0}^n a_k
