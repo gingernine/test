@@ -1,12 +1,454 @@
-\subsection{代数的性質}
+\subsection{複素数の代数的性質}
 	\begin{itembox}[l]{認めること}
 		\begin{itemize}
 			\item 零因子が存在しないこと．
-			\item 正の実数には平方根が取れること．
+			\item 正の実数には正の平方根が取れること．
 			\item $a - b$は$a + (-b)$の略．
-			\item $a + (b \cdot c)$は$a + b \cdot c$と同じ．
+			\item $a + (b \cdot c)$は$a + b \cdot c$および$b \cdot c + a$と同じ．
 		\end{itemize}
 	\end{itembox}
+	
+	複素数の全体を
+	\begin{align}
+		\C
+	\end{align}
+	と書く．また実数の全体を
+	\begin{align}
+		\R
+	\end{align}
+	と書く．$f$が$\C$上の{\bf 算法}であるとは，$f$が$\C \times \C$から$\C$への写像であるという意味である．
+	
+	\begin{itembox}[l]{$\C$の加法}
+		$\C$上には{\bf 加法}と呼ばれる算法$+$が定まっていて，加法は次の性質を満たす:
+		\begin{description}
+			\item[結合律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					+\left(+(\alpha,\beta),\gamma\right) = +\left(\alpha,+(\beta,\gamma)\right).
+				\end{align}
+				
+			\item[可換律]  $\alpha$と$\beta$を複素数とするとき
+				\begin{align}
+					+(\alpha,\beta) = +(\beta,\alpha).
+				\end{align}
+				
+			\item[加法に関する逆元の存在] $\alpha$を複素数とするとき
+				\begin{align}
+					+(\alpha,\beta) = 0
+				\end{align}
+				を満たす複素数$\beta$が取れる．この$\beta$を$\alpha$の加法に関する{\bf 逆元}と呼ぶ．
+				
+			\item[$0$は加法の単位元] $\alpha$を複素数とするとき
+				\begin{align}
+					+(\alpha,0) = \alpha.
+				\end{align}
+		\end{description}
+	\end{itembox}
+	
+	$\alpha$と$\beta$を複素数とするとき，
+	\begin{align}
+		+(\alpha,\beta)
+	\end{align}
+	を$\alpha$と$\beta$の{\bf 和}{\bf (sum)}と呼び
+	\begin{align}
+		\alpha + \beta
+	\end{align}
+	と書く．これは{\bf 中置記法}と呼ばれる．中置記法によって先の規則を書き直すと
+	\begin{description}
+			\item[結合律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					(\alpha+\beta)+\gamma = \alpha+(\beta+\gamma).
+				\end{align}
+				
+			\item[可換律]  $\alpha$と$\beta$を複素数とするとき
+				\begin{align}
+					\alpha + \beta = \beta + \alpha.
+				\end{align}
+				
+			\item[逆元の存在] $\alpha$を複素数とするとき
+				\begin{align}
+					\alpha + \beta = 0
+				\end{align}
+				を満たす複素数$\beta$が取れる．
+				
+			\item[$0$は単位元] $\alpha$を複素数とするとき
+				\begin{align}
+					\alpha + 0 = \alpha.
+				\end{align}
+	\end{description}
+	となる．
+	
+	\begin{screen}
+		\begin{thm}[加法に関する逆元はただ一つ]
+			複素数$\alpha$に対して
+			\begin{align}
+				\alpha + \beta = 0
+			\end{align}
+			を満たす複素数$\beta$はただ一つである．
+		\end{thm}
+	\end{screen}
+	
+	つまり{\bf $\alpha$の逆元はただ一つであるということである．}
+	
+	\begin{sketch}
+		複素数$\beta$と$\gamma$に対して
+		\begin{align}
+			\alpha + \beta = 0
+		\end{align}
+		かつ
+		\begin{align}
+			\alpha + \gamma = 0
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			\gamma &= \gamma + 0 &&\mbox{$0$が単位元であるから} \\
+			&= \gamma + (\alpha + \beta) &&\mbox{$\alpha + \beta = 0$} \\
+			&= (\gamma + \alpha) + \beta &&\mbox{結合律} \\
+			&= 0 + \beta &&\mbox{$\alpha + \gamma = 0$と可換律} \\
+			&= \beta
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	$\alpha$を複素数とするとき，その加法に関する逆元を
+	\begin{align}
+		- \alpha
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{thm}[和の逆元は逆元の和]
+		\label{thm:inverse_of_sum}
+			$a$と$b$を複素数とするとき
+			\begin{align}
+				-(a + b) = (-b) + (-a).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$と$b$を複素数とするとき，
+		\begin{align}
+			(a+b) + ((-b) + (-a))
+			&= (a + (b + (-b))) + (-a) \\
+			&= (a + 0) + (-a) \\
+			&= a + (-a) \\
+			&= 0 
+		\end{align}
+		かつ
+		\begin{align}
+			((-b) + (-a)) + (a+b)
+			&= ((-b) + ((-a) + a)) + b \\
+			&= ((-b) + 0) + b \\
+			&= (-b) + b \\
+			&= 0
+		\end{align}
+		が成り立つので
+		\begin{align}
+			-(a + b) = (-b) + (-a)
+		\end{align}
+		が得られた．
+		\QED
+	\end{sketch}
+	
+	\begin{itembox}[l]{$\C$の乗法}
+		$\C$上には{\bf 乗法}と呼ばれる算法$\cdot$が定まっていて，乗法は次の性質を満たす:
+		\begin{description}
+			\item[結合律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					\cdot\ \left(\cdot\ (\alpha,\beta),\gamma\right) = \cdot\ \left(\alpha,\cdot\ (\beta,\gamma)\right).
+				\end{align}
+				
+			\item[可換律]  $\alpha$と$\beta$を複素数とするとき
+				\begin{align}
+					\cdot\ (\alpha,\beta) = \cdot\ (\beta,\alpha).
+				\end{align}
+				
+			\item[乗法に関する逆元の存在] $\alpha$を複素数とするとき，$\alpha \neq 0$ならば
+				\begin{align}
+					\cdot\ (\alpha,\beta) = 1
+				\end{align}
+				を満たす複素数$\beta$が取れる．この$\beta$を$\alpha$の乗法に関する逆元と呼ぶ．
+				
+			\item[$1$は乗法の単位元] $\alpha$を複素数とするとき
+				\begin{align}
+					\cdot\ (\alpha,1) = \alpha.
+				\end{align}
+				
+			\item[左分配律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					\cdot\ \left(\alpha,(\beta + \gamma)\right) = \cdot\ (\alpha,\beta) + \cdot\ (\alpha,\gamma).
+				\end{align}
+				
+			\item[右分配律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					\cdot\ \left((\alpha + \beta),\gamma\right) = \cdot\ (\alpha,\gamma) + \cdot\ (\beta,\gamma).
+				\end{align}
+		\end{description}
+	\end{itembox}
+	
+	$\alpha$と$\beta$を複素数とするとき，
+	\begin{align}
+		\cdot\ (\alpha,\beta)
+	\end{align}
+	を$\alpha$と$\beta$の{\bf 積}{\bf (product)}と呼び
+	\begin{align}
+		\alpha \cdot \beta
+	\end{align}
+	と書く．これも中置記法である．中置記法によって先の規則を書き直すと
+	\begin{description}
+			\item[結合律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					(\alpha \cdot \beta) \cdot \gamma = \alpha \cdot (\beta \cdot \gamma).
+				\end{align}
+				
+			\item[可換律]  $\alpha$と$\beta$を複素数とするとき
+				\begin{align}
+					\alpha \cdot \beta = \beta \cdot \alpha.
+				\end{align}
+				
+			\item[逆元の存在] $\alpha$を複素数とするとき，$\alpha \neq 0$ならば
+				\begin{align}
+					\alpha \cdot \beta = 1
+				\end{align}
+				を満たす複素数$\beta$が取れる．
+				
+			\item[$1$は単位元] $\alpha$を複素数とするとき
+				\begin{align}
+					\alpha \cdot 1 = \alpha.
+				\end{align}
+				
+			\item[左分配律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					\alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma.
+				\end{align}
+				
+			\item[右分配律] $\alpha$と$\beta$と$\gamma$を複素数とするとき
+				\begin{align}
+					(\alpha + \beta) \cdot \gamma = \alpha \cdot \gamma + \beta \cdot \gamma.
+				\end{align}
+	\end{description}
+	となる．
+	
+	常識であるが$\C$には
+	\begin{align}
+		1 + \isym^2 = 0
+	\end{align}
+	を満たす複素数
+	\begin{align}
+		\isym
+	\end{align}
+	が存在している．これは{\bf 虚数単位}と呼ばれ
+	\begin{align}
+		\sqrt{-1}
+	\end{align}
+	とも書かれる．$\isym$は複素数の表示において見慣れたものであるが，大雑把に，$z$を複素数とすれば
+	\begin{align}
+		z = x + \isym \cdot y
+	\end{align}
+	を満たす$\R^2$の要素$(x,y)$が唯一つ取れる．この$+$と$\cdot$はまさに上で述べた加法と乗法である．
+	\begin{align}
+		\R^2 \ni (x,y) \longmapsto x + \isym \cdot y \in \C
+	\end{align}
+	なる関係は$\R^2$から$\C$への全単射であり，上の$z$に対する$x$を
+	\begin{align}
+		\Re{z}
+	\end{align}
+	と書いて$z$の{\bf 実部}{\bf (real part)}と呼び，$z$に対する$y$を
+	\begin{align}
+		\Im{z}
+	\end{align}
+	と書いて$z$の{\bf 虚部}{\bf (imaginary part)}と呼ぶ．特に虚部が$0$である複素数は実数であるから
+	$\R$は$\C$の部分集合である:
+	\begin{align}
+		\R \subset \C.
+	\end{align}
+	また$\C$上の加法と乗法といった算法は$\R$上の加法と乗法の純粋な延長である
+	\footnote{
+		以上の関係が成り立つように数を構成できるということであるが，そのように書いていない文献が案外多いので注意が必要である．
+		$\C = \R^2$と考えるのは危険で，複素数と実数の順序対は一対一の対応があるが別物である．
+		$\R^2$に相応の算法を導入しただけでは$\R$は$\C$の部分集合になり得ない．
+	}．
+	$(\C,+,\cdot\ )$の組は複素数体と呼ばれる閉じた世界である．$\R$も$\C$と同様に加法と乗法で閉じていて，
+	つまり$(\R,+,\cdot\ )$も実数体と呼ばれる体であるので，実数同士の演算は必ず実数である．
+	
+	\begin{screen}
+		\begin{thm}[$0$は乗法に関して逆元を持たない]
+			任意の複素数$\alpha$に対して
+			\begin{align}
+				0 \cdot \alpha = 0.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$0 = 0+0$と右分配律から
+		\begin{align}
+			0 \cdot \alpha = (0+0) \cdot \alpha
+			= 0 \cdot \alpha + 0 \cdot \alpha
+		\end{align}
+		が成り立つ．両辺に$-(0 \cdot \alpha)$と足せば
+		\begin{align}
+			0 &= -(0 \cdot \alpha) + 0 \cdot \alpha \\
+			&= -(0 \cdot \alpha) + (0 \cdot \alpha + 0 \cdot \alpha) \\
+			&= (-(0 \cdot \alpha) + 0 \cdot \alpha) + 0 \cdot \alpha \\
+			&= 0 + 0 \cdot \alpha \\
+			&= 0 \cdot \alpha
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[乗法に関する逆元が取れるなら$0$でない]
+		\label{thm:if_has_inverse_wrt_multiplication_then_not_zero}
+			$\alpha$を複素数とするとき
+			\begin{align}
+				\exists \beta \in \C\, (\, \alpha \cdot \beta = 1\, )
+				\Longrightarrow \alpha \neq 0.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		前定理より
+		\begin{align}
+			\alpha = 0 \Longrightarrow \forall \beta \in \C\, (\, \alpha \cdot \beta = 0\, ),
+		\end{align}
+		すなわち
+		\begin{align}
+			\alpha = 0 \Longrightarrow \forall \beta \in \C\, (\, \alpha \cdot \beta \neq 1\, )
+		\end{align}
+		が成り立つ．この対偶を取れば
+		\begin{align}
+			\exists \beta \in \C\, (\, \alpha \cdot \beta = 1\, )
+			\Longrightarrow \alpha \neq 0
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[乗法に関する逆元はただ一つ]
+			$0$でない複素数$\alpha$に対して
+			\begin{align}
+				\alpha \cdot \beta = 0
+			\end{align}
+			を満たす複素数$\beta$はただ一つである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		複素数$\beta$と$\gamma$に対して
+		\begin{align}
+			\alpha \cdot \beta = 0
+		\end{align}
+		かつ
+		\begin{align}
+			\alpha \cdot \gamma = 0
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			\gamma &= \gamma \cdot 1 &&\mbox{$1$が単位元であるから} \\
+			&= \gamma \cdot (\alpha \cdot \beta) &&\mbox{$\alpha \cdot \beta = 1$} \\
+			&= (\gamma \cdot \alpha) \cdot \beta &&\mbox{結合律} \\
+			&= 1 \cdot \beta &&\mbox{$\alpha \cdot \gamma = 1$と可換律} \\
+			&= \beta
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	$\alpha$を$0$でない複素数とするとき，その乗法に関する逆元を
+	\begin{align}
+		\alpha^{-1}
+	\end{align}
+	や
+	\begin{align}
+		1/\alpha
+	\end{align}
+	や
+	\begin{align}
+		\frac{1}{\alpha}
+	\end{align}
+	と書く．
+	
+	
+	\begin{screen}
+		\begin{thm}[積の逆元は逆元の積]
+		\label{thm:inverse_of_product}
+			$a$と$b$を複素数とするとき
+			\begin{align}
+				-(a \cdot b) = (-a) \cdot b = a \cdot (-b).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$と$b$を複素数とするとき，
+		\begin{align}
+			a \cdot b + (-a) \cdot b
+			&= (a + (-a)) \cdot b \\
+			&= 0 \cdot b \\
+			&= 0
+		\end{align}
+		かつ
+		\begin{align}
+			(-a) \cdot b + a \cdot b
+			&= ((-a) + a) \cdot b \\
+			&= 0 \cdot b \\
+			&= 0
+		\end{align}
+		が成り立つので
+		\begin{align}
+			-(a \cdot b) = (-a) \cdot b
+		\end{align}
+		が得られた．積の可換律より
+		\begin{align}
+			-(a \cdot b) = -(b \cdot a) = (-b) \cdot a = a \cdot (-b)
+		\end{align}
+		が得られた．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$0$でない数同士の積は乗法に関して逆元を持つ]
+		\label{thm:C_has_no_zero_divisor}
+			$a$と$b$を$0$でない複素数とするとき，$a \cdot b$も$0$ではない．またこのとき
+			\begin{align}
+				(a \cdot b)^{-1} = b^{-1} \cdot a^{-1}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$と$b$を$0$でない複素数とするとき，
+		\begin{align}
+			(a \cdot b) \cdot (b^{-1} \cdot a^{-1})
+			&= \left[a \cdot (b \cdot b^{-1})\right] \cdot a^{-1} \\
+			&= (a \cdot 1) \cdot a^{-1} \\
+			&= a \cdot a^{-1} \\
+			&= 1
+		\end{align}
+		かつ
+		\begin{align}
+			(b^{-1} \cdot a^{-1}) \cdot (a \cdot b) 
+			&= \left[b^{-1} \cdot (a^{-1} \cdot a)\right] \cdot b \\
+			&= (b^{-1} \cdot 1) \cdot b \\
+			&= b^{-1} \cdot b \\
+			&= 1
+		\end{align}
+		が成り立つので
+		\begin{align}
+			(a \cdot b)^{-1} = b^{-1} \cdot a^{-1}
+		\end{align}
+		が得られた．また定理\ref{thm:if_has_inverse_wrt_multiplication_then_not_zero}から
+		\begin{align}
+			a \cdot b \neq 0
+		\end{align}
+		も従う．
+		\QED
+	\end{sketch}
 	
 	$z$を複素数とするとき，$z$の整数乗を定義する．まずは
 	\begin{align}
@@ -34,14 +476,14 @@
 	\begin{align}
 		z^n
 	\end{align}
-	なる複素数が得られる．累乗の厳密な定義は帰納法を用いるがここでは直感的な導入で終える．
+	なる複素数が得られる．累乗の厳密な定義は帰納法を使った再帰的手法を用いるがここでは直感的な導入で終える．
 	ただし一つ言っておくが，$n$を任意の自然数とするとき
 	\begin{align}
 		z^{n+1} = z^n \cdot z
 	\end{align}
 	は定理である．
 	
-	$n$を負の整数とするときは，
+	$n$を負の整数とするとき，
 	\begin{align}
 		-n \in \Natural
 	\end{align}
@@ -65,11 +507,53 @@
 	\end{screen}
 	
 	\begin{sketch}
-		
+		まず
+		\begin{align}
+			1 = (a \cdot b)^0 = a^0 = b^0
+		\end{align}
+		より
+		\begin{align}
+			(a \cdot b)^0 = a^0 \cdot b^0
+		\end{align}
+		が成り立つ．また$n$を自然数とするとき
+		\begin{align}
+			(a \cdot b)^n = a^n \cdot b^n
+		\end{align}
+		が成り立っているとすると，
+		\begin{align}
+			(a \cdot b)^{n+1}
+			&= (a \cdot b)^n \cdot (a \cdot b) \\
+			&= (a^n \cdot b^n) \cdot (a \cdot b) \\
+			&= (a^n \cdot b^n) \cdot (b \cdot a) \\
+			&= \left[a^n \cdot (b^n \cdot b)\right] \cdot a \\
+			&= (a^n \cdot b^{n+1}) \cdot a \\
+			&= (b^{n+1} \cdot a^n) \cdot a \\
+			&= b^{n+1} \cdot (a^n \cdot a) \\
+			&= b^{n+1} \cdot a^{n+1} \\
+			&= a^{n+1} \cdot b^{n+1}
+		\end{align}
+		が成立する．ゆえに数学的帰納法の原理より任意の自然数$n$で
+		\begin{align}
+			(a \cdot b)^n = a^n \cdot b^n
+		\end{align}
+		が成立する．$n$を負の整数とするとき，
+		\begin{align}
+			(a \cdot b)^{-n} = a^{-n} \cdot b^{-n}
+		\end{align}
+		が成り立つから
+		\begin{align}
+			(a \cdot b)^n &= ((a \cdot b)^n)^{-1} \\
+			&= (a^{-n} \cdot b^{-n})^{-1} \\
+			&= (b^{-n})^{-1} \cdot (a^{-n})^{-1} \\
+			&= b^n \cdot a^n \\
+			&= a^n \cdot b^n
+		\end{align}
+		が従う．
+		\QED
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[指数法則]
+		\begin{thm}[指数法則]\label{thm:exponential_law_of_complex_numbers}
 			$z$を複素数とし，$n$と$m$を整数とするとき，
 			\begin{align}
 				z^{n+m} = z^n \cdot z^m.
@@ -77,8 +561,120 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$n$を整数とするとき
+				\begin{align}
+					z^{n} \cdot z^{-n} = 1
+					\label{fom:thm_exponential_law_of_complex_numbers_1}
+				\end{align}
+				が成り立つ．実際，$n$が$0$なら
+				\begin{align}
+					z^{0} =  z^{-0} = 1
+				\end{align}
+				が成り立つ．$n$が正の自然数なら，累乗の定め方より
+				\begin{align}
+					z^{-n} = (z^{n})^{-1}
+				\end{align}
+				であるから
+				\begin{align}
+					z^{n} \cdot z^{-n} = z^{n} \cdot (z^{n})^{-1} = 1
+				\end{align}
+				が成り立つ．$n$が負の整数なら，累乗の定め方より
+				\begin{align}
+					z^{n} = (z^{-n})^{-1}
+				\end{align}
+				であるから
+				\begin{align}
+					z^{n} \cdot z^{-n} = (z^{-n})^{-1} \cdot z^{-n} = 1
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段]
+				$n$を整数とするとき
+				\begin{align}
+					z^{n+1} = z^{n} \cdot z
+					\label{fom:thm_exponential_law_of_complex_numbers_2}
+				\end{align}
+				が成り立つ．$n$が自然数であるときはこれは定理であるが，
+				$n$が負の整数であるとき，
+				\begin{align}
+					n+1 \leq 0
+				\end{align}
+				であるから
+				\begin{align}
+					-(n+1) \in \Natural
+				\end{align}
+				であり，よって
+				\begin{align}
+					z^{-(n+1) + 1} = z^{-(n+1)} \cdot z
+				\end{align}
+				が成立する．ここで
+				\begin{align}
+					z^{-(n+1) + 1} = z^{(-n) + ((-1) + 1)} = z^{-n}
+				\end{align}
+				より
+				\begin{align}
+					z^{-n} = z^{-(n+1)} \cdot z
+				\end{align}
+				が成立し，両辺に$z^{n} \cdot z^{n+1}$を掛ければ前段の結果より
+				\begin{align}
+					z^{n+1} &= z^{n+1} \cdot (z^{n} \cdot z^{-n}) \\
+					&= (z^{n+1} \cdot z^{n}) \cdot z^{-n} \\
+					&= (z^{n} \cdot z^{n+1}) \cdot z^{-n} \\
+					&= (z^{n} \cdot z^{n+1}) \cdot (z^{-(n+1)} \cdot z) \\
+					&= \left[z^{n} \cdot (z^{n+1} \cdot z^{-(n+1)})\right] \cdot z \\
+					&= z^{n} \cdot z
+				\end{align}
+				が従う．
+				
+			\item[第三段]
+				$n$を整数とし，$m$を自然数とするとき，
+				\begin{align}
+					z^{n+m} = z^{n} \cdot z^{m}
+				\end{align}
+				が成立する．実際，まず
+				\begin{align}
+					z^{n+0} = z^{n} = z^{n} \cdot z^{0}
+				\end{align}
+				が成り立ち，また自然数$m$に対して
+				\begin{align}
+					z^{n+m} = z^{n} \cdot z^{m}
+				\end{align}
+				が成り立っているとすると，前段の結果より
+				\begin{align}
+					z^{n+(m+1)} &= z^{(n+m)+1} \\
+					&= z^{n+m} \cdot z \\
+					&= (z^{n} \cdot z^{m}) \cdot z \\
+					&= z^{n} \cdot (z^{m} \cdot z) \\
+					&= z^{n} \cdot z^{m+1}
+				\end{align}
+				が成立する．ゆえに数学的帰納法の原理より任意の自然数$m$に対して
+				\begin{align}
+					z^{n+m} = z^{n} \cdot z^{m}
+				\end{align}
+				が満たされる．
+				
+			\item[第四段]
+				最後に，$n$と$m$を整数とするとき
+				\begin{align}
+					z^{n+m} = z^{n} \cdot z^{m}
+				\end{align}
+				が成立することを示す．$m$が負の整数であるとき，前段の結果より
+				\begin{align}
+					z^{-(n+m)} = z^{(-n) + (-m)} = z^{-n} \cdot z^{-m}
+				\end{align}
+				が成立する．よって
+				\begin{align}
+					z^{n+m} &= (z^{-(n+m)})^{-1} \\
+					&= (z^{-n} \cdot z^{-m})^{-1} \\
+					&= (z^{-n})^{-1} \cdot (z^{-m})^{-1} \\
+					&= z^{n} \cdot z^{m}
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{screen}
@@ -103,17 +699,21 @@
 			&= (a^2 + 0) - b^2 \\
 			&= a^2 - b^2
 		\end{align}
-		が成り立つ．従って
+		が成り立つ．よって
 		\begin{align}
 			a^2 = b^2 \Longleftrightarrow (a + b) \cdot (a - b) = 0
 		\end{align}
-		が成り立つが，他方で$\C$は零因子を持たないので
+		が成り立つが，他方で定理\ref{thm:C_has_no_zero_divisor}から
 		\begin{align}
 			(a + b) \cdot (a - b) = 0
 			\Longleftrightarrow a+b = 0 \vee a - b = 0
 			\Longleftrightarrow a = -b \vee a = b
 		\end{align}
-		も成立する．以上を併せて定理の主張を得る．
+		も成立するので
+		\begin{align}
+			a^2 = b^2 \Longleftrightarrow a = -b \vee a = b
+		\end{align}
+		が従う．
 		\QED
 	\end{sketch}
 	
@@ -121,7 +721,7 @@
 		\begin{dfn}[平方根]
 			$\alpha$を$0$以上の実数とするとき，
 			\begin{align}
-				
+				f
 			\end{align}
 		\end{dfn}
 	\end{screen}
@@ -139,28 +739,6 @@
 			と書く．
 		\end{dfn}
 	\end{screen}
-	
-	$a$と$b$を複素数とするとき，
-	\begin{align}
-		(a+b) + ((-b) + (-a))
-		&= (a + (b + (-b))) + (-a) \\
-		&= (a + 0) + (-a) \\
-		&= a + (-a) \\
-		&= 0 
-	\end{align}
-	かつ
-	\begin{align}
-		((-b) + (-a)) + (a+b)
-		&= ((-b) + ((-a) + a)) + b \\
-		&= ((-b) + 0) + b \\
-		&= (-b) + b \\
-		&= 0
-	\end{align}
-	が成り立つので
-	\begin{align}
-		-(a + b) = (-b) + (-a)
-	\end{align}
-	である．
 	
 	\begin{screen}
 		\begin{thm}[積の絶対値は絶対値の積]
@@ -210,7 +788,7 @@
 		\begin{thm}[劣加法性]
 			$a$と$b$を複素数とするとき
 			\begin{align}
-				|a + b| = |a| + |b|.
+				|a + b| \leq |a| + |b|.
 			\end{align}
 		\end{thm}
 	\end{screen}
