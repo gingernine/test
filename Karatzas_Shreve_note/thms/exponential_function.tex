@@ -67,6 +67,63 @@
 		\QED
 	\end{sketch}
 	
+	\begin{screen}
+		\begin{thm}[指数関数は各点で微分可能]
+			$z$を任意に与えられた複素数とすれば，$\exp$は$z$で微分可能であってその微分係数は
+			\begin{align}
+				\exp{z}
+			\end{align}
+			である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$z$を任意に与えられた複素数とする．指数法則より，任意の複素数$h$に対して
+		\begin{align}
+			|(e^{z+h} - e^{z}) - h \cdot e^{z}|
+			&= |e^{z}| \cdot |(e^{h} - 1) - h| \\
+			&= |e^{z}| \cdot \left|\sum_{n=1}^\infty \frac{1}{n!} \cdot h^n - h\right|
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			\sum_{n=1}^\infty \frac{1}{n!} \cdot h^{n-1}
+		\end{align}
+		は絶対収束級数であるから，定理\ref{thm:linearity_of_absolutely_convergent_series}より
+		\begin{align}
+			\sum_{n=1}^\infty \frac{1}{n!} \cdot h^{n}
+			= h \cdot \sum_{n=1}^\infty \frac{1}{n!} \cdot h^{n-1}
+			= h \cdot \sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1} + h
+		\end{align}
+		が成り立つ．すなわち
+		\begin{align}
+			|(e^{z+h} - e^{z}) - h \cdot e^{z}|
+			&= |e^{z}| \cdot \left|\sum_{n=1}^\infty \frac{1}{n!} \cdot h^n - h\right| \\
+			&= |e^{z}| \cdot |h| \cdot \left|\sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1}\right|
+		\end{align}
+		が成り立つ．いま$\epsilon$を任意に与えられた正の実数とすると，
+		\begin{align}
+			0 < |h| < \min\left\{\epsilon/|e^{z}|,1/2\right\}
+		\end{align}
+		ならば
+		\begin{align}
+			|(e^{z+h} - e^{z}) - h \cdot e^{z}|
+			&= |e^{z}| \cdot |h| \cdot \left|\sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1}\right| \\
+			&\leq |e^{z}| \cdot |h| \cdot \sum_{n=2}^\infty \cdot |h|^{n-1} \\
+			&\leq |e^{z}| \cdot |h| \cdot \frac{|h|}{1-|h|} \\
+			&< 2 \cdot \epsilon \cdot |h|
+		\end{align}
+		が成立する．ゆえに$\exp$は$z$で微分可能であって，その微分係数は
+		\begin{align}
+			e^{z}
+		\end{align}
+		である．
+		\QED
+	\end{sketch}
+	
+	指数関数は$\C$全体で定義されて，かつ$\C$の任意の要素で微分可能である．
+	このように$\C$上で定義された$\C$値関数で，$\C$の各点で微分可能なものを
+	{\bf 整関数}\index{せいかんすう@整関数}{\bf (entire function)}と呼ぶ．
+	
 	$z$を複素数とすれば，
 	\begin{align}
 		z + (-z) = (-z) + z = 0
@@ -92,6 +149,37 @@
 				(e^z)^{-1} = e^{-z}.
 			\end{align}
 			特に$\exp$は$0$を取り得ない．
+		\end{thm}
+	\end{screen}
+	
+	いま$y$を実数とすると，任意の自然数$n$で
+	\begin{align}
+		\overline{(\isym \cdot y)^n} = (-\isym \cdot y)^n
+	\end{align}
+	が成立する．従って定理\ref{thm:conjugate_of_absolutely_convergent_series_is_series_of_conjugate}より
+	\begin{align}
+		e^{-\isym \cdot y} = \overline{e^{\isym \cdot y}}
+	\end{align}
+	が成り立ち，
+	\begin{align}
+		|e^{\isym \cdot y}|^2 
+		= e^{\isym \cdot y} \cdot \overline{e^{\isym \cdot y}}
+		= e^{\isym \cdot y} \cdot e^{-\isym \cdot y}
+		= e^{0}
+		= 1
+	\end{align}
+	が従う．これで次の主張を得た．
+	
+	\begin{screen}
+		\begin{thm}[$e$の純虚数乗の絶対値は$1$]
+			$y$を実数とするとき
+			\begin{align}
+				e^{-\isym \cdot y} = \overline{e^{\isym \cdot y}}
+			\end{align}
+			が成立し，特に
+			\begin{align}
+				|e^{\isym \cdot y}| = 1.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
@@ -202,4 +290,4 @@
 		\end{align}
 		が成立する．ゆえに$\exp$は全射である．
 		\QED
-	\end{sketch}	
+	\end{sketch}
