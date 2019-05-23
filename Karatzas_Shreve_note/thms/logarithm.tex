@@ -111,6 +111,7 @@
 	
 	\begin{screen}
 		\begin{thm}[$0$でない複素数には対数が存在する]
+		\label{thm:non_zero_complex_number_has_a_logarithm}
 			$z$を$0$でない複素数とすると，
 			\begin{align}
 				z = \exp{w}
@@ -152,14 +153,54 @@
 		\end{dfn}
 	\end{screen}
 	
+	$z$を$0$でない複素数とするとき，
+	\begin{align}
+		z = \exp{w}
+	\end{align}
+	かつ
+	\begin{align}
+		-\pi \leq \Im{w} < \pi
+	\end{align}
+	を満たす複素数$w$を$z$の対数の{\bf 主値}\index{しゅち@主値}{\bf (principal value)}
+	と呼ぶ．$z$の対数の主値を
+	\begin{align}
+		\pv{\log{z}}
+	\end{align}
+	と書くとき，
+	\begin{align}
+		\C \backslash \{0\} \ni z \longmapsto \pv{\log{z}}
+	\end{align}
+	なる対応関係で定める$\C \backslash \{0\}$上の写像を
+	\begin{align}
+		\pvlog
+	\end{align}
+	と書く．正式には$\pvlog$とは
+	\begin{align}
+		\pvlog \defeq \Set{x}{\exists z,w \in \C\,
+		\left[\, x=(z,w) \wedge z \neq 0 \wedge z = \exp{w} \wedge
+		-\pi \leq \Im{w} < \pi\, \right]}
+	\end{align}
+	で定められる関係であるが，実際に
+	\begin{align}
+		\pvlog: \C \backslash \{0\} \longrightarrow \C
+	\end{align}
+	が成り立っているということは定理\ref{thm:non_zero_complex_number_has_a_logarithm}と
+	定理\ref{thm:period_of_exponential_function_is_2_pi_i}によって保障される．
+	
 	例えば$\pvlog$は$-1$で不連続．
 	
 	\begin{screen}
 		\begin{thm}[$\pvlog$の正則性]\label{thm:pv_log_is_holomorphic}
-			$\pvlog$は$\C^*$上で正則であって，$z$を$\C^*$の要素とすると
+			$\C$から$0$以下の実数を除いた集合を$\C^*$とすると，つまり
 			\begin{align}
-				\pvlog'{z} = \frac{1}{z}.
+				\C^* \defeq \Set{z \in \C}{z \notin \R \vee 0 < z}
 			\end{align}
+			とおくと，$\pvlog$は$\C^*$上で正則である．また$z$を$\C^*$の要素とすると，
+			$z$における$\pvlog$の微分係数は
+			\begin{align}
+				\frac{1}{z}
+			\end{align}
+			である．
 		\end{thm}
 	\end{screen}
 	
@@ -210,7 +251,7 @@
 				\begin{align}
 					C \defeq \Set{w \in \C}{\epsilon \leq |w - \pvlog{z}|}
 				\end{align}
-				とおけば，$A$と$B$と$C$は共に$\C$の閉集合であって，
+				とおけば，$A$と$B$と$C$はどれも$\C$の閉集合であって，
 				\begin{align}
 					K \defeq A \cap B \cap C
 				\end{align}
