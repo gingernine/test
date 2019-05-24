@@ -302,6 +302,7 @@
 	
 	\begin{screen}
 		\begin{thm}[$0$は乗法に関して逆元を持たない]
+		\label{thm:zero_multiplication_is_zero}
 			任意の複素数$\alpha$に対して
 			\begin{align}
 				0 \cdot \alpha = 0.
@@ -485,6 +486,55 @@
 		\QED
 	\end{sketch}
 	
+	\begin{screen}
+		\begin{thm}[積の共役は共役の積]
+		\label{thm:conjugate_of_product_is_product_of_conjugates}
+			$a$と$b$を複素数とするとき，
+			\begin{align}
+				\overline{a \cdot b} = \overline{a} \cdot \overline{b}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha,\beta,\gamma,\delta$を実数とするとき，
+		\begin{align}
+			(\alpha + \isym \cdot \beta) \cdot (\gamma + \isym \cdot \delta)
+			&= (\alpha + \isym \cdot \beta) \cdot \gamma
+			+ (\alpha + \isym \cdot \beta) \cdot (\isym \cdot \delta) \\
+			&= \left[\alpha \cdot \gamma + \isym \cdot (\beta \cdot \gamma) \right]
+			+ \left[\isym \cdot (\alpha \cdot \delta) + (-1) \cdot (\beta \cdot \delta)\right] \\
+			&= \left[\alpha \cdot \gamma + (-1) \cdot (\beta \cdot \delta)\right]
+			+ \left[\isym \cdot (\beta \cdot \gamma) + \isym \cdot (\alpha \cdot \delta)\right] \\
+			&= (\alpha \cdot \gamma - \beta \cdot \delta) + \isym \cdot (\beta \cdot \gamma + \alpha \cdot \delta)
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			a \cdot b 
+			&= (\Re{a} + \isym \cdot \Im{a}) \cdot (\Re{b} + \isym \cdot \Im{b}) \\
+			&= (\Re{a} \cdot \Re{b} - \Im{a} \cdot \Im{b}) 
+			+ \isym \cdot (\Im{a} \cdot \Re{b} + \Re{a} \cdot \Im{b})
+		\end{align}
+		および
+		\begin{align}
+			\overline{a} \cdot \overline{b}
+			&= (\Re{a} - \isym \cdot \Im{a}) \cdot (\Re{b} - \isym \cdot \Im{b}) \\
+			&= (\Re{a} + \isym \cdot (-\Im{a})) \cdot (\Re{b} + \isym \cdot (-\Im{b})) \\
+			&= (\Re{a} \cdot \Re{b} - \Im{a} \cdot \Im{b}) 
+			+ \isym \cdot \left[(-\Im{a}) \cdot \Re{b} + \Re{a} \cdot (-\Im{b})\right] \\
+			&= (\Re{a} \cdot \Re{b} - \Im{a} \cdot \Im{b}) 
+			+ \isym \cdot \left[-(\Im{a} \cdot \Re{b} + \Re{a} \cdot \Im{b})\right] \\
+			&= (\Re{a} \cdot \Re{b} - \Im{a} \cdot \Im{b}) 
+			- \isym \cdot (\Im{a} \cdot \Re{b} + \Re{a} \cdot \Im{b})
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			\overline{a \cdot b} = \overline{a} \cdot \overline{b}
+		\end{align}
+		である．
+		\QED
+	\end{sketch}
+	
 	$z$を複素数とするとき，$z$の整数乗を定義する．まずは
 	\begin{align}
 		z^0 \defeq 1
@@ -534,6 +584,7 @@
 	
 	\begin{screen}
 		\begin{thm}[積の累乗は累乗の積]
+		\label{thm:law_of_exponentiation_for_multiplication}
 			$a$と$b$を複素数とし，$n$を整数とするとき，
 			\begin{align}
 				(a \cdot b)^n = a^n \cdot b^n.
@@ -767,6 +818,7 @@
 	
 	\begin{screen}
 		\begin{thm}[二乗が等しい数同士は一致するか逆元である]
+		\label{thm:numbers_whose_squares_are_coincide_are_same_or_inverse}
 			$a$と$b$を複素数とするとき，
 			\begin{align}
 				a^2 = b^2 \Longleftrightarrow 
@@ -791,7 +843,8 @@
 		\begin{align}
 			a^2 = b^2 \Longleftrightarrow (a + b) \cdot (a - b) = 0
 		\end{align}
-		が成り立つが，他方で定理\ref{thm:C_has_no_zero_divisor}から
+		が成り立つが，他方で定理\ref{thm:zero_multiplication_is_zero}と
+		定理\ref{thm:C_has_no_zero_divisor}から
 		\begin{align}
 			(a + b) \cdot (a - b) = 0
 			\Longleftrightarrow a+b = 0 \vee a - b = 0
@@ -805,12 +858,50 @@
 		\QED
 	\end{sketch}
 	
+	次の定理は証明なしに認める．
 	\begin{screen}
-		\begin{dfn}[平方根]
+		\begin{thm}[非負実数には平方根が存在する]
 			$\alpha$を$0$以上の実数とするとき，
 			\begin{align}
-				f
+				\alpha = \beta^2
 			\end{align}
+			を満たす実数$\beta$が取れる．
+		\end{thm}
+	\end{screen}
+	
+	$\alpha$を$0$以上の実数とするとき，
+	\begin{align}
+		\alpha = \beta^2
+	\end{align}
+	を満たす実数$\beta$を取ると，定理\ref{thm:numbers_whose_squares_are_coincide_are_same_or_inverse}より
+	\begin{align}
+		(-\beta)^2 = \alpha
+	\end{align}
+	も成り立つ．
+	\begin{align}
+		0 \leq \beta \vee 0 \leq -\beta
+	\end{align}
+	が成り立つので(ここでは未証明だが認める)，すなわち
+	{\bf 二乗が$\alpha$となる実数として非負であるものを取ることが出来る．}また
+	実数$\gamma$が
+	\begin{align}
+		\gamma^2 = \alpha
+	\end{align}
+	を満たすなら
+	\begin{align}
+		\gamma = \beta \vee \gamma = -\beta
+	\end{align}
+	が成り立つので，二乗が$\alpha$となる実数は$\beta$と$-\beta$に限られる．
+	
+	\begin{screen}
+		\begin{dfn}[平方根]
+			$\alpha$を$0$以上の実数とするとき，二乗が$\alpha$となる
+			実数を$\alpha$の{\bf 平方根}\index{へいほうこん@平方根}{\bf (square root)}と呼ぶ．
+			また，そのような実数のうち非負であるものを
+			\begin{align}
+				\sqrt{\alpha}
+			\end{align}
+			と書く．
 		\end{dfn}
 	\end{screen}
 	
@@ -829,6 +920,31 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{thm}[絶対値の二乗は複素共役との積に等しい]
+			$z$を複素数とするとき
+			\begin{align}
+				|z|^2 = z \cdot \overline{z}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		算法の分配律と定理\ref{thm:law_of_exponentiation_for_multiplication}
+		および定理\ref{thm:inverse_of_product}を用いれば
+		\begin{align}
+			z \cdot \overline{z} 
+			&= (\Re{z} + \isym \cdot \Im{z}) \cdot (\Re{z} - \isym \cdot \Im{z}) \\
+			&= (\Re{z})^2 - (\isym \cdot \Im{z})^2 \\
+			&= (\Re{z})^2 - \isym^2 \cdot (\Im{z})^2 \\
+			&= (\Re{z})^2 - (-1) \cdot (\Im{z})^2 \\
+			&= (\Re{z})^2 + (\Im{z})^2 \\
+			&= |z|^2
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[積の絶対値は絶対値の積]
 		\label{thm:absolute_value_of_product_is_product_of_absolute_values}
 			$a$と$b$を複素数とするとき
@@ -839,7 +955,24 @@
 	\end{screen}
 	
 	\begin{sketch}
-		
+		定理\ref{thm:conjugate_of_product_is_product_of_conjugates}より
+		\begin{align}
+			|a \cdot b|^2 = (a \cdot b) \cdot \overline{a \cdot b}
+			= (a \cdot b) \cdot (\overline{a} \cdot \overline{b})
+			= (a \cdot \overline{a}) \cdot (b \cdot \overline{b})
+			= |a|^2 \cdot |b|^2
+			= (|a| \cdot |b|)^2
+		\end{align}
+		が成り立つので，定理\ref{thm:numbers_whose_squares_are_coincide_are_same_or_inverse}より
+		\begin{align}
+			|a \cdot b| = |a| \cdot |b| \vee |a \cdot b| = -|a| \cdot |b|
+		\end{align}
+		が従う．ここで非負の数の積は非負であるから(これも未証明だが認める)
+		\begin{align}
+			|a \cdot b| = |a| \cdot |b|
+		\end{align}
+		が成り立つ．
+		\QED
 	\end{sketch}
 	
 	\begin{screen}
@@ -852,11 +985,11 @@
 	\end{screen}
 	
 	\begin{sketch}
-		定理より
+		定理\ref{thm:inverse_of_product}より
 		\begin{align}
-			-z = (-1) \cdot z
+			-z = -(1 \cdot z) = (-1) \cdot z
 		\end{align}
-		であるから，定理\ref{thm:absolute_value_of_product_is_product_of_absolute_values}より
+		が成り立つから，定理\ref{thm:absolute_value_of_product_is_product_of_absolute_values}より
 		\begin{align}
 			|-z| = |-1| \cdot |z|
 		\end{align}
