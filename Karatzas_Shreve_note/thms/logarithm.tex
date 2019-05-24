@@ -4,7 +4,7 @@
 	\begin{align}
 		z = \exp{w}
 	\end{align}
-	を満たす複素数$w$のことを指すが，$\exp$は周期関数であるからそのような$w$は整数の数だけ，
+	を満たす複素数$w$のことを指すが，$\exp$は周期関数であるからそのような$w$は整数の個数だけ，
 	つまり可算無限個存在する．対数関数とは指数関数の逆写像にあたるもので，
 	複素数$z$に対して対数の全体を対応させる写像である．つまり$z$に対し
 	\begin{align}
@@ -188,15 +188,75 @@
 	定理\ref{thm:period_of_exponential_function_is_2_pi_i}によって保障される．
 	
 	\begin{screen}
-		\begin{thm}[$\pvlog$は複素数値関数である]
+		\begin{thm}[$\pvlog$は$\C \backslash \{0\}$から$\C$への関数である]
 			\begin{align}
 				\pvlog: \C \backslash \{0\} \longrightarrow \C.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段] $\pvlog$が写像であることを示す．
+				複素数$z$と$w$と$\zeta$に対して
+				\begin{align}
+					z = e^{w} \wedge -\pi \leq \Im{w} < \pi
+				\end{align}
+				と
+				\begin{align}
+					z = e^{\zeta} \wedge -\pi \leq \Im{\zeta} < \pi
+				\end{align}
+				が成り立っているとき，定理\ref{thm:period_of_exponential_function_is_2_pi_i}より
+				\begin{align}
+					w - \zeta = (2 \cdot n \cdot \pi) \cdot \isym
+				\end{align}
+				を満たす整数$n$が取れる．このとき
+				\begin{align}
+					2 \cdot n \cdot \pi = |\Im{(w - \zeta)}| = |\Im{w} - \Im{\zeta}| < 2 \cdot \pi
+				\end{align}
+				が成り立つので
+				\begin{align}
+					n = 0
+				\end{align}
+				が従い
+				\begin{align}
+					w = \zeta
+				\end{align}
+				が従う．ゆえに$\pvlog$は写像である．
+				
+			\item[第二段] $\pvlog$の定義域$\dom{\pvlog}$が$\C \backslash \{0\}$に一致することを示す．
+				\begin{align}
+					\dom{\pvlog} \subset C \backslash \{0\}
+				\end{align}
+				であることは$\pvlog$の定め方より従う．いま$z$を$0$でない複素数とすると，
+				定理\ref{thm:non_zero_complex_number_has_a_logarithm}より
+				\begin{align}
+					z = \exp{w}
+				\end{align}
+				を満たす複素数$w$が取れる．
+				\begin{align}
+					(2 \cdot n - 1) \cdot \pi \leq \Im{w} < (2 \cdot n+1) \cdot \pi
+				\end{align}
+				を満たす整数$n$を取れば，
+				\begin{align}
+					e^{w - (2 \cdot n \cdot \pi) \cdot \isym} = e^{w} \cdot e^{- (2 \cdot n \cdot \pi) \cdot \isym}
+					= e^{w} = z
+				\end{align}
+				かつ
+				\begin{align}
+					-\pi \leq \Im{\left(w - (2 \cdot n \cdot \pi) \cdot \isym\right)} < \pi
+				\end{align}
+				が成り立つので
+				\begin{align}
+					z \in \dom{\pvlog}
+				\end{align}
+				が従う．以上で
+				\begin{align}
+					\dom{\pvlog} = C \backslash \{0\}
+				\end{align}
+				が得られた．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{itembox}[l]{$\pvlog$は不連続点を持つ}
@@ -437,17 +497,3 @@
 				\QED
 		\end{description}
 	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}[冪関数の主値は$\C^*$上で正則]
-			$\alpha$を複素数とする．このとき
-			\begin{align}
-				\C^* \ni z \longmapsto e^{\alpha \cdot \pvlog{z}}
-			\end{align}
-			なる写像は$\C^*$上で正則であって，$\C^*$の要素$z$における微分係数は
-			\begin{align}
-				\alpha \cdot e^{(\alpha-1) \cdot \pvlog{z}}
-			\end{align}
-			である．
-		\end{thm}
-	\end{screen}
