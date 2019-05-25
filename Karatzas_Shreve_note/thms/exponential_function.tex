@@ -32,25 +32,15 @@
 			\begin{align}
 				e \defeq \exp{1} = \sum_{n=0}^\infty \frac{1}{n!}
 			\end{align}
-			で定める複素数$e$を{\bf Napier数}\index{Napier数}{\bf (Napier's constant)}と呼ぶ．
+			で定める実数$e$を{\bf Napier数}\index{Napier数}{\bf (Napier's constant)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
-	
-	複素数$z$に対して
-	\begin{align}
-		\exp{z}
-	\end{align}
-	の代わりに
-	\begin{align}
-		e^z
-	\end{align}
-	とも書く．
 	
 	\begin{screen}
 		\begin{thm}[指数法則]\label{thm:law_of_exponentiation_for_exponential_function}
 			$a$と$b$を複素数とするとき
 			\begin{align}
-				e^a \cdot e^b = e^{a + b}.
+				\exp{a} \cdot \exp{b} = \exp{(a + b)}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -68,6 +58,132 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{thm}[有理数に対する指数関数の値は$e$の有理数乗で表せる]
+			$r$を有理数とするとき
+			\begin{align}
+				\exp{r} = e^{r}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				まず$r$が整数である場合に示す．
+				\begin{align}
+					\exp{0} = 1 = e^0
+				\end{align}
+				が成り立つ．また$n$を自然数とするとき，
+				\begin{align}
+					\exp{n} = e^n
+				\end{align}
+				が成り立っているならば
+				\begin{align}
+					\exp{(n+1)} = \exp{n} \cdot \exp{1} = e^n \cdot e = e^{n+1}
+				\end{align}
+				も成り立つ．よって数学的帰納法の原理より任意の自然数$r$で
+				\begin{align}
+					\exp{r} = e^{r}
+				\end{align}
+				が成り立つ．$r$を負の整数とすると
+				\begin{align}
+					\exp{r} = (\exp{(-r)})^{-1} = (e^{-r})^{-1} = e^{(-r) \cdot (-1)} = e^{r}
+				\end{align}
+				が成り立つ．
+			
+			\item[第二段]
+				$z$を複素数とし，$n$を自然数とするとき，
+				\begin{align}
+					(\exp{z})^{n} = \exp{(n \cdot z)}
+				\end{align}
+				が成り立つことを示す．まず
+				\begin{align}
+					(\exp{z})^{0} = 1 = \exp{0} = \exp{(0 \cdot z)}
+				\end{align}
+				が成り立つ．また$n$を自然数とするとき，
+				\begin{align}
+					(\exp{z})^{n} = \exp{(n \cdot z)}
+				\end{align}
+				が成り立っているならば
+				\begin{align}
+					(\exp{z})^{n+1} = (\exp{z})^{n} \cdot \exp{z} = \exp{(n \cdot z)} \cdot \exp{z}
+					= \exp{n \cdot z + z}
+					= \exp{(n+1) \cdot z}
+				\end{align}
+				も成り立つ．よって数学的帰納法の原理より任意の自然数$r$で
+				\begin{align}
+					(\exp{z})^{n} = \exp{(n \cdot z)}
+				\end{align}
+				が成り立つ．
+				
+			\item[第三段]
+				$m$を正の自然数とするとき，前段の結果より
+				\begin{align}
+					(\exp{(m^{-1})})^{m} = \exp{(m \cdot m^{-1})} = \exp{1} = e
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\exp{(m^{-1})} = \sqrt[m]{e}
+				\end{align}
+				が従う．いま$r$を有理数とすると，
+				\begin{align}
+					r = n \cdot m^{-1}
+				\end{align}
+				を満たす整数$n$と正の自然数$m$が取れるが，このとき
+				\begin{align}
+					\exp{r} = \exp{(n \cdot m^{-1})}
+					= (\exp{(m^{-1})})^{n}
+					= (\sqrt[m]{e})^{n}
+					= e^{n \cdot m^{-1}}
+					= e^r
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	上の結果より，以降では複素数$z$に対して
+	\begin{align}
+		\exp{z}
+	\end{align}
+	を
+	\begin{align}
+		e^{z}
+	\end{align}
+	とも書く．
+	
+	\begin{screen}
+		\begin{thm}[$e$のマイナス乗は逆元]\label{thm:inversion_of_exp_z_is_exp_minus_z}
+			$z$を複素数とすると，$e^z$の乗法に関する逆元は$e^{-z}$である:
+			\begin{align}
+				(e^z)^{-1} = e^{-z}.
+			\end{align}
+			特に$\exp$は$0$を取り得ない．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$z$を複素数とすれば，
+		\begin{align}
+			z + (-z) = (-z) + z = 0
+		\end{align}
+		かつ
+		\begin{align}
+			e^0 = 1
+		\end{align}
+		であるから
+		\begin{align}
+			e^z \cdot e^{-z} = e^{-z} \cdot e^z = 1
+		\end{align}
+		が成立する．つまり$e^{z}$の乗法に関する逆元は$e^{-z}$であって，またこのため
+		\begin{align}
+			e^{z} \neq 0
+		\end{align}
+		も満たされる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[指数関数は各点で微分可能]
 			$z$を任意に与えられた複素数とすれば，$\exp$は$z$で微分可能であってその微分係数は
 			\begin{align}
@@ -80,9 +196,9 @@
 	\begin{sketch}
 		$z$を任意に与えられた複素数とする．指数法則より，任意の複素数$h$に対して
 		\begin{align}
-			|(e^{z+h} - e^{z}) - h \cdot e^{z}|
-			&= |e^{z}| \cdot |(e^{h} - 1) - h| \\
-			&= |e^{z}| \cdot \left|\sum_{n=1}^\infty \frac{1}{n!} \cdot h^n - h\right|
+			|(\exp{(z+h)} - \exp{z}) - h \cdot \exp{z}|
+			&= |\exp{z}| \cdot |(\exp{h} - 1) - h| \\
+			&= |\exp{z}| \cdot \left|\sum_{n=1}^\infty \frac{1}{n!} \cdot h^n - h\right|
 		\end{align}
 		が成り立つ．ここで
 		\begin{align}
@@ -96,25 +212,25 @@
 		\end{align}
 		が成り立つ．すなわち
 		\begin{align}
-			|(e^{z+h} - e^{z}) - h \cdot e^{z}|
-			&= |e^{z}| \cdot \left|\sum_{n=1}^\infty \frac{1}{n!} \cdot h^n - h\right| \\
-			&= |e^{z}| \cdot |h| \cdot \left|\sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1}\right|
+			|(\exp{(z+h)} - \exp{z}) - h \cdot \exp{z}|
+			&= |\exp{z}| \cdot \left|\sum_{n=1}^\infty \frac{1}{n!} \cdot h^n - h\right| \\
+			&= |\exp{z}| \cdot |h| \cdot \left|\sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1}\right|
 		\end{align}
 		が成り立つ．いま$\epsilon$を任意に与えられた正の実数とすると，
 		\begin{align}
-			0 < |h| < \min\left\{\epsilon/|e^{z}|,1/2\right\}
+			0 < |h| < \min\left\{\epsilon/|\exp{z}|,1/2\right\}
 		\end{align}
 		ならば
 		\begin{align}
-			|(e^{z+h} - e^{z}) - h \cdot e^{z}|
-			&= |e^{z}| \cdot |h| \cdot \left|\sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1}\right| \\
-			&\leq |e^{z}| \cdot |h| \cdot \sum_{n=2}^\infty \cdot |h|^{n-1} \\
-			&\leq |e^{z}| \cdot |h| \cdot \frac{|h|}{1-|h|} \\
+			|(\exp{(z+h)} - \exp{z}) - h \cdot \exp{z}|
+			&= |\exp{z}| \cdot |h| \cdot \left|\sum_{n=2}^\infty \frac{1}{n!} \cdot h^{n-1}\right| \\
+			&\leq |\exp{z}| \cdot |h| \cdot \sum_{n=2}^\infty \cdot |h|^{n-1} \\
+			&\leq |\exp{z}| \cdot |h| \cdot \frac{|h|}{1-|h|} \\
 			&< 2 \cdot \epsilon \cdot |h|
 		\end{align}
 		が成立する．ゆえに$\exp$は$z$で微分可能であって，その微分係数は
 		\begin{align}
-			e^{z}
+			\exp{z}
 		\end{align}
 		である．
 		\QED
@@ -123,34 +239,6 @@
 	指数関数は$\C$全体で定義されて，かつ$\C$の任意の要素で微分可能である．
 	このように$\C$上で定義された$\C$値関数で，$\C$の各点で微分可能なものを
 	{\bf 整関数}\index{せいかんすう@整関数}{\bf (entire function)}と呼ぶ．
-	
-	$z$を複素数とすれば，
-	\begin{align}
-		z + (-z) = (-z) + z = 0
-	\end{align}
-	かつ
-	\begin{align}
-		e^0 = 1
-	\end{align}
-	であるから
-	\begin{align}
-		e^z \cdot e^{-z} = e^{-z} \cdot e^z = 1
-	\end{align}
-	が成立する．つまり$e^{z}$の乗法に関する逆元は$e^{-z}$であって，またこのため
-	\begin{align}
-		e^{z} \neq 0
-	\end{align}
-	も満たされる．以上のことをまとめると
-	
-	\begin{screen}
-		\begin{thm}[$e$のマイナス乗は逆元]\label{thm:inversion_of_exp_z_is_exp_minus_z}
-			$z$を複素数とすると，$e^z$の乗法に関する逆元は$e^{-z}$である:
-			\begin{align}
-				(e^z)^{-1} = e^{-z}.
-			\end{align}
-			特に$\exp$は$0$を取り得ない．
-		\end{thm}
-	\end{screen}
 	
 	いま$y$を実数とすると，任意の自然数$n$で
 	\begin{align}
