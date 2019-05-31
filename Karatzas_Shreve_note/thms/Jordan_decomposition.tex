@@ -16,11 +16,11 @@
 	
 	また$v$を$f$の総変動関数とし，
 	\begin{align}
-		v^{+} \defeq \frac{1}{2}\left(v + f\right)
+		v^{+} \defeq \frac{1}{2}\left(v + f - f(a)\right)
 	\end{align}
 	及び
 	\begin{align}
-		v^{-} \defeq \frac{1}{2}\left(v - f\right)
+		v^{-} \defeq \frac{1}{2}\left(v - f - f(a)\right)
 	\end{align}
 	と定め，$\mu_{v},\mu_{v}^{+},\mu_{v}^{-}$をそれぞれ$v,v^{+},v^{-}$のStieltjes測度とする．
 	この$v^{+}$と$v^{-}$を$f$の{\bf Jordan分解}{\bf (Jordan decomposition)}と呼ぶ．このとき
@@ -71,4 +71,26 @@
 	\begin{align}
 		\mu^{+}(]s,t]) \leq \mu_{v}^{+}(]s,t])
 	\end{align}
-	が成立する．
+	が成立する．他方で
+	\begin{align}
+		\mu_{v}^{+}(]s,t])
+		&= v^{+}(t) - v^{+}(s) \\
+		&= \frac{1}{2} \cdot [v(t) - v(s) + f(t) - f(s)] \\
+		&= \frac{1}{2} \cdot \left[\sup{}{\sum \left|f(t_k) - f(t_{k-1})\right|} + f(t) - f(s)\right] \\
+		&= \frac{1}{2} \cdot \sup{}{\left[\sum \left|f(t_k) - f(t_{k-1})\right| + f(t) - f(s) \right]} \\
+		&= \frac{1}{2} \cdot \sup{}{\left[\sum \left|f(t_k) - f(t_{k-1})\right| 
+		+ \sum \left(f(t_k) - f(t_{k-1})\right) \right]} \\
+		&= \sup{}{\sum \max\left\{f(t_k) - f(t_{k-1}),0\right\}} \\
+		&\leq \sup{E \in \borel{]s,t]}}{\mu(E)} \\
+		&\leq \sup{E \in \borel{]s,t]}}{\mu^{+}(E)} \\
+		&\leq \mu^{+}(]s,t])
+	\end{align}
+	が成り立つので，以上で
+	\begin{align}
+		\mu_{v}^{+}(]s,t]) = \mu^{+}(]s,t])
+	\end{align}
+	が得られた．測度の一致の定理より
+	\begin{align}
+		\mu_{v}^{+} = \mu^{+}
+	\end{align}
+	が成り立つ．
