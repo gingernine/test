@@ -151,7 +151,7 @@
 	
 	$a$と$b$と$c$を複素数とすると，
 	\begin{align}
-		\Delta \defeq \Set{z}{\exists s,t \in [0,1]\, 
+		\Delta \defeq \Set{z}{\exists t,s \in [0,1]\, 
 		\left(\, z = (1-t) \cdot a 
 		+ t \cdot (1-s) \cdot b 
 		+ t \cdot s \cdot c\, \right)}
@@ -163,8 +163,41 @@
 		\filldraw[opacity=0.2] (0,0)--(4,3)--(-1,6)--(0,0);
 		\node[anchor=east] at (0,0) {$a$};
 		\node[anchor=west] at (4,3) {$b$};
-		\node[anchor=south] at (-1,6) {$c$};
+		\node[anchor=east] at (-1,6) {$c$};
 	\end{tikzpicture}
 	\end{center}
 	
-	を表す．
+	を表す．$\Delta$は$\C$のコンパクト部分集合である．実際，
+	\begin{align}
+		(t,s) \longmapsto (1-t) \cdot a + t \cdot (1-s) \cdot b + t \cdot s \cdot c
+	\end{align}
+	は$\R^2$から$\C$への連続写像であって，この写像によって
+	\begin{align}
+		[0,1] \times [0,1]
+	\end{align}
+	なるコンパクト部分集合を写した像が$\Delta$である．
+	
+	三角領域の外郭に沿った正則関数の線積分は$0$になる．
+	
+	\begin{screen}
+		\begin{thm}[Cauchy-Goursatの定理]
+			$a$と$b$と$c$を複素数とし，
+			\begin{align}
+				\Delta \defeq \Set{z}{\exists t,s \in [0,1]\, 
+				\left(\, z = (1-t) \cdot a 
+				+ t \cdot (1-s) \cdot b 
+				+ t \cdot s \cdot c\, \right)}
+			\end{align}
+			と定める．また$\Omega$を$\Delta$を含む$\C$の開集合とし，
+			$f$を$\Omega$上の$\C$値連続写像とし，$p$を$\Omega$の要素とする．
+			このとき，
+			\begin{align}
+				f \in H(\Omega \backslash \{p\})
+			\end{align}
+			であれば
+			\begin{align}
+				\int_{\overline{a,b}} f + \int_{\overline{b,c}} f + \int_{\overline{c,a}} f = 0
+			\end{align}
+			が成立する．
+		\end{thm}
+	\end{screen}
