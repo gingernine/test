@@ -11,7 +11,7 @@
 	\begin{align}
 		\seg{z}{w} \defeq \Set{(t,\zeta)}{t \in [0,1] \wedge \zeta = z + t \cdot (w - z)}
 	\end{align}
-	と定める．$\seg{z}{w}$とは$z$から$w$に直進する線分を描き，また$f$を$\seg{z}{w}$上の連続写像とすれば
+	と定める．$\seg{z}{w}$とは$z$から$w$に直進する線分を描き，また$f$をその線分上の連続写像とすれば
 	\begin{align}
 		\int_{\seg{z}{w}} f = (w-z) \cdot \int_{[0,1]} f(z + t \cdot (w - z))\ dt
 	\end{align}
@@ -56,7 +56,7 @@
 	三角領域の外郭に沿った正則関数の線積分は$0$になる．
 	
 	\begin{screen}
-		\begin{thm}[Goursatの定理]
+		\begin{thm}[Goursatの定理]\label{Cauchy_Goursat_theorem}
 			$a$と$b$と$c$を複素数とし，
 			\begin{align}
 				\Delta \defeq \Set{z}{\exists t,s \in [0,1]\, 
@@ -64,11 +64,15 @@
 				+ t \cdot (1-s) \cdot b 
 				+ t \cdot s \cdot c\, \right)}
 			\end{align}
-			と定める．また$\Omega$を$\Delta$を含む$\C$の開集合とし，
+			と定める．また$\Omega$を$\C$の開集合とし，
 			$f$を$\Omega$上の$\C$値連続写像とし，$p$を$\Omega$の要素とする．
 			このとき，
 			\begin{align}
-				f \in H(\Omega \backslash \{p\})
+				\Delta \subset \Omega
+			\end{align}
+			かつ
+			\begin{align}
+				f \in \Holomorphic{\Omega \backslash \{p\}}
 			\end{align}
 			であれば
 			\begin{align}
@@ -80,6 +84,7 @@
 	
 	\begin{screen}
 		\begin{thm}[凸開集合に含まれる任意の三角形の周上の積分が$0$である連続写像は正則関数の導関数]
+		\label{thm:a_holomorphic_function_is_derivative_of_some_holomorphic_function_on_convex_open}
 			$\Omega$を$\C$の凸開集合とし，$f$を$\Omega$上の$\C$値連続写像とする．
 			このとき，$\Omega$の任意の三要素$a$と$b$と$c$に対して
 			\begin{align}
@@ -147,5 +152,73 @@
 			f(z)
 		\end{align}
 		である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[円周上の積分公式]
+			$\Omega$を開集合とし，$f$を$\Omega$上の正則関数とし，$z$を$\Omega$の要素とし，
+			\begin{align}
+				R \defeq \inf{}{\Set{|z-w|}{w \in \C \wedge w \notin \Omega}}
+			\end{align}
+			とする．つまり$R$とは$z$と$\C \backslash \Omega$との距離である．このとき$r$を
+			\begin{align}
+				0 < r < R
+			\end{align}
+			を満たす任意の実数として，$\gamma$を
+			\begin{align}
+				[0,2 \cdot \pi] \ni \theta \longmapsto z + r \cdot e^{\isym \cdot \theta}
+			\end{align}
+			なる写像とすれば，
+			\begin{align}
+				f(z) = \frac{1}{2 \cdot \pi \cdot \isym} \cdot \int_{\gamma} \frac{f(\xi)}{\xi - z}\ d\xi
+			\end{align}
+			が成立する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\Omega$上の写像$g$を
+		\begin{align}
+			\Omega \ni \xi \longmapsto
+			\begin{cases}
+				\displaystyle{\frac{f(\xi) - f(z)}{\xi - z}} & \mbox{if } \xi \neq z \\
+				f'(z) & \mbox{if } \xi = z
+			\end{cases}
+		\end{align}
+		なる関係により定めると，$g$は$\Omega$上で連続であって
+		\begin{align}
+			g \in \Holomorphic{\Omega \backslash \{z\}}
+		\end{align}
+		を満たすので，定理\ref{Cauchy_Goursat_theorem}と
+		定理\ref{thm:a_holomorphic_function_is_derivative_of_some_holomorphic_function_on_convex_open}より
+		$\disc{z}{R}$の各要素$\xi$で
+		\begin{align}
+			G'(\xi) = g(\xi)
+		\end{align}
+		を満たす$\disc{z}{R}$上の正則関数$G$が取れる．$r$を
+		\begin{align}
+			0 < r < R
+		\end{align}
+		なる実数とし，$\gamma$を
+		\begin{align}
+			[0,2 \cdot \pi] \ni \theta \longmapsto z + r \cdot e^{\isym \cdot \theta}
+		\end{align}
+		なる写像とすれば，微分積分学の基本定理より
+		\begin{align}
+			\int_{\gamma} g
+			&= \int_{[0,2 \cdot \pi]} g(\gamma(\theta)) \cdot \gamma'(\theta)\ d\theta \\
+			&= \int_{[0,2 \cdot \pi]} G'(\gamma(\theta)) \cdot \gamma'(\theta)\ d\theta \\
+			&= G(\gamma(2 \cdot \pi)) - G(\gamma(0)) \\
+			&= G(z + r) - G(z + r) \\
+			&= 0
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\int_{\gamma} \frac{f(\xi)}{\xi - z}\ d\xi 
+			= f(z) \cdot \Ind{\gamma}{z} 
+			= (2 \cdot \pi \cdot \isym) \cdot f(z)
+		\end{align}
+		が成立する．
 		\QED
 	\end{sketch}
