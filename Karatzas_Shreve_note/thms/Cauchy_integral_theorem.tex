@@ -11,7 +11,7 @@
 	\begin{align}
 		\seg{z}{w} \defeq \Set{(t,\zeta)}{t \in [0,1] \wedge \zeta = z + t \cdot (w - z)}
 	\end{align}
-	と定める．$\seg{z}{w}$とは$z$から$w$に直進する線分を描き，また$f$をその線分上の連続写像とすれば
+	と定めている．$\seg{z}{w}$とは$z$と$w$を結ぶ線分を描き，また$f$をその線分上の連続写像とすれば
 	\begin{align}
 		\int_{\seg{z}{w}} f = (w-z) \cdot \int_{[0,1]} f(z + t \cdot (w - z))\ dt
 	\end{align}
@@ -171,7 +171,7 @@
 			\end{align}
 			なる写像とすれば，
 			\begin{align}
-				f(z) = \frac{1}{2 \cdot \pi \cdot \isym} \cdot \int_{\gamma} \frac{f(\xi)}{\xi - z}\ d\xi
+				f(z) = \frac{1}{2 \cdot \pi \cdot \isym} \cdot \int_{\gamma} \frac{f(w)}{w - z}\ dw
 			\end{align}
 			が成立する．
 		\end{thm}
@@ -180,10 +180,10 @@
 	\begin{sketch}
 		$\Omega$上の写像$g$を
 		\begin{align}
-			\Omega \ni \xi \longmapsto
+			\Omega \ni w \longmapsto
 			\begin{cases}
-				\displaystyle{\frac{f(\xi) - f(z)}{\xi - z}} & \mbox{if } \xi \neq z \\
-				f'(z) & \mbox{if } \xi = z
+				\displaystyle{\frac{f(w) - f(z)}{w - z}} & \mbox{if } w \neq z \\
+				f'(z) & \mbox{if } w = z
 			\end{cases}
 		\end{align}
 		なる関係により定めると，$g$は$\Omega$上で連続であって
@@ -192,9 +192,9 @@
 		\end{align}
 		を満たすので，定理\ref{Cauchy_Goursat_theorem}と
 		定理\ref{thm:a_holomorphic_function_is_derivative_of_some_holomorphic_function_on_convex_open}より
-		$\disc{z}{R}$の各要素$\xi$で
+		$\disc{z}{R}$の各要素$w$で
 		\begin{align}
-			G'(\xi) = g(\xi)
+			G'(w) = g(w)
 		\end{align}
 		を満たす$\disc{z}{R}$上の正則関数$G$が取れる．$r$を
 		\begin{align}
@@ -215,10 +215,57 @@
 		\end{align}
 		が成立する．ゆえに
 		\begin{align}
-			\int_{\gamma} \frac{f(\xi)}{\xi - z}\ d\xi 
-			= f(z) \cdot \Ind{\gamma}{z} 
-			= (2 \cdot \pi \cdot \isym) \cdot f(z)
+			\int_{\gamma} \frac{f(w)}{w - z}\ dw 
+			&= f(z) \cdot \int_{\gamma} \frac{1}{w - z}\ dw \\
+			&= f(z) \cdot \int_{[0,2\cdot\pi]} \frac{r \cdot \isym \cdot e^{\isym \cdot \theta}}{r \cdot e^{\isym \cdot \theta}} d\theta \\
+			&= (2 \cdot \pi \cdot \isym) \cdot f(z)
 		\end{align}
 		が成立する．
 		\QED
+	\end{sketch}
+	
+	Goursatの定理の逆が成立する．
+	\begin{screen}
+		\begin{thm}[Moreraの定理]
+			
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[Cauchyの積分定理]
+			$\Omega$を開集合とし，$f$を$\Omega$上の正則関数とし，$\gamma$を路とする．このとき，
+			\begin{align}
+				\ran{\gamma} \subset \Omega
+			\end{align}
+			かつ
+			\begin{align}
+				\forall z \in \C \backslash \Omega\, \left(\, \Ind_{\gamma}(z) = 0\, \right)
+			\end{align}
+			が満たされていれば，$\Omega \backslash \ran{\gamma}$の任意の要素$z$に対して
+			\begin{align}
+				f(z) \cdot \Ind_{\gamma}(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)}{w - z}\ dw
+			\end{align}
+			が成立する．特に
+			\begin{align}
+				\int_\gamma f = 0
+			\end{align}
+			が成立する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\Omega \times \Omega$上の写像$g$を
+		\begin{align}
+			\Omega \times \Omega \ni (z,w) \longmapsto
+			\begin{cases}
+				{\displaystyle \frac{f(w) - f(z)}{w-z}} & \mbox{if } z \neq w \\
+				f'(z) & \mbox{if } z = w
+			\end{cases}
+		\end{align}
+		により定めれば，$g$は連続である．
+		\begin{align}
+			\Omega \ni z \longmapsto \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)-f(z)}{w-z}\ dw
+		\end{align}
+		なる写像を$h$とすれば$h$は連続であり，
+		
 	\end{sketch}
