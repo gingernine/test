@@ -39,7 +39,15 @@
 		&= e^{\frac{1}{n} \cdot \pvlog{x}} \cdot e^{\frac{1}{n} \cdot \pvlog{y}} \\
 		&= \sqrt[n]{x} \cdot \sqrt[n]{y}
 	\end{align}
-	が成り立つ．
+	が成り立つ．また
+	\begin{align}
+		\pvlog{x^{n+1}} = \pvlog{(x^{n} \cdot x)} = \pvlog{x^{n}} + \pvlog{x}
+	\end{align}
+	と数学的帰納法の原理から
+	\begin{align}
+		\pvlog{x^{n}} = n \cdot \pvlog{x}
+	\end{align}
+	も示すことが出来る．
 	
 	\begin{screen}
 		\begin{thm}[Cauchyの冪根判定法]
@@ -148,6 +156,85 @@
 		\end{dfn}
 	\end{screen}
 	
+	ここで一つ．$z$を複素数とするとき，
+	\begin{align}
+		|z^{0}| = |1| = 1 = |z|^{0}
+	\end{align}
+	が成立する．ここで$n$を自然数として
+	\begin{align}
+		|z^{n}| = |z|^{n}
+	\end{align}
+	が成り立っているとすれば，定理\ref{thm:absolute_value_of_product_is_product_of_absolute_values}より
+	\begin{align}
+		|z^{n+1}| = |z^{n} \cdot z| = |z^{n}| \cdot |z| = |z|^{n+1}
+	\end{align}
+	が成り立つので，数学的帰納法の原理より任意の自然数$n$で
+	\begin{align}
+		|z^{n}| = |z|^{n}
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		\begin{thm}[収束半径の内側では絶対収束，外側では収束しない]
+		\label{thm:absolutely_converge_inside_the_convergence_circle}
+			$z$を複素数とし，$c$を複素数列とし，$R$を$c$の収束半径とする．このとき，
+			\begin{align}
+				|z| < R
+			\end{align}
+			ならば$\sum_{n=0}^{\infty} c_n \cdot z^n$は絶対収束する．
+			\begin{align}
+				R < |z|
+			\end{align}
+			であれば
+			\begin{align}
+				\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k} \cdot z^{k}
+			\end{align}
+			なる数列は$\C$で収束しない．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$z$を$0$でない複素数とすると，任意の自然数$n$で
+		\begin{align}
+			\sqrt[n]{|c_{n} \cdot z^{n}|}
+			&= \sqrt[n]{|c_{n}| \cdot |z^{n}|} \\
+			&= \sqrt[n]{|c_{n}| \cdot |z|^{n}} \\
+			&= \sqrt[n]{|c_{n}|} \cdot \sqrt[n]{|z|^{n}} \\
+			&= \sqrt[n]{|c_{n}|} \cdot e^{\frac{1}{n} \cdot \pvlog{|z|^{n}}} \\
+			&= \sqrt[n]{|c_{n}|} \cdot e^{\frac{1}{n} \cdot n \cdot \pvlog{|z|}} \\
+			&= \sqrt[n]{|c_{n}|} \cdot |z|
+		\end{align}
+		が成立する．$z$が$0$ならば
+		\begin{align}
+			\sqrt[n]{|c_{n} \cdot z^{n}|} = 0
+		\end{align}
+		である．よって，
+		\begin{align}
+			|z| < R
+		\end{align}
+		であるとき，
+		\begin{align}
+			\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+			= |z| \cdot \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+			< 1
+		\end{align}
+		が成り立つ．ゆえにCauchyの冪根判定法より$\sum_{n=0}^{\infty} c_n \cdot z^n$は絶対収束する．
+		\begin{align}
+			R < |z|
+		\end{align}
+		であるとき，
+		\begin{align}
+			1 < \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+			= |z| \cdot \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+		\end{align}
+		が成り立つので，Cauchyの冪根判定法より
+		\begin{align}
+			\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k} \cdot z^{k}
+		\end{align}
+		なる数列は$\C$で収束しない．
+		\QED
+	\end{sketch}
+	
 	$z$を複素数とし，$r$を正数とするとき，
 	\begin{align}
 		\disc{z}{r} \defeq \Set{w \in \C}{|w - z| < r}
@@ -176,3 +263,38 @@
 			\end{itemize}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				いま$R$を$c$の収束半径とし，
+				\begin{align}
+					\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k} \cdot z^{k}
+				\end{align}
+				が収束しているとする．$z$を$\disc{0}{r}$の要素とするとき，
+				\begin{align}
+					\rho \defeq \frac{|z| + r}{2}
+				\end{align}
+				とおけば
+				\begin{align}
+					|z| < \rho < r
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k} \cdot \rho^{k}
+				\end{align}
+				は収束する．ゆえに定理\ref{thm:absolutely_converge_inside_the_convergence_circle}より
+				\begin{align}
+					\rho \leq R
+				\end{align}
+				が成り立つ．ゆえに
+				\begin{align}
+					|z| < R
+				\end{align}
+				が成り立つので，定理\ref{thm:absolutely_converge_inside_the_convergence_circle}より
+				$\sum_{n=0}^{\infty} c_{n} \cdot z^{n}$は絶対収束する．
+			
+			\item[第二段]
+				
+		\end{description}
+	\end{sketch}
