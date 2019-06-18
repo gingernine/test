@@ -1,1 +1,149 @@
 \subsection{級数展開}
+	
+	先ず冪について，$z$を$0$でない複素数とし，$\alpha$を複素数とするとき，本稿では
+	\begin{align}
+		z^{\alpha} \defeq \exp{(\alpha \cdot \pvlog{z})}
+	\end{align}
+	と定める．また$z$が$0$であるときは
+	\begin{align}
+		z^{\alpha} \defeq 0
+	\end{align}
+	と定める．
+	
+	\begin{screen}
+		\begin{dfn}[冪根]
+			$x$を正の実数とし，$n$を$1$以上の自然数とするとき，
+			\begin{align}
+				\sqrt[n]{x} \defeq e^{\frac{1}{n} \cdot \pvlog{x}}
+			\end{align}
+			と定めてこれを$x$の{\bf $n$乗根}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$x$を正の実数とし，$n$を$1$以上の自然数とするとき，$\sqrt[n]{x}$は$n$乗すれば$x$に戻る．
+	実際，定理\ref{thm:integer_exponentiation_of_exponential_function}より
+	\begin{align}
+		(\sqrt[n]{x})^{n} &= \left(e^{\frac{1}{n} \cdot \pvlog{x}}\right)^{n} \\
+		&= e^{n \cdot \frac{1}{n} \cdot \pvlog{x}} \\
+		&= e^{\pvlog{x}} \\
+		&= x
+	\end{align}
+	が成立する．ここで$y$を正の実数とすれば
+	\begin{align}
+		\pvlog{(x \cdot y)} = \pvlog{x} + \pvlog{y}
+	\end{align}
+	が成り立つので
+	\begin{align}
+		\sqrt[n]{x \cdot y} = e^{\frac{1}{n} \cdot \pvlog{(x \cdot y)}}
+		&= e^{\frac{1}{n} \cdot \pvlog{x} + \frac{1}{n} \cdot \pvlog{y}} \\
+		&= e^{\frac{1}{n} \cdot \pvlog{x}} \cdot e^{\frac{1}{n} \cdot \pvlog{y}} \\
+		&= \sqrt[n]{x} \cdot \sqrt[n]{y}
+	\end{align}
+	が成り立つ．
+	
+	\begin{screen}
+		\begin{thm}[Cauchyの冪根判定法]
+			$c$を複素数列とするとき，
+			\begin{align}
+				\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}} < 1
+			\end{align}
+			ならば$\sum_{n=0}^{\infty} c_{n}$は絶対収束し，
+			\begin{align}
+				1 < \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+			\end{align}
+			ならば数列
+			\begin{align}
+				\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k}
+			\end{align}
+			は$\C$で収束しない．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			r \defeq \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+		\end{align}
+		とおく．
+		\begin{align}
+			r < 1
+		\end{align}
+		であるとき，
+		\begin{align}
+			\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}} < \frac{1+r}{2}
+		\end{align}
+		を満たす自然数$n$が取れる．すなわち
+		\begin{align}
+			n < k
+		\end{align}
+		を満たす任意の自然数$k$に対して
+		\begin{align}
+			|c_{k}| \leq \left(\frac{1+r}{2}\right)^{k}
+		\end{align}
+		が成立する．ゆえに，$n$より大きい任意の自然数$N$に対して
+		\begin{align}
+			\sum_{k=0}^{N} |c_k|
+			&= \sum_{k=0}^{n} |c_k| + \sum_{k=n+1}^{N} |c_k| \\
+			&\leq \sum_{k=0}^{n} |c_k| + \sum_{k=n+1}^{N} \left(\frac{1+r}{2}\right)^{k} \\
+			&= \sum_{k=0}^{n} |c_k| + \left(\frac{1+r}{2}\right)^{n+1} \cdot \sum_{k=0}^{N-n+1} \left(\frac{1+r}{2}\right)^{k} \\
+			&\leq \sum_{k=0}^{n} |c_k| + \left(\frac{1+r}{2}\right)^{n+1} \cdot \frac{2}{1-r}
+		\end{align}
+		が成立する．ゆえに$\sum_{n=0}^{\infty} c_{n}$は絶対収束する．
+		\begin{align}
+			1 < r
+		\end{align}
+		であるとき，$n$を任意に与えられた自然数とすれば
+		\begin{align}
+			1 < \sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			n < k
+		\end{align}
+		かつ
+		\begin{align}
+			1 < \sqrt[k]{|c_{k}|}
+		\end{align}
+		を満たす自然数$k$が取れて，両辺$k$乗して
+		\begin{align}
+			1 < |c_{k}|
+		\end{align}
+		が成立する．他方で，
+		\begin{align}
+			\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k}
+		\end{align}
+		が$\C$で収束するときは
+		\begin{align}
+			\forall \epsilon \in \R_+\, \exists N \in \Natural\, \forall n \in \Natural\,
+			\left[\, N \leq n \Longrightarrow |c_{n}| < \epsilon\, \right]
+		\end{align}
+		が成立するので，対偶命題から
+		\begin{align}
+			1 < r
+		\end{align}
+		ならば
+		\begin{align}
+			\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k}
+		\end{align}
+		は$\C$で収束しない．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[収束半径]
+			複素数列$c$が与えられたとき，
+			\begin{align}
+				r \defeq \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+			\end{align}
+			とおく．このとき
+			\begin{align}
+				R \defeq
+				\begin{cases}
+					0 & \mbox{if } r = \infty \\
+					\displaystyle{\frac{1}{r}} & \mbox{if } \displaystyle{0 < r < \infty} \\
+					\infty & \mbox{if } r = 0
+				\end{cases}
+			\end{align}
+			により定める$R$を$c$の{\bf 収束半径}\index{しゅうそくはんけい@収束半径}{\bf (radius of convergence)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
