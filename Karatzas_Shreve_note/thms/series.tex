@@ -49,7 +49,38 @@
 		\sum_{n=0}^\infty a_n \defeq \alpha
 	\end{align}
 	と定め，これを$(a_n)_{n \in \Natural}$の{\bf 級数}\index{きゅうすう@級数}{\bf (series)}と呼ぶ．
-	言い換えれば$\sum_{n=0}^\infty a_n$とは$s$が収束する場合の極限のことである．今度は
+	言い換えれば$\sum_{n=0}^\infty a_n$とは$s$が収束する場合の極限のことである．
+	
+	\begin{screen}
+		\begin{thm}[和の絶対値と絶対値の和]
+			$a$を複素数列とするとき，任意の自然数$n$で
+			\begin{align}
+				\left|\sum_{k=0}^{n} a_{k}\right| \leq \sum_{k=0}^{n} |a_{k}|.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		まず
+		\begin{align}
+			\left|\sum_{k=0}^{0} a_{k}\right| = |a_{0}| = \sum_{k=0}^{0} |a_{k}|
+		\end{align}
+		が成立する．また$n$を自然数とするとき
+		\begin{align}
+			\left|\sum_{k=0}^{n} a_{k}\right| \leq \sum_{k=0}^{n} |a_{k}|
+		\end{align}
+		が成り立っているならば，定理\ref{thm:sub_additivity_of_absolute_value}より
+		\begin{align}
+			\left|\sum_{k=0}^{n+1} a_{k}\right|
+			&= \left|\sum_{k=0}^{n} a_{k} + a_{n+1}\right| \\
+			&\leq \left|\sum_{k=0}^{n} a_{k}\right| + |a_{n+1}| \\
+			&= \sum_{k=0}^{n+1} |a_{k}|
+		\end{align}
+		が成立する．ゆえに数学的帰納法の原理から定理の主張を得る．
+		\QED
+	\end{sketch}
+	
+	今度は
 	\begin{align}
 		\Natural \ni n \longmapsto \sum_{k=0}^n |a_k|
 	\end{align}
@@ -74,6 +105,37 @@
 	が成立するので$s$は$\C$のCauchy列である．$\C$において絶対値に関するCauchy列は収束するので$s$は$\C$で収束する．
 	$t$が収束することを
 	$\sum_{n=0}^\infty a_n$は$\C$で{\bf 絶対収束する}\index{ぜったいしゅうそく@絶対収束}{\bf (absolutely converge)}という．
+	
+	\begin{screen}
+		\begin{thm}[級数の絶対値と絶対値の級数]
+			$a$を複素数列とするとき，$\sum_{n=0}^\infty a_n$が$\C$で絶対収束していれば
+			\begin{align}
+				\left|\sum_{k=0}^{\infty} a_{k}\right| \leq \sum_{k=0}^{\infty} |a_{k}|.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\sum_{n=0}^\infty a_n$が$\C$で絶対収束しているとする．
+		まず任意の自然数$n$で
+		\begin{align}
+			\left|\sum_{k=0}^{n} a_{k}\right| \leq \sum_{k=0}^{n} |a_{k}| \leq \sum_{k=0}^{\infty} |a_{k}|
+		\end{align}
+		が成立する．また
+		\begin{align}
+			\Natural \ni n \longmapsto \sum_{k=0}^{n} a_{k}
+		\end{align}
+		なる数列が収束するので
+		\begin{align}
+			\lim_{n \to \infty} \left|\sum_{k=0}^{n} a_{k}\right| = \left|\sum_{k=0}^{\infty} a_{k}\right|
+		\end{align}
+		が成り立ち
+		\begin{align}
+			\left|\sum_{k=0}^{\infty} a_{k}\right| \leq \sum_{k=0}^{\infty} |a_{k}|
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[d'Alembertの収束判定法]
