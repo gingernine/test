@@ -1,4 +1,4 @@
-\subsection{複素積分}
+\subsection{複素線積分}
 	
 	$\C$上で定義された関数を積分するには，$\C$を台とする可測空間に測度を導入するか，
 	何らかの方法で$\R$上のLebesgue積分に持ち込むかすれば良い．複素積分は後者の方法を採る．
@@ -15,150 +15,249 @@
 	\begin{align}
 		[\alpha,\beta] = \dom{\gamma}
 	\end{align}
-	を満たす実数とする．$\gamma$から作る複素Stieltjes測度を
+	を満たす実数とする．$\gamma$で作る$\borel{[\alpha,\beta]}$上の複素Stieltjes測度を
 	\begin{align}
-		\mu_\gamma
+		\mu_{\gamma}
 	\end{align}
-	とする．$\gamma$は$[\alpha,\beta]$から$\C$への可測関数であるから
+	とする．$f$を
 	\begin{align}
-		\tilde{\mu}_\gamma(A) \defeq \mu_\gamma\left( \gamma^{-1}(A) \right),
-		\quad (A \in \borel{\C})
+		\gamma^* \defeq \ran{\gamma}
 	\end{align}
-	で定める$\tilde{\mu}_\gamma$は$(\C,\borel{\C})$上の複素測度となり，このとき
-	$\Omega$上の関数$f$を$|\tilde{\mu}_\gamma|$に関する可積分関数とすれば
+	上の$\C$値連続写像とするとき，Stieltjes積分
 	\begin{align}
-		\int_\Omega f\ d\tilde{\mu}_\gamma = \int_{[\alpha,\beta]} f(\gamma)\ d\mu_\gamma
+		\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma}
 	\end{align}
-	が成立する．特に$\gamma$が$[\alpha,\beta]$上で絶対連続なら，
-	$\lambda$を一次元Lebesgue測度とすれば
+	を$f$の$\gamma$に関する{\bf 複素線積分}\index{ふくそせんせきぶん@複素線積分}{\bf (complex contour integral)}と呼び，便宜上
 	\begin{align}
-		\mu_\gamma(E) = \int_E \gamma'\ d\lambda,
-		\quad (\forall E \in \borel{[\alpha,\beta]})
+		\int_{\gamma} f(z)\ dz
 	\end{align}
-	となるので
+	や
 	\begin{align}
-		\int_{[\alpha,\beta]} f(\gamma)\ d\mu_\gamma = \int_{[\alpha,\beta]} f(\gamma) \cdot \gamma'\ d\lambda
+		\int_{\gamma} f
+	\end{align}
+	と書く．特に$\gamma$が$[\alpha,\beta]$上で絶対連続なら，
+	$\lambda$を一次元Lebesgue測度とすれば，微分積分学の基本定理より
+	\begin{align}
+		\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_\gamma = \int_{[\alpha,\beta]}f \circ \gamma \cdot \gamma'\ d\lambda
 	\end{align}
 	が成立する．
-	$\gamma$に関する$f$の複素(線)積分を
-	\begin{align}
-		\int_\gamma f \defeq \int_\Omega f\ d\tilde{\mu}_\gamma
-	\end{align}
-	で定義する．
 	
-	$\gamma$は$[\alpha,\beta]$上の写像であったが，$\gamma$に関する線積分はパラメータ変項で不変であることを示す．
-	\begin{align}
-		\varphi:[\alpha_1,\beta_1] \longrightarrow [\alpha,\beta]
-	\end{align}
-	で
-	\begin{align}
-		x \in [\alpha_1,\beta_1] \Longrightarrow \varphi(x) = \alpha + \frac{\beta-\alpha}{\beta_1-\alpha_1}(x-\alpha_1)
-	\end{align}
-	なる$\varphi$により
-	\begin{align}
-		\gamma_1 \coloneqq \gamma \circ \varphi
-	\end{align}
-	と定めれば，
-	\begin{align}
-		\int_\gamma f = \int_{\gamma_1} f
-	\end{align}
-	が成立する．これは
-	\begin{align}
-		\tilde{\mu}_\gamma = \tilde{\mu}_{\gamma_1}
-	\end{align}
-	が成り立つことを示せば良いが，
-	\begin{align}
-		\tilde{\mu}_\gamma = \mu_\gamma \circ \gamma^{-1},
-		\quad \tilde{\mu}_{\gamma_1} = \mu_{\gamma_1} \circ \varphi^{-1} \circ \gamma^{-1} 
-	\end{align}
-	であり，$\gamma$は$[\alpha,\beta]$上のBorel可測関数であるから，
-	\begin{align}
-		\forall E \in \borel{[\alpha,\beta]}\, 
-		\left(\, \mu_{\gamma_1} \circ \varphi^{-1}(E) = \mu_\gamma(E)\, \right)
-	\end{align}
-	を示せば良い．$E$が$(s,t]$なる形の場合は
-	\begin{align}
-		\mu_{\gamma_1} \circ \varphi^{-1}((s,t])
-		&= \mu_{\gamma_1} \left(\left(\varphi^{-1}(s),\varphi^{-1}(t)\right]\right) \\
-		&= \gamma_1\left( \varphi^{-1}(t) \right) - \gamma_1\left( \varphi^{-1}(s) \right) \\
-		&= \gamma(t) - \gamma(s) \\
-		&= \mu_\gamma((s,t])
-	\end{align}
-	が成り立つ．$E = \{\alpha\}$なら
-	\begin{align}
-		\mu_{\gamma_1} \circ \varphi^{-1}(\{\alpha\})
-		= \mu_{\gamma_1}(\{\alpha_1\})
-		= 0
-		= \mu_\gamma(\{\alpha\})
-	\end{align}
-	が成り立つ．一致の定理より
-	\begin{align}
-		\mu_{\gamma_1} \circ \varphi^{-1} = \mu_\gamma
-	\end{align}
-	となる．
+	$\gamma$は$[\alpha,\beta]$上の写像であるが，$\gamma$に関する線積分はパラメータ区間を変項することが出来る．
 	
-	次に逆向きの路に関する積分を考える．$\gamma$が連続であるとき，
+	\begin{itembox}[l]{線積分のパラメータ区間変項}
+		$\sigma$と$\tau$を$\sigma < \tau$を満たす実数とし，$\varphi$を
+		\begin{align}
+			[\sigma,\tau] \ni t \longmapsto \alpha + \frac{t - \sigma}{\tau - \sigma} \cdot (\beta - \alpha)
+		\end{align}
+		なる$[\sigma,\tau]$上の写像とする．このとき
+		\begin{align}
+			\eta \defeq \gamma \circ \varphi
+		\end{align}
+		で定める$\eta$は，$[\sigma,\tau]$上の連続な有界変動関数であって，
+		\begin{align}
+			\mu_{\gamma}(E) = \mu_{\eta} \left(\varphi^{-1} \ast E\right)
+		\end{align}
+		が$\borel{[\alpha,\beta]}$の任意の要素$E$で成立する．
+	\end{itembox}
+	
+	これが示されれば，$\gamma^*$上の任意の$\C$値連続写像$f$に対して
 	\begin{align}
-		\gamma_2 : [\alpha,\beta] \longrightarrow \C
+		\int_{\gamma} f = \int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma}
+		= \int_{[\sigma,\tau]} f \circ \eta\ d\mu_{\eta} = \int_{\eta} f
 	\end{align}
-	で
+	が成立する．実際，
 	\begin{align}
-		t \in [\alpha, \beta] \Longrightarrow \gamma_2(t) = \gamma(\alpha + \beta - t) 
+		\borel{\gamma^*} \defeq \Set{E \cap \gamma^*}{E \in \borel{C}}
 	\end{align}
-	を満たす$\gamma_2$は有界変動かつ連続となるので，複素Stieltjes測度を構成できる．
-	$\gamma_2$を$\gamma$の{\bf 逆路}\index{ぎゃくろ@逆路}{\bf (inverse contour)}と呼ぶ．
-	このとき
+	とおけば，$\gamma^*$は$\C$のコンパクト部分集合すなわち閉集合であるから
 	\begin{align}
-		\int_{\gamma_2} f = - \int_\gamma f
+		\borel{\gamma^*} \subset \borel{C}
 	\end{align}
-	が成立する．これは
+	が成り立つ．よって$E$を$\borel{\gamma^*}$の要素とすれば
 	\begin{align}
-		\tilde{\mu}_{\gamma_2} = - \tilde{\mu}_\gamma 
+		\mu_{\gamma}\left(\gamma^{-1} \ast E\right)
+		= \mu_{\eta}\left(\varphi^{-1} \ast (\gamma^{-1} \ast E)\right)
+		= \mu_{\eta}\left(\eta^{-1} \ast E\right)
 	\end{align}
-	を示せば良いが，
+	が成立する．ゆえに$f$が$\borel{\gamma^*}/\borel{\C}$-可測単関数である場合は
 	\begin{align}
-		\psi(t) = \alpha + \beta - t
+		\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma} = \int_{[\sigma,\tau]} f \circ \eta\ d\mu_{\eta}
 	\end{align}
-	なる$\psi:[\alpha,\beta] \longrightarrow [\alpha,\beta]$を定めれば
+	が成り立つから，Lebesgueの収束定理より$f$が連続である場合も
 	\begin{align}
-		\mu_{\gamma_2} \gamma_2^{-1} = \mu_{\gamma_2} \circ \psi^{-1} \circ \gamma^{-1}
+		\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma} = \int_{[\sigma,\tau]} f \circ \eta\ d\mu_{\eta}
 	\end{align}
-	となるので
-	\begin{align}
-		\forall E \in \borel{[\alpha,\beta]}\,
-		\left(\, \mu_{\gamma_2}(\psi^{-1} \ast E) = -\mu_\gamma(E)\, \right)
-	\end{align}
-	を示せば十分である．$E$が$(s,t)$なる形の場合
-	\begin{align}
-		\mu_{\gamma_2}\left(\psi^{-1} \ast (s,t)\right)
-		&= \mu_{\gamma_2}\left( \left( \psi^{-1}(t),\psi^{-1}(s) \right) \right) \\
-		&= \gamma_2\left(\psi^{-1}(s)\right) - \gamma_2\left(\psi^{-1}(t)\right) \\
-		&= \gamma(s) - \gamma(t) \\
-		&= -\mu_\gamma((s,t))
-	\end{align}
-	が成立する．$\mu_\gamma$も$\mu_{\gamma_2}$も一点の測度は$0$であるから
-	\begin{align}
-		\mu_{\gamma_2} \circ \psi^{-1} = -\mu_\gamma
-	\end{align}
-	が従う．
+	が成り立つ．特に{\bf 複素線積分は全て$[0,1]$上の路に関する積分に書き直すことが出来る．}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$v$を$\gamma$の$[\alpha,\beta]$上の総変動とする．
+				いま$t$を$[\sigma,\tau]$の分割とする．つまり$1$以上の自然数$n$で
+				\begin{align}
+					t: n+1 \longrightarrow [\sigma,\tau]
+				\end{align}
+				を満たすものが取れて，
+				\begin{align}
+					\begin{cases}
+						t_{0} = \sigma & \\
+						t_{j} < t_{j+1} & \mbox{if } j \in n \wedge 1 \leq j \\
+						t_{n} = \tau, &
+					\end{cases}
+				\end{align}
+				つまり
+				\begin{align}
+					\sigma = t_{0} < t_{1} < \cdots < t_{n} = \tau
+				\end{align}
+				が成り立っている．このとき
+				\begin{align}
+					\varphi \circ t
+				\end{align}
+				は$[\alpha,\beta]$の分割であって
+				\begin{align}
+					\sum_{j=1}^{n} \left|\eta(t_j) - \eta(t_{j-1})\right|
+					= \sum_{j=1}^{n} \left|\gamma(\varphi(t_j)) - \gamma(\varphi(t_{j-1}))\right|
+					\leq v
+				\end{align}
+				が成立する．これは$[\sigma,\tau]$の分割の取り方に依らないから$\eta$は有界変動である．
+				$\eta$の連続性は$\gamma$と$\varphi$の連続性から従う．
+				
+			\item[第二段]
+				$s$と$t$を
+				\begin{align}
+					s < t
+				\end{align}
+				を満たす$[\alpha,\beta]$の要素とするとき，
+				\begin{align}
+					\mu_{\eta}\left(\varphi^{-1} \ast ]s,t]\right)
+					&= \mu_{\eta}\left(\left]\varphi^{-1}(s), \varphi^{-1}(t)\right]\right) \\
+					&= \eta(\varphi^{-1}(t)) - \eta(\varphi^{-1}(s)) \\
+					&= \gamma(t) - \gamma(s) \\
+					&= \mu_{\gamma}(]s,t])
+				\end{align}
+				が成立する．$\mu_{\gamma}$も$\mu_{\eta}$も一点の測度は$0$であるから，
+				測度の一致の定理より$\borel{[\alpha,\beta]}$の任意の要素$E$で
+				\begin{align}
+					\mu_{\gamma}(E) = \mu_{\eta} \left(\varphi^{-1} \ast E\right)
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	次に`逆向き'の路に関する積分を考える．
 	
 	\begin{screen}
-		\begin{thm}[正則関数に対する微積分学の基本定理]
-			$f$を$H(\Omega)$の要素とし，$f'$が連続であるとし，$\gamma$を$[\alpha,\beta]$から$\Omega$への絶対連続な路とする．このとき
+		\begin{dfn}[逆路]
+			$\gamma$を路とし，$\alpha$と$\beta$を
 			\begin{align}
-				\int_{\gamma} f' = f(\gamma(\beta)) - f(\gamma(\alpha))
+				[\alpha,\beta] = \dom{\gamma}
+			\end{align}
+			を満たす実数とする．このとき
+			\begin{align}
+				[\alpha, \beta] \ni t \longmapsto \gamma(\alpha + \beta - t) 
+			\end{align}
+			なる関係で定める$[\alpha,\beta]$上の写像を$\gamma$の{\bf 逆路}\index{ぎゃくろ@逆路}{\bf (inverse contour)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	先ほどから扱っている$\gamma$に対して，$\rho$をその逆路とする．このとき$\rho$は有界変動かつ連続である．
+	実際，$\psi$を
+	\begin{align}
+		[\alpha,\beta] \ni t \longmapsto \alpha + \beta - t
+	\end{align}
+	なる写像とすれば
+	\begin{align}
+		\rho = \gamma \circ \psi
+	\end{align}
+	が成り立つので，$\rho$の連続性は$\gamma$と$\psi$の連続性から従う．
+	また$t$を$[\sigma,\tau]$の分割とすれば，
+	$1$以上の自然数$n$で
+	\begin{align}
+		t: n+1 \longrightarrow [\sigma,\tau]
+	\end{align}
+	かつ
+	\begin{align}
+		\begin{cases}
+			t_{0} = \sigma & \\
+			t_{j} < t_{j+1} & \mbox{if } j \in n \wedge 1 \leq j \\
+			t_{n} = \tau, &
+		\end{cases}
+	\end{align}
+	を満たすものが取れるが，このとき$s$を
+	\begin{align}
+		n+1 \ni j \longmapsto \psi(t_{n-j})
+	\end{align}
+	なる写像とすれば$s$もまた$[\alpha,\beta]$の分割であって
+	\begin{align}
+		\sum_{j=1}^{n} \left|\rho(t_{j}) - \rho(t_{j-1})\right|
+		= \sum_{j=1}^{n} \left|\gamma(s_{n-j}) - \gamma(s_{n-j+1})\right|
+		= \sum_{j=1}^{n} \left|\gamma(s_{j}) - \gamma(s_{j-1})\right|
+	\end{align}
+	が成り立つ．右辺は$\gamma$の総変動で抑えられるので$\rho$の総変動も有限値である．以上より
+	$\rho$で複素Stieltjes測度を構成できる．
+	
+	\begin{screen}
+		\begin{thm}[逆路に関する積分は正負が逆転する]
+			$\gamma$を路とし，$\rho$をその逆路とする．このとき，$f$を$\ran{\gamma}$上の$\C$値連続関数とすれば
+			\begin{align}
+				\int_{\gamma} f = -\int_{\rho} f
 			\end{align}
 			が成立する．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		微積分学の基本定理より
+	\begin{sketch}
+		$\alpha$と$\beta$を
 		\begin{align}
-			\int_{\gamma} f'
-			= \int_{[\alpha,\beta]} f'(\gamma(t)) \cdot \gamma'(t)\ dt
-			= f(\gamma(\beta)) - f(\gamma(\alpha))
+			[\alpha,\beta] = \dom{\gamma}
 		\end{align}
-		となる．
+		を満たす実数とする．また$\psi$を
+		\begin{align}
+			[\alpha,\beta] \ni t \longmapsto \alpha + \beta - t
+		\end{align}
+		なる写像とする．まず$\borel{[\alpha,\beta]}$の任意の要素$E$で
+		\begin{align}
+			\mu_{\gamma}(E) = -\mu_{\rho}\left(\psi^{-1} \ast E\right)
+		\end{align}
+		が成り立つことを示す．$s$と$t$を
+		\begin{align}
+			s < t
+		\end{align}
+		を満たす$[\alpha,\beta]$の要素とすれば，
+		\begin{align}
+			\mu_{\rho}\left(\psi^{-1} \ast ]s,t[\right)
+			&= \mu_{\rho}\left(]\psi^{-1}(t),\psi^{-1}(s)[\right) \\
+			&= \rho(\psi^{-1}(s)) - \rho(\psi^{-1}(t)) \\
+			&= \gamma(s) - \gamma(t) \\
+			&= -\mu_{\gamma}(]s,t[)
+		\end{align}
+		が成立する．$\mu_{\gamma}$も$\mu_{\rho}$も一点の測度は$0$であるから，
+		測度の一致の定理より$\borel{[\alpha,\beta]}$の任意の要素$E$で
+		\begin{align}
+			\mu_{\gamma}(E) = -\mu_{\rho}\left(\psi^{-1} \ast E\right)
+		\end{align}
+		が成立する．次に$f$を$\ran{\gamma}$上の$\C$値連続関数として
+		\begin{align}
+			\int_{\rho} f = -\int_{\gamma} f
+		\end{align}
+		であることを示す．ここで
+		\begin{align}
+			\borel{\gamma^*} \defeq \Set{E \cap \ran{\gamma}}{E \in \borel{C}}
+		\end{align}
+		とおくと，$\borel{\gamma^*}$の任意の要素$E$に対しては
+		\begin{align}
+			\mu_{\gamma}\left(\gamma^{-1} \ast E\right) = -\mu_{\rho}\left(\psi^{-1} \ast (\gamma^{-1} \ast E)\right)
+			= -\mu_{\rho}\left(\rho^{-1} \ast E\right)
+		\end{align}
+		が成り立つので，$f$が$\borel{\gamma^*}/\borel{\C}$-可測単関数である場合は
+		\begin{align}
+			\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma} = -\int_{[\alpha,\beta]} f \circ \rho\ d\mu_{\rho}
+		\end{align}
+		が成り立つ．Lebesgueの収束定理より$f$が連続である場合も
+		\begin{align}
+			\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma} = -\int_{[\alpha,\beta]} f \circ \rho\ d\mu_{\rho}
+		\end{align}
+		が成り立つ．
 		\QED
-	\end{prf}
+	\end{sketch}
