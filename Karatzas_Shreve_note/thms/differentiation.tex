@@ -55,3 +55,142 @@
 		であるから定理の主張が得られる．
 		\QED
 	\end{sketch}
+	
+	$\alpha$を複素数とするとき，$f$が$\alpha$で微分可能であるということを
+	\begin{align}
+		f \diffble \alpha \defarrow
+		\exists a \in \C\, \forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
+		\forall z \in \dom{f}\, 
+		\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
+		\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
+	\end{align}
+	で定め，$f$が$\Omega$上の{\bf 正則関数}\index{せいそくかんすう@正則関数}{\bf (holomorphic function)}であるということを
+	\begin{align}
+		\hol_\Omega(f) \defarrow f:\Omega \longrightarrow \C 
+		\wedge \forall \alpha \in \Omega\, \left(\, f \diffble \alpha\, \right)
+	\end{align}
+	で定める．また$\Omega$上の正則関数の全体を
+	\begin{align}
+		\Holomorphic{\Omega} \defeq \Set{f}{\hol_\Omega(f)}
+	\end{align}
+	と表す．ここで
+	\begin{align}
+		\operatorname{deriv}_{f,\alpha}(a)
+		\defarrow
+		\forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
+		\forall z \in \dom{f}\, 
+		\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
+		\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
+	\end{align}
+	と略記しておく．
+	
+	\begin{screen}
+		\begin{thm}[微係数の一意性]
+			$f$を$\Holomorphic{\Omega}$の要素とし，$\alpha$を$\Omega$の要素とする．このとき
+			\begin{align}
+				\forall a,b \in \C\, 
+				\left(\, \operatorname{deriv}_{f,\alpha}(a) \wedge \operatorname{deriv}_{f,\alpha}(b)
+				\Longrightarrow a = b\, \right)
+			\end{align}
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[導関数]
+			$f$を$\Holomorphic{\Omega}$の要素とするとき，
+			\begin{align}
+				f' \defeq \Set{x}{\exists \alpha \in \Omega\, 
+				\exists a \in \C\, \left(\, x=(\alpha,a) \wedge \operatorname{deriv}_{f,\alpha}(a)\, \right)}
+			\end{align}
+			で定める写像を$f$の{\bf 導関数}\index{どうかんすう@導関数}{\bf (derivative function)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[連鎖律]
+			$f$を$\Holomorphic{\Omega}$の要素とし，$\Omega'$を
+			\begin{align}
+				f \ast \Omega \subset \Omega'
+			\end{align}
+			を満たす開集合とするとき，$g$を$H(\Omega')$の要素とすれば
+			\begin{align}
+				g \circ f \in \Holomorphic{\Omega}
+			\end{align}
+			が成立する．特に
+			\begin{align}
+				h \coloneqq g \circ f
+			\end{align}
+			とおけば
+			\begin{align}
+				\alpha \in \Omega \Longrightarrow h'(\alpha) = g'(f(\alpha)) \cdot f'(\alpha).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$を$\Omega$の要素とし，$\epsilon$を正数とする．ここで
+		\begin{align}
+			\eta^2 + \left(|f'(\alpha)| + |g'(f(\alpha))| \right) \eta = \epsilon
+		\end{align}
+		を満たす正数$\eta$を取る．$\eta$に対し，
+		\begin{align}
+			|z-\alpha| < \delta_1 \Longrightarrow
+			\left| (f(z) - f(\alpha)) - f'(\alpha)(z-\alpha) \right| < \eta |z-\alpha|
+		\end{align}
+		を満たす正数$\delta_1$と，
+		\begin{align}
+			|w-f(\alpha)| < \delta_2 \Longrightarrow
+			\left| (g(w) - g(f(\alpha))) - g'(f(\alpha))(w-f(\alpha)) \right| < \eta |w-f(\alpha)|
+		\end{align}
+		を満たす正数$\delta_2$を取る．また$f$は$\alpha$で連続であるから
+		\begin{align}
+			|z-\alpha| < \delta_3 \Longrightarrow \left| f(z) - f(\alpha) \right| < \delta_2
+		\end{align}
+		を満たす正数$\delta_3$が取れる．このとき
+		\begin{align}
+			\delta \defeq \operatorname{min}\{\delta_1, \delta_3\}
+		\end{align}
+		とおけば，
+		\begin{align}
+			|z-\alpha| < \delta
+		\end{align}
+		なる$\Omega$の任意の要素$z$に対して
+		\begin{align}
+			\left| \left(g(f(z)) - g(f(\alpha))\right) - g'(f(\alpha))(f(z)-f(\alpha)) \right| 
+			&< \eta |f(z)-f(\alpha)| \\
+			&< \eta \left( \eta|z-\alpha| + |f'(\alpha)||z-\alpha| \right),
+		\end{align}
+		及び
+		\begin{align}
+			&\left| \left(g(f(z)) - g(f(\alpha))\right) - g'(f(\alpha))(f(z)-f(\alpha)) \right| \\
+			&= \left| \left(g(f(z)) - g(f(\alpha))\right) - g'(f(\alpha))f'(\alpha)(z-\alpha)
+			- g'(f(\alpha)) \left( (f(z) - f(\alpha)) - f'(\alpha)(z-\alpha) \right) \right|
+		\end{align}
+		から
+		\begin{align}
+			&\left| \left(g(f(z)) - g(f(\alpha))\right) - g'(f(\alpha))f'(\alpha)(z-\alpha) \right| \\
+			&\leq \left| \left(g(f(z)) - g(f(\alpha))\right) - g'(f(\alpha))(f(z)-f(\alpha)) \right|
+			+ \left| g'(f(\alpha)) \right| \left| (f(z) - f(\alpha)) - f'(\alpha)(z-\alpha) \right|
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\left| \left(g(f(z)) - g(f(\alpha))\right) - g'(f(\alpha))f'(\alpha)(z-\alpha) \right|
+			< \left[ \eta^2 + \left(|f'(\alpha)| + |g'(f(\alpha))| \right) \eta \right] |z-\alpha|
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			0 < |z-\alpha| < \delta
+			\Longrightarrow \left| \frac{h(z) - h(\alpha)}{z-\alpha} - g'(f(\alpha)) \cdot f'(\alpha) \right| < \epsilon
+		\end{align}
+		が成り立つ．$\alpha$の任意性から
+		\begin{align}
+			h \in \Holomorphic{\Omega}
+		\end{align}
+		が従い，また
+		\begin{align}
+			\alpha \in \Omega \Longrightarrow h'(\alpha) = g'(f(\alpha)) \cdot f'(\alpha)
+		\end{align}
+		も示された．
+		\QED
+	\end{sketch}
