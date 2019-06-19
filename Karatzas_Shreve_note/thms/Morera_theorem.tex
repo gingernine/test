@@ -45,6 +45,95 @@
 		が成立する．
 		\QED
 	\end{sketch}
+		
+	\begin{screen}
+		\begin{thm}[Liouvilleの定理]\label{thm:Liouville_theorem}
+			$\Omega$を$\C$の開集合とし，$f$を$\Omega$上の正則関数とし，
+			$a$を$\Omega$の要素とし，$r$を
+			\begin{align}
+				\disc{a}{r} \subset \Omega
+			\end{align}
+			を満たす正の実数とする．このとき，
+			\begin{align}
+				[0,2\cdot\pi] \ni \theta \longmapsto a + r \cdot e^{\isym \cdot \theta}
+			\end{align}
+			なる写像を$c$とすれば，$\disc{a}{r}$の各要素$z$で
+			\begin{align}
+				f(z) = \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
+			\end{align}
+			が成立する．特に{\bf 有界な整関数は定数関数である．}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				定理の設定の下で，定理\ref{thm:integral_formula_on_a_circle}より
+				$\disc{a}{r}$の任意の要素$z$で
+				\begin{align}
+					f(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{c - z}\ d\mu_{c}
+				\end{align}
+				が成立する．他方で定理\ref{thm:holomorphic_then_expanded}より，
+				$\disc{a}{r}$の任意の要素$z$で
+				\begin{align}
+					\int_{[0,2\cdot\pi]} \frac{f \circ c}{c - z}\ d\mu_{c}
+					= \sum_{n=0}^{\infty} \left[ \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
+				\end{align}
+				が成立する．よって$\disc{a}{r}$の任意の要素$z$で
+				\begin{align}
+					f(z) = \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
+				\end{align}
+				が成立する．
+			
+			\item[第二段]
+				$f$を有界な整関数とし，
+				\begin{align}
+					M \defeq \sup{z \in \C}{|f(z)|}
+				\end{align}
+				とおく．
+				\begin{align}
+					[0,2\cdot\pi] \ni \theta \longmapsto e^{\isym \cdot \theta}
+				\end{align}
+				なる写像を$c_{1}$とすれば，第一段の結果より$\disc{0}{1}$の任意の要素$z$で
+				\begin{align}
+					f(z) = \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{1}}{c_{1}^{n+1}}\ d\mu_{c_{1}} \right] \cdot z^{n}
+				\end{align}
+				が成立する．また$R$を$1$より大きい任意の正数として
+				\begin{align}
+					[0,2\cdot\pi] \ni \theta \longmapsto R \cdot e^{\isym \cdot \theta}
+				\end{align}
+				なる写像を$c_{R}$とすれば，$\disc{0}{R}$の任意の要素$z$で
+				\begin{align}
+					f(z) = \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{R}}{c_{R}^{n+1}}\ d\mu_{c_{R}} \right] \cdot z^{n}
+				\end{align}
+				が成立する．係数の一意性から任意の自然数$n$で
+				\begin{align}
+					\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{1}}{c_{1}^{n+1}}\ d\mu_{c_{1}}
+					= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{R}}{c_{R}^{n+1}}\ d\mu_{c_{R}}
+				\end{align}
+				が成り立つが，このとき
+				\begin{align}
+					\left|\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{1}}{c_{1}^{n+1}}\ d\mu_{c_{1}}\right|
+					&\leq \frac{1}{2\cdot\pi} \cdot \int_{[0,2\cdot\pi]} \frac{\left|f \circ c_{R}\right|}{\left|c_{R}\right|^{n+1}}\ d\left|\mu_{c_{R}}\right| \\
+					&\leq \frac{M}{R^{n+1}} 
+				\end{align}
+				が成立し，$R$の任意性から
+				\begin{align}
+					\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{1}}{c_{1}^{n+1}}\ d\mu_{c_{1}}
+					= 0
+				\end{align}
+				が従う．ゆえに$\disc{0}{1}$の任意の要素$z$で
+				\begin{align}
+					f(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{1}}{c_{1}}\ d\mu_{c_{1}}
+				\end{align}
+				が成立する．ただし係数の一意性から
+				\begin{align}
+					f(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c_{1}}{c_{1}}\ d\mu_{c_{1}}
+				\end{align}
+				は任意の複素数$z$で成立する．
+				\QED
+		\end{description}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[正則関数の導関数も正則]\label{thm:derivative_of_holomorphic_function_is_holomorphic}
@@ -56,7 +145,7 @@
 	\end{screen}
 	
 	\begin{sketch}
-		$f$が$\Omega$上の正則関数とし，$\Omega$の要素$a$を任意に取る．また
+		$f$を$\Omega$上の正則関数とし，$\Omega$の要素$a$を任意に取る．また
 		\begin{align}
 			\disc{a}{r} \subset \Omega
 		\end{align}
@@ -64,18 +153,7 @@
 		\begin{align}
 			[0,2\cdot\pi] \ni \theta \longmapsto a + r \cdot e^{\isym \cdot \theta}
 		\end{align}
-		なる写像を$c$とする．このとき定理\ref{thm:integral_formula_on_a_circle}より
-		$\disc{a}{r}$の任意の要素$z$で
-		\begin{align}
-			f(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{c - z}\ d\mu_{c}
-		\end{align}
-		が成立する．他方で定理\ref{thm:holomorphic_then_expanded}より，
-		$\disc{a}{r}$の任意の要素$z$で
-		\begin{align}
-			\int_{[0,2\cdot\pi]} \frac{f \circ c}{c - z}\ d\mu_{c}
-			= \sum_{n=0}^{\infty} \left[ \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
-		\end{align}
-		が成立する．よって$\disc{a}{r}$の任意の要素$z$で
+		なる写像を$c$とする．このとき定理\ref{thm:Liouville_theorem}より$\disc{a}{r}$の任意の要素$z$で
 		\begin{align}
 			f(z) = \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
 		\end{align}
@@ -134,17 +212,4 @@
 		が成立する．
 		\QED
 	\end{sketch}
-		
-	\begin{screen}
-		\begin{thm}[Liouvilleの定理]
-			有界な整関数は定数関数である．
-		\end{thm}
-	\end{screen}
 	
-	\begin{sketch}
-		$f$を有界な整関数とし，
-		\begin{align}
-			M \defeq \sup{z \in \C}{|f(z)|}
-		\end{align}
-		とおく．
-	\end{sketch}
