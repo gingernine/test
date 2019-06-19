@@ -2,26 +2,24 @@
 	Moreraの定理とはGoursatの定理の逆の主張である．
 	
 	\begin{screen}
-		\begin{thm}[正則ならば級数展開可能]
-			$\gamma$を$[0,1]$上の路とし，$\gamma$で作る$\borel{[0,1]}$上の複素Stieltjes測度を
-			$\mu_{\gamma}$とする．また$\varphi$を$[0,1]$上の$\C$値連続関数とする．このとき，
-			$a$を$\C \backslash \ran{\gamma}$の要素として
+		\begin{thm}[正則ならば級数展開可能]\label{thm:holomorphic_then_expanded}
+			$\gamma$を$[\alpha,\beta]$上の路とし，$\gamma$で作る$\borel{[\alpha,\beta]}$上の複素Stieltjes測度を
+			$\mu_{\gamma}$とする．また$\varphi$を$[\alpha,\beta]$上の$\C$値連続関数とする．このとき，
+			$a$を$\C \backslash \ran{\gamma}$の要素とし，$r$を
 			\begin{align}
-				r \defeq \inf{}{\Set{|a-\gamma(t)|}{t \in [0,1]}}
+				\disc{a}{r} \subset \C \backslash \ran{\gamma}
 			\end{align}
-			とおくと，$\disc{a}{r}$の任意の要素$z$で
+			を満たす正の実数とすると，$\disc{a}{r}$の任意の要素$z$で
 			\begin{align}
-				\int_{[0,1]} \frac{\varphi}{\gamma - z}\ d\mu_{\gamma}
-				= \sum_{n=0}^{\infty} \left[ \int_{[0,1]} \frac{\varphi}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \right] \cdot (z-a)^{n}
+				\int_{[\alpha,\beta]} \frac{\varphi}{\gamma - z}\ d\mu_{\gamma}
+				= \sum_{n=0}^{\infty} \left[ \int_{[\alpha,\beta]} \frac{\varphi}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \right] \cdot (z-a)^{n}
 			\end{align}
 			が成立する．
 		\end{thm}
 	\end{screen}
 	
-	定理より
-	
 	\begin{sketch}
-		いま$z$を$\disc{a}{r}$の要素とする．このとき$[0,1]$の任意の要素$t$で
+		いま$z$を$\disc{a}{r}$の要素とする．このとき$[\alpha,\beta]$の任意の要素$t$で
 		\begin{align}
 			\left|\frac{z-a}{\gamma(t) - a}\right|
 			\leq \frac{|z-a|}{r}
@@ -31,7 +29,7 @@
 		\begin{align}
 			\frac{\varphi(t)}{\gamma(t) - a} = \varphi(t) \cdot \sum_{n=0}^{\infty} \frac{(z-a)^{n}}{(\gamma(t) - a)^{n+1}}
 		\end{align}
-		が成立する．また$[0,1]$の任意の要素$t$で
+		が成立する．また$[\alpha,\beta]$の任意の要素$t$で
 		\begin{align}
 			\sum_{n=0}^{\infty} \frac{|z-a|^{n}}{|\gamma(t) - a|^{n+1}}
 			\leq \sum_{n=0}^{\infty} \frac{|z-a|^{n}}{r^{n+1}}
@@ -39,23 +37,114 @@
 		\end{align}
 		が成り立つので，Lebesgueの収束定理より
 		\begin{align}
-			\int_{[0,1]} \frac{\varphi}{\gamma - z}\ d\mu_{\gamma}
-			&= \int_{[0,1]} \varphi \cdot \sum_{n=0}^{\infty} \frac{(z-a)^{n}}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \\
-			&= \sum_{n=0}^{\infty} \int_{[0,1]} (z-a)^{n} \cdot \frac{\varphi}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \\
-			&= \sum_{n=0}^{\infty} \left[ \int_{[0,1]} \frac{\varphi}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \right] \cdot (z-a)^{n}
+			\int_{[\alpha,\beta]} \frac{\varphi}{\gamma - z}\ d\mu_{\gamma}
+			&= \int_{[\alpha,\beta]} \varphi \cdot \sum_{n=0}^{\infty} \frac{(z-a)^{n}}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \\
+			&= \sum_{n=0}^{\infty} \int_{[\alpha,\beta]} (z-a)^{n} \cdot \frac{\varphi}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \\
+			&= \sum_{n=0}^{\infty} \left[ \int_{[\alpha,\beta]} \frac{\varphi}{(\gamma - a)^{n+1}}\ d\mu_{\gamma} \right] \cdot (z-a)^{n}
 		\end{align}
 		が成立する．
 		\QED
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[正則関数の導関数も正則]
-			
+		\begin{thm}[正則関数の導関数も正則]\label{thm:derivative_of_holomorphic_function_is_holomorphic}
+			$\Omega$を$\C$の開集合とするとき
+			\begin{align}
+				\forall f\, \left[\, f \in \Holomorphic{\Omega} \Longrightarrow f' \in \Holomorphic{\Omega}\, \right].
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		$f$が$\Omega$上の正則関数とし，$\Omega$の要素$a$を任意に取る．また
+		\begin{align}
+			\disc{a}{r} \subset \Omega
+		\end{align}
+		を満たす正の実数$r$を取って
+		\begin{align}
+			[0,2\cdot\pi] \ni \theta \longmapsto a + r \cdot e^{\isym \cdot \theta}
+		\end{align}
+		なる写像を$c$とする．このとき定理\ref{thm:integral_formula_on_a_circle}より
+		$\disc{a}{r}$の任意の要素$z$で
+		\begin{align}
+			f(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{c - z}\ d\mu_{c}
+		\end{align}
+		が成立する．他方で定理\ref{thm:holomorphic_then_expanded}より，
+		$\disc{a}{r}$の任意の要素$z$で
+		\begin{align}
+			\int_{[0,2\cdot\pi]} \frac{f \circ c}{c - z}\ d\mu_{c}
+			= \sum_{n=0}^{\infty} \left[ \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
+		\end{align}
+		が成立する．よって$\disc{a}{r}$の任意の要素$z$で
+		\begin{align}
+			f(z) = \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+1}}\ d\mu_{c} \right] \cdot (z-a)^{n}
+		\end{align}
+		が成立する．よって定理\ref{thm:series_expanded_then_differentiable}より$\disc{a}{r}$の任意の要素$z$で
+		\begin{align}
+			f'(z) = \sum_{n=0}^{\infty} \left[ \frac{n+1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{f \circ c}{(c - a)^{n+2}}\ d\mu_{c} \right] \cdot (z-a)^{n}
+		\end{align}
+		が成立し，$f'$の$a$での微分可能性が従う．$a$の任意性から
+		\begin{align}
+			f' \in \Holomorphic{\Omega}
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
 		\begin{thm}[Moreraの定理]
-			
+			$\Omega$を$\C$の開集合とし，$f$を$\Omega$上の$\C$値連続関数とする．
+			また$\Omega$から任意に三要素$a,b,c$が与えられたとき，この三点が作る三角集合が$\Omega$に含まれるなら，つまり
+			\begin{align}
+				\Set{z}{\exists t,s \in [0,1]\, 
+				\left(\, z = (1-t) \cdot a 
+				+ t \cdot (1-s) \cdot b 
+				+ t \cdot s \cdot c\, \right)}
+				\subset \Omega
+			\end{align}
+			であるならば
+			\begin{align}
+				\int_{\seg{a}{b}} f + \int_{\seg{b}{c}} f + \int_{\seg{c}{a}} f = 0
+			\end{align}
+			が成り立つとする．このとき$f$は$\Omega$上の正則関数である．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		いま$z$を$\Omega$の要素とし，
+		\begin{align}
+			\disc{z}{r} \subset \Omega
+		\end{align}
+		を満たす正の実数$r$を取る．このとき，定理\ref{thm:a_holomorphic_function_is_derivative_of_some_holomorphic_function_on_convex_open}より
+		\begin{align}
+			F \in \Holomorphic{\disc{z}{r}}
+		\end{align}
+		かつ
+		\begin{align}
+			F' = f|_{\disc{z}{r}}
+		\end{align}
+		を満たす$F$が取れて，さらに定理\ref{thm:derivative_of_holomorphic_function_is_holomorphic}より
+		\begin{align}
+			f|_{\disc{z}{r}} \in \Holomorphic{\disc{z}{r}}
+		\end{align}
+		が従う．ゆえに$f$は$z$で微分可能である．$z$の任意性から
+		\begin{align}
+			f \in \Holomorphic{\Omega}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+		
+	\begin{screen}
+		\begin{thm}[Liouvilleの定理]
+			有界な整関数は定数関数である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$f$を有界な整関数とし，
+		\begin{align}
+			M \defeq \sup{z \in \C}{|f(z)|}
+		\end{align}
+		とおく．
+	\end{sketch}
