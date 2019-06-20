@@ -1,12 +1,6 @@
 \subsection{Cauchyの定理}
 	
 	\begin{screen}
-		\begin{thm}[複素線積分のFubiniの定理]
-			
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
 		\begin{dfn}[閉路]
 			始点と終点が一致する路を{\bf 閉路}\index{へいろ@閉路}{\bf (closed contour)}と呼ぶ．
 			つまり，$\gamma$が閉路であるとは
@@ -76,89 +70,171 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}[大雑把]
-		$\Omega \times \Omega$上の写像$g$を
-		\begin{align}
-			\Omega \times \Omega \ni (z,w) \longmapsto
-			\begin{cases}
-				{\displaystyle \frac{f(w) - f(z)}{w-z}} & \mbox{if } z \neq w \\
-				f'(z) & \mbox{if } z = w
-			\end{cases}
-		\end{align}
-		により定めれば，$g$は連続である．
-		\begin{align}
-			\Omega \ni z \longmapsto \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} g(z,w)\ dw
-		\end{align}
-		なる写像を$h$とすれば，$h$は$\Omega$上で連続である．$a,b,c$を$\Omega$の要素として，それらがなす三角集合が$\Omega$に含まれるとき，つまり
-		\begin{align}
-			\Set{z}{\exists t,s \in [0,1]\, 
-			\left(\, z = (1-t) \cdot a 
-			+ t \cdot (1-s) \cdot b 
-			+ t \cdot s \cdot c\, \right)} \subset \Omega
-		\end{align}
-		であるとき，Fubiniの定理とGoursatの定理より
-		\begin{align}
-			&\int_{\seg{a}{b}} h + \int_{\seg{b}{c}} h + \int_{\seg{c}{a}} h \\
-			&= \frac{1}{2 \cdot \pi \cdot \isym} \cdot \int_{\gamma} 
-			\left(\int_{\seg{a}{b}} g_w + \int_{\seg{b}{c}} g_w + \int_{\seg{c}{a}} g_w\right)\ dw \\
-			&= 0
-		\end{align}
-		が成立するので，Moreraの定理より
-		\begin{align}
-			h \in \Holomorphic{\Omega}
-		\end{align}
-		が従う．
-		%\begin{align}
-		%	\Psi \defeq \left(\Ind_{\gamma}^{-1} \ast \{0\}\right)^{\mathrm{o}}
-		%\end{align}
-		%により$\C$の開集合を定めて
-		%\footnote{
-		%	一見すると閉集合を引き戻しているので$\Psi$は閉集合であるかと思えるが，
-		%	$\Ind_{\gamma}$とは$\Omega \backslash \ran{\gamma}$上の連続写像であり，
-		%	$\Psi$はその相対位相で閉集合であるにすぎない．しかも$\Ind_{\gamma}$は整数値であるから，
-		%	\begin{align}
-		%		\Ind_{\gamma}^{-1} \ast \{0\} = \Ind_{\gamma}^{-1} \ast \Set{x \in \R}{-1 < x < 1}
-		%	\end{align}
-		%	が成り立つ．つまり$\Psi$は$\Omega \backslash \ran{\gamma}$の開集合でもあることになるが，
-		%	この現象は$\Omega \backslash \ran{\gamma}$が連結でないことに起因する．そして
-		%	$\Omega \backslash \ran{\gamma}$自体は$\C$の開集合なので$\Psi$は$\C$の開集合である．
-		%}
-		\begin{align}
-			\C \ni z \longmapsto
-			\begin{cases}
-				{\displaystyle \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)-f(z)}{w-z}\ dw} & \mbox{if } z \in \Omega \\
-				{\displaystyle \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)}{w-z}\ dw} & \mbox{if } z \in \Psi
-			\end{cases}
-		\end{align}
-		なる写像を$\varphi$とすると，$\varphi$は整関数であって，
-		\begin{align}
-			\lim_{|z| \longrightarrow \infty} \varphi(z) = 0 
-		\end{align}
-		であるから
-		\begin{align}
-			\forall z \in \C\, (\, \varphi(z) = 0\, )
-		\end{align}
-		が成立する．ゆえに$\Omega \backslash \ran{\gamma}$の任意の要素$z$に対して
-		\begin{align}
-			\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)-f(z)}{w-z}\ dw = 0
-		\end{align}
-		が成立するから，移項して
-		\begin{align}
-			\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)}{w-z}\ dw
-			= f(z) \cdot \Ind_{\gamma}(z)
-		\end{align}
-		を得る．$\Omega \backslash \ran{\gamma}$の要素$z$を取り
-		\begin{align}
-			\Omega \ni w \longmapsto f(w) \cdot (w - z)
-		\end{align}
-		なる写像を$F$と定めれば，
-		\begin{align}
-			F \in \Holomorphic{\Omega}
-		\end{align}
-		であるから
-		\begin{align}
-			\int_{\gamma} f = \int_{\gamma} \frac{F(w)}{w-z}\ dw = F(z) \cdot \Ind_{\gamma}(z) = 0
-		\end{align}
-		が成立する．
-		\QED
+	後述することであるが，実は$\Ind_{\gamma}^{-1} \ast \{0\}$自体がすでに$\C$の開集合である．
+	
+	{\footnotesize 一見すると閉集合を引き戻しているのでこれは閉集合であるかと思えるが，
+	$\Ind_{\gamma}$とは$\Omega \backslash \ran{\gamma}$上の連続写像であり，
+	$\Ind_{\gamma}^{-1} \ast \{0\}$はその相対位相で閉集合であるにすぎない．しかも$\Ind_{\gamma}$は整数値である(後述)から，
+	\begin{align}
+		\Ind_{\gamma}^{-1} \ast \{0\} = \Ind_{\gamma}^{-1} \ast \Set{x \in \R}{-1 < x < 1}
+	\end{align}
+	が成り立つ．つまり$\Ind_{\gamma}^{-1} \ast \{0\}$は$\Omega \backslash \ran{\gamma}$の開集合でもあることになるが，
+	この現象は$\Omega \backslash \ran{\gamma}$が連結でないことに起因する．そして
+	$\Omega \backslash \ran{\gamma}$自体は$\C$の開集合なので$\Ind_{\gamma}^{-1} \ast \{0\}$は$\C$の開集合である．}
+	
+	\begin{sketch}[大雑把]\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\Omega \times \Omega$上の写像$g$を
+				\begin{align}
+					\Omega \times \Omega \ni (z,w) \longmapsto
+					\begin{cases}
+						{\displaystyle \frac{f(w) - f(z)}{w-z}} & \mbox{if } z \neq w \\
+						f'(z) & \mbox{if } z = w
+					\end{cases}
+				\end{align}
+				により定めれば，$g$は連続である．ここで複素数$z$に対して
+				\begin{align}
+					\Omega \ni w \longmapsto (z,w)
+				\end{align}
+				なる写像を$p_{z}$として
+				\begin{align}
+					\Omega \ni z \longmapsto \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} g \circ p_{z}
+				\end{align}
+				なる写像を$h$とすれば，$h$は$\Omega$上で連続である．
+				
+			\item[第二段]
+				いま$a,b,c$を$\Omega$の要素として，それらがなす三角集合が$\Omega$に含まれるとする．つまり
+				\begin{align}
+					\Set{z}{\exists t,s \in [0,1]\, 
+					\left(\, z = (1-t) \cdot a 
+					+ t \cdot (1-s) \cdot b 
+					+ t \cdot s \cdot c\, \right)} \subset \Omega
+				\end{align}
+				であるとする．すると
+				\begin{align}
+					\int_{\seg{a}{b}} h + \int_{\seg{b}{c}} h + \int_{\seg{c}{a}} h = 0
+				\end{align}
+				が成立する．実際，まず
+				\begin{align}
+					\int_{\seg{a}{b}} h
+					&= \int_{[0,1]} h(a+s \cdot (b-a)) \cdot (b-a)\ \lambda(ds) \\
+					&= \frac{b-a}{2\cdot\pi\cdot\isym} \cdot \int_{[0,1]}
+					\left[\int_{[\alpha,\beta]} g \circ p_{a+s \cdot (b-a)} \circ \gamma\ d\mu_{\gamma}\right]\ \lambda(ds)
+				\end{align}
+				が成り立つ．ここで実数$t$に対して
+				\begin{align}
+					[0,1] \ni s \longmapsto (s,t)
+				\end{align}
+				なる写像を$q^{t}$とし，実数$s$に対して
+				\begin{align}
+					[\alpha,\beta] \ni t \longmapsto (s,t)
+				\end{align}
+				なる写像を$p^{s}$とし，複素数$w$に対して
+				\begin{align}
+					\Omega \ni z \longmapsto (z,w)
+				\end{align}
+				なる写像を$q_{w}$とし，
+				\begin{align}
+					[0,1] \times [\alpha,\beta] \ni (s,t) \longmapsto g(a + s \cdot (b-a),\gamma(t))
+				\end{align}
+				なる写像を$G$とし，$\Gamma$を，$\borel{[\alpha,\beta]}$の各要素$E$で
+				\begin{align}
+					\mu_{\gamma}(E) = \int_{E} \Gamma\ d|\mu_{\gamma}|
+				\end{align}
+				を満たす$\borel{[\alpha,\beta]}/\borel{\C}$-可測関数とし，$\tilde{\Gamma}$を
+				\begin{align}
+					[0,1] \times [\alpha,\beta] \ni (s,t) \longmapsto \Gamma(s,t)
+				\end{align}
+				なる写像とする．すると，Fubiniの定理より
+				\begin{align}
+					\int_{[0,1]}
+					\left[\int_{[\alpha,\beta]} g \circ p_{a+s \cdot (b-a)} \circ \gamma\ d\mu_{\gamma}\right]\ \lambda(ds)
+					&= \int_{[0,1]}
+					\left[\int_{[\alpha,\beta]} G \circ p^{s} \cdot \Gamma\ d|\mu_{\gamma}|\right]\ \lambda(ds) \\
+					&= \int_{[0,1]}
+					\left[\int_{[\alpha,\beta]} (G \cdot \tilde{\Gamma}) \circ p^{s}\ d|\mu_{\gamma}|\right]\ \lambda(ds) \\
+					&= \int_{[\alpha,\beta]}
+					\left[\int_{[0,1]} (G \cdot \tilde{\Gamma}) \circ q^{t}\ \lambda(ds)\right]\ |\mu_{\gamma}|(dt) \\
+					&= \int_{[\alpha,\beta]}
+					\left[\int_{[0,1]} G \circ q^{t}\ d\lambda\right]\ \cdot \Gamma(t)\ |\mu_{\gamma}|(dt) \\
+					&= \int_{[\alpha,\beta]}
+					\left[\int_{[0,1]} g \circ q_{\gamma(t)}(a+s \cdot (b-a))\ \lambda(ds)\right]\ \mu_{\gamma}(dt)
+				\end{align}
+				が成り立つ．従って
+				\begin{align}
+					&\frac{b-a}{2\cdot\pi\cdot\isym} \cdot \int_{[0,1]}
+					\left[\int_{[\alpha,\beta]} g \circ p_{a+s \cdot (b-a)} \circ \gamma\ d\mu_{\gamma}\right]\ \lambda(ds) \\
+					&= \frac{b-a}{2\cdot\pi\cdot\isym} \cdot \int_{[\alpha,\beta]}
+					\left[\int_{[0,1]} g \circ q_{\gamma(t)}(a+s \cdot (b-a))\ \lambda(ds)\right]\ \mu_{\gamma}(dt) \\
+					&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[\alpha,\beta]}
+					\left[\int_{\seg{a}{b}} g \circ q_{\gamma(t)}\right]\ \mu_{\gamma}(dt)
+				\end{align}
+				が成り立つ．ところで，$[\alpha,\beta]$の各要素$t$において，
+				\begin{align}
+					\Omega \ni z \longmapsto g(z,\gamma(t))
+				\end{align}
+				なる写像は$\Omega$上で連続であって，$\gamma(t)$を除く点で微分可能であるから，Goursatの定理より
+				\begin{align}
+					\int_{\seg{a}{b}} g \circ q_{\gamma(t)}
+					+ \int_{\seg{b}{c}} g \circ q_{\gamma(t)}
+					+ \int_{\seg{c}{a}} g \circ q_{\gamma(t)} 
+					= 0
+				\end{align}
+				が成立する．ゆえに
+				\begin{align}
+					&\int_{\seg{a}{b}} h + \int_{\seg{b}{c}} h + \int_{\seg{c}{a}} h \\
+					&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[\alpha,\beta]}
+					\left[\int_{\seg{a}{b}} g \circ q_{\gamma(t)}
+					+ \int_{\seg{b}{c}} g \circ q_{\gamma(t)}
+					+ \int_{\seg{c}{a}} g \circ q_{\gamma(t)} \right]\ \mu_{\gamma}(dt) \\
+					&= 0
+				\end{align}
+				が得られ，Moreraの定理より
+				\begin{align}
+					h \in \Holomorphic{\Omega}
+				\end{align}
+				が従う．
+			
+			\item[第三段]
+				$\C$上の写像$\varphi$を
+				\begin{align}
+					\C \ni z \longmapsto
+					\begin{cases}
+						{\displaystyle \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)-f(z)}{w-z}\ dw} & \mbox{if } z \in \Omega \\
+						{\displaystyle \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)}{w-z}\ dw} & \mbox{if } z \in \Psi
+					\end{cases}
+				\end{align}
+				なる関係により定めると，$\varphi$は整関数であって，
+				\begin{align}
+					\lim_{|z| \longrightarrow \infty} \varphi(z) = 0 
+				\end{align}
+				が成り立つから，Liouvilleの定理より
+				\begin{align}
+					\forall z \in \C\, (\, \varphi(z) = 0\, )
+				\end{align}
+				が成立する．ゆえに$\Omega \backslash \ran{\gamma}$の任意の要素$z$に対して
+				\begin{align}
+					\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)-f(z)}{w-z}\ dw = 0
+				\end{align}
+				が成立するから，移項して
+				\begin{align}
+					\frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)}{w-z}\ dw
+					= f(z) \cdot \Ind_{\gamma}(z)
+				\end{align}
+				を得る．$\Omega \backslash \ran{\gamma}$の要素$z$を取り
+				\begin{align}
+					\Omega \ni w \longmapsto f(w) \cdot (w - z)
+				\end{align}
+				なる写像を$F$と定めれば，
+				\begin{align}
+					F \in \Holomorphic{\Omega}
+				\end{align}
+				であるから
+				\begin{align}
+					\int_{\gamma} f = \int_{\gamma} \frac{F(w)}{w-z}\ dw = F(z) \cdot \Ind_{\gamma}(z) = 0
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
 	\end{sketch}
