@@ -49,7 +49,7 @@
 			\begin{cases}
 				\theta_{0}(t) & \mbox{if } {\displaystyle 0 \leq t \leq \frac{1}{n}} \\
 				{\displaystyle \theta_{k}(t) + \sum_{j=0}^{k-1} \left\{\theta_{j}((j+1)/n) - \theta_{j+1}((j+1)/n)\right\}}
-				& \mbox{if } 1 \leq k \wedge {\displaystyle \frac{k}{n} < t \leq \frac{k+1}{n}} \\
+				& \mbox{if } 1 \leq k \mbox{ and } {\displaystyle \frac{k}{n} < t \leq \frac{k+1}{n}} \\
 			\end{cases}
 		\end{align}
 		により定めれば，$\theta$は$[0,1]$上で連続である．また$n$の各要素$j$で
@@ -66,6 +66,75 @@
 		が満たされる．
 		\QED
 	\end{sketch}
+	
+	$\gamma$を$[\alpha,\beta]$上の路として，$a$を$\ran{\gamma}$に属さない複素数とする．
+	このとき$\varphi$を
+	\begin{align}
+		[0,1] \ni t \longmapsto \alpha + t \cdot (\beta - \alpha)
+	\end{align}
+	なる$[0,1]$上の写像とすると，
+	\begin{align}
+		[0,1] \ni t \longmapsto \frac{\gamma(\varphi(t)) - a}{\left|\gamma(\varphi(t)) - a\right|}
+	\end{align}
+	なる写像は$[0,1]$上の連続写像であるから，定理\ref{thm:continuous_choice_of_arguments}より，
+	$[0,1]$の任意の要素$t$で
+	\begin{align}
+		\frac{\gamma(\varphi(t)) - a}{\left|\gamma(\varphi(t)) - a\right|}
+		= e^{\isym \cdot \eta(t)}
+	\end{align}
+	を満たす$[0,1]$上の$\R$値連続写像$\eta$が取れる．$\varphi$は$[0,1]$から$[\alpha,\beta]$への同相写像であるから，
+	\begin{align}
+		\theta \defeq \eta \circ \varphi^{-1}
+	\end{align}
+	により定める$\theta$は$[\alpha,\beta]$上の$\R$値連続写像であって，$[\alpha,\beta]$の任意の要素$t$で
+	\begin{align}
+		\frac{\gamma(t) - a}{\left|\gamma(t) - a\right|}
+		= \frac{\gamma(\varphi(\varphi^{-1}(t))) - a}{\left|\gamma(\varphi(\varphi^{-1}(t))) - a\right|}
+		= e^{\isym \cdot \eta(\varphi^{-1}(t))}
+		= e^{\isym \cdot \theta(t)}
+	\end{align}
+	が成立する．ここで$\xi$を$[\alpha,\beta]$上の$\R$値連続写像で，$[\alpha,\beta]$の任意の要素$t$で
+	\begin{align}
+		\frac{\gamma(t) - a}{\left|\gamma(t) - a\right|} = e^{\isym \cdot \xi(t)}
+	\end{align}
+	を満たすものとすると，定理\ref{thm:period_of_exponential_function_is_2_pi_i}より
+	\begin{align}
+		[\alpha,\beta] \ni t \longmapsto \frac{\theta(t) - \xi(t)}{2 \cdot \pi}
+	\end{align}
+	は整数値で，かつ連続である．ゆえにこの写像は定数値である．ゆえに
+	\begin{align}
+		\frac{\theta(\beta) - \theta(\alpha)}{2 \cdot \pi} = \frac{\xi(\beta) - \xi(\alpha)}{2 \cdot \pi}
+	\end{align}
+	が成立する．ちなみに，$\gamma$が閉路であるとき
+	\begin{align}
+		e^{\isym \cdot \theta(\alpha)} = \gamma(\alpha) = \gamma(\beta) = e^{\isym \cdot \theta(\beta)}
+	\end{align}
+	が成り立つので，再び定理\ref{thm:period_of_exponential_function_is_2_pi_i}より
+	\begin{align}
+		\frac{\theta(\beta) - \theta(\alpha)}{2 \cdot \pi}
+	\end{align}
+	は整数である．
+	
+	\begin{screen}
+		\begin{dfn}[回転数]
+			$\gamma$を$[\alpha,\beta]$上の閉路として，$a$を
+			$\ran{\gamma}$に属さない複素数とする．このとき$[\alpha,\beta]$の任意の要素$t$で
+			\begin{align}
+				\frac{\gamma(t) - a}{|\gamma(t) - a|} = e^{\isym\cdot\theta(t)}
+			\end{align}
+			を満たす$[\alpha,\beta]$上の$\R$値連続写像$\theta$を取って
+			\begin{align}
+				\frac{\theta(\beta) - \theta(\alpha)}{2\cdot\pi}
+			\end{align}
+			により定める整数を，$\gamma$の$a$周りの{\bf 回転数}\index{かいてんすう@回転数}{\bf (winding number)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	路$\gamma$が与えられたとき，$\ran{\gamma}$に属さない複素数に対して，その周りの$\gamma$の回転数を対応させる写像を
+	\begin{align}
+		\Wnd_{\gamma}
+	\end{align}
+	と書く．
 	
 	いま$a$を複素数とし，$r$を正の実数として，
 	\begin{align}
@@ -95,25 +164,11 @@
 	同様に$a$の周りを$3$周する路の指数は$3$になり，$4$周すれば指数は$4$になる．
 	
 	これは単純な例であるが，実際に任意の閉路$\gamma$に対して，その$z$周りの指数は
-	$\gamma$が$z$の周りを回転した回数に一致する．そして指数と回転数が等しいことを示すことが本節の主題である．
-	
-	\begin{screen}
-		\begin{dfn}[回転数]
-			$\gamma$を$[\alpha,\beta]$上の閉路として，$a$を
-			$\ran{\gamma}$に属さない複素数とする．このとき$[\alpha,\beta]$の任意の要素$t$で
-			\begin{align}
-				\frac{\gamma(t) - a}{|\gamma(t) - a|} = e^{\isym\cdot\theta(t)}
-			\end{align}
-			を満たす$[\alpha,\beta]$上の$\R$値連続写像$\theta$を取って
-			\begin{align}
-				\frac{\theta(\beta) - \theta(\alpha)}{2\cdot\pi}
-			\end{align}
-			により定める整数を，$\gamma$の$a$周りの{\bf 回転数}\index{かいてんすう@回転数}{\bf (winding number)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
+	$\gamma$が$z$の周りを回転した回数に一致する．そして{\bf 本節の主題は指数と回転数が等しいということである．}
 	
 	\begin{screen}
 		\begin{thm}[分数関数に対する微分積分学の基本定理]
+		\label{thm:fundamental_theorem_of_calculus_for_fractional_function_complex_line_integral}
 			$\gamma$を$[0,1]$上の路とし，
 			\begin{align}
 				0 \notin \ran{\gamma}
@@ -205,8 +260,8 @@
 				\begin{align}
 					&\left|\int_{[0,1]} f\ d\mu_{\gamma} - [\ell(1) - \ell(0)]\right| \\
 					&\leq \left|\int_{[0,1]} f\ d\mu_{\gamma} - \int_{[0,1]} g\ d\mu_{\gamma}\right|
-					+ \left|\int_{[0,1]} g\ d\mu_{\gamma} - [\ell(1) - \ell(0)]\right|
-					\leq 2 \cdot \epsilon
+					+ \left|\int_{[0,1]} g\ d\mu_{\gamma} - [\ell(1) - \ell(0)]\right| \\
+					&\leq 2 \cdot \epsilon
 				\end{align}
 				が従い，$\epsilon$の任意性から
 				\begin{align}
@@ -292,6 +347,106 @@
 					R \cdot \frac{|\ell(t) - \ell(s)|}{2} \leq |\gamma(t) - \gamma(s)|
 				\end{align}
 				が成立する．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[路の指数と回転数は一致する]
+			$\alpha$と$\beta$を$\alpha < \beta$なる実数とし，$\gamma$を$[\alpha,\beta]$上の路とする．このとき
+			\begin{align}
+				\Ind_{\gamma} = \Wnd_{\gamma}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま$a$を$\C \backslash \ran{\gamma}$の要素とする．
+		\begin{description}
+			\item[第一段]
+				定義より
+				\begin{align}
+					\Ind_{\gamma}(a) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[\alpha,\beta]} \frac{1}{\gamma - a}\ d\mu_{\gamma}
+				\end{align}
+				である．ここで
+				\begin{align}
+					[\alpha,\beta] \ni t \longmapsto \gamma(t) - a
+				\end{align}
+				なる$[\alpha,\beta]$上の写像を$\eta$とすれば，
+				\begin{align}
+					\mu_{\gamma} = \mu_{\eta}
+				\end{align}
+				が成り立つ．実際$s$と$t$を
+				\begin{align}
+					s < t
+				\end{align}
+				を満たす$[\alpha,\beta]$の要素とすれば
+				\begin{align}
+					\mu_{\gamma}(]s,t]) &= \gamma(t) - \gamma(s) \\
+					&= (\gamma(t) - a) - (\gamma(s) - a) \\
+					&= \eta(t) - \eta(s) \\
+					&= \mu_{\eta}(]s,t])
+				\end{align}
+				が成り立つので，測度の一致の定理より
+				\begin{align}
+					\mu_{\gamma} = \mu_{\eta}
+				\end{align}
+				が得られる．ゆえに
+				\begin{align}
+					\int_{[\alpha,\beta]} \frac{1}{\gamma - a}\ d\mu_{\gamma}
+					= \int_{[\alpha,\beta]} \frac{1}{\eta}\ d\mu_{\gamma}
+					= \int_{[\alpha,\beta]} \frac{1}{\eta}\ d\mu_{\eta}
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段]
+				$\varphi$を
+				\begin{align}
+					[0,1] \ni t \longmapsto \alpha + t \cdot (\beta - \alpha)
+				\end{align}
+				なる$[0,1]$上の写像とすれば
+				\begin{align}
+					\int_{[\alpha,\beta]} \frac{1}{\eta}\ d\mu_{\eta}
+					= \int_{[0,1]} \frac{1}{\eta \circ \varphi}\ d\mu_{\eta \circ \varphi}
+				\end{align}
+				が成立する(パラメータ区間変項，P \pageref{fom:change_of_parameter_interval_complex_contour_integral})．
+				ここで$[0,1]$の任意の要素$t$に対して
+				\begin{align}
+					\frac{\eta \circ \varphi(t)}{|\eta \circ \varphi(t)|} = e^{\isym \cdot \xi(t)}
+				\end{align}
+				を満たす，$[0,1]$上の$\R$値連続写像$\xi$を取ると，定理\ref{thm:fundamental_theorem_of_calculus_for_fractional_function_complex_line_integral}より
+				\begin{align}
+					\int_{[0,1]} \frac{1}{\eta \circ \varphi}\ d\mu_{\eta \circ \varphi}
+					&= \pvlog{|\eta \circ \varphi(1)|} - \pvlog{|\eta \circ \varphi(0)|}
+					+ \isym \cdot (\xi(1) - \xi(0)) \\
+					&= \isym \cdot (\xi(1) - \xi(0))
+				\end{align}
+				が成り立つ．
+			
+			\item[第三段]
+				$[\alpha,\beta]$の任意の要素$t$で
+				\begin{align}
+					\frac{\gamma(t)-a}{|\gamma(t) - a|}
+					= \frac{\eta(t)}{|\eta(t)|}
+					= e^{\isym \cdot \xi(\varphi^{-1}(t))}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\theta \defeq \xi \circ \varphi^{-1}
+				\end{align}
+				により$[\alpha,\beta]$上の$\R$値連続写像$\theta$を定めれば
+				\begin{align}
+					\Wnd_{\gamma}(a) = \frac{\theta(\beta) - \theta(\alpha)}{2 \cdot \pi}
+					= \frac{\xi(1) - \xi(0)}{2 \cdot \pi}
+				\end{align}
+				が成立する．以上より
+				\begin{align}
+					\Ind_{\gamma}(a)
+					&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,1]} \frac{1}{\eta \circ \varphi}\ d\mu_{\eta \circ \varphi} \\
+					&= \frac{\xi(1) - \xi(0)}{2 \cdot \pi} \\
+					&= \Wnd_{\gamma}(a)
+				\end{align}
+				が得られた．
 				\QED
 		\end{description}
 	\end{sketch}
