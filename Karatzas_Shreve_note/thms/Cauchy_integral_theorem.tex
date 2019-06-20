@@ -1,4 +1,11 @@
 \subsection{Cauchyの定理}
+	
+	\begin{screen}
+		\begin{thm}[複素線積分のFubiniの定理]
+			
+		\end{thm}
+	\end{screen}
+	
 	\begin{screen}
 		\begin{dfn}[閉路]
 			始点と終点が一致する路を{\bf 閉路}\index{へいろ@閉路}{\bf (closed contour)}と呼ぶ．
@@ -22,21 +29,23 @@
 	
 	\begin{screen}
 		\begin{dfn}[指数]
-			$\gamma$を閉路とするとき，$\C \backslash \ran{\gamma}$上で定義された写像で，
+			$\gamma$を閉路とし，$z$を
 			\begin{align}
 				z \notin \ran{\gamma}
 			\end{align}
-			を満たす複素数$z$に対して
+			を満たす複素数とするとき，
 			\begin{align}
 				\frac{1}{2 \cdot \pi \cdot \isym} \cdot \int_{\gamma} \frac{1}{\zeta - z}\ d\zeta
 			\end{align}
-			を対応させるものを
-			\begin{align}
-				\Ind_{\gamma}
-			\end{align}
-			と書く．$\Ind_{\gamma}(z)$を$\gamma$の$z$周りの{\bf 指数}\index{しすう@指数}{\bf (index)}と呼ぶ．
+			を$\gamma$の$z$周りの{\bf 指数}\index{しすう@指数}{\bf (index)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	閉路$\gamma$が与えられたとき，$\ran{\gamma}$に属さない複素数に対して，その周りの$\gamma$の指数を対応させる写像を
+	\begin{align}
+		\Ind_{\gamma}
+	\end{align}
+	と書く．
 	
 	定理\ref{thm:holomorphic_then_expanded}と定理\ref{thm:series_expanded_then_differentiable}より
 	$\Ind_{\gamma}$は$\C \backslash \ran{\gamma}$の各要素において微分可能である．すなわち
@@ -51,15 +60,15 @@
 			\begin{align}
 				\ran{\gamma} \subset \Omega
 			\end{align}
-			かつ
+			かつ，$\C$の開集合$\Psi$で
 			\begin{align}
-				\forall z \in \C \backslash \Omega\, \left(\, \Ind_{\gamma}(z) = 0\, \right)
+				\C \backslash \Omega \subset \Psi \subset \Ind_{\gamma}^{-1} \ast \{0\}
 			\end{align}
-			が満たされていれば，$\Omega \backslash \ran{\gamma}$の任意の要素$z$に対して
+			を満たすものが取れるなら，$\Omega \backslash \ran{\gamma}$の任意の要素$z$に対して
 			\begin{align}
 				f(z) \cdot \Ind_{\gamma}(z) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)}{w - z}\ dw
 			\end{align}
-			が成立し，特に
+			が成立し，このとき特に
 			\begin{align}
 				\int_\gamma f = 0
 			\end{align}
@@ -78,16 +87,16 @@
 		\end{align}
 		により定めれば，$g$は連続である．
 		\begin{align}
-			\Omega \ni z \longmapsto \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(w)-f(z)}{w-z}\ dw
+			\Omega \ni z \longmapsto \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} g(z,w)\ dw
 		\end{align}
-		なる写像を$h$とすれば$h$は連続である．$a,b,c$を$\Omega$の要素として，それらがなす三角集合が$\Omega$に含まれるとき，つまり
+		なる写像を$h$とすれば，$h$は$\Omega$上で連続である．$a,b,c$を$\Omega$の要素として，それらがなす三角集合が$\Omega$に含まれるとき，つまり
 		\begin{align}
 			\Set{z}{\exists t,s \in [0,1]\, 
 			\left(\, z = (1-t) \cdot a 
 			+ t \cdot (1-s) \cdot b 
 			+ t \cdot s \cdot c\, \right)} \subset \Omega
 		\end{align}
-		なるとき，Fubiniの定理とGoursatの定理より
+		であるとき，Fubiniの定理とGoursatの定理より
 		\begin{align}
 			&\int_{\seg{a}{b}} h + \int_{\seg{b}{c}} h + \int_{\seg{c}{a}} h \\
 			&= \frac{1}{2 \cdot \pi \cdot \isym} \cdot \int_{\gamma} 
@@ -99,10 +108,21 @@
 			h \in \Holomorphic{\Omega}
 		\end{align}
 		が従う．
-		\begin{align}
-			\Psi \defeq \Ind_{\gamma}^{-1} \ast \{0\}
-		\end{align}
-		により$\C$の開集合を定めて
+		%\begin{align}
+		%	\Psi \defeq \left(\Ind_{\gamma}^{-1} \ast \{0\}\right)^{\mathrm{o}}
+		%\end{align}
+		%により$\C$の開集合を定めて
+		%\footnote{
+		%	一見すると閉集合を引き戻しているので$\Psi$は閉集合であるかと思えるが，
+		%	$\Ind_{\gamma}$とは$\Omega \backslash \ran{\gamma}$上の連続写像であり，
+		%	$\Psi$はその相対位相で閉集合であるにすぎない．しかも$\Ind_{\gamma}$は整数値であるから，
+		%	\begin{align}
+		%		\Ind_{\gamma}^{-1} \ast \{0\} = \Ind_{\gamma}^{-1} \ast \Set{x \in \R}{-1 < x < 1}
+		%	\end{align}
+		%	が成り立つ．つまり$\Psi$は$\Omega \backslash \ran{\gamma}$の開集合でもあることになるが，
+		%	この現象は$\Omega \backslash \ran{\gamma}$が連結でないことに起因する．そして
+		%	$\Omega \backslash \ran{\gamma}$自体は$\C$の開集合なので$\Psi$は$\C$の開集合である．
+		%}
 		\begin{align}
 			\C \ni z \longmapsto
 			\begin{cases}

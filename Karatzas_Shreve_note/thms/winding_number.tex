@@ -1,7 +1,37 @@
 \subsection{回転数}
 	
 	路$\gamma$が与えられたとき，$\gamma$が$a$の周りを``何周するか''という問題を考える．
-	図を描けば明らかと言ってしまえば
+	なぜそのようなことを考えるのかというと，実は$\gamma$が$a$の周りを回る`回数'は$a$周りの指数に一致するので，
+	回転数の性質を分析することでCauchyの積分定理の実用的なステートメントが得られるためである．
+	思い返してみればCauchyの積分定理には
+	\begin{quote}
+		$\C$の開集合$\Psi$で
+		\begin{align}
+			\C \backslash \Omega \subset \Psi \subset \Ind_{\gamma}^{-1} \ast \{0\}
+		\end{align}
+		を満たすものが取れるなら
+	\end{quote}
+	という条件が付いていたが，これを愚直に確認するのは無謀である．
+	
+	では何をもって`回転'を数えるのかというと，それは{\bf 偏角の変動量}を使うのである．
+	イメージとしては，路の偏角が$2 \cdot \pi$だけ動くごとに``$a$の周りを一回転した''と数える．
+	ただし，便宜上の呼び方であるが，もし偏角が$-2\cdot\pi$動いたら``$a$の周りをマイナス一回転した''と数えることにする．
+	
+	\begin{center}
+		\begin{tikzpicture}
+			\node [anchor=north] at (0,0) {$a$};
+			\draw [densely dotted] (0,0) -- ({1+(pi/6)*cos(pi/6 r)},{(pi/6)*sin(pi/6 r)});
+			\draw [densely dotted] (0,0) -- ({1+(17*pi/6)*cos(17*pi/6 r)},{(17*pi/6)*sin(17*pi/6 r)});
+			\draw [thick, domain=(pi/6):(17*pi/6), samples=200] plot({1+\x*cos(\x r)},{\x*sin(\x r)});
+			\draw [domain=(pi/15):pi, samples=200, color=blue] plot({0.5*cos(\x r)},{0.5*sin(\x r)});
+			\draw [domain=pi:(2*pi), samples=200, color=blue] plot({0.1+0.6*cos(\x r)},{0.6*sin(\x r)});
+			\draw [domain=(2*pi):(17*pi/6.05), samples=200, color=blue, ->] plot({0.7*cos(\x r)},{0.7*sin(\x r)});
+		\end{tikzpicture}
+	\end{center}
+	
+	しかし偏角を測るからといって安直に$\pvarg$を使ってはいけない．$\pvarg$を使ってしまっては，路が負の実軸をまたぐごとに
+	偏角が$2 \cdot \pi$だけ巻き戻されてしまうからである．これは$\pvarg$が負の実軸上でジャンプすることが原因であり，
+	他の偏角の分枝を取ってもこの問題は避けられない．解決するには，路の挙動に合わせて臨機応変に偏角の枝を選択し繋ぎ合わせる必要がある．
 	
 	いま$\alpha$を実数として
 	\begin{align}
@@ -29,7 +59,7 @@
 	また$z$を$\C \backslash L_{\alpha}$の要素とすれば
 	\begin{align}
 		e^{\isym \cdot \pvarg_{\alpha}(z)}
-		= e^{\isym \cdot \alpha + \isym \cdot \pvarg{(z \cdot e^{-\isym\cdot\alpha})}}
+		= e^{\isym \cdot \alpha} \cdot e^{\isym \cdot \pvarg{(z \cdot e^{-\isym\cdot\alpha})}}
 		= e^{\isym \cdot \alpha} \cdot \frac{z \cdot e^{-\isym\cdot\alpha}}{\left|z \cdot e^{-\isym\cdot\alpha}\right|}
 		= \frac{z}{|z|}
 	\end{align}
@@ -162,41 +192,38 @@
 		\end{dfn}
 	\end{screen}
 	
-	路$\gamma$が与えられたとき，$\ran{\gamma}$に属さない複素数に対して，その周りの$\gamma$の回転数を対応させる写像を
+	閉路$\gamma$が与えられたとき，$\ran{\gamma}$に属さない複素数に対して，その周りの$\gamma$の回転数を対応させる写像を
 	\begin{align}
 		\Wnd_{\gamma}
 	\end{align}
 	と書く．
 	
-	いま$a$を複素数とし，$r$を正の実数として，
+	{\bf 本節の主題は指数と回転数が等しいということである．}導入として簡単な例により確認してみる．いま
 	\begin{align}
-		[0,2 \cdot \pi] \ni \theta \longmapsto a + r \cdot e^{\isym \cdot \theta}
+		[0,2 \cdot \pi] \ni \theta \longmapsto e^{\isym \cdot \theta}
 	\end{align}
-	なる写像を$\gamma$とする．$\gamma$は$a$を中心に半径$r$の円周を描くが，
+	なる写像を$\gamma$とする．$\gamma$は$0$を中心に半径$1$の円周を描くが，
 	このとき
 	\begin{align}
-		\Ind_{\gamma}(a) 
-		&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{1}{z-a}\ dz \\
+		\Ind_{\gamma}(0) 
+		&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{1}{z}\ dz \\
 		&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,2\cdot\pi]} \frac{\isym \cdot e^{\isym \cdot \theta}}{e^{\isym \cdot \theta}}\ d\theta \\
 		&= 1
 	\end{align}
-	が成り立ち，$\Ind_{\gamma}(a)$はちょうど$\gamma$が$a$の周りを回った回数に一致する．では次に
+	が成り立つから，$\Ind_{\gamma}(0)$はちょうど$\gamma$が$0$の周りを回った回数に一致する．では次に
 	\begin{align}
-		[0,4 \cdot \pi] \ni \theta \longmapsto a + r \cdot e^{\isym \cdot \theta}
+		[0,4 \cdot \pi] \ni \theta \longmapsto e^{\isym \cdot \theta}
 	\end{align}
-	なる写像を$\eta$としてみる．$\eta$は$a$を中心に半径$r$の円周を描くが，$\gamma$とは違って
-	$a$の周りを二周する．そして
+	なる写像を$\eta$としてみる．$\eta$も$0$を中心に半径$1$の円周を描くが，$\gamma$とは違って
+	$0$の周りを二周する．そして
 	\begin{align}
-		\Ind_{\eta}(a) 
-		&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\eta} \frac{1}{z-a}\ dz \\
+		\Ind_{\eta}(0) 
+		&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\eta} \frac{1}{z}\ dz \\
 		&= \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{[0,4\cdot\pi]} \frac{\isym \cdot e^{\isym \cdot \theta}}{e^{\isym \cdot \theta}}\ d\theta \\
 		&= 2
 	\end{align}
-	が成り立つのだから，今度もまた$\Ind_{\eta}(a)$はちょうど$\eta$が$a$の周りを回った回数に一致した．
-	同様に$a$の周りを$3$周する路の指数は$3$になり，$4$周すれば指数は$4$になる．
-	
-	これは単純な例であるが，実際に任意の閉路$\gamma$に対して，その$z$周りの指数は
-	$\gamma$が$z$の周りを回転した回数に一致する．そして{\bf 本節の主題は指数と回転数が等しいということである．}
+	が成り立つのだから，今度もまた$\Ind_{\eta}(0)$はちょうど$\eta$が$0$の周りを回った回数に一致した．
+	同様に$0$の周りを$3$周する路の指数は$3$になり，$4$周すれば指数は$4$になる．
 	
 	\begin{screen}
 		\begin{thm}[分数関数に対する微分積分学の基本定理]
