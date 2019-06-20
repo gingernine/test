@@ -2,134 +2,109 @@
 	複素微分，実微分，微分の線型性，Rollの定理，平均値の定理，中間値の定理，
 	位相，$\Re$と$\Im$の連続性，コンパクト性
 	
-	\begin{screen}
-		\begin{thm}[Rolleの定理]\label{Rolle_theorem}
-			$a$と$b$を$a<b$なる実数とし，$f$を$[a,b]$上で定義された実連続関数とし，
-			$f$は$]a,b[$の各要素で微分可能であるとする．また$f'$を$]a,b[$上の$f$の導関数とする．
-			このとき
-			\begin{align}
-				f(a) = f(b)
-			\end{align}
-			ならば
-			\begin{align}
-				a < c < b \wedge f'(c) = 0
-			\end{align}
-			を満たす実数$c$が取れる．
-		\end{thm}
-	\end{screen}
+	いま$\Omega$を$\C$或いは$\R$の開集合とし，$f$を$\Omega$で定義された$\C$値関数とする．
+	$\alpha$を$\Omega$の要素とするとき，$f$が$\alpha$で{\bf 微分可能である}\index{びぶんかのう@微分可能}{\bf (differentiable)}ということを
+	\begin{align}
+		\exists a \in \C\, \forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
+		\forall z \in \Omega\, 
+		\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
+		\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
+	\end{align}
+	で定める．
 	
 	\begin{screen}
-		\begin{thm}[平均値の定理]
-		\label{mean_value_theorem_for_real_valued_differentiable_functions}
-			$a$と$b$を$a<b$なる実数とし，$f$を$[a,b]$上で定義された実連続関数とし，
-			$f$は$]a,b[$の各要素で微分可能であるとする．また$f'$を$]a,b[$上の$f$の導関数とする．
-			このとき
-			\begin{align}
-				a < c < b
-			\end{align}
-			かつ
-			\begin{align}
-				\frac{f(b) - f(a)}{b - a} = f'(c)
-			\end{align}
-			を満たす実数$c$が取れる．
+		\begin{thm}[微分可能なら連続]
+			$\Omega$を$\C$或いは$\R$の開集合とし，$f$を$\Omega$で定義された$\C$値関数とし，$\alpha$を$\Omega$の要素とする．
+			このとき$f$が$\alpha$で微分可能であるならば$f$は$\alpha$で連続である．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$[a,b]$上の写像$g$を
+		$f$が$\alpha$で微分可能であるとする．このとき，
 		\begin{align}
-			x \longmapsto f(x) - f(a) - \frac{f(b) - f(a)}{b - a} \cdot (x - a)
+			\forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
+			\forall z \in \Omega\, 
+			\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
+			\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
 		\end{align}
-		なる関係により定めれば，Rolleの定理より
+		を満たす複素数$a$が取れる．いま$\epsilon$を任意に与えられた正の実数とすれば
 		\begin{align}
-			a < c < b
+			\forall z \in \Omega\, 
+			\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
+			\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
 		\end{align}
-		かつ
+		を満たす正の実数$\delta$が取れるが，このとき
 		\begin{align}
-			g'(c) = 0
+			|z - \alpha| < \min\left\{\frac{\epsilon}{|a| + \epsilon}, \delta\right\}
 		\end{align}
-		を満たす実数$c$が取れる．
+		を満たす$\Omega$の任意の要素$z$に対して
 		\begin{align}
-			g'(c) = f'(c) - \frac{f(b) - f(a)}{b - a}
+			|f(z) - f(\alpha)| < |a \cdot (z-\alpha)| + \epsilon \cdot |z-\alpha|
+			\leq (|a| + \epsilon) \cdot |z-\alpha|
+			\leq \epsilon
 		\end{align}
-		であるから定理の主張が得られる．
+		が成立する．ゆえに$f$は$\alpha$において連続である．
 		\QED
 	\end{sketch}
 	
-	$\alpha$を複素数とするとき，$f$が$\alpha$で微分可能であるということを
-	\begin{align}
-		f \diffble \alpha \defarrow
-		\exists a \in \C\, \forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
-		\forall z \in \dom{f}\, 
-		\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
-		\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
-	\end{align}
-	で定め，$f$が$\Omega$上の{\bf 正則関数}\index{せいそくかんすう@正則関数}{\bf (holomorphic function)}であるということを
-	\begin{align}
-		\hol_\Omega(f) \defarrow f:\Omega \longrightarrow \C 
-		\wedge \forall \alpha \in \Omega\, \left(\, f \diffble \alpha\, \right)
-	\end{align}
-	で定める．また$\Omega$上の正則関数の全体を
-	\begin{align}
-		\Holomorphic{\Omega} \defeq \Set{f}{\hol_\Omega(f)}
-	\end{align}
-	と表す．ここで
-	\begin{align}
-		\operatorname{deriv}_{f,\alpha}(a)
-		\defarrow
-		\forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
-		\forall z \in \dom{f}\, 
-		\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
-		\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
-	\end{align}
-	と略記しておく．
-	
 	\begin{screen}
-		\begin{thm}[微係数の一意性]
-			$f$を$\Holomorphic{\Omega}$の要素とし，$\alpha$を$\Omega$の要素とする．このとき
+		\begin{dfn}[正則関数]
+			$\Omega$を$\C$の開集合とし，$f$を$\Omega$で定義された$\C$値関数とする．
+			$f$が$\Omega$の各要素において微分可能であるとき，$f$を$\Omega$上の
+			{\bf 正則関数}\index{せいそくかんすう@正則関数}{\bf (holomorphic function)}と呼ぶ．また
+			$\Omega$上の正則関数の全体を
 			\begin{align}
-				\forall a,b \in \C\, 
-				\left(\, \operatorname{deriv}_{f,\alpha}(a) \wedge \operatorname{deriv}_{f,\alpha}(b)
-				\Longrightarrow a = b\, \right)
+				\Holomorphic{\Omega}
 			\end{align}
-			が成り立つ．
-		\end{thm}
+			と書く．
+		\end{dfn}
 	\end{screen}
+	
+	$f$が$\alpha$で微分可能であるとき，
+	\begin{align}
+		\exists a \in \C\, \forall \epsilon \in \R_+\, \exists \delta \in \R_+\,
+		\forall z \in \Omega\, 
+		\left(\, 0 < |z - \alpha| < \delta \Longrightarrow 
+		\left| \frac{f(z) - f(\alpha)}{z-\alpha} - a\right| < \epsilon\, \right)
+	\end{align}
+	を満たす複素数$a$のことを$f$の$\alpha$における{\bf 微分係数}\index{びぶんけいすう@微分係数}{\bf (derivative)}と呼ぶ．
+	$(\C,\mathscr{O}_{\C})$はHausdorff空間であるから，微分係数は存在すればただ一つである．
 	
 	\begin{screen}
 		\begin{dfn}[導関数]
-			$f$を$\Holomorphic{\Omega}$の要素とするとき，
+			$\Omega$を$\C$或いは$\R$の開集合とし，$f$を$\Omega$で定義された$\C$値関数とする．
+			$f$が$\Omega$の各要素において微分可能であるとき，
+			$\Omega$の各要素に対して，そこにおける$f$の微分係数を対応させる写像を
+			$f$の{\bf 導関数}\index{どうかんすう@導関数}{\bf (derivative function)}と呼び，多くの場合で
 			\begin{align}
-				f' \defeq \Set{x}{\exists \alpha \in \Omega\, 
-				\exists a \in \C\, \left(\, x=(\alpha,a) \wedge \operatorname{deriv}_{f,\alpha}(a)\, \right)}
+				f'
 			\end{align}
-			で定める写像を$f$の{\bf 導関数}\index{どうかんすう@導関数}{\bf (derivative function)}と呼ぶ．
+			や
+			\begin{align}
+				f^{(1)}
+			\end{align}
+			と表記する．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[連鎖律]
-			$f$を$\Holomorphic{\Omega}$の要素とし，$\Omega'$を
+			$\Omega$と$\Phi$を$\C$或いは$\R$の開集合とし，
+			$f$を$\Omega$上の$\C$値関数とし，$g$を$\Phi$上の$\C$値関数とし，
 			\begin{align}
-				f \ast \Omega \subset \Omega'
+				f \ast \Omega \subset \Phi
 			\end{align}
-			を満たす開集合とするとき，$g$を$H(\Omega')$の要素とすれば
+			であるとする．$\alpha$を$\Omega$の要素とするとき，$f$が$\alpha$において微分可能であって，
+			$g$が$f(\alpha)$において微分可能であるならば，$g \circ f$は$\alpha$において微分可能であって，その微分係数は
 			\begin{align}
-				g \circ f \in \Holomorphic{\Omega}
+				g'(f(\alpha)) \cdot f'(\alpha)
 			\end{align}
-			が成立する．特に
-			\begin{align}
-				h \coloneqq g \circ f
-			\end{align}
-			とおけば
-			\begin{align}
-				\alpha \in \Omega \Longrightarrow h'(\alpha) = g'(f(\alpha)) \cdot f'(\alpha).
-			\end{align}
+			である．ただし$f'(\alpha)$も$g'(f(\alpha))$も導関数の表記を使ってはいるが，これは微分係数を表すため便宜的に用いているだけである．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$\alpha$を$\Omega$の要素とし，$\epsilon$を正数とする．ここで
+		$\epsilon$を任意に与えられた正数とする．ここで
 		\begin{align}
 			\eta^2 + \left(|f'(\alpha)| + |g'(f(\alpha))| \right) \eta = \epsilon
 		\end{align}
@@ -181,16 +156,62 @@
 		が従う．ゆえに
 		\begin{align}
 			0 < |z-\alpha| < \delta
-			\Longrightarrow \left| \frac{h(z) - h(\alpha)}{z-\alpha} - g'(f(\alpha)) \cdot f'(\alpha) \right| < \epsilon
+			\Longrightarrow \left| \frac{g(f(z)) - g(f(\alpha))}{z-\alpha} - g'(f(\alpha)) \cdot f'(\alpha) \right| < \epsilon
 		\end{align}
-		が成り立つ．$\alpha$の任意性から
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[Rolleの定理]\label{Rolle_theorem}
+			$a$と$b$を$a<b$なる実数とし，$f$を$[a,b]$上で定義された実連続関数とし，
+			$f$は$]a,b[$の各要素で微分可能であるとする．また$f'$を$]a,b[$上の$f$の導関数とする．
+			このとき
+			\begin{align}
+				f(a) = f(b)
+			\end{align}
+			ならば
+			\begin{align}
+				a < c < b \wedge f'(c) = 0
+			\end{align}
+			を満たす実数$c$が取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[平均値の定理]
+		\label{mean_value_theorem_for_real_valued_differentiable_functions}
+			$a$と$b$を$a<b$なる実数とし，$f$を$[a,b]$上で定義された実連続関数とし，
+			$f$は$]a,b[$の各要素で微分可能であるとする．また$f'$を$]a,b[$上の$f$の導関数とする．
+			このとき
+			\begin{align}
+				a < c < b
+			\end{align}
+			かつ
+			\begin{align}
+				\frac{f(b) - f(a)}{b - a} = f'(c)
+			\end{align}
+			を満たす実数$c$が取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$[a,b]$上の写像$g$を
 		\begin{align}
-			h \in \Holomorphic{\Omega}
+			x \longmapsto f(x) - f(a) - \frac{f(b) - f(a)}{b - a} \cdot (x - a)
 		\end{align}
-		が従い，また
+		なる関係により定めれば，Rolleの定理より
 		\begin{align}
-			\alpha \in \Omega \Longrightarrow h'(\alpha) = g'(f(\alpha)) \cdot f'(\alpha)
+			a < c < b
 		\end{align}
-		も示された．
+		かつ
+		\begin{align}
+			g'(c) = 0
+		\end{align}
+		を満たす実数$c$が取れる．
+		\begin{align}
+			g'(c) = f'(c) - \frac{f(b) - f(a)}{b - a}
+		\end{align}
+		であるから定理の主張が得られる．
 		\QED
 	\end{sketch}
