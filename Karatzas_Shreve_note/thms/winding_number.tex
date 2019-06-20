@@ -1,5 +1,72 @@
 \subsection{回転数}
 	
+	路$\gamma$が与えられたとき，$\gamma$が$a$の周りを``何周するか''という問題を考える．
+	図を描けば明らかと言ってしまえば
+	
+	\begin{screen}
+		\begin{thm}[路の偏角の連続選択]\label{thm:continuous_choice_of_arguments}
+			$\gamma$を$[0,1]$上の$\C$値連続写像とし，
+			\begin{align}
+				\forall t \in [0,1]\, (\, |\gamma(t)| = 1\, )
+			\end{align}
+			であるとする．このとき$[0,1]$上の$\R$値連続写像$\theta$で
+			\begin{align}
+				\forall t \in [0,1]\, \left(\, \gamma(t) = e^{\isym\cdot\theta(t)}\, \right)
+			\end{align}
+			を満たすものが取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\gamma$は$[0,1]$上で一様連続であるから，自然数$n$で
+		\begin{align}
+			\forall s,t \in [0,1]\, \left(\, |t-s| \leq \frac{1}{n} \Longrightarrow |\gamma(t) - \gamma(s)| < 1\, \right)
+		\end{align}
+		を満たすものが取れる．このとき$n$の各要素$k$で
+		\begin{align}
+			\gamma \ast \left[k/n,(k+1)/n\right] \subset \disc{\gamma(k/n)}{1}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\alpha_{k} \defeq \pvarg{(\gamma(k/n))}
+		\end{align}
+		とおいて
+		\begin{align}
+			\left[k/n,(k+1)/n\right] \ni t \longmapsto \pvarg_{\alpha_{k} + \pi}(\gamma(t))
+		\end{align}
+		なる写像を
+		\begin{align}
+			\theta_{k}
+		\end{align}
+		と定めれば，$\theta_{k}$は$\left[k/n,(k+1)/n\right]$上の$\R$値連続写像であって，
+		$\left[k/n,(k+1)/n\right]$の任意の要素$t$で
+		\begin{align}
+			\gamma(t) = e^{\isym \cdot \theta_{k}(t)}
+		\end{align}
+		を満たす．$[0,1]$上の写像$\theta$を
+		\begin{align}
+			[0,1] \ni t \longmapsto
+			\begin{cases}
+				\theta_{0}(t) & \mbox{if } {\displaystyle 0 \leq t \leq \frac{1}{n}} \\
+				{\displaystyle \theta_{k}(t) + \sum_{j=0}^{k-1} \left\{\theta_{j}((j+1)/n) - \theta_{j+1}((j+1)/n)\right\}}
+				& \mbox{if } 1 \leq k \wedge {\displaystyle \frac{k}{n} < t \leq \frac{k+1}{n}} \\
+			\end{cases}
+		\end{align}
+		により定めれば，$\theta$は$[0,1]$上で連続である．また$n$の各要素$j$で
+		\begin{align}
+			e^{\isym \cdot \left(\theta_{j}((j+1)/n) - \theta_{j+1}((j+1)/n)\right)}
+			= \frac{e^{\isym \cdot \theta_{j}((j+1)/n)}}{e^{\isym \cdot \theta_{j+1}((j+1)/n)}}
+			= \frac{\gamma((j+1)/n)}{\gamma((j+1)/n)}
+			= 1
+		\end{align}
+		が成り立つから，$[0,1]$の任意の要素$t$で
+		\begin{align}
+			\gamma(t) = e^{\isym \cdot \theta(t)}
+		\end{align}
+		が満たされる．
+		\QED
+	\end{sketch}
+	
 	いま$a$を複素数とし，$r$を正の実数として，
 	\begin{align}
 		[0,2 \cdot \pi] \ni \theta \longmapsto a + r \cdot e^{\isym \cdot \theta}
@@ -32,6 +99,15 @@
 	
 	\begin{screen}
 		\begin{dfn}[回転数]
-			
+			$\gamma$を$[\alpha,\beta]$上の閉路として，$a$を
+			$\ran{\gamma}$に属さない複素数とする．このとき$[\alpha,\beta]$の任意の要素$t$で
+			\begin{align}
+				\frac{\gamma(t) - a}{|\gamma(t) - a|} = e^{\isym\cdot\theta(t)}
+			\end{align}
+			を満たす$[\alpha,\beta]$上の$\R$値連続写像$\theta$を取って
+			\begin{align}
+				\frac{\theta(\beta) - \theta(\alpha)}{2\cdot\pi}
+			\end{align}
+			により定める整数を，$\gamma$の$a$周りの{\bf 回転数}\index{かいてんすう@回転数}{\bf (winding number)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
