@@ -98,29 +98,49 @@
 	\begin{screen}
 		\begin{dfn}[絶対連続関数]
 			$\alpha$と$\beta$を$\alpha < \beta$なる実数とし，$f$を$[\alpha,\beta]$上の$\C$値関数とし，
-			$\lambda$を一次元Lebesgue測度とする．$\epsilon$を任意に与えられた正の実数とするとき，正の実数$\delta$が取れて，
-			$1$以上の任意の自然数$n$及び
+			$\lambda$を一次元Lebesgue測度とする．また$\mathscr{I}$を$\R$の開区間の全体として
 			\begin{align}
-				t:2 \cdot n \longrightarrow [\alpha,\beta]
+				\mathscr{I}_{[\alpha,\beta]} \defeq
+				\Set{I \cap [\alpha,\beta]}{I \in \mathscr{I} \wedge I \cap [\alpha,\beta] \neq \emptyset}
 			\end{align}
-			なる写像$t$に対して，
-			\begin{align}
-				\forall k \in 2 \cdot n-1\, \left(\, \alpha \leq t_{k} \leq t_{k+1} \leq \beta\, \right)
-			\end{align}
-			及び
-			\begin{align}
-				\sum_{k=0}^{n-1} (t_{2 \cdot k + 1} - t_{2 \cdot k}) < \delta
-			\end{align}
+			とおく．$\epsilon$を任意に与えられた正数とするとき，正数$\delta$が取れて，
+			$\mathscr{I}_{[\alpha,\beta]}$の任意の有限部分集合$\mathscr{S}$に対し
+			\begin{itemize}
+				\item $\mathscr{S}$のどの二要素も互いに素であって
+				\item かつ$\lambda\left(\bigcup \mathscr{S}\right) < \delta$
+			\end{itemize}
 			が満たされている限り
 			\begin{align}
-				\sum_{k=0}^{n-1} \left|f(t_{2 \cdot k + 1}) - f(t_{2 \cdot k})\right| < \epsilon
+				\sum_{s \in \mathscr{S}} |f(\sup{}{s}) - f(\inf{}{s})| < \epsilon
 			\end{align}
 			が成り立つとする．このとき$f$を$[\alpha,\beta]$上の{\bf 絶対連続関数}
 			\index{ぜったいれんぞくかんすう@絶対連続関数}{\bf (absolutely continuous function)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
-	いま$f$を$[\alpha,\beta]$上の絶対連続関数とする．絶対連続性は定義上は有限和に関する条件であるが，$t$を
+	上の定義は抽象的である分有用であるが，その反面わかりづらいので直感的な説明を付けておく．
+	いま$f$を$[\alpha,\beta]$上の写像とするとき，$f$が絶対連続であるとは，
+	任意に与えられた正数$\epsilon$に対して正数$\delta$が取れて，
+	$1$以上の任意の自然数$n$及び
+	\begin{align}
+		t:2 \cdot n \longrightarrow [\alpha,\beta]
+	\end{align}
+	なる写像$t$に対して
+	\begin{align}
+		\forall k \in 2 \cdot n-1\, \left(\, \alpha \leq t_{k} \leq t_{k+1} \leq \beta\, \right)
+	\end{align}
+	及び
+	\begin{align}
+		\sum_{k=0}^{n-1} (t_{2 \cdot k + 1} - t_{2 \cdot k}) < \delta
+	\end{align}
+	が満たされている限り
+	\begin{align}
+		\sum_{k=0}^{n-1} \left|f(t_{2 \cdot k + 1}) - f(t_{2 \cdot k})\right| < \epsilon
+	\end{align}
+	が成り立つということである．
+	
+	
+	絶対連続性は定義上は有限和に関する条件であるが，$t$を
 	\begin{align}
 		t:\Natural \longrightarrow [\alpha,\beta]
 	\end{align}
@@ -179,23 +199,19 @@
 	\begin{sketch}
 		いま$\mathscr{I}$を$\R$上の開区間の全体とし，
 		\begin{align}
-			\mathscr{I}_{[a,b]} \defeq \Set{I \cap [a,b]}{I \in \mathscr{I}}
+			\mathscr{I}_{[a,b]} \defeq \Set{I \cap [\alpha,\beta]}{I \in \mathscr{I} \wedge I \cap [\alpha,\beta] \neq \emptyset}
 		\end{align}
 		とおく．また$\epsilon$を任意に与えられた正の実数とする．$f$は絶対連続であるから，
-		このとき正の実数$\delta$が取れて，
-		\begin{align}
-			&\emptyset \neq \mathscr{S} \wedge \\
-			&\emptyset \notin \mathscr{S} \wedge \\
-			&\mathscr{S} \subset \mathscr{I}_{[a,b]} \wedge \\
-			&\card{\mathscr{S}} \leq \Natural \wedge \\
-			&\forall i,j \in \mathscr{S}\, (\, i \neq j \Longrightarrow i \cap j = \emptyset\, ) \wedge \\
-			&\lambda\left(\bigcup \mathscr{S}\right) < \delta
-		\end{align}
-		を満たす任意の集合$\mathscr{S}$に対して
+		このとき正の実数$\delta$が取れて，$\mathscr{I}_{[\alpha,\beta]}$の任意の有限部分集合$\mathscr{S}$に対し
+		\begin{itemize}
+			\item $\mathscr{S}$のどの二要素も互いに素であって
+			\item かつ$\lambda\left(\bigcup \mathscr{S}\right) < \delta$
+		\end{itemize}
+		が満たされている限り
 		\begin{align}
 			\sum_{s \in \mathscr{S}} |f(\sup{}{s}) - f(\inf{}{s})| < \epsilon
 		\end{align}
-		が成り立つ．いま$E$を$\mathfrak{M}_{[a,b]}$の要素として
+		が成り立つ．いま$E$を$\mathfrak{M}_{[\alpha,\beta]}$の要素として
 		\begin{align}
 			\lambda(E) = 0
 		\end{align}
@@ -233,26 +249,64 @@
 		\end{align}
 		を満たす$\mathscr{I}$の部分集合$\mathscr{T}$が取れる．
 		\begin{align}
-			\mathscr{S} \defeq \Set{I \cap [a,b]}{I \in \mathscr{T} \wedge I \cap [a,b] \neq \emptyset}
+			\mathscr{S} \defeq \Set{I \cap [\alpha,\beta]}{I \in \mathscr{T} \wedge I \cap [\alpha,\beta] \neq \emptyset}
 		\end{align}
 		とおけば
 		\begin{align}
 			\lambda\left(\bigcup \mathscr{S}\right)
-			= \lambda\left([a,b] \cap V\right) \leq \lambda(V) < \delta
+			= \lambda\left([\alpha,\beta] \cap V\right) \leq \lambda(V) < \delta
 		\end{align}
 		が成り立つ．ところで$f$は連続であるから，$\mathscr{S}$の要素$s$に対して
 		$f \ast s$は連結である．ゆえにこれは$\R$の区間であり，すなわちLebesgue可測集合である．よって
 		\begin{align}
 			f \ast \bigcup \mathscr{S} = \bigcup_{s \in \mathscr{S}} f \ast s \in \mathfrak{M}
 		\end{align}
-		である．$f$は非減少なので
+		が成り立つ．また$f$は非減少関数なので
+		\begin{align}
+			f \ast s \subset [f(\inf{}{s}),f(\sup{}{s})]
+		\end{align}
+		が成り立つ．
+		\begin{align}
+			\card{\mathscr{S}} < \Natural
+		\end{align}
+		であるときは，絶対連続性の定義から直接
 		\begin{align}
 			\lambda\left(f \ast \bigcup \mathscr{S}\right)
 			= \lambda\left(\bigcup_{s \in \mathscr{S}} f \ast s\right)
 			\leq \sum_{s \in \mathscr{S}} \left(f(\sup{}{s}) - f(\inf{}{s})\right)
 			< \epsilon
 		\end{align}
-		が満たされる．以上でこの$E$に対して
+		が成立する．
+		\begin{align}
+			\card{\mathscr{S}} = \Natural
+		\end{align}
+		であるときは
+		\begin{align}
+			\sigma:\Natural \bij \mathscr{S}
+		\end{align}
+		なる写像$\sigma$が取れるが，このとき任意の自然数$n$で
+		\begin{align}
+			\sum_{k=0}^{n} \left(f(\sup{}{\sigma(k)}) - f(\inf{}{\sigma(k)})\right)
+			< \epsilon
+		\end{align}
+		が成り立つから，数列
+		\begin{align}
+			\Natural \ni n \longmapsto 
+			\sum_{k=0}^{n} \left(f(\sup{}{\sigma(k)}) - f(\inf{}{\sigma(k)})\right)
+		\end{align}
+		は収束して
+		\begin{align}
+			\sum_{n=0}^{\infty} \left(f(\sup{}{\sigma(n)}) - f(\inf{}{\sigma(n)})\right)
+			\leq \epsilon
+		\end{align}
+		を満たす．よってこの場合も
+		\begin{align}
+			\lambda\left(f \ast \bigcup \mathscr{S}\right)
+			= \lambda\left(\bigcup_{n \in \Natural} f \ast \sigma(n)\right)
+			\leq \sum_{n=0}^{\infty} \left(f(\sup{}{\sigma(n)}) - f(\inf{}{\sigma(n)})\right)
+			\leq \epsilon
+		\end{align}
+		が成立する．以上でこの$E$に対して
 		\begin{align}
 			\forall \epsilon \in \R_+\, \exists F \in \mathfrak{M}\,
 			\left(\, f \ast E \subset F \wedge \lambda(F) < \epsilon\, \right)
@@ -285,13 +339,13 @@
 		\begin{align}
 			\lambda(f \ast E) = 0
 		\end{align}
-		が従う．つまり，$f$は零集合を零集合に写す．次に$E$を$\mathfrak{M}_{[a,b]}$の一般の要素とする．このとき
+		が従う．つまり，$f$は零集合を零集合に写す．次に$E$を$\mathfrak{M}_{[\alpha,\beta]}$の一般の要素とする．このとき
 		\begin{align}
 			E = F \cup N
 		\end{align}
 		を満たす$\R$の$F_\sigma$集合$F$とLebesgue零集合$N$が取れるが，
 		\begin{align}
-			F \subset [a,b]
+			F \subset [\alpha,\beta]
 		\end{align}
 		なので$F$は$\sigma$-コンパクトであり
 		\begin{align}
@@ -325,7 +379,7 @@
 			\item[第一段]
 				$f$が$\R$値の非減少関数であるとして考察する．
 				\begin{align}
-					[a,b] \ni x \longmapsto x + f(x)
+					[\alpha,\beta] \ni x \longmapsto x + f(x)
 				\end{align}
 				なる写像を$g$とすれば，$g$は単調増大であるから
 				定理\ref{thm:absolutely_continuous_functions_map_measurable_set_to_measurable_set}より
