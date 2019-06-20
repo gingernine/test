@@ -97,29 +97,54 @@
 	
 	\begin{screen}
 		\begin{dfn}[絶対連続関数]
-			$a$と$b$を$a < b$なる実数とし，$f$を$[a,b]$上の$\C$値関数とし，
-			$\mathscr{I}$を$\R$上の開区間の全体とし，
+			$\alpha$と$\beta$を$\alpha < \beta$なる実数とし，$f$を$[\alpha,\beta]$上の$\C$値関数とし，
+			$\lambda$を一次元Lebesgue測度とする．$\epsilon$を任意に与えられた正の実数とするとき，正の実数$\delta$が取れて，
+			$1$以上の任意の自然数$n$及び
 			\begin{align}
-				\mathscr{I}_{[a,b]} \defeq \Set{I \cap [a,b]}{I \in \mathscr{I}}
+				t:2 \cdot n \longrightarrow [\alpha,\beta]
 			\end{align}
-			とおく．また$\lambda$を一次元Lebesgue測度とする．いま
-			$\epsilon$を任意に与えられた正の実数とするとき，正の実数$\delta$が取れて，
+			なる写像$t$に対して，
 			\begin{align}
-				&\emptyset \neq \mathscr{S} \wedge \\
-				&\emptyset \notin \mathscr{S} \wedge \\
-				&\mathscr{S} \subset \mathscr{I}_{[a,b]} \wedge \\
-				&\card{\mathscr{S}} \leq \Natural \wedge \\
-				&\forall i,j \in \mathscr{S}\, (\, i \neq j \Longrightarrow i \cap j = \emptyset\, ) \wedge \\
-				&\lambda\left(\bigcup \mathscr{S}\right) < \delta
+				\forall k \in 2 \cdot n-1\, \left(\, \alpha \leq t_{k} \leq t_{k+1} \leq \beta\, \right)
 			\end{align}
-			を満たす任意の集合$\mathscr{S}$に対して
+			及び
 			\begin{align}
-				\sum_{s \in \mathscr{S}} |f(\sup{}{s}) - f(\inf{}{s})| < \epsilon
+				\sum_{k=0}^{n-1} (t_{2 \cdot k + 1} - t_{2 \cdot k}) < \delta
 			\end{align}
-			が成り立つとする．このとき$f$を$[a,b]$上の{\bf 絶対連続関数}
+			が満たされている限り
+			\begin{align}
+				\sum_{k=0}^{n-1} \left|f(t_{2 \cdot k + 1}) - f(t_{2 \cdot k})\right| < \epsilon
+			\end{align}
+			が成り立つとする．このとき$f$を$[\alpha,\beta]$上の{\bf 絶対連続関数}
 			\index{ぜったいれんぞくかんすう@絶対連続関数}{\bf (absolutely continuous function)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	いま$f$を$[\alpha,\beta]$上の絶対連続関数とする．絶対連続性は定義上は有限和に関する条件であるが，$t$を
+	\begin{align}
+		t:\Natural \longrightarrow [\alpha,\beta]
+	\end{align}
+	なる写像とし，
+	\begin{align}
+		\forall k \in \Natural\, \left(\, \alpha \leq t_{k} \leq t_{k+1} \leq \beta\, \right)
+	\end{align}
+	及び
+	\begin{align}
+		\sum_{k=0}^{\infty} (t_{2 \cdot k + 1} - t_{2 \cdot k}) < \delta
+	\end{align}
+	が満たされているとすると，任意の自然数$n$で
+	\begin{align}
+		\sum_{k=0}^{n} \left|f(t_{2 \cdot k + 1}) - f(t_{2 \cdot k})\right| < \epsilon
+	\end{align}
+	が成立するので，数列
+	\begin{align}
+		\Natural \ni n \longmapsto \sum_{k=0}^{n} \left|f(t_{2 \cdot k + 1}) - f(t_{2 \cdot k})\right|
+	\end{align}
+	は収束して
+	\begin{align}
+		\sum_{k=0}^{\infty} \left|f(t_{2 \cdot k + 1}) - f(t_{2 \cdot k})\right| \leq \epsilon
+	\end{align}
+	が成立する．
 	
 	\begin{screen}
 		\begin{thm}[$AC$は線型空間である]
@@ -134,13 +159,13 @@
 	\begin{screen}
 		\begin{thm}[絶対連続な非減少関数は可測集合を可測集合に写す]
 		\label{thm:absolutely_continuous_functions_map_measurable_set_to_measurable_set}
-			$a$と$b$を$a<b$なる実数とし，$f$を$[a,b]$上の非減少$\R$値絶対連続関数とし，
+			$\alpha$と$\beta$を$\alpha<\beta$なる実数とし，$f$を$[\alpha,\beta]$上の非減少$\R$値絶対連続関数とし，
 			$\lambda$を一次元Lebesgue測度とし，$\mathfrak{M}$をLebesgue可測集合の全体とする．
 			また
 			\begin{align}
-				\mathfrak{M}_{[a,b]} \defeq \Set{E \cap [a,b]}{E \in \mathfrak{M}}
+				\mathfrak{M}_{[\alpha,\beta]} \defeq \Set{E \cap [\alpha,\beta]}{E \in \mathfrak{M}}
 			\end{align}
-			とおく．このとき$\mathfrak{M}_{[a,b]}$の任意の要素$E$に対して
+			とおく．このとき$\mathfrak{M}_{[\alpha,\beta]}$の任意の要素$E$に対して
 			\begin{align}
 				f \ast E \in \mathfrak{M}
 			\end{align}
@@ -240,7 +265,7 @@
 		\begin{align}
 			\prod_{n \in \Natural} \Set{F \in \mathfrak{M}}{f \ast E \subset F \wedge \lambda(F) < \frac{1}{n}}
 		\end{align}
-		の要素$h$が取れる．
+		から要素$h$が取れる．
 		\begin{align}
 			F \defeq \bigcap_{n \in \Natural} h(n)
 		\end{align}
