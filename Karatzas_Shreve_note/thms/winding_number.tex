@@ -113,15 +113,20 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[回転数と指数は一致する]
-			$\alpha$と$\beta$を$\alpha < \beta$なる実数とし，$\gamma$を$[\alpha,\beta]$上の路とし，
-			$a$を複素数とし，
+		\begin{thm}[分数関数に対する微分積分学の基本定理]
+			$\gamma$を$[0,1]$上の路とし，
 			\begin{align}
-				a \notin \ran{\gamma}
+				0 \notin \ran{\gamma}
 			\end{align}
-			であるとする．このとき
+			であるとする．また$\theta$を$[0,1]$の任意の要素$t$で
 			\begin{align}
-				\Ind_{\gamma}(a) = \Wnd_{\gamma}(a).
+				\gamma(t) = |\gamma(t)| \cdot e^{\isym \cdot \theta(t)}
+			\end{align}
+			を満たす$[0,1]$上の$\R$値連続写像とする．このとき
+			\begin{align}
+				\int_{[0,1]} \frac{1}{\gamma}\ d\mu_{\gamma}
+				= \pvlog{|\gamma(1)|} - \pvlog{|\gamma(0)|}
+				+ \isym \cdot \left(\theta(1) - \theta(0)\right).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -129,6 +134,164 @@
 	\begin{sketch}\mbox{}
 		\begin{description}
 			\item[第一段]
+				いま
+				\begin{align}
+					[0,1] \ni t \longmapsto \pvlog{|\gamma(t)|} + \isym \cdot \theta(t)
+				\end{align}
+				なる写像を$\ell$とし，
+				\begin{align}
+					[0,1] \ni t \longmapsto \frac{1}{\gamma(t)}
+				\end{align}
+				なる写像を$f$とし，
+				\begin{align}
+					\C \ni z \longmapsto e^{z} - 1 - z
+				\end{align}
+				なる写像を$\rho$とし，
+				\begin{align}
+					R \defeq \inf{t \in [0,1]}{|\gamma(t)|}
+				\end{align}
+				とおき，
+				\begin{align}
+					L \defeq |\mu_{\gamma}|([0,1])
+				\end{align}
+				とおく．また$\epsilon$を任意に与えられた正の実数とする．このとき自然数$n$で
+				\begin{align}
+					|t - s| \leq \frac{1}{n}
+				\end{align}
+				を満たす$[0,1]$の任意の要素$s$と$t$に対して
+				\begin{align}
+					|f(t) - f(s)| < \frac{\epsilon}{L}
+				\end{align}
+				かつ
+				\begin{align}
+					\left|\rho(\ell(t) - \ell(s))\right| \leq \frac{R \cdot \epsilon}{2 \cdot L} \cdot |\ell(t) - \ell(s)| 
+				\end{align}
+				かつ(第二段)
+				\begin{align}
+					|\ell(t) - \ell(s)| \leq \frac{2}{R} \cdot |\gamma(t) - \gamma(s)|
+				\end{align}
+				を満たす(第三段)ものが取れる．ここで
+				\begin{align}
+					[0,1] \ni t \longmapsto f(0) \cdot \defunc_{\{0\}}(t)
+					+ \sum_{k=0}^{n-1} f(k/n) \cdot \defunc_{(k/n,(k+1)/n]}(t)
+				\end{align}
+				なる写像を$g$とおけば
+				\begin{align}
+					\left|\int_{[0,1]} f\ d\mu_{\gamma} - \int_{[0,1]} g\ d\mu_{\gamma}\right|
+					\leq \int_{[0,1]} |f-g|\ d|\mu_{\gamma}|
+					\leq \frac{\epsilon}{L} \cdot |\mu_{\gamma}|([0,1])
+					= \epsilon
+				\end{align}
+				が成り立つ．他方で
+				\begin{align}
+					\int_{[0,1]} g\ d\mu_{\gamma}
+					&= \sum_{k=0}^{n-1} g(k/n) \cdot \mu_{\gamma}\left((k/n,(k+1)/n]\right) \\
+					&= \sum_{k=0}^{n-1} \frac{\gamma((k+1)/n) - \gamma(k/n)}{\gamma(k/n)} \\
+					&= \sum_{k=0}^{n-1} \frac{e^{\ell((k+1)/n)} - e^{\ell(k/n)}}{e^{\ell(k/n)}} \\
+					&= \sum_{k=0}^{n-1} \left(e^{\ell((k+1)/n) - \ell(k/n)} - 1\right) \\
+					&= \sum_{k=0}^{n-1} \left[\ell((k+1)/n) - \ell(k/n) + \rho\left(\ell((k+1)/n) - \ell(k/n)\right)\right] \\
+					&= \ell(1) - \ell(0) + \sum_{k=0}^{n-1} \rho\left(\ell((k+1)/n) - \ell(k/n)\right)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\left|\int_{[0,1]} g\ d\mu_{\gamma} - [\ell(1) - \ell(0)]\right|
+					&\leq \sum_{k=0}^{n-1} \left|\rho\left(\ell((k+1)/n) - \ell(k/n)\right)\right| \\
+					&\leq \sum_{k=0}^{n-1} \frac{R \cdot \epsilon}{2 \cdot L} \cdot |\ell((k+1)/n) - \ell(k/n)| \\
+					&\leq \sum_{k=0}^{n-1} \frac{R \cdot \epsilon}{2 \cdot L} \cdot \frac{2}{R} \cdot |\gamma((k+1)/n) - \gamma(k/n)| \\
+					&= \frac{\epsilon}{L} \sum_{k=0}^{n-1} |\gamma((k+1)/n) - \gamma(k/n)| \\
+					&\leq \epsilon
+				\end{align}
+				が成立する．ゆえに
+				\begin{align}
+					&\left|\int_{[0,1]} f\ d\mu_{\gamma} - [\ell(1) - \ell(0)]\right| \\
+					&\leq \left|\int_{[0,1]} f\ d\mu_{\gamma} - \int_{[0,1]} g\ d\mu_{\gamma}\right|
+					+ \left|\int_{[0,1]} g\ d\mu_{\gamma} - [\ell(1) - \ell(0)]\right|
+					\leq 2 \cdot \epsilon
+				\end{align}
+				が従い，$\epsilon$の任意性から
+				\begin{align}
+					\int_{[0,1]} f\ d\mu_{\gamma} = \ell(1) - \ell(0)
+					= \pvlog{|\gamma(1)|} - \pvlog{|\gamma(0)|} + \isym \cdot \left(\theta(1) - \theta(0)\right)
+				\end{align}
+				が得られる．
 				
+			\item[第二段]
+				正の実数$\delta$で，
+				\begin{align}
+					|t - s| < \delta
+				\end{align}
+				を満たす$[0,1]$の任意の要素$s$と$t$に対して
+				\begin{align}
+					\left|\rho(\ell(t) - \ell(s))\right| \leq \frac{R \cdot \epsilon}{2 \cdot L} \cdot |\ell(t) - \ell(s)| 
+				\end{align}
+				を満たすものが取れる．実際，
+				\begin{align}
+					\frac{\rho(z)}{z} \longrightarrow 0 \quad (z \longrightarrow 0)
+				\end{align}
+				であるから
+				\begin{align}
+					\forall z \in \C\,
+					\left(\, |z| < \eta \Longrightarrow |\rho(z)| < \frac{R \cdot \epsilon}{2 \cdot L} \cdot |z|\, \right)
+				\end{align}
+				を満たす正の実数$\eta$が取れて，$\ell$の一様連続性から
+				正の実数$\delta$で，
+				\begin{align}
+					|t - s| < \delta
+				\end{align}
+				を満たす$[0,1]$の任意の要素$s$と$t$に対して
+				\begin{align}
+					|\ell(t) - \ell(s)| < \eta
+				\end{align}
+				を満たすものが取れる．
+				
+			\item[第三段]
+				正の実数$\delta$で，
+				\begin{align}
+					|t - s| < \delta
+				\end{align}
+				を満たす$[0,1]$の任意の要素$s$と$t$に対して
+				\begin{align}
+					|\ell(t) - \ell(s)| \leq \frac{2}{R} \cdot |\gamma(t) - \gamma(s)|
+				\end{align}
+				を満たすものが取れる．実際，
+				\begin{align}
+					\forall z \in \C\,
+					\left(\, |z| < \eta \Longrightarrow |\rho(z)| < \frac{|z|}{2}\, \right)
+				\end{align}
+				を満たす正の実数$\eta$が取れて，
+				$\ell$の一様連続性から
+				正の実数$\delta$で，
+				\begin{align}
+					|t - s| < \delta
+				\end{align}
+				を満たす$[0,1]$の任意の要素$s$と$t$に対して
+				\begin{align}
+					|\ell(t) - \ell(s)| < \eta
+				\end{align}
+				を満たすものが取れる．このとき，$s$と$t$を
+				\begin{align}
+					|t - s| < \delta
+				\end{align}
+				を満たす$[0,1]$の要素とすれば
+				\begin{align}
+					|\gamma(t) - \gamma(s)|
+					&= \left| e^{\ell(t)} - e^{\ell(s)} \right| \\
+					&= |\gamma(s)| \cdot \left| e^{\ell(t) - \ell(s)} - 1 \right| \\
+					&= |\gamma(s)| \cdot \left| \ell(t) - \ell(s) + \rho(\ell(t) - \ell(s)) \right|
+				\end{align}
+				が成立する．ここで
+				\begin{align}
+					R \leq |\gamma(s)|
+				\end{align}
+				かつ
+				\begin{align}
+					\frac{|\ell(t) - \ell(s)|}{2} \leq \left| \ell(t) - \ell(s) + \rho(\ell(t) - \ell(s)) \right|
+				\end{align}
+				なので
+				\begin{align}
+					R \cdot \frac{|\ell(t) - \ell(s)|}{2} \leq |\gamma(t) - \gamma(s)|
+				\end{align}
+				が成立する．
+				\QED
 		\end{description}
 	\end{sketch}
