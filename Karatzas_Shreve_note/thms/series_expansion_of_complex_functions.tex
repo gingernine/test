@@ -175,46 +175,110 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		$z$を$0$でない複素数とすると，任意の自然数$n$で
-		\begin{align}
-			\sqrt[n]{|c_{n} \cdot z^{n}|}
-			&= \sqrt[n]{|c_{n}| \cdot |z^{n}|} \\
-			&= \sqrt[n]{|c_{n}| \cdot |z|^{n}} \\
-			&= \sqrt[n]{|c_{n}|} \cdot \sqrt[n]{|z|^{n}} \\
-			&= \sqrt[n]{|c_{n}|} \cdot e^{\frac{1}{n} \cdot \pvlog{|z|^{n}}} \\
-			&= \sqrt[n]{|c_{n}|} \cdot e^{\frac{1}{n} \cdot n \cdot \pvlog{|z|}} \\
-			&= \sqrt[n]{|c_{n}|} \cdot |z|
-		\end{align}
-		が成立する．$z$が$0$ならば
-		\begin{align}
-			\sqrt[n]{|c_{n} \cdot z^{n}|} = 0
-		\end{align}
-		である．よって，
-		\begin{align}
-			|z| < R
-		\end{align}
-		であるとき，
-		\begin{align}
-			\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
-			= |z| \cdot \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
-			< 1
-		\end{align}
-		が成り立つ．ゆえにCauchyの冪根判定法より$\sum_{n=0}^{\infty} c_n \cdot z^n$は絶対収束する．
-		\begin{align}
-			R < |z|
-		\end{align}
-		であるとき，
-		\begin{align}
-			1 < \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
-			= |z| \cdot \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
-		\end{align}
-		が成り立つので，Cauchyの冪根判定法より
-		\begin{align}
-			\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k} \cdot z^{k}
-		\end{align}
-		なる数列は$\C$で収束しない．
-		\QED
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$z$を$0$でない複素数とすると，任意の自然数$n$で
+				\begin{align}
+					\sqrt[n]{|c_{n} \cdot z^{n}|}
+					&= \sqrt[n]{|c_{n}| \cdot |z^{n}|} \\
+					&= \sqrt[n]{|c_{n}| \cdot |z|^{n}} \\
+					&= \sqrt[n]{|c_{n}|} \cdot \sqrt[n]{|z|^{n}} \\
+					&= \sqrt[n]{|c_{n}|} \cdot e^{\frac{1}{n} \cdot \pvlog{|z|^{n}}} \\
+					&= \sqrt[n]{|c_{n}|} \cdot e^{\frac{1}{n} \cdot n \cdot \pvlog{|z|}} \\
+					&= \sqrt[n]{|c_{n}|} \cdot |z|
+				\end{align}
+				が成立する．$z$が$0$ならば
+				\begin{align}
+					\sqrt[n]{|c_{n} \cdot z^{n}|} = 0
+				\end{align}
+				である．またここで
+				\begin{align}
+					r \defeq \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+				\end{align}
+				とおく．
+				
+			\item[第二段]
+				$z$を任意に与えられた複素数とするとき，
+				\begin{align}
+					|z| < R
+				\end{align}
+				ならば
+				\begin{align}
+					\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}} < 1
+					\label{fom:thm_radius_of_convergence_1}
+				\end{align}
+				が成り立つ．実際，
+				\begin{align}
+					r = \infty
+				\end{align}
+				であるときは空虚な真より(\refeq{fom:thm_radius_of_convergence_1})が成立する．
+				\begin{align}
+					0 \leq r < \infty
+				\end{align}
+				であるときは
+				\begin{align}
+					\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+					= |z| \cdot \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k}|}}}
+				\end{align}
+				が成り立つから(\refeq{fom:thm_radius_of_convergence_1})が従う．ゆえに
+				\begin{align}
+					\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+					= 0 < 1
+				\end{align}
+				が成立する．ゆえにいずれの場合もCauchyの冪根判定法より$\sum_{n=0}^{\infty} c_n \cdot z^n$は絶対収束する．
+		
+			\item[第三段]
+				$z$を任意に与えられた複素数とするとき，
+				\begin{align}
+					R < |z|
+				\end{align}
+				ならば
+				\begin{align}
+					1 < \inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+					\label{fom:thm_radius_of_convergence_2}
+				\end{align}
+				が成り立つ．実際，
+				\begin{align}
+					r = \infty
+				\end{align}
+				であるときは，任意に与えられた正の実数$M$及び任意の自然数$n$に対して
+				\begin{align}
+					n < k
+				\end{align}
+				かつ
+				\begin{align}
+					\frac{M}{|z|} < \sqrt[k]{|c_{k}|}
+				\end{align}
+				を満たす自然数$k$が取れる．ゆえに任意の自然数$n$に対して
+				\begin{align}
+					\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}} = \infty
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+					= \infty
+				\end{align}
+				が従う．
+				\begin{align}
+					0 < r < \infty
+				\end{align}
+				であるときは
+				\begin{align}
+					\inf{n \in \Natural}{\sup{\substack{k \in \Natural \\ n < k}}{\sqrt[k]{|c_{k} \cdot z^{k}|}}}
+					= |z| \cdot r
+				\end{align}
+				が成り立つので(\refeq{fom:thm_radius_of_convergence_2})が従う．
+				\begin{align}
+					r = 0
+				\end{align}
+				の場合は空虚な真より(\refeq{fom:thm_radius_of_convergence_2})が満たされる．ゆえにいずれの場合もCauchyの冪根判定法より
+				\begin{align}
+					\Natural \ni n \longmapsto \sum_{k=0}^{n} c_{k} \cdot z^{k}
+				\end{align}
+				なる数列は$\C$で収束しない．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	$z$を複素数とし，$r$を正数とするとき，
