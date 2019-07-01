@@ -39,7 +39,7 @@
 	
 	いま$\alpha$を実数として
 	\begin{align}
-		L_{\alpha} \defeq \Set{t \cdot e^{\isym\cdot\alpha}}{t \in \R \wedge 0 \leq t}
+		L_{\alpha} \defeq \Set{t \cdot e^{\isym\cdot\alpha}}{t \in \R \wedge t \leq 0}
 	\end{align}
 	とおき，$\C \backslash L_{\alpha}$上の写像$\pvarg_{\alpha}$を
 	\begin{align}
@@ -92,7 +92,7 @@
 		\begin{align}
 			\gamma \ast \left[k/n,(k+1)/n\right] \subset \disc{\gamma(k/n)}{1}
 		\end{align}
-		が成り立つので，
+		が成り立つので($D$の定義はP. \pageref{definition_of_disc_on_plane})，
 		\begin{align}
 			\alpha_{k} \defeq \pvarg{(\gamma(k/n))}
 		\end{align}
@@ -243,8 +243,7 @@
 			を満たす$[0,1]$上の$\R$値連続写像とする．このとき
 			\begin{align}
 				\int_{[0,1]} \frac{1}{\gamma}\ d\mu_{\gamma}
-				= \pvlog{|\gamma(1)|} - \pvlog{|\gamma(0)|}
-				+ \isym \cdot \left(\theta(1) - \theta(0)\right).
+				= \pvlog{|\gamma(1)|} - \pvlog{|\gamma(0)|} + \isym \cdot (\theta(1) - \theta(0)).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -303,7 +302,7 @@
 				が成り立つ．他方で
 				\begin{align}
 					\int_{[0,1]} g\ d\mu_{\gamma}
-					&= \sum_{k=0}^{n-1} g(k/n) \cdot \mu_{\gamma}\left((k/n,(k+1)/n]\right) \\
+					&= \sum_{k=0}^{n-1} f(k/n) \cdot \mu_{\gamma}\left((k/n,(k+1)/n]\right) \\
 					&= \sum_{k=0}^{n-1} \frac{\gamma((k+1)/n) - \gamma(k/n)}{\gamma(k/n)} \\
 					&= \sum_{k=0}^{n-1} \frac{e^{\ell((k+1)/n)} - e^{\ell(k/n)}}{e^{\ell(k/n)}} \\
 					&= \sum_{k=0}^{n-1} \left(e^{\ell((k+1)/n) - \ell(k/n)} - 1\right) \\
@@ -407,7 +406,7 @@
 				\end{align}
 				なので
 				\begin{align}
-					R \cdot \frac{|\ell(t) - \ell(s)|}{2} \leq |\gamma(t) - \gamma(s)|
+					\frac{R}{2} \cdot |\ell(t) - \ell(s)| \leq |\gamma(t) - \gamma(s)|
 				\end{align}
 				が成立する．
 				\QED
@@ -493,13 +492,9 @@
 					= \frac{\eta(t)}{|\eta(t)|}
 					= e^{\isym \cdot \xi(\varphi^{-1}(t))}
 				\end{align}
-				が成り立つので，
+				が成り立つ．$\xi \circ \varphi^{-1}$は$[\alpha,\beta]$から$\R$への連続写像であるから
 				\begin{align}
-					\theta \defeq \xi \circ \varphi^{-1}
-				\end{align}
-				により$[\alpha,\beta]$上の$\R$値連続写像$\theta$を定めれば
-				\begin{align}
-					\Wnd_{\gamma}(a) = \frac{\theta(\beta) - \theta(\alpha)}{2 \cdot \pi}
+					\Wnd_{\gamma}(a) = \frac{\xi(\varphi^{-1}(\beta)) - \xi(\varphi^{-1}(\alpha))}{2 \cdot \pi}
 					= \frac{\xi(1) - \xi(0)}{2 \cdot \pi}
 				\end{align}
 				が成立する．以上より
