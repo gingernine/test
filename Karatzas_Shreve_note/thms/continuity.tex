@@ -1,0 +1,156 @@
+\subsection{連続性}
+	\begin{screen}
+		\begin{dfn}[連続・同相・開写像]
+			$f$を位相空間$S$から位相空間$T$への写像とする．
+			\begin{itemize}
+				\item
+					$x \in S$において$f(x)$の任意の任意の近傍の
+					$f$による引き戻しが$x$の近傍となるとき，
+					$f$は{\bf 点$x$で連続}\index{れんぞく@連続}である
+					{\bf (continuous at a point $x$)}という．
+					
+				\item $T$の任意の開集合の$f$による引き戻しが$S$の開集合となるとき，
+					$f$を{\bf 連続写像}\index{れんぞくしゃぞう@連続写像}
+					{\bf (continuous mapping)}と呼ぶ．
+					
+				\item $f$に逆写像$f^{-1}$が存在し，$f,f^{-1}$が共に連続であるとき，
+					$f$を{\bf 同相写像}\index{どうそうしゃぞう@同相写像}{\bf (homeomorphism)}
+					や{\bf 位相同型写像}\index{いそうどうけいしゃぞう@位相同型写像}，
+					或は単に{\bf 同相}や{\bf 位相同型}と呼ぶ．
+					また$S,T$間に同相写像が存在するとき$S$と$T$は
+					{\bf 同相}\index{どうそう@同相}である{\bf (homeomorphic)}，
+					或は{\bf 位相同型}であるという．
+					
+				\item $S$の任意の開集合の$f$による像が$T$の開集合となるとき，
+					$f$を{\bf 開写像}\index{かいしゃぞう@開写像}{\bf (open mapping)}と呼ぶ．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト集合の連続写像による像はコンパクト]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[各点連続$\Longleftrightarrow$連続]
+		\label{thm:continuous_on_every_point_iff_continuous}
+			$f$を位相空間$S$から位相空間$T$への写像とするとき次が成り立つ:
+			\begin{align}
+				\mbox{$f$が連続} \quad \Longleftrightarrow \quad
+				\mbox{$f$が$S$の各点で連続}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$f$が連続であるとき，各点$x \in S$で$f(x)$の任意の近傍$U$に対し
+		$f(x) \in U^{\mathrm{o}}$が満たされるから
+		$f^{-1}(U^{\mathrm{o}})$は$x$を含む開集合となる．
+		$f^{-1}(U^{\mathrm{o}})$は$f^{-1}(U)$に含まれる開集合であるから
+		\begin{align}
+			x \in f^{-1}(U^{\mathrm{o}}) \subset f^{-1}(U)^{\mathrm{o}}
+		\end{align}
+		が成り立ち，従って$f$は$x$で連続である．
+		逆に$f$が各点連続であるとき，
+		$T$の任意の開集合$O$に対し
+		$f^{-1}(O)$は任意の$x \in f^{-1}(O)$の近傍となるから
+		定理\ref{thm:local_base_defines_open_sets}より
+		$f^{-1}(O)$は開集合である．よって$f$は連続である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[部分空間と制限写像の連続性]
+			$S,T$を位相空間，$f$を$S$から$T$への写像とする．
+			また$g:S \longrightarrow f(S)$を
+			$f$の終集合を$f(S)$へ制限した写像とする．このとき次が成り立つ:
+			\begin{align}
+				\mbox{$f:S \longrightarrow T$が連続である} 
+				\quad \Longleftrightarrow \quad
+				\mbox{$g:S \longrightarrow f(S)$が($f(S)$の相対位相に関して)連続である}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$U \coloneqq f(S)$とおけば$T$の任意の開集合$O$に対し
+		\begin{align}
+			g^{-1}(U \cap O) = f^{-1}(U \cap O) = f^{-1}(O)
+		\end{align}
+		が成り立つから，$f$と$g$の連続性は一致する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[位相の生成]
+			$S$を集合，$\mathscr{M}$を$S$の部分集合の族として
+			\begin{align}
+				\mathscr{A} \coloneqq
+				\Set{\bigcap \mathscr{F}}{\mbox{$\mathscr{F}$は$\mathscr{M}$の有限部分集合}}
+			\end{align}
+			とおくとき，$\mathscr{M}$を含む最小の位相は
+			\begin{align}
+				\mathscr{O} \coloneqq
+				\Set{\bigcup \Lambda}{\Lambda \subset \mathscr{A}}
+				\cup \{S\}
+			\end{align}
+			で与えられる．この$\mathscr{O}$を$\mathscr{M}$が生成する$S$の位相と呼ぶ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\mathscr{O}$は定め方より$S$と$\emptyset$を含む．また
+		任意の$O_1 = \bigcup \Lambda_1,\ O_2=\bigcup \Lambda_2 \in \mathscr{O},\ 
+		(\Lambda_1,\Lambda_2 \subset \mathscr{A})$に対し
+		\begin{align}
+			\Lambda \coloneqq
+			\Set{I \cap J}{I \in \Lambda_1,\ J \in \Lambda_2} \subset \mathscr{A}
+		\end{align}
+		となるから
+		\begin{align}
+			O_1 \cap O_2 = \bigcup_{I \in \Lambda_1,\ J \in \Lambda_2} I \cap J
+			= \bigcup \Lambda \in \mathscr{O}
+		\end{align}
+		が成立する．任意に$\emptyset \neq \mathscr{U} \subset \mathscr{O}$を取れば，
+		各$U \in \mathscr{U}$に$U = \bigcup \Lambda_U$を満たす
+		$\Lambda_U \subset \mathscr{A}$が対応し，このとき
+		\begin{align}
+			\bigcup_{U \in \mathscr{U}} \Lambda_U \subset \mathscr{A}
+		\end{align}
+		となるから
+		\begin{align}
+			\bigcup \mathscr{U} = \bigcup \Biggl(\bigcup_{U \in \mathscr{U}} \Lambda_U\Biggr)
+			\in \mathscr{O}
+		\end{align}
+		が従う．$\mathscr{M}$を含む任意の位相は$\mathscr{A}$を含みかつその任意和で閉じるから$\mathscr{O}$を含む．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Alexanderの定理]
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[始位相]
+			$f \in \mathscr{F}$を集合$S$から位相空間$(T_f,\mathscr{O}_f)$への写像とするとき，
+			全ての$f \in \mathscr{F}$を連続にする最弱の位相を$S$の$\mathscr{F}$-始位相
+			(initial topology)と呼ぶ．$\mathscr{F}$-始位相は次が生成する位相である:
+			\begin{align}
+				\bigcup_{f \in \mathscr{F}} \Set{f^{-1}(O)}{O \in \mathscr{O}_f}.
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[Cartesian積の位相]
+			
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[直積の位相]
+			
+		\end{dfn}
+	\end{screen}

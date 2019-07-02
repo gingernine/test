@@ -1,0 +1,236 @@
+\subsection{近傍}
+	\begin{screen}
+		\begin{dfn}[近傍]
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとし，$x$を$S$の要素とする．
+			$u$を$S$の部分集合とするとき，
+			\begin{align}
+				x \in o \subset u
+			\end{align}
+			を満たす$\mathscr{O}$-開集合$o$が取れるならば$u$を$x$の$\mathscr{O}$-{\bf 近傍}
+			\index{きんぼう@近傍}{\bf (neighborhood)}と呼ぶ．
+			$x$の$\mathscr{O}$-近傍の全体を$\mathscr{O}$-{\bf 近傍系}
+			\index{きんぼうけい@近傍系}{\bf (neighborhood system)}と呼ぶが，
+			これを$\mathscr{V}$と書くとき，$\mathscr{V}$の空でない部分集合$\mathscr{U}$で
+			\begin{align}
+				\forall v \in \mathscr{V}\, \exists u \in \mathscr{U}\,
+				(\, u \subset v\, )
+			\end{align}
+			を満たすものを$x$の$\mathscr{O}$-{\bf 基本近傍系}
+			\index{きほんきんぼうけい@基本近傍系}{\bf (fundamental system of neighbourhoods)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	上の定義において，$S$は$x$の$\mathscr{O}$-近傍であるから$\mathscr{V}$は空ではない．
+	また$\mathscr{V}$自体が$\mathscr{O}$-基本近傍系であるから
+	$\mathscr{O}$-基本近傍系は少なくとも一つは取れる．ゆえに，{\bf $S$上の写像で，
+	$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものが取れる(選択公理)．}
+	ちなみに$\mathscr{V}$とは
+	\begin{align}
+		\Set{v}{v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )}
+	\end{align}
+	なる集合であり，$x$の$\mathscr{O}$-基本近傍系の全体は
+	\begin{align}
+		\{\, u \mid \quad &\forall w \in u\, [\, w \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset w\, )\, ] \wedge \\
+		&\forall v\, \left[\, v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )
+		\Longrightarrow \exists w \in u\, (\, v \subset w\, )\, \right]\, \}
+	\end{align}
+	である．また$S$の要素に対してその$\mathscr{O}$-基本近傍系の全体を対応させる写像は
+	\begin{align}
+		\{\, (x,y) \mid \quad x \in S \wedge
+		\forall u\, [\, u \in y \Longleftrightarrow 
+		&\forall w \in u\, [\, w \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset w\, )\, ] \wedge \\
+		&\forall v\, \left[\, v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )
+		\Longrightarrow \exists w \in u\, (\, v \subset w\, )\, \right]\, ]\, \}
+	\end{align}
+	である．
+	
+	\begin{screen}
+		\begin{thm}[基本近傍系による開集合の特徴づけ]
+		\label{thm:local_base_defines_open_sets}
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとし，$u$を$S$上の写像で，
+			$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものとする．
+			このとき
+			\begin{align}
+				\forall o\, \left[\, o \in \mathscr{O} \Longleftrightarrow
+				o \subset S \wedge \forall x \in o\, \exists w \in u_{x}\, (\, w \subset o\, )\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			o \in \mathscr{O}
+		\end{align}
+		が成り立っているとする．この下で$x$を集合として
+		\begin{align}
+			x \in o
+		\end{align}
+		が成り立っているとすれば，$o$は$x$の$\mathscr{O}$-近傍であるから
+		\begin{align}
+			w \subset o
+		\end{align}
+		を満たす$u_{x}$の要素$w$が取れる．ゆえに
+		\begin{align}
+			o \in \mathscr{O} \Longrightarrow
+			\forall x \in o\, \exists w \in u_{x}\, (\, w \subset o\, )
+		\end{align}
+		が得られた．次に
+		\begin{align}
+			\forall x \in o\, \exists w \in u_{x}\, (\, w \subset o\, )
+		\end{align}
+		が成り立っているとする．この下で$x$を集合として
+		\begin{align}
+			x \in o
+		\end{align}
+		が成り立っているとすれば
+		\begin{align}
+			w \subset o
+		\end{align}
+		を満たす$u_{x}$の要素$w$が取れるが，このとき
+		\begin{align}
+			x \in v \subset w
+		\end{align}
+		を満たす$\mathscr{O}$-開集合$v$が取れるので
+		\begin{align}
+			x \in o^{\mathrm{o}}
+		\end{align}
+		が成立する．ただし$o^{\mathrm{o}}$は$o$の$\mathscr{O}$-開核である．ゆえに
+		\begin{align}
+			o = o^{\mathrm{o}}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			o \in \mathscr{O}
+		\end{align}
+		が従う．以上で
+		\begin{align}
+			\forall x \in o\, \exists w \in u_{x}\, (\, w \subset o\, )
+			\Longrightarrow o \in \mathscr{O}
+		\end{align}
+		も得られた．
+		\QED
+	\end{sketch}
+	
+	次に基本近傍系の持つ性質を分析する．$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．また
+	$u$を$S$上の写像で，$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものとする．
+	このとき$u$は以下の性質を持つ:
+	\begin{description}
+		\item[(LB1)] $u_{x}$は空ではなく，また$u_{x}$の任意の要素は$x$を要素に持つ:
+			\begin{align}
+				&\forall x \in S\, (\, u_{x} \neq \emptyset\, ) \wedge\\
+				&\forall x \in S\, \forall w \in u_{x}\, (\, x \in w\, ).
+			\end{align}
+
+		\item[(LB2)] $o$と$w$を$u_{x}$の要素とすれば，$v \subset o \cap w$を満たす
+			$u_{x}$の要素$v$が取れる:
+			\begin{align}
+				\forall x \in S\, 
+				\left[\, \forall o,w \in u_{x}\, \exists w \in u_{x}\,
+				\forall t\, \left(\, t \in v \Longrightarrow t \in o \wedge t \in w\, \right)\, \right].
+			\end{align}
+			
+		\item[(LB3)] $w$を$u_{x}$の要素とすれば，$u_{x}$の要素$v$が取れて
+			$v \subset w$が成り立ち，かつ$v$の任意の要素$y$に対して
+			$o \subset w$を満たす$u(y)$の要素$o$が取れる:
+			\begin{align}
+				\forall x \in S\, \forall w \in u_{x}\, \exists v \in u_{x}\,
+				\left[\, v \subset w \wedge \left(\, \forall y \in v\,
+				\exists o \in u(y)\, (\, o \subset w\, )\, \right)\, \right].
+			\end{align}
+	\end{description}
+	
+	\begin{screen}
+		\begin{thm}[与えられた集合を基本近傍系とする位相の生成]
+		\label{thm:a_local_base_restores_the_topology}
+			$S$を空でない集合とし，$u$を(LB1)(LB2)(LB3)を満たす$S$上の写像とするとき，
+			\begin{align}
+				\mathscr{O} \defeq
+				\Set{o}{o \subset S \wedge \forall x \in o\, \exists w \in u_{x}\, (\, w \subset o\, )}
+			\end{align}
+			で定める$\mathscr{O}$は$S$上の位相構造であって，
+			$S$の各要素$x$に対して$u_{x}$は$x$の$\mathscr{O}$-基本近傍系である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(1)] 任意の$U \in \mathscr{U}(x)$は$x$の近傍であるから
+				$(LB1)$が満たされる．また$U,V \in \mathscr{U}(x)$に対し
+				\begin{align}
+					x \in U^{\mathrm{o}} \cap V^{\mathrm{o}} = (U \cap V)^{\mathrm{o}}
+				\end{align}
+				となるから$U \cap V$は$x$の近傍であり(LB2)も従う．
+				任意に$U \in \mathscr{U}(x)$を取れば，
+				$U^{\mathrm{o}}$は$x$の開近傍であるから
+				或る$V \in \mathscr{U}(x)$で$V \subset U^{\mathrm{o}}$
+				を満たすものが存在する．このとき任意の$y \in V$に対し
+				$U^{\mathrm{o}}$は$y$の開近傍となるから
+				\begin{align}
+					W_y \subset U^{\mathrm{o}} \subset U
+				\end{align}
+				を満たす$W_y \in \mathscr{U}(y)$が取れる．従って(LB3)も得られる．
+			
+			\item[(2)] 
+				$\mathscr{U}(x)$は空ではないから$S \in \mathscr{O}$となる．
+				また$O_1,O_2 \in \mathscr{O}$を取れば，
+				任意の$x \in O_1 \cap O_2$に対し
+				\begin{align}
+					x \in U_1 \subset O_1,
+					\quad x \in U_2 \subset O_2
+				\end{align}
+				を満たす$U_1,U_2 \in \mathscr{U}(x)$が存在し，
+				(LB2)より或る$U_3 \in \mathscr{U}(x)$に対して
+				\begin{align}
+					U_3 \subset U_1 \cap U_2 \subset O_1 \cap O_2
+				\end{align}
+				が成り立つから$O_1 \cap O_2 \in \mathscr{O}$となる．
+				任意に$\mathscr{G} \subset \mathscr{O}$を取れば
+				任意の$x \in \bigcup \mathscr{G}$は或る$G \in \mathscr{G}$の点であるから，
+				\begin{align}
+					U \subset G \subset \bigcup \mathscr{G}
+				\end{align}
+				を満たす$U \in \mathscr{U}(x)$が存在し$\bigcup \mathscr{G} \in \mathscr{O}$が従う．
+				よって$\mathscr{O}$は位相である．
+				ところで，任意の$U \in \mathscr{U}(x)$に対し
+				\begin{align}
+					U^{\mathrm{o}} = 
+					\Set{y \in U}{\mbox{或る$W_y \in \mathscr{U}(y)$が存在して
+					$W_y \subset U$となる}} \eqqcolon \tilde{U}
+					\label{eq:thm_a_local_base_restores_the_topology_0}
+				\end{align}
+				が成立する．実際$\mathscr{O}$の定義より
+				\begin{align}
+					y \in U^{\mathrm{o}} \quad \Longrightarrow \quad
+					\mbox{或る$W_y \in \mathscr{U}(y)$で
+					$W_y \subset U^{\mathrm{o}}$}
+				\end{align}
+				となるから$U^{\mathrm{o}}\subset\tilde{U}$が従い，
+				逆に$y \in \tilde{U}$については，
+				(\refeq{eq:thm_a_local_base_restores_the_topology_0})の$W_y$に対して
+				(LB3)より或る$X_y \in \mathscr{U}(y)$が
+				\begin{align}
+					X_y \subset W_y,\quad 
+					z \in X_y \ \Longrightarrow \
+					\mbox{或る$Y_z \in \mathscr{U}(z)$で$Y_z \subset X_y \subset U$}
+				\end{align}
+				を満たすから$X_y \subset \tilde{U}$が従う．
+				すなわち$\tilde{U}$は開集合であり，$U^{\mathrm{o}}\subset\tilde{U}$
+				と併せて(\refeq{eq:thm_a_local_base_restores_the_topology_0})
+				を得る．(LB3)より
+				\begin{align}
+					V \subset U, \quad y \in V \ \Longrightarrow \
+					\mbox{或る$W_y \in \mathscr{U}(y)$で$W_y \subset U$}
+				\end{align}
+				を満たす$V \in \mathscr{U}(x)$が存在し，(LB1)と併せて
+				\begin{align}
+					x \in V \subset \tilde{U} = U^{\mathrm{o}}
+				\end{align}
+				が成り立つから任意の$U \in \mathscr{U}(x)$は$x$の近傍である．
+				そして$W$を$x$の任意の近傍とすれば，
+				$\mathscr{O}$の定め方より或る$U \in \mathscr{U}(x)$が
+				$U \subset W^{\mathrm{o}}$を満たすから
+				$\mathscr{U}(x)$は$x$の基本近傍系である．
+				\QED
+		\end{description}
+	\end{prf}

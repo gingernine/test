@@ -1,0 +1,144 @@
+\subsection{コンパクト性}
+	\begin{screen}
+		\begin{dfn}[被覆・コンパクト・相対コンパクト・局所コンパクト・$\sigma$-コンパクト]\mbox{}
+			\begin{itemize}
+				\item
+					集合$S$の部分集合族$\mathscr{B}$が
+					$S$の{\bf 被覆}\index{ひふく@被覆}{\bf (cover)}であるとは，
+					\begin{align}
+						S = \bigcup \mathscr{B}
+					\end{align}
+					を満たすことをいう．また可算(有限)個の部分集合から成る被覆を
+					{\bf 可算(有限)被覆}\index{かさんひふく@可算被覆}
+					\index{ゆうげんひふく@有限被覆}と呼ぶ．
+					特に，位相空間において開集合のみから成る被覆を
+					{\bf 開被覆}\index{かいひふく@開被覆}{\bf (open cover)}と呼ぶ．
+				
+				\item 集合$S$の被覆$\mathscr{B}$に対し，その部分集合で
+					$S$の被覆となるものを$\mathscr{B}$の{\bf 部分被覆}
+					\index{ぶぶんひふく@部分被覆}{\bf (subcover)}と呼ぶ．
+					部分被覆が有限(可算)集合であるときは有限(可算)部分被覆と呼ぶ．
+				\item 
+					位相空間において任意の開被覆が有限部分被覆を持つとき，
+					その空間は{\bf コンパクト}\index{こんぱくと@コンパクト}である
+					{\bf (compact)}という．
+					位相空間の部分集合は，その相対位相でコンパクト空間となるとき
+					{\bf コンパクト部分集合}と呼ばれる．
+				
+				\item 位相空間の部分集合で，その閉包がコンパクトであるものを
+					{\bf 相対コンパクト}\index{そうたいこんぱくと@相対コンパクト}な
+					{\bf (relatively compact)}部分集合という．
+				
+				\item 位相空間の任意の点がコンパクトな近傍を持つとき，
+					その空間は{\bf 局所コンパクト}である
+					\index{きょくしょこんぱくと@局所コンパクト}{\bf (locally compact)}という．
+					
+				\item 位相空間においてコンパクト集合から成る可算被覆が存在するとき，
+					その空間は{\bf $\sigma$-コンパクト}
+					\index{しぐまこんぱくと@$\sigma$-コンパクト}であるという．
+			\end{itemize}
+		\end{dfn}
+	\end{screen}
+	
+	集合$S$とその部分集合$A$に対し，$S$の部分集合族$\mathscr{B}$で
+	$A \subset \bigcup \mathscr{B}$を満たすものを
+	$A$の`{\bf $S$における被覆}'と呼ぶ．$\mathscr{B}$の構成要素が$S$の開集合である場合は
+	`{\bf $S$における開被覆}'と呼び，他に`{\bf $S$における部分被覆}'や`{\bf $S$における有限被覆}'といった言い方もする．
+	
+	\begin{screen}
+		\begin{thm}[部分集合のコンパクト性]
+		\label{thm:subset_is_compact_iff_every_original_open_cover_contains_finite_subcover}
+			$A$を位相空間$S$の部分集合とするとき次が成り立つ:
+			\begin{align}
+				\mbox{$A$がコンパクト部分集合} \quad \Longleftrightarrow \quad
+				\mbox{$A$の$S$における任意の開被覆が($S$における)有限部分被覆を含む}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$A$がコンパクト部分集合であるとき，$\mathscr{B}$を$A$の$S$における開被覆とすれば
+		\begin{align}
+			\Set{B \cap A}{B \in \mathscr{B}}
+		\end{align}
+		は部分空間$A$における開被覆となり，有限個の$B_1,B_2,\cdots,B_n \in \mathscr{B}$により
+		\begin{align}
+			A = \bigcup_{i=1}^n (B_i \cap A) \subset \bigcup_{i=1}^n B_i
+		\end{align}
+		となるから$\Longrightarrow$が従う．逆に右辺が満たされているとき，
+		$\mathscr{A}$を$A$の相対開集合から成る$A$の被覆として
+		\begin{align}
+			\mathscr{C} \coloneqq \Set{C \subset S}{\mbox{$C$は$S$の開集合で$C \cap A \in \mathscr{A}$}}
+		\end{align}
+		とおけば，
+		\begin{align}
+			\mathscr{A} = \Set{C \cap A}{C \in \mathscr{C}}
+		\end{align}
+		が満たされる．このとき$\mathscr{C}$は$A$を覆うから有限個の
+		$C_1,C_2,\cdots,C_m \in \mathscr{C}$で$A \subset \bigcup_{j=1}^m C_j$となり，
+		\begin{align}
+			A = \bigcup_{j=1}^m (A \cap C_j)
+		\end{align}
+		かつ$A \cap C_j \in \mathscr{A}$が成り立つから$A$はコンパクトである．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト集合の閉部分集合はコンパクト]
+		\label{thm:closed_subset_of_compact_set_is_compact_on_Hausdorff_space}
+			$S$を位相空間，$K,F$をそれぞれ$S$のコンパクト部分集合，閉集合とするとき，
+			$K \cap F$は$S$のコンパクト部分集合である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$K \cap F$の任意の($S$における)開被覆に$S \backslash F$を加えれば
+		$K$の($S$における)開被覆となるから，そのうち$K$の有限部分被覆を取ることができる．
+		$S \backslash F$を除けば$K \cap F$の有限被覆が残り
+		$K \cap F$のコンパクト性が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[有限交叉性]
+			$S$を集合とし，$\mathscr{S}$を$\power{S}$の部分集合とする．
+			$\mathscr{S}$の任意の空でない有限部分集合$U$の交叉が空でないとき，つまり
+			\begin{align}
+				\forall U\, \left(\, U \subset \mathscr{S} \wedge 
+				\exists n \in \Natural\, (\, U \eqp n\, )
+				\Longrightarrow \bigcap U \neq \emptyset\, \right)
+			\end{align}
+			が成り立つとき，$\mathscr{S}$は{\bf 有限交叉性}\index{ゆうげんこうさせい@有限交叉性}
+			{\bf (finite intersection property)}を持つという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト$\Longleftrightarrow$閉集合族が有限交叉的]
+		\label{thm:compact_iff_closed_sets_family_finitely_intersect}
+			$(S,\mathscr{O}_S)$を位相空間とし，$A$を$S$の部分集合とする．このとき，
+			$A$がコンパクトであることと，
+			$S$の任意の閉集合族$\mathscr{F}$に対して
+			$\Set{F \cap A}{F \in \mathscr{F}}$が有限交叉性を持てば
+			\begin{align}
+				A \cap \bigcap \mathscr{F} \neq \emptyset
+			\end{align}
+			が成り立つことは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:subset_is_compact_iff_every_original_open_cover_contains_finite_subcover}より
+		\begin{align}
+			&\mbox{$A$がコンパクト部分集合である} \\
+			&\Longleftrightarrow \mbox{$A$の$S$における任意の開被覆が($S$における)有限部分被覆を含む} \\
+			&\Longleftrightarrow \mbox{$S$の任意にお閉集合族$\mathscr{F}$に対し，
+			$A \cap \bigcap \mathscr{F} = \emptyset$なら或る有限集合$\mathscr{M} \subset \mathscr{F}$で
+			$A \cap \bigcap \mathscr{M} = \emptyset$} \\
+			&\Longleftrightarrow \mbox{$S$の任意の閉集合族$\mathscr{F}$に対し，
+			$\Set{F \cap A}{F \in \mathscr{F}}$が有限交叉性を持つなら
+			$A \cap \bigcap \mathscr{F} \neq \emptyset$}
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}

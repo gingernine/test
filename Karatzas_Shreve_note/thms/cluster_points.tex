@@ -1,0 +1,98 @@
+\subsection{密集点}
+	\begin{screen}
+		\begin{dfn}[集積点・密集点]
+			位相空間$S$の点$x$と部分集合$A$について，
+			$x$の任意の近傍$U$に対し
+			\begin{align}
+				(U \backslash \{x\}) \cap A \neq \emptyset
+			\end{align}
+			となるとき，$x$は$A$の{\bf 集積点}\index{しゅうせきてん@集積点}
+			{\bf (accumulation point)}であるという．
+			同様に$x$の任意の近傍$U$に対し
+			\begin{align}
+				U \cap A \neq \emptyset
+			\end{align}
+			となるとき，$x$は$A$の{\bf 密集点}\index{みっしゅうてん@密集点}
+			{\bf (cluster point)}であるという．
+		\end{dfn}
+	\end{screen}
+	
+	集積点と密集点の明確な違いは$T_1$空間(後述)において現れる．
+	\begin{screen}
+		\begin{thm}[閉である一点集合は集積点を持たない]
+		\label{thm:closed_singleton_has_no_accumulation_point}
+			位相空間において，閉じている一点集合は集積点を持たない．特に
+			$\{x\}$が閉であるとき，$x$は$\{x\}$の密集点ではあるが集積点ではない．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		一点集合$\{x\}$が閉であるとする．このとき$y \neq x$なら
+		$U \coloneqq \{x\}^c$は$y$の開近傍となり
+		\begin{align}
+			(U \backslash \{y\}) \cap \{x\} = \emptyset
+		\end{align}
+		を満たすから$y$は$\{x\}$の集積点ではない．
+		$x$は$\{x\}$の集積点となりえないから$\{x\}$は集積点を持たない．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[閉集合は密集点集合]
+		\label{thm:belongs_to_closure_iff_clusters}
+			位相空間$S$の点$x$と部分集合$A$について次が成り立つ:
+			\begin{align}
+				x \in \overline{A} \quad \Longleftrightarrow \quad
+				\mbox{$x$は$A$の密集点である}.
+				\label{eq:thm_belongs_to_closure_iff_clusters}
+			\end{align}
+			特に，$A$が閉であることと$A$の密集点全体が$A$に一致することは同値になる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$の或る近傍$U$が$U \cap A = \emptyset$を満たすとき，
+		定理\ref{thm:topology_note_closure_interior}より
+		\begin{align}
+			x \in U^i \subset A^{ci} = A^{ac}
+		\end{align}
+		となり$x \notin \overline{A}$が従う．逆に
+		$x \notin \overline{A}$なら
+		$\overline{A}^c$は$A$と交わらない$x$の開近傍となるから
+		(\refeq{eq:thm_belongs_to_closure_iff_clusters})が出る．
+		また
+		\begin{align}
+			\mbox{$A$が閉} \quad \Longleftrightarrow \quad A = \overline{A}
+			\quad \Longleftrightarrow \quad
+			\mbox{$A$の密集点全体が$A$に一致}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$x \in \overline{A \backslash \{x\}}$$\Longleftrightarrow$$x$が$A$の集積点]
+			位相空間$S$の点$x$と部分集合$A$について次が成り立つ:
+			\begin{align}
+				x \in \overline{A \backslash \{x\}} \quad \Longleftrightarrow \quad
+				\mbox{$x$は$A$の集積点である}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$x$の任意の近傍$U$に対し
+		$U \cap (A \backslash \{x\}) = (U \backslash \{x\}) \cap A$となるから，
+		定理\ref{thm:belongs_to_closure_iff_clusters}と併せて
+		\begin{align}
+			x \in \overline{A \backslash \{x\}} 
+			&\quad \Longleftrightarrow \quad
+			\mbox{$x$の任意の近傍$U$に対し$U \cap (A \backslash \{x\}) \neq \emptyset$} \\
+			&\quad \Longleftrightarrow \quad
+			\mbox{$x$の任意の近傍$U$に対し$(U \backslash \{x\}) \cap A \neq \emptyset$}
+			\quad \Longleftrightarrow \quad
+			\mbox{$x$は$A$の集積点}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
