@@ -1,6 +1,6 @@
 \section{一様空間}
 	位相空間では与えられた二つの要素の近さを測ることが出来るが，
-	近さを相対的に比較することは一般に出来ない．つまり，$x$と$y$の近さと$a$と$b$の近さを比較する基準が一般には用意されていないのである．
+	近さを相対的に比較することは一般には出来ない．つまり，$x$と$y$の近さと$a$と$b$の近さを比較する基準が用意されていないのである．
 	対して，例えば距離空間では距離により，位相線型空間では零元周りの近傍を
 	任意の点に移すことにより，空間全体で共通する近さの尺度が与えられる．
 	距離空間と位相線型空間については後述することにして，
@@ -8,59 +8,58 @@
 	
 	\begin{screen}
 		\begin{dfn}[近縁系]\label{dfn:uniform_structure}
-			$S$を集合とし，$\mathscr{V}$を$S$上の関係の族とする．
-			$\mathscr{V}$が次の(US1)$\sim$(US5)を満たすとき，これを
-			$S$上の{\bf 近縁系}\index{きんえんけい@近縁系}{\bf (system of entourages)}
-			や{\bf 一様構造}\index{いちようこうぞう@一様構造}{\bf (uniform structure)}と呼び，
+			$S$を集合とするとき，次の(US1)$\sim$(US5)を満たす集合$\mathscr{V}$を
+			$S$上の{\bf 近縁系}\index{きんえんけい@近縁系}{\bf (system of entourages)}と呼び，
 			対$(S,\mathscr{V})$を{\bf 一様空間}\index{いちようくうかん@一様空間}
-			{\bf (uniform space)}と呼ぶ:
+			{\bf (uniform space)}と呼ぶ．また$\mathscr{V}$の要素を$(S,\mathscr{V})$-{\bf 近縁}\index{きんえん@近縁}
+			{\bf (entourage)}と呼ぶ．
 			\begin{description}
-				\item[(US1)] $\mathscr{V}$は空でなく，また
+				\item[(US1)] $\mathscr{V}$は$S$上の関係からなる集合であり，空でなく，また
 					$\mathscr{V}$の要素は$S$上の恒等写像を含む:
 					\begin{align}
-						\mathscr{V} \neq \emptyset
-						\wedge \forall V \in \mathscr{V}\,
-						\left(\, \Set{x}{\exists s \in S\, \left(\, x=(s,s)\, \right)} \subset V\, \right).
+						&\mathscr{V} \subset \power{S \times S} \wedge \\
+						&\mathscr{V} \neq \emptyset \wedge \\
+						&\forall v \in \mathscr{V}\, \forall x \in S\, [\,  (x,x) \in v\, ].
 					\end{align}
 					
-				\item[(US2)] $\mathscr{V}$は反転で閉じる:
+				\item[(US2)] $v$を$\mathscr{V}$の要素とすれば，その反転$v^{-1}$も$\mathscr{V}$に属する:
 					\begin{align}
-						\forall V \in \mathscr{V} 
-						\left(\, V^{-1} \in \mathscr{V}\, \right).
+						\forall v \in \mathscr{V}\, \left(\, v^{-1} \in \mathscr{V}\, \right).
 					\end{align}
 					
-				\item[(US3)] $\mathscr{V}$は有限交叉で閉じる:
+				\item[(US3)] $u$と$v$を$\mathscr{V}$の要素とすれば，$u \cap v$もまた$\mathscr{V}$の要素である:
 					\begin{align}
-						\forall U,V \in \mathscr{V}\, \left(\, 
-						U \cap V \in \mathscr{V}\, \right).
+						\forall u,v \in \mathscr{V}\, \exists w \in \mathscr{V}\, 
+						\left[\, \forall t\, (\, t \in w \Longleftrightarrow t \in u \wedge t \in v)\, \right].
 					\end{align}
 					
-				\item[(US4)] $\mathscr{V}$の任意の要素は$\mathscr{V}$の或る要素の合成を含む:
+				\item[(US4)] $v$を$\mathscr{V}$の要素とすると，$\mathscr{V}$の要素$w$で
+					$w \circ w \subset v$を満たすものが取れる:
 					\begin{align}
-						\forall V \in \mathscr{V}\, 
-						\exists W \in \mathscr{V}\,
-						\left(\, W \circ W \subset V\, \right). 
+						\forall v \in \mathscr{V}\, 
+						\exists w \in \mathscr{V}\,
+						\forall t\, \left[\, \exists x,y,z \in S\, (\, t=(x,y) \wedge (x,z) \in w \wedge (z,y) \in w\, )
+						\Longrightarrow t \in v\, \right]. 
 					\end{align}
 					
-				\item[(US5)] $S$上の関係は$\mathscr{V}$の要素を含めばそれ自身も
-					$\mathscr{V}$に属する:
+				\item[(US5)] $\mathscr{V}$の要素を含む$S$上の関係は$\mathscr{V}$に属する．
 					\begin{align}
-						\forall R\,
-						\left( R \subset S \times S \wedge 
-						\exists V \in \mathscr{V}\, \left(\, V \subset R\, \right)
-						\Longrightarrow R \in \mathscr{V}\, \right).
+						\forall u \in \power{S \times S}\,
+						\left[\, \exists v \in \mathscr{V}\, \left(\, v \subset u\, \right)
+						\Longrightarrow u \in \mathscr{V}\, \right].
 					\end{align}
 			\end{description}
-			$\mathscr{V}$の元を{\bf 近縁}\index{きんえん@近縁}{\bf (entourage)}と呼び，
-			近縁$V$が$V = V^{-1}$を満たすとき$V$は{\bf 対称}\index{たいしょう@対称}
-			である{\bf (symmetric)}という．また基本近傍系と同様に
-			$\mathscr{V}$の部分集合$\mathscr{U}$で
-			$\mathscr{V}$の任意の近縁に対しそれに含まれる$\mathscr{U}$の元が取れるとき，
-			$\mathscr{U}$を$\mathscr{V}$の{\bf 基本近縁系}
-			\index{きほんきんえんけい@基本近縁系}
-			{\bf (fundamental system of entourages)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
+	
+	$S$が空であるとき，
+	\begin{align}
+		\mathscr{V} \defeq \{\emptyset\}
+	\end{align}
+	により$(S,\mathscr{V})$は一様空間となる．
+	
+			近縁$V$が$V = V^{-1}$を満たすとき$V$は{\bf 対称}\index{たいしょう@対称}
+			である{\bf (symmetric)}という．
 	(US3)について，$V$に対し$W$を対称なものとして取ることができる．実際
 	$U \in \mathscr{V}$が$U \circ U \subset V$を満たすとき，
 	\begin{align}
@@ -147,92 +146,162 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[近縁系で導入する位相]\label{thm:topology_induced_by_the_uniformity}
-			$\mathscr{V}$を集合$S$の近縁系，$\mathscr{U}$を
-			$\mathscr{V}$の基本近縁系とする．$V_x$を
+		\begin{dfn}[基本近縁系]
+			$(S,\mathscr{V})$を一様空間とするとき，$\mathscr{V}$の空でない部分集合$\mathscr{U}$で
 			\begin{align}
-				V_x \defeq \Set{y \in S}{(x,y) \in V},
-				\quad (V \in \mathscr{V},\ x \in S)
+				\forall v \in \mathscr{V}\, \exists u \in \mathscr{U}\, (\, u \subset v\, )
 			\end{align}
-			で定義するとき，各$x \in S$で
+			を満たすものを$\mathscr{V}$の{\bf 基本近縁系}\index{きほんきんえんけい@基本近縁系}
+			{\bf (fundamental system of entourages)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[近縁系で導入する基本近傍系]\label{thm:fundamental_system_of_neighborhoods_induced_by_the_uniformity}
+			$(S,\mathscr{V})$を一様空間とし，$S$は空でないとする．また$\mathscr{U}$を$\mathscr{V}$の基本近縁系とする．
+			$S$の要素$x$と$(S,\mathscr{V})$-近縁$v$に対して
 			\begin{align}
-				\mathscr{U}(x) \defeq \Set{U_x}{U \in \mathscr{U}}
+				v[x] \defeq \Set{y \in S}{(x,y) \in v}
 			\end{align}
-			とおけば$\{\mathscr{U}(x)\}_{x \in S}$は定理
-			\ref{thm:a_local_base_restores_the_topology}
-			の(LB1)(LB2)(LB3)を満たす．このとき$\{\mathscr{U}(x)\}_{x \in S}$が基本近傍系となる
-			$S$の位相が唯一つ定まるが，別の基本近縁系を用いても同じ位相が定まる．
+			と定義し，$S$上の写像$\mathcal{U}$を
+			\begin{align}
+				S \ni x \longmapsto \Set{u[x]}{u \in \mathscr{U}}
+			\end{align}
+			なる関係で定めれば，$\mathcal{U}$は定理\ref{thm:a_local_base_restores_the_topology}の(LB1)(LB2)(LB3)を満たす．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$\mathscr{U}$は空でないから$\mathscr{U}(x)$も空ではない．
-		そして任意の$U \in \mathscr{U}$は$\Set{(x,x)}{x \in S}$を含むから
-		$x \in U_x$となり(LB1)が満たされる．また任意の$U_x,V_x \in \mathscr{U}(x)$に対し
-		或る$W \in \mathscr{U}$で$W \subset U \cap V$となるから，
-		$W_x \subset U_x \cap V_x$が従い(LB2)も出る．
-		任意の$U_x \in \mathscr{U}(x)$に対し
-		定理\ref{thm:uniform_structure}より
-		\begin{align}
-			W_y \times W_y \subset U,\quad (\forall y \in S)
-		\end{align}
-		を満たす対称な$W \in \mathscr{V}$が存在する．
-		$R \subset W$を満たす$R \in \mathscr{U}$を取れば
-		\begin{align}
-			y \in R_x \quad \Longrightarrow \quad
-			y \in W_x \quad \Longrightarrow \quad
-			(x,y) \in W_x \times W_x \subset U \quad \Longrightarrow \quad
-			y \in U_x
-		\end{align}
-		となるから$R_x \subset U_x$が成り立ち，このとき任意の$y \in R_x$に対し
-		\begin{align}
-			z \in R_y \quad \Longrightarrow \quad
-			(y,z) \in W = W^{-1} \quad \Longrightarrow \quad
-			(x,z) \in W_y \times W_y \subset U \quad \Longrightarrow \quad
-			z \in U_x
-		\end{align}
-		より$R_y \subset U_x$が満たされるから(LB3)も得られる．
-		従って定理\ref{thm:local_base_defines_open_sets}と
-		定理\ref{thm:a_local_base_restores_the_topology}より
-		$\{\mathscr{U}(x)\}_{x \in S}$が基本近傍系となる$S$の位相
-		$\tau_{\mathscr{U}}$が唯一つ定まる．
-		いま，$\tilde{\mathscr{U}}$を$\mathscr{V}$の別の基本近縁系として
-		\begin{align}
-			\tilde{\mathscr{U}}(x) \defeq \Set{\tilde{U}_x}{\tilde{U} \in \tilde{\mathscr{U}}},
-			\quad (\forall x \in S)
-		\end{align}
-		とおけば，$\left\{\tilde{\mathscr{U}}(x)\right\}_{x \in S}$は
-		$(S,\tau_{\mathscr{U}})$における基本近傍系となる．
-		実際，任意の$\tilde{U}_x \in \tilde{\mathscr{U}}(x)$に対し或る$U \in \mathscr{U}$で
-		$U_x \subset \tilde{U}_x$となるから$\tilde{U}_x$は$x$の近傍であり，
-		一方で任意の$V_x \in \mathscr{U}(x)$に対し
-		或る$\tilde{V} \in \tilde{\mathscr{U}}$で
-		$\tilde{V}_x \subset V_x$となるから
-		$\tilde{\mathscr{U}}(x)$は$x$の基本近傍系をなしている．
-		$\left\{\tilde{\mathscr{U}}(x)\right\}_{x \in S}$が基本近傍系となる位相
-		は唯一つであるから$\tau_{\tilde{\mathscr{U}}} = \tau_{\mathscr{U}}$が成り立つ．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\mathcal{U}$が(LB1)を満たすことを示す．
+				$\mathscr{U}$は空でないので，$\mathscr{U}$の要素$u$が取れる．$x$を$S$の要素とすれば
+				\begin{align}
+					u[x] \in \mathcal{U}_{x}
+				\end{align}
+				が成り立つから
+				\begin{align}
+					\mathcal{U}_{x} \neq \emptyset
+				\end{align}
+				である．また$S$の任意の要素$x$と$\mathscr{U}$の任意の要素$u$に対して
+				\begin{align}
+					x \in u[x]
+				\end{align}
+				が成り立つので，$x$は$\mathcal{U}_{x}$の任意の要素に属する．
+				
+			\item[第二段]
+				$\mathcal{U}$が(LB2)を満たすことを示す．
+				$x$を$S$の要素とし，$a$と$b$を$\mathcal{U}_{x}$の要素とすれば，
+				\begin{align}
+					a = u[x]
+				\end{align}
+				なる$\mathscr{U}$の要素$u$と
+				\begin{align}
+					b = v[x]
+				\end{align}
+				なる$\mathscr{U}$の要素$v$が取れる．このとき
+				\begin{align}
+					w \subset u \cap v
+				\end{align}
+				を満たす$\mathscr{U}$の要素$w$が取れて
+				\begin{align}
+					w[x] \subset a \cap b
+				\end{align}
+				が成り立つ．
+				
+			\item[第三段]
+				$\mathcal{U}$が(LB3)を満たすことを示す．
+				$x$を$S$の要素とし，$a$を$\mathcal{U}_{x}$の要素とする．このとき
+				\begin{align}
+					a = u[x]
+				\end{align}
+				を満たす$\mathscr{U}$の要素$u$と
+				\begin{align}
+					w \circ w \subset u
+				\end{align}
+				を満たす$\mathscr{U}$の要素$w$が取れるが，$w[x]$の任意の要素$y$に対して
+				\begin{align}
+					w[y] \subset u[x]
+				\end{align}
+				が成り立つ．実際$z$を$w[y]$の要素とすれば
+				\begin{align}
+					(y,z) \in w
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					(x,y) \in w
+				\end{align}
+				と併せて
+				\begin{align}
+					(x,z) \in u
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
 	\end{prf}
+	
+	上の$\mathcal{U}$について，
+	定理\ref{thm:fundamental_system_of_neighborhoods_induced_by_the_uniformity}と
+	定理\ref{thm:a_local_base_restores_the_topology}より
+	\begin{align}
+		\mathscr{O} \defeq 
+		\Set{o}{o \subset S \wedge \forall x \in o\, \exists u \in \mathcal{U}_{x}\, (\, u \subset o\, )}
+	\end{align}
+	で定める$\mathscr{O}$は$S$上の位相である．
 	
 	\begin{screen}
 		\begin{dfn}[一様位相]
-			$\mathscr{V}$を集合$S$の近縁系，$\mathscr{U}$を
-			$\mathscr{V}$の基本近縁系とする．$U \in \mathscr{U}$と$x \in S$に対し$U_x$を
+			$(S,\mathscr{V})$を一様空間とし，$S$は空でないとする．
+			$S$の要素$x$と$(S,\mathscr{V})$-近縁$v$に対して
 			\begin{align}
-				U_x \defeq \Set{y \in S}{(x,y) \in U}
+				v[x] \defeq \Set{y \in S}{(x,y) \in v}
 			\end{align}
-			で定義するとき，定理\ref{thm:topology_induced_by_the_uniformity}より
+			と定義し，$S$上の写像$\mathcal{V}$を
 			\begin{align}
-				\mathscr{U}(x) \defeq \Set{U_x}{U \in \mathscr{U}}
+				S \ni x \longmapsto \Set{v[x]}{v \in \mathscr{V}}
 			\end{align}
-			を各点$x$の基本近傍系とする位相が定まるが，
-			別の基本近縁系を取っても同じ位相が定まるので
-			これを`近縁系$\mathscr{V}$で導入する
-			$S$の{\bf 一様位相}\index{いちよういそう@一様位相}
-			{\bf (uniform topology)}'と呼ぶ．$S$が元から位相空間であるとき，
-			$\mathscr{V}$で導入する位相と元の位相が一致することを
-			`$\mathscr{V}$と元の位相が{\bf 両立}\index{りょうりつ@両立}する
-			{\bf (compatible)}'という．
+			で定める．このとき
+			\begin{align}
+				\mathscr{O} \defeq 
+				\Set{o}{o \subset S \wedge \forall x \in o\, \exists v \in \mathcal{V}_{x}\, (\, v \subset o\, )}
+			\end{align}
+			で定める$S$上の位相を$(S,\mathscr{V})$-{\bf 一様位相}\index{いちよういそう@一様位相}{\bf (uniform topology)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	上の定義において，$\mathscr{U}$を$\mathscr{V}$の基本近縁系とし，$S$上の写像$\mathcal{U}$を
+	\begin{align}
+		S \ni x \longmapsto \Set{u[x]}{u \in \mathscr{U}}
+	\end{align}
+	で定めると，$S$の各要素$x$に対して$\mathcal{U}_{x}$は$x$の$\mathscr{O}$-基本近傍系をなす．実際
+	\begin{align}
+		\mathcal{U}_{x} \subset \mathcal{V}_{x}
+	\end{align}
+	なので$\mathcal{U}_{x}$の要素は全て$x$の近傍である．また$\mathscr{V}_{x}$は$x$の
+	$\mathscr{O}$-基本近傍系であるから，$a$を$x$の近傍とすれば
+	\begin{align}
+		v[x] \subset a
+	\end{align}
+	を満たす$\mathscr{V}$の要素$v$が取れるが，このとき
+	\begin{align}
+		u \subset v
+	\end{align}
+	を満たす$\mathscr{U}$の要素$u$が取れて
+	\begin{align}
+		u[x] \subset a
+	\end{align}
+	が成立する．以上より
+	\begin{align}
+		\mathscr{O}
+		= \Set{o}{o \subset S \wedge \forall x \in o\, \exists u \in \mathcal{U}_{x}\, (\, u \subset o\, )}
+	\end{align}
+	も成立する．つまり{\bf 基本近縁系が一つ与えられれば，それを用いて一様位相を生成することが出来る}
+	
+	\begin{screen}
+		\begin{dfn}[両立]
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．また$\mathscr{V}$を$S$上の近縁系とする．
+			$(S,\mathscr{V})$-一様位相が$\mathscr{O}$に一致するとき，
+			$\mathscr{V}$と$\mathscr{O}$は{\bf 両立}\index{りょうりつ@両立}する{\bf (compatible)}という．
 		\end{dfn}
 	\end{screen}
 	
@@ -971,7 +1040,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[擬距離空間の一様構造]
+		\begin{thm}[擬距離空間の近縁系]
 		\label{thm:uniform_structure_on_pseudometric_spaces}
 			$(S,d)$を擬距離空間とするとき，
 			\begin{align}
@@ -979,14 +1048,14 @@
 				\Set{U}{\mbox{或る正数$r$が存在して$V(r) \subset U$}},
 				\quad (V(r) = \Set{(x,y) \in S \times S}{d(x,y) < r})
 			\end{align}
-			とおけば$\mathscr{V}$は$S$上の一様構造となり，距離位相と両立する．
+			とおけば$\mathscr{V}$は$S$上の近縁系となり，距離位相と両立する．
 		\end{thm}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[擬距離空間のCauchy列]
 		\label{thm:Cauchy_sequences_on_pseudometric_spaces}
-			$(S,d)$を擬距離空間とし，一様構造$\mathscr{V}$を
+			$(S,d)$を擬距離空間とし，近縁系$\mathscr{V}$を
 			定理\ref{thm:uniform_structure_on_pseudometric_spaces}の要領で定めるとき，
 			$S$の任意の点列$(x_n)_{n \in \N}$に対し，$(x_n)_{n \in \N}$がCauchy列であることと
 			\begin{align}
