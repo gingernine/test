@@ -1,65 +1,159 @@
 \subsection{密集点}
 	\begin{screen}
 		\begin{dfn}[集積点・密集点]
-			位相空間$S$の点$x$と部分集合$A$について，
-			$x$の任意の近傍$U$に対し
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．
+			また$\mathcal{V}$を$S$上の写像で，$S$の要素に対して
+			その$\mathscr{O}$-近傍系を対応させるものとする．
+			$x$を$S$の要素として，$a$を$S$の部分集合とするとき，
 			\begin{align}
-				(U \backslash \{x\}) \cap A \neq \emptyset
+				\forall v \in \mathcal{V}_{x}\, \left[\, (v \backslash \{x\}) \cap a \neq \emptyset\, \right]
 			\end{align}
-			となるとき，$x$は$A$の{\bf 集積点}\index{しゅうせきてん@集積点}
-			{\bf (accumulation point)}であるという．
-			同様に$x$の任意の近傍$U$に対し
+			が成り立つならば$x$は$a$の$\mathscr{O}$-{\bf 集積点}\index{しゅうせきてん@集積点}
+			{\bf (accumulation point)}であるという．同様に，
 			\begin{align}
-				U \cap A \neq \emptyset
+				\forall v \in \mathcal{V}_{x}\, \left[\, v \cap a \neq \emptyset\, \right]
 			\end{align}
-			となるとき，$x$は$A$の{\bf 密集点}\index{みっしゅうてん@密集点}
+			が成り立つならば$x$は$a$の$\mathscr{O}$-{\bf 密集点}\index{みっしゅうてん@密集点}
 			{\bf (cluster point)}であるという．
 		\end{dfn}
 	\end{screen}
 	
 	集積点と密集点の明確な違いは$T_1$空間(後述)において現れる．
+	まず，$x$は$\{x\}$の自明な$\mathscr{O}$-密集点である．
+	実際$v$を$x$の$\mathscr{O}$-近傍とすれば
+	\begin{align}
+		x \in v
+	\end{align}
+	が成り立つので
+	\begin{align}
+		v \cap \{x\} \neq \emptyset
+	\end{align}
+	が従う．しかし$\{x\}$が$\mathscr{O}$-閉集合であるときは
+	$x$は$\{x\}$の$\mathscr{O}$-集積点ではない．さらに言えば，
+	この場合$S$のいかなる要素も$\{x\}$の$\mathscr{O}$-集積点ではない．
+	
 	\begin{screen}
 		\begin{thm}[閉である一点集合は集積点を持たない]
 		\label{thm:closed_singleton_has_no_accumulation_point}
-			位相空間において，閉じている一点集合は集積点を持たない．特に
-			$\{x\}$が閉であるとき，$x$は$\{x\}$の密集点ではあるが集積点ではない．
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとし，$x$を$S$の要素とする．
+			このとき，$\{x\}$が$\mathscr{O}$-閉集合ならば$S$のいかなる要素も$\{x\}$の$\mathscr{O}$-集積点ではない．つまり，$\mathcal{V}$を$S$上の写像で，$S$の要素に対して
+			その$\mathscr{O}$-近傍系を対応させるものとすれば
+			\begin{align}
+				S \backslash \{x\} \in \mathscr{O} \Longrightarrow
+				\forall y \in S\, \exists v \in \mathcal{V}_{y}\, 
+				\left[\, x \notin v \vee x = y\, \right].
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		一点集合$\{x\}$が閉であるとする．このとき$y \neq x$なら
-		$U \coloneqq \{x\}^c$は$y$の開近傍となり
+	$x \notin v \vee x = y$とは$x \in v \backslash \{y\}$の否定である．すなわち
+	\begin{align}
+		(v \backslash \{y\}) \cap \{x\} \neq \emptyset
+	\end{align}
+	の否定である．
+	
+	\begin{sketch}
+		$\{x\}$が$\mathscr{O}$-閉集合であるとし，$y$を$S$の要素とする．
 		\begin{align}
-			(U \backslash \{y\}) \cap \{x\} = \emptyset
+			x = y
 		\end{align}
-		を満たすから$y$は$\{x\}$の集積点ではない．
-		$x$は$\{x\}$の集積点となりえないから$\{x\}$は集積点を持たない．
+		ならば
+		\begin{align}
+			x \notin S \vee x = y
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\exists v \in \mathcal{V}_{y}\, \left[\, x \notin v \vee x = y\, \right]
+		\end{align}
+		が満たされる．
+		\begin{align}
+			x \neq y
+		\end{align}
+		であるとき，
+		\begin{align}
+			v \defeq S \backslash \{x\}
+		\end{align}
+		とおけば$v$は$y$を要素に持つ$\mathscr{O}$-開集合であるから
+		\begin{align}
+			v \in \mathcal{V}_{y}
+		\end{align}
+		が成り立つ．そして
+		\begin{align}
+			x \notin v \vee x = y
+		\end{align}
+		が成り立つので，この場合も
+		\begin{align}
+			\exists v \in \mathcal{V}_{y}\, \left[\, x \notin v \vee x = y\, \right]
+		\end{align}
+		が満たされる．
 		\QED
-	\end{prf}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[閉集合は密集点集合]
 		\label{thm:belongs_to_closure_iff_clusters}
-			位相空間$S$の点$x$と部分集合$A$について次が成り立つ:
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．
+			また$x$を$S$の要素とし，$a$を$S$の部分集合とする．このとき，
+			$x$が$a$の$\mathscr{O}$-閉包に属していることと
+			$x$が$a$の$\mathscr{O}$-密集点であることは同値である．つまり，
 			\begin{align}
-				x \in \overline{A} \quad \Longleftrightarrow \quad
-				\mbox{$x$は$A$の密集点である}.
-				\label{eq:thm_belongs_to_closure_iff_clusters}
+				x \in \overline{a} \Longleftrightarrow
+				\forall v \in \mathcal{V}_{x}\, (\, v \cap a \neq \emptyset\, )
 			\end{align}
-			特に，$A$が閉であることと$A$の密集点全体が$A$に一致することは同値になる．
+			が成り立つ．ただし$\overline{a}$は$a$の$\mathscr{O}$-閉包であり，
+			$\mathcal{V}_{x}$とは$x$の$\mathscr{O}$-近傍系である．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$x$の或る近傍$U$が$U \cap A = \emptyset$を満たすとき，
-		定理\ref{thm:topology_note_closure_interior}より
+	特に，$a$が$\mathscr{O}$-閉集合であることと$a$の$\mathscr{O}$-密集点全体が
+	$a$に一致することは同値である．つまり，$\mathcal{V}$を$S$上の写像で，$S$の要素に対してその
+	$\mathscr{O}$-近傍系を対応させるものとすれば，
+	\begin{align}
+		S \backslash a \in \mathscr{O} \Longleftrightarrow
+		a = \Set{x \in S}{\forall v \in \mathcal{V}_{x}\, (\, v \cap a \neq \emptyset\, )}
+	\end{align}
+	が成り立つ．実際，定理\ref{thm:closed_set_coincides_with_its_closure}より
+	$a$が$\mathscr{O}$-閉集合であることと
+	\begin{align}
+		a = \overline{a}
+	\end{align}
+	が成り立つことは同値であり，
+	
+	\begin{sketch}
+		$x$の$\mathscr{O}$-近傍$v$で
 		\begin{align}
-			x \in U^i \subset A^{ci} = A^{ac}
+			v \cap a = \emptyset
 		\end{align}
-		となり$x \notin \overline{A}$が従う．逆に
-		$x \notin \overline{A}$なら
-		$\overline{A}^c$は$A$と交わらない$x$の開近傍となるから
-		(\refeq{eq:thm_belongs_to_closure_iff_clusters})が出る．
+		を満たすものが取れるとき，
+		\begin{align}
+			x \subset o \wedge o \subset v
+		\end{align}
+		を満たす$\mathscr{O}$-開集合$o$が取れるが，このとき
+		\begin{align}
+			a \subset S \backslash o
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\overline{a} \subset S \backslash o
+		\end{align}
+		が従う．よってこのとき
+		\begin{align}
+			x \notin \overline{a}
+		\end{align}
+		である．逆に$x$が$\overline{a}$に属さないとき，
+		\begin{align}
+			v \defeq S \backslash \overline{a}
+		\end{align}
+		とおけば，$v$は$x$を要素に持つ$\mathscr{O}$-開集合であるから
+		\begin{align}
+			v \in \mathcal{V}_{x}
+		\end{align}
+		が成り立つ．よってこのとき
+		\begin{align}
+			\exists v \in \mathcal{V}_{x}\, (\, v \cap a = \emptyset\, )
+		\end{align}
+		が成立する．
+		\QED
 		また
 		\begin{align}
 			\mbox{$A$が閉} \quad \Longleftrightarrow \quad A = \overline{A}
@@ -68,7 +162,7 @@
 		\end{align}
 		が成立する．
 		\QED
-	\end{prf}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[$x \in \overline{A \backslash \{x\}}$$\Longleftrightarrow$$x$が$A$の集積点]
