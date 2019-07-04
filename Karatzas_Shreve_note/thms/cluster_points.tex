@@ -4,16 +4,17 @@
 			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．
 			また$\mathcal{V}$を$S$上の写像で，$S$の要素に対して
 			その$\mathscr{O}$-近傍系を対応させるものとする．
-			$x$を$S$の要素として，$a$を$S$の部分集合とするとき，
+			$x$を$S$の要素として，$b$を$S$の部分集合とするとき，
 			\begin{align}
-				\forall v \in \mathcal{V}_{x}\, \left[\, (v \backslash \{x\}) \cap a \neq \emptyset\, \right]
+				\forall v \in \mathcal{V}_{x}\, 
+				\left[\, v \cap (b \backslash \{x\}) \neq \emptyset\, \right]
 			\end{align}
-			が成り立つならば$x$は$a$の$\mathscr{O}$-{\bf 集積点}\index{しゅうせきてん@集積点}
+			が成り立つならば$x$は$b$の$\mathscr{O}$-{\bf 集積点}\index{しゅうせきてん@集積点}
 			{\bf (accumulation point)}であるという．同様に，
 			\begin{align}
-				\forall v \in \mathcal{V}_{x}\, \left[\, v \cap a \neq \emptyset\, \right]
+				\forall v \in \mathcal{V}_{x}\, \left[\, v \cap b \neq \emptyset\, \right]
 			\end{align}
-			が成り立つならば$x$は$a$の$\mathscr{O}$-{\bf 密集点}\index{みっしゅうてん@密集点}
+			が成り立つならば$x$は$b$の$\mathscr{O}$-{\bf 密集点}\index{みっしゅうてん@密集点}
 			{\bf (cluster point)}であるという．
 		\end{dfn}
 	\end{screen}
@@ -46,11 +47,19 @@
 		\end{thm}
 	\end{screen}
 	
-	$x \notin v \vee x = y$とは$x \in v \backslash \{y\}$の否定である．すなわち
+	$x,y,v$を集合とするとき，
 	\begin{align}
-		(v \backslash \{y\}) \cap \{x\} \neq \emptyset
+		x \notin v \vee x = y
 	\end{align}
-	の否定である．
+	は
+	\begin{align}
+		\forall t\, \left[\, t = x \wedge t \neq y \Longrightarrow t \notin v\, \right]
+	\end{align}
+	と同値である．すなわち
+	\begin{align}
+		v \cap (\{x\} \backslash \{y\}) = \emptyset
+	\end{align}
+	と同値である．
 	
 	\begin{sketch}
 		$\{x\}$が$\mathscr{O}$-閉集合であるとし，$y$を$S$の要素とする．
@@ -93,36 +102,48 @@
 		\begin{thm}[閉集合は密集点集合]
 		\label{thm:belongs_to_closure_iff_clusters}
 			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．
-			また$x$を$S$の要素とし，$a$を$S$の部分集合とする．このとき，
-			$x$が$a$の$\mathscr{O}$-閉包に属していることと
-			$x$が$a$の$\mathscr{O}$-密集点であることは同値である．つまり，
+			また$x$を$S$の要素とし，$b$を$S$の部分集合とする．このとき，
+			$x$が$b$の$\mathscr{O}$-閉包に属していることと
+			$x$が$b$の$\mathscr{O}$-密集点であることは同値である．つまり，
 			\begin{align}
-				x \in \overline{a} \Longleftrightarrow
-				\forall v \in \mathcal{V}_{x}\, (\, v \cap a \neq \emptyset\, )
+				x \in \overline{b} \Longleftrightarrow
+				\forall v \in \mathcal{V}_{x}\, (\, v \cap b \neq \emptyset\, )
+				\label{thm_belongs_to_closure_iff_clusters}
 			\end{align}
-			が成り立つ．ただし$\overline{a}$は$a$の$\mathscr{O}$-閉包であり，
+			が成り立つ．ただし$\overline{b}$は$b$の$\mathscr{O}$-閉包であり，
 			$\mathcal{V}_{x}$とは$x$の$\mathscr{O}$-近傍系である．
 		\end{thm}
 	\end{screen}
 	
-	特に，$a$が$\mathscr{O}$-閉集合であることと$a$の$\mathscr{O}$-密集点全体が
-	$a$に一致することは同値である．つまり，$\mathcal{V}$を$S$上の写像で，$S$の要素に対してその
+	特に，{\bf $b$が$\mathscr{O}$-閉集合であることと$b$の$\mathscr{O}$-密集点全体が
+	$b$に一致することは同値である．}つまり，$\mathcal{V}$を$S$上の写像で，$S$の要素に対してその
 	$\mathscr{O}$-近傍系を対応させるものとすれば，
 	\begin{align}
-		S \backslash a \in \mathscr{O} \Longleftrightarrow
-		a = \Set{x \in S}{\forall v \in \mathcal{V}_{x}\, (\, v \cap a \neq \emptyset\, )}
+		S \backslash b \in \mathscr{O} \Longleftrightarrow
+		b = \Set{x \in S}{\forall v \in \mathcal{V}_{x}\, (\, v \cap b \neq \emptyset\, )}
 	\end{align}
 	が成り立つ．実際，定理\ref{thm:closed_set_coincides_with_its_closure}より
-	$a$が$\mathscr{O}$-閉集合であることと
+	$b$が$\mathscr{O}$-閉集合であることと
 	\begin{align}
-		a = \overline{a}
+		b = \overline{b}
 	\end{align}
-	が成り立つことは同値であり，
+	が成り立つことは同値であり，(\refeq{thm_belongs_to_closure_iff_clusters})より
+	\begin{align}
+		\forall x\, \left[\, x \in \overline{b} \Longleftrightarrow
+		x \in S \wedge \forall v \in \mathcal{V}_{x}\, (\, v \cap b \neq \emptyset\, )\, \right]
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		S \backslash b \in \mathscr{O} \Longleftrightarrow
+		\forall x\, \left[\, x \in b \Longleftrightarrow
+		x \in S \wedge \forall v \in \mathcal{V}_{x}\, (\, v \cap b \neq \emptyset\, )\, \right]
+	\end{align}
+	が得られる．
 	
 	\begin{sketch}
 		$x$の$\mathscr{O}$-近傍$v$で
 		\begin{align}
-			v \cap a = \emptyset
+			v \cap b = \emptyset
 		\end{align}
 		を満たすものが取れるとき，
 		\begin{align}
@@ -130,19 +151,19 @@
 		\end{align}
 		を満たす$\mathscr{O}$-開集合$o$が取れるが，このとき
 		\begin{align}
-			a \subset S \backslash o
+			b \subset S \backslash o
 		\end{align}
 		が成り立つので
 		\begin{align}
-			\overline{a} \subset S \backslash o
+			\overline{b} \subset S \backslash o
 		\end{align}
 		が従う．よってこのとき
 		\begin{align}
-			x \notin \overline{a}
+			x \notin \overline{b}
 		\end{align}
-		である．逆に$x$が$\overline{a}$に属さないとき，
+		である．逆に$x$が$\overline{b}$に属さないとき，
 		\begin{align}
-			v \defeq S \backslash \overline{a}
+			v \defeq S \backslash \overline{b}
 		\end{align}
 		とおけば，$v$は$x$を要素に持つ$\mathscr{O}$-開集合であるから
 		\begin{align}
@@ -150,43 +171,21 @@
 		\end{align}
 		が成り立つ．よってこのとき
 		\begin{align}
-			\exists v \in \mathcal{V}_{x}\, (\, v \cap a = \emptyset\, )
-		\end{align}
-		が成立する．
-		\QED
-		また
-		\begin{align}
-			\mbox{$A$が閉} \quad \Longleftrightarrow \quad A = \overline{A}
-			\quad \Longleftrightarrow \quad
-			\mbox{$A$の密集点全体が$A$に一致}
+			\exists v \in \mathcal{V}_{x}\, (\, v \cap b = \emptyset\, )
 		\end{align}
 		が成立する．
 		\QED
 	\end{sketch}
 	
+	定理\ref{thm:belongs_to_closure_iff_clusters}をそのまま適用することにより，
+	閉包によって集積点を特徴づけることが出来る．
 	\begin{screen}
-		\begin{thm}[$x \in \overline{A \backslash \{x\}}$$\Longleftrightarrow$$x$が$A$の集積点]
-			位相空間$S$の点$x$と部分集合$A$について次が成り立つ:
+		\begin{thm}[集積点は閉包に捕らえられる]
+			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．
+			$x$を$S$の要素とし，$b$を$S$の部分集合とするとき，
 			\begin{align}
-				x \in \overline{A \backslash \{x\}} \quad \Longleftrightarrow \quad
-				\mbox{$x$は$A$の集積点である}.
+				x \in \overline{b \backslash \{x\}} \Longleftrightarrow
+				\forall v \in \mathcal{V}_{x}\, \left[\, v \cap (b \backslash \{x\}) \neq \emptyset\, \right]
 			\end{align}
 		\end{thm}
 	\end{screen}
-	
-	\begin{prf}
-		$x$の任意の近傍$U$に対し
-		$U \cap (A \backslash \{x\}) = (U \backslash \{x\}) \cap A$となるから，
-		定理\ref{thm:belongs_to_closure_iff_clusters}と併せて
-		\begin{align}
-			x \in \overline{A \backslash \{x\}} 
-			&\quad \Longleftrightarrow \quad
-			\mbox{$x$の任意の近傍$U$に対し$U \cap (A \backslash \{x\}) \neq \emptyset$} \\
-			&\quad \Longleftrightarrow \quad
-			\mbox{$x$の任意の近傍$U$に対し$(U \backslash \{x\}) \cap A \neq \emptyset$}
-			\quad \Longleftrightarrow \quad
-			\mbox{$x$は$A$の集積点}
-		\end{align}
-		が成立する．
-		\QED
-	\end{prf}

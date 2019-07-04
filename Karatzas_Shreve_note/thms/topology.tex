@@ -134,133 +134,171 @@
 	
 	\begin{screen}
 		\begin{dfn}[開核・閉包]
-			$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$(S,\mathscr{O})$の閉集合の全体とし，$A$を$S$の部分集合とする．
-			このとき，$A$に含まれる$(S,\mathscr{O})$の開集合の全体の合併を
-			$A$の$\mathscr{O}$に関する{\bf 開核}\index{かいかく@開核}{\bf (interior)}と呼び，
-			$A$を含む$(S,\mathscr{O})$の閉集合の全体の交叉を
-			$A$の$\mathscr{O}$に関する{\bf 閉包}\index{へいほう@閉包}{\bf (closure)}と呼ぶ．つまり，
+			$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$\mathscr{O}$-閉集合の全体とし，$b$を$S$の部分集合とする．
+			このとき，$b$に含まれる$\mathscr{O}$-開集合の全体の合併を
+			$b$の$\mathscr{O}$-{\bf 開核}\index{かいかく@開核}{\bf (interior)}と呼び，
+			$b$を含む$\mathscr{O}$-閉集合の全体の交叉を
+			$b$の$\mathscr{O}$-{\bf 閉包}\index{へいほう@閉包}{\bf (closure)}と呼ぶ．つまり，
 			\begin{align}
-				\bigcup \Set{u \in \mathscr{O}}{u \subset A}
+				\bigcup \Set{u \in \mathscr{O}}{u \subset b}
 			\end{align}
-			が$A$の$\mathscr{O}$に関する開核であり，
+			が$b$の$\mathscr{O}$-開核であり，
 			\begin{align}
-				\bigcap \Set{a \in \mathscr{A}}{A \subset a}
+				\bigcap \Set{a \in \mathscr{A}}{b \subset a}
 			\end{align}
-			が$A$の$\mathscr{O}$に関する閉包である．
+			が$b$の$\mathscr{O}$-閉包である．
 		\end{dfn}
 	\end{screen}
 	
-	$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$(S,\mathscr{O})$の閉集合の全体とし，$A$を$S$の部分集合とするとき，
-	$A$の$\mathscr{O}$に関する開核を
+	$(S,\mathscr{O})$を位相空間とし，$b$を$S$の部分集合とするとき，
+	$b$の$\mathscr{O}$-開核を
 	\begin{align}
-		A^{\mathrm{o}}
+		b^{\mathrm{o}}
 	\end{align}
 	と書くと
 	\begin{align}
-		A^{\mathrm{o}} \in \mathscr{O} \wedge A^{\mathrm{o}} \subset A \wedge 
-		\forall v \in \mathscr{O}\, \left(\, v \subset A \Longrightarrow v \subset A^{\mathrm{o}}\, \right)
+		b^{\mathrm{o}} \in \mathscr{O} \wedge b^{\mathrm{o}} \subset b \wedge 
+		\forall v \in \mathscr{O}\, \left(\, v \subset b \Longrightarrow v \subset b^{\mathrm{o}}\, \right)
 		\label{fom:interior_is_the_largest_open_subset}
 	\end{align}
 	が成立する．実際，
 	\begin{align}
-		\Set{u \in \mathscr{O}}{u \subset A} \subset \mathscr{O}
+		\Set{u \in \mathscr{O}}{u \subset b} \subset \mathscr{O}
 	\end{align}
 	であるから
 	\begin{align}
-		A^{\mathrm{o}} \in \mathscr{O}
+		b^{\mathrm{o}} \in \mathscr{O}
 	\end{align}
 	となり，また定理\ref{thm:union_of_subsets_is_subclass}より
 	\begin{align}
-		A^{\mathrm{o}} \subset A
+		b^{\mathrm{o}} \subset b
 	\end{align}
 	が成立し，また$v$を
 	\begin{align}
-		v \subset A
+		v \subset b
 	\end{align}
-	なる$(S,\mathscr{O})$の開集合とすれば
+	なる$\mathscr{O}$-開集合とすれば
 	\begin{align}
-		v \in \Set{u \in \mathscr{O}}{u \subset A}
+		v \in \Set{u \in \mathscr{O}}{u \subset b}
 	\end{align}
 	となるので，定理\ref{thm:union_is_bigger_than_any_member}より
 	\begin{align}
-		v \subset A^{\mathrm{o}}
+		v \subset b^{\mathrm{o}}
 	\end{align}
 	が成立する．つまり，
 	\begin{itembox}[l]{開核の特徴づけ}
-		$A$の$\mathscr{O}$に関する開核は，$A$に含まれる$(S,\mathscr{O})$の開集合のうちで包含関係に関して最大のものである．
+		$b$の$\mathscr{O}$-開核は，$b$に含まれる$\mathscr{O}$-開集合のうちで包含関係に関して最大のものである．
 	\end{itembox}
 	
-	また$A$の$\mathscr{O}$に関する閉包を
+	開集合は開核によって特徴づけられる．
+	\begin{screen}
+		\begin{thm}[開集合は自身の開核に一致する集合である]
+		\label{thm:open_set_coincides_with_its_interior}
+			$(S,\mathscr{O})$を位相空間とし，$b$を$S$の部分集合とする．
+			$b$の$\mathscr{O}$-開核を$b^{\mathrm{o}}$と書くとき，
+			\begin{align}
+				b \in \mathscr{O} \Longleftrightarrow b = b^{\mathrm{o}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$b$が$\mathscr{O}$-開集合であれば，(\refeq{fom:interior_is_the_largest_open_subset})より
+		\begin{align}
+			b^{\mathrm{o}} \subset b
+		\end{align}
+		と
+		\begin{align}
+			b \subset b^{\mathrm{o}}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			b = b^{\mathrm{o}}
+		\end{align}
+		が成り立つ．$\mathscr{O}$-開核は$\mathscr{O}$-開集合であるから
+		\begin{align}
+			b = b^{\mathrm{o}} \Longrightarrow b \in \mathscr{O}
+		\end{align}
+		も成り立つ．
+		\QED
+	\end{sketch}
+	
+	同様に$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$\mathscr{O}$-閉集合の全体とし，$b$を$S$の部分集合とするとき，$b$の$\mathscr{O}$-閉包を
 	\begin{align}
-		\overline{A}
+		\overline{b}
 	\end{align}
 	と書くと
 	\begin{align}
-		\overline{A} \in \mathscr{A} \wedge A \subset \overline{A} \wedge
-		\forall v \in \mathscr{A}\, \left(\, A \subset v \Longrightarrow \overline{A} \subset v\, \right)
+		\overline{b} \in \mathscr{A} \wedge b \subset \overline{b} \wedge
+		\forall a \in \mathscr{A}\, \left(\, b \subset a \Longrightarrow \overline{b} \subset a\, \right)
 		\label{fom:closure_is_the_smallest_closed_set}
 	\end{align}
 	が成立する．実際，
 	\begin{align}
-		S \in \Set{a \in \mathscr{A}}{A \subset a}
+		S \in \Set{a \in \mathscr{A}}{b \subset a}
 	\end{align}
 	であるから
 	\begin{align}
-		\Set{a \in \mathscr{A}}{A \subset a} \neq \emptyset
+		\Set{a \in \mathscr{A}}{b \subset a} \neq \emptyset
 	\end{align}
 	であって，かつ
 	\begin{align}
-		\Set{a \in \mathscr{A}}{A \subset a} \subset \mathscr{A}
+		\Set{a \in \mathscr{A}}{b \subset a} \subset \mathscr{A}
 	\end{align}
 	なので，定理\ref{thm:union_of_two_closed_sets_is_closed_and_intersection_of_closed_sets_is_closed}より
 	\begin{align}
-		\overline{A} \in \mathscr{A}
+		\overline{b} \in \mathscr{A}
 	\end{align}
 	が成立する．また定理\ref{thm:if_obtained_by_all_elements_then_obtained_by_intersection}より
 	\begin{align}
-		A \subset \overline{A}
+		b \subset \overline{b}
 	\end{align}
-	が成立する．また$v$を
+	が成立する．また$c$を
 	\begin{align}
-		A \subset v
+		b \subset c
 	\end{align}
-	なる$(S,\mathscr{O})$の閉集合とすれば
+	なる$\mathscr{O}$-閉集合とすれば
 	\begin{align}
-		v \in \Set{a \in \mathscr{A}}{A \subset a}
+		c \in \Set{a \in \mathscr{A}}{b \subset a}
 	\end{align}
 	となるので，定理\ref{thm:intersection_is_obtained_by_all_elements}より
 	\begin{align}
-		\overline{A} \subset v
+		\overline{b} \subset c
 	\end{align}
 	が成立する．つまり，
+	
 	\begin{itembox}[l]{閉包の特徴づけ}
-		$A$の$\mathscr{O}$に関する閉包は，$A$を含む$(S,\mathscr{O})$の閉集合のうちで包含関係に関して最小のものである．
+		$b$の$\mathscr{O}$-閉包は，$b$を含む$\mathscr{O}$-閉集合のうちで包含関係に関して最小のものである．
 	\end{itembox}
 	
 	開集合と同様に，閉集合も閉包によって特徴づけられる．
 	\begin{screen}
 		\begin{thm}[閉集合は自身の閉包に一致する集合である]
 		\label{thm:closed_set_coincides_with_its_closure}
-			$(S,\mathscr{O})$を位相空間とし，$a$を$S$の部分集合とする．
-			$a$の$\mathscr{O}$-閉包を$\overline{a}$と書くとき，
+			$(S,\mathscr{O})$を位相空間とし，$b$を$S$の部分集合とする．
+			$b$の$\mathscr{O}$-閉包を$\overline{b}$と書くとき，
 			\begin{align}
-				S \backslash a \in \mathscr{O} \Longleftrightarrow a = \overline{a}.
+				S \backslash b \in \mathscr{O} \Longleftrightarrow b = \overline{b}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$a$が$\mathscr{O}$-閉集合であれば(\refeq{fom:closure_is_the_smallest_closed_set})より
+		$b$が$\mathscr{O}$-閉集合であれば，(\refeq{fom:closure_is_the_smallest_closed_set})より
 		\begin{align}
-			\overline{a} \subset a
+			b \subset \overline{b}
+		\end{align}
+		と
+		\begin{align}
+			\overline{b} \subset b
 		\end{align}
 		が成り立つので
 		\begin{align}
-			a = \overline{a}
+			b = \overline{b}
 		\end{align}
 		が成り立つ．$\mathscr{O}$-閉包は$\mathscr{O}$-閉集合であるから
 		\begin{align}
-			a = \overline{a} \Longrightarrow S \backslash a \in \mathscr{O}
+			b = \overline{b} \Longrightarrow S \backslash b \in \mathscr{O}
 		\end{align}
 		も成り立つ．
 		\QED
@@ -269,17 +307,17 @@
 	\begin{screen}
 		\begin{thm}[開核の補集合は補集合の閉包]
 		\label{thm:topology_note_closure_interior}
-			$(S,\mathscr{O})$を位相空間とする．また$A$を$S$の部分集合とするとき，
+			$(S,\mathscr{O})$を位相空間とする．また$b$を$S$の部分集合とするとき，
 			\begin{align}
-				A^c \defeq S \backslash A
+				b^c \defeq S \backslash b
 			\end{align}
-			として，$A$の$\mathscr{O}$に関する開核を$A^i$と書き，
-			$A$の$\mathscr{O}$に関する閉包を$A^a$と書き，
-			$(A^i)^c$など連鎖する場合は括弧を省略して$A^{ic}$と書く．このとき次が成り立つ．
+			と書き，$b$の$\mathscr{O}$に関する開核を$b^i$と書き，
+			$b$の$\mathscr{O}$に関する閉包を$b^a$と書き，
+			$(b^i)^c$など連鎖する場合は括弧を省略して$b^{ic}$と書く．このとき次が成り立つ．
 			\begin{itemize}
-				\item $A^{ic} = A^{ca}.$
-				\item $A^{cic} = A^a.$
-				\item $A^{ci} = A^{ac}.$
+				\item $b^{ic} = b^{ca}.$
+				\item $b^{cic} = b^a.$
+				\item $b^{ci} = b^{ac}.$
 			\end{itemize}
 		\end{thm}
 	\end{screen}
@@ -287,43 +325,43 @@
 	\begin{prf}
 		(\refeq{fom:interior_is_the_largest_open_subset})より
 		\begin{align}
-			A^i \subset A
+			b^i \subset b
 		\end{align}
 		が成り立つので
 		\begin{align}
-			A^c \subset A^{ic}
+			b^c \subset b^{ic}
 		\end{align}
-		が従い，$A^{ic}$は$(S,\mathscr{O})$の閉集合であるから(\refeq{fom:closure_is_the_smallest_closed_set})より
+		が従い，$b^{ic}$は$(S,\mathscr{O})$の閉集合であるから(\refeq{fom:closure_is_the_smallest_closed_set})より
 		\begin{align}
-			A^{ca} \subset A^{ic} 
+			b^{ca} \subset b^{ic} 
 		\end{align}
 		が成立する．一方で
 		\begin{align}
-			A^c \subset A^{ca}
+			b^c \subset b^{ca}
 		\end{align}
 		であるから
 		\begin{align}
-			A^{cac} \subset A
+			b^{cac} \subset b
 		\end{align}
-		が成り立ち，$A^{cac}$は$(S,\mathscr{O})$の開集合なので(\refeq{fom:interior_is_the_largest_open_subset})より
+		が成り立ち，$b^{cac}$は$(S,\mathscr{O})$の開集合なので(\refeq{fom:interior_is_the_largest_open_subset})より
 		\begin{align}
-			A^{cac} \subset A^i
+			b^{cac} \subset b^i
 		\end{align}
 		となる．すなわち
 		\begin{align}
-			A^{ic} \subset A^{ca}
+			b^{ic} \subset b^{ca}
 		\end{align}
 		となる．以上で
 		\begin{align}
-			A^{ic} = A^{ca}
+			b^{ic} = b^{ca}
 		\end{align}
-		が得られた．この式で$A$を$A^c$に替えれば
+		が得られた．この式で$b$を$b^c$に替えれば
 		\begin{align}
-			A^{cic} = A^a
+			b^{cic} = b^a
 		\end{align}
 		が得られ，ゆえに
 		\begin{align}
-			A^{ci} = A^{ac}
+			b^{ci} = b^{ac}
 		\end{align}
 		も得られる．
 		\QED
