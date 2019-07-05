@@ -1,45 +1,38 @@
 \subsection{連続性}
+	近傍概念を用いることにより，写像の連続性を精密に定義することができる．
+	
 	\begin{screen}
-		\begin{dfn}[連続・同相・開写像]
-			$f$を位相空間$S$から位相空間$T$への写像とする．
-			\begin{itemize}
-				\item
-					$x \in S$において$f(x)$の任意の任意の近傍の
-					$f$による引き戻しが$x$の近傍となるとき，
-					$f$は{\bf 点$x$で連続}\index{れんぞく@連続}である
-					{\bf (continuous at a point $x$)}という．
-					
-				\item $T$の任意の開集合の$f$による引き戻しが$S$の開集合となるとき，
-					$f$を{\bf 連続写像}\index{れんぞくしゃぞう@連続写像}
-					{\bf (continuous mapping)}と呼ぶ．
-					
-				\item $f$に逆写像$f^{-1}$が存在し，$f,f^{-1}$が共に連続であるとき，
-					$f$を{\bf 同相写像}\index{どうそうしゃぞう@同相写像}{\bf (homeomorphism)}
-					や{\bf 位相同型写像}\index{いそうどうけいしゃぞう@位相同型写像}，
-					或は単に{\bf 同相}や{\bf 位相同型}と呼ぶ．
-					また$S,T$間に同相写像が存在するとき$S$と$T$は
-					{\bf 同相}\index{どうそう@同相}である{\bf (homeomorphic)}，
-					或は{\bf 位相同型}であるという．
-					
-				\item $S$の任意の開集合の$f$による像が$T$の開集合となるとき，
-					$f$を{\bf 開写像}\index{かいしゃぞう@開写像}{\bf (open mapping)}と呼ぶ．
-			\end{itemize}
+		\begin{dfn}[連続]
+			$(S,\mathscr{O}_{T})$と$(T,\mathscr{O}_{T})$を位相空間とし，
+			$S$と$T$は空でないとし，$f$を$S$から$T$への写像とする．$x$を$S$の要素とするとき，
+			$f(x)$の任意の$\mathscr{O}_{T}$-近傍を
+			$f$で引き戻したものが$x$の$\mathscr{O}_{S}$-近傍であるならば，つまり
+			$\mathcal{U}_{x}$を$x$の$\mathscr{O}_{S}$-近傍系とし，
+			$\mathcal{V}_{f(x)}$を$f(x)$の$\mathscr{O}_{T}$-近傍系として
+			\begin{align}
+				\forall v \in \mathcal{V}_{f(x)}\,
+				\left(\, f^{-1} \ast v \in \mathcal{U}_{x}\, \right)
+			\end{align}
+			が成り立つならば，$f$は$x$において$\mathscr{O}_{S}/\mathscr{O}_{T}$-{\bf 連続}
+			\index{れんぞく@連続}である{\bf (continuous)}という．
+			$f$が$S$のすべての要素において$\mathscr{O}_{S}/\mathscr{O}_{T}$-連続であるとき，
+			$f$を$\mathscr{O}_{S}/\mathscr{O}_{T}$-{\bf 連続写像}
+			\index{れんぞくしゃぞう@連続写像}{\bf (continuous mapping)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[コンパクト集合の連続写像による像はコンパクト]
-		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[各点連続$\Longleftrightarrow$連続]
+		\begin{thm}[連続写像は開集合を開集合に引き戻す]
+		\label{thm:continuous_iff_preimage_of_open_sets_are_open}
 		\label{thm:continuous_on_every_point_iff_continuous}
-			$f$を位相空間$S$から位相空間$T$への写像とするとき次が成り立つ:
+			$(S,\mathscr{O}_{T})$と$(T,\mathscr{O}_{T})$を位相空間とし，
+			$S$と$T$は空でないとし，$f$を$S$から$T$への写像とする．
+			このとき，$f$が$\mathscr{O}_{S}/\mathscr{O}_{T}$-連続であることと
 			\begin{align}
-				\mbox{$f$が連続} \quad \Longleftrightarrow \quad
-				\mbox{$f$が$S$の各点で連続}.
+				\forall o \in \mathscr{O}_{T}\, 
+				\left(\, f^{-1} \ast o \in \mathscr{O}_{S}\, \right)
 			\end{align}
+			が成り立つことは同値である．
 		\end{thm}
 	\end{screen}
 	
@@ -59,6 +52,32 @@
 		$f^{-1}(O)$は開集合である．よって$f$は連続である．
 		\QED
 	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[同相]
+			$f$に逆写像$f^{-1}$が存在し，$f,f^{-1}$が共に連続であるとき，
+			$f$を{\bf 同相写像}\index{どうそうしゃぞう@同相写像}{\bf (homeomorphism)}
+			や{\bf 位相同型写像}\index{いそうどうけいしゃぞう@位相同型写像}，
+			或は単に{\bf 同相}や{\bf 位相同型}と呼ぶ．
+			また$S,T$間に同相写像が存在するとき$S$と$T$は
+			{\bf 同相}\index{どうそう@同相}である{\bf (homeomorphic)}，
+			或は{\bf 位相同型}であるという．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[開写像]
+			$S$の任意の開集合の$f$による像が$T$の開集合となるとき，
+			$f$を{\bf 開写像}\index{かいしゃぞう@開写像}{\bf (open mapping)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[コンパクト集合の連続写像による像はコンパクト]
+		\end{thm}
+	\end{screen}
+	
+	
 	
 	\begin{screen}
 		\begin{thm}[部分空間と制限写像の連続性]
