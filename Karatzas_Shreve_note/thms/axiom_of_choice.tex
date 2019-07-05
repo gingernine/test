@@ -16,12 +16,39 @@
 		\begin{axm}[選択公理]
 			いかなる集合の上にも選択関数が存在する:
 			\begin{align}
-				\forall a\, \exists f\ \left(\ 
+				\forall a\, \exists f\ \left[\ 
 				f \fon a \wedge \forall x \in a\ 
-				(\ x \neq \emptyset \Longrightarrow f(x) \in x\ )\ \right). 
+				(\ x \neq \emptyset \Longrightarrow f(x) \in x\ )\ \right]. 
 			\end{align}
 		\end{axm}
 	\end{screen}
+	
+	後述する直積は選択公理と密接な関係がある．いま$a$を集合として
+	\begin{align}
+		b \defeq a \backslash \{\emptyset\}
+	\end{align}
+	とおき，$h$を$b$上の恒等写像とすると
+	\begin{align}
+		\forall x \in b\, (\, h(x) \neq \emptyset\, )
+	\end{align}
+	が成り立つが，ここで
+	\begin{align}
+		\forall x \in b\, (\, g(x) \in h(x)\, )
+	\end{align}
+	を満たす$b$上の写像$g$が取れるとする．この主張は``$h$の直積は空ではない''という意味なのだが，このとき
+	\begin{align}
+		f \defeq 
+		\begin{cases}
+			g \cup \{(\emptyset,\emptyset)\} & \mbox{if } \emptyset \in a \\
+			g & \mbox{if } \emptyset \notin a
+		\end{cases}
+	\end{align}
+	により$a$上の写像$f$を定めれば
+	\begin{align}
+		\forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )
+	\end{align}
+	が成立する．つまり空な値を取らない写像の直積は空でないという主張を真とすれば選択公理が導かれる．
+	本稿では選択公理はその名の通り公理であるから上の内容は無意味であるが，今度は上記の主張の逆が得られることになる．
 	
 	\begin{screen}
 		\begin{dfn}[直積]
@@ -34,89 +61,117 @@
 		\end{dfn}
 	\end{screen}
 	
-	他の文献には
+	$a$を集合とし，$h$を$a$上の写像とし，
 	\begin{align}
-		\prod_{i=1}^{n} A_{i} = A_{1} \times A_{2} \times \cdots \times A_{n}
+		h(x) = \emptyset
 	\end{align}
-	と書かれていたりするが，本稿では
+	なる$a$の要素$x$が取れるとする．このとき
 	\begin{align}
-		\prod
+		\prod_{x \in a} h(x) = \emptyset
 	\end{align}
-	を用いたら直積(つまり写像の集まり)，
+	が成立する．実際，$a$上の任意の写像$f$に対して必ず
 	\begin{align}
-		\times
+		f(x) \notin h(x)
 	\end{align}
-	を用いたらCartesian積(つまり順序対の集まり)として扱う．なので本稿においては
+	が成り立つので
 	\begin{align}
-		\prod_{i=1}^{n} A_{i} \neq A_{1} \times A_{2} \times \cdots \times A_{n}
+		f \notin \prod_{x \in a} h(x)
 	\end{align}
-	である．
+	が成立する．つまり任意の集合$a$及び$a$上の写像$h$に対して
+	\begin{align}
+		\exists x \in a\, (\, h(x) = \emptyset\, )
+		\Longrightarrow \prod_{x \in a} h(x) = \emptyset
+	\end{align}
+	が成り立つわけだが，選択公理から演繹すればこの逆の主張も得られる．
 	
 	\begin{screen}
-		\begin{thm}[選択公理と直積]
+		\begin{thm}[空な値を取らない写像の直積は空でない]
 		\label{thm:direct_product_of_non_empty_sets_is_not_empty}
-			次は同値である．
-			\begin{description}
-				\item[(イ)] $\forall a\, \exists f\, \left(\, f \fon a \wedge \forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )\, \right)$
-				\item[(ロ)] $\forall a\, \forall h\, \left(\, h \fon a \wedge \forall x \in a\, (\, h(x) \neq \emptyset\, )
-				\Longrightarrow \prod_{x \in a} h(x) \neq \emptyset\, \right)$
-			\end{description}
+			\begin{align}
+			\forall a\, \forall h\, \left(\, h \fon a \wedge \forall x \in a\, (\, h(x) \neq \emptyset\, )
+				\Longrightarrow \prod_{x \in a} h(x) \neq \emptyset\, \right).
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[第一段] $a$を集合，$h$を$a$上の恒等写像とする．このとき
-				\begin{align}
-					a' &\coloneqq a \backslash \{\emptyset\}, \\
-					h' &\coloneqq h|_{a'}
-				\end{align}
-				とおけば
-				\begin{align}
-					\exists f\, \left(\, f \fon a' \wedge \forall x \in a'\, (\, f(x) \in h'(x)\, )\, \right)
-				\end{align}
-				が成立する．
-				\begin{align}
-					f'' \coloneqq \varepsilon f\, \left(\, f \fon a' \wedge \forall x \in a'\, (\, f(x) \in h'(x)\, )\, \right)
-				\end{align}
-				とおいて
-				\begin{align}
-					f' &\coloneqq f'' \cup \{(\emptyset,\emptyset)\}, \\
-					f &\coloneqq f'|_a
-				\end{align}
-				とおけば
-				\begin{align}
-					\exists f\, \left(\, f \fon a \wedge \forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )\, \right)
-				\end{align}
-				が成立する．
-			
-			\item[第二段] $a$を集合とし，$h$を
-				\begin{align}
-					h \fon a \wedge \forall x \in a\, (\, h(x) \neq \emptyset\, )
-				\end{align}
-				を満たす集合とする．
-				\begin{align}
-					b \coloneqq h \ast a
-				\end{align}
-				とおけば
-				\begin{align}
-					\exists f\, \left(\, f \fon b \wedge \forall x \in b\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )\, \right)
-				\end{align}
-				が成り立つので，
-				\begin{align}
-					\tilde{f} \coloneqq \varepsilon f\, \left(\, f \fon b \wedge \forall x \in b\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )\, \right)
-				\end{align}
-				とおいて
-				\begin{align}
-					f \coloneqq \Set{x}{\exists s \in a\, \left(\, x=(s,\tilde{f}(h(s)))\, \right)}
-				\end{align}
-				とおけば
-				\begin{align}
-					f \fon a \wedge \forall x \in a\, (\, f(x) \in h(x)\, )
-				\end{align}
-				が成立する．
-		\end{description}
-	\end{prf}
+	\begin{sketch}
+		いま$a$を集合とし，$h$を$a$上の写像とし，
+		\begin{align}
+			\forall x \in a\, (\, h(x) \neq \emptyset\, )
+			\label{fom:thm_direct_product_of_non_empty_sets_is_not_empty_1}
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			b \defeq h \ast a
+		\end{align}
+		とおけば，選択公理より$b$上の写像$g$で
+		\begin{align}
+			\forall t \in b\, \left(\, t \neq \emptyset \Longrightarrow g(t) \in t\, \right)
+			\label{fom:thm_direct_product_of_non_empty_sets_is_not_empty_2}
+		\end{align}
+		を満たすものが取れる．ここで
+		\begin{align}
+			f \defeq \Set{t}{\exists x \in a\, \left[\, t = (x,g(h(x)))\, \right]}
+		\end{align}
+		と定めれば，$f$は$a$上の写像であって
+		\begin{align}
+			\forall x \in a\, \left(\, f(x) \in h(x)\, \right)
+		\end{align}
+		が成立する．実際，任意の集合$s,t,u$に対して
+		\begin{align}
+			(s,t) \in f \wedge (s,u) \in f
+		\end{align}
+		であるとすれば
+		\begin{align}
+			(s,t) = (x,g(h(x)))
+		\end{align}
+		を満たす$a$の要素$x$と
+		\begin{align}
+			(s,u) = (y,g(h(y)))
+		\end{align}
+		を満たす$a$の要素$y$が取れるが，このとき
+		\begin{align}
+			x = s = y
+		\end{align}
+		が成り立つので
+		\begin{align}
+			t = g(h(x)) = g(h(y)) = u
+		\end{align}
+		が従う．また$x$を$a$の要素とすれば
+		\begin{align}
+			(x,g(h(x))) \in f
+		\end{align}
+		が成り立つので
+		\begin{align}
+			x \in \dom{f}
+		\end{align}
+		となり，逆に$x$を$\dom{f}$の要素とすれば
+		\begin{align}
+			(x,y) \in f
+		\end{align}
+		を満たす集合$y$が取れるが，このとき
+		\begin{align}
+			(x,y) = (z,g(h(z)))
+		\end{align}
+		を満たす$a$の要素$z$が取れるので
+		\begin{align}
+			x \in a
+		\end{align}
+		が従う．ゆえに$f$は$a$上の写像である．そして$x$を$a$の要素とすれば
+		\begin{align}
+			f(x) = g(h(x))
+		\end{align}
+		が成り立つが，(\refeq{fom:thm_direct_product_of_non_empty_sets_is_not_empty_1})より
+		\begin{align}
+			h(x) \neq \emptyset
+		\end{align}
+		が満たされるので，(\refeq{fom:thm_direct_product_of_non_empty_sets_is_not_empty_2})より
+		\begin{align}
+			f(x) \in h(x)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
 	
 	\monologue{
 		整列可能定理の証明は幾分技巧的で見通しが悪いですから，はじめに直感的な解説をしておきます．
