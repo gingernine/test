@@ -3,7 +3,7 @@
 	
 	\begin{screen}
 		\begin{dfn}[連続]
-			$(S,\mathscr{O}_{T})$と$(T,\mathscr{O}_{T})$を位相空間とし，
+			$(S,\mathscr{O}_{S})$と$(T,\mathscr{O}_{T})$を位相空間とし，
 			$S$と$T$は空でないとし，$f$を$S$から$T$への写像とする．$x$を$S$の要素とするとき，
 			$f(x)$の任意の$\mathscr{O}_{T}$-近傍を
 			$f$で引き戻したものが$x$の$\mathscr{O}_{S}$-近傍であるならば，つまり
@@ -26,7 +26,7 @@
 		\begin{thm}[連続写像は開集合を開集合に引き戻す]
 		\label{thm:continuous_iff_preimage_of_open_sets_are_open}
 		\label{thm:continuous_on_every_point_iff_continuous}
-			$(S,\mathscr{O}_{T})$と$(T,\mathscr{O}_{T})$を位相空間とし，
+			$(S,\mathscr{O}_{S})$と$(T,\mathscr{O}_{T})$を位相空間とし，
 			$S$と$T$は空でないとし，$f$を$S$から$T$への写像とする．
 			このとき，$f$が$\mathscr{O}_{S}/\mathscr{O}_{T}$-連続であることと
 			\begin{align}
@@ -63,8 +63,15 @@
 		\begin{align}
 			f^{-1} \ast o \subset f^{-1} \ast v
 		\end{align}
-		が成り立ち，かつ$f^{-1} \ast o$は$x$を要素に持つ$\mathscr{O}_{S}$-開集合であるから，
-		$f^{-1} \ast v$は$x$の$\mathscr{O}_{S}$-近傍である．
+		かつ
+		\begin{align}
+			x \in f^{-1} \ast o
+		\end{align}
+		かつ
+		\begin{align}
+			f^{-1} \ast o \in \mathscr{O}_{S}
+		\end{align}
+		が成り立つので$f^{-1} \ast v$は$x$の$\mathscr{O}_{S}$-近傍である．
 		ゆえに$f$は$\mathscr{O}_{S}/\mathscr{O}_{T}$-連続である．
 		\QED
 	\end{prf}
@@ -90,10 +97,58 @@
 	
 	\begin{screen}
 		\begin{thm}[コンパクト集合の連続写像による像はコンパクト]
+			$(S,\mathscr{O}_{S})$と$(T,\mathscr{O}_{T})$を位相空間とし，
+			$S$と$T$は空でないとし，$f$を$S$から$T$への写像とする．
+			$S$が$\mathscr{O}_{S}$-コンパクトであるとき，
+			$f \ast S$は$\mathscr{O}_{T}$-コンパクトである．
 		\end{thm}
 	\end{screen}
 	
-	
+	\begin{sketch}
+		$\mathscr{P}$を$\mathscr{O}_{T}$の部分集合で
+		\begin{align}
+			f \ast S \subset \bigcup \mathscr{P}
+		\end{align}
+		を満たすものとする．このとき
+		\begin{align}
+			\mathscr{Q} \defeq \Set{f^{-1} \ast p}{p \in \mathscr{P}}
+		\end{align}
+		とおけば
+		\begin{align}
+			\mathscr{Q} \subset \mathscr{O}_{S}
+		\end{align}
+		(定理\ref{thm:continuous_iff_preimage_of_open_sets_are_open})と
+		\begin{align}
+			S = \bigcup \mathscr{Q}
+		\end{align}
+		が成り立つので，$\mathscr{Q}$の有限部分集合$\mathscr{R}$で
+		\begin{align}
+			S = \bigcup \mathscr{R}
+		\end{align}
+		を満たすものが取れる．ここで$\mathscr{R}$の任意の要素$r$に対して
+		\begin{align}
+			\exists p \in \mathscr{P}\, \left(\, r = f^{-1} \ast p\, \right)
+		\end{align}
+		が成り立つので，$\mathscr{R}$から$\mathscr{P}$への写像$h$で，
+		$\mathscr{R}$の任意の要素$r$に対して
+		\begin{align}
+			r = f^{-1} \ast h(r)
+		\end{align}
+		を満たすものが取れる．
+		\begin{align}
+			\mathscr{S} \defeq \Set{h(r)}{r \in \mathscr{R}}
+		\end{align}
+		とおけば
+		\begin{align}
+			\card{\mathscr{S}} \leq \card{\mathscr{R}}
+		\end{align}
+		及び
+		\begin{align}
+			f \ast S \subset \bigcup \mathscr{S}
+		\end{align}
+		が成り立つので，$f \ast S$は$\mathscr{O}_{T}$-コンパクトである．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[部分空間と制限写像の連続性]
