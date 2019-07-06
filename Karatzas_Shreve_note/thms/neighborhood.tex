@@ -1,8 +1,7 @@
 \subsection{近傍}
 	\begin{screen}
 		\begin{dfn}[近傍]
-			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとし，$x$を$S$の要素とする．
-			$u$を$S$の部分集合とするとき，
+			$(S,\mathscr{O})$を位相空間とする．$x$を$S$の要素とし，$u$を$S$の部分集合とするとき，
 			\begin{align}
 				x \in o \subset u
 			\end{align}
@@ -20,15 +19,12 @@
 		\end{dfn}
 	\end{screen}
 	
-	上の定義において，$S$は$x$の$\mathscr{O}$-近傍であるから$\mathcal{V}$は空ではない．
-	また$\mathcal{V}$自体が$\mathscr{O}$-基本近傍系であるから
-	$\mathscr{O}$-基本近傍系は少なくとも一つは取れる．ゆえに，{\bf $S$上の写像で，
-	$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものが取れる(選択公理)．}
-	ちなみに$\mathcal{V}$とは
+	上の定義は暗黙の裡に$S$が空でないことを仮定しているが，$S$が空であるときに近傍をどう解釈するかは後述する．
+	上の定義においては$S$は$x$の$\mathscr{O}$-近傍であるから$\mathcal{V}$は空ではない．ちなみに$\mathcal{V}$とは
 	\begin{align}
 		\Set{v}{v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )}
 	\end{align}
-	なる集合であり，$x$の$\mathscr{O}$-基本近傍系の全体は
+	なる集合であり，また$x$の$\mathscr{O}$-基本近傍系の全体は
 	\begin{align}
 		\left\{\, \mathcal{U} \mid \quad \right.
 		&\mathcal{U} \neq \emptyset \wedge \\
@@ -36,21 +32,57 @@
 		&\forall v\, \left.\left[\, v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )
 		\Longrightarrow \exists u \in \mathcal{U}\, (\, u \subset v\, )\, \right]\, \right\}
 	\end{align}
-	である．また$S$の要素に対してその$\mathscr{O}$-基本近傍系の全体を対応させる写像は
+	であるが，$\mathcal{V}$自体が$\mathscr{O}$-基本近傍系であるので，
+	{\bf $S$上の写像で$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものが取れる}．
+	実際，$S$上の写像$\mathscr{U}$を
 	\begin{align}
-		\left\{\, (x,y) \mid \quad x \in S \wedge
+		\mathscr{U} \defeq \left\{\, (x,y) \mid \quad x \in S \wedge
 		\forall \mathcal{U}\, \left[\, \mathcal{U} \in y \Longleftrightarrow \right.\right. 
 		&\mathcal{U} \neq \emptyset \wedge \\
 		&\forall u \in \mathcal{U}\, \left[\, u \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset u\, )\, \right] \wedge \\
 		&\forall v\, \left.\left.\left[\, v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )
 		\Longrightarrow \exists u \in \mathcal{U}\, (\, u \subset v\, )\, \right]\, \right]\, \right\}
 	\end{align}
-	である．
+	により定めれば，定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より
+	\begin{align}
+		\prod_{x \in S} \mathscr{U}(x) \neq \emptyset
+	\end{align}
+	が成立する．ところで
+	\begin{align}
+		\mathscr{V} \defeq \left\{\, (x,y) \mid \quad x \in S \wedge
+		\forall v\, \left[\, v \in y \Longleftrightarrow 
+		v \subset S \wedge \exists o \in \mathscr{O}\, (\, x \in o \wedge o \subset v\, )\, \right]\, \right\}
+	\end{align}
+	とは$S$の要素に対しその$\mathscr{O}$-近傍系を対応させる写像であるが，
+	\begin{align}
+		S = \emptyset
+	\end{align}	
+	かつ
+	\begin{align}
+		\mathscr{O} = \{\emptyset\}
+	\end{align}
+	なるとき，形式上は
+	\begin{align}
+		\mathscr{U} = \emptyset
+	\end{align}
+	及び
+	\begin{align}
+		\mathscr{V} = \emptyset
+	\end{align}
+	が成立する．そこで次のことを約束する．
+	
+	\begin{itembox}[l]{空な位相空間における近傍の扱い}
+		位相空間$(S,\mathscr{O})$に対し，$S$が空なるときは近傍といった概念は存立し得ないが，
+		``$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させる写像''や
+		``$S$の要素に対してその$\mathscr{O}$-近傍系を対応させる写像''と書いたら空写像を呼び出す．
+	\end{itembox}
+	
+	一見空集合の扱いは厄介であるが，空虚な真という強力な性質のおかげで論理を展開する上で障害にはならない．
 	
 	\begin{screen}
 		\begin{thm}[基本近傍系は位相を復元する]
 		\label{thm:local_base_defines_open_sets}
-			$(S,\mathscr{O})$を位相空間とし，$S$は空でないとし，$\mathcal{U}$を$S$上の写像で，
+			$(S,\mathscr{O})$を位相空間とし，$\mathcal{U}$を$S$上の写像で，
 			$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものとする．
 			このとき
 			\begin{align}
@@ -115,7 +147,7 @@
 		\QED
 	\end{sketch}
 	
-	次に基本近傍系の持つ性質を分析する．$(S,\mathscr{O})$を位相空間とし，$S$は空でないとする．また
+	次に基本近傍系の持つ性質を分析する．$(S,\mathscr{O})$を位相空間とし，
 	$\mathcal{U}$を$S$上の写像で，$S$の要素に対してその$\mathscr{O}$-基本近傍系を対応させるものとする．
 	このとき$\mathcal{U}$は以下の性質を持つ:
 	\begin{description}
@@ -179,7 +211,7 @@
 	\begin{screen}
 		\begin{thm}[与えられたシステムを基本近傍系とする位相の生成]
 		\label{thm:a_local_base_restores_the_topology}
-			$S$を空でない集合とし，$\mathcal{U}$を(LB1)(LB2)(LB3)を満たす$S$上の写像とするとき，
+			$S$を集合とし，$\mathcal{U}$を(LB1)(LB2)(LB3)を満たす$S$上の写像とするとき，
 			\begin{align}
 				\mathscr{O} \defeq
 				\Set{o}{o \subset S \wedge \forall x \in o\, \exists u \in \mathcal{U}_{x}\, (\, u \subset o\, )}
