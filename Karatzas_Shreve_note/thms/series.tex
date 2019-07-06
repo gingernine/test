@@ -227,19 +227,23 @@
 	\end{comment}
 	
 	\begin{screen}
-		\begin{thm}[絶対収束する級数の線型性]
-		\label{thm:linearity_of_absolutely_convergent_series}
-			$a$と$b$を複素数列とし，$\alpha$を複素数とする．$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が$\C$で絶対収束するとき，
-			$\sum_{n=0}^\infty (a_n + b_n)$も$\C$で絶対収束して
+		\begin{thm}[収束する級数の線型性]
+		\label{thm:linearity_of_convergent_series}
+			$a$と$b$を複素数列とするとき，$\left(\sum_{k=0}^{n} a_{k}\right)_{n \in \Natural}$と
+			$\left(\sum_{k=0}^{n} b_{k}\right)_{n \in \Natural}$が$\C$で収束するならば
+			$\left(\sum_{k=0}^{n} a_{k}+b_{k}\right)_{n \in \Natural}$も$\C$で収束して
 			\begin{align}
-				\sum_{n=0}^\infty a_n + \sum_{n=0}^\infty b_n = \sum_{n=0}^\infty (a_n + b_n)
+				\sum_{n=0}^{\infty} (a_{n} + b_{n}) = \sum_{n=0}^\infty a_n + \sum_{n=0}^\infty b_n
 			\end{align}
-			が成り立つ．また$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するとき
-			$\sum_{n=0}^\infty \alpha \cdot a_n$も$\C$で絶対収束して
+			が成立する．特に$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が絶対収束するならば
+			$\sum_{n=0}^\infty (a_n + b_n)$も絶対収束する．
+			また$\left(\sum_{k=0}^{n} a_{k}\right)_{n \in \Natural}$が$\C$で収束するならば，
+			任意の複素数$\alpha$に対して$\left(\sum_{k=0}^{n} \alpha \cdot a_{k}\right)_{n \in \Natural}$も$\C$で収束して
 			\begin{align}
 				\alpha \cdot \sum_{n=0}^\infty a_n = \sum_{n=0}^\infty \alpha \cdot a_n
 			\end{align}
-			が成り立つ．
+			が成立する．特に$\sum_{n=0}^\infty a_n$が絶対収束するならば
+			$\sum_{n=0}^\infty \alpha \cdot a_n$も絶対収束する．
 		\end{thm}
 	\end{screen}
 	
@@ -247,25 +251,20 @@
 		\begin{description}
 			\item[第一段] 任意の自然数$n$で
 				\begin{align}
-					\sum_{k=0}^n |a_k + b_k| \leq \sum_{k=0}^n |a_k| + \sum_{k=0}^n |b_k| 
-					\leq \sum_{k=0}^\infty |a_k| + \sum_{k=0}^\infty |b_k|
-				\end{align}
-				が成り立つので$\sum_{n=0}^\infty (a_n + b_n)$は$\C$で絶対収束する．また任意の自然数$n$で
-				\begin{align}
 					\sum_{k=0}^n a_k + \sum_{k=0}^n b_k = \sum_{k=0}^n (a_k + b_k)
 				\end{align}
 				が成立するので
 				\begin{align}
 					\sum_{n=0}^\infty a_n + \sum_{n=0}^\infty b_n = \sum_{n=0}^\infty (a_n + b_n)
 				\end{align}
-				が従う．
+				が成立する．また$\sum_{n=0}^\infty a_n$と$\sum_{n=0}^\infty b_n$が絶対収束するとき，任意の自然数$n$で
+				\begin{align}
+					\sum_{k=0}^n |a_k + b_k| \leq \sum_{k=0}^n |a_k| + \sum_{k=0}^n |b_k| 
+					\leq \sum_{k=0}^\infty |a_k| + \sum_{k=0}^\infty |b_k|
+				\end{align}
+				が成り立つので$\sum_{n=0}^\infty (a_n + b_n)$は$\C$で絶対収束する．
 			
 			\item[第二段] 任意の自然数$n$で
-				\begin{align}
-					\sum_{k=0}^n |\alpha \cdot a_k| \leq |\alpha| \cdot \sum_{k=0}^n |a_k| 
-					\leq |\alpha| \cdot \sum_{k=0}^\infty |a_k| 
-				\end{align}
-				が成り立つので$\sum_{n=0}^\infty \alpha \cdot a_n$は$\C$で絶対収束する．また任意の自然数$n$で
 				\begin{align}
 					\alpha \cdot \sum_{k=0}^n a_k = \sum_{k=0}^n \alpha \cdot a_k
 				\end{align}
@@ -273,7 +272,12 @@
 				\begin{align}
 					\alpha \cdot \sum_{n=0}^\infty a_n = \sum_{n=0}^\infty \alpha \cdot a_n
 				\end{align}
-				が従う．
+				が成立する．また$\sum_{n=0}^\infty a_n$が絶対収束するとき，任意の自然数$n$で
+				\begin{align}
+					\sum_{k=0}^n |\alpha \cdot a_k| \leq |\alpha| \cdot \sum_{k=0}^n |a_k| 
+					\leq |\alpha| \cdot \sum_{k=0}^\infty |a_k| 
+				\end{align}
+				が成り立つので$\sum_{n=0}^\infty \alpha \cdot a_n$は$\C$で絶対収束する．
 				\QED
 		\end{description}
 	\end{sketch}
@@ -305,7 +309,7 @@
 		\end{align}
 		が成立するので$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$は共に$\C$で
 		絶対収束する．逆に$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$が共に
-		$\C$で絶対収束するとき，定理\ref{thm:linearity_of_absolutely_convergent_series}より
+		$\C$で絶対収束するとき，定理\ref{thm:linearity_of_convergent_series}より
 		$\sum_{n=0}^\infty a_n$は$\C$で絶対収束して，かつ
 		\begin{align}
 			\sum_{n=0}^\infty a_n
@@ -332,7 +336,7 @@
 		$\sum_{n=0}^\infty a_n$が$\C$で絶対収束するならば，
 		定理\ref{thm:absolutely_convergent_series_is_sum_of_series_of_real_and_imaginary_part}より
 		$\sum_{n=0}^\infty \Re{a_n}$と$\sum_{n=0}^\infty \Im{a_n}$は共に$\C$で
-		絶対収束するので，定理\ref{thm:linearity_of_absolutely_convergent_series}より
+		絶対収束するので，定理\ref{thm:linearity_of_convergent_series}より
 		$\sum_{n=0}^\infty (- \isym) \cdot \Im{a_n}$も$\C$で絶対収束して
 		$\sum_{n=0}^\infty \overline{a_n}$も$\C$で絶対収束する．またこのとき
 		\begin{align}
