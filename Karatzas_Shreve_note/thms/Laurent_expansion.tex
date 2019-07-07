@@ -160,6 +160,7 @@
 			+ \int_{[0,1]} \frac{f \circ \theta}{\theta - z}\ d\mu_{\theta} \\
 			&\quad + \int_{\seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
 			+ \int_{[\beta,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma} \\
+		&= \int_{[0,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma} + \int_{[0,1]} \frac{f \circ \theta}{\theta - z}\ d\mu_{\theta} \\
 		&= \int_{[0,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma} - \int_{[0,1]} \frac{f \circ \eta}{\eta - z}\ d\mu_{\eta}
 	\end{align}
 	が成立する．以上で(\refeq{fom:Laurent_series_1})を得る．
@@ -169,8 +170,110 @@
 		\item[(\refeq{fom:Laurent_series_3})の略証]
 		\item[(\refeq{fom:Laurent_series_4})の略証]
 		\item[(\refeq{fom:Laurent_series_5})の略証]
+			$\borel{[0,\beta]}$の任意の要素$E$に対して
+			\begin{align}
+				\mu_{\xi}(E) = \mu_{\gamma}(E)
+			\end{align}
+			が成り立てば良い．実際，$s$と$t$を
+			\begin{align}
+				s < t
+			\end{align}
+			なる$[0,\beta]$の要素とすれば
+			\begin{align}
+				\mu_{\xi}(]s,t]) = \xi(t) - \xi(s) = \gamma(t) - \gamma(s) = \mu_{\gamma}(]s,t])
+			\end{align}
+			が成立するので，測度の一致の定理より
+			\begin{align}
+				\mu_{\xi}\rest_{\borel{[0,\beta]}} = \mu_{\gamma}\rest_{\borel{[0,\beta]}}
+			\end{align}
+			が従う．
+			
 		\item[(\refeq{fom:Laurent_series_6})の略証]
+			$\varphi$を
+			\begin{align}
+				[0,1] \ni s \longmapsto s + \beta
+			\end{align}
+			なる写像とし
+			\begin{align}
+				\sigma \defeq \xi \rest_{[\beta,\beta+1]}
+			\end{align}
+			とおけば
+			\begin{align}
+				\int_{[\beta,\beta+1]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+				= \int_{[\beta,\beta+1]} \frac{f \circ \sigma}{\sigma - z}\ d\mu_{\sigma}
+				= \int_{[0,1]} \frac{f \circ (\sigma \circ \varphi)}{\sigma \circ \varphi - z}\ d\mu_{\sigma \circ \varphi}
+			\end{align}
+			が成り立つ(P. \pageref{fom:change_of_parameter_interval_complex_contour_integral})．ここで
+			\begin{align}
+				\sigma \circ \varphi = \seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}
+			\end{align}
+			であるから
+			\begin{align}
+				\int_{[0,1]} \frac{f \circ (\sigma \circ \varphi)}{\sigma \circ \varphi - z}\ d\mu_{\sigma \circ \varphi}
+				= \int_{\seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+			\end{align}
+			も成立する．
+			
 		\item[(\refeq{fom:Laurent_series_7})の略証]
+			$\varphi$を
+			\begin{align}
+				[0,1] \ni s \longmapsto s + \beta + 1
+			\end{align}
+			なる写像とし
+			\begin{align}
+				\sigma \defeq \xi \rest_{[\beta+1,\beta+2]}
+			\end{align}
+			とおけば
+			\begin{align}
+				\int_{[\beta+1,\beta+2]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+				= \int_{[\beta+1,\beta+2]} \frac{f \circ \sigma}{\sigma - z}\ d\mu_{\sigma}
+				= \int_{[0,1]} \frac{f \circ (\sigma \circ \varphi)}{\sigma \circ \varphi - z}\ d\mu_{\sigma \circ \varphi}
+			\end{align}
+			が成り立つ(P. \pageref{fom:change_of_parameter_interval_complex_contour_integral})．ここで
+			\begin{align}
+				\sigma \circ \varphi = \theta
+			\end{align}
+			であるから
+			\begin{align}
+				\int_{[0,1]} \frac{f \circ (\sigma \circ \varphi)}{\sigma \circ \varphi - z}\ d\mu_{\sigma \circ \varphi}
+				= \int_{[0,1]} \frac{f \circ \theta}{\theta - z}\ d\mu_{\theta}
+			\end{align}
+			も成立する．
+			
 		\item[(\refeq{fom:Laurent_series_8})の略証]
+			これも(\refeq{fom:Laurent_series_6})や(\refeq{fom:Laurent_series_7})と同様にして得られる．また
+			$\seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}$
+			は$\seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}$の逆路なので
+			\begin{align}
+				\int_{\seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+				+ \int_{\seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta 
+				= 0
+			\end{align}
+			が成立する．
+			
 		\item[(\refeq{fom:Laurent_series_9})の略証]
+			$\varphi$を
+			\begin{align}
+				[\beta,1] \ni s \longmapsto s + 3
+			\end{align}
+			なる写像とすれば
+			\begin{align}
+				\int_{[\beta+3,4]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+				= \int_{[\beta,1]} \frac{f \circ (\xi \circ \varphi)}{\xi \circ \varphi - z}\ d\mu_{\xi \circ \varphi}
+			\end{align}
+			が成り立つが，他方で
+			\begin{align}
+				\xi \circ \varphi = \gamma \rest_{[\beta,1]}
+			\end{align}
+			かつ
+			\begin{align}
+				\mu_{\gamma} \rest_{\borel{[\beta,1]}} = \mu_{\gamma \rest_{[\beta,1]}}
+			\end{align}
+			が成り立つので
+			\begin{align}
+				\int_{[\beta,1]} \frac{f \circ (\xi \circ \varphi)}{\xi \circ \varphi - z}\ d\mu_{\xi \circ \varphi}
+				= \int_{[\beta,1]} \frac{f \circ \gamma \rest_{[\beta,1]}}{\gamma \rest_{[\beta,1]} - z}\ d\mu_{\gamma \rest_{[\beta,1]}}
+				= \int_{[\beta,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma}
+			\end{align}
+			が従う．
 	\end{description}
