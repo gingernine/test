@@ -38,9 +38,9 @@
 		\begin{cases}
 			\gamma(t) & \mbox{if } 0 \leq t \leq \beta \\
 			\seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}(t-\beta) & \mbox{if } \beta \leq t \leq \beta + 1 \\
-			\theta(t - \beta - 1) & \mbox{if } \beta + 1 \leq t \leq \beta + 2 \\
-			 \seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}(t-\beta) & \mbox{if } \beta + 2 \leq t \leq \beta + 3 \\
-			\gamma(t - \beta - 3) & \mbox{if } \beta + 3 \leq t \leq 4
+			\theta(t-\beta-1) & \mbox{if } \beta + 1 \leq t \leq \beta + 2 \\
+			 \seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}(t-\beta-2) & \mbox{if } \beta + 2 \leq t \leq \beta + 3 \\
+			\gamma(t-\beta-3) & \mbox{if } \beta + 3 \leq t \leq 4
 		\end{cases}
 	\end{align}
 	なる関係により定める．イメージとしては，$\xi$は始め
@@ -97,7 +97,71 @@
 		\end{tikzpicture}
 	\end{center}
 	
-	を描く．
+	を描く．$\xi$の回転数は，$\C \backslash \disc{0}{R}$の要素$w$に対しては
+	\begin{align}
+		\Wnd_{\xi}(w) = 0,
+		\label{fom:Laurent_series_2}
+	\end{align}
+	また原点においても
+	\begin{align}
+		\Wnd_{\xi}(0) = 0,
+		\label{fom:Laurent_series_3}
+	\end{align}
+	他方で$z$に対しては
+	\begin{align}
+		\Wnd_{\xi}(z) = 1
+		\label{fom:Laurent_series_4}
+	\end{align}
+	が成立する．従ってCauchyの積分定理より
+	\begin{align}
+		f(z) = \frac{1}{2 \cdot \pi \cdot i} \cdot \int_{\xi} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+	\end{align}
+	が得られる．ところで
+	\begin{align}
+		\int_{[0,\beta]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi} 
+		= \int_{[0,\beta]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma}
+		\label{fom:Laurent_series_5}
+	\end{align}
+	かつ
+	\begin{align}
+		\int_{[\beta,\beta+1]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+		= \int_{\seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+		\label{fom:Laurent_series_6}
+	\end{align}
+	かつ
+	\begin{align}
+		\int_{[\beta+1,\beta+2]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+		= \int_{[0,1]} \frac{f \circ \theta}{\theta - z}\ d\mu_{\theta}
+		\label{fom:Laurent_series_7}
+	\end{align}
+	かつ
+	\begin{align}
+		\int_{[\beta+2,\beta+3]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+		= \int_{\seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+		\label{fom:Laurent_series_8}
+	\end{align}
+	かつ
+	\begin{align}
+		\int_{[\beta+3,4]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+		= \int_{[\beta,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma}
+		\label{fom:Laurent_series_9}
+	\end{align}
+	が成り立つので
+	\begin{align}
+		\int_{\xi} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+		&= \int_{[0,\beta]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi} 
+			+ \int_{[\beta,\beta+1]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+			+ \int_{[\beta+1,\beta+2]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi} \\
+			&\quad + \int_{[\beta+2,\beta+3]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi}
+			+ \int_{[\beta+3,4]} \frac{f \circ \xi}{\xi - z}\ d\mu_{\xi} \\
+		&= \int_{[0,\beta]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma} 
+			+ \int_{\seg{\rho \cdot e^{\isym \cdot \alpha}}{r \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+			+ \int_{[0,1]} \frac{f \circ \theta}{\theta - z}\ d\mu_{\theta} \\
+			&\quad + \int_{\seg{r \cdot e^{\isym \cdot \alpha}}{\rho \cdot e^{\isym \cdot \alpha}}} \frac{f(\zeta)}{\zeta - z}\ d\zeta
+			+ \int_{[\beta,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma} \\
+		&= \int_{[0,1]} \frac{f \circ \gamma}{\gamma - z}\ d\mu_{\gamma} - \int_{[0,1]} \frac{f \circ \eta}{\eta - z}\ d\mu_{\eta}
+	\end{align}
+	が成立する．
 	
 	\begin{screen}
 		\begin{thm}[線積分の微分積分学の基本定理]
