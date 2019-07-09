@@ -1,5 +1,185 @@
 \subsection{Laurent展開}
-
+	
+	\begin{screen}
+		\begin{thm}[線積分の微分積分学の基本定理]
+		\label{thm:fundamental_theorem_of_calculus_for_contour_integral}
+			$\Omega$を$\C$の開集合とし，$f$を$\Omega$上の正則関数とし，
+			$\gamma$を$[0,1]$から$\Omega$への路とする．このとき
+			\begin{align}
+				\int_{\gamma} f' = f(\gamma(1)) - f(\gamma(0)).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\epsilon$を任意に与えられた正の実数とし，
+		\begin{align}
+			L \defeq |\mu_{\gamma}|([0,1])
+		\end{align}
+		とおき，
+		\begin{align}
+			r \defeq \inf{}{\Set{|\gamma(t) - z|}{t \in [0,1] \wedge z \in \C \backslash \Omega}}
+		\end{align}
+		とおく．このとき
+		\begin{align}
+			N \defeq \bigcup_{t \in [0,1]} \disc{\gamma(t)}{r/2}
+		\end{align}
+		とおけば，$\overline{N}$はコンパクトであって
+		\begin{align}
+			\overline{N} \subset \Omega
+		\end{align}
+		を満たし，$f'$は$\overline{N}$の上で連続であるから，
+		\begin{align}
+			\delta < \frac{r}{2}
+		\end{align}
+		なる正の実数$\delta$で
+		\begin{align}
+			\forall z,w \in \overline{N}\,
+			\left[\, |z-w| < \delta \Longrightarrow |f'(z) - f'(w)| < \frac{\epsilon}{L}\, \right]
+		\end{align}
+		を満たすもの取れる．一方で，自然数$n$で
+		\begin{align}
+			\left|\int_{[0,1]} f' \circ \gamma\ d\mu_{\gamma}
+			- \sum_{k=0}^{n-1} f'(\gamma(k/n)) \cdot \left(\gamma((k+1)/n) - \gamma(k/n)\right)\right|
+			< \epsilon
+		\end{align}
+		及び，$n$より小さい任意の自然数$k$に対して
+		\begin{align}
+			|\gamma((k+1)/n) - \gamma(k/n)| < \delta
+		\end{align}
+		を満たすものが取れる．ここで
+		\begin{align}
+			[0,1] \ni t \longmapsto \sum_{k=0}^{n-1} \gamma(k/n) + \frac{t - k/n}{1/n} \cdot \left(\gamma((k+1)/n) - \gamma(k/n)\right)
+		\end{align}
+		なる路を$\eta$とおけば，微分積分学の基本定理より
+		\begin{align}
+			\int_{[0,1]} f' \circ \eta\ d\mu_{\eta} = f(\eta(1)) - f(\eta(0))
+			= f(\gamma(1)) - f(\gamma(0))
+		\end{align}
+		が成り立ち，他方で
+		\begin{align}
+			&\left|\int_{[0,1]} f' \circ \eta\ d\mu_{\eta}
+			- \sum_{k=0}^{n-1} f'(\gamma(k/n)) \cdot \left(\gamma((k+1)/n) - \gamma(k/n)\right)\right| \\
+			&= \left|\sum_{k=0}^{n-1} \int_{\left(\frac{k}{n},\frac{k+1}{n}\right]} f' \circ \eta\ d\mu_{\eta}
+			- \sum_{k=0}^{n-1} \int_{\left(\frac{k}{n},\frac{k+1}{n}\right]} f'(\eta(k/n))\ d\mu_{\eta}\right| \\
+			&\leq \sum_{k=0}^{n-1} \int_{\left(\frac{k}{n},\frac{k+1}{n}\right]}
+			\left|f' \circ \eta - f'(\eta(k/n))\right|\ d|\mu_{\eta}| \\
+			&\leq \frac{\epsilon}{L} \cdot \sum_{k=0}^{n-1} |\mu_{\eta}|\left(\left(k/n,(k+1)/n\right]\right) \\
+			&= \frac{\epsilon}{L} \cdot \sum_{k=0}^{n-1} \left|\gamma((k+1)/n) - \gamma(k/n)\right| \\
+			&\leq \epsilon
+		\end{align}
+		が成立する．以上から
+		\begin{align}
+			\left|\int_{[0,1]} f'\circ\gamma\ d\mu_{\gamma}
+			- \left[f(\gamma(1)) - f(\gamma(0))\right]\right|
+			\leq 2 \cdot \epsilon
+		\end{align}
+		が従い，$\epsilon$の任意性から
+		\begin{align}
+			\int_{[0,1]} f'\circ\gamma\ d\mu_{\gamma} = f(\gamma(1)) - f(\gamma(0))
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	いま$R$を正の実数とし，$f$を
+	\begin{align}
+		\Omega \defeq \disc{0}{R} \backslash \{0\}
+	\end{align}
+	上の正則関数とし，$p$と$q$を複素数列とし，$\Omega$の各要素$z$で
+	\begin{align}
+		f(z) = \sum_{n=0}^{\infty} \frac{p_{n}}{z^{n+1}} + \sum_{n=0}^{\infty} q_{n} \cdot z^{n}
+	\end{align}
+	が満たされているとする．つまり$\ran{\gamma}$の各要素$z$に対して，数列$\left(\sum_{k=0}^{n} p_{k}/z^{k+1}\right)_{n \in \Natural}$と
+	$\left(\sum_{k=0}^{n} q_{k} \cdot z^{k}\right)_{n \in \Natural}$が$\C$で収束しているということである．このとき，$\gamma$を
+	\begin{align}
+		\ran{\gamma} \subset \Omega
+	\end{align}
+	を満たす閉路とすれば
+	\begin{align}
+		p_{n} \cdot \Ind_{\gamma}(0) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} f(z) \cdot z^{n}\ dz
+		\label{fom:Laurent_series_0_1}
+	\end{align}
+	及び
+	\begin{align}
+		q_{n} \cdot \Ind_{\gamma}(0) = \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{f(z)}{z^{n+1}}\ dz
+		\label{fom:Laurent_series_0_2}
+	\end{align}
+	が任意の自然数$n$で成立する．
+	
+	実際，$n$を自然数とすれば
+	\begin{align}
+		\int_{\gamma} f(z) \cdot z^{n}\ dz
+		&= \int_{\gamma} \sum_{k=0}^{\infty} \frac{p_{k}}{z^{k+1-n}}\ dz
+			+ \int_{\gamma} \sum_{k=0}^{\infty} q_{k} \cdot z^{k+n}\ dz \\
+		&= \sum_{k=0}^{\infty} p_{k} \cdot \int_{\gamma} \frac{1}{z^{k+1-n}}\ dz
+			+ \sum_{k=0}^{\infty} q_{k} \cdot \int_{\gamma} z^{k+n}\ dz
+	\end{align}
+	となるが，定理\ref{thm:fundamental_theorem_of_calculus_for_contour_integral}より$n$でない任意の自然数$k$で
+	\begin{align}
+		\int_{\gamma} \frac{1}{z^{k+1-n}}\ dz = 0
+	\end{align}
+	が成り立ち，また任意の自然数$k$で
+	\begin{align}
+		\int_{\gamma} z^{k+n}\ dz = 0
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\int_{\gamma} f \cdot z^{n}\ dz = p_{n} \cdot \int_{\gamma} \frac{1}{z}\ dz
+	\end{align}
+	が従う．これで(\refeq{fom:Laurent_series_0_1})が得られた．同様に
+	\begin{align}
+		\int_{\gamma} \frac{f(z)}{z^{n+1}}\ dz
+		&= \int_{\gamma} \sum_{k=0}^{\infty} \frac{p_{k}}{z^{n+k+2}}\ dz
+			+ \int_{\gamma} \sum_{k=0}^{\infty} q_{k} \cdot z^{k-n-1}\ dz \\
+		&= \sum_{k=0}^{\infty} p_{k} \cdot \int_{\gamma} \frac{1}{z^{n+k+2}}\ dz
+			+ \sum_{k=0}^{\infty} q_{k} \cdot \int_{\gamma} z^{k-n-1}\ dz
+	\end{align}
+	となるが，任意の自然数$k$で
+	\begin{align}
+		\int_{\gamma} \frac{1}{z^{n+k+2}}\ dz = 0
+	\end{align}
+	が成り立ち，$n$でない任意の自然数$k$で
+	\begin{align}
+		\int_{\gamma} z^{k-n-1}\ dz = 0
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\int_{\gamma} \frac{f(z)}{z^{n+1}}\ dz
+		= q_{n} \cdot \int_{\gamma} \frac{1}{z}\ dz
+	\end{align}
+	が従う．これで(\refeq{fom:Laurent_series_0_2})も得られた．ところで
+	\begin{align}
+		\int_{\gamma} f(z)\ dz = p_{0} \cdot \Ind_{\gamma}(0)
+	\end{align}
+	が成り立つので，$f$の$\gamma$に関する線積分は$a_{0}$さえ得られれば計算できてしまう．
+	
+	\begin{screen}
+		\begin{dfn}[留数]
+			$\Omega$を$\mathscr{O}_{\C}$-開集合とし，$a$を$\Omega$の要素とし，
+			$f$を$\Omega \backslash \{a\}$上の正則関数とする．また$R$を
+			\begin{align}
+				\disc{a}{R} \subset \Omega
+			\end{align}
+			を満たす正の実数とし，$p$と$q$を複素数列とし，$\disc{a}{R} \backslash \{a\}$の各要素$z$で
+			\begin{align}
+				f(z) = \sum_{n=0}^{\infty} \frac{p_{n}}{z^{n+1}} + \sum_{n=0}^{\infty} q_{n} \cdot z^{n}
+			\end{align}
+			が満たされているとする．このとき$p_{0}$を$f$の$a$における{\bf 留数}\index{りゅうすう@留数}{\bf (residue)}と呼び
+			\begin{align}
+				\Res{f}{a}
+			\end{align}
+			と書く．
+		\end{dfn}
+	\end{screen}
+	
+	
+	
+	\begin{screen}
+		\begin{thm}[留数定理]
+		\end{thm}
+	\end{screen}
+	
 	いま$R$を正の実数とし，$f$を
 	\begin{align}
 		\Omega \defeq \disc{0}{R} \backslash \{0\}
