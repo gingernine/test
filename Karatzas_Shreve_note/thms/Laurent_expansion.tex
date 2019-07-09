@@ -288,5 +288,93 @@
 	\end{screen}
 	
 	\begin{sketch}
-		
+		$\disc{0}{R} \backslash \{0\}$上の正則関数$g$を
+		\begin{align}
+			\disc{0}{R} \backslash \{0\} \ni z \longmapsto f(z+a)
+		\end{align}
+		なる関係により定める．このとき$z$を$\disc{a}{R} \backslash \{a\}$の要素とし，
+		\begin{align}
+			r < |z-a| < \rho < R
+		\end{align}
+		を満たす正の実数$r$と$\rho$を取り，
+		\begin{align}
+			[0,1] \ni t \longmapsto \rho \cdot e^{2 \cdot \pi \cdot \isym \cdot t}
+		\end{align}
+		なる路を$\gamma$とし，
+		\begin{align}
+			[0,1] \ni t \longmapsto r \cdot e^{2 \cdot \pi \cdot \isym \cdot t}
+		\end{align}
+		なる路を$\eta$とすれば，
+		\begin{align}
+			f(z) &= g(z-a) \\
+			&= \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\eta} g(\zeta) \cdot \zeta^{n}\ d\zeta \right] \cdot \frac{1}{(z-a)^{n+1}}
+			+ \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{\gamma} \frac{g(\zeta)}{\zeta^{n+1}}\ d\zeta \right] \cdot (z-a)^{n}
+		\end{align}
+		が成立する．ここで
+		\begin{align}
+			[0,1] \ni t \longmapsto a + \eta(t)
+		\end{align}
+		なる路を$\phi$とし，
+		\begin{align}
+			[0,1] \ni t \longmapsto a + \gamma(t)
+		\end{align}
+		なる路を$\psi$とすれば，
+		\begin{align}
+			\mu_{\eta} = \mu_{\phi}
+		\end{align}
+		及び
+		\begin{align}
+			\mu_{\gamma} = \mu_{\psi}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\int_{\eta} g(\zeta) \cdot \zeta^{n}\ d\zeta
+			&= \int_{[0,1]} g(\eta(t)) \cdot \eta(t)^{n}\ \mu_{\eta}(dt) \\
+			&= \int_{[0,1]} g(\phi(t)-a) \cdot (\phi(t)-a)^{n}\ \mu_{\phi}(dt) \\
+			&= \int_{[0,1]} f(\phi(t)) \cdot (\phi(t)-a)^{n}\ \mu_{\phi}(dt) \\
+			&= \int_{\phi} f(\zeta) \cdot (\zeta-a)^{n}\ d\zeta
+		\end{align}
+		及び
+		\begin{align}
+			\int_{\gamma} \frac{g(\zeta)}{\zeta^{n+1}}\ d\zeta
+			&= \int_{[0,1]} \frac{g(\gamma(t))}{\gamma(t)^{n+1}}\ \mu_{\gamma}(dt) \\
+			&= \int_{[0,1]} \frac{g(\psi(t)-a)}{(\psi(t)-a)^{n+1}}\ \mu_{\psi}(dt) \\
+			&= \int_{[0,1]} \frac{f(\psi(t))}{(\psi(t)-a)^{n+1}}\ \mu_{\psi}(dt) \\
+			&= \int_{\psi} \frac{f(\zeta)}{(\zeta-a)^{n+1}}\ d\zeta
+		\end{align}
+		が成り立つ．更にCauchyの積分定理より
+		\begin{align}
+			\int_{\phi} f(\zeta) \cdot (\zeta-a)^{n}\ d\zeta
+			= \int_{c} f(\zeta) \cdot (\zeta-a)^{n}\ d\zeta
+		\end{align}
+		と
+		\begin{align}
+			\int_{\psi} \frac{f(\zeta)}{(\zeta-a)^{n+1}}\ d\zeta
+			= \int_{c} \frac{f(\zeta)}{(\zeta-a)^{n+1}}\ d\zeta
+		\end{align}
+		が成り立つので
+		\begin{align}
+			f(z) &= \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{c} f(\zeta) \cdot (\zeta-a)^{n}\ d\zeta \right] \cdot \frac{1}{(z-a)^{n+1}} \\
+			&\quad + \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{c} \frac{f(\zeta)}{(\zeta-a)^{n+1}}\ d\zeta \right] \cdot (z-a)^{n}
+		\end{align}
+		が得られる．
+		\QED
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[主部]
+			$\Omega$を$\mathscr{O}_{\C}$-開集合とし，$a$を$\Omega$の要素とし，$f$を$\Omega \backslash \{a\}$上の正則関数とし，$R$を
+			\begin{align}
+				\cdisc{a}{R} \subset \Omega
+			\end{align}
+			を満たす正の実数とし，$c$を
+			\begin{align}
+				[0,1] \ni t \longmapsto R \cdot e^{2 \cdot \pi \cdot \isym \cdot t}
+			\end{align}
+			なる関係で定める路とする．このとき
+			\begin{align}
+				\C \backslash \{a\} \ni z \longmapsto \sum_{n=0}^{\infty} \left[ \frac{1}{2\cdot\pi\cdot\isym} \cdot \int_{c} f(\zeta) \cdot (\zeta-a)^{n}\ d\zeta \right] \cdot \frac{1}{(z-a)^{n+1}}
+			\end{align}
+			で定める$\C \backslash \{a\}$上の写像を$f$の$a$における{\bf 主部}\index{しゅぶ@主部}{\bf (principal part)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
