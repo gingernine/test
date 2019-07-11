@@ -1,0 +1,65 @@
+\section{伊藤の公式}
+	$(\Omega,\mathscr{F},P)$を確率空間とし，$\{\mathscr{F}_{t}\}_{t \in [0,1]}$を
+	フィルトレーションとする．
+	
+	\begin{screen}
+		\begin{dfn}[有界変動過程]
+			$B$を$[0,1] \times \Omega$上の$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-適合過程する．
+			\begin{itemize}
+				\item $\Omega$のすべての要素$\omega$で$B_{0}(\omega) = 0$，
+				\item $\Omega$のすべての要素$\omega$で$B_{\bullet}(\omega)$は
+					$\mathscr{O}_{[0,1]}/\mathscr{O}_{\R}$-連続かつ有界変動，
+				\item $[0,1] \times \Omega$の各要素$(t,\omega)$に対し
+					\begin{align}
+						\sup{}{
+							\Set{\sum_{i=0}^{n-1}\left|B_{\tau_{i+1}}(\omega) - B_{\tau_{i}}(\omega)\right|}{
+								n \in \Natural \wedge \tau:n+1 \longrightarrow [0,t] \wedge
+								\tau_{0} = 0 \wedge \tau_{n} = t \wedge 
+								\forall i \in n\, (\, \tau_{i} \leq \tau_{i+1}\, )
+							}
+						}
+					\end{align}
+					を対応させる写像を$|B|$と書くとき，
+					\begin{align}
+						E|B|_{1} < \infty,
+					\end{align}
+			\end{itemize}
+			が満たされるとき，$B$を有界変動過程と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	全ての$\omega$で
+	\begin{align}
+		t \longmapsto |B|_{t}(\omega)
+	\end{align}
+	は連続で，また$\mathscr{F}_{t}/\borel{\R}$-可測である．
+	
+	\begin{screen}
+		\begin{dfn}[連続セミマルチンゲール]
+			$X$を$[0,1] \times \Omega$上の$\R$値$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-適合過程とする．
+			$[0,1] \times \Omega$の任意の要素$(t,\omega)$で
+			\begin{align}
+				X_{t}(\omega) - X_{0}(\omega) = M_{t}(\omega) + B_{t}(\omega)
+			\end{align}
+			を満たす$\mathscr{M}^{2,c}_{[0,1]}$の要素$M$と有界変動過程$B$が取れるとき，
+			$X$を連続セミマルチンゲールと呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[伊藤の公式]
+			$X$を$[0,1] \times \Omega$上の連続セミマルチンゲールとし，
+			$[0,1] \times \Omega$の任意の要素$(t,\omega)$で
+			\begin{align}
+				X_{t}(\omega) - X_{0}(\omega) = M_{t}(\omega) + B_{t}(\omega)
+			\end{align}
+			を満たす$\mathscr{M}^{2,c}_{[0,1]}$の要素$M$と有界変動過程$B$を取る．
+			このとき，$C^{2}_{b}(\R)$の任意の要素$f$に対して
+			\begin{align}
+				f(X_t) = f(X_{0}) + \int_{[0,t]} f'(X_{s})\ dM_{s}
+				+ \int_{[0,t]} f'(X_{s})\ dB_{s}
+				+ \frac{1}{2} \cdot \int_{[0,t]} f''(X_{s})\ d\inprod<M>_{s}
+			\end{align}
+			が$[0,1]$の任意の要素$t$で成立する．
+		\end{thm}
+	\end{screen}
