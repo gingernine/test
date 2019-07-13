@@ -46,6 +46,28 @@
 		\end{dfn}
 	\end{screen}
 	
+	いま$f$を$[a,b]$上の$3$階連続微分可能関数とすると，微分積分学の基本定理より
+	\begin{align}
+		f(b) - f(a) = \int_{[a,b]} f'(t)\ dt
+	\end{align}
+	が成立する．ここで部分積分公式より
+	\begin{align}
+		\int_{[a,b]} f'(t)\ dt
+		= f'(a) \cdot (b-a) + \int_{[a,b]} f''(t) \cdot (b-t)\ dt
+	\end{align}
+	が成立し，再び部分積分公式より
+	\begin{align}
+		\int_{[a,b]} f''(t) \cdot (b-t)\ dt
+		= \frac{1}{2} \cdot f'(a) \cdot (b-a)^{2} 
+		+ \frac{1}{2} \cdot \int_{[a,b]} f'''(t) \cdot (b-t)^{2}\ dt
+	\end{align}
+	が成立する．ゆえに
+	\begin{align}
+		f(b) - f(a) = f'(a) \cdot (b-a) + \frac{1}{2} \cdot f''(a) \cdot (b-a)^{2}
+		+ \frac{1}{2} \cdot \int_{[a,b]} f'''(x) \cdot (b-x)^{2}\ dx
+	\end{align}
+	が得られる．
+	
 	\begin{screen}
 		\begin{thm}[伊藤の公式]
 			$X$を$[0,1] \times \Omega$上の連続セミマルチンゲールとし，
@@ -63,3 +85,251 @@
 			が$[0,1]$の任意の要素$t$で成立する．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$f$を$C^{3}_{b}(\R)$の要素とする．
+				また$t$を$[0,1]$の要素とし，$1$以上の任意の自然数$n$に対し
+				\begin{align}
+					\tau^{n}_{0} = 0
+				\end{align}
+				及び
+				\begin{align}
+					\tau^{n}_{i+1} = 
+					\min&\{ t, \tau^{n}_{i} + \frac{1}{n}, \\
+					&\inf{}{
+						\Set{s \in [0,t]}{\tau^{n}_{i} < s \wedge \left[\, 
+						\frac{1}{n} \leq \left|M_{\tau^{n}_{i}} - M_{s}\right| \vee
+						\frac{1}{n} \leq \left|B_{\tau^{n}_{i}} - B_{s}\right| \vee
+						\frac{1}{n} \leq \left|\inprod<M>_{\tau^{n}_{i}} - \inprod<M>_{s}\right|\, \right]}} \}
+				\end{align}
+				を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-停止時刻の列を取る．
+				\begin{align}
+					a < b
+				\end{align}
+				なる任意の実数$a$と$b$に対して
+				\begin{align}
+					f(b) - f(a)
+					= f'(a) \cdot (b-a) + \frac{1}{2} \cdot f''(a) \cdot (b-a)^{2}
+					+ \frac{1}{2} \cdot \int_{[a,b]} f'''(x) \cdot (b-x)^{2}\ dx
+				\end{align}
+				が成立するので，
+				\begin{align}
+					f(X_{t}) - f(X_{0})
+					&= \sum_{i=0}^{\infty} \left[ f(X_{\tau^{n}_{i+1}}) - f(X_{\tau^{n}_{i}}) \right] \\
+					&= \sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (X_{\tau^{n}_{i+1}} - X_{\tau^{n}_{i}}) \\
+					&\quad + \frac{1}{2} \cdot \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (X_{\tau^{n}_{i+1}} - X_{\tau^{n}_{i}})^{2} \\
+					&\quad + \frac{1}{2} \cdot \sum_{i=0}^{\infty} \int_{[\tau^{n}_{i},\tau^{n}_{i+1}]} f'''(x) \cdot (X_{\tau^{n}_{i+1}} - x)^{2}\ dx
+				\end{align}
+				が成り立つ．ここで
+				\begin{align}
+					g_{n} \defeq \sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (X_{\tau^{n}_{i+1}} - X_{\tau^{n}_{i}})
+				\end{align}
+				及び
+				\begin{align}
+					h_{n} \defeq \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (X_{\tau^{n}_{i+1}} - X_{\tau^{n}_{i}})^{2}
+				\end{align}
+				及び
+				\begin{align}
+					r_{n} \defeq \sum_{i=0}^{\infty} \int_{[\tau^{n}_{i},\tau^{n}_{i+1}]} f'''(x) \cdot (X_{\tau^{n}_{i+1}} - x)^{2}\ dx
+				\end{align}
+				とおく．
+				
+			\item[第二段]
+				$g_{n}$は
+				\begin{align}
+					g_{n} = \sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})
+					+ \sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}})
+				\end{align}
+				と分解できるが，
+				\begin{align}
+					&\left|\sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}) - \int_{[0,t]} f'(X_{s})\ dB_{s}\right| \\
+					&= \left|\sum_{i=0}^{\infty} \int_{[\tau^{n}_{i},\tau^{n}_{i+1}]} \left[f'(X_{\tau^{n}_{i}}) - f'(X_{s}) \right]\ dB_{s}\right| \\
+					&\leq \sum_{i=0}^{\infty} \int_{[\tau^{n}_{i},\tau^{n}_{i+1}]} \left|f'(X_{\tau^{n}_{i}}) - f'(X_{s}) \right|\ d|B|_{s} \\
+					&\leq \left\{\sup{i \in \Natural}{\sup{s \in [\tau^{n}_{i},\tau^{n}_{i+1}]}{
+					\left|f'(X_{\tau^{n}_{i}}) - f'(X_{s}) \right|}}\right\} \cdot |B|_{t}
+				\end{align}
+				が成り立つから，Lebesgueの収束定理より
+				\begin{align}
+					E\left|\sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}) - \int_{[0,t]} f'(X_{s})\ dB_{s}\right|
+					\longrightarrow 0
+				\end{align}
+				が成立する．同様に
+				\begin{align}
+					&E\left[\sum_{i=0}^{\infty} f'(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}) - \int_{[0,t]} f'(X_{s})\ dM_{s}\right]^{2} \\
+					&= E\left[\sum_{i=0}^{\infty} \int_{[\tau^{n}_{i},\tau^{n}_{i+1}]}\left[f'(X_{\tau^{n}_{i}}) - f'(X_{s}) \right]^{2}\ d\inprod<M>_{s} \right] 
+					\label{fom:Ito_formula_1}\\
+					&\leq E\left[\left\{\sup{i \in \Natural}{\sup{s \in [\tau^{n}_{i},\tau^{n}_{i+1}]}{
+					\left[f'(X_{\tau^{n}_{i}}) - f'(X_{s}) \right]^{2}}}\right\} \cdot \inprod<M>_{t}\right] \longrightarrow 0
+				\end{align}
+				が成立する．以上で
+				\begin{align}
+					E\left|g_{n} - \int_{[0,t]} f'(X_{s})\ dM_{s} 
+					- \int_{[0,t]} f'(X_{s})\ dB_{s}\right|
+					\longrightarrow 0
+				\end{align}
+				を得る．
+				
+			\item[第三段]
+				$h_{n}$は
+				\begin{align}
+					h_{n} &= \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2} \\
+					&\quad + 2 \cdot \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}) \\
+					&\quad + \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}})^{2}
+				\end{align}
+				と分解できる．まず
+				\begin{align}
+					&\left| \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}})^{2} \right| \\
+					&\leq \sum_{i=0}^{\infty} \left|f''(X_{\tau^{n}_{i}})\right| \cdot \left|B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}\right| \cdot \left|B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}\right| \\
+					&\leq \frac{C}{n} \cdot |B|_{t}
+				\end{align}
+				及び
+				\begin{align}
+					\left| \sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}) \cdot (B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}) \right|
+					\leq \frac{C}{n} \cdot |B|_{t}
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					E\left[\sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}\right]
+					= E\left[\sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}})\right]
+					\label{fom:Ito_formula_2}
+				\end{align}
+				及び
+				\begin{align}
+					&E\left|\sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}})
+					- \int_{[0,1]} f''(X_{s})\ d\inprod<M>_{s}\right| \\
+					&= E\left|\sum_{i=0}^{\infty} \int_{[\tau^{n}_{i},\tau^{n}_{i+1}]} \left[ f''(X_{\tau^{n}_{i}}) - f''(X_{s}) \right]\ d\inprod<M>_{s}\right| \\
+					&\leq E\left[\left\{\sup{i \in \Natural}{\sup{s \in [\tau^{n}_{i},\tau^{n}_{i+1}]}{
+					\left|f'(X_{\tau^{n}_{i}}) - f'(X_{s}) \right|}}\right\} \cdot \inprod<M>_{t}\right] \\
+					&\longrightarrow 0
+				\end{align}
+				が成り立つので
+				\begin{align}
+					E\left|h_{n} - \int_{[0,t]} f''(X_{s})\ d\inprod<M>_{s}\right|
+					\longrightarrow 0
+				\end{align}
+				を得る．
+				
+			\item[第四段]
+				$\tau^{n}$の定め方より
+				\begin{align}
+					\left|X_{\tau^{n}_{i+1}} - X_{\tau^{n}_{i}}\right|
+					\leq \left|M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}\right|
+					+ \left|B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}\right|
+					\leq \frac{2}{n}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					|r_{n}|
+					&\leq C \cdot \frac{2}{n} \cdot \sum_{i=0}^{\infty} \left|X_{\tau^{n}_{i+1}} - X_{\tau^{n}_{i}}\right|^{2} \\
+					&\leq C \cdot \frac{4}{n} \cdot
+					\left\{
+						\sum_{i=0}^{\infty} \left[M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}\right]^{2}
+						+ \sum_{i=0}^{\infty} \left[B_{\tau^{n}_{i+1}} - B_{\tau^{n}_{i}}\right]^{2}
+					\right\} \\
+					&\leq C \cdot \frac{4}{n} \cdot
+					\left\{
+						\sum_{i=0}^{\infty} \left[M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}\right]^{2}
+						+ \frac{1}{n} \cdot |B|_{t}
+					\right\}
+				\end{align}
+				が成り立つ．ここで
+				\begin{align}
+					E\left[\sum_{i=0}^{\infty} \left[M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}\right]^{2}\right]
+					= E\inprod<M>_{t}
+					\label{fom:Ito_formula_3}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					E|r_{n}| \longrightarrow 0
+				\end{align}
+				を得る．
+			
+			\item[第五段]
+				以上より
+				\begin{align}
+					&E\left|f(X_{t}) - f(X_{0})
+					- \left\{\int_{[0,t]} f'(X_{s})\ dM_{s} 
+					+ \int_{[0,t]} f'(X_{s})\ dB_{s}
+					+ \frac{1}{2} \cdot \int_{[0,t]} f''(X_{s})\ d\inprod<M>_{s}\right\}\right| \\
+					&\leq E\left| g_{n} - \int_{[0,t]} f'(X_{s})\ dM_{s} 
+					- \int_{[0,t]} f'(X_{s})\ dB_{s} \right|
+					+ \frac{1}{2} \cdot E\left| h_{n} - \int_{[0,t]} f''(X_{s})\ d\inprod<M>_{s} \right| 
+					+ E|r_{n}| \\
+					&\longrightarrow 0 
+				\end{align}
+				が成り立つので
+				\begin{align}
+					f(X_{t}) = f(X_{0}) + \int_{[0,t]} f'(X_{s})\ dM_{s} 
+					+ \int_{[0,t]} f'(X_{s})\ dB_{s}
+					+ \frac{1}{2} \cdot \int_{[0,t]} f''(X_{s})\ d\inprod<M>_{s}
+				\end{align}
+				が従う．
+			
+			\item[第六段]
+				$f$を$C^{2}_{b}(\R)$の要素とする．このとき
+				
+			\item[(\refeq{fom:Ito_formula_1})の略証]
+				
+				
+			\item[(\refeq{fom:Ito_formula_3})の略証]
+				$M^{2} - \inprod<M>$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールなので，
+				$\alpha < \beta$なる$[0,1]$の任意の要素$\alpha$と$\beta$に対して
+				\begin{align}
+					E\left[M_{\beta}^{2} - M_{\alpha}^{2}\right]
+					= E\left[\inprod<M>_{\beta} - \inprod<M>_{\alpha}\right]
+				\end{align}
+				が成立する．単調収束定理より
+				\begin{align}
+					E\left[\sum_{i=0}^{\infty} \left[M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}\right]^{2}\right]
+					&= \sum_{i=0}^{\infty} E\left[M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}}\right]^{2} \\
+					&= \sum_{i=0}^{\infty} E\left[M_{\tau^{n}_{i+1}}^{2} - M_{\tau^{n}_{i}}^{2}\right] \\
+					&= \sum_{i=0}^{\infty} E\left[\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}}\right] \\
+					&= E\left[\sum_{i=0}^{\infty} \left(\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}}\right) \right] \\
+					&= E\inprod<M>_{t}
+				\end{align}
+				が成り立つ．
+				
+			\item[(\refeq{fom:Ito_formula_2})の略証]
+				(\refeq{fom:Ito_formula_3})より
+				\begin{align}
+					\sum_{i=0}^{\infty} \left|f''(X_{\tau^{n}_{i}})\right| \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}
+				\end{align}
+				は可積分であるから，Lebesgueの収束定理より
+				\begin{align}
+					E\left[\sum_{i=0}^{\infty} f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}\right]
+					= \sum_{i=0}^{\infty} E\left[f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}\right]
+				\end{align}
+				が成り立ち，及び
+				\begin{align}
+					E\left[f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}\right]
+					&= E\left[\cexp{f''(X_{\tau^{n}_{i}}) \cdot (M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}}{\mathscr{F}_{\tau^{n}_{i}}}\right] \\
+					&= E\left[f''(X_{\tau^{n}_{i}}) \cdot \cexp{(M_{\tau^{n}_{i+1}} - M_{\tau^{n}_{i}})^{2}}{\mathscr{F}_{\tau^{n}_{i}}}\right]
+					\label{fom:Ito_formula_4}
+				\end{align}
+				が成り立つ．ところで$M^{2} - \inprod<M>$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールなので，$\alpha$と$\beta$を
+				\begin{align}
+					\alpha \leq \beta
+				\end{align}
+				なる$[0,1]$の要素とすれば，$\mathscr{F}_{\alpha}$の任意の要素$A$に対して
+				\begin{align}
+					\int_{A} \left(M_{\beta} - M_{\alpha}\right)^{2}\ dP
+					= \int_{A} M_{\beta}^{2} - M_{\alpha}^{2}\ dP
+					= \int_{A} \inprod<M>_{\beta} - \inprod<M>_{\alpha}\ dP
+				\end{align}
+				が成立する．つまり
+				\begin{align}
+					\cexp{\left(M_{\beta} - M_{\alpha}\right)^{2}}{\mathscr{F}_{\alpha}}
+					= \cexp{\inprod<M>_{\beta} - \inprod<M>_{\alpha}}{\mathscr{F}_{\alpha}}
+				\end{align}
+				が成立するので，
+				\begin{align}
+					(\refeq{fom:Ito_formula_4})
+					&= E\left[f''(X_{\tau^{n}_{i}}) \cdot \cexp{\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}}}{\mathscr{F}_{\tau^{n}_{i}}}\right] \\
+					&= E\left[\cexp{f''(X_{\tau^{n}_{i}}) \cdot \left(\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}}\right)}{\mathscr{F}_{\tau^{n}_{i}}}\right] \\
+					&= E\left[f''(X_{\tau^{n}_{i}}) \cdot \left(\inprod<M>_{\tau^{n}_{i+1}} - \inprod<M>_{\tau^{n}_{i}}\right)\right]
+				\end{align}
+				が成り立ち(\refeq{fom:Ito_formula_2})が従う．
+		\end{description}
+	\end{sketch}
