@@ -182,42 +182,124 @@
 	\begin{screen}
 		\begin{thm}[コンパクト集合の閉部分集合はコンパクト]
 		\label{thm:closed_subset_of_compact_set_is_compact_on_Hausdorff_space}
-			$S$を位相空間，$K,F$をそれぞれ$S$のコンパクト部分集合，閉集合とするとき，
-			$K \cap F$は$S$のコンパクト部分集合である．
+			$(S,\mathscr{O})$を位相空間とし，$a$を$\mathscr{O}$-閉集合とし，
+			$c$を$\mathscr{O}$-コンパクト集合とするとき，
+			$a \cap c$は$\mathscr{O}$-コンパクト集合である．
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$K \cap F$の任意の($S$における)開被覆に$S \backslash F$を加えれば
-		$K$の($S$における)開被覆となるから，そのうち$K$の有限部分被覆を取ることができる．
-		$S \backslash F$を除けば$K \cap F$の有限被覆が残り
-		$K \cap F$のコンパクト性が出る．
+	\begin{sketch}
+		$\mathscr{B}$を$a \cap c$の$\mathscr{O}$-開被覆とする．このとき
+		\begin{align}
+			\mathscr{U} \defeq \Set{u}{u \in \mathscr{B} \vee u = S \backslash a}
+		\end{align}
+		とおけば，$\mathscr{U}$は$c$の$\mathscr{O}$-開被覆であるから
+		\begin{align}
+			c \subset \bigcup \mathscr{V} \wedge \card{\mathscr{V}} < \Natural
+		\end{align}
+		を満たす$\mathscr{U}$の部分集合$\mathscr{V}$が取れる．ここで
+		\begin{align}
+			\mathscr{F} \defeq \Set{v}{v \in \mathscr{V} \wedge v \neq S \backslash a}
+		\end{align}
+		とおけば，定理\ref{thm:cardinal_of_bigger_set_is_bigger}より
+		\begin{align}
+			\card{\mathscr{F}} \leq \card{\mathscr{V}}
+		\end{align}
+		が成り立つ．また
+		\begin{align}
+			a \cap c \subset \bigcup \mathscr{F}
+			\label{fom:thm_closed_subset_of_compact_set_is_compact_on_Hausdorff_space_1}
+		\end{align}
+		も成り立つ．実際，$x$を$a \cap c$の要素とすれば
+		\begin{align}
+			x \in v
+		\end{align}
+		を満たす$\mathscr{V}$の要素$v$が取れるが，
+		\begin{align}
+			x \in a
+		\end{align}
+		より
+		\begin{align}
+			v \neq S \backslash a
+		\end{align}
+		が従う．ゆえに
+		\begin{align}
+			v \in \mathscr{F}
+		\end{align}
+		が従い(\refeq{fom:thm_closed_subset_of_compact_set_is_compact_on_Hausdorff_space_1})を得る．
+		さらに
+		\begin{align}
+			\mathscr{F} \subset \mathscr{B}
+			\label{fom:thm_closed_subset_of_compact_set_is_compact_on_Hausdorff_space_2}
+		\end{align}
+		も成り立つ．実際，$v$を$\mathscr{F}$の要素とすれば
+		\begin{align}
+			v \in \mathscr{U}
+		\end{align}
+		が従うので
+		\begin{align}
+			v \in \mathscr{B} \vee v = S \backslash a
+		\end{align}
+		が成り立つ．ところでいま
+		\begin{align}
+			v \neq S \backslash a
+		\end{align}
+		であるから，選言三段論法(推論法則\ref{logicalthm:disjunctive_syllogism})より
+		\begin{align}
+			v \in \mathscr{B}
+		\end{align}
+		が従い(\refeq{fom:thm_closed_subset_of_compact_set_is_compact_on_Hausdorff_space_2})を得る．
+		以上より$a \cap c$は$\mathscr{O}$-コンパクトである．
 		\QED
-	\end{prf}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{dfn}[有限交叉性]
-			$S$を集合とし，$\mathscr{S}$を$\power{S}$の部分集合とする．
-			$\mathscr{S}$の任意の空でない有限部分集合$U$の交叉が空でないとき，つまり
+			$S$を集合ととする．$S$の任意の有限部分集合の交叉が空でないとき，つまり
 			\begin{align}
-				\forall U\, \left(\, U \subset \mathscr{S} \wedge 
-				\exists n \in \Natural\, (\, U \eqp n\, )
-				\Longrightarrow \bigcap U \neq \emptyset\, \right)
+				\forall b\, \left[\, b \subset S \wedge \card{b} < \Natural
+				\Longrightarrow \bigcap b \neq \emptyset\, \right]
 			\end{align}
-			が成り立つとき，$\mathscr{S}$は{\bf 有限交叉性}\index{ゆうげんこうさせい@有限交叉性}
+			が成り立つとき，$S$は{\bf 有限交叉性}\index{ゆうげんこうさせい@有限交叉性}
 			{\bf (finite intersection property)}を持つという．
 		\end{dfn}
 	\end{screen}
 	
+	例えば空集合は有限交叉性を持つ．実際，集合$b$が
+	\begin{align}
+		b \subset \emptyset \wedge \card{b} < \Natural
+	\end{align}
+	を満たすとき，
+	\begin{align}
+		b = \emptyset
+	\end{align}
+	が従い
+	\begin{align}
+		\bigcap b = \Univ
+	\end{align}
+	が成り立つ．ゆえに
+	\begin{align}
+		\forall b\, \left[\, b \subset \emptyset \wedge \card{b} < \Natural
+		\Longrightarrow \bigcap b \neq \emptyset\, \right]
+	\end{align}
+	が成立する．
+	
 	\begin{screen}
-		\begin{thm}[コンパクト$\Longleftrightarrow$閉集合族が有限交叉的]
+		\begin{thm}[有限交叉性を用いたコンパクト性の特徴づけ]
 		\label{thm:compact_iff_closed_sets_family_finitely_intersect}
-			$(S,\mathscr{O}_S)$を位相空間とし，$A$を$S$の部分集合とする．このとき，
-			$A$がコンパクトであることと，
-			$S$の任意の閉集合族$\mathscr{F}$に対して
-			$\Set{F \cap A}{F \in \mathscr{F}}$が有限交叉性を持てば
+			$(S,\mathscr{O})$を位相空間とし，$\mathscr{A}$を$\mathscr{O}$-閉集合の全体とし，
+			$b$を$S$の空でない部分集合とする．このとき，$b$が$\mathscr{O}$-コンパクトであることと，
+			$\mathscr{A}$の任意の部分集合$u$に対して$\Set{b \cap w}{w \in u}$が有限交叉性を持てば
 			\begin{align}
-				A \cap \bigcap \mathscr{F} \neq \emptyset
+				b \cap \bigcap u \neq \emptyset
+			\end{align}
+			が成り立つことは同値である．言い換えれば，$b$が$\mathscr{O}$-コンパクトであることと
+			\begin{align}
+				\forall u\, &\left[\, u \subset \mathscr{A} \wedge
+				\forall v\, \left(\, \forall t\, \left(\, t \in v 
+				\Longrightarrow \exists w\, (\, w \in u \wedge t = b \cap w\, )\, \right) \wedge \card{v} < \Natural
+				\Longrightarrow \bigcap v \neq \emptyset\, \right) \right. \\
+				&\quad \left. \Longrightarrow b \cap \bigcap u \neq \emptyset\, \right]
 			\end{align}
 			が成り立つことは同値である．
 		\end{thm}
