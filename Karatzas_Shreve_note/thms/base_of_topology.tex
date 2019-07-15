@@ -1,4 +1,5 @@
 \subsection{開基}
+	前小節までは位相構造はgivenであったが，与えられた集合に対して恣意的に位相構造を導入することが出来る．
 	いま$S$を集合とし，$\mathscr{U}$を$\power{S}$の部分集合とし，
 	$\mathscr{U} \cup \{S\}$の空でない有限部分集合の交叉の全体を
 	\begin{align}
@@ -32,16 +33,124 @@
 			も成り立つ．
 		
 		\item[step2]
-			$u$と$v$を$\mathscr{O}$の要素とするとき
+			$a$と$b$を$\mathscr{B}$の部分集合とするとき，
+			\begin{align}
+				c \defeq \Set{i \cap j}{i \in a \wedge j \in b}
+			\end{align}
+			とおけば
+			\begin{align}
+				c \subset \mathscr{B}
+				\label{fom:generation_of_topology_2}
+			\end{align}
+			と
+			\begin{align}
+				\bigcup a \cap \bigcup b = \bigcup c
+				\label{fom:generation_of_topology_3}
+			\end{align}
+			が成立する．実際，$i$を$a$の要素とすれば
+			\begin{align}
+				i = \bigcap u
+			\end{align}
+			を満たす$\mathscr{U} \cup \{S\}$の有限部分集合$u$が取れ，
+			$j$を$b$の要素とすれば
+			\begin{align}
+				j = \bigcap v
+			\end{align}
+			を満たす$\mathscr{U} \cup \{S\}$の有限部分集合$v$が取れるが，
+			\begin{align}
+				w \defeq \Set{s \cap t}{s \in u \wedge t \in v}
+			\end{align}
+			とおけば
+			\begin{align}
+				i \cap j = \bigcap w
+			\end{align}
+			が成り立つので(\refeq{fom:generation_of_topology_2})を得る．また
+			任意の集合$x$に対し
+			\begin{align}
+				x \in \bigcup a \cap \bigcup b
+			\end{align}
+			が成り立っているとき，$k$を$c$の任意の要素とすれば
+			\begin{align}
+				c = i \cap j
+			\end{align}
+			なる$a$の要素$i$と$b$の要素$j$が取れるが，
+			\begin{align}
+				x \in i \wedge x \in j
+			\end{align}
+			が成り立つので
+			\begin{align}
+				x \in \bigcap c
+			\end{align}
+			が従う．逆に$x$が$\bigcap c$の要素であるとき，
+			$a$の任意の要素$i$と$b$の任意の要素$j$に対して
+			\begin{align}
+				x \in i \cap j
+			\end{align}
+			が成り立つので
+			\begin{align}
+				x \in \bigcap a \wedge x \in \bigcap b
+			\end{align}
+			が従う．以上で(\refeq{fom:generation_of_topology_3})も得られた．
 			
 		\item[step3]
-			
+			$\mathscr{W}$を$\mathscr{O}$の部分集合とするとき，
+			$\mathscr{W}$上の写像$h$で，$\mathscr{W}$の任意の要素$w$に対して
+			\begin{align}
+				w = \bigcup h(w)
+				\label{fom:generation_of_topology_1}
+			\end{align}
+			を満たすものが取れる(定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty})．ここで
+			\begin{align}
+				b \defeq \bigcup_{w \in \mathscr{W}} h(w)
+			\end{align}
+			とおけば
+			\begin{align}
+				\bigcup \mathscr{W} = \bigcup b
+			\end{align}
+			が成立する．実際，$x$を$\bigcup \mathscr{W}$の要素とすれば
+			\begin{align}
+				x \in w
+			\end{align}
+			を満たす$\mathscr{W}$の要素$w$が取れるが，
+			(\refeq{fom:generation_of_topology_1})より
+			\begin{align}
+				x \in \omega
+			\end{align}
+			なる$h(w)$の要素$\omega$が取れるので，
+			\begin{align}
+				x \in \omega \wedge \omega \in \bigcup_{w \in \mathscr{W}} h(w)
+			\end{align}
+			が従い
+			\begin{align}
+				x \in \bigcup b
+			\end{align}
+			が従う．逆に$x$を$\bigcup b$の要素とすれば
+			\begin{align}
+				x \in \omega \wedge \omega \in \bigcup_{w \in \mathscr{W}} h(w)
+			\end{align}
+			を満たす集合$\omega$が取れて，
+			\begin{align}
+				\omega \in h(w)
+			\end{align}
+			を満たす$\mathscr{W}$の要素$w$が取れる．ゆえに
+			\begin{align}
+				x \in \omega \wedge \omega \in h(w)
+			\end{align}
+			が従い
+			\begin{align}
+				x \in \bigcup h(w)
+			\end{align}
+			が従い，(\refeq{fom:generation_of_topology_1})より
+			\begin{align}
+				x \in \bigcup \mathscr{W}
+			\end{align}
+			が成立する．
 	\end{description}
 	
 	以上で次を得る．
 	
 	\begin{screen}
-		\begin{thm}[位相の生成]
+		\begin{thm}[位相の生成]\label{thm:generation_of_topology}
 			$S$を集合とし，$\mathscr{U}$を$\power{S}$の部分集合として
 			\begin{align}
 				\mathscr{B} \defeq \Set{\bigcap u}{
