@@ -1,0 +1,123 @@
+\section{局所マルチンゲール}
+	
+	$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-停止時刻の全体を
+	\begin{align}
+		\mathscr{T}
+	\end{align}
+	とおく．また$\Natural$から$\mathscr{T}$への写像$\tau$で，
+	\begin{itemize}
+		\item $\Omega$の任意の要素$\omega$に対して
+			\begin{align}
+				\tau_{0}(\omega) = 0,
+			\end{align}
+			
+		\item 任意の自然数$n$及び$\Omega$の任意の要素$\omega$に対して
+			\begin{align}
+				\tau_{n}(\omega) \leq \tau_{n+1}(\omega),
+			\end{align}
+			
+		\item $\omega$を$\Omega$の任意の要素とするとき
+			\begin{align}
+				\tau_{n}(\omega) = 1
+			\end{align}
+			を満たす自然数$n$が取れる．
+	\end{itemize}
+	
+	を満たすものを，便宜上$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 増大停止時刻列}\index{ぞうだいていしじこくれつ@増大停止時刻列}と呼ぶことにする．
+	
+	\begin{screen}
+		\begin{dfn}[局所マルチンゲール]
+			$X$を$(\Omega,\mathscr{F},P)$上の確率過程とするとき，$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻$\tau$が取れて，
+			任意の自然数$n$に対して
+			\begin{align}
+				X^{\tau_{n}}
+			\end{align}
+			が$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールとなるならば，言い換えれば
+			$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列が取れるならば，
+			$X$を$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 局所マルチンゲール}\index{きょくしょまるちんげーる@局所マルチンゲール}
+			{\bf (local martingale)}と呼ぶ．$(\Omega,\mathscr{F},P)$上の連続な
+			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲール$X$で，$\Omega$の任意の要素$\omega$に対して
+			\begin{align}
+				X_{0}(\omega) = 0
+			\end{align}
+			を満たすものの全体を
+			\begin{align}
+				\mathscr{M}_{c,loc}
+			\end{align}
+			とおく．
+		\end{dfn}
+	\end{screen}
+	
+	いま$X$を有界な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲールとし，
+	$\tau$を$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列とする．
+	$s$と$t$を
+	\begin{align}
+		s < t
+	\end{align}
+	なる$[0,1]$の要素とし，$A$を$\mathscr{F}_{s}$の要素とすれば，任意の自然数$n$で
+	\begin{align}
+		\int_{A} X^{\tau_{n}}_{t}\ dP = \int_{A} X^{\tau_{n}}_{s}\ dP
+	\end{align}
+	が成り立つ．ここで$\Omega$の任意の要素$\omega$に対し
+	\begin{align}
+		\lim_{n \to \infty} X^{\tau_{n}}_{t}(\omega) = X_{t}(\omega)
+	\end{align}
+	及び
+	\begin{align}
+		\lim_{n \to \infty} X^{\tau_{n}}_{s}(\omega) = X_{s}(\omega)
+	\end{align}
+	が成り立つので，Lebesgueの収束定理より
+	\begin{align}
+		\int_{A} X_{t}\ dP = \int_{A} X_{s}\ dP
+	\end{align}
+	が従う．つまり{\bf 有界な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲールは
+	$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールである．}
+	
+	\begin{screen}
+		\begin{thm}[$\mathscr{M}_{c,loc}$の要素は局所的に有界マルチンゲール化できる]
+			$X$を$\mathscr{M}_{c,loc}$の要素とするとき，$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$で，
+			任意の自然数$n$に対して
+			\begin{align}
+				X^{\tau_{n}}
+			\end{align}
+			が有界な連続$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールとなるものが取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		自然数$n$に対して
+		\begin{align}
+			\Omega \ni \omega \longmapsto
+			\begin{cases}
+				\inf{}{\Set{t \in [0,1]}{n \leq |X_{t}(\omega)|}} 
+				& \mbox{if } \Set{t \in [0,1]}{n \leq |X_{t}(\omega)|} \neq \emptyset \\
+				1 & \mbox{if } \Set{t \in [0,1]}{n \leq |X_{t}(\omega)|} = \emptyset
+			\end{cases}
+		\end{align}
+		なる写像を対応させる写像を$\sigma$とおくと，定理\ref{thm:increasing_stopping_times_made_from_continuous_martingales}より
+		任意の自然数$n$に対して$\sigma_{n}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-停止時刻であり，また
+		$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対し
+		\begin{align}
+			\left| X^{\sigma_{n}}_{t}(\omega) \right| \leq n
+		\end{align}
+		が成立する．$\upsilon$を$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列として，
+		自然数$n$に対して
+		\begin{align}
+			\Omega \ni \omega \longmapsto \min\left\{ \sigma_{n}(\omega),\upsilon_{n}(\omega) \right\}
+		\end{align}
+		なる写像を対応させる写像を$\tau$とすれば，$\tau$は定理の主張を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[マルチンゲールは局所マルチンゲール]
+			\begin{align}
+				\mathscr{M}_{\mathbf{T}} \subset \mathscr{M}^{loc}_{\mathbf{T}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
+	
