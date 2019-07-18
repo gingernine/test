@@ -26,8 +26,52 @@
 	を満たすものを，便宜上$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 増大停止時刻列}\index{ぞうだいていしじこくれつ@増大停止時刻列}と呼ぶことにする．
 	
 	\begin{screen}
+		\begin{thm}[連続適合過程で作る増大停止時刻列]
+		\label{thm:increasing_stopping_times_made_from_continuous_adapted_process}
+			$X$を$[0,1] \times \Omega$上の連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-
+			適合過程とする．自然数$n$に対して
+			\begin{align}
+				\Omega \ni \omega \longmapsto 
+				\begin{cases}
+					\inf{}{\Set{t \in \mathbf{T}}{n \leq |X_t(\omega)|}} & \mbox{if } \Set{t \in \mathbf{T}}{n \leq |X_t(\omega)|} \neq \emptyset \\
+					\infty & \mbox{if } \Set{t \in \mathbf{T}}{n \leq |X_t(\omega)|} = \emptyset
+				\end{cases}
+			\end{align}
+			なる写像を対応させる$\Natural$上の写像を$\tau$とすると，$\tau$は
+			$\{\mathscr{F}_t\}_{t \in [0,1]}$-増大停止時刻列である．
+			また$\Omega$のすべての要素$\omega$及び$[0,1]$の任意の要素$t$に対して
+			\begin{align}
+				\left|X^{\tau_n}_t(\omega)\right| \leq n
+			\end{align}
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$[0,1]$の任意の要素$t$に対して
+		\begin{align}
+			\left\{\tau_n \leq t\right\} = \Set{\omega \in \Omega}{n \leq |X_t(\omega)|}
+		\end{align}
+		が成り立つので$\tau_n$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-停止時刻である．
+		また$RLCC$なパスは有界区間上で有界であるから，パスが$RCLL$である$\omega$に対しては
+		\begin{align}
+			\sup{n \in \Natural}{\tau_n(\omega)} = \infty
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	右連続な劣マルチンゲールは殆ど全てのパスが$RCLL$なので，
+	上の様に構成する停止時刻の列$\left\{\tau_n\right\}_{n \in \Natural}$は殆どすべての$\omega$に対し
+	\begin{align}
+		0 = \tau_0(\omega) \leq \tau_1(\omega) \leq \tau_2(\omega) \leq \longrightarrow \infty
+	\end{align}
+	を満たす．
+	
+	\begin{screen}
 		\begin{dfn}[局所マルチンゲール]
-			$X$を$(\Omega,\mathscr{F},P)$上の確率過程とするとき，$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$が取れて，
+			$X$を$[0,1] \times \Omega$上の$\mathscr{F}$-過程とするとき，
+			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$が取れて，
 			任意の自然数$n$に対して
 			\begin{align}
 				X^{\tau_{n}}
@@ -35,8 +79,9 @@
 			が$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールとなるならば，言い換えれば
 			$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列が取れるならば，
 			$X$を$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 局所マルチンゲール}\index{きょくしょまるちんげーる@局所マルチンゲール}
-			{\bf (local martingale)}と呼ぶ．$(\Omega,\mathscr{F},P)$上の連続な
-			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲール$X$で，$\Omega$の任意の要素$\omega$に対して
+			{\bf (local martingale)}と呼ぶ．連続な
+			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲール$X$で，
+			$\Omega$の任意の要素$\omega$に対して
 			\begin{align}
 				X_{0}(\omega) = 0
 			\end{align}
@@ -47,18 +92,6 @@
 			とおく．
 		\end{dfn}
 	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[マルチンゲールは局所マルチンゲール]
-			\begin{align}
-				\mathscr{M}_{\mathbf{T}} \subset \mathscr{M}^{loc}_{\mathbf{T}}.
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		
-	\end{sketch}
 	
 	いま$X$を有界な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲールとし，
 	$\tau$を$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列とする．
@@ -106,7 +139,7 @@
 				1 & \mbox{if } \Set{t \in [0,1]}{n \leq |X_{t}(\omega)|} = \emptyset
 			\end{cases}
 		\end{align}
-		なる写像を対応させる写像を$\sigma$とおくと，定理\ref{thm:increasing_stopping_times_made_from_continuous_martingales}より
+		なる写像を対応させる写像を$\sigma$とおくと，定理\ref{thm:increasing_stopping_times_made_from_continuous_adapted_process}より
 		任意の自然数$n$に対して$\sigma_{n}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-停止時刻であり，また
 		$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対し
 		\begin{align}
@@ -136,7 +169,7 @@
 					}
 				}
 			\end{align}
-			を対応させる写像を$X$の{\bf 総変動過程}\index{そうへんどうかてい@総変動過程}と呼ぶ．
+			を対応させる写像を$X$の{\bf 総変動過程}\index{そうへんどうかてい@総変動過程}と呼ぶことにする．
 		\end{dfn}
 	\end{screen}
 	
@@ -148,227 +181,18 @@
 	\end{screen}
 	
 	\begin{sketch}
+	
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[有界変動な局所マルチンゲールは定数]
-			$X$を$\mathscr{M}_{c,loc}$の要素とし，$\Omega$の任意の要素$\omega$に対する
-			標本路$X_{\bullet}(\omega)$は$[0,1]$上で有界変動であるとする．
-			このとき$P$-零集合$F$が取れて，$[0,1]$の任意の要素$t$及び
-			$\Omega \backslash E$の任意の要素$\omega$に対して
+		\begin{thm}[マルチンゲールは局所マルチンゲール]
 			\begin{align}
-				X_{t}(\omega) = 0.
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}\mbox{}
-		\begin{description}
-			\item[第一段]
-				$X$の総変動過程$|X|$が有界であるとする．つまり，
-				$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対して
-				\begin{align}
-					|X|_{t}(\omega) \leq b
-				\end{align}
-				を満たす実数$b$が取れる．このとき$X$も有界であるから，
-				\begin{align}
-					X \in \mathscr{M}_{c}^{2}
-				\end{align}
-				が成り立つ．特に
-				\begin{align}
-					E\left(X_{1}^{2}\right)
-					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}}^{2} - X_{\frac{k}{n}}^{2}\right)\right] \\
-					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right)^{2}\right] \\
-					&\leq E\left[|X|_{1} \cdot \sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \\
-					&\leq b \cdot E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right]
-				\end{align}
-				が成り立ち，Lebesgueの収束定理より
-				\begin{align}
-					E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \longrightarrow 0 \quad (n \longrightarrow \infty)
-				\end{align}
-				となるから
-				\begin{align}
-					E\left(X_{1}^{2}\right) = 0
-				\end{align}
-				を得る．そして$X^{2}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-劣マルチンゲール性であるから，$[0,1]$の任意の要素$t$で
-				\begin{align}
-					E\left(X_{t}^{2}\right) = 0
-				\end{align}
-				が成立する．
-				
-			\item[第二段] $\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\sigma$で，
-				任意の自然数$n$及び$\Omega$の任意の要素$\omega$に対して
-				\begin{align}
-					\sigma_{n}(\omega) = 
-					\begin{cases}
-						\inf{}{\Set{t \in [0,1]}{n \leq |X|_{t}(\omega)}} 
-						& \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} \neq \emptyset \\
-						1 & \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} = \emptyset
-					\end{cases}
-				\end{align}
-				を満たすものを取る．このとき任意の自然数$n$，$[0,1]$の任意の要素$t$
-				及び$\Omega$の任意の要素$\omega$に対して
-				\begin{align}
-					\left|X^{\sigma_{n}}\right|_{t}(\omega) = 
-					\begin{cases}
-						\left|X\right|_{t}(\omega) &\mbox{if } t \leq \sigma_{n}(\omega) \\
-						\left|X\right|_{\sigma_{n}(\omega)}(\omega) &\mbox{if } \sigma_{n}(\omega) < t
-					\end{cases}
-				\end{align}
-				が成り立つので，つまり
-				\begin{align}
-					\left|X^{\sigma_{n}}\right| = |X|^{\sigma_{n}}
-				\end{align}
-				である．ゆえに前段の結果より，任意の自然数$n$及び
-				$[0,1]$の任意の要素$t$に対して
-				\begin{align}
-					E\left({X^{\sigma_{n}}_{t}}^{2}\right) = 0
-				\end{align}
-				が成立する．ここで
-				\begin{align}
-					F \defeq \bigcup_{n \in \Natural} \bigcup_{t \in [0,1]}
-					\Set{\omega \in \Omega}{X^{\sigma_{n}}_{t}(\omega) \neq 0}
-				\end{align}
-				とおくと，$\omega$を$\Omega \backslash F$の任意の要素とし，
-				$t$を$[0,1]$の任意の要素とすれば，任意の自然数$n$に対して
-				\begin{align}
-					X^{\sigma_{n}}_{t}(\omega) = 0
-				\end{align}
-				が成り立つので
-				\begin{align}
-					X_{t}(\omega) = 0
-				\end{align}
-				が従う．
-				\QED
-		\end{description}
-	\end{sketch}
-	
-	\begin{screen}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{thm}[二次関数が非負であるための条件]
-		\label{thm:nonnegative_condition_of_quadratic_function}
-			$a,b,c$を実数とし，$a$は非負であるとする．このとき$\R$の任意の要素$x$で
-			\begin{align}
-				0 \leq a \cdot x^{2} + b \cdot x + c
-				\label{fom:nonnegative_condition_of_quadratic_function}
-			\end{align}
-			が成り立つならば
-			\begin{align}
-				b^{2} \leq 4 \cdot a \cdot c.
+				\mathscr{M}_{\mathbf{T}} \subset \mathscr{M}^{loc}_{\mathbf{T}}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		いま(\refeq{fom:nonnegative_condition_of_quadratic_function})が満たされているとする．
-		\begin{align}
-			a=0
-		\end{align}
-		のとき，
-		\begin{align}
-			b \neq 0
-		\end{align}
-		ならば
-		\begin{align}
-			b \cdot -\frac{c+1}{b} + c = -1
-		\end{align}
-		が成り立つので
-		\begin{align}
-			\exists x \in \R\, (\, b \cdot x + c < 0\, )
-		\end{align}
-		が従う．ゆえに$a=0$のときは
-		\begin{align}
-			b = 0
-		\end{align}
-		及び
-		\begin{align}
-			b^{2} \leq 4 \cdot a \cdot c
-		\end{align}
-		が満たされる．
-		\begin{align}
-			0 < a
-		\end{align}
-		であるとすると，
-		\begin{align}
-			a \cdot x^{2} + b \cdot x + c
-			= a \cdot \left(x+\frac{b}{2 \cdot a}\right)^{2} - \frac{b^{2} - 4 \cdot a \cdot c}{4 \cdot a}
-		\end{align}
-		から
-		\begin{align}
-			\frac{b^{2} - 4 \cdot a \cdot c}{4 \cdot a}
-			\leq a \cdot \left(x+\frac{b}{2 \cdot a}\right)^{2}
-		\end{align}
-		が従う．特に
-		\begin{align}
-			x = -\frac{b}{2 \cdot a}
-		\end{align}
-		のとき
-		\begin{align}
-			\frac{b^{2} - 4 \cdot a \cdot c}{4 \cdot a} \leq 0
-		\end{align}
-		が成り立つ．すなわちこのとき
-		\begin{align}
-			b^{2} \leq 4 \cdot a \cdot c
-		\end{align}
-		が成り立つ．
-		\QED
-	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}[二次変分に対するSchwartzの不等式]
-		\label{thm:Schwartz_inequality_for_quadratic_variations}
-			$X$と$Y$を$\mathscr{M}_{c,loc}$の要素とするとき，
-			$P$-零集合$F$が取れて，$\Omega \backslash F$の任意の要素$\omega$と
-			$s \leq t$なる$[0,1]$の任意の要素$s$と$t$に対して
-			\begin{align}
-				\left[\inprod<X,Y>_{t}(\omega) - \inprod<X,Y>_{s}(\omega)\right]^{2}
-				\leq \left[\inprod<X>_{t}(\omega) - \inprod<X>_{s}(\omega)\right] 
-				\cdot \left[\inprod<Y>_{t}(\omega) - \inprod<Y>_{s}(\omega)\right].
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		$\R$上の写像$E$を
-		\begin{align}
-			x \longmapsto \Set{\omega \in \Omega}{\exists t \in [0,1]\, \left[\, 
-			\inprod<X+x \cdot Y>_{t}(\omega) \neq
-			\inprod<X>_{t}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{t}(\omega)
-			+ x^{2} \cdot \inprod<Y>_{t}(\omega)\, \right]}
-		\end{align}
-		なる関係で定めて
-		\begin{align}
-			F \defeq \bigcup_{x \in \Q} E_{x}
-		\end{align}
-		とおく．このとき$\omega$を$\Omega \backslash F$の任意の要素とし，
-		$s$と$t$を
-		\begin{align}
-			s \leq t
-		\end{align}
-		なる$[0,1]$の任意の要素とすれば，任意の有理数$x$に対して
-		\begin{align}
-			\inprod<X>_{s}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{s}(\omega)
-			+ x^{2} \cdot \inprod<Y>_{s}(\omega)
-			&= \inprod<X+x \cdot Y>_{s}(\omega) \\
-			&\leq \inprod<X+x \cdot Y>_{t}(\omega) \\
-			&= \inprod<X>_{t}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{t}(\omega)
-			+ x^{2} \cdot \inprod<Y>_{t}(\omega)
-		\end{align}
-		が成り立つ．ゆえに任意の実数$x$に対して
-		\begin{align}
-			0 &\leq x^{2} \cdot \left[\inprod<Y>_{t}(\omega) - \inprod<Y>_{s}(\omega) \right] \\
-			&\quad + 2 \cdot x \cdot \left[\inprod<X,Y>_{t}(\omega) - \inprod<X,Y>_{s}(\omega) \right] \\
-			&\quad + \left[\inprod<X>_{t}(\omega) - \inprod<X>_{s}(\omega) \right]
-		\end{align}
-		が成り立つ．ゆえに定理\ref{thm:nonnegative_condition_of_quadratic_function}より
-		\begin{align}
-			\left[\inprod<X,Y>_{t}(\omega) - \inprod<X,Y>_{s}(\omega)\right]^{2}
-			\leq \left[\inprod<X>_{t}(\omega) - \inprod<X>_{s}(\omega)\right] \cdot
-			\left[\inprod<Y>_{t}(\omega) - \inprod<Y>_{s}(\omega)\right]
-		\end{align}
-		が成り立つ．
-		\QED
+		
 	\end{sketch}
 	

@@ -1,18 +1,117 @@
 \section{二次変分}
+	
+	\begin{screen}
+		\begin{thm}[有界変動な局所マルチンゲールは定数]
+			$X$を$\mathscr{M}_{c,loc}$の要素とし，$\Omega$の任意の要素$\omega$に対する
+			標本路$X_{\bullet}(\omega)$は$[0,1]$上で有界変動であるとする．このとき
+			\begin{align}
+				\Set{\omega \in \Omega}{\exists t \in [0,1]\,
+				\left(\, X_{t}(\omega) \neq 0\, \right)}
+			\end{align}
+			は$P$-零集合である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$X$の総変動過程$|X|$が有界であるとする．つまり，
+				$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対して
+				\begin{align}
+					|X|_{t}(\omega) \leq b
+				\end{align}
+				を満たす実数$b$が取れる．このとき$X$も有界であるから，
+				\begin{align}
+					X \in \mathscr{M}_{c}^{2}
+				\end{align}
+				が成り立つ．特に
+				\begin{align}
+					E\left(X_{1}^{2}\right)
+					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}}^{2} - X_{\frac{k}{n}}^{2}\right)\right] \\
+					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right)^{2}\right] \\
+					&\leq E\left[|X|_{1} \cdot \sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \\
+					&\leq b \cdot E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right]
+				\end{align}
+				が成り立ち，Lebesgueの収束定理より
+				\begin{align}
+					E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となるから
+				\begin{align}
+					E\left(X_{1}^{2}\right) = 0
+				\end{align}
+				を得る．そして$X^{2}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-劣マルチンゲール性であるから，$[0,1]$の任意の要素$t$で
+				\begin{align}
+					E\left(X_{t}^{2}\right) = 0
+				\end{align}
+				が成立する．
+				
+			\item[第二段] $\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\sigma$で，
+				任意の自然数$n$及び$\Omega$の任意の要素$\omega$に対して
+				\begin{align}
+					\sigma_{n}(\omega) = 
+					\begin{cases}
+						\inf{}{\Set{t \in [0,1]}{n \leq |X|_{t}(\omega)}} 
+						& \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} \neq \emptyset \\
+						1 & \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} = \emptyset
+					\end{cases}
+				\end{align}
+				を満たすものを取る．このとき任意の自然数$n$，$[0,1]$の任意の要素$t$
+				及び$\Omega$の任意の要素$\omega$に対して
+				\begin{align}
+					\left|X^{\sigma_{n}}\right|_{t}(\omega) = 
+					\begin{cases}
+						\left|X\right|_{t}(\omega) &\mbox{if } t \leq \sigma_{n}(\omega) \\
+						\left|X\right|_{\sigma_{n}(\omega)}(\omega) &\mbox{if } \sigma_{n}(\omega) < t
+					\end{cases}
+				\end{align}
+				が成り立つので，つまり
+				\begin{align}
+					\left|X^{\sigma_{n}}\right| = |X|^{\sigma_{n}}
+				\end{align}
+				である．ゆえに前段の結果より，任意の自然数$n$及び
+				$[0,1]$の任意の要素$t$に対して
+				\begin{align}
+					E\left({X^{\sigma_{n}}_{t}}^{2}\right) = 0
+				\end{align}
+				が成立する．ここで
+				\begin{align}
+					F \defeq \bigcup_{n \in \Natural} \bigcup_{t \in [0,1]}
+					\Set{\omega \in \Omega}{X^{\sigma_{n}}_{t}(\omega) \neq 0}
+				\end{align}
+				とおくと，$\omega$を$\Omega \backslash F$の任意の要素とし，
+				$t$を$[0,1]$の任意の要素とすれば，任意の自然数$n$に対して
+				\begin{align}
+					X^{\sigma_{n}}_{t}(\omega) = 0
+				\end{align}
+				が成り立つので
+				\begin{align}
+					X_{t}(\omega) = 0
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	本節の主題は局所マルチンゲールが増大過程と局所マルチンゲールの和に分解できるということである．
+	まずは二乗可積分マルチンゲールがマルチンゲールと増大過程に分解できることを示す．
+	
 	\begin{screen}
 		\begin{dfn}[増大過程]
 			$A$が$\mathbf{T} \times \Omega$上の$\R$値写像であって，かつ
 			\begin{itemize}
 				\item $\forall \omega \in \Omega\, (\, A_0(\omega) = 0\, )$
 				\item $A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合
-				\item $A$のすべてのパスが右連続かつ単調非減少
+				\item $A$のすべてのパスが単調非減少
 				\item $\mathbf{T}$の任意の要素$t$で$E(A_t) < \infty$
 			\end{itemize}
-			を満たすとき，$A$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 増大過程}
+			を満たすとき，$A$を$\mathscr{T} \times \Omega$上の
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 増大過程}
 			\index{ぞうだいかてい@増大過程}{\bf (increasing process)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
+	\begin{comment}
 	\begin{screen}
 		\begin{dfn}[ナチュラル]
 			$A$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程とする．
@@ -43,85 +142,45 @@
 		\end{dfn}
 	\end{screen}
 	
-	\begin{screen}
-		\begin{thm}[連続な増大過程はナチュラル]
-		\end{thm}
-	\end{screen}
+	\end{comment}
 	
 	\begin{screen}
-		\begin{thm}[有界変動なマルチンゲールは殆ど全てのパスが定値]
-		\label{thm:martingale_with_bounded_variation_is_constant}
-			$\mathbf{T}$を$[0,\infty[$か$[0,T]$とし，$A$と$B$を$\mathscr{N}_{\mathbf{T}}$の要素とし，
-			\begin{align}
-				A - B \in \mathscr{M}_{\mathbf{T}}
-			\end{align}
-			が成り立っているとする．このとき，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が右連続である場合，
-			或いは$A$と$B$が共に連続である場合，
-			\begin{align}
-				\forall t \in \mathbf{T}\, \forall \omega \in \Omega \backslash E\,
-				\left(\, A(t,\omega) = B(t,\omega)\, \right)
-			\end{align}
-			を満たす$P$-零集合$E$が取れる．
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}\mbox{}
-		\begin{description}
-			\item[]
-		\end{description}
-	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}[二乗可積分マルチンゲールは増大過程とマルチンゲールに分解できる]
+		\begin{thm}[二乗可積分マルチンゲールの分解]
 		\label{thm:decomposition_of_square_integrable_martingales}
-			$\mathbf{T}$を$[0,\infty[$か$[0,T]$とし，
-			$X$を$\mathscr{M}^2_{\mathbf{T}}$の要素とする．このとき，
-			\begin{itemize}
-				\item $\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が右連続かつ完備ならば，
-					$\mathfrak{N}_{\mathbf{T}}$の要素$Q$が唯一つ取れて，
-					$Q$の任意の要素$A$に対して
-					\begin{align}
-						X^2 - A \in \mathscr{M}_{\mathbf{T}}.
-					\end{align}
-					
-				\item $X$が連続であるとき，$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$が完備ならば
-					$\mathfrak{N}^c_{\mathbf{T}}$の要素$Q$が唯一つ取れて，
-					$Q$の任意の要素$A$に対して
-					\begin{align}
-						X^2 - A \in \mathscr{M}_{\mathbf{T}}.
-					\end{align}
-			\end{itemize}
+			$X$を$\mathscr{M}_{c}^{2}$の要素とし，$\{\mathscr{F}_t\}_{t \in [0,1]}$
+			は完備である(定義\ref{thm:completeness_of_filtration})とする．このとき
+			\begin{align}
+				X^2 - A \in \mathscr{M}_{c}
+			\end{align}
+			を満たす連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程$A$が取れる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-			\textcolor{red}{この証明は怪しい．$X$が右連続の場合はDoob-Meyer分解から示した方が無難か．．．
-			$X$が連続の場合は問題ないのだが．何とかして右連続の場合と連続の場合を包括的に証明したかったのだがうまくいかない．．．}
 		\begin{description}
-			\item[step1-1] $\mathbf{T}=[0,T]$とし，$X$が有界であるとする．つまりいま
+			\item[step1-1] $X$が有界であるとする．つまり，いま$\Omega$の任意の要素$\omega$及び
+				$[0,1]$の任意の要素$t$に対して
 				\begin{align}
-					\forall t \in \mathbf{T}\, \forall \omega \in \Omega\,
-					\left(\, |X(t,\omega)| \leq b\, \right)
+					|X(t,\omega)| \leq b
 				\end{align}
 				を満たす実数$b$が取れる．
 			
 			\item[step1-2] $n$を自然数とし，
 				\begin{align}
-					(t,\omega) \longmapsto \sum_{j=0}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}}(\omega)
-					- X_{\min\left\{t,\frac{j}{2^n}T\right\}}(\omega)\right)^2
+					(t,\omega) \longmapsto \sum_{j=0}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}}(\omega)
+					- X_{\min\left\{t,\frac{j}{2^n}\right\}}(\omega)\right)^2
 				\end{align}
 				なる写像を$A^{(n)}$とする．このとき
 				\begin{align}
-					X^2 - A^{(n)} \in \mathscr{M}^2_{\mathbf{T}}
+					X^2 - A^{(n)} \in \mathscr{M}_{c}^{2}
 					\label{fom:thm_decomposition_of_square_integrable_martingales_2}
 				\end{align}
-				であることを示す．まず$X$の右連続性より$A^{(n)}$も右連続である．また全ての$j$で
+				であることを示す．まず$X$の連続性より$A^{(n)}$も連続である．また全ての$j$で
 				\begin{align}
-					X_{\min\left\{t,\frac{j}{2^n}T\right\}}
+					X_{\min\left\{t,\frac{j}{2^n}\right\}}
 				\end{align}
 				は$\mathscr{F}_t/\borel{\R}$-可測なので，$X^2-A^{(n)}$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合である．
-				いまは$X$も$A^{(n)}$も有界であるから，$\mathbf{T}$の任意の要素$t$で
+				いまは$X$も$A^{(n)}$も有界であるから，$[0,1]$の任意の要素$t$で
 				\begin{align}
 					\int_{\Omega} \left|X_t^2-A_t^{(n)}\right|^2\ dP < \infty
 				\end{align}
@@ -129,19 +188,19 @@
 				\begin{align}
 					s < t
 				\end{align}
-				なる$\mathbf{T}$の要素とする．そして
+				なる$[0,1]$の要素とする．そして
 				\begin{align}
-					\frac{k}{2^n}T \leq s < \frac{k+1}{2^n}T
+					\frac{k}{2^n} \leq s < \frac{k+1}{2^n}
 				\end{align}
 				を満たす$k$を取る．このとき
 				\begin{align}
 					A^{(n)}_t - A^{(n)}_s
 					&= \sum_{j=k}^{2^n-1} \left\{
-					\left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{t,\frac{j}{2^n}T\right\}}\right)^2
-					- \left(X_{\min\left\{s,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{s,\frac{j}{2^n}T\right\}}\right)^2\right\} \\
-					&= \sum_{j=k+1}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{t,\frac{j}{2^n}T\right\}}\right)^2
-					+ \left(X_{\min\left\{t,\frac{k+1}{2^n}T\right\}} - X_{\frac{k}{2^n}T}\right)^2
-					- \left(X_s - X_{\frac{k}{2^n}T}\right)^2
+					\left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2
+					- \left(X_{\min\left\{s,\frac{j+1}{2^n}\right\}} - X_{\min\left\{s,\frac{j}{2^n}\right\}}\right)^2\right\} \\
+					&= \sum_{j=k+1}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2
+					+ \left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2
+					- \left(X_s - X_{\frac{k}{2^n}}\right)^2
 				\end{align}
 				が成り立つ．この各項について，
 				\begin{align}
@@ -149,46 +208,40 @@
 				\end{align}
 				なる各$j$で$P$-a.s.に
 				\begin{align}
-					\cexp{ \left(X_{\min\left\{t,\frac{j+1}{2^n}T\right\}} - X_{\min\left\{t,\frac{j}{2^n}T\right\}}\right)^2}{\mathscr{F}_s}
-					= \cexp{X^2_{\min\left\{t,\frac{j+1}{2^n}T\right\}}}{\mathscr{F}_s}
-					 - \cexp{X^2_{\min\left\{t,\frac{j}{2^n}T\right\}}}{\mathscr{F}_s}
+					\cexp{ \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2}{\mathscr{F}_s}
+					= \cexp{X^2_{\min\left\{t,\frac{j+1}{2^n}\right\}}}{\mathscr{F}_s}
+					 - \cexp{X^2_{\min\left\{t,\frac{j}{2^n}\right\}}}{\mathscr{F}_s}
 				\end{align}
 				が成り立ち，また$P$-a.s.に
 				\begin{align}
-					&\cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}T\right\}} - X_{\frac{k}{2^n}T}\right)^2}{\mathscr{F}_s} \\
-					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}T\right\}}^2}{\mathscr{F}_s}
-					- 2 \cexp{X_{\min\left\{t,\frac{k+1}{2^n}T\right\}}X_{\frac{k}{2^n}T}}{\mathscr{F}_s}
-					+ \cexp{X_{\frac{k}{2^n}T}^2}{\mathscr{F}_s} \\
-					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}T\right\}}^2}{\mathscr{F}_s}
-					- 2 X_{\frac{k}{2^n}T}^2
-					+ \cexp{X_{\frac{k}{2^n}T}^2}{\mathscr{F}_s} \\
+					&\cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2}{\mathscr{F}_s} \\
+					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}^2}{\mathscr{F}_s}
+					- 2 \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}X_{\frac{k}{2^n}}}{\mathscr{F}_s}
+					+ \cexp{X_{\frac{k}{2^n}}^2}{\mathscr{F}_s} \\
+					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}^2}{\mathscr{F}_s}
+					- 2 X_{\frac{k}{2^n}}^2
+					+ \cexp{X_{\frac{k}{2^n}}^2}{\mathscr{F}_s} \\
 				\end{align}
 				も成り立つので，
 				\begin{align}
 					&\cexp{A^{(n)}_t - A^{(n)}_s}{\mathscr{F}_s} \\
 					&= \cexp{X^2_t}{\mathscr{F}_s}
-					- \cexp{X^2_{\min\left\{t,\frac{k+1}{2^n}T\right\}}}{\mathscr{F}_s}
-					+ \cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}T\right\}} - X_{\frac{k}{2^n}T}\right)^2}{\mathscr{F}_s}
-					- \left(X_s - X_{\frac{k}{2^n}T}\right)^2 \\
+					- \cexp{X^2_{\min\left\{t,\frac{k+1}{2^n}\right\}}}{\mathscr{F}_s}
+					+ \cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2}{\mathscr{F}_s}
+					- \left(X_s - X_{\frac{k}{2^n}}\right)^2 \\
 					&= \cexp{X^2_t}{\mathscr{F}_s} - X_s^2
 				\end{align}
 				が従う．ゆえに$P$-a.s.に
 				\begin{align}
 					\cexp{X^2_t - A^{(n)}_t}{\mathscr{F}_s} = X^2_s - A^{(n)}_s
 				\end{align}
-				となる．以上で(\refeq{fom:thm_decomposition_of_square_integrable_martingales_2})が得られたが，
-				$X$が連続である場合は$A^{(n)}$も連続であるから
-				\begin{align}
-					X^2 - A^{(n)} \in \mathscr{M}^{2,c}_{\mathbf{T}}
-					\label{fom:thm_decomposition_of_square_integrable_martingales_3}
-				\end{align}
-				が成立する．
+				となる．以上で(\refeq{fom:thm_decomposition_of_square_integrable_martingales_2})が得られた．
 				
 			\item[step1-3]
 				任意の自然数$n$に対して
 				\begin{align}
-					\int_\Omega \left|X_T^2 - A_T^{(n)}\right|^2\ dP
-					\leq 14 \cdot b^2 \cdot \int_\Omega \left|X_T\right|^2\ dP
+					\int_\Omega \left|X_{1}^2 - A_{1}^{(n)}\right|^2\ dP
+					\leq 14 \cdot b^2 \cdot \int_\Omega \left|X_{1}\right|^2\ dP
 				\end{align}
 				が成り立つことを示す．いま
 				\begin{align}
@@ -196,59 +249,56 @@
 				\end{align}
 				とおけば
 				\begin{align}
-					\int_\Omega M_{\frac{j+1}{2^n}T}^2 - M_{\frac{j}{2^n}T}^2\ dP
-					&= \int_\Omega \left(M_{\frac{j+1}{2^n}T} - M_{\frac{j}{2^n}T} \right)^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} -
-					\left(A^{(n)}_{\frac{j+1}{2^n}T} - A^{(n)}_{\frac{j}{2^n}T}\right) \right\}^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} -
-					\left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2 \right\}^2\ dP
+					\int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP
+					&= \int_\Omega \left(M_{\frac{j+1}{2^n}} - M_{\frac{j}{2^n}} \right)^2\ dP \\
+					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\left(A^{(n)}_{\frac{j+1}{2^n}} - A^{(n)}_{\frac{j}{2^n}}\right) \right\}^2\ dP \\
+					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP
 				\end{align}
 				が成り立つから，
 				\begin{align}
-					\int_\Omega \left|M_T\right|^2\ dP
-					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}T}^2 - M_{\frac{j}{2^n}T}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} -
-					\left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2 \right\}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right\}^2\ dP \\
-						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right) \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2\ dP \\
-						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^4\ dP
+					\int_\Omega \left|M_{1}\right|^2\ dP
+					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP \\
+						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP \\
+						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
 					\label{fom:thm_decomposition_of_square_integrable_martingales_1}
 				\end{align}
 				が成り立つ．ここで
 				\begin{align}
-					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right\}^2\ dP
-					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP
+					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP
+					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
 				\end{align}
 				かつ
 				\begin{align}
-					\int_\Omega \left( X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T} \right) \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^2\ dP
-					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP
+					\int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP
+					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
 				\end{align}
 				かつ
 				\begin{align}
-					\int_\Omega \left(X_{\frac{j+1}{2^n}T} - X_{\frac{j}{2^n}T}\right)^4\ dP
-					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP \\
-					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP
+					\int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
+					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
+					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
 				\end{align}
 				が成り立つので
 				\begin{align}
 					(\refeq{fom:thm_decomposition_of_square_integrable_martingales_1})
-					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}T} - X^2_{\frac{j}{2^n}T}\ dP \\
-					&= 14 \cdot b^2 \cdot \int_\Omega \left|X_T\right|^2\ dP
+					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
+					&= 14 \cdot b^2 \cdot \int_\Omega \left|X_{1}\right|^2\ dP
 				\end{align}
 				が成立する．
 				
 			\item[step1-4]
-				$\mathscr{M}^2_{\mathbf{T}}$に定理\ref{thm:pseudo_metric_on_square_integrable_martingales}の
+				$\mathscr{M}_{c}^{2}$に定理\ref{thm:pseudo_metric_on_square_integrable_martingales}の
 				擬距離$d$を定めるとき，step1-3より
 				\begin{align}
 					\left\{X^2 - A^{(n)}\right\}_{n \in \Natural}
 				\end{align}
-				は$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$で有界である．ゆえにKomlosの補題より
-				\begin{align}
-					h:\Natural \longrightarrow \mathscr{M}^2_{\mathbf{T}}
-				\end{align}
-				なる$\left(\mathscr{M}^2_{\mathbf{T}},d\right)$のCauchy列$h$で，任意の自然数$n$で
+				は$\left(\mathscr{M}_{c}^{2},d\right)$で有界である．ゆえにKomlosの補題より
+				$\left(\mathscr{M}_{c}^{2},d\right)$のCauchy列$h$で，任意の自然数$n$で
 				\begin{align}
 					h(n) \in \conv{\Set{X^2-A^{(k)}}{k \in \Natural \wedge n \leq k}}
 					\label{fom:thm_decomposition_of_square_integrable_martingales_5}
@@ -257,20 +307,11 @@
 				\begin{align}
 					d(h(n),M) \longrightarrow 0\quad (n \longrightarrow \infty)
 				\end{align}
-				なる$\mathscr{M}^2_{\mathbf{T}}$の要素$M$が取れる．特に$X$が連続である場合は
-				(\refeq{fom:thm_decomposition_of_square_integrable_martingales_3})より
-				\begin{align}
-					\left\{h(n)\right\}_{n \in \Natural} \subset \mathscr{M}^{2,c}_{\mathbf{T}}
-				\end{align}
-				が成り立つから，極限$M$を
-				\begin{align}
-					M \in \mathscr{M}^{2,c}_{\mathbf{T}}
-				\end{align}
-				なるものとして取れる．ここで
+				を満たす$\mathscr{M}_{c}^{2}$の要素$M$が取れる．ここで
 				\begin{align}
 					A \defeq X^2 - M
 				\end{align}
-				とおく．定め方より$A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合であって，右連続でもあり，特に$X$が連続なら$A$も連続である．
+				とおく．定め方より$A$は連続かつ$\{\mathscr{F}_t\}_{t \in [0,1]}$-適合である．
 				あとは$A$の増大性を示せばよい．いま任意の自然数$k$に対し
 				\begin{align}
 					d(h(n_k),M) < \frac{1}{4^{k+1}}
@@ -281,14 +322,14 @@
 				\end{align}
 				を取ると，Doobの劣マルチンゲール不等式より任意の自然数$k$で
 				\begin{align}
-					\int_\Omega \left\{\sup{t \in [0,T]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|}\right\}^2\ dP
-					&= \int_\Omega \left\{\sup{t \in [0,T]}{\left|h(n_k)_t - M_t\right|}\right\}^2\ dP \\
-					&\leq 4 \cdot \int_\Omega \left|h(n_k)_T - M_T\right|^2\ dP \\
+					\int_\Omega \left\{\sup{t \in [0,1]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|}\right\}^2\ dP
+					&= \int_\Omega \left\{\sup{t \in [0,1]}{\left|h(n_k)_t - M_t\right|}\right\}^2\ dP \\
+					&\leq 4 \cdot \int_\Omega \left|h(n_k)_{1} - M_{1}\right|^2\ dP \\
 					&< \frac{1}{8^k}
 				\end{align}
 				が成り立つ．従って，自然数$k$に対して
 				\begin{align}
-					E_k \defeq \left\{ \frac{1}{2^k} \leq \sup{t \in [0,T]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|} \right\}
+					E_k \defeq \left\{ \frac{1}{2^k} \leq \sup{t \in [0,1]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|} \right\}
 				\end{align}
 				とおけば
 				\begin{align}
@@ -301,12 +342,12 @@
 				で定める$E$は$P$-零集合である．いま$\omega$を$\Omega \backslash E$の要素とする．すると
 				\begin{align}
 					\forall k \in \Natural\,
-					\left[\, K < k \Longrightarrow \sup{t \in [0,T]}{\left|\left(X^2_t(\omega) - h(n_k)_t(\omega)\right) - A_t(\omega)\right|} < \frac{1}{2^k}\, \right]
+					\left[\, K < k \Longrightarrow \sup{t \in [0,1]}{\left|\left(X^2_t(\omega) - h(n_k)_t(\omega)\right) - A_t(\omega)\right|} < \frac{1}{2^k}\, \right]
 					\label{fom:thm_decomposition_of_square_integrable_martingales_4}
 				\end{align}
 				を満たす自然数$K$が取れる．ここで
 				\begin{align}
-					D_k \defeq \Set{\frac{j}{2^{n_k}}T}{j \in \{0,1,\cdots,2^{n_k}\}}
+					D_k \defeq \Set{\frac{j}{2^{n_k}}}{j \in \{0,1,\cdots,2^{n_k}\}}
 				\end{align}
 				とおき
 				\begin{align}
@@ -340,9 +381,9 @@
 				\begin{align}
 					s < t
 				\end{align}
-				なる$\mathbf{T}$の要素であるときは，
+				なる$[0,1]$の要素であるときは，
 				\begin{align}
-					\{t_n\}_{n \in \Natural} \subset [t,T] \cap D
+					\{t_n\}_{n \in \Natural} \subset [t,1] \cap D
 				\end{align}
 				かつ
 				\begin{align}
@@ -360,7 +401,7 @@
 				\begin{align}
 					\forall n \in \Natural\, \left(\, A_{s_n}(\omega) \leq A_{t_n}(\omega)\, \right)
 				\end{align}
-				が成り立ち，また$A$は右連続であるから
+				が成り立ち，また$A$は連続であるから
 				\begin{align}
 					A_s(\omega) \leq A_t(\omega)
 				\end{align}
@@ -380,20 +421,13 @@
 						0 & \mbox{if } \omega \in E
 					\end{cases}
 				\end{align}
-				なる写像を$\tilde{A}$とすれば，
+				なる写像を$\tilde{A}$とすれば，$\tilde{A}$は連続な
+				連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程であって
 				\begin{align}
-					\tilde{A} \in \mathscr{A}^+_{\mathbf{T}}
+					X^2 - \tilde{A} \in \mathscr{M}_{c}^{2}
 				\end{align}
-				かつ
-				\begin{align}
-					X^2 - \tilde{A} \in \mathscr{M}^2_{\mathbf{T}}
-				\end{align}
-				が成立する．とくに$X$が連続である場合は$\tilde{A}$も連続である．
+				を満たす．
 			
-			\item[step1-5]
-				前段で得られた$\tilde{A}$がナチュラルであることを示す．
-				あれ...示せない...
-				
 			\item[step2]
 				$\mathbf{T}=[0,\infty[$とし，$X$が有界であるとする．
 				$N$を$0$でない自然数とすれば，step1の結果より
@@ -554,3 +588,154 @@
 				\QED
 		\end{description}
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[二次変分の存在]
+			$X$を$\mathscr{M}_{c,loc}$の要素とすると，
+			\begin{align}
+				X^{2} - A \in \mathscr{M}_{c,loc}
+			\end{align}
+			を満たす連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程$A$が取れる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[]
+			\begin{align}
+				X \in \mathscr{M}_{c}^{2} \Longleftrightarrow E\inprod<M>_{1} < \infty.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[二次関数が非負であるための条件]
+		\label{thm:nonnegative_condition_of_quadratic_function}
+			$a,b,c$を実数とし，$a$は非負であるとする．このとき$\R$の任意の要素$x$で
+			\begin{align}
+				0 \leq a \cdot x^{2} + b \cdot x + c
+				\label{fom:nonnegative_condition_of_quadratic_function}
+			\end{align}
+			が成り立つならば
+			\begin{align}
+				b^{2} \leq 4 \cdot a \cdot c.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま(\refeq{fom:nonnegative_condition_of_quadratic_function})が満たされているとする．
+		\begin{align}
+			a=0
+		\end{align}
+		のとき，
+		\begin{align}
+			b \neq 0
+		\end{align}
+		ならば
+		\begin{align}
+			b \cdot -\frac{c+1}{b} + c = -1
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\exists x \in \R\, (\, b \cdot x + c < 0\, )
+		\end{align}
+		が従う．ゆえに$a=0$のときは
+		\begin{align}
+			b = 0
+		\end{align}
+		及び
+		\begin{align}
+			b^{2} \leq 4 \cdot a \cdot c
+		\end{align}
+		が満たされる．
+		\begin{align}
+			0 < a
+		\end{align}
+		であるとすると，
+		\begin{align}
+			a \cdot x^{2} + b \cdot x + c
+			= a \cdot \left(x+\frac{b}{2 \cdot a}\right)^{2} - \frac{b^{2} - 4 \cdot a \cdot c}{4 \cdot a}
+		\end{align}
+		から
+		\begin{align}
+			\frac{b^{2} - 4 \cdot a \cdot c}{4 \cdot a}
+			\leq a \cdot \left(x+\frac{b}{2 \cdot a}\right)^{2}
+		\end{align}
+		が従う．特に
+		\begin{align}
+			x = -\frac{b}{2 \cdot a}
+		\end{align}
+		のとき
+		\begin{align}
+			\frac{b^{2} - 4 \cdot a \cdot c}{4 \cdot a} \leq 0
+		\end{align}
+		が成り立つ．すなわちこのとき
+		\begin{align}
+			b^{2} \leq 4 \cdot a \cdot c
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[二次変分に対するSchwartzの不等式]
+		\label{thm:Schwartz_inequality_for_quadratic_variations}
+			$X$と$Y$を$\mathscr{M}_{c,loc}$の要素とするとき，
+			$P$-零集合$F$が取れて，$\Omega \backslash F$の任意の要素$\omega$と
+			$s \leq t$なる$[0,1]$の任意の要素$s$と$t$に対して
+			\begin{align}
+				\left[\inprod<X,Y>_{t}(\omega) - \inprod<X,Y>_{s}(\omega)\right]^{2}
+				\leq \left[\inprod<X>_{t}(\omega) - \inprod<X>_{s}(\omega)\right] 
+				\cdot \left[\inprod<Y>_{t}(\omega) - \inprod<Y>_{s}(\omega)\right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\R$の任意の要素$x$及び$[0,1]$の任意の要素$t$に対して
+		\begin{align}
+			\Set{\omega \in \Omega}{\inprod<X+x \cdot Y>_{t}(\omega) \neq
+			\inprod<X>_{t}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{t}(\omega)
+			+ x^{2} \cdot \inprod<Y>_{t}(\omega)}
+		\end{align}
+		は$P$-零集合であるから，
+		\begin{align}
+			F \defeq \bigcup_{x \in \Q} \bigcup_{t \in [0,1]}
+			\Set{\omega \in \Omega}{\inprod<X+x \cdot Y>_{t}(\omega) \neq
+			\inprod<X>_{t}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{t}(\omega)
+			+ x^{2} \cdot \inprod<Y>_{t}(\omega)}
+		\end{align}
+		とおけば$F$は$P$-零集合である．$\omega$を$\Omega \backslash F$の任意の要素とし，
+		$s$と$t$を
+		\begin{align}
+			s \leq t
+		\end{align}
+		なる$[0,1]$の任意の要素とすれば，任意の有理数$x$に対して
+		\begin{align}
+			\inprod<X>_{s}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{s}(\omega)
+			+ x^{2} \cdot \inprod<Y>_{s}(\omega)
+			&= \inprod<X+x \cdot Y>_{s}(\omega) \\
+			&\leq \inprod<X+x \cdot Y>_{t}(\omega) \\
+			&= \inprod<X>_{t}(\omega) + 2 \cdot x \cdot \inprod<X,Y>_{t}(\omega)
+			+ x^{2} \cdot \inprod<Y>_{t}(\omega)
+		\end{align}
+		が成り立つ．ゆえに任意の実数$x$に対して
+		\begin{align}
+			0 &\leq x^{2} \cdot \left[\inprod<Y>_{t}(\omega) - \inprod<Y>_{s}(\omega) \right] \\
+			&\quad + 2 \cdot x \cdot \left[\inprod<X,Y>_{t}(\omega) - \inprod<X,Y>_{s}(\omega) \right] \\
+			&\quad + \left[\inprod<X>_{t}(\omega) - \inprod<X>_{s}(\omega) \right]
+		\end{align}
+		が成り立つ．ゆえに定理\ref{thm:nonnegative_condition_of_quadratic_function}より
+		\begin{align}
+			\left[\inprod<X,Y>_{t}(\omega) - \inprod<X,Y>_{s}(\omega)\right]^{2}
+			\leq \left[\inprod<X>_{t}(\omega) - \inprod<X>_{s}(\omega)\right] \cdot
+			\left[\inprod<Y>_{t}(\omega) - \inprod<Y>_{s}(\omega)\right]
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
