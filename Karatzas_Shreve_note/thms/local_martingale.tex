@@ -148,19 +148,98 @@
 	\end{screen}
 	
 	\begin{sketch}
-		
 	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[有界変動な局所マルチンゲールは定数]
-			$X$を$\mathscr{M}_{c,loc}$の要素とし
+			$X$を$\mathscr{M}_{c,loc}$の要素とし，$\Omega$の任意の要素$\omega$に対する
+			標本路$X_{\bullet}(\omega)$は$[0,1]$上で有界変動であるとする．
+			このとき$P$-零集合$F$が取れて，$[0,1]$の任意の要素$t$及び
+			$\Omega \backslash E$の任意の要素$\omega$に対して
+			\begin{align}
+				X_{t}(\omega) = 0.
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}\mbox{}
 		\begin{description}
 			\item[第一段]
+				$X$の総変動過程$|X|$が有界であるとする．つまり，
+				$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対して
+				\begin{align}
+					|X|_{t}(\omega) \leq b
+				\end{align}
+				を満たす実数$b$が取れる．このとき$X$も有界であるから，
+				\begin{align}
+					X \in \mathscr{M}_{c}^{2}
+				\end{align}
+				が成り立つ．特に
+				\begin{align}
+					E\left(X_{1}^{2}\right)
+					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}}^{2} - X_{\frac{k}{n}}^{2}\right)\right] \\
+					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right)^{2}\right] \\
+					&\leq E\left[|X|_{1} \cdot \sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \\
+					&\leq b \cdot E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right]
+				\end{align}
+				が成り立ち，Lebesgueの収束定理より
+				\begin{align}
+					E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \longrightarrow 0 \quad (n \longrightarrow \infty)
+				\end{align}
+				となるから
+				\begin{align}
+					E\left(X_{1}^{2}\right) = 0
+				\end{align}
+				を得る．そして$X^{2}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-劣マルチンゲール性であるから，$[0,1]$の任意の要素$t$で
+				\begin{align}
+					E\left(X_{t}^{2}\right) = 0
+				\end{align}
+				が成立する．
 				
+			\item[第二段] $\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\sigma$で，
+				任意の自然数$n$及び$\Omega$の任意の要素$\omega$に対して
+				\begin{align}
+					\sigma_{n}(\omega) = 
+					\begin{cases}
+						\inf{}{\Set{t \in [0,1]}{n \leq |X|_{t}(\omega)}} 
+						& \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} \neq \emptyset \\
+						1 & \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} = \emptyset
+					\end{cases}
+				\end{align}
+				を満たすものを取る．このとき任意の自然数$n$，$[0,1]$の任意の要素$t$
+				及び$\Omega$の任意の要素$\omega$に対して
+				\begin{align}
+					\left|X^{\sigma_{n}}\right|_{t}(\omega) = 
+					\begin{cases}
+						\left|X\right|_{t}(\omega) &\mbox{if } t \leq \sigma_{n}(\omega) \\
+						\left|X\right|_{\sigma_{n}(\omega)}(\omega) &\mbox{if } \sigma_{n}(\omega) < t
+					\end{cases}
+				\end{align}
+				が成り立つので，つまり
+				\begin{align}
+					\left|X^{\sigma_{n}}\right| = |X|^{\sigma_{n}}
+				\end{align}
+				である．ゆえに前段の結果より，任意の自然数$n$及び
+				$[0,1]$の任意の要素$t$に対して
+				\begin{align}
+					E\left({X^{\sigma_{n}}_{t}}^{2}\right) = 0
+				\end{align}
+				が成立する．ここで
+				\begin{align}
+					F \defeq \bigcup_{n \in \Natural} \bigcup_{t \in [0,1]}
+					\Set{\omega \in \Omega}{X^{\sigma_{n}}_{t}(\omega) \neq 0}
+				\end{align}
+				とおくと，$\omega$を$\Omega \backslash F$の任意の要素とし，
+				$t$を$[0,1]$の任意の要素とすれば，任意の自然数$n$に対して
+				\begin{align}
+					X^{\sigma_{n}}_{t}(\omega) = 0
+				\end{align}
+				が成り立つので
+				\begin{align}
+					X_{t}(\omega) = 0
+				\end{align}
+				が従う．
+				\QED
 		\end{description}
 	\end{sketch}
 	
