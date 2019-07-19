@@ -50,44 +50,25 @@
 		\begin{align}
 			[\sigma,\tau] \ni t \longmapsto \alpha + \frac{t - \sigma}{\tau - \sigma} \cdot (\beta - \alpha)
 		\end{align}
-		なる$[\sigma,\tau]$上の写像とする．このとき
+		の関係で定める$[\sigma,\tau]$上の写像とする．このとき$\gamma \circ \varphi$は$[\sigma,\tau]$上の連続な有界変動関数であって，
+		$\borel{[\alpha,\beta]}$の任意の要素$E$で
 		\begin{align}
-			\eta \defeq \gamma \circ \varphi
+			\mu_{\gamma}(E) = \mu_{\gamma \circ \varphi} \left(\varphi^{-1} \ast E\right).
 		\end{align}
-		で定める$\eta$は，$[\sigma,\tau]$上の連続な有界変動関数であって，
-		\begin{align}
-			\mu_{\gamma}(E) = \mu_{\eta} \left(\varphi^{-1} \ast E\right)
-		\end{align}
-		が$\borel{[\alpha,\beta]}$の任意の要素$E$で成立する．
 	\end{itembox}
 	
-	これが示されれば，$\gamma^*$上の任意の$\C$値連続写像$f$に対して
+	これが示されれば，$[\alpha,\beta]$上の任意の$\mathscr{O}_{[\alpha,\beta]}/\mathscr{O}_{\C}$-連続写像$g$に対して
 	\begin{align}
-		\int_{\gamma} f = \int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma}
-		= \int_{[\sigma,\tau]} f \circ \eta\ d\mu_{\eta} = \int_{\eta} f
+		\int_{[\alpha,\beta]} g\ d\mu_{\gamma} = \int_{[\sigma,\tau]} g \circ \varphi\ d\mu_{\gamma \circ \varphi}
 		\label{fom:change_of_parameter_interval_complex_contour_integral}
 	\end{align}
-	が成立する．実際，
+	が成立する．実際，$g$が$\borel{[\alpha,\beta]}/\borel{\C}$-可測単関数である場合は
 	\begin{align}
-		\borel{\gamma^*} \defeq \Set{E \cap \gamma^*}{E \in \borel{C}}
+		\int_{[\alpha,\beta]} g\ d\mu_{\gamma} = \int_{[\sigma,\tau]} g \circ \varphi\ d\mu_{\gamma \circ \varphi}
 	\end{align}
-	とおけば，$\gamma^*$は$\C$のコンパクト部分集合すなわち閉集合であるから
+	が成り立つから，Lebesgueの収束定理より$g$が一般の$\mathscr{O}_{[\alpha,\beta]}/\mathscr{O}_{\C}$-連続写像である場合も
 	\begin{align}
-		\borel{\gamma^*} \subset \borel{C}
-	\end{align}
-	が成り立つ．よって$E$を$\borel{\gamma^*}$の要素とすれば
-	\begin{align}
-		\mu_{\gamma}\left(\gamma^{-1} \ast E\right)
-		= \mu_{\eta}\left(\varphi^{-1} \ast (\gamma^{-1} \ast E)\right)
-		= \mu_{\eta}\left(\eta^{-1} \ast E\right)
-	\end{align}
-	が成立する．ゆえに$f$が$\borel{\gamma^*}/\borel{\C}$-可測単関数である場合は
-	\begin{align}
-		\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma} = \int_{[\sigma,\tau]} f \circ \eta\ d\mu_{\eta}
-	\end{align}
-	が成り立つから，Lebesgueの収束定理より$f$が連続である場合も
-	\begin{align}
-		\int_{[\alpha,\beta]} f \circ \gamma\ d\mu_{\gamma} = \int_{[\sigma,\tau]} f \circ \eta\ d\mu_{\eta}
+		\int_{[\alpha,\beta]} g\ d\mu_{\gamma} = \int_{[\sigma,\tau]} g \circ \varphi\ d\mu_{\gamma \circ \varphi}
 	\end{align}
 	が成り立つ．特に{\bf 複素線積分は全て$[0,1]$上の路に関する積分に書き直すことが出来る．}
 	
@@ -117,12 +98,11 @@
 				\end{align}
 				は$[\alpha,\beta]$の分割であって
 				\begin{align}
-					\sum_{j=1}^{n} \left|\eta(t_j) - \eta(t_{j-1})\right|
-					= \sum_{j=1}^{n} \left|\gamma(\varphi(t_j)) - \gamma(\varphi(t_{j-1}))\right|
+					\sum_{j=1}^{n} \left|\gamma(\varphi(t_j)) - \gamma(\varphi(t_{j-1}))\right|
 					\leq v
 				\end{align}
-				が成立する．これは$[\sigma,\tau]$の分割の取り方に依らないから$\eta$は有界変動である．
-				$\eta$の連続性は$\gamma$と$\varphi$の連続性から従う．
+				が成立する．これは$[\sigma,\tau]$の分割の取り方に依らないから$\gamma \circ \varphi$は有界変動である．
+				$\gamma \circ \varphi$の連続性は$\gamma$と$\varphi$の連続性から従う．
 				
 			\item[第二段]
 				$s$と$t$を
@@ -131,18 +111,19 @@
 				\end{align}
 				を満たす$[\alpha,\beta]$の要素とするとき，
 				\begin{align}
-					\mu_{\eta}\left(\varphi^{-1} \ast ]s,t]\right)
-					&= \mu_{\eta}\left(\left]\varphi^{-1}(s), \varphi^{-1}(t)\right]\right) \\
-					&= \eta(\varphi^{-1}(t)) - \eta(\varphi^{-1}(s)) \\
+					\mu_{\gamma \circ \varphi}\left(\varphi^{-1} \ast ]s,t]\right)
+					&= \mu_{\gamma \circ \varphi}\left(\left]\varphi^{-1}(s), \varphi^{-1}(t)\right]\right) \\
+					&= \gamma \left(\varphi \left(\varphi^{-1}(t) \right) \right)
+					- \gamma \left(\varphi \left(\varphi^{-1}(s) \right) \right) \\
 					&= \gamma(t) - \gamma(s) \\
 					&= \mu_{\gamma}(]s,t])
 				\end{align}
-				が成立する．$\mu_{\gamma}$も$\mu_{\eta}$も一点の測度は$0$であるから，
-				測度の一致の定理より$\borel{[\alpha,\beta]}$の任意の要素$E$で
+				が成立する．$\mu_{\gamma}$も$\mu_{\gamma \circ \varphi}$も一点の測度は$0$であるから，
+				測度の一致の定理より
 				\begin{align}
-					\mu_{\gamma}(E) = \mu_{\eta} \left(\varphi^{-1} \ast E\right)
+					\mu_{\gamma}(E) = \mu_{\gamma \circ \varphi} \left(\varphi^{-1} \ast E\right)
 				\end{align}
-				が成立する．
+				が$\borel{[\alpha,\beta]}$の任意の要素$E$で成立する．
 				\QED
 		\end{description}
 	\end{sketch}
