@@ -1,6 +1,22 @@
-\section{確率過程}
+\subsection{確率過程}
 	$(\Omega,\mathscr{F},P)$を確率空間とし，$\mathbf{T}$を$[0,\infty[$か$[0,T]$のいずれかとする．
-	また$(S,d)$を距離空間とする．$X$を$\mathbf{T} \times \Omega$上の$S$値写像とするとき，
+	また$(S,d)$を距離空間とするとき，$d$で導入する$S$上の距離位相を$\mathscr{O}_{S}$と書き，
+	この位相が生成するBorel集合族を$\borel{S}$と書く．例えば
+	\begin{align}
+		S = \R
+	\end{align}
+	のとき，$d$は絶対値により導入される$\R$上の距離として，位相もBorel集合族も通常の$\mathscr{O}_{\R}$と$\borel{\R}$を用いる．
+	ちなみに，絶対値(の$\mathbf{T}$への制限)により$\mathbf{T}$の上に定まる位相
+	\begin{align}
+		\mathscr{O}_{\mathbf{T}}
+	\end{align}
+	について言えば，距離空間の一般論より
+	\begin{align}
+		\mathscr{O}_{\mathbf{T}} \defeq \Set{\mathbf{T} \cap o}{o \in \mathscr{O}_{\R}}
+	\end{align}
+	が成り立つ．
+	
+	いましばらくは$(S,d)$を距離空間とする．$X$を$\mathbf{T} \times \Omega$上の$S$値写像とするとき，
 	$\mathbf{T}$の要素$t$に対して
 	\begin{align}
 		X_t \defeq \Set{(\omega,X(t,\omega))}{\omega \in \Omega}
@@ -13,12 +29,9 @@
 	
 	\begin{screen}
 		\begin{dfn}[確率過程]
-			集合$X$が
-			\begin{itemize}
-				\item $X:\mathbf{T} \times \Omega \longrightarrow S$.
-				\item $t$を$\mathbf{T}$から任意に選ばれた要素とするとき$X_t$が$\mathscr{F}/\borel{S}$-可測である．
-			\end{itemize}
-			を満たすとき，$X$を$\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-{\bf 過程}{\bf (process)}と呼ぶ．
+			$Xを$$\mathbf{T} \times \Omega$から$S$への写像とするとき，$\mathbf{T}$の任意の要素$t$に対して
+			$X_t$が$\mathscr{F}/\borel{S}$-可測であるならば
+			$X$を$\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-{\bf 過程}{\bf (process)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -29,14 +42,14 @@
 	なる写像を$\omega$の{\bf 標本路}{\bf (sample path)}と呼ぶ．標本路の性質に対して
 	確率過程$X$の呼び名が分かれる:
 	\begin{itemize}
-		\item $\Omega$の全ての要素の標本路が右連続である場合，$X$を右連続な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item $\Omega$の全ての要素の標本路が左連続である場合，$X$を左連続な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item $\Omega$の全ての要素の標本路が$RCLL$である場合，$X$を$RCLL$な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item $\Omega$の全ての要素の標本路が連続である場合，$X$を連続な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item 標本路が$P$-a.s.に右連続である場合，$X$を$P$-a.s.に右連続な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item 標本路が$P$-a.s.に左連続である場合，$X$を$P$-a.s.に左連続な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item 標本路が$P$-a.s.に$RCLL$である場合，$X$を$P$-a.s.に$RCLL$な$S$値$\mathscr{F}$-過程と呼ぶ．
-		\item 標本路が$P$-a.s.に連続である場合，$X$を$P$-a.s.に連続な$S$値$\mathscr{F}$-過程と呼ぶ．
+		\item $\Omega$の全ての要素の標本路が右連続である場合，
+			$X$を{\bf $\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-右連続過程}と呼ぶ．
+		\item $\Omega$の全ての要素の標本路が左連続である場合，
+			$X$を{\bf $\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-左連続過程}と呼ぶ．
+		\item $\Omega$の全ての要素の標本路が$RCLL$である場合，
+			$X$を{\bf $\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-$RCLL$過程}と呼ぶ．
+		\item $\Omega$の全ての要素の標本路が$\mathscr{O}_{\mathbf{T}}/\mathscr{O}_{S}$-連続である場合，
+			$X$を{\bf $\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-連続過程}と呼ぶ．
 	\end{itemize}
 	
 	$X$を$\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-過程とし，
@@ -65,13 +78,12 @@
 	\begin{screen}
 		\begin{dfn}[適合]
 			$X$を$\mathbf{T} \times \Omega$上の$S$値$\mathscr{F}$-過程とし，
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとするとき，
-			\begin{itemize}
-				\item $t$を$\mathbf{T}$から任意に選ばれた要素とするとき$X_t$が$\mathscr{F}_t/\borel{S}$-可測
-			\end{itemize}
-			であるなら$X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$に{\bf 適合している}
-			{\bf (adapted to $\{\mathscr{F}_t\}_{t \in \mathbf{T}}$)}という．または
-			$X$を$\mathbf{T} \times \Omega$上の$S$値$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 適合過程}\index{てきごうかてい@適合過程}{\bf (adapted process)}と呼ぶ．
+			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$を$\mathscr{F}$に付随するフィルトレーションとする．このとき
+			$\mathbf{T}$の任意の要素$t$に対して$X_t$が$\mathscr{F}_t/\borel{S}$-可測であるならば，
+			$X$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$に{\bf 適合している}
+			{\bf (adapted to $\{\mathscr{F}_t\}_{t \in \mathbf{T}}$)}という．また
+			$X$を$\mathbf{T} \times \Omega$上の$S$値$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-
+			{\bf 適合過程}\index{てきごうかてい@適合過程}{\bf (adapted process)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	

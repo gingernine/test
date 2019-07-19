@@ -1,10 +1,10 @@
-\section{局所マルチンゲール}
+\subsection{局所マルチンゲール}
 	
-	$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-停止時刻の全体を
+	$\{\mathscr{F}_{t}\}_{t \in \mathbf{T}}$-停止時刻の全体を
 	\begin{align}
-		\mathscr{T}
+		\mathscr{T}_{\mathbf{T}}
 	\end{align}
-	とおく．また$\Natural$から$\mathscr{T}$への写像$\tau$で，
+	とおく．また$\Natural$から$\mathscr{T}_{\mathbf{T}}$への写像$\tau$で，
 	\begin{itemize}
 		\item $\Omega$の任意の要素$\omega$に対して
 			\begin{align}
@@ -16,14 +16,15 @@
 				\tau_{n}(\omega) \leq \tau_{n+1}(\omega),
 			\end{align}
 			
-		\item $\omega$を$\Omega$の任意の要素とするとき
+		\item $\mathbf{T} = [0,T]$ならば，$\omega$を$\Omega$の任意の要素とするとき
 			\begin{align}
-				\tau_{n}(\omega) = 1
+				\tau_{n}(\omega) = T
 			\end{align}
 			を満たす自然数$n$が取れる．
 	\end{itemize}
 	
-	を満たすものを，便宜上$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 増大停止時刻列}\index{ぞうだいていしじこくれつ@増大停止時刻列}と呼ぶことにする．
+	を満たすものを，便宜上$\{\mathscr{F}_{t}\}_{t \in \mathbf{T}}$-{\bf 増大停止時刻列}
+	\index{ぞうだいていしじこくれつ@増大停止時刻列}と呼ぶことにする．
 	
 	\begin{screen}
 		\begin{thm}[連続適合過程で作る増大停止時刻列]
@@ -70,53 +71,62 @@
 	
 	\begin{screen}
 		\begin{dfn}[局所マルチンゲール]
-			$X$を$[0,1] \times \Omega$上の$\mathscr{F}$-過程とするとき，
-			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$が取れて，
+			$X$を$\mathbf{T} \times \Omega$上の$\R$値$\mathscr{F}$-過程とするとき，
+			$\{\mathscr{F}_{t}\}_{t \in \mathbf{T}}$-増大停止時刻列$\tau$が取れて，
 			任意の自然数$n$に対して
 			\begin{align}
 				X^{\tau_{n}}
 			\end{align}
-			が$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールとなるならば，言い換えれば
-			$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列が取れるならば，
-			$X$を$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 局所マルチンゲール}\index{きょくしょまるちんげーる@局所マルチンゲール}
-			{\bf (local martingale)}と呼ぶ．連続な
-			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲール$X$で，
-			$\Omega$の任意の要素$\omega$に対して
-			\begin{align}
-				X_{0}(\omega) = 0
-			\end{align}
-			を満たすものの全体を
-			\begin{align}
-				\mathscr{M}_{c,loc}
-			\end{align}
-			とおく．
+			が$\{\mathscr{F}_{t}\}_{t \in \mathbf{T}}$-マルチンゲールとなるならば，言い換えれば
+			$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in \mathbf{T}}$-増大停止時刻列が取れるならば，
+			$X$を$\{\mathscr{F}_{t}\}_{t \in \mathbf{T}}$-{\bf 局所マルチンゲール}\index{きょくしょまるちんげーる@局所マルチンゲール}
+			{\bf (local martingale)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
-	いま$X$を有界な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲールとし，
-	$\tau$を$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列とする．
-	$s$と$t$を
+	$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所連続マルチンゲール$X$で，$\Omega$の任意の要素$\omega$に対して
 	\begin{align}
-		s < t
+		X_{0}(\omega) = 0
 	\end{align}
-	なる$[0,1]$の要素とし，$A$を$\mathscr{F}_{s}$の要素とすれば，任意の自然数$n$で
+	を満たすものの全体を
 	\begin{align}
-		\int_{A} X^{\tau_{n}}_{t}\ dP = \int_{A} X^{\tau_{n}}_{s}\ dP
+		\mathscr{M}_{c,loc}
 	\end{align}
-	が成り立つ．ここで$\Omega$の任意の要素$\omega$に対し
-	\begin{align}
-		\lim_{n \to \infty} X^{\tau_{n}}_{t}(\omega) = X_{t}(\omega)
-	\end{align}
-	及び
-	\begin{align}
-		\lim_{n \to \infty} X^{\tau_{n}}_{s}(\omega) = X_{s}(\omega)
-	\end{align}
-	が成り立つので，Lebesgueの収束定理より
-	\begin{align}
-		\int_{A} X_{t}\ dP = \int_{A} X_{s}\ dP
-	\end{align}
-	が従う．つまり{\bf 有界な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲールは
-	$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールである．}
+	とおく．
+	
+	\begin{screen}
+		\begin{thm}[有界な局所マルチンゲールはマルチンゲール]
+		\label{thm:bounded_local_martingale_is_martingale}
+			$X$を$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-局所マルチンゲールとするとき，$X$が有界であるならば
+			$X$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\tau$を$X$を局所的にマルチンゲール化する$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列とする．
+		$s$と$t$を
+		\begin{align}
+			s < t
+		\end{align}
+		なる$[0,1]$の要素とし，$A$を$\mathscr{F}_{s}$の要素とすれば，任意の自然数$n$で
+		\begin{align}
+			\int_{A} X^{\tau_{n}}_{t}\ dP = \int_{A} X^{\tau_{n}}_{s}\ dP
+		\end{align}
+		が成り立つ．ここで$\Omega$の任意の要素$\omega$に対し
+		\begin{align}
+			\lim_{n \to \infty} X^{\tau_{n}}_{t}(\omega) = X_{t}(\omega)
+		\end{align}
+		及び
+		\begin{align}
+			\lim_{n \to \infty} X^{\tau_{n}}_{s}(\omega) = X_{s}(\omega)
+		\end{align}
+		が成り立つので，Lebesgueの収束定理より
+		\begin{align}
+			\int_{A} X_{t}\ dP = \int_{A} X_{s}\ dP
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[$\mathscr{M}_{c,loc}$の要素は局所的に有界マルチンゲール化できる]
@@ -157,10 +167,9 @@
 	
 	\begin{screen}
 		\begin{dfn}[総変動過程]
-			$X$を$[0,1] \times \Omega$上の$\R$値$\mathscr{F}$-過程とし，
-			$\Omega$の任意の要素$\omega$に対する
-			標本路$X_{\bullet}(\omega)$は$[0,1]$上で有界変動であるとする．このとき
-			$[0,1] \times \Omega$の各要素$(t,\omega)$に対し
+			$X$を$\mathbf{T} \times \Omega$上の$\R$値$\mathscr{F}$-過程とし，
+			$\mathbf{T}$の任意の要素$t$に対して，$\Omega$の任意の要素$\omega$の標本路$X_{\bullet}(\omega)$は
+			$[0,t]$上で有界変動であるとする．このとき$\mathbf{T} \times \Omega$の各要素$(t,\omega)$に対し
 			\begin{align}
 				\sup{}{
 					\Set{\sum_{i=0}^{n-1}\left|X_{\tau_{i+1}}(\omega) - X_{\tau_{i}}(\omega)\right|}{
@@ -170,7 +179,7 @@
 					}
 				}
 			\end{align}
-			を対応させる写像を$X$の{\bf 総変動過程}\index{そうへんどうかてい@総変動過程}と呼ぶことにする．
+			を対応させる$\mathbf{T} \times \Omega$上の写像を$X$の{\bf 総変動過程}\index{そうへんどうかてい@総変動過程}と呼ぶことにする．
 		\end{dfn}
 	\end{screen}
 	
@@ -187,8 +196,7 @@
 	
 	\begin{screen}
 		\begin{thm}[マルチンゲールは局所マルチンゲール]
-			$X$を$[0,1] \times \Omega$上の連続な
-			$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールとするとき
+			$X$を$[0,1] \times \Omega$上の$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-連続マルチンゲールとするとき
 			\begin{align}
 				X \in \mathscr{M}_{c,loc}.
 			\end{align}
