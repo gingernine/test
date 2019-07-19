@@ -1,615 +1,183 @@
 \section{二次変分}
+	$X$と$Y$を$\mathscr{M}_{c,loc}$の要素とすれば，
+	\begin{align}
+		X + Y \in \mathscr{M}_{c,loc}
+	\end{align}
+	及び
+	\begin{align}
+		X - Y \in \mathscr{M}_{c,loc}
+	\end{align}
+	であるから，
+	\begin{align}
+		(X + Y)^{2} - A \in \mathscr{M}_{c,loc}
+	\end{align}
+	を満たす連続な$\{\mathscr{F}_t\}_{t \in [0,1]}$-増大過程$A$と
+	\begin{align}
+		(X - Y)^{2} - B \in \mathscr{M}_{c,loc}
+	\end{align}
+	を満たす連続な$\{\mathscr{F}_t\}_{t \in [0,1]}$-増大過程$B$が取れる．
+	このとき
+	\begin{align}
+		C \defeq \frac{1}{4} \cdot (A - B)
+	\end{align}
+	とおけば
+	\begin{align}
+		X \cdot Y - C = \frac{1}{4} \cdot 
+		\left\{ \left[(X + Y)^{2} - A\right] - \left[(X - Y)^{2} - B\right] \right\}
+	\end{align}
+	が成り立つので
+	\begin{align}
+		X \cdot Y - C \in \mathscr{M}_{c,loc}
+	\end{align}
+	が成り立つ．ところで$C$は次を満たす:
+	\begin{itemize}
+		\item $\Omega$のすべての要素$\omega$で$C_{0}(\omega) = 0$.
+		\item $C$は$[0,1] \times \Omega$上の$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-適合過程．
+		\item $\Omega$のすべての要素$\omega$で$C_{\bullet}(\omega)$は
+			$\mathscr{O}_{[0,1]}/\mathscr{O}_{\R}$-連続かつ有界変動．
+	\end{itemize}
 	
 	\begin{screen}
-		\begin{thm}[有界変動な局所マルチンゲールは定数]
-			$X$を$\mathscr{M}_{c,loc}$の要素とし，$\Omega$の任意の要素$\omega$に対する
-			標本路$X_{\bullet}(\omega)$は$[0,1]$上で有界変動であるとする．このとき
-			\begin{align}
-				\Set{\omega \in \Omega}{\exists t \in [0,1]\,
-				\left(\, X_{t}(\omega) \neq 0\, \right)}
-			\end{align}
-			は$P$-零集合である．
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}\mbox{}
-		\begin{description}
-			\item[第一段]
-				$X$の総変動過程$|X|$が有界であるとする．つまり，
-				$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対して
-				\begin{align}
-					|X|_{t}(\omega) \leq b
-				\end{align}
-				を満たす実数$b$が取れる．このとき$X$も有界であるから，
-				\begin{align}
-					X \in \mathscr{M}_{c}^{2}
-				\end{align}
-				が成り立つ．特に
-				\begin{align}
-					E\left(X_{1}^{2}\right)
-					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}}^{2} - X_{\frac{k}{n}}^{2}\right)\right] \\
-					&= E\left[\sum_{k=0}^{n-1}\left(X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right)^{2}\right] \\
-					&\leq E\left[|X|_{1} \cdot \sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \\
-					&\leq b \cdot E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right]
-				\end{align}
-				が成り立ち，Lebesgueの収束定理より
-				\begin{align}
-					E\left[\sup{k \in n}{\left|X_{\frac{k+1}{n}} - X_{\frac{k}{n}}\right|}\right] \longrightarrow 0 \quad (n \longrightarrow \infty)
-				\end{align}
-				となるから
-				\begin{align}
-					E\left(X_{1}^{2}\right) = 0
-				\end{align}
-				を得る．そして$X^{2}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-劣マルチンゲール性であるから，$[0,1]$の任意の要素$t$で
-				\begin{align}
-					E\left(X_{t}^{2}\right) = 0
-				\end{align}
-				が成立する．
-				
-			\item[第二段] $\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\sigma$で，
-				任意の自然数$n$及び$\Omega$の任意の要素$\omega$に対して
-				\begin{align}
-					\sigma_{n}(\omega) = 
-					\begin{cases}
-						\inf{}{\Set{t \in [0,1]}{n \leq |X|_{t}(\omega)}} 
-						& \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} \neq \emptyset \\
-						1 & \mbox{if } \Set{t \in [0,1]}{n \leq |X|_{t}(\omega)} = \emptyset
-					\end{cases}
-				\end{align}
-				を満たすものを取る．このとき任意の自然数$n$，$[0,1]$の任意の要素$t$
-				及び$\Omega$の任意の要素$\omega$に対して
-				\begin{align}
-					\left|X^{\sigma_{n}}\right|_{t}(\omega) = 
-					\begin{cases}
-						\left|X\right|_{t}(\omega) &\mbox{if } t \leq \sigma_{n}(\omega) \\
-						\left|X\right|_{\sigma_{n}(\omega)}(\omega) &\mbox{if } \sigma_{n}(\omega) < t
-					\end{cases}
-				\end{align}
-				が成り立つので，つまり
-				\begin{align}
-					\left|X^{\sigma_{n}}\right| = |X|^{\sigma_{n}}
-				\end{align}
-				である．ゆえに前段の結果より，任意の自然数$n$及び
-				$[0,1]$の任意の要素$t$に対して
-				\begin{align}
-					E\left({X^{\sigma_{n}}_{t}}^{2}\right) = 0
-				\end{align}
-				が成立する．ここで
-				\begin{align}
-					F \defeq \bigcup_{n \in \Natural} \bigcup_{t \in [0,1]}
-					\Set{\omega \in \Omega}{X^{\sigma_{n}}_{t}(\omega) \neq 0}
-				\end{align}
-				とおくと，$\omega$を$\Omega \backslash F$の任意の要素とし，
-				$t$を$[0,1]$の任意の要素とすれば，任意の自然数$n$に対して
-				\begin{align}
-					X^{\sigma_{n}}_{t}(\omega) = 0
-				\end{align}
-				が成り立つので
-				\begin{align}
-					X_{t}(\omega) = 0
-				\end{align}
-				が従う．
-				\QED
-		\end{description}
-	\end{sketch}
-	
-	本節の主題は局所マルチンゲールが増大過程と局所マルチンゲールの和に分解できるということである．
-	まずは二乗可積分マルチンゲールがマルチンゲールと増大過程に分解できることを示す．
-	
-	\begin{screen}
-		\begin{dfn}[増大過程]
-			$A$が$\mathbf{T} \times \Omega$上の$\R$値写像であって，かつ
+		\begin{dfn}[有界変動過程]
+			$[0,1] \times \Omega$上の$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-適合過程$B$で
 			\begin{itemize}
-				\item $\forall \omega \in \Omega\, (\, A_0(\omega) = 0\, )$
-				\item $A$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合
-				\item $A$のすべてのパスが単調非減少
-				\item $\mathbf{T}$の任意の要素$t$で$E(A_t) < \infty$
+				\item $\Omega$のすべての要素$\omega$で$B_{0}(\omega) = 0$，
+				\item $\Omega$のすべての要素$\omega$で$B_{\bullet}(\omega)$は有界変動，
 			\end{itemize}
-			を満たすとき，$A$を$\mathscr{T} \times \Omega$上の
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-{\bf 増大過程}
-			\index{ぞうだいかてい@増大過程}{\bf (increasing process)}と呼ぶ．
+			を満たすものを$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-{\bf 有界変動過程}
+			\index{ゆうかいへんどうかてい@有界変動過程}と呼ぶことにする．
 		\end{dfn}
 	\end{screen}
 	
-	\begin{comment}
+	定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より，
+	$\mathscr{M}_{c,loc} \times \mathscr{M}_{c,loc}$上の写像$v$で，
+	$\mathscr{M}_{c,loc}$の任意の要素$X$と$Y$に対して
+	\begin{itemize}
+		\item $X = Y$ならば$v(X,Y)$は連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程で
+			\begin{align}
+				X \cdot Y - v(X,Y) \in \mathscr{M}_{c,loc},
+			\end{align}
+			
+		\item $X \neq Y$ならば$v(X,Y)$は連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-有界変動過程で
+			\begin{align}
+				X \cdot Y - v(X,Y) \in \mathscr{M}_{c,loc},
+			\end{align}
+	\end{itemize}
+	を満たすものが取れる．
+	
 	\begin{screen}
-		\begin{dfn}[ナチュラル]
-			$A$を$(\Omega,\mathscr{F},P)$上の$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程とする．
-			$M$を任意に与えられた$(\Omega,\mathscr{F},P)$上の有界かつ$RCLL$な
-			$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-マルチンゲールとするとき
-			\begin{align}
-				\forall t \in \mathbf{T}\, 
-				\left[\, E(M_t A_t) = E \int_{(0,t]} M_{s-}\ dA_s\, \right]
-			\end{align}
-			が成り立つならば，$A$は{\bf ナチュラル}\index{ナチュラル}{\bf (natural)}であるという．
-			$(\Omega,\mathscr{F},P)$上のナチュラル過程の全体を
-			\begin{align}
-				\mathscr{N}_{\mathbf{T}}
-			\end{align}
-			で表し，区別不能性で類別した商集合を
-			\begin{align}
-				\mathfrak{N}_{\mathbf{T}}
-			\end{align}
-			で表す．同様に，$(\Omega,\mathscr{F},P)$上の連続なナチュラル過程の全体を
-			\begin{align}
-				\mathscr{N}^c_{\mathbf{T}}
-			\end{align}
-			で表し，区別不能性で類別した商集合を
-			\begin{align}
-				\mathfrak{N}^c_{\mathbf{T}}
-			\end{align}
-			で表す．
+		\begin{dfn}[二次変分]
+			$QV$を次を満たす$\mathscr{M}_{c,loc} \times \mathscr{M}_{c,loc}$上の写像とする．
+			\begin{itemize}
+				\item $\mathscr{M}_{c,loc}$の任意の要素$X$と$Y$に対して
+					\begin{align}
+						\inprod<X,Y> \defeq QV(X,Y)
+					\end{align}
+					と書き，これを$X$と$Y$の{\bf 共変分}\index{きょうへんぶん@共変分}
+					{\bf (cross variation)}と呼ぶ．特に
+					\begin{align}
+						\inprod<X> \defeq QV(X,X)
+					\end{align}
+					と書いて，これを$X$の{\bf 二次変分}\index{にじへんぶん@二次変分}
+					{\bf (quadratic variation)}と呼ぶ．
+					
+				\item $X = Y$ならば$\inprod<X,Y>$は連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程であり，
+				$X \neq Y$ならば$\inprod<X,Y>$は連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-有界変動過程であり，いずれの場合も
+					\begin{align}
+						X \cdot Y - \inprod<X,Y> \in \mathscr{M}_{c,loc}.
+					\end{align}
+			\end{itemize}
 		\end{dfn}
 	\end{screen}
 	
-	\end{comment}
-	
 	\begin{screen}
-		\begin{thm}[二乗可積分マルチンゲールの分解]
-		\label{thm:decomposition_of_square_integrable_martingales}
-			$X$を$\mathscr{M}_{c}^{2}$の要素とし，$\{\mathscr{F}_t\}_{t \in [0,1]}$
-			は完備である(定義\ref{thm:completeness_of_filtration})とする．このとき
+		\begin{thm}[共変分の対称性]
+			$X$と$Y$を$\mathscr{M}_{c,loc}$の要素とするとき，$P$-零集合$F$が取れて，
+			$[0,1]$の任意の要素$t$及び$\Omega \backslash F$の任意の要素$\omega$に対して
 			\begin{align}
-				X^2 - A \in \mathscr{M}_{c}
+				\inprod<X,Y>_{t}(\omega) = \inprod<Y,X>_{t}(\omega).
 			\end{align}
-			を満たす連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程$A$が取れる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		\begin{description}
-			\item[step1-1] $X$が有界であるとする．つまり，いま$\Omega$の任意の要素$\omega$及び
-				$[0,1]$の任意の要素$t$に対して
-				\begin{align}
-					|X(t,\omega)| \leq b
-				\end{align}
-				を満たす実数$b$が取れる．
-			
-			\item[step1-2] $n$を自然数とし，
-				\begin{align}
-					(t,\omega) \longmapsto \sum_{j=0}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}}(\omega)
-					- X_{\min\left\{t,\frac{j}{2^n}\right\}}(\omega)\right)^2
-				\end{align}
-				なる写像を$A^{(n)}$とする．このとき
-				\begin{align}
-					X^2 - A^{(n)} \in \mathscr{M}_{c}^{2}
-					\label{fom:thm_decomposition_of_square_integrable_martingales_2}
-				\end{align}
-				であることを示す．まず$X$の連続性より$A^{(n)}$も連続である．また全ての$j$で
-				\begin{align}
-					X_{\min\left\{t,\frac{j}{2^n}\right\}}
-				\end{align}
-				は$\mathscr{F}_t/\borel{\R}$-可測なので，$X^2-A^{(n)}$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合である．
-				いまは$X$も$A^{(n)}$も有界であるから，$[0,1]$の任意の要素$t$で
-				\begin{align}
-					\int_{\Omega} \left|X_t^2-A_t^{(n)}\right|^2\ dP < \infty
-				\end{align}
-				が成立する．$s$と$t$を
-				\begin{align}
-					s < t
-				\end{align}
-				なる$[0,1]$の要素とする．そして
-				\begin{align}
-					\frac{k}{2^n} \leq s < \frac{k+1}{2^n}
-				\end{align}
-				を満たす$k$を取る．このとき
-				\begin{align}
-					A^{(n)}_t - A^{(n)}_s
-					&= \sum_{j=k}^{2^n-1} \left\{
-					\left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2
-					- \left(X_{\min\left\{s,\frac{j+1}{2^n}\right\}} - X_{\min\left\{s,\frac{j}{2^n}\right\}}\right)^2\right\} \\
-					&= \sum_{j=k+1}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2
-					+ \left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2
-					- \left(X_s - X_{\frac{k}{2^n}}\right)^2
-				\end{align}
-				が成り立つ．この各項について，
-				\begin{align}
-					j \in \{k+1,K+2,\cdots,2^n-1\}
-				\end{align}
-				なる各$j$で$P$-a.s.に
-				\begin{align}
-					\cexp{ \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2}{\mathscr{F}_s}
-					= \cexp{X^2_{\min\left\{t,\frac{j+1}{2^n}\right\}}}{\mathscr{F}_s}
-					 - \cexp{X^2_{\min\left\{t,\frac{j}{2^n}\right\}}}{\mathscr{F}_s}
-				\end{align}
-				が成り立ち，また$P$-a.s.に
-				\begin{align}
-					&\cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2}{\mathscr{F}_s} \\
-					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}^2}{\mathscr{F}_s}
-					- 2 \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}X_{\frac{k}{2^n}}}{\mathscr{F}_s}
-					+ \cexp{X_{\frac{k}{2^n}}^2}{\mathscr{F}_s} \\
-					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}^2}{\mathscr{F}_s}
-					- 2 X_{\frac{k}{2^n}}^2
-					+ \cexp{X_{\frac{k}{2^n}}^2}{\mathscr{F}_s} \\
-				\end{align}
-				も成り立つので，
-				\begin{align}
-					&\cexp{A^{(n)}_t - A^{(n)}_s}{\mathscr{F}_s} \\
-					&= \cexp{X^2_t}{\mathscr{F}_s}
-					- \cexp{X^2_{\min\left\{t,\frac{k+1}{2^n}\right\}}}{\mathscr{F}_s}
-					+ \cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2}{\mathscr{F}_s}
-					- \left(X_s - X_{\frac{k}{2^n}}\right)^2 \\
-					&= \cexp{X^2_t}{\mathscr{F}_s} - X_s^2
-				\end{align}
-				が従う．ゆえに$P$-a.s.に
-				\begin{align}
-					\cexp{X^2_t - A^{(n)}_t}{\mathscr{F}_s} = X^2_s - A^{(n)}_s
-				\end{align}
-				となる．以上で(\refeq{fom:thm_decomposition_of_square_integrable_martingales_2})が得られた．
-				
-			\item[step1-3]
-				任意の自然数$n$に対して
-				\begin{align}
-					\int_\Omega \left|X_{1}^2 - A_{1}^{(n)}\right|^2\ dP
-					\leq 14 \cdot b^2 \cdot \int_\Omega \left|X_{1}\right|^2\ dP
-				\end{align}
-				が成り立つことを示す．いま
-				\begin{align}
-					M \defeq X^2 - A^{(n)}
-				\end{align}
-				とおけば
-				\begin{align}
-					\int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP
-					&= \int_\Omega \left(M_{\frac{j+1}{2^n}} - M_{\frac{j}{2^n}} \right)^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(A^{(n)}_{\frac{j+1}{2^n}} - A^{(n)}_{\frac{j}{2^n}}\right) \right\}^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP
-				\end{align}
-				が成り立つから，
-				\begin{align}
-					\int_\Omega \left|M_{1}\right|^2\ dP
-					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP \\
-						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP \\
-						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
-					\label{fom:thm_decomposition_of_square_integrable_martingales_1}
-				\end{align}
-				が成り立つ．ここで
-				\begin{align}
-					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP
-					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
-				\end{align}
-				かつ
-				\begin{align}
-					\int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP
-					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
-				\end{align}
-				かつ
-				\begin{align}
-					\int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
-					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
-					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
-				\end{align}
-				が成り立つので
-				\begin{align}
-					(\refeq{fom:thm_decomposition_of_square_integrable_martingales_1})
-					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
-					&= 14 \cdot b^2 \cdot \int_\Omega \left|X_{1}\right|^2\ dP
-				\end{align}
-				が成立する．
-				
-			\item[step1-4]
-				$\mathscr{M}_{c}^{2}$に定理\ref{thm:pseudo_metric_on_square_integrable_martingales}の
-				擬距離$d$を定めるとき，step1-3より
-				\begin{align}
-					\left\{X^2 - A^{(n)}\right\}_{n \in \Natural}
-				\end{align}
-				は$\left(\mathscr{M}_{c}^{2},d\right)$で有界である．ゆえにKomlosの補題より
-				$\left(\mathscr{M}_{c}^{2},d\right)$のCauchy列$h$で，任意の自然数$n$で
-				\begin{align}
-					h(n) \in \conv{\Set{X^2-A^{(k)}}{k \in \Natural \wedge n \leq k}}
-					\label{fom:thm_decomposition_of_square_integrable_martingales_5}
-				\end{align}
-				を満たすものが取れて，定理\ref{thm:pseudo_metric_on_square_integrable_martingales}より
-				\begin{align}
-					d(h(n),M) \longrightarrow 0\quad (n \longrightarrow \infty)
-				\end{align}
-				を満たす$\mathscr{M}_{c}^{2}$の要素$M$が取れる．ここで
-				\begin{align}
-					A \defeq X^2 - M
-				\end{align}
-				とおく．定め方より$A$は連続かつ$\{\mathscr{F}_t\}_{t \in [0,1]}$-適合である．
-				あとは$A$の増大性を示せばよい．いま任意の自然数$k$に対し
-				\begin{align}
-					d(h(n_k),M) < \frac{1}{4^{k+1}}
-				\end{align}
-				を満たす部分列
-				\begin{align}
-					\Natural \ni k \longmapsto h(n_k)
-				\end{align}
-				を取ると，Doobの劣マルチンゲール不等式より任意の自然数$k$で
-				\begin{align}
-					\int_\Omega \left\{\sup{t \in [0,1]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|}\right\}^2\ dP
-					&= \int_\Omega \left\{\sup{t \in [0,1]}{\left|h(n_k)_t - M_t\right|}\right\}^2\ dP \\
-					&\leq 4 \cdot \int_\Omega \left|h(n_k)_{1} - M_{1}\right|^2\ dP \\
-					&< \frac{1}{8^k}
-				\end{align}
-				が成り立つ．従って，自然数$k$に対して
-				\begin{align}
-					E_k \defeq \left\{ \frac{1}{2^k} \leq \sup{t \in [0,1]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|} \right\}
-				\end{align}
-				とおけば
-				\begin{align}
-					P(E_k) < \frac{1}{2^k}
-				\end{align}
-				が成立するので，Borel-Cantelliの補題より
-				\begin{align}
-					E \defeq \bigcap_{n \in \Natural} \bigcup_{\substack{k \in \Natural \\ n < k}} E_k
-				\end{align}
-				で定める$E$は$P$-零集合である．いま$\omega$を$\Omega \backslash E$の要素とする．すると
-				\begin{align}
-					\forall k \in \Natural\,
-					\left[\, K < k \Longrightarrow \sup{t \in [0,1]}{\left|\left(X^2_t(\omega) - h(n_k)_t(\omega)\right) - A_t(\omega)\right|} < \frac{1}{2^k}\, \right]
-					\label{fom:thm_decomposition_of_square_integrable_martingales_4}
-				\end{align}
-				を満たす自然数$K$が取れる．ここで
-				\begin{align}
-					D_k \defeq \Set{\frac{j}{2^{n_k}}}{j \in \{0,1,\cdots,2^{n_k}\}}
-				\end{align}
-				とおき
-				\begin{align}
-					D \defeq \bigcup_{k \in \Natural} D_k
-				\end{align}
-				とおく．$s$と$t$を
-				\begin{align}
-					s < t
-				\end{align}
-				なる$D$の要素とするとき
-				\begin{align}
-					s \in D_N \wedge t \in D_N
-				\end{align}
-				を満たす自然数$N$が取れるが，このとき
-				\begin{align}
-					N \leq k
-				\end{align}
-				なる任意の自然数$k$に対して
-				\begin{align}
-					X^2_s(\omega) - h(n_k)_s(\omega) \leq X^2_t(\omega) - h(n_k)_t(\omega)
-				\end{align}
-				が成り立つ．なぜならば(\refeq{fom:thm_decomposition_of_square_integrable_martingales_5})より
-				\begin{align}
-					X^2 - h(n_k) \in \conv{\Set{A^{(j)}}{j \in \Natural \wedge n_k \leq j}}
-				\end{align}
-				となるためである．そして(\refeq{fom:thm_decomposition_of_square_integrable_martingales_4})と併せて
-				\begin{align}
-					A_s(\omega) \leq A_t(\omega)
-				\end{align}
-				が従う．$s$と$t$が
-				\begin{align}
-					s < t
-				\end{align}
-				なる$[0,1]$の要素であるときは，
-				\begin{align}
-					\{t_n\}_{n \in \Natural} \subset [t,1] \cap D
-				\end{align}
-				かつ
-				\begin{align}
-					t_n \downarrow t
-				\end{align}
-				を満たす$\{t_n\}_{n \in \Natural}$と
-				\begin{align}
-					\{s_n\}_{n \in \Natural} \subset [s,t) \cap D
-				\end{align}
-				かつ
-				\begin{align}
-					s_n \downarrow s
-				\end{align}
-				を満たす$\{s_n\}_{n \in \Natural}$を取れば
-				\begin{align}
-					\forall n \in \Natural\, \left(\, A_{s_n}(\omega) \leq A_{t_n}(\omega)\, \right)
-				\end{align}
-				が成り立ち，また$A$は連続であるから
-				\begin{align}
-					A_s(\omega) \leq A_t(\omega)
-				\end{align}
-				が従う．ちなみに$\Omega$の任意の要素$\omega$で
-				\begin{align}
-					X^2_0(\omega) - h(n_k)_0(\omega) = 0
-				\end{align}
-				が成り立つので(\refeq{fom:thm_decomposition_of_square_integrable_martingales_4})から
-				\begin{align}
-					\omega \in \Omega \backslash E \Longrightarrow A_0(\omega) = 0
-				\end{align}
-				も満たされる．最後に，
-				\begin{align}
-					(t,\omega) \longmapsto
-					\begin{cases}
-						A_t(\omega) & \mbox{if } \omega \in \Omega \backslash E \\
-						0 & \mbox{if } \omega \in E
-					\end{cases}
-				\end{align}
-				なる写像を$\tilde{A}$とすれば，$\tilde{A}$は連続な
-				連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程であって
-				\begin{align}
-					X^2 - \tilde{A} \in \mathscr{M}_{c}^{2}
-				\end{align}
-				を満たす．
-			
-			\item[step2]
-				$\mathbf{T}=[0,\infty[$とし，$X$が有界であるとする．
-				$N$を$0$でない自然数とすれば，step1の結果より
-				\begin{align}
-					\left(X|_{[0,N] \times \Omega}\right)^2 - A^N \in \mathscr{M}^2_{[0,N]}
-				\end{align}
-				かつ
-				\begin{align}
-					A^N \in \mathscr{A}^+_{[0,N]}
-				\end{align}
-				を満たす$A^N$が取れる．特に$X$が連続であれば$A^N$は連続なものとして取れる．$M$を
-				\begin{align}
-					N < M
-				\end{align}
-				なる自然数とすれば
-				\begin{align}
-					\left(X|_{[0,N] \times \Omega}\right)^2 - A^M|_{[0,N] \times \Omega} \in \mathscr{M}^2_{[0,N]}
-				\end{align}
-				が成立するので，
-				\begin{align}
-					E_{N,M} \defeq \Set{\omega \in \Omega}{\exists t \in [0,N]\,
-					\left(\, A^N_t(\omega) \neq A^M_t(\omega)\, \right)}
-				\end{align}
-				で定める集合は$P$-零集合である．
-				\begin{align}
-					E \defeq \bigcup_{\substack{N,M \in \Natural \\ N < M}} E_{N,M}
-				\end{align}
-				により$P$-零集合を定めて
-				\begin{align}
-					(t,\omega) \longmapsto
-					\begin{cases}
-						A^N(t,\omega) & \mbox{if } N \in \Natural \wedge t \leq N \wedge \omega \in \Omega \backslash E \\
-						0 & \mbox{if } \omega \in E
-					\end{cases}	
-				\end{align}
-				なる関係を$A$と定めれば
-				\begin{align}
-					A:\mathbf{T} \times \Omega \longrightarrow \R
-				\end{align}
-				が成立する．そして任意の自然数$N$に対して
-				\begin{align}
-					A|_{[0,N] \times \Omega} = A^N \defunc_{[0,N] \times \Omega \backslash E}
-				\end{align}
-				が成立する．ゆえに
-				\begin{align}
-					A \in \mathscr{A}^+_{\mathbf{T}}
-				\end{align}
-				が成立し，特に$X$が連続ならば$A$も連続である．
-				$t$を$\mathbf{T}$の任意の要素とすれば，
-				\begin{align}
-					t \leq N
-				\end{align}
-				なる自然数$N$に対して
-				\begin{align}
-					E\left|X^2_t - A_t\right| = E\left|X^2_t - A^N_t\right| < \infty
-				\end{align}
-				が成立し，また$s$と$t$を$\mathbf{T}$の任意の要素として
-				\begin{align}
-					t \leq N
-				\end{align}
-				なる自然数$N$を取れば，$\mathscr{F}_s$の任意の要素$A$に対して
-				\begin{align}
-					\int_A X^2_t - A_t\ dP
-					= \int_A X^2_t - A^N_t\ dP
-					= \int_A X^2_s - A^N_s\ dP
-					= \int_A X^2_s - A_s\ dP
-				\end{align}
-				が成立する．ゆえに
-				\begin{align}
-					X^2 - A \in \mathscr{M}_{\mathbf{T}}
-				\end{align}
-				である．
-				
-			\item[step3]
-				$\mathbf{T}=[0,\infty[$とし，$X$を$\mathscr{M}^2_{\mathbf{T}}$の要素とする．
-				\begin{align}
-					\left(X^{\tau_n}\right)^2 - A^n \in \mathscr{M}^2_{\mathbf{T}}
-				\end{align}
-				となる．そして
-				\begin{align}
-					(t,\omega) \longmapsto
-					\begin{cases}
-						\lim_{n \to \infty} A^n_{t \wedge \tau_n(\omega)}(\omega) & \\
-						0
-					\end{cases}
-				\end{align}
-				として$A$を定めると$A$は適合，増大，(右)連続
-				\begin{align}
-					A_{t \wedge \tau_n} = A^n_{t \wedge \tau_n}
-				\end{align}
-				が成り立つ．そして
-				\begin{align}
-					\int_\Omega \left(X^{\tau_n}_t\right)^2\ dP = \int_\Omega A_{t \wedge \tau_n}\ dP
-				\end{align}
-				から
-				\begin{align}
-					\int_\Omega X_t^2\ dP = \int_\Omega A_t\ dP
-				\end{align}
-				となるので
-				\begin{align}
-					X_t^2 - A_t
-				\end{align}
-				は可積分．また
-				\begin{align}
-					\int_A X_t^2 - A_t\ dP
-					= \lim_{n \to \infty} \int_A \left(X^{\tau_n}_t\right)^2 - A^n_t\ dP
-					= \lim_{n \to \infty} \int_A \left(X^{\tau_n}_s\right)^2 - A^n_s\ dP
-					= \int_A X_s^2 - A_s\ dP
-				\end{align}
-				が成り立つ．
-				
-			\item[step4]
-				$\mathbf{T}=[0,T]$とし，$X$を$\mathscr{M}^2_{\mathbf{T}}$の要素とする．
-				\begin{align}
-					(t,\omega) \longmapsto
-					\begin{cases}
-						X(t,\omega) & \mbox{if } t \leq T \\
-						X(T,\omega) & \mbox{if } T < t
-					\end{cases}
-				\end{align}
-				なる写像を$Y$として，また
-				\begin{align}
-					[0,\infty[ \ni t \longmapsto 
-					\begin{cases}
-						\mathscr{F}_t & \mbox{if } t \leq T \\
-						\mathscr{F}_T & \mbox{if } T < t
-					\end{cases}
-				\end{align}
-				なる写像でフィルトレーション
-				\begin{align}
-					\{\mathscr{F}_t\}_{t \in [0,\infty[}
-				\end{align}
-				を定めれば
-				\begin{align}
-					Y \in \mathscr{M}^2_{[0,\infty[}
-				\end{align}
-				が成り立つ．ゆえにstep3の結果より
-				\begin{align}
-					B \in \mathscr{A}^+_{[0,\infty[}
-				\end{align}
-				かつ
-				\begin{align}
-					Y^2 - B \in \mathscr{M}_{[0,\infty[}
-				\end{align}
-				を満たす$B$が取れる．
-				\begin{align}
-					A \defeq B|_{[0,T] \times \Omega}
-				\end{align}
-				で$A$を定めれば，
-				\begin{align}
-					A \in \mathscr{A}^+_{\mathbf{T}}
-				\end{align}
-				かつ
-				\begin{align}
-					X^2 - A \in \mathscr{M}_{\mathbf{T}}
-				\end{align}
-				が成立する．
-				\QED
-		\end{description}
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[二次変分の存在]
-			$X$を$\mathscr{M}_{c,loc}$の要素とすると，
+		\begin{thm}[和の共変分]
+			$X$と$Y$と$Z$を$\mathscr{M}_{c,loc}$の要素とするとき，$P$-零集合$F$が取れて，
+			$[0,1]$の任意の要素$t$及び$\Omega \backslash F$の任意の要素$\omega$に対して
 			\begin{align}
-				X^{2} - A \in \mathscr{M}_{c,loc}
+				\inprod<X+Y,Z>_{t}(\omega) 
+				= \inprod<X,Z>_{t}(\omega) + \inprod<Y,Z>_{t}(\omega).
 			\end{align}
-			を満たす連続な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程$A$が取れる．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[]
+		\begin{thm}[スカラ倍の共変分]
+			$X$と$Y$を$\mathscr{M}_{c,loc}$の要素とし，$\alpha$を実数とするとき，
+			$P$-零集合$F$が取れて，
+			$[0,1]$の任意の要素$t$及び$\Omega \backslash F$の任意の要素$\omega$に対して
 			\begin{align}
-				X \in \mathscr{M}_{c}^{2} \Longleftrightarrow E\inprod<M>_{1} < \infty.
+				\inprod<\alpha \cdot X,Y>_{t}(\omega) = \alpha \cdot \inprod<X,Y>_{t}(\omega).
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[二乗可積分マルチンゲールの二次変分は可積分]
+		\label{thm:square_integrable_iff_quadratic_variation_integrable}
+			$X$を$\mathscr{M}_{c,loc}$の要素とするとき
+			\begin{align}
+				X \in \mathscr{M}_{c}^{2} \Longleftrightarrow E\inprod<X>_{1} < \infty.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:increasing_stopping_times_which_locally_bound_martingale}より，
+		$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$で，
+		任意の自然数$n$に対して
+		\begin{align}
+			\left(X^{\tau_{n}}\right)^{2} - \inprod<X>^{\tau_{n}}
+		\end{align}
+		を有界な$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールとするものが取れる．
+		このとき任意の自然数$n$及び$[0,1]$の任意の要素$t$に対して
+		\begin{align}
+			E\left(X^{\tau_{n}}_{t}\right)^{2} = E\inprod<X>^{\tau_{n}}_{t}
+			\label{fom:square_integrable_iff_quadratic_variation_integrable}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			X \in \mathscr{M}_{c}^{2}
+		\end{align}
+		ならば単調収束定理より
+		\begin{align}
+			E{X_{1}}^{2} = E\inprod<X>_{1}
+		\end{align}
+		が従い
+		\begin{align}
+			E\inprod<X>_{1} < \infty
+		\end{align}
+		を得る．他方で(\refeq{fom:square_integrable_iff_quadratic_variation_integrable})
+		より任意の自然数$n$で
+		\begin{align}
+			E\left(X^{\tau_{n}}_{t}\right)^{2} \leq E\inprod<X>_{1}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			E\inprod<X>_{1} < \infty \Longrightarrow X \in \mathscr{M}_{c}^{2}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[二次関数が非負であるための条件]
