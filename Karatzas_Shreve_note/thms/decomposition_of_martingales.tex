@@ -131,40 +131,47 @@
 				\end{align}
 				を満たす実数$b$が取れる．$n$を自然数とし，
 				\begin{align}
-					(t,\omega) \longmapsto \sum_{j=0}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}}(\omega)
-					- X_{\min\left\{t,\frac{j}{2^n}\right\}}(\omega)\right)^2
+					(t,\omega) \longmapsto 
+					\begin{cases}
+						\left( X_{t}(\omega) - X_{0}(\omega) \right)^{2} 
+						&\mbox{if } {\displaystyle 0 \leq t < \frac{1}{2^{n}}} \\
+						{\displaystyle \sum_{j=0}^{k-1} \left( X_{\frac{j+1}{2^{n}}}(\omega) - X_{\frac{j}{2^{n}}}(\omega) \right)^{2}
+						+ \left( X_{t}(\omega) - X_{\frac{k}{2^{n}}}(\omega) \right)^{2}}
+						&\mbox{if } {\displaystyle k \in 2^{n} \wedge \frac{k}{2^{n}} \leq t < \frac{k+1}{2^{n}}} \\
+						{\displaystyle \sum_{j=0}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}}(\omega) - X_{\frac{j}{2^{n}}}(\omega) \right)^{2}}
+						&\mbox{if } t = 1
+					\end{cases}
 				\end{align}
-				なる写像を$A^{(n)}$とする．このとき
+				なる関係で定める$[0,1] \times \Omega$上の写像を$A^{(n)}$とする．このとき
 				\begin{align}
 					X^2 - A^{(n)} \in \mathscr{M}_{c}^{2}
 					\label{fom:thm_decomposition_of_square_integrable_martingales_2}
 				\end{align}
-				であることを示す．まず$X$の連続性より$A^{(n)}$も連続である．また全ての$j$で
+				であることを示す．まず$X$の連続性より$A^{(n)}$も連続である．また$t$を$[0,1]$の要素とすれば，
 				\begin{align}
-					X_{\min\left\{t,\frac{j}{2^n}\right\}}
+					\frac{j}{2^{n}} \leq t
 				\end{align}
-				は$\mathscr{F}_t/\borel{\R}$-可測なので，$X^2-A^{(n)}$は$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-適合である．
-				いまは$X$も$A^{(n)}$も有界であるから，$[0,1]$の任意の要素$t$で
+				を満たす自然数$j$に対して$X_{j/2^{n}}$は$\mathscr{F}_{t}/\borel{\R}$-可測であるから，
+				$A^{(n)}$は$\{\mathscr{F}_t\}_{t \in [0,1]}$-適合である．
+				そして$[0,1]$の任意の要素$t$及び$\Omega$の任意の要素$\omega$に対して
 				\begin{align}
-					\int_{\Omega} \left|X_t^2-A_t^{(n)}\right|^2\ dP < \infty
+					A^{(n)}_{t}(\omega) 
+					\leq \sum_{j=0}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}}(\omega) - X_{\frac{j}{2^{n}}}(\omega) \right)^{2} 
+					\leq 2^{n+2} \cdot b^{2}
 				\end{align}
-				が成立する．$s$と$t$を
+				が成り立つので$X^{2} - A^{(n)}$は可積分である．いま$t$を
 				\begin{align}
-					s < t
+					t < 1
 				\end{align}
-				なる$[0,1]$の要素とする．そして
+				なる$[0,1]$の要素とし，
 				\begin{align}
-					\frac{k}{2^n} \leq s < \frac{k+1}{2^n}
+					\frac{k}{2^{n}} \leq t < \frac{k+1}{2^{n}}
 				\end{align}
-				を満たす$k$を取る．このとき
+				を満たす自然数$k$を取る．このとき
 				\begin{align}
-					A^{(n)}_t - A^{(n)}_s
-					&= \sum_{j=k}^{2^n-1} \left\{
-					\left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2
-					- \left(X_{\min\left\{s,\frac{j+1}{2^n}\right\}} - X_{\min\left\{s,\frac{j}{2^n}\right\}}\right)^2\right\} \\
-					&= \sum_{j=k+1}^{2^n-1} \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2
-					+ \left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2
-					- \left(X_s - X_{\frac{k}{2^n}}\right)^2
+					A^{(n)}_{1} - A^{(n)}_{t}
+					= \sum_{j=k}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}}(\omega) - X_{\frac{j}{2^{n}}}(\omega) \right)^{2}
+					- \left( X_{t}(\omega) - X_{\frac{k}{2^{n}}}(\omega) \right)^{2}
 				\end{align}
 				が成り立つ．この各項について，
 				\begin{align}
