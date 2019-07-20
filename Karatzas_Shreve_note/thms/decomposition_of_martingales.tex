@@ -112,7 +112,7 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[局所マルチンゲールの分解]
+		\begin{thm}[局所マルチンゲールの二乗過程は増大過程と局所マルチンゲールに分解できる]
 		\label{thm:decomposition_of_local_martingales}
 			$X$を$\mathscr{M}_{c}^{2}$の要素とし，$\{\mathscr{F}_t\}_{t \in [0,1]}$
 			は完備である(定義\ref{thm:completeness_of_filtration})とする．このとき
@@ -159,7 +159,7 @@
 					\leq \sum_{j=0}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}}(\omega) - X_{\frac{j}{2^{n}}}(\omega) \right)^{2} 
 					\leq 2^{n+2} \cdot b^{2}
 				\end{align}
-				が成り立つので$X^{2} - A^{(n)}$は可積分である．いま$t$を
+				が成り立つので${X_{t}}^{2} - A^{(n)}_{t}$は二乗可積分である．いま$t$を
 				\begin{align}
 					t < 1
 				\end{align}
@@ -170,117 +170,129 @@
 				を満たす自然数$k$を取る．このとき
 				\begin{align}
 					A^{(n)}_{1} - A^{(n)}_{t}
-					= \sum_{j=k}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}}(\omega) - X_{\frac{j}{2^{n}}}(\omega) \right)^{2}
-					- \left( X_{t}(\omega) - X_{\frac{k}{2^{n}}}(\omega) \right)^{2}
+					= \sum_{j=k}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}} - X_{\frac{j}{2^{n}}} \right)^{2}
+					- \left( X_{t} - X_{\frac{k}{2^{n}}} \right)^{2}
 				\end{align}
-				が成り立つ．この各項について，
+				が成り立つ．ここで$F$を$\mathscr{F}_{t}$の要素とすると，
 				\begin{align}
-					j \in \{k+1,K+2,\cdots,2^n-1\}
+					k = 2^{n} - 1
 				\end{align}
-				なる各$j$で$P$-a.s.に
+				ならば
 				\begin{align}
-					\cexp{ \left(X_{\min\left\{t,\frac{j+1}{2^n}\right\}} - X_{\min\left\{t,\frac{j}{2^n}\right\}}\right)^2}{\mathscr{F}_s}
-					= \cexp{X^2_{\min\left\{t,\frac{j+1}{2^n}\right\}}}{\mathscr{F}_s}
-					 - \cexp{X^2_{\min\left\{t,\frac{j}{2^n}\right\}}}{\mathscr{F}_s}
+					\int_{F} A^{(n)}_{1} - A^{(n)}_{t}\ dP
+					&= \int_{F} {X_{1}}^{2}\ dP - \int_{F} {X_{t}}^{2}\ dP 
+					+ 2 \cdot \int_{F} \left(X_{t} - X_{1}\right) \cdot X_{\frac{2^{n}-1}{2^{n}}}\ dP \\
+					&= \int_{F} {X_{1}}^{2}\ dP - \int_{F} {X_{t}}^{2}\ dP
+					+ 2 \cdot \int_{F} \cexp{\left(X_{t} - X_{1}\right) \cdot X_{\frac{2^{n}-1}{2^{n}}}}{\mathscr{F}_{t}}\ dP \\
+					&= \int_{F} {X_{1}}^{2}\ dP - \int_{F} {X_{t}}^{2}\ dP
+					+ 2 \cdot \int_{F} \cexp{X_{t} - X_{1}}{\mathscr{F}_{t}} \cdot X_{\frac{2^{n}-1}{2^{n}}}\ dP \\
+					&= \int_{F} {X_{1}}^{2}\ dP - \int_{F} {X_{t}}^{2}\ dP
 				\end{align}
-				が成り立ち，また$P$-a.s.に
+				が成り立つ．また
 				\begin{align}
-					&\cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2}{\mathscr{F}_s} \\
-					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}^2}{\mathscr{F}_s}
-					- 2 \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}X_{\frac{k}{2^n}}}{\mathscr{F}_s}
-					+ \cexp{X_{\frac{k}{2^n}}^2}{\mathscr{F}_s} \\
-					&= \cexp{X_{\min\left\{t,\frac{k+1}{2^n}\right\}}^2}{\mathscr{F}_s}
-					- 2 X_{\frac{k}{2^n}}^2
-					+ \cexp{X_{\frac{k}{2^n}}^2}{\mathscr{F}_s} \\
+					k < 2^{n} - 1
 				\end{align}
-				も成り立つので，
+				ならば
 				\begin{align}
-					&\cexp{A^{(n)}_t - A^{(n)}_s}{\mathscr{F}_s} \\
-					&= \cexp{X^2_t}{\mathscr{F}_s}
-					- \cexp{X^2_{\min\left\{t,\frac{k+1}{2^n}\right\}}}{\mathscr{F}_s}
-					+ \cexp{\left(X_{\min\left\{t,\frac{k+1}{2^n}\right\}} - X_{\frac{k}{2^n}}\right)^2}{\mathscr{F}_s}
-					- \left(X_s - X_{\frac{k}{2^n}}\right)^2 \\
-					&= \cexp{X^2_t}{\mathscr{F}_s} - X_s^2
+					A^{(n)}_{1} - A^{(n)}_{t}
+					= \sum_{j=k+1}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}} - X_{\frac{j}{2^{n}}} \right)^{2}
+					+ {X_{\frac{k+1}{2^{n}}}}^{2} - {X_{t}}^{2}
+					+ 2 \cdot \left( X_{t} - X_{\frac{k+1}{2^{n}}} \right) \cdot X_{\frac{k}{2^{n}}}
 				\end{align}
-				が従う．ゆえに$P$-a.s.に
+				が成り立つが，
 				\begin{align}
-					\cexp{X^2_t - A^{(n)}_t}{\mathscr{F}_s} = X^2_s - A^{(n)}_s
+					\int_{F} \sum_{j=k+1}^{2^{n}-1} \left( X_{\frac{j+1}{2^{n}}} - X_{\frac{j}{2^{n}}} \right)^{2}\ dP
+					&= \sum_{j=k+1}^{2^{n}-1} \left[\int_{F} {X_{\frac{j+1}{2^{n}}}}^{2}\ dP
+					- \int_{F} {X_{\frac{j}{2^{n}}}}^{2}\ dP\right] \\
+					&= \int_{F} {X_{1}}^{2}\ dP - \int_{F} {X_{\frac{k+1}{2^{n}}}}^{2}\ dP
 				\end{align}
-				となる．以上で(\refeq{fom:thm_decomposition_of_square_integrable_martingales_2})が得られた．
+				及び
+				\begin{align}
+					\int_{F} \left( X_{t} - X_{\frac{k+1}{2^{n}}} \right) \cdot X_{\frac{k}{2^{n}}}\ dP
+					= \int_{F} \cexp{X_{t} - X_{\frac{k+1}{2^{n}}}}{\mathscr{F}_{t}} \cdot X_{\frac{k}{2^{n}}}\ dP
+					= 0
+				\end{align}
+				より
+				\begin{align}
+					\int_{F} A^{(n)}_{1} - A^{(n)}_{t}\ dP = \int_{F} {X_{1}}^{2}\ dP - \int_{F} {X_{t}}^{2}\ dP
+				\end{align}
+				が成り立つ．つまり，$\mathscr{F}_{t}$の任意の要素$F$に対して
+				\begin{align}
+					\int_{F} {X_{1}}^{2} - A^{(n)}_{1}\ dP = \int_{F} {X_{t}}^{2} - A^{(n)}_{t}\ dP
+				\end{align}
+				が成り立つのであるから$X^{2} - A^{(n)}$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールである．
+				以上で(\refeq{fom:thm_decomposition_of_square_integrable_martingales_2})が得られた．
 				
-			\item[step1-3]
+			\item[step1-2]
 				任意の自然数$n$に対して
 				\begin{align}
-					\int_\Omega \left|X_{1}^2 - A_{1}^{(n)}\right|^2\ dP
-					\leq 14 \cdot b^2 \cdot \int_\Omega \left|X_{1}\right|^2\ dP
+					\int_\Omega \left|{X_{1}}^{2} - A_{1}^{(n)}\right|^{2}\ dP
+					\leq 14 \cdot b^{2} \cdot \int_\Omega \left|X_{1}\right|^{2}\ dP
 				\end{align}
 				が成り立つことを示す．いま
 				\begin{align}
-					M \defeq X^2 - A^{(n)}
+					M \defeq X^{2} - A^{(n)}
 				\end{align}
 				とおけば
 				\begin{align}
-					\int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP
-					&= \int_\Omega \left(M_{\frac{j+1}{2^n}} - M_{\frac{j}{2^n}} \right)^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(A^{(n)}_{\frac{j+1}{2^n}} - A^{(n)}_{\frac{j}{2^n}}\right) \right\}^2\ dP \\
-					&= \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
-					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP
+					\int_\Omega {M_{\frac{j+1}{2^n}}}^{2} - {M_{\frac{j}{2^n}}}^{2}\ dP
+					&= \int_\Omega \left(M_{\frac{j+1}{2^n}} - M_{\frac{j}{2^n}} \right)^{2}\ dP \\
+					&= \int_\Omega \left\{ {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} -
+					\left(A^{(n)}_{\frac{j+1}{2^n}} - A^{(n)}_{\frac{j}{2^n}}\right) \right\}^{2}\ dP \\
+					&= \int_\Omega \left\{ {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} -
+					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^{2}\ dP
 				\end{align}
 				が成り立つから，
 				\begin{align}
-					\int_\Omega \left|M_{1}\right|^2\ dP
-					&= \sum_{j=0}^{2^n-1} \int_\Omega M_{\frac{j+1}{2^n}}^2 - M_{\frac{j}{2^n}}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} -
+					\int_\Omega \left|M_{1}\right|^{2}\ dP
+					&= \sum_{j=0}^{2^n-1} \int_\Omega {M_{\frac{j+1}{2^n}}}^{2} - {M_{\frac{j}{2^n}}}^{2}\ dP \\
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} -
 					\left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2 \right\}^2\ dP \\
-					&= \sum_{j=0}^{2^n-1} \int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP \\
-						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP \\
-						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
+					&= \sum_{j=0}^{2^n-1} \int_\Omega \left( {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} \right)^{2}\ dP \\
+						&\quad - 2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega \left( {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} \right) \cdot \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^{2}\ dP \\
+						&\quad + \sum_{j=0}^{2^n-1} \int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^{4}\ dP
 					\label{fom:thm_decomposition_of_square_integrable_martingales_1}
 				\end{align}
 				が成り立つ．ここで
 				\begin{align}
-					\int_\Omega \left\{ X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right\}^2\ dP
-					\leq 2 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+					\int_\Omega \left( {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} \right)^{2}\ dP
+					\leq 2 \cdot b^{2} \cdot \int_\Omega {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2}\ dP
 				\end{align}
 				かつ
 				\begin{align}
-					\int_\Omega \left( X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}} \right) \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^2\ dP
-					\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+					\int_\Omega \left( {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2} \right) \cdot \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^{2}\ dP
+					\leq 4 \cdot b^{2} \cdot \int_\Omega {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2}\ dP
 				\end{align}
 				かつ
 				\begin{align}
-					\int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^4\ dP
-					&\leq 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
-					&= 4 \cdot b^2 \cdot \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP
+					\int_\Omega \left(X_{\frac{j+1}{2^n}} - X_{\frac{j}{2^n}}\right)^{4}\ dP
+					&\leq 4 \cdot b^{2} \cdot \int_\Omega {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2}\ dP \\
+					&= 4 \cdot b^{2} \cdot \int_\Omega {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2}\ dP
 				\end{align}
 				が成り立つので
 				\begin{align}
 					(\refeq{fom:thm_decomposition_of_square_integrable_martingales_1})
-					&\leq 14 \cdot b^2 \cdot \sum_{j=0}^{2^n-1} \int_\Omega X^2_{\frac{j+1}{2^n}} - X^2_{\frac{j}{2^n}}\ dP \\
-					&= 14 \cdot b^2 \cdot \int_\Omega \left|X_{1}\right|^2\ dP
+					&\leq 14 \cdot b^{2} \cdot \sum_{j=0}^{2^n-1} \int_\Omega {X_{\frac{j+1}{2^n}}}^{2} - {X_{\frac{j}{2^n}}}^{2}\ dP \\
+					&= 14 \cdot b^{2} \cdot \int_\Omega \left|X_{1}\right|^{2}\ dP
 				\end{align}
 				が成立する．
 				
-			\item[step1-4]
+			\item[step1-3]
 				$\mathscr{M}_{c}^{2}$に定理\ref{thm:pseudo_metric_on_square_integrable_martingales}の
-				擬距離$d$を定めるとき，step1-3より
+				擬距離$d$を定めると，step1-2より
 				\begin{align}
 					\left\{X^2 - A^{(n)}\right\}_{n \in \Natural}
 				\end{align}
-				は$\left(\mathscr{M}_{c}^{2},d\right)$で有界である．ゆえにKomlosの補題より
+				は$\mathscr{M}_{c}^{2}$の$d$-有界集合である．ゆえにKomlosの補題より
 				$\left(\mathscr{M}_{c}^{2},d\right)$のCauchy列$h$で，任意の自然数$n$で
 				\begin{align}
-					h(n) \in \conv{\Set{X^2-A^{(k)}}{k \in \Natural \wedge n \leq k}}
+					h(n) \in \conv{\Set{X^{2}-A^{(k)}}{k \in \Natural \wedge n \leq k}}
 					\label{fom:thm_decomposition_of_square_integrable_martingales_5}
 				\end{align}
 				を満たすものが取れて，定理\ref{thm:pseudo_metric_on_square_integrable_martingales}より
+				$h$の極限$M$が取れる．ここで
 				\begin{align}
-					d(h(n),M) \longrightarrow 0\quad (n \longrightarrow \infty)
-				\end{align}
-				を満たす$\mathscr{M}_{c}^{2}$の要素$M$が取れる．ここで
-				\begin{align}
-					A \defeq X^2 - M
+					A \defeq X^{2} - M
 				\end{align}
 				とおく．定め方より$A$は連続かつ$\{\mathscr{F}_t\}_{t \in [0,1]}$-適合である．
 				あとは$A$の増大性を示せばよい．いま任意の自然数$k$に対し
