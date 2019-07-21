@@ -412,11 +412,53 @@
 				を満たす．
 				
 			\item[step2-1]
-				
+				定理\ref{thm:increasing_stopping_times_which_locally_bound_martingale}より
+				$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$が取れて，任意の自然数$n$に対して
+				$X^{\tau_{n}}$は有界$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールをなす．
+				すなわち定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より，
+				任意の自然数$n$に対して，
 				\begin{align}
-					\left(X^{\tau_n}\right)^2 - A^n \in \mathscr{M}^2_{\mathbf{T}}
+					\left(X^{\tau_{n}}\right)^{2} - A^{(n)} \in \mathscr{M}^{2}_{c}
 				\end{align}
-				となる．そして
+				を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程$A^{(n)}$(を対応させる$\Natural$上の写像)が取れる．
+				$n$と$m$を
+				\begin{align}
+					n < m
+				\end{align}
+				なる自然数とすると，
+				\begin{align}
+					X^{\tau_{n}} = \left(X^{\tau_{m}}\right)^{\tau_{n}}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\left(X^{\tau_{n}}\right)^{2} - (A^{(m)})^{\tau_{n}}
+				\end{align}
+				もまた$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールである．ゆえに
+				定理\ref{thm:local_martingale_of_bounded_variation_is_constant}より
+				\begin{align}
+					\Set{\omega \in \Omega}{\exists t \in [0,1]\, \left(\, A^{(n)}(t,\omega) \neq (A^{(m)})^{\tau_{n}}(t,\omega)\, \right)}
+				\end{align}
+				は$P$-零集合である．ここで
+				\begin{align}
+					F \defeq \bigcup_{\substack{n,m \in \Natural \\ n < m}} \Set{\omega \in \Omega}{\exists t \in [0,1]\, \left(\, A^{(n)}(t,\omega) \neq (A^{(m)})^{\tau_{n}}(t,\omega)\, \right)}
+				\end{align}
+				とおいて
+				\begin{align}
+					A \defeq \{\, x \mid \quad 
+					\exists t \in [0,1]\, \exists \omega \in \Omega\, \exists a\,
+					&[\, x = ((t,\omega),a) \wedge \\
+					&\quad (\, \omega \notin F \Longrightarrow \forall n \in \Natural\, 
+					(\, t \leq \tau_{n}(\omega) \Longrightarrow a = A^{(n)}(t,\omega)\, )\, )\, \\
+					&\quad \wedge (\, \omega \in F \Longrightarrow a = 0\, )\, ]\, \}
+				\end{align}
+				とおくと
+				\begin{align}
+					X^{2} - A \in \mathscr{M}_{c,loc}
+				\end{align}
+				が成立する．
+				
+				
+				
 				\begin{align}
 					(t,\omega) \longmapsto
 					\begin{cases}
@@ -428,37 +470,8 @@
 				\begin{align}
 					A_{t \wedge \tau_n} = A^n_{t \wedge \tau_n}
 				\end{align}
-				が成り立つ．そして
-				\begin{align}
-					\int_\Omega \left(X^{\tau_n}_t\right)^2\ dP = \int_\Omega A_{t \wedge \tau_n}\ dP
-				\end{align}
-				から
-				\begin{align}
-					\int_\Omega X_t^2\ dP = \int_\Omega A_t\ dP
-				\end{align}
-				となるので
-				\begin{align}
-					X_t^2 - A_t
-				\end{align}
-				は可積分．また
-				\begin{align}
-					\int_A X_t^2 - A_t\ dP
-					= \lim_{n \to \infty} \int_A \left(X^{\tau_n}_t\right)^2 - A^n_t\ dP
-					= \lim_{n \to \infty} \int_A \left(X^{\tau_n}_s\right)^2 - A^n_s\ dP
-					= \int_A X_s^2 - A_s\ dP
-				\end{align}
 				が成り立つ．
 				
-			
-				\begin{align}
-					A \defeq \{\, x \mid \quad 
-					\exists t \in [0,1]\, \exists \omega \in \Omega\, \exists a\,
-					&[\, x = ((t,\omega),a) \wedge \\
-					&\quad (\, \omega \notin F \Longrightarrow \forall n \in \Natural\, 
-					(\, t \leq \tau_{n}(\omega) \Longrightarrow a = A^{(n)}(t,\omega)\, )\, )\, \\
-					&\quad \wedge (\, \omega \in F \Longrightarrow a = 0\, )\, ]\, \}
-				\end{align}
-			
 			\item[step2-2]
 				$A$がsingle-valuedであることを示す．
 				任意の集合$x$と$y$と$z$に対して，
