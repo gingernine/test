@@ -111,6 +111,36 @@
 		\end{dfn}
 	\end{screen}
 	
+	ところで，いま$(S,d)$を距離空間として，$a$を$S$の要素とし，$h$を$a$へ収束する$S$上の点列とする．
+	このとき，$\Natural$から$\Natural$への写像$f$で，
+	\begin{itemize}
+		\item 任意の自然数$n$と$m$に対して
+			\begin{align}
+				n < m
+			\end{align}
+			ならば
+			\begin{align}
+				f(n) < f(m),
+			\end{align}
+			
+		\item 任意の自然数$n$に対して
+			\begin{align}
+				d(h(f(n)),a) < \frac{1}{4^{n+1}}
+			\end{align}
+	\end{itemize}
+	を満たすものが取れる．実際，
+	\begin{align}
+		G \defeq \{\, (x,y) \mid \quad &y \in \Natural \\
+		&\wedge \dom{x} = 0 \Longrightarrow d(h(y),a) < \frac{1}{4} \wedge \forall z \in \Natural\, \left(\, d(h(z),a) < \frac{1}{4}
+		\Longrightarrow y \leq z\, \right) \\
+		&\wedge \forall k \in \Natural\, \left[\, x(k) \in \Natural \wedge \dom{x} = k+1\, \Longrightarrow 
+		\left(\, x(k) < y \wedge d(h(y),a) < \frac{1}{4^{k+2}} \wedge \right. \right. \\
+		&\left.\left. \quad\quad \forall z \in \Natural\, 
+		\left(\, x(k) < z \wedge d(h(z),a) < \frac{1}{4^{k+2}} \Longrightarrow y \leq z\, \right)\, \right)\, \right] \\
+		&\wedge \left. \left[\, \dom{x} \neq 0 \wedge \forall k \in \Natural\, \left(\, x(k) \notin \Natural \vee \dom{x} \neq k+1\, \right)
+		\Longrightarrow y = 0\, \right]\, \right\}
+	\end{align}
+	
 	\begin{screen}
 		\begin{thm}[局所マルチンゲールの二乗過程は増大過程と局所マルチンゲールに分解できる]
 		\label{thm:decomposition_of_local_martingales}
@@ -303,14 +333,8 @@
 						\end{align}
 						ならば
 						\begin{align}
-							f(n) < f(m).
+							f(n) < f(m),
 						\end{align}
-						
-					\item $n$を任意の自然数とするとき
-						\begin{align}
-							n \leq f(m)
-						\end{align}
-						を満たす自然数$m$が取れる．
 						
 					\item 任意の自然数$n$に対して
 						\begin{align}
