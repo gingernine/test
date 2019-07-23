@@ -295,128 +295,130 @@
 					B \defeq X^{2} - M
 				\end{align}
 				とおく．定め方より$B$は連続かつ$\{\mathscr{F}_t\}_{t \in [0,1]}$-適合である．
-				あとは$B$の増大性を示せばよい．いま任意の自然数$k$に対し
+				あとは$B$の増大性を示せばよい．$\Natural$から$\Natural$への写像$f$で，
+				\begin{itemize}
+					\item $n$と$m$を任意の自然数とするとき，
+						\begin{align}
+							n < m
+						\end{align}
+						ならば
+						\begin{align}
+							f(n) < f(m).
+						\end{align}
+						
+					\item $n$を任意の自然数とするとき
+						\begin{align}
+							n \leq f(m)
+						\end{align}
+						を満たす自然数$m$が取れる．
+						
+					\item 任意の自然数$n$に対して
+						\begin{align}
+							d(h(f(n)),M) < \frac{1}{4^{n+1}}
+						\end{align}
+				\end{itemize}
+				を満たすものが取れる．このとき，Doobの劣マルチンゲール不等式より任意の自然数$n$で
 				\begin{align}
-					d(h(n_k),M) < \frac{1}{4^{k+1}}
+					\int_\Omega \left\{\sup{t \in [0,1]}{\left|{X_{t}}^{2} - h(f(n))_{t} - B_{t}\right|}\right\}^{2}\ dP
+					&= \int_\Omega \left\{\sup{t \in [0,1]}{\left|h(f(n))_{t} - M_{t}\right|}\right\}^{2}\ dP \\
+					&\leq 4 \cdot \int_\Omega \left|h(f(n))_{1} - M_{1}\right|^{2}\ dP \\
+					&< \frac{1}{8^{n}}
 				\end{align}
-				を満たす部分列
+				が成り立つので，任意の自然数$n$で
 				\begin{align}
-					\Natural \ni k \longmapsto h(n_k)
+					P\left(\Set{\omega \in \Omega}{
+					\frac{1}{2^{n}} \leq \sup{t \in [0,1]}{\left|{X_{t}(\omega)}^{2} - h(f(n))_{t}(\omega) - B_{t}(\omega) \right|}}\right)
+					\leq \frac{1}{2^{n}}
 				\end{align}
-				を取ると，Doobの劣マルチンゲール不等式より任意の自然数$k$で
+				が成立する．ゆえに，Borel-Cantelliの補題より
 				\begin{align}
-					\int_\Omega \left\{\sup{t \in [0,1]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|}\right\}^2\ dP
-					&= \int_\Omega \left\{\sup{t \in [0,1]}{\left|h(n_k)_t - M_t\right|}\right\}^2\ dP \\
-					&\leq 4 \cdot \int_\Omega \left|h(n_k)_{1} - M_{1}\right|^2\ dP \\
-					&< \frac{1}{8^k}
+					F \defeq \bigcap_{n \in \Natural} \bigcup_{\substack{k \in \Natural \\ n < k}} 
+					\Set{\omega \in \Omega}{\frac{1}{2^{k}} \leq \sup{t \in [0,1]}{\left|{X_{t}(\omega)}^{2} - h(f(k))_{t}(\omega) - B_{t}(\omega) \right|}}
 				\end{align}
-				が成り立つ．従って，自然数$k$に対して
-				\begin{align}
-					E_k \defeq \left\{ \frac{1}{2^k} 
-					\leq \sup{t \in [0,1]}{\left|\left(X^2_t - h(n_k)_t\right) - A_t\right|} \right\}
-				\end{align}
-				とおけば
-				\begin{align}
-					P(E_k) < \frac{1}{2^k}
-				\end{align}
-				が成立するので，Borel-Cantelliの補題より
-				\begin{align}
-					E \defeq \bigcap_{n \in \Natural} \bigcup_{\substack{k \in \Natural \\ n < k}} E_k
-				\end{align}
-				で定める$E$は$P$-零集合である．いま$\omega$を$\Omega \backslash E$の要素とする．すると
-				\begin{align}
-					\forall k \in \Natural\,
-					\left[\, K < k \Longrightarrow \sup{t \in [0,1]}{\left|\left(X^2_t(\omega) - h(n_k)_t(\omega)\right) - A_t(\omega)\right|} < \frac{1}{2^k}\, \right]
-					\label{fom:thm_decomposition_of_square_integrable_martingales_4}
-				\end{align}
-				を満たす自然数$K$が取れる．ここで
-				\begin{align}
-					D_k \defeq \Set{\frac{j}{2^{n_k}}}{j \in \{0,1,\cdots,2^{n_k}\}}
-				\end{align}
-				とおき
-				\begin{align}
-					D \defeq \bigcup_{k \in \Natural} D_k
-				\end{align}
-				とおく．$s$と$t$を
-				\begin{align}
-					s < t
-				\end{align}
-				なる$D$の要素とするとき
-				\begin{align}
-					s \in D_N \wedge t \in D_N
-				\end{align}
-				を満たす自然数$N$が取れるが，このとき
-				\begin{align}
-					N \leq k
-				\end{align}
-				なる任意の自然数$k$に対して
-				\begin{align}
-					X^2_s(\omega) - h(n_k)_s(\omega) \leq X^2_t(\omega) - h(n_k)_t(\omega)
-				\end{align}
-				が成り立つ．なぜならば(\refeq{fom:thm_decomposition_of_square_integrable_martingales_5})より
-				\begin{align}
-					X^2 - h(n_k) \in \conv{\Set{A^{(j)}}{j \in \Natural \wedge n_k \leq j}}
-				\end{align}
-				となるためである．そして(\refeq{fom:thm_decomposition_of_square_integrable_martingales_4})と併せて
-				\begin{align}
-					A_s(\omega) \leq A_t(\omega)
-				\end{align}
-				が従う．$s$と$t$が
+				により定める$F$は$P$-零集合である．
+				いま$\omega$を$\Omega \backslash F$の要素とし，$s$と$t$を
 				\begin{align}
 					s < t
 				\end{align}
-				なる$[0,1]$の要素であるときは，
+				なる$[0,1]$の要素とする．$\epsilon$を任意に与えられた正の実数とすると
 				\begin{align}
-					\{t_n\}_{n \in \Natural} \subset [t,1] \cap D
+					\frac{1}{2^{k-1}} < \epsilon
 				\end{align}
-				かつ
+				及び
 				\begin{align}
-					t_n \downarrow t
+					\sup{t \in [0,1]}{\left|{X_{t}(\omega)}^{2} - h(f(k))_{t}(\omega) - B_{t}(\omega)\right|} < \frac{1}{2^{k}}
 				\end{align}
-				を満たす$\{t_n\}_{n \in \Natural}$と
+				を満たす自然数$k$が取れるが，このとき
 				\begin{align}
-					\{s_n\}_{n \in \Natural} \subset [s,t) \cap D
+					{X_{s}(\omega)}^{2} - h(f(k))_{s}(\omega)
+					\leq {X_{t}(\omega)}^{2} - h(f(k))_{t}(\omega)
+					\label{fom:thm_decomposition_of_local_martingales_1}
 				\end{align}
-				かつ
+				が成立する．実際，
 				\begin{align}
-					s_n \downarrow s
+					h(f(k)) \in \conv{\Set{X^{2} - A^{(j)}}{j \in \Natural \wedge f(k) \leq j}}
 				\end{align}
-				を満たす$\{s_n\}_{n \in \Natural}$を取れば
+				であるから，$1$以上の自然数$m$，及び$m$上の写像$c$と$g$で
+				\begin{itemize}
+					\item $c$は$m$から$\R_{+}$への写像で
+						\begin{align}
+							\sum_{i=0}^{m-1} c(i) = 1,
+						\end{align}
+						
+					\item $g$は$m$から$\Natural$への写像で，$m$の任意の要素$i$に対して
+						\begin{align}
+							f(k) \leq g(i)
+						\end{align}
+				\end{itemize}
+				を満たすものが取れて
 				\begin{align}
-					\forall n \in \Natural\, \left(\, A_{s_n}(\omega) \leq A_{t_n}(\omega)\, \right)
+					h(f(k)) = \sum_{i=0}^{m-1} c(i) \cdot \left( X^{2} - A^{(g(i))} \right)
 				\end{align}
-				が成り立ち，また$A$は連続であるから
+				が成立する．すなわち
 				\begin{align}
-					A_s(\omega) \leq A_t(\omega)
+					X^{2} - h(f(k)) = \sum_{i=0}^{m-1} c(i) \cdot A^{(g(i))}
 				\end{align}
-				が従う．ちなみに$\Omega$の任意の要素$\omega$で
+				が成立する．$m$の任意の要素$i$に対して
 				\begin{align}
-					X^2_0(\omega) - h(n_k)_0(\omega) = 0
+					c(i) \cdot A^{(g(i))}_{s}(\omega) 
+					\leq c(i) \cdot A^{(g(i))}_{t}(\omega) 
 				\end{align}
-				が成り立つので(\refeq{fom:thm_decomposition_of_square_integrable_martingales_4})から
+				が成り立つので(\refeq{fom:thm_decomposition_of_local_martingales_1})が従う．
+				ゆえに
 				\begin{align}
-					\omega \in \Omega \backslash E \Longrightarrow A_0(\omega) = 0
+					B_{s}(\omega) - \frac{1}{2^{k}}
+					< {X_{s}(\omega)}^{2} - h(f(k))_{s}(\omega)
+					\leq {X_{t}(\omega)}^{2} - h(f(k))_{t}(\omega)
+					< B_{t}(\omega) + \frac{1}{2^{k}}
 				\end{align}
-				も満たされる．最後に，
+				が成り立つから
+				\begin{align}
+					B_{s}(\omega) - \epsilon < B_{t}(\omega)
+				\end{align}
+				が従い，$\epsilon$の任意性より
+				\begin{align}
+					B_{s}(\omega) \leq B_{t}(\omega)
+				\end{align}
+				が得られる．最後に
 				\begin{align}
 					(t,\omega) \longmapsto
 					\begin{cases}
-						A_t(\omega) & \mbox{if } \omega \in \Omega \backslash E \\
-						0 & \mbox{if } \omega \in E
+						B_{t}(\omega) & \mbox{if } \omega \in \Omega \backslash F \\
+						0 & \mbox{if } \omega \in F
 					\end{cases}
 				\end{align}
-				なる写像を$\tilde{A}$とすれば，$\tilde{A}$は連続な
-				連続な$\{\mathscr{F}_t\}_{t \in \mathbf{T}}$-増大過程であって
+				なる$[0,1] \times \Omega$上の写像を$A$とおけば，$A$は
 				\begin{align}
-					X^2 - \tilde{A} \in \mathscr{M}_{c}^{2}
+					X^{2} - A \in \mathscr{M}_{c,loc}
 				\end{align}
-				を満たす．
+				を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程である．
 				
 			\item[step2-1]
 				定理\ref{thm:increasing_stopping_times_which_locally_bound_martingale}より
 				$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大停止時刻列$\tau$が取れて，任意の自然数$n$に対して
 				$X^{\tau_{n}}$は有界$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールをなす．
-				すなわち定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より，
+				すなわちstep1-3と
+				定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より，
 				任意の自然数$n$に対して，
 				\begin{align}
 					\left(X^{\tau_{n}}\right)^{2} - A^{(n)} \in \mathscr{M}^{2}_{c}
