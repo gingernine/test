@@ -330,7 +330,7 @@
 					\frac{1}{2^{n}} \leq \sup{t \in [0,1]}{\left|{X_{t}(\omega)}^{2} - h(f(n))_{t}(\omega) - B_{t}(\omega) \right|}}\right)
 					\leq \frac{1}{2^{n}}
 				\end{align}
-				が成立する．ゆえに，Borel-Cantelliの補題より
+				が成立する．ゆえに
 				\begin{align}
 					F \defeq \bigcap_{n \in \Natural} \bigcup_{\substack{k \in \Natural \\ n < k}} 
 					\Set{\omega \in \Omega}{\frac{1}{2^{k}} \leq \sup{t \in [0,1]}{\left|{X_{t}(\omega)}^{2} - h(f(k))_{t}(\omega) - B_{t}(\omega) \right|}}
@@ -409,7 +409,7 @@
 				\end{align}
 				なる$[0,1] \times \Omega$上の写像を$A$とおけば，$A$は
 				\begin{align}
-					X^{2} - A \in \mathscr{M}_{c,loc}
+					X^{2} - A \in \mathscr{M}_{c}^{2}
 				\end{align}
 				を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程である．
 				
@@ -421,9 +421,9 @@
 				定理\ref{thm:direct_product_of_non_empty_sets_is_not_empty}より，
 				任意の自然数$n$に対して，
 				\begin{align}
-					\left(X^{\tau_{n}}\right)^{2} - A^{(n)} \in \mathscr{M}^{2}_{c}
+					\left(X^{\tau_{n}}\right)^{2} - A_{n} \in \mathscr{M}^{2}_{c}
 				\end{align}
-				を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程$A^{(n)}$(を対応させる$\Natural$上の写像)が取れる．
+				を満たす$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-増大過程$A_{n}$(を対応させる$\Natural$上の写像)が取れる．
 				$n$と$m$を
 				\begin{align}
 					n < m
@@ -434,32 +434,54 @@
 				\end{align}
 				が成り立つので
 				\begin{align}
-					\left(X^{\tau_{n}}\right)^{2} - (A^{(m)})^{\tau_{n}}
+					\left(X^{\tau_{n}}\right)^{2} - A_{m}^{\tau_{n}} \in \mathscr{M}_{c}^{2}
 				\end{align}
-				もまた$\{\mathscr{F}_{t}\}_{t \in [0,1]}$-マルチンゲールである．ゆえに
-				定理\ref{thm:local_martingale_of_bounded_variation_is_constant}より
+				が従う．ゆえに定理\ref{thm:local_martingale_of_bounded_variation_is_constant}より
 				\begin{align}
-					\Set{\omega \in \Omega}{\exists t \in [0,1]\, \left(\, A^{(n)}(t,\omega) \neq (A^{(m)})^{\tau_{n}}(t,\omega)\, \right)}
+					\Set{\omega \in \Omega}{\exists t \in [0,1]\, \left(\, A_{n}(t,\omega) \neq A_{m}^{\tau_{n}}(t,\omega)\, \right)}
 				\end{align}
 				は$P$-零集合である．ここで
 				\begin{align}
-					F \defeq \bigcup_{\substack{n,m \in \Natural \\ n < m}} \Set{\omega \in \Omega}{\exists t \in [0,1]\, \left(\, A^{(n)}(t,\omega) \neq (A^{(m)})^{\tau_{n}}(t,\omega)\, \right)}
+					F \defeq \bigcup_{\substack{n,m \in \Natural \\ n < m}} \Set{\omega \in \Omega}{\exists t \in [0,1]\, \left(\, A_{n}(t,\omega) \neq A_{m}^{\tau_{n}}(t,\omega)\, \right)}
 				\end{align}
-				とおいて
+				とおいて，$A$を
+				\begin{align}
+					(t,\omega) \longmapsto
+					\begin{cases}
+						A_{n}(t,\omega) & \mbox{if } \omega \notin F \wedge t \leq \tau_{n}(\omega) \\
+						0 & \mbox{if } \omega \in F
+					\end{cases}
+				\end{align}
+				なる$[0,1] \times \Omega$上の写像とすれば(写像であることは次段以降で示す)，つまり正式には
 				\begin{align}
 					A \defeq \{\, x \mid \quad 
 					\exists t \in [0,1]\, \exists \omega \in \Omega\, \exists a\,
 					&[\, x = ((t,\omega),a) \wedge \\
 					&\quad (\, \omega \notin F \Longrightarrow \forall n \in \Natural\, 
-					(\, t \leq \tau_{n}(\omega) \Longrightarrow a = A^{(n)}(t,\omega)\, )\, )\, \\
+					(\, t \leq \tau_{n}(\omega) \Longrightarrow a = A_{n}(t,\omega)\, )\, )\, \\
 					&\quad \wedge (\, \omega \in F \Longrightarrow a = 0\, )\, ]\, \}
 				\end{align}
-				とおくと
+				と定めれば，
 				\begin{align}
 					X^{2} - A \in \mathscr{M}_{c,loc}
 				\end{align}
-				が成立する．
-				
+				が成立する．実際，$[0,1]$の任意の要素$t$及び$\Omega \backslash F$の任意の要素$\omega$に対して
+				\begin{align}
+					{X^{\tau_{n}}(t,\omega)}^{2} - A^{\tau_{n}}(t,\omega)
+					= {X^{\tau_{n}}(t,\omega)}^{2} - A_{n}(t,\omega)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\left(X^{\tau_{n}}\right)^{2} - A^{\tau_{n}} \in \mathscr{M}_{c}^{2}
+				\end{align}
+				が成立する．また$\omega$を$\Omega$の任意の要素とすれば
+				\begin{align}
+					1 = \tau_{n}(\omega)
+				\end{align}
+				を満たす自然数$n$が取れるが，このとき
+				\begin{align}
+					
+				\end{align}
 				
 				
 				\begin{align}
