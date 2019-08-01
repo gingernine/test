@@ -1,0 +1,80 @@
+\subsection{Holomorphic processes}
+	$\Phi$がに対して，次を満たす$\phi$を導過程と呼ぶ．
+	\begin{itemize}
+		\item $\phi$は適合，可測
+		\item $\R_{+}^{2}$の任意のコンパクト集合$K$に対して$\left\{E[{\phi_{z}}^{2}]\right\}_{z \in K}$は有界
+		\item 任意の$z$及び$0$から$z$への階段路$\Gamma$に対して
+			\begin{align}
+				\Phi_{z} = \Phi_{0} + \int_{\Gamma} \phi\ \partial W.
+			\end{align}
+	\end{itemize}
+	$\Phi$に対して導過程が取れるとき，$\Phi$を正則過程と呼ぶ．閉階段路上の$\phi$の積分は$0$である(3番目の条件)．
+	正則過程の構造は正則関数のものと似ている．正則過程は確率積分で定義されているのでマルチンゲールである．
+	$W^{2}$や$W^{3}$は正則過程ではないが，そもそも$z^{n}$の確率的類似物は$W^{n}$ではない．
+	$H_{n}(W_{z},z)$である．ここで$H_{n}$はHermite多項式である．つまり
+	\begin{align}
+		H_{n}(x,t) = \frac{(-1)^{n}}{n!} e^{x^{2}/2t} \frac{\partial^{n}}{\partial x^{n}} e^{-x^{2}/2t}
+	\end{align}
+	である．各$t$に対して$\{H_{n}(x,t)\}_{n \in \Natural}$は重量関数$e^{-x^{2}/2t} dx$に関して完全正規直交系をなす．
+	$W_{st}$は$N(0,st)$に従う確率変数なので
+	\begin{align}
+		E\left[H_{n}(W_{st},st) H_{m}(W_{st},st)\right]
+		= \begin{cases}
+			0 & \mbox{if } n \neq m \\
+			\displaystyle \frac{(st)^{n}}{n!} & \mbox{if } n = m
+		\end{cases}
+	\end{align}
+	が成り立つ．
+	\begin{align}
+		\frac{\partial}{\partial x} H_{n} = H_{n-1}
+	\end{align}
+	と
+	\begin{align}
+		\frac{1}{2} \frac{\partial^{2}}{\partial t^{2}} H_{n} + \frac{\partial}{\partial t} H_{n} = 0
+	\end{align}
+	であることから，伊藤の公式より
+	\begin{align}
+		H_{n}(W_{st},st) &= \int_{0}^{s} H_{n-1}(W_{ut},ut)\ \partial_{1} W_{ut} \\
+		&= \int_{0}^{t} H_{n-1}(W_{sv},sv)\ \partial_{2} W_{sv}
+	\end{align}
+	を得る．つまり$H_{n}(W_{st},st)$は正則過程であり，その導過程は$H_{n-1}(W_{st},st)$である．
+	
+	\begin{thm}
+		$\Phi$を正則過程とし，$\Gamma$を閉階段路とするとき，
+		\begin{align}
+			\int_{\Gamma} \Phi\ \partial W = 0.
+		\end{align}
+	\end{thm}
+	
+	実際，$\Gamma$を長方形$A$の外周とすると，Greenの公式より
+	\begin{align}
+		\int_{\partial A} \Phi\ \partial W 
+		= \int_{\partial A} \Phi\ \partial_{1} W + \int_{\partial A} \Phi\ \partial_{2} W 
+		= 0
+	\end{align}
+	が成立する．$\Phi$を導過程とする正則過程$\Psi$は
+	\begin{align}
+		\Psi_{z} \defeq \int_{0}^{z} \Phi\ \partial W
+	\end{align}
+	で定められる．正則過程の積分は正則過程である．では正則過程の微分はどうであるか．
+	
+	\begin{thm}
+		$\Phi$を正則過程とし，$\phi$をその導過程とする．このとき$\phi$は正則過程である．
+	\end{thm}
+	
+	$\Phi$の$n$階導過程を$\Phi^{(n)}$と書くと，Taylorの定理を得る．
+	
+	\begin{thm}
+		$\Phi$を正則過程とするとき
+		\begin{align}
+			\Phi_{st} = \sum_{n=0}^{\infty} \Phi_{0}^{(n)} H_{n}(W_{st},st).
+		\end{align}
+		右辺は，各$s,t$で$L^{2}$収束する．
+	\end{thm}
+	
+	$\mathscr{F}_{0} = \{\emptyset,\Omega\}$なので$\Phi_{0}^{(n)}$は定数である．
+	
+	\begin{thm}
+		$M$を二乗可積分マルチンゲールとする．$M$が$s$に関しても$t$に関しても確率的偏微分を有するならば，
+		$M$は正則過程である．
+	\end{thm}
