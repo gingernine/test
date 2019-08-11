@@ -190,3 +190,222 @@
 		\end{thm}
 	\end{screen}
 	\end{comment}
+	
+	\begin{screen}
+		\begin{thm}[確立積分に対するヘルダーの不等式]
+			$M$と$N$を$\mathscr{M}_{c}^{2}$の要素とし，$X$を$\mathscr{L}^{2}(\nu_{M})$の要素とし，
+			$Y$を$\mathscr{L}^{2}(\nu_{N})$の要素とするとき，$P$-零集合$F$が取れて，$\Omega \backslash F$
+			の任意の要素$\omega$に対して
+			\begin{align}
+				\int_{[0,1]} \left|X_{t}(\omega) \cdot Y_{t}(\omega)\right|\ d|\inprod<M,N>|_{t}(\omega)
+				\leq \left\{\int_{[0,1]} \left|X_{t}(\omega)\right|^{2}\ d\inprod<M>_{t}(\omega)
+				\cdot \int_{[0,1]} \left|Y_{t}(\omega)\right|^{2}\ d\inprod<N>_{t}(\omega)
+				\right\}^{\frac{1}{2}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま$\alpha$と$\beta$を実数とすれば，定理??より$P$-零集合$F_{\alpha,\beta}$が取れて，
+		$\Omega \backslash F_{\alpha,\beta}$の任意の要素$\omega$及び$[0,1]$の任意の要素$t$に対して
+		\begin{align}
+			\inprod<\alpha \cdot M + \beta \cdot N>_{t}(\omega)
+			= \alpha^{2} \cdot \inprod<M>_{t}(\omega) 
+			+ 2 \cdot \alpha \cdot \beta \cdot \inprod<M,N>_{t,\omega}
+			+ \beta^{2} \cdot \inprod<N>_{t}(\omega)
+		\end{align}
+		が成立する．ここで
+		\begin{align}
+			F \defeq \bigcup_{\alpha, \beta \in \Q} F_{\alpha,\beta}
+		\end{align}
+		とおき，$\omega$を$\Omega \backslash F$の要素とする．また$\alpha$と$\beta$を
+		任意の有理数とする．このとき，
+		\begin{align}
+			s < t
+		\end{align}
+		を満たす$[0,1]$の任意の要素$s$と$t$に対して
+		\begin{align}
+			0 &\leq  \inprod<\alpha \cdot M + \beta \cdot N>_{t}(\omega) 
+			- \inprod<\alpha \cdot M + \beta \cdot N>_{s}(\omega) \\
+			&= \alpha^{2} \cdot \left[\inprod<M>_{t}(\omega) - \inprod<M>_{s}(\omega)\right]
+			+ 2 \cdot \alpha \cdot \beta \cdot 
+			\left[\inprod<M,N>_{t}(\omega) - \inprod<M,N>_{s}(\omega)\right]
+			+ \beta^{2} \cdot \left[\inprod<N>_{t}(\omega) - \inprod<N>_{s}(\omega)\right]
+			\label{fom:Holder_ineqaulity_for_stochastic_integrals_1}
+		\end{align}
+		が成り立つ．ところで，$\varphi$を
+		\begin{align}
+			(t,\omega) \longmapsto \frac{1}{2} \cdot 
+			\left[\inprod<M>_{t}(\omega) + \inprod<N>_{t}(\omega)\right]
+		\end{align}
+		なる関係で定める写像とすれば，$\inprod<M>_{\bullet}(\omega)$も
+		$\inprod<N>_{\bullet}(\omega)$も$\inprod<M,N>_{\bullet}(\omega)$も
+		$\varphi_{\bullet}(\omega)$に対して絶対連続なので，
+		\begin{align}
+			s < t
+		\end{align}
+		を満たす$[0,1]$の任意の要素$s$と$t$に対して
+		\begin{align}
+			\inprod<M>_{t}(\omega) - \inprod<M>_{s}(\omega)
+			= \int_{]s,t]} f_{\omega}(u)\ d\varphi_{u}(\omega)
+		\end{align}
+		を満たす$f_{\omega}$，及び
+		\begin{align}
+			\inprod<N>_{t}(\omega) - \inprod<N>_{s}(\omega)
+			= \int_{]s,t]} g_{\omega}(u)\ d\varphi_{u}(\omega)
+		\end{align}
+		を満たす$g_{\omega}$，及び
+		\begin{align}
+			\inprod<M,N>_{t}(\omega) - \inprod<M,N>_{s}(\omega)
+			= \int_{]s,t]} h_{\omega}(u)\ d\varphi_{u}(\omega)
+		\end{align}
+		を満たす$h_{\omega}$が取れる．従って，(\refeq{fom:Holder_ineqaulity_for_stochastic_integrals_1})は
+		\begin{align}
+			0 \leq \int_{]s,t]} \alpha^{2} \cdot f_{\omega}(u) + 2 \cdot \alpha \cdot \beta
+			\cdot h_{\omega}(u) + \beta^{2} \cdot g_{\omega}(u)\ d\varphi_{u}(\omega)
+		\end{align}
+		と書き換えられる．$s$と$t$は任意であるから，
+		\begin{align}
+			\int_{T_{\omega}(\alpha,\beta)} d\varphi_{u}(\omega) = 0
+		\end{align}
+		を満たす$\borel{[0,1]}$の要素$T_{\omega}(\alpha,\beta)$が取れて，
+		\begin{align}
+			t \notin T_{\omega}(\alpha,\beta)
+		\end{align}
+		を満たす$[0,1]$の任意の要素$t$に対して
+		\begin{align}
+			0 \leq \alpha^{2} \cdot f_{\omega}(t) + 2 \cdot \alpha \cdot \beta
+			\cdot h_{\omega}(t) + \beta^{2} \cdot g_{\omega}(t)
+		\end{align}
+		が成立する．ゆえに，
+		\begin{align}
+			T_{\omega} \defeq \bigcup_{\alpha,\beta \in \Q} T_{\omega}(\alpha,\beta)
+		\end{align}
+		とおけば，$t$を
+		\begin{align}
+			t \notin T_{\omega}
+		\end{align}
+		を満たす$[0,1]$の任意の要素とすれば，任意の有理数$\alpha$と$\beta$に対して
+		\begin{align}
+			0 \leq \alpha^{2} \cdot f_{\omega}(t) + 2 \cdot \alpha \cdot \beta
+			\cdot h_{\omega}(t) + \beta^{2} \cdot g_{\omega}(t)
+		\end{align}
+		が成立する．すなわち任意の実数$\alpha$と$\beta$に対して
+		\begin{align}
+			0 \leq \alpha^{2} \cdot f_{\omega}(t) + 2 \cdot \alpha \cdot \beta
+			\cdot h_{\omega}(t) + \beta^{2} \cdot g_{\omega}(t)
+		\end{align}
+		が成立する．
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$M$と$N$を$\mathscr{M}_{c}^{2}$の要素とし，$f$を$\mathscr{L}^{2}(\nu_{M})$の要素とするとき，
+			\begin{align}
+				E\left[I_{M}(f)_{1} \cdot N_{1}\right] = E\int_{[0,1]} f_{s}\ d\inprod<M,N>_{s}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$u$と$v$を
+		\begin{align}
+			u < v
+		\end{align}
+		なる$[0,1]$の要素とし，$g$を$\mathscr{F}_{u}/\borel{\R}$-可測関数とし，
+		\begin{align}
+			f \defeq g \cdot \defunc_{]u,v]}
+		\end{align}
+		とおくとき，
+		\begin{align}
+			E\left[I_{M}(f)_{1} \cdot N_{1}\right] 
+			&= E\left[(g \cdot M_{v} - g \cdot M_{u}) \cdot N_{1}\right] \\
+			&= E\left[g \cdot M_{v} \cdot N_{1}\right] - E\left[g \cdot M_{u} \cdot N_{1}\right] \\
+			&= E\left[g \cdot M_{v} \cdot N_{v}\right] - E\left[g \cdot M_{u} \cdot N_{u}\right]
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			E\left[g \cdot M_{v} \cdot N_{v}\right] 
+			= E\left[g \cdot \inprod<M,N>_{v}\right]
+		\end{align}
+		及び
+		\begin{align}
+			E\left[g \cdot M_{u} \cdot N_{u}\right] 
+			= E\left[g \cdot \inprod<M,N>_{u}\right]
+		\end{align}
+		が成り立つので($g$が単関数の場合はeasy)
+		\begin{align}
+			E\left[I_{M}(f)_{1} \cdot N_{1}\right] 
+			= E\left[g \cdot \left(\inprod<M,N>_{v} - \inprod<M,N>_{u}\right)\right]
+			= E \int_{[0,1]} f_{s}\ d\inprod<M,N>_{s}
+		\end{align}
+		が従う．$f$が$\mathscr{L}^{2}(\nu_{M})$の一般の要素であるとき
+		\begin{align}
+			E\int_{[0,1]} \left(f_{s} - f^{n}_{s}\right)^{2}\ d\inprod<M>_{s}
+			\longrightarrow 0
+		\end{align}
+		を満たす単過程列$\{f^{n}\}_{n \in \Natural}$が取れる．このとき
+		\begin{align}
+			E\left|I_{M}(f)_{1} \cdot N_{1} - I_{M}(f^{n})_{1} \cdot N_{1}\right|
+			&\leq \left\{ E\left|I_{M}(f - f^{n})_{1}\right|^{2} \cdot E({N_{1}}^{2}) \right\}^{\frac{1}{2}} \\
+			&= \left\{ E\int_{[0,1]} \left(f_{s} - f^{n}_{s}\right)^{2}\ d\inprod<M>_{s} \cdot E({N_{1}}^{2}) \right\}^{\frac{1}{2}}
+		\end{align}
+		及び
+		\begin{align}
+			E\left|\int_{[0,1]}f_{s}\ d\inprod<M,N>_{s} - \int_{[0,1]} f^{n}_{s}\ d\inprod<M,N>_{s}\right|
+			&\leq E\int_{[0,1]} \left| f_{s} - f^{n}_{s} \right|\ d|\inprod<M,N>|_{s} \\
+			&\leq E\left[\left\{\int_{[0,1]} (f_{s} - f^{n}_{s})^{2}\ d\inprod<M>_{s}\right\}^{\frac{1}{2}}
+			\cdot {\inprod<N>_{1}}^{\frac{1}{2}}\right] \\
+			&\leq \left\{E\int_{[0,1]} (f_{s} - f^{n}_{s})^{2}\ d\inprod<M>_{s}
+			\cdot E\inprod<N>_{1}\right\}^{\frac{1}{2}}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			E\left[I_{M}(f)_{1} \cdot N_{1}\right]
+			= E\int_{[0,1]}f_{s}\ d\inprod<M,N>_{s}
+		\end{align}
+		を得る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$M$と$N$を$\mathscr{M}_{c}^{2}$の要素とし，$f$を$\mathscr{L}^{2}(\nu_{M})$の要素とするとき，
+			$P$-零集合$F$が取れて，$[0,1]$の任意の要素$t$及び$\Omega \backslash F$の任意の要素$\omega$
+			に対して
+			\begin{align}
+				\inprod<I_{M}(f),N>_{t}(\omega)
+				= \int_{[0,t]} f_{s}(\omega)\ d\inprod<M,N>_{s}(\omega).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$Z$を
+		\begin{align}
+			(t,\omega) \longmapsto I_{M}(f)_{t}(\omega) \cdot N_{t}(\omega)
+			- \int_{[0,t]} f_{s}(\omega)\ d\inprod<M,N>_{s}(\omega)
+		\end{align}
+		なる関係で定める写像として，$Z$が$\{\mathscr{F}_{t}\}_{t \in [0,1]}$マルチンゲールであることを示す．
+		$\tau$を任意の停止時刻とすれば，定理??より
+		\begin{align}
+			E\left(I_{M}(f)_{1} \cdot N^{\tau}_{1}\right)
+			= E\int_{[0,1]} f_{s}\ d\inprod<M,N^{\tau}>_{s}
+		\end{align}
+		が成り立つが，ここで
+		\begin{align}
+			E\left(I_{M}(f)_{1} \cdot N^{\tau}_{1}\right)
+			= E\left(I_{M}(f)_{\tau} \cdot N_{\tau}\right)
+		\end{align}
+		及び
+		\begin{align}
+			E\int_{[0,1]} f_{s}\ d\inprod<M,N^{\tau}>_{s}
+			&= E\int_{[0,1]} f_{s}\ d\inprod<M,N>^{\tau}_{s} \\
+			&= E\int_{[0,\tau]} f_{s}\ d\inprod<M,N>_{s}
+		\end{align}
+		が成立するから
+		\begin{align}
+			E(Z_{\tau}) = 0
+		\end{align}
+		が従う．ゆえに$Z$は$\{\mathscr{F}_{t}\}_{t \in [0,1]}$マルチンゲールである．
+	\end{sketch}
