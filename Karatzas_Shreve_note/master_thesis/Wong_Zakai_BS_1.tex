@@ -1,0 +1,81 @@
+\subsection{Introduction}
+	この論文では，複数パラメーターのプロセスで伊藤型の確率積分を構成する．
+	旧来の伊藤解析は連続マルチンゲールの解析学だから，
+	有用な一般化はマルチンゲール性の一般化の上に展開されなければならない．
+	この点で，マルチンゲールたるランダムな関数は$\R^{n}$の点ではなく$\R^{n}$の部分集合をパラメーターとするのが自然である．
+	包含関係が生ずる半順序の上に自然なマルチンゲール性を載せることが出来る．
+	
+	次のBrown運動の一般化は半順序マルチンゲールの重要な例である．$\overline{\mathscr{R}^{n}}$を
+	Lebesgue測度が有限である$\R^{n}$のBorel集合の全体とする．
+	$\Set{X_{A}}{A \in \overline{\mathscr{R}^{n}}}$を
+	\begin{align}
+		EX_{A} = 0,\quad EX_{A}X_{B} = \mathscr{L}(A \cap B)
+	\end{align}
+	を満たす実Gauss加法的確率変数とする．ここで$\mathscr{L}$はLebesgue測度である．
+	$X_{A}$とは言わばGaussホワイトノイズを$A$上で積分したものである．
+	$n=1$のとき$X_{[0,t]}$は通常のBrown運動である．多次元のプロセスは
+	\begin{align}
+		W_{z_{1},z_{2},\cdots,z_{n}} = X_{[0,z_{1}] \times [0,z_{2}] \times \cdot \times [0,z_{n}]}
+	\end{align}
+	は，可分なヴァージョンが選ばれれば連続なプロセスである．またこれが$C([0,1]^{n})$に導入する
+	確率測度はWiener測度を一般化したものである．この新しいプロセスをWiener過程と呼ぶ．
+	
+	半順序パラメーターのマルチンゲールは新しくない．Cairoliは特に，2パラメーターWiener過程を使って確率積分を定義した．
+	そしてそれは第一形の積分として後述する．2パラメーターのWiener過程については，
+	Wiener汎関数とマルチンゲールを表すためと二次元確率解析を展開するために第二形の確率積分が必要である．
+	注意しておくことは，Cairoliは2パラメーターWiener過程で微分方程式を引き出したが，
+	それは時間に関する微分を含んでいるのでその次元では本当に微分方程式であるということだ．
+	
+\subsection{Martingales}
+	$(\mathscr{S},\prec)$を有向集合とする．つまり$\mathscr{S}$は空ではなく，
+	$\mathscr{S}$の任意の要素$x$と$y$に対して
+	$x \prec z$かつ$y \prec z$を満たす$\mathscr{S}$の要素$z$が取れる．
+	$(\Omega,\mathscr{A},\mathscr{P})$を確率空間とする．
+	$\mathscr{S}$の部分$\sigma$-加法族の系$\Set{\mathscr{A}_{s}}{s \in \mathscr{S}}$が増大しているとは，
+	$s_{2} \prec s_{1}$ならば$\mathscr{A}_{s_{1}} \subset \mathscr{A}_{s_{2}}$が成り立つことである．
+	確率変数の族$\Set{X_{s}}{s \in \mathscr{S}}$と$\Set{\mathscr{A}_{s}}{s \in \mathscr{S}}$が与えられたとき，
+	$\Set{X_{s},\mathscr{A}_{s}}{s \in \mathscr{S}}$がマルチンゲールであるとは，
+	$s_{0} \prec s$ならば
+	\begin{align}
+		X_{s_{0}} = \cexp{X_{s}}{\mathscr{A}_{s_{0}}} \quad \mbox{almost surely}
+	\end{align}
+	が成り立つということである．
+	
+	$\mu$を$\R^{n}$上の$\sigma$-有限Borel測度とする．
+	$\overline{\mathscr{R}^{n}}$を$\mu$-測度有限な$\R^{n}$のBorel集合の全体とする．
+	$\Set{X_{s}}{s \in \overline{\mathscr{R}^{n}}}$を$EX_{s} = 0$と
+	\begin{align}
+		EX_{s}X_{s'} = \mu(s \cap s')
+	\end{align}
+	を満たす実Gauss加法的関数とする．
+	
+	$\mathscr{S}$を$\overline{\mathscr{R}^{n}}$の部分集合で，包含関係により有向集合となるものとする．
+	また$\mathscr{A}_{s}$を$\Set{X_{s}}{s' \subset s}$が生成する$\sigma$-集合族とする．
+	このとき$\Set{X_{s},\mathscr{A}_{s}}{s \in \mathscr{S}}$はマルチンゲールである．
+	より一般的に，増大系$\Set{\mathscr{A}_{s}}{s \in \mathscr{S}}$を
+	$s_{0} \subset s$なる限り$X_{s_{0}}$が$\mathscr{A}_{s}$-可測であるように取れるし，
+	$s$と$s_{0}$が互いに素ならば$X_{s_{0}}$と$\mathscr{A}_{s}$が独立であるようにも取れる．
+	$\Set{X_{s}}{s \in \overline{\mathscr{R}^{n}}}$はGaussホワイトノイズと呼ばれる．
+	ゆえに，Gaussホワイトノイズがマルチンゲールであると理解されるのは自然である．
+	Wiener過程$\Set{W_{z}}{z \in \R^{n}_{+}}$は
+	$z' \prec z \Longleftrightarrow z'_{i} \leq z_{i}$ for every $i$ なる半順序に関してマルチンゲールである．
+	
+\subsection{Martingales on Increasing Paths}
+	変数空間を$T = [0,1]^{n}$とし，この上の半順序を
+	\begin{align}
+		z' \prec z \Longleftrightarrow z'_{i} \leq z_{i} \quad i=1,2,\cdots,n
+	\end{align}
+	で定める．$[0,1]$から$T$への連続写像をパスと呼ぶ．$\theta$をパスとするとき，
+	$\beta < \alpha \Longrightarrow \theta(\beta) \prec \theta(\alpha)$が成り立つならば
+	$\theta$を増大パスと呼ぶ．$\Set{M_{z},\mathscr{F}_{z}}{z \in T}$がマルチンゲールであるならば，任意の増大パス$\theta$に対して
+	$\Set{M_{\theta(t)},\mathscr{F}_{\theta(t)}}{t \in [0,1]}$はマルチンゲールである．逆に
+	任意の増大パス$\theta$に対して$\Set{M_{\theta(t)},\mathscr{F}_{\theta(t)}}{t \in [0,1]}$はマルチンゲールであるならば
+	$\Set{M_{z},\mathscr{F}_{z}}{z \in T}$はマルチンゲールである．なぜならば，$z' \prec z$ならば
+	$\theta(t) = z' + (z-z')t$に対して
+	\begin{align}
+		\cexp{M_{z}}{\mathscr{F}_{z'}}
+		= \cexp{M_{\theta(1)}}{\mathscr{F}_{\theta(0)}}
+		= M_{\theta(0)}
+		= M_{z'}
+	\end{align}
+	が成り立つからである．
