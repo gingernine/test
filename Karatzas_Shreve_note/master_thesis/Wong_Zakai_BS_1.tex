@@ -79,3 +79,54 @@
 		= M_{z'}
 	\end{align}
 	が成り立つからである．
+	
+	$\Set{M_{z},\mathscr{F}_{z}}{z \in T}$を全ての標本路が連続なマルチンゲールとする．
+	このとき任意の増大パス$\theta$に対して$\Set{M_{\theta(t)},\mathscr{F}_{\theta(t)}}{t \in [0,1]}$は連続マルチンゲールである．
+	ゆえにこれは$\left\{\mathscr{F}_{\theta(t)}\right\}_{t \in [0,1]}$-局所マルチンゲールであるから，$M_{\theta(t)}^{2} - A_{t}$が
+	$\left\{\mathscr{F}_{\theta(t)}\right\}_{t \in [0,1]}$-局所マルチンゲールとなるような増大過程$A$が取れる．
+	
+	任意の増大パスに対し，始点と終点が同じならば$A_{1}$が同じであるとき，
+	$\Set{M_{z},\mathscr{F}_{z}}{z \in T}$はパス-独立であるという．
+	$M$をパス-独立なマルチンゲールとするとき，$z$に対し$\theta(0) = 0$かつ$\theta(1) = z$を満たす増大パス$\theta$を取って
+	\begin{align}
+		\inprod<M,M>_{z} = A_{1} = \inprod<M_{\theta}>_{1}
+	\end{align}
+	と定める．すると$\Set{{M_{z}}^{2} - \inprod<M,M>_{z},\mathscr{F}_{z}}{z \in T}$は，
+	$E{M_{z}}^{2} < \infty$ならばマルチンゲール，そうでなければ局所マルチンゲールである．
+	ここで，多変数局所マルチンゲールとは任意の増大パス上で局所マルチンゲールとなるプロセスであると定義する．
+	$\inprod<M,M>$を$M$の増大過程と呼ぶ．なぜならば
+	$z' \prec z \Longrightarrow \inprod<M,M>_{z'} \leq \inprod<M,M>_{z}$が成り立つからである．
+	逆に，全ての標本路が連続であるマルチンゲール$M$は，$M^{2} - \inprod<M,M>$が局所マルチンゲールとなるような
+	増大過程$\inprod<M,M>$が取れるならばパス-独立である．
+	
+	Wiener過程がパス-独立で
+	\begin{align}
+		\inprod<W,W>_{z} = \operatorname{Volume}(\zeta \prec z)
+	\end{align}
+	を満たすことを示すのは容易い．
+	
+	$M_{z} = (M_{1z},M_{2z}, \cdots, M_{mz})$を連続局所マルチンゲールの集合として，
+	任意の線型結合$\sum \alpha_{i}M_{iz}$がパス-独立な局所マルチンゲールであるとする．
+	$M_{iz} + M_{jz}$も$M_{iz} - M_{jz}$もパス-独立なので，
+	\begin{align}
+		\inprod<M_{i},M_{j}>_{z} = \frac{1}{4}\left[\inprod<M_{i}+M_{j},M_{i}+M_{j}>_{z} - 
+		\inprod<M_{i}-M_{j},M_{i}-M_{j}>_{z}\right]
+	\end{align}
+	と定義できる．増大パス上の一変数マルチンゲールの微分方程式を用いれば，このような$M$に対して微分方程式を組み立てることが出来る．
+	
+	$f(u,z),\ u \in \R^{m},\ z \in T$を実または複素数値関数とし，$u$の要素に関しては2階連続微分可能，
+	$z$に関しては連続なグラディエントを持つとする．
+	\begin{align}
+		f^{i}(u,z) = \frac{\partial f(u,z)}{\partial u_{i}},
+		\quad f^{ij}(u,z) = \frac{\partial^{2} f(u,z)}{\partial u_{i} \partial u_{j}},
+		\quad \nabla f(u,z) = \operatorname{grad}_{z} f(u,z)
+	\end{align}
+	と書く．$\theta(t),\ 0 \leq t \leq 1$を増大パスとする．$M_{i\theta(t)},\ 0 \leq t \leq 1$は
+	一変数連続局所マルチンゲールであるから，馴染み深い伊藤微分方程式とKunita-Watanabeより
+	\begin{align}
+		&f\left(M_{\theta(t)},\theta(t)\right) - f\left(M_{\theta(0)},\theta(0)\right) \\
+		\quad &= \sum_{i} \int_{0}^{t} f^{i}\left(M_{\theta(s)},\theta(s)\right)\ dM_{i\theta(s)} \\
+		&\quad + \int_{0}^{t} \left[\frac{1}{2}\sum_{i,j}f^{ij}(u,z) 
+		\nabla\inprod<M_{i},M_{j}>_{z} + \nabla f(u,z)\right]_{\substack{z=\theta(s) \\ u=M_{\theta(s)}}} \cdot d\theta(s)
+	\end{align}
+	が成り立つ．
