@@ -45,9 +45,86 @@
 		&= \sum_{i} \int_{0}^{t} f^{i}\left(M_{\theta(s)},\theta(s)\right)\ dM_{i\theta{s}} \\
 		&\quad + \int_{0}^{t} \left[\frac{1}{2} \sum_{i,j} f^{ij}(u,z) \nabla V_{ij}(z)
 		+ \nabla f(u,z)\right]_{\substack{z=\theta(s) \\ u=\theta(s)}} \cdot d\theta(s)
+		\label{fom:Wiener_Integral_and_Hermite_Functionals_3}
 	\end{align}
 	となる．明らかに，$f(u,z)$が
 	\begin{align}
 		\frac{1}{2} \sum_{i,j} f^{ij}(u,z) \nabla V_{ij}(z) + \nabla f(u,z) = 0
+		\label{fom:Wiener_Integral_and_Hermite_Functionals_1}
 	\end{align}
 	を満たすならば，$f(M_{z},z)$は局所マルチンゲールである．
+	
+	$f_{\alpha}(u,z)$を
+	\begin{align}
+		f_{\alpha}(u,z) = \exp{\left\{i \sum_{j}u_{j}\alpha_{j} 
+		+ \frac{1}{2} \sum_{j,k}\alpha_{j}\alpha_{k}V_{jk}\right\}}
+	\end{align}
+	で定める．$\R^{m}$の任意の要素$\alpha$に対して$f_{\alpha}$が
+	(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_1})を満たすことは簡単に示される．
+	ゆえに，$\Set{f_{\alpha}}{\alpha \in \R^{m}}$の要素の任意の線型結合は
+	(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_1})を満たし，
+	線型結合の適切な収束列の極限も同式を満たす．
+	具体例は
+	\begin{align}
+		f_{k}(u,z)
+		= (-i)^{k_{1}+k_{2}+\cdots+k_{m}}\left.\left[
+		\frac{\partial^{k_{1}+k_{2}+\cdots+k_{m}}}{\partial \alpha_{1}^{k_{1}}
+		\partial \alpha_{2}^{k_{2}}\cdots\partial \alpha_{m}^{k_{m}}}f_{\alpha}(u,z)\right] \right| \alpha_{j} = 0,
+		\quad 1 \leq j \leq m
+		\label{fom:Wiener_Integral_and_Hermite_Functionals_2}
+	\end{align}
+	と
+	\begin{align}
+		f(u,z) = \int_{\R^{m}} f_{\alpha}(u,z)\ d\mu(\alpha)
+	\end{align}
+	を含む．ここで$\mu$は
+	\begin{align}
+		\int_{\R^{m}} \Norm{\alpha}{}^{2} f_{\alpha}(u,\zeta)\ d\mu(\zeta) < \infty,
+		\quad u \in \R^{m},\ z \in T
+	\end{align}
+	を満たすBorel測度である．
+	
+	Cameron Martinによれば，Wiener過程$\Set{W_{z}}{z \in T}$の任意の
+	二乗可積分汎関数はHermite汎関数の級数で表現できる．Hermite汎関数とは
+	\begin{align}
+		\prod_{\nu=1}^{m} H_{p_{\nu}} \int_{T} \phi_{\nu}(\zeta)\ W(d\zeta)
+	\end{align}
+	であり，この$H_{p}$はHermite多項式である．
+	
+	\begin{thm}
+		任意のHermite汎関数に対して，$f(u,z),\ u \in \R^{m},\ z \in T$で，
+		\begin{align}
+			\prod_{\nu=1}^{m} H_{p_{\nu}} \int_{T} \phi_{\nu}(\zeta)\ W(d\zeta)
+			&= f(M_{1}, 1) \\
+			&= \sum_{i} \int_{0}^{1} f^{i}\left(M_{\theta(s)},\theta(s)\right)\ dM_{\theta(s)}
+			+ f(0,0)
+			\label{fom:Wiener_Integral_and_Hermite_Functionals_4}
+		\end{align}
+		を満たすものが取れる．ここで$\theta$は$0$と$1$を繋ぐ任意の増大パスで，
+		\begin{align}
+			M_{\nu z} = \int_{\zeta \prec z} \phi_{\nu}(\zeta)\ W(d\zeta)
+		\end{align}
+		である．
+	\end{thm}
+	
+	\begin{sketch}
+		各$p=(p_{1},p_{2},\cdots,p_{m})$に対して$\prod_{\nu=1}^{m} H_{p_{\nu}}(u_{\nu})$
+		は$u=(u_{1},u_{2},\cdots,u_{m})$の$p$次の多項式である．ゆえに，
+		(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_2})を満たす
+		$f_{k}$を用いて
+		\begin{align}
+			\prod_{\nu=1}^{m} H_{p_{\nu}}(u_{\nu})
+			= \sum_{k \leq p} \beta_{p_{k}} f_{k}(u,1)
+		\end{align}
+		と書ける．従って，
+		\begin{align}
+			f(u,z) = \sum_{k \leq p} \beta_{p_{k}} f_{k}(u,z)
+		\end{align}
+		と(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_2})を満たす関数$f$が取れて
+		\begin{align}
+			\prod_{\nu=1}^{m} H_{p_{\nu}}(u_{\nu}) = f(u,1).
+		\end{align}
+		(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_4})は
+		(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_3})から直ちに従う．
+		\QED
+	\end{sketch}
