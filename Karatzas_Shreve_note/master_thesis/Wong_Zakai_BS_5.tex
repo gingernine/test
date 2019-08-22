@@ -20,4 +20,148 @@
 		\item[$H_{3}$] $\int_{T} E{\phi_{z}}^{2} < \infty$.
 	\end{description}
 	
-	$\phi$を単関数とせよ．
+	$\phi$を単関数とせよ．つまり$\phi(\omega,z) = \phi_{\nu}(\omega),\ z \in \Delta_{\nu},\
+	\nu = 1,2,\cdots,k$で，他の所では$\phi = 0$である．ここで
+	$\Delta_{\nu}$は互いに素な立方体で，
+	\begin{align}
+		\Delta_{\nu} = \prod_{i=1}^{n} \left[a^{\nu}_{i}, b^{\nu}_{i}\right)
+	\end{align}
+	である．そして
+	\begin{align}
+		I_{1}(\phi) = \sum_{\nu} \phi_{\nu} \Delta_{\nu} W
+	\end{align}
+	と定める．ここで$\Delta W$は$\Delta$上のホワイトノイズの積分である．
+	つまり，$\Delta = \prod_{i=1}^{n} \left[a_{i}, b_{i}\right)$ならば
+	\begin{align}
+		\Delta W = \sum_{z} (-1)^{\Pi(z)} W_{z}
+	\end{align}
+	ただし和は$\Set{z}{z_{i} = a_{i},b_{i}}$の$2^{n}$個の頂点にわたって取り，
+	$\Pi(z)$は$z$にある$b_{i}$の個数である．
+	通常の方法で$I_{1}$の定義は$H_{1}-H_{3}$を満たす$\phi$に対して拡張される．
+	$I_{1}$の主な性質は以下，
+	\begin{description}
+		\item[(a) 線型性] $I_{1}(\alpha \phi + \beta \psi) 
+			= \alpha I_{1}(\phi) + \beta I_{1}(\psi)$,
+		\item[(b) 内積] $EI_{1}(\phi) \cdot I_{1}(\psi) = \int_{T} \phi_{z}\psi_{z}\ dz$,
+		\item[(c) マルチンゲール性] $\cexp{I_{1}(\phi)}{\mathscr{F}_{z}}
+			= \int_{\zeta \prec z} \phi(\zeta)\ W(d\zeta)$.
+	\end{description}
+	
+	明らかに，$I_{1}$は伊藤積分をそのまま一般化したものである．ゆえに，$\int_{\zeta \prec z}$の代わりに
+	$\int_{0}^{z}$と書く．
+	
+	第二型の確率積分は，
+	\begin{align}
+		I_{2}(\psi) = \left[\int_{T}\int_{T}\right] \psi(z_{1},z_{2})\ w(dz_{1}) W(dz_{2})
+	\end{align}
+	と書くが，いずれ一人前の多変数確率積分が展開されていく上で必要であるとわかるだろう．
+	動機を理解するために次の簡単な例を考える．
+	\begin{align}
+		X_{z} = {W_{z}}^{2} - \int_{0}^{z} d\zeta = {W_{z}}^{2} - \prod_{i=1}^{n} z_{i}
+	\end{align}
+	とする．これがマルチンゲールであることは簡単にわかる．$X$の確率積分表示を得るために，
+	立方体$\prod_{i=1}^{n}[0,z_{i})$を$\{\Delta_{\nu}\}$に分解する．
+	$\mu \prec \nu$と書いて，$\Delta_{\nu}$の任意の要素$z$と$\Delta_{\mu}$の任意の要素$z'$が
+	$z' \prec z$となることを意味する．$\Delta_{\nu} W$を$\Delta_{\nu}$上のホワイトノイズの積分，
+	(つまり$\Delta_{\nu} W = \int_{\Delta_{\nu} W(dz)}$)で定めると，
+	$W_{z} = \sum_{\nu} \Delta_{\nu} W$が成り立つ．また
+	\begin{align}
+		X_{z} &= \left(\sum_{\nu} \Delta_{\nu} W\right)^{2} - \prod_{i=1}^{n} z_{i} \\
+		&= \sum_{\nu}\left[\left(\Delta_{\nu} W\right)^{2}
+		- \int_{\Delta_{\nu}} d\zeta\right]
+		+ 2 \sum_{\nu} \sum_{\mu \prec \nu} \Delta_{\mu} W \Delta_{\nu} W
+		+ \sum_{\nu,\mu \mbox{ unordered}} \Delta_{\nu} W \Delta_{\mu} W
+	\end{align}
+	が成り立つ．$\int_{\Delta_{\nu}} d\zeta \longrightarrow 0$なので，第一の和はゼロに行く．
+	第二の和は$2 \int_{0}^{z} W_{\zeta}\ W(d\zeta)$に収束するが，この確率積分は第一形である．
+	そして残りの項は第二形の確率積分$\left[\int_{0}^{z} \int_{0}^{z}\right] W(d\zeta)\ W(d\zeta')$に収束する．
+	ゆえに，
+	\begin{align}
+		X_{z} = 2 \int_{0}^{z} W_{\zeta}W(d\zeta)
+		+ \left[\int_{0}^{z} \int_{0}^{z}\right] W(d\zeta) W(d\zeta')
+	\end{align}
+	を得る．では第二形の積分の定義に移る．
+	
+	$T$の二要素$z$と$z'$に対して，
+	\begin{align}
+		(\max{(z_{1},z'_{1})}, \max{(z_{2},z'_{2})}, \cdots, \max{(z_{n},z'_{n})})
+	\end{align}
+	を$z \vee z'$と書く．$G$を$T \times T$の部分集合とし，$h_{G}$を
+	\begin{align}
+		h_{G}(z,z')
+		= 1 \quad & \mbox{if $z$, $z'$ are unordered} \\
+		= 0 \quad & \mbox{if $z$, $z'$ are ordered}
+	\end{align}
+	なる$G$の指示関数とする．$\psi(\omega,z,z')$を次を満たす$\Omega \times T \times T$上のランダム関数とする:
+	\begin{description}
+		\item[$H'_{1}$] $\psi(\omega,z,z')$は$\mathscr{F} \otimes \mathscr{S} \otimes \mathscr{S}$-可測である．
+		
+		\item[$H'_{2}$] 各組$z,z'$に対して$\psi(\omega,z,z')$は$\mathscr{F}_{z \vee z'}$-可測である．
+		
+		\item[$H'_{3}$] $E \int_{T} \int_{T} \psi^{2}(z,z')\ dzdz' < \infty$. 
+	\end{description}
+	
+	$\psi$を単関数とせよ．つまり立方体$\Delta_{1}$と$\Delta_{2}$が取れて
+	\begin{align}
+		\psi(\omega,z,z') 
+		&= \alpha(\omega) \quad & z \in \Delta_{1},\ z' \in \Delta_{2} \\
+		&= 0 \quad & \mbox{otherwise}
+	\end{align}
+	が成り立つ．はじめに，$\Delta_{1} \times \Delta_{2} \subset G$と仮定する．すると
+	$I_{2}(\psi)$は
+	\begin{align}
+		I_{2}(\psi) = \alpha \Delta_{1}W \Delta_{2} W
+	\end{align}
+	で定義される．$\Delta_{1} \times \Delta_{2} \subset G$でないときは，$I_{2}(\psi)$を
+	次のように定める．$\epsilon$-格子が$T$上に定められているとする．$T$の各要素$z$に対して
+	$[z]^{\epsilon} \prec z$なる最大の格子点$[z]^{\epsilon}$がある．なぜならば，
+	$a$と$b$が格子点ならば$a \vee b$も格子点だからである．$I_{2}(\psi)$の近似を
+	\begin{align}
+		I^{\epsilon}_{2}(\psi) = \sum_{i^{\epsilon},j^{\epsilon}}
+		\psi(i^{\epsilon},j^{\epsilon}) h_{G}(i^{\epsilon},j^{\epsilon})
+		\Delta_{i} \epsilon W \Delta_{j} \epsilon W
+	\end{align}
+	で定める．ここで和は全ての格子点にわたって取るが，$h_{G}$があるから
+	全ての$unordered$な格子点にわたって取ることと同じである．$\epsilon_{2}$が$\epsilon_{1}$の細分ならば，
+	\begin{align}
+		E(I^{\epsilon_{1}}_{2} - I^{\epsilon_{2}}_{2})^{2}
+		= E \alpha^{2} \int_{T} \int_{T} \left[
+		h_{G}([z]^{\epsilon_{1}}, [z']^{\epsilon_{1}})
+		- h_{G}([z]^{\epsilon_{2}}, [z']^{\epsilon_{2}})\right]\ dzdz'
+	\end{align}
+	が成り立つ．付録の結果より，$E(I^{\epsilon_{1}}_{2} - I^{\epsilon_{2}}_{2})^{2}$は
+	$\epsilon_{1}$と$\epsilon_{2} \longrightarrow 0$ならばゼロに収束する．
+	ゆえに，$I^{\epsilon}_{2}$は二乗の意味で収束するから，
+	\begin{align}
+		I_{2}(\psi) = \mathrm{lim in q.m.}_{\epsilon \to 0} I^{\epsilon}_{2}(\psi)
+	\end{align}
+	で定める．この定義が$G$の部分集合$\Delta_{1} \times \Delta_{2}$の取り方に依らないことを示すのは
+	たやすい．
+	
+	$I_{2}(\psi)$の定義を，$H'_{1}-H'_{3}$を満たす全ての関数$\psi$に対して
+	$\psi$を単関数の線型結合で近似することにより拡張する．
+	すると$I_{2}(\psi)$は$H'_{1}-H'_{3}$を満たす全ての関数$\psi$に対して定義され，
+	以下の性質を受け継ぐ:
+	\begin{description}
+		\item[(a) 線型性] $I_{2}(a \psi + b \psi') = aI_{2}(\psi) + bI_{2}(\psi')$,
+		\item[(b) 対角線上でゼロ] $I_{2}(\psi) = I_{2}(h_{G}\psi)$,
+		\item[(c) 内積] $EI_{2}(\psi)I_{2}(\psi') = 
+			E\int_{T}\int_{T} h_{G}(z,z') \psi(z,z') \psi'(z,z')\ dzdz'$,
+		\item[(d) 直交性] $EI_{1}(\phi)I_{2}(\psi) = 0$,
+		\item[(e) マルチンゲール性] $\cexp{I_{2}(\psi)}{\mathscr{F}_{z}}
+			= \left[\int_{0}^{z} \int_{0}^{z}\right] \psi(\zeta,\zeta')
+			W(d\zeta) W(d\zeta')$.
+	\end{description}
+	$I^{\epsilon}_{2}(\psi)$がこれらの性質を満たすことを示すのは簡単であり，
+	通常通りの論法で$I_{2}(\psi)$がこれらの性質を満たすことを示される．
+	
+	Cairoliは，$M_{z}.\ z \in T = [0,1]^{n}$がマルチンゲールであるなら
+	\begin{align}
+		E\left(\sup{z \in T}{|M_{z}|^{p}}\right)
+		\leq A_{p,n} \sup{z \in T}{E|M_{z}|^{p}}
+	\end{align}
+	を満たす定数$A_{p,n}$が取れることを示した．$p=2$の場合も不等式を使えば，
+	\begin{align}
+		M_{z} = \int_{0}^{z} \phi_{\zeta}\ = W(d\zeta),
+		\quad X_{z} = \left[\int_{0}^{z} \int_{0}^{z}\right]
+	\end{align}
