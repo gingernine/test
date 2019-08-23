@@ -1,0 +1,67 @@
+\subsection{Representation of Two-Parameter Winer Functionals}
+	$\Set{W_{z},\mathscr{F}_{z}}{z \in [0,1]^{2}}$を二変数Wiener過程とし，マルチンゲール
+	\begin{align}
+		M_{z} = \left(M_{1z}, M_{2z}, \cdots, M_{mz}\right)
+	\end{align}
+	をWiener積分
+	\begin{align}
+		M_{\nu z} = \int_{0}^{z} \phi_{\nu}(\zeta)\ W(d\zeta)
+	\end{align}
+	で定める．ここで$\phi_{\nu}$はランダムでない$L^{2}([0,1]^{2})$の要素である．$f$を
+	\begin{align}
+		\frac{1}{2} \sum_{i,j} f^{ij}(u,z) \nabla V_{ij}(z) + \nabla f(u,z) = 0
+		\label{fom:Representation_of_Two_Parameter_Winer_Functionals_1}
+	\end{align}
+	を満たす関数として，$f(M_{z},z)$の微分方程式を導出する．ここで
+	\begin{align}
+		V_{ij}(z) = \int_{0}^{z} \phi_{i}(\zeta) \phi_{j}(\zeta)\ d\zeta
+	\end{align}
+	である．(\refeq{fom:Representation_of_Two_Parameter_Winer_Functionals_1})は
+	(\refeq{fom:Wiener_Integral_and_Hermite_Functionals_1})と同じであるから，
+	$f(M_{z},z)$は局所マルチンゲールであって，任意の増大パス$\theta$に対して
+	\begin{align}
+		f\left(M_{\theta(t)},\theta(t)\right) - f\left(M_{\theta(0)},\theta(0)\right)
+		= \sum_{i} \int_{0}^{t} f^{i}\left(M_{\theta(s)},\theta(s)\right)\ dM_{i\theta(s)}
+		\label{fom:Representation_of_Two_Parameter_Winer_Functionals_3}
+	\end{align}
+	を満たす．
+	
+	\begin{thm}
+		$f$を(\refeq{fom:Representation_of_Two_Parameter_Winer_Functionals_1})を満たす関数とし，
+		$u$の要素に関して3階連続微分可能であるとする．このとき
+		\begin{align}
+			&f\left[M(z_{1},z_{2}),(z_{1},z_{2})\right] - f\left[M(z_{1},0),(z_{1},0)\right]
+			- f\left[M(0,z_{2}),(0,z_{2})\right] + f\left[M(0,0),(0,0)\right] \\
+			&= \int_{0}^{z} \sum_{i} f^{i}(M_{\zeta},\zeta) \phi_{i}(\zeta)\ W(d\zeta) \\
+			&\quad + \frac{1}{2} \left[\int_{0}^{z} \int_{0}^{z}\right]
+			\sum_{i,j} f^{ij}(M_{\zeta \vee \zeta'},\zeta \vee \zeta') \phi_{i}(\zeta) \phi_{j}(\zeta')\ W(d\zeta) W(d\zeta')
+			\label{fom:Representation_of_Two_Parameter_Winer_Functionals_2}
+		\end{align}
+		が成り立つ．
+	\end{thm}
+	
+	\begin{prf}
+		$z=(1,1)$の場合に(\refeq{fom:Representation_of_Two_Parameter_Winer_Functionals_2})を示せば良いのは明白である．
+		なぜならば，両辺のマルチンゲール性から一般化できるからである．いま単位立方体$T$を立方体の細分列に分解する．
+		どれも同じ大きさに(つまり$\delta_{k}$)するのが便利であって，$\delta_{k} \longrightarrow 0\ (k \longrightarrow \infty)$とする．
+		それぞれの細分の格子点を何らかの方法で並べて，$z_{k\nu}=(x_{k\nu},y_{k\nu})$と書く．
+		すると次を得る．
+		\begin{align}
+			&f(M(1,1),(1,1)) - f(M(1,0),(1,0)) - f(M(0,1),(0,1)) + f(M(0,0),(0,0)) \\
+			&= \sum_{\nu} \left\{f(M(x_{k\nu}+\delta_{k}, y_{k\nu}+\delta_{k}),(x_{k\nu}+\delta_{k}, y_{k\nu} + \delta_{k})) \right. \\
+			&\quad - f(M(x_{k\nu} + \delta_{k}, y_{k\nu}),(x_{k\nu} + \delta_{k}, y_{k\nu}))
+			- f(M(x_{k\nu}, y_{k\nu} + \delta_{k}),(x_{k\nu}, y_{k\nu} + \delta_{k})) \\
+			&\quad \left.+ f(M(x_{k\nu}, y_{k\nu}),(x_{k\nu}, y_{k\nu}))\right\}.
+		\end{align}
+		$f$は(\refeq{fom:Representation_of_Two_Parameter_Winer_Functionals_1})を満たすので，
+		括弧の項に対して(\refeq{fom:Representation_of_Two_Parameter_Winer_Functionals_3})を用いて
+		\begin{align}
+			&f(M(1,1),(1,1)) - f(M(1,0),(1,0)) - f(M(0,1),(0,1)) + f(M(0,0),(0,0)) \\
+			&= \sum_{\nu} \sum_{i} \int_{0}^{1} \left\{f^{i}\left[M(x_{k\nu}+\delta_{k}, y_{k\nu}+s\delta_{k}),(x_{k\nu}+\delta_{k}, y_{k\nu} + s\delta_{k})\right] \cdot M_{i}(x_{k\nu}+\delta_{k}, y_{k\nu}+s\delta_{k}) \right. \\
+			&\quad \left. - f^{i}\left[M(x_{k\nu}, y_{k\nu}+s\delta_{k}),(x_{k\nu}, y_{k\nu} + s\delta_{k})\right] \cdot M_{i}(x_{k\nu}, y_{k\nu}+s\delta_{k})\right\} \\
+			&= \sum_{\nu} \sum_{i} \int_{y_{k\nu}}^{y_{k\nu}+\delta_{k}}
+			\left\{f^{i}\left[M(x_{k\nu}+\delta_{k}, y),(x_{k\nu}+\delta_{k}, y)\right] \cdot M_{i}(x_{k\nu}+\delta_{k}, dy) \right. \\
+			&\quad \left. - f^{i}\left[M(x_{k\nu}, y),(x_{k\nu}, y)\right] \cdot M_{i}(x_{k\nu}, dy)\right\}
+		\end{align}
+		を得る．
+	\end{prf}
