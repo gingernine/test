@@ -1,0 +1,295 @@
+\documentclass[a4j,10.5pt,oneside,openany]{jsbook}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{ascmac} %itembox
+\usepackage{mathrsfs} %花文字
+\usepackage{mathtools} %参照式のみ式番号表示
+
+\usepackage[dvipdfmx]{graphicx} %作画
+\usepackage{tikz} %作画
+
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{40\baselineskip}
+\addtolength{\textheight}{\topskip}
+%\setlength{\voffset}{-0.55in}
+%
+%
+\begin{document}
+\mathtoolsset{showonlyrefs = true}
+
+基礎論における証明は大抵が直感に頼っているように見えますが，ではその直感が正しいとは誰が保証するのでしょうか．
+手元にあるどの本でも保証されていません．もしかしたら神様という超然的な存在を暗黙の裡に認めていて，
+直感とは神様が用意した論理であるとして無断で使っているだけなのかもしれませんが，
+残念ながら読者はテレパシーを使えないので，筆者の暗黙の了解を推察するなんて困難です．
+
+しかしながら，暗黙の了解を排除しようとすると，その分だけ日本語による明示的な約束が必要になります．
+すると新たな問題が生じます．それは日本語で書かれた言明をどこまで信用するか，という問題です．
+基礎論の難しさは，そのややこしさよりも日本語に対する認識を揃えることにあるのでしょうか．
+
+\section{項と式}
+	言語$\mathcal{L}$
+	\begin{description}
+		\item[矛盾記号] $\bot$
+		\item[論理記号]  $\rightharpoondown$, $\vee$, $\wedge$, $\rightarrow$,
+			$\forall$, $\exists$
+		\item[述語記号] $=$, $\in$
+		\item[変数記号] 可算個の記号．
+		\item[定数記号] 何らかの記号．
+	\end{description}
+	
+	そして項と式の規則は以下の通り．
+	\begin{description}
+		\item[項] 項とは変数と定数のことであり，これらのみが項である．
+		\item[式] 
+			\begin{itemize}
+				\item $\bot$は式である．
+				\item 項$s$と$t$に対して$\in st$と$=st$は式である．これを原子式と呼ぶ．
+				\item $\varphi$と$\psi$を式とするとき，
+					\begin{align}
+						&\rightharpoondown \varphi \\
+						&\vee \varphi \psi \\
+						&\wedge \varphi \psi \\
+						&\rightarrow \varphi \psi
+					\end{align}
+					は式である．
+				
+				\item 変数$x$が式$\varphi$に現れるとき，
+					$\forall x \varphi$と$\exists x \varphi$は式である．
+				
+				\item 以上のみが式である．
+			\end{itemize}
+	\end{description}
+	
+	以上のみが式であるとは，$\varphi$が式であるという言明が与えられたらば
+	以下のいずれかが満たされるということである．
+	\begin{itemize}
+		\item $\varphi$は$\bot$である．
+		\item 項$s$と$t$が得られて$\varphi$は$\in s t$である．
+		\item 項$s$と$t$が得られて$\varphi$は$= s t$である．
+		\item 式$\psi$が得られて$\varphi$は$\rightharpoondown \psi$である．
+		\item 式$\psi$と$\xi$が得られて$\varphi$は$\vee \psi \xi$である．
+		\item 式$\psi$と$\xi$が得られて$\varphi$は$\wedge \psi \xi$である．
+		\item 式$\psi$と$\xi$が得られて$\varphi$は$\rightarrow \psi \xi$である．
+		\item 変数$x$が現れる式$\psi$が得られて$\varphi$は$\forall x \psi$である．
+		\item 変数$x$が現れる式$\psi$が得られて$\varphi$は$\exists x \psi$である．
+	\end{itemize}
+	
+\section{部分式}
+	式は，式同士を組み合わせて作られている．
+	式から切り取った一連の部分列で，それ自身が式であるものを元の式に対して部分式と呼ぶ．
+	元の式全体も部分式と捉えられるが，自分自身を除く部分式を特に真部分式と呼ぶことにする．
+	
+\section{始切片}
+	$\varphi$を式とするとき，$\varphi$の左端から切り取る部分列を
+	$\varphi$の始切片と呼ぶ．
+	$\varphi$とは記号を並べたものであるが，それを下図のようにイメージすれば，
+	黒く塗りつぶした部分に相当する記号の並びは$\varphi$の始切片である．
+	
+	\begin{center}
+	\begin{tikzpicture}
+		\draw (0,0)--(10,0);
+		\draw (0,0)--(0,-1);
+		\draw (10,0)--(10,-1);
+		\draw (0,-1)--(10,-1);
+		\filldraw[fill=black] (0,0)--(7,0)--(7,-1)--(0,-1)--(0,0);
+	\end{tikzpicture}
+	\end{center}
+	
+	本節の主題は次である．
+	\begin{screen}
+		(★) $\varphi$を式とするとき，$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+	\end{screen}
+	
+	これを示すには次の原理を用いる:
+	\begin{itembox}[l]{構成的帰納法}
+		式に対する言明に対し，
+		\begin{itemize}
+			\item $\bot$に対してその言明が妥当である．
+			\item 原子式に対してその言明が妥当である．
+			\item 式が任意に与えられた\footnotemark
+				ときに，その全ての真部分式に対して
+				その言明が当てはまるならば，その式自身に対してもその言明が当てはまる．
+		\end{itemize}
+		ならば，いかなる式に対してもその言明は当てはまる．
+	\end{itembox}
+	
+	\footnotetext{
+		``任意に与えられた式''とはどう解釈するべきか．
+		どんな式に対しても?
+	}
+	
+	では主題を証明する．
+	$\bot$については，その始切片は$\bot$に限られる．
+	$\in st$なる原子式については，その始切片は
+	\begin{align}
+		\in, \quad \in s, \quad \in st
+	\end{align}
+	のいずれかとなるが，このうち式であるものは$\in st$のみである．
+	$=st$なる原子式についても，その始切片で式であるものは$=st$に限られる．
+	
+	$\varphi$を任意に与えられた式とし，
+	$\varphi$の真部分式に対しては(★)が当てはまっているとする．
+	\begin{description}
+		\item[ケース1] 式$\psi$が得られて$\varphi$が$\rightharpoondown \psi$であるとき，
+			$\psi$は$\varphi$の真部分式であるので(★)は当てはまる．
+			$\varphi$の始切片で式であるものは，
+			式$\xi$を用いて$\rightharpoondown \xi$と表せるが，
+			$\xi$は$\psi$の始切片であるから，帰納法の仮定より$\xi$と$\psi$は一致する．
+			ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			
+		\item[ケース2] 式$\psi$と$\xi$が得られて$\varphi$が$\vee \psi \xi$であるとき，
+			$\varphi$の始切片で式であるものは，式$\psi'$と$\xi'$を用いて
+			$\vee \psi' \xi'$と表せるが，$\psi$と$\xi$，$\psi'$と$\xi'$は
+			いずれも$\varphi$の真部分式であるので(★)は当てはまる．
+			このとき$\psi$と$\psi'$は一方が他方の始切片であるので帰納法の仮定より一致する．
+			すると$\xi$と$\xi'$も一方が他方の始切片であるので帰納法の仮定より一致する．
+			ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			$\varphi$が$\wedge \psi \xi$や$\rightarrow \psi \xi$である場合も同じである．
+			
+		\item[ケース3] 変数$x$と式$\psi$が得られて$\varphi$が$\forall x \psi$であるとき，
+			$\varphi$の始切片で式であるものは，式$\xi$を用いて$\forall x \xi$と表せる．
+			このとき$\xi$は$\psi$の始切片であって，$\psi$は$\varphi$の真部分式であって
+			(★)が当てはまるので$\psi$と$\xi$は一致する．ゆえに
+			$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			$\varphi$が$\forall x \psi$である場合も同じである．
+	\end{description}
+	
+\section{言語の拡張}
+	言語$\mathcal{L}$を言語$\mathcal{L}'$に拡張する．拡張する際に
+	\begin{align}
+		\{, \quad |, \quad \}
+	\end{align}
+	の記号を新しく導入する．
+	
+	\begin{description}
+		\item[項] $\mathcal{L}$の項は項である．
+			また$A$を$\mathcal{L}$の式とし，変数$x$が$A$に現れて，
+			かつ$x$のみが$A$で束縛されていないとき，$\{x|A\}$は項である．
+		
+		\item[式] $\mathcal{L}$の式と同じ作り方として略．
+	\end{description}
+	
+	$\varphi$を$\mathcal{L}'$の式とし，$s$を$\varphi$に現れる記号とすると，
+	\begin{description}
+		\item[(0)] $s$は$\mathcal{L}$の対象である．
+		\item[(1)] $s$は文字である．
+		\item[(2)] $s$は$\{$である．
+		\item[(3)] $s$は$|$である．
+		\item[(4)] $s$は$\}$である．
+		\item[(5)] $s$は$\bot$である．
+		\item[(6)] $s$は$\in$か$=$である．
+		\item[(7)] $s$は$\rightharpoondown$である．
+		\item[(8)] $s$は$\vee,\wedge,\rightarrow$のいずれかである．
+	\end{description}
+	
+\section{スコープ 式の解釈はただ一通りであるか}
+	$\varphi$を式とする．$\in$が$\varphi$に現れるとき，
+	項$s$と$t$が取れて，その$\in$の出現位置から
+	\begin{align}
+		\in st
+	\end{align}
+	なる原子式が$\varphi$に現れる．同様に$=$が$\varphi$に現れるとき，
+	項$u$と$v$が取れて，その$\in$の出現位置から
+	\begin{align}
+		\in uv
+	\end{align}
+	なる原子式が$\varphi$に現れる．これは直感的に正しいことであるが，
+	直感を排除してこれを認めるには構成的帰納法の原理が必要になる．
+	
+	では式に対する次の言明を考察する．
+	
+	\begin{screen}
+		(★★) 記号$s$が$\varphi$に現れたとする．
+		\begin{itemize}
+			\item $s$が$\in$または$=$であるとき，項$\tau$と$\sigma$が得られて，$s \tau \sigma$は
+				$s$のその出現位置から始まる$\varphi$の部分式となる．
+				また$s$のその出現位置から始まる$\varphi$の部分式は$s \tau \sigma$のみである．
+				
+			\item $s$が$\rightharpoondown$であるとき，式$\psi$が得られて，
+				$s \psi$は$s$のその出現位置から始まる$\varphi$の部分式となる．
+				また$s$のその出現位置から始まる$\varphi$の部分式は$s \psi$のみである．
+				
+			\item $s$が$\vee,\wedge,\rightarrow$であるとき，式$\psi$と$\xi$が得られて，
+				$s \psi \xi$は$s$のその出現位置から始まる$\varphi$の部分式となる．
+				また$s$のその出現位置から始まる$\varphi$の部分式は$s \psi \xi$のみである．
+				
+			\item $\sigma$が$\forall, \exists$であるとき，変数$x$と式$\psi$が得られて，
+				$s x \psi$は$s$のその出現位置から始まる$\varphi$の部分式となる．
+				また$s$のその出現位置から始まる$\varphi$の部分式は$s x \psi$のみである．
+		\end{itemize}
+	\end{screen}
+	
+	$\bot$に対しては上の言明は当てはまる．
+	
+	$\in \tau \sigma$なる式に対しては，$\in$のスコープは$\in \tau \sigma$に他ならない．
+	$= \tau \sigma$なる式についても，$=$のスコープは$= \tau \sigma$に他ならない．
+	
+	$\varphi$を任意に与えられた式とし，$\varphi$の真部分式に対しては
+	(★★)が当てはまっているとする．
+	
+	\begin{description}
+		\item[ケース1] 
+	\end{description}
+	式$\varphi$と$\psi$に対して上の言明が当てはまるとする．
+	式$\rightharpoondown \varphi$に対して，
+	$\sigma$が左端の$\rightharpoondown$であるとき
+	$\sigma \varphi$は$\rightharpoondown \varphi$の部分式である．
+	また$\sigma \psi$が$\sigma$のその出現位置から始まる$\rightharpoondown \varphi$の部分式
+	であるとすると，
+	$\psi$は$\varphi$の左端から始まる$\varphi$の部分式ということになるので
+	帰納法の仮定より$\varphi$と$\psi$は一致する．
+	$\sigma$が$\varphi$に現れる記号であれば，帰納法の仮定より
+	$\sigma$から始まる$\varphi$の部分式が一意的に得られる．
+	その部分式は$\rightharpoondown \varphi$の部分式でもあるし，
+	$\rightharpoondown \varphi$の部分式としての一意性は帰納法の仮定より従う．
+	
+	式$\vee \varphi \psi$に対して，
+	$\sigma$が左端の$\vee$であるとき，式$\xi$と$\eta$が得られて$\sigma \xi \eta$が
+	$\vee \varphi \psi$の部分式となったとすると，
+	$\xi$と$\varphi$は左端を同じくし，どちらか一方は他方の部分式である．
+	$\xi$が$\varphi$の部分式であるならば，帰納法の仮定より$\xi$と$\varphi$は一致する．
+	$\varphi$が$\xi$の部分式であるならば，$\xi$と$\psi$が重なるとなると
+	$\psi$の左端の記号から始まる$\xi$の部分式と$\psi$は一致しなくてはならない．
+	
+\section{証明}
+	閉式には，「真」であるか，「偽」であるか，のどちらかのラベルが付けられる．
+	「真である」という言明は，「正しい」や「成り立つ」などとも言い換えられる．
+	式が真であるか偽であるかは，次の手順に従って発掘的に判明していく．
+	
+	\begin{itemize}
+		\item $\Sigma$の閉式は真である．
+		\item $A$と$\rightarrow AB$が真であると判明しているならば，$B$は真である．
+		\item $\rightarrow \wedge ABA$と$\rightarrow \wedge ABB$は真である．
+		\item $A$と$B$が真であると判明しているならば$\wedge AB$と$\wedge BA$は真である．
+		\item $\rightarrow A\vee AB$と$\rightarrow B \vee AB$は真である．
+		\item $\rightarrow AC$と$\rightarrow BC$が真であると判明しているならば
+			$\rightarrow \vee ABC$は真である．
+		\item $\rightarrow\wedge A \rightharpoondown A \bot$は真である．
+		\item $\rightarrow \rightarrow A \bot \rightharpoondown A$は真である．
+		\item $\rightarrow \rightharpoondown\rightharpoondown AA$は真である．
+	\end{itemize}
+	
+	真であると判明している式$\varphi$を起点にして，
+	上の推論規則を駆使して閉式$\psi$が真であると判明すれば，
+	$\varphi$から始めて$\psi$が真であることに辿り着くまでの手続きは$\psi$の証明と呼ばれ，
+	$\psi$は定理と呼ばれる．
+	
+	証明には真であると判明している式が必要であり，その大元として選ばれた式が$\Sigma$の式である．
+	$\Sigma$の式は証明なしに真であると決められているのであり，これらを公理と呼び定理と区別する．
+	
+	与えられた閉式$\varphi$が証明可能であるとは，
+	\begin{itemize}
+		\item 閉式$\psi$で，$\psi$と$\psi \rightarrow \varphi$が真であると判明している者が得られる．
+		\item 真であると判明している閉式$\psi$と$\xi$が得られて，$\varphi$は$\psi \wedge \xi$である．
+		\item 閉式$\psi$と$\xi$で，$\psi \vee \xi$と$\psi \rightarrow \varphi$と$\xi \rightarrow \varphi$が真であると判明しているものが得られる．
+	\end{itemize}
+	
+	のいずれかの場合であり，
+	\begin{align}
+		\vdash \varphi
+	\end{align}
+	と書く．
+	
+	証明された式が真なる式である．では真なる式は
+\end{document}
