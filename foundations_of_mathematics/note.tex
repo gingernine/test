@@ -2,6 +2,7 @@
 %
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
+\usepackage{newpxmath,newpxtext}
 \usepackage{ascmac} %itembox
 \usepackage{mathrsfs} %花文字
 \usepackage{mathtools} %参照式のみ式番号表示
@@ -18,7 +19,11 @@
 \begin{document}
 \mathtoolsset{showonlyrefs = true}
 
-\section{前提の保証}
+\section{数学は誰に属するか}
+
+「数学は人間に属するか，神に属するか」という疑問に，私は「数学は人間に属するが，ただし人間は神に属している」と回答しましょう．
+ここで言う「神」とは宗教上の絶対的存在を指しているのではなくて，いやもしかすると宗教上の神と同一かもしれませんが，
+「三段論法」や「帰納法」や「背理法」など``人間が直感的に信じている論理''を用意した存在の呼び名です．
 
 基礎論における証明は大抵が直感に頼っているように見えますが，ではその直感が正しいとは誰が保証するのでしょうか．
 手元にあるどの本でも保証されていません．もしかしたら神様という超然的な存在を暗黙の裡に認めていて，
@@ -27,44 +32,96 @@
 
 しかしながら，暗黙の了解を排除しようとすると，その分だけ日本語による明示的な約束が必要になります．
 すると新たな問題が生じます．それは日本語で書かれた言明をどこまで信用するか，という問題です．
-基礎論の難しさは，そのややこしさよりも日本語に対する認識を揃えることにあるのでしょうか．
+基礎論の難しさは，その表面上のややこしさよりも日本語に対する認識を揃えることにあるのでしょうか．
 
-\section{項と式}
+論理構造を集合論の結果を用いて解明しようというのならまだしも(こちらは数理論理学と呼ばれる分野で，本来は数学基礎論とは別物だそうです)，
+集合論を構築することが目的である場合，その土台となる基礎論を集合論の上に展開すると理論が循環することになるでしょう．
+基礎論が基礎にしている集合論は「メタ理論」と呼ばれるらしいですが，
+その「メタ理論」がどう構成されたのかという点には誰も全く言及していないのですから，
+「メタ理論」という言葉は単なる逃げ口上にしか聞こえず，理論の循環を解消できません．
+
+\section{言語}
 	言語$\mathcal{L}$
 	\begin{description}
 		\item[矛盾記号] $\bot$
 		\item[論理記号]  $\rightharpoondown$, $\vee$, $\wedge$, $\rightarrow$,
 			$\forall$, $\exists$
 		\item[述語記号] $=$, $\in$
-		\item[変項記号] 変項記号と名前は付けるが，主に使われるのはアルファベットである．
-			ただアルファベットだけでは
+		\item[使用文字] ローマ字及びギリシア文字．
 		\item[定項記号] 何らかの記号．
 	\end{description}
+
+\section{項}
 	
-	そして項と式の規則は以下の通り．
-	\begin{description}
-		\item[項] 項とは変項と定項のことであり，これらのみが項である．
-		\item[式] 
-			\begin{itemize}
-				\item $\bot$は式である．
-				\item 項$s$と$t$に対して$\in st$と$=st$は式である．これを原子式と呼ぶ．
-				\item $\varphi$と$\psi$を式とするとき，
-					\begin{align}
-						&\rightharpoondown \varphi \\
-						&\vee \varphi \psi \\
-						&\wedge \varphi \psi \\
-						&\rightarrow \varphi \psi
-					\end{align}
-					は式である．
-				
-				\item 変項$x$が式$\varphi$に現れるとき，
-					$\forall x \varphi$と$\exists x \varphi$は式である．
-				
-				\item 以上のみが式である．
-			\end{itemize}
-	\end{description}
+	使用文字のアルファベットは変項記号として使われる．だが，アルファベットだけを変項記号とするのは不十分であり，
+	例えば式に$200$個の変項が必要であるといった状況では，小文字や大文字や変体文字まで駆使しても不足する．
+	そこで，文字$x$と$y$に対して
+	\begin{align}
+		\ddagger xy
+	\end{align}
+	もまた変項であると約束する．これは
+	\begin{align}
+		\ddagger(x,y)
+	\end{align}
+	や
+	\begin{align}
+		x \ddagger y
+	\end{align}
+	などと書く方が見やすいかもしれないが，当面は始めの記法(前置記法やポーランド記法と呼ばれる)を用いる．
+	また，変項$\tau$と$\sigma$に対して
+	\begin{align}
+		\ddagger \tau \sigma
+	\end{align}
+	も変項であると約束しよう．この約束に従えば，文字$x$だけを用いたとしても
+	\begin{align}
+		x,\quad \ddagger xx, \quad \ddagger \ddagger xxx, \quad \ddagger \ddagger \ddagger xxxx
+	\end{align}
+	はいずれも変項ということになる．しかも，仮に「$1000$個の変項を用意してくれ」と頼まれたとしても
+	$\ddagger$と$x$のみを使って$1000$個の変項を作り出すことが出来る．
 	
-	以上のみが式であるとは，$\varphi$が式であるという言明が与えられたらば
+	大切なのは，$\ddagger$を用いれば''理論上は''変項に不足しないということであって，
+	具体的な数式を扱うときに$\ddagger$が出てくるかと言えば，否である．
+	$\ddagger$が必要になるほどに長い式を人間が解釈するのは困難であるから，
+	通常は何らかの略記法を導入して複雑なところを覆い隠してしまう．
+
+	\begin{itembox}[l]{項の定義}
+		\begin{itemize}
+			\item 文字は変項である．また変項$\tau,\sigma$に対して$\ddagger \tau \sigma$は変項である．
+				そしてこれらのみが変項である．
+				
+			\item 変項は項であり，定項も項である．そしてこれらのみが項である．
+		\end{itemize}
+	\end{itembox}
+	
+	言わずもがな，「これらのみが項である」とは，「$\tau$が項である」という言明が与えられたらば以下のいずれかが満たされるということである．
+	\begin{itemize}
+		\item $\tau$は文字である．
+		\item $\tau$は定項である．
+		\item 変項$x$と$y$が得られて，$\tau$は$\ddagger xy$である．
+	\end{itemize}
+	
+\section{式}
+
+	\begin{itembox}[l]{式の定義}
+		\begin{itemize}
+			\item $\bot$は式である．
+			\item 項$s$と$t$に対して$\in st$と$=st$は式である．これを原子式と呼ぶ．
+			\item $\varphi$を式とするとき$\rightharpoondown \varphi$は式である．
+			\item $\varphi$と$\psi$を式とするとき，以下はいずれも式である．
+				\begin{align}
+					&\vee \varphi \psi, \\
+					&\wedge \varphi \psi, \\
+					&\rightarrow \varphi \psi.
+				\end{align}
+			
+			\item 変項$x$が式$\varphi$に現れるとき，
+				$\forall x \varphi$と$\exists x \varphi$は式である．
+			
+			\item 以上のみが式である．
+		\end{itemize}
+	\end{itembox}
+	
+	項の場合と同様に，「以上のみが式である」とは，「$\varphi$が式である」という言明が与えられたらば
 	以下のいずれかが満たされるということである．
 	\begin{itemize}
 		\item $\varphi$は$\bot$である．
@@ -163,7 +220,7 @@
 	\begin{align}
 		\{, \quad |, \quad \}
 	\end{align}
-	の記号を新しく導入する．
+	の記号を新しく導入する．式の対象化．
 	
 	\begin{description}
 		\item[項] $\mathcal{L}$の項は項である．
@@ -175,8 +232,9 @@
 	
 	$\varphi$を$\mathcal{L}'$の式とし，$s$を$\varphi$に現れる記号とすると，
 	\begin{description}
-		\item[(0)] $s$は$\mathcal{L}$の対象である．
+		\item[(0)] $s$は$\mathcal{L}$の定項である．
 		\item[(1)] $s$は文字である．
+		\item[(2)] $s$は$\ddagger$である．
 		\item[(2)] $s$は$\{$である．
 		\item[(3)] $s$は$|$である．
 		\item[(4)] $s$は$\}$である．
@@ -185,6 +243,29 @@
 		\item[(7)] $s$は$\rightharpoondown$である．
 		\item[(8)] $s$は$\vee,\wedge,\rightarrow$のいずれかである．
 	\end{description}
+	
+	\begin{screen}
+		(★★) いま，$\varphi$を任意に与えられた式としよう．
+		\begin{itemize}
+			\item $\ddagger$が$\varphi$に現れたとき，$\mathcal{L}$の項$\tau$と$\sigma$が得られて，$\ddagger \tau \sigma$は
+				$\ddagger$のその出現位置から始まる$\mathcal{L}$の項となる．
+				また$\ddagger$のその出現位置から始まる$\mathcal{L}$の項は$\ddagger \tau \sigma$のみである．
+				
+			\item $\{$が$\varphi$に現れたとき，$\mathcal{L}$の変項$x$及び$\mathcal{L}$の式$A$が得られて，
+				$\{ x|A\}$は$\{$のその出現位置から始まる項となる．
+				また$\{$のその出現位置から始まる項は$\{x|A\}$のみである．
+				
+			\item $|$が$\varphi$に現れたとき，，変項$x$と$\mathcal{L}$の式$A$が得られて，
+				$\{x|A\}$は$|$のその出現位置から広がる項となる．
+				また$|$のその出現位置から広がる項は$\{x|A\}$のみである．
+				
+			\item $\}$が$\varphi$に現れたとき，変項$x$と式$A$が得られて，
+				$\{x|A\}$は$\}$のその出現位置を終点とする項となる．
+				また$\}$のその出現位置を終点とする項は$\{x|A\}$のみである．
+		\end{itemize}
+	\end{screen}
+	
+	
 	
 \section{スコープ 式の解釈はただ一通りであるか}
 	$\varphi$を式とする．$\in$が$\varphi$に現れるとき，
