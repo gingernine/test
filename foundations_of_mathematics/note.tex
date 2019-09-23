@@ -430,4 +430,124 @@
 	と書く．
 	
 	証明された式が真なる式である．では真なる式は
+
+\section{式の書き換え}
+	\begin{itemize}
+		\item $x \in y$はそのまま$x \in y$
+		\item $x \in \{y|B(y)\}$は$B(x)$
+		\item $x \in \varepsilon y B(y)$は$\exists t\, \left(\, x \in t \wedge B(t)\, \right)$．ちなみにこれは公理とするべきか:
+			\begin{align}
+				\forall x\, \left(\, x \in \varepsilon y B(y) \leftrightarrow
+				\exists t\, \left(\, x \in t \wedge B(t)\, \right)\, \right).
+			\end{align}
+			
+		\item $\{x|A(x)\} \in y$は$\exists s\, \left(\, s \in y \wedge 
+			\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)$
+			
+			実はこの両式は同値である．さていま
+			\begin{align}
+				\{x|A(x)\} \in y \leftrightarrow
+				\exists s\, \left(\, s \in y \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			という式を$\varphi$とし，これを$\mathcal{L}$の式に書き換えたものを$\hat{\varphi}$としよう．そして
+			\begin{align}
+				\eta = \varepsilon y \rightharpoondown \hat{\varphi}(y)
+			\end{align}
+			とおこう．ここで証明するのは
+			\begin{align}
+				\{x|A(x)\} \in \eta \leftrightarrow
+				\exists s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			が成り立つということである．まず
+			\begin{align}
+				\{x|A(x)\} \in \eta
+			\end{align}
+			が成り立っているとしよう．すると
+			\begin{align}
+				\exists s\, \left(\, \{x|A(x)\} = s\, \right)
+			\end{align}
+			が成り立つのだが，今度も式の書き直し手順によって
+			\begin{align}
+				\exists s\, \left(\, \forall u\, \left(\, A(u) \leftrightarrow
+				u \in s\, \right)\, \right)
+			\end{align}
+			と書き直される．
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, \forall u\, \left(\, A(u) \leftrightarrow
+				u \in s\, \right)\, \right)
+			\end{align}
+			とおくと
+			\begin{align}
+				\forall u\, \left(\, A(u) \leftrightarrow
+				u \in \sigma\, \right)
+			\end{align}
+			が成り立ち，他方で
+			\begin{align}
+				\sigma = \{x|A(x)\}
+			\end{align}
+			が成り立つのだから
+			\begin{align}
+				\sigma \in \eta
+			\end{align}
+			も従う．ゆえに
+			\begin{align}
+				\sigma \in \eta \wedge \forall u\, \left(\, A(u) \leftrightarrow
+				u \in \sigma\, \right)
+			\end{align}
+			が成り立つ．逆に
+			\begin{align}
+				\exists s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			が成り立っているとして，
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			としよう．すると
+			\begin{align}
+				\sigma \in \eta \wedge 
+				\forall u\, \left(\, u \in \sigma \leftrightarrow A(u)\, \right)
+			\end{align}
+			が成り立つので
+			\begin{align}
+				\sigma \in \eta
+			\end{align}
+			かつ
+			\begin{align}
+				\sigma = \{x|A(x)\}
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\{x|A(x)\} \in \eta
+			\end{align}
+			が成立する．以上で
+			\begin{align}
+				\{x|A(x)\} \in \eta \leftrightarrow
+				\exists s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			が得られた．
+			
+		\item $\{x|A(x)\} \in \{y|B(y)\}$は$\exists s\, \left(\, B(s) \wedge 
+			\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)$
+		
+		\item $\{x|A(x)\} \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge 
+			\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right) \wedge B(t)\, \right)$
+		
+		\item $\varepsilon x A(x) \in y$は$\exists s\, \left(\, s \in y \wedge A(s)\, \right)$
+			
+			これも公理にしよう:
+			\begin{align}
+				\forall y\, \left(\, \varepsilon x A(x) \in y \leftrightarrow
+				\exists s\, \left(\, s \in y \wedge A(s)\, \right)\, \right).
+			\end{align}
+		
+		\item $\varepsilon x A(x) \in \{y|B(y)\}$は$\exists s\, \left(\, A(s) \wedge B(s)\, \right)$
+		
+		\item $\varepsilon x A(x) \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)$
+	\end{itemize}
+
 \end{document}
