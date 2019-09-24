@@ -2,14 +2,108 @@
 %
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
+\usepackage{makeidx}
+\makeindex
 \usepackage{newpxmath,newpxtext}
-\usepackage{ascmac} %itembox
 \usepackage{mathrsfs} %花文字
 \usepackage{mathtools} %参照式のみ式番号表示
+\usepackage{latexsym} %qed
+\usepackage{ascmac}
+\usepackage{centernot} %\centernot\arrow
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz} %描画
+\usepackage{color}
+\usepackage{relsize}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{ulem} %訂正線
+\usepackage[dvipdfm,colorlinks=true,linkcolor=blue,filecolor=blue,urlcolor=blue]{hyperref} %文書内リンク
+\usepackage{pxjahyper} %%hyperref読み込みの直後に
+\setcounter{tocdepth}{3} %table of contents subsection表示
+\newtheoremstyle{mystyle}% % Name
+	{20pt}%                      % Space above
+	{20pt}%                      % Space below
+	{\rm}%           % Body font
+	{}%                      % Indent amount
+	{\gt}%             % Theorem head font
+	{.}%                      % Punctuation after theorem head
+	{10pt}%                     % Space after theorem head, ' ', or \newline
+	{}%                      % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
 
-\usepackage[dvipdfmx]{graphicx} %作画
-\usepackage{tikz} %作画
+\allowdisplaybreaks[1]
+\newcommand{\bhline}[1]{\noalign {\hrule height #1}} %表の罫線を太くする．
+\newcommand{\bvline}[1]{\vrule width #1} %表の罫線を太くする．
+\newcommand{\QED}{% %証明終了
+	\relax\ifmmode
+		\eqno{%
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}}
+	\else
+		\begingroup
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\hfill\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}
+		\endgroup
+	\fi}
 
+\definecolor{DarkMidnightBlue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{PakistanGreen}{rgb}{0.0, 0.4, 0.0}
+\definecolor{Mahogany}{rgb}{0.65,0.10,0.10}
+\definecolor{darkgray}{rgb}{0.21, 0.21, 0.21}
+\definecolor{CarolinaBlue}{rgb}{0.6, 0.73, 0.89}
+
+\newtheorem{thm}{\color{DarkMidnightBlue}{定理}}[section]
+\newtheorem{dfn}[thm]{\color{PakistanGreen}{定義}}
+\newtheorem{axm}[thm]{\color{Mahogany}{公理}}
+\newtheorem{schema}[thm]{{公理図式}}
+\newtheorem{logicalaxm}[thm]{\color{Mahogany}{推論規則}}
+\newtheorem{logicalthm}[thm]{\color{DarkMidnightBlue}{推論法則}}
+\newtheorem{metaaxm}[thm]{\color{Mahogany}{メタ公理}}
+\newtheorem{metathm}[thm]{\color{DarkMidnightBlue}{メタ定理}}
+\newtheorem{prp}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{lem}[thm]{補題}
+\newtheorem*{prf}{証明}
+\newtheorem*{sketch}{略証}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{e.g.}[thm]{例}
+\newcommand{\defunc}{\mbox{1}\hspace{-0.25em}\mbox{l}} %定義関数
+\newcommand*{\sgn}[1]{\operatorname{sgn}\left( #1 \right)} %signal関数
+\newcommand{\monologue}[1]{
+	{\color{CarolinaBlue}\hspace{-10.5pt}\mask{\hspace{21pt}\vbox{
+		\hsize 445pt
+		\normalcolor{\vskip 7pt \noindent #1 \vskip 7pt}
+	}\hspace{21pt}}{E}}
+}
+
+\def\Ddot#1{$\ddot{\mathrm{#1}}$} %文中ddot
+
+%集合論理
+\newcommand{\Set}[2]{\left\{\, #1 \mid \quad #2\, \right\}} %論理式の対象化
+\newcommand{\defeq}{\overset{\mathrm{def}}{=\joinrel=}} %\scalebox{3}[1]{=}}} %定義記号=(=\joinrel=も使える)
+\newcommand{\defarrow}{\overset{\mathrm{def}}{\Longleftrightarrow}} %定義記号⇔
+\newcommand{\Univ}{\mathbf{V}} %宇宙
+\newcommand{\set}[1]{\operatorname*{set} (#1)} %集合であることの論理式
+\newcommand{\power}[1]{\operatorname*{P} (#1)} %冪集合
+\newcommand{\rel}[1]{\operatorname*{rel} (#1)} %関係
+\newcommand{\dom}[1]{\operatorname*{dom} (#1)} %類の定義域
+\newcommand{\ran}[1]{\operatorname*{ran} (#1)} %類の値域
+\newcommand{\sing}[1]{\operatorname*{sing} (#1)} %single-valuedの定義式
+\newcommand{\fnc}[1]{\operatorname*{fnc} (#1)} %写像の定義式
+\newcommand{\fon}{\operatorname*{:on}} %〇上の写像
+\newcommand{\inj}{\overset{\mathrm{1:1}}{\longrightarrow}} %単射
+\newcommand{\srj}{\overset{\mathrm{onto}}{\longrightarrow}} %全射
+\newcommand{\bij}{\underset{\mathrm{onto}}{\overset{\mathrm{1:1}}{\longrightarrow}}} %全単射
+\newcommand{\inv}[1]{{#1}^{-1}} %^{\operatorname{inv}}} %集合の反転
+\newcommand{\rest}[2]{#1\hspace{-0.41em}\upharpoonright_{#2}} %制限写像
+\newcommand{\tran}[1]{\operatorname*{tran} \left(#1\right)} %推移的類の定義式
+\newcommand{\ord}[1]{\operatorname*{ord} \left(#1\right)} %順序数の定義式
+\newcommand{\ON}{\mathrm{ON}} %順序数全体
+\newcommand{\limo}[1]{\mathrm{lim.o}\left(#1\right)} %極限数の式
+%\newcommand{\Natural}{{\boldsymbol \omega}} %自然数全体
+\newcommand{\Natural}{\mathbf{N}} %自然数全体
+%
+%
 \setlength{\textwidth}{\fullwidth}
 \setlength{\textheight}{40\baselineskip}
 \addtolength{\textheight}{\topskip}
@@ -50,13 +144,13 @@
 
 \section{項}
 	
-	使用文字のアルファベットは変項記号として使われる．だが，アルファベットだけを変項記号とするのは不十分であり，
-	例えば式に$200$個の変項が必要であるといった状況では，小文字や大文字や変体文字まで駆使しても不足する．
+	使用文字のアルファベットは項として使われる．だが，アルファベットだけを項とするのは不十分であり，
+	例えば式に$200$個の項が必要であるといった状況では，小文字や大文字や変体文字まで駆使しても不足する．
 	そこで，文字$x$と$y$に対して
 	\begin{align}
 		\natural xy
 	\end{align}
-	もまた変項であると約束する．これは
+	もまた項であると約束する．これは
 	\begin{align}
 		\natural(x,y)
 	\end{align}
@@ -65,36 +159,33 @@
 		x \natural y
 	\end{align}
 	などと書く方が見やすいかもしれないが，当面は始めの記法(前置記法やポーランド記法と呼ばれる)を用いる．
-	また，変項$\tau$と$\sigma$に対して
+	また，項$\tau$と$\sigma$に対して
 	\begin{align}
 		\natural \tau \sigma
 	\end{align}
-	も変項であると約束しよう．この約束に従えば，文字$x$だけを用いたとしても
+	も項であると約束しよう．この約束に従えば，文字$x$だけを用いたとしても
 	\begin{align}
 		x,\quad \natural xx, \quad \natural \natural xxx, \quad \natural \natural \natural xxxx
 	\end{align}
-	はいずれも変項ということになる．しかも，仮に「$1000$個の変項を用意してくれ」と頼まれたとしても
-	$\natural$と$x$のみを使って$1000$個の変項を作り出すことが出来る．
+	はいずれも項ということになる．しかも，仮に「$1000$個の項を用意してくれ」と頼まれたとしても
+	$\natural$と$x$のみを使って$1000$個の項を作り出すことが出来る．
 	
-	大切なのは，$\natural$を用いれば理屈の上は変項に不足しないということであって，
-	具体的な数式を扱うときに$\natural$が出てくるかと言えば，否である．
+	大切なのは，$\natural$を用いれば理屈の上は項に不足しないということであって，
+	具体的な数式を扱うときに$\natural$が出てくるかと言えば否である．
 	$\natural$が必要になるほどに長い式を人間が解釈するのは困難であるから，
 	通常は何らかの略記法を導入して複雑なところを覆い隠してしまう．
 
 	\begin{itembox}[l]{項の定義}
 		\begin{itemize}
-			\item 文字は変項である．また変項$\tau,\sigma$に対して$\natural \tau \sigma$は変項である．
-				そしてこれらのみが変項である．
-				
-			\item 変項は項であり，定項も項である．そしてこれらのみが項である．
+			\item 文字は項である．また項$\tau,\sigma$に対して$\natural \tau \sigma$は項である．
+				そしてこれらのみが項である．
 		\end{itemize}
 	\end{itembox}
 	
 	言わずもがな，「これらのみが項である」とは，「$\tau$が項である」という言明が与えられたらば以下のいずれかが満たされるということである．
 	\begin{itemize}
 		\item $\tau$は文字である．
-		\item $\tau$は定項である．
-		\item 変項$x$と$y$が得られて，$\tau$は$\natural xy$である．
+		\item 項$x$と$y$が得られて，$\tau$は$\natural xy$である．
 	\end{itemize}
 	
 \section{式}
@@ -111,8 +202,7 @@
 					&\rightarrow \varphi \psi.
 				\end{align}
 			
-			\item 変項$x$が式$\varphi$に現れるとき，
-				$\forall x \varphi$と$\exists x \varphi$は式である．
+			\item 項$x$が式$\varphi$に現れるとき，$\forall x \varphi$と$\exists x \varphi$は式である．
 			
 			\item 以上のみが式である．
 		\end{itemize}
@@ -131,6 +221,10 @@
 		\item 変項$x$が現れる式$\psi$が得られて$\varphi$は$\forall x \psi$である．
 		\item 変項$x$が現れる式$\psi$が得られて$\varphi$は$\exists x \psi$である．
 	\end{itemize}
+	
+	こう明示しておくことは重要であって，「以上のみが式である」という言明から直感的に導かれる内容であっても，
+	誰一人欠けることなくその直感を共有できるという保証はどこにもない．
+	「直感は共有されている」という根拠の薄いの前提を置いて暗黙の了解とやらで済ませるのは危険である．
 	
 \section{部分式}
 	式は，式同士を組み合わせて作られている．
@@ -159,7 +253,7 @@
 	\end{screen}
 	
 	これを示すには次の原理を用いる:
-	\begin{itembox}[l]{構成的帰納法}
+	\begin{itembox}[l]{式に対する構成的帰納法}
 		式に対する言明に対し，
 		\begin{itemize}
 			\item $\bot$に対してその言明が妥当である．
@@ -213,18 +307,36 @@
 	\end{description}
 	
 \section{言語の拡張}
-	言語$\mathcal{L}$を言語$\mathcal{L}'$に拡張する．拡張する際に
+	式の対象化を図るため，言語$\mathcal{L}$を言語$\mathcal{L}'$に拡張する．拡張する際に
 	\begin{align}
 		\{, \quad |, \quad \}
 	\end{align}
-	の記号を新しく導入する．式の対象化．
+	の記号を新しく導入する．
+	
+	ここで$\mathcal{L}$の項を変項と呼ぶことにしよう．
+	つまり変項とは，文字と$\natural$によって構成された記号列である．
 	
 	\begin{description}
-		\item[項] $\mathcal{L}$の項は項である．
-			また$A$を$\mathcal{L}$の式とし，変項$x$が$A$に現れて，
-			かつ$x$のみが$A$で束縛されていないとき，$\{x|A\}$は項である．
-		
-		\item[式] $\mathcal{L}$の式と同じ作り方として略．
+		\item[項] 変項は項である．また$A$を$\mathcal{L}$の式とし，変項$x$が$A$に現れて，
+			かつ$x$のみが$A$で自由であるとき，$\{x|A\}$と$\varepsilon x A$は項である．
+			変項に対して，新しく導入された項のことを閉項と呼ぶことにしよう．
+			
+		\item[式] 
+			\begin{itemize}
+				\item $\bot$は式である．
+				\item 項$s$と$t$に対して$\in st$と$=st$は式である．これを原子式と呼ぶ．
+				\item $\varphi$を式とするとき$\rightharpoondown \varphi$は式である．
+				\item $\varphi$と$\psi$を式とするとき，以下はいずれも式である．
+					\begin{align}
+						&\vee \varphi \psi, \\
+						&\wedge \varphi \psi, \\
+						&\rightarrow \varphi \psi.
+					\end{align}
+			
+				\item 変項$x$が式$\varphi$に現れるとき，$\forall x \varphi$と$\exists x \varphi$は式である．
+			
+				\item 以上のみが式である．
+		\end{itemize}
 	\end{description}
 	
 	$\varphi$を$\mathcal{L}'$の式とし，$s$を$\varphi$に現れる記号とすると，
@@ -430,10 +542,19 @@
 	
 	証明された式が真なる式である．では真なる式は
 
+\section{中置記法}
+	
+	
 \section{式の書き換え}
 	\begin{itemize}
 		\item $x \in y$はそのまま$x \in y$
 		\item $x \in \{y|B(y)\}$は$B(x)$
+			
+			これは公理である．つまり，
+			\begin{align}
+				\forall x\, \left(\, x \in \{y|B(y)\} \leftrightarrow B(x)\, \right).
+			\end{align}
+			
 		\item $x \in \varepsilon y B(y)$は$\exists t\, \left(\, x \in t \wedge B(t)\, \right)$．ちなみにこれは公理とするべきか:
 			\begin{align}
 				\forall x\, \left(\, x \in \varepsilon y B(y) \leftrightarrow
@@ -614,6 +735,93 @@
 			が成り立つ．
 			
 		\item $\varepsilon x A(x) \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)$
+		
+			この式の同値性も証明できる．まず
+			\begin{align}
+				\exists s,t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)
+			\end{align}
+			が成り立っているとしよう．この式は
+			\begin{align}
+				\exists s\, \left(\, \exists t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)\, \right)
+			\end{align}
+			の略記であって，$\exists$の規則より
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, \exists t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)\, \right)
+			\end{align}
+			とおけば
+			\begin{align}
+				\exists t\, \left(\, \sigma \in t \wedge A(\sigma) \wedge B(t)\, \right)
+			\end{align}
+			が成立する．$\sigma \in t \wedge A(\sigma) \wedge B(t)$を$\mathcal{L}$の式に書き直したものを
+			$\varphi(t)$として
+			\begin{align}
+				\tau \defeq \varepsilon t \varphi(t)
+			\end{align}
+			とおけば，$\exists$の規則より
+			\begin{align}
+				\sigma \in \tau \wedge A(\sigma) \wedge B(\tau)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists s\, \left(\, s \in \tau \wedge A(s)\, \right)
+			\end{align}
+			が成り立つから，公理より
+			\begin{align}
+				\varepsilon x A(x) \in \tau
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\varepsilon x A(x) \in \tau \wedge B(\tau)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists t\, \left(\, \varepsilon x A(x) \in t \wedge B(t)\, \right)
+			\end{align}
+			が成立する．公理より
+			\begin{align}
+				\varepsilon x A(x) \in \varepsilon y B(y)
+			\end{align}
+			が成立する．逆は容易い．
+			\begin{align}
+				\varepsilon x A(x) \in \varepsilon y B(y)
+			\end{align}
+			が成り立っているとすれば公理より
+			\begin{align}
+				\exists t\, \left(\, \varepsilon x A(x) \in t \wedge B(t)\, \right)
+			\end{align}
+			が成立する．$\varepsilon x A(x) \in t \wedge B(t)$を$\mathcal{L}$の式に書き直したものを$\psi(t)$として
+			\begin{align}
+				\tau \defeq \varepsilon t \psi(t)
+			\end{align}
+			とおけば
+			\begin{align}
+				\varepsilon x A(x) \in \tau \wedge B(\tau)
+			\end{align}
+			が成立するが，ここで公理より
+			\begin{align}
+				\exists s\, \left(\, s \in \tau \wedge A(s)\, \right)
+			\end{align}
+			が成り立つので，$s \in \tau \wedge A(s)$を$\mathcal{L}$の式に書き直したものを$\xi(s)$として
+			\begin{align}
+				\sigma \defeq \varepsilon s \xi(s)
+			\end{align}
+			とおけば
+			\begin{align}
+				\sigma \in \tau \wedge A(\sigma)
+			\end{align}
+			が成立する．以上より
+			\begin{align}
+				\sigma \in \tau \wedge A(\sigma) \wedge B(\tau)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists t\, \left(\, \sigma \in t \wedge A(\sigma) \wedge B(t)\, \right)
+			\end{align}
+			が得られる．ゆえに
+			\begin{align}
+				\exists s\, \left(\, \exists t\, \left(\, \sigma \in t \wedge A(\sigma) \wedge B(t)\, \right)\, \right)
+			\end{align}
+			が得られる．
 	\end{itemize}
 
 \end{document}
