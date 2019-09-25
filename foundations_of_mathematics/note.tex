@@ -376,24 +376,52 @@
 	\end{description}
 
 \section{スコープ}
-	いま$\varphi$を式とする．$\in$が$\varphi$に現れるとき，
-	項$s$と項$t$が取れて，その$\in$の出現位置から
+	$\varphi$を式とし，$s$を$\varphi$に現れた記号とするとき，$s$のその出現位置から始まる$\varphi$の部分式を
+	$s$の{\bf スコープ}\index{スコープ}{\bf (scope)}と呼ぶ．具体的に，$\varphi$を
 	\begin{align}
-		\in st
+		\Longrightarrow \forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy = yz
 	\end{align}
-	なる原子式が$\varphi$の上に現れる．$\vee$が$\varphi$に現れるとき，
-	式$\psi$と$\xi$が取れて，その$\vee$の出現位置から
+	としよう．このとき$\varphi$の左から$6$番目に$\in$が現れるが，この$\in$から
 	\begin{align}
-		\vee \psi \xi
+		\in xy
 	\end{align}
-	なる式が$\varphi$の上に現れる．$\exists$が$\varphi$に現れるとき，
-	項$x$と式$\psi$が取れて
+	なる原子式が$\varphi$の上に現れている:
 	\begin{align}
-		\exists x \psi
+		\Longrightarrow \forall x \wedge \Longrightarrow \textcolor{red}{\in xy} \in xz \Longrightarrow \in xz \in xy = yz.
 	\end{align}
-	なる式が$\varphi$の上に現れる．
+	他にも，$\varphi$の左から$4$番目に$\wedge$が現れるが，この右側に
+	\begin{align}
+		\Longrightarrow \in xy \in xz
+	\end{align}
+	と
+	\begin{align}
+		\Longrightarrow \in xz \in xy
+	\end{align}
+	の二つの式が続いていて，$\wedge$を起点に
+	\begin{align}
+		\wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy
+	\end{align}
+	なる式が$\varphi$の上に現れている:
+	\begin{align}
+		\Longrightarrow \forall x \textcolor{red}{\wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy} = yz.
+	\end{align}
+	$\varphi$の左から$2$番目には$\forall$が現れて，
+	この$\forall$に対して項$x$と
+	\begin{align}
+		\wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy
+	\end{align}
+	なる式が続き，
+	\begin{align}
+		\forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy
+	\end{align}
+	なる式が$\varphi$の上に現れている:
+	\begin{align}
+		\Longrightarrow \textcolor{red}{\forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy} = yz.
+	\end{align}
 	
-	これは直感的に正しいことであるが，直感を排除してこれを認めるには構造的帰納法の原理が必要になる．
+	しかも$\in,\wedge,\forall$のスコープは上にあげた部分式のほかに取りようが無い．
+	上の具体例を見れば，直感的に「現れた記号のスコープはただ一つだけ，必ず取ることが出来る」
+	が一般の式に対して当てはまるであるように思えるが，直感を排除してこれを認めるには構造的帰納法の原理が必要になる．
 	
 	\begin{screen}
 		\begin{metathm}
@@ -934,16 +962,17 @@
 	\begin{screen}
 		\begin{logicalaxm}
 			\begin{align}
-				\exists x A(x) \leftrightarrow A(\varepsilon x \hat{A}(x)).
+				\exists x A(x) \rightarrow A(\varepsilon x \hat{A}(x)).
+			\end{align}
+			
+			\begin{align}
+				A(\tau) \rightarrow \exists x A(x).
 			\end{align}
 			
 			\begin{align}
 				\forall x A(x) \leftrightarrow A(\varepsilon x \rightharpoondown \hat{A}(x)).
 			\end{align}
 			
-			\begin{align}
-				A(\tau) \rightarrow \exists x A(x).
-			\end{align}
 		\end{logicalaxm}
 	\end{screen}
 	
