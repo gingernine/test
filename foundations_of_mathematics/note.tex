@@ -140,6 +140,10 @@
 ここで言う数は数学的に構成する数ではなくて，神が用意した概念としての数．
 そこまで踏み込むときりがない．
 
+排中律と無矛盾性の違い:
+排中律から$\rightharpoondown (A \wedge \rightharpoondown A)$が導かれるが，
+$A \wedge \rightharpoondown A$が導かれることを否定しているわけではない．
+
 \section{言語}
 	本稿の世界を展開するために使用する言語は二つある．
 	一つは自然言語の日本語であり，もう一つは記号のみで作られた人工的な言語である．
@@ -500,37 +504,84 @@
 		\end{align}
 		なる式で表されるが，このとき$x$は$\forall x \psi$において量化されているという．
 	\end{itembox}
+	
+	$A$を式とし，$a$を$A$に現れる項とする．このとき$A$の中の項$a$を全て項$x$に置き換えた式を
+	\begin{align}
+		(x \mid a)A
+	\end{align}
+	で表す．特に項$a$と項$x$が同一の項である場合は$(x \mid a)A$は$A$自身に一致する．
+	また$A$の中で自由に現れる項が$a$のみであって，かつ$a$が自由に現れる箇所がどれも項$x$の量化スコープではないとき，
+	$A$に現れる項$a$のうち，{\bf 自由に現れる箇所}を全て項$x$に置き換えた式を
+	\begin{align}
+		A(x)
+	\end{align}
+	と書く．$A$に現れる項$a$が全て自由であるときは$A(a)$は$A$自身に一致する．
 
 \section{言語の拡張}
-	式の対象化を図るため，言語$\mathcal{L}_{0}$を言語$\mathcal{L}$に拡張する．拡張する際に
+	項$x$が自由に現れる式$A(x)$に対して
+	\begin{align}
+		\Set{x}{A(x)}
+	\end{align}
+	なる形の項を導入する．この$\Set{x}{A(x)}$なる記法は
+	{\bf 内包的記法}\index{ないほうてききほう@内包的記法}{\bf (international notation)}と呼ばれる．
+	導入の意図は``$A(x)$を満たす集合$x$の全体''という意味を込めた式の対象化であって，実際に後述の内包性公理によって
+	\begin{align}
+		\forall x\, \left(\, x \in \Set{x}{A(x)} \Longleftrightarrow A(x)\, \right)
+	\end{align}
+	を保証する．
+	
+	追加する項はもう一つある．$A(x)$を上記のものとするが，この場合$A(x)$は$x$に関する性質として扱われる．
+	そして``性質$A(x)$を具えている集合''という意味を込めて
+	\begin{align}
+		\varepsilon x A(x)
+	\end{align}
+	なる形の項を導入する．これはHilbertの$\varepsilon$項と呼ばれるものであるが，
+	留意点は，$\varepsilon x A(x)$は性質$A(x)$を持つとは限らないということである．
+	$\varepsilon x A(x)$が性質$A(x)$を持つのは，$A(x)$を満たす集合$x$が存在するとき，またその時に限られる．
+	
+	言語$\mathcal{L}_{0}$を設定したばかりであるが，上述の二種類の項を取り入れて言語$\mathcal{L}$に拡張する．
+	$\mathcal{L}$は基本的には$\mathcal{L}_{0}$のものを継承するが，
+	拡張に際して$\Set{x}{A(x)}$や$\varepsilon x A(x)$なるオブジェクトや
+	\begin{align}
+		\varepsilon,
+	\end{align}
+	及び
 	\begin{align}
 		\{, \quad |, \quad \}
 	\end{align}
-	の記号を新しく導入する．
+	が加えられる．$\Set{x}{A(x)}$や$\varepsilon x A(x)$は自然言語の固有名詞に相当するものであり，
+	また$\varepsilon$は論理記号で，$\{,|,\}$は補助記号であるとする．
 	
-	ここで$\mathcal{L}_{0}$の項を変項と呼ぶことにしよう．
-	つまり変項とは，文字と$\natural$によって構成された記号列である．
+	\begin{screen}
+		\begin{dfn}[類]
+			$A$を$\mathcal{L}_{0}$の式とし，$x$を$A$に現れる項とし，
+			$A$の中で項$x$のみが自由に現れるとき，
+			$\Set{x}{A(x)}$及び$\varepsilon x A(x)$を
+			{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
 	
 	\begin{description}
-		\item[項] 変項は項である．また$A$を$\mathcal{L}_{0}$の式とし，変項$x$が$A$に現れて，
-			かつ$x$のみが$A$で自由であるとき，$\{x|A\}$と$\varepsilon x A$は項である．
-			変項に対して，新しく導入された項のことを閉項と呼ぶことにしよう．
+		\item[変項] $\mathcal{L}_{0}$の項を{\bf 変項}\index{へんこう@変項}{\bf (variable term)}と呼ぶ．またこれらのみが変項である．
+		
+		\item[項] 変項は$\mathcal{L}$の項である．類も$\mathcal{L}$の項である．またこれらのみが$\mathcal{L}$の項である．
 			
 		\item[式] 
 			\begin{itemize}
-				\item $\bot$は式である．
-				\item 項$s$と$t$に対して$\in st$と$=st$は式である．これを原子式と呼ぶ．
-				\item $\varphi$を式とするとき$\rightharpoondown \varphi$は式である．
-				\item $\varphi$と$\psi$を式とするとき，以下はいずれも式である．
+				\item $\bot$は$\mathcal{L}$の式である．
+				\item 項$s$と$t$に対して$\in st$と$=st$は$\mathcal{L}$の式である．
+				\item $\varphi$を$\mathcal{L}$の式とするとき，$\rightharpoondown \varphi$は$\mathcal{L}$の式である．
+				\item $\varphi$と$\psi$を$\mathcal{L}$の式とするとき，以下はいずれも$\mathcal{L}$の式である．
 					\begin{align}
 						&\vee \varphi \psi, \\
 						&\wedge \varphi \psi, \\
 						&\rightarrow \varphi \psi.
 					\end{align}
 			
-				\item 変項$x$が式$\varphi$に現れるとき，$\forall x \varphi$と$\exists x \varphi$は式である．
+				\item 変項$x$が$\mathcal{L}$の式$\varphi$に現れるとき，
+					$\forall x \varphi$と$\exists x \varphi$は$\mathcal{L}$の式である．
 			
-				\item 以上のみが式である．
+				\item 以上のみが$\mathcal{L}$の式である．
 		\end{itemize}
 	\end{description}
 	
@@ -670,15 +721,12 @@
 \section{類と集合}
 	\begin{screen}
 		\begin{dfn}[類と集合]
-			$\mathcal{L}$の閉項を{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．また
+			$a$を類とするとき，$a$が集合であるという言明を
 			\begin{align}
-				\exists x\, (\, x = a\, )
+				\set{a} \defarrow \exists x\, (\, x = a\, )
 			\end{align}
-			を満たす類$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
-			\begin{align}
-				\rightharpoondown \exists x\, (\, x = a\, )
-			\end{align}
-			を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+			で定める．$\set{a}$を満たす類$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
+			$\rightharpoondown \set{a}$を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -690,6 +738,18 @@
 	\begin{align}
 		\exists a\, \left(\, a = \varepsilon x A(x)\, \right).
 	\end{align}
+	また$\Set{x}{A(x)}$が集合であるとき
+	\begin{align}
+		\exists s\, \left(\, \Set{x}{A(x)} = s\, \right)
+	\end{align}
+	が成り立つが，量化の規則より
+	\begin{align}
+		\Set{x}{A(x)} = \varepsilon s \forall u\, (\, u \in s \Longleftrightarrow A(u)\, )
+	\end{align}
+	が得られる．ブルバキや島内では右辺の項でクラスを導入しているため，
+	$\forall u\, (\, u \in s \Longleftrightarrow A(s)\, )$を満たす集合が取れない限りは
+	$\Set{x}{A(x)}$は正体不明の対象として扱うほかない．一方で本稿では
+	$\Set{x}{A(x)}$と$\epsilon$項を独立に導入しているため，両者の存在意義と関係性を自然に記述できる．
 	
 \section{中置記法}
 	
