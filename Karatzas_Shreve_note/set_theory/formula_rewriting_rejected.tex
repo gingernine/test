@@ -1,0 +1,665 @@
+\section{式の書き換え(没)}
+	\begin{itemize}
+		\item $x \in y$はそのまま$x \in y$
+		\item $x \in \{y|B(y)\}$は$B(x)$
+			
+			これは公理である．つまり，
+			\begin{align}
+				\forall x\, \left(\, x \in \{y|B(y)\} \leftrightarrow B(x)\, \right).
+			\end{align}
+			
+		\item $x \in \varepsilon y B(y)$は$\exists t\, \left(\, x \in t \wedge B(t)\, \right)$．ちなみにこれは公理とするべきか:
+			\begin{align}
+				\forall x\, \left(\, x \in \varepsilon y B(y) \leftrightarrow
+				\exists t\, \left(\, x \in t \wedge B(t)\, \right)\, \right).
+			\end{align}
+			
+		\item $\{x|A(x)\} \in y$は$\exists s\, \left(\, s \in y \wedge 
+			\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)$
+			
+			実はこの両式は同値である．さていま
+			\begin{align}
+				\{x|A(x)\} \in y \leftrightarrow
+				\exists s\, \left(\, s \in y \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			という式を$\varphi$とし，これを$\mathcal{L}_{0}$の式に書き換えたものを$\hat{\varphi}$としよう．そして
+			\begin{align}
+				\eta = \varepsilon y \rightharpoondown \hat{\varphi}(y)
+			\end{align}
+			とおこう．ここで証明するのは
+			\begin{align}
+				\{x|A(x)\} \in \eta \leftrightarrow
+				\exists s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			が成り立つということである．まず
+			\begin{align}
+				\{x|A(x)\} \in \eta
+			\end{align}
+			が成り立っているとしよう．すると
+			\begin{align}
+				\exists s\, \left(\, \{x|A(x)\} = s\, \right)
+			\end{align}
+			が成り立つのだが，今度も式の書き直し手順によって
+			\begin{align}
+				\exists s\, \left(\, \forall u\, \left(\, A(u) \leftrightarrow
+				u \in s\, \right)\, \right)
+			\end{align}
+			と書き直される．
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, \forall u\, \left(\, A(u) \leftrightarrow
+				u \in s\, \right)\, \right)
+			\end{align}
+			とおくと
+			\begin{align}
+				\forall u\, \left(\, A(u) \leftrightarrow
+				u \in \sigma\, \right)
+			\end{align}
+			が成り立ち，他方で
+			\begin{align}
+				\sigma = \{x|A(x)\}
+			\end{align}
+			が成り立つのだから
+			\begin{align}
+				\sigma \in \eta
+			\end{align}
+			も従う．ゆえに
+			\begin{align}
+				\sigma \in \eta \wedge \forall u\, \left(\, A(u) \leftrightarrow
+				u \in \sigma\, \right)
+			\end{align}
+			が成り立つ．逆に
+			\begin{align}
+				\exists s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			が成り立っているとして，
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			としよう．すると
+			\begin{align}
+				\sigma \in \eta \wedge 
+				\forall u\, \left(\, u \in \sigma \leftrightarrow A(u)\, \right)
+			\end{align}
+			が成り立つので
+			\begin{align}
+				\sigma \in \eta
+			\end{align}
+			かつ
+			\begin{align}
+				\sigma = \{x|A(x)\}
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\{x|A(x)\} \in \eta
+			\end{align}
+			が成立する．以上で
+			\begin{align}
+				\{x|A(x)\} \in \eta \leftrightarrow
+				\exists s\, \left(\, s \in \eta \wedge 
+				\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)
+			\end{align}
+			が得られた．
+			
+		\item $\{x|A(x)\} \in \{y|B(y)\}$は$\exists s\, \left(\, B(s) \wedge 
+			\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)$
+		
+		\item $\{x|A(x)\} \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge 
+			\forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right) \wedge B(t)\, \right)$
+		
+		\item $\varepsilon x A(x) \in y$は$\exists s\, \left(\, s \in y \wedge A(s)\, \right)$
+			
+			これも公理にしよう:
+			\begin{align}
+				\forall y\, \left(\, \varepsilon x A(x) \in y \leftrightarrow
+				\exists s\, \left(\, s \in y \wedge A(s)\, \right)\, \right).
+			\end{align}
+			いや，$y$をクラスとした言明の方が良いかも．
+			\begin{align}
+				\varepsilon x A(x) \in y \leftrightarrow
+				\exists s\, \left(\, s \in y \wedge A(s)\, \right).
+			\end{align}
+		
+		\item $\varepsilon x A(x) \in \{y|B(y)\}$は$\exists s\, \left(\, A(s) \wedge B(s)\, \right)$
+			
+			上の公理からこの式の同値性も導かれます．まず
+			\begin{align}
+				\exists s\, \left(\, A(s) \wedge B(s)\, \right)
+			\end{align}
+			が成り立っているとしよう．そして
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, A(s) \wedge B(s)\, \right)
+			\end{align}
+			とおくと，
+			\begin{align}
+				A(\sigma) \wedge B(\sigma)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\sigma \in \{y|B(y)\} \wedge A(\sigma)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists s\, \left(\, s \in \{y|B(y)\} \wedge A(s)\, \right)
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				\varepsilon x A(x) \in \{y|B(y)\}
+			\end{align}
+			が成り立つ．逆に
+			\begin{align}
+				\varepsilon x A(x) \in \{y|B(y)\}
+			\end{align}
+			が成り立っているとしよう．すると
+			\begin{align}
+				\exists s\, \left(\, s = \varepsilon x A(x)\, \right)
+			\end{align}
+			が成り立つが，これは$\mathcal{L}_{0}$の式で
+			\begin{align}
+				\exists s A(s)
+			\end{align}
+			であって，
+			\begin{align}
+				\sigma = \varepsilon s A(s)
+			\end{align}
+			とおけば
+			\begin{align}
+				A(\sigma)
+			\end{align}
+			が成立する．ところで
+			\begin{align}
+				\sigma \in \{y|B(y)\}
+			\end{align}
+			なので
+			\begin{align}
+				B(\sigma)
+			\end{align}
+			も成り立つ．ゆえに
+			\begin{align}
+				A(\sigma) \wedge B(\sigma)
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				\exists s\, \left(\, A(s) \wedge B(s)\, \right)
+			\end{align}
+			が成り立つ．
+			
+		\item $\varepsilon x A(x) \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)$
+		
+			この式の同値性も証明できる．まず
+			\begin{align}
+				\exists s,t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)
+			\end{align}
+			が成り立っているとしよう．この式は
+			\begin{align}
+				\exists s\, \left(\, \exists t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)\, \right)
+			\end{align}
+			の略記であって，$\exists$の規則より
+			\begin{align}
+				\sigma = \varepsilon s\, \left(\, \exists t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)\, \right)
+			\end{align}
+			とおけば
+			\begin{align}
+				\exists t\, \left(\, \sigma \in t \wedge A(\sigma) \wedge B(t)\, \right)
+			\end{align}
+			が成立する．$\sigma \in t \wedge A(\sigma) \wedge B(t)$を$\mathcal{L}_{0}$の式に書き直したものを
+			$\varphi(t)$として
+			\begin{align}
+				\tau \defeq \varepsilon t \varphi(t)
+			\end{align}
+			とおけば，$\exists$の規則より
+			\begin{align}
+				\sigma \in \tau \wedge A(\sigma) \wedge B(\tau)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists s\, \left(\, s \in \tau \wedge A(s)\, \right)
+			\end{align}
+			が成り立つから，公理より
+			\begin{align}
+				\varepsilon x A(x) \in \tau
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\varepsilon x A(x) \in \tau \wedge B(\tau)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists t\, \left(\, \varepsilon x A(x) \in t \wedge B(t)\, \right)
+			\end{align}
+			が成立する．公理より
+			\begin{align}
+				\varepsilon x A(x) \in \varepsilon y B(y)
+			\end{align}
+			が成立する．逆は容易い．
+			\begin{align}
+				\varepsilon x A(x) \in \varepsilon y B(y)
+			\end{align}
+			が成り立っているとすれば公理より
+			\begin{align}
+				\exists t\, \left(\, \varepsilon x A(x) \in t \wedge B(t)\, \right)
+			\end{align}
+			が成立する．$\varepsilon x A(x) \in t \wedge B(t)$を$\mathcal{L}_{0}$の式に書き直したものを$\psi(t)$として
+			\begin{align}
+				\tau \defeq \varepsilon t \psi(t)
+			\end{align}
+			とおけば
+			\begin{align}
+				\varepsilon x A(x) \in \tau \wedge B(\tau)
+			\end{align}
+			が成立するが，ここで公理より
+			\begin{align}
+				\exists s\, \left(\, s \in \tau \wedge A(s)\, \right)
+			\end{align}
+			が成り立つので，$s \in \tau \wedge A(s)$を$\mathcal{L}_{0}$の式に書き直したものを$\xi(s)$として
+			\begin{align}
+				\sigma \defeq \varepsilon s \xi(s)
+			\end{align}
+			とおけば
+			\begin{align}
+				\sigma \in \tau \wedge A(\sigma)
+			\end{align}
+			が成立する．以上より
+			\begin{align}
+				\sigma \in \tau \wedge A(\sigma) \wedge B(\tau)
+			\end{align}
+			が成立する．ゆえに
+			\begin{align}
+				\exists t\, \left(\, \sigma \in t \wedge A(\sigma) \wedge B(t)\, \right)
+			\end{align}
+			が得られる．ゆえに
+			\begin{align}
+				\exists s\, \left(\, \exists t\, \left(\, \sigma \in t \wedge A(\sigma) \wedge B(t)\, \right)\, \right)
+			\end{align}
+			が得られる．
+	\end{itemize}
+	
+	\begin{screen}
+		\begin{logicalaxm}\mbox{}
+			\begin{itemize}
+				\item 任意の閉項$\tau$に対して，$A(\tau)$が定理ならば$\exists x A(x)$が成り立つ．
+				\item $\exists x A(x)$が定理ならば，$A(\varepsilon x \hat{A}(x))$が成り立つ．
+				\item すべての閉項$\tau$に対して$A(\tau)$が定理ならば，$\forall x A(x)$が成り立つ．
+				\item $\forall x A(x)$が定理ならば，すべての閉項$\tau$に対して$A(\tau)$が成り立つ．
+			\end{itemize}
+		\end{logicalaxm}
+	\end{screen}
+	
+	定理として
+	\begin{align}
+		\forall x A(x) \Longleftrightarrow A(\varepsilon x \rightharpoondown \hat{A}(x))
+	\end{align}
+	が得られる．アイデアとしてはさあ，$\varepsilon x A(x)$の全体が集合に対応しているのであって，
+	いやもちろん集合そのものではないけど，集合は$\varepsilon x A(x)$のどれかに等しい類なわけで，
+	だからモデル論に出てくる「宇宙」とかいう得体の知れない集合()は俺の集合論に不要なんだよね．
+	俺のノートの「宇宙」はすべて実態が把握できるように，具体的な記号列で書き表せるのが良いよね．
+	ちなみにこの「宇宙」は$\{x|x=x\}$とは別ね．
+	
+	\begin{screen}
+		\begin{axm}
+			\begin{align}
+				\forall x\, \left(\, x \in \{y|B(y)\} \leftrightarrow B(x)\, \right).
+			\end{align}
+			
+			\begin{align}
+				\forall x\, \left(\, x \in \varepsilon y B(y) \leftrightarrow
+				\left(\, \exists t\, B(t) \rightarrow 
+				\exists t\, \left(\, x \in t \wedge B(t)\, \right)\, \right)\, \right).
+			\end{align}
+			が定理となるために
+			\begin{align}
+				x \in \varepsilon y B(y) \leftrightarrow
+				\exists t\, \left(\, x \in t \wedge B(t) \leftrightarrow \exists y B(y)\, \right)
+			\end{align}
+			を公理とする．
+			
+			\begin{align}
+				\varepsilon x A(x) \in y \leftrightarrow
+				\exists s\, \left(\, s \in y \wedge A(s)\, \right).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	いや，した二つは公理じゃねえな．定理だ．実際
+	\begin{align}
+		x \in \varepsilon y B(y)
+	\end{align}
+	が成り立っているとしよう．$\varepsilon y B(y)$は集合であって
+	\begin{align}
+		\exists s\, \left(\, s = \varepsilon y B(y)\, \right)
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		fff
+	\end{align}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\exists x A(x) \rightarrow \varepsilon x A(x) \in \{x|A(x)\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			\exists x A(x)
+		\end{align}
+		が成り立ているとするとき，
+		\begin{align}
+			\sigma \defeq \varepsilon x A(x)
+		\end{align}
+		とおけば
+		\begin{align}
+			A(\sigma)
+		\end{align}
+		が成り立つので，公理より
+		\begin{align}
+			\sigma \in \{x|A(x)\}
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\sigma \in \{x|A(x)\} \wedge A(\sigma)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists s\, \left(\, s \in \{x|A(x)\} \wedge A(s)\, \right)
+		\end{align}
+		が成立する．ゆえに公理より
+		\begin{align}
+			\varepsilon x A(x) \in \{x|A(x)\}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{itembox}[l]{満たされて欲しいこと}
+		\begin{description}
+			\item[等号]
+				\begin{itemize}
+					\item $x = \{y|B(y)\}$と$\forall s\, \left(\, s \in x \leftrightarrow B(s)\, \right)$
+					\item $x = \varepsilon y B(y)$と$\exists s\, \left(\, A(s) \wedge \forall u\,
+						\left(\, u \in x \leftrightarrow u \in s\, \right)\, \right)$
+					\item $\{x|A(x)\} = \{y|B(y)\}$と$\forall s\, \left(\, A(s) \leftrightarrow B(s)\, \right)$
+					\item $\{x|A(x)\} = \varepsilon y B(y)$と
+						$\exists s\, \left(\, \forall u\,
+						\left(\, u \in s \leftrightarrow A(u)\, \right) \wedge B(s)\, \right)$
+					\item $\varepsilon x A(x) = \varepsilon y B(y)$と
+						$\exists s,t\, \left(\, s = t \wedge A(s) \wedge B(t)\, \right)$
+				\end{itemize}
+				
+			\item[帰属]
+				\begin{itemize}
+					\item $x \in \{y|B(y)\}$は$B(x)$
+					\item $x \in \varepsilon y B(y)$は$\exists t\, \left(\, x \in t \wedge B(t)\, \right)$
+					\item $\{x|A(x)\} \in y$は$\exists s\, \left(\, s \in y \wedge \forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)$
+					\item $\{x|A(x)\} \in \{y|B(y)\}$は$\exists s\, \left(\, B(s) \wedge \forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right)\, \right)$
+					\item $\{x|A(x)\} \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge \forall u\, \left(\, u \in s \leftrightarrow A(u)\, \right) \wedge B(t)\, \right)$
+					\item $\varepsilon x A(x) \in y$は$\exists s\, \left(\, s \in y \wedge A(s)\, \right)$
+					\item $\varepsilon x A(x) \in \{y|B(y)\}$は$\exists s\, \left(\, A(s) \wedge B(s)\, \right)$
+					\item $\varepsilon x A(x) \in \varepsilon y B(y)$は$\exists s,t\, \left(\, s \in t \wedge A(s) \wedge B(t)\, \right)$
+				\end{itemize}
+		\end{description}
+	\end{itembox}
+
+\section{定理I\hspace{-.1em}I.15.2}
+	\begin{description}
+		\item[(3)]
+			項$\tau$が変項$x$のとき，$\zeta_{\tau}(y)$を
+			\begin{align}
+				x = y
+			\end{align}
+			とすれば，
+			\begin{align}
+				\Sigma' \vdash \forall x\, \exists! y\, (\, x=y\, )
+			\end{align}
+			つまり
+			\begin{align}
+				\Sigma' \vdash \forall x\, \exists! y\, \zeta_{\tau}(y)
+			\end{align}
+			および
+			\begin{align}
+				\Sigma \vdash \forall x\, (\, x=x\, )
+			\end{align}
+			つまり
+			\begin{align}
+				\Sigma \vdash \forall x\, \zeta_{\tau}(\tau)
+			\end{align}
+			が成り立つ．項$\tau$が
+			\begin{align}
+				f\tau_{1}\cdots\tau_{n}
+			\end{align}
+			のとき，$f \in \mathcal{L} \backslash \mathcal{L}_{0}$ならば$\zeta_{\tau}(y)$を
+			\begin{align}
+				\exists z_{1}, \cdots, z_{n}\, \left(\, 
+				\theta_{f}(z_{1},\cdots,z_{n},y) \wedge \zeta_{\tau_{1}}(z_{1}) \wedge
+				\cdots \wedge \zeta_{\tau_{n}}(z_{n})\, \right)
+			\end{align}
+			とし，$f \in \mathcal{L}_{0}$ならば
+			\begin{align}
+				\exists z_{1}, \cdots, z_{n}\, \left(\, 
+				f(z_{1},\cdots,z_{n}) = y \wedge \zeta_{\tau_{1}}(z_{1}) \wedge
+				\cdots \wedge \zeta_{\tau_{n}}(z_{n})\, \right)
+			\end{align}
+			とする．仮定より
+			\begin{align}
+				\Sigma \vdash \exists! y\, \zeta_{\tau_{i}}(y)
+			\end{align}
+			が成り立つので，
+			\begin{align}
+				\Sigma \vdash \zeta_{\tau_{i}}(z_{i})
+			\end{align}
+			を満たす$z_{i}$が取れる．そして定義I\hspace{-.1em}I.15.1より
+			\begin{align}
+				\Sigma \vdash \exists!y\, \theta_{f}(z_{1},\cdots,z_{n},y)
+			\end{align}
+			が成り立つので，その$y$を取れば
+			\begin{align}
+				\Sigma \vdash \exists y\, \zeta_{\tau}(y)
+			\end{align}
+			が成立する．ただし，$\eta$を
+			\begin{align}
+				\Sigma \vdash \exists z_{1}, \cdots, z_{n}\, \left(\, 
+				\theta_{f}(z_{1},\cdots,z_{n},\eta) \wedge \zeta_{\tau_{1}}(z_{1}) \wedge
+				\cdots \wedge \zeta_{\tau_{n}}(z_{n})\, \right)
+			\end{align}
+			を満たすものとすれば，このとき
+			\begin{align}
+				\Sigma \vdash \zeta_{\tau_{i}}(w_{i})
+			\end{align}
+			および
+			\begin{align}
+				\Sigma \vdash \theta_{f}(w_{1},\cdots,w_{n},\eta)
+			\end{align}
+			を満たす$w_{i}$が取れるが，$z_{i} = w_{i}$なので
+			\begin{align}
+				\Sigma \vdash \theta_{f}(z_{1},\cdots,z_{n},\eta)
+			\end{align}
+			が成り立つことになって，定義I\hspace{-.1em}I.15.1より
+			\begin{align}
+				y = \eta
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				\Sigma \vdash \exists! y\, \zeta_{\tau}(y)
+			\end{align}
+			が成立する．他方で仮定より
+			\begin{align}
+				\Sigma' \vdash \zeta_{\tau_{i}}(\tau_{i})
+			\end{align}
+			が成り立ち，かつ定義I\hspace{-.1em}I.15.1より
+			\begin{align}
+				\Sigma' \vdash \forall x_{1},\cdots,x_{n}\,
+				\theta_{f}(x_{1},\cdots,x_{n},f(x_{1},\cdots,x_{n}))
+			\end{align}
+			が成り立つので
+			\begin{align}
+				\Sigma' \vdash \theta_{f}(\tau_{1},\cdots,\tau_{n},f(\tau_{1},\cdots,\tau_{n}))
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				\Sigma' \vdash \theta_{f}(\tau_{1},\cdots,\tau_{n},f(\tau_{1},\cdots,\tau_{n})) \wedge \zeta_{\tau_{1}}(\tau_{1}) \wedge \cdots \wedge \zeta_{\tau_{n}}(\tau_{n})
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				\Sigma' \vdash \zeta_{\tau}(\tau)
+			\end{align}
+			が成り立つ．
+			
+		\item[(2)]
+			$\varphi$を$p\tau_{1}\cdots\tau_{n}$なる原子式とするとき，
+			$p$が$\mathcal{L} \backslash \mathcal{L}_{0}$の要素ならば$\hat{\varphi}$を
+			\begin{align}
+				\exists z_{1},\cdots,z_{n}\, 
+				\left(\, \theta_{p}z_{1} \cdots z_{n} \wedge \zeta_{\tau_{1}}(z_{1})
+				\wedge \cdots \wedge \zeta_{\tau_{n}}(z_{n})\, \right)
+			\end{align}
+			とし，$p$が$\mathcal{L}_{0}$の要素ならば
+			\begin{align}
+				\exists z_{1},\cdots,z_{n}\, 
+				\left(\, pz_{1} \cdots z_{n} \wedge \zeta_{\tau_{1}}(z_{1})
+				\wedge \cdots \wedge \zeta_{\tau_{n}}(z_{n})\, \right)
+			\end{align}
+			とする．$\varphi$が成り立っているとき，仮定より
+			\begin{align}
+				\Sigma' \vdash \zeta_{\tau_{i}}(\tau_{i})
+			\end{align}
+			が満たされ，また定義I\hspace{-.1em}I.15.1より($\Delta$は$\Sigma'$に含まれているので)
+			\begin{align}
+				\Sigma' \cup \{\varphi\} \vdash \theta_{p}\tau_{1} \cdots \tau_{n}
+			\end{align}
+			も満たされているので
+			\begin{align}
+				\Sigma' \cup \{\varphi\} \vdash \theta_{p}\tau_{1} \cdots \tau_{n}
+				\wedge \zeta_{\tau_{1}}(\tau_{1}) \wedge \cdots \wedge 
+				\zeta_{\tau_{n}}(\tau_{n})
+			\end{align}
+			が成り立つ．すなわち
+			\begin{align}
+				\Sigma' \cup \{\varphi\} \vdash \hat{\varphi}
+			\end{align}
+			が成り立つ．つまり
+			\begin{align}
+				\Sigma' \vdash \varphi \rightarrow \hat{\varphi}
+			\end{align}
+			が成り立つ．逆に$\hat{\varphi}$が成り立っているとき，
+			\begin{align}
+				\Sigma' \cup \{\hat{\varphi}\} \vdash \theta_{p}w_{1} \cdots w_{n}
+				\wedge \zeta_{\tau_{1}}(w_{1}) \wedge \cdots \wedge 
+				\zeta_{\tau_{n}}(w_{n})
+			\end{align}
+			を満たす$w_{1},\cdots,w_{n}$が取れるが，
+			\begin{align}
+				\Sigma \vdash \exists! y\, \zeta_{\tau_{i}}(y)
+			\end{align}
+			かつ
+			\begin{align}
+				\Sigma' \vdash \zeta_{\tau_{i}}(\tau_{i})
+			\end{align}
+			なので
+			\begin{align}
+				w_{i} = \tau_{i}
+			\end{align}
+			である．ゆえに
+			\begin{align}
+				\Sigma' \cup \{\hat{\varphi}\} \vdash \theta_{p}\tau_{1} \cdots \tau_{n}
+			\end{align}
+			が成り立つ．ゆえに
+			\begin{align}
+				\Sigma' \vdash \hat{\varphi} \rightarrow \varphi
+			\end{align}
+			が得られる．
+			\QED
+	\end{description}
+	
+	\begin{screen}
+		$\forall x\, (\, x \notin y\, )$を$\theta_{\emptyset}(y)$とするとき．
+	\end{screen}
+	
+	$\emptyset$の定義$\delta_{\emptyset}$は
+	\begin{align}
+		\forall x\, (\, x \notin \emptyset\, )
+	\end{align}
+	である．$\zeta_{\emptyset}(y)$は
+	\begin{align}
+		\forall x\, (\, x \notin y\, )
+	\end{align}
+	であって，
+	\begin{align}
+		\Sigma \vdash \exists! y\, \zeta_{\emptyset}(y)
+	\end{align}
+	が成り立ち，また$\delta_{\emptyset}$と$\zeta_{\emptyset}(1)$は同じなので
+	\begin{align}
+		\Sigma \cup \{\delta_{\emptyset}\} = \Sigma' \vdash \zeta_{\emptyset}(\emptyset)
+	\end{align}
+	が成り立つ．そして，例えば$z$を変項とすれば
+	\begin{align}
+		z \in \emptyset
+	\end{align}
+	と
+	\begin{align}
+		\exists s,t\, \left(\, s \in t \wedge s = z \wedge \forall x\, (\, x \notin t\, )\, \right)
+	\end{align}
+	が$\Sigma'$の下で同値になる．
+	
+	\begin{screen}
+		$\forall x\, (\, x \cdot y = y \cdot x = x\, )$を$\theta_{1}(y)$とするとき，
+	\end{screen}
+	
+	$1$の定義$\delta_{1}$は
+	\begin{align}
+		\forall x\, (\, x \cdot 1 = 1 \cdot x = x\, )
+	\end{align}
+	である．$\zeta_{1}(y)$は
+	\begin{align}
+		\forall x\, (\, x \cdot y = y \cdot x = x\, )
+	\end{align}
+	であって，
+	\begin{align}
+		\Sigma \vdash \exists! y\, \zeta_{1}(y)
+	\end{align}
+	が成り立ち，また$\delta_{1}$と$\zeta_{1}(1)$は同じなので
+	\begin{align}
+		\Sigma \cup \{\delta_{1}\} = \Sigma' \vdash \zeta_{1}(1)
+	\end{align}
+	が成り立つ．そして，例えば$z$を変項とすれば
+	\begin{align}
+		z \in 1
+	\end{align}
+	と
+	\begin{align}
+		\exists s,t\, \left(\, s \in t \wedge s = z \wedge \forall x\, (\, x \cdot t = t \cdot x = x\, )\, \right)
+	\end{align}
+	が$\Sigma'$の下で同値になる．
+	
+	\begin{screen}
+		$y \cdot (x \cdot x) = x$を$\theta_{i}(x,y)$とするとき，
+	\end{screen}
+	
+	$i$の定義$\delta_{i}$は
+	\begin{align}
+		\forall x\, \left(\, i(x) \cdot (x \cdot x) = x\, \right)
+	\end{align}
+	である．$\zeta_{i(x)}(y)$は
+	\begin{align}
+		\exists x\, \left(\, \theta_{i}(x,y) \wedge x = x\, \right)
+	\end{align}
+	である．そして，例えば$x,z$を変項とすれば
+	\begin{align}
+		z \in i(x)
+	\end{align}
+	と
+	\begin{align}
+		\exists s,t\, \left(\, s \in t \wedge s = z \wedge \zeta_{i(x)}(t)\, \right)
+	\end{align}
+	が$\Sigma'$の下で同値になる．
+	
+\section{菊池誠不完全性定理}
+	言語とは定数記号と関数記号と関係記号の全体ということで，
+	\begin{itemize}
+		\item $\mathcal{L}_{0}$とは$\{\in,\natural\}$．
+		\item $\mathcal{L}$とは$\{\in\}$に加えて閉項の全体．
+	\end{itemize}

@@ -1,0 +1,372 @@
+\section{言語}
+	本稿の世界を展開するために使用する言語は二つある．
+	一つは自然言語の日本語であり，もう一つは記号のみで作られた人工的な言語である．
+	その人工的な言語は記号列が数学の式となるための文法を指定し，
+	そこで組み立てられた式のみが考察対象となる．
+	日本語は式を解釈したり人工言語を補助するために使われる．
+	
+	まず，人工的な言語である$\mathcal{L}_{0}$を設定する．
+	以下は$\mathcal{L}_{0}$を構成する要素である:
+	\begin{description}
+		\item[矛盾記号] $\bot$
+		\item[論理記号] $\rightharpoondown$, $\vee$, $\wedge$, $\rightarrow$, $\forall$, $\exists$
+		\item[述語記号] $=$, $\in$
+		\item[使用文字] ローマ字及びギリシア文字．
+		\item[接項記号] $\natural$
+	\end{description}
+	
+	日本語と同様に，決められた規則に従って並ぶ記号列のみを$\mathcal{L}_{0}$の単語や文章として扱う．
+	$\mathcal{L}_{0}$において，名詞にあたるものは{\bf 項}\index{こう@項}{\bf (term)}と呼ばれる．
+	文字は最もよく使われる項である．述語とは項同士を結ぶものであり，最小単位の文章を形成する．例えば
+	\begin{align}
+		\in st
+	\end{align}
+	は$\mathcal{L}_{0}$の文章となり，日本語には``$s$は$t$の要素である''と翻訳される．
+	$\mathcal{L}_{0}$の文章を{\bf 式}\index{しき@式}{\bf (formula)}或いは
+	{\bf 論理式}\index{ろんりしき@論理式}と呼ぶ．論理記号は主に式同士を繋ぐ役割を持つ．
+	
+\section{項}
+	
+	文字は項として使われるが，文字だけを項とするのは不十分であり，
+	例えば$1000$個の相異なる項が必要であるといった場合には異体字まで駆使しても不足する．
+	そこで，文字$x$と$y$に対して
+	\begin{align}
+		\natural xy
+	\end{align}
+	もまた項であると約束する．これは
+	\begin{align}
+		\natural(x,y)
+	\end{align}
+	や
+	\begin{align}
+		x \natural y
+	\end{align}
+	などと書く方が見やすいかもしれないが，当面は始めの記法(前置記法やポーランド記法と呼ばれる)を用いる．
+	また，$\tau$と$\sigma$を項とするときに
+	\begin{align}
+		\natural \tau \sigma
+	\end{align}
+	も項であると約束する．この約束に従えば，文字$x$だけを用いたとしても
+	\begin{align}
+		x,\quad \natural xx, \quad \natural \natural xxx, \quad \natural \natural \natural xxxx
+	\end{align}
+	はいずれも項ということになる．極端なことを言えば，「$1000$個の項を用意してくれ」と頼まれたとしても
+	$\natural$と$x$のみを使って$1000$個の項を作り出すことが出来るのだ．
+	
+	大切なのは，$\natural$を用いれば理屈の上では項に不足しないということであって，
+	具体的な数式を扱うときに$\natural$が出てくるかと言えば否である．
+	$\natural$が必要になるほどに長い式を読解するのは困難であるから，
+	通常は何らかの略記法を導入して複雑なところを覆い隠してしまう．
+	
+	\begin{itembox}[l]{超記号}
+		上で「$\tau$と$\sigma$を項とするときに」と書いたが，これは一時的に
+		$\tau$と$\sigma$をそれぞれ或る項に代用しているだけであって，
+		この場合の$\tau$や$\sigma$を{\bf 超記号}\index{ちょうきごう@超記号}と呼ぶ．
+		要は便宜上の代用記号であって，「$A$を式とする」など式にも超記号が宣言される．
+	\end{itembox}
+	
+	項は形式的には次のよう定義される:
+	
+	\begin{description}
+		\item[項]
+			\begin{itemize}
+				\item 文字は項である．
+				\item $\tau$と$\sigma$を項とするとき，$\natural \tau \sigma$は項である．
+				\item 以上のみが項である．
+			\end{itemize}
+	\end{description}
+	
+	上の定義では，はじめに発端を決めて，次に新しい項を作り出す手段を指定している．こういった定義の仕方を
+	{\bf 帰納的定義}\index{きのうてきていぎ@帰納的定義}{\bf (inductive definition)}と呼ぶ．
+	ただしそれだけでは項の範囲が定まらないので，最後に「以上のみが項である」と加えている．
+	
+	「以上のみが項である」という約束によって，例えば「$\tau$が項である」という言明が与えられたとき，この言明が
+	``$\tau$は或る文字に代用されている''か
+	``項$x$と項$y$が取れて(いずれも超記号)，$\tau$は$\natural xy$に代用されている''
+	のどちらか一方にしか解釈され得ないのは，言うまでもない，であろうか．直感的にはそうであっても
+	直感を万人が共有している保証はないから，やはりここは明示的に，「$\tau$が項である」という言明の解釈は
+	\begin{itemize}
+		\item $\tau$は或る文字に代用されている
+		\item 項$x$と項$y$が取れて(いずれも超記号)，$\tau$は$\natural xy$に代用されている
+	\end{itemize}
+	に限られると決めてしまおう．こちらの方が誤解を生まない．
+	
+	\begin{itembox}[l]{暗に宣言された超記号}
+		上で「項$x$と項$y$が取れて」と書いたが，この$x$と$y$は唐突に出てきたので，
+		それが表す文字そのものでしかないのか，或いは超記号であるのか，一見判然しない．
+		本来は「二つの項(これをそれぞれ$x$と$y$で表す)が取れて」などと書くのが
+		良いのかもしれないが，はじめの書き方でも文脈上は超記号として解釈するのが自然であるし，
+		何より言い方がまどろこくない．このように見た目の簡潔さのために超記号の宣言を省略する場合もある．
+	\end{itembox}
+	
+\section{式}
+	式も項と同様に帰納的に定義される:
+	
+	\begin{description}
+		\item[式]
+			\begin{itemize}
+				\item $\bot$は式である．
+				\item $\sigma$と$\tau$を項とするとき，$\in st$と$=st$は式である．
+					これを{\bf 原子式}\index{げんししき@原子式}{\bf (atomic formula)}と呼ぶ．
+				\item $\varphi$を式とするとき，$\rightharpoondown \varphi$は式である．
+				\item $\varphi$と$\psi$を式とするとき，$\vee \varphi \psi,\ 
+					\wedge \varphi \psi,\ \Longrightarrow \varphi \psi$はいずれも式である．
+			
+				\item $x$を項とし，$\varphi$を式とするとき，$\forall x \varphi$と$\exists x \varphi$は式である．
+				
+				\item 以上のみが式である．
+			\end{itemize}
+	\end{description}
+	
+	例えば「$\varphi$が式である」という言明の解釈は，
+	\begin{itemize}
+		\item $\varphi$は$\bot$である
+		\item 項$s$と項$t$が得られて，$\varphi$は$\in s t$である
+		\item 項$s$と項$t$が得られて，$\varphi$は$= s t$である
+		\item 式$\psi$が得られて，$\varphi$は$\rightharpoondown \psi$である
+		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\vee \psi \xi$である
+		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\wedge \psi \xi$である
+		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\Longrightarrow \psi \xi$である
+		\item 項$x$と式$\psi$が得られて，$\varphi$は$\forall x \psi$である
+		\item 項$x$と式$\psi$が得られて，$\varphi$は$\exists x \psi$である
+	\end{itemize}
+	に限られる．
+	
+\section{部分式}
+	式から切り取ったひとつづきの部分列で，それ自身が式であるものを元の式に対して
+	{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (sub formula)}と呼ぶ．
+	例えば$\varphi$と$\psi$を式とするとき，$\varphi$と$\psi$は$\vee \varphi \psi$の部分式である．
+	元の式全体も部分式と捉えることにするが，自分自身を除く部分式を特に
+	{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper sub formula)}と呼ぶことにする．
+	
+\section{始切片}
+	$\varphi$を式とするとき，$\varphi$の左端から切り取るひとつづきの部分列を
+	$\varphi$の{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ．
+	例えば$\varphi$が
+	\begin{align}
+		\Longrightarrow \forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy = yz
+	\end{align}
+	である場合，
+	\begin{align}
+		\textcolor{red}{\Longrightarrow \forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in x}y = yz
+	\end{align}
+	や
+	\begin{align}
+		\textcolor{red}{\Longrightarrow \forall x \wedge \Longrightarrow \in xy} \in xz \Longrightarrow \in xz \in xy = yz
+	\end{align}
+	など赤字で分けられた部分は$\varphi$の始切片である．また$\varphi$自身も$\varphi$の始切片である．
+	
+	本節の主題は次である．
+	\begin{screen}
+		\begin{metathm}
+			(★) $\varphi$を式とするとき，$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+		\end{metathm}
+	\end{screen}
+	
+	これを示すには次の原理を用いる:
+	\begin{screen}
+		\begin{metaaxm}[式に対する構造的帰納法]
+			式に対する言明に対し，
+			\begin{itemize}
+				\item $\bot$に対してその言明が当てはまる．
+				\item 原子式に対してその言明が当てはまる．
+				\item 式が任意に与えられた\footnotemark
+					ときに，その全ての真部分式に対して
+					その言明が当てはまるならば，その式自身に対してもその言明が当てはまる．
+			\end{itemize}
+			ならば，いかなる式に対してもその言明は当てはまる．
+		\end{metaaxm}
+	\end{screen}
+	
+	\footnotetext{
+		``任意に与えられた式''とはどう解釈するべきか．
+		どんな式に対しても?
+	}
+	
+	では定理を示す．
+	$\bot$については，その始切片は$\bot$に限られる．
+	$\in st$なる原子式については，その始切片は
+	\begin{align}
+		\in, \quad \in s, \quad \in st
+	\end{align}
+	のいずれかとなるが，このうち式であるものは$\in st$のみである．
+	$=st$なる原子式についても，その始切片で式であるものは$=st$に限られる．
+	
+	いま$\varphi$を任意に与えられた式とし，
+	$\varphi$の真部分式に対しては(★)が当てはまっているとする．
+	\begin{description}
+		\item[ケース1] 式$\psi$が得られて$\varphi$が
+			\begin{align}
+				\rightharpoondown \psi
+			\end{align}
+			であるとき，$\psi$は$\varphi$の真部分式であるので(★)は当てはまる．
+			$\varphi$の始切片で式であるものは，
+			式$\xi$を用いて$\rightharpoondown \xi$と表せるが，
+			$\xi$は$\psi$の始切片であるから，帰納法の仮定より$\xi$と$\psi$は一致する．
+			ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			
+		\item[ケース2] 式$\psi$と$\xi$が得られて$\varphi$が
+			\begin{align}
+				\vee \psi \xi
+			\end{align}
+			であるとする．$\varphi$の始切片で式であるものも$\vee$が左端に来るので，
+			式$\eta$と式$\zeta$が得られて始切片は
+			\begin{align}
+				\vee \eta \zeta
+			\end{align}
+			と表せる．$\psi$と$\eta$，$\xi$と$\zeta$は
+			いずれも$\varphi$の真部分式であるので(★)が当てはまる．
+			そして$\psi$と$\eta$は一方が他方の始切片であるので，(★)より一致する．
+			すると$\xi$と$\zeta$も一方が他方の始切片ということになり，(★)より一致する．
+			ゆえに$\vee \psi \xi$と$\vee \eta \zeta$は一致する．
+			つまり$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			$\varphi$が$\wedge \psi \xi$や$\Longrightarrow \psi \xi$である場合も同じである．
+			
+		\item[ケース3] 項$x$と式$\psi$が得られて，$\varphi$が
+			\begin{align}
+				\forall x \psi
+			\end{align}
+			であるとき，$\varphi$の始切片で式であるものは，式$\xi$が取れて
+			\begin{align}
+				\forall x \xi
+			\end{align}
+			と表せる．このとき$\xi$は$\psi$の始切片であるし，
+			また$\psi$は$\varphi$の真部分式であるから，(★)より$\psi$と$\xi$は一致する．
+			ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			$\varphi$が$\forall x \psi$である場合も同じである．
+			\QED
+	\end{description}
+
+\section{スコープ}
+	$\varphi$を式とし，$s$を$\varphi$に現れた記号とするとき，$s$のその出現位置から始まる$\varphi$の部分式を
+	$s$の{\bf スコープ}\index{スコープ}{\bf (scope)}と呼ぶ．具体的に，$\varphi$を
+	\begin{align}
+		\Longrightarrow \forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy = yz
+	\end{align}
+	としよう．このとき$\varphi$の左から$6$番目に$\in$が現れるが，この$\in$から
+	\begin{align}
+		\in xy
+	\end{align}
+	なる原子式が$\varphi$の上に現れている:
+	\begin{align}
+		\Longrightarrow \forall x \wedge \Longrightarrow \textcolor{red}{\in xy} \in xz \Longrightarrow \in xz \in xy = yz.
+	\end{align}
+	他にも，$\varphi$の左から$4$番目に$\wedge$が現れるが，この右側に
+	\begin{align}
+		\Longrightarrow \in xy \in xz
+	\end{align}
+	と
+	\begin{align}
+		\Longrightarrow \in xz \in xy
+	\end{align}
+	の二つの式が続いていて，$\wedge$を起点に
+	\begin{align}
+		\wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy
+	\end{align}
+	なる式が$\varphi$の上に現れている:
+	\begin{align}
+		\Longrightarrow \forall x \textcolor{red}{\wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy} = yz.
+	\end{align}
+	$\varphi$の左から$2$番目には$\forall$が現れて，
+	この$\forall$に対して項$x$と
+	\begin{align}
+		\wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy
+	\end{align}
+	なる式が続き，
+	\begin{align}
+		\forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy
+	\end{align}
+	なる式が$\varphi$の上に現れている:
+	\begin{align}
+		\Longrightarrow \textcolor{red}{\forall x \wedge \Longrightarrow \in xy \in xz \Longrightarrow \in xz \in xy} = yz.
+	\end{align}
+	
+	しかも$\in,\wedge,\forall$のスコープは上にあげた部分式のほかに取りようが無い．
+	上の具体例を見れば，直感的に「現れた記号のスコープはただ一つだけ，必ず取ることが出来る」
+	が一般の式に対して当てはまるであるように思えるが，直感を排除してこれを認めるには構造的帰納法の原理が必要になる．
+	
+	\begin{screen}
+		\begin{metathm}
+		(★★) $\varphi$を式とするとき，
+		\begin{itemize}
+			\item $\natural$が$\varphi$に現れたとき，項$\sigma$と項$\tau$が得られて，
+				$\natural$のその出現位置から$\natural \sigma \tau$なる項が$\varphi$の上に現れる．
+				また$\natural$のその出現位置から始まる$\varphi$上の項は$\natural \sigma \tau$に限られる．
+				
+			\item $\in$が$\varphi$に現れたとき，項$\sigma$と項$\tau$が得られて，
+				$\in$のその出現位置から$\in \sigma \tau$なる式が$\varphi$の上に現れる．
+				また$\in$のその出現位置から始まる$\varphi$の部分式は$\in \sigma \tau$に限られる．
+				$\in$が$=$であっても同じ主張が成り立つ．
+				
+			\item $\rightharpoondown$が$\varphi$に現れたとき，式$\psi$が得られて，
+				$\rightharpoondown$のその出現位置から$\rightharpoondown \psi$なる式が
+				$\varphi$の上に現れる．
+				また$\rightharpoondown$のその出現位置から始まる$\varphi$の部分式は$\rightharpoondown \psi$に限られる．
+				
+			\item $\vee$が$\varphi$に現れたとき，式$\psi$と式$\xi$が得られて，
+				$\vee$のその出現位置から$\vee \psi \xi$なる式が$\varphi$の上に現れる．
+				また$\vee$のその出現位置から始まる$\varphi$の部分式は$\vee \psi \xi$に限られる．
+				$\vee$が$\wedge$や$\Longrightarrow$であっても同じ主張が成り立つ．
+				
+			\item $\exists$が$\varphi$に現れたとき，項$x$と式$\psi$が得られて，
+				$\exists$のその出現位置から$\exists x \psi$なる式が$\varphi$の上に現れる．
+				また$\exists$のその出現位置から始まる$\varphi$の部分式は$\exists x \psi$に限られる．
+				$\exists$が$\forall$であっても同じ主張が成り立つ．
+		\end{itemize}
+		\end{metathm}
+	\end{screen}
+	
+	$\bot$に対しては上の言明は当てはまる．
+	
+	$\in \tau \sigma$なる式に対しては，$\in$のスコープは$\in \tau \sigma$に他ならない．
+	$= \tau \sigma$なる式についても，$=$のスコープは$= \tau \sigma$に他ならない．
+	
+	$\varphi$を任意に与えられた式とし，$\varphi$の真部分式に対しては
+	(★★)が当てはまっているとする．
+	
+	\begin{description}
+		\item[ケース1] 
+	\end{description}
+	式$\varphi$と$\psi$に対して上の言明が当てはまるとする．
+	式$\rightharpoondown \varphi$に対して，
+	$\sigma$が左端の$\rightharpoondown$であるとき
+	$\sigma \varphi$は$\rightharpoondown \varphi$の部分式である．
+	また$\sigma \psi$が$\sigma$のその出現位置から始まる$\rightharpoondown \varphi$の部分式
+	であるとすると，
+	$\psi$は$\varphi$の左端から始まる$\varphi$の部分式ということになるので
+	帰納法の仮定より$\varphi$と$\psi$は一致する．
+	$\sigma$が$\varphi$に現れる記号であれば，帰納法の仮定より
+	$\sigma$から始まる$\varphi$の部分式が一意的に得られる．
+	その部分式は$\rightharpoondown \varphi$の部分式でもあるし，
+	$\rightharpoondown \varphi$の部分式としての一意性は帰納法の仮定より従う．
+	
+	式$\vee \varphi \psi$に対して，
+	$\sigma$が左端の$\vee$であるとき，式$\xi$と$\eta$が得られて$\sigma \xi \eta$が
+	$\vee \varphi \psi$の部分式となったとすると，
+	$\xi$と$\varphi$は左端を同じくし，どちらか一方は他方の部分式である．
+	$\xi$が$\varphi$の部分式であるならば，帰納法の仮定より$\xi$と$\varphi$は一致する．
+	$\varphi$が$\xi$の部分式であるならば，$\xi$と$\psi$が重なるとなると
+	$\psi$の左端の記号から始まる$\xi$の部分式と$\psi$は一致しなくてはならない．
+	
+	\begin{itembox}[l]{量化}
+		$\varphi$に$\forall$が現れるとき，
+		その$\forall$に後続する項$x$が取れるが，このとき項$x$は$\forall$のスコープ内で
+		{\bf 量化されている}\index{りょうか@量化}{\bf(quantified)}という．
+		詳しく言い直せば，項$x$と式$\psi$が取れて，その$\forall$のスコープは
+		\begin{align}
+			\forall x \psi
+		\end{align}
+		なる式で表されるが，このとき$x$は$\forall x \psi$において量化されているという．
+	\end{itembox}
+	
+	$A$を式とし，$a$を$A$に現れる項とする．このとき$A$の中の項$a$を全て項$x$に置き換えた式を
+	\begin{align}
+		(x \mid a)A
+	\end{align}
+	で表す．特に項$a$と項$x$が同一の項である場合は$(x \mid a)A$は$A$自身に一致する．
+	また$A$の中で自由に現れる項が$a$のみであって，かつ$a$が自由に現れる箇所がどれも項$x$の量化スコープではないとき，
+	$A$に現れる項$a$のうち，{\bf 自由に現れる箇所}を全て項$x$に置き換えた式を
+	\begin{align}
+		A(x)
+	\end{align}
+	と書く．$A$に現れる項$a$が全て自由であるときは$A(a)$は$A$自身に一致する．

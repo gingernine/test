@@ -1,0 +1,645 @@
+\section{相等性}
+	本稿において``等しい''とは項に対する言明であって，$a$と$b$を項とするとき
+	\begin{align}
+		a = b
+	\end{align}
+	なる式で表される．この記号
+	\begin{align}
+		=
+	\end{align}
+	は{\bf 等号}\index{とうごう@等号}{\bf (equal sign)}と呼ばれるが，
+	現時点では述語として導入されているだけで，推論操作における働きはまだ明文化していない．
+	本節では，いつ類は等しくなるのか，そして，等しい場合に何が起きるのか，の二つが主題となる．
+	
+	\begin{screen}
+		\begin{axm}[外延性の公理]
+			$a,b$を類とするとき，次が成り立つ:
+			\begin{align}
+				\forall x\, (\, x \in a \Longleftrightarrow x \in b\, )
+				\Longrightarrow a=b.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[任意の類は自分自身と等しい]\label{thm:any_class_equals_to_itself}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a = a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		任意の乙種項$\tau$に対して，推論法則\ref{logicalthm:reflective_law_of_implication}より
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in a
+		\end{align}
+		が成り立つから，$\tau$の任意性より
+		\begin{align}
+			\forall x\, (\, x \in a  \Longleftrightarrow x \in a\, )
+		\end{align}
+		が成り立つ．外延性の公理と三段論法より
+		\begin{align}
+			a = a
+		\end{align}が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[乙種項は集合である]
+			$A$を$\mathcal{L}_{0}$の式とし，$x$を$A$に現れる変項とし，$x$のみが$A$で自由であるとする．このとき
+			\begin{align}
+				\set{\varepsilon x A(x)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\varepsilon x A(x) = \varepsilon x A(x)
+		\end{align}
+		が成立するので，存在記号の推論規則より
+		\begin{align}
+			\exists y\, \left(\, \varepsilon x A(x) = y\, \right)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	$A$を$\mathcal{L}_{0}$の式とし，$x$を$A$に現れる変項とし，$x$のみが$A$で自由であるとし，かつ
+	\begin{align}
+		\set{\Set{x}{A(x)}}
+	\end{align}
+	が満たされているとする．つまり
+	\begin{align}
+		\exists y\, \left(\, \Set{x}{A(x)} = y\, \right)
+	\end{align}
+	が成り立っているということであるが，$\Set{x}{A(x)} = y$を
+	\begin{align}
+		\forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+	\end{align}
+	と書き換えれば，存在記号の推論規則より
+	\begin{align}
+		\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+	\end{align}
+	が得られる．
+	
+	\begin{screen}
+		\begin{thm}[甲種項は$\varepsilon$項で書ける]
+			$A$を$\mathcal{L}_{0}$の式とし，$x$を$A$に現れる変項とし，$x$のみが$A$で自由であるとするとき，
+			$\Set{x}{A(x)}$が集合であれば
+			\begin{align}
+				\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	ブルバキでは$\tau$項を，島内では$\varepsilon$項のみを導入して
+	$\varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)$
+	によって$\Set{x}{A(x)}$を定めている．本稿と同じくブルバキの$\tau$項も島内の$\varepsilon$項も
+	集合を表すものであるから，
+	\begin{align}
+		\exists y\, \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+	\end{align}
+	を満たさないような性質$A$に対しては$\varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)$
+	は不定の集合を指す．本稿では
+	
+	\begin{screen}
+		\begin{axm}[要素の公理]
+			要素となりうる類は集合である．つまり，$a,b$を類とするとき
+			\begin{align}
+				a \in b \Longrightarrow \set{a}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[内包性公理] 
+			$A$を$\mathcal{L}_{0}$の式とし，$x$を$A$に現れる変項とし，$y$を$A(x)$に現れない変項とし，
+			$x$のみが$A$で自由であるとする．このとき
+			\begin{align}
+				\forall y\, \left(\, y \in \Set{x}{A(x)} \Longleftrightarrow A(y)\, \right).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	要素の公理で要求していることは{\bf 類を構成できるのは集合に限られる}ということであり，
+	内包性公理は{\bf 甲種項はその固有の性質を持つ集合の全体である}という意味を持つ．
+	
+	
+	例えば
+	\begin{align}
+		a = b
+	\end{align}
+	と書いてあったら``$a$と$b$は等しい''と読めるわけだが，明らかに$a$は$b$とは違うではないではないか！
+	こんなことはしょっちゅう起こることであって，上で述べたように$\Set{x}{A(x)}$が集合なら
+	\begin{align}
+		\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+	\end{align}
+	が成り立ったりする．そこで``数学的に等しいとは何事か''という疑問が浮かぶのは至極自然であって，
+	それに答えるのが次の相等性公理である．
+	
+	\begin{screen}
+		\begin{axm}[相等性公理]
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，
+			$x$のみが$A$で量化されていないとする．このとき$a,b$を類とすれば次が成り立つ:
+			\begin{align}
+				a = b \Longrightarrow (\, A(a) \Longleftrightarrow A(b)\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[外延性の公理の逆も成り立つ]\label{thm:axiom_of_extensionality_equivalent}
+			$a$と$b$を類とするとき
+			\begin{align}
+				a=b \Longrightarrow \forall x\, (\, x \in a  \Longleftrightarrow x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a = b$が成り立っていると仮定すれば，相等性の公理より$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が満たされるから，推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
+		\end{align}
+		が成立する．よって演繹法則より
+		\begin{align}
+			a = b \Longrightarrow \forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		等しい類同士は同じ$\mathcal{L}$の対象を要素に持つと示されましたが，
+		このとき要素に持つ集合まで一致します．これは相等性の公理から明らかでしょうが，
+		詳しくは部分類の箇所で説明いたしましょう．
+	}
+	
+	\begin{screen}
+		\begin{thm}[条件を満たす集合は要素である]\label{thm:satisfactory_set_is_an_element}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に現れる文字とし，$t$を$A(x)$に現れない文字とし，
+			$x$のみが$A$で量化されていないとする．このとき，$a$を類とすると
+			\begin{align}
+				A(a) \Longrightarrow 
+				\left(\, \set{a} \Longrightarrow a \in \Set{x}{A(x)}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			A(a)
+		\end{align}
+		と
+		\begin{align}
+			\set{a}
+		\end{align}
+		が成立していると仮定する．このとき要素の公理から
+		\begin{align}
+			\exists x\, (\, a = x\, )
+		\end{align}
+		が成立するので，
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			a = \tau
+		\end{align}
+		が成り立ち，相等性の公理より
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立する．よって類の公理より
+		\begin{align}
+			\tau \in \Set{x}{A(x)}
+		\end{align}
+		が従い，相等性の公理から
+		\begin{align}
+			a \in \Set{x}{A(x)}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は集合の全体である]
+		\label{thm:V_is_the_whole_of_sets}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \Longleftrightarrow a \in \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とするとき，まず要素の公理より
+		\begin{align}
+			a \in \Univ \Longrightarrow \set{a}
+		\end{align}
+		が得られる．逆に
+		\begin{align}
+			\set{a}
+		\end{align}
+		が成り立っていると仮定する．このとき
+		\begin{align}
+			\tau \defeq \varepsilon x (\ a = x\ )
+		\end{align}
+		とおけば，定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\tau = \tau
+		\end{align}
+		となるので，類の公理より
+		\begin{align}
+			\tau \in \Univ
+		\end{align}
+		が成り立つ．そして相等性の公理より
+		\begin{align}
+			a \in \Univ
+		\end{align}
+		が従うから
+		\begin{align}
+			\set{a} \Longrightarrow a \in \Univ
+		\end{align}
+		も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[空集合]
+			$\emptyset \defeq \Set{x}{x \neq x}$で定める類$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[空集合の公理]
+			$\emptyset$は集合である:
+			\begin{align}
+				\set{\emptyset}.
+			\end{align}		
+			空集合の公理は簡素にして偉大です．というのも，我々はいま初めて集合の存在について言及したのですね．
+			つまり本稿の世界にビッグバンを起こしたわけですが，別の見方をすれば空集合とは聖書物語のアダムに相当するでしょう．
+			その細部は整礎集合の章で述べますが，集合の宇宙は空集合を起点にして無限の広がりを持つのです．
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空集合は$\mathcal{L}$のいかなる対象も要素に持たない]\label{thm:emptyset_has_nothing}
+			\begin{align}
+				\forall x\, (\, x \notin \emptyset\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\tau$を$\mathscr{L}$の対象とするとき，類の公理より
+		\begin{align}
+			\tau \in \emptyset \Longrightarrow \tau \neq \tau
+		\end{align}
+		が成り立つから，対偶を取れば
+		\begin{align}
+			\tau = \tau \Longrightarrow \tau \notin \emptyset
+		\end{align}
+		が成り立つ(推論法則\ref{thm:contraposition_is_true})．定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\tau = \tau
+		\end{align}
+		は正しいので，三段論法より
+		\begin{align}
+			\tau \notin \emptyset
+		\end{align}
+		が成り立つ．そして$\tau$の任意性より
+		\begin{align}
+			\forall x\, (\, x \notin \emptyset\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\mathcal{L}$のいかなる対象も要素に持たない類は空集合に等しい]
+		\label{thm:uniqueness_of_emptyset}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\forall x\, (\, x \notin a\, ) \Longleftrightarrow a = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類として$\forall x\, (\, x \notin a\, )$が成り立っていると仮定する．このとき
+		$\tau$を$\mathcal{L}$の任意の対象とすれば
+		\begin{align}
+			\tau \notin a \vee \tau \in \emptyset
+		\end{align}
+		と
+		\begin{align}
+			\tau \notin \emptyset \vee \tau \in a
+		\end{align}
+		が共に成り立つので，推論法則\ref{logicalthm:rule_of_inference_3}より
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in \emptyset
+		\end{align}
+		と
+		\begin{align}
+			\tau \in \emptyset \Longrightarrow \tau \in a
+		\end{align}
+		が共に成り立つ．よって
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in \emptyset
+		\end{align}
+		が成立し，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
+		\begin{align}
+			\forall x\, (\, x \in a \Longleftrightarrow x \in \emptyset\, )
+		\end{align}
+		が得られる．ゆえに外延性の公理より
+		\begin{align}
+			a = \emptyset
+		\end{align}
+		が成立し，演繹法則より
+		\begin{align}
+			\forall x\, (\, x \notin a\, ) \Longrightarrow a = \emptyset
+		\end{align}
+		が得られる．逆に
+		\begin{align}
+			a = \emptyset
+		\end{align}
+		が成り立っていると仮定する．ここで$\chi$を$\mathcal{L}$の任意の対象とすれば，
+		相等性の公理より
+		\begin{align}
+			\chi \in a \Longrightarrow \chi \in \emptyset
+		\end{align}
+		が成立するので，対偶を取れば
+		\begin{align}
+			\chi \notin \emptyset \Longrightarrow \chi \notin a
+		\end{align}
+		が成り立つ．定理\ref{thm:emptyset_has_nothing}より
+		\begin{align}
+			\chi \notin \emptyset
+		\end{align}
+		が満たされているので，三段論法より
+		\begin{align}
+			\chi \notin a
+		\end{align}
+		が成立し，$\chi$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \notin a\, )
+		\end{align}
+		が成立する．ここに演繹法則を適用して
+		\begin{align}
+			a = \emptyset \Longrightarrow \forall x\, (\, x \notin a\, )
+		\end{align}
+		も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[空集合はいかなる類も要素に持たない]
+		\label{thm:emptyset_does_not_contain_any_class}
+			$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				b = \emptyset \Longrightarrow a \notin b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま$a \in b$が成り立っていると仮定する．このとき要素の公理と三段論法より
+		\begin{align}
+			\set{a}
+		\end{align}
+		が成立する．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば，存在記号に関する規則から
+		\begin{align}
+			a = \tau
+		\end{align}
+		が成り立つので，相等性の公理より
+		\begin{align}
+			\tau \in b
+		\end{align}
+		が従い，存在記号に関する規則より
+		\begin{align}
+			\exists x\, (\, x \in b\, )
+		\end{align}
+		が成り立つ．よって演繹法則から
+		\begin{align}
+			a \in b \Longrightarrow \exists x\, (\, x \in b\, )
+		\end{align}
+		が成り立つ．この対偶を取り推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}を適用すれば
+		\begin{align}
+			\forall x\, (\, x \notin b\, ) \Longrightarrow a \notin b
+		\end{align}
+		が得られる．定理\ref{thm:uniqueness_of_emptyset}より
+		\begin{align}
+			b = \emptyset \Longrightarrow \forall x\, (\, x \notin b\, )
+		\end{align}
+		も正しいので，含意の推移律から
+		\begin{align}
+			b = \emptyset \Longrightarrow a \notin b
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[部分類]
+			$a,b$を$\mathcal{L}'$の項とするとき，
+			\begin{align}
+				a \subset b \overset{\mathrm{def}}{\Longleftrightarrow}
+				\forall x\ (\ x \in a \Longrightarrow x \in b\ )
+			\end{align}
+			と定める．式$a \subset b$を``$a$は$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}である''
+			と翻訳し，特に$a$が集合である場合は``$a$は$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である''と翻訳する．
+			また次の記号も定める:
+			\begin{align}
+				a \subsetneq b \defarrow a \subset b \wedge a \neq b.
+			\end{align}
+		\end{dfn}
+	\end{screen}
+	
+	空虚な真の一例として次の結果を得る．
+	
+	\begin{screen}
+		\begin{thm}[空集合は全ての類に含まれる]\label{thm:emptyset_if_a_subset_of_every_class}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\emptyset \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とする．$\tau$を$\mathcal{L}$の任意の対象とすれば
+		\begin{align}
+			\tau \notin \emptyset
+		\end{align}
+		が成り立つから，推論規則\ref{logicalaxm:fundamental_rules_of_inference}を適用して
+		\begin{align}
+			\tau \notin \emptyset \vee \tau \in a
+		\end{align}
+		が成り立つ．従って
+		\begin{align}
+			\tau \in \emptyset \Longrightarrow \tau \in a
+		\end{align}
+		が成り立ち，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \in \emptyset \Longrightarrow x \in a\, )
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	$a \subset b$とは$a$に属する全ての``$\mathcal{L}$の対象''は$b$に属するという定義であったが，
+	要素となりうる類は集合であるという公理から，$a$に属する全ての``類''もまた$b$に属する．
+	
+	\begin{screen}
+		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]\label{thm:subclass_contains_all_elements}
+			$a,b,c$を類とすれば次が成り立つ:
+			\begin{align}
+				a \subset b \Longrightarrow (\, c \in a \Longrightarrow c \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}	
+		いま$a \subset b$が成り立っているとする．このとき
+		\begin{align}
+			c \in a
+		\end{align}
+		が成り立っていると仮定すれば，要素の公理より
+		\begin{align}
+			\set{c}
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, c=x\, )
+		\end{align}
+		とおくと
+		\begin{align}
+			c = \tau
+		\end{align}
+		が成り立つので，相等性の公理より
+		\begin{align}
+			\tau \in a
+		\end{align}
+		が成り立ち，$a \subset b$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
+		\begin{align}
+			\tau \in b
+		\end{align}
+		が従う．再び相等性の公理を適用すれば
+		\begin{align}
+			c \in b
+		\end{align}
+		が成り立つので，演繹法則より，$a \subset b$が成り立っている下で
+		\begin{align}
+			c \in a \Longrightarrow c \in b
+		\end{align}
+		が成立する．再び演繹法則を適用すれば定理の主張が得られる．
+		\QED
+	\end{prf}
+	
+	宇宙$\Univ$は類の一つであった．当然のようであるが，それは最大の類である．
+	\begin{screen}
+		\begin{thm}[$\Univ$は最大の類である]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				a \subset \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:any_class_equals_to_itself}と類の公理より
+		\begin{align}
+			\tau \in \Univ
+		\end{align}
+		が成立するので，推論規則\ref{logicalaxm:fundamental_rules_of_inference}より
+		\begin{align}
+			\tau \notin a \vee \tau \in \Univ
+		\end{align}
+		が成立する．このとき推論法則\ref{logicalthm:rule_of_inference_3}より
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in \Univ
+		\end{align}
+		が成立し，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
+		\begin{align}
+			\forall x\, (\, x \in a \Longrightarrow x \in \Univ\, )
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[互いに互いの部分類となる類同士は等しい]\label{thm:mutually_sub_classes_are_equivalent}
+			$a,b$を類とするとき次が成り立つ:
+			\begin{align}
+				a \subset b \wedge b \subset a \Longleftrightarrow a = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a \subset b \wedge b \subset a$が成り立っていると仮定する．
+		このとき$\tau$を$\mathcal{L}$の任意の対象とすれば，
+		$a \subset b$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in b
+		\end{align}
+		が成立し，$b \subset a$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\tau \in b \Longrightarrow \tau \in a
+		\end{align}
+		が成立するので，
+		\begin{align}
+			\tau \in a \Longleftrightarrow \tau \in b
+		\end{align}
+		が成り立つ．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}および
+		外延性の公理より
+		\begin{align}
+			a = b
+		\end{align}
+		が出るので，演繹法則より
+		\begin{align}
+			a \subset b \wedge b \subset a \Longrightarrow a = b
+		\end{align}
+		が得られる．逆に$a = b$が満たされていると仮定するとき，$\tau$を$\mathcal{L}$の任意の対象とすれば
+		\begin{align}
+			\tau \in a \Longrightarrow \tau \in b
+		\end{align}
+		と
+		\begin{align}
+			\tau \in b \Longrightarrow \tau \in a
+		\end{align}
+		が共に成り立つ. よって推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			a \subset b
+		\end{align}
+		と
+		\begin{align}
+			b \subset a
+		\end{align}
+		が共に従う．よって演繹法則より
+		\begin{align}
+			a = b \Longrightarrow a \subset b \wedge b \subset a
+		\end{align}
+		も得られる．
+		\QED
+	\end{sketch}
+	
+	\monologue{
+		定理\ref{thm:subclass_contains_all_elements}と定理\ref{thm:mutually_sub_classes_are_equivalent}より，
+			類$a,b$が$a = b$を満たすならば，$a$と$b$は要素に持つ$\mathcal{L}$の対象のみならず，
+			要素に持つ類までも一致するのですね．
+	}

@@ -1,0 +1,240 @@
+\section{言語の拡張}
+	項$x$が自由に現れる式$A(x)$に対して
+	\begin{align}
+		\Set{x}{A(x)}
+	\end{align}
+	なる形の項を導入する．この$\Set{x}{A(x)}$なる記法は
+	{\bf 内包的記法}\index{ないほうてききほう@内包的記法}{\bf (international notation)}と呼ばれる．
+	導入の意図は``$A(x)$を満たす集合$x$の全体''という意味を込めた式の対象化であって，実際に後述の内包性公理によって
+	\begin{align}
+		\forall x\, \left(\, x \in \Set{x}{A(x)} \Longleftrightarrow A(x)\, \right)
+	\end{align}
+	を保証する．
+	
+	追加する項はもう一つある．$A(x)$を上記のものとするが，この場合$A(x)$は$x$に関する性質として扱われる．
+	そして``性質$A(x)$を具えている集合''という意味を込めて
+	\begin{align}
+		\varepsilon x A(x)
+	\end{align}
+	なる形の項を導入する．これはHilbertの$\varepsilon$項と呼ばれるものであるが，
+	留意点は，$\varepsilon x A(x)$は性質$A(x)$を持つとは限らないということである．
+	$\varepsilon x A(x)$が性質$A(x)$を持つのは，$A(x)$を満たす集合$x$が存在するとき，またその時に限られる．
+	
+	言語$\mathcal{L}_{0}$を設定したばかりであるが，上述の二種類の項を取り入れて言語$\mathcal{L}$に拡張する．
+	$\mathcal{L}$は基本的には$\mathcal{L}_{0}$のものを継承するが，
+	拡張に際して$\Set{x}{A(x)}$や$\varepsilon x A(x)$なるオブジェクトや
+	\begin{align}
+		\varepsilon,
+	\end{align}
+	及び
+	\begin{align}
+		\{, \quad |, \quad \}
+	\end{align}
+	が加えられる．$\Set{x}{A(x)}$や$\varepsilon x A(x)$は自然言語の固有名詞に相当するものであり，
+	また$\varepsilon$は論理記号で，$\{,|,\}$は補助記号であるとする．
+	
+	\begin{screen}
+		\begin{dfn}[類]
+			$A$を$\mathcal{L}_{0}$の式とし，$x$を$A$に現れる項とし，
+			$A$の中で項$x$のみが自由に現れるとき，
+			$\Set{x}{A(x)}$及び$\varepsilon x A(x)$を
+			{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{description}
+		\item[変項] $\mathcal{L}_{0}$の項を{\bf 変項}\index{へんこう@変項}{\bf (variable term)}と呼ぶ．またこれらのみが変項である．
+		
+		\item[項] 変項は$\mathcal{L}$の項である．類も$\mathcal{L}$の項である．またこれらのみが$\mathcal{L}$の項である．
+			
+		\item[式] 
+			\begin{itemize}
+				\item $\bot$は$\mathcal{L}$の式である．
+				\item 項$s$と$t$に対して$\in st$と$=st$は$\mathcal{L}$の式である．
+				\item $\varphi$を$\mathcal{L}$の式とするとき，$\rightharpoondown \varphi$は$\mathcal{L}$の式である．
+				\item $\varphi$と$\psi$を$\mathcal{L}$の式とするとき，以下はいずれも$\mathcal{L}$の式である．
+					\begin{align}
+						&\vee \varphi \psi, \\
+						&\wedge \varphi \psi, \\
+						&\rightarrow \varphi \psi.
+					\end{align}
+			
+				\item 変項$x$が$\mathcal{L}$の式$\varphi$に現れるとき，
+					$\forall x \varphi$と$\exists x \varphi$は$\mathcal{L}$の式である．
+			
+				\item 以上のみが$\mathcal{L}$の式である．
+		\end{itemize}
+	\end{description}
+	
+	$\varphi$を$\mathcal{L}$の式とし，$s$を$\varphi$に現れる記号とすると，
+	\begin{description}
+		\item[(1)] $s$は文字である．
+		\item[(2)] $s$は$\natural$である．
+		\item[(2)] $s$は$\{$である．
+		\item[(3)] $s$は$|$である．
+		\item[(4)] $s$は$\}$である．
+		\item[(5)] $s$は$\bot$である．
+		\item[(6)] $s$は$\in$か$=$である．
+		\item[(7)] $s$は$\rightharpoondown$である．
+		\item[(8)] $s$は$\vee,\wedge,\rightarrow$のいずれかである．
+	\end{description}
+	
+	\begin{screen}
+		(★★) いま，$\varphi$を任意に与えられた式としよう．
+		\begin{itemize}
+			\item $\natural$が$\varphi$に現れたとき，$\mathcal{L}_{0}$の項$\tau$と$\sigma$が得られて，$\natural \tau \sigma$は
+				$\natural$のその出現位置から始まる$\mathcal{L}_{0}$の項となる．
+				また$\natural$のその出現位置から始まる$\mathcal{L}_{0}$の項は$\natural \tau \sigma$のみである．
+				
+			\item $\{$が$\varphi$に現れたとき，$\mathcal{L}_{0}$の変項$x$及び$\mathcal{L}_{0}$の式$A$が得られて，
+				$\{ x|A\}$は$\{$のその出現位置から始まる項となる．
+				また$\{$のその出現位置から始まる項は$\{x|A\}$のみである．
+				
+			\item $|$が$\varphi$に現れたとき，，変項$x$と$\mathcal{L}_{0}$の式$A$が得られて，
+				$\{x|A\}$は$|$のその出現位置から広がる項となる．
+				また$|$のその出現位置から広がる項は$\{x|A\}$のみである．
+				
+			\item $\}$が$\varphi$に現れたとき，変項$x$と式$A$が得られて，
+				$\{x|A\}$は$\}$のその出現位置を終点とする項となる．
+				また$\}$のその出現位置を終点とする項は$\{x|A\}$のみである．
+		\end{itemize}
+	\end{screen}
+	
+	\begin{description}
+		\item[$\natural$に対して$\natural \tau \sigma$なる変項$\tau$と$\sigma$が得られること]
+			$\natural$が原子項に現れたら，原子項とは文字$x,y$によって
+			\begin{align}
+				\natural xy
+			\end{align}
+			と表されるものであるから，$\natural$に対して変項$\tau,\sigma$ (すなわち文字$x,y$)が取れたことになる．
+			$\natural$が項に現れたとする．項とは，変項$x,y$によって
+			\begin{align}
+				\natural xy
+			\end{align}
+			で表されるものであり，$\natural$は左端の$\natural$であるか，$x$に現れるか，$y$に現れる．
+			$\natural$が$x$か$y$に現れるときは帰納法の仮定により，
+			$\natural$が左端のものである場合は$x$が$\tau$，$y$が$\sigma$ということになる．
+			
+		\item[変項の始切片で変項であるものは自分自身のみ]
+			$x$が文字である場合はそう．$x$の任意の部分変項が言明を満たしているなら，
+			$x$は$\natural st$なる変項である(生成規則)から，$x$の始切片は$\natural uv$なる変項である．
+			$s,t,u,v$はいずれも$x$の部分変項なので仮定が適用されている．
+			ゆえに$s$と$u$は一方が他方の始切片であり，一致する．すなわち$t$と$v$も一方が他方の始切片であり一致する．
+			ゆえに$x$の始切片で変項であるものは$x$自身である．
+			
+		\item[$\natural$に対して得られる変項の一意性]
+			$\natural xy$と$\natural st$が共に変項であるとき，$x$と$s$，$y$と$t$は一致するか．
+			$\natural xy$が原子項であるときは明らかである．
+			$x$の始切片で変項であるものは$x$自身に限られるので，
+			$x$と$s$は一致する．ゆえに$t$は$y$の始切片であり，$t$と$y$も一致する．
+		
+		\item[生成規則より$x$と$A$が得られるか]
+			$\varphi$が原子式であるとき，
+			$\{$が現れるとすれば項の中である．項とは$\mathcal{L}_{0}$の項であるか$\{x|A\}$なるものであるので
+			$\{$が現れたならば$\{$とは$\{x|A\}$の$\{$である．
+			
+			$\varphi$の任意の部分式に対して言明が満たされているとする．
+			$\varphi$とは$\rightharpoondown \psi,\vee \psi \xi,...$の形であるから，
+			$\varphi$に現れた$\{$とは$\psi$や$\xi$に現れるのである．ゆえに
+			仮定より$x$と$A$が取れるわけである．
+			
+		\item[$\{$に対して]
+			項の生成規則より$x$と$A$が得られる．
+			$\{y|B\}$もまた$\{$から始まる項である場合，順番に見ていって
+			$x$と$y$は一方が他方の始切片という関係になるから一致する．
+			すると$A$と$B$は一方が他方の始切片という関係になり，(★)より$A$と$B$は一致する．
+			
+		\item[$|$について]
+			項の生成規則より$x$と$A$が得られる．
+			$\{y|B\}$もまた$|$から広がる項である場合，順番に見ていって
+			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
+			$A$と$B$は一方が他方の始切片という関係になるので(★)より$A$と$B$は一致する．
+			
+		\item[$\}$について]
+			項の生成規則より$x$と$A$が得られる．
+			$\{y|B\}$もまた$\}$のその出現位置を終点とする変項である場合，
+			$A$と$B$は$\mathcal{L}_{0}$の式なので$|$という記号は現れない．ゆえに
+			$A$と$B$は一致する．すると$x$と$y$は右端で揃うが，
+			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
+	\end{description}
+	
+\section{類と集合}
+	\begin{screen}
+		\begin{dfn}[類と集合]
+			$a$を類とするとき，$a$が集合であるという言明を
+			\begin{align}
+				\set{a} \defarrow \exists x\, (\, x = a\, )
+			\end{align}
+			で定める．$\set{a}$を満たす類$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
+			$\rightharpoondown \set{a}$を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	ちなみに$\varepsilon x A(x)$は集合である．なぜならば
+	\begin{align}
+		\varepsilon x A(x) = \varepsilon x A(x)
+	\end{align}
+	だから
+	\begin{align}
+		\exists a\, \left(\, a = \varepsilon x A(x)\, \right).
+	\end{align}
+	また$\Set{x}{A(x)}$が集合であるとき
+	\begin{align}
+		\exists s\, \left(\, \Set{x}{A(x)} = s\, \right)
+	\end{align}
+	が成り立つが，量化の規則より
+	\begin{align}
+		\Set{x}{A(x)} = \varepsilon s \forall u\, (\, u \in s \Longleftrightarrow A(u)\, )
+	\end{align}
+	が得られる．ブルバキや島内では右辺の項でクラスを導入しているため，
+	$\forall u\, (\, u \in s \Longleftrightarrow A(s)\, )$を満たす集合が取れない限りは
+	$\Set{x}{A(x)}$は正体不明の対象として扱うほかない．一方で本稿では
+	$\Set{x}{A(x)}$と$\epsilon$項を独立に導入しているため，両者の存在意義と関係性を自然に記述できる．
+	
+\section{式の書き換え}
+	$\Set{x}{A(x)}$なる形の項を甲種項，$\varepsilon x A(x)$なる形の項を乙種項と呼び，
+	これらを類と総称することにする．
+	また乙種項が現れない$\mathcal{L}$の式を甲種式，
+	乙種項が現れる$\mathcal{L}$の式を乙種式と呼ぶことにする．
+	
+	\begin{itemize}
+		\item $x \in \Set{y}{B(y)}$は$B(x)$と書き換える．
+			
+			これは次の公理
+			\begin{align}
+				\forall x\, \left(\, x \in \Set{y}{B(y)} \leftrightarrow B(x)\, \right)
+			\end{align}
+			に基づく式の書き換えである．
+			
+		\item $\Set{x}{A(x)} \in y$は$\exists s\, \left(\, s \in y \wedge 
+			\forall u\, (\, u \in s \Longleftrightarrow A(s)\, )\, \right)$
+			と書き換える．
+			これの同値性は
+			\begin{align}
+				a \in b \Longrightarrow \exists x\, (\, a = x\, )
+			\end{align}
+			の公理による．
+			
+	\end{itemize}
+	
+	量化は乙種項についての規則とする．甲種乙種関係なく，式$A(x)$に対して
+	\begin{prooftree}
+		\AxiomC{$A(\tau)$}
+		\UnaryInfC{$\exists x A(x)$}
+	\end{prooftree}
+	
+	逆に
+	\begin{prooftree}
+		\AxiomC{$\exists x A(x)$}
+		\UnaryInfC{$A\left(\varepsilon x \mathcal{L}A(x)\right)$}
+	\end{prooftree}
+	
+	全ての乙種項$\tau$で$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
+	\begin{prooftree}
+		\AxiomC{$(\tau)A(\tau)$}
+		\UnaryInfC{$\forall x A(x)$}
+	\end{prooftree}
+	明らかに
+	\begin{align}
+		\forall x A(x) \Longrightarrow A(\varepsilon x \rightharpoondown \mathcal{L}A(x))
+	\end{align}
