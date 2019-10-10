@@ -1,0 +1,573 @@
+\documentclass[a4j,10.5pt,oneside,openany]{jsbook}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{makeidx}
+\makeindex
+%\usepackage{newtxmath,newtxtext}
+\usepackage{mathrsfs} %花文字
+\usepackage{mathtools} %参照式のみ式番号表示
+\usepackage{latexsym} %qed
+\usepackage{ascmac}
+\usepackage{bussproofs} %証明図
+\usepackage{centernot} %\centernot\arrow
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz} %描画
+\usepackage{color}
+\usepackage{relsize}
+\usepackage{comment}
+\usepackage{url}
+\usepackage{ulem} %訂正線
+\usepackage[dvipdfm,colorlinks=true,linkcolor=blue,filecolor=blue,urlcolor=blue]{hyperref} %文書内リンク
+\usepackage{pxjahyper} %%hyperref読み込みの直後に
+\setcounter{tocdepth}{3} %table of contents subsection表示
+\newtheoremstyle{mystyle}% % Name
+	{20pt}%                      % Space above
+	{20pt}%                      % Space below
+	{\rm}%           % Body font
+	{}%                      % Indent amount
+	{\gt}%             % Theorem head font
+	{.}%                      % Punctuation after theorem head
+	{10pt}%                     % Space after theorem head, ' ', or \newline
+	{}%                      % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+
+\allowdisplaybreaks[1]
+\newcommand{\bhline}[1]{\noalign {\hrule height #1}} %表の罫線を太くする．
+\newcommand{\bvline}[1]{\vrule width #1} %表の罫線を太くする．
+\newcommand{\QED}{% %証明終了
+	\relax\ifmmode
+		\eqno{%
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}}
+	\else
+		\begingroup
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\hfill\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}
+		\endgroup
+	\fi}
+
+\definecolor{DarkMidnightBlue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{PakistanGreen}{rgb}{0.0, 0.4, 0.0}
+\definecolor{Mahogany}{rgb}{0.65,0.10,0.10}
+\definecolor{darkgray}{rgb}{0.21, 0.21, 0.21}
+\definecolor{CarolinaBlue}{rgb}{0.6, 0.73, 0.89}
+
+\newtheorem{thm}{\color{DarkMidnightBlue}{定理}}[section]
+\newtheorem{dfn}[thm]{\color{PakistanGreen}{定義}}
+\newtheorem{axm}[thm]{\color{Mahogany}{公理}}
+\newtheorem{schema}[thm]{{公理図式}}
+\newtheorem{logicalaxm}[thm]{\color{Mahogany}{推論規則}}
+\newtheorem{logicalthm}[thm]{\color{DarkMidnightBlue}{推論法則}}
+\newtheorem{metaaxm}[thm]{\color{Mahogany}{メタ公理}}
+\newtheorem{metathm}[thm]{\color{DarkMidnightBlue}{メタ定理}}
+\newtheorem{prp}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{lem}[thm]{補題}
+\newtheorem*{prf}{証明}
+\newtheorem*{sketch}{略証}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{e.g.}[thm]{例}
+\newcommand{\defunc}{\mbox{1}\hspace{-0.25em}\mbox{l}} %定義関数
+\newcommand*{\sgn}[1]{\operatorname{sgn}\left( #1 \right)} %signal関数
+\newcommand{\monologue}[1]{
+	{\color{CarolinaBlue}\hspace{-10.5pt}\mask{\hspace{21pt}\vbox{
+		\hsize 445pt
+		\normalcolor{\vskip 7pt \noindent #1 \vskip 7pt}
+	}\hspace{21pt}}{E}}
+}
+
+\def\Ddot#1{$\ddot{\mathrm{#1}}$} %文中ddot
+
+%集合論理
+\newcommand{\Set}[2]{\left\{\, #1 \mid \quad #2\, \right\}} %論理式の対象化
+\newcommand{\defeq}{\overset{\mathrm{def}}{=\joinrel=}} %\scalebox{3}[1]{=}}} %定義記号=(=\joinrel=も使える)
+\newcommand{\defarrow}{\overset{\mathrm{def}}{\Longleftrightarrow}} %定義記号⇔
+\newcommand{\val}{\operatorname{val}} %val関数
+\newcommand{\Con}{\operatorname{Con}} %無矛盾
+
+\newcommand{\Univ}{\mathbf{V}} %宇宙
+\newcommand{\set}[1]{\operatorname*{set} (#1)} %集合であることの論理式
+\newcommand{\power}[1]{\operatorname*{P} (#1)} %冪集合
+\newcommand{\rel}[1]{\operatorname*{rel} (#1)} %関係
+\newcommand{\dom}[1]{\operatorname*{dom} (#1)} %類の定義域
+\newcommand{\ran}[1]{\operatorname*{ran} (#1)} %類の値域
+\newcommand{\sing}[1]{\operatorname*{sing} (#1)} %single-valuedの定義式
+\newcommand{\fnc}[1]{\operatorname*{fnc} (#1)} %写像の定義式
+\newcommand{\fon}{\operatorname*{:on}} %〇上の写像
+\newcommand{\inj}{\overset{\mathrm{1:1}}{\longrightarrow}} %単射
+\newcommand{\srj}{\overset{\mathrm{onto}}{\longrightarrow}} %全射
+\newcommand{\bij}{\underset{\mathrm{onto}}{\overset{\mathrm{1:1}}{\longrightarrow}}} %全単射
+\newcommand{\inv}[1]{{#1}^{-1}} %^{\operatorname{inv}}} %集合の反転
+\newcommand{\rest}[2]{#1\hspace{-0.41em}\upharpoonright_{#2}} %制限写像
+\newcommand{\tran}[1]{\operatorname*{tran} \left(#1\right)} %推移的類の定義式
+\newcommand{\ord}[1]{\operatorname*{ord} \left(#1\right)} %順序数の定義式
+\newcommand{\ON}{\mathrm{ON}} %順序数全体
+\newcommand{\limo}[1]{\mathrm{lim.o}\left(#1\right)} %極限数の式
+%\newcommand{\Natural}{{\boldsymbol \omega}} %自然数全体
+\newcommand{\Natural}{\mathbf{N}} %自然数全体
+%
+%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{40\baselineskip}
+\addtolength{\textheight}{\topskip}
+%\setlength{\voffset}{-0.55in}
+%
+%
+\begin{document}
+\mathtoolsset{showonlyrefs = true}
+\section{4}
+	\begin{screen}
+		\begin{dfn}[4.1]
+			ポーランド記法における語彙とは対$(\mathcal{W},\alpha)$であり，
+			この$\mathcal{W}$は記号の集合，また$\alpha$は関数
+			$\alpha:\mathcal{W} \rightarrow \omega$である．
+			$\mathcal{W}_{n} = \Set{s \in \mathcal{W}}{\alpha(s) = n}$とし，
+			$\mathcal{W}_{n}$に属する記号はアリティ$n$をもつということにする．
+			定義I.10.3で定めた通り$\mathcal{W}^{<\omega}$は$\mathcal{W}$に属する記号から成る
+			有限列の全体であるものとする．そのような列のうち$(\mathcal{W},\alpha)$の式
+			(または整形式ともいう)とは，
+			\begin{center}
+				\begin{quote}
+					$s \in \mathcal{W}_{n}$であり，各$i < n$について$\tau_{i}$が式であるとき，
+					$s\tau_{0}\cdots\tau_{n-1}$も式である
+				\end{quote}
+			\end{center}
+			なる規則に則って構成されたもののことをいう．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[4.3]
+			$\sigma$を語彙$(\mathcal{W},\alpha)$の式とするとき，
+			\begin{description}
+				\item[(1)] $\sigma$の芯の始切片はどれも式にならない．
+				\item[(2)] $\sigma$の最初の記号が$s$でそのアリティが$n$だとすると，
+					式$\tau_{0},\cdots,\tau_{n-1}$を，$\sigma$が
+					$s\tau_{0}\cdots\tau_{n-1}$の形になるように取れる．
+					しかもそのような$\tau_{0},\cdots,\tau_{n-1}$の取り方は一意的である．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[4.4]
+			$\sigma$を語彙$(\mathcal{W},\alpha)$の式とするとき，$\sigma$の部分式とは
+			$\sigma$の中のひとつながりの部分列でそれ自身が式であるもののことをいう．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[4.5]
+			$\sigma$を語彙$(\mathcal{W},\alpha)$の式とするとき，各記号の
+			$\sigma$における各出現位置は，それぞれ一意的な部分式の開始位置となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[4.6]
+			語彙$(\mathcal{W},\alpha)$の式$\sigma$のある記号のある出現位置について，
+			そのスコープとは，$\sigma$のその位置から始まる一意的な部分式のことをいう．
+		\end{dfn}
+	\end{screen}
+	
+\section{5}
+	\begin{screen}
+		\begin{dfn}[5.1]
+			論理記号とは次の$8$つの記号
+			\begin{align}
+				\wedge,\ \vee,\ \neg,\ \rightarrow,\ \leftrightarrow,\ \forall,
+				\ \exists,\ =
+			\end{align}
+			と，それに加えて可算無限個の変数である．
+			変数全体の集合を$VAR$と書く．通常，$u,v,w,x,y,z$に必要に応じて
+			添字をつけたもので変数をあらわすものとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[5.2]
+			述語論理の語彙とは，論理外記号の集合$\mathcal{L}$のことで，
+			この$\mathcal{L}$は二つの互いに交わらない集合$\mathcal{F}$(関数記号の集合)
+			と$\mathcal{P}$(述語記号の集合)に分割される．
+			$\mathcal{F}$と$\mathcal{P}$はいずれもアリティに応じて
+			$\mathcal{F} = \bigcup_{n \in \omega} \mathcal{F}_{n}$，
+			$\mathcal{P} = \bigcup_{n \in \omega} \mathcal{P}_{n}$と分割される．
+			$\mathcal{F}_{n}$に属する記号は$n$変数関数記号と呼ばれる．
+			$\mathcal{P}_{n}$に属する記号は$n$項述語記号と呼ばれる．とくに，
+			$\mathcal{F}_{0}$に属する記号は定数記号と呼ばれ，
+			$\mathcal{P}_{0}$に属する記号は命題定項と呼ばれる．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[5.3]
+			語彙$\mathcal{L} = \mathcal{F} \cup \mathcal{P}
+			= \bigcup_{n \in \omega} \mathcal{F}_{n} \cup \bigcup_{n \in \omega} \mathcal{P}_{n}$が定義5.2のとおりに与えられたとするとき，
+			\begin{description}
+				\item[(1)] $\mathcal{L}$の項とは定義4.1にいう意味でのポーランド記法の語彙
+					$\mathcal{F} \cup VAR$の整形式のこと．ただし，$VAR$に属する記号のアリティは
+					$0$で，$\mathcal{F}_{n}$に属する記号のアリティは$n$であるものとする．
+				
+				\item[(2)] $\mathcal{L}$の原子論理式とは，$p\tau_{1}\cdots\tau_{n}$の
+					形の記号列で，$n \geq 0$であり，$\tau_{1},\cdots,\tau_{n}$は
+					$\mathcal{L}$の項であって，$p \in \mathcal{P}_{n}$であるもの，
+					または，$n=2$であって$p$が等号$=$であるもののこと．
+					
+				\item[(3)] $\mathcal{L}$の論理式とは次のルールで構成される記号列のこと:
+					\begin{description}
+						\item[a] 原子論理式は論理式である．
+						\item[b] $\varphi$が論理式で$x \in VAR$のとき
+							$\forall x \varphi$と$\exists x \varphi$も論理式である．
+						\item[c] $\varphi$が論理式のとき$\neg \varphi$も論理式である．
+						\item[d] $\varphi$と$\psi$が論理式のとき$\vee \varphi \psi$も
+							$\wedge \varphi \psi$も$\rightarrow \varphi \psi$も
+							$\leftrightarrow \varphi \psi$も論理式である．
+					\end{description}
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[5.4]
+			論理式$\varphi$においては，$\mathcal{P} \cup \{\wedge,\vee,\neg,
+			\rightarrow,\leftrightarrow,\forall,\exists,=\}$に属するどの記号のどの
+			出現のスコープも論理式であり，$\mathcal{F} \cup VAR$に属する記号のいかなる出現の
+			スコープも項である．
+		\end{thm}
+	\end{screen}
+	
+	そうしたスコープのことを$\varphi$の部分論理式とか部分項とか言う．
+	
+	\begin{screen}
+		\begin{dfn}[5.5]
+			論理式$\varphi$の中の変数$y$の出現が束縛されているとは，この出現箇所が，
+			$y$に作用する(すなわち直後に$y$が続くような)$\forall$か$\exists$のスコープ内に
+			含まれていることである．束縛されていない出現のことを自由な出現という．
+			自由な変数が一つもない論理式$\varphi$のことを文という．
+		\end{dfn}
+	\end{screen}
+	
+	式$\varphi$に変数$x$が現れて，$\varphi$で自由に出現するものが$x$のみであるとき
+	
+	\begin{screen}
+		\begin{dfn}[5.6]
+			論理式$\varphi$の全称閉包とは，$\forall x_{1} \cdots \forall x_{n} \varphi,
+			\ n \geq 0$の形の任意の文のことである．
+		\end{dfn}
+	\end{screen}
+	
+\section{7}
+	\begin{screen}
+		\begin{dfn}[7.1]
+			述語論理の語彙$\mathcal{L} = \mathcal{F} \cup \mathcal{P}
+			= \bigcup_{n \in \omega} \mathcal{F}_{n} \cup
+			\bigcup_{n \in \omega} \mathcal{P}_{n}$が(定義5.2,5.3の要領で)
+			与えられたとするとき，$\mathcal{L}$に対する構造とは，対$\mathfrak{A}
+			= (A,\mathcal{I})$であって$A$は空でない集合であり$\mathcal{I}$は
+			$\mathcal{L}$を定義域とする関数で，$\mathcal{I}(s)$が適切なタイプの
+			セマンティクス的な実体であるもの，すなわち$\mathcal{I}(s)$のことを$s_{\mathfrak{A}}$
+			と表記したとして，
+			\begin{itemize}
+				\item $n > 0$で$f \in \mathcal{F}_{n}$のときは
+					$f_{\mathfrak{A}}:A^{n} \rightarrow A$,
+				\item $n > 0$で$p \in \mathcal{P}_{n}$のときは
+					$p_{\mathfrak{A}} \subset A^{n}$,
+				\item $c \in \mathcal{F}_{0}$のときは$c_{\mathfrak{A}} \in A$,
+				\item $p \in \mathcal{P}_{0}$のときは$p_{\mathfrak{A}} \in 2 
+					= \{0,1\} = \{F,T\}$
+			\end{itemize}
+			をみたすもの，とする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.2]
+			項$\tau$に対し，$V(\tau)$とは，$\tau$に出現する変数全体の集合とする．
+			論理式$\varphi$に対し，$V(\varphi)$とは，$\varphi$に自由に
+			出現する変数全体の集合とする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.3]
+			$\alpha$が項あるいは論理式であったとして，$\alpha$に対する$A$への割り当てとは，
+			$V(\alpha) \subset \dom{\sigma} \subset VAR$と$\ran{\sigma} \subset A$
+			を満たす関数$\sigma$のことである．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.5]
+			$\mathfrak{A}$を語彙$\mathcal{L}$に対する構造とするとき，
+			$\mathcal{L}$の項$\tau$と，$\tau$に対する$A$への割り当て$\sigma$について
+			$A$の要素$\val_{\mathfrak{A}}(\tau)[\sigma]$を次のように定める:
+			\begin{description}
+				\item[(1)] $x \in \dom{\sigma}$のとき$\val_{\mathfrak{A}}(x)[\sigma]
+					= \sigma(x)$,
+				\item[(2)] $c \in \mathcal{F}_{0}$のとき$\val_{\mathfrak{A}}(c)[\sigma]
+					= c_{\mathfrak{A}}$,
+				\item[(3)] $f \in \mathcal{F}_{n}$で$n > 0$のとき
+					\begin{align}
+						\val_{\mathfrak{A}}(f\tau_{1}\cdots\tau_{n})[\sigma]
+						= f_{\mathfrak{A}}\left(\val_{\mathfrak{A}}(\tau_{1})[\sigma],\cdots,\val_{\mathfrak{A}}(\tau_{n})[\sigma]\right).
+					\end{align}
+			\end{description}
+			とくに$V(\tau) = \emptyset$のとき，$\val_{\mathfrak{A}}(\tau)[\emptyset]$
+			のことを$\val_{\mathfrak{A}}(\tau)$と略記する．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[7.5]
+			$\val_{\mathfrak{A}}(\tau)[\sigma]$は$\rest{\sigma}{V(\tau)}$
+			だけに依存する．すなわち，もしも$\rest{\sigma'}{V(\tau)} = \rest{\sigma}{V(\tau)}$
+			であれば$\val_{\mathfrak{A}}(\tau)[\sigma'] = \val_{\mathfrak{A}}(\tau)[\sigma]$となる．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.6]
+			$\mathfrak{A}$を語彙$\mathcal{L}$に対する構造とするとき，$\mathcal{L}$の任意の
+			原子論理式$\varphi$とそれに対する$A$への任意の割り当て$\sigma$について$\{0,1\}$
+			(すなわち$\{F,T\}$)の要素$\val_{\mathfrak{A}}(\varphi)[\sigma]$を
+			次のとおりに定める:
+			\begin{description}
+				\item[(1)] $p \in \mathcal{P}_{0}$のとき，$\val_{\mathfrak{A}}(p)[\sigma] = p_{\mathfrak{A}}$,
+				\item[(2)] $p \in \mathcal{P}_{n}$で$n > 0$のとき，
+					$\val_{\mathfrak{A}}(p\tau_{1}\cdots\tau_{n})[\sigma] = T$
+					となることは$\left(\val_{\mathfrak{A}}(\tau_{1})[\sigma],
+					\cdots,\val_{\mathfrak{A}}(\tau_{n})[\sigma]\right) \in p_{\mathfrak{A}}$と同値，
+				\item[(3)] $\val_{\mathfrak{A}}(=\tau_{1}\tau_{2})[\sigma] = T$
+					となることは$\val_{\mathfrak{A}}(\tau_{1})[\sigma] = 
+					\val_{\mathfrak{A}}(\tau_{2})[\sigma]$と同値．
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.7]
+			$\sigma + (y/a) = \rest{\sigma}{VAR \backslash \{y\}} \cup \{(y,a)\}$.
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.8]
+			$\mathfrak{A}$を語彙$\mathcal{L}$に対する構造とするとき，$\mathcal{L}$の
+			任意の論理式$\varphi$とそれに対する$A$への割り当て$\sigma$について，$\{0,1\}$
+			すなわち$\{F,T\}$の要素$\val_{\mathfrak{A}}(\varphi)[\sigma]$を次のとおりに定める．
+			\begin{description}
+				\item[(1)] $\val_{\mathfrak{A}}(\neg \varphi)[\sigma]
+					= 1 - \val_{\mathfrak{A}}(\varphi)[\sigma]$.
+				\item[(2)] $\val_{\mathfrak{A}}(\wedge \varphi \psi)[\sigma]$と
+					$\val_{\mathfrak{A}}(\vee \varphi \psi)[\sigma]$と
+					$\val_{\mathfrak{A}}(\rightarrow \varphi \psi)[\sigma]$と
+					$\val_{\mathfrak{A}}(\leftrightarrow \varphi \psi)[\sigma]$とは，
+					$\val_{\mathfrak{A}}(\varphi)[\sigma]$と$\val_{\mathfrak{A}}(\psi)[\sigma]$から$\wedge,\vee,\rightarrow,\leftrightarrow$の真理値表にもとづいて決める．
+				\item[(3)] $\val_{\mathfrak{A}}(\exists y \varphi)[\sigma] = T$となるのは，
+					ある$a \in A$について$\val_{\mathfrak{A}}(\varphi)[\sigma + (y/a)]
+					= T$となるときで，そしてそのときに限る．
+				\item[(4)] $\val_{\mathfrak{A}}(\forall y \varphi)[\sigma] = T$となるのは，
+					すべての$a \in A$について$\val_{\mathfrak{A}}(\varphi)[\sigma + (y/a)]
+					= T$となるときで，そしてそのときに限る．
+			\end{description}
+			また，$\mathfrak{A} \models \varphi[\sigma]$とは$\val_{\mathfrak{A}}(\varphi)[\sigma] = T$のことである．
+			$V(\varphi) = \emptyset$のとき，すなわち$\varphi$が文のときには，
+			$\val_{\mathfrak{A}}(\varphi)[\emptyset]$を$\val_{\mathfrak{A}}(\varphi)$
+			と略記し，また$\mathfrak{A} \models \varphi$とは$\val_{\mathfrak{A}}(\varphi)
+			= T$のことであるとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[7.9]
+			$\val_{\mathfrak{A}}(\varphi)[\sigma]$は$\rest{\sigma}{V(\varphi)}$だけに依存する．
+			すなわち，もしも$\rest{\sigma'}{V(\varphi)} = \rest{\sigma}{V(\varphi)}$
+			であれば$\val_{\mathfrak{A}}(\varphi)[\sigma'] = \val_{\mathfrak{A}}(\varphi)[\sigma]$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.11]
+			$\mathfrak{A}$が語彙$\mathcal{L}$に対するある構造で，$\Sigma$が$\mathcal{L}$
+			の文のある集合のとき，$\mathfrak{A} \models \Sigma$とは，すべての$\varphi \in \Sigma$
+			について$\mathfrak{A} \models \varphi$であるということ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.12]
+			$\Sigma$を語彙$\mathcal{L}$の文のある集合，$\psi$を$\mathcal{L}$のある文とするとき，
+			$\Sigma \models \psi$とは$\mathfrak{A} \models \Sigma$であるようなすべての
+			$\mathcal{L}$-構造$\mathfrak{A}$について$\mathfrak{A} \models \psi$であることをいう．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.13]
+			$\Sigma$を語彙$\mathcal{L}$の文の或る集合とするとき，$\Sigma$がセマンティクス的に無矛盾
+			であるあるいは充足可能である(これを$\Con_{\models}(\Sigma)$と書く)とは，
+			ある構造$\mathfrak{A}$について$\mathfrak{A} \models \Sigma$となることである．
+			セマンティクス的に無矛盾でないことを「セマンティクス的に矛盾する」という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[7.14]
+			$\Sigma$を語彙$\mathcal{L}$の文のある集合とし，$\psi$を$\mathcal{L}$のある文とするとき，
+			\begin{description}
+				\item[(a)] $\Sigma \models \psi$は$\Sigma \cup \{\neg \psi\}$が
+					セマンティクス的に矛盾することと同値．
+				\item[(b)] $\Sigma \models \neg \psi$は$\Sigma \cup \{\psi\}$が
+					セマンティクス的に矛盾することと同値．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[7.15]
+			$\Sigma$を語彙$\mathcal{L}$の文のある集合とするとき，次のことが成り立つ．
+			\begin{description}
+				\item[(1)] $\Sigma$のすべての有限部分集合がそれぞれセマンティクス的に無矛盾であるとき，
+					$\Sigma$もセマンティクス的に無矛盾である．
+				\item[(2)] $\Sigma \models \psi$のとき，ある有限の$\Delta \subset \Sigma$
+					について$\Delta \models \psi$となる
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[7.16]
+			$\mathfrak{A}$を語彙$\mathcal{L}$のある構造とし，その宇宙を$A$とするとき，
+			$|\mathfrak{A}|$とは$|A|$のことだとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[7.17]
+			$\Sigma$を語彙$\mathcal{L}$の文のある集合とし，すべての有限な$n$に対し$\Sigma$
+			はサイズ$n$以上(無限でもよい)のモデルをもつものとする．このとき，
+			$\max(|\mathcal{L}|,\aleph_{0})$以上の任意の基数$\kappa$に対して，
+			$\Sigma$はサイズ$\kappa$のモデルをもつ．
+		\end{thm}
+	\end{screen}
+	
+\section{8}
+	\begin{screen}
+		\begin{dfn}[8.1]
+			$\psi$を語彙$\mathcal{L}$の論理式とするとき，$\psi$が論理的に妥当であるとは，
+			すべての$\mathcal{L}$-構造$\mathfrak{A}$と，$\mathfrak{A}$における$\psi$に
+			対するすべての割り当て$\sigma$について$\mathfrak{A} \models \psi[\sigma]$となることである．
+		\end{dfn}
+	\end{screen}
+	
+	文$\psi$が論理的に妥当であることと$\emptyset \models \psi$とは同値．
+	
+	\begin{screen}
+		\begin{dfn}[8.2]
+			$\varphi$と$\psi$を語彙$\mathcal{L}$の論理式とするとき，両者が論理的に同値であるとは，
+			論理式$\varphi \leftrightarrow \psi$が論理的に妥当であることだとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[8.3]
+			$\varphi$が論理式で文$\psi$と$\chi$がいずれも$\varphi$の全称閉包であるとすれば，
+			$\psi$と$\chi$とは論理的に同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[8.4]
+			$\varphi$と$\psi$が語彙$\mathcal{L}$の論理式で，$\Sigma$が$\mathcal{L}$の文の
+			ある集合であるとき，$\varphi$と$\psi$が$\Sigma$のもとで同値とは，論理式$\varphi
+			\leftrightarrow \psi$の全称閉包が$\Sigma$の全てのモデルにおいて真となることだとする．
+			$\tau_{1}$と$\tau_{2}$を項とするとき，それらが$\Sigma$のもとで同値とは，$\mathfrak{A}
+			\models \Sigma$であるようなすべての$\mathfrak{A}$と$\tau_{1},\tau_{2}$に対する
+			$A$へのすべての割り当て$\sigma$について$\val_{\mathfrak{A}}(\tau_{1})[\sigma]
+			= \val_{\mathfrak{A}}(\tau_{2})[\sigma]$となることだとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[8.5]
+			すべての$\mathfrak{A}$とすべての$\sigma$について$\val_{\mathfrak{A}}(\tau_{1})[\sigma]
+			= \val_{\mathfrak{A}}(\tau_{2})[\sigma]$であるなら
+			$\tau_{1}$と$\tau_{2}$は同一の項である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[8.6]
+			$\beta$と$\tau$が項で$x$が変数であるとき，$\beta(x \rightsquigarrow \tau)$とは
+			$\beta$における$x$のすべての自由な出現を$\tau$に置き換えた結果として得られる項のことだとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[8.7]
+			語彙$\mathcal{L}$に対する構造$\mathfrak{A}$と，項$\beta$と$\tau$の両方に対する$A$
+			への割り当て$\sigma$(定義7.3)について，$a = \val_{\mathfrak{A}}(\tau)[\sigma]$
+			とするとき
+			\begin{align}
+				\val_{\mathfrak{A}}(\beta(x \rightsquigarrow \tau))[\sigma]
+				= \val_{\mathfrak{A}}(\beta)[\sigma + (x/a)]
+			\end{align}
+			が成り立つ．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[8.8]
+			$\varphi$を論理式，$x$を変数，$\tau$を項とするとき，$\varphi(x \rightsquigarrow \tau)$
+			とは$\varphi$における$x$のすべての自由な出現を$\tau$に置き換えた結果として得られる論理式のことだとする．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[8.9]
+			項$\tau$が論理式$\varphi$内で変数$x$に対して自由であるとは，$\tau$に出現する変数$y$
+			についての量化$\exists y$あるいは$\forall y$のスコープ内に，$x$の自由な出現がまったく
+			ないことをいう．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[8.10]
+			$\mathfrak{A}$を$\mathcal{L}$に対する構造，$\varphi$を$\mathcal{L}$の論理式，
+			$\tau$を$\mathcal{L}$の項，$\sigma$を$\varphi$に対する$A$への割り当て
+			(定義7.3)であり，かつ$\tau$に対する$A$への割り当てでもあるとして，
+			$a = \val_{\mathfrak{A}}(\tau)[\sigma]$とおく．いま$\tau$が
+			$\varphi$内で変数$x$に対して自由であったとする．このとき
+			$\mathfrak{A} \models \varphi(x \rightsquigarrow \tau)[\sigma]$と
+			$\mathfrak{A} \models \varphi[\sigma + (x/a)]$とは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{itembox}[l]{記法}
+		置き換えられる変数が$x$であることが文脈から明らかである場合に$\varphi(x \rightsquigarrow \tau)$
+		の略記として$\varphi(\tau)$を用いる．この目的のため，議論の間は$\varphi$のことを
+		$\varphi(x)$とあらわすことがある．同様に$\varphi$を$\varphi(x_{1},\cdots,x_{n})$
+		とあらわしているときは，各変数$x_{i}$のすべての自由な出現を$\tau_{i}$に一斉に置き換えた
+		結果として得られる論理式を$\varphi(\tau_{1},\cdots,\tau_{n})$とあらわす．
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{thm}[8.12]
+			$\tau$が$\varphi(x)$内で$x$に対して自由であるとすれば，$\forall x \varphi(x)
+			\rightarrow \varphi(\tau)$と$\varphi(\tau) \rightarrow \exists x \varphi(x)$
+			は論理的に妥当である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[8.13]
+			$\mathfrak{A}$を$\mathcal{L}$に対する構造，$\varphi(x_{1},\cdots,x_{n})$は
+			$\mathcal{L}$の論理式で$x_{1},\cdots,x_{n}$の他には自由変数を持たないものとする．
+			また$\tau_{1},\cdots,\tau_{n}$を$\mathcal{L}$の項とし，これらは自由変数を
+			含まないものとする．$\val_{\mathfrak{A}}(\tau_{i})$を$a_{i}$と書こう．
+			すると，$\mathfrak{A} \models \varphi(\tau_{1},\cdots,\tau_{n})$と
+			$\mathfrak{A} \models \varphi[a_{1},\cdots,a_{n}]$とは同値である．
+		\end{thm}
+	\end{screen}
+\end{document}
