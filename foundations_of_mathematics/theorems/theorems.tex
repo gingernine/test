@@ -141,7 +141,7 @@
 		\begin{thm}[4.3]
 			$\sigma$を語彙$(\mathcal{W},\alpha)$の式とするとき，
 			\begin{description}
-				\item[(1)] $\sigma$の芯の始切片はどれも式にならない．
+				\item[(1)] $\sigma$の真の始切片はどれも式にならない．
 				\item[(2)] $\sigma$の最初の記号が$s$でそのアリティが$n$だとすると，
 					式$\tau_{0},\cdots,\tau_{n-1}$を，$\sigma$が
 					$s\tau_{0}\cdots\tau_{n-1}$の形になるように取れる．
@@ -754,6 +754,231 @@
 			定数記号$c$を加え$\mathcal{L}' = \mathcal{L} \cup \{c\}$としよう．
 			$\Sigma \vdash_{\mathcal{L}'} \varphi$であったとする．このとき
 			$\Sigma \vdash_{\mathcal{L}} \varphi$である．
+		\end{thm}
+	\end{screen}
+	
+\section{12}
+	\begin{screen}
+		\begin{thm}[12.1]
+			$\Sigma$を語彙$\mathcal{L}$の文からなる集合とするとき，
+				\begin{description}
+					\item[(1)] $\Con_{\models}(\Sigma)$と$\Con_{\vdash,\mathcal{L}}(\Sigma)$が同値．
+					\item[(2)] $\mathcal{L}$の任意の文$\varphi$について，$\Sigma \models
+						\varphi$と$\Sigma \vdash_{\mathcal{L}} \varphi$が同値．
+				\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.2]
+			$\Sigma$は語彙$\mathcal{L}$の文からなる集合とし，$\Con_{\vdash,\mathcal{L}}
+			(\Sigma)$であると仮定する．このとき$\Con_{\models}(\Sigma)$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.3]
+			語彙$\mathcal{L}$の項$\tau$が変数を含まないとき，$\tau$を{\bf 閉項}という．
+			$\mathcal{L}$の閉項全体の集合を$CT_{0}(\mathcal{L})$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.5]
+			$\Sigma$は語彙$\mathcal{L}$の文からなる集合であるとし，また$\mathcal{F}_{0} \neq
+			\emptyset$であると仮定する．$CT_{0}(\mathcal{L})$を宇宙とする構造$\mathfrak{A}_{0}$を
+			\begin{itemize}
+				\item $f \in \mathcal{F}_{n}$かつ$n > 0,\ \tau_{1},\cdots,\tau_{n}
+					\in CT_{0}(\mathcal{L})$のとき，$f_{\mathfrak{A}_{0}}(\tau_{1},
+					\cdots,\tau_{n})$とは閉項$f(\tau_{1},\cdots,\tau_{n})$のこと，
+					
+				\item $p \in \mathcal{P}_{n}$かつ$n > 0,\ \tau_{1},\cdots,\tau_{n}
+					\in CT_{0}(\mathcal{L})$のとき，$(\tau_{1},\cdots,\tau_{n}) \in 
+					p_{\mathfrak{A}_{0}}$とは$\Sigma \vdash_{\mathcal{L}}
+					p(\tau_{1},\cdots,\tau_{n})$となること，
+				
+				\item $c \in \mathcal{F}_{0}$のとき$c_{\mathfrak{A}_{0}} = c$.
+				\item $p \in \mathcal{P}_{0}$のとき$p_{\mathfrak{A}_{0}} = 1$
+					とは$\Sigma \vdash_{\mathcal{L}} p$となること．
+			\end{itemize}
+			と定め，これを{\bf 閉項モデル$\mathfrak{CT}_{0}(\mathcal{L},\Sigma)$}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.6]
+			$\tau \in CT_{0}(\mathcal{L})$のとき$\val_{\mathfrak{CT}_{0}(\mathcal{L},\Sigma)}(\tau) = \tau$．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.7]
+			$CT_{0}(\mathcal{L})$上の関係$\sim$(正確には$\sim_{\mathcal{L},\Sigma}$)を
+			\begin{align}
+				\tau \sim \sigma \Longleftrightarrow \Sigma \vdash_{\mathcal{L}}
+				\tau = \sigma
+			\end{align}
+			によって定める．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.8]
+			この$\sim$は$CT_{0}(\mathcal{L})$上の同値関係である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.9]
+			$\Sigma$を語彙$\mathcal{L}$の文の集合だとし，また$\mathcal{F}_{0} \neq \emptyset$
+			と仮定する．$CT(\mathcal{L},\Sigma) = CT_{0}(\mathcal{L},\Sigma)/\sim$と定める．
+			{\bf エルブランのモデル}$\mathfrak{A} = \mathfrak{CT}(\mathcal{L},\Sigma)$
+			とはこの$CT(\mathcal{L},\Sigma)$を宇宙とし，記号の解釈を
+			\begin{itemize}
+				\item $f \in \mathcal{F}_{n},\ n > 0$で$[\tau_{1}],\cdots,[\tau_{n}]
+					\in CT(\mathcal{L},\Sigma)$のとき$f_{\mathfrak{A}}\left([\tau_{1}],
+					\cdots,[\tau_{n}]\right)$とは$\left[f(\tau_{1},\cdots,\tau_{n})\right]$のこと，
+					
+				\item $p \in \mathcal{P}_{n},\ n > 0$で$[\tau_{1}],\cdots,[\tau_{n}]
+					\in CT(\mathcal{L},\Sigma)$のとき$\left([\tau_{1}],\cdots,
+					[\tau_{n}]\right) \in p_{\mathfrak{A}} \Longleftrightarrow
+					\Sigma \vdash_{\mathcal{L}} p(\tau_{1},\cdots,\tau_{n})$，
+					
+				\item $c \in \mathcal{F}_{0}$のとき$c_{\mathfrak{A}} = [c]$，
+				\item $p \in \mathcal{P}_{0}$のとき$p_{\mathfrak{A}} = 1$(真)
+					$\Longleftrightarrow \Sigma \vdash_{\mathcal{L}} p$
+			\end{itemize}
+			によって定めた$\mathcal{L}$-構造のことである．
+		\end{dfn}	
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.10]
+			語彙$\mathcal{L}$の文の集合$\Sigma$を考える．ただし$\mathcal{F}_{0} \neq \emptyset$と仮定する．
+			$\mathfrak{A} = \mathfrak{CT}(\mathcal{L},\Sigma)$としよう．このとき，
+			\begin{itemize}
+				\item[(1)] $\mathcal{L}$の閉項$\tau$について$\val_{\mathfrak{A}}(\tau)
+					= [\tau]$．
+				\item[(2)] $\mathcal{L}$の文$\varphi$が$\forall x_{1} \cdots x_{n}
+					\psi(x_{1},\cdots,x_{n})$の形だとすると，$\mathfrak{A} \models \varphi$
+					と$\mathcal{L}$のすべての閉項$\tau_{1},\cdots,\tau_{n}$について
+					$\mathfrak{A} \models \psi(\tau_{1},\cdots,\tau_{n})$であることが同値．
+				
+				\item[(3)] $\varphi$が原子論理式である文のときは，$\Sigma \vdash_{\mathcal{L}} \varphi$と$\mathfrak{A} \models \varphi$が同値．
+				\item[(4)] $\varphi$が原子論理式の全称閉包で$\Sigma \vdash_{\mathcal{L}}
+					\varphi$のときは$\mathfrak{A} \models \varphi$である．
+			\end{itemize}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.11]
+			語彙$\mathcal{L}$の文の集合$\Sigma$は次の条件を満たすとき{\bf 極大}
+			$(\vdash,\mathcal{L})$無矛盾であるといわれる：
+			\begin{description}
+				\item[(1)] $\Con_{\vdash.\mathcal{L}}(\Sigma)$であって，
+				\item[(2)] $\mathcal{L}$の文のどんな集合$\Pi$についても
+					$\Con_{\vdash,\mathcal{L}}(\Pi)$かつ$\Pi \supsetneq \Sigma$とはならない．
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.12]
+			$\Delta$が$\mathcal{L}$の文の集合で$\Con_{\vdash,\mathcal{L}}(\Delta)$である
+			ものとすると，$\mathcal{L}$の文の集合$\Sigma$で，$\Delta$を含んで極大$(\vdash,
+			\mathcal{L})$無矛盾であるようなものが存在する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.13]
+			$\mathcal{L}$の文の極大$(\vdash,\mathcal{L})$無矛盾な集合$\Sigma$を考える．
+			このとき$\mathcal{L}$の任意の文$\varphi$と$\psi$について，
+			\begin{description}
+				\item[(1)] $\Sigma \vdash_{\mathcal{L}} \varphi
+					\Longleftrightarrow \varphi \in \Sigma$;
+				
+				\item[(2)] $(\neg \varphi) \in \Sigma \Longleftrightarrow
+					\varphi \notin \Sigma$;
+				
+				\item[(3)] $(\varphi \vee \psi) \in \Sigma \Longleftrightarrow
+					\varphi \in \Sigma$または$\psi \in \Sigma$．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.14]
+			語彙$\mathcal{L}$は$\mathcal{F}_{0} \neq \emptyset$であるものとし，文の集合
+			$\Sigma$は極大$(\vdash,\mathcal{L})$無矛盾であるとする．$\mathfrak{A} = 
+			\mathfrak{CT}(\mathcal{L},\Sigma)$とする．$\mathcal{L}$の文$\varphi$が
+			量化記号を用いないものであれば，$\varphi \in \Sigma$と$\mathfrak{A} \models
+			\varphi$とは同値である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.15]
+			$\exists x \varphi(x)$の形の文を{\bf 存在文}という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[12.16]
+			$\Sigma$を語彙$\mathcal{L}$の文からなる集合とし，$\exists x \varphi(x)$を存在文
+			とするとき，閉項$\tau$が($\Sigma,\mathcal{L}$に関して)$\exists x \varphi(x)$の
+			{\bf 証人}であるとは$\tau \in CT_{0}(\mathcal{L})$かつ$\Sigma
+			\vdash_{\mathcal{L}} \left(\exists x \varphi(x) \rightarrow \varphi(\tau)\right)$
+			であるときにいう．すべての存在文に対し少なくとも一つの証人が存在するなら，$\Sigma$は
+			{\bf $\mathcal{L}$にすべての証人をもつ}という．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.17]
+			$\Sigma$は語彙$\mathcal{L}$の文からなる集合だとする．$\Sigma$が極大$(\vdash,
+			\mathcal{L})$無矛盾で$\mathcal{L}$にすべての証人をもつと仮定し，$\mathfrak{A}
+			= \mathfrak{CT}(\mathcal{L},\Sigma)$とする．このとき，$\mathfrak{A} \models
+			\Sigma$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.18]
+			$\Sigma$が$\mathcal{L}$の文からなる集合，$\exists x \varphi(x)$が$\mathcal{L}$
+			のある存在文，$c$を$\mathcal{L}$に属さない新しい定数記号とし$\mathcal{L}'
+			= \mathcal{L} \cup \{c\}$とする．$\Sigma' = \Sigma \cup \{\exists x \varphi(x) \rightarrow \varphi(c)\}$
+			と定め，$\Con_{\vdash,\mathcal{L}}(\Sigma)$と仮定する．このとき
+			$\Con_{\vdash,\mathcal{L}'}(\Sigma')$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.19]
+			$\Sigma$を語彙$\mathcal{L}$の文からなる集合とし，$\delta$を任意の順序数としよう．
+			各$\alpha < \delta$に対する新しい定数記号$c_{\alpha}$を考えて，$\delta$以下の
+			$\alpha$について$\mathcal{L}_{\alpha} = \mathcal{L} \cup \Set{c_{\xi}}{\xi < \alpha}$とおく．
+			各$\alpha < \delta$に対して$\exists x \varphi_{\alpha}(x)$を語彙$\mathcal{L}_{\alpha}$
+			の存在文とし，$\Sigma_{\delta} = \Sigma \cup \Set{\exists x \varphi_{\alpha}(x) \rightarrow \varphi(c_{\alpha})}{\alpha < \delta}$とおく．
+			$\Con_{\vdash,\mathcal{L}}(\Sigma)$と仮定するとき，$\Con_{\vdash,\mathcal{L}_{\delta}}(\Sigma_{\delta})$である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[12.20]
+			$\Sigma$を語彙$\mathcal{L}$の文からなる集合とし，$\Con_{\vdash,\mathcal{L}}
+			(\Sigma)$と仮定する．$\kappa = \max{(|\mathcal{L}|,\aleph_{0})}$としよう．
+			このとき次のような$\Sigma'$と$\mathcal{L}'$が存在する：
+			\begin{description}
+				\item[(1)] $\mathcal{L}' = \mathcal{L} \cup \mathcal{C}$，ただし
+					$\mathcal{C}$はなんらかの定数記号の集合．
+				\item[(2)] $|\mathcal{L}'| = |\Sigma'| = \kappa$
+				\item[(3)] $\Sigma \subset \Sigma'$であり，$\Sigma'$は$\mathcal{L}'$の
+					文からなる集合．
+				\item[(4)] $\Con_{\vdash,\mathcal{L}'}(\Sigma')$．
+				\item[(5)] $\Sigma'$は$\mathcal{L}'$にすべての証人をもつ．
+			\end{description}
 		\end{thm}
 	\end{screen}
 \end{document}
