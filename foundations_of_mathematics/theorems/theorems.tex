@@ -1082,6 +1082,30 @@
 	となる．
 	
 	\begin{screen}
+		$\Pi \defeq \Set{\varphi}{\Sigma \vdash \varphi}$とおけば，
+		\begin{description}
+			\item[(1)] 任意の文$\varphi$に対して$\Sigma \vdash \varphi \Longleftrightarrow \Pi \vdash \varphi$．
+			\item[(2)] 任意の文$\varphi$に対して$\varphi \in \Pi \Longleftrightarrow \Pi \vdash \varphi$．
+			\item[(3)] $\Sigma$が無矛盾なら$\Pi$は極大無矛盾？
+		\end{description}
+	\end{screen}
+	
+	\begin{description}
+		\item[(1)] $\Pi \vdash \varphi$であるとき，$\varphi$の証明$\varphi_{0},\varphi_{1},\cdots,\varphi{n}$に対して，
+			$\varphi_{0}$は推論法則か$\varphi_{0} \in \Pi$なので
+			\begin{align}
+				\Sigma \vdash \varphi_{0}
+			\end{align}
+			である．任意の$i < j$に対して$\Sigma \vdash \varphi_{i}$ならば，証明可能性の定義より
+			\begin{align}
+				\Sigma \vdash \varphi_{j}
+			\end{align}
+			である．よって$\Sigma \vdash \varphi$．
+			
+		\item[(2)] $\Pi \vdash \varphi$ならば$\Sigma \vdash \varphi$なので$\varphi \in \Pi$．
+	\end{description}
+	
+	\begin{screen}
 		\begin{thm}[12.14]
 			語彙$\mathcal{L}$は$\mathcal{F}_{0} \neq \emptyset$であるものとし，文の集合
 			$\Sigma$は極大$(\vdash,\mathcal{L})$無矛盾であるとする．$\mathfrak{A} = 
@@ -1090,6 +1114,20 @@
 			\varphi$とは同値である．
 		\end{thm}
 	\end{screen}
+	
+	$\Sigma \vdash \varphi \vee \psi$のとき，$\Sigma \vdash \varphi$ならば
+	$\mathfrak{A} \models \varphi$なので$\mathfrak{A} \models \varphi \vee \psi$である．
+	$\Sigma \not\vdash \varphi$ならば
+	\begin{align}
+		\Sigma \not\vdash \varphi \Longrightarrow \varphi \notin \Sigma
+		\Longrightarrow \Sigma \vdash \neg \varphi
+	\end{align}
+	より$\Sigma \vdash \neg \varphi$となり，$\Sigma \vdash \psi$が従う．
+	ゆえに先ほどと同様に$\mathfrak{A} \models \varphi \vee \psi$である．
+	
+	$\mathfrak{A} \models \varphi \vee \psi$のとき，
+	$\Sigma \not\vdash \varphi$なら$\Sigma \vdash \neg \varphi$なので$\mathfrak{A} \models \neg \varphi$．
+	よって$\mathfrak{A} \models \psi$．よって帰納法の仮定より$\Sigma \vdash \psi$．よって$\Sigma \vdash \varphi \vee \psi$．
 	
 	\begin{screen}
 		\begin{dfn}[12.15]
