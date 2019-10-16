@@ -894,14 +894,84 @@
 		\end{thm}
 	\end{screen}
 	
-	(3)について，
-	\begin{align}
-		\Sigma \vdash_{\mathcal{L}} p\tau_{1}\cdots\tau_{n}
-		&\Longleftrightarrow ([\tau_{1}],\cdots,[\tau_{n}]) \in p_{\mathfrak{A}} \\
-		&\Longleftrightarrow \val_{\mathfrak{A}}(p\tau_{1}\cdots\tau_{n})[\sigma] = T \\
-		&\Longleftrightarrow \mathfrak{A} \models p\tau_{1} \cdots \tau_{n}
-	\end{align}
-	より従う．
+	\begin{description}
+		\item[(1)] $\tau \in \mathcal{F}_{0}$のとき
+			\begin{align}
+				\val_{\mathfrak{A}}(\tau) = \tau_{\mathfrak{A}} = [\tau]
+			\end{align}
+			が成り立つ．$\tau$が$f\tau_{1}\cdots\tau_{n}$のとき
+			\begin{align}
+				\val_{\mathfrak{A}}(f\tau_{1}\cdots\tau_{n}) 
+				&= f_{\mathfrak{A}}\left(\val_{\mathfrak{A}}(\tau_{1}),
+				\cdots, \val_{\mathfrak{A}}(\tau_{n})\right) \\
+				&= f_{\mathfrak{A}} [\tau_{1}] \cdots [\tau_{n}] \\
+				&= [f\tau_{1}\cdots\tau_{n}]
+			\end{align}
+			が成り立つ．
+		
+		\item[(2)] $\psi(x)$が原子論理式，つまり$p$を述語とし$\xi$を閉項として$px\xi$なる式のとき，
+			任意の割り当て$\sigma$に対して
+			\begin{align}
+				\val_{\mathfrak{A}}(px\xi)[\sigma + (x/[\tau])] = T
+				\Longleftrightarrow ([\tau],[\xi]) \in p_{\mathfrak{A}}
+				\Longleftrightarrow \val_{\mathfrak{A}}(p\tau\xi)[\sigma] = T
+			\end{align}
+			が成り立つ．ゆえに，$x$のみが自由に現れる任意の式$\psi(x)$に対して
+			\begin{align}
+				\val_{\mathfrak{A}}(\psi(x))[\sigma + (x/[\tau])]
+				= \val_{\mathfrak{A}}(\psi(\tau))[\sigma]
+				= \val_{\mathfrak{A}}(\psi(\tau))
+			\end{align}
+			が成り立つ．$\mathfrak{A} \models \forall x \psi(x)$のとき，
+			任意の閉項$\tau$に対して
+			\begin{align}
+				\val_{\mathfrak{A}}(\psi(x))[\sigma + (x/[\tau])] = T
+			\end{align}
+			が成り立つ．すなわち任意の閉項$\tau$に対して
+			\begin{align}
+				\val_{\mathfrak{A}}(\psi(\tau)) = T
+			\end{align}
+			が成り立つので$\mathfrak{A} \models \psi(\tau)$．逆に
+			任意の閉項$\tau$に対して$\mathfrak{A} \models \psi(\tau)$のとき，
+			$\mathfrak{A}$の宇宙の任意の要素$a$に対して，
+			\begin{align}
+				a = [\pi]
+			\end{align}
+			なる閉項$\pi$を取れば
+			\begin{align}
+				T &= \val_{\mathfrak{A}}(\psi(\pi)) \\
+				&= \val_{\mathfrak{A}}(\psi(x))[\sigma + (x/[\pi])] \\
+				&= \val_{\mathfrak{A}}(\psi(x))[\sigma + (x/a)]
+			\end{align}
+			が成り立つ．ゆえに$\mathfrak{A} \models \forall x \psi(x)$である．
+		
+		\item[(3)] $\varphi$が$p\tau_{1}\cdots\tau_{n}$なる式のとき，
+			\begin{align}
+				\Sigma \vdash_{\mathcal{L}} p\tau_{1}\cdots\tau_{n}
+				&\Longleftrightarrow ([\tau_{1}],\cdots,[\tau_{n}]) \in p_{\mathfrak{A}} \\
+				&\Longleftrightarrow \left(\val_{\mathfrak{A}}(\tau_{1}),\cdots,
+				\val_{\mathfrak{A}}(\tau_{n})\right) \in p_{\mathfrak{A}} \\
+				&\Longleftrightarrow \val_{\mathfrak{A}}(p\tau_{1}\cdots\tau_{n}) = T \\
+				&\Longleftrightarrow \mathfrak{A} \models p\tau_{1} \cdots \tau_{n}
+			\end{align}
+			が成り立つ．
+			
+		\item[(4)] $\Sigma \vdash_{\mathcal{L}} \forall x \psi(x)$なら
+			すべての閉項$\tau$で
+			\begin{align}
+				\Sigma \vdash_{\mathcal{L}} \psi(\tau)
+			\end{align}
+			となる．ゆえに(3)よりすべての閉項$\tau$で
+			\begin{align}
+				\mathfrak{A} \models \psi(\tau)
+			\end{align}
+			が成り立ち，(2)より
+			\begin{align}
+				\mathfrak{A} \models \forall x \psi(x)
+			\end{align}
+			が成り立つ．
+			\QED
+	\end{description}
 	
 	\begin{screen}
 		\begin{dfn}[12.11]
@@ -939,6 +1009,77 @@
 			\end{description}
 		\end{thm}
 	\end{screen}
+	
+	語彙$\mathcal{L}$の文の集合$\Sigma$が無矛盾であるとは
+	\begin{itemize}
+		\item $\Sigma \vdash \varphi$ならば$\Sigma \not\vdash \neg \varphi$,
+		\item $\Sigma \vdash \neg \varphi$ならば$\Sigma \not\vdash \varphi$
+	\end{itemize}
+	が満たされること．{\bf 無矛盾$\Longleftrightarrow$モデルが存在．}
+	$\Sigma$が完全であるとは
+	\begin{itemize}
+		\item $\Sigma \not\vdash \varphi$ならば$\Sigma \vdash \neg \varphi$,
+		\item $\Sigma \not\vdash \neg \varphi$ならば$\Sigma \vdash \varphi$
+	\end{itemize}
+	が満たされること．完全だからと言って無矛盾ではない．
+	$\Sigma$から証明も反証もできる文$\varphi$の存在を否定できる?
+	極大であるとは
+	\begin{itemize}
+		\item $\Sigma \cup \{\varphi\}$が無矛盾ならば$\varphi \in \Sigma$
+	\end{itemize}
+	となること．極大なら
+	\begin{align}
+		 \mbox{$\Sigma \vdash \varphi$ならば$\varphi \in \Sigma$}
+	\end{align}
+	が成立する．実際，$\Sigma \vdash \varphi$なら$\Sigma \cup \{\varphi\}$は
+	無矛盾なので極大性より$\varphi \in \Sigma$となる．逆は完全性と併せて得られる．
+	$\Sigma \cup \{\varphi\}$が無矛盾なら背理法より
+	\begin{align}
+		\Sigma \not\vdash \neg \varphi
+	\end{align}
+	なので，完全性より$\Sigma \vdash \varphi$となる．このとき$\varphi \in \Sigma$となる(逆)．
+	つまり，{\bf $\Sigma$が完全であるとき，$\Sigma$が極大であることと$\Sigma \vdash \varphi
+	\Longrightarrow \varphi \in \Sigma$は同値．}
+	
+	\begin{screen}
+		$\Sigma$を語彙$\mathcal{L}$の文の集合とする．
+		極大無矛盾なら完全かつ$\Sigma \vdash \varphi
+		\Longrightarrow \varphi \in \Sigma$である．$\Sigma$が無矛盾で，
+		完全かつ$\Sigma \vdash \varphi
+		\Longrightarrow \varphi \in \Sigma$ならば極大無矛盾である．
+	\end{screen}
+	
+	極大無矛盾であるとき
+	\begin{align}
+		\Sigma \not\vdash \varphi
+	\end{align}
+	とすれば$\varphi \notin \Sigma$である．$\Sigma \cup \{\varphi\}$は矛盾するので
+	背理法より
+	\begin{align}
+		\Sigma \vdash \neg \varphi
+	\end{align}
+	となる．ゆえに完全．また
+	\begin{align}
+		\Sigma \vdash \varphi
+	\end{align}
+	ならば任意の文$\psi$に対して
+	\begin{align}
+		\Sigma \cup \{\varphi\} \vdash \psi \Longleftrightarrow \Sigma \vdash \psi
+	\end{align}
+	となるので$\Sigma \cup \{\varphi\}$は無矛盾である．極大性より
+	\begin{align}
+		\varphi \in \Sigma
+	\end{align}
+	となる．完全かつ$\Sigma \vdash \varphi \Longrightarrow \varphi \in \Sigma$
+	のとき，$\Sigma \cup \{\varphi\}$が無矛盾ならば
+	\begin{align}
+		\Sigma \not\vdash \neg \varphi
+	\end{align}
+	である．完全性より$\Sigma \vdash \varphi$であって
+	\begin{align}
+		\varphi \in \Sigma
+	\end{align}
+	となる．
 	
 	\begin{screen}
 		\begin{thm}[12.14]
