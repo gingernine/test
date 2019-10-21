@@ -1,7 +1,4 @@
 \section{証明}
-	閉式には，「真」であるか，「偽」であるか，のどちらかのラベルが付けられる．
-	「真である」という言明は，「正しい」や「成り立つ」などとも言い換えられる．
-	式が真であるか偽であるかは，次の手順に従って発見的に判明していく．
 	
 	\begin{itemize}
 		\item $\Sigma$の閉式は真である．
@@ -21,8 +18,37 @@
 	$\varphi$から始めて$\psi$が真であることに辿り着くまでの手続きは$\psi$の証明と呼ばれ，
 	$\psi$は定理と呼ばれる．
 	
-	証明には真であると判明している式が必要であり，その大元として選ばれた式が$\Sigma$の式である．
-	$\Sigma$の式は証明なしに真であると決められているのであり，これらを公理と呼び定理と区別する．
+	証明には真であると判明している式が必要であり，その根本として選ばれた式が$\Sigma$の文である．
+	$\Sigma$の文は証明なしに真であると決められているのであり，これらを公理と呼び定理と区別する．
+	
+	$\mathscr{S}$を文の集合とするとき，$\mathscr{S}$に属する文は$\mathscr{S}$の定理である．
+	また以下の推論規則によって帰納的に$\mathscr{S}$の定理が定まっていく．
+	
+	\begin{description}
+		\item[演繹法則] $\mathscr{T}$を文の集合とし，$\psi$を文とするとき，任意の文$\varphi$に対して
+			\begin{align}
+				\mathscr{T} \cup \{\psi\} \vdash \varphi
+			\end{align}
+			ならば
+			\begin{align}
+				\mathscr{T} \vdash \psi \rightarrow \varphi
+			\end{align}
+			
+		\item[三段論法] $\psi$と$\varphi$を文とするとき，
+			$\psi$と$\psi \rightarrow \varphi$が共に$\mathscr{S}$の定理ならば$\varphi$は$\mathscr{S}$の定理である．
+		
+		\item[$\vee$の導入] $\psi$と$\varphi$を文とするとき，
+			$\psi$が$\mathscr{S}$の定理ならば$\vee \varphi \psi$と$\vee \psi \varphi$は$\mathscr{S}$の定理である．
+		
+		\item[$\wedge$の導入] $\psi$と$\varphi$を文とするとき，
+			$\psi$と$\varphi$が$\mathscr{S}$の定理ならば$\wedge \psi \varphi$は$\mathscr{S}$の定理である．
+		
+		\item[$\wedge$の除去] $\psi$と$\varphi$を文とするとき，
+			$\wedge \psi \varphi$が$\mathscr{S}$の定理ならば$\psi$と$\varphi$は$\mathscr{S}$の定理である．
+			
+		\item[場合分け法則] $A$と$B$と$C$を文とするとき，
+			$\vee A B$と$A \rightarrow C$と$B \rightarrow C$が$\mathscr{S}$の定理ならば$C$は$\mathscr{S}$の定理である．
+	\end{description}
 	
 	与えられた閉式$\varphi$が証明可能であるとは，
 	\begin{itemize}

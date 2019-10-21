@@ -1,0 +1,923 @@
+\section{推論}
+	本節では，「集合でも真類でもない類は存在しない」と「集合であり真類でもある類は存在しない」の二つの言明の正否の決定を主軸にして
+	{\bf 推論規則}\index{すいろんきそく@推論規則}{\bf (rule of inference)}を導入し，基本的な推論法則を導出する．
+	
+	\begin{screen}
+		\begin{logicalaxm}[排中律]
+			$A$を任意の文とするとき次は定理である:
+			\begin{align}
+				A \vee \rightharpoondown A.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	排中律の言明は``どんな文でも持ってくれば，その式に対して排中律が適用される''という意味である．
+	このように無数に存在し得る定理を一括して表す式は{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼ばれる．
+	
+	いま$a,b$を類とするとき，
+	\begin{align}
+		a \notin b \defarrow\ \rightharpoondown a \in b
+	\end{align}
+	で$a \notin b$を定める．同様に
+	\begin{align}
+		a \neq b \defarrow\ \rightharpoondown a = b
+	\end{align}
+	で$a \neq b$を定める．
+	
+	\monologue{
+		定義記号$\defeq$と同様に，`$A \defarrow B$'とは
+		式$B$を記号列$A$で置き換えて良いという意味で使われます．また，式中に記号列$A$が出てくるときは，
+		暗黙裡にその$A$を$B$に戻して式を解釈します．
+		$\defeq$も$\defarrow$も略記することと同じですね．
+	}
+	
+	\begin{screen}
+		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
+			$a$を類とするとき次は定理である:
+			\begin{align}
+				\set{a} \vee \rightharpoondown \set{a}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律を適用することにより従う．
+		\QED
+	\end{prf}
+	
+	排中律をそのまま適用することにより上の定理は導かれたが，``集合であり真類でもある類は存在しない''という主張はまだ得られない．
+	以下はこの言明を証明することを目標にしてしばらく推論規則の話が続くが，提示される規則はどれも基本的で直感に反しないため
+	通常は無断で使用されてしまうものである．
+	
+	ここで論理記号の名称を書いておく．
+	\begin{itemize}
+		\item $\bot$を{\bf 矛盾}\index{むじゅん@矛盾}{\bf (contradiction)}と呼ぶ．
+		\item $\vee$を{\bf 論理和}\index{ろんりわ@論理和}{\bf (logical disjunction)}と呼ぶ．
+		\item $\wedge$を{\bf 論理積}\index{ろんりせき@論理積}{\bf (logical conjunction)}と呼ぶ．
+		\item $\Longrightarrow$を{\bf 含意}\index{がんい@含意}{\bf (implication)}と呼ぶ．
+		\item $\rightharpoondown$を{\bf 否定}\index{ひてい@否定}{\bf (negation)}と呼ぶ．
+	\end{itemize}
+	
+	\begin{screen}
+		\begin{logicalaxm}[基本的な推論規則]\label{logicalaxm:fundamental_rules_of_inference}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
+			\begin{description}
+				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
+				\item[演繹法則] $A$を公理に追加した下で$B$が定理であるなら，
+					$A$を外した公理系で$A \Longrightarrow B$は定理である．
+				\item[論理和の導入イ] $A \Longrightarrow (A \vee B)$は定理である．
+				\item[論理和の導入ロ] $A \Longrightarrow (B \vee A)$は定理である．
+				\item[論理積の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
+				\item[論理積の除去イ] $(A \wedge B) \Longrightarrow A$は定理である．
+				\item[論理積の除去ロ] $(A \wedge B) \Longrightarrow B$は定理である．
+				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
+					$(A \vee B) \Longrightarrow C$は定理である．
+			\end{description}	
+		\end{logicalaxm}
+	\end{screen}
+	
+	\monologue{
+		演繹法則について，``$A$を公理に追加する''ことを``$A$が成り立っていると仮定する''
+		などの言明により示唆することが多いです．
+	}
+	
+	\begin{itembox}[l]{演繹法則の意味}
+		我々は公理か，或いは公理図式として，複数の式を選び出し$\mathcal{L}'$の世界において正しいと決める．
+		それらは以降小出しに登場させるが，その全体は現段階ですでに決めているのでそれを
+		\begin{align}
+			\mathscr{S}
+		\end{align}
+		と呼ぶことにする．本稿で出てくる``正しい式''とは$\mathscr{S}$のみを公理系とした体系において証明される式を指す．
+		演繹法則は，``$A$が成り立つとする''などの
+		言明により$\mathscr{S}$に式$A$を加えたとき，その新しい公理系$\mathscr{S}'$の下で式$B$が成り立つなら，
+		$\mathscr{S}$のみを公理とした体系において
+		\begin{align}
+			A \Longrightarrow B
+		\end{align}
+		が成立する，と主張している．複数の式を$\mathscr{S}$に追加する場合もある．
+		たとえば$\mathscr{S}'$に式$C$を追加し，その新しい公理体系$\mathscr{S}''$の下で
+		式$D$が成り立つ場合，演繹法則に則れば$\mathscr{S}'$の下で
+		\begin{align}
+			C \Longrightarrow D
+		\end{align}
+		が成立する．(ちなみに$\mathscr{S}''$から式$A$のみを抜いた公理系の下では
+		$A \Longrightarrow D$が正しくなる．)
+		このとき$\mathscr{S}$を公理系とした下では，再び演繹法則を適用することにより
+		\begin{align}
+			A \Longrightarrow (C \Longrightarrow D)
+		\end{align}
+		が成立するとわかる，が，
+		\begin{align}
+			C \Longrightarrow D
+		\end{align}
+		が成り立つ保証は無い．非常に屡々いくつも仮定を重ねたところに演繹法則を運用することがあるが，
+		その都度どの段階の公理系を扱っているかを明確に把握しておかないと推論が破綻してしまう恐れがある．
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
+			$A$を$\mathcal{L}'$の閉式とするとき$A \Longrightarrow A$は定理である．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$A$を公理に追加すれば$A$は成立するので，演繹法則より$A \Longrightarrow A$は定理である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和・論理積の可換律]
+		\label{logicalthm:commutative_law_of_disjunction_and_conjunction}
+			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
+			\begin{itemize}
+				\item $(A \vee B) \Longrightarrow (B \vee A)$.
+				\item $(A \wedge B) \Longrightarrow (B \wedge A)$.
+			\end{itemize}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$\vee$の導入により
+		\begin{align}
+			A \Longrightarrow (B \vee A)
+		\end{align}
+		と
+		\begin{align}
+			B \Longrightarrow (A \vee B)
+		\end{align}
+		は定理であるから，場合分け法則より
+		\begin{align}
+			(A \vee B) \Longrightarrow (B \vee A)
+		\end{align}
+		は定理である．また，$\wedge$の除去より
+		\begin{align}
+			A \wedge B \Longrightarrow A
+		\end{align}
+		と
+		\begin{align}
+			A \wedge B \Longrightarrow B
+		\end{align}
+		は定理であるから，いま
+		\begin{align}
+			A \wedge B
+		\end{align}
+		が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．このとき
+		\begin{align}
+			B \wedge A
+		\end{align}
+		が定理となるので，演繹法則より
+		\begin{align}
+			(A \wedge B) \Longrightarrow (B \wedge A)
+		\end{align}
+		は定理である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の推移律]\label{logicalthm:transitive_law_of_implication}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
+			$A \Longrightarrow C$は定理である．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理であるとして，
+		$A$が成り立っていると仮定する．このとき三段論法より$B$が定理となり，
+		再び三段論法より$C$が定理となる．ゆえに$A \Longrightarrow C$は定理である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[二式が同時に導かれるならその論理積が導かれる]
+		\label{logicalthm:conjunction_of_consequences}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
+			$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理ならば
+			$A \Longrightarrow (B \wedge C)$は定理である．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理であるとき，
+		$A$が成り立っていると仮定する．このとき三段論法より$B$と$C$が同時に成り立つので，
+		論理積の導入より$B \wedge C$が成り立つ．従って演繹法則より
+		\begin{align}
+			A \Longrightarrow (B \wedge C)
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は遺伝する]\label{logicalthm:rule_of_inference_1}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \Longrightarrow B) \Longrightarrow ( (A \vee C) \Longrightarrow (B \vee C) )$.
+				
+				\item[(b)] $(A \Longrightarrow B) \Longrightarrow ( (A \wedge C) \Longrightarrow (B \wedge C) )$.
+				
+				\item[(c)] $(A \Longrightarrow B) \Longrightarrow ( (B \Longrightarrow C) \Longrightarrow (A \Longrightarrow C) )$.
+				
+				\item[(c)] $(A \Longrightarrow B) \Longrightarrow ( (C \Longrightarrow A) \Longrightarrow (C \Longrightarrow B) )$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)]
+				いま$A \Longrightarrow B$が成り立っていると仮定する．
+				論理和の導入により
+				\begin{align}
+					C \Longrightarrow (B \vee C)
+				\end{align}
+				は定理であるから，含意の推移律より
+				\begin{align}
+					A \Longrightarrow (B \vee C)
+				\end{align}
+				が従い，場合分け法則より
+				\begin{align}
+					(A \vee C) \Longrightarrow (B \vee C)
+				\end{align}
+				が成立する．ここに演繹法則を適用して
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow 
+					( (A \vee C) \Longrightarrow (B \vee C) )
+				\end{align}
+				が得られる．
+				
+			\item[(b)]
+				いま$A \Longrightarrow B$が成り立っていると仮定する．論理積の除去より
+				\begin{align}
+					(A \wedge C) \Longrightarrow A
+				\end{align}
+				は定理であるから，含意の推移律より
+				\begin{align}
+					(A \wedge C) \Longrightarrow B
+				\end{align}
+				が従い，他方で論理積の除去より
+				\begin{align}
+					(A \wedge C) \Longrightarrow C
+				\end{align}
+				も満たされる．そして推論法則\ref{logicalthm:conjunction_of_consequences}から
+				\begin{align}
+					(A \wedge C) \Longrightarrow (B \wedge C)
+				\end{align}
+				が成り立ち，演繹法則より
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow ((A \wedge C) \Longrightarrow (B \wedge C))
+				\end{align}
+				が得られる．
+				
+			\item[(c)]
+				いま$A \Longrightarrow B$，$B \Longrightarrow C$および
+				$A$が成り立っていると仮定する．このとき三段論法より$B$が成り立つので再び三段論法より
+				$C$が成立する．ゆえに演繹法則より$A \Longrightarrow B$と$B \Longrightarrow C$が
+				成り立っている下で
+				\begin{align}
+					A \Longrightarrow C
+				\end{align}
+				が成立し，演繹法則を更に順次適用すれば
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow ( (B \Longrightarrow C) \Longrightarrow (A \Longrightarrow C) )
+				\end{align}
+				が得られる．
+				
+			\item[(d)]
+				いま$A \Longrightarrow B$，$C \Longrightarrow A$および
+				$C$が成り立っていると仮定する．このとき三段論法より$A$が成り立つので再び三段論法より$B$が成立し，
+				ここに演繹法則を適用すれば，$A \Longrightarrow B$と$C \Longrightarrow A$が成立している下で
+				\begin{align}
+					C \Longrightarrow B
+				\end{align}
+				が成立する．演繹法則を更に順次適用すれば
+				\begin{align}
+					(A \Longrightarrow B) \Longrightarrow ( (C \Longrightarrow A) \Longrightarrow (C \Longrightarrow B) )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[正しい式は仮定を選ばない]\label{logicalthm:rule_of_inference_2}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，
+			$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$B$を公理に追加した場合，$A$を公理に追加しても$B$は真であるから，このとき
+		\begin{align}
+			A \Longrightarrow B
+		\end{align}
+		は定理となる．従って演繹法則より$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		\QED
+	\end{prf}
+	
+	$A$と$B$を$\mathcal{L}'$の式とするとき，
+	\begin{align}
+		(A \Longleftrightarrow B) \defarrow
+		(A \Longrightarrow B \wedge B \Longrightarrow A)
+	\end{align}
+	により$\Longleftrightarrow$を定め，式`$A \Longleftrightarrow B$'を
+	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の可換律]\label{logicalthm:commutative_law_of_equivalence}
+			$A$と$B$を$\mathcal{L}'$の閉式とするとき
+			\begin{align}
+				(A \Longleftrightarrow B) \Longrightarrow (B \Longleftrightarrow A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		$A \Longleftrightarrow B$が成り立っているならば，推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction}より
+		\begin{align}
+			B \Longrightarrow A \wedge A \Longrightarrow B
+		\end{align}
+		が成立する．すなわち
+		\begin{align}
+			B \Longleftrightarrow A
+		\end{align}
+		が成立する．そして演繹法則から
+		\begin{align}
+			(A \Longleftrightarrow B) \Longrightarrow (B \Longleftrightarrow A)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の遺伝性質]\label{logicalthm:hereditary_of_equivalence}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \Longleftrightarrow B) \Longrightarrow ((A \vee C) \Longleftrightarrow (B \vee C))$.
+				\item[(b)] $(A \Longleftrightarrow B) \Longrightarrow ((A \wedge C) \Longleftrightarrow (B \wedge C))$.
+				\item[(c)] $(A \Longleftrightarrow B) \Longrightarrow ((B \Longrightarrow C) \Longleftrightarrow (A \Longrightarrow C))$.
+				
+				\item[(d)] $(A \Longleftrightarrow B) \Longrightarrow ((C \Longrightarrow A) \Longleftrightarrow (C \Longrightarrow B))$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		まず(a)を示す．いま$A \Longleftrightarrow B$が成り立っていると仮定する．このとき$A \Longrightarrow B$と
+		$B \Longrightarrow A$が共に成立し，他方で含意の遺伝性質より
+		\begin{align}
+			&(A \Longrightarrow B) \Longrightarrow ((A \vee C) \Longrightarrow (B \vee C)), \\
+			&(B \Longrightarrow A) \Longrightarrow ((B \vee C) \Longrightarrow (A \vee C))
+		\end{align}
+		が成立するから三段論法より$(A \vee C) \Longrightarrow (B \vee C)$と
+		$(B \vee C) \Longrightarrow (A \vee C)$が共に成立する．ここに$\wedge$の導入を適用すれば
+		\begin{align}
+			(A \vee C) \Longleftrightarrow (B \vee C)
+		\end{align}
+		が成立し，演繹法則を適用すれば
+		\begin{align}
+			(A \Longleftrightarrow B) \Longrightarrow ((A \vee C) \Longleftrightarrow (B \vee C))
+		\end{align}
+		が得られる．(b)(c)(d)も含意の遺伝性を適用すれば得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalaxm}[矛盾と否定に関する規則]\label{logicalaxm:rules_of_contradiction}
+			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			\begin{description}
+				\item[矛盾の発生] 否定が共に成り立つとき矛盾が導かれる:
+					\begin{align}
+						(A \wedge \rightharpoondown A) \Longrightarrow \bot.
+					\end{align}
+				\item[否定の導出] 矛盾が導かれるとき否定が成り立つ:
+					\begin{align}
+						(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A.
+					\end{align}
+				\item[二重否定の法則] 二重に否定された式は元の式を導く:
+					\begin{align}
+						\rightharpoondown \rightharpoondown A \Longrightarrow A.
+					\end{align}
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\monologue{
+		$A$を$\mathcal{L}'$の閉式とするとき，式$A \Longrightarrow \bot$を
+		``$A$は{\bf 偽である}\index{ぎ@偽}{\bf (false)}''と翻訳します．
+	}
+	
+	否定の導出の逆は定理として得られる．
+	\begin{screen}
+		\begin{logicalthm}[否定が正しい式は偽である]\label{logicalthm:false_and_negation_are_equivalent}
+			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{align}
+				\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$\rightharpoondown A$が成り立っていると仮定する．このとき$A$が成り立っていれば
+		推論規則\ref{logicalaxm:rules_of_contradiction}より$\bot$が成立するから，演繹法則より
+		\begin{align}
+			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[矛盾からはあらゆる式が導かれる]\label{logicalthm:contradiction_derives_any_formula}
+			$A$を$\mathcal{L}'$の閉式とするとき
+			\begin{align}
+				\bot \Longrightarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		推論法則\ref{logicalthm:rule_of_inference_2}より
+		\begin{align}
+			\bot \Longrightarrow (\rightharpoondown A \Longrightarrow \bot)
+		\end{align}
+		が成り立つ．また否定の導出より
+		\begin{align}
+			(\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown \rightharpoondown A
+		\end{align}
+		も成り立ち，さらに二重否定の法則から
+		\begin{align}
+			\rightharpoondown \rightharpoondown A \Longrightarrow A
+		\end{align}
+		も成り立つ．上の式に含意の推移律を適用すれば
+		\begin{align}
+			\bot \Longrightarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+			$A$を$\mathcal{L}'$の閉式とするとき
+			\begin{align}
+				(\rightharpoondown A \Longrightarrow \bot) \Longrightarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$\rightharpoondown A \Longrightarrow \bot$が成り立つとき，否定の導出より
+		$\rightharpoondown \rightharpoondown A$が成り立つが，二重否定の法則より
+		$A$も成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[矛盾を導く式はあらゆる式を導く]\label{logicalthm:formula_leading_to_contradiction_derives_any_formula}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow \bot$が成り立っているとする．推論法則\ref{logicalthm:contradiction_derives_any_formula}より
+		\begin{align}
+			\bot \Longrightarrow B
+		\end{align}
+		が満たされるので，含意の推移律より
+		\begin{align}
+			A \Longrightarrow B
+		\end{align}
+		が成り立つ．従って演繹法則を適用すれば
+		\begin{align}
+			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は否定と論理和で表せる]\label{logicalthm:rule_of_inference_3}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow B$が成り立っていると仮定する．含意の遺伝性質より
+		\begin{align}
+			(A \Longrightarrow B) \Longrightarrow 
+			((A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A))
+		\end{align}
+		が満たされているから三段論法より
+		\begin{align}
+			(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)
+		\end{align}
+		は定理となり，ここに排中律と三段論法を適用すれば
+		\begin{align}
+			B \vee \rightharpoondown A
+		\end{align}
+		が定理となる．
+		ここで論理和の可換律より$\rightharpoondown A \vee B$が成り立つので，演繹法則を適用して
+		\begin{align}
+			(A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
+		\end{align}
+		が得られる．また矛盾に関する推論規則より
+		\begin{align}
+			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+		\end{align}
+		が成り立ち，同時に推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula}より
+		\begin{align}
+			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		も成り立つので，含意の推移律より
+		\begin{align}
+			\rightharpoondown A \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が成立する．他方で推論法則\ref{logicalthm:rule_of_inference_2}より
+		\begin{align}
+			B \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		も成り立つから，場合分けの法則より
+		\begin{align}
+			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が成り立つ．以上で$(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B)$が得られた．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		$A,B$を$\mathcal{L}'$の閉式とするとき，$A$が偽であれば$\rightharpoondown A$が成立する
+		(推論規則\ref{logicalaxm:rules_of_contradiction})ので
+		$\rightharpoondown A \vee B$が成立します(推論規則\ref{logicalaxm:fundamental_rules_of_inference})．
+		すなわちこのとき$A \Longrightarrow B$が成り立つのですが，式の解釈としては
+		``偽な式からはあらゆる式が導かれる''となりますね．この現象を
+		{\bf 空虚な真}\index{くうきょなしん@空虚な真}{\bf (vacuous truth)}と呼びます．
+	}
+	
+	\begin{screen}
+		\begin{logicalthm}[二重否定の法則の逆が成り立つ]
+			$A$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				A \Longrightarrow\ \rightharpoondown \rightharpoondown A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律より
+		\begin{align}
+			\rightharpoondown A \vee \rightharpoondown \rightharpoondown A
+		\end{align}
+		が成立し，また推論法則\ref{logicalthm:rule_of_inference_3}より
+		\begin{align}
+			(\rightharpoondown A \vee \rightharpoondown \rightharpoondown A)
+			\Longrightarrow (A \Longrightarrow\ \rightharpoondown \rightharpoondown A)
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶命題は同値]\label{thm:contraposition_is_true}
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{align}
+				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		推論法則\ref{logicalthm:rule_of_inference_3}，論理和の可換律，二重否定の法則(とその逆)を順に用いれば
+		\begin{align}
+			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
+			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
+			&\Longleftrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A) \\
+			&\Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		対偶命題を述べるときには``対偶を取る''と表現することが多いです．
+	}
+	
+	\begin{screen}
+		\begin{logicalthm}[De Morganの法則]
+			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			\begin{itemize}
+				\item $\rightharpoondown (A \vee B) \Longleftrightarrow\ \rightharpoondown A \wedge \rightharpoondown B$.
+			
+				\item $\rightharpoondown (A \wedge B) \Longleftrightarrow\ \rightharpoondown A \vee \rightharpoondown B$.
+			\end{itemize}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$A \Longrightarrow (A \vee B)$は定理であるから，その対偶命題
+		\begin{align}
+			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A
+		\end{align}
+		も定理となる．同様に$\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown B$は定理となるので，
+		$\rightharpoondown (A \vee B)$が成り立っていると仮定すれば$\rightharpoondown A \wedge \rightharpoondown B$が成り立つ．
+		ゆえに
+		\begin{align}
+			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A \wedge \rightharpoondown B
+		\end{align}
+		が得られる．また$A$が成り立っていると仮定すれば，この下で$\rightharpoondown A \wedge \rightharpoondown B$が成り立っているなら
+		$A$と$\rightharpoondown A$が同時に成り立つことになるので$\bot$が成立する．つまり
+		$A$が成り立っているとき
+		\begin{align}
+			\rightharpoondown A \wedge \rightharpoondown B \Longrightarrow \bot
+		\end{align}
+		が成り立つが，このとき$\rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)$が成り立つので
+		\begin{align}
+			A \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		が得られる．同様にして
+		\begin{align}
+			B \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		も得られるから，場合分け法則より
+		\begin{align}
+			(A \vee B) \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
+		\end{align}
+		が成立する．この対偶を取れば
+		\begin{align}
+			\rightharpoondown A \wedge \rightharpoondown B
+			\Longrightarrow\ \rightharpoondown (A \vee B)
+		\end{align}
+		が出る．以上で一つ目の式が示された．一つ目の式で$A$を$\rightharpoondown A$に，
+		$B$を$\rightharpoondown B$に置き換えると
+		\begin{align}
+			\rightharpoondown \rightharpoondown A \wedge \rightharpoondown \rightharpoondown B
+			\Longleftrightarrow\ \rightharpoondown (\rightharpoondown A \vee \rightharpoondown B)
+		\end{align}
+		が得られるが，このとき二重否定の法則より
+		\begin{align}
+			A \wedge B
+			\Longleftrightarrow\ \rightharpoondown (\rightharpoondown A \vee \rightharpoondown B)
+		\end{align}
+		が成立し，対偶命題の同値性から
+		\begin{align}
+			\rightharpoondown (A \wedge B)
+			\Longleftrightarrow\ (\rightharpoondown A \vee \rightharpoondown B)
+		\end{align}
+		は定理となる．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		以上で``集合であり真類でもある類は存在しない''という言明を証明する準備が整いました．
+	}
+	
+	\begin{screen}
+		\begin{thm}[集合であり真類でもある類は存在しない]
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とするとき，排中律より$\set{a} \vee \rightharpoondown \set{a}$
+		が成り立ち，論理和の可換律より
+		\begin{align}
+			\rightharpoondown \set{a} \vee \set{a}
+		\end{align}
+		も成立する．そしてDe Morganの法則より
+		\begin{align}
+			\rightharpoondown (\ \rightharpoondown \rightharpoondown \set{a} \wedge \rightharpoondown \set{a}\ )
+		\end{align}
+		が成り立つが，二重否定の法則より$\rightharpoondown \rightharpoondown \set{a}$と
+		$\set{a}$は同値となるので
+		\begin{align}
+			\rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ )
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		次は量化記号が推論操作の上でどのような働きを持つのかを規定しましょう．
+	}
+	
+	\begin{screen}
+		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば以下を認める:
+			\begin{description}
+				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の或る対象に代用される．
+				\item[存在記号の規則] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$が成り立つ.
+				\item[全称記号の規則] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$が成り立つ.
+				\item[存在記号の基本性質] $\tau$を$\mathcal{L}$の対象とするとき
+					$A(\tau) \Longrightarrow \exists x A(x)$が成り立つ．
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	$\varepsilon$記号はHilbertのイプシロン関数と呼ばれるもので，
+	量化記号の働きを形式的に表現するには簡便かつ有能である．
+	また$\varepsilon$記号が指定する対象を$\mathcal{L}$のものと約束することで，
+	$\exists$と$\forall$の作用範囲を$\mathcal{L}$の対象全体に制限している．
+	
+	\begin{screen}
+		\begin{logicalthm}[全称記号と任意性]\label{logicalthm:fundamental_law_of_universal_quantifier}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			$\forall x A(x)$が成り立つならば$\mathcal{L}$のいかなる対象$\tau$に対しても$ A(\tau)$が成り立つ．
+			逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$\tau$を$\mathcal{L}$の任意の対象とすれば，存在記号に関する推論規則より
+		\begin{align}
+			\rightharpoondown A(\tau) \Longrightarrow\ \exists x \rightharpoondown A(x)
+		\end{align}
+		と
+		\begin{align}
+			\exists x \rightharpoondown A(x) \Longrightarrow\ \rightharpoondown A
+			\left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立つから，推論法則\ref{logicalthm:transitive_law_of_implication}より
+		\begin{align}
+			\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
+			\left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立ち，対偶を取って
+		\begin{align}
+			A \left( \varepsilon x \rightharpoondown A(x) \right)
+			\Longrightarrow A(\tau)
+		\end{align}
+		が成り立つ．全称記号に関する推論規則より
+		\begin{align}
+			\forall x A(x) \Longrightarrow A \left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が満たされているので
+		\begin{align}
+			\forall x A(x) \Longrightarrow A(\tau)
+		\end{align}
+		が従う．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，特に
+		\begin{align}
+			A \left( \varepsilon x \rightharpoondown A(x) \right)
+		\end{align}
+		が成り立つので$\forall x A(x)$も成り立つ．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}を根拠にして，
+		当面は$\forall x A(x)$という式を``$\mathcal{L}$の任意の対象$x$に対して
+		$A(x)$が成立する''と翻訳することにします．また後述する相等性の公理によれば，
+		これは``任意の集合$x$に対して$A(x)$が成立する''と翻訳しても同義です．
+	}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
+			$\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{align}
+				A(\tau) \Longleftrightarrow B(\tau)
+			\end{align}
+			が成り立っているとき，
+			\begin{align}
+				\exists x A(x) \Longleftrightarrow \exists x B(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x A(x) \Longleftrightarrow \forall x B(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		いま，$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \Longleftrightarrow B(\tau)
+			\label{logicalthm:properties_of_quantifiers_1}
+		\end{align}
+		が成り立っているとする．
+		ここで
+		\begin{align}
+			\exists x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		\begin{align}
+			\tau \defeq \varepsilon x A(x)
+		\end{align}
+		とおけば存在記号に関する規則より
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．再び存在記号に関する規則より
+		\begin{align}
+			\exists x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\exists x A(x) \Longrightarrow \exists x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\exists x B(x) \Longrightarrow \exists x A(x)
+		\end{align}
+		も得られる．今度は
+		\begin{align}
+			\forall x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\forall x A(x) \Longrightarrow \forall x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\forall x B(x) \Longrightarrow \forall x A(x)
+		\end{align}
+		も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する De Morgan の法則]\label{logicalthm:De_Morgan_law_for_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			\begin{align}
+				\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \exists x A(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			\exists x \rightharpoondown A(x) \Longleftrightarrow\ 
+			\rightharpoondown A(\varepsilon x \rightharpoondown A(x))
+		\end{align}
+		は定理である．他方で推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x) 
+		\end{align}
+		もまた定理であり，この対偶を取れば
+		\begin{align}
+			\rightharpoondown A(\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow\ 
+			\rightharpoondown \forall x A(x)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists x \rightharpoondown A(x) \Longleftrightarrow\ \rightharpoondown \forall x A(x)
+		\end{align}
+		が従う．$A$を$\rightharpoondown A$に置き換えれば
+		\begin{align}
+			\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
+			\rightharpoondown \exists x \rightharpoondown \rightharpoondown A(x)
+		\end{align}
+		が成り立ち，また$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \Longleftrightarrow\ \rightharpoondown \rightharpoondown A(\tau)
+		\end{align}
+		が成り立つので，推論法則\ref{logicalthm:properties_of_quantifiers}より
+		\begin{align}
+			\exists x \rightharpoondown \rightharpoondown A(x)
+			\Longleftrightarrow \exists x A(x)
+		\end{align}
+		も成り立つ．ゆえに
+		\begin{align}
+			\forall x \rightharpoondown A(x) \Longleftrightarrow\ 
+			\rightharpoondown \exists x A(x)
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
