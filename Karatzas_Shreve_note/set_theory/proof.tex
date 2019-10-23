@@ -34,21 +34,61 @@
 				\mathscr{T} \vdash \psi \rightarrow \varphi
 			\end{align}
 			
-		\item[三段論法] $\psi$と$\varphi$を文とするとき，
-			$\psi$と$\psi \rightarrow \varphi$が共に$\mathscr{S}$の定理ならば$\varphi$は$\mathscr{S}$の定理である．
+		\item[三段論法] $A$と$B$を文とするとき
+			\begin{align}
+				A,A \Longrightarrow B \vdash B.
+			\end{align}
 		
-		\item[$\vee$の導入] $\psi$と$\varphi$を文とするとき，
-			$\psi$が$\mathscr{S}$の定理ならば$\vee \varphi \psi$と$\vee \psi \varphi$は$\mathscr{S}$の定理である．
+		\item[$\vee$の導入] $A$と$B$を文とするとき
+			\begin{align}
+				A \vdash A \vee B
+			\end{align}
+			かつ
+			\begin{align}
+				B \vdash A \vee B.
+			\end{align}
 		
-		\item[$\wedge$の導入] $\psi$と$\varphi$を文とするとき，
-			$\psi$と$\varphi$が$\mathscr{S}$の定理ならば$\wedge \psi \varphi$は$\mathscr{S}$の定理である．
+		\item[$\wedge$の導入] $A$と$B$を文とするとき
+			\begin{align}
+				A,B \vdash A \wedge B.
+			\end{align}
 		
-		\item[$\wedge$の除去] $\psi$と$\varphi$を文とするとき，
-			$\wedge \psi \varphi$が$\mathscr{S}$の定理ならば$\psi$と$\varphi$は$\mathscr{S}$の定理である．
+		\item[$\wedge$の除去] $A$と$B$を文とするとき
+			\begin{align}
+				A \wedge B \vdash A
+			\end{align}
+			かつ
+			\begin{align}
+				A \wedge B \vdash B.
+			\end{align}
 			
-		\item[場合分け法則] $A$と$B$と$C$を文とするとき，
-			$\vee A B$と$A \rightarrow C$と$B \rightarrow C$が$\mathscr{S}$の定理ならば$C$は$\mathscr{S}$の定理である．
+		\item[場合分け法則] $A$と$B$と$C$を文とするとき
+			\begin{align}
+				A \vee B, A \Longrightarrow C, B \Longrightarrow C \vdash C.
+			\end{align}
 	\end{description}
+	
+	例えばいま
+	\begin{align}
+		\mathscr{S} \vdash A
+	\end{align}
+	かつ
+	\begin{align}
+		\mathscr{S} \vdash B
+	\end{align}
+	であるとすれば
+	\begin{align}
+		\mathscr{S} \vdash A \wedge B
+	\end{align}
+	が成り立つ．実際，$\wedge$の導入に演繹法則を二度適用すれば
+	\begin{align}
+		\vdash A \Longrightarrow (B \Longrightarrow (A \wedge B))
+	\end{align}
+	が成り立つのであるから，
+	$\mathscr{S}$からの$A$への証明に$A \Longrightarrow (B \Longrightarrow (A \wedge B))$と
+	$B \Longrightarrow (A \wedge B)$を追加した文の列は$\mathscr{S}$からの
+	$B \Longrightarrow (A \wedge B)$への証明となり，ここに$\mathscr{S}$からの$B$への証明を追加して
+	最後に$A \wedge B$を載せれば，その文の列は$\mathscr{S}$からの$A \wedge B$への証明となっている．
 	
 	与えられた閉式$\varphi$が証明可能であるとは，
 	\begin{itemize}

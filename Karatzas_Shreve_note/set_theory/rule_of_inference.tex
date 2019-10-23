@@ -1,6 +1,8 @@
 \section{推論}
 	本節では，「集合でも真類でもない類は存在しない」と「集合であり真類でもある類は存在しない」の二つの言明の正否の決定を主軸にして
 	{\bf 推論規則}\index{すいろんきそく@推論規則}{\bf (rule of inference)}を導入し，基本的な推論法則を導出する．
+	推論法則とは他の本で{\bf 恒真式}\index{こうしんしき@恒真式}{\bf (tautology)}と呼ばれるものであるが，
+	基礎論の本では恒真であることを真理表に基づいて示しているのに対し，本稿では推論規則によって形式的に導いていく．
 	
 	\begin{screen}
 		\begin{logicalaxm}[排中律]
@@ -364,17 +366,26 @@
 	
 	\begin{screen}
 		\begin{logicalthm}[正しい式は仮定を選ばない]\label{logicalthm:rule_of_inference_2}
-			$A,B$を$\mathcal{L}'$の閉式とするとき，
-			$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash B \Longrightarrow (A \Longrightarrow B).
+			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$B$を公理に追加した場合，$A$を公理に追加しても$B$は真であるから，このとき
 		\begin{align}
-			A \Longrightarrow B
+			A,B \vdash B
 		\end{align}
-		は定理となる．従って演繹法則より$B \Longrightarrow (A \Longrightarrow B)$は定理である．
+		より演繹法則から
+		\begin{align}
+			B \vdash A \Longrightarrow B
+		\end{align}
+		となり，再び演繹法則より
+		\begin{align}
+			\vdash B \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
 	
@@ -447,54 +458,158 @@
 	
 	\begin{screen}
 		\begin{logicalaxm}[矛盾と否定に関する規則]\label{logicalaxm:rules_of_contradiction}
-			$A$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			$A$を文とするとき以下が成り立つ:
 			\begin{description}
-				\item[矛盾の発生] 否定が共に成り立つとき矛盾が導かれる:
+				\item[矛盾の発生] 否定が共に成り立つとき矛盾が起きる:
 					\begin{align}
-						(A \wedge \rightharpoondown A) \Longrightarrow \bot.
+						A, \rightharpoondown A \vdash \bot.
 					\end{align}
 				\item[否定の導出] 矛盾が導かれるとき否定が成り立つ:
 					\begin{align}
-						(A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown A.
+						A \Longrightarrow \bot \vdash\ \rightharpoondown A.
 					\end{align}
 				\item[二重否定の法則] 二重に否定された式は元の式を導く:
 					\begin{align}
-						\rightharpoondown \rightharpoondown A \Longrightarrow A.
+						\rightharpoondown \rightharpoondown A \vdash A.
 					\end{align}
 			\end{description}
 		\end{logicalaxm}
 	\end{screen}
 	
-	\monologue{
-		$A$を$\mathcal{L}'$の閉式とするとき，式$A \Longrightarrow \bot$を
-		``$A$は{\bf 偽である}\index{ぎ@偽}{\bf (false)}''と翻訳します．
-	}
+	文$A$が$\mathscr{S} \vdash\ \rightharpoondown A$を満たすとき，
+	$A$は公理系$\mathscr{S}$において{\bf 偽である}\index{ぎ@偽}{\bf (false)}という．
 	
-	否定の導出の逆は定理として得られる．
 	\begin{screen}
-		\begin{logicalthm}[否定が正しい式は偽である]\label{logicalthm:false_and_negation_are_equivalent}
-			$A$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+		\begin{logicalthm}[偽な式は矛盾を導く]\label{logicalthm:false_and_negation_are_equivalent}
+			$A$を文とするとき
 			\begin{align}
-				\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot).
+				\vdash\ \rightharpoondown A \Longrightarrow (A \Longrightarrow \bot).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$\rightharpoondown A$が成り立っていると仮定する．このとき$A$が成り立っていれば
-		推論規則\ref{logicalaxm:rules_of_contradiction}より$\bot$が成立するから，演繹法則より
+		矛盾の規則より
 		\begin{align}
-			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+			A,\rightharpoondown A \vdash \bot
 		\end{align}
-		が成り立つ．
+		である．演繹法則より
+		\begin{align}
+			\rightharpoondown A \vdash A \Longrightarrow \bot
+		\end{align}
+		が成り立ち，再び演繹法則より
+		\begin{align}
+			\vdash\ \rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	$A,B \vdash C$と$A \wedge B \vdash C$は同値である．$A,B \vdash C$が成り立っているとすると，
+	$\vdash A \Longrightarrow (B \Longrightarrow C)$が成り立つ．
+	$A \wedge B \vdash A$と三段論法より
+	$A \wedge B \vdash B \Longrightarrow C$が成り立ち，
+	$A \wedge B \vdash B$と三段論法より
+	$A \wedge B \vdash C$が成り立つ．逆に$A \wedge B \vdash C$が成り立っているとすると
+	$\vdash (A \wedge B) \Longrightarrow C$が成り立つ．
+	$A,B \vdash A \wedge B$と三段論法より
+	$A, B \vdash C$が成り立つ．
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\rightharpoondown A \Longrightarrow \bot) \Longrightarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		否定の導出より
+		\begin{align}
+			\vdash (\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown \rightharpoondown A
+		\end{align}
+		が成り立ち，二重否定の法則より
+		\begin{align}
+			\vdash\ \rightharpoondown \rightharpoondown A \Longrightarrow A
+		\end{align}
+		が成り立つので，$\wedge$の導入より
+		\begin{align}
+			\vdash ((\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown \rightharpoondown A)
+			\wedge (\rightharpoondown \rightharpoondown A \Longrightarrow A)
+		\end{align}
+		が成り立つ．含意の推移律(推論法則\ref{logicalthm:transitive_law_of_implication})より
+		\begin{align}
+			\vdash ((\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown \rightharpoondown A)
+			\wedge (\rightharpoondown \rightharpoondown A \Longrightarrow A)
+			\Longrightarrow ((\rightharpoondown A \Longrightarrow \bot) \Longrightarrow A)
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\vdash (\rightharpoondown A \Longrightarrow \bot) \Longrightarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[排中律]\label{logicalthm:law_of_excluded_middle}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \vee \rightharpoondown A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A), A \vdash A
+		\end{align}
+		と$\vee$の導入より
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A), A \vdash A \vee \rightharpoondown A
+		\end{align}
+		が成り立つ．一方で
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A), A \vdash\ \rightharpoondown (A \vee \rightharpoondown A)
+		\end{align}
+		も成り立つので
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A), A \vdash \bot
+		\end{align}
+		が成り立つ．演繹法則より
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A) \vdash A \Longrightarrow \bot
+		\end{align}
+		が成り立つので，否定の導出より
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A) \vdash\ \rightharpoondown A
+		\end{align}
+		が成り立つ．再び$\vee$の導入によって
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A) \vdash A \vee \rightharpoondown A
+		\end{align}
+		が成り立つ．再び否定の導出より
+		\begin{align}
+			\rightharpoondown (A \vee \rightharpoondown A) \vdash \bot
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\vdash\ \rightharpoondown (A \vee \rightharpoondown A) \Longrightarrow \bot
+		\end{align}
+		が成り立ち，背理法の原理より
+		\begin{align}
+			\vdash A \vee \rightharpoondown A
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[矛盾からはあらゆる式が導かれる]\label{logicalthm:contradiction_derives_any_formula}
-			$A$を$\mathcal{L}'$の閉式とするとき
+			$A$を文とするとき
 			\begin{align}
-				\bot \Longrightarrow A.
+				\vdash \bot \Longrightarrow A.
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -502,132 +617,141 @@
 	\begin{prf}
 		推論法則\ref{logicalthm:rule_of_inference_2}より
 		\begin{align}
-			\bot \Longrightarrow (\rightharpoondown A \Longrightarrow \bot)
+			\vdash \bot \Longrightarrow (\rightharpoondown A \Longrightarrow \bot)
 		\end{align}
-		が成り立つ．また否定の導出より
+		が成り立つ．また背理法の原理より
 		\begin{align}
-			(\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ \rightharpoondown \rightharpoondown A
+			\vdash (\rightharpoondown A \Longrightarrow \bot) \Longrightarrow\ A
 		\end{align}
-		も成り立ち，さらに二重否定の法則から
+		が成り立つので，含意の推移律を適用すれば
 		\begin{align}
-			\rightharpoondown \rightharpoondown A \Longrightarrow A
-		\end{align}
-		も成り立つ．上の式に含意の推移律を適用すれば
-		\begin{align}
-			\bot \Longrightarrow A
+			\vdash \bot \Longrightarrow A
 		\end{align}
 		が得られる．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalthm}[背理法の原理]
-			$A$を$\mathcal{L}'$の閉式とするとき
-			\begin{align}
-				(\rightharpoondown A \Longrightarrow \bot) \Longrightarrow A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		$\rightharpoondown A \Longrightarrow \bot$が成り立つとき，否定の導出より
-		$\rightharpoondown \rightharpoondown A$が成り立つが，二重否定の法則より
-		$A$も成立する．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[矛盾を導く式はあらゆる式を導く]\label{logicalthm:formula_leading_to_contradiction_derives_any_formula}
-			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			$A,B$を文とするとき
 			\begin{align}
-				(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B).
+				\vdash (A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$A \Longrightarrow \bot$が成り立っているとする．推論法則\ref{logicalthm:contradiction_derives_any_formula}より
+		推論法則\ref{logicalthm:contradiction_derives_any_formula}より
 		\begin{align}
-			\bot \Longrightarrow B
+			\vdash \bot \Longrightarrow B
 		\end{align}
-		が満たされるので，含意の推移律より
+		が成り立つので
 		\begin{align}
-			A \Longrightarrow B
+			A \Longrightarrow \bot \vdash \bot \Longrightarrow B
 		\end{align}
-		が成り立つ．従って演繹法則を適用すれば
+		が成り立つ．
 		\begin{align}
-			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+			A \Longrightarrow \bot \vdash A \Longrightarrow \bot
+		\end{align}
+		も成り立つので，含意の推移律(推論法則\ref{logicalthm:transitive_law_of_implication})より
+		\begin{align}
+			A \Longrightarrow \bot \vdash A \Longrightarrow B
+		\end{align}
+		が成り立つ．そして演繹法則より
+		\begin{align}
+			\vdash (A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
 		\end{align}
 		が得られる．
 		\QED
 	\end{prf}
 	
+	\begin{itembox}[l]{空虚な真}
+		$A,B$を文とするとき，偽な式は矛盾を導くので(推論法則\ref{logicalthm:false_and_negation_are_equivalent})
+		\begin{align}
+			\vdash\ \rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+		\end{align}
+		が成り立ち，矛盾を導く式はあらゆる式を導くから(推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula})
+		\begin{align}
+			\vdash (A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が成り立つ．以上と含意の推移律より
+		\begin{align}
+			\vdash\ \rightharpoondown A \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が得られる．つまり``偽な式はあらゆる式を導く''のであり，この現象を
+		{\bf 空虚な真}\index{くうきょなしん@空虚な真}{\bf (vacuous truth)}と呼ぶ．
+	\end{itembox}
+	
 	\begin{screen}
 		\begin{logicalthm}[含意は否定と論理和で表せる]\label{logicalthm:rule_of_inference_3}
-			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			$A,B$を文とするとき
 			\begin{align}
-				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B).
+				\vdash (A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
-	\begin{prf}
-		$A \Longrightarrow B$が成り立っていると仮定する．含意の遺伝性質より
-		\begin{align}
-			(A \Longrightarrow B) \Longrightarrow 
-			((A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A))
-		\end{align}
-		が満たされているから三段論法より
-		\begin{align}
-			(A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)
-		\end{align}
-		は定理となり，ここに排中律と三段論法を適用すれば
-		\begin{align}
-			B \vee \rightharpoondown A
-		\end{align}
-		が定理となる．
-		ここで論理和の可換律より$\rightharpoondown A \vee B$が成り立つので，演繹法則を適用して
-		\begin{align}
-			(A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
-		\end{align}
-		が得られる．また矛盾に関する推論規則より
-		\begin{align}
-			\rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
-		\end{align}
-		が成り立ち，同時に推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula}より
-		\begin{align}
-			(A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
-		\end{align}
-		も成り立つので，含意の推移律より
-		\begin{align}
-			\rightharpoondown A \Longrightarrow (A \Longrightarrow B)
-		\end{align}
-		が成立する．他方で推論法則\ref{logicalthm:rule_of_inference_2}より
-		\begin{align}
-			B \Longrightarrow (A \Longrightarrow B)
-		\end{align}
-		も成り立つから，場合分けの法則より
-		\begin{align}
-			(\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
-		\end{align}
-		が成り立つ．以上で$(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown A \vee B)$が得られた．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				含意の遺伝性質より
+				\begin{align}
+					\vdash (A \Longrightarrow B) \Longrightarrow 
+					((A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A))
+				\end{align}
+				が成り立つので
+				\begin{align}
+					A \Longrightarrow B \vdash (A \vee \rightharpoondown A) \Longrightarrow (B \vee \rightharpoondown A)
+				\end{align}
+				となる．排中律より
+				\begin{align}
+					A \Longrightarrow B \vdash A \vee \rightharpoondown A
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					A \Longrightarrow B \vdash B \vee \rightharpoondown A
+				\end{align}
+				が成り立ち，論理和の可換律(推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction})より
+				\begin{align}
+					A \Longrightarrow B \vdash\ \rightharpoondown A \vee B
+				\end{align}
+				が得られ，演繹法則より
+				\begin{align}
+					\vdash (A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
+				\end{align}
+				が得られる．
+				
+			\item[第二段]
+				推論法則\ref{logicalthm:false_and_negation_are_equivalent}より
+				\begin{align}
+					\vdash\ \rightharpoondown A \Longrightarrow (A \Longrightarrow \bot)
+				\end{align}
+				が成り立ち，一方で推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula}より
+				\begin{align}
+					\vdash (A \Longrightarrow \bot) \Longrightarrow (A \Longrightarrow B)
+				\end{align}
+				も成り立つので，含意の推移律より
+				\begin{align}
+					\vdash\ \rightharpoondown A \Longrightarrow (A \Longrightarrow B)
+				\end{align}
+				が成立する．推論法則\ref{logicalthm:rule_of_inference_2}より
+				\begin{align}
+					\vdash B \Longrightarrow (A \Longrightarrow B)
+				\end{align}
+				も成り立つから，場合分けの法則より
+				\begin{align}
+					\vdash (\rightharpoondown A \vee B) \Longrightarrow (A \Longrightarrow B)
+				\end{align}
+				が成り立つ．
+				\QED
+		\end{description}
 	\end{prf}
 	
-	\monologue{
-		$A,B$を$\mathcal{L}'$の閉式とするとき，$A$が偽であれば$\rightharpoondown A$が成立する
-		(推論規則\ref{logicalaxm:rules_of_contradiction})ので
-		$\rightharpoondown A \vee B$が成立します(推論規則\ref{logicalaxm:fundamental_rules_of_inference})．
-		すなわちこのとき$A \Longrightarrow B$が成り立つのですが，式の解釈としては
-		``偽な式からはあらゆる式が導かれる''となりますね．この現象を
-		{\bf 空虚な真}\index{くうきょなしん@空虚な真}{\bf (vacuous truth)}と呼びます．
-	}
-	
 	\begin{screen}
-		\begin{logicalthm}[二重否定の法則の逆が成り立つ]
-			$A$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+		\begin{logicalthm}[二重否定の法則の逆が成り立つ]\label{logicalthm:converse_of_law_of_double_negative}
+			$A$を文とするとき
 			\begin{align}
-				A \Longrightarrow\ \rightharpoondown \rightharpoondown A.
+				\vdash A \Longrightarrow\ \rightharpoondown \rightharpoondown A.
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -635,16 +759,16 @@
 	\begin{prf}
 		排中律より
 		\begin{align}
-			\rightharpoondown A \vee \rightharpoondown \rightharpoondown A
+			\vdash\ \rightharpoondown A \vee \rightharpoondown \rightharpoondown A
 		\end{align}
 		が成立し，また推論法則\ref{logicalthm:rule_of_inference_3}より
 		\begin{align}
-			(\rightharpoondown A \vee \rightharpoondown \rightharpoondown A)
+			\vdash (\rightharpoondown A \vee \rightharpoondown \rightharpoondown A)
 			\Longrightarrow (A \Longrightarrow\ \rightharpoondown \rightharpoondown A)
 		\end{align}
 		も成り立つので，三段論法より
 		\begin{align}
-			A \Longrightarrow\ \rightharpoondown \rightharpoondown A
+			\vdash A \Longrightarrow\ \rightharpoondown \rightharpoondown A
 		\end{align}
 		が成立する．
 		\QED
@@ -652,92 +776,192 @@
 	
 	\begin{screen}
 		\begin{logicalthm}[対偶命題は同値]\label{thm:contraposition_is_true}
-			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			$A,B$を文とするとき
 			\begin{align}
-				(A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A).
+				\vdash (A \Longrightarrow B) \Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
-	\begin{prf}
-		推論法則\ref{logicalthm:rule_of_inference_3}，論理和の可換律，二重否定の法則(とその逆)を順に用いれば
-		\begin{align}
-			(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
-			&\Longleftrightarrow (B \vee \rightharpoondown A) \\
-			&\Longleftrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A) \\
-			&\Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
-		\end{align}
-		が成り立つ．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				含意は否定と論理和で表せるので(推論法則\ref{logicalthm:rule_of_inference_3})
+				\begin{align}
+					\vdash (A \Longrightarrow B) \Longrightarrow (\rightharpoondown A \vee B)
+					\label{eq:thm_contraposition_is_true_1}
+				\end{align}
+				が成り立つ．また論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction})
+				\begin{align}
+					\vdash (\rightharpoondown A \vee B) \Longrightarrow (B \vee \rightharpoondown A)
+					\label{eq:thm_contraposition_is_true_2}
+				\end{align}
+				が成り立つ．ところで二重否定の法則の逆(推論法則\ref{logicalthm:converse_of_law_of_double_negative})より
+				\begin{align}
+					\vdash B \Longrightarrow\ \rightharpoondown \rightharpoondown B
+				\end{align}
+				が成り立ち，また含意の遺伝性質より
+				\begin{align}
+					\vdash (B \Longrightarrow\ \rightharpoondown \rightharpoondown B)
+					\Longrightarrow ((B \vee \rightharpoondown A) 
+					\Longrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A))
+				\end{align}
+				も成り立つから，三段論法より
+				\begin{align}
+					\vdash (B \vee \rightharpoondown A) 
+					\Longrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A)
+					\label{eq:thm_contraposition_is_true_3}
+				\end{align}
+				が成立する．再び推論法則\ref{logicalthm:rule_of_inference_3}によって
+				\begin{align}
+					\vdash (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A)
+					\Longrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+					\label{eq:thm_contraposition_is_true_4}
+				\end{align}
+				が成り立つ．(\refeq{eq:thm_contraposition_is_true_1})と(\refeq{eq:thm_contraposition_is_true_2})と
+				(\refeq{eq:thm_contraposition_is_true_3})と(\refeq{eq:thm_contraposition_is_true_4})に含意の推移律を適用すれば
+				\begin{align}
+					\vdash (A \Longrightarrow B) \Longrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+				\end{align}
+				が得られる．
+				
+			\item[第二段]
+				含意は否定と論理和で表せるので(推論法則\ref{logicalthm:rule_of_inference_3})
+				\begin{align}
+					\vdash (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+					\Longrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A)
+					\label{eq:thm_contraposition_is_true_5}
+				\end{align}
+				が成り立つ．ところで二重否定の法則より
+				\begin{align}
+					\vdash\ \rightharpoondown \rightharpoondown B \Longrightarrow B
+				\end{align}
+				が成り立ち，また含意の遺伝性質より
+				\begin{align}
+					\vdash (\rightharpoondown \rightharpoondown B \Longrightarrow B)
+					\Longrightarrow ((\rightharpoondown \rightharpoondown B \vee \rightharpoondown A)
+					\Longrightarrow (B \vee \rightharpoondown A))
+				\end{align}
+				も成り立つから，三段論法より
+				\begin{align}
+					\vdash (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A)
+					\Longrightarrow (B \vee \rightharpoondown A)
+					\label{eq:thm_contraposition_is_true_6}
+				\end{align}
+				が成立する．論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction})
+				\begin{align}
+					\vdash (B \vee \rightharpoondown A) \Longrightarrow (\rightharpoondown A \vee B)
+					\label{eq:thm_contraposition_is_true_7}
+				\end{align}
+				が成り立つ．再び推論法則\ref{logicalthm:rule_of_inference_3}によって
+				\begin{align}
+					\vdash (\rightharpoondown A \vee B)
+					\Longrightarrow (A \Longrightarrow B)
+					\label{eq:thm_contraposition_is_true_8}
+				\end{align}
+				が成り立つ．(\refeq{eq:thm_contraposition_is_true_5})と(\refeq{eq:thm_contraposition_is_true_6})と
+				(\refeq{eq:thm_contraposition_is_true_7})と(\refeq{eq:thm_contraposition_is_true_8})に含意の推移律を適用すれば
+				\begin{align}
+					\vdash (\rightharpoondown B \Longrightarrow\ \rightharpoondown A) \Longrightarrow (A \Longrightarrow B)
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{prf}
 	
-	\monologue{
-		対偶命題を述べるときには``対偶を取る''と表現することが多いです．
-	}
+	上の証明は簡単に書けば
+	\begin{align}
+		(A \Longrightarrow B) &\Longleftrightarrow (\rightharpoondown A \vee B) \\
+		&\Longleftrightarrow (B \vee \rightharpoondown A) \\
+		&\Longleftrightarrow (\rightharpoondown \rightharpoondown B \vee \rightharpoondown A) \\
+		&\Longleftrightarrow (\rightharpoondown B \Longrightarrow\ \rightharpoondown A)
+	\end{align}
+	で足りる．
 	
 	\begin{screen}
 		\begin{logicalthm}[De Morganの法則]
-			$A,B$を$\mathcal{L}'$の閉式とするとき，次が成り立つ:
+			$A,B$を文とするとき
 			\begin{itemize}
-				\item $\rightharpoondown (A \vee B) \Longleftrightarrow\ \rightharpoondown A \wedge \rightharpoondown B$.
+				\item $\vdash\ \rightharpoondown (A \vee B) \Longleftrightarrow\ \rightharpoondown A \wedge \rightharpoondown B$.
 			
-				\item $\rightharpoondown (A \wedge B) \Longleftrightarrow\ \rightharpoondown A \vee \rightharpoondown B$.
+				\item $\vdash\ \rightharpoondown (A \wedge B) \Longleftrightarrow\ \rightharpoondown A \vee \rightharpoondown B$.
 			\end{itemize}
 		\end{logicalthm}
 	\end{screen}
 	
-	\begin{prf}
-		$A \Longrightarrow (A \vee B)$は定理であるから，その対偶命題
-		\begin{align}
-			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A
-		\end{align}
-		も定理となる．同様に$\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown B$は定理となるので，
-		$\rightharpoondown (A \vee B)$が成り立っていると仮定すれば$\rightharpoondown A \wedge \rightharpoondown B$が成り立つ．
-		ゆえに
-		\begin{align}
-			\rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A \wedge \rightharpoondown B
-		\end{align}
-		が得られる．また$A$が成り立っていると仮定すれば，この下で$\rightharpoondown A \wedge \rightharpoondown B$が成り立っているなら
-		$A$と$\rightharpoondown A$が同時に成り立つことになるので$\bot$が成立する．つまり
-		$A$が成り立っているとき
-		\begin{align}
-			\rightharpoondown A \wedge \rightharpoondown B \Longrightarrow \bot
-		\end{align}
-		が成り立つが，このとき$\rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)$が成り立つので
-		\begin{align}
-			A \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
-		\end{align}
-		が得られる．同様にして
-		\begin{align}
-			B \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
-		\end{align}
-		も得られるから，場合分け法則より
-		\begin{align}
-			(A \vee B) \Longrightarrow\ \rightharpoondown(\rightharpoondown A \wedge \rightharpoondown B)
-		\end{align}
-		が成立する．この対偶を取れば
-		\begin{align}
-			\rightharpoondown A \wedge \rightharpoondown B
-			\Longrightarrow\ \rightharpoondown (A \vee B)
-		\end{align}
-		が出る．以上で一つ目の式が示された．一つ目の式で$A$を$\rightharpoondown A$に，
-		$B$を$\rightharpoondown B$に置き換えると
-		\begin{align}
-			\rightharpoondown \rightharpoondown A \wedge \rightharpoondown \rightharpoondown B
-			\Longleftrightarrow\ \rightharpoondown (\rightharpoondown A \vee \rightharpoondown B)
-		\end{align}
-		が得られるが，このとき二重否定の法則より
-		\begin{align}
-			A \wedge B
-			\Longleftrightarrow\ \rightharpoondown (\rightharpoondown A \vee \rightharpoondown B)
-		\end{align}
-		が成立し，対偶命題の同値性から
-		\begin{align}
-			\rightharpoondown (A \wedge B)
-			\Longleftrightarrow\ (\rightharpoondown A \vee \rightharpoondown B)
-		\end{align}
-		は定理となる．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]	論理和の導入の対偶を取れば
+				\begin{align}
+					\vdash\ \rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown A
+				\end{align}
+				と
+				\begin{align}
+					\vdash\ \rightharpoondown (A \vee B) \Longrightarrow\ \rightharpoondown B
+				\end{align}
+				が成り立つ(推論法則\ref{thm:contraposition_is_true})．
+				二式が同時に導かれるならその論理積も導かれるので(推論法則\ref{logicalthm:conjunction_of_consequences})
+				\begin{align}
+					\vdash\ \rightharpoondown (A \vee B) \Longrightarrow (\rightharpoondown A \wedge \rightharpoondown B)
+				\end{align}
+				が得られる．また
+				\begin{align}
+					A, \rightharpoondown A \wedge \rightharpoondown B \vdash A
+				\end{align}
+				かつ
+				\begin{align}
+					A, \rightharpoondown A \wedge \rightharpoondown B \vdash\ \rightharpoondown A
+				\end{align}
+				より
+				\begin{align}
+					A, \rightharpoondown A \wedge \rightharpoondown B \vdash \bot
+				\end{align}
+				が成り立つので，演繹法則より
+				\begin{align}
+					A \vdash (\rightharpoondown A \wedge \rightharpoondown B) \Longrightarrow \bot
+				\end{align}
+				が従い，否定の導入により
+				\begin{align}
+					A \vdash\ \rightharpoondown (\rightharpoondown A \wedge \rightharpoondown B)
+				\end{align}
+				が成り立つ．同様にして
+				\begin{align}
+					B \vdash\ \rightharpoondown (\rightharpoondown A \wedge \rightharpoondown B)
+				\end{align}
+				も成り立つので，場合分け法則より
+				\begin{align}
+					\vdash (A \vee B) \Longrightarrow\ \rightharpoondown (\rightharpoondown A \wedge \rightharpoondown B)
+				\end{align}
+				が成立する．この対偶を取れば
+				\begin{align}
+					\vdash (\rightharpoondown A \wedge \rightharpoondown B) \Longrightarrow\ \rightharpoondown (A \vee B)
+				\end{align}
+				が得られる(推論法則\ref{thm:contraposition_is_true})．
+				
+			\item[第二段]
+				前段の結果より
+				\begin{align}
+					\vdash (\rightharpoondown \rightharpoondown A \wedge \rightharpoondown \rightharpoondown B)
+					\Longleftrightarrow\ \rightharpoondown (\rightharpoondown A \vee \rightharpoondown B)
+				\end{align}
+				が成り立つ．ところで二重否定の法則とその逆(推論法則\ref{logicalthm:converse_of_law_of_double_negative})より
+				\begin{align}
+					\vdash (\rightharpoondown \rightharpoondown A \wedge \rightharpoondown \rightharpoondown B)
+					\Longleftrightarrow (A \wedge B)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\vdash (A \wedge B) 
+					\Longleftrightarrow\ \rightharpoondown (\rightharpoondown A \vee \rightharpoondown B)
+				\end{align}
+				が成り立つ．対偶命題の同値性(推論法則\ref{thm:contraposition_is_true})から
+				\begin{align}
+					\vdash\ \rightharpoondown (A \wedge B)
+					\Longleftrightarrow\ (\rightharpoondown A \vee \rightharpoondown B)
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\monologue{
