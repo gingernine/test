@@ -116,22 +116,25 @@
 	
 	\begin{screen}
 		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
-			$A$を$\mathcal{L}'$の閉式とするとき$A \Longrightarrow A$は定理である．
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \Longrightarrow A.
+			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$A$を公理に追加すれば$A$は成立するので，演繹法則より$A \Longrightarrow A$は定理である．
+		$A \vdash A$であるから，演繹法則より$\vdash A \Longrightarrow A$となる．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[論理和・論理積の可換律]
 		\label{logicalthm:commutative_law_of_disjunction_and_conjunction}
-			$A,B$を$\mathcal{L}'$の閉式とするとき次は定理である:
+			$A,B$を文とするとき
 			\begin{itemize}
-				\item $(A \vee B) \Longrightarrow (B \vee A)$.
-				\item $(A \wedge B) \Longrightarrow (B \wedge A)$.
+				\item $\vdash (A \vee B) \Longrightarrow (B \vee A)$.
+				\item $\vdash (A \wedge B) \Longrightarrow (B \wedge A)$.
 			\end{itemize}
 		\end{logicalthm}
 	\end{screen}
@@ -139,72 +142,132 @@
 	\begin{prf}
 		$\vee$の導入により
 		\begin{align}
-			A \Longrightarrow (B \vee A)
+			\vdash A \Longrightarrow (B \vee A)
 		\end{align}
 		と
 		\begin{align}
-			B \Longrightarrow (A \vee B)
+			\vdash B \Longrightarrow (A \vee B)
 		\end{align}
-		は定理であるから，場合分け法則より
+		が成り立つので，場合分け法則より
 		\begin{align}
-			(A \vee B) \Longrightarrow (B \vee A)
+			\vdash (A \vee B) \Longrightarrow (B \vee A)
 		\end{align}
-		は定理である．また，$\wedge$の除去より
+		が成り立つ．また，$\wedge$の除去より
 		\begin{align}
-			A \wedge B \Longrightarrow A
+			A \wedge B \vdash A
 		\end{align}
 		と
 		\begin{align}
-			A \wedge B \Longrightarrow B
+			A \wedge B \vdash B
 		\end{align}
-		は定理であるから，いま
+		となるので，$\wedge$の導入により
 		\begin{align}
-			A \wedge B
+			A \wedge B \vdash B \wedge A
 		\end{align}
-		が成り立っていると仮定すれば三段論法により$B$も$A$も定理となる．このとき
+		が成り立つ．よって演繹法則より
 		\begin{align}
-			B \wedge A
+			\vdash (A \wedge B) \Longrightarrow (B \wedge A)
 		\end{align}
-		が定理となるので，演繹法則より
-		\begin{align}
-			(A \wedge B) \Longrightarrow (B \wedge A)
-		\end{align}
-		は定理である．
+		が成り立つ．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[含意の推移律]\label{logicalthm:transitive_law_of_implication}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
-			$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理ならば
-			$A \Longrightarrow C$は定理である．
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash ((A \Longrightarrow B) \wedge (B \Longrightarrow C)) 
+				\Longrightarrow (A \Longrightarrow C).
+			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$A \Longrightarrow B$と$B \Longrightarrow C$が共に定理であるとして，
-		$A$が成り立っていると仮定する．このとき三段論法より$B$が定理となり，
-		再び三段論法より$C$が定理となる．ゆえに$A \Longrightarrow C$は定理である．
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C),A \vdash 
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C)
+		\end{align}
+		であるから，$\wedge$の除去より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C),A \vdash A \Longrightarrow B
+		\end{align}
+		となる．また
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C),A \vdash A
+		\end{align}
+		でもあるから，三段論法より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C),A \vdash B
+		\end{align}
+		となる．$\wedge$の除去より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C),A \vdash B \Longrightarrow C
+		\end{align}
+		も成り立つから，再び三段論法より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C),A \vdash C
+		\end{align}
+		となる．よって演繹法則より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (B \Longrightarrow C) \vdash A \Longrightarrow C
+		\end{align}
+		となり，
+		\begin{align}
+			\vdash ((A \Longrightarrow B) \wedge (B \Longrightarrow C)) 
+			\Longrightarrow (A \Longrightarrow C)
+		\end{align}
+		を得る．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[二式が同時に導かれるならその論理積が導かれる]
 		\label{logicalthm:conjunction_of_consequences}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき，
-			$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理ならば
-			$A \Longrightarrow (B \wedge C)$は定理である．
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash ((A \Longrightarrow B) \wedge (A \Longrightarrow C))
+				\Longrightarrow (A \Longrightarrow (B \wedge C))
+			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$A \Longrightarrow B$と$A \Longrightarrow C$が共に定理であるとき，
-		$A$が成り立っていると仮定する．このとき三段論法より$B$と$C$が同時に成り立つので，
-		論理積の導入より$B \wedge C$が成り立つ．従って演繹法則より
 		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C),A \vdash
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C)
+		\end{align}
+		であるから，$\wedge$の除去より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C),A \vdash
+			A \Longrightarrow B
+		\end{align}
+		が成り立つ．
+		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C),A \vdash A
+		\end{align}
+		でもあるから
+		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C),A \vdash B
+		\end{align}
+		となる．同様にして
+		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C),A \vdash C
+		\end{align}
+		となるので，$\wedge$の導入により
+		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C),A \vdash B \wedge C
+		\end{align}
+		となり，演繹法則より
+		\begin{align}
+			(A \Longrightarrow B) \wedge (A \Longrightarrow C) \vdash
 			A \Longrightarrow (B \wedge C)
 		\end{align}
-		が成立する．
+		が成り立つ．ゆえに
+		\begin{align}
+			\vdash ((A \Longrightarrow B) \wedge (A \Longrightarrow C))
+			\Longrightarrow (A \Longrightarrow (B \wedge C))
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
 	
