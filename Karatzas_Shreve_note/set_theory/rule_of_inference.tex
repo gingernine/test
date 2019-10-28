@@ -1,55 +1,23 @@
 \section{推論}
 	本節では，「集合でも真類でもない類は存在しない」と「集合であり真類でもある類は存在しない」の二つの言明の正否の決定を主軸にして
-	{\bf 推論規則}\index{すいろんきそく@推論規則}{\bf (rule of inference)}を導入し，基本的な推論法則を導出する．
+	{\bf 推論規則}\index{すいろんきそく@推論規則}{\bf (rule of inference)}を導入し，基本的な
+	{\bf 推論法則}\index{すいろんほうそく@推論法則}を導出する．
 	推論法則とは他の本で{\bf 恒真式}\index{こうしんしき@恒真式}{\bf (tautology)}と呼ばれるものであるが，
-	基礎論の本では恒真であることを真理表に基づいて示しているのに対し，本稿では推論規則によって形式的に導いていく．
+	それらの本では真理表を前提にしているのに対し．本稿では真理表は用いずに推論規則から形式的に演繹していく．
 	
-	\begin{screen}
-		\begin{logicalaxm}[排中律]
-			$A$を任意の文とするとき次は定理である:
-			\begin{align}
-				A \vee \rightharpoondown A.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	排中律の言明は``どんな文でも持ってくれば，その式に対して排中律が適用される''という意味である．
-	このように無数に存在し得る定理を一括して表す式は{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼ばれる．
-	
-	いま$a,b$を類とするとき，
+	いま$x,y$を$\mathcal{L}$の項とするとき，
 	\begin{align}
-		a \notin b \defarrow\ \rightharpoondown a \in b
+		x \notin y \defarrow\ \rightharpoondown x \in y
 	\end{align}
-	で$a \notin b$を定める．同様に
+	で$x \notin y$を定める．同様に
 	\begin{align}
-		a \neq b \defarrow\ \rightharpoondown a = b
+		x \neq y \defarrow\ \rightharpoondown x = y
 	\end{align}
-	で$a \neq b$を定める．
+	で$x \neq y$を定める．
 	
-	\monologue{
-		定義記号$\defeq$と同様に，`$A \defarrow B$'とは
-		式$B$を記号列$A$で置き換えて良いという意味で使われます．また，式中に記号列$A$が出てくるときは，
-		暗黙裡にその$A$を$B$に戻して式を解釈します．
-		$\defeq$も$\defarrow$も略記することと同じですね．
-	}
-	
-	\begin{screen}
-		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
-			$a$を類とするとき次は定理である:
-			\begin{align}
-				\set{a} \vee \rightharpoondown \set{a}.
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		排中律を適用することにより従う．
-		\QED
-	\end{prf}
-	
-	排中律をそのまま適用することにより上の定理は導かれたが，``集合であり真類でもある類は存在しない''という主張はまだ得られない．
-	以下はこの言明を証明することを目標にしてしばらく推論規則の話が続くが，提示される規則はどれも基本的で直感に反しないため
-	通常は無断で使用されてしまうものである．
+	定義記号$\defeq$と同様に，`$A \defarrow B$'とは
+	式$B$を記号列$A$で置き換えて良いという意味で使われる．また，式中に記号列$A$が出てくるときは，
+	暗黙裡にその$A$を$B$に戻して式を読む．$\defeq$も$\defarrow$も略記法を定めるための記号である．
 	
 	ここで論理記号の名称を書いておく．
 	\begin{itemize}
@@ -60,21 +28,10 @@
 		\item $\rightharpoondown$を{\bf 否定}\index{ひてい@否定}{\bf (negation)}と呼ぶ．
 	\end{itemize}
 	
+	%\subsubsection{基本的な推論規則}
 	\begin{screen}
 		\begin{logicalaxm}[基本的な推論規則]\label{logicalaxm:fundamental_rules_of_inference}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき，次の規則を認める:
-			\begin{description}
-				\item[三段論法] $A$ならびに$A \Longrightarrow B$が定理なら$B$は定理である．
-				\item[演繹法則] $A$を公理に追加した下で$B$が定理であるなら，
-					$A$を外した公理系で$A \Longrightarrow B$は定理である．
-				\item[論理和の導入イ] $A \Longrightarrow (A \vee B)$は定理である．
-				\item[論理和の導入ロ] $A \Longrightarrow (B \vee A)$は定理である．
-				\item[論理積の導入] $A,B$が共に定理なら$A \wedge B$は定理である．
-				\item[論理積の除去イ] $(A \wedge B) \Longrightarrow A$は定理である．
-				\item[論理積の除去ロ] $(A \wedge B) \Longrightarrow B$は定理である．
-				\item[場合分け法則] $A \Longrightarrow C$と$B \Longrightarrow C$が共に定理であるとき
-					$(A \vee B) \Longrightarrow C$は定理である．
-			\end{description}	
+			上述
 		\end{logicalaxm}
 	\end{screen}
 	
@@ -82,39 +39,6 @@
 		演繹法則について，``$A$を公理に追加する''ことを``$A$が成り立っていると仮定する''
 		などの言明により示唆することが多いです．
 	}
-	
-	\begin{itembox}[l]{演繹法則の意味}
-		我々は公理か，或いは公理図式として，複数の式を選び出し$\mathcal{L}'$の世界において正しいと決める．
-		それらは以降小出しに登場させるが，その全体は現段階ですでに決めているのでそれを
-		\begin{align}
-			\mathscr{S}
-		\end{align}
-		と呼ぶことにする．本稿で出てくる``正しい式''とは$\mathscr{S}$のみを公理系とした体系において証明される式を指す．
-		演繹法則は，``$A$が成り立つとする''などの
-		言明により$\mathscr{S}$に式$A$を加えたとき，その新しい公理系$\mathscr{S}'$の下で式$B$が成り立つなら，
-		$\mathscr{S}$のみを公理とした体系において
-		\begin{align}
-			A \Longrightarrow B
-		\end{align}
-		が成立する，と主張している．複数の式を$\mathscr{S}$に追加する場合もある．
-		たとえば$\mathscr{S}'$に式$C$を追加し，その新しい公理体系$\mathscr{S}''$の下で
-		式$D$が成り立つ場合，演繹法則に則れば$\mathscr{S}'$の下で
-		\begin{align}
-			C \Longrightarrow D
-		\end{align}
-		が成立する．(ちなみに$\mathscr{S}''$から式$A$のみを抜いた公理系の下では
-		$A \Longrightarrow D$が正しくなる．)
-		このとき$\mathscr{S}$を公理系とした下では，再び演繹法則を適用することにより
-		\begin{align}
-			A \Longrightarrow (C \Longrightarrow D)
-		\end{align}
-		が成立するとわかる，が，
-		\begin{align}
-			C \Longrightarrow D
-		\end{align}
-		が成り立つ保証は無い．非常に屡々いくつも仮定を重ねたところに演繹法則を運用することがあるが，
-		その都度どの段階の公理系を扱っているかを明確に把握しておかないと推論が破綻してしまう恐れがある．
-	\end{itembox}
 	
 	\begin{screen}
 		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
@@ -124,6 +48,9 @@
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
+	
+	上の言明は``どんな文でも持ってくれば，その式に対して反射律が成立する''という意味である．
+	このように無数に存在し得る定理を一括して表す式は{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼ばれる．
 	
 	\begin{prf}
 		$A \vdash A$であるから，演繹法則より$\vdash A \Longrightarrow A$となる．
@@ -606,6 +533,20 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
+			$a$を類とするとき
+			\begin{align}
+				\Sigma \vdash \set{a} \vee \rightharpoondown \set{a}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律を適用することにより従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{logicalthm}[矛盾からはあらゆる式が導かれる]\label{logicalthm:contradiction_derives_any_formula}
 			$A$を文とするとき
 			\begin{align}
@@ -970,35 +911,45 @@
 	
 	\begin{screen}
 		\begin{thm}[集合であり真類でもある類は存在しない]
-			$a$を類とするとき次が成り立つ:
+			$a$を類とするとき
 			\begin{align}
-				\rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ ).
+				\Sigma \vdash\ \rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類とするとき，排中律より$\set{a} \vee \rightharpoondown \set{a}$
+		$a$を類とするとき，排中律より
+		\begin{align}
+			\vdash \set{a} \vee \rightharpoondown \set{a}
+		\end{align}
 		が成り立ち，論理和の可換律より
 		\begin{align}
-			\rightharpoondown \set{a} \vee \set{a}
+			\vdash\ \rightharpoondown \set{a} \vee \set{a}
 		\end{align}
 		も成立する．そしてDe Morganの法則より
 		\begin{align}
-			\rightharpoondown (\ \rightharpoondown \rightharpoondown \set{a} \wedge \rightharpoondown \set{a}\ )
+			\vdash\ \rightharpoondown (\ \rightharpoondown \rightharpoondown \set{a} \wedge \rightharpoondown \set{a}\ )
 		\end{align}
 		が成り立つが，二重否定の法則より$\rightharpoondown \rightharpoondown \set{a}$と
 		$\set{a}$は同値となるので
 		\begin{align}
-			\rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ )
+			\vdash\ \rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ )
 		\end{align}
 		が成り立つ．
 		\QED
 	\end{prf}
 	
-	\monologue{
-		次は量化記号が推論操作の上でどのような働きを持つのかを規定しましょう．
-	}
+	「集合であり真類でもある類は存在しない」とは言ったものの，それはあくまで
+	\begin{align}
+		\Sigma \vdash\ \rightharpoondown (\ \set{a} \wedge \rightharpoondown \set{a}\ )
+	\end{align}
+	を翻訳したに過ぎないのであって，もしかすると
+	\begin{align}
+		\Sigma \vdash \set{a} \wedge \rightharpoondown \set{a}
+	\end{align}
+	も導かれるかもしれない．この場合$\Sigma$は矛盾することになるが，$\Sigma$の無矛盾性が不明であるため
+	この事態が起こらないとは言えない．
 	
 	\begin{screen}
 		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}

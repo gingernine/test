@@ -12,7 +12,7 @@
 	を保証する(内包性公理)．
 	
 	追加する項はもう一つある．$A(x)$を上記のものとするが，この場合$A(x)$は$x$に関する性質として扱われる．
-	そして``性質$A(x)$を具えている集合''という意味を込めて
+	そして``$A(x)$という性質を具えている集合''という意味を込めて
 	\begin{align}
 		\varepsilon x A(x)
 	\end{align}
@@ -193,9 +193,9 @@
 	$\Set{x}{A(x)}$と$\epsilon$項を独立に導入しているため，両者の存在意義と関係性を自然に記述できる．
 	
 \section{式の書き換え}
-	$\Set{x}{A(x)}$なる形の項を甲種項，$\varepsilon x A(x)$なる形の項を乙種項と呼び，
+	$\Set{x}{A(x)}$なる形の項を内包項，$\varepsilon x A(x)$なる形の項を$\varepsilon$項と呼び，
 	これらを類と総称することにする．
-	また乙種項が現れない$\mathcal{L}$の式を甲種式，
+	また$\varepsilon$項が現れない$\mathcal{L}$の式を甲種式，
 	乙種項が現れる$\mathcal{L}$の式を乙種式と呼ぶことにする．
 	
 	\begin{itemize}
@@ -218,24 +218,27 @@
 			
 	\end{itemize}
 	
-	量化は乙種項についての規則とする．甲種乙種関係なく，式$A(x)$に対して
-	\begin{prooftree}
-		\AxiomC{$A(\tau)$}
-		\UnaryInfC{$\exists x A(x)$}
-	\end{prooftree}
-	
-	逆に
-	\begin{prooftree}
-		\AxiomC{$\exists x A(x)$}
-		\UnaryInfC{$A\left(\varepsilon x \mathcal{L}A(x)\right)$}
-	\end{prooftree}
-	
-	全ての乙種項$\tau$で$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
-	\begin{prooftree}
-		\AxiomC{$(\tau)A(\tau)$}
-		\UnaryInfC{$\forall x A(x)$}
-	\end{prooftree}
-	明らかに
+	量化は$\varepsilon$項についての規則とする．甲種乙種関係なく，式$A(x)$と任意の$\varepsilon$項$\tau$に対して
 	\begin{align}
-		\forall x A(x) \Longrightarrow A(\varepsilon x \rightharpoondown \mathcal{L}A(x))
+		A(\tau) \vdash \exists x A(x).
+	\end{align}
+	
+	$A(x)$が甲種式であるとき，
+	\begin{align}
+		\exists x A(x) \vdash A\left(\varepsilon x \mathcal{L}A(x)\right).
+	\end{align}
+	
+	甲種乙種関係なく，$A(x)$を式とするとき，全ての$\varepsilon$項$\tau$で$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
+	\begin{align}
+		(\tau)\ A(\tau) \vdash \forall x A(x).
+	\end{align}
+	
+	甲種乙種関係なく，$A(x)$を式とするとき，任意の$\varepsilon$項$\tau$に対して
+	\begin{align}
+		\forall x A(x) \vdash A(\tau).
+	\end{align}
+	
+	$A(x)$が甲種式であるとき，明らかに
+	\begin{align}
+		\vdash \forall x A(x) \Longrightarrow A(\varepsilon x \rightharpoondown \mathcal{L}A(x)).
 	\end{align}

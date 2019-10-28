@@ -1,28 +1,12 @@
 \section{証明}
 	
-	\begin{itemize}
-		\item $\Sigma$の閉式は真である．
-		\item $A$と$\rightarrow AB$が真であると判明しているならば，$B$は真である．
-		\item $\rightarrow \wedge ABA$と$\rightarrow \wedge ABB$は真である．
-		\item $A$と$B$が真であると判明しているならば$\wedge AB$と$\wedge BA$は真である．
-		\item $\rightarrow A\vee AB$と$\rightarrow B \vee AB$は真である．
-		\item $\rightarrow AC$と$\rightarrow BC$が真であると判明しているならば
-			$\rightarrow \vee ABC$は真である．
-		\item $\rightarrow\wedge A \rightharpoondown A \bot$は真である．
-		\item $\rightarrow \rightarrow A \bot \rightharpoondown A$は真である．
-		\item $\rightarrow \rightharpoondown\rightharpoondown AA$は真である．
-	\end{itemize}
-	
-	真であると判明している式$\varphi$を起点にして，
-	上の推論規則を駆使して閉式$\psi$が真であると判明すれば，
-	$\varphi$から始めて$\psi$が真であることに辿り着くまでの手続きは$\psi$の証明と呼ばれ，
-	$\psi$は定理と呼ばれる．
-	
 	証明には真であると判明している式が必要であり，その根本として選ばれた式が$\Sigma$の文である．
 	$\Sigma$の文は証明なしに真であると決められているのであり，これらを公理と呼び定理と区別する．
 	
-	$\mathscr{S}$を文の集合とするとき，$\mathscr{S}$に属する文は$\mathscr{S}$の定理である．
-	また以下の推論規則によって帰納的に$\mathscr{S}$の定理が定まっていく．
+	真であると判明している式$\varphi$を起点にして，
+	上の推論規則を駆使して閉式$\psi$が真であると判明すれば，
+	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業は$\psi$の証明と呼ばれ，
+	$\psi$は定理と呼ばれる．
 	
 	\begin{description}
 		\item[演繹法則] $\mathscr{T}$を文の集合とし，$\psi$を文とするとき，任意の文$\varphi$に対して
@@ -31,7 +15,7 @@
 			\end{align}
 			ならば
 			\begin{align}
-				\mathscr{T} \vdash \psi \rightarrow \varphi
+				\mathscr{T} \vdash \psi \rightarrow \varphi.
 			\end{align}
 			
 		\item[三段論法] $A$と$B$を文とするとき
@@ -41,11 +25,8 @@
 		
 		\item[$\vee$の導入] $A$と$B$を文とするとき
 			\begin{align}
-				A \vdash A \vee B
-			\end{align}
-			かつ
-			\begin{align}
-				B \vdash A \vee B.
+				A &\vdash A \vee B, \\
+				B &\vdash A \vee B.
 			\end{align}
 		
 		\item[$\wedge$の導入] $A$と$B$を文とするとき
@@ -55,11 +36,8 @@
 		
 		\item[$\wedge$の除去] $A$と$B$を文とするとき
 			\begin{align}
-				A \wedge B \vdash A
-			\end{align}
-			かつ
-			\begin{align}
-				A \wedge B \vdash B.
+				A &\wedge B \vdash A, \\
+				A &\wedge B \vdash B.
 			\end{align}
 			
 		\item[場合分け法則] $A$と$B$と$C$を文とするとき
@@ -90,17 +68,18 @@
 	$B \Longrightarrow (A \wedge B)$への証明となり，ここに$\mathscr{S}$からの$B$への証明を追加して
 	最後に$A \wedge B$を載せれば，その文の列は$\mathscr{S}$からの$A \wedge B$への証明となっている．
 	
-	与えられた閉式$\varphi$が証明可能であるとは，
+	与えられた文$\varphi$が$\Sigma$から証明可能であるとは，
 	\begin{itemize}
-		\item 閉式$\psi$で，$\psi$と$\psi \rightarrow \varphi$が真であると判明している者が得られる．
-		\item 真であると判明している閉式$\psi$と$\xi$が得られて，$\varphi$は$\psi \wedge \xi$である．
-		\item 閉式$\psi$と$\xi$で，$\psi \vee \xi$と$\psi \rightarrow \varphi$と$\xi \rightarrow \varphi$が真であると判明しているものが得られる．
+		\item $\varphi$は$\Sigma$に属する文である．
+		\item $\vdash \varphi$である．
+		\item 閉式$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\Sigma$から証明されている．
 	\end{itemize}
 	
 	のいずれかの場合であり，
 	\begin{align}
-		\vdash \varphi
+		\Sigma \vdash \varphi
 	\end{align}
 	と書く．
 	
-	証明された式が真なる式である．では真なる式は
+	証明された式が真なる式である．では真なる式は証明可能であるかといえば，否である．
+	例えば$ZF$の下では選択公理はそれ自身もその否定も証明もできない．
