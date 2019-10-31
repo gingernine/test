@@ -8,8 +8,9 @@
 	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業は$\psi$の証明と呼ばれ，
 	$\psi$は定理と呼ばれる．
 	
-	\begin{description}
-		\item[演繹法則] $\mathscr{T}$を文の集合とし，$\psi$を文とするとき，任意の文$\varphi$に対して
+	\begin{screen}
+		\begin{logicalaxm}[演繹規則]
+			$\mathscr{T}$を文の集合とし，$\psi$を文とするとき，任意の文$\varphi$に対して
 			\begin{align}
 				\mathscr{T} \cup \{\psi\} \vdash \varphi
 			\end{align}
@@ -17,12 +18,65 @@
 			\begin{align}
 				\mathscr{T} \vdash \psi \rightarrow \varphi.
 			\end{align}
-			
-		\item[三段論法] $A$と$B$を文とするとき
+		\end{logicalaxm}
+	\end{screen}
+	
+	演繹規則より，たとえば
+	\begin{align}
+		A,A \Longrightarrow B \vdash B
+	\end{align}
+	であれば，
+	\begin{align}
+		A \vdash (A \Longrightarrow B) \Longrightarrow B
+	\end{align}
+	および
+	\begin{align}
+		\vdash A \Longrightarrow ((A \Longrightarrow B) \Longrightarrow B)
+	\end{align}
+	となる．これは{\bf 三段論法}\index{さんだんろんぽう@三段論法}{\bf (modus pones)}
+	と呼ばれる推論規則を推論法則に直したものである．
+	
+	\begin{screen}
+		\begin{logicalaxm}[三段論法]
+			$A$と$B$を文とするとき
 			\begin{align}
 				A,A \Longrightarrow B \vdash B.
 			\end{align}
-		
+		\end{logicalaxm}
+	\end{screen}
+	
+	三段論法と演繹規則から
+	\begin{align}
+		\vdash A \Longrightarrow ((A \Longrightarrow B) \Longrightarrow B)
+	\end{align}
+	が得られたが，これによって演繹規則の逆が得られる．つまり，
+	$\mathscr{T}$を文の集合とし，$\psi$と$\varphi$を文とするとき，
+	\begin{align}
+		\mathscr{T} \vdash \psi \Longrightarrow \varphi
+	\end{align}
+	であれば
+	\begin{align}
+		\mathscr{T},\psi \vdash \varphi
+	\end{align}
+	が成り立つ．実際，
+	\begin{align}
+		\mathscr{T},\psi \vdash \psi
+	\end{align}
+	かつ
+	\begin{align}
+		\mathscr{T},\psi \vdash \psi \Longrightarrow \varphi
+	\end{align}
+	であるから，
+	\begin{align}
+		&\psi \\
+		&\psi \Longrightarrow \varphi \\
+		&\psi \Longrightarrow ((\psi \Longrightarrow \varphi) \Longrightarrow \varphi) \\
+		&(\psi \Longrightarrow \varphi) \Longrightarrow \varphi \\
+		&\varphi
+	\end{align}
+	が$\mathscr{T},\psi$から$\varphi$への証明となっている．
+	
+	\begin{description}
 		\item[$\vee$の導入] $A$と$B$を文とするとき
 			\begin{align}
 				A &\vdash A \vee B, \\
@@ -58,7 +112,7 @@
 	\begin{align}
 		\mathscr{S} \vdash A \wedge B
 	\end{align}
-	が成り立つ．実際，$\wedge$の導入に演繹法則を二度適用すれば
+	が成り立つ．実際，$\wedge$の導入に演繹規則を二度適用すれば
 	\begin{align}
 		\vdash A \Longrightarrow (B \Longrightarrow (A \wedge B))
 	\end{align}
@@ -81,5 +135,26 @@
 	\end{align}
 	と書く．
 	
-	証明された式が真なる式である．では真なる式は証明可能であるかといえば，否である．
-	例えば$ZF$の下では選択公理はそれ自身もその否定も証明もできない．
+	\begin{align}
+		A(\varepsilon x \rightharpoondown A(x)) \vdash \forall x A(x)
+	\end{align}
+	によって
+	\begin{align}
+		\Set{A(\tau)}{\tau:term} \vdash \forall x A(x)
+	\end{align}
+	となる．
+	\begin{align}
+		\vdash A(\varepsilon x \rightharpoondown A(x)) \Longrightarrow \forall x A(x)
+	\end{align}
+	と
+	\begin{align}
+		\Set{A(\tau)}{\tau:term} \vdash A(\varepsilon x \rightharpoondown A(x))
+	\end{align}
+	より．
+	\begin{align}
+		\vdash\ \rightharpoondown A(\tau) \Longrightarrow \rightharpoondown A(\varepsilon x \rightharpoondown A(x))
+	\end{align}
+	より
+	\begin{align}
+		\vdash A(\varepsilon x \rightharpoondown A(x)) \Longrightarrow A(\tau).
+	\end{align}
