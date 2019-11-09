@@ -1,23 +1,24 @@
 \section{証明}
 	
-	証明には真であると判明している式が必要であり，その根本として選ばれた式が$\Sigma$の文である．
-	$\Sigma$の文は証明なしに真であると決められているのであり，これらを公理と呼び定理と区別する．
-	
-	真であると判明している式$\varphi$を起点にして，
-	上の推論規則を駆使して閉式$\psi$が真であると判明すれば，
-	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業は$\psi$の証明と呼ばれ，
-	$\psi$は定理と呼ばれる．
-	
 	\begin{screen}
 		\begin{logicalaxm}[演繹規則]
-			$\mathscr{T}$を文の集合とし，$\psi$を文とするとき，任意の文$\varphi$に対して
-			\begin{align}
-				\mathscr{T} \cup \{\psi\} \vdash \varphi
-			\end{align}
-			ならば
-			\begin{align}
-				\mathscr{T} \vdash \psi \rightarrow \varphi.
-			\end{align}
+			$A,B,C,D$を文とするとき，
+			\begin{description}
+				\item[(a)] $A \vdash D$ならば$\vdash A \Longrightarrow D$が成り立つ．
+				\item[(b)] $A,B \vdash D$ならば
+					\begin{align}
+						B \vdash A \Longrightarrow D,\quad
+						A \vdash B \Longrightarrow D
+					\end{align}
+					が成り立つ．
+				\item[(c)] $A,B,C \vdash D$ならば
+					\begin{align}
+						B,C \vdash A \Longrightarrow D,\quad
+						A,C \vdash B \Longrightarrow D,\quad
+						A,B \vdash C \Longrightarrow D
+					\end{align}
+					のいずれも成り立つ．
+			\end{description}
 		\end{logicalaxm}
 	\end{screen}
 	
@@ -49,7 +50,270 @@
 	\begin{align}
 		\vdash A \Longrightarrow ((A \Longrightarrow B) \Longrightarrow B)
 	\end{align}
-	が得られたが，これによって演繹規則の逆が得られる．つまり，
+	が得られたが，これは証明の過程で最も基本的な推論法則となる．
+	ここで{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定してしまおう．
+	
+	本稿では証明された文を{\bf 真な}\index{しん@真}{\bf (true)}文と呼ぶことにするが，
+	``証明された''や``真である''という状態は議論が立脚している前提に依存する．
+	ここでいう前提とは，推論規則や言語のことではなく
+	{\bf 公理系}\index{こうりけい@公理系}{\bf (axioms)}と呼ばれるものを指している．
+	
+	証明には真であると判明している文が必要であり，
+	本稿で考察するのは主に$\Sigma$からの証明であって，
+	その大元として選ばれたものが$\Sigma$の文である．
+	$\Sigma$の文は証明なしに真であると決められているのであり，これらを公理と呼び定理と区別する．
+	
+	真であると判明している式$\varphi$を起点にして，閉式$\psi$が真であると判明すれば，
+	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業は$\psi$の証明と呼ばれ，
+	$\psi$は定理と呼ばれる．
+	
+	まず$\Sigma$を以下の文からなる集まりであるとする:
+	\begin{description}
+		\item[相等性]
+		\item[外延性] $a$と$b$を類とするとき
+			\begin{align}
+				\forall x\, (\, x \in a \Longleftrightarrow x \in b\, )
+				\Longrightarrow a = b.
+			\end{align}
+			
+		\item[内包性] 
+			\begin{align}
+				\forall x\, \left(\, x \in \Set{y}{B(y)} \Longleftrightarrow B(x)\, \right).
+			\end{align}
+			
+		\item[合併]
+		\item[対]
+		\item[冪]
+		\item[置換]
+		\item[正則性]
+		\item[無限]
+		\item[選択]
+	\end{description}
+	
+	文の集合$\Sigma$が与えられたときに，文$\varphi$が$\Sigma$から{\bf 証明可能である}
+	\index{しょうめいかのう@証明可能}{\bf (provable)}とは，
+	\begin{itemize}
+		\item $\varphi$は$\Sigma$に属する文である．
+		\item $\vdash \varphi$である．
+		\item 閉式$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\Sigma$から証明可能である
+			ものが取れる．
+	\end{itemize}
+	
+	のいずれかが満たされているということであり，$\varphi$が$\Sigma$から証明可能であることを
+	\begin{align}
+		\Sigma \vdash \varphi
+	\end{align}
+	と書く．$\Sigma$とは別の文の集合$\mathscr{S}$が与えられたとしても，
+	文$\varphi$が$\mathscr{S}$から証明可能であるということは
+	上の説明の$\Sigma$を$\mathscr{S}$に置き換えて規定され，
+	$\varphi$が$\mathscr{S}$から証明可能であることを同様に
+	\begin{align}
+		\mathscr{S} \vdash \varphi
+	\end{align}
+	と書く．$A,B \vdash \varphi$とは
+	$\mathscr{S}$が$A$と$B$の二つの文を表しているときの$\mathscr{S} \vdash \varphi$である．
+	$\varphi$が推論法則であるとは
+	\begin{align}
+		\vdash \varphi
+	\end{align}
+	なることであったが，これはすなわち$\varphi$は公理の無い体系で
+	推論規則だけから導かれる定理であるという意味である．
+	
+	いま$A,B,C$を文とするとき，次の推論法則が示される:
+	\begin{align}
+		\vdash (A \Longrightarrow B) \Longrightarrow [(A \Longrightarrow (
+		B \Longrightarrow C)) \Longrightarrow (A \Longrightarrow C)].
+		\label{lemma_for_the_deduction_theorem}
+	\end{align}
+	実際，
+	\begin{align}
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		&\vdash A, \\
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		&\vdash A \Longrightarrow B
+	\end{align}
+	より
+	\begin{align}
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		\vdash B
+	\end{align}
+	が成り立つし，
+	\begin{align}
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		&\vdash A, \\
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		&\vdash A \Longrightarrow (B \Longrightarrow C)
+	\end{align}
+	より
+	\begin{align}
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		\vdash B \Longrightarrow C
+	\end{align}
+	も成り立つ．これによって
+	\begin{align}
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
+		\vdash C
+	\end{align}
+	も成り立つから，あとは演繹規則を順次適用すれば
+	\begin{align}
+		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C)
+		&\vdash A \Longrightarrow C, \\
+		A \Longrightarrow B
+		&\vdash (A \Longrightarrow (B \Longrightarrow C)) \Longrightarrow
+		(A \Longrightarrow C), \\
+		&\vdash (A \Longrightarrow B) \Longrightarrow [(A \Longrightarrow (
+		B \Longrightarrow C)) \Longrightarrow (A \Longrightarrow C)]
+	\end{align}
+	となる．
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \Longrightarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	上の言明は``どんな文でも持ってくれば，その式に対して反射律が成立する''という意味である．
+	このように無数に存在し得る定理を一括して表す式は{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼ばれる．
+	
+	\begin{prf}
+		$A \vdash A$であるから，演繹法則より$\vdash A \Longrightarrow A$となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[正しい式は仮定を選ばない]\label{logicalthm:rule_of_inference_2}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash B \Longrightarrow (A \Longrightarrow B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			A,B \vdash B
+		\end{align}
+		より演繹法則から
+		\begin{align}
+			B \vdash A \Longrightarrow B
+		\end{align}
+		となり，再び演繹法則より
+		\begin{align}
+			\vdash B \Longrightarrow (A \Longrightarrow B)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{metathm}[演繹法則]
+			$\mathscr{S}$を任意の公理系とし，$A$と$B$を任意の文とする．このとき
+			\begin{align}
+				\mathscr{S},\ A \vdash B
+			\end{align}
+			ならば
+			\begin{align}
+				\mathscr{S} \vdash A \Longrightarrow B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$B$が$A$であるとき，含意の反射律
+				(推論法則\ref{logicalthm:reflective_law_of_implication})より
+				\begin{align}
+					\vdash A \Longrightarrow B
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow B
+				\end{align}
+				となる．
+				
+			\item[第二段]
+				$B$が$\mathscr{S}$の公理であるとき，まず
+				\begin{align}
+					\mathscr{S} \vdash B
+				\end{align}
+				が成り立つが，他方で推論法則\ref{logicalthm:rule_of_inference_2}より
+				\begin{align}
+					\mathscr{S} \vdash B \Longrightarrow (A \Longrightarrow B) 
+				\end{align}
+				も成り立つので
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow B
+				\end{align}
+				が従う．
+				
+			\item[第三段]
+				$C$及び$C \Longrightarrow B$が$\mathscr{S}$から証明可能な
+				文$C$が取れる場合，
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow C
+				\end{align}
+				かつ
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow (C \Longrightarrow B)
+				\end{align}
+				であると仮定すれば，(\refeq{lemma_for_the_deduction_theorem})より
+				\begin{align}
+					\mathscr{S} \vdash 
+					(A \Longrightarrow C) \Longrightarrow [(A \Longrightarrow (
+					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B)]
+				\end{align}
+				が満たされるので，順番に
+				\begin{align}
+					\mathscr{S} \vdash (A \Longrightarrow (
+					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B)
+				\end{align}
+				が従い，
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow B
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	演繹法則での留意点は以下のことである．
+	\begin{screen}
+		\begin{itemize}
+			\item $B$が$A$であるとき，$\mathscr{S}$から$A \Longrightarrow B$への証明過程
+				で使われる文は
+				\begin{align}
+					A \Longrightarrow B
+				\end{align}
+				だけで十分である．
+				
+			\item $B$が$\mathscr{S}$の公理であるとき，$\mathscr{S}$から
+				$A \Longrightarrow B$への証明過程で使われる文は
+				\begin{align}
+					B,\quad B \Longrightarrow (A \Longrightarrow B),\quad A \Longrightarrow B
+				\end{align}
+				だけで十分である．
+				
+			\item $C$及び$C \Longrightarrow B$が$\mathscr{S}$から証明可能な
+				文$C$が取れる場合，$\mathscr{S}$から$A \Longrightarrow B$への証明過程
+				で使われる文は，$\mathscr{S}$から$A \Longrightarrow C$への証明に使われた文と，
+				$\mathscr{S}$から$A \Longrightarrow (C \Longrightarrow B)$への証明に使われた文に，
+				\begin{align}
+					&(A \Longrightarrow C) \Longrightarrow [(A \Longrightarrow (
+					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B)], \\
+					&(A \Longrightarrow (
+					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B), \\
+					&A \Longrightarrow B
+				\end{align}
+				を加えたものである．
+		\end{itemize}
+	\end{screen}
+	
+	これによって演繹規則の逆が得られる．つまり，
 	$\mathscr{T}$を文の集合とし，$\psi$と$\varphi$を文とするとき，
 	\begin{align}
 		\mathscr{T} \vdash \psi \Longrightarrow \varphi
@@ -122,18 +386,7 @@
 	$B \Longrightarrow (A \wedge B)$への証明となり，ここに$\mathscr{S}$からの$B$への証明を追加して
 	最後に$A \wedge B$を載せれば，その文の列は$\mathscr{S}$からの$A \wedge B$への証明となっている．
 	
-	与えられた文$\varphi$が$\Sigma$から証明可能であるとは，
-	\begin{itemize}
-		\item $\varphi$は$\Sigma$に属する文である．
-		\item $\vdash \varphi$である．
-		\item 閉式$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\Sigma$から証明されている．
-	\end{itemize}
 	
-	のいずれかの場合であり，
-	\begin{align}
-		\Sigma \vdash \varphi
-	\end{align}
-	と書く．
 	
 	\begin{align}
 		A(\varepsilon x \rightharpoondown A(x)) \vdash \forall x A(x)
