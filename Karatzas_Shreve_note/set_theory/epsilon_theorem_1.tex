@@ -17,6 +17,7 @@
 	{\bf $\pi$の主要論理式}や{\bf $\pi$に現れる主要論理式}とは主要論理式である$\varphi_{i}$を指す．
 	また$\pi$の主要論理式に属している$\varepsilon$項を{\bf $\pi$の主要$\varepsilon$項}と呼ぶ．
 	
+\subsection{埋め込み定理}
 	$A$を$L(PC_{\varepsilon})$の式とするとき，$A$を$L(EC_{\varepsilon})$の式に書き換える．
 	\begin{align}
 		x^{\varepsilon} &\rightarrow x \\
@@ -68,6 +69,35 @@
 			$EC_{\varepsilon} \vdash B^{\varepsilon}$ならば
 			$EC_{\varepsilon} \vdash A^{\varepsilon}$となる．
 	\end{itemize}
+
+\subsection{階数}
+	$B(x,y,z)$を，変項$x,y,z$が，そしてこれらのみが自由に現れる式とする．このとき
+	\begin{align}
+		\exists x\, \exists y\, \exists z\, B(x,y,z)
+	\end{align}
+	を$L(EC_{\varepsilon})$の式に変換すると，
+	\begin{align}
+		&\exists x\, \exists y\, B(x,y,\varepsilon z B(x,y,z)), \\
+		&\exists x\, \, B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z))
+	\end{align}
+	となるが，最後に$\exists x$を無くすと式が長くなりすぎるのでここで止めておく．
+	ここで$z$に注目してみれば，$B$に自由に現れていた$z$はまず
+	\begin{align}
+		\varepsilon z B(x,y,z)
+	\end{align}
+	に置き換えられる．この時点では$x,y$は自由なままであるが，次に$y$に
+	\begin{align}
+		\varepsilon y B(x,y,\varepsilon z B(x,y,z))
+	\end{align}
+	が代入されて，$\varepsilon z B(x,y,z)$は
+	\begin{align}
+		\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z)
+	\end{align}
+	になる．しかしこの時点でもまだ$x$は自由に現れているのであり，最後にこの$x$に
+	\begin{align}
+		\varepsilon x B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z))
+	\end{align}
+	が代入される．
 	
 	$L(EC_{\varepsilon})$の項と式を併せて$L(EC_{\varepsilon})$の{\bf 表現}\index{ひょうげん@表現}{\bf (expression)}と呼ぶ．
 	$\theta$を$L(EC_{\varepsilon})$の表現とし，$x$を変項とするとき，
