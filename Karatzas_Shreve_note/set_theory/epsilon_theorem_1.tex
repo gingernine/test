@@ -1,4 +1,22 @@
-\section{第一イプシロン定理}
+\section{第一イプシロン定理メモ}
+	
+	言語$L(EC)$及び$L(EC_{\varepsilon})$を高橋先生の資料と同じものとする．
+	{\bf 主要論理式}\index{しゅようろんりしき@主要論理式}{\bf (principal formula)}とは
+	\begin{align}
+		A(t) \Longrightarrow A(\varepsilon x A)
+	\end{align}
+	なる形の$L(EC)$の式を指す．ここで$A$とは$L(EC)$の式であって，変項$x$が$A$に自由に現れていて，
+	また$A$に自由に出現するのは$x$のみである．$A(t)$とは$A$における$x$の自由な出現を全て閉項$t$に置き換えた式であり，
+	$A(\varepsilon x A)$とは$A$における$x$の自由な出現を全て項$\varepsilon x A$に置き換えた式である．
+	このとき$\varepsilon x A$は$A(t) \Longrightarrow A(\varepsilon x A)$に{\bf 属している}という．
+	
+	$EC$の公理とはトートロジーだけである．トートロジーは$EC_{\varepsilon}$の公理でもあるが，
+	これに加えて主要論理式も$EC_{\varepsilon}$の公理である．
+	
+	$\pi = (\varphi_{0},\varphi_{1},\cdots,\varphi_{n})$を$EC_{\varepsilon}$の文の列とするとき，
+	{\bf $\pi$の主要論理式}や{\bf $\pi$に現れる主要論理式}とは主要論理式である$\varphi_{i}$を指す．
+	また$\pi$の主要論理式に属している$\varepsilon$項を{\bf $\pi$の主要$\varepsilon$項}と呼ぶ．
+	
 	$A$を$L(PC_{\varepsilon})$の式とするとき，$A$を$L(EC_{\varepsilon})$の式に書き換える．
 	\begin{align}
 		x^{\varepsilon} &\rightarrow x \\
@@ -51,13 +69,191 @@
 			$EC_{\varepsilon} \vdash A^{\varepsilon}$となる．
 	\end{itemize}
 	
+	$L(EC_{\varepsilon})$の項と式を併せて$L(EC_{\varepsilon})$の{\bf 表現}\index{ひょうげん@表現}{\bf (expression)}と呼ぶ．
+	$\theta$を$L(EC_{\varepsilon})$の表現とし，$x$を変項とするとき，
+	\begin{align}
+		rk_{y}(\theta)
+	\end{align}
+	を$\theta$の$y$に関する{\bf 階数}\index{かいすう@階数}{\bf (rank)}と呼び，以下の要領で帰納的に定義する．
+	\begin{enumerate}
+		\item $x$を変項とするとき$rk_{y}(x) \coloneqq 0$.
+		\item $f$を定数とするとき$rk_{y}(f) \coloneqq 0$.
+		\item $f$を$n$項関数とし，$\tau_{1},\cdots,\tau_{n}$を項とするとき，
+			\begin{align}
+				rk_{y}(f\tau_{1}\cdots\tau_{n}) \coloneqq
+				\max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\}.
+			\end{align}
+		\item $p$を$n$項関数とし，$\tau_{1},\cdots,\tau_{n}$を項とするとき，
+			\begin{align}
+				rk_{y}(p\tau_{1}\cdots\tau_{n}) \coloneqq
+				\max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\}.
+			\end{align}
+		\item $\varphi$と$\psi$を式とするとき，
+			\begin{align}
+				rk_{y}(\rightharpoondown \varphi) &\coloneqq rk_{y}(\varphi), \\
+				rk_{y}(\vee \varphi \psi) &\coloneqq \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\}, \\
+				rk_{y}(\wedge \varphi \psi) &\coloneqq \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\}, \\
+				rk_{y}(\Longrightarrow \varphi \psi) &\coloneqq \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\}.
+			\end{align}
+		\item $\varphi$を式とするとき
+			\begin{align}
+				rk_{y}(\varepsilon y \varphi) &\coloneqq rk_{y}(\varphi) + 1
+			\end{align}
+			と定める．また$x$を$y$でない変項とし，$\psi$を式とするとき，$\psi$に$y$が自由に現れるならば
+			\begin{align}
+				rk_{y}(\varepsilon x \psi) &\coloneqq rk_{y}(\psi) + 1
+			\end{align}
+			とし，$\varphi$に$y$が自由に現れないならば
+			\begin{align}
+				rk_{y}(\varepsilon x \psi) &\coloneqq 0
+			\end{align}
+			とする．
+	\end{enumerate}
+	
 	\begin{screen}
-		\begin{thm}[置換補題]
-			高橋先生のと同じ．
-		\end{thm}
+		\begin{metathm}[階数定理]
+			$\theta$を$L(EC_{\varepsilon})$の表現とし，$y$を変項とし，
+			$e$と$t$を$y$が自由に現れない項とする．このとき，
+			$\theta$に現れる$e$を全て$t$に置き換えた表現を$\theta^{t}$とすれば
+			\begin{align}
+				rk_{y}(\theta) = rk_{y}(\theta^{t})
+			\end{align}
+			が成り立つ．
+		\end{metathm}
 	\end{screen}
 	
-	\begin{sketch}\mbox{}
+	構造的帰納法を用いるには，言明Xに対して
+	\begin{description}
+		\item[step1] 変項に対してXが言える．
+		\item[step2] Xが言える式で作る$\varepsilon$項に対してXが言える．
+		\item[step3] 項$\tau_{1},\cdots,\tau_{n}$に対してXが言えるなら，その項と関数$f$から作られる項
+			$f\tau_{1}\cdots\tau_{n}$に対してもXが言える．
+		\item[step4] 項$\tau_{1},\cdots,\tau_{n}$に対してXが言えるなら，その項と述語$p$から作られる式
+			$p\tau_{1}\cdots\tau_{n}$に対してもXが言える．
+		\item[step5] 式$\varphi$と$\psi$に対してXが言えるなら，$\rightharpoondown \varphi,\ \vee \varphi \psi,\
+			\wedge \varphi \psi,\ \Longrightarrow \varphi \psi$に対してもXが言える．
+	\end{description}
+	を示せば良い．
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] 
+				$\tau$が変項であれば
+				\begin{align}
+					\tau^{t} \equiv \tau
+				\end{align}
+				となるので
+				\begin{align}
+					rk_{y}(\tau) = rk_{y}(\tau^{t})
+				\end{align}
+				となる．
+			
+			\item[step2] $\varphi$を$L(EC_{\varepsilon})$の式として，
+				\begin{align}
+					rk_{y}(\varphi) = rk_{y}(\varphi^{t})
+				\end{align}
+				が満たされているとする．すると，$\varphi$に$y$が自由に現れているなら
+				\begin{align}
+					rk_{y}(\varepsilon y \varphi)
+					&= rk_{y}(\varphi) + 1 \\
+					&= rk_{y}(\varphi^{t}) + 1 \\
+					&= rk_{y}((\varepsilon y \varphi)^{t})
+				\end{align}
+				が成り立つし，$\varphi$に$x$が自由に現れて，$y$が自由に現れていないなら
+				\begin{align}
+					rk_{y}(\varepsilon x \varphi) = 0 = rk_{y}((\varepsilon y \varphi)^{t})
+				\end{align}
+				が成り立つし，$\varphi$に$x$も$y$も自由に現れているなら
+				\begin{align}
+					rk_{y}(\varepsilon x \varphi)
+					&= rk_{y}(\varphi) + 1 \\
+					&= rk_{y}(\varphi^{t}) + 1 \\
+					&= rk_{y}((\varepsilon x \varphi)^{t})
+				\end{align}
+				が成り立つ．
+				
+			\item[step3] 項$\tau_{1},\cdots,\tau_{n}$に対して
+				\begin{align}
+					rk_{y}(\tau_{i}) = rk(\tau_{i}^{t})
+				\end{align}
+				が満たされているとき，$f$を$n$項関数とすれば
+				\begin{align}
+					rk_{y}(f\tau_{1}\cdots\tau_{n})
+					&= \max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\} \\
+					&= \max\left\{rk_{y}(\tau_{1}^{t}),\cdots,rk_{y}(\tau_{n}^{t})\right\} \\
+					&= rk_{y}((f\tau_{1}\cdots\tau_{n})^{t})
+				\end{align}
+				が成り立つ．
+				
+			\item[step4] 項$\tau_{1},\cdots,\tau_{n}$に対して
+				\begin{align}
+					rk_{y}(\tau_{i}) = rk(\tau_{i}^{t})
+				\end{align}
+				が満たされているとき，$p$を$n$項述語とすれば
+				\begin{align}
+					rk_{y}(p\tau_{1}\cdots\tau_{n})
+					&= \max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\} \\
+					&= \max\left\{rk_{y}(\tau_{1}^{t}),\cdots,rk_{y}(\tau_{n}^{t})\right\} \\
+					&= rk_{y}((p\tau_{1}\cdots\tau_{n})^{t})
+				\end{align}
+				が成り立つ．
+					
+			\item[step5]	
+				式$\varphi$と$\psi$に対して
+				\begin{align}
+					rk_{y}(\varphi) = rk_{y}(\varphi^{t})
+				\end{align}
+				かつ
+				\begin{align}
+					rk_{y}(\psi) = rk_{y}(\psi^{t})
+				\end{align}
+				ならば，
+				\begin{align}
+					rk_{y}(\rightharpoondown \varphi) 
+					&= rk_{y}(\varphi) \\
+					&= rk_{y}(\varphi^{t}) \\
+					&= rk_{y}((\rightharpoondown \varphi)^{t})
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					rk_{y}(\vee \varphi \psi) 
+					&= \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\} \\
+					&= \max\left\{rk_{y}(\varphi^{t}),rk_{y}(\psi^{t})\right\} \\
+					&= rk_{y}((\vee \varphi \psi)^{t})
+				\end{align}
+				も成り立つし，同様に
+				\begin{align}
+					rk_{y}(\wedge \varphi \psi) &= rk_{y}((\wedge \varphi \psi)^{t}), \\
+					rk_{y}(\Longrightarrow \varphi \psi) &= rk_{y}((\Longrightarrow \varphi \psi)^{t})
+				\end{align}
+				も成り立つ．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	$\varepsilon$項$\varepsilon x A$の階数とは$rk_{x}(\varepsilon x A)$のことであると定め，
+	\begin{align}
+		rk(e)
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{metathm}[置換定理]
+			$\pi$を$L(EC_{\varepsilon})$の証明とし，
+			$e$を，$\pi$の主要$\varepsilon$項の中で階数が最大であって，かつ
+			階数が最大の$\pi$の主要$\varepsilon$項の中で極大であるものとする．また
+			$B(s) \Longrightarrow B(\varepsilon y B)$を$\pi$の主要論理式とし，
+			$e$と$\varepsilon y B$は別物であるとする．そして，$B(s) \Longrightarrow B(\varepsilon y B)$に現れる
+			$e$を全て閉項$t$に置き換えた式を$C$とする．このとき，
+			\begin{description}
+				\item[(1)] $C$は主要論理式である．$C$に属する$\varepsilon$項を$e'$と書く．
+				\item[(2)] $rk(\varepsilon y B) = rk(e')$が成り立つ．
+				\item[(3)] $rk(\varepsilon y B) = rk(e)$ならば$\varepsilon y B$と$e'$は一致する．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
 		\begin{description}
 			\item[Case1]
 				$B(s)$ (或いは$B(\varepsilon y B)$)とは，
@@ -66,8 +262,11 @@
 				$e$が$B(s)$ (或いは$B(\varepsilon y B)$)に出現しているとする．
 				
 				実はこれは起こり得ない．もし起きたとすると，$e$に現れる$s$ (或いは$\varepsilon y B$)
-				を元の$y$に戻した項を$e'$とすれば，$e'$は$B$に現れる$\varepsilon$項であって
-				\footnotemark，$e'$には$y$が自由に現れるので，
+				を元の$y$に戻した項を$e'$とすれば，$e'$は$B$に現れる$\varepsilon$項であって，
+				\footnote{
+					$e'$が$\varepsilon$項であって$B$に現れることの証明．
+				}
+				$e'$には$y$が自由に現れるので，
 				\begin{align}
 					rk(e) = rk(e') < rk(\varepsilon y B)
 				\end{align}
@@ -89,8 +288,7 @@
 				\end{align}
 				が成り立つことを示す．$B$に$e$が現れないならば$e'$は$\varepsilon y B$に一致する．
 				$B$に$e$が現れる場合，$B$に現れる$e$を$t$に置き換えた式を$B^{t}$とする．
-				$B$に現れる$\varepsilon$項で，その中に$y$が自由に現れているものは
-				$B^{t}$にもそのまま残っているから
+				このとき階数定理より
 				\begin{align}
 					rk(B) = rk(B^{t})
 				\end{align}
@@ -101,29 +299,9 @@
 				となる．
 				\QED
 		\end{description}
-	\end{sketch}
-	
-	\footnotetext{
-		$e'$が$\varepsilon$項であって$B$に現れることの証明．
-	}
+	\end{metaprf}
 	
 \subsection{アイデア}
-	言語$L(EC)$及び$L(EC_{\varepsilon})$を高橋先生の資料と同じものとする．
-	{\bf 主要論理式}\index{しゅようろんりしき@主要論理式}{\bf (principal formula)}とは
-	\begin{align}
-		A(t) \Longrightarrow A(\varepsilon x A)
-	\end{align}
-	なる形の$L(EC)$の式のこと．ここで$A$とは$L(EC)$の式であって，変項$x$が$A$に自由に現れていて，
-	$A(t)$とは$A$における$x$の自由な出現を全て項$t$に置き換えた式，
-	$A(\varepsilon x A)$とは$A$における$x$の自由な出現を全て項$\varepsilon x A$に置き換えた式である．
-	また$\varepsilon x A$は$A(t) \Longrightarrow A(\varepsilon x A)$に{\bf 属している}という．
-	
-	$EC$の公理とはトートロジーだけである．トートロジーは$EC_{\varepsilon}$の公理でもあるが，
-	これに加えて主要論理式も$EC_{\varepsilon}$の公理である．
-	
-	$\pi = (\varphi_{0},\varphi_{1},\cdots,\varphi_{n})$を$EC_{\varepsilon}$における証明とするとき，
-	{\bf $\pi$の主要論理式}や{\bf $\pi$に現れる主要論理式}とは主要論理式であるいずれかの$\varphi_{i}$を指す．
-	また$\pi$の主要論理式に属している$\varepsilon$項を{\bf $\pi$の主要$\varepsilon$項}と呼ぶ．
 	
 	\begin{itembox}[l]{第一イプシロン定理の流れ}
 		\begin{itemize}
@@ -146,31 +324,26 @@
 						が成り立つということであって，$e$が属する主要論理式は減る一方である．
 						$\pi$の主要論理式で$e$が属しているものが$A(t) \Longrightarrow A(e)$のみ
 						であるならば，$\pi'$には$e$が属する主要論理式は現れない．
-						
+					
 					\item $e$が属する主要論理式が$\pi'$にも残っている場合，
 						$e$は$\pi'$の主要$\varepsilon$項の中も階数が最大であって，
-						かつその階数を持つ$\pi'$の主要$\varepsilon$項の中で次数も最大である．
+						かつその階数を持つ$\pi'$の主要$\varepsilon$項の中で極大である．
 					
-					\item $\pi'$の主要$\varepsilon$項のうち，$e$と階数が同じであるものは
-						$\pi$の主要$\varepsilon$項でもあった．
+					\item $\pi'$の主要$\varepsilon$項のうち，階数が$e$と同じであるものは
+						$\pi$の主要$\varepsilon$項でもあった($e$と同じ階数の$\varepsilon$項は増えない)．
 				\end{enumerate}
 				
-			\item 上の操作を続けていけば，まずは階数$r_{0} = rk(\pi)$の主要論理式を全て
-				$Ax(EC_{\varepsilon})$から除外した公理系$Ax(EC_{\varepsilon})^{r_{0}}$
-				から$B$への証明$\pi_{1}$が得られる．このとき
-				\begin{align}
-					r_{1} \defeq rk(\pi_{1}) < r_{0}
-				\end{align}
-				である．同様に階数$r_{1}$の主要論理式を全て
-				$Ax(EC_{\varepsilon})^{r_{0}}$から除外した公理系
-				$Ax(EC_{\varepsilon})^{r_{1}}$から$B$への証明$\pi_{2}$が得られる．
-				繰り返せば，いずれは階数$1$以上の主要論理式を全て
-				$Ax(EC_{\varepsilon})$から除外した公理系$Ax(EC_{\varepsilon})^{\ast}$
-				から$B$への証明$\pi^{\ast}$が得られるが，$Ax(EC_{\varepsilon})^{\ast}$とは
-				$Ax(EC_{\varepsilon})$から主要論理式を全て取り除いた公理系であるから，
-				$\pi^{\ast}$はトートロジーとモーダスポンネスだけからなる証明である．
-				あとは，そこに現れる$\varepsilon$項を$EC$の項に置き換えれば，その式の列は
-				$Ax(EC)$から$B$への証明となっている．
+			\item 証明$\pi$の主要$\varepsilon$項の階数の最大値を$rk(\pi)$とする．
+				また主要論理式に属する$\varepsilon$項の階数を，その主要論理式の階数と呼ぶことにする．
+				前段の操作を続けていけば，まずは階数$rk(\pi)$の主要論理式を全く用いない
+				$B$への証明$\pi_{1}$が得られる．このとき$rk(\pi_{1})$は
+				$rk(\pi)$よりも小さい．同様にして階数$rk(\pi_{1})$の主要論理式を全く用いない
+				$B$への証明$\pi_{2}$が得られる．もちろん$rk(\pi_{2})$は
+				$rk(\pi_{1})$よりも小さい．これを繰り返していけば，いずれは主要論理式を全く用いない
+				$B$への証明$\pi^{\ast}$が得られる．$\pi^{\ast}$にはトートロジーか
+				モーダスポンネスで導かれる式しかない．
+				あとは，$\pi^{\ast}$に現れる$\varepsilon$項を$EC$の項に置き換えれば，その式の列は
+				$EC$から$B$への証明となっている．
 		\end{itemize}
 	\end{itembox}
 	
