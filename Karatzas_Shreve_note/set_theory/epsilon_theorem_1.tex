@@ -71,201 +71,145 @@
 	\end{itemize}
 
 \subsection{階数}
-	$B(x,y,z)$を，変項$x,y,z$が，そしてこれらのみが自由に現れる式とする．このとき
+	$B(x,y,z)$を，変項$x,y,z$が，そしてこれらのみが自由に現れる
+	$L(EC)$の式とする．このとき
 	\begin{align}
 		\exists x\, \exists y\, \exists z\, B(x,y,z)
 	\end{align}
-	を$L(EC_{\varepsilon})$の式に変換すると，
+	に対して，$z$から順に$\varepsilon$項に変換していくと
 	\begin{align}
 		&\exists x\, \exists y\, B(x,y,\varepsilon z B(x,y,z)), \\
 		&\exists x\, \, B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z))
 	\end{align}
 	となるが，最後に$\exists x$を無くすと式が長くなりすぎるのでここで止めておく．
-	ここで$z$に注目してみれば，$B$に自由に現れていた$z$はまず
+	さて$z$に注目すれば，$B$に自由に現れていた$z$はまず
 	\begin{align}
 		\varepsilon z B(x,y,z)
 	\end{align}
-	に置き換えられる．この時点では$x,y$は自由なままであるが，次に$y$に
+	に置き換えられている．この時点では$x,y$は自由なままであるから，この$\varepsilon$項を
+	\begin{align}
+		e_{1}[x,y]
+	\end{align}
+	と略記する．次に$y$は
 	\begin{align}
 		\varepsilon y B(x,y,\varepsilon z B(x,y,z))
 	\end{align}
-	が代入されて，$\varepsilon z B(x,y,z)$は
+	に置き換えられるが，$e_{1}[x,y]$を使えば
 	\begin{align}
-		\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z)
+		\varepsilon y B(x,y,e_{1}[x,y])
 	\end{align}
-	になる．しかしこの時点でもまだ$x$は自由に現れているのであり，最後にこの$x$に
+	と書ける．この$\varepsilon$項でも$x$は自由なままであるから
 	\begin{align}
-		\varepsilon x B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z))
+		e_{2}[x]
 	\end{align}
-	が代入される．
+	と略記する．最後に
+	\begin{align}
+		\exists x\, B\left(x,e_{2}[x],e_{1}[x,e_{2}[x]]\right)
+	\end{align}
+	から$\exists$を除去するには，$x$を
+	\begin{align}
+		\varepsilon x B\left(x,e_{2}[x],e_{1}[x,e_{2}[x]]\right)
+	\end{align}
+	に置き換えれば良い．この$\varepsilon$項を$e_{3}$と書く．以上で
+	$\exists x\, \exists y\, \exists z\, B(x,y,z)$は$L(EC_{\varepsilon})$の式
+	\begin{align}
+		B\left(e_{3},e_{2}[e_{3}],e_{1}[e_{3},e_{2}[e_{3}]]\right)
+	\end{align}
+	に変換されたわけである．それはさておき，ここで考察するのは{\bf 項間の主従関係}である．
+	$e_{2}[x]$は$x$のみによってコントロールされているのだから，
+	$x$を司る$e_{3}$を主人だと思えば$e_{2}[x]$は$e_{3}$の直属の子分である．
+	$e_{1}[x,y]$は$y$によってもコントロールされているので，
+	$e_{1}[x,y]$とは$e_{2}[x]$の子分であり，すなわち$e_{3}$の子分の子分であって，
+	この例において一番身分が低いわけである．
 	
-	$L(EC_{\varepsilon})$の項と式を併せて$L(EC_{\varepsilon})$の{\bf 表現}\index{ひょうげん@表現}{\bf (expression)}と呼ぶ．
-	$\theta$を$L(EC_{\varepsilon})$の表現とし，$x$を変項とするとき，
-	\begin{align}
-		rk_{y}(\theta)
-	\end{align}
-	を$\theta$の$y$に関する{\bf 階数}\index{かいすう@階数}{\bf (rank)}と呼び，以下の要領で帰納的に定義する．
-	\begin{enumerate}
-		\item $x$を変項とするとき$rk_{y}(x) \coloneqq 0$.
-		\item $f$を定数とするとき$rk_{y}(f) \coloneqq 0$.
-		\item $f$を$n$項関数とし，$\tau_{1},\cdots,\tau_{n}$を項とするとき，
+	$\varepsilon$項を構文解析して，それが何重の子分を従えているかを測った指標を
+	{\bf 階数}{\bf (rank)}と呼ぶ．とはいえ直属の子分が複数いることもあり得るので，
+	子分の子分の子分の子分．．．と次々に枝分かれしていく従属関係の中で，最も
+	深いものを辿って階数を定めることにする．
+	
+	\begin{screen}
+		\begin{metadfn}[従属]
+			$\varepsilon x A$を$L(EC_{\varepsilon})$の$\varepsilon$項とし，
+			$e$を$A$に現れる$L(EC_{\varepsilon})$の$\varepsilon$項とするとき，
+			$x$が$e$に自由に現れているなら$e$は{\bf $\varepsilon x A$に従属している}
+			\index{じゅうぞく@従属}{\bf (subordinate to $\varepsilon x A$)}という．
+		\end{metadfn}
+	\end{screen}
+	
+	はじめの例では，$e_{2}[x]$と$e_{1}[x,e_{2}[x]]$は共に$e_{3}$に従属しているし，
+	$e_{1}[x,y]$は$e_{2}[x]$に従属している．
+	$e_{1}[x,e_{2}[x]]$に従属している$\varepsilon$項は無いし，
+	$e_{1}[x,y]$に従属している$\varepsilon$項も無い．
+	
+	\begin{screen}
+		\begin{metadfn}[階数]
+			$\theta$を$L(EC_{\varepsilon})$の項または式とするとき，
+			$\theta$の{\bf 階数}\index{かいすう@階数}{\bf (rank)}を
+			以下の要領で定義する．
+			\begin{enumerate}
+				\item $\theta$が$\varepsilon$項でなくて，
+					$\theta$に$\varepsilon$項が現れないならば，
+					$\theta$の階数を$0$とする．
+				\item $\theta$が$\varepsilon$項であって，かつ$\theta$に従属している
+					$\varepsilon$項が無いならば，$\theta$の階数を$1$とする.
+				\item $\theta$が$\varepsilon$項であって，かつ$\theta$に従属している
+					$\varepsilon$項があるならば，$\theta$に従属している$\varepsilon$項の
+					階数の最大値に$1$を足したものを$\theta$の階数とする．
+				\item $\theta$が$\varepsilon$項でなくて，$\theta$に
+					$\varepsilon$項が現れるならば，$\theta$に現れる$\varepsilon$項の
+					階数の最大値を$\theta$の階数とする．
+			\end{enumerate}
+			また$\theta$の階数を$rk(\theta)$と書く．
+		\end{metadfn}
+	\end{screen}
+	
+	実際に$L(EC_{\varepsilon})$の全ての項および式に対して階数が定まっている．
+	(構造的帰納法について準備不足だが，直感的に次の説明は妥当である...)
+	\begin{description}
+		\item[step1] $\theta$が$L(EC)$の項あるいは式ならば，$\theta$の階数は$0$である．
+		
+		\item[step2] $\theta$が$L(EC)$の式で作られた$\varepsilon$項ならば
+			$\theta$の階数は$1$である．
+		
+		\item[step3] 項$\tau_{1},\cdots,\tau_{n}$のそれぞれに対して，
+			その全ての部分$\varepsilon$項に階数が定まっていれば，
+			$f$を$n$項関数として，$f\tau_{1}\cdots\tau_{n}$の階数は
+			$rk(\tau_{1}),\cdots,rk(\tau_{n})$の中の最大値である．
+			というのも，$f\tau_{1}\cdots\tau_{n}$に現れる$\varepsilon$項は
+			$\tau_{1},\cdots,\tau_{n}$のいずれかの部分項になっているためである．
+			
+		\item[step4] 項$\tau_{1},\cdots,\tau_{n}$のそれぞれに対して，
+			その全ての部分$\varepsilon$項に階数が定まっていれば，
+			$p$を$n$項述語として，$p\tau_{1}\cdots\tau_{n}$の階数は
+			$rk(\tau_{1}),\cdots,rk(\tau_{n})$の中の最大値である．
+		
+		\item[step5] 式$\varphi$と$\psi$のそれぞれに対して，
+			その全ての部分$\varepsilon$項に階数が定まっていれば，
 			\begin{align}
-				rk_{y}(f\tau_{1}\cdots\tau_{n}) \coloneqq
-				\max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\}.
+				rk(\rightharpoondown \varphi) &\coloneqq rk(\varphi), \\
+				rk(\vee \varphi \psi) &\coloneqq \max\{rk(\varphi),rk(\psi)\}, \\
+				rk(\wedge \varphi \psi) &\coloneqq \max\{rk(\varphi),rk(\psi)\}, \\
+				rk(\Longrightarrow \varphi \psi) 
+				&\coloneqq \max\{rk(\varphi),rk(\psi)\}, \\
 			\end{align}
-		\item $p$を$n$項関数とし，$\tau_{1},\cdots,\tau_{n}$を項とするとき，
-			\begin{align}
-				rk_{y}(p\tau_{1}\cdots\tau_{n}) \coloneqq
-				\max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\}.
-			\end{align}
-		\item $\varphi$と$\psi$を式とするとき，
-			\begin{align}
-				rk_{y}(\rightharpoondown \varphi) &\coloneqq rk_{y}(\varphi), \\
-				rk_{y}(\vee \varphi \psi) &\coloneqq \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\}, \\
-				rk_{y}(\wedge \varphi \psi) &\coloneqq \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\}, \\
-				rk_{y}(\Longrightarrow \varphi \psi) &\coloneqq \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\}.
-			\end{align}
-		\item $\varphi$を式とするとき
-			\begin{align}
-				rk_{y}(\varepsilon y \varphi) &\coloneqq rk_{y}(\varphi) + 1
-			\end{align}
-			と定める．また$x$を$y$でない変項とし，$\psi$を式とするとき，$\psi$に$y$が自由に現れるならば
-			\begin{align}
-				rk_{y}(\varepsilon x \psi) &\coloneqq rk_{y}(\psi) + 1
-			\end{align}
-			とし，$\varphi$に$y$が自由に現れないならば
-			\begin{align}
-				rk_{y}(\varepsilon x \psi) &\coloneqq 0
-			\end{align}
-			とする．
-	\end{enumerate}
+			である．というのも，左辺の式に現れる$\varepsilon$項は
+			$\varphi$か$\psi$の少なくとも一方に現れているからである．
+		
+		\item[step6] 式$\varphi$に現れる全ての$\varepsilon$項に対して階数が定まっているならば，
+			$\varepsilon x \varphi$の階数は定義通りに定めることが出来る．
+	\end{description}
 	
 	\begin{screen}
 		\begin{metathm}[階数定理]
-			$\theta$を$L(EC_{\varepsilon})$の表現とし，$y$を変項とし，
-			$e$と$t$を$y$が自由に現れない項とする．このとき，
-			$\theta$に現れる$e$を全て$t$に置き換えた表現を$\theta^{t}$とすれば
+			$\varepsilon x A$を$L(EC_{\varepsilon})$の$\varepsilon$項とし，
+			$s$と$t$を，その中に$x$が自由に現れない$L(EC_{\varepsilon})$の項とする．このとき，
+			$A$に現れる$s$の一つを$t$に置き換えた式を$A^{t}$とすれば
 			\begin{align}
-				rk_{y}(\theta) = rk_{y}(\theta^{t})
+				rk(\varepsilon x A) = rk(\varepsilon x A^{t})
 			\end{align}
-			が成り立つ．
+			が成り立つ．$A$に$e$が現れなければ$A^{t}$は$A$とする．
 		\end{metathm}
 	\end{screen}
-	
-	構造的帰納法を用いるには，言明Xに対して
-	\begin{description}
-		\item[step1] 変項に対してXが言える．
-		\item[step2] Xが言える式で作る$\varepsilon$項に対してXが言える．
-		\item[step3] 項$\tau_{1},\cdots,\tau_{n}$に対してXが言えるなら，その項と関数$f$から作られる項
-			$f\tau_{1}\cdots\tau_{n}$に対してもXが言える．
-		\item[step4] 項$\tau_{1},\cdots,\tau_{n}$に対してXが言えるなら，その項と述語$p$から作られる式
-			$p\tau_{1}\cdots\tau_{n}$に対してもXが言える．
-		\item[step5] 式$\varphi$と$\psi$に対してXが言えるなら，$\rightharpoondown \varphi,\ \vee \varphi \psi,\
-			\wedge \varphi \psi,\ \Longrightarrow \varphi \psi$に対してもXが言える．
-	\end{description}
-	を示せば良い．
-	
-	\begin{metaprf}\mbox{}
-		\begin{description}
-			\item[step1] 
-				$\tau$が変項であれば
-				\begin{align}
-					\tau^{t} \equiv \tau
-				\end{align}
-				となるので
-				\begin{align}
-					rk_{y}(\tau) = rk_{y}(\tau^{t})
-				\end{align}
-				となる．
-			
-			\item[step2] $\varphi$を$L(EC_{\varepsilon})$の式として，
-				\begin{align}
-					rk_{y}(\varphi) = rk_{y}(\varphi^{t})
-				\end{align}
-				が満たされているとする．すると，$\varphi$に$y$が自由に現れているなら
-				\begin{align}
-					rk_{y}(\varepsilon y \varphi)
-					&= rk_{y}(\varphi) + 1 \\
-					&= rk_{y}(\varphi^{t}) + 1 \\
-					&= rk_{y}((\varepsilon y \varphi)^{t})
-				\end{align}
-				が成り立つし，$\varphi$に$x$が自由に現れて，$y$が自由に現れていないなら
-				\begin{align}
-					rk_{y}(\varepsilon x \varphi) = 0 = rk_{y}((\varepsilon y \varphi)^{t})
-				\end{align}
-				が成り立つし，$\varphi$に$x$も$y$も自由に現れているなら
-				\begin{align}
-					rk_{y}(\varepsilon x \varphi)
-					&= rk_{y}(\varphi) + 1 \\
-					&= rk_{y}(\varphi^{t}) + 1 \\
-					&= rk_{y}((\varepsilon x \varphi)^{t})
-				\end{align}
-				が成り立つ．
-				
-			\item[step3] 項$\tau_{1},\cdots,\tau_{n}$に対して
-				\begin{align}
-					rk_{y}(\tau_{i}) = rk(\tau_{i}^{t})
-				\end{align}
-				が満たされているとき，$f$を$n$項関数とすれば
-				\begin{align}
-					rk_{y}(f\tau_{1}\cdots\tau_{n})
-					&= \max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\} \\
-					&= \max\left\{rk_{y}(\tau_{1}^{t}),\cdots,rk_{y}(\tau_{n}^{t})\right\} \\
-					&= rk_{y}((f\tau_{1}\cdots\tau_{n})^{t})
-				\end{align}
-				が成り立つ．
-				
-			\item[step4] 項$\tau_{1},\cdots,\tau_{n}$に対して
-				\begin{align}
-					rk_{y}(\tau_{i}) = rk(\tau_{i}^{t})
-				\end{align}
-				が満たされているとき，$p$を$n$項述語とすれば
-				\begin{align}
-					rk_{y}(p\tau_{1}\cdots\tau_{n})
-					&= \max\left\{rk_{y}(\tau_{1}),\cdots,rk_{y}(\tau_{n})\right\} \\
-					&= \max\left\{rk_{y}(\tau_{1}^{t}),\cdots,rk_{y}(\tau_{n}^{t})\right\} \\
-					&= rk_{y}((p\tau_{1}\cdots\tau_{n})^{t})
-				\end{align}
-				が成り立つ．
-					
-			\item[step5]	
-				式$\varphi$と$\psi$に対して
-				\begin{align}
-					rk_{y}(\varphi) = rk_{y}(\varphi^{t})
-				\end{align}
-				かつ
-				\begin{align}
-					rk_{y}(\psi) = rk_{y}(\psi^{t})
-				\end{align}
-				ならば，
-				\begin{align}
-					rk_{y}(\rightharpoondown \varphi) 
-					&= rk_{y}(\varphi) \\
-					&= rk_{y}(\varphi^{t}) \\
-					&= rk_{y}((\rightharpoondown \varphi)^{t})
-				\end{align}
-				が成り立つ．また
-				\begin{align}
-					rk_{y}(\vee \varphi \psi) 
-					&= \max\left\{rk_{y}(\varphi),rk_{y}(\psi)\right\} \\
-					&= \max\left\{rk_{y}(\varphi^{t}),rk_{y}(\psi^{t})\right\} \\
-					&= rk_{y}((\vee \varphi \psi)^{t})
-				\end{align}
-				も成り立つし，同様に
-				\begin{align}
-					rk_{y}(\wedge \varphi \psi) &= rk_{y}((\wedge \varphi \psi)^{t}), \\
-					rk_{y}(\Longrightarrow \varphi \psi) &= rk_{y}((\Longrightarrow \varphi \psi)^{t})
-				\end{align}
-				も成り立つ．
-				\QED
-		\end{description}
-	\end{metaprf}
-	
-	$\varepsilon$項$\varepsilon x A$の階数とは$rk_{x}(\varepsilon x A)$のことであると定め，
-	\begin{align}
-		rk(e)
-	\end{align}
-	と書く．
 	
 	\begin{screen}
 		\begin{metathm}[置換定理]
@@ -285,24 +229,31 @@
 	
 	\begin{metaprf}\mbox{}
 		\begin{description}
-			\item[Case1]
+			\item[step1]
 				$B(s)$ (或いは$B(\varepsilon y B)$)とは，
 				$B$で自由に現れる$y$を$s$ (或いは$\varepsilon y B$)で置き換えた式である．
 				$y$から代わった$s$ (或いは$\varepsilon y B$)の少なくとも一つを部分項として含む形で
 				$e$が$B(s)$ (或いは$B(\varepsilon y B)$)に出現しているとする．
 				
 				実はこれは起こり得ない．もし起きたとすると，$e$に現れる$s$ (或いは$\varepsilon y B$)
-				を元の$y$に戻した項を$e'$とすれば，$e'$は$B$に現れる$\varepsilon$項であって，
+				を元の$y$に戻した項を$e'$とすれば，
+				$e'$には$y$が自由に現れるので(そうでないと$y$は$s$
+				(或いは$\varepsilon y B$)に置き換えられない)，$e'$は
+				$y$とは別の変項$x$と適当な式$A$によって
+				\begin{align}
+					\varepsilon x A
+				\end{align}
+				なる形をしている．つまり$e'$は$\varepsilon y B$に従属していることになり
 				\footnote{
 					$e'$が$\varepsilon$項であって$B$に現れることの証明．
 				}
-				$e'$には$y$が自由に現れるので，
+				，階数定理と併せて
 				\begin{align}
 					rk(e) = rk(e') < rk(\varepsilon y B)
 				\end{align}
 				が成り立ってしまう．しかしこれは$rk(e)$が最大であることに矛盾する．
 				
-			\item[case2] $rk(\varepsilon y B) = rk(\pi)$ならば$B$に$e$は現れない．なぜならば，
+			\item[step2] $rk(\varepsilon y B) = rk(\pi)$ならば$B$に$e$は現れない．なぜならば，
 				$e$は階数が$rk(\pi)$である$\pi$の主要$\varepsilon$項の中で極大であるからである．
 				$\varepsilon y B$にも$e$は現れず，前段の結果より$B(\varepsilon y B)$に$e$が現れることもない．
 				ゆえに，$s$に現れる$e$を$t$に置換した項を$s'$とすれば，$C$は
@@ -311,7 +262,7 @@
 				\end{align}
 				となる．
 			
-			\item[Case3]
+			\item[step3]
 				$rk(\varepsilon y B) < rk(\pi)$である場合
 				\begin{align}
 					rk(\varepsilon y B) = rk(e')
@@ -394,9 +345,8 @@
 	\end{enumerate}
 	
 	\footnotetext{
-		$A$と$B$を式とし，$A$には$x$が自由に現れ，$B$には$y$が自由に現れ，
-		かつ$A$に自由に現れるのは$x$のみで，$B$に自由に現れるのは$y$のみであるとする．
-		このとき，$\varepsilon x A$と$\varepsilon y B$が記号列として一致すれば，
+		$\varepsilon x A$と$\varepsilon y B$が記号列として一致すれば，
+		$x$と$y$は一致するし，式$A$と式$B$も一致するので
 		$A(\varepsilon x A)$と$B(\varepsilon y B)$も記号列として一致する．
 	}
 	
