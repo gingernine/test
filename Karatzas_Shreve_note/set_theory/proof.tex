@@ -113,52 +113,11 @@
 	$A$と$B$の二つの文のみを公理とした体系において$\varphi$が証明可能であることを表している．
 	特に{\bf 推論法則とは公理の無い体系で推論規則だけから導かれる定理}のことである．
 	
-	いま$A,B,C$を文とするとき，次の推論法則が示される:
-	\begin{align}
-		\vdash (A \Longrightarrow B) \Longrightarrow [(A \Longrightarrow (
-		B \Longrightarrow C)) \Longrightarrow (A \Longrightarrow C)].
-		\label{lemma_for_the_deduction_theorem}
-	\end{align}
-	実際，
-	\begin{align}
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		&\vdash A, \\
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		&\vdash A \Longrightarrow B
-	\end{align}
-	より
-	\begin{align}
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		\vdash B
-	\end{align}
-	が成り立つし，
-	\begin{align}
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		&\vdash A, \\
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		&\vdash A \Longrightarrow (B \Longrightarrow C)
-	\end{align}
-	より
-	\begin{align}
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		\vdash B \Longrightarrow C
-	\end{align}
-	も成り立つ．これによって
-	\begin{align}
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C),\ A
-		\vdash C
-	\end{align}
-	も成り立つから，あとは演繹規則を順次適用すれば
-	\begin{align}
-		A \Longrightarrow B,\ A \Longrightarrow (B \Longrightarrow C)
-		&\vdash A \Longrightarrow C, \\
-		A \Longrightarrow B
-		&\vdash (A \Longrightarrow (B \Longrightarrow C)) \Longrightarrow
-		(A \Longrightarrow C), \\
-		&\vdash (A \Longrightarrow B) \Longrightarrow [(A \Longrightarrow (
-		B \Longrightarrow C)) \Longrightarrow (A \Longrightarrow C)]
-	\end{align}
-	となる．
+	ではさっそく演繹法則の証明に進む．ところで，後で見るとおり演繹法則とは
+	証明が持つ性質に対する言明であって，つまりメタ視点での定理ということになるので，
+	演繹法則の``証明''とは言っても上で規定した証明とは意味が違う．
+	メタ定理の``証明''は，本稿では{\bf メタ証明}と呼んで区別する．
+	演繹法則を示す前に推論法則を三本用意しなくてはならない．
 	
 	\begin{screen}
 		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
@@ -202,26 +161,86 @@
 		\QED
 	\end{prf}
 	
+	演繹法則を示すための推論法則の導出は次で最後である．
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の分配則]
+		\label{logicalthm:distributive_law_of_implication}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (A \Longrightarrow (B \Longrightarrow C)) \Longrightarrow ((A \Longrightarrow B) \Longrightarrow (A \Longrightarrow C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		証明可能性の規則より
+		\begin{align}
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			&\vdash A, \\
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			&\vdash A \Longrightarrow B
+		\end{align}
+		となるので
+		\begin{align}
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			\vdash B
+		\end{align}
+		が成り立つし，同じように
+		\begin{align}
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			&\vdash A, \\
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			&\vdash A \Longrightarrow (B \Longrightarrow C)
+		\end{align}
+		であるから
+		\begin{align}
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			\vdash B \Longrightarrow C
+		\end{align}
+		も成り立つ．これによって
+		\begin{align}
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			\vdash C
+		\end{align}
+		も成り立つから，あとは演繹規則を順次適用すれば
+		\begin{align}
+			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B
+			&\vdash A \Longrightarrow C, \\
+			A \Longrightarrow (B \Longrightarrow C)
+			&\vdash (A \Longrightarrow B) \Longrightarrow (A \Longrightarrow C), \\
+			&\vdash (A \Longrightarrow (B \Longrightarrow C)) \Longrightarrow ((A \Longrightarrow B) \Longrightarrow (A \Longrightarrow C))
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
 		\begin{metaaxm}[証明に対する構造的帰納法]
-			$\mathscr{S}$を公理系とする理論において，
+			$\mathscr{S}$を公理系とし，Xを文に対する何らかの言明とするとき，
 			\begin{itemize}
-				\item $\mathscr{S}$の公理に対して(...)である．
-				\item 推論法則に対して(...)である．
-				\item $\varphi$と$\varphi \Longrightarrow \psi$に対して
-					(...)ならば$\psi$に対して(...)である．
+				\item $\mathscr{S}$の公理に対してXが言える．
+				\item 推論法則に対してXが言える．
+				\item $\varphi$と$\varphi \Longrightarrow \psi$が$\mathscr{S}$の
+					定理であるような文$\varphi$と文$\psi$が取れたとき，
+					$\varphi$と$\varphi \Longrightarrow \psi$に対して
+					Xが言えるならば，$\psi$に対してXが言える．
 			\end{itemize}
-			ならば，$\mathscr{S}$から証明可能なあらゆる文に対して(...)である．
+			のすべてが満たされていれば，$\mathscr{S}$から証明可能なあらゆる文に対してXが言える．
 		\end{metaaxm}
 	\end{screen}
 	
+	公理系$\mathscr{S}$に文$A$を追加した公理系を
+	\begin{align}
+		\mathscr{S}, A
+	\end{align}
+	と書く．もし$A$が既に$\mathscr{S}$の公理であってもこのように表記するが，
+	その場合は$\mathscr{S}, A$とは$\mathscr{S}$のことである．
+	
 	\begin{screen}
 		\begin{metathm}[演繹法則]
-			$\mathscr{S}$を任意の公理系とし，$A$と$B$を任意の文とする．このとき
-			\begin{align}
-				\mathscr{S},\ A \vdash B
-			\end{align}
-			ならば
+			$\mathscr{S}$を公理系とし，$A$を文とするとき，
+			$\mathscr{S}, A$の任意の定理$B$に対して
 			\begin{align}
 				\mathscr{S} \vdash A \Longrightarrow B
 			\end{align}
@@ -232,7 +251,8 @@
 	\begin{metaprf}\mbox{}
 		\begin{description}
 			\item[第一段]
-				$B$が$A$であるとき，含意の反射律
+				$B$を$\mathscr{S},A$の公理か或いは推論法則とする．
+				$B$が$A$ならば含意の反射律
 				(推論法則\ref{logicalthm:reflective_law_of_implication})より
 				\begin{align}
 					\vdash A \Longrightarrow B
@@ -241,10 +261,7 @@
 				\begin{align}
 					\mathscr{S} \vdash A \Longrightarrow B
 				\end{align}
-				となる．
-				
-			\item[第二段]
-				$B$が$\mathscr{S}$の公理であるとき，まず
+				となる．$B$が$\mathscr{S}$の公理又は推論法則であるとき，まず
 				\begin{align}
 					\mathscr{S} \vdash B
 				\end{align}
@@ -252,100 +269,108 @@
 				\begin{align}
 					\mathscr{S} \vdash B \Longrightarrow (A \Longrightarrow B) 
 				\end{align}
-				も成り立つので
+				も成り立つので，証明可能性の定義より
 				\begin{align}
 					\mathscr{S} \vdash A \Longrightarrow B
 				\end{align}
 				が従う．
 				
-			\item[第三段]
-				$C$及び$C \Longrightarrow B$が$\mathscr{S}$から証明可能な
-				文$C$が取れる場合，
-				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow C
-				\end{align}
-				かつ
+			\item[第二段]
+				$C$及び$C \Longrightarrow B$が$\mathscr{S}$の定理であるような
+				文$C$と文$B$が取れた場合，
 				\begin{align}
 					\mathscr{S} \vdash A \Longrightarrow (C \Longrightarrow B)
 				\end{align}
-				であると仮定すれば，(\refeq{lemma_for_the_deduction_theorem})より
+				かつ
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow C
+				\end{align}
+				であると仮定する．含意の分配則
+				(\ref{logicalthm:distributive_law_of_implication})より
 				\begin{align}
 					\mathscr{S} \vdash 
-					(A \Longrightarrow C) \Longrightarrow [(A \Longrightarrow (
-					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B)]
+					(A \Longrightarrow (C \Longrightarrow B)) \Longrightarrow ((A \Longrightarrow C) \Longrightarrow (A \Longrightarrow B))
 				\end{align}
-				が満たされるので，順番に
+				が満たされるので，証明可能性の定義の通りに
 				\begin{align}
-					\mathscr{S} \vdash (A \Longrightarrow (
-					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B)
+					\mathscr{S} \vdash (A \Longrightarrow C) \Longrightarrow (A \Longrightarrow B)
 				\end{align}
 				が従い，
 				\begin{align}
 					\mathscr{S} \vdash A \Longrightarrow B
 				\end{align}
-				が従う．
+				が従う．以上と構造的帰納法より，$\mathscr{S},A$の任意の定理$B$に対して
+				\begin{align}
+					\mathscr{S} \vdash A \Longrightarrow B
+				\end{align}
+				が言える．
 				\QED
 		\end{description}
 	\end{metaprf}
 	
-	演繹法則での留意点は以下のことである．
-	\begin{screen}
-		\begin{itemize}
-			\item $B$が$A$であるとき，$\mathscr{S}$から$A \Longrightarrow B$への証明過程
-				で使われる文は
-				\begin{align}
-					A \Longrightarrow B
-				\end{align}
-				だけで十分である．
-				
-			\item $B$が$\mathscr{S}$の公理であるとき，$\mathscr{S}$から
-				$A \Longrightarrow B$への証明過程で使われる文は
-				\begin{align}
-					B,\quad B \Longrightarrow (A \Longrightarrow B),\quad A \Longrightarrow B
-				\end{align}
-				だけで十分である．
-				
-			\item $C$及び$C \Longrightarrow B$が$\mathscr{S}$から証明可能な
-				文$C$が取れる場合，$\mathscr{S}$から$A \Longrightarrow B$への証明過程
-				で使われる文は，$\mathscr{S}$から$A \Longrightarrow C$への証明に使われた文と，
-				$\mathscr{S}$から$A \Longrightarrow (C \Longrightarrow B)$への証明に使われた文に，
-				\begin{align}
-					&(A \Longrightarrow C) \Longrightarrow [(A \Longrightarrow (
-					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B)], \\
-					&(A \Longrightarrow (
-					C \Longrightarrow B)) \Longrightarrow (A \Longrightarrow B), \\
-					&A \Longrightarrow B
-				\end{align}
-				を加えたものである．
-		\end{itemize}
-	\end{screen}
-	
-	演繹法則の逆が得られる．つまり，
-	$\mathscr{T}$を文の集合とし，$\psi$と$\varphi$を文とするとき，
+	演繹法則の逆も得られる．つまり，
+	$\mathscr{S}$を文の集合とし，$A$と$B$を文とするとき，
 	\begin{align}
-		\mathscr{T} \vdash \psi \Longrightarrow \varphi
+		\mathscr{S} \vdash A \Longrightarrow B
 	\end{align}
 	であれば
 	\begin{align}
-		\mathscr{T},\psi \vdash \varphi
+		\mathscr{S}, A \vdash B
 	\end{align}
-	が成り立つ．実際，
+	が成り立つ．実際
 	\begin{align}
-		\mathscr{T},\psi \vdash \psi
+		\mathscr{S}, A \vdash A
 	\end{align}
-	かつ
+	が成り立つのは証明の定義の通りであるし，
+	$A \Longrightarrow B$が$\mathscr{S}$の定理ならば
 	\begin{align}
-		\mathscr{T},\psi \vdash \psi \Longrightarrow \varphi
+		\mathscr{S}, A \vdash A \Longrightarrow B
+		\label{fom:inversion_of_deduction_theorem}
 	\end{align}
-	であるから，
+	が成り立つので，併せて
 	\begin{align}
-		&\psi \\
-		&\psi \Longrightarrow \varphi \\
-		&\psi \Longrightarrow ((\psi \Longrightarrow \varphi) \Longrightarrow \varphi) \\
-		&(\psi \Longrightarrow \varphi) \Longrightarrow \varphi \\
-		&\varphi
+		\mathscr{S}, A \vdash B
 	\end{align}
-	が$\mathscr{T},\psi$から$\varphi$への証明となっている．
+	が従う．ただし(\refeq{fom:inversion_of_deduction_theorem})に
+	関しては次のメタ定理を示さなくてはいけない．
+	
+	\begin{screen}
+		\begin{metathm}[公理が増えても証明可能]
+			$\mathscr{S}$を公理系とし，$A$を文とするとき，
+			$\mathscr{S}$の任意の定理$B$に対して
+			\begin{align}
+				\mathscr{S}, A \vdash B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		$B$が$\mathscr{S}$の公理であるか推論規則であれば
+		\begin{align}
+			\mathscr{S}, A \vdash B
+		\end{align}
+		は言える．また
+		\begin{align}
+			\mathscr{S} &\vdash C, \\
+			\mathscr{S} &\vdash C \Longrightarrow B
+		\end{align}
+		を満たす文$C$が取れるとき，
+		\begin{align}
+			\mathscr{S}, A &\vdash C, \\
+			\mathscr{S}, A &\vdash C \Longrightarrow B
+		\end{align}
+		と仮定すれば
+		\begin{align}
+			\mathscr{S}, A &\vdash B
+		\end{align}
+		となる．以上と構造的帰納法より$\mathscr{S}$の任意の定理$B$に対して
+		\begin{align}
+			\mathscr{S}, A &\vdash B
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{metaprf}
 	
 	\begin{description}
 		\item[$\vee$の導入] $A$と$B$を文とするとき
