@@ -1,0 +1,145 @@
+\section{Hilbert流証明論メモ}
+	参考文献: 戸次大介「数理論理学」
+	
+	\begin{itembox}[l]{{\bf SK}の公理}
+		\begin{description}
+			\item[(S)] $(\varphi \rightarrow (\psi \rightarrow \chi)) 
+				\rightarrow ((\varphi \rightarrow \psi)
+				\rightarrow (\varphi \rightarrow \chi)).$
+			
+			\item[(K)] $\varphi \rightarrow (\psi \rightarrow \varphi).$
+		\end{description}
+	\end{itembox}
+	
+	{\bf SK}から証明可能な式
+	\begin{description}
+		\item[(I)] $\varphi \rightarrow \varphi$
+		\item[(B)] $(\psi \rightarrow \chi) \rightarrow ((\varphi \rightarrow \psi) \rightarrow (\varphi \rightarrow \chi)).$
+		\item[(C)] $(\varphi \rightarrow (\psi \rightarrow \chi)) \rightarrow (\psi \rightarrow (\varphi \rightarrow \chi)).$
+		\item[(W)] $(\varphi \rightarrow (\varphi \rightarrow \psi)) \rightarrow (\varphi \rightarrow \psi).$
+		\item[(B')] $(\varphi \rightarrow \psi) \rightarrow ((\psi \rightarrow \chi) \rightarrow (\varphi \rightarrow \chi)).$
+		\item[(C$\ast$)] $\varphi \rightarrow ((\varphi \rightarrow \psi) \rightarrow \psi)$
+	\end{description}
+	
+	\begin{itembox}[l]{否定の追加}
+		\begin{description}
+			\item[(CTI1)] $\varphi \rightarrow (\rightharpoondown \varphi \rightarrow \bot).$
+			
+			\item[(CTI2)] $\rightharpoondown \varphi \rightarrow (\varphi \rightarrow \bot).$
+			
+			\item[(NI)] $(\varphi \rightarrow \bot) \rightarrow\ \rightharpoondown \varphi.$
+		\end{description}
+	\end{itembox}
+	
+	このとき証明可能な式
+	\begin{description}
+		\item[(DNI)] $\varphi \rightarrow\ \rightharpoondown \rightharpoondown \varphi.$
+		\item[(CON1)] $(\varphi \rightarrow \psi) \rightarrow (\rightharpoondown \psi \rightarrow\ \rightharpoondown \varphi).$
+		\item[(CON2)] $(\varphi \rightarrow\ \rightharpoondown \psi) \rightarrow (\psi \rightarrow\ \rightharpoondown \varphi).$
+	\end{description}
+	
+	\begin{itembox}[l]{{\bf HM}の公理}
+		\begin{description}
+			\item[(S)] $(\varphi \rightarrow (\psi \rightarrow \chi)) 
+				\rightarrow ((\varphi \rightarrow \psi)
+				\rightarrow (\varphi \rightarrow \chi)).$
+			\item[(K)] $\varphi \rightarrow (\psi \rightarrow \varphi).$
+			\item[(DI1)] $\varphi \rightarrow (\varphi \vee \psi).$
+			\item[(DI2)] $\psi \rightarrow (\varphi \vee \psi).$
+			\item[(DE)] $(\varphi \rightarrow \chi) \rightarrow 
+				((\psi \rightarrow \chi) \rightarrow ((\varphi \vee \psi) \rightarrow \chi)).$
+			\item[(CI)] $\varphi \rightarrow (\psi \rightarrow (\varphi \wedge \psi)).$
+			\item[(CE1)] $(\varphi \wedge \psi) \rightarrow \varphi.$
+			\item[(CE2)] $(\varphi \wedge \psi) \rightarrow \psi.$
+			\item[(UI)] $\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
+				\rightarrow (\psi \rightarrow \forall \xi \varphi).$
+			\item[(UE)] $\forall \xi \varphi \rightarrow \varphi[\tau/\xi].$
+			\item[(EI)] $\varphi[\tau/\xi] \rightarrow \exists \xi \varphi.$
+			\item[(EE)] $\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
+				\rightarrow (\exists \xi \varphi \rightarrow \psi).$
+		\end{description}
+	\end{itembox}
+	
+	{\bf HM}から証明可能な式
+	\begin{description}
+		\item[LNC] $\rightharpoondown (\varphi \wedge \rightharpoondown \varphi).$
+		\item[(DIST$\wedge$)] $\varphi \vee (\psi \wedge \chi) 
+			\leftrightarrow (\varphi \vee \psi) \wedge (\varphi \vee \chi).$
+		\item[(DIST$\vee$)] $\varphi \wedge (\psi \vee \chi) 
+			\leftrightarrow (\varphi \wedge \psi) \vee (\varphi \wedge \chi).$
+		\item[(DM$\vee$)] $\rightharpoondown (\varphi \vee \psi) \leftrightarrow
+			\ \rightharpoondown \varphi \wedge \rightharpoondown \psi.$
+	\end{description}
+	
+	\begin{sketch}[(LNC)]
+		\begin{align}
+			\varphi \wedge \rightharpoondown \varphi &\provable{\mbox{{\bf HM}}} \varphi, \\
+			\varphi \wedge \rightharpoondown \varphi &\provable{\mbox{{\bf HM}}}\ \rightharpoondown \varphi, \\
+			\varphi \wedge \rightharpoondown \varphi &\provable{\mbox{{\bf HM}}}
+				\varphi \rightarrow (\rightharpoondown \varphi \rightarrow \bot), \\
+			\varphi \wedge \rightharpoondown \varphi &\provable{\mbox{{\bf HM}}}\ \rightharpoondown \varphi \rightarrow \bot, \\
+			\varphi \wedge \rightharpoondown \varphi &\provable{\mbox{{\bf HM}}} \bot, \\
+			&\provable{\mbox{{\bf HM}}} (\varphi \wedge \rightharpoondown \varphi) \rightarrow \bot, \\
+			&\provable{\mbox{{\bf HM}}} ((\varphi \wedge \rightharpoondown \varphi) \rightarrow \bot)
+				\rightarrow\ \rightharpoondown (\varphi \wedge \rightharpoondown \varphi), \\
+			&\provable{\mbox{{\bf HM}}}\ \rightharpoondown (\varphi \wedge \rightharpoondown \varphi).
+		\end{align}
+		\QED
+	\end{sketch}
+	
+	\begin{sketch}[(DM$\vee$)]
+		\begin{align}
+			&\provable{\mbox{{\bf HM}}} \varphi \rightarrow (\varphi \vee \psi), && \mbox{(DI1)}\\
+			&\provable{\mbox{{\bf HM}}} (\varphi \rightarrow (\varphi \vee \psi))
+				\rightarrow (\rightharpoondown (\varphi \vee \psi) \rightarrow\ \rightharpoondown \varphi), 
+				&& \mbox{(CON1)}\\
+			&\provable{\mbox{{\bf HM}}}\ \rightharpoondown (\varphi \vee \psi) \rightarrow\ \rightharpoondown \varphi, 
+				&& \mbox{(MP)}\\
+			\rightharpoondown (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ \rightharpoondown \varphi．
+				&& \mbox{(DR)}
+		\end{align}
+		同様に
+		\begin{align}
+			\rightharpoondown (\varphi \vee \psi) \provable{\mbox{{\bf HM}}}\ \rightharpoondown \psi
+		\end{align}
+		となり，
+		\begin{align}
+			\rightharpoondown (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ \rightharpoondown \varphi
+				\rightarrow (\rightharpoondown \psi \rightarrow 
+				(\rightharpoondown \varphi \wedge \rightharpoondown \psi)), && \mbox{(CI)}\\
+			\rightharpoondown (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ 
+				\rightharpoondown \psi \rightarrow (\rightharpoondown \varphi \wedge \rightharpoondown \psi), 
+				&& \mbox{(MP)}\\
+			\rightharpoondown (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ 
+				\rightharpoondown \varphi \wedge \rightharpoondown \psi && \mbox{(MP)}
+		\end{align}
+		が得られる．逆に
+		\begin{align}
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}}\ \rightharpoondown \varphi, 
+				&& \mbox{(CE1)}\\
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}}\ 
+			\rightharpoondown \varphi \rightarrow (\varphi \rightarrow \bot), && \mbox{(CTI2)}\\
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}} \varphi \rightarrow \bot
+				&& \mbox{(MP)}
+		\end{align}
+		となり，同様に
+		\begin{align}
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi \provable{\mbox{{\bf HM}}} \psi \rightarrow \bot
+		\end{align}
+		も成り立つ．よって
+		\begin{align}
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}} 
+				(\varphi \rightarrow \bot) \rightarrow ((\psi \rightarrow \bot) 
+				\rightarrow ((\varphi \vee \psi) \rightarrow \bot)), && \mbox{(DE)}\\
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}} 
+				(\psi \rightarrow \bot) \rightarrow ((\varphi \vee \psi) \rightarrow \bot), && \mbox{(MP)}\\
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}} 
+				(\varphi \vee \psi) \rightarrow \bot, && \mbox{(MP)}\\
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}} 
+				((\varphi \vee \psi) \rightarrow \bot) \rightarrow\ \rightharpoondown (\varphi \vee \psi), && \mbox{(NI)}\\
+			\rightharpoondown \varphi \wedge \rightharpoondown \psi &\provable{\mbox{{\bf HM}}} 
+				\ \rightharpoondown (\varphi \vee \psi) && \mbox{(MP)}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
