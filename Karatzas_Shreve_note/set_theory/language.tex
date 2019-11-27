@@ -1,3 +1,5 @@
+\chapter{言語$\mathcal{L}_{\in}$}
+
 \section{言語}
 	本稿の世界を展開するために使用する言語は二つ種類がある．
 	一つは自然言語の日本語であり，もう一つは記号のみで作られた人工的な言語である．
@@ -155,6 +157,59 @@
 	\end{itemize}
 	に限られる．
 	
+\chapter{量化}
+	例えば
+	\begin{align}
+		\forall x \in x y
+	\end{align}
+	なる式を考える．中置記法(後述)で
+	\begin{align}
+		\forall x\, (\, x \in y\, )
+	\end{align}
+	と書けば若干見やすくなるであろうか．冠頭詞$\forall$は直後の$x$に係って「任意の$x$に対し...」の意味を持ち，
+	この式は「任意の$x$に対して$x$は$y$の要素である」と読むのであるが，
+	このとき$x$は$\forall x \in x y$で{\bf 束縛されている}{\bf (bound)}や
+	或いは{\bf 量化されている}{\bf (quantified)}と言う．
+	$\forall$が$\exists$に代わっても，今度は``$x$は$\exists x \in x y$で束縛されている''と言う．
+	まあつまり，{\bf 量化子の直後に続く項(量化子が係っている項)は，その量化子から始まる式の中で束縛されている}
+	と解釈することになっているのだ．
+	
+	では
+	\begin{align}
+		\Longrightarrow \forall x \in x y \in x z
+	\end{align}
+	という式はどうであるか．$\forall x$の後ろには$x$が二か所に現れているが，
+	どちらの$x$も$\forall$によって束縛されているのであろうか？
+	結論を言えば$\in x y$の$x$は束縛されていて，$\in x z$の$x$は束縛されていない．
+	というのも式の構成法を思い返せば，$\forall x \varphi$が式であると言ったら$\varphi$は式であるはずで，
+	今の例で$\forall x$に後続する式は
+	\begin{align}
+		\in x y
+	\end{align}
+	しかないのだから，$\forall$から始まる式は
+	\begin{align}
+		\forall x \in x y
+	\end{align}
+	しかないのである．$\forall$が係る$x$が束縛されている範囲は
+	``$\forall$から始まる式''であるので，$\in x z$の$x$とは
+	量化子$\forall$による``束縛''から漏れた``自由な''$x$ということになる．
+	
+	上の例でみたように，量化はその範囲が重要になる．
+	量化子$\forall$が式$\varphi$に現れたとき，
+	その$\forall$から始まる$\varphi$の部分式を
+	$\forall$の{\bf スコープ}と呼ぶが，
+	いつでもスコープが取れることは明白であるとして，
+	$\forall$のスコープは唯一つでないと都合が悪いだろう．
+	もしも異なるスコープが存在したら，同じ式なのに全く違う解釈に分かれてしまうのだから．
+	実際そのような心配は無用であると後で保証するわけだが，
+	その準備として{\bf 始切片}という概念について取り掛かる．
+	
+	ではさらにグレードアップさせて，
+	\begin{align}
+		\forall x \Longrightarrow \forall x \in x y \in x z
+	\end{align}
+	なる式における量化はどうであろうか．
+	
 \section{部分式}
 	式から切り取ったひとつづきの部分列で，それ自身が式であるものを元の式に対して
 	{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (sub formula)}と呼ぶ．
@@ -163,7 +218,7 @@
 	{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper sub formula)}と呼ぶことにする．
 	
 \section{始切片}
-	$\varphi$を式とするとき，$\varphi$の左端から切り取るひとつづきの部分列を
+	$\varphi$を$\mathcal{L}_{\in}$の式とするとき，$\varphi$の左端から切り取るひとつづきの部分列を
 	$\varphi$の{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ．
 	例えば$\varphi$が
 	\begin{align}
@@ -181,30 +236,25 @@
 	
 	本節の主題は次である．
 	\begin{screen}
-		\begin{metathm}
-			(★) $\varphi$を式とするとき，$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+		\begin{metathm}[式となる始切片の一意性]
+			$\varphi$を$\mathcal{L}_{\in}$の式とするとき，$\varphi$の始切片で$\mathcal{L}_{\in}$の式であるものは$\varphi$自身に限られる．		
 		\end{metathm}
 	\end{screen}
 	
-	これを示すには次の原理を用いる:
+	式に対して，「その式の始切片で式であるものはその式自身に限られる」という言明を(★)と書くことにする．
+	このメタ定理を示すには次の原理を用いる:
 	\begin{screen}
 		\begin{metaaxm}[式に対する構造的帰納法]
-			式に対する言明に対し，
+			式に対する言明Xに対し(Xとは，例えば上の(★))，
 			\begin{itemize}
-				\item $\bot$に対してその言明が当てはまる．
-				\item 原子式に対してその言明が当てはまる．
-				\item 式が任意に与えられた\footnotemark
-					ときに，その全ての真部分式に対して
-					その言明が当てはまるならば，その式自身に対してもその言明が当てはまる．
+				\item $\bot$に対してXが言える．
+				\item 原子式に対してXが言える．
+				\item 式が無作為に一つ与えられたときに，その全ての真部分式に対して
+					Xが当て言えるならば，その式自身に対してもXが言える．
 			\end{itemize}
-			ならば，いかなる式に対してもその言明は当てはまる．
+			ならば，いかなる式に対してもXが言える．
 		\end{metaaxm}
 	\end{screen}
-	
-	\footnotetext{
-		``任意に与えられた式''とはどう解釈するべきか．
-		どんな式に対しても?
-	}
 	
 	では定理を示す．
 	$\bot$については，その始切片は$\bot$に限られる．
