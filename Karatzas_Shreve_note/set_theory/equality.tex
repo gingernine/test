@@ -283,29 +283,146 @@
 	\begin{screen}
 		\begin{axm}[置換公理]
 			\begin{align}
-				\forall x\, \forall y\, \forall z\,
-				\left(\, \varphi(x,y) \wedge \varphi(x,z) 
-				\Longrightarrow y = z\, \right)
-				\Longrightarrow \forall a\, \exists s\, \forall y\,
-				\left(\, y \in s \Longleftrightarrow 
-				\exists x \in a\, \varphi(x,y)\, \right).
+				\forall a\, \left[\, \forall x \in a\, \exists!y \varphi(x,y)
+				\Longrightarrow \exists z\, \forall y\,
+				(\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,y)\, )\, )\, \right].
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
+	$\Set{x}{\varphi(x)}$は集合であるとは限らないが，
+	集合$a$に対して
+	\begin{align}
+		a \cap \Set{x}{\varphi(x)}
+	\end{align}
+	なる類は当然$a$より``小さい集まり''なのだから，集合であってほしいものである．
+	置換公理によってそのこと保証され，分出定理として知られている．
+	
 	\begin{screen}
 		\begin{thm}[分出定理]
+			\begin{align}
+				\forall a\, \exists s\, \forall x\,
+				(\, x \in s \Longleftrightarrow x \in a \wedge \varphi(x)\, ).
+			\end{align}
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		$x$と$y$が自由に現れる式$\psi(x,y)$を
+		\begin{align}
+			x = y \wedge \varphi(x)
+		\end{align}
+		と設定すると，これは
+		\begin{align}
+			\forall x \in a\, \exists!y \psi(x,y)
+		\end{align}
+		を満たすので，置換公理より
+		\begin{align}
+			\forall y\, (\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
+			\psi(x,y)\, )\, )
+		\end{align}
+		を満たす集合$z$が取れる．このとき
+		\begin{align}
+			\Set{y}{y \in a \wedge \varphi(y)} = z
+		\end{align}
+		が成立する．実際，
+		\begin{align}
+			y \in z
+		\end{align}
+		ならば
+		\begin{align}
+			x \in a \wedge x = y \wedge \varphi(x)
+		\end{align}
+		を満たす$x$が取れるが，このとき相等性から
+		\begin{align}
+			y \in a \wedge \varphi(y)
+		\end{align}
+		が成立する．逆に
+		\begin{align}
+			y \in a \wedge \varphi(y)
+		\end{align}
+		であれば
+		\begin{align}
+			x \defeq y
+		\end{align}
+		によって
+		\begin{align}
+			\exists x\, (\, x \in a \wedge \psi(x,y)\, )
+		\end{align}
+		が成り立つので
+		\begin{align}
+			y \in z
+		\end{align}
+		となる．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
-		\begin{thm}[$\emptyset$は集合]
+		\begin{thm}[$\emptyset$は集合]\label{thm:emptyset_is_a_set}
 			$\emptyset$は集合である:
 			\begin{align}
 				\set{\emptyset}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		分出定理より
+		\begin{align}
+			\forall z\, \exists y\, \forall x\,
+			(\, x \in y \Longleftrightarrow x \in z \wedge x \neq x\, )
+			\label{fom:thm_emptyset_is_a_set_1}
+		\end{align}
+		が成立するが，この式から
+		\begin{align}
+			\exists y\, \forall x\, (\, x \in y \Longleftrightarrow x \neq x\, )
+			\label{fom:thm_emptyset_is_a_set_2}
+		\end{align}
+		を示せる．これはすなわち$\emptyset$が集合であるということを示唆する．
+		$\zeta$を勝手な$\varepsilon$項として，後々の便宜のために
+		\begin{align}
+			\sigma &\defeq \varepsilon y\, \forall x\,
+			(\, x \in y \Longleftrightarrow x \in \zeta \wedge x \neq x\, ), \\
+			\tau &\defeq \varepsilon x \rightharpoondown
+			(\, x \in \sigma \Longleftrightarrow x \neq x\, )
+		\end{align}
+		とおけば，(\refeq{fom:thm_emptyset_is_a_set_1})より
+		\begin{align}
+			\tau \in \sigma \Longleftrightarrow \tau \in \zeta \wedge \tau \neq \tau
+		\end{align}
+		が成立する．論理和の規則より
+		\begin{align}
+			\tau \in \zeta \wedge \tau \neq \tau \Longrightarrow \tau \neq \tau
+		\end{align}
+		が満たされるので，まずは
+		\begin{align}
+			\tau \in \sigma \Longrightarrow \tau \neq \tau
+		\end{align}
+		が得られる．また
+		\begin{align}
+			\tau = \tau
+		\end{align}
+		は正しいので，
+		\begin{align}
+			\tau = \tau \Longrightarrow (\, \tau \notin \sigma \Longrightarrow
+			\tau = \tau\, )
+		\end{align}
+		と併せて
+		\begin{align}
+			\tau \notin \sigma \Longrightarrow \tau = \tau
+		\end{align}
+		が成り立ち，対偶を取れば
+		\begin{align}
+			\tau \neq \tau \Longrightarrow \tau \in \sigma
+		\end{align}
+		も得られる．ゆえに
+		\begin{align}
+			\forall x\, (\, x \in \sigma \Longleftrightarrow x \neq x\, )
+		\end{align}
+		が得られ，(\refeq{fom:thm_emptyset_is_a_set_2})が従う．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[空集合は$\mathcal{L}$のいかなる対象も要素に持たない]\label{thm:emptyset_has_nothing}
