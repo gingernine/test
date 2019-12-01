@@ -280,13 +280,28 @@
 		\end{dfn}
 	\end{screen}
 	
+	$x$が集合であれば
+	\begin{align}
+		x = x
+	\end{align}
+	が成り立つので，$\emptyset$に入る集合など存在しない．
+	つまり$\emptyset$は丸っきり``空っぽ''なのである．
+	さて，$\emptyset$は集合であるか否か，という問題を考える．
+	当然これが``大きすぎる集まり''であるはずはないし，
+	そもそも名前に``集合''と付いているのだから
+	$\emptyset$は集合であるべきだと思われるのだが，
+	実際にこれが集合であることを示すには少し骨が折れる．
+	まずは置換公理と分出定理を拵えなくてはならない．
+	
 	\begin{screen}
 		\begin{axm}[置換公理]
 			\begin{align}
-				\forall a\, \left[\, \forall x \in a\, \exists!y \varphi(x,y)
-				\Longrightarrow \exists z\, \forall y\,
-				(\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
-				\varphi(x,y)\, )\, )\, \right].
+				\forall x\, \forall y\, \forall z\, 
+				\left[\, \varphi(x,y) \wedge \varphi(x,z)
+				\Longrightarrow y = z\, \right]
+				\Longrightarrow \forall a\, \exists z\, \forall y\,
+				\left[\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,y)\, )\, \right].
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -305,19 +320,22 @@
 				\forall a\, \exists s\, \forall x\,
 				(\, x \in s \Longleftrightarrow x \in a \wedge \varphi(x)\, ).
 			\end{align}
+			ただし，$\varphi$において自由に現れるのは$x$だけである．
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$x$と$y$が自由に現れる式$\psi(x,y)$を
+		$y$と$z$を，$\varphi(x)$に現れる自由な$x$を$y$や$z$に置き換えても
+		束縛されない変項とする．そして$x$と$y$が自由に現れる式$\psi(x,y)$を
 		\begin{align}
 			x = y \wedge \varphi(x)
 		\end{align}
 		と設定すると，これは
 		\begin{align}
-			\forall x \in a\, \exists!y \psi(x,y)
+			\forall x\, \forall y\, \forall z\, 
+			\left[\, \psi(x,y) \wedge \psi(x,z) \Longrightarrow y = z\, \right]
 		\end{align}
-		を満たすので，置換公理より
+		を満たすので，置換公理より集合$a$に対して
 		\begin{align}
 			\forall y\, (\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
 			\psi(x,y)\, )\, )
@@ -344,13 +362,13 @@
 		\end{align}
 		であれば
 		\begin{align}
-			x \defeq y
+			y \in a \wedge (\, y = y \wedge \psi(y,y)\, )
 		\end{align}
-		によって
+		が成り立つので，すなわち
 		\begin{align}
 			\exists x\, (\, x \in a \wedge \psi(x,y)\, )
 		\end{align}
-		が成り立つので
+		が成り立ち
 		\begin{align}
 			y \in z
 		\end{align}

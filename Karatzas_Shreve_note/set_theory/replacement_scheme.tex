@@ -1,0 +1,77 @@
+\section{置換公理}
+	置換公理の二つの形式の同値性をざっくりと．
+	\begin{description}
+		\item[(T)] $\sing{f} \Longrightarrow \forall a\, \set{f \ast a}.$
+		\item[(K)] $\forall a\, \left[\, \forall x \in a\, \exists!y \varphi(x,y)
+				\Longrightarrow \exists z\, \forall y\,
+				(\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,y)\, )\, )\, \right].$
+	\end{description}
+	
+	ただし
+	\begin{align}
+		\sing{f} &\defarrow \forall x,y,z\, (\, (x,y) \in f \wedge (x,z) \in f
+		\Longrightarrow y = z\, ), \\
+		f \ast a &\defeq \Set{y}{\exists x \in a\, (\, (x,y) \in f\, )}, \\
+		\set{s} \defarrow \exists x\, (\, s = x\, )
+	\end{align}
+	であるし，$\varphi$に自由に現れているのは二つの変項のみで，それらが$s$と$t$とおけば，
+	$\varphi$に自由に現れている$s$を全て$x$に，
+	$\varphi$に自由に現れている$t$を全て$y$に置き換えた式が
+	\begin{align}
+		\varphi(x,y)
+	\end{align}
+	である．またこのとき$x$も$y$も$\varphi(x,y)$で束縛されていないものとする
+	($x$と$y$はそのように選ばれた変項であるということである)．
+	
+	\begin{description}
+		\item[(T)$\Longrightarrow$(K)]
+			$a$を任意の集合とし，
+			\begin{align}
+				\forall x \in a \exists!y \varphi(x,y)
+			\end{align}
+			であるとする．
+			\begin{align}
+				f \defeq \Set{(x,y)}{x \in a \wedge \varphi(x,y)}
+			\end{align}
+			とおけば$f$は$a$上の写像であって，(T)より
+			\begin{align}
+				\exists z\, (\, z = f \ast a\, )
+			\end{align}
+			となる．ところで$f \ast a$とは
+			\begin{align}
+				\Set{y}{\exists x \in a\, (\, (x,y) \in f\, )}
+			\end{align}
+			なので
+			\begin{align}
+				f \ast a = \Set{y}{\exists x \in a \varphi(x,y)}.
+			\end{align}
+			ゆえに
+			\begin{align}
+				\exists z\, \forall y\, (\, y \in z \Longleftrightarrow
+				\exists x \in a \varphi(x,y)\, )
+			\end{align}
+			が成り立つ．
+			
+		\item[(K)$\Longrightarrow$(T)]
+			$\sing{f}$とし，$a$を集合とする．
+			\begin{align}
+				b \defeq a \cap \dom{f}
+			\end{align}
+			とおけば，(K)からは分出公理が示せるので$b$は集合である．そして
+			\begin{align}
+				\forall x \in b\, \exists!y\, (\, (x,y) \in f\, )
+			\end{align}
+			が成り立つのだから，(K)より
+			\begin{align}
+				z = \Set{y}{\exists x \in b\, (\, (x,y) \in f\, )}
+			\end{align}
+			が従う．ここで
+			\begin{align}
+				\Set{y}{\exists x \in b\, (\, (x,y) \in f\, )}
+				= f \ast b
+				= f \ast a
+			\end{align}
+			であるから(T)が得られる．
+			\QED
+	\end{description}
