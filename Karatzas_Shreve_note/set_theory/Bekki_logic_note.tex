@@ -229,3 +229,116 @@
 		\end{align}
 		\QED
 	\end{sketch}
+	
+	{\bf HK}の定理の証明とは，式の列$\varphi_{1},\cdots,\varphi_{n}$であって，
+	各$i$について以下が満たされるものである．
+	\begin{itemize}
+		\item $\varphi_{i}$は{\bf HK}の公理である．
+		\item $j,k < i$なる$j,k$が取れて，$\varphi_{k}$は$\varphi_{j} \rightarrow \varphi_{i}$に一致する．
+		\item $j < i$なる$j$が取れて，$\varphi_{i}$は$\forall x \varphi_{j}$なる形式である．
+	\end{itemize}
+	
+\subsection{量化公理の取り替え}
+	{\bf HK'}の公理を
+	\begin{screen}
+		\begin{description}
+			\item[(S)] $(\varphi \rightarrow (\psi \rightarrow \chi)) 
+				\rightarrow ((\varphi \rightarrow \psi)
+				\rightarrow (\varphi \rightarrow \chi)).$
+			\item[(K)] $\varphi \rightarrow (\psi \rightarrow \varphi).$
+			\item[(DI1)] $\varphi \rightarrow (\varphi \vee \psi).$
+			\item[(DI2)] $\psi \rightarrow (\varphi \vee \psi).$
+			\item[(DE)] $(\varphi \rightarrow \chi) \rightarrow 
+				((\psi \rightarrow \chi) \rightarrow ((\varphi \vee \psi) \rightarrow \chi)).$
+			\item[(CI)] $\varphi \rightarrow (\psi \rightarrow (\varphi \wedge \psi)).$
+			\item[(CE1)] $(\varphi \wedge \psi) \rightarrow \varphi.$
+			\item[(CE2)] $(\varphi \wedge \psi) \rightarrow \psi.$
+			
+			\item[(UE)] $\forall \xi \varphi \rightarrow \varphi[\tau/\xi].$
+			\item[(EI)] $\varphi[\tau/\xi] \rightarrow \exists \xi \varphi.$
+			
+			\item[(CTI1)] $\varphi \rightarrow (\rightharpoondown \varphi \rightarrow \bot).$
+			
+			\item[(CTI2)] $\rightharpoondown \varphi \rightarrow (\varphi \rightarrow \bot).$
+			
+			\item[(NI)] $(\varphi \rightarrow \bot) \rightarrow\ \rightharpoondown \varphi.$
+			\item[(DNE)] $\rightharpoondown \rightharpoondown \varphi \rightarrow \varphi.$
+		\end{description}
+	\end{screen}
+	とするとき，任意の式$\varphi$に対して
+	\begin{align}
+		\provable{\mbox{{\bf HK}}} \varphi
+		\Longleftrightarrow \provable{\mbox{{\bf HK'}}} \varphi
+	\end{align}
+	が成り立つ．
+	\begin{align}
+		\provable{\mbox{{\bf HK}}} \varphi
+	\end{align}
+	であるとして，$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\varphi$への証明とする．
+	$\varphi_{i}$が量化公理(UI)(EE)以外の公理であれば
+	\begin{align}
+		\provable{\mbox{{\bf HK'}}} \varphi_{i}
+	\end{align}
+	である．$\varphi_{i}$が
+	\begin{align}
+		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
+		\rightarrow (\psi \rightarrow \forall \xi \varphi)
+	\end{align}
+	なる形の公理であるとき，
+	\begin{align}
+		&\provable{\mbox{{\bf HK'}}} 
+			\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
+			\rightarrow (\psi \rightarrow \varphi[\zeta/\xi]), \\
+		\color{red}\psi \rightarrow \varphi[\zeta/\xi] &
+		\color{red}\provable{\mbox{{\bf HK'}}}
+			\psi \rightarrow \varphi[\zeta/\xi], \\
+		\color{red}\psi \rightarrow \varphi[\zeta/\xi] &
+		\color{red}\provable{\mbox{{\bf HK'}}}
+			\psi \rightarrow \forall \xi \varphi, \\
+		&\provable{\mbox{{\bf HK'}}} (\psi \rightarrow \varphi[\zeta/\xi]) 
+			\rightarrow (\psi \rightarrow \forall \xi \varphi), \\
+		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
+			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]), \\
+		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
+			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
+			\rightarrow (\psi \rightarrow \varphi[\zeta/\xi]), \\
+		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
+			&\provable{\mbox{{\bf HK'}}} \psi \rightarrow \varphi[\zeta/\xi], \\
+		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
+			&\provable{\mbox{{\bf HK'}}} (\psi \rightarrow \varphi[\zeta/\xi]) 
+			\rightarrow (\psi \rightarrow \forall \xi \varphi), \\
+		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
+			&\provable{\mbox{{\bf HK'}}} \psi \rightarrow \forall \xi \varphi, \\
+		&\provable{\mbox{{\bf HK'}}} \forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
+		\rightarrow (\psi \rightarrow \forall \xi \varphi)
+	\end{align}
+	となる(赤字で{\bf HK'}の推論規則を用いた箇所を示している)．
+	つまり(UI)は{\bf HK'}の定理である．同様に(EE)も{\bf HK'}の定理である．実際，
+	\begin{align}
+		&\provable{\mbox{{\bf HK'}}} 
+			\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi) 
+			\rightarrow (\varphi[\zeta/\xi] \rightarrow \psi), \\
+		\color{red}\varphi[\zeta/\xi] \rightarrow \psi &
+		\color{red}\provable{\mbox{{\bf HK'}}}
+			\varphi[\zeta/\xi] \rightarrow \psi, \\
+		\color{red}\varphi[\zeta/\xi] \rightarrow \psi &
+		\color{red}\provable{\mbox{{\bf HK'}}}
+			\exists \xi \varphi \rightarrow \psi, \\
+		&\provable{\mbox{{\bf HK'}}} (\varphi[\zeta/\xi] \rightarrow \psi) 
+			\rightarrow (\exists \xi \varphi \rightarrow \psi), \\
+		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
+			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi), \\
+		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
+			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\varphi[\zeta/\xi]) \rightarrow \psi 
+			\rightarrow (\varphi[\zeta/\xi] \rightarrow \psi), \\
+		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
+			&\provable{\mbox{{\bf HK'}}} \varphi[\zeta/\xi] \rightarrow \psi, \\
+		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
+			&\provable{\mbox{{\bf HK'}}} (\varphi[\zeta/\xi] \rightarrow \psi) 
+			\rightarrow (\exists \xi \varphi \rightarrow \psi), \\
+		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
+			&\provable{\mbox{{\bf HK'}}} \exists \xi \varphi \rightarrow \psi, \\
+		&\provable{\mbox{{\bf HK'}}} \forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi) 
+		\rightarrow (\exists \xi \varphi \rightarrow \psi)
+	\end{align}
+	となる．
