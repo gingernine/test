@@ -893,72 +893,32 @@
 	
 	\begin{screen}
 		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}
-			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とするとき，$x$のみが$A$で量化されていないならば以下を認める:
-			\begin{description}
-				\item[$\varepsilon$記号の導入] $\varepsilon x A(x)$は$\mathcal{L}$の或る対象に代用される．
-				\item[存在記号の規則] $A (\varepsilon x A(x)) \Longleftrightarrow \exists x A(x)$が成り立つ.
-				\item[全称記号の規則] $A (\varepsilon x \rightharpoondown A(x)) \Longleftrightarrow \forall x A(x)$が成り立つ.
-				\item[存在記号の基本性質] $\tau$を$\mathcal{L}$の対象とするとき
-					$A(\tau) \Longrightarrow \exists x A(x)$が成り立つ．
-			\end{description}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			$A$に自由に現れる項が$x$のみであるとする．
+			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
+			\begin{align}
+				A(\tau) &\vdash \exists x A(x), \\
+				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
+				\forall x A(x) &\vdash A(\tau), \\
+				A(\varepsilon x \rightharpoondown A(x)) &\vdash \forall x A(x).
+			\end{align}
 		\end{logicalaxm}
 	\end{screen}
 	
-	$\varepsilon$記号はHilbertのイプシロン関数と呼ばれるもので，
-	量化記号の働きを形式的に表現するには具体的かつ直感的である．
-	また$\varepsilon$記号が指定する対象を$\mathcal{L}$のものと約束することで，
-	$\exists$と$\forall$の作用範囲を$\mathcal{L}$の対象全体に制限している．
+	どれでも一つ，$A$を成り立たせるような$\varepsilon$項$\tau$が取れれば
+	$\exists x A(x)$が成り立つのだし，逆に$\exists x A(x)$が成り立つならば
+	$\varepsilon x A(x)$なる$\epsilon$項が$A$を満たすのであるから，
+	$\exists x A(x)$が成り立つということと$A$を満たす$\varepsilon$項が取れるということは
+	同じ意味になる．
 	
-	\begin{screen}
-		\begin{logicalthm}[全称記号と任意性]\label{logicalthm:fundamental_law_of_universal_quantifier}
-			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
-			$\forall x A(x)$が成り立つならば$\mathcal{L}$のいかなる対象$\tau$に対しても$ A(\tau)$が成り立つ．
-			逆に，$\mathcal{L}$のいかなる対象$\tau$に対しても$A(\tau)$が成り立てば$\forall x A(x)$が成り立つ．
-		\end{logicalthm}
-	\end{screen}
+	$\forall x A(x)$が成り立つならばいかなる$\varepsilon$項も$A$を満たすし，
+	逆にいかなる$\varepsilon$項も$A$を満たすならば，特に$\varepsilon x \rightharpoondown A(x)$
+	なる$\varepsilon$項も$A$を満たすのだから，$\forall x A(x)$が成立する．
+	つまり，$\forall x A(x)$が成り立つということと，任意の$\varepsilon$項が$A$を満たすということは
+	同じ意味になる．
 	
-	\begin{prf}
-		$\tau$を$\mathcal{L}$の任意の対象とすれば，存在記号に関する推論規則より
-		\begin{align}
-			\rightharpoondown A(\tau) \Longrightarrow\ \exists x \rightharpoondown A(x)
-		\end{align}
-		と
-		\begin{align}
-			\exists x \rightharpoondown A(x) \Longrightarrow\ \rightharpoondown A
-			\left( \varepsilon x \rightharpoondown A(x) \right)
-		\end{align}
-		が成り立つから，推論法則\ref{logicalthm:transitive_law_of_implication}より
-		\begin{align}
-			\rightharpoondown A(\tau) \Longrightarrow\ \rightharpoondown A
-			\left( \varepsilon x \rightharpoondown A(x) \right)
-		\end{align}
-		が成り立ち，対偶を取って
-		\begin{align}
-			A \left( \varepsilon x \rightharpoondown A(x) \right)
-			\Longrightarrow A(\tau)
-		\end{align}
-		が成り立つ．全称記号に関する推論規則より
-		\begin{align}
-			\forall x A(x) \Longrightarrow A \left( \varepsilon x \rightharpoondown A(x) \right)
-		\end{align}
-		が満たされているので
-		\begin{align}
-			\forall x A(x) \Longrightarrow A(\tau)
-		\end{align}
-		が従う．逆にいかなる対象$\tau$に対しても$A(\tau)$が成り立つとき，特に
-		\begin{align}
-			A \left( \varepsilon x \rightharpoondown A(x) \right)
-		\end{align}
-		が成り立つので$\forall x A(x)$も成り立つ．
-		\QED
-	\end{prf}
-	
-	\monologue{
-		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}を根拠にして，
-		当面は$\forall x A(x)$という式を``$\mathcal{L}$の任意の対象$x$に対して
-		$A(x)$が成立する''と翻訳することにします．また後述する相等性の公理によれば，
-		これは``任意の集合$x$に対して$A(x)$が成立する''と翻訳しても同義です．
-	}
+	後述することであるが，$\varepsilon$項はどれも集合であって，また集合である類は
+	いずれかの$\varepsilon$項と等しい．ゆえに，量化子の亘る範囲は集合に制限されるのである．
 	
 	\begin{screen}
 		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}

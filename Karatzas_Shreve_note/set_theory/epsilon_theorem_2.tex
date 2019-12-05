@@ -1,0 +1,76 @@
+\section{第二イプシロン定理}
+	$\exists x \forall y \exists z B(x,y,z)$を$L(PC)$の冠頭標準形とする．
+	つまり$B(x,y,z)$には量化子が現れないので，$B(x,y,z)$は$L(EC)$の式ということである．
+	また
+	\begin{align}
+		PC_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+	\end{align}
+	であるとする．
+	
+	$f$を$L(PC)$には無い一変数関数記号とし，
+	\begin{align}
+		L'(PC) &\defeq L(PC) \cup \{f\}, \\
+		L'(EC) &\defeq L(EC) \cup \{f\}, \\
+		L'(PC_{\varepsilon}) &\defeq L(PC_{\varepsilon}) \cup \{f\}, \\
+		L'(EC_{\varepsilon}) &\defeq L(EC_{\varepsilon}) \cup \{f\}
+	\end{align}
+	とする．このとき明らかに
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+	\end{align}
+	であるが(ただし${PC'}_{\varepsilon} \vdash$とは$L'(PC_{\varepsilon})$の
+	式からなる証明が存在するという意味)，
+	\begin{align}
+		{PC'}_{\varepsilon} &\vdash \exists x \forall y \exists z B(x,y,z), \\
+		{PC'}_{\varepsilon} &\vdash \exists x \forall y \exists z B(x,y,z)
+		\rightarrow \forall y \exists z B(\tau,y,z), && 
+		(\tau \defeq \varepsilon x \forall y \exists z B(x,y,z)) \\
+		{PC'}_{\varepsilon} &\vdash \forall y \exists z B(\tau,y,z), \\
+		{PC'}_{\varepsilon} &\vdash \forall y \exists z B(\tau,y,z)
+		\rightarrow \exists z B(\tau,f(\tau),z), \\
+		{PC'}_{\varepsilon} &\vdash \exists z B(\tau,f(\tau),z), \\
+		{PC'}_{\varepsilon} &\vdash \exists z B(\tau,f(\tau),z)
+		\rightarrow \exists x \exists z B(x,f(x),z), \\
+		{PC'}_{\varepsilon} &\vdash \exists x \exists z B(x,f(x),z)
+	\end{align}
+	が成り立つ．すると拡張第一イプシロン定理より，$p$個の$L'(EC)$の項$r_{i}$
+	と，同じく$p$個の$L'(EC)$の項$s_{i}$が取れて，
+	\begin{align}
+		{EC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p} B(r_{i},f(r_{i}),s_{i})
+	\end{align}
+	となる．同じ証明で
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p} B(r_{i},f(r_{i}),s_{i})
+	\end{align}
+	であることも言える．
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
+		\vee B(r_{p},f(r_{p}),s_{p})
+	\end{align}
+	より，まず
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
+		\vee \exists z B(r_{p},f(r_{p}),z)
+	\end{align}
+	となる．続いて，$f(r_{p})$は$\bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})$には現れないので
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
+		\vee \forall y \exists z B(r_{p},y,z)
+	\end{align}
+	となる．最後に
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
+		\vee \exists x \forall y \exists z B(x,y,z)
+	\end{align}
+	となる．これを繰り返せば
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+		\vee \cdots \vee \exists x \forall y \exists z B(x,y,z)
+	\end{align}
+	が得られるので
+	\begin{align}
+		{PC'}_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+	\end{align}
+	となる．最後に，$\exists x \forall y \exists z B(x,y,z)$への証明に残っている
+	$f$を含む項を$L(PC)$の項に置き換えれば，$L(PC)$から$\exists x \forall y \exists z B(x,y,z)$
+	への証明が得られる．
