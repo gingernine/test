@@ -342,3 +342,126 @@
 		\rightarrow (\exists \xi \varphi \rightarrow \psi)
 	\end{align}
 	となる．
+	
+\subsection{一般化規則は導かれる}
+	{\bf HK}の量化公理に
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi) \rightarrow
+		(\forall x \psi \rightarrow \forall x \varphi)
+	\end{align}
+	を追加すれば，一般化規則は導かれる．
+	
+	\begin{screen}
+		$\Gamma$を公理系(文の集合)とし，$\varphi$を式とし，$x$を$\varphi$に自由に現れる変項とする．
+		このとき
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		ならば
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HK}}} \forall x \varphi
+		\end{align}
+		である．
+	\end{screen}
+	
+	\begin{sketch}
+		$\varphi$が$\provable{\mbox{{\bf HK}}} \varphi$であるときは
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x \varphi
+		\end{align}
+		が成立する．$\varphi$が三段論法によって示されるとき，つまり式$\psi$で
+		\begin{align}
+			\Gamma &\provable{\mbox{{\bf HK}}} \psi, \\
+			\Sigma &\provable{\mbox{{\bf HK}}} \psi \rightarrow \varphi
+		\end{align}
+		を満たすものが取れるとき，$\psi$に$x$が自由に現れているかいないかで
+		\begin{description}
+			\item[case1] $\psi$に$x$が自由に現れていないとき，
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \psi
+				\end{align}
+				かつ
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi)
+				\end{align}
+				
+			\item[case2] $\psi$に$x$が自由に現れているとき，
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x \psi
+				\end{align}
+				かつ
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi)
+				\end{align}
+		\end{description}
+		のいずれかのケースを一つ仮定する．
+		\begin{description}
+			\item[case1] 量化公理(UI)より
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi) \rightarrow (\psi \rightarrow \forall x \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \psi \rightarrow \forall x \varphi
+				\end{align}
+				が成り立つので，$\Gamma \provable{\mbox{{\bf HK}}} \psi$の仮定と併せて
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x \varphi
+				\end{align}
+				が得られる．
+				
+			\item[case2]
+				新しく追加した量化公理を用いれば，
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi) \rightarrow (\forall x \psi \rightarrow \forall x \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x \psi \rightarrow \forall x \varphi
+				\end{align}
+				が得られるので，$\Gamma \provable{\mbox{{\bf HK}}} \forall x \psi$の仮定と併せて
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x \varphi
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	逆に，新しく追加した量化公理は一般化規則から導かれる．実際，量化規則(UE)より
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi), \\
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi)
+		\rightarrow (\psi(t/x) \rightarrow \varphi(t/x)), \\
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \psi(t/x) \rightarrow \varphi(t/x)
+	\end{align}
+	となり(ただし$t$は$\psi$と$\varphi$に現れない変項とする)，また一方で
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x \psi, \\
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x \psi \rightarrow \psi(t/x), \\
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \psi(t/x)
+	\end{align}
+	も成り立つから，併せて三段論法より
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi),\ \forall x \psi \provable{\mbox{{\bf HK}}} \varphi(t/x)
+	\end{align}
+	となる．演繹定理より
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi) \provable{\mbox{{\bf HK}}} \forall x \psi  \rightarrow \varphi(t/x)
+	\end{align}
+	となり，一般化規則より
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi) \provable{\mbox{{\bf HK}}} \forall t ( \forall x \psi  \rightarrow \varphi(t/x))
+	\end{align}
+	となる．量化規則(UI)より
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi) \provable{\mbox{{\bf HK}}} \forall t ( \forall x \psi  \rightarrow \varphi(t/x)) \rightarrow
+		(\forall x \psi \rightarrow \forall x \varphi)
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\forall x (\psi \rightarrow \varphi) \provable{\mbox{{\bf HK}}}
+		\forall x \psi \rightarrow \forall x \varphi
+	\end{align}
+	となる．演繹定理より
+	\begin{align}
+		\provable{\mbox{{\bf HK}}} \forall x (\psi \rightarrow \varphi)
+		\rightarrow (\forall x \psi \rightarrow \forall x \varphi)
+	\end{align}
+	が得られる．
