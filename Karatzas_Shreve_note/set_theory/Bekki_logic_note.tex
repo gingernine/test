@@ -1,13 +1,75 @@
-\section{Hilbert流証明論メモ}
-	参考文献: 戸次大介「数理論理学」
+	\begin{flushleft}
+		参考文献: 戸次大介「数理論理学」
+	\end{flushleft}
 	
+	この章に出てくる式と項は言語$\mathcal{L}_{\in}$のものとする．
+	証明論の奇妙なところは，扱う式が文とは限らないところである．
+	式に自由な変項が残ったままであるとその式の意味は定まらない．
+	逆に変更が全て束縛されている文は，それが表す意味は非常に判然としている．
+	奇妙なのは，$\varphi$が文であって，これが証明されたとしても，その証明の過程には
+	文でない式が出現し得る点である．意味が不明瞭な式をもって意味がはっきり
+	定まった式を導こうとは不思議な取り組みである．
+	
+	%たとえば，$\psi$と$\psi \rightarrow \varphi$が証明されれば通常は三段論法から
+	%$\varphi$が導かれるわけだが，$\psi$も$\varphi$も文であるとは限らない．
+
+\section{{\bf HK}}
+	証明体系とは推論の公理と推論規則を組にしたパッケージである．
+	証明体系には様々な流派があるが，流派の一つHilbert流と呼ばれる証明体系のうちで最も標準的なものが
+	{\bf HK}であると，筆者は理解している．
+	証明のシステムを概括するために，抽象的に{\bf H}をHilbert流の証明体系とする．
+	はじめに，{\bf H}の(論理的)公理と推論規則と言われるものが与えられる．
+	また証明の前には公理系と呼ばれる式の集合も与えられる．公理系に属する式をその公理系の公理と呼ぶが，
+	公理は意味のはっきりした式であるべきなので{\bf 通常は文である}．
+	いま公理系を$\Gamma$とすれば，$\varphi$が$\Gamma$の公理であるか{\bf H}の公理であることを
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf H}}} \varphi
+	\end{align}
+	と書く．通常は公理が全くない場合も考察対象であり，その場合は$\varphi$が{\bf H}の公理であることを
+	\begin{align}
+		\provable{\mbox{{\bf H}}} \varphi
+	\end{align}
+	と書くのである．$\varphi$が一般の式である場合は，
+	$\Gamma \provable{\mbox{{\bf H}}} \varphi$
+	なることを「$\varphi$は$\Gamma$の下での定理である」といった趣旨の言い方をする．
+	つまり$\Gamma$の公理や{\bf H}の公理は$\Gamma$の下での定理であるわけであるが，
+	他の式については，それがすでに既に定理とされた式から{\bf H}の推論規則によって得られている
+	ときに限り定理となる．
+	
+	いきなり{\bf HK}に取り掛かるのではなく，それより弱い証明体系を順に導入していって，
+	仲間を増やすように，ゆっくり押し広げるようにして{\bf HK}に進む．
+	まずは一番弱い体系の{\bf SK}から始める．以下で$\Gamma$と書いたらそれは公理系を表す．
+	
+\subsection{{\bf SK}}
 	\begin{itembox}[l]{{\bf SK}の公理}
+		$\varphi$と$\psi$と$\xi$を式とするとき，次は{\bf SK}の公理である．
 		\begin{description}
 			\item[(S)] $(\varphi \rightarrow (\psi \rightarrow \chi)) 
 				\rightarrow ((\varphi \rightarrow \psi)
 				\rightarrow (\varphi \rightarrow \chi)).$
 			
 			\item[(K)] $\varphi \rightarrow (\psi \rightarrow \varphi).$
+		\end{description}
+	\end{itembox}
+	
+	そして
+	\begin{align}
+		\provable{\mbox{{\bf SK}}} (\varphi \rightarrow (\psi \rightarrow \chi)) 
+			\rightarrow ((\varphi \rightarrow \psi)
+			\rightarrow (\varphi \rightarrow \chi))
+	\end{align}
+	および
+	\begin{align}
+		\provable{\mbox{{\bf SK}}} \varphi \rightarrow (\psi \rightarrow \varphi)
+	\end{align}
+	と書く．
+	
+	\begin{itembox}[l]{{\bf SK}の推論規則}
+		$\varphi$と$\psi$を式とするとき，次は{\bf SK}の推論規則である．
+		\begin{description}
+			\item[三段論法] $\Gamma \provable{\mbox{{\bf SK}}} \psi$かつ
+				$\Gamma \provable{\mbox{{\bf SK}}} \psi \rightarrow \varphi$ならば
+				$\Gamma \provable{\mbox{{\bf SK}}} \varphi$である．
 		\end{description}
 	\end{itembox}
 	
@@ -21,7 +83,11 @@
 		\item[(C$\ast$)] $\varphi \rightarrow ((\varphi \rightarrow \psi) \rightarrow \psi)$
 	\end{description}
 	
-	\begin{itembox}[l]{否定の追加}
+\subsection{否定}
+	{\bf SK}の公理に否定の公理を追加し，推論規則はそのまま据え置いた証明体系を{\bf SK'}とする．
+	
+	\begin{itembox}[l]{{\bf SK'}で追加された公理}
+		$\varphi$と$\psi$と$\xi$を式とするとき，{\bf SK'}の公理は(S)(K)に以下の式を加えたものである．
 		\begin{description}
 			\item[(CTI1)] $\varphi \rightarrow (\rightharpoondown \varphi \rightarrow \bot).$
 			
@@ -38,7 +104,18 @@
 		\item[(CON2)] $(\varphi \rightarrow\ \rightharpoondown \psi) \rightarrow (\psi \rightarrow\ \rightharpoondown \varphi).$
 	\end{description}
 	
+\subsection{{\bf HM}}
+	{\bf HM}とは最小論理と呼ばれる証明体系である．{\bf HK}においては$\bot$が示されると
+	あらゆる式が導かれることになるが(爆発律)，{\bf HM}ではそれが起こらないので矛盾許容論理と言われる．
+	
+	\begin{align}
+		\varphi(t/x)
+	\end{align}
+	とは，式$\varphi$に{\bf 自由に}現れる変項$x$を項$t$で置き換えた式を表す．
+	
 	\begin{itembox}[l]{{\bf HM}の公理}
+		$\varphi$と$\psi$と$\xi$を式とし，$x$と$t$を変項とし，$\tau$を項とするとき，
+		次は{\bf HM}の公理である．
 		\begin{description}
 			\item[(S)] $(\varphi \rightarrow (\psi \rightarrow \chi)) 
 				\rightarrow ((\varphi \rightarrow \psi)
@@ -51,12 +128,27 @@
 			\item[(CI)] $\varphi \rightarrow (\psi \rightarrow (\varphi \wedge \psi)).$
 			\item[(CE1)] $(\varphi \wedge \psi) \rightarrow \varphi.$
 			\item[(CE2)] $(\varphi \wedge \psi) \rightarrow \psi.$
-			\item[(UI)] $\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
-				\rightarrow (\psi \rightarrow \forall \xi \varphi).$
-			\item[(UE)] $\forall \xi \varphi \rightarrow \varphi[\tau/\xi].$
-			\item[(EI)] $\varphi[\tau/\xi] \rightarrow \exists \xi \varphi.$
-			\item[(EE)] $\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
-				\rightarrow (\exists \xi \varphi \rightarrow \psi).$
+			\item[(UI)] $\forall t (\psi \rightarrow \varphi(t/x)) 
+				\rightarrow (\psi \rightarrow \forall x \varphi).$
+			\item[(UE)] $\forall x \varphi \rightarrow \varphi(\tau/x).$
+			\item[(EI)] $\varphi(\tau/x) \rightarrow \exists x \varphi.$
+			\item[(EE)] $\forall t (\varphi(t/x) \rightarrow \psi)
+				\rightarrow (\exists x \varphi \rightarrow \psi).$
+		\end{description}
+	\end{itembox}
+	
+	{\bf SK}と同様に，上の{\bf HM}の公理は全て$\provable{\mbox{{\bf HM}}} ...$と書かれる．
+	
+	\begin{itembox}[l]{{\bf HM}の推論規則}
+		$\varphi$と$\psi$を式とするとき，次は{\bf HM}の推論規則である．
+		\begin{description}
+			\item[三段論法] $\Gamma \provable{\mbox{{\bf HM}}} \psi$かつ
+				$\Gamma \provable{\mbox{{\bf HM}}} \psi \rightarrow \varphi$ならば
+				$\Gamma \provable{\mbox{{\bf HM}}} \varphi$である．
+			\item[汎化] $\psi$に変項$x$が自由に現れているとき，
+				$\Gamma \provable{\mbox{{\bf HM}}} \psi(y/x)$ならば
+				$\Gamma \provable{\mbox{{\bf HM}}} \forall x \psi$である．
+				ただし$y$は$\forall x \psi$に自由には現れない変項とする．
 		\end{description}
 	\end{itembox}
 	
@@ -144,6 +236,10 @@
 		\QED
 	\end{sketch}
 	
+\subsection{{\bf HK}}
+	{\bf HM}の推論規則はそのままに，公理に{\bf 二重否定除去}を追加すると
+	古典論理の証明体系{\bf HK}となる．
+	
 	\begin{itembox}[l]{{\bf HK}の公理}
 		{\bf HM}の公理に次を追加:
 		\begin{description}
@@ -230,17 +326,14 @@
 		\QED
 	\end{sketch}
 	
-	{\bf HK}の定理の証明とは，式の列$\varphi_{1},\cdots,\varphi_{n}$であって，
-	各$i$について以下が満たされるものである．
-	\begin{itemize}
-		\item $\varphi_{i}$は{\bf HK}の公理である．
-		\item $j,k < i$なる$j,k$が取れて，$\varphi_{k}$は$\varphi_{j} \rightarrow \varphi_{i}$に一致する．
-		\item $j < i$なる$j$が取れて，$\varphi_{i}$は$\forall x \varphi_{j}$なる形式である．
-	\end{itemize}
+\section{{\bf HK'}}
+	{\bf HK}の量化公理から(UI)と(EE)を取り除き，三段論法に加え
+	{\bf 存在汎化}と{\bf 全称汎化}といった推論規則を用いた証明体系を{\bf HK'}とする．
+	つまり，
 	
-\subsection{量化公理の取り替え}
-	{\bf HK'}の公理を
-	\begin{screen}
+	\begin{itembox}[l]{{\bf HK'}の公理}
+		$\varphi$と$\psi$と$\xi$を式とし，$x$を変項とし，$\tau$を項とするとき，
+		次は{\bf HK'}の公理である．
 		\begin{description}
 			\item[(S)] $(\varphi \rightarrow (\psi \rightarrow \chi)) 
 				\rightarrow ((\varphi \rightarrow \psi)
@@ -254,8 +347,8 @@
 			\item[(CE1)] $(\varphi \wedge \psi) \rightarrow \varphi.$
 			\item[(CE2)] $(\varphi \wedge \psi) \rightarrow \psi.$
 			
-			\item[(UE)] $\forall \xi \varphi \rightarrow \varphi[\tau/\xi].$
-			\item[(EI)] $\varphi[\tau/\xi] \rightarrow \exists \xi \varphi.$
+			\item[(UE)] $\forall x \varphi \rightarrow \varphi(\tau/x).$
+			\item[(EI)] $\varphi(\tau/x) \rightarrow \exists x \varphi.$
 			
 			\item[(CTI1)] $\varphi \rightarrow (\rightharpoondown \varphi \rightarrow \bot).$
 			
@@ -264,110 +357,196 @@
 			\item[(NI)] $(\varphi \rightarrow \bot) \rightarrow\ \rightharpoondown \varphi.$
 			\item[(DNE)] $\rightharpoondown \rightharpoondown \varphi \rightarrow \varphi.$
 		\end{description}
+	\end{itembox}
+	
+	とし，推論規則には，三段論法に加えて
+	
+	\begin{itembox}[l]{{\bf HK'}の汎化規則}
+		$\varphi$と$\psi$を式とし，$x$と$t$を変項とし，$\varphi$に$x$が自由に現れるとし，
+		また{\bf $\psi$と$\exists x \varphi$に$t$は自由に現れないとする}．
+		\begin{description}
+			\item[存在汎化] 
+				$\Gamma \provable{\mbox{{\bf HK'}}} \varphi(t/x) \rightarrow \psi$ならば
+				$\Gamma \provable{\mbox{{\bf HK'}}} \exists x \varphi \rightarrow \psi$となる．
+			
+			\item[全称汎化] 
+				$\Gamma \provable{\mbox{{\bf HK'}}} \psi \rightarrow \varphi(t/x)$ならば
+				$\Gamma \provable{\mbox{{\bf HK'}}} \psi \rightarrow \forall x \varphi$となる．
+		\end{description}
+	\end{itembox}
+	を用いる．規則の前提で太字で強調した文言は{\bf 固有変項条件}と呼ばれる．
+	
+	\begin{screen}
+		\begin{metathm}[{\bf HK}と{\bf HK'}は同値]
+			任意の式$\varphi$に対して，$\Gamma \provable{\mbox{{\bf HK}}} \varphi$ならば
+			$\Gamma \provable{\mbox{{\bf HK'}}} \varphi$であり，その逆もまた然り．
+		\end{metathm}
 	\end{screen}
-	とするとき，任意の式$\varphi$に対して
+	
+	逆を示すのは非常に容易い．いま
 	\begin{align}
-		\provable{\mbox{{\bf HK}}} \varphi
-		\Longleftrightarrow \provable{\mbox{{\bf HK'}}} \varphi
+		\Gamma \provable{\mbox{{\bf HK'}}} \varphi
 	\end{align}
-	が成り立つ．
+	であるとする．$\varphi$が{\bf HK'}の公理であれば{\bf HK}の公理でもあるし，
+	$\Gamma$の公理であれば言わずもがな，これらの場合は
 	\begin{align}
-		\provable{\mbox{{\bf HK}}} \varphi
+		\Gamma \provable{\mbox{{\bf HK}}} \varphi
 	\end{align}
-	であるとして，$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\varphi$への証明とする．
-	$\varphi_{i}$が量化公理(UI)(EE)以外の公理であれば
+	となる．$\varphi$が存在汎化によって得られているとき，つまり，$\varphi$とは
 	\begin{align}
-		\provable{\mbox{{\bf HK'}}} \varphi_{i}
+		\exists x \psi \rightarrow \chi
 	\end{align}
-	である．$\varphi_{i}$が
+	なる形の式であって，$\psi(t/x) \rightarrow \chi$から存在汎化で得られている場合，
+	ここで$t$は$\chi$と$\exists x \psi$に自由に現れない変項であるが，このとき，
 	\begin{align}
-		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
-		\rightarrow (\psi \rightarrow \forall \xi \varphi)
+		\Gamma \provable{\mbox{{\bf HK}}} \psi(t/x) \rightarrow \chi
 	\end{align}
-	なる形の公理であるとき，
+	であると仮定すれば，汎化と量化公理(EE)によって
 	\begin{align}
-		&\provable{\mbox{{\bf HK'}}} 
-			\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
-			\rightarrow (\psi \rightarrow \varphi[\zeta/\xi]), \\
-		\color{red}\psi \rightarrow \varphi[\zeta/\xi] &
+		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rightarrow \chi), \\
+		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rightarrow \chi)
+			\rightarrow (\exists x \psi \rightarrow \chi), \\
+		\Gamma &\provable{\mbox{{\bf HK}}} \exists x \psi \rightarrow \chi
+	\end{align}
+	となる．また$\varphi$が全称汎化によって得られているとき，つまり，$\varphi$とは
+	\begin{align}
+		\chi \rightarrow \forall x \psi
+	\end{align}
+	なる形の式であって，$\chi \rightarrow \psi(t/x)$から存在汎化で得られている場合，
+	ここで$t$は$\chi$と$\forall x \psi$に自由に現れない変項であるが，このとき，
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf HK}}} \chi \rightarrow \psi(t/x)
+	\end{align}
+	であると仮定すれば，汎化と量化公理(UI)によって
+	\begin{align}
+		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rightarrow \psi(t/x)), \\
+		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rightarrow \psi(t/x))
+			\rightarrow (\chi \rightarrow \forall x \psi), \\
+		\Gamma &\provable{\mbox{{\bf HK}}} \chi \rightarrow \forall x \psi
+	\end{align}
+	となる．$\varphi$が三段論法で得られている場合，つまり$\psi$と$\psi \rightarrow \varphi$
+	なる形の式が{\bf HK'}から示されている場合であるが，
+	\begin{align}
+		\Gamma &\provable{\mbox{{\bf HK}}} \psi, \\
+		\Gamma &\provable{\mbox{{\bf HK}}} \psi \rightarrow \varphi
+	\end{align}
+	と仮定すれば$\Gamma \provable{\mbox{{\bf HK}}} \varphi$も従う．
+	
+\subsection{{\bf HK}から示されたら{\bf HK'}からも証明可能}
+	$\Gamma \provable{\mbox{{\bf HK}}} \varphi$ならば
+	$\Gamma \provable{\mbox{{\bf HK'}}} \varphi$であることを示すのは少し骨が折れる．
+	いま
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf HK}}} \varphi
+	\end{align}
+	とする．$\varphi$が量化公理(UI)(EE)以外の{\bf HK}の公理か，$\Gamma$の公理であれば
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+	\end{align}
+	である．$\varphi$が
+	\begin{align}
+		\forall t (\chi \rightarrow \psi(t/x)) 
+		\rightarrow (\chi \rightarrow \forall x \psi)
+	\end{align}
+	なる形の公理であるとき($t$は$\chi$と$\forall x \psi$には自由に現れない)，
+	\begin{align}
+		\Gamma &\provable{\mbox{{\bf HK'}}} 
+			\forall t (\chi \rightarrow \psi(t/x)) 
+			\rightarrow (\chi \rightarrow \psi(t/x)), \\
+		\color{red}\chi \rightarrow \psi(t/x),\ \Gamma &
 		\color{red}\provable{\mbox{{\bf HK'}}}
-			\psi \rightarrow \varphi[\zeta/\xi], \\
-		\color{red}\psi \rightarrow \varphi[\zeta/\xi] &
+			\chi \rightarrow \psi(t/x), \\
+		\color{red}\chi \rightarrow \psi(t/x),\ \Gamma &
 		\color{red}\provable{\mbox{{\bf HK'}}}
-			\psi \rightarrow \forall \xi \varphi, \\
-		&\provable{\mbox{{\bf HK'}}} (\psi \rightarrow \varphi[\zeta/\xi]) 
-			\rightarrow (\psi \rightarrow \forall \xi \varphi), \\
-		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
-			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]), \\
-		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
-			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
-			\rightarrow (\psi \rightarrow \varphi[\zeta/\xi]), \\
-		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
-			&\provable{\mbox{{\bf HK'}}} \psi \rightarrow \varphi[\zeta/\xi], \\
-		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
-			&\provable{\mbox{{\bf HK'}}} (\psi \rightarrow \varphi[\zeta/\xi]) 
-			\rightarrow (\psi \rightarrow \forall \xi \varphi), \\
-		\forall \zeta (\psi \rightarrow \varphi[\zeta/\xi])
-			&\provable{\mbox{{\bf HK'}}} \psi \rightarrow \forall \xi \varphi, \\
-		&\provable{\mbox{{\bf HK'}}} \forall \zeta (\psi \rightarrow \varphi[\zeta/\xi]) 
-		\rightarrow (\psi \rightarrow \forall \xi \varphi)
+			\chi \rightarrow \forall x \psi, \\
+		\Gamma &\provable{\mbox{{\bf HK'}}} (\chi \rightarrow \psi(t/x)) 
+			\rightarrow (\chi \rightarrow \forall x \psi), \\
+		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)), \\
+		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)) 
+			\rightarrow (\chi \rightarrow \psi(t/x)), \\
+		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \chi \rightarrow \psi(t/x), \\
+		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} (\chi \rightarrow \psi(t/x)) 
+			\rightarrow (\chi \rightarrow \forall x \psi), \\
+		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \chi \rightarrow \forall x \psi, \\
+		\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)) 
+			\rightarrow (\chi \rightarrow \forall x \psi)
 	\end{align}
-	となる(赤字で{\bf HK'}の推論規則を用いた箇所を示している)．
+	となる(赤字で{\bf HK'}の全称汎化規則を用いた箇所を示している)．
 	つまり(UI)は{\bf HK'}の定理である．同様に(EE)も{\bf HK'}の定理である．実際，
 	\begin{align}
-		&\provable{\mbox{{\bf HK'}}} 
-			\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi) 
-			\rightarrow (\varphi[\zeta/\xi] \rightarrow \psi), \\
-		\color{red}\varphi[\zeta/\xi] \rightarrow \psi &
+		\Gamma &\provable{\mbox{{\bf HK'}}} 
+			\forall t (\psi(t/x) \rightarrow \chi) 
+			\rightarrow (\psi(t/x) \rightarrow \chi), \\
+		\color{red}\psi(t/x) \rightarrow \chi,\ \Gamma &
 		\color{red}\provable{\mbox{{\bf HK'}}}
-			\varphi[\zeta/\xi] \rightarrow \psi, \\
-		\color{red}\varphi[\zeta/\xi] \rightarrow \psi &
+			\psi(t/x) \rightarrow \chi, \\
+		\color{red}\psi(t/x) \rightarrow \chi,\ \Gamma &
 		\color{red}\provable{\mbox{{\bf HK'}}}
-			\exists \xi \varphi \rightarrow \psi, \\
-		&\provable{\mbox{{\bf HK'}}} (\varphi[\zeta/\xi] \rightarrow \psi) 
-			\rightarrow (\exists \xi \varphi \rightarrow \psi), \\
-		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
-			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi), \\
-		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
-			&\provable{\mbox{{\bf HK'}}} \forall \zeta (\varphi[\zeta/\xi]) \rightarrow \psi 
-			\rightarrow (\varphi[\zeta/\xi] \rightarrow \psi), \\
-		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
-			&\provable{\mbox{{\bf HK'}}} \varphi[\zeta/\xi] \rightarrow \psi, \\
-		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
-			&\provable{\mbox{{\bf HK'}}} (\varphi[\zeta/\xi] \rightarrow \psi) 
-			\rightarrow (\exists \xi \varphi \rightarrow \psi), \\
-		\forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi)
-			&\provable{\mbox{{\bf HK'}}} \exists \xi \varphi \rightarrow \psi, \\
-		&\provable{\mbox{{\bf HK'}}} \forall \zeta (\varphi[\zeta/\xi] \rightarrow \psi) 
-		\rightarrow (\exists \xi \varphi \rightarrow \psi)
+			\exists x \psi \rightarrow \chi, \\
+		\Gamma &\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rightarrow \chi) 
+			\rightarrow (\exists x \psi \rightarrow \chi), \\
+		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi), \\
+		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi)
+			\rightarrow (\psi(t/x) \rightarrow \chi), \\
+		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \psi(t/x) \rightarrow \chi, \\
+		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rightarrow \chi) 
+			\rightarrow (\exists x \psi \rightarrow \chi), \\
+		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+			&\provable{\mbox{{\bf HK'}}} \exists x \psi \rightarrow \chi, \\
+		\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi) 
+			\rightarrow (\exists x \psi \rightarrow \chi)
 	\end{align}
-	となる．
+	となる．$\varphi$が汎化によって導かれているとき，つまり$\varphi$は
+	\begin{align}
+		\forall x \psi
+	\end{align}
+	なる式であって，先に$\psi(t/x)$なる式が{\bf HK}から証明されているとき
+	($x$は$\psi$に自由に現れ，$t$は$\forall x \psi$に自由に現れない変項である)，
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf HK'}}} \psi(t/x)
+	\end{align}
+	と仮定したら
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
+	\end{align}
+	が成り立つことは，次の小節に譲る．
 	
-\subsection{一般化規則は導かれる}
+\subsection{汎化規則は{\bf HK'}から導かれる}
 	{\bf HK}の量化公理に
 	\begin{align}
 		\forall x (\psi \rightarrow \varphi) \rightarrow
-		(\forall x \psi \rightarrow \forall x \varphi)
+		(\forall x \psi \rightarrow \forall x \varphi),
+		\quad \mbox{ただし$\varphi$と$\psi$には$x$が自由に現れる}
 	\end{align}
 	を追加すれば，一般化規則は導かれる．
 	
 	\begin{screen}
-		$\Gamma$を公理系(文の集合)とし，$\varphi$を式とし，$x$を$\varphi$に自由に現れる変項とする．
+		$x$と$t$を変項とし，$x$は$\psi$に自由に現れるとし，
+		$t$は$\forall x \psi$に自由に現れないとする．．
 		このとき
 		\begin{align}
-			\Gamma \provable{\mbox{{\bf HK}}} \varphi
+			\Gamma \provable{\mbox{{\bf HK'}}} \psi(t/x)
 		\end{align}
 		ならば
 		\begin{align}
-			\Gamma \provable{\mbox{{\bf HK}}} \forall x \varphi
+			\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
 		\end{align}
 		である．
 	\end{screen}
 	
 	\begin{sketch}
-		$\varphi$が$\provable{\mbox{{\bf HK}}} \varphi$であるときは
+		$\provable{\mbox{{\bf HK'}}} \psi(t/x)$であるときは
 		\begin{align}
-			\provable{\mbox{{\bf HK}}} \forall x \varphi
+			\provable{\mbox{{\bf HK}}} \forall x \psi
 		\end{align}
 		が成立する．$\varphi$が三段論法によって示されるとき，つまり式$\psi$で
 		\begin{align}
@@ -437,7 +616,7 @@
 		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x \psi \rightarrow \psi(t/x), \\
 		\forall x (\psi \rightarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \psi(t/x)
 	\end{align}
-	も成り立つから，併せて三段論法より
+	も成り立つから，前と併せて三段論法より
 	\begin{align}
 		\forall x (\psi \rightarrow \varphi),\ \forall x \psi \provable{\mbox{{\bf HK}}} \varphi(t/x)
 	\end{align}
