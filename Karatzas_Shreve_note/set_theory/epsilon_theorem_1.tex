@@ -1,18 +1,5 @@
 \section{第一イプシロン定理メモ}
 	
-	主要論理式
-	\begin{align}
-		A(t/x) \rightarrow A(\varepsilon x A / x)
-	\end{align}
-	において，$\varepsilon x A$は$A(t/x) \rightarrow A(\varepsilon x A / x)$に
-	{\bf 属している}と言うことにする．
-	
-	$EC_{\varepsilon}$の式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\pi$と書くとき，
-	$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$の中で主要論理式である式を
-	{\bf $\pi$の主要論理式}や{\bf $\pi$に現れる主要論理式}と呼ぶことにする．
-	また$\pi$の主要論理式に属している$\varepsilon$項を{\bf $\pi$の主要$\varepsilon$項}
-	と呼ぶことにする．
-	
 \subsection{埋め込み定理}
 	$A$を$L(PC_{\varepsilon})$の式とするとき，$A$を$L(EC_{\varepsilon})$の式に書き換える．
 	\begin{align}
@@ -303,159 +290,180 @@
 	\end{metaprf}
 	
 \subsection{アイデア}
-	$L(EC)$の公理系を$AX(EC)$と書く．
-	$L(EC_{\varepsilon})$の公理系を$AX(EC_{\varepsilon})$と書く．
-	$L(PC_{\varepsilon})$の公理系を$AX(PC_{\varepsilon})$と書く．
 	
-	証明の中から$A[t] \rightarrow A[e]$なる主要論理式は排除されるが，
-	$A[u] \rightarrow A[e]$なる主要論理式は残っている(かもしれない)．
-	しかし，$e$が属する主要論理式はたしかに減る．
-	別の，最高階数の$\varepsilon$項が属する主要論理式は増えたりしている場合があるっけ？
-	でも証明に現れる主要論理式は増えても，それらに属している最高階数の$\varepsilon$項の個数は増えない．
-	だから，$e$が属する主要論理式をまず排除すれば最高階数の$\varepsilon$項の個数は一つ減る．
-	次に，別の最高階数の$\varepsilon$項を一つ選んで，それが属する主要論理式を一本ずつ排除していく．
+	主要論理式
+	\begin{align}
+		A(t/x) \rightarrow A(\varepsilon x A / x)
+	\end{align}
+	において，$\varepsilon x A$は$A(t/x) \rightarrow A(\varepsilon x A / x)$に
+	{\bf 属している}と言うことにする．
 	
-	\begin{itembox}[l]{第一イプシロン定理の流れ}
+	$EC_{\varepsilon}$の式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\pi$と書くとき，
+	$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$の中で主要論理式である式を
+	{\bf $\pi$の主要論理式}や{\bf $\pi$に現れる主要論理式}と呼ぶことにする．
+	また$\pi$の主要論理式に属している$\varepsilon$項を{\bf $\pi$の主要$\varepsilon$項}
+	と呼ぶことにする．また，$\pi$の主要$\varepsilon$項の階数の最大値を
+	{\bf $\pi$の階数}と呼ぶことにする．
+	
+	\begin{screen}
+		\begin{metathm}[第一イプシロン定理]
+			$B$を$L(EC)$の式とし，$\provable{\mbox{{\bf EC}${}_{\varepsilon}$}} B$とする．
+			このとき$\provable{\mbox{{\bf EC}}} B$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{itembox}[l]{第一イプシロン定理の証明の流れ}
 		\begin{itemize}
-			\item $B$を$EC$の式とし，$B$が$AX(PC_{\varepsilon})$から証明可能であるとする．
-			\item このとき$AX(EC_{\varepsilon})から$$B$への証明$\pi$が得られる．
+			\item $B$への証明$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\pi$とする．
 			\item $e$を，$\pi$の主要$\varepsilon$項のうち階数が最大であって，かつ
-				その階数を持つ$\pi$の主要$\varepsilon$項の中で次数が最大であるものとする．
-			\item $e$が属する$\pi$の主要論理式の一つ$A(t) \Longrightarrow A(e)$を取る．
-			\item $\pi$をベースにして，$A(t) \Longrightarrow A(e)$を用いずに
-				$AX(EC_{\varepsilon})$から$B$への証明$\pi'$を構成する．このとき以下が満たされる．
+				その階数を持つ$\pi$の主要$\varepsilon$項の中で極大である(
+				他の$\varepsilon$項の部分項ではない)ものとする．
+			\item $e$が属する$\pi$の主要論理式の一つ$A(t/x) \Longrightarrow A(e/x)$を取る
+				(つまりこのとき$e$は$\varepsilon x A$なる$\varepsilon$項)．
+			\item $A(t/x) \rightarrow A(e/x)$を用いずに
+				{\bf EC}から$B$への証明$\pi'$を構成する．このとき以下が満たされる．
 				\begin{enumerate}
-					\item $A(t) \Longrightarrow A(e)$以外の主要論理式は，$\pi'$に残っているし，
-						またそれらが階数不変で生まれ変わったもの(置換定理による)は$\pi'$の主要論理式となる．
-						$A(t) \Longrightarrow A(e)$のみ消える．
-						他に主要論理式は現れない．
-					
-					\item 特に，階数$rk(\pi)$の主要$\varepsilon$項は増えない．
-						
-					\item 特に，$e$が属する主要論理式は$A(t) \Longrightarrow A(e)$の分だけ消えて，
-						新しく増えることはない．
+					\item $A(t/x) \rightarrow A(e/x)$なる主要論理式は排除される．
+					\item $\pi$に$A(u/x) \rightarrow A(e/x)$なる主要論理式があれば，
+						この式は$\pi'$にも残っている．ただし$\pi'$に現れる主要論理式のうち，
+						$e$が属するものは他に無い．
+						つまり，{\bf $e$が属する主要論理式は$A(t/x) \rightarrow A(e/x)$
+						の分だけ減る．}
+					\item $\pi'$に現れる主要論理式の本数は増加するかもしれないが，
+						{\bf $e$と同じ階数の主要$\varepsilon$項の個数は増えない．}
 				\end{enumerate}
-				
-			\item 証明$\pi$の主要$\varepsilon$項の階数の最大値を$rk(\pi)$とする．
-				また主要論理式に属する$\varepsilon$項の階数を，その主要論理式の階数と呼ぶことにする．
-				前段の操作を続けていけば，まずは階数$rk(\pi)$の主要論理式を全く用いない
-				$B$への証明$\pi_{1}$が得られる．このとき$rk(\pi_{1})$は
-				$rk(\pi)$よりも小さい．同様にして階数$rk(\pi_{1})$の主要論理式を全く用いない
-				$B$への証明$\pi_{2}$が得られる．もちろん$rk(\pi_{2})$は
-				$rk(\pi_{1})$よりも小さい．これを繰り返していけば，いずれは主要論理式を全く用いない
-				$B$への証明$\pi^{\ast}$が得られる．$\pi^{\ast}$にはトートロジーか
-				モーダスポンネスで導かれる式しかない．
-				あとは，$\pi^{\ast}$に現れる$\varepsilon$項を$EC$の項に置き換えれば，その式の列は
-				$EC$から$B$への証明となっている．
+			
+			\item 従って，まずは$e$が属する主要論理式から一本ずつ排除できる．
+				$e$が属する主要論理式が全て証明から排除されたら，
+				次は別の最高階数の$\varepsilon$項を一つ選んで
+				それが属する主要論理式を一本ずつ排除していく．
+				この段取りで，証明の階数を落としながら，最後には主要論理式が現れない証明が得られる．
+					
+			\item 最後に得られた証明に現れる式は，いずれも主要論理式以外の
+				{\bf EC}${}_{\varepsilon}$の定理であるから，項を取り替えても
+				{\bf EC}${}_{\varepsilon}$の定理のままである．証明に残っている
+				$\varepsilon$項を全て{\bf EC}の項に置き換えれば
+				{\bf EC}からの$B$への証明が得られる．
 		\end{itemize}
 	\end{itembox}
 	
-	$\pi$を$\varphi_{0},\varphi_{1},\cdots,\varphi_{n}$とし，
-	$\varphi_{0},\varphi_{1},\cdots,\varphi_{n}$に現れる$e$を$t$に置き換えた式を
-	\begin{align}
-		\tilde{\varphi}_{0},\ \tilde{\varphi}_{1},\cdots, \tilde{\varphi}_{n}
-	\end{align}
-	と書く($e$は，どれかの項の部分項であるときも置き換える)．
-	このとき，任意の$0 \leq i \leq n$で
-	\begin{enumerate}
-		\item $\varphi_{i}$がトートロジーなら$\tilde{\varphi}_{i}$もトートロジーである．
-		\item $\varphi_{i}$が主要論理式で，$e$が$\varphi_{i}$の主要項であるならば，
-			$\tilde{\varphi}_{i}$は$A(u) \Longrightarrow A(t)$なる形の式である
-			\footnotemark．
-		\item $\varphi_{i}$が主要論理式で，$e$が$\varphi_{i}$の主要項ではないならば，
-			$\tilde{\varphi}_{i}$も主要論理式である．
-	\end{enumerate}
+	以下では，上のフローのうち$A(t/x) \rightarrow A(e/x)$を排除するところの詳細を書く．
+	はじめに大まかに言えば，まず$\rightharpoondown A(t/x) \rightarrow B$と
+	$A(t/x) \rightarrow B$の証明を構成し，それから排中律と
+	$A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B$に訴えて
+	$B$への証明を得るという寸法である．
 	
-	\footnotetext{
-		$\varepsilon x A$と$\varepsilon y B$が記号列として一致すれば，
-		$x$と$y$は一致するし，式$A$と式$B$も一致するので
-		$A(\varepsilon x A)$と$B(\varepsilon y B)$も記号列として一致する．
-	}
+	\begin{description}
+		\item[$\rightharpoondown A(t/x) \rightarrow B$の証明を構成する]
+			$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$でない
+			{\bf EC}${}_{\varepsilon}$の公理ならば，
+			$\varphi_{i}$と$\varphi_{i+1}$の間に
+			\begin{align}
+				&\varphi_{i} \rightarrow 
+				(\rightharpoondown A(t/x) \rightarrow \varphi_{i}), \\
+				&\rightharpoondown A(t/x) \rightarrow \varphi_{i}
+			\end{align}
+			を挿入する(この時点で，$A(t/x) \rightarrow A(e/x)$でない主要論理式は
+			無傷のまま残ることが判る)．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}
+			\equiv \varphi_{j} \rightarrow \varphi_{i}$から三段論法で得られる場合は，
+			$\varphi_{i}$を
+			\begin{align}
+				&(\rightharpoondown A(t/x) \rightarrow (\varphi_{j} \rightarrow \varphi_{i})) \rightarrow
+				[(\rightharpoondown A(t/x) \rightarrow \varphi_{j})
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow \varphi_{i})], \\
+				&(\rightharpoondown A(t/x) \rightarrow \varphi_{j})
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow \varphi_{i}), \\
+				&\rightharpoondown A(t/x) \rightarrow \varphi_{i}
+			\end{align}
+			で置き換える．$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$であるときは，
+			$\varphi_{i}$を
+			\begin{align}
+				\rightharpoondown A(t/x) \rightarrow (A(t/x) \rightarrow A(e/x))
+			\end{align}
+			で置き換える．
 	
-	$\varphi$が$A(t) \Longrightarrow A(e)$でない$EC_{\varepsilon}$の公理ならば，
-	$\tilde{\varphi}_{i}$と$\tilde{\varphi}_{i+1}$の間に
-	\begin{align}
-		&\tilde{\varphi}_{i} \Longrightarrow 
-		\left( A(t) \Longrightarrow \tilde{\varphi}_{i} \right), \\
-		&A(t) \Longrightarrow \tilde{\varphi}_{i}
-	\end{align}
-	を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}$からモーダスポンネスで得られる場合は，
-	$\tilde{\varphi}_{i}$を
-	\begin{align}
-		&\left( A(t) \Longrightarrow \tilde{\varphi}_{j} \right)
-		\Longrightarrow \left[ \left( A(t) \Longrightarrow 
-		\left( \tilde{\varphi}_{j}\Longrightarrow \tilde{\varphi}_{i} \right) \right)
-		\Longrightarrow \left( A(t) \Longrightarrow \tilde{\varphi}_{i} \right) \right], \\
-		&\left( A(t) \Longrightarrow 
-		\left( \tilde{\varphi}_{j}\Longrightarrow \tilde{\varphi}_{i} \right) \right)
-		\Longrightarrow \left( A(t) \Longrightarrow \tilde{\varphi}_{i} \right), \\
-		&A(t) \Longrightarrow \tilde{\varphi}_{i}
-	\end{align}
-	で置き換える．すると，$A(t) \Longrightarrow A(e)$を使わない
-	$EC_{\varepsilon}$から$A(t) \Longrightarrow B$への証明が得られる．
-	$\varphi_{i}$が$e$が属する主要論理式$A(s) \Longrightarrow A(e)$であるときは，
-	$\tilde{\varphi}_{i}$とは
-	\begin{align}
-		A(s') \Longrightarrow A(t)
-	\end{align}
-	なる形の式であるが
-	\footnote{
-		$x$を$A$に現れている自由な変項とすれば，$e$とは$\varepsilon x A$のことであるし，
-		$A(\varepsilon x A)$とは$A$に自由に現れる$x$を$\varepsilon x A$に置換した式である．
-		$A$には$\varepsilon x A$は現れていないので，というのも$\varepsilon x A$が登場するのは
-		$A$が作られた後であるからだが，$A(e)$に現れる$e$を$t$に変換した式は
-		$A(t)$になる．同様に，$A(s)$に$e$が現れるとすれば，その$e$は$y$に代入された$s$の
-		部分項でしかありえない．すなわち，$A(s)$に現れる$e$を$t$で置換した式は，
-		$s'$を$s$に現れる$e$を$t$に変換した項として ($s$に$e$が現れなければ$s'$は$s$である)
-		$A(s')$となるわけである．
-	}，$\tilde{\varphi}_{i}$を
-	\begin{align}
-		&A(t) \Longrightarrow (A(s') \Longrightarrow A(t)), \\
-		&A(s') \Longrightarrow A(t)
-	\end{align}
-	で置き換える．
+		\item[$A(t/x) \rightarrow B$の証明の構成]
+			$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$に現れる$e$を
+			($e$が部分項として現れる場合も)$t$に置き換えた式を
+			\begin{align}
+				\tilde{\varphi}_{1},\ \tilde{\varphi}_{2},\cdots, \tilde{\varphi}_{n}
+			\end{align}
+			と書く．このとき，任意の$i \in \{1,2,\cdots,n\}$で
+			\begin{enumerate}
+				\item $\varphi_{i}$が主要論理式でない{\bf EC}${}_{\varepsilon}$の定理なら
+					$\tilde{\varphi}_{i}$も主要論理式でない{\bf EC}${}_{\varepsilon}$の定理である．
+				\item $\varphi_{i}$が$A(u/x) \rightarrow A(e/x)$なる形の主要論理式
+					ならば，$\tilde{\varphi}_{i}$は$A(v/x) \rightarrow A(t/x)$
+					の形の式である．ただし$v$とは，$u$に$e$が現れていたらそれを$t$
+					に置き換えた項である\footnotemark．
+				\item $\varphi_{i}$が主要論理式で，$e$が属していないならば，
+					$\tilde{\varphi}_{i}$も主要論理式である(置換定理)．
+			\end{enumerate}
+			
+			\footnotetext{
+				$x$を$A$に現れている自由な変項とすれば，$e$とは$\varepsilon x A$のことであるし，
+				$A(\varepsilon x A/x)$とは$A$に自由に現れる$x$を
+				$\varepsilon x A$に置換した式である．
+				$A$には$\varepsilon x A$は現れていないので($A$に$\varepsilon x A$が
+				収まるはずはない)，$A(e/x)$に現れる$e$を$t$に変換した式は
+				$A(t/x)$になる．同様に，$A(u/x)$に$e$が現れるとすれば，
+				その$e$は$u$の部分項でしかありえない．すなわち，$A(u/x)$に現れる$e$を$t$で
+				置換した式は，$v$を$u$に現れる$e$を$t$に変換した項として
+				$A(v/x)$となるわけである．
+			}
+			\footnote{
+				$\varphi_{i}$が$e$が属する主要論理式ならば，
+				$\varphi_{i}$は$A(u/x) \rightarrow A(e/x)$なる式である．
+				実際，$\varphi_{i}$に属する$\varepsilon$項を$\varepsilon y B$とすれば，
+				$\varepsilon x A$と$\varepsilon y B$は記号列として一致するので，
+				$x$と$y$は一致するし，式$A$と式$B$も一致する．
+			}
 	
-	同様に$A(t) \Longrightarrow A(e)$を使わない$EC_{\varepsilon})$から
-	$\rightharpoondown A(t) \Longrightarrow B$への証明を構成する．
-	今度は$\pi$に現れる$e$を$t$に置き換える必要はない．
-	$\varphi_{i}$が$A(t) \Longrightarrow A(e)$でない$EC_{\varepsilon}$の公理ならば，
-	$\varphi_{i}$と$\varphi_{i+1}$の間に
-	\begin{align}
-		&\varphi_{i} \Longrightarrow (\rightharpoondown A(t) \Longrightarrow \varphi_{i}), \\
-		&\rightharpoondown A(t) \Longrightarrow \varphi_{i}
-	\end{align}
-	を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}$からモーダスポンネスで得られる場合は，
-	$\varphi_{i}$を
-	\begin{align}
-		&(\rightharpoondown A(t) \Longrightarrow \varphi_{j}) \Longrightarrow
-		[(\rightharpoondown A(t) \Longrightarrow 
-		(\varphi_{j}\Longrightarrow \varphi_{i}))
-		\Longrightarrow (\rightharpoondown A(t) \Longrightarrow \varphi_{i})], \\
-		&(\rightharpoondown A(t) \Longrightarrow 
-		(\varphi_{j} \Longrightarrow \varphi_{i}))
-		\Longrightarrow (\rightharpoondown A(t) \Longrightarrow \varphi_{i}), \\
-		&\rightharpoondown A(t) \Longrightarrow \varphi_{i}
-	\end{align}
-	で置き換える．$\varphi_{i}$が$A(t) \Longrightarrow A(e)$であるときは，$\varphi_{i}$を
-	\begin{align}
-		\rightharpoondown A(t) \Longrightarrow (A(t) \Longrightarrow A(e))
-	\end{align}
-	で置き換える．
+			$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$でない$EC_{\varepsilon}$の公理
+			ならば，$\tilde{\varphi}_{i}$と$\tilde{\varphi}_{i+1}$の間に
+			\begin{align}
+				&\tilde{\varphi}_{i} \rightarrow 
+				\left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right), \\
+				&A(t/x) \rightarrow \tilde{\varphi}_{i}
+			\end{align}
+			を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}
+			\equiv \varphi_{j} \rightarrow \varphi_{i}$からモーダスポンネスで得られる場合は，
+			$\tilde{\varphi}_{i}$を
+			\begin{align}
+				&\left( A(t/x) \rightarrow \left(\tilde{\varphi}_{j} \rightarrow
+				\tilde{\varphi}_{i} \right) \right)
+				\rightarrow \left[ \left( A(t/x) \rightarrow \tilde{\varphi}_{j} \right)
+				\rightarrow \left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right) \right], \\
+				&\left( A(t/x) \rightarrow \tilde{\varphi}_{j} \right)
+				\rightarrow \left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right), \\
+				&A(t) \rightarrow \tilde{\varphi}_{i}
+			\end{align}
+			で置き換える．$\varphi_{i}$が$e$が属する主要論理式
+			$A(u/x) \rightarrow A(e/x)$であるときは，$\tilde{\varphi}_{i}$とは
+			\begin{align}
+				A(v/x) \rightarrow A(t/x)
+			\end{align}
+			なる形の式であるが，$\tilde{\varphi}_{i}$を
+			\begin{align}
+				A(t/x) \rightarrow (A(v/x) \rightarrow A(t/x))
+			\end{align}
+			で置き換える．
 	
-	以上で$A(t) \Longrightarrow B$と$\rightharpoondown A(t) \Longrightarrow B$に対して
-	$A(t) \Longrightarrow A(e)$を用いない$EC_{\varepsilon}$からの証明が得られた．後はこれに
-	\begin{align}
-		&(A(t) \Longrightarrow B) \Longrightarrow
-		((\rightharpoondown A(t) \Longrightarrow B) \Longrightarrow
-		((A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B))), \\
-		&(\rightharpoondown A(t) \Longrightarrow B) \Longrightarrow
-		((A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B)), \\
-		&(A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B), \\
-		&((A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B))
-		\Longrightarrow ((A(t) \vee \rightharpoondown A(t)) \Longrightarrow B), \\
-		&(A(t) \vee \rightharpoondown A(t)) \Longrightarrow B, \\
-		&A(t) \vee \rightharpoondown A(t), \\
-		&B
-	\end{align}
-	を追加すれば，$A(t) \Longrightarrow A(e)$を用いない$EC_{\varepsilon}$から$B$への証明となる．
-	
+		\item[$B$への証明の構成]
+			以上で$A(t/x) \rightarrow B$と$\rightharpoondown A(t/x) \rightarrow B$に対して
+			$A(t/x) \rightarrow A(e/x)$を用いない{\bf EC}${}_{\varepsilon}$の証明が
+			得られた．後はこれに
+			\begin{align}
+				&(A(t/x) \rightarrow B) \rightarrow
+				\left[ (\rightharpoondown A(t/x) \rightarrow B) \rightarrow
+				(A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B)\right], \\
+				&(\rightharpoondown A(t/x) \rightarrow B) \rightarrow
+				(A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B), \\
+				&A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B, \\
+				&A(t) \vee \rightharpoondown A(t), \\
+				&B
+			\end{align}
+			を追加すれば，$A(t/x) \rightarrow A(e/x)$を用いない
+			$B$への{\bf EC}${}_{\varepsilon}$の証明となる．
+			\QED
+	\end{description}	
