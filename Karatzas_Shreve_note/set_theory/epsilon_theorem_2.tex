@@ -1,9 +1,10 @@
 \section{第二イプシロン定理}
-	$\exists x \forall y \exists z B(x,y,z)$を$L(PC)$の冠頭標準形とする．
-	つまり$B(x,y,z)$は$L(EC)$の式である．
+	$\exists x \forall y \exists z B(x,y,z)$を$L(PC)$の冠頭標準形
+	(つまり$B(x,y,z)$は$L(EC)$の式である)とし，$B$に自由に現れる変項は$x,y,z$のみであるとする．
 	また
 	\begin{align}
-		PC_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+		\provable{\mbox{{\bf PC}${}_{\varepsilon}$}} 
+		\exists x \forall y \exists z B(x,y,z)
 	\end{align}
 	であるとする．
 	
@@ -14,173 +15,239 @@
 		L'(PC_{\varepsilon}) &\defeq L(PC_{\varepsilon}) \cup \{f\}, \\
 		L'(EC_{\varepsilon}) &\defeq L(EC_{\varepsilon}) \cup \{f\}
 	\end{align}
-	とする．このとき明らかに
+	とする．そして，$L'(PC_{\varepsilon})$の式を用いた証明
+	(公理と推論規則は{\bf PC}のもの)が存在することを
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+		\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}}
 	\end{align}
-	であるが(ただし${PC'}_{\varepsilon} \vdash$とは$L'(PC_{\varepsilon})$の
-	式からなる証明が存在するという意味)，
+	と書く(同様に$\provable{\mbox{{\bf EC'}}},
+	\provable{\mbox{{\bf EC'}${}_{\varepsilon}$}},
+	\provable{\mbox{{\bf PC'}}}$を使う．)．
+	このとき，{\bf PC}${}_{\varepsilon}$の証明は{\bf PC'}${}_{\varepsilon}$の証明でもあるから
 	\begin{align}
-		{PC'}_{\varepsilon} &\vdash \exists x \forall y \exists z B(x,y,z), \\
-		{PC'}_{\varepsilon} &\vdash \exists x \forall y \exists z B(x,y,z)
+		\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}}
+		\exists x \forall y \exists z B(x,y,z)
+	\end{align}
+	である．また
+	\begin{align}
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \exists x \forall y \exists z B(x,y,z), \\
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \exists x \forall y \exists z B(x,y,z)
 		\rightarrow \forall y \exists z B(\tau,y,z), && 
 		(\tau \defeq \varepsilon x \forall y \exists z B(x,y,z)) \\
-		{PC'}_{\varepsilon} &\vdash \forall y \exists z B(\tau,y,z), \\
-		{PC'}_{\varepsilon} &\vdash \forall y \exists z B(\tau,y,z)
-		\rightarrow \exists z B(\tau,f(\tau),z), \\
-		{PC'}_{\varepsilon} &\vdash \exists z B(\tau,f(\tau),z), \\
-		{PC'}_{\varepsilon} &\vdash \exists z B(\tau,f(\tau),z)
-		\rightarrow \exists x \exists z B(x,f(x),z), \\
-		{PC'}_{\varepsilon} &\vdash \exists x \exists z B(x,f(x),z)
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \forall y \exists z B(\tau,y,z), \\
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \forall y \exists z B(\tau,y,z)
+		\rightarrow \exists z B(\tau,f\tau,z), \\
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \exists z B(\tau,f\tau,z), \\
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \exists z B(\tau,f\tau,z)
+		\rightarrow \exists x \exists z B(x,fx,z), \\
+		&\provable{\mbox{{\bf PC'}${}_{\varepsilon}$}} \exists x \exists z B(x,fx,z)
 	\end{align}
-	が成り立つ．すると拡張第一イプシロン定理より，$p$個の$L'(EC)$の項$r_{i}$
-	と，同じく$p$個の$L'(EC)$の項$s_{i}$が取れて，
+	が成り立つ．すると埋め込み定理より，
 	\begin{align}
-		{EC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p} B(r_{i},f(r_{i}),s_{i})
+		\zeta &\defeq \varepsilon z B(x,fx,z), \\
+		\tau &\defeq \varepsilon x B(x,fx,\zeta)
 	\end{align}
-	となる．同じ証明で
+	とおけば
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p} B(r_{i},f(r_{i}),s_{i})
+		\provable{\mbox{{\bf EC'}${}_{\varepsilon}$}} B(\tau,f\tau,\zeta)
+	\end{align}
+	が成り立つ．そして，或る$p>1$と，$p$個の$L'(EC)$の項$r_{i}$と，
+	同じく$p$個の$L'(EC)$の項$s_{i}$が取れて，
+	\begin{align}
+		\provable{\mbox{{\bf EC'}}} \bigvee_{i=1}^{p} B(r_{i},fr_{i},s_{i})
+	\end{align}
+	が成り立つ{\bf (後述，次の小節)}．同じ証明で
+	\begin{align}
+		\provable{\mbox{{\bf PC'}}} \bigvee_{i=1}^{p} B(r_{i},fr_{i},s_{i})
 	\end{align}
 	であることも言える．
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
-		\vee B(r_{p},f(r_{p}),s_{p})
+		\provable{\mbox{{\bf PC'}}} \bigvee_{i=1}^{p-1} B(r_{i},fr_{i},s_{i})
+		\vee B(r_{p},fr_{p},s_{p})
 	\end{align}
 	より，まず
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
-		\vee \exists z B(r_{p},f(r_{p}),z)
+		\provable{\mbox{{\bf PC'}}} \bigvee_{i=1}^{p-1} B(r_{i},fr_{i},s_{i})
+		\vee \exists z B(r_{p},fr_{p},z)
 	\end{align}
-	となる．続いて，$f(r_{p})$は$\bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})$には現れないので
+	となる．続いて，$fr_{p}$は$\bigvee_{i=1}^{p-1} B(r_{i},fr_{i},s_{i})$には現れないので
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
+		\provable{\mbox{{\bf PC'}}} \bigvee_{i=1}^{p-1} B(r_{i},fr_{i},s_{i})
 		\vee \forall y \exists z B(r_{p},y,z)
 	\end{align}
 	となる．最後に
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \bigvee_{i=1}^{p-1} B(r_{i},f(r_{i}),s_{i})
+		\provable{\mbox{{\bf PC'}}} \bigvee_{i=1}^{p-1} B(r_{i},fr_{i},s_{i})
 		\vee \exists x \forall y \exists z B(x,y,z)
 	\end{align}
 	となる．これを繰り返せば
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+		\provable{\mbox{{\bf PC'}}} \exists x \forall y \exists z B(x,y,z)
 		\vee \cdots \vee \exists x \forall y \exists z B(x,y,z)
 	\end{align}
 	が得られるので
 	\begin{align}
-		{PC'}_{\varepsilon} \vdash \exists x \forall y \exists z B(x,y,z)
+		\provable{\mbox{{\bf PC'}}} \exists x \forall y \exists z B(x,y,z)
 	\end{align}
 	となる．最後に，$\exists x \forall y \exists z B(x,y,z)$への証明に残っている
-	$f$を含む項を$L(PC)$の項に置き換えれば，$L(PC)$から$\exists x \forall y \exists z B(x,y,z)$
-	への証明が得られる．
+	$f$を含む項を$L(PC)$の項に置き換えれば，{\bf PC}から
+	$\exists x \forall y \exists z B(x,y,z)$への証明が得られる．
 	
-\subsection{{\bf EC}${}_{\varepsilon}$から$B(\tau,f\tau,\zeta)$への証明}
-	$\pi$を$\varphi_{0},\varphi_{1},\cdots,\varphi_{n}$とし，
-	$\varphi_{0},\varphi_{1},\cdots,\varphi_{n}$に現れる$e$を$t$に置き換えた式を
-	\begin{align}
-		\tilde{\varphi}_{0},\ \tilde{\varphi}_{1},\cdots, \tilde{\varphi}_{n}
-	\end{align}
-	と書く($e$は，どれかの項の部分項であるときも置き換える)．
-	このとき，任意の$0 \leq i \leq n$で
+\subsection{$\bigvee_{i=1}^{p} B(r_{i},fr_{i},s_{i})$への証明}
+	第一イプシロン定理と証明は殆ど変わらない．
+	
 	\begin{enumerate}
-		\item $\varphi_{i}$がトートロジーなら$\tilde{\varphi}_{i}$もトートロジーである．
-		\item $\varphi_{i}$が主要論理式で，$e$が$\varphi_{i}$の主要項であるならば，
-			$\tilde{\varphi}_{i}$は$A(u) \Longrightarrow A(t)$なる形の式である
-			\footnotemark．
-		\item $\varphi_{i}$が主要論理式で，$e$が$\varphi_{i}$の主要項ではないならば，
-			$\tilde{\varphi}_{i}$も主要論理式である．
+		\item $B(\tau,f\tau,\zeta)$への$EC_{\varepsilon}$の証明を
+			$\pi_{1},\pi_{2},\cdots,\pi_{n}$とする．
+			
+		\item $e$を，この証明の主要$\varepsilon$項のうち階数が最大であって，かつ
+			その階数を持つ$\pi$の主要$\varepsilon$項の中で極大である(
+			他の$\varepsilon$項の部分項ではない)ものとする．
+		
+		\item この証明から，$e$が属する主要論理式の一つ
+			\begin{align}
+				A(t/x) \rightarrow A(e/x)
+			\end{align}
+			を取る．以下では
+			\begin{align}
+				B(\tau,f\tau,\zeta) \vee B(\tau',f\tau',\zeta')
+			\end{align}
+			への$A(t/x) \rightarrow A(e/x)$を用いない証明を構成する．
+			ただし$\tau',\zeta'$はそれぞれ$\tau,\zeta$に現れる$e$を$t$に置き換えた項である．
+			
+		\item それ以降の流れは第一イプシロン定理と同様であって，
+			階数が大きい$\varepsilon$項から順番に，それが属する主要論理式を一本ずつ排除しながら
+			証明を構成するが，証明される式は
+			\begin{align}
+				B(\tau,f\tau,\zeta) \vee B(\tau',f\tau',\zeta') \vee
+				B(\tau'',f\tau'',\zeta'') \vee \cdots
+			\end{align}
+			のように増えていく．そして，最終的に
+			\begin{align}
+				\bigvee_{i=1}^{p} B(\tau_{i},f\tau_{i},\zeta_{i})
+			\end{align}
+			への{\bf EC'}${}_{\varepsilon}$の証明が得られる．最後に証明に残っている
+			$\varepsilon$項を$L(EC)$の項に置き換える．
 	\end{enumerate}
 	
-	\footnotetext{
-		$\varepsilon x A$と$\varepsilon y B$が記号列として一致すれば，
-		$x$と$y$は一致するし，式$A$と式$B$も一致するので
-		$A(\varepsilon x A)$と$B(\varepsilon y B)$も記号列として一致する．
-	}
+	\begin{description}
+		\item[step1]
+			$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$でない
+			{\bf EC}${}_{\varepsilon}$の公理ならば，
+			$\varphi_{i}$と$\varphi_{i+1}$の間に
+			\begin{align}
+				&\varphi_{i} \rightarrow 
+				(\rightharpoondown A(t/x) \rightarrow \varphi_{i}), \\
+				&\rightharpoondown A(t/x) \rightarrow \varphi_{i}
+			\end{align}
+			を挿入する(この時点で，$A(t/x) \rightarrow A(e/x)$でない主要論理式は
+			無傷のまま残ることが判る)．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}
+			\equiv \varphi_{j} \rightarrow \varphi_{i}$から三段論法で得られる場合は，
+			$\varphi_{i}$を
+			\begin{align}
+				&(\rightharpoondown A(t/x) \rightarrow (\varphi_{j} \rightarrow \varphi_{i})) \rightarrow
+				[(\rightharpoondown A(t/x) \rightarrow \varphi_{j})
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow \varphi_{i})], \\
+				&(\rightharpoondown A(t/x) \rightarrow \varphi_{j})
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow \varphi_{i}), \\
+				&\rightharpoondown A(t/x) \rightarrow \varphi_{i}
+			\end{align}
+			で置き換える．$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$であるときは，
+			$\varphi_{i}$を
+			\begin{align}
+				\rightharpoondown A(t/x) \rightarrow (A(t/x) \rightarrow A(e/x))
+			\end{align}
+			で置き換える．以上で$\rightharpoondown A(t/x) \rightarrow 
+			B(\tau,f\tau,\zeta)$への証明が得られた．
 	
-	$\varphi$が$A(t) \Longrightarrow A(e)$でない$EC_{\varepsilon}$の公理ならば，
-	$\tilde{\varphi}_{i}$と$\tilde{\varphi}_{i+1}$の間に
-	\begin{align}
-		&\tilde{\varphi}_{i} \Longrightarrow 
-		\left( A(t) \Longrightarrow \tilde{\varphi}_{i} \right), \\
-		&A(t) \Longrightarrow \tilde{\varphi}_{i}
-	\end{align}
-	を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}$からモーダスポンネスで得られる場合は，
-	$\tilde{\varphi}_{i}$を
-	\begin{align}
-		&\left( A(t) \Longrightarrow \tilde{\varphi}_{j} \right)
-		\Longrightarrow \left[ \left( A(t) \Longrightarrow 
-		\left( \tilde{\varphi}_{j}\Longrightarrow \tilde{\varphi}_{i} \right) \right)
-		\Longrightarrow \left( A(t) \Longrightarrow \tilde{\varphi}_{i} \right) \right], \\
-		&\left( A(t) \Longrightarrow 
-		\left( \tilde{\varphi}_{j}\Longrightarrow \tilde{\varphi}_{i} \right) \right)
-		\Longrightarrow \left( A(t) \Longrightarrow \tilde{\varphi}_{i} \right), \\
-		&A(t) \Longrightarrow \tilde{\varphi}_{i}
-	\end{align}
-	で置き換える．すると，$A(t) \Longrightarrow A(e)$を使わない
-	$EC_{\varepsilon}$から$A(t) \Longrightarrow B$への証明が得られる．
-	$\varphi_{i}$が$e$が属する主要論理式$A(s) \Longrightarrow A(e)$であるときは，
-	$\tilde{\varphi}_{i}$とは
-	\begin{align}
-		A(s') \Longrightarrow A(t)
-	\end{align}
-	なる形の式であるが
-	\footnote{
-		$x$を$A$に現れている自由な変項とすれば，$e$とは$\varepsilon x A$のことであるし，
-		$A(\varepsilon x A)$とは$A$に自由に現れる$x$を$\varepsilon x A$に置換した式である．
-		$A$には$\varepsilon x A$は現れていないので，というのも$\varepsilon x A$が登場するのは
-		$A$が作られた後であるからだが，$A(e)$に現れる$e$を$t$に変換した式は
-		$A(t)$になる．同様に，$A(s)$に$e$が現れるとすれば，その$e$は$y$に代入された$s$の
-		部分項でしかありえない．すなわち，$A(s)$に現れる$e$を$t$で置換した式は，
-		$s'$を$s$に現れる$e$を$t$に変換した項として ($s$に$e$が現れなければ$s'$は$s$である)
-		$A(s')$となるわけである．
-	}，$\tilde{\varphi}_{i}$を
-	\begin{align}
-		&A(t) \Longrightarrow (A(s') \Longrightarrow A(t)), \\
-		&A(s') \Longrightarrow A(t)
-	\end{align}
-	で置き換える．
+		\item[step2]
+			$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$に現れる$e$を
+			($e$が部分項として現れる場合も)$t$に置き換えた式を
+			\begin{align}
+				\tilde{\varphi}_{1},\ \tilde{\varphi}_{2},\cdots, \tilde{\varphi}_{n}
+			\end{align}
+			と書く．このとき，任意の$i \in \{1,2,\cdots,n\}$で
+			\begin{enumerate}
+				\item $\varphi_{i}$が主要論理式でない{\bf EC}${}_{\varepsilon}$の定理なら
+					$\tilde{\varphi}_{i}$も主要論理式でない{\bf EC}${}_{\varepsilon}$の定理である．
+				\item $\varphi_{i}$が$A(u/x) \rightarrow A(e/x)$なる形の主要論理式
+					ならば，$\tilde{\varphi}_{i}$は$A(v/x) \rightarrow A(t/x)$
+					の形の式である．ただし$v$とは，$u$に$e$が現れていたらそれを$t$
+					に置き換えた項である．
+				\item $\varphi_{i}$が主要論理式で，$e$が属していないならば，
+					$\tilde{\varphi}_{i}$も主要論理式である(置換定理)．
+			\end{enumerate}
 	
-	同様に$A(t) \Longrightarrow A(e)$を使わない$EC_{\varepsilon})$から
-	$\rightharpoondown A(t) \Longrightarrow B$への証明を構成する．
-	今度は$\pi$に現れる$e$を$t$に置き換える必要はない．
-	$\varphi_{i}$が$A(t) \Longrightarrow A(e)$でない$EC_{\varepsilon}$の公理ならば，
-	$\varphi_{i}$と$\varphi_{i+1}$の間に
-	\begin{align}
-		&\varphi_{i} \Longrightarrow (\rightharpoondown A(t) \Longrightarrow \varphi_{i}), \\
-		&\rightharpoondown A(t) \Longrightarrow \varphi_{i}
-	\end{align}
-	を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}$からモーダスポンネスで得られる場合は，
-	$\varphi_{i}$を
-	\begin{align}
-		&(\rightharpoondown A(t) \Longrightarrow \varphi_{j}) \Longrightarrow
-		[(\rightharpoondown A(t) \Longrightarrow 
-		(\varphi_{j}\Longrightarrow \varphi_{i}))
-		\Longrightarrow (\rightharpoondown A(t) \Longrightarrow \varphi_{i})], \\
-		&(\rightharpoondown A(t) \Longrightarrow 
-		(\varphi_{j} \Longrightarrow \varphi_{i}))
-		\Longrightarrow (\rightharpoondown A(t) \Longrightarrow \varphi_{i}), \\
-		&\rightharpoondown A(t) \Longrightarrow \varphi_{i}
-	\end{align}
-	で置き換える．$\varphi_{i}$が$A(t) \Longrightarrow A(e)$であるときは，$\varphi_{i}$を
-	\begin{align}
-		\rightharpoondown A(t) \Longrightarrow (A(t) \Longrightarrow A(e))
-	\end{align}
-	で置き換える．
+			$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$でない$EC_{\varepsilon}$の公理
+			ならば，$\tilde{\varphi}_{i}$と$\tilde{\varphi}_{i+1}$の間に
+			\begin{align}
+				&\tilde{\varphi}_{i} \rightarrow 
+				\left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right), \\
+				&A(t/x) \rightarrow \tilde{\varphi}_{i}
+			\end{align}
+			を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}
+			\equiv \varphi_{j} \rightarrow \varphi_{i}$からモーダスポンネスで得られる場合は，
+			$\tilde{\varphi}_{i}$を
+			\begin{align}
+				&\left( A(t/x) \rightarrow \left(\tilde{\varphi}_{j} \rightarrow
+				\tilde{\varphi}_{i} \right) \right)
+				\rightarrow \left[ \left( A(t/x) \rightarrow \tilde{\varphi}_{j} \right)
+				\rightarrow \left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right) \right], \\
+				&\left( A(t/x) \rightarrow \tilde{\varphi}_{j} \right)
+				\rightarrow \left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right), \\
+				&A(t) \rightarrow \tilde{\varphi}_{i}
+			\end{align}
+			で置き換える．$\varphi_{i}$が$e$が属する主要論理式
+			$A(u/x) \rightarrow A(e/x)$であるときは，$\tilde{\varphi}_{i}$とは
+			\begin{align}
+				A(v/x) \rightarrow A(t/x)
+			\end{align}
+			なる形の式であるが，$\tilde{\varphi}_{i}$を
+			\begin{align}
+				A(t/x) \rightarrow (A(v/x) \rightarrow A(t/x))
+			\end{align}
+			で置き換える．以上で$A(t/x) \rightarrow B(\tau',f\tau',\zeta')$への
+			証明が得られた．
 	
-	以上で$A(t) \Longrightarrow B$と$\rightharpoondown A(t) \Longrightarrow B$に対して
-	$A(t) \Longrightarrow A(e)$を用いない$EC_{\varepsilon}$からの証明が得られた．後はこれに
-	\begin{align}
-		&(A(t) \Longrightarrow B) \Longrightarrow
-		((\rightharpoondown A(t) \Longrightarrow B) \Longrightarrow
-		((A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B))), \\
-		&(\rightharpoondown A(t) \Longrightarrow B) \Longrightarrow
-		((A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B)), \\
-		&(A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B), \\
-		&((A(t) \Longrightarrow B) \wedge (\rightharpoondown A(t) \Longrightarrow B))
-		\Longrightarrow ((A(t) \vee \rightharpoondown A(t)) \Longrightarrow B), \\
-		&(A(t) \vee \rightharpoondown A(t)) \Longrightarrow B, \\
-		&A(t) \vee \rightharpoondown A(t), \\
-		&B
-	\end{align}
-	を追加すれば，$A(t) \Longrightarrow A(e)$を用いない$EC_{\varepsilon}$から$B$への証明となる．
+		\item[$B$への証明の構成]
+			$B(\tau,f\tau,\zeta) \vee B(\tau',f\tau',\zeta')$を$C$とおく．
+			まずは$\rightharpoondown A(t/x) \rightarrow C$への証明を得るために
+			\begin{align}
+				(\rightharpoondown A(t/x) \rightarrow B(\tau,f\tau,\zeta))
+				\rightarrow [(B(\tau,f\tau,\zeta) \rightarrow C)
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow C)]
+			\end{align}
+			(これは$(\varphi \rightarrow \psi) \rightarrow
+			((\psi \rightarrow \chi) \rightarrow (\varphi \rightarrow \chi))$
+			の形の{\bf EC}${}_{\varepsilon}$の定理である)への証明と
+			\begin{align}
+				&(B(\tau,f\tau,\zeta) \rightarrow C)
+					\rightarrow (\rightharpoondown A(t/x) \rightarrow C), \\
+				&B(\tau,f\tau,\zeta) \rightarrow C,
+				&\rightharpoondown A(t/x) \rightarrow C
+			\end{align}
+			を追加する．同様にして
+			\begin{align}
+				A(t/x) \rightarrow C
+			\end{align}
+			への証明も得られる．あとは，
+			\begin{align}
+				(A(t/x) \rightarrow C) \rightarrow
+				\left[ (\rightharpoondown A(t/x) \rightarrow C) \rightarrow
+				(A(t/x) \vee \rightharpoondown A(t/x) \rightarrow C)\right]
+			\end{align}
+			への証明を追加し(これは$(\varphi \rightarrow \chi) \rightarrow
+			((\psi \rightarrow \chi) \rightarrow 
+			(\varphi \vee \psi \rightarrow \chi))$
+			の形の{\bf EC}${}_{\varepsilon}$の定理である)，
+			\begin{align}
+				&(\rightharpoondown A(t/x) \rightarrow C) \rightarrow
+				(A(t/x) \vee \rightharpoondown A(t/x) \rightarrow C), \\
+				&A(t/x) \vee \rightharpoondown A(t/x) \rightarrow C, \\
+				&A(t) \vee \rightharpoondown A(t), \\
+				&C
+			\end{align}
+			を追加すれば，$A(t/x) \rightarrow A(e/x)$を用いない
+			$B$への{\bf EC}${}_{\varepsilon}$の証明となる．
+			\QED
+	\end{description}
