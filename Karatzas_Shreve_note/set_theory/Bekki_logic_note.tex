@@ -20,7 +20,7 @@
 	証明のシステムを概括するために，抽象的に{\bf H}をHilbert流の証明体系とする．
 	はじめに，{\bf H}の(論理的)公理と推論規則と言われるものが与えられる．
 	また証明の前には公理系と呼ばれる式の集合も与えられる．公理系に属する式をその公理系の公理と呼ぶが，
-	公理は意味のはっきりした式であるべきなので{\bf 通常は文である}．
+	公理は意味のはっきりした式であるべきだと思うので{\bf 全て文とする}．
 	いま公理系を$\Gamma$とすれば，$\varphi$が$\Gamma$の公理であるか{\bf H}の公理であることを
 	\begin{align}
 		\Gamma \provable{\mbox{{\bf H}}} \varphi
@@ -36,8 +36,6 @@
 	他の式については，それがすでに既に定理とされた式から{\bf H}の推論規則によって得られている
 	ときに限り定理となる．
 	
-	いきなり{\bf HK}に取り掛かるのではなく，それより弱い証明体系を順に導入していって，
-	仲間を増やすように，ゆっくり押し広げるようにして{\bf HK}に進む．
 	まずは一番弱い体系の{\bf SK}から始める．以下で$\Gamma$と書いたらそれは公理系を表す．
 	
 \subsection{{\bf SK}}
@@ -384,143 +382,164 @@
 		\end{metathm}
 	\end{screen}
 	
-	逆を示すのは非常に容易い．いま
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK'}}} \varphi
-	\end{align}
-	であるとする．$\varphi$が{\bf HK'}の公理であれば{\bf HK}の公理でもあるし，
-	$\Gamma$の公理であれば言わずもがな，これらの場合は
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK}}} \varphi
-	\end{align}
-	となる．$\varphi$が存在汎化によって得られているとき，つまり，$\varphi$とは
-	\begin{align}
-		\exists x \psi \rightarrow \chi
-	\end{align}
-	なる形の式であって，$\psi(t/x) \rightarrow \chi$から存在汎化で得られている場合，
-	ここで$t$は$\chi$と$\exists x \psi$に自由に現れない変項であるが，このとき，
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK}}} \psi(t/x) \rightarrow \chi
-	\end{align}
-	であると仮定すれば，汎化と量化公理(EE)によって
-	\begin{align}
-		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rightarrow \chi), \\
-		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rightarrow \chi)
-			\rightarrow (\exists x \psi \rightarrow \chi), \\
-		\Gamma &\provable{\mbox{{\bf HK}}} \exists x \psi \rightarrow \chi
-	\end{align}
-	となる．また$\varphi$が全称汎化によって得られているとき，つまり，$\varphi$とは
-	\begin{align}
-		\chi \rightarrow \forall x \psi
-	\end{align}
-	なる形の式であって，$\chi \rightarrow \psi(t/x)$から存在汎化で得られている場合，
-	ここで$t$は$\chi$と$\forall x \psi$に自由に現れない変項であるが，このとき，
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK}}} \chi \rightarrow \psi(t/x)
-	\end{align}
-	であると仮定すれば，汎化と量化公理(UI)によって
-	\begin{align}
-		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rightarrow \psi(t/x)), \\
-		\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rightarrow \psi(t/x))
-			\rightarrow (\chi \rightarrow \forall x \psi), \\
-		\Gamma &\provable{\mbox{{\bf HK}}} \chi \rightarrow \forall x \psi
-	\end{align}
-	となる．$\varphi$が三段論法で得られている場合，つまり$\psi$と$\psi \rightarrow \varphi$
-	なる形の式が{\bf HK'}から示されている場合であるが，
-	\begin{align}
-		\Gamma &\provable{\mbox{{\bf HK}}} \psi, \\
-		\Gamma &\provable{\mbox{{\bf HK}}} \psi \rightarrow \varphi
-	\end{align}
-	と仮定すれば$\Gamma \provable{\mbox{{\bf HK}}} \varphi$も従う．
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[{\bf HK'}から示されたら{\bf HK}からも証明可能]
+			いま
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+			\end{align}
+			であるとする．$\varphi$が{\bf HK'}の公理であれば{\bf HK}の公理でもあるし，
+			$\Gamma$の公理であれば言わずもがな，これらの場合は
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \varphi
+			\end{align}
+			となる．$\varphi$が存在汎化によって得られているとき，つまり，$\varphi$とは
+			\begin{align}
+				\exists x \psi \rightarrow \chi
+			\end{align}
+			なる形の式であって，$\psi(t/x) \rightarrow \chi$から存在汎化で得られている場合，
+			ここで$t$は$\chi$と$\exists x \psi$に自由に現れない変項であるが，このとき，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \psi(t/x) \rightarrow \chi
+			\end{align}
+			であると仮定すれば，汎化と量化公理(EE)によって
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rightarrow \chi), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rightarrow \chi)
+					\rightarrow (\exists x \psi \rightarrow \chi), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \exists x \psi \rightarrow \chi
+			\end{align}
+			となる．また$\varphi$が全称汎化によって得られているとき，つまり，$\varphi$とは
+			\begin{align}
+				\chi \rightarrow \forall x \psi
+			\end{align}
+			なる形の式であって，$\chi \rightarrow \psi(t/x)$から存在汎化で得られている場合，
+			ここで$t$は$\chi$と$\forall x \psi$に自由に現れない変項であるが，このとき，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \chi \rightarrow \psi(t/x)
+			\end{align}
+			であると仮定すれば，汎化と量化公理(UI)によって
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rightarrow \psi(t/x)), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rightarrow \psi(t/x))
+					\rightarrow (\chi \rightarrow \forall x \psi), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \chi \rightarrow \forall x \psi
+			\end{align}
+			となる．$\varphi$が三段論法で得られている場合，つまり$\psi$と$\psi \rightarrow \varphi$
+			なる形の式が{\bf HK'}から示されている場合であるが，
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK}}} \psi, \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \psi \rightarrow \varphi
+			\end{align}
+			と仮定すれば$\Gamma \provable{\mbox{{\bf HK}}} \varphi$も従う．
 	
-\subsection{{\bf HK}から示されたら{\bf HK'}からも証明可能}
-	$\Gamma \provable{\mbox{{\bf HK}}} \varphi$ならば
-	$\Gamma \provable{\mbox{{\bf HK'}}} \varphi$であることを示すのは少し骨が折れる．
-	いま
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK}}} \varphi
-	\end{align}
-	とする．$\varphi$が量化公理(UI)(EE)以外の{\bf HK}の公理か，$\Gamma$の公理であれば
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK'}}} \varphi
-	\end{align}
-	である．$\varphi$が
-	\begin{align}
-		\forall t (\chi \rightarrow \psi(t/x)) 
-		\rightarrow (\chi \rightarrow \forall x \psi)
-	\end{align}
-	なる形の公理であるとき($t$は$\chi$と$\forall x \psi$には自由に現れない)，
-	\begin{align}
-		\Gamma &\provable{\mbox{{\bf HK'}}} 
-			\forall t (\chi \rightarrow \psi(t/x)) 
-			\rightarrow (\chi \rightarrow \psi(t/x)), \\
-		\color{red}\chi \rightarrow \psi(t/x),\ \Gamma &
-		\color{red}\provable{\mbox{{\bf HK'}}}
-			\chi \rightarrow \psi(t/x), \\
-		\color{red}\chi \rightarrow \psi(t/x),\ \Gamma &
-		\color{red}\provable{\mbox{{\bf HK'}}}
-			\chi \rightarrow \forall x \psi, \\
-		\Gamma &\provable{\mbox{{\bf HK'}}} (\chi \rightarrow \psi(t/x)) 
-			\rightarrow (\chi \rightarrow \forall x \psi), \\
-		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)), \\
-		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)) 
-			\rightarrow (\chi \rightarrow \psi(t/x)), \\
-		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \chi \rightarrow \psi(t/x), \\
-		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} (\chi \rightarrow \psi(t/x)) 
-			\rightarrow (\chi \rightarrow \forall x \psi), \\
-		\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \chi \rightarrow \forall x \psi, \\
-		\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)) 
-			\rightarrow (\chi \rightarrow \forall x \psi)
-	\end{align}
-	となる(赤字で{\bf HK'}の全称汎化規則を用いた箇所を示している)．
-	つまり(UI)は{\bf HK'}の定理である．同様に(EE)も{\bf HK'}の定理である．実際，
-	\begin{align}
-		\Gamma &\provable{\mbox{{\bf HK'}}} 
-			\forall t (\psi(t/x) \rightarrow \chi) 
-			\rightarrow (\psi(t/x) \rightarrow \chi), \\
-		\color{red}\psi(t/x) \rightarrow \chi,\ \Gamma &
-		\color{red}\provable{\mbox{{\bf HK'}}}
-			\psi(t/x) \rightarrow \chi, \\
-		\color{red}\psi(t/x) \rightarrow \chi,\ \Gamma &
-		\color{red}\provable{\mbox{{\bf HK'}}}
-			\exists x \psi \rightarrow \chi, \\
-		\Gamma &\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rightarrow \chi) 
-			\rightarrow (\exists x \psi \rightarrow \chi), \\
-		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi), \\
-		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi)
-			\rightarrow (\psi(t/x) \rightarrow \chi), \\
-		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \psi(t/x) \rightarrow \chi, \\
-		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rightarrow \chi) 
-			\rightarrow (\exists x \psi \rightarrow \chi), \\
-		\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
-			&\provable{\mbox{{\bf HK'}}} \exists x \psi \rightarrow \chi, \\
-		\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi) 
-			\rightarrow (\exists x \psi \rightarrow \chi)
-	\end{align}
-	となる．$\varphi$が汎化によって導かれているとき，つまり$\varphi$は
-	\begin{align}
-		\forall x \psi
-	\end{align}
-	なる式であって，先に$\psi(t/x)$なる式が{\bf HK}から証明されているとき
-	($x$は$\psi$に自由に現れ，$t$は$\forall x \psi$に自由に現れない変項である)，
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK'}}} \psi(t/x)
-	\end{align}
-	と仮定したら
-	\begin{align}
-		\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
-	\end{align}
-	が成り立つことは，次の小節に譲る．
+		\item[{\bf HK}から示されたら{\bf HK'}からも証明可能]
+			いま
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \varphi
+			\end{align}
+			とする．$\varphi$が量化公理(UI)(EE)以外の{\bf HK}の公理か，$\Gamma$の公理であれば
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+			\end{align}
+			である．$\varphi$が
+			\begin{align}
+				\forall t (\chi \rightarrow \psi(t/x)) 
+				\rightarrow (\chi \rightarrow \forall x \psi)
+			\end{align}
+			なる形の公理であるとき($t$は$\chi$と$\forall x \psi$には自由に現れない)，
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK'}}} 
+					\forall t (\chi \rightarrow \psi(t/x)) 
+					\rightarrow (\chi \rightarrow \psi(t/x)), \\
+				\color{red}\chi \rightarrow \psi(t/x),\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\chi \rightarrow \psi(t/x), \\
+				\color{red}\chi \rightarrow \psi(t/x),\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\chi \rightarrow \forall x \psi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} (\chi \rightarrow \psi(t/x)) 
+					\rightarrow (\chi \rightarrow \forall x \psi), \\
+				\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)), \\
+				\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)) 
+					\rightarrow (\chi \rightarrow \psi(t/x)), \\
+				\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \chi \rightarrow \psi(t/x), \\
+				\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} (\chi \rightarrow \psi(t/x)) 
+					\rightarrow (\chi \rightarrow \forall x \psi), \\
+				\forall t (\chi \rightarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \chi \rightarrow \forall x \psi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\chi \rightarrow \psi(t/x)) 
+					\rightarrow (\chi \rightarrow \forall x \psi)
+			\end{align}
+			となる(赤字で{\bf HK'}の全称汎化規則を用いた箇所を示している)．
+			つまり(UI)は{\bf HK'}の定理である．同様に(EE)も{\bf HK'}の定理である．実際，
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK'}}} 
+					\forall t (\psi(t/x) \rightarrow \chi) 
+					\rightarrow (\psi(t/x) \rightarrow \chi), \\
+				\color{red}\psi(t/x) \rightarrow \chi,\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\psi(t/x) \rightarrow \chi, \\
+				\color{red}\psi(t/x) \rightarrow \chi,\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\exists x \psi \rightarrow \chi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rightarrow \chi) 
+					\rightarrow (\exists x \psi \rightarrow \chi), \\
+				\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi), \\
+				\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi)
+					\rightarrow (\psi(t/x) \rightarrow \chi), \\
+				\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \psi(t/x) \rightarrow \chi, \\
+				\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rightarrow \chi) 
+					\rightarrow (\exists x \psi \rightarrow \chi), \\
+				\forall t (\psi(t/x) \rightarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \exists x \psi \rightarrow \chi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rightarrow \chi) 
+					\rightarrow (\exists x \psi \rightarrow \chi)
+			\end{align}
+			となる．$\varphi$が汎化によって導かれているとき，つまり$\varphi$は
+			\begin{align}
+				\forall x \psi
+			\end{align}
+			なる式であって，先に$\psi(t/x)$なる式が{\bf HK}から証明されているとき
+			($x$は$\psi$に自由に現れ，$t$は$\forall x \psi$に自由に現れない変項である)，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \psi(t/x)
+			\end{align}
+			と仮定したら
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
+			\end{align}
+			が成り立つ．実際，$\varphi$を$\chi \rightarrow \chi$といった文とすれば
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi \rightarrow \psi(t/x)
+			\end{align}
+			が成り立つので，全称汎化より
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi \rightarrow \forall x \psi
+			\end{align}
+			となり，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+			\end{align}
+			と併せて
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
+			\end{align}
+			が従う．
+			\QED
+		\end{description}
+	\end{metaprf}
 	
+\begin{comment}	
 \subsection{汎化規則は{\bf HK'}から導かれる}
 	{\bf HK}の量化公理に
 	\begin{align}
@@ -645,3 +664,5 @@
 		\rightarrow (\forall x \psi \rightarrow \forall x \varphi)
 	\end{align}
 	が得られる．
+	
+\end{comment}
