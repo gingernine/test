@@ -12,46 +12,56 @@
 	本節では，いつ類は等しくなるのか，そして，等しい場合に何が起きるのか，の二つが主題となる．
 	
 	\begin{screen}
-		\begin{axm}[外延性の公理]
-			$a,b$を類とするとき，次が成り立つ:
+		\begin{axm}[外延性の公理 (Extensionality)]
 			\begin{align}
-				\forall x\, (\, x \in a \Longleftrightarrow x \in b\, )
-				\Longrightarrow a=b.
+				(EXT) \defarrow \forall x\, \forall y\, (\, \forall z\, 
+				(\, z \in x \lrarrow z \in y\, )
+				\rarrow x=y\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[任意の類は自分自身と等しい]\label{thm:any_class_equals_to_itself}
-			$a$を類とするとき次が成り立つ:
+		\begin{thm}[任意の集合は自分自身と等しい]
+			\label{thm:any_class_equals_to_itself}
 			\begin{align}
-				a = a.
+				(EXT) \vdash \forall x\, (\, x = x\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		任意の$\varepsilon$項$\tau$に対して，
+		任意の$\varepsilon$項$\sigma$に対して，
 		推論法則\ref{logicalthm:reflective_law_of_implication}より
 		\begin{align}
-			\tau \in a \Longleftrightarrow \tau \in a
+			\vdash \sigma \in \tau \lrarrow \sigma \in \tau
 		\end{align}
-		が成り立つから，$\tau$の任意性より
+		が成り立つから，$\sigma$の任意性より
 		\begin{align}
-			\forall x\, (\, x \in a  \Longleftrightarrow x \in a\, )
+			\vdash \forall s\, (\, s \in \tau  \lrarrow s \in \tau\, )
 		\end{align}
-		が成り立つ．外延性の公理と三段論法より
+		が成り立つ．外延性の公理より
 		\begin{align}
-			a = a
-		\end{align}が得られる．
+			(EXT) \vdash \forall s\, (\, s \in \tau  \lrarrow s \in \tau\, )
+			\rightarrow \tau = \tau
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			(EXT) \vdash \tau = \tau
+		\end{align}
+		が得られる．ゆえに
+		\begin{align}
+			(EXT) \vdash \forall x\, (\, x = x\, )
+		\end{align}
+		となる．
 		\QED
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[$\varepsilon$項は集合である]
-			任意の$\varepsilon$項$\varepsilon x A(x)$に対して
+		\begin{thm}[閉$\varepsilon$項は集合である]
+			$\tau$を閉$\varepsilon$項とするとき
 			\begin{align}
-				\set{\varepsilon x A(x)}.
+				(EXT) \vdash \set{\tau}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -59,58 +69,62 @@
 	\begin{sketch}
 		定理\ref{thm:any_class_equals_to_itself}より
 		\begin{align}
-			\varepsilon x A(x) = \varepsilon x A(x)
+			(EXT) \vdash \tau = \tau
 		\end{align}
 		が成立するので，存在記号の推論規則より
 		\begin{align}
-			\exists y\, \left(\, \varepsilon x A(x) = y\, \right)
+			(EXT) \vdash \exists x\, \left(\, \tau = x\, \right)
 		\end{align}
 		が成立する．
 		\QED
 	\end{sketch}
 	
-	$A$を$\mathcal{L}_{\in}$の式とし，$x$を$A$に現れる変項とし，$x$のみが$A$で自由であるとし，かつ
+	$\varphi$を$\mathcal{L}_{\in}$の式とし，$x$を$\varphi$に現れる変項とし，
+	$x$のみが$\varphi$で自由であるとする．
 	\begin{align}
-		\set{\Set{x}{A(x)}}
+		\set{\Set{x}{\varphi(x)}} \vdash \set{\Set{x}{\varphi(x)}}
 	\end{align}
-	が満たされているとする．つまり
+	が満たされている．つまり
 	\begin{align}
-		\exists y\, \left(\, \Set{x}{A(x)} = y\, \right)
+		\set{\Set{x}{\varphi(x)}} 
+		\vdash \exists y\, \left(\, \Set{x}{\varphi(x)} = y\, \right)
 	\end{align}
-	が成り立っているということであるが，$\Set{x}{A(x)} = y$を
+	が成り立っているということであるが，$\Set{x}{\varphi(x)} = y$を
 	\begin{align}
-		\forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+		\forall x\, \left(\, \varphi(x) \lrarrow x \in y\, \right)
 	\end{align}
 	と書き換えれば，存在記号の推論規則より
 	\begin{align}
-		\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+		\set{\Set{x}{\varphi(x)}} \vdash \Set{x}{\varphi(x)} = 
+		\varepsilon y\, \forall x\, \left(\, \varphi(x) \lrarrow x \in y\, \right)
 	\end{align}
 	が得られる．
 	
 	\begin{screen}
 		\begin{thm}[集合である内包項は$\varepsilon$項で書ける]
-			任意の内包項$\Set{x}{A(x)}$に対して，$\Set{x}{A(x)}$が集合であれば
+			閉内包項$\Set{x}{\varphi(x)}$に対して，
 			\begin{align}
-				\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right).
+				\set{\Set{x}{\varphi(x)}} \vdash \Set{x}{\varphi(x)} 
+				= \varepsilon y\, \forall x\, \left(\, \varphi(x) \lrarrow x \in y\, \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	ブルバキでは$\tau$項を，島内では$\varepsilon$項のみを導入して
-	$\varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)$
+	$\varepsilon y \forall x\, \left(\, A(x) \lrarrow x \in y\, \right)$
 	によって$\Set{x}{A(x)}$を定めている．本稿と同じくブルバキの$\tau$項も島内の$\varepsilon$項も
 	集合を表すものであるから，
 	\begin{align}
-		\exists y\, \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+		\exists y\, \forall x\, \left(\, A(x) \lrarrow x \in y\, \right)
 	\end{align}
-	を満たさないような性質$A$に対しては$\varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)$
+	を満たさないような性質$A$に対しては$\varepsilon y \forall x\, \left(\, A(x) \lrarrow x \in y\, \right)$
 	は不定の集合を指す．本稿では
 	
 	\begin{screen}
 		\begin{axm}[要素の公理]
 			要素となりうる類は集合である．つまり，$a,b$を類とするとき
 			\begin{align}
-				a \in b \Longrightarrow \set{a}.
+				a \in b \rarrow \set{a}.
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -120,7 +134,7 @@
 			$A$を$\mathcal{L}_{\in}$の式とし，$x$を$A$に現れる変項とし，$y$を$A(x)$に現れない変項とし，
 			$x$のみが$A$で自由であるとする．このとき
 			\begin{align}
-				\forall y\, \left(\, y \in \Set{x}{A(x)} \Longleftrightarrow A(y)\, \right).
+				\forall y\, \left(\, y \in \Set{x}{A(x)} \lrarrow A(y)\, \right).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -136,7 +150,7 @@
 	と書いてあったら``$a$と$b$は等しい''と読めるわけだが，明らかに$a$は$b$とは違うではないではないか！
 	こんなことはしょっちゅう起こることであって，上で述べたように$\Set{x}{A(x)}$が集合なら
 	\begin{align}
-		\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \Longleftrightarrow x \in y\, \right)
+		\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \lrarrow x \in y\, \right)
 	\end{align}
 	が成り立ったりする．そこで``数学的に等しいとは何事か''という疑問が浮かぶのは至極自然であって，
 	それに答えるのが次の相等性公理である．
@@ -146,7 +160,7 @@
 			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，
 			$x$のみが$A$で量化されていないとする．このとき$a,b$を類とすれば次が成り立つ:
 			\begin{align}
-				a = b \Longrightarrow (\, A(a) \Longleftrightarrow A(b)\, ).
+				a = b \rarrow (\, A(a) \lrarrow A(b)\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -155,7 +169,7 @@
 		\begin{thm}[外延性の公理の逆も成り立つ]\label{thm:axiom_of_extensionality_equivalent}
 			$a$と$b$を類とするとき
 			\begin{align}
-				a=b \Longrightarrow \forall x\, (\, x \in a  \Longleftrightarrow x \in b\, ).
+				a=b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -163,15 +177,15 @@
 	\begin{prf}
 		$a = b$が成り立っていると仮定すれば，相等性の公理より$\mathcal{L}$の任意の対象$\tau$に対して
 		\begin{align}
-			\tau \in a \Longleftrightarrow \tau \in b
+			\tau \in a \lrarrow \tau \in b
 		\end{align}
 		が満たされるから，推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
+			\forall x\, (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
 		が成立する．よって演繹法則より
 		\begin{align}
-			a = b \Longrightarrow \forall x\, (\, x \in a  \Longleftrightarrow x \in b\, )
+			a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
 		が成り立つ．
 		\QED
@@ -188,8 +202,8 @@
 			$A$を$\mathcal{L}$の式とし，$x$を$A$に現れる文字とし，$t$を$A(x)$に現れない文字とし，
 			$x$のみが$A$で量化されていないとする．このとき，$a$を類とすると
 			\begin{align}
-				A(a) \Longrightarrow 
-				\left(\, \set{a} \Longrightarrow a \in \Set{x}{A(x)}\, \right).
+				A(a) \rarrow 
+				\left(\, \set{a} \rarrow a \in \Set{x}{A(x)}\, \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -236,7 +250,7 @@
 		\label{thm:V_is_the_whole_of_sets}
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\set{a} \Longleftrightarrow a \in \Univ.
+				\set{a} \lrarrow a \in \Univ.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -244,7 +258,7 @@
 	\begin{prf}
 		$a$を類とするとき，まず要素の公理より
 		\begin{align}
-			a \in \Univ \Longrightarrow \set{a}
+			a \in \Univ \rarrow \set{a}
 		\end{align}
 		が得られる．逆に
 		\begin{align}
@@ -268,7 +282,7 @@
 		\end{align}
 		が従うから
 		\begin{align}
-			\set{a} \Longrightarrow a \in \Univ
+			\set{a} \rarrow a \in \Univ
 		\end{align}
 		も得られる．
 		\QED
@@ -298,9 +312,9 @@
 			\begin{align}
 				\forall x\, \forall y\, \forall z\, 
 				\left[\, \varphi(x,y) \wedge \varphi(x,z)
-				\Longrightarrow y = z\, \right]
-				\Longrightarrow \forall a\, \exists z\, \forall y\,
-				\left[\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
+				\rarrow y = z\, \right]
+				\rarrow \forall a\, \exists z\, \forall y\,
+				\left[\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
 				\varphi(x,y)\, )\, \right].
 			\end{align}
 		\end{axm}
@@ -318,7 +332,7 @@
 		\begin{thm}[分出定理]
 			\begin{align}
 				\forall a\, \exists s\, \forall x\,
-				(\, x \in s \Longleftrightarrow x \in a \wedge \varphi(x)\, ).
+				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
 			\end{align}
 			ただし，$\varphi$において自由に現れるのは$x$だけである．
 		\end{thm}
@@ -333,11 +347,11 @@
 		と設定すると，これは
 		\begin{align}
 			\forall x\, \forall y\, \forall z\, 
-			\left[\, \psi(x,y) \wedge \psi(x,z) \Longrightarrow y = z\, \right]
+			\left[\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, \right]
 		\end{align}
 		を満たすので，置換公理より集合$a$に対して
 		\begin{align}
-			\forall y\, (\, y \in z \Longleftrightarrow \exists x\, (\, x \in a \wedge 
+			\forall y\, (\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
 			\psi(x,y)\, )\, )
 		\end{align}
 		を満たす集合$z$が取れる．このとき
@@ -393,33 +407,33 @@
 		分出定理より
 		\begin{align}
 			\forall z\, \exists y\, \forall x\,
-			(\, x \in y \Longleftrightarrow x \in z \wedge x \neq x\, )
+			(\, x \in y \lrarrow x \in z \wedge x \neq x\, )
 			\label{fom:thm_emptyset_is_a_set_1}
 		\end{align}
 		が成立するが，この式から
 		\begin{align}
-			\exists y\, \forall x\, (\, x \in y \Longleftrightarrow x \neq x\, )
+			\exists y\, \forall x\, (\, x \in y \lrarrow x \neq x\, )
 			\label{fom:thm_emptyset_is_a_set_2}
 		\end{align}
 		を示せる．これはすなわち$\emptyset$が集合であるということを示唆する．
 		$\zeta$を勝手な$\varepsilon$項として，後々の便宜のために
 		\begin{align}
 			\sigma &\defeq \varepsilon y\, \forall x\,
-			(\, x \in y \Longleftrightarrow x \in \zeta \wedge x \neq x\, ), \\
+			(\, x \in y \lrarrow x \in \zeta \wedge x \neq x\, ), \\
 			\tau &\defeq \varepsilon x \rightharpoondown
-			(\, x \in \sigma \Longleftrightarrow x \neq x\, )
+			(\, x \in \sigma \lrarrow x \neq x\, )
 		\end{align}
 		とおけば，(\refeq{fom:thm_emptyset_is_a_set_1})より
 		\begin{align}
-			\tau \in \sigma \Longleftrightarrow \tau \in \zeta \wedge \tau \neq \tau
+			\tau \in \sigma \lrarrow \tau \in \zeta \wedge \tau \neq \tau
 		\end{align}
 		が成立する．論理和の規則より
 		\begin{align}
-			\tau \in \zeta \wedge \tau \neq \tau \Longrightarrow \tau \neq \tau
+			\tau \in \zeta \wedge \tau \neq \tau \rarrow \tau \neq \tau
 		\end{align}
 		が満たされるので，まずは
 		\begin{align}
-			\tau \in \sigma \Longrightarrow \tau \neq \tau
+			\tau \in \sigma \rarrow \tau \neq \tau
 		\end{align}
 		が得られる．また
 		\begin{align}
@@ -427,20 +441,20 @@
 		\end{align}
 		は正しいので，
 		\begin{align}
-			\tau = \tau \Longrightarrow (\, \tau \notin \sigma \Longrightarrow
+			\tau = \tau \rarrow (\, \tau \notin \sigma \rarrow
 			\tau = \tau\, )
 		\end{align}
 		と併せて
 		\begin{align}
-			\tau \notin \sigma \Longrightarrow \tau = \tau
+			\tau \notin \sigma \rarrow \tau = \tau
 		\end{align}
 		が成り立ち，対偶を取れば
 		\begin{align}
-			\tau \neq \tau \Longrightarrow \tau \in \sigma
+			\tau \neq \tau \rarrow \tau \in \sigma
 		\end{align}
 		も得られる．ゆえに
 		\begin{align}
-			\forall x\, (\, x \in \sigma \Longleftrightarrow x \neq x\, )
+			\forall x\, (\, x \in \sigma \lrarrow x \neq x\, )
 		\end{align}
 		が得られ，(\refeq{fom:thm_emptyset_is_a_set_2})が従う．
 		\QED
@@ -457,11 +471,11 @@
 	\begin{sketch}
 		$\tau$を$\mathscr{L}$の対象とするとき，類の公理より
 		\begin{align}
-			\tau \in \emptyset \Longrightarrow \tau \neq \tau
+			\tau \in \emptyset \rarrow \tau \neq \tau
 		\end{align}
 		が成り立つから，対偶を取れば
 		\begin{align}
-			\tau = \tau \Longrightarrow \tau \notin \emptyset
+			\tau = \tau \rarrow \tau \notin \emptyset
 		\end{align}
 		が成り立つ(推論法則\ref{thm:contraposition_is_true})．定理\ref{thm:any_class_equals_to_itself}より
 		\begin{align}
@@ -484,7 +498,7 @@
 		\label{thm:uniqueness_of_emptyset}
 			$a$を類とするとき次が成り立つ:
 			\begin{align}
-				\forall x\, (\, x \notin a\, ) \Longleftrightarrow a = \emptyset.
+				\forall x\, (\, x \notin a\, ) \lrarrow a = \emptyset.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -501,19 +515,19 @@
 		\end{align}
 		が共に成り立つので，推論法則\ref{logicalthm:rule_of_inference_3}より
 		\begin{align}
-			\tau \in a \Longrightarrow \tau \in \emptyset
+			\tau \in a \rarrow \tau \in \emptyset
 		\end{align}
 		と
 		\begin{align}
-			\tau \in \emptyset \Longrightarrow \tau \in a
+			\tau \in \emptyset \rarrow \tau \in a
 		\end{align}
 		が共に成り立つ．よって
 		\begin{align}
-			\tau \in a \Longleftrightarrow \tau \in \emptyset
+			\tau \in a \lrarrow \tau \in \emptyset
 		\end{align}
 		が成立し，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
 		\begin{align}
-			\forall x\, (\, x \in a \Longleftrightarrow x \in \emptyset\, )
+			\forall x\, (\, x \in a \lrarrow x \in \emptyset\, )
 		\end{align}
 		が得られる．ゆえに外延性の公理より
 		\begin{align}
@@ -521,7 +535,7 @@
 		\end{align}
 		が成立し，演繹法則より
 		\begin{align}
-			\forall x\, (\, x \notin a\, ) \Longrightarrow a = \emptyset
+			\forall x\, (\, x \notin a\, ) \rarrow a = \emptyset
 		\end{align}
 		が得られる．逆に
 		\begin{align}
@@ -530,11 +544,11 @@
 		が成り立っていると仮定する．ここで$\chi$を$\mathcal{L}$の任意の対象とすれば，
 		相等性の公理より
 		\begin{align}
-			\chi \in a \Longrightarrow \chi \in \emptyset
+			\chi \in a \rarrow \chi \in \emptyset
 		\end{align}
 		が成立するので，対偶を取れば
 		\begin{align}
-			\chi \notin \emptyset \Longrightarrow \chi \notin a
+			\chi \notin \emptyset \rarrow \chi \notin a
 		\end{align}
 		が成り立つ．定理\ref{thm:emptyset_has_nothing}より
 		\begin{align}
@@ -550,7 +564,7 @@
 		\end{align}
 		が成立する．ここに演繹法則を適用して
 		\begin{align}
-			a = \emptyset \Longrightarrow \forall x\, (\, x \notin a\, )
+			a = \emptyset \rarrow \forall x\, (\, x \notin a\, )
 		\end{align}
 		も得られる．
 		\QED
@@ -561,7 +575,7 @@
 		\label{thm:emptyset_does_not_contain_any_class}
 			$a,b$を類とするとき次が成り立つ:
 			\begin{align}
-				b = \emptyset \Longrightarrow a \notin b.
+				b = \emptyset \rarrow a \notin b.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -589,19 +603,19 @@
 		\end{align}
 		が成り立つ．よって演繹法則から
 		\begin{align}
-			a \in b \Longrightarrow \exists x\, (\, x \in b\, )
+			a \in b \rarrow \exists x\, (\, x \in b\, )
 		\end{align}
 		が成り立つ．この対偶を取り推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}を適用すれば
 		\begin{align}
-			\forall x\, (\, x \notin b\, ) \Longrightarrow a \notin b
+			\forall x\, (\, x \notin b\, ) \rarrow a \notin b
 		\end{align}
 		が得られる．定理\ref{thm:uniqueness_of_emptyset}より
 		\begin{align}
-			b = \emptyset \Longrightarrow \forall x\, (\, x \notin b\, )
+			b = \emptyset \rarrow \forall x\, (\, x \notin b\, )
 		\end{align}
 		も正しいので，含意の推移律から
 		\begin{align}
-			b = \emptyset \Longrightarrow a \notin b
+			b = \emptyset \rarrow a \notin b
 		\end{align}
 		が得られる．
 		\QED
@@ -611,8 +625,8 @@
 		\begin{dfn}[部分類]
 			$a,b$を$\mathcal{L}'$の項とするとき，
 			\begin{align}
-				a \subset b \overset{\mathrm{def}}{\Longleftrightarrow}
-				\forall x\ (\ x \in a \Longrightarrow x \in b\ )
+				a \subset b \overset{\mathrm{def}}{\lrarrow}
+				\forall x\ (\ x \in a \rarrow x \in b\ )
 			\end{align}
 			と定める．式$a \subset b$を``$a$は$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}である''
 			と翻訳し，特に$a$が集合である場合は``$a$は$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である''と翻訳する．
@@ -645,11 +659,11 @@
 		\end{align}
 		が成り立つ．従って
 		\begin{align}
-			\tau \in \emptyset \Longrightarrow \tau \in a
+			\tau \in \emptyset \rarrow \tau \in a
 		\end{align}
 		が成り立ち，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\forall x\, (\, x \in \emptyset \Longrightarrow x \in a\, )
+			\forall x\, (\, x \in \emptyset \rarrow x \in a\, )
 		\end{align}
 		が成立する．
 		\QED
@@ -662,7 +676,7 @@
 		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]\label{thm:subclass_contains_all_elements}
 			$a,b,c$を類とすれば次が成り立つ:
 			\begin{align}
-				a \subset b \Longrightarrow (\, c \in a \Longrightarrow c \in b\, ).
+				a \subset b \rarrow (\, c \in a \rarrow c \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -698,7 +712,7 @@
 		\end{align}
 		が成り立つので，演繹法則より，$a \subset b$が成り立っている下で
 		\begin{align}
-			c \in a \Longrightarrow c \in b
+			c \in a \rarrow c \in b
 		\end{align}
 		が成立する．再び演繹法則を適用すれば定理の主張が得られる．
 		\QED
@@ -725,11 +739,11 @@
 		\end{align}
 		が成立する．このとき推論法則\ref{logicalthm:rule_of_inference_3}より
 		\begin{align}
-			\tau \in a \Longrightarrow \tau \in \Univ
+			\tau \in a \rarrow \tau \in \Univ
 		\end{align}
 		が成立し，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
 		\begin{align}
-			\forall x\, (\, x \in a \Longrightarrow x \in \Univ\, )
+			\forall x\, (\, x \in a \rarrow x \in \Univ\, )
 		\end{align}
 		が従う．
 		\QED
@@ -739,7 +753,7 @@
 		\begin{thm}[互いに互いの部分類となる類同士は等しい]\label{thm:mutually_sub_classes_are_equivalent}
 			$a,b$を類とするとき次が成り立つ:
 			\begin{align}
-				a \subset b \wedge b \subset a \Longleftrightarrow a = b.
+				a \subset b \wedge b \subset a \lrarrow a = b.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -749,15 +763,15 @@
 		このとき$\tau$を$\mathcal{L}$の任意の対象とすれば，
 		$a \subset b$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\tau \in a \Longrightarrow \tau \in b
+			\tau \in a \rarrow \tau \in b
 		\end{align}
 		が成立し，$b \subset a$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
-			\tau \in b \Longrightarrow \tau \in a
+			\tau \in b \rarrow \tau \in a
 		\end{align}
 		が成立するので，
 		\begin{align}
-			\tau \in a \Longleftrightarrow \tau \in b
+			\tau \in a \lrarrow \tau \in b
 		\end{align}
 		が成り立つ．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}および
 		外延性の公理より
@@ -766,15 +780,15 @@
 		\end{align}
 		が出るので，演繹法則より
 		\begin{align}
-			a \subset b \wedge b \subset a \Longrightarrow a = b
+			a \subset b \wedge b \subset a \rarrow a = b
 		\end{align}
 		が得られる．逆に$a = b$が満たされていると仮定するとき，$\tau$を$\mathcal{L}$の任意の対象とすれば
 		\begin{align}
-			\tau \in a \Longrightarrow \tau \in b
+			\tau \in a \rarrow \tau \in b
 		\end{align}
 		と
 		\begin{align}
-			\tau \in b \Longrightarrow \tau \in a
+			\tau \in b \rarrow \tau \in a
 		\end{align}
 		が共に成り立つ. よって推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
 		\begin{align}
@@ -786,7 +800,7 @@
 		\end{align}
 		が共に従う．よって演繹法則より
 		\begin{align}
-			a = b \Longrightarrow a \subset b \wedge b \subset a
+			a = b \rarrow a \subset b \wedge b \subset a
 		\end{align}
 		も得られる．
 		\QED
@@ -852,7 +866,7 @@
 	が成り立つ．また
 	\begin{align}
 		\forall \delta \in \beta\, \left(\, 
-		\delta \in \alpha \Longrightarrow f(\delta) = g(\delta)\, \right)
+		\delta \in \alpha \rarrow f(\delta) = g(\delta)\, \right)
 	\end{align}
 	ならば，$\beta \in \alpha$であるとき
 	\begin{align}
@@ -860,7 +874,7 @@
 	\end{align}
 	となるので
 	\begin{align}
-		\beta \in \alpha \Longrightarrow f(\beta) = g(\beta)
+		\beta \in \alpha \rarrow f(\beta) = g(\beta)
 	\end{align}
 	が成り立つ．ゆえに
 	\begin{align}
