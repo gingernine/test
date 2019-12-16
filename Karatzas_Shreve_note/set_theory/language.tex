@@ -284,8 +284,11 @@
 		\begin{description}
 			\item[項について]
 				$s$を項とするとき，$s$が文字ならば$s$の始切片は$s$のみである．つまり(★)が言える．
-				$s$が文字でないならば，$s$の全ての真部分項に対して(★)が言えると仮定する．
-				(項の構成法より)項$t$が取れて$s$は
+				$s$が文字でないとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$s$の全ての真部分項に対して(★)が言える．
+				\end{itembox}
+				と仮定する．(項の構成法より)項$t$が取れて$s$は
 				\begin{align}
 					\natural t
 				\end{align}
@@ -295,64 +298,63 @@
 					\natural v
 				\end{align}
 				と表せる．このとき$v$は$t$の始切片であり，
-				$t$については(★)が言えるので，$t$と$v$は一致する．
+				$t$については(IH)より(★)が言えるので，$t$と$v$は一致する．
 				ゆえに$s$と$u$は一致する．ゆえに$s$に対しても(★)が言える．
 				
 			\item[式について]
-			
-	$\bot$については，その始切片は$\bot$に限られる．
-	$\in st$なる原子式については，その始切片は
-	\begin{align}
-		\in, \quad \in s, \quad \in st
-	\end{align}
-	のいずれかとなるが，このうち式であるものは$\in st$のみである．
-	$=st$なる原子式についても，その始切片で式であるものは$=st$に限られる．
+				$\bot$については，その始切片は$\bot$に限られる．
+				$\in st$なる原子式については，その始切片は
+				\begin{align}
+					\in, \quad \in s, \quad \in st
+				\end{align}
+				のいずれかとなるが，このうち式であるものは$\in st$のみである．
+				$=st$なる原子式についても，その始切片で式であるものは$=st$に限られる．
 	
-	いま$\varphi$を任意に与えられた式とし，
-	$\varphi$の真部分式に対しては(★)が当てはまっているとする．
-	\begin{description}
-		\item[ケース1] 式$\psi$が得られて$\varphi$が
-			\begin{align}
-				\rightharpoondown \psi
-			\end{align}
-			であるとき，$\psi$は$\varphi$の真部分式であるので(★)は当てはまる．
-			$\varphi$の始切片で式であるものは，
-			式$\xi$を用いて$\rightharpoondown \xi$と表せるが，
-			$\xi$は$\psi$の始切片であるから，帰納法の仮定より$\xi$と$\psi$は一致する．
-			ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+				いま$\varphi$を任意に与えられた式とし，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の真部分式に対しては(★)が言える．
+				\end{itembox}
+				と仮定する．このとき
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\rightharpoondown \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるももまた
+						\begin{align}
+							\rightharpoondown \xi
+						\end{align}
+						なる形をしている．このとき$\xi$は$\psi$の始切片であるから，
+						(IH)より$\xi$と$\psi$は一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
 			
-		\item[ケース2] 式$\psi$と$\xi$が得られて$\varphi$が
-			\begin{align}
-				\vee \psi \xi
-			\end{align}
-			であるとする．$\varphi$の始切片で式であるものも$\vee$が左端に来るので，
-			式$\eta$と式$\zeta$が得られて始切片は
-			\begin{align}
-				\vee \eta \zeta
-			\end{align}
-			と表せる．$\psi$と$\eta$，$\xi$と$\zeta$は
-			いずれも$\varphi$の真部分式であるので(★)が当てはまる．
-			そして$\psi$と$\eta$は一方が他方の始切片であるので，(★)より一致する．
-			すると$\xi$と$\zeta$も一方が他方の始切片ということになり，(★)より一致する．
-			ゆえに$\vee \psi \xi$と$\vee \eta \zeta$は一致する．
-			つまり$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
-			$\varphi$が$\wedge \psi \xi$や$\rarrow \psi \xi$である場合も同じである．
-			
-		\item[ケース3] 項$x$と式$\psi$が得られて，$\varphi$が
-			\begin{align}
-				\forall x \psi
-			\end{align}
-			であるとき，$\varphi$の始切片で式であるものは，式$\xi$が取れて
-			\begin{align}
-				\forall x \xi
-			\end{align}
-			と表せる．このとき$\xi$は$\psi$の始切片であるし，
-			また$\psi$は$\varphi$の真部分式であるから，(★)より$\psi$と$\xi$は一致する．
-			ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
-			$\varphi$が$\forall x \psi$である場合も同じである．
-			\QED
-	\end{description}
-
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \xi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\vee \eta \zeta
+						\end{align}
+						なる形をしている．このとき$\psi$と$\eta$は一方が他方の始切片であるので
+						(IH)より一致する．すると$\xi$と$\zeta$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\exists y \xi
+						\end{align}
+						なる形の式である．このとき$x$と$y$は一方が他方の始切片であり，これらは
+						変項であるから前段の結果より一致する．すると$\psi$と$\chi$も
+						一方が他方の始切片ということになり，(IH)より一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+						\QED
+				\end{description}
 		\end{description}
 	\end{metaprf}
 	
