@@ -94,8 +94,26 @@
 	作られるのは当然ながら，その逆に$\lang{\varepsilon}$の項もまた
 	$\lang{\varepsilon}$の式から作られるのである．
 	
-	定義の循環によって構造が見えづらくなっているが，直感的には次のように捉えることが出来る．
-	というよりは，次のように$\lang{\varepsilon}$が作られているとすれば良い．
+	\begin{screen}
+		\begin{metathm}
+			$A$を$\lang{\varepsilon}$の式とするとき，
+			$\varepsilon x A$なる形の$\varepsilon$項は$A$には現れない．
+		\end{metathm}
+	\end{screen}
+	
+	もし$A$に$\varepsilon x A$が現れるならば，当然$A$の中の$\varepsilon x A$にも
+	$\varepsilon x A$が現れるし，$A$の中の$\varepsilon x A$の中の$\varepsilon x A$にも
+	$\varepsilon x A$が現れるといった具合に，この入れ子には終わりがなくなる．
+	だが，当然こんなことは起こり得ない．
+	
+	\begin{metaprf}
+		$A$が指す記号列のどの部分を切り取っても
+		それは$A$より短い記号列であって，$\varepsilon x A$の現れる余地など無いからである．
+		\QED
+	\end{metaprf}
+	
+	定義の循環によって構造が見えづらくなっているが，$\lang{\varepsilon}$の項と式は
+	次の手順で作られている．
 	
 	\begin{enumerate}
 		\item $\lang{\in}$の式から$\varepsilon$項を作り，
@@ -113,8 +131,10 @@
 			\end{itemize}
 	\end{enumerate}
 	
-	こう捉えることで，$\lang{\varepsilon}$における構造的帰納法の原理を規定すれば良い．
-	粗く考察してると，項と式に対する言明Xが与えられたとき，
+	$\lang{\varepsilon}$の項と式は以上のような帰納的構造を持っているのだから，
+	$\lang{\varepsilon}$における構造的帰納法はこれに則ったものになる．
+	まずは粗く考察してみると，項と式に対する言明Xが与えられたとき，
+	
 	\begin{enumerate}
 		\item まずは$\lang{\in}$の項と式に対してXが言えて，かつ
 			第$1$世代の$\varepsilon$項に対してもXが言えることがスタート地点である．
@@ -156,25 +176,6 @@
 			ならば，いかなる項と式に対してもXが言える．
 		\end{metaaxm}
 	\end{screen}
-	
-	次の性質は至極当たり前であるが，
-	
-	\begin{screen}
-		\begin{metathm}
-			$A$を$\lang{\varepsilon}$の式としたとき，
-			$\varepsilon x A$なる形の$\varepsilon$項は$A$には現れない．
-		\end{metathm}
-	\end{screen}
-	
-	もし$A$に$\varepsilon x A$が現れるならば，当然$A$の中の$\varepsilon x A$にも
-	$\varepsilon x A$が現れるし，$A$の中の$\varepsilon x A$の中の$\varepsilon x A$にも
-	$\varepsilon x A$が現れるといった具合に，この入れ子には終わりがなくなる．
-	だが，当然こんなことは起こり得ない．$A$が指す記号列のどの部分を切り取っても
-	それは$A$より短い記号列であって，$\varepsilon x A$の現れる余地など無いからである．
-	
-	しかしながら，やはり全容を把握しきれない世界の話になると，
-	何か超然的な力が働いて現世の常識を捻じ曲げうるのではないか，という不安がぬぐえない．
-	基礎論の基礎にあるのは，直感や常識の正体の究明ではないのか．
 	
 	$\varphi$を$\lang{\varepsilon}$の式としたら，$\varphi$の部分式とは，
 	$\varphi$から切り取られる一続きの記号列で，それ自身が$\lang{\varepsilon}$の式であるものを指す．
@@ -426,275 +427,3 @@
 				\QED
 		\end{description}
 	\end{metaprf}
-	
-\section{言語$\mathcal{L}$}
-	本稿における主流の言語は，次に定める$\mathcal{L}$である．$\mathcal{L}$の最大の特徴は
-	\begin{align}
-		\Set{x}{A}
-	\end{align}
-	なる形のオブジェクトが``正式に''項として用いられることである．
-	他の集合論の本では$\Set{x}{A}$なる項はインフォーマルに導入されるもので，
-	しかもこれが常に集合であることを期すために
-	$\Set{x \in z}{A}$などのように何らかの$z$を引き出す必要がある．
-	$\Set{x}{A}$を正式に項として導入すれば煩雑さをある程度回避することが出来る．
-	
-	$\mathcal{L}$の構成要素は以下のものである．
-	
-	\begin{description}
-		\item[矛盾記号] $\bot$
-		\item[論理記号] $\rightharpoondown,\ \vee,\ \wedge,\ \rarrow$
-		\item[量化子] $\forall,\ \exists$
-		\item[述語記号] $=,\ \in$
-		\item[変項] $\lang{\in}$の項は$\mathcal{L}$の変項である．またこれらのみが
-			$\mathcal{L}$の変項である．
-		\item[補助記号] $\{,\ |,\ \}$
-	\end{description}
-	
-	$\mathcal{L}$の項と式の構成規則は$\lang{\in}$のものと大差ない．
-	
-	\begin{description}
-		\item[項] 
-			\begin{itemize}
-				\item $\lang{\varepsilon}$の項は$\mathcal{L}$の項である．
-				\item $x$を$\mathcal{L}$の変項とし，$A$を$\lang{\varepsilon}$の式とするとき，
-					$\Set{x}{A}$なる記号列は$\mathcal{L}$の項である．
-				\item 以上のみが$\mathcal{L}$の項である．
-			\end{itemize}
-	\end{description}
-	
-	によって正式に定義される．ここで，$\lang{\in}$の項は$\lang{\varepsilon}$
-	の項でもあるから，すなわち$\mathcal{L}$の項でもある．つまり，定義には書いていないが
-	{\bf $\mathcal{L}$の変項は$\mathcal{L}$の項である}．
-	
-	\begin{description}
-		\item[式] 
-			\begin{itemize}
-				\item $\bot$は$\mathcal{L}$の式である．
-				\item $\sigma$と$\tau$を$\mathcal{L}$の項とするとき，
-					$\in st$と$=st$は$\mathcal{L}$の式である．
-				\item $\varphi$を$\mathcal{L}$の式とするとき，
-					$\rightharpoondown \varphi$は$\mathcal{L}$の式である．
-				\item $\varphi$と$\psi$を$\mathcal{L}$の式とするとき，
-					$\vee \varphi \psi,\ \wedge \varphi \psi,\ \rarrow \varphi \psi$は
-					いずれも$\mathcal{L}$の式である．
-				\item $x$を$\mathcal{L}$の{\bf 変項}とし，$\varphi$を
-					$\mathcal{L}$の式とするとき，$\forall x \varphi$と
-					$\exists x \varphi$は$\mathcal{L}$の式である．
-			\end{itemize}
-	\end{description}
-	
-	言語の拡張の仕方より明らかであるが，次が成り立つ:
-	
-	\begin{screen}
-		\begin{metathm}
-			$\lang{\in}$の式は$\lang{\varepsilon}$の式であり，
-			また$\lang{\varepsilon}$の式は$\mathcal{L}$の式である．
-		\end{metathm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{dfn}[類]
-			$A$を$\lang{\in}$の式とし，$x$を$A$に現れる項とし，
-			$A$の中で項$x$のみが自由に現れるとき，
-			$\Set{x}{A(x)}$及び$\varepsilon x A(x)$を
-			{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
-	
-	$\varphi$を$\mathcal{L}$の式とし，$s$を$\varphi$に現れる記号とすると，
-	\begin{description}
-		\item[(1)] $s$は文字である．
-		\item[(2)] $s$は$\natural$である．
-		\item[(2)] $s$は$\{$である．
-		\item[(3)] $s$は$|$である．
-		\item[(4)] $s$は$\}$である．
-		\item[(5)] $s$は$\bot$である．
-		\item[(6)] $s$は$\in$か$=$である．
-		\item[(7)] $s$は$\rightharpoondown$である．
-		\item[(8)] $s$は$\vee,\wedge,\rightarrow$のいずれかである．
-	\end{description}
-	
-	\begin{screen}
-		(★★) いま，$\varphi$を任意に与えられた式としよう．
-		\begin{itemize}
-			\item $\natural$が$\varphi$に現れたとき，$\lang{\in}$の項$\tau$と$\sigma$が得られて，$\natural \tau \sigma$は
-				$\natural$のその出現位置から始まる$\lang{\in}$の項となる．
-				また$\natural$のその出現位置から始まる$\lang{\in}$の項は$\natural \tau \sigma$のみである．
-				
-			\item $\{$が$\varphi$に現れたとき，$\lang{\in}$の変項$x$及び$\lang{\in}$の式$A$が得られて，
-				$\{ x|A\}$は$\{$のその出現位置から始まる項となる．
-				また$\{$のその出現位置から始まる項は$\{x|A\}$のみである．
-				
-			\item $|$が$\varphi$に現れたとき，，変項$x$と$\lang{\in}$の式$A$が得られて，
-				$\{x|A\}$は$|$のその出現位置から広がる項となる．
-				また$|$のその出現位置から広がる項は$\{x|A\}$のみである．
-				
-			\item $\}$が$\varphi$に現れたとき，変項$x$と式$A$が得られて，
-				$\{x|A\}$は$\}$のその出現位置を終点とする項となる．
-				また$\}$のその出現位置を終点とする項は$\{x|A\}$のみである．
-		\end{itemize}
-	\end{screen}
-	
-	\begin{description}
-		\item[$\natural$に対して$\natural \tau \sigma$なる変項$\tau$と$\sigma$が得られること]
-			$\natural$が原子項に現れたら，原子項とは文字$x,y$によって
-			\begin{align}
-				\natural xy
-			\end{align}
-			と表されるものであるから，$\natural$に対して変項$\tau,\sigma$ (すなわち文字$x,y$)が取れたことになる．
-			$\natural$が項に現れたとする．項とは，変項$x,y$によって
-			\begin{align}
-				\natural xy
-			\end{align}
-			で表されるものであり，$\natural$は左端の$\natural$であるか，$x$に現れるか，$y$に現れる．
-			$\natural$が$x$か$y$に現れるときは帰納法の仮定により，
-			$\natural$が左端のものである場合は$x$が$\tau$，$y$が$\sigma$ということになる．
-			
-		\item[変項の始切片で変項であるものは自分自身のみ]
-			$x$が文字である場合はそう．$x$の任意の部分変項が言明を満たしているなら，
-			$x$は$\natural st$なる変項である(生成規則)から，$x$の始切片は$\natural uv$なる変項である．
-			$s,t,u,v$はいずれも$x$の部分変項なので仮定が適用されている．
-			ゆえに$s$と$u$は一方が他方の始切片であり，一致する．すなわち$t$と$v$も一方が他方の始切片であり一致する．
-			ゆえに$x$の始切片で変項であるものは$x$自身である．
-			
-		\item[$\natural$に対して得られる変項の一意性]
-			$\natural xy$と$\natural st$が共に変項であるとき，$x$と$s$，$y$と$t$は一致するか．
-			$\natural xy$が原子項であるときは明らかである．
-			$x$の始切片で変項であるものは$x$自身に限られるので，
-			$x$と$s$は一致する．ゆえに$t$は$y$の始切片であり，$t$と$y$も一致する．
-		
-		\item[生成規則より$x$と$A$が得られるか]
-			$\varphi$が原子式であるとき，
-			$\{$が現れるとすれば項の中である．項とは$\lang{\in}$の項であるか$\{x|A\}$なるものであるので
-			$\{$が現れたならば$\{$とは$\{x|A\}$の$\{$である．
-			
-			$\varphi$の任意の部分式に対して言明が満たされているとする．
-			$\varphi$とは$\rightharpoondown \psi,\vee \psi \xi,...$の形であるから，
-			$\varphi$に現れた$\{$とは$\psi$や$\xi$に現れるのである．ゆえに
-			仮定より$x$と$A$が取れるわけである．
-			
-		\item[$\{$に対して]
-			項の生成規則より$x$と$A$が得られる．
-			$\{y|B\}$もまた$\{$から始まる項である場合，順番に見ていって
-			$x$と$y$は一方が他方の始切片という関係になるから一致する．
-			すると$A$と$B$は一方が他方の始切片という関係になり，(★)より$A$と$B$は一致する．
-			
-		\item[$|$について]
-			項の生成規則より$x$と$A$が得られる．
-			$\{y|B\}$もまた$|$から広がる項である場合，順番に見ていって
-			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
-			$A$と$B$は一方が他方の始切片という関係になるので(★)より$A$と$B$は一致する．
-			
-		\item[$\}$について]
-			項の生成規則より$x$と$A$が得られる．
-			$\{y|B\}$もまた$\}$のその出現位置を終点とする変項である場合，
-			$A$と$B$は$\lang{\in}$の式なので$|$という記号は現れない．ゆえに
-			$A$と$B$は一致する．すると$x$と$y$は右端で揃うが，
-			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
-	\end{description}
-	
-\section{類と集合}
-	\begin{screen}
-		\begin{dfn}[類と集合]
-			$a$を類とするとき，$a$が集合であるという言明を
-			\begin{align}
-				\set{a} \defarrow \exists x\, (\, x = a\, )
-			\end{align}
-			で定める．$\set{a}$を満たす類$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
-			$\rightharpoondown \set{a}$を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
-	
-	ちなみに$\varepsilon x A(x)$は集合である．なぜならば
-	\begin{align}
-		\varepsilon x A(x) = \varepsilon x A(x)
-	\end{align}
-	だから
-	\begin{align}
-		\exists a\, \left(\, a = \varepsilon x A(x)\, \right).
-	\end{align}
-	また$\Set{x}{A(x)}$が集合であるとき
-	\begin{align}
-		\exists s\, \left(\, \Set{x}{A(x)} = s\, \right)
-	\end{align}
-	が成り立つが，量化の規則より
-	\begin{align}
-		\Set{x}{A(x)} = \varepsilon s \forall u\, (\, u \in s \lrarrow A(u)\, )
-	\end{align}
-	が得られる．ブルバキや島内では右辺の項で内包表記を導入しているため，
-	$\forall u\, (\, u \in s \lrarrow A(s)\, )$を満たす集合$s$が取れなければ
-	$\Set{x}{A(x)}$は正体不明の対象となる．一方で本稿では
-	内包項の意味は$\varepsilon$項に依らずにはっきり決まっている．
-	
-\section{式の書き換え}
-	$\Set{x}{A(x)}$なる形の項を内包項，$\varepsilon x A(x)$なる形の項を$\varepsilon$項と呼び，
-	これらを類と総称することにする．
-	また$\varepsilon$項が現れない$\mathcal{L}$の式を甲種式，
-	乙種項が現れる$\mathcal{L}$の式を乙種式と呼ぶことにする．
-	
-	\begin{itembox}[l]{乙種式は書き換えない}
-		たとえば，$x \in \varepsilon y B(y)$なる式を$\lang{\in}$の式に書き換えるならば，
-		$\varepsilon$項に込められた意味から
-		\begin{align}
-			\exists t\, (\, x \in t \wedge 
-			(\, \exists y B(y) \rarrow B(t)\, )\, )
-		\end{align}
-		とするのが妥当であるだろう．しかしこうすると集合論では
-		\begin{align}
-			\forall x\, (\, x \in \varepsilon y\, (\, y=y\, )\, )
-		\end{align}
-		が成り立ってしまい，これは矛盾を起こす．実際，任意の集合$x$に対して，$t$として$\{x\}$を取れば
-		\begin{align}
-			\exists t\, (\, x \in t \wedge 
-			(\, \exists y B(y) \rarrow B(t)\, )\, )
-		\end{align}
-		が満たされるので
-		\begin{align}
-			\forall x\, \exists t\, (\, x \in t \wedge 
-			(\, \exists y\, (\, y = y\, ) \rarrow t = t\, )\, )
-		\end{align}
-		すなわち$\forall x\, (\, x \in \varepsilon y\, (\, y=y\, )\, )$が成り立つ．
-		ところが本稿の体系では$\varepsilon y\, (\, y = y\, )$は集合であり，
-		その一方で全ての集合を要素に持つ集まりというのは集合ではないから，矛盾が起こる．
-		
-		他に乙種式を$\lang{\in}$の式に変換する有効な方法が見つかれば話は別だが，
-		それが見つからないうちは乙種式は書き換えの対象ではない．
-	\end{itembox}
-	
-	\begin{itemize}
-		\item $x \in \Set{y}{B(y)}$は$B(x)$と書き換える．
-			
-			これは次の公理
-			\begin{align}
-				\forall x\, \left(\, x \in \Set{y}{B(y)} \leftrightarrow B(x)\, \right)
-			\end{align}
-			に基づく式の書き換えである．
-			
-		\item $\Set{x}{A(x)} \in y$は$\exists s\, \left(\, s \in y \wedge 
-			\forall u\, (\, u \in s \lrarrow A(s)\, )\, \right)$
-			と書き換える．
-			これの同値性は
-			\begin{align}
-				a \in b \rarrow \exists x\, (\, a = x\, )
-			\end{align}
-			の公理による．
-			
-	\end{itemize}
-	
-	量化は$\varepsilon$項についての規則とする．甲種乙種関係なく，式$A(x)$と任意の$\varepsilon$項$\tau$に対して
-	\begin{align}
-		A(\tau) \vdash \exists x A(x).
-	\end{align}
-	
-	$A(x)$が甲種式であるとき，
-	\begin{align}
-		\exists x A(x) \vdash A\left(\varepsilon x \mathcal{L}A(x)\right).
-	\end{align}
-	
-	$A(x)$を式とするとき，次の推論規則によって，$\forall x A(x)$とは
-	全ての$\varepsilon$項$\tau$で$A(\tau)$が成り立つことを意味するようになる．
-	\begin{align}
-		\forall x A(x) &\vdash A(\tau). \\
-		A(\varepsilon x \rightharpoondown \mathcal{L}A(x)) &\vdash \forall x A(x). 
-	\end{align}
-	
