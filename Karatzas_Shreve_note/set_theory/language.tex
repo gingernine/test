@@ -13,7 +13,7 @@
 	以下は$\lang{\in}$を構成する要素である:
 	\begin{description}
 		\item[矛盾記号] $\bot$
-		\item[論理記号] $\rightharpoondown$, $\vee$, $\wedge$, $\rarrow$
+		\item[論理記号] $\negation$, $\vee$, $\wedge$, $\rarrow$
 		\item[量化子] $\forall$, $\exists$
 		\item[述語記号] $=$, $\in$
 		\item[使用文字] ローマ字及びギリシア文字．
@@ -35,7 +35,7 @@
 	論理学的な言語とは論理記号と変項記号を除く記号をすべて集めたものである．
 	本稿で用意した記号で言うと，論理記号とは
 	\begin{align}
-		\bot,\ \rightharpoondown,\ \vee,\ \wedge,\ \rarrow,\ \forall,\ \exists,\ =
+		\bot,\ \negation,\ \vee,\ \wedge,\ \rarrow,\ \forall,\ \exists,\ =
 	\end{align}
 	であり，変項記号とは文字であって，$\lang{\in}$の語彙は
 	\begin{align}
@@ -46,7 +46,7 @@
 	ついでに記号の分類も主流の論理学とは変えていて，
 	\begin{itemize}
 		\item $\bot$はそれ単体で式であるので他の記号とは分ける．
-		\item 論理記号とは式に作用するものとして$\rightharpoondown,\vee,\wedge,\rarrow$のみとする．
+		\item 論理記号とは式に作用するものとして$\negation,\vee,\wedge,\rarrow$のみとする．
 		\item $\forall$と$\exists$は項に作用するものであるから量化子として分類する．
 		\item 等号$=$は'等しい'という述語になっているから，論理記号ではなく述語記号に入れる．
 	\end{itemize}
@@ -129,7 +129,7 @@
 				\item $\bot$は式である．
 				\item $\sigma$と$\tau$を項とするとき，$\in st$と$=st$は式である．
 					これを{\bf 原子式}\index{げんししき@原子式}{\bf (atomic formula)}と呼ぶ．
-				\item $\varphi$を式とするとき，$\rightharpoondown \varphi$は式である．
+				\item $\varphi$を式とするとき，$\negation \varphi$は式である．
 				\item $\varphi$と$\psi$を式とするとき，$\vee \varphi \psi,\ 
 					\wedge \varphi \psi,\ \rarrow \varphi \psi$はいずれも式である．
 			
@@ -144,7 +144,7 @@
 		\item $\varphi$は$\bot$である
 		\item 項$s$と項$t$が得られて，$\varphi$は$\in s t$である
 		\item 項$s$と項$t$が得られて，$\varphi$は$= s t$である
-		\item 式$\psi$が得られて，$\varphi$は$\rightharpoondown \psi$である
+		\item 式$\psi$が得られて，$\varphi$は$\negation \psi$である
 		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\vee \psi \xi$である
 		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\wedge \psi \xi$である
 		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\rarrow \psi \xi$である
@@ -318,11 +318,11 @@
 				\begin{description}
 					\item[case1] $\varphi$が
 						\begin{align}
-							\rightharpoondown \psi
+							\negation \psi
 						\end{align}
 						なる形の式であるとき，$\varphi$の始切片で式であるももまた
 						\begin{align}
-							\rightharpoondown \xi
+							\negation \xi
 						\end{align}
 						なる形をしている．このとき$\xi$は$\psi$の始切片であるから，
 						(IH)より$\xi$と$\psi$は一致する．
@@ -359,7 +359,7 @@
 	\end{metaprf}
 	
 \section{スコープ}
-	$\varphi$を式とし，$s$を「$\natural,\in,\bot,\rightharpoondown,\vee,\wedge,\rarrow,\exists,\forall$」
+	$\varphi$を式とし，$s$を「$\natural,\in,\bot,\negation,\vee,\wedge,\rarrow,\exists,\forall$」
 	のいずれかの記号とし，$\varphi$に$s$が現れたとする．このとき，$s$のその出現位置から始まる$\varphi$の部分式，
 	或いは$s$が$\natural$である場合は部分項，を
 	$s$の{\bf スコープ}\index{スコープ}{\bf (scope)}と呼ぶ．具体的に，$\varphi$を
@@ -424,8 +424,8 @@
 			\item[(b)] $\in$が$\varphi$に現れたとき，項$\sigma$と項$\tau$が得られて，
 				$\in$のその出現位置から$\in \sigma \tau$なる式が$\varphi$の上に現れる．
 				
-			\item[(c)] $\rightharpoondown$が$\varphi$に現れたとき，式$\psi$が得られて，
-				$\rightharpoondown$のその出現位置から$\rightharpoondown \psi$なる式が
+			\item[(c)] $\negation$が$\varphi$に現れたとき，式$\psi$が得られて，
+				$\negation$のその出現位置から$\negation \psi$なる式が
 				$\varphi$の上に現れる．
 				
 			\item[(d)] $\vee$が$\varphi$に現れたとき，式$\psi$と式$\xi$が得られて，
@@ -482,17 +482,17 @@
 				定理の主張が当てはまっているとする．
 		
 				式$\varphi$と$\psi$に対して上の言明が当てはまるとする．
-				式$\rightharpoondown \varphi$に対して，
-				$\sigma$が左端の$\rightharpoondown$であるとき
-				$\sigma \varphi$は$\rightharpoondown \varphi$の部分式である．
-				また$\sigma \psi$が$\sigma$のその出現位置から始まる$\rightharpoondown \varphi$の部分式
+				式$\negation \varphi$に対して，
+				$\sigma$が左端の$\negation$であるとき
+				$\sigma \varphi$は$\negation \varphi$の部分式である．
+				また$\sigma \psi$が$\sigma$のその出現位置から始まる$\negation \varphi$の部分式
 				であるとすると，
 				$\psi$は$\varphi$の左端から始まる$\varphi$の部分式ということになるので
 				メタ定理\ref{metathm:initial_segment_L_in}より$\varphi$と$\psi$は一致する．
 				$\sigma$が$\varphi$に現れる記号であれば，帰納法の仮定より
 				$\sigma$から始まる$\varphi$の部分式が一意的に得られる．
-				その部分式は$\rightharpoondown \varphi$の部分式でもあるし，
-				$\rightharpoondown \varphi$の部分式としての一意性は
+				その部分式は$\negation \varphi$の部分式でもあるし，
+				$\negation \varphi$の部分式としての一意性は
 				メタ定理\ref{metathm:initial_segment_L_in}より従う．
 	
 				式$\vee \varphi \psi$に対して，
@@ -512,7 +512,7 @@
 	\begin{screen}
 		\begin{metathm}[スコープの一意性]\label{metathm:uniqueness_of_scopes_L_in}
 			$\varphi$を式とし，$s$を
-			$\natural,\in,\bot,\rightharpoondown,\vee,\wedge,\rarrow,\exists,\forall$
+			$\natural,\in,\bot,\negation,\vee,\wedge,\rarrow,\exists,\forall$
 			のいずれかの記号とし，$\varphi$に$s$が現れたとする．
 			このとき$\varphi$におけるその$s$のスコープは唯一つである．
 		\end{metathm}
@@ -536,7 +536,7 @@
 				$\tau$と$\sigma$は一致する．
 			
 			\item[case2]
-				$\rightharpoondown$が$\varphi$に現れた場合，
+				$\negation$が$\varphi$に現れた場合，
 				これはcase1において項であったところが式に替わるだけで殆ど同じ証明となる．
 			
 			\item[case3]

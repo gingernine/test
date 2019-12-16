@@ -27,18 +27,18 @@
 		\begin{logicalaxm}[演繹規則]
 			$A,B,C,D$を文とするとき，
 			\begin{description}
-				\item[(a)] $A \vdash D$ならば$\vdash A \Longrightarrow D$が成り立つ．
+				\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
 				\item[(b)] $A,B \vdash D$ならば
 					\begin{align}
-						B \vdash A \Longrightarrow D,\quad
-						A \vdash B \Longrightarrow D
+						B \vdash A \rarrow D,\quad
+						A \vdash B \rarrow D
 					\end{align}
 					が成り立つ．
 				\item[(c)] $A,B,C \vdash D$ならば
 					\begin{align}
-						B,C \vdash A \Longrightarrow D,\quad
-						A,C \vdash B \Longrightarrow D,\quad
-						A,B \vdash C \Longrightarrow D
+						B,C \vdash A \rarrow D,\quad
+						A,C \vdash B \rarrow D,\quad
+						A,B \vdash C \rarrow D
 					\end{align}
 					のいずれも成り立つ．
 			\end{description}
@@ -53,22 +53,22 @@
 		\begin{logicalaxm}[三段論法]
 			$A$と$B$を文とするとき
 			\begin{align}
-				A,A \Longrightarrow B \vdash B.
+				A,A \rarrow B \vdash B.
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
 	
 	三段論法によって
 	\begin{align}
-		A,A \Longrightarrow B \vdash B
+		A,A \rarrow B \vdash B
 	\end{align}
 	が成り立つが，ここに演繹規則を適用すれば
 	\begin{align}
-		A \vdash (A \Longrightarrow B) \Longrightarrow B
+		A \vdash (A \rarrow B) \rarrow B
 	\end{align}
 	および
 	\begin{align}
-		\vdash A \Longrightarrow ((A \Longrightarrow B) \Longrightarrow B)
+		\vdash A \rarrow ((A \rarrow B) \rarrow B)
 	\end{align}
 	が得られる．最後の式は三段論法を推論法則に直したものであり，証明の過程において最も重要な役割を果たす．
 	では{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定する．
@@ -90,13 +90,13 @@
 		\item[相等性]
 		\item[外延性] $a$と$b$を類とするとき
 			\begin{align}
-				\forall x\, (\, x \in a \Longleftrightarrow x \in b\, )
-				\Longrightarrow a = b.
+				\forall x\, (\, x \in a \lrarrow x \in b\, )
+				\rarrow a = b.
 			\end{align}
 			
 		\item[内包性] 
 			\begin{align}
-				\forall x\, \left(\, x \in \Set{y}{B(y)} \Longleftrightarrow B(x)\, \right).
+				\forall x\, \left(\, x \in \Set{y}{B(y)} \lrarrow B(x)\, \right).
 			\end{align}
 			
 		\item[合併]
@@ -142,7 +142,7 @@
 		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
 			$A$を文とするとき
 			\begin{align}
-				\vdash A \Longrightarrow A.
+				\vdash A \rarrow A.
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -151,7 +151,7 @@
 	このように無数に存在し得る定理を一括して表す式は{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼ばれる．
 	
 	\begin{prf}
-		$A \vdash A$であるから，演繹規則より$\vdash A \Longrightarrow A$となる．
+		$A \vdash A$であるから，演繹規則より$\vdash A \rarrow A$となる．
 		\QED
 	\end{prf}
 	
@@ -159,7 +159,7 @@
 		\begin{logicalthm}[含意の導入]\label{logicalthm:rule_of_inference_2}
 			$A,B$を文とするとき
 			\begin{align}
-				\vdash B \Longrightarrow (A \Longrightarrow B).
+				\vdash B \rarrow (A \rarrow B).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -170,11 +170,11 @@
 		\end{align}
 		より演繹規則から
 		\begin{align}
-			B \vdash A \Longrightarrow B
+			B \vdash A \rarrow B
 		\end{align}
 		となり，再び演繹規則より
 		\begin{align}
-			\vdash B \Longrightarrow (A \Longrightarrow B)
+			\vdash B \rarrow (A \rarrow B)
 		\end{align}
 		が得られる．
 		\QED
@@ -187,7 +187,7 @@
 		\label{logicalthm:distributive_law_of_implication}
 			$A,B,C$を文とするとき
 			\begin{align}
-				\vdash (A \Longrightarrow (B \Longrightarrow C)) \Longrightarrow ((A \Longrightarrow B) \Longrightarrow (A \Longrightarrow C)).
+				\vdash (A \rarrow (B \rarrow C)) \rarrow ((A \rarrow B) \rarrow (A \rarrow C)).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -195,40 +195,40 @@
 	\begin{prf}
 		証明可能性の規則より
 		\begin{align}
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
 			&\vdash A, \\
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
-			&\vdash A \Longrightarrow B
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			&\vdash A \rarrow B
 		\end{align}
 		となるので
 		\begin{align}
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
 			\vdash B
 		\end{align}
 		が成り立つし，同じように
 		\begin{align}
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
 			&\vdash A, \\
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
-			&\vdash A \Longrightarrow (B \Longrightarrow C)
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			&\vdash A \rarrow (B \rarrow C)
 		\end{align}
 		であるから
 		\begin{align}
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
-			\vdash B \Longrightarrow C
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			\vdash B \rarrow C
 		\end{align}
 		も成り立つ．これによって
 		\begin{align}
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B,\ A
+			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
 			\vdash C
 		\end{align}
 		も成り立つから，あとは演繹規則を順次適用すれば
 		\begin{align}
-			A \Longrightarrow (B \Longrightarrow C),\ A \Longrightarrow B
-			&\vdash A \Longrightarrow C, \\
-			A \Longrightarrow (B \Longrightarrow C)
-			&\vdash (A \Longrightarrow B) \Longrightarrow (A \Longrightarrow C), \\
-			&\vdash (A \Longrightarrow (B \Longrightarrow C)) \Longrightarrow ((A \Longrightarrow B) \Longrightarrow (A \Longrightarrow C))
+			A \rarrow (B \rarrow C),\ A \rarrow B
+			&\vdash A \rarrow C, \\
+			A \rarrow (B \rarrow C)
+			&\vdash (A \rarrow B) \rarrow (A \rarrow C), \\
+			&\vdash (A \rarrow (B \rarrow C)) \rarrow ((A \rarrow B) \rarrow (A \rarrow C))
 		\end{align}
 		となる．
 		\QED
@@ -240,9 +240,9 @@
 			\begin{itemize}
 				\item $\mathscr{S}$の公理に対してXが言える．
 				\item 推論法則に対してXが言える．
-				\item $\varphi$と$\varphi \Longrightarrow \psi$が$\mathscr{S}$の
+				\item $\varphi$と$\varphi \rarrow \psi$が$\mathscr{S}$の
 					定理であるような文$\varphi$と文$\psi$が取れたとき，
-					$\varphi$と$\varphi \Longrightarrow \psi$に対して
+					$\varphi$と$\varphi \rarrow \psi$に対して
 					Xが言えるならば，$\psi$に対してXが言える．
 			\end{itemize}
 			のすべてが満たされていれば，$\mathscr{S}$から証明可能なあらゆる文に対してXが言える．
@@ -261,7 +261,7 @@
 			$\mathscr{S}$を公理系とし，$A$を文とするとき，
 			$\mathscr{S}, A$の任意の定理$B$に対して
 			\begin{align}
-				\mathscr{S} \vdash A \Longrightarrow B
+				\mathscr{S} \vdash A \rarrow B
 			\end{align}
 			が成り立つ．
 		\end{metathm}
@@ -274,11 +274,11 @@
 				$B$が$A$ならば含意の反射律
 				(推論法則\ref{logicalthm:reflective_law_of_implication})より
 				\begin{align}
-					\vdash A \Longrightarrow B
+					\vdash A \rarrow B
 				\end{align}
 				が成り立つので
 				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow B
+					\mathscr{S} \vdash A \rarrow B
 				\end{align}
 				となる．$B$が$\mathscr{S}$の公理又は推論法則であるとき，まず
 				\begin{align}
@@ -286,41 +286,41 @@
 				\end{align}
 				が成り立つが，他方で推論法則\ref{logicalthm:rule_of_inference_2}より
 				\begin{align}
-					\mathscr{S} \vdash B \Longrightarrow (A \Longrightarrow B) 
+					\mathscr{S} \vdash B \rarrow (A \rarrow B) 
 				\end{align}
 				も成り立つので，証明可能性の定義より
 				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow B
+					\mathscr{S} \vdash A \rarrow B
 				\end{align}
 				が従う．
 				
 			\item[第二段]
-				$C$及び$C \Longrightarrow B$が$\mathscr{S}$の定理であるような
+				$C$及び$C \rarrow B$が$\mathscr{S}$の定理であるような
 				文$C$と文$B$が取れた場合，
 				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow (C \Longrightarrow B)
+					\mathscr{S} \vdash A \rarrow (C \rarrow B)
 				\end{align}
 				かつ
 				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow C
+					\mathscr{S} \vdash A \rarrow C
 				\end{align}
 				であると仮定する．含意の分配則
 				(\ref{logicalthm:distributive_law_of_implication})より
 				\begin{align}
 					\mathscr{S} \vdash 
-					(A \Longrightarrow (C \Longrightarrow B)) \Longrightarrow ((A \Longrightarrow C) \Longrightarrow (A \Longrightarrow B))
+					(A \rarrow (C \rarrow B)) \rarrow ((A \rarrow C) \rarrow (A \rarrow B))
 				\end{align}
 				が満たされるので，証明可能性の定義の通りに
 				\begin{align}
-					\mathscr{S} \vdash (A \Longrightarrow C) \Longrightarrow (A \Longrightarrow B)
+					\mathscr{S} \vdash (A \rarrow C) \rarrow (A \rarrow B)
 				\end{align}
 				が従い，
 				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow B
+					\mathscr{S} \vdash A \rarrow B
 				\end{align}
 				が従う．以上と構造的帰納法より，$\mathscr{S},A$の任意の定理$B$に対して
 				\begin{align}
-					\mathscr{S} \vdash A \Longrightarrow B
+					\mathscr{S} \vdash A \rarrow B
 				\end{align}
 				が言える．
 				\QED
@@ -330,7 +330,7 @@
 	演繹法則の逆も得られる．つまり，
 	$\mathscr{S}$を文の集合とし，$A$と$B$を文とするとき，
 	\begin{align}
-		\mathscr{S} \vdash A \Longrightarrow B
+		\mathscr{S} \vdash A \rarrow B
 	\end{align}
 	であれば
 	\begin{align}
@@ -341,9 +341,9 @@
 		\mathscr{S}, A \vdash A
 	\end{align}
 	が成り立つのは証明の定義の通りであるし，
-	$A \Longrightarrow B$が$\mathscr{S}$の定理ならば
+	$A \rarrow B$が$\mathscr{S}$の定理ならば
 	\begin{align}
-		\mathscr{S}, A \vdash A \Longrightarrow B
+		\mathscr{S}, A \vdash A \rarrow B
 		\label{fom:inversion_of_deduction_theorem}
 	\end{align}
 	が成り立つので，併せて
@@ -372,12 +372,12 @@
 		は言える．また
 		\begin{align}
 			\mathscr{S} &\vdash C, \\
-			\mathscr{S} &\vdash C \Longrightarrow B
+			\mathscr{S} &\vdash C \rarrow B
 		\end{align}
 		を満たす文$C$が取れるとき，
 		\begin{align}
 			\mathscr{S}, A &\vdash C, \\
-			\mathscr{S}, A &\vdash C \Longrightarrow B
+			\mathscr{S}, A &\vdash C \rarrow B
 		\end{align}
 		と仮定すれば
 		\begin{align}
@@ -411,7 +411,7 @@
 			
 		\item[場合分け法則] $A$と$B$と$C$を文とするとき
 			\begin{align}
-				A \vee B, A \Longrightarrow C, B \Longrightarrow C \vdash C.
+				A \vee B, A \rarrow C, B \rarrow C \vdash C.
 			\end{align}
 	\end{description}
 	
@@ -429,10 +429,10 @@
 	\end{align}
 	が成り立つ．実際，$\wedge$の導入に演繹規則を二度適用すれば
 	\begin{align}
-		\vdash A \Longrightarrow (B \Longrightarrow (A \wedge B))
+		\vdash A \rarrow (B \rarrow (A \wedge B))
 	\end{align}
 	が成り立つのであるから，
-	$\mathscr{S}$からの$A$への証明に$A \Longrightarrow (B \Longrightarrow (A \wedge B))$と
-	$B \Longrightarrow (A \wedge B)$を追加した文の列は$\mathscr{S}$からの
-	$B \Longrightarrow (A \wedge B)$への証明となり，ここに$\mathscr{S}$からの$B$への証明を追加して
+	$\mathscr{S}$からの$A$への証明に$A \rarrow (B \rarrow (A \wedge B))$と
+	$B \rarrow (A \wedge B)$を追加した文の列は$\mathscr{S}$からの
+	$B \rarrow (A \wedge B)$への証明となり，ここに$\mathscr{S}$からの$B$への証明を追加して
 	最後に$A \wedge B$を載せれば，その文の列は$\mathscr{S}$からの$A \wedge B$への証明となっている．

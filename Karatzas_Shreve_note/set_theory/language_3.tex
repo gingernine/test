@@ -12,7 +12,7 @@
 	
 	\begin{description}
 		\item[矛盾記号] $\bot$
-		\item[論理記号] $\rightharpoondown,\ \vee,\ \wedge,\ \rarrow$
+		\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
 		\item[量化子] $\forall,\ \exists$
 		\item[述語記号] $=,\ \in$
 		\item[変項] $\lang{\in}$の項は$\mathcal{L}$の変項である．またこれらのみが
@@ -43,7 +43,7 @@
 				\item $\sigma$と$\tau$を$\mathcal{L}$の項とするとき，
 					$\in st$と$=st$は$\mathcal{L}$の式である．
 				\item $\varphi$を$\mathcal{L}$の式とするとき，
-					$\rightharpoondown \varphi$は$\mathcal{L}$の式である．
+					$\negation \varphi$は$\mathcal{L}$の式である．
 				\item $\varphi$と$\psi$を$\mathcal{L}$の式とするとき，
 					$\vee \varphi \psi,\ \wedge \varphi \psi,\ \rarrow \varphi \psi$は
 					いずれも$\mathcal{L}$の式である．
@@ -62,14 +62,56 @@
 		\end{metathm}
 	\end{screen}
 	
-	\begin{screen}
-		\begin{dfn}[類]
-			$A$を$\lang{\in}$の式とし，$x$を$A$に現れる項とし，
-			$A$の中で項$x$のみが自由に現れるとき，
-			$\Set{x}{A(x)}$及び$\varepsilon x A(x)$を
-			{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1]
+				式の構成法より$\lang{\in}$の原子式は$\lang{\varepsilon}$の式である．
+				また$\varphi$を任意に与えられた$\lang{\in}$の式とするとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$のすべての真部分式は$\lang{\varepsilon}$の式である
+				\end{itembox}
+				と仮定すると，$\varphi$が
+				\begin{description}
+					\item[case1] $\negation \psi$
+					\item[case2] $\vee \psi \chi$
+					\item[case3] $\exists x \psi$
+				\end{description}
+				のいずれの形の式であっても，$\psi$も$\chi$も(IH)より$\lang{\varepsilon}$の式
+				であるから，式の構成法より$\varphi$自信も$\lang{\varepsilon}$の式である．
+				ゆえに$\lang{\in}$の式は$\lang{\varepsilon}$の式である．
+				
+			\item[step2]
+				$\lang{\varepsilon}$の式が$\mathcal{L}$の式であることを示す．
+				まず，$\mathcal{L}$の式の構成において使える項を変項に制限すれば
+				全ての$\lang{\in}$の式が作られるのだから
+				$\lang{\in}$の式は$\mathcal{L}$の式である．
+				また$\varphi$を任意に与えられた$\lang{\varepsilon}$の式とするとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$のすべての真部分式は$\mathcal{L}$の式である
+				\end{itembox}
+				と仮定すると(今回は予め$\lang{\varepsilon}$の項は
+				$\mathcal{L}$の項とされているので，真部分式に対する仮定のみで十分である)，
+				\begin{description}
+					\item[case1] $\varphi$が$\in \sigma \tau$なる形の原子式であるとき，
+						$\sigma$も$\tau$も$\mathcal{L}$の項であるから
+						$\in \sigma \tau$は$\mathcal{L}$の式である．
+						
+					\item[case2] $\varphi$が$\negation \psi$なる形の式であるとき，
+						(IH)より$\psi$は$\mathcal{L}$の式であるから
+						$\negation \psi$も$\mathcal{L}$の式である．
+						
+					\item[case3] $\varphi$が$\vee \psi \chi$なる形の式であるとき，
+						(IH)より$\psi$も$\chi$も$\mathcal{L}$の式であるから
+						$\vee \psi \chi$も$\mathcal{L}$の式である．
+						
+					\item[case4] $\varphi$が$\exists x \psi$なる形の式であるとき，
+						(IH)より$\psi$は$\mathcal{L}$の式であるから
+						$\exists x \psi$も$\mathcal{L}$の式である．
+				\end{description}
+				となる．ゆえに$\lang{\varepsilon}$の式は$\mathcal{L}$の式である．
+				\QED
+		\end{description}
+	\end{metaprf}
 	
 	$\varphi$を$\mathcal{L}$の式とし，$s$を$\varphi$に現れる記号とすると，
 	\begin{description}
@@ -80,7 +122,7 @@
 		\item[(4)] $s$は$\}$である．
 		\item[(5)] $s$は$\bot$である．
 		\item[(6)] $s$は$\in$か$=$である．
-		\item[(7)] $s$は$\rightharpoondown$である．
+		\item[(7)] $s$は$\negation$である．
 		\item[(8)] $s$は$\vee,\wedge,\rightarrow$のいずれかである．
 	\end{description}
 	
@@ -139,7 +181,7 @@
 			$\{$が現れたならば$\{$とは$\{x|A\}$の$\{$である．
 			
 			$\varphi$の任意の部分式に対して言明が満たされているとする．
-			$\varphi$とは$\rightharpoondown \psi,\vee \psi \xi,...$の形であるから，
+			$\varphi$とは$\negation \psi,\vee \psi \xi,...$の形であるから，
 			$\varphi$に現れた$\{$とは$\psi$や$\xi$に現れるのである．ゆえに
 			仮定より$x$と$A$が取れるわけである．
 			
@@ -171,7 +213,7 @@
 				\set{a} \defarrow \exists x\, (\, x = a\, )
 			\end{align}
 			で定める．$\set{a}$を満たす類$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
-			$\rightharpoondown \set{a}$を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+			$\negation \set{a}$を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -265,6 +307,86 @@
 	全ての$\varepsilon$項$\tau$で$A(\tau)$が成り立つことを意味するようになる．
 	\begin{align}
 		\forall x A(x) &\vdash A(\tau). \\
-		A(\varepsilon x \rightharpoondown \mathcal{L}A(x)) &\vdash \forall x A(x). 
+		A(\varepsilon x \negation \mathcal{L}A(x)) &\vdash \forall x A(x). 
 	\end{align}
 	
+\section{中置記法}
+	たとえば$\in s t$なる原子式は「$s$は$t$の要素である」と読むのだから，語順通りに
+	\begin{align}
+		s \in t
+	\end{align}
+	と書きかえる方が見やすくなる．同じように，$\vee \varphi \psi$なる式も
+	「$\varphi$または$\psi$」と読むのだから
+	\begin{align}
+		\varphi \vee \psi
+	\end{align}
+	と書きかえる方が見やすくなる．ところで$\rarrow \vee \varphi \psi \wedge \chi \xi$なる式は，
+	上の作法に倣えば
+	\begin{align}
+		\begin{gathered}
+			\rarrow \vee \varphi \psi \wedge \chi \xi \\
+			\rarrow \color{red}{\varphi \vee \psi} \color{blue}{\chi \wedge \xi} \\
+			\color{red}{\varphi \vee \psi} \color{black}{\rarrow} \color{blue}{\chi \wedge \xi}
+		\end{gathered}
+	\end{align}
+	と書きかえることになるが，一々色分けするわけにもいかないので``(''と``)''を使って
+	\begin{align}
+		(\varphi \vee \psi) \rarrow (\chi \wedge \xi)
+	\end{align}
+	と書くようにすれば良い．
+	
+	\begin{screen}
+		\begin{metadfn}[中置記法]
+			$\mathcal{L}$の式は以下の手順で中置記法に書き換える．
+			\begin{enumerate}
+				\item $\in s t$なる形の原子式は$s \in t$と書きかえる．
+					$= s t$も同様に書き換える．
+					
+				\item $\negation \varphi$なる形の式はそのままにする．
+				
+				\item $\vee \varphi \psi$なる形の式は$(\varphi \vee \psi)$と書きかえる．
+					$\wedge \varphi \psi$と$\rarrow \varphi \psi$の形の式も同様に書き換える．
+				
+				\item $\exists x \varphi$なる形の式はそのままにする．
+					$\forall x \varphi$なる形の式も同様にする．
+			\end{enumerate}
+		\end{metadfn}
+	\end{screen}
+	
+	上の書き換え法では，たとえば$\rarrow \vee \varphi \psi \wedge \chi \xi$なる式は
+	\begin{align}
+		((\varphi \vee \psi) \rarrow (\chi \wedge \xi))
+	\end{align}
+	となるが，括弧はあくまで式の境界の印として使うものであるから，一番外側の括弧は外して
+	\begin{align}
+		(\varphi \vee \psi) \rarrow (\chi \wedge \xi)
+	\end{align}
+	と書く方が良い．よって{\bf 中置記法に書き換え終わったときに一番外側にある括弧は外す}ことにする．
+	
+	$\wedge \vee \exists x \varphi \psi \negation \rarrow \chi \in s t$なる式は
+	\begin{align}
+		\begin{gathered}
+			\wedge \vee \exists x \varphi \psi \negation \rarrow \chi s \in t \\
+			\wedge (\exists x \varphi \vee \psi) \negation (\chi \rarrow s \in t) \\
+			(\exists x \varphi \vee \psi) \wedge \negation (\chi \rarrow s \in t)
+		\end{gathered}
+	\end{align}
+	となる．
+	
+	ただしあまり括弧が連なると読みづらくなるので，
+	\begin{align}
+		(\varphi \vee \psi) \rarrow \chi
+	\end{align}
+	なる形の式は
+	\begin{align}
+		\varphi \vee \psi \rarrow \chi
+	\end{align}
+	に，同様に
+	\begin{align}
+		\varphi \rarrow (\psi \vee \chi)
+	\end{align}
+	なる形の式は
+	\begin{align}
+		\varphi \rarrow \psi \vee \chi
+	\end{align}
+	とも書く．また$\vee$が$\wedge$であっても同じように括弧を省く．
