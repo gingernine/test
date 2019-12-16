@@ -1,4 +1,4 @@
-\section{言語$\mathcal{L}$}
+\subsection{言語$\mathcal{L}$}
 	本稿における主流の言語は，次に定める$\mathcal{L}$である．$\mathcal{L}$の最大の特徴は
 	\begin{align}
 		\Set{x}{\varphi(x)}
@@ -205,15 +205,78 @@
 			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
 	\end{description}
 	
-\section{類と集合}
+\subsection{類と集合}
 	\begin{screen}
-		\begin{dfn}[類と集合]
+		\begin{dfn}[閉項]
+			どの変項も自由に現れない$\varepsilon$項を
+			{\bf 閉${\boldsymbol \varepsilon}$項}\index{
+			へいイプシロンこう@閉$\varepsilon$項}{\bf (closed epsilon term)}と呼び，
+			どの変項も自由に現れない内包項を{\bf 閉内包項}\index{
+			へいないほうこう@閉内包項}{\bf (closed comprehension term)}と呼ぶ．
+			また閉$\varepsilon$項と閉内包項は以上のみである．
+		\end{dfn}
+	\end{screen}
+	
+	元々の意図としては，例えば$x$のみが自由に現れる式$\varphi(x)$に対して
+	``$\varphi(x)$を満たすいずれかの集合$x$''という意味を込めて
+	\begin{align}
+		\varepsilon x \varphi(x)
+	\end{align}
+	を作ったのだし，``$\varphi(x)$を満たす集合$x$の全体''という意味を込めて
+	\begin{align}
+		\Set{x}{\varphi(x)}
+	\end{align}
+	を作ったのである．つまりこの場合の$\varepsilon x \varphi(x)$と
+	$\Set{x}{\varphi(x)}$は``意味を持っている''わけである．
+	これが，もし$x$とは別の変項$y$が$\varphi$に自由に現れているとすれば，
+	$\varepsilon x \varphi$も$\Set{x}{\varphi}$も$y$に依存してしまい
+	意味が定まらなくなる．というのも，変項とは代入可能な項であるから，$y$に代入する閉項ごとに
+	$\varepsilon x \varphi$と$\Set{x}{\varphi}$は別の意味を持ち得るのである．
+	また閉項であっても意味不明な項もある．たとえば，$\psi$が文であるときに
+	\begin{align}
+		\varepsilon y \psi
+	\end{align}
+	や
+	\begin{align}
+		\Set{y}{\psi}
+	\end{align}
+	なる項は閉じてはいるが，導入の意図には適っていない．意味不明ながらこういった項が存在しているのは
+	導入時にこれらを排除する面倒を避けたからであり，また排除する必要もない．
+	
+	ただし導入の意図に適っている閉項は特別の名前を持って然るべきである．
+	
+	\begin{screen}
+		\begin{dfn}[類]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる項は$x$のみであるとするとき，$\varepsilon x \varphi$
+			と$\Set{x}{\varphi}$を{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．
+			またこれらのみが類である．
+		\end{dfn}
+	\end{screen}
+	
+	類とされた項の多くは集合であるが，類が全て集合であると考えると矛盾が起こる．
+	たとえばRussellのパラドックスで有名な
+	\begin{align}
+		R \defeq \Set{x}{x \notin x}
+	\end{align}
+	なる類が集合であるとすると
+	\begin{align}
+		R \notin R \lrarrow R \in R
+	\end{align}
+	が成り立ってしまう(正式な推論は無視してラフに考えれば)．
+	この種の矛盾を回避するために類を導入したのであり，
+	集合とは類の中で特定の性質をもつものに限られる．
+	
+	\begin{screen}
+		\begin{dfn}[集合]
 			$a$を類とするとき，$a$が集合であるという言明を
 			\begin{align}
 				\set{a} \defarrow \exists x\, (\, x = a\, )
 			\end{align}
-			で定める．$\set{a}$を満たす類$a$を{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
-			$\negation \set{a}$を満たす類$a$を{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+			で定める．$\Sigma \vdash \set{a}$を満たす類$a$を
+			{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
+			$\Sigma \vdash \negation \set{a}$を満たす類$a$を
+			{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
 	
@@ -238,7 +301,7 @@
 	$\Set{x}{A(x)}$は正体不明の対象となる．一方で本稿では
 	内包項の意味は$\varepsilon$項に依らずにはっきり決まっている．
 	
-\section{式の書き換え}
+\subsection{式の書き換え}
 	$\Set{x}{A(x)}$なる形の項を内包項，$\varepsilon x A(x)$なる形の項を$\varepsilon$項と呼び，
 	これらを類と総称することにする．
 	また$\varepsilon$項が現れない$\mathcal{L}$の式を甲種式，
@@ -310,7 +373,7 @@
 		A(\varepsilon x \negation \mathcal{L}A(x)) &\vdash \forall x A(x). 
 	\end{align}
 	
-\section{中置記法}
+\subsection{中置記法}
 	たとえば$\in s t$なる原子式は「$s$は$t$の要素である」と読むのだから，語順通りに
 	\begin{align}
 		s \in t
