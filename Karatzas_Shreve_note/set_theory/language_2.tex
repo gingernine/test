@@ -1,14 +1,14 @@
 \chapter{$\varepsilon$項と内包項}
-	通常は集合論の言語には$\mathcal{L}_{\in}$が使われる．
+	通常は集合論の言語には$\lang{\in}$が使われる．
 	しかし乍ら，当然集合論と称している以上は「集合」というモノを扱っている筈なのに，
-	当の「集合」は$\mathcal{L}_{\in}$では実体を持たない空想でしかない．
+	当の「集合」は$\lang{\in}$では実体を持たない空想でしかない．
 	どういう意味かというと，例えば
 	\begin{align}	
 		\exists x\, \forall y\, (\, y \notin x\, )
 	\end{align}
 	と書けば「$\forall y\, (\, y \notin x\, )$を満たすような集合$x$が存在する」
-	と読むわけだが，その在るべき$x$を$\mathcal{L}_{\in}$では特定できないのである．
-	というのも，$\mathcal{L}_{\in}$の``名詞''は{\bf 変項}{\bf (variable)}だけなのだから．
+	と読むわけだが，その在るべき$x$を$\lang{\in}$では特定できないのである．
+	というのも，$\lang{\in}$の``名詞''は{\bf 変項}{\bf (variable)}だけなのだから．
 	しかし言語の拡張の仕方によっては，この``空虚な存在''を実在で補強することが可能になる．
 	
 	\begin{comment}
@@ -16,7 +16,7 @@
 	考えてみれば愈々不可解である．そもそも集合なるものは我々の想像の中にしかないものであって，
 	その想像を紙の上に具象化したはずの``集合論''の世界においてさえ集合が虚構に追いやられているなんて，
 	どうして易々と看過できようか．
-	この点で，$\mathcal{L}_{\in}$のみで集合論を展開することには感覚的に大きな抵抗があるわけだ．
+	この点で，$\lang{\in}$のみで集合論を展開することには感覚的に大きな抵抗があるわけだ．
 	そこで，集合を具体的なオブジェクトとして扱えるように言語を拡張しようではないか
 	(と意気込んではみるものの，遍く受け入れられている{\bf ZFC}集合論に上手く馴染めない
 	偏屈な異分子のたわ言，と一笑に付されるかもしれない．まあこう弱気になることも多々あるが，
@@ -33,7 +33,7 @@
 	{\bf (international notation)}と呼ばれる．導入の意図は``$A(x)$を満たす集合$x$の全体''
 	という意味を込めた式の対象化であって，実際に後で
 	\begin{align}
-		\forall u\, \left(\, u \in \Set{x}{A(x)} \Longleftrightarrow A(u)\, \right)
+		\forall u\, \left(\, u \in \Set{x}{A(x)} \lrarrow A(u)\, \right)
 	\end{align}
 	を保証する(内包性公理)．
 	
@@ -49,62 +49,63 @@
 	(この点については後述の$\exists$に関する定理によって明らかになる)．
 	$A(x)$を満たす集合$x$が存在しない場合は，$\varepsilon x A(x)$は正体不明のオブジェクトとなる．
 	
-\section{言語$\mathcal{L}_{\varepsilon}$}
+\section{$\varepsilon$}
 	まずは$\varepsilon$項を項として追加した
-	言語$\mathcal{L}_{\varepsilon}$に拡張する．
-	$\mathcal{L}_{\varepsilon}$の構成要素は以下である:
+	言語$\lang{\varepsilon}$に拡張する．
+	$\lang{\varepsilon}$の構成要素は以下である:
 	
 	\begin{description}
 		\item[矛盾記号] $\bot$
-		\item[論理記号] $\rightharpoondown,\ \vee,\ \wedge,\ \Longrightarrow$
+		\item[論理記号] $\rightharpoondown,\ \vee,\ \wedge,\ \rarrow$
 		\item[量化子] $\forall,\ \exists$
 		\item[述語記号] $=,\ \in$
-		\item[変項] $\mathcal{L}_{\in}$の項は$\mathcal{L}_{\varepsilon}$の
+		\item[変項] $\lang{\in}$の項は$\lang{\varepsilon}$の
 			{\bf 変項}\index{へんこう@変項}{\bf (variable)}である．またこれらのみが
-			$\mathcal{L}_{\varepsilon}$の変項である．
+			$\lang{\varepsilon}$の変項である．
 		\item[イプシロン] $\varepsilon$
 	\end{description}
 	
-	$\mathcal{L}_{\in}$からの変更点は，``使用文字''が``変項''に代わったことと
+	$\lang{\in}$からの変更点は，``使用文字''が``変項''に代わったことと
 	$\varepsilon$が加わったことである．続いて項と式の定義に移るが，
-	帰納のステップは$\mathcal{L}_{\in}$より複雑になる:
+	帰納のステップは$\lang{\in}$より複雑になる:
 	
 	\begin{itemize}
-		\item $\mathcal{L}_{\varepsilon}$の変項は$\mathcal{L}_{\varepsilon}$の項である．
-		\item $\bot$は$\mathcal{L}_{\varepsilon}$の式である．
-		\item $\sigma$と$\tau$を$\mathcal{L}_{\varepsilon}$の項とするとき，
-			$\in st$と$=st$は$\mathcal{L}_{\varepsilon}$の式である．
-		\item $\varphi$を$\mathcal{L}_{\varepsilon}$の式とするとき，
-			$\rightharpoondown \varphi$は$\mathcal{L}_{\varepsilon}$の式である．
-		\item $\varphi$と$\psi$を$\mathcal{L}_{\varepsilon}$の式とするとき，
-			$\vee \varphi \psi,\ \wedge \varphi \psi,\ \Longrightarrow \varphi \psi$は
-			いずれも$\mathcal{L}_{\varepsilon}$の式である．
-		\item $x$を$\mathcal{L}_{\varepsilon}$の{\bf 変項}とし，$\varphi$を
-			$\mathcal{L}_{\varepsilon}$の式とするとき，$\forall x \varphi$と
-			$\exists x \varphi$は$\mathcal{L}_{\varepsilon}$の式である．
-		\item $x$を$\mathcal{L}_{\varepsilon}$の{\bf 変項}とし，$\varphi$を
-			$\mathcal{L}_{\varepsilon}$の式とするとき，$\varepsilon x \varphi$は
-			$\mathcal{L}_{\varepsilon}$の項である．
-		\item 以上のみが$\mathcal{L}_{\varepsilon}$の項と式である．
+		\item $\lang{\varepsilon}$の変項は$\lang{\varepsilon}$の項である．
+		\item $\bot$は$\lang{\varepsilon}$の式である．
+		\item $\sigma$と$\tau$を$\lang{\varepsilon}$の項とするとき，
+			$\in st$と$=st$は$\lang{\varepsilon}$の式である．
+		\item $\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\rightharpoondown \varphi$は$\lang{\varepsilon}$の式である．
+		\item $\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき，
+			$\vee \varphi \psi,\ \wedge \varphi \psi,\ \rarrow \varphi \psi$は
+			いずれも$\lang{\varepsilon}$の式である．
+		\item $x$を$\lang{\varepsilon}$の{\bf 変項}とし，$\varphi$を
+			$\lang{\varepsilon}$の式とするとき，$\forall x \varphi$と
+			$\exists x \varphi$は$\lang{\varepsilon}$の式である．
+		\item $x$を$\lang{\varepsilon}$の{\bf 変項}とし，$\varphi$を
+			$\lang{\varepsilon}$の式とするとき，$\varepsilon x \varphi$は
+			$\lang{\varepsilon}$の項である．
+		\item 以上のみが$\lang{\varepsilon}$の項と式である．
 	\end{itemize}
 	
-	$\mathcal{L}_{\in}$に対して行った帰納的定義との大きな違いは，
+	$\lang{\in}$に対して行った帰納的定義との大きな違いは，
 	{\bf 項と式の定義が循環している}点にある．
-	$\mathcal{L}_{\varepsilon}$の式が$\mathcal{L}_{\varepsilon}$の項を用いて
-	作られるのは当然ながら，その逆に$\mathcal{L}_{\varepsilon}$の項もまた
-	$\mathcal{L}_{\varepsilon}$の式から作られるのである．
+	$\lang{\varepsilon}$の式が$\lang{\varepsilon}$の項を用いて
+	作られるのは当然ながら，その逆に$\lang{\varepsilon}$の項もまた
+	$\lang{\varepsilon}$の式から作られるのである．
 	
-	定義の循環によって組み立てが見えづらくなっているが，直感的には次のように捉えることが出来る．
-	というよりは，次のように$\mathcal{L}_{\varepsilon}$が作られているとすれば良い．
+	定義の循環によって構造が見えづらくなっているが，直感的には次のように捉えることが出来る．
+	というよりは，次のように$\lang{\varepsilon}$が作られているとすれば良い．
 	
 	\begin{enumerate}
-		\item $\mathcal{L}_{\in}$の式から$\varepsilon$項を作り，
+		\item $\lang{\in}$の式から$\varepsilon$項を作り，
 			その$\varepsilon$項を第$1$世代$\varepsilon$項と呼ぶことにする．
-		\item $\mathcal{L}_{\in}$の項と第$1$世代$\varepsilon$項を項として式を作り，
-			その式で作る$\varepsilon$項を第$2$世代$\varepsilon$項と呼ぶことにする．
+		\item 変項と第$1$世代$\varepsilon$項を項として式を作り，
+			これらを第$2$世代の式と呼ぶことにする．
+			また第$2$世代の式で作る$\varepsilon$項を第$2$世代$\varepsilon$項と呼ぶことにする．
 		\item 第$n$世代の$\varepsilon$項をが出来たら，
-			それらと$\mathcal{L}_{\in}$の項を項として式を作り，
-			その式で第$n+1$世代$\varepsilon$項を作る．
+			それらと変項を項として第$n+1$世代の式を作り，
+			第$n+1$世代$\varepsilon$項を作る．
 			
 			\begin{itemize}
 				\item ちなみに，このように考えると第$n$世代$\varepsilon$項は
@@ -112,13 +113,55 @@
 			\end{itemize}
 	\end{enumerate}
 	
-	こう捉えることで，$\mathcal{L}_{\varepsilon}$における構造的帰納法の原理を規定すれば良いだろう．
+	こう捉えることで，$\lang{\varepsilon}$における構造的帰納法の原理を規定すれば良い．
+	粗く考察してると，項と式に対する言明Xが与えられたとき，
+	\begin{enumerate}
+		\item まずは$\lang{\in}$の項と式に対してXが言えて，かつ
+			第$1$世代の$\varepsilon$項に対してもXが言えることがスタート地点である．
+		\item 第$2$世代の式に対してXが言えることと，第$2$世代の$\varepsilon$項に対してXが言えること
+			を示す．
+			
+			$\vdots$
+			
+		\item 第$n$世代までのすべての式と項に対してXが言えることを仮定して，
+			第$n+1$世代の式に対してXが言えることと，第$n+1$世代の$\varepsilon$項に対して
+			Xが言えることを示す．
+	\end{enumerate}
+	の以上が検査出来れば，$\lang{\varepsilon}$のすべての項と式に対してXが言えると
+	結論するのは妥当である．ただし第$n$世代だとかいうカテゴライズは直感的考察を補佐するための
+	インフォーマルなものであり，更に簡略された手法によってこの操作が実質的に為されることが期される．
+	
+	\begin{screen}
+		\begin{metaaxm}[$\lang{\varepsilon}$の項と式に対する構造的帰納法]
+			$\lang{\varepsilon}$の項に対する言明Xと式に対する言明Yに対し，
+			\begin{enumerate}
+				\item $\lang{\in}$の項と式，および$\lang{\in}$の式
+					で作る$\varepsilon$項に対してX及びYが言える．
+				\item $\varphi$を任意に与えられた$\lang{\varepsilon}$の式として，
+					$\varphi$に現れる全ての項及び真部分式に対して
+					X及びYが言えると仮定するとき，
+					\begin{itemize}
+						\item $\varphi$が$\in \sigma \tau$なる形の原子式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varphi$が$\rightharpoondown \varphi$なる形の式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varphi$が$\vee \psi \chi$なる形の式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varphi$が$\exists x \psi$なる形の式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varepsilon x \varphi$なる$\varepsilon$項
+							に対してXが言える．
+					\end{itemize}
+			\end{enumerate}
+			ならば，いかなる項と式に対してもXが言える．
+		\end{metaaxm}
+	\end{screen}
 	
 	次の性質は至極当たり前であるが，
 	
 	\begin{screen}
-		\begin{metathm}[無限入れ子は起こらない]
-			$A$を$\mathcal{L}_{\varepsilon}$の式としたとき，
+		\begin{metathm}
+			$A$を$\lang{\varepsilon}$の式としたとき，
 			$\varepsilon x A$なる形の$\varepsilon$項は$A$には現れない．
 		\end{metathm}
 	\end{screen}
@@ -133,49 +176,147 @@
 	何か超然的な力が働いて現世の常識を捻じ曲げうるのではないか，という不安がぬぐえない．
 	基礎論の基礎にあるのは，直感や常識の正体の究明ではないのか．
 	
-	$\varphi$を$\mathcal{L}_{\varepsilon}$の式としたら，$\varphi$の部分式とは，
-	$\varphi$から切り取られる一続きの記号列で，それ自身が$\mathcal{L}_{\varepsilon}$の式であるものを指す．
+	$\varphi$を$\lang{\varepsilon}$の式としたら，$\varphi$の部分式とは，
+	$\varphi$から切り取られる一続きの記号列で，それ自身が$\lang{\varepsilon}$の式であるものを指す．
 	$\varphi$自身もまた$\varphi$の部分式である．
 	
 	\begin{screen}
-		\begin{metathm}[$\mathcal{L}_{\varepsilon}$の始切片の一意性]\label{metathm:initial_segment_L_epsilon}
-			$\tau$を$\mathcal{L}_{\varepsilon}$の項とするとき，
-			$\tau$の始切片で$\mathcal{L}_{\varepsilon}$の項であるものは$\tau$自身に限られる．
-			また$\varphi$を$\mathcal{L}_{\varepsilon}$の式とするとき，
-			$\varphi$の始切片で$\mathcal{L}_{\varepsilon}$の式であるものは$\varphi$自身に限られる．
+		\begin{metathm}[$\lang{\varepsilon}$の始切片の一意性]
+		\label{metathm:initial_segment_L_epsilon}
+			$\tau$を$\lang{\varepsilon}$の項とするとき，
+			$\tau$の始切片で$\lang{\varepsilon}$の項であるものは$\tau$自身に限られる．
+			また$\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$の始切片で$\lang{\varepsilon}$の式であるものは$\varphi$自身に限られる．
 		\end{metathm}
 	\end{screen}
 	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1]
+				$\lang{\in}$の式と項についてはメタ定理\ref{metathm:initial_segment_L_in}より
+				当座の定理の主張が従う．また$\varphi$を$\lang{\in}$の式とし，
+				$\tau$を$\lang{\varepsilon}$の項とし，また$\tau$は
+				\begin{align}
+					\varepsilon x \varphi
+				\end{align}
+				なる$\varepsilon$項の始切片とするとき，$\tau$の左端は$\varepsilon$であるから
+				\begin{align}
+					\varepsilon y \psi
+				\end{align}
+				なる形をしているはずである．すると$x$と$y$とは一方が他方の始切片となるので
+				メタ定理\ref{metathm:initial_segment_L_in}より$y$は$x$に一致する．
+				するとまた$\varphi$と$\psi$はは一方が他方の始切片となるので一致する．
+				つまり$\tau$は$\varepsilon x \varphi$そのものである．
+				
+			\item[step2]
+				$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の
+				すべての項や真部分式に対して定理の主張が当たっているなら
+				$\varphi$に対しても定理の主張通りのことが満たされる，
+				ということはメタ定理\ref{metathm:initial_segment_L_in}と同じように示される．
+				もう一度書けば，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$に現れる任意の項$\tau$に対して，その始切片で項であるものは$\tau$
+					に限られる．また$\varphi$に現れる任意の真部分式$\psi$に対して，
+					その始切片で式であるものは$\psi$に限られる．
+				\end{itembox}
+				として
+				\begin{description}
+					\item[case1]
+						$\varphi$が
+						\begin{align}
+							\in s t
+						\end{align}
+						なる原子式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\in u v
+						\end{align}
+						なる形をしているが，$u$と$s$は一方が他方の始切片となっているので
+						(IH)より一致する．すると$v$と$t$も一方が他方の始切片となるので
+						(IH)より一致する．ゆえに$\varphi$の始切片で式であるもの
+						は$\varphi$自信に限られる．
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							\rightharpoondown \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるももまた
+						\begin{align}
+							\rightharpoondown \xi
+						\end{align}
+						なる形をしている．このとき$\xi$は$\psi$の始切片であるから，
+						(IH)より$\xi$と$\psi$は一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			
+					\item[case3] $\varphi$が
+						\begin{align}
+							\vee \psi \xi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\vee \eta \zeta
+						\end{align}
+						なる形をしている．このとき$\psi$と$\eta$は一方が他方の始切片であるので
+						(IH)より一致する．すると$\xi$と$\zeta$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case4] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\exists y \xi
+						\end{align}
+						なる形の式である．このとき$x$と$y$は一方が他方の始切片であり，これらは
+						変項であるからメタ定理\ref{metathm:initial_segment_L_in}
+						より一致する．すると$\psi$と$\chi$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case5] $\varepsilon x \varphi$の始切片で項であるものは
+						\begin{align}
+							\varepsilon y \psi
+						\end{align}
+						なる形をしている筈である．このとき，まずメタ定理
+						\ref{metathm:initial_segment_L_in}より$x$と$y$は一致する．
+						すると$\psi$は$\varphi$の始切片であることになるが，
+						前段までの結果から$\varphi$と$\psi$は一致する．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
 	\begin{screen}
-		\begin{metathm}[$\mathcal{L}_{\varepsilon}$のスコープの存在]
-			$\varphi$を$\mathcal{L}_{\varepsilon}$の式とするとき，
+		\begin{metathm}[$\lang{\varepsilon}$のスコープの存在]
+			$\varphi$を$\lang{\varepsilon}$の式，或いは項とするとき，
 			\begin{description}
 				\item[(a)] $\natural$が$\varphi$に現れたとき，変項$s,t$が得られて，
 					$\natural$のその出現位置から$\natural s t$なる変項が$\varphi$の上に現れる．
 					
-				\item[(b)] $\in$が$\varphi$に現れたとき，$\mathcal{L}_{\varepsilon}$の項$\sigma,\tau$が得られて，
+				\item[(b)] $\in$が$\varphi$に現れたとき，$\lang{\varepsilon}$の項$\sigma,\tau$が得られて，
 					$\in$のその出現位置から$\in \sigma \tau$なる式が$\varphi$の上に現れる．
 				
 				\item[(c)] $\rightharpoondown$が$\varphi$に現れたとき，
-					$\mathcal{L}_{\varepsilon}$の式$\psi$が得られて，
+					$\lang{\varepsilon}$の式$\psi$が得られて，
 					$\rightharpoondown$のその出現位置から
 					$\rightharpoondown \psi$なる式が$\varphi$の上に現れる．
 				
-				\item[(d)] $\vee$が$\varphi$に現れたとき，$\mathcal{L}_{\varepsilon}$の式$\psi,\xi$が得られて，
+				\item[(d)] $\vee$が$\varphi$に現れたとき，$\lang{\varepsilon}$の式$\psi,\xi$が得られて，
 					$\vee$のその出現位置から$\vee \psi \xi$なる式が$\varphi$の上に現れる．
 				
-				\item[(e)] $\exists$が$\varphi$に現れたとき，変項$x$と$\mathcal{L}_{\varepsilon}$の式$\psi$が得られて，
+				\item[(e)] $\exists$が$\varphi$に現れたとき，変項$x$と$\lang{\varepsilon}$の式$\psi$が得られて，
 					$\exists$のその出現位置から$\exists x \psi$なる式が$\varphi$の上に現れる．
 			\end{description}
 		\end{metathm}
 	\end{screen}
 	
-	(b)では$\in$を$=$に替えたって同じ主張が成り立つし，(d)では$\vee$を$\wedge$や$\Longrightarrow$に替えても同じである．
+	(b)では$\in$を$=$に替えたって同じ主張が成り立つし，(d)では$\vee$を$\wedge$や$\lrarrow$に替えても同じである．
 	(e)では$\exists$を$\forall$に替えても同じであるのは良いとして，
-	$\varepsilon$項の成り立ちから$\exists$を$\varepsilon$に替えても同じ主張が成り立つ．
+	$\varepsilon$項の成り立ちから$\exists$を$\varepsilon$に替えても同様の主張が成り立つ．
 	
 	示すのはスコープの存在だけで良い．一意性は始切片の定理からすぐに従う．実際
-	$\varphi$を$\mathcal{L}_{\varepsilon}$の式として，その中に$\varepsilon$が出現したとすると，
+	$\varphi$を$\lang{\varepsilon}$の式として，その中に$\varepsilon$が出現したとすると，
 	``スコープの存在が保証されていれば！''$\varepsilon$のその出現位置から
 	\begin{align}
 		\varepsilon x \psi
@@ -189,28 +330,42 @@
 	\begin{metaprf}\mbox{}
 		\begin{description}
 			\item[step1]
-				$\varphi$が$\mathcal{L}_{\in}$の式であるときは，スコープの存在は
+				$\varphi$が$\lang{\in}$の式であるときは，スコープの存在は
 				メタ定理\ref{metathm:existence_of_scopes_L_in}で既に示されている．
-				
+				また$\lang{\in}$の式$\psi$に対して，
+				\begin{align}
+					\varepsilon x \psi
+				\end{align}
+				なる形の$\varepsilon$項に対しても
+				(a)から(e)が満たされる．実際，(b)から(e)に関しては，
+				$\in,\rightharpoondown,\vee,\exists$は
+				$\psi$の中にしか出現し得ないので，スコープの存在は
+				メタ定理\ref{metathm:existence_of_scopes_L_in}により保証される．
+				(a)については，$\natural$は$\psi$の中に現れる場合と$x$の中に現れる場合があるが，
+				いずれの場合もメタ定理\ref{metathm:existence_of_scopes_L_in}より
+				スコープは取れる．
 			
-			\item[IH(帰納法の仮定)]
-				$\varphi$を与えられた式とするとき，$\varphi$の全ての部分式，及び
-				$\varphi$に現れる全ての$\varepsilon$項の式，つまり
-				$\varepsilon x \psi$なる項なら$\psi$のこと，
-				に対して(a)から(e)まで言えると仮定する．
+				ここで$\varphi$を任意に与えられた$\lang{\varepsilon}$の
+				式として，次の仮定を置く．
+				\begin{itembox}[l]{IH(帰納法の仮定)}
+					$\varphi$の全ての部分式，及び
+					$\varphi$に現れる全ての$\varepsilon$項の式，つまり
+					$\varepsilon x \psi$なる項なら$\psi$のこと，
+					に対して(a)から(e)まで言えると仮定する．
+				\end{itembox}
 				
 			\item[step2]
-				$\in s t$なる形の式について．
+				式$\varphi$が$\in s t$なる形の式であるとき．
 				\begin{description}
 					\item[case1]
 						$\natural$が$\in s t$に現れたとしよう．
-						$s$や$t$が変項であれば，(a)の成立はメタ定理\ref{metathm:existence_of_scopes_L_in}
-						に訴えればよい．$s$が
+						$s$や$t$が変項であれば(a)の成立は見た目通りである．$s$が
 						\begin{align}
 							\varepsilon x \psi
 						\end{align}
-						なる形の$\varepsilon$項であって，$s$にその$\natural$が現れているとしよう．
-						$\natural$が$x$に現れている場合は先ほどと同じく
+						なる形の$\varepsilon$項であって，
+						$s$にその$\natural$が現れているとしよう．
+						$\natural$が$x$に現れている場合は
 						メタ定理\ref{metathm:existence_of_scopes_L_in}に訴えればよい．
 						$\natural$が$\psi$に現れている場合は，(a)の成立は(IH)から従う．
 						
@@ -218,16 +373,16 @@
 						$\in$が$\in s t$に現れたとしよう．
 						それが左端の$\in$であれば，(b)の成立を言うには$s$と$t$を取れば良い．
 						$\in$が$s$に現れたとすれば，$s$は$\varepsilon$項であることになり，
-						変項$x$と$\mathcal{L}_{\varepsilon}$の式$\psi$が取れて，$s$は
+						変項$x$と$\lang{\varepsilon}$の式$\psi$が取れて，$s$は
 						\begin{align}
 							\varepsilon x \psi
 						\end{align}
-						と表せる．$\in$は$\psi$に現れるので，(IH)より$\mathcal{L}_{\varepsilon}$の項$u,v$が取れて，
+						と表せる．$\in$は$\psi$に現れるので，(IH)より$\lang{\varepsilon}$の項$u,v$が取れて，
 						$\in$のその出現位置から$\in s t$なる式が$\psi$の上に現れる．
 						$\in$が$t$に現れる場合も同様に(b)の成立が言える．
 				
 					\item[case3]
-						$\in s t$に論理記号($\rightharpoondown,\vee,\wedge,\Longrightarrow,\exists,\forall$のいずれか)
+						$\in s t$に論理記号($\rightharpoondown,\vee,\wedge,\rarrow,\exists,\forall$のいずれか)
 						が現れたとしよう．
 						そしてその現れた記号を便宜上$\sigma$と書こう．
 						$\sigma$の出現位置が$s$にあるとすれば，そのことは$s$が
@@ -287,27 +442,27 @@
 	
 	\begin{description}
 		\item[矛盾記号] $\bot$
-		\item[論理記号] $\rightharpoondown,\ \vee,\ \wedge,\ \Longrightarrow$
+		\item[論理記号] $\rightharpoondown,\ \vee,\ \wedge,\ \rarrow$
 		\item[量化子] $\forall,\ \exists$
 		\item[述語記号] $=,\ \in$
-		\item[変項] $\mathcal{L}_{\in}$の項は$\mathcal{L}$の変項である．またこれらのみが
+		\item[変項] $\lang{\in}$の項は$\mathcal{L}$の変項である．またこれらのみが
 			$\mathcal{L}$の変項である．
 		\item[補助記号] $\{,\ |,\ \}$
 	\end{description}
 	
-	$\mathcal{L}$の項と式の構成規則は$\mathcal{L}_{\in}$のものと大差ない．
+	$\mathcal{L}$の項と式の構成規則は$\lang{\in}$のものと大差ない．
 	
 	\begin{description}
 		\item[項] 
 			\begin{itemize}
-				\item $\mathcal{L}_{\varepsilon}$の項は$\mathcal{L}$の項である．
-				\item $x$を$\mathcal{L}$の変項とし，$A$を$\mathcal{L}_{\varepsilon}$の式とするとき，
+				\item $\lang{\varepsilon}$の項は$\mathcal{L}$の項である．
+				\item $x$を$\mathcal{L}$の変項とし，$A$を$\lang{\varepsilon}$の式とするとき，
 					$\Set{x}{A}$なる記号列は$\mathcal{L}$の項である．
 				\item 以上のみが$\mathcal{L}$の項である．
 			\end{itemize}
 	\end{description}
 	
-	によって正式に定義される．ここで，$\mathcal{L}_{\in}$の項は$\mathcal{L}_{\varepsilon}$
+	によって正式に定義される．ここで，$\lang{\in}$の項は$\lang{\varepsilon}$
 	の項でもあるから，すなわち$\mathcal{L}$の項でもある．つまり，定義には書いていないが
 	{\bf $\mathcal{L}$の変項は$\mathcal{L}$の項である}．
 	
@@ -320,7 +475,7 @@
 				\item $\varphi$を$\mathcal{L}$の式とするとき，
 					$\rightharpoondown \varphi$は$\mathcal{L}$の式である．
 				\item $\varphi$と$\psi$を$\mathcal{L}$の式とするとき，
-					$\vee \varphi \psi,\ \wedge \varphi \psi,\ \Longrightarrow \varphi \psi$は
+					$\vee \varphi \psi,\ \wedge \varphi \psi,\ \rarrow \varphi \psi$は
 					いずれも$\mathcal{L}$の式である．
 				\item $x$を$\mathcal{L}$の{\bf 変項}とし，$\varphi$を
 					$\mathcal{L}$の式とするとき，$\forall x \varphi$と
@@ -332,14 +487,14 @@
 	
 	\begin{screen}
 		\begin{metathm}
-			$\mathcal{L}_{\in}$の式は$\mathcal{L}_{\varepsilon}$の式であり，
-			また$\mathcal{L}_{\varepsilon}$の式は$\mathcal{L}$の式である．
+			$\lang{\in}$の式は$\lang{\varepsilon}$の式であり，
+			また$\lang{\varepsilon}$の式は$\mathcal{L}$の式である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{dfn}[類]
-			$A$を$\mathcal{L}_{\in}$の式とし，$x$を$A$に現れる項とし，
+			$A$を$\lang{\in}$の式とし，$x$を$A$に現れる項とし，
 			$A$の中で項$x$のみが自由に現れるとき，
 			$\Set{x}{A(x)}$及び$\varepsilon x A(x)$を
 			{\bf 類}\index{るい@類}{\bf (class)}と呼ぶ．
@@ -362,15 +517,15 @@
 	\begin{screen}
 		(★★) いま，$\varphi$を任意に与えられた式としよう．
 		\begin{itemize}
-			\item $\natural$が$\varphi$に現れたとき，$\mathcal{L}_{\in}$の項$\tau$と$\sigma$が得られて，$\natural \tau \sigma$は
-				$\natural$のその出現位置から始まる$\mathcal{L}_{\in}$の項となる．
-				また$\natural$のその出現位置から始まる$\mathcal{L}_{\in}$の項は$\natural \tau \sigma$のみである．
+			\item $\natural$が$\varphi$に現れたとき，$\lang{\in}$の項$\tau$と$\sigma$が得られて，$\natural \tau \sigma$は
+				$\natural$のその出現位置から始まる$\lang{\in}$の項となる．
+				また$\natural$のその出現位置から始まる$\lang{\in}$の項は$\natural \tau \sigma$のみである．
 				
-			\item $\{$が$\varphi$に現れたとき，$\mathcal{L}_{\in}$の変項$x$及び$\mathcal{L}_{\in}$の式$A$が得られて，
+			\item $\{$が$\varphi$に現れたとき，$\lang{\in}$の変項$x$及び$\lang{\in}$の式$A$が得られて，
 				$\{ x|A\}$は$\{$のその出現位置から始まる項となる．
 				また$\{$のその出現位置から始まる項は$\{x|A\}$のみである．
 				
-			\item $|$が$\varphi$に現れたとき，，変項$x$と$\mathcal{L}_{\in}$の式$A$が得られて，
+			\item $|$が$\varphi$に現れたとき，，変項$x$と$\lang{\in}$の式$A$が得られて，
 				$\{x|A\}$は$|$のその出現位置から広がる項となる．
 				また$|$のその出現位置から広がる項は$\{x|A\}$のみである．
 				
@@ -410,7 +565,7 @@
 		
 		\item[生成規則より$x$と$A$が得られるか]
 			$\varphi$が原子式であるとき，
-			$\{$が現れるとすれば項の中である．項とは$\mathcal{L}_{\in}$の項であるか$\{x|A\}$なるものであるので
+			$\{$が現れるとすれば項の中である．項とは$\lang{\in}$の項であるか$\{x|A\}$なるものであるので
 			$\{$が現れたならば$\{$とは$\{x|A\}$の$\{$である．
 			
 			$\varphi$の任意の部分式に対して言明が満たされているとする．
@@ -433,7 +588,7 @@
 		\item[$\}$について]
 			項の生成規則より$x$と$A$が得られる．
 			$\{y|B\}$もまた$\}$のその出現位置を終点とする変項である場合，
-			$A$と$B$は$\mathcal{L}_{\in}$の式なので$|$という記号は現れない．ゆえに
+			$A$と$B$は$\lang{\in}$の式なので$|$という記号は現れない．ゆえに
 			$A$と$B$は一致する．すると$x$と$y$は右端で揃うが，
 			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
 	\end{description}
@@ -464,10 +619,10 @@
 	\end{align}
 	が成り立つが，量化の規則より
 	\begin{align}
-		\Set{x}{A(x)} = \varepsilon s \forall u\, (\, u \in s \Longleftrightarrow A(u)\, )
+		\Set{x}{A(x)} = \varepsilon s \forall u\, (\, u \in s \lrarrow A(u)\, )
 	\end{align}
 	が得られる．ブルバキや島内では右辺の項で内包表記を導入しているため，
-	$\forall u\, (\, u \in s \Longleftrightarrow A(s)\, )$を満たす集合$s$が取れなければ
+	$\forall u\, (\, u \in s \lrarrow A(s)\, )$を満たす集合$s$が取れなければ
 	$\Set{x}{A(x)}$は正体不明の対象となる．一方で本稿では
 	内包項の意味は$\varepsilon$項に依らずにはっきり決まっている．
 	
@@ -478,11 +633,11 @@
 	乙種項が現れる$\mathcal{L}$の式を乙種式と呼ぶことにする．
 	
 	\begin{itembox}[l]{乙種式は書き換えない}
-		たとえば，$x \in \varepsilon y B(y)$なる式を$\mathcal{L}_{\in}$の式に書き換えるならば，
+		たとえば，$x \in \varepsilon y B(y)$なる式を$\lang{\in}$の式に書き換えるならば，
 		$\varepsilon$項に込められた意味から
 		\begin{align}
 			\exists t\, (\, x \in t \wedge 
-			(\, \exists y B(y) \Longrightarrow B(t)\, )\, )
+			(\, \exists y B(y) \rarrow B(t)\, )\, )
 		\end{align}
 		とするのが妥当であるだろう．しかしこうすると集合論では
 		\begin{align}
@@ -491,18 +646,18 @@
 		が成り立ってしまい，これは矛盾を起こす．実際，任意の集合$x$に対して，$t$として$\{x\}$を取れば
 		\begin{align}
 			\exists t\, (\, x \in t \wedge 
-			(\, \exists y B(y) \Longrightarrow B(t)\, )\, )
+			(\, \exists y B(y) \rarrow B(t)\, )\, )
 		\end{align}
 		が満たされるので
 		\begin{align}
 			\forall x\, \exists t\, (\, x \in t \wedge 
-			(\, \exists y\, (\, y = y\, ) \Longrightarrow t = t\, )\, )
+			(\, \exists y\, (\, y = y\, ) \rarrow t = t\, )\, )
 		\end{align}
 		すなわち$\forall x\, (\, x \in \varepsilon y\, (\, y=y\, )\, )$が成り立つ．
 		ところが本稿の体系では$\varepsilon y\, (\, y = y\, )$は集合であり，
 		その一方で全ての集合を要素に持つ集まりというのは集合ではないから，矛盾が起こる．
 		
-		他に乙種式を$\mathcal{L}_{\in}$の式に変換する有効な方法が見つかれば話は別だが，
+		他に乙種式を$\lang{\in}$の式に変換する有効な方法が見つかれば話は別だが，
 		それが見つからないうちは乙種式は書き換えの対象ではない．
 	\end{itembox}
 	
@@ -516,11 +671,11 @@
 			に基づく式の書き換えである．
 			
 		\item $\Set{x}{A(x)} \in y$は$\exists s\, \left(\, s \in y \wedge 
-			\forall u\, (\, u \in s \Longleftrightarrow A(s)\, )\, \right)$
+			\forall u\, (\, u \in s \lrarrow A(s)\, )\, \right)$
 			と書き換える．
 			これの同値性は
 			\begin{align}
-				a \in b \Longrightarrow \exists x\, (\, a = x\, )
+				a \in b \rarrow \exists x\, (\, a = x\, )
 			\end{align}
 			の公理による．
 			

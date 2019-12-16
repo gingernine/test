@@ -13,19 +13,20 @@
 	
 	\begin{screen}
 		\begin{axm}[外延性の公理 (Extensionality)]
+			任意の類$a,b$に対して
 			\begin{align}
-				(EXT) \defarrow \forall x\, \forall y\, (\, \forall z\, 
-				(\, z \in x \lrarrow z \in y\, )
-				\rarrow x=y\, ).
+				\EXTAX \defarrow \forall x\, (\, x \in a \lrarrow x \in b\, ) 
+				\rarrow a=b.
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[任意の集合は自分自身と等しい]
+		\begin{thm}[任意の類は自分自身と等しい]
 			\label{thm:any_class_equals_to_itself}
+			任意の類$\tau$に対して
 			\begin{align}
-				(EXT) \vdash \forall x\, (\, x = x\, ).
+				\EXTAX \vdash \tau = \tau.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -42,18 +43,14 @@
 		\end{align}
 		が成り立つ．外延性の公理より
 		\begin{align}
-			(EXT) \vdash \forall s\, (\, s \in \tau  \lrarrow s \in \tau\, )
+			\EXTAX \vdash \forall s\, (\, s \in \tau  \lrarrow s \in \tau\, )
 			\rightarrow \tau = \tau
 		\end{align}
 		となるので，三段論法より
 		\begin{align}
-			(EXT) \vdash \tau = \tau
+			\EXTAX \vdash \tau = \tau
 		\end{align}
-		が得られる．ゆえに
-		\begin{align}
-			(EXT) \vdash \forall x\, (\, x = x\, )
-		\end{align}
-		となる．
+		が得られる．
 		\QED
 	\end{sketch}
 	
@@ -61,7 +58,7 @@
 		\begin{thm}[閉$\varepsilon$項は集合である]
 			$\tau$を閉$\varepsilon$項とするとき
 			\begin{align}
-				(EXT) \vdash \set{\tau}.
+				\EXTAX \vdash \set{\tau}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -69,11 +66,11 @@
 	\begin{sketch}
 		定理\ref{thm:any_class_equals_to_itself}より
 		\begin{align}
-			(EXT) \vdash \tau = \tau
+			\EXTAX \vdash \tau = \tau
 		\end{align}
 		が成立するので，存在記号の推論規則より
 		\begin{align}
-			(EXT) \vdash \exists x\, \left(\, \tau = x\, \right)
+			\EXTAX \vdash \exists x\, \left(\, \tau = x\, \right)
 		\end{align}
 		が成立する．
 		\QED
@@ -157,10 +154,13 @@
 	
 	\begin{screen}
 		\begin{axm}[相等性公理]
-			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，
-			$x$のみが$A$で量化されていないとする．このとき$a,b$を類とすれば次が成り立つ:
+			$a,b,c$を類とするとき
 			\begin{align}
-				a = b \rarrow (\, A(a) \lrarrow A(b)\, ).
+				\EQAX \defarrow
+				\begin{cases}
+					a = b \rarrow (\, a \in c \rarrow b \in c\, ), & \\
+					a = b \rarrow (\, c \in a \rarrow c \in b\, ). &
+				\end{cases}
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -169,79 +169,80 @@
 		\begin{thm}[外延性の公理の逆も成り立つ]\label{thm:axiom_of_extensionality_equivalent}
 			$a$と$b$を類とするとき
 			\begin{align}
+				\EQAX \vdash 
 				a=b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a = b$が成り立っていると仮定すれば，相等性の公理より$\mathcal{L}$の任意の対象$\tau$に対して
+		相等性の公理より$\mathcal{L}$の任意の集合$\tau$に対して
 		\begin{align}
-			\tau \in a \lrarrow \tau \in b
+			\EQAX \vdash a = b \rightarrow (\, \tau \in a \lrarrow \tau \in b\, )
 		\end{align}
-		が満たされるから，推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		となるので，演繹法則の逆より
 		\begin{align}
-			\forall x\, (\, x \in a  \lrarrow x \in b\, )
+			a = b, \EQAX \vdash \tau \in a \lrarrow \tau \in b
+		\end{align}
+		となる．$\tau$の任意性より
+		\begin{align}
+			a = b, \EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
 		が成立する．よって演繹法則より
 		\begin{align}
-			a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, )
+			\EQAX \vdash a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
 		が成り立つ．
 		\QED
 	\end{prf}
 	
-	\monologue{
-		等しい類同士は同じ$\mathcal{L}$の対象を要素に持つと示されましたが，
-		このとき要素に持つ集合まで一致します．これは相等性の公理から明らかでしょうが，
-		詳しくは部分類の箇所で説明いたしましょう．
-	}
-	
 	\begin{screen}
 		\begin{thm}[条件を満たす集合は要素である]\label{thm:satisfactory_set_is_an_element}
-			$A$を$\mathcal{L}$の式とし，$x$を$A$に現れる文字とし，$t$を$A(x)$に現れない文字とし，
-			$x$のみが$A$で量化されていないとする．このとき，$a$を類とすると
+			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$x$のみが$\varphi$で束縛されていないとする．このとき，任意の類$a$に対して
 			\begin{align}
-				A(a) \rarrow 
-				\left(\, \set{a} \rarrow a \in \Set{x}{A(x)}\, \right).
+				\EQAX,\COMAX \vdash \varphi(a) \rarrow 
+				\left(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, \right).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		いま
 		\begin{align}
-			A(a)
+			\set{a} \vdash \exists x (\, a = x\, )
 		\end{align}
-		と
-		\begin{align}
-			\set{a}
-		\end{align}
-		が成立していると仮定する．このとき要素の公理から
-		\begin{align}
-			\exists x\, (\, a = x\, )
-		\end{align}
-		が成立するので，
+		より，
 		\begin{align}
 			\tau \defeq \varepsilon x\, (\, a = x\, )
 		\end{align}
 		とおけば
 		\begin{align}
-			a = \tau
+			\set{a} \vdash a = \tau
 		\end{align}
-		が成り立ち，相等性の公理より
+		となる．相等性の公理より
 		\begin{align}
-			A(\tau)
+			\set{a},\EQAX \vdash 
+			a = \tau \rarrow (\, \varphi(a) \rarrow \varphi(\tau)\, )
 		\end{align}
-		が成立する．よって類の公理より
+		となるので，三段論法と演繹法則の逆より
 		\begin{align}
-			\tau \in \Set{x}{A(x)}
+			\varphi(a),\set{a},\EQAX \vdash \varphi(\tau)
+		\end{align}
+		となる．内包性公理より
+		\begin{align}
+			\varphi(a),\set{a},\EQAX,\COMAX \vdash \tau \in \Set{x}{A(x)}
 		\end{align}
 		が従い，相等性の公理から
 		\begin{align}
-			a \in \Set{x}{A(x)}
+			\varphi(a),\set{a},\EQAX,\COMAX \vdash a \in \Set{x}{A(x)}
 		\end{align}
-		が成立する．
+		が成立する．演繹法則より
+		\begin{align}
+			\varphi(a),\EQAX,\COMAX &\vdash \set{a} \rarrow a \in \Set{x}{A(x)}, \\
+			\EQAX,\COMAX &\vdash \varphi(a) \rarrow 
+			\left(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, \right)
+		\end{align}
+		が従う．
 		\QED
 	\end{sketch}
 	
