@@ -1,0 +1,1108 @@
+\section{順序数}
+	$0,1,2,\cdots$で表される数字は，集合論において
+	\begin{align}
+		0 &\defeq \emptyset, \\
+		1 &\defeq \{0\} = \{\emptyset\}, \\
+		2 &\defeq \{0,1\} = \{\emptyset,\{\emptyset\}\}, \\
+		3 &\defeq \{0,1,2\} = \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}
+	\end{align}
+	といった反復操作で定められる．上の操作を受け継いで``頑張れば手で書き出せる''類を自然数と呼ぶ．
+	$0$は集合であり，対集合の公理から$1$もまた集合である．
+	そして和集合の公理から$2$が集合であること，更には$3,4,\cdots$と続く自然数が全て集合であることがわかる．
+	自然数の冪も自然数同士の集合演算もその結果は全て集合になるが，
+	ここで
+	\begin{align}
+		\mbox{集合は$0$に集合演算を施しただけの素姓が明らかなものに限られるか}
+	\end{align}
+	という疑問というか期待が自然に生まれてくる．実際それは正則性公理によって肯定されるわけだが，
+	そこでキーになるのは順序数と呼ばれる概念である．
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和・論理積の結合律]\label{logicalthm:associative_law}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{description}
+				\item[(イ)] $(A \vee B) \vee C \Longleftrightarrow A \vee (B \vee C)$.
+				\item[(ロ)] $(A \wedge B) \wedge C \Longleftrightarrow A \wedge (B \wedge C)$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和・論理積の分配律]\label{logicalthm:distributive_law}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{description}
+				\item[(イ)] $(A \vee B) \wedge C \Longleftrightarrow (A \wedge C) \vee (B \wedge C)$.
+				\item[(ロ)] $(A \wedge B) \vee C \Longleftrightarrow (A \vee C) \wedge (B \vee C)$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(イ)] いま$(A \vee B) \wedge C$が成立していると仮定する．
+				このとき論理積の除去により$A \vee B$と$C$が同時に成り立つ．ここで$A$が成り立っているとすれば，
+				論理積の導入により
+				\begin{align}
+					A \wedge C
+				\end{align}
+				が成り立つので演繹法則より
+				\begin{align}
+					A \Longrightarrow (A \wedge C)
+				\end{align}
+				が成立する．他方で論理和の導入より
+				\begin{align}
+					(A \wedge C) \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				も成り立つので，含意の推移律から
+				\begin{align}
+					A \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が従う．$A$と$B$を入れ替えれば
+				\begin{align}
+					B \Longrightarrow (B \wedge C) \vee (A \wedge C)
+				\end{align}
+				が成り立つが，論理和の可換律より
+				\begin{align}
+					(B \wedge C) \vee (A \wedge C) \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					B \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が従う．よって場合分け法則から
+				\begin{align}
+					(A \vee B) \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が成立するが，いま$A \vee B$は満たされているので三段論法より
+				\begin{align}
+					(A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が成立する．ここに演繹法則を適用すれば
+				\begin{align}
+					(A \vee B) \wedge C \Longrightarrow (A \wedge C) \vee (B \wedge C)
+				\end{align}
+				が得られる．次に$A \wedge C$が成り立っていると仮定する．このとき
+				$A$が成り立つので$A \vee B$も成立し，同時に$C$も成り立つので
+				$(A \vee B) \wedge C$が成立する．すなわち
+				\begin{align}
+					A \wedge C \Longrightarrow (A \vee B) \wedge C
+				\end{align}
+				が成立する．$A$と$B$を入れ替えれば
+				\begin{align}
+					B \wedge C \Longrightarrow (A \vee B) \wedge C
+				\end{align}
+				も成立するので
+				\begin{align}
+					(A \wedge C) \vee (B \wedge C) \Longrightarrow (A \vee B) \wedge C
+				\end{align}
+				が得られる．
+				
+			\item[(ロ)]
+				(イ)の結果を$\rightharpoondown A,\rightharpoondown B,\rightharpoondown C$に適用すれば
+				\begin{align}
+					(\rightharpoondown A \vee \rightharpoondown B) \wedge \rightharpoondown C
+					\Longleftrightarrow (\rightharpoondown A \wedge \rightharpoondown C) 
+						\vee (\rightharpoondown B \wedge \rightharpoondown C)
+				\end{align}
+				が得られる．ここでDe Morganの法則と同値記号の遺伝性質から
+				\begin{align}
+					(\rightharpoondown A \vee \rightharpoondown B) \wedge \rightharpoondown C
+					&\Longleftrightarrow\ \rightharpoondown (A \wedge B) \wedge \rightharpoondown C \\
+					&\Longleftrightarrow\ \rightharpoondown ((A \wedge B) \vee C)
+				\end{align}
+				が成立し，一方で
+				\begin{align}
+					(\rightharpoondown A \wedge \rightharpoondown C) 
+						\vee (\rightharpoondown B \wedge \rightharpoondown C)
+					&\Longleftrightarrow\ \rightharpoondown (A \vee C) \vee \rightharpoondown (B \vee C) \\
+					&\Longleftrightarrow\ \rightharpoondown ((A \vee C) \wedge (B \vee C))
+				\end{align}
+				も成立するから，含意の推移律より
+				\begin{align}
+					\rightharpoondown ((A \wedge B) \vee C)
+					\Longleftrightarrow\ \rightharpoondown ((A \vee C) \wedge (B \vee C))
+				\end{align}
+				が従う．最後に対偶を取れば
+				\begin{align}
+					(A \wedge B) \vee C \Longleftrightarrow (A \vee C) \wedge (B \vee C)
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[選言三段論法]\label{logicalthm:disjunctive_syllogism}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+			\begin{align}
+				(A \vee B) \wedge \rightharpoondown B \Longrightarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		分配律(推論法則\ref{logicalthm:distributive_law})より
+		\begin{align}
+			(A \vee B) \wedge \rightharpoondown B
+			\Longrightarrow (A \wedge \rightharpoondown B) \vee (B \wedge \rightharpoondown B)
+		\end{align}
+		が成立する．ここで矛盾に関する規則から
+		\begin{align}
+			B \wedge \rightharpoondown B \Longrightarrow \bot
+		\end{align}
+		が満たされるので
+		\begin{align}
+			(A \wedge \rightharpoondown B) \vee (B \wedge \rightharpoondown B)
+			\Longrightarrow (A \wedge \rightharpoondown B) \vee \bot
+		\end{align}
+		が従う．また，論理積の除去より
+		\begin{align}
+			(A \wedge \rightharpoondown B) \Longrightarrow A
+		\end{align}
+		が成り立ち，他方で矛盾に関する規則より
+		\begin{align}
+			\bot \Longrightarrow A
+		\end{align}
+		も成り立つから，場合分け法則より
+		\begin{align}
+			(A \wedge \rightharpoondown B) \vee \bot \Longrightarrow A
+		\end{align}
+		が従う．以上の式と含意の推移律から
+		\begin{align}
+			(A \vee B) \wedge \rightharpoondown B \Longrightarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{axm}[正則性公理]
+			$a$を類とするとき，$a$は空でなければ自分自身と交わらない要素を持つ:
+			\begin{align}
+				a \neq \emptyset \Longrightarrow 
+				\exists x \in a\, (\, x \cap a = \emptyset\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[いかなる類も自分自身を要素に持たない]
+		\label{thm:no_set_is_an_element_of_itself}
+			$a,b,c$を類とするとき次が成り立つ:
+			\begin{description}
+				\item[(イ)] $a \notin a$.
+				
+				\item[(ロ)] $a \notin b \vee b \notin a$.
+				
+				\item[(ハ)] $a \notin b \vee b \notin c \vee c \notin a$.
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(イ)] $a$を類とする．まず要素の公理の対偶より
+				\begin{align}
+					\rightharpoondown \set{a} \Longrightarrow a \notin a
+				\end{align}
+				が満たされる．次に$a$が集合であるとする．
+				このとき定理\ref{thm:pair_of_proper_classes_is_emptyset}より
+				\begin{align}
+					a \in \{a\}
+				\end{align}
+				が成り立つから，正則性公理より
+				\begin{align}
+					\exists x\, \left(\, x \in \{a\} \wedge x \cap \{a\} = \emptyset\, \right)
+				\end{align}
+				が従う．ここで$\chi \coloneqq \varepsilon x\, \left(\, x \in \{a\} \wedge x \cap \{a\} = \emptyset\, \right)$とおけば
+				\begin{align}
+					\chi = a
+				\end{align}
+				となるので，相等性の公理より
+				\begin{align}
+					a \cap \{a\} = \emptyset
+				\end{align}
+				が成り立つ．$a \in \{a\}$であるから
+				定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
+				$a \notin a$が従い，演繹法則から
+				\begin{align}
+					\set{a} \Longrightarrow a \notin a
+				\end{align}
+				が得られる．そして場合分け法則から
+				\begin{align}
+					\set{a} \vee \rightharpoondown \set{a} \Longrightarrow a \notin a
+				\end{align}
+				が成立し，排中律と三段論法から
+				\begin{align}
+					a \notin a
+				\end{align}
+				が出る．
+			
+			\item[(ロ)]
+				要素の公理より
+				\begin{align}
+					a \in b \Longrightarrow \set{a}
+				\end{align}
+				となり，定理\ref{thm:pair_of_proper_classes_is_emptyset}より
+				\begin{align}
+					\set{a} \Longrightarrow a \in \{a,b\}
+				\end{align}
+				となるので，
+				\begin{align}
+					a \in b \Longrightarrow a \in \{a,b\}
+				\end{align}
+				が成立する．また定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
+				\begin{align}
+					a \in b \wedge a \in \{a,b\} 
+					&\Longrightarrow \exists x\, \left(\, x \in b \wedge x \in \{a,b\}\, \right) \\
+					&\Longrightarrow b \cap \{a,b\} \neq \emptyset
+				\end{align}
+				が成立する．他方で正則性公理より
+				\begin{align}
+					a \in \{a,b\} &\Longrightarrow \exists x\, \left(\, x \in \{a,b\}\, \right) \\
+					&\Longrightarrow \{a,b\} \neq \emptyset \\
+					&\Longrightarrow \exists x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
+				\end{align}
+				も成立する．以上を踏まえて$a \in b$が成り立っていると仮定する．このとき
+				\begin{align}
+					a \in \{a,b\}
+				\end{align}
+				が成立するので
+				\begin{align}
+					b \cap \{a,b\} \neq \emptyset
+				\end{align}
+				も成り立ち，さらに
+				\begin{align}
+					\exists x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
+				\end{align}
+				も満たされる．ここで
+				\begin{align}
+					\chi \coloneqq \varepsilon x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
+				\end{align}
+				とおけば$\chi \in \{a,b\}$から
+				\begin{align}
+					\chi = a \vee \chi = b
+				\end{align}
+				が従うが，相等性の公理より
+				\begin{align}
+					\chi = b \Longrightarrow b \cap \{a,b\} = \emptyset
+				\end{align}
+				となるので，$b \cap \{a,b\} \neq \emptyset$と併せて
+				\begin{align}
+					\chi \neq b
+				\end{align}
+				が成立する．選言三段論法(推論法則\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					(\chi = a \vee \chi = b) \wedge \chi \neq b \Longrightarrow \chi = a
+				\end{align}
+				となるから
+				\begin{align}
+					\chi = a
+				\end{align}
+				が従い，相等性の公理より
+				\begin{align}
+					a \cap \{a,b\} = \emptyset
+				\end{align}
+				が成立する．いま要素の公理より
+				\begin{align}
+					\rightharpoondown \set{b} \Longrightarrow b \notin a
+				\end{align}
+				が満たされ，他方で定理\ref{thm:pair_of_proper_classes_is_emptyset}より
+				\begin{align}
+					\set{b} \Longrightarrow b \in \{a,b\},
+				\end{align}
+				$a \cap \{a,b\}$の仮定と定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
+				\begin{align}
+					b \in \{a,b\} = \emptyset \Longrightarrow b \notin a
+				\end{align}
+				が満たされるので
+				\begin{align}
+					\set{b} \Longrightarrow b \notin a
+				\end{align}
+				が成立する．従って
+				\begin{align}
+					b \notin a
+				\end{align}
+				が従い，演繹法則より
+				\begin{align}
+					a \in b \Longrightarrow b \notin a
+				\end{align}
+				が得られる．これは$a \notin b \vee b \notin a$と同値である．
+				
+			\item[(ハ)]
+				$a \in b \wedge b \in c$が満たされていると仮定すれば，$a,b$は集合であるから
+				\begin{align}
+					a,b \in \{a,b,c\}
+				\end{align}
+				が成立する．ゆえに$b \cap \{a,b,c\} \neq \emptyset$と$c \cap \{a,b,c\} \neq \emptyset$が従う．
+				他方，正則性公理より
+				\begin{align}
+					\tau \in \{a,b,c\} \wedge \tau \cap \{a,b,c\} = \emptyset
+				\end{align}
+				を満たす$\mathcal{L}$の対象$\tau$が取れる．ここで$\tau \in \{a,b,c\}$より
+				\begin{align}
+					\tau = a \vee \tau = b \vee \tau = a
+				\end{align}
+				が成り立つが，$b \cap \{a,b,c\} \neq \emptyset$と$c \cap \{a,b,c\} \neq \emptyset$
+				より$\tau \neq b$かつ$\tau \neq c$となる．よって$\tau = a$となり
+				\begin{align}
+					a \cap \{a,b,c\} = \emptyset
+				\end{align}
+				が従う．$c$が真類ならば要素の公理より$c \notin a$となり，$c$が集合ならば$c \in \{a,b,c\}$となるので，
+				いずれにせよ
+				\begin{align}
+					c \notin a
+				\end{align}
+				が成立する．以上で
+				\begin{align}
+					a \in b \wedge b \in c \Longrightarrow c \notin a
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[順序数]
+			類$a$に対して，$a$が{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}であるということを
+			\begin{align}
+				\tran{a} \defarrow
+				\forall s\, (\, s \in a \Longrightarrow s \subset a\, )
+			\end{align}
+			で定める．また$a$が(集合であるならば){\bf 順序数}\index{じゅんじょすう@順序数}{\bf (ordinal number)}であるということを
+			\begin{align}
+				\ord{a} \defarrow
+				\tran{a} \wedge \forall t,u \in a\, (\, t \in u \vee t = u \vee u \in t\, )
+			\end{align}
+			で定める．順序数の全体を
+			\begin{align}
+				\ON \defeq \Set{x}{\ord{x}}
+			\end{align}
+			とおく．
+		\end{dfn}
+	\end{screen}
+	
+	空虚な真の一例であるが，例えば$0$は順序数の性質を満たす．
+	ここに一つの順序数が得られたが，いま仮に$\alpha$を順序数とすれば
+	\begin{align}
+		\alpha \cup \{\alpha\}
+	\end{align}
+	もまた順序数となることが直ちに判明する．数字の定め方から
+	\begin{align}
+		1 &= 0 \cup \{0\}, \\
+		2 &= 1 \cup \{1\}, \\
+		3 &= 2 \cup \{2\}, \\
+		&\vdots
+	\end{align}
+	が成り立つから，数字は全て順序数である．
+	
+	いま$\ON$上の関係を
+	\begin{align}
+		\leq\ \defeq \Set{x}{\exists \alpha,\beta \in \ON\, 
+		(\, x=(\alpha,\beta) \wedge \alpha \subset \beta\, )}
+	\end{align}
+	と定める．
+		
+	\begin{itembox}[l]{中置記法について}
+		$x$と$y$を項とするとき，
+		\begin{align}
+			(x,y) \in\ \leq
+		\end{align}
+		なることを往々にして
+		\begin{align}
+			x \leq y
+		\end{align}
+		とも書くが，このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．
+		同様にして，
+		\begin{align}
+			(x,y) \in\ \leq \wedge x \neq y
+		\end{align}
+		なることを
+		\begin{align}
+			x < y
+		\end{align}
+		とも書く．
+	\end{itembox}
+	
+	以下順序数の性質を列挙するが，長いので主張だけ先に述べておく．
+	\begin{itemize}
+		\item $\ON$は推移的類である．
+		\item $\leq$は$\ON$において整列順序となる．
+		\item $a$を$a \subset \ON$なる集合とすると，$\bigcup a$は$a$の$\leq$に関する上限となる．
+		\item $\ON$は集合ではない．
+	\end{itemize}
+	
+	\begin{screen}
+		\begin{thm}[推移的で$\in$が全順序となる類は$\ON$に含まれる]
+		\label{thm:transitive_totally_ordered_class_is_contained_in_ON}
+			$S$を類とするとき
+			\begin{align}
+				\ord{S} \Longrightarrow S \subset \ON.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$x$を$S$の要素とする．まず
+		\begin{align}
+			\forall s,t \in x\, (\, s \in t \vee s = t \vee t \in s\, )
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_1}
+		\end{align}
+		が成り立つことを示す．実際$S$の推移性より
+		\begin{align}
+			x \subset S
+		\end{align}
+		が成り立つので，$x$の要素は全て$S$の要素となり
+		(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_1})が満たされる．次に
+		\begin{align}
+			\tran{x}
+		\end{align}
+		が成り立つことを示す．$y$を$x$の要素とする．また$z$を$y$の要素とする．このとき
+		\begin{align}
+			x \subset S
+		\end{align}
+		から
+		\begin{align}
+			y \in S
+		\end{align}
+		が成り立つので
+		\begin{align}
+			y \subset S
+		\end{align}
+		が成り立ち，ゆえに
+		\begin{align}
+			z \in S
+		\end{align}
+		となる．従って
+		\begin{align}
+			z \in x \vee z = x \vee x \in z
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_2}
+		\end{align}
+		が成立する．ところで定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			z \in y \Longrightarrow y \notin z
+		\end{align}
+		が成り立つから
+		\begin{align}
+			y \notin z
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_3}
+		\end{align}
+		が成立する．また相当性の公理から
+		\begin{align}
+			z = x \vee y \in x \Longrightarrow y \in z
+		\end{align}
+		が成り立つので，その対偶と(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_2})から
+		\begin{align}
+			z \neq x \vee y \notin x
+		\end{align}
+		も満たされる．いま
+		\begin{align}
+			y \in x
+		\end{align}
+		が成り立っていて，さらに選言三段論法より
+		\begin{align}
+			(\, z \neq x \vee y \notin x\, ) \wedge y \in x \Longrightarrow z \neq x
+		\end{align}
+		も成り立つから，
+		\begin{align}
+			z \neq x
+		\end{align}
+		が成立する．他方で定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			z \in y \wedge y \in x \Longrightarrow x \notin z
+		\end{align}
+		が成立するから，ゆえにいま
+		\begin{align}
+			z \neq x \wedge x \notin z
+		\end{align}
+		が，つまり
+		\begin{align}
+			\rightharpoondown (\, z = x \vee x \in z\, )
+			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_4}
+		\end{align}
+		が成立している．ここで選言三段論法より
+		\begin{align}
+			(\, z \in x \vee z = x \vee x \in z\, ) \wedge 
+			\rightharpoondown (\, z = x \vee x \in z\, )
+			\Longrightarrow z \in x
+		\end{align}
+		も成り立つので，(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_3})と
+		(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_4})と併せて
+		\begin{align}
+			z \in x
+		\end{align}
+		が従う．以上より，$y$を$x$の要素とすれば
+		\begin{align}
+			\forall z \in y\, (\, z \in y \Longrightarrow z \in x\, )
+		\end{align}
+		が成り立ち，ゆえに
+		\begin{align}
+			y \subset x
+		\end{align}
+		が成り立つ．ゆえに$x$は推移的である．ゆえに
+		\begin{align}
+			\ord{x}
+		\end{align}
+		が成立し
+		\begin{align}
+			x \in \ON
+		\end{align}
+		となる．$x$の任意性より
+		\begin{align}
+			S \subset \ON
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$は推移的]\label{thm:On_is_transitive}
+			$\tran{\ON}$が成立する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} 
+		$x$を順序数とすると
+		\begin{align}
+			\ord{x}
+		\end{align}
+		が成り立つので，定理\ref{thm:transitive_totally_ordered_class_is_contained_in_ON}から
+		\begin{align}
+			x \subset \ON
+		\end{align}
+		が成立する．ゆえに$\ON$は推移的である．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$において$\in$と$<$は同義]
+		\label{thm:element_and_proper_subset_correspond_between_ordinal_numbers}
+			\begin{align}
+				\forall \alpha,\beta \in \ON\,
+				(\, \alpha \in \beta \Longleftrightarrow \alpha < \beta\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\alpha,\beta$を任意に与えられた順序数とする．
+		\begin{align}
+			\alpha \in \beta
+		\end{align}
+		が成り立っているとすると，順序数の推移性より
+		\begin{align}
+			\alpha \subset \beta
+		\end{align}
+		が成り立つ．定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			\alpha \neq \beta
+		\end{align}
+		も成り立つから
+		\begin{align}
+			\alpha < \beta
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\alpha \in \beta \Longrightarrow \alpha < \beta
+		\end{align}
+		が成立する．逆に
+		\begin{align}
+			\alpha < \beta
+		\end{align}
+		が成り立っているとすると
+		\begin{align}
+			\beta \backslash \alpha \neq \emptyset
+		\end{align}
+		が成り立つので，正則性公理より
+		\begin{align}
+			\gamma \in \beta \backslash \alpha \wedge \gamma \cap (\beta \backslash \alpha) = \emptyset
+		\end{align}
+		を満たす$\gamma$が取れる．このとき
+		\begin{align}
+			\alpha = \gamma
+		\end{align}
+		が成り立つことを示す．$x$を$\alpha$の任意の要素とすれば，
+		$x,\gamma$は共に$\beta$に属するから
+		\begin{align}
+			x \in \gamma \vee x = \gamma \vee \gamma \in x
+			\label{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1}
+		\end{align}
+		が成り立つ．ところで相等性の公理から
+		\begin{align}
+			x = \gamma \wedge x \in \alpha \Longrightarrow \gamma \in \alpha
+		\end{align}
+		が成り立ち，$\alpha$の推移性から
+		\begin{align}
+			\gamma \in x \wedge x \in \alpha \Longrightarrow \gamma \in \alpha
+		\end{align}
+		が成り立つから，それぞれ対偶を取れば
+		\begin{align}
+			\gamma \notin \alpha \Longrightarrow x \neq \gamma \vee x \notin \alpha
+		\end{align}
+		と
+		\begin{align}
+			\gamma \notin \alpha \Longrightarrow \gamma \notin x \vee x \notin \alpha
+		\end{align}
+		が成立する．いま
+		\begin{align}
+			\gamma \notin \alpha
+		\end{align}
+		が成り立っているので
+		\begin{align}
+			x \neq \gamma \vee x \notin \alpha
+		\end{align}
+		と
+		\begin{align}
+			\gamma \notin x \vee x \notin \alpha
+		\end{align}
+		が共に成り立ち，また
+		\begin{align}
+			x \in \alpha
+		\end{align}
+		でもあるから選言三段論法より
+		\begin{align}
+			x \neq \gamma
+		\end{align}
+		と
+		\begin{align}
+			\gamma \notin x
+		\end{align}
+		が共に成立する．そして(\refeq{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1})と
+		選言三段論法より
+		\begin{align}
+			x \in \gamma
+		\end{align}
+		が従うので
+		\begin{align}
+			\alpha \subset \gamma
+		\end{align}
+		が得られる．逆に$x$を$\gamma$に任意の要素とすると
+		\begin{align}
+			x \in \beta \wedge x \notin \beta \backslash \alpha
+		\end{align}
+		が成り立つから，すなわち
+		\begin{align}
+			x \in \beta \wedge (\, x \notin \beta \vee x \in \alpha\, )
+		\end{align}
+		が成立する．ゆえに選言三段論法より
+		\begin{align}
+			x \in \alpha
+		\end{align}
+		が成り立ち，$x$の任意性より
+		\begin{align}
+			\gamma \subset \alpha
+		\end{align}
+		となる．従って
+		\begin{align}
+			\gamma = \alpha
+		\end{align}
+		が成立し，
+		\begin{align}
+			\gamma \in \beta
+		\end{align}
+		なので
+		\begin{align}
+			\alpha \in \beta
+		\end{align}
+		が成り立つ．以上で
+		\begin{align}
+			\alpha < \beta \Longrightarrow \alpha \in \beta
+		\end{align}
+		も得られた．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$の整列性]\label{thm:On_is_wellordered}
+			$\leq$は$\ON$上の整列順序である．また次が成り立つ．
+			\begin{align}
+				\forall \alpha,\beta \in \ON\,
+				\left(\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\alpha,\beta,\gamma$を順序数とすれば
+				\begin{align}
+					\alpha \subset \alpha
+				\end{align}
+				かつ
+				\begin{align}
+					\alpha \subset \beta \wedge \beta \subset \alpha \Longrightarrow \alpha = \beta
+				\end{align}
+				かつ
+				\begin{align}
+					\alpha \subset \beta \wedge \beta \subset \gamma \Longrightarrow \alpha \subset \gamma
+				\end{align}
+				が成り立つ．ゆえに$\leq$は$\ON$上の順序である．
+				
+			\item[第二段]
+				$\leq$が全順序であることを示す．$\alpha$と$\beta$を順序数とする．このとき
+				\begin{align}
+					\ord{\alpha \cap \beta}
+				\end{align}
+				が成り立ち，他方で定理\ref{thm:no_set_is_an_element_of_itself}より
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \cap \beta
+				\end{align}
+				が満たされるので
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \vee \alpha \cap \beta \notin \beta
+					\label{eq:thm_On_is_wellordered_5}
+				\end{align}
+				が成立する．ところで
+				\begin{align}
+					\alpha \cap \beta \subset \alpha
+				\end{align}
+				は正しいので定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}から
+				\begin{align}
+					\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha
+				\end{align}
+				が成立する．従って
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \Longrightarrow 
+					(\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha) \wedge \alpha \cap \beta \notin \alpha
+					\label{eq:thm_On_is_wellordered_2}
+				\end{align}
+				が成り立ち，他方で選言三段論法より
+				\begin{align}
+					(\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha) \wedge \alpha \cap \beta \notin \alpha
+					\Longrightarrow \alpha \cap \beta = \alpha
+					\label{eq:thm_On_is_wellordered_3}
+				\end{align}
+				も成り立ち，かつ
+				\begin{align}
+					\alpha \cap \beta = \alpha \Longrightarrow \alpha \subset \beta
+					\label{eq:thm_On_is_wellordered_4}
+				\end{align}
+				も成り立つので，(\refeq{eq:thm_On_is_wellordered_2})と(\refeq{eq:thm_On_is_wellordered_3})と
+				(\refeq{eq:thm_On_is_wellordered_4})から
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \Longrightarrow \alpha \subset \beta
+				\end{align}
+				が得られる．同様にして
+				\begin{align}
+					\alpha \cap \beta \notin \beta \Longrightarrow \beta \subset \alpha
+				\end{align}
+				も得られる．さらに論理和の規則から
+				\begin{align}
+					\alpha \cap \beta \notin \alpha \Longrightarrow \alpha \subset \beta \vee \beta \subset \alpha
+				\end{align}
+				と
+				\begin{align}
+					\alpha \cap \beta \notin \beta \Longrightarrow \alpha \subset \beta \vee \beta \subset \alpha
+				\end{align}
+				が従うので，(\refeq{eq:thm_On_is_wellordered_5})と場合分け法則より
+				\begin{align}
+					\alpha \subset \beta \vee \beta \subset \alpha
+				\end{align}
+				が成立して
+				\begin{align}
+					(\alpha,\beta) \in\ \leq \vee (\beta,\alpha) \in\ \leq
+				\end{align}
+				が成立する．ゆえに$\leq$は全順序である．
+			
+			\item[第三段]
+				$\leq$が整列順序であることを示す．$a$を$\ON$の空でない部分集合とする．このとき正則性公理より
+				\begin{align}
+					x \in a \wedge x \cap a = \emptyset
+				\end{align}
+				を満たす集合$x$が取れるが，この$x$が$a$の最小限である．実際，任意に$a$から要素$y$を取ると
+				\begin{align}
+					x \cap a = \emptyset
+				\end{align}
+				から
+				\begin{align}
+					y \notin x
+				\end{align}
+				が従い，また前段の結果より
+				\begin{align}
+					x \in y \vee x = y \vee y \in x
+				\end{align}
+				も成り立つので，選言三段論法より
+				\begin{align}
+					x \in y \vee x = y
+					\label{eq:thm_On_is_wellordered_6}
+				\end{align}
+				が成り立つ．$y$は推移的であるから
+				\begin{align}
+					x \in y \Longrightarrow x \subset y
+				\end{align}
+				が成立して，また
+				\begin{align}
+					x = y \Longrightarrow x \subset y
+				\end{align}
+				も成り立つから，(\refeq{eq:thm_On_is_wellordered_6})と場合分け法則から
+				\begin{align}
+					(x,y) \in\ \leq
+				\end{align}
+				が従う．$y$の任意性より
+				\begin{align}
+					\forall y \in a\, \left[\, (x,y) \in\ \leq\, \right]
+				\end{align}
+				が成立するので$x$は$a$の最小限である．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$の部分集合の合併は順序数となる]\label{thm:union_of_set_of_ordinal_numbers_is_ordinal}
+			\begin{align}
+				\forall a\,
+				\left(\, a \subset \ON \Longrightarrow \bigcup a \in \ON\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		和集合の公理より$\bigcup a \in \Univ$となる．また順序数の推移性より
+		$\bigcup a$の任意の要素は順序数であるから，定理\ref{thm:On_is_wellordered}より
+		\begin{align}
+			\forall x,y \in \bigcup a\ (\ x \in y \vee x = y \vee y \in x\ )
+		\end{align}
+		も成り立つ．最後に$\operatorname{Tran}(\bigcup a)$が成り立つことを示す．
+		$b$を$\bigcup a$の任意の要素とすれば，$a$の或る要素$x$に対して
+		\begin{align}
+			b \in x
+		\end{align}
+		となるが，$x$の推移性より$b \subset x$となり，$x \subset \bigcup a$と併せて
+		\begin{align}
+			b \subset \bigcup a
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[Burali-Forti]\label{thm:Burali_Forti}
+			順序数の全体は集合ではない．
+			\begin{align}
+				\rightharpoondown \set{\ON}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とするとき，定理\ref{thm:satisfactory_set_is_an_element}より
+		\begin{align}
+			\ord{a} \Longrightarrow \left(\, \set{a} \Longrightarrow a \in \ON\, \right)
+		\end{align}
+		が成り立つ．定理\ref{thm:On_is_transitive}と定理\ref{thm:On_is_wellordered}より
+		\begin{align}
+			\ord{\ON}
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\set{\ON} \Longrightarrow \ON \in \ON
+			\label{eq:Burali_Forti_1}
+		\end{align}
+		が従い，また定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			\ON \notin \ON
+		\end{align}
+		も成り立つので，(\refeq{eq:Burali_Forti_1})の対偶から
+		\begin{align}
+			\rightharpoondown \set{\ON}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[後者]
+			$x$を集合とするとき，
+			\begin{align}
+				x \cup \{x\}
+			\end{align}
+			を$x$の{\bf 後者}\index{こうしゃ@後者}{\bf (latter)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[順序数の後者は順序数である]\label{thm:latter_element_is_ordinal}
+			$\alpha$が順序数であるということと$\alpha \cup \{\alpha\}$が順序数であるということは同値である．
+			\begin{align}
+				\forall \alpha\, \left(\, \alpha \in \ON \Longleftrightarrow \alpha \cup \{\alpha\} \in \ON\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$\alpha$を順序数とする．そして$x$を
+				\begin{align}
+					x \in \alpha \cup \{\alpha\}
+					\label{fom:thm_latter_element_is_ordinal_3}
+				\end{align}
+				なる任意の集合とすると，
+				\begin{align}
+					y \in x
+				\end{align}
+				なる任意の集合$y$に対して定理\ref{thm:union_of_pair_is_union_of_their_elements}より
+				\begin{align}
+					y \in \alpha \vee y \in \{\alpha\}
+					\label{fom:thm_latter_element_is_ordinal_5}
+				\end{align}
+				が成立する．$\alpha$が順序数であるから
+				\begin{align}
+					y \in \alpha \Longrightarrow y \subset \alpha
+					\label{fom:thm_latter_element_is_ordinal_1}
+				\end{align}
+				が成立する．他方で定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					y \in \{\alpha\} \Longrightarrow y = \alpha
+				\end{align}
+				が成立し，
+				\begin{align}
+					y = \alpha \Longrightarrow y \subset \alpha
+				\end{align}
+				であるから
+				\begin{align}
+					y \in \{\alpha\} \Longrightarrow y \subset \alpha
+					\label{fom:thm_latter_element_is_ordinal_2}
+				\end{align}
+				が従う．定理\ref{thm:union_is_bigger_than_any_member}より
+				\begin{align}
+					y \subset \alpha \Longrightarrow y \subset \alpha \cup \{\alpha\}
+				\end{align}
+				が成り立つので，(\refeq{fom:thm_latter_element_is_ordinal_1})と
+				(\refeq{fom:thm_latter_element_is_ordinal_2})と併せて
+				\begin{align}
+					y \in \alpha \Longrightarrow y \subset \alpha \cup \{\alpha\}
+				\end{align}
+				かつ
+				\begin{align}
+					y \in \{\alpha\} \Longrightarrow y \subset \alpha \cup \{\alpha\}
+				\end{align}
+				が成立し，場合分け法則より
+				\begin{align}
+					y \in \alpha \vee y \in \{\alpha\} \Longrightarrow y \subset \alpha \cup \{\alpha\}
+				\end{align}
+				が従う．そして(\refeq{fom:thm_latter_element_is_ordinal_5})と併せて
+				\begin{align}
+					y \subset \alpha \cup \{\alpha\}
+				\end{align}
+				が成立する．$y$の任意性ゆえに(\refeq{fom:thm_latter_element_is_ordinal_3})の下で
+				\begin{align}
+					\forall y\, \left(\, y \in x \Longrightarrow y \subset \alpha \cup \{\alpha\}\, \right)
+				\end{align}
+				が成り立ち，演繹法則と$x$の任意性から
+				\begin{align}
+					\forall x\, \left(\, x \in \alpha \cup \{\alpha\} \Longrightarrow x \subset \alpha \cup \{\alpha\}\, \right)
+				\end{align}
+				が従う．ゆえにいま
+				\begin{align}
+					\tran{\alpha \cup \{\alpha\}}
+					\label{fom:thm_latter_element_is_ordinal_4}
+				\end{align}
+				が得られた．また$s$と$t$を$\alpha \cup \{\alpha\}$の任意の要素とすると
+				\begin{align}
+					s \in \alpha \vee s = \alpha
+				\end{align}
+				と
+				\begin{align}
+					t \in \alpha \vee t = \alpha
+				\end{align}
+				が成り立つが，
+				\begin{align}
+					s \in \alpha \Longrightarrow s \in \ON
+				\end{align}
+				かつ
+				\begin{align}
+					s = \alpha \Longrightarrow s \in \ON
+				\end{align}
+				から
+				\begin{align}
+					s \in \alpha \vee s = \alpha \Longrightarrow s \in \ON
+				\end{align}
+				が従い，同様にして
+				\begin{align}
+					t \in \alpha \vee t = \alpha \Longrightarrow t \in \ON
+				\end{align}
+				も成り立つので，
+				\begin{align}
+					s \in \ON
+				\end{align}
+				かつ
+				\begin{align}
+					t \in \ON
+				\end{align}
+				となる．このとき定理\ref{thm:On_is_wellordered}より
+				\begin{align}
+					s \in t \vee s = t \vee t \in s
+				\end{align}
+				が成り立つので，$s$および$t$の任意性より
+				\begin{align}
+					\forall s,t \in \alpha \cup \{\alpha\}\,
+					\left(\, s \in t \vee s = t \vee t \in s\, \right)
+				\end{align}
+				が得られた．(\refeq{fom:thm_latter_element_is_ordinal_4})と併せて
+				\begin{align}
+					\ord{\alpha \cup \{\alpha\}}
+				\end{align}
+				が従い，演繹法則より
+				\begin{align}
+					\alpha \in \ON \Longrightarrow \alpha \cup \{\alpha\} \in \ON
+				\end{align}
+				を得る．
+				
+			\item[第二段]
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[順序数は後者が直後の数となる]
+			$\alpha$を順序数とすれば，$\ON$において$\alpha \cup \{\alpha\}$は$\alpha$の直後の数である:
+			\begin{align}
+				\forall \alpha \in \ON\, 
+				\left[\, \forall \beta \in \ON\, (\, \alpha < \beta 
+				\Longrightarrow \alpha \cup \{\alpha\} \leq \beta\, )
+				\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$と$\beta$を任意に与えられた順序数とし，
+		\begin{align}
+			\alpha < \beta
+		\end{align}
+		であるとする．定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}より，このとき
+		\begin{align}
+			\alpha \in \beta
+		\end{align}
+		が成り立ち，$\leq$の定義より
+		\begin{align}
+			\alpha \subset \beta
+		\end{align}
+		も成り立つ．ところで，いま$t$を任意の集合とすると
+		\begin{align}
+			t \in \{\alpha\} \Longrightarrow t = \alpha
+		\end{align}
+		かつ
+		\begin{align}
+			t = \alpha \Longrightarrow t \in \beta
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\{\alpha\} \subset \beta
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\forall x\, \left(\, x \in \left\{ \alpha, \{\alpha\} \right\} \Longrightarrow x \subset \beta\, \right)
+		\end{align}
+		が成り立つ．ゆえに定理\ref{thm:union_of_subsets_is_subclass}より
+		\begin{align}
+			\alpha \cup \{\alpha\} \subset \beta.
+		\end{align}
+		すなわち
+		\begin{align}
+			\alpha \cup \{\alpha\} \leq \beta
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}

@@ -1,0 +1,336 @@
+\section{対}
+	$a$と$b$を類とするとき，$a$か$b$の少なくとも一方に等しい集合の全体，つまり
+	\begin{align}
+		a = x \vee b = x
+	\end{align}
+	を満たす全ての集合$x$を集めたものを$a$と$b$の対と呼び
+	\begin{align}
+		\{a,b\}
+	\end{align}
+	と書く．解釈としては``$a$と$b$のみを要素とする類''のことであり，当然$a$が集合であるならば
+	\begin{align}
+		a \in \{a,b\}
+	\end{align}
+	が成立する．しかし$a$と$b$が共に真類であるときは，いかなる集合も$a$にも$b$にも等しくないため
+	\begin{align}
+		\{a,b\} = \emptyset
+	\end{align}
+	となる．大雑把に対を紹介したが，この辺の事情の詳細は後述する．
+	
+	\begin{screen}
+		\begin{dfn}[対]
+			$a,b$を類とするとき，
+			\begin{align}
+				\{a,b\} \defeq \Set{x}{a = x \vee b = x}
+			\end{align}
+			で$\{a,b\}$を定義し，これを$a$と$b$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{a,a\}$を$\{a\}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[対は表示されている要素しか持たない]
+		\label{thm:pair_members_are_exactly_the_given_two}
+			$a$と$b$を類とするとき次が成立する:
+			\begin{align}
+				\forall x\, (\, x \in \{a,b\} \Longleftrightarrow a=x \vee b=x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	この定理はメタ的な定理\ref{metathm:rewritten_formula_is_equivalent}を適用しただけの主張であるが，
+	直接確認することも出来る．実際，$a$が
+	\begin{align}
+		\Set{x}{A(x)}
+	\end{align}
+	で表される類で，$b$が
+	\begin{align}
+		\Set{x}{B(x)}
+	\end{align}
+	で表される類であるとき，$\chi$を$\mathcal{L}$の任意の対象とすれば
+	\begin{align}
+		\forall t\, (\, A(t) \Longleftrightarrow t \in \chi\, ) \Longleftrightarrow a = \chi
+	\end{align}
+	と
+	\begin{align}
+		\forall t\, (\, B(t) \Longleftrightarrow t \in \chi\, ) \Longleftrightarrow b = \chi
+	\end{align}
+	から
+	\begin{align}
+		\left[\, \forall t\, (\, A(t) \Longleftrightarrow t \in \chi\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in \chi\, )\, \right]
+		\Longleftrightarrow
+		\left[\, a = \chi \vee b = \chi\, \right]
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\forall x\, \left[\, \left[\, \forall t\, (\, A(t) \Longleftrightarrow t \in x\, ) \vee
+		\forall t\, (\, B(t) \Longleftrightarrow t \in x\, )\, \right]
+		\Longleftrightarrow
+		\left[\, a = x \vee b = x\, \right]\, \right]
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		\begin{thm}[要素の表示の順番を入れ替えても対は等しい]\label{thm:commutative_law_of_pairs}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\{a,b\} = \{b,a\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\tau$を$\mathcal{L}$の任意の対象とする．定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\tau \in \{a,b\} \Longleftrightarrow \tau = a \vee \tau = b
+		\end{align}
+		が成立し，推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction}より
+		\begin{align}
+			\tau = a \vee \tau = b \Longleftrightarrow \tau = b \vee \tau = a
+		\end{align}
+		が成立し，定理\ref{thm:pair_members_are_exactly_the_given_two}と推論法則\ref{logicalthm:commutative_law_of_equivalence}より
+		\begin{align}
+			\tau = b \vee \tau = a \Longleftrightarrow \tau \in \{b,a\}
+		\end{align}
+		が成立する．そして含意の推移律から
+		\begin{align}
+			\tau \in \{a,b\} \Longleftrightarrow \tau \in \{b,a\}
+		\end{align}
+		が従う．$\tau$は任意に与えられていたから
+		\begin{align}
+			\forall t\, \left(\, t \in \{a,b\} \Longleftrightarrow t \in \{b,a\}\, \right)
+		\end{align}
+		が従い，外延性の公理より
+		\begin{align}
+			\{a,b\} = \{b,a\}
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+		
+	\begin{screen}
+		\begin{axm}[対の公理]
+			集合同士の対は集合である．つまり，$a$と$b$を集合とするとき
+			\begin{align}
+				\set{\{a,b\}}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\monologue{
+		対の公理の主張は，$a$と$b$を類とするとき
+		\begin{align}
+			\set{a} \wedge \set{b} \Longrightarrow \set{\{a,b\}}
+		\end{align}
+		が成り立つということですが，式にまとめてしまうと見づらいのではじめから$a$と$b$を集合としています．
+	}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(ロ)]\label{logicalthm:properties_of_quantifiers_2}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
+			\begin{description}
+				\item[(a)] $\exists x ( A(x) \vee B(x) ) \Longleftrightarrow \exists x A(x) \vee \exists x B(x)$.
+				
+				\item[(b)] $\forall x ( A(x) \wedge B(x) ) \Longleftrightarrow \forall x A(x) \wedge \forall x B(x)$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)]
+				いま$c(x) \overset{\mathrm{def}}{\Longleftrightarrow} A(x) \vee B(x)$とおけば，
+				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x C(x)
+					\label{eq:logicalthm_properties_of_quantifiers_1}
+				\end{align}
+				が成立する．また推論法則\ref{logicalthm:transitive_law_of_implication}より
+				\begin{align}
+					\exists x C(x) \Longrightarrow C(\varepsilon x C(x))
+					\label{eq:logicalthm_properties_of_quantifiers_2}
+				\end{align}
+				が成立する．$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$
+				は同じ記号列であるから
+				\begin{align}
+					C(\varepsilon x C(x)) \Longrightarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\label{eq:logicalthm_properties_of_quantifiers_3}
+				\end{align}
+				が成立する．ここで推論法則\ref{logicalthm:transitive_law_of_implication}と
+				推論規則\ref{logicalaxm:fundamental_rules_of_inference}より
+				\begin{align}
+					A(\varepsilon x C(x)) &\Longrightarrow \exists x A(x) \\
+						&\Longrightarrow \exists x A(x) \vee \exists x B(x), \\
+					B(\varepsilon x C(x)) &\Longrightarrow \exists x B(x) \\
+						&\Longrightarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が成立するので，場合分け法則より
+				\begin{align}
+					A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\Longrightarrow \exists x A(x) \vee \exists x B(x)
+					\label{eq:logicalthm_properties_of_quantifiers_4}
+				\end{align}
+				が成り立つ．(\refeq{eq:logicalthm_properties_of_quantifiers_1})
+				(\refeq{eq:logicalthm_properties_of_quantifiers_2})
+				(\refeq{eq:logicalthm_properties_of_quantifiers_3})
+				(\refeq{eq:logicalthm_properties_of_quantifiers_4})
+				に推論法則\ref{logicalthm:transitive_law_of_implication}を順次適用すれば
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \Longrightarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が得られる．他方，推論規則\ref{logicalaxm:rules_of_quantifiers}より
+				\begin{align}
+					\exists x A(x) &\Longrightarrow A(\varepsilon x A(x)) \\
+						&\Longrightarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) \\
+						&\Longrightarrow C(\varepsilon x A(x)) \\
+						&\Longrightarrow C(\varepsilon x C(x)) \\
+						&\Longrightarrow \exists x C(x) \\
+						&\Longrightarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				が成立し，$A$を$B$に置き換えれば
+				$\exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))$も成り立つので，
+				場合分け法則より
+				\begin{align}
+					\exists x A(x) \vee \exists x B(x) \Longrightarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				も得られる．
+			
+			\item[(b)]
+				簡略して説明すれば
+				\begin{align}
+					\forall x \left( A(x) \wedge B(x) \right)
+					&\Longleftrightarrow\ \rightharpoondown \exists x \rightharpoondown \left( A(x) \wedge B(x) \right) & (\mbox{推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}}) \\
+					&\Longleftrightarrow\ \rightharpoondown \exists x \left( \rightharpoondown A(x) \vee \rightharpoondown B(x) \right) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \exists x \rightharpoondown A(x) \vee \exists x \rightharpoondown B(x) \right) & (\mbox{前段の対偶}) \\
+					&\Longleftrightarrow\ \rightharpoondown \left( \rightharpoondown \forall x A(x) \vee \rightharpoondown \forall x B(x) \right) & (\mbox{推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}}) \\
+					&\Longleftrightarrow\ \rightharpoondown \rightharpoondown \forall x A(x) \wedge \rightharpoondown \rightharpoondown \forall x B(x) & (\mbox{De Morganの法則}) \\
+					&\Longleftrightarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
+				\end{align}
+				となる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[集合は対の要素たりうる]\label{thm:set_is_an_element_of_its_pair}
+			$a,b$を類とするとき，
+			\begin{align}
+				\set{a} \Longrightarrow a \in \{a,b\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\set{a}
+		\end{align}
+		が成り立っているとする．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば，存在記号に関する規則より
+		\begin{align}
+			a = \tau
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\tau = a \vee \tau = b
+		\end{align}
+		も成り立つ．ゆえに
+		\begin{align}
+			\tau \in \{a,b\}
+		\end{align}
+		が成り立ち，相当性の公理より
+		\begin{align}
+			a \in \{a,b\}
+		\end{align}
+		が従う．そして演繹法則より\
+		\begin{align}
+			\set{a} \Longrightarrow a \in \{a,b\}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	$a$を集合とすれば対の公理より$\{a\}$も集合となり，定理\ref{thm:set_is_an_element_of_its_pair}より
+	\begin{align}
+		a \in \{a\}
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		\begin{thm}[真類同士の対は空]\label{thm:pair_of_proper_classes_is_emptyset}
+			$a,b$を類とするとき，
+			\begin{align}
+				\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longleftrightarrow \{a,b\} = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\rightharpoondown \set{a} \wedge \rightharpoondown \set{b}
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			\forall x\, (\, a \neq x\, ) \wedge \forall x\, (\, b \neq x\, )
+		\end{align}
+		が成立し，推論法則\ref{logicalthm:properties_of_quantifiers_2}より
+		\begin{align}
+			\forall x\, (\, a \neq x \wedge b \neq x\, )
+		\end{align}
+		が成立する．すなわち$\chi$を$\mathcal{L}$の任意の対象とすれば
+		\begin{align}
+			a \neq \chi \wedge b \neq \chi
+		\end{align}
+		が成立する．他方で
+		\begin{align}
+			a \neq \chi \wedge b \neq \chi \Longleftrightarrow \chi \notin \{a,b\}
+		\end{align}
+		も満たされているので，三段論法より
+		\begin{align}
+			\chi \notin \{a,b\}
+		\end{align}
+		が成立する．$\chi$の任意性より
+		\begin{align}
+			\forall x\, (\, x \notin \{a,b\}\, )
+		\end{align}
+		が成立し，定理\ref{thm:uniqueness_of_emptyset}
+		\begin{align}
+			\{a,b\} = \emptyset
+		\end{align}
+		が従う．そして演繹法則を適用して
+		\begin{align}
+			\rightharpoondown \set{a} \wedge \rightharpoondown \set{b} \Longrightarrow \{a,b\} = \emptyset
+		\end{align}
+		が得られる．逆に，定理\ref{thm:set_is_an_element_of_its_pair}から
+		\begin{align}
+			\set{a} \Longrightarrow a \in \{a,b\}
+		\end{align}
+		が成り立ち，定理\ref{thm:emptyset_does_not_contain_any_class}から
+		\begin{align}
+			a \in \{a,b\} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		が成り立つので，含意の推移律より
+		\begin{align}
+			\set{a} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		が成立する．同様に
+		\begin{align}
+			\set{b} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		も成り立つから，場合分け法則より
+		\begin{align}
+			\set{a} \vee \set{b} \Longrightarrow \{a,b\} \neq \emptyset
+		\end{align}
+		が成立し，この対偶を取って
+		\begin{align}
+			\{a,b\} = \emptyset \Longrightarrow\ \rightharpoondown \set{a} \wedge \rightharpoondown \set{b}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	

@@ -1,0 +1,426 @@
+\section{合併}
+	$a$を空でない類とするとするとき，$a$の要素もまた空でなければ要素を持つ．
+	$a$の要素の要素を全て集めたものを$a$の合併と呼び，その受け皿の意味を込めて
+	\begin{align}
+		\bigcup a
+	\end{align}
+	と書く．当然ながら，空の合併は空となる．
+	
+	\begin{screen}
+		\begin{dfn}[合併]
+			$a$を類とするとき，$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}を
+			\begin{align}
+				\bigcup a \defeq \Set{x}{\exists t \in a\, (\, x \in t\, )}
+				\label{eq:definition_of_union_1}
+			\end{align}
+			で定める．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{itembox}[l]{量化子が付いた式の略記法}
+		上の定義で
+		\begin{align}
+			\exists t \in a\, (\, x \in t\, )
+		\end{align}
+		という式を書いたが，これは
+		\begin{align}
+			\exists t \in a\, (\, x \in t\, ) \defarrow \exists t\, (\, t \in a \wedge x \in t\, )
+		\end{align}
+		により定義される省略形である．同様にして，$A$を$\mathcal{L}'$の式とするとき
+		\begin{align}
+			\exists t\, \left(\, (t \in a) \wedge (A)\, \right)
+		\end{align}
+		なる式を
+		\begin{align}
+			\exists t \in a\, (\, A\, )
+		\end{align}
+		と略記する．また全称記号についても
+		\begin{align}
+			\forall t\, \left(\, (t \in a) \Longrightarrow (A)\, \right)
+		\end{align}
+		なる式を
+		\begin{align}
+			\forall t \in a\, (\, A\, )
+		\end{align}
+		と略記する．
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{axm}[合併の公理]
+			集合の合併は集合である．つまり，$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\set{a} \Longrightarrow \set{\bigcup a}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空集合の合併は空]\label{thm:the_union_of_the_emptyset_is_empty}
+			次が成立する:
+			\begin{align}
+				\bigcup \emptyset = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:emptyset_has_nothing}より
+		\begin{align}
+			\chi \notin \emptyset
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\chi \notin \emptyset \vee \tau \notin \chi
+		\end{align}
+		が成立し，$\chi$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
+		\end{align}
+		が成り立つ．ここで推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}より
+		\begin{align}
+			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
+			&\Longleftrightarrow \forall x\, \rightharpoondown (\, x \in \emptyset \wedge \tau \in x\, ) \\
+			&\Longleftrightarrow\, \rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+		\end{align}
+		が成立するので，三段論法より
+		\begin{align}
+			\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+		\end{align}
+		が従う．他方で合併の定義から
+		\begin{align}
+			\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+			\Longleftrightarrow \tau \notin \bigcup \emptyset
+		\end{align}
+		が満たされているので，再び三段論法より
+		\begin{align}
+			\tau \notin \bigcup \emptyset
+		\end{align}
+		が従う．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall t\, (\, t \notin \bigcup \emptyset\, )
+		\end{align}
+		が成立し，定理\ref{thm:uniqueness_of_emptyset}より
+		\begin{align}
+			\bigcup \emptyset = \emptyset
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[要素の部分集合は合併の部分集合]\label{thm:union_is_bigger_than_any_member}
+			$a$を類とするとき
+			\begin{align}
+				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \Longrightarrow x \subset \bigcup a\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\chi$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\exists t \in a\, (\, x \subset t\, )
+			\label{fom:thm_union_is_bigger_than_any_member_1}
+		\end{align}
+		であるとする．ここで
+		\begin{align}
+			\tau \defeq \varepsilon t\, (\, t \in a \wedge \chi \subset t\, )
+		\end{align}
+		とおく．$s$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			s \in \chi
+		\end{align}
+		であるとすると，
+		\begin{align}
+			\chi \subset \tau
+		\end{align}
+		より
+		\begin{align}
+			\tau \in a \wedge s \in \tau
+		\end{align}
+		が成立するので，存在記号の規則より
+		\begin{align}
+			\exists t\, \left(\, t \in a \wedge s \in t\, \right)
+		\end{align}
+		が成り立ち
+		\begin{align}
+			s \in \bigcup a
+		\end{align}
+		が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
+		\begin{align}
+			\forall s\, (\, s \in \chi \Longrightarrow s \in \bigcup a\, )
+		\end{align}
+		すなわち
+		\begin{align}
+			\chi \subset \bigcup a
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists t \in a\, \left(\, \chi \subset t\, \right) \Longrightarrow \chi \subset \bigcup a
+		\end{align}
+		が従い，$\chi$も任意に与えられていたので
+		\begin{align}
+			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \Longrightarrow x \subset \bigcup a\, \right]
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[部分集合の合併は部分類]\label{thm:union_of_subsets_is_subclass}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\forall x \in a\, (\, x \subset b\, ) \Longrightarrow \bigcup a \subset b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\forall x \in a\, (\, x \subset b\, )
+			\label{fom:thm_union_of_subsets_is_subclass_1}
+		\end{align}
+		が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象とし，
+		\begin{align}
+			\chi \in \bigcup a
+		\end{align}
+		であるとする．すると
+		\begin{align}
+			\exists t\, \left(\, t \in a \wedge \chi \in t\, \right)
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\tau \defeq \varepsilon t\, \left(\, t \in a \wedge \chi \in t\, \right)
+		\end{align}
+		とおけば
+		\begin{align}
+			\tau \in a \wedge \chi \in \tau
+		\end{align}
+		が成立する．ここで(\refeq{fom:thm_union_of_subsets_is_subclass_1})より
+		\begin{align}
+			\tau \subset b
+		\end{align}
+		となるから
+		\begin{align}
+			\chi \in b
+		\end{align}
+		が従い，演繹法則より(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
+		\begin{align}
+			\chi \in \bigcup a \Longrightarrow \chi \in b
+		\end{align}
+		が成立する．$\chi$の任意性ゆえに(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
+		\begin{align}
+			\bigcup a \subset b
+		\end{align}
+		が成立し，演繹法則より
+		\begin{align}
+			\forall x \in a\, (\, x \subset b\, ) \Longrightarrow \bigcup a \subset b
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{itembox}[l]{対の合併}
+		$a,b$を類とするとき，その対の合併を
+		\begin{align}
+			a \cup b \defeq \bigcup \{a,b\}
+		\end{align}
+		と書く．
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{thm}[対の合併はそれぞれの要素を合わせたもの]\label{thm:union_of_pair_is_union_of_their_elements}
+			$a$と$b$を集合とするとき
+			\begin{align}
+				\forall x\, (\, x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\monologue{
+		この定理の主張は，$a$と$b$を類とするとき
+		\begin{align}
+			\set{a} \wedge \set{b} \Longrightarrow
+			\forall x\, (\, x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\, )
+		\end{align}
+		が成り立つということですが，式にまとめてしまうと見づらいのではじめから$a$と$b$を集合としています．
+	}
+	
+	\begin{sketch}
+		$\chi$を$\mathcal{L}$の任意の対象とする．
+		\begin{align}
+			\chi \in a \cup b
+		\end{align}
+		であるとき，
+		\begin{align}
+			\exists t\, \left(\, t \in \{a,b\} \wedge \chi \in t\, \right)
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\tau \defeq \varepsilon t\, \left(\, t \in \{a,b\} \wedge \chi \in t\, \right)
+		\end{align}
+		とおけば
+		\begin{align}
+			\tau \in \{a,b\} \wedge \chi \in \tau
+		\end{align}
+		が成立する．
+		\begin{align}
+			\tau \in \{a,b\}
+		\end{align}
+		が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\tau = a \vee \tau = b
+			\label{fom:thm_union_of_pair_is_union_of_their_elements_1}
+		\end{align}
+		が従う．ここで相等性の公理より
+		\begin{align}
+			\tau = a \Longrightarrow \chi \in a
+		\end{align}
+		が成り立ち，論理和の規則から
+		\begin{align}
+			\tau = a \Longrightarrow \chi \in a \vee \chi \in b
+		\end{align}
+		も成り立つ．同様にして
+		\begin{align}
+			\tau = b \Longrightarrow \chi \in a \vee \chi \in b
+		\end{align}
+		が成り立つので，場合分け法則より
+		\begin{align}
+			\tau = a \vee \tau = b \Longrightarrow \chi \in a \vee \chi \in b
+		\end{align}
+		が成立し，(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_1})と三段論法より
+		\begin{align}
+			\chi \in a \vee \chi \in b
+		\end{align}
+		が成立する．ゆえに演繹法則から
+		\begin{align}
+			\chi \in a \cup b \Longrightarrow \chi \in a \vee \chi \in b
+			\label{fom:thm_union_of_pair_is_union_of_their_elements_2}
+		\end{align}
+		が成立する．逆に
+		\begin{align}
+			\chi \in a
+		\end{align}
+		であるとすると，
+		\begin{align}
+			\tau_a \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば定理\ref{thm:set_is_an_element_of_its_pair}より
+		\begin{align}
+			\tau_a \in \{a,b\} \wedge \chi \in \tau_a
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\exists t\, \left(\, t \in \{a,b\} \wedge \chi \in t\, \right)
+		\end{align}
+		が成り立ち
+		\begin{align}
+			\chi \in a \cup b
+		\end{align}
+		が従う．これでまず
+		\begin{align}
+			\chi \in a \Longrightarrow \chi \in a \cup b
+		\end{align}
+		が得られた．同様にして
+		\begin{align}
+			\chi \in b \Longrightarrow \chi \in a \cup b
+		\end{align}
+		も得られ，場合分け法則より
+		\begin{align}
+			\chi \in a \vee \chi \in b \Longrightarrow \chi \in a \cup b
+			\label{fom:thm_union_of_pair_is_union_of_their_elements_3}
+		\end{align}
+		が成立する．以上(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_2})と
+		(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_3})から
+		\begin{align}
+			\chi \in a \cup b \Longleftrightarrow \chi \in a \vee \chi \in b
+		\end{align}
+		が従い，$\chi$の任意性より
+		\begin{align}
+			\forall x\, (\, x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\, ).
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[等しい類の合併は等しい]\label{thm:unions_of_equal_classes_are_equal}
+			$a$と$b$を類とするとき
+			\begin{align}
+				a = b \Longrightarrow \bigcup a = \bigcup b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			a = b
+			\label{fom:thm_unions_of_equal_classes_are_equal}
+		\end{align}
+		が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\chi \in \bigcup a
+		\end{align}
+		であるとすれば，
+		\begin{align}
+			\tau \in a \wedge \chi \in \tau
+		\end{align}
+		なる$\mathcal{L}$の対象$\tau$が取れる．このとき相等性の公理より
+		\begin{align}
+			\tau \in b
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\tau \in b \wedge \chi \in \tau
+		\end{align}
+		が従い，ゆえに
+		\begin{align}
+			\chi \in \bigcup b
+		\end{align}
+		が従う．ゆえに(\refeq{fom:thm_unions_of_equal_classes_are_equal})の下で
+		\begin{align}
+			\chi \in \bigcup a \Longrightarrow \chi \in \bigcup b
+		\end{align}
+		が得られたが，$a$と$b$を入れ替えれば
+		\begin{align}
+			\chi \in \bigcup b \Longrightarrow \chi \in \bigcup a
+		\end{align}
+		も得られるので
+		\begin{align}
+			\chi \in \bigcup a \Longleftrightarrow \chi \in \bigcup b
+		\end{align}
+		が成立する．そして$\chi$の任意性と外延性の公理から
+		\begin{align}
+			\bigcup a = \bigcup b
+		\end{align}
+		が成立する．ゆえに演繹法則から
+		\begin{align}
+			a = b \Longrightarrow \bigcup a = \bigcup b
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[合併の可換律]
+			$a$と$b$を類とするとき
+			\begin{align}
+				a \cup b = b \cup a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:commutative_law_of_pairs}より
+		\begin{align}
+			\{a,b\} = \{b,a\}
+		\end{align}
+		が成り立つので，定理\ref{thm:unions_of_equal_classes_are_equal}から
+		\begin{align}
+			a \cup b = b \cup a
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}

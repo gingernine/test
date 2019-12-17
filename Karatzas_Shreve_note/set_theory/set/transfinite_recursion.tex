@@ -1,0 +1,264 @@
+\section{再帰的定義}
+\label{sec:recursive_definition}
+	例えば
+	\begin{align}
+		a_1,\quad a_2,\quad a_3,\quad a_4,\quad \cdots\quad a_n,\quad \cdots
+	\end{align}
+	なる列が与えられたときに，その$n$重の順序対を
+	\begin{align}
+		(a_1,a_2,\cdots,a_n)
+	\end{align}
+	などと書くことがある．まあ
+	\begin{align}
+		(a_0,a_1)
+	\end{align}
+	ならば単なる順序対であり，
+	\begin{align}
+		(a_0,a_1,a_2)
+	\end{align}
+	も
+	\begin{align}
+		((a_0,a_1),a_2)
+	\end{align}
+	で定められ，
+	\begin{align}
+		(a_0,a_1,a_2,a_3)
+	\end{align}
+	も
+	\begin{align}
+		(((a_0,a_1),a_2),a_3)
+	\end{align}
+	で定められる．このように具体的に全ての要素を書き出せるうちは何も問題は無い．
+	ただし，同じ操作を$n$回反復するということを表現するために
+	\begin{align}
+		\cdots
+	\end{align}
+	なる不明瞭な記号を無断で用いることは$\mathcal{L}'$において許されない．
+	そもそもまだ``$n$回の反復''をどんな式で表現したら良いかもわからないのである．
+	次の定理は，このような再帰的な操作が$\mathcal{L}'$で可能であることを保証する．
+	
+	\begin{screen}
+		\begin{thm}[超限帰納法による写像の構成]
+			類$G$を$\Univ$上の写像とするとき，
+			\begin{align}
+				K \defeq \Set{f}{\exists \alpha \in \ON\, \left(\, f \fon \alpha \wedge \forall \beta \in \alpha\, 
+				(\, f(\beta) = G(f|_\beta)\, )\, \right)}
+			\end{align}
+			とおいて
+			\begin{align}
+				F \defeq \bigcup K
+			\end{align}
+			と定めると，$F$は$\ON$上の写像であって
+			\begin{align}
+				\forall \alpha \in \ON\, \left(\, F(\alpha) = G(F|_\alpha)\, \right)
+			\end{align}
+			を満たす．また$\ON$上の写像で上式を満たすのは$F$のみである．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第二段] $F$が写像であることを示す．
+				まず$K$の任意の要素は$V \times V$の部分集合であるから
+				\begin{align}
+					F \subset V \times V
+				\end{align}
+				となる．$x,y,z$を任意の集合とする．
+				$(x,y) \in F$かつ$(x,z) \in F$のとき，
+				$K$の或る要素$f$と$g$が存在して
+				\begin{align}
+					(x,y) \in f \wedge (x,z) \in g
+				\end{align}
+				を満たすが，ここで$f(x) = g(x)$となることを言うために，
+				$\alpha = \operatorname{dom}(f),\ 
+				\beta = \operatorname{dom}(g)$とおき，
+				\begin{align}
+					\forall \gamma \in \ON\ (\ \gamma \in \alpha \wedge \gamma \in \beta \Longrightarrow f(\gamma) = g(\gamma)\ )
+					\label{eq:thm_transfinite_recursion_theorem_1}
+				\end{align}
+				が成り立つことを示す．いま$\gamma$を任意の順序数とする．$\gamma = \emptyset$の場合は
+				$f|_\gamma = \emptyset$かつ$g|_\gamma = \emptyset$となるから
+				\begin{align}
+					f(\gamma) = G(\emptyset) = g(\gamma)
+				\end{align}
+				が成立する．$\gamma \neq \emptyset$の場合は
+				\begin{align}
+					\forall \xi \in \gamma\ (\ \xi \in \alpha \wedge \xi \in \beta \Longrightarrow f(\xi) = g(\xi)\ )
+				\end{align}
+				が成り立っていると仮定する．このとき$\gamma \in \alpha \wedge \gamma \in \beta$ならば
+				順序数の推移性より$\gamma$の任意の要素$\xi$は$\xi \in \alpha \wedge \xi \in \beta$を満たすから
+				\begin{align}
+					\forall \xi \in \gamma\ (\ f(\xi) = g(\xi)\ )
+				\end{align}
+				が成立する．従って
+				\begin{align}
+					f|_\gamma = g|_\gamma
+				\end{align}
+				が成立するので$f(\gamma) = g(\gamma)$が得られる．超限帰納法より
+				(\refeq{eq:thm_transfinite_recursion_theorem_1})が得られる．
+				以上より
+				\begin{align}
+					y = f(x) = g(x) = z
+				\end{align}
+				となるので$F$はsingle-valuedである．
+			
+			\item[第三段] $\operatorname{dom}(F) \subset \ON$が成り立つことを示す．
+				実際
+				\begin{align}
+					\operatorname{dom}(F) = \bigcup_{f \in K} \operatorname{dom}(f)
+				\end{align}
+				かつ$\forall f \in K\ (\ \operatorname{dom}(f) \subset \ON\ )$だから
+				$\operatorname{dom}(F) \subset \ON$となる．
+				
+			\item[第四段] $\operatorname{Tran}(\operatorname{dom}(F))$であることを示す．
+				実際任意の集合$x,y$について
+				\begin{align}
+					y \in x \wedge x \in \operatorname{dom}(F)
+				\end{align}
+				が成り立っているとき，或る$f \in K$で$x \in \operatorname{dom}(f)$
+				となり，$\operatorname{dom}(f)$は順序数なので，順序数の推移律から
+				\begin{align}
+					y \in \operatorname{dom}(f)
+				\end{align}
+				が従う．ゆえに$y \in \operatorname{dom}(F)$となる．
+				
+			\item[第五段] $\forall \alpha \in \operatorname{dom}(F)\ (\ F(\alpha) = G(F|_\alpha)\ )$が成り立つことを示す．
+				実際，$\alpha \in \operatorname*{dom}(F)$なら
+				$K$の或る要素$f$に対して$\alpha \in \operatorname*{dom}(f)$となるが，
+				$f \subset F$であるから
+				\begin{align}
+					f(\alpha) = F(\alpha)
+				\end{align}
+				が成り立つ．これにより$f|_\alpha = f \cap (\alpha \times V)
+				= F \cap (\alpha \times V) = F|_\alpha$より
+				\begin{align}
+					G(f|_\alpha) = G(F|_\alpha)
+				\end{align}
+				も成り立つ．$f(\alpha) = G(f|_\alpha)$と併せて
+				$F(\alpha) = G(F|_\alpha)$を得る．
+			
+			\item[第六段] 
+				$\alpha$を任意の順序数として
+				$\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )
+				\Longrightarrow \alpha \in \operatorname{dom}(F)$が成り立つことを示す．
+				$\alpha = \emptyset$の場合は
+				\begin{align}
+					\forall f \in K\ (\ \operatorname{dom}(f) \neq \emptyset
+					\Longrightarrow \emptyset \in \operatorname{dom}(f)\ )
+				\end{align}
+				が満たされるので$\alpha \in \operatorname{dom}(F)$となる
+				(定理\ref{thm:properties_of_ordinal_numbers})．
+				$\alpha \neq \emptyset$の場合，
+				\begin{align}
+					\forall \beta \in \alpha\ (\ \beta \in \operatorname{dom}(F)\ )
+				\end{align}
+				が成り立っているとして$f = F|_\alpha$とおけば，$f$は$\alpha$上の写像であり，
+				$\alpha$の任意の要素$\beta$に対して
+				\begin{align}
+					f(\beta)
+					= F|_\alpha(\beta)
+					= F(\beta)
+					= G(F|_\beta)
+					= G(f|_\beta)
+				\end{align}
+				を満たすから$f \in K$である．このとき$f' = f \cup \{(\alpha,G(f))\}$も
+				$K$に属するので
+				\begin{align}	
+					\alpha \in \operatorname{dom}(f') \subset
+					\operatorname{dom}(F)
+				\end{align}
+				が成立する．超限帰納法より
+				\begin{align}
+					\forall \alpha \in \ON\ (\ \alpha \in \operatorname{dom}(F)\ )
+				\end{align}
+				が成立し，前段の結果と併せて
+				\begin{align}
+					\ON = \operatorname{dom}(F)
+				\end{align}
+				を得る．
+				
+			\item[第七段]
+				$F$の一意性を示す．類$H$が
+				\begin{align}
+					H:\ON \longrightarrow V 
+					\wedge \forall \alpha \in \ON\ (\ H(\alpha) = G(H|_\alpha)\ )
+				\end{align}
+				を満たすとき，$F = H$が成り立つことを示す．
+				いま，$\alpha$を任意に与えられた順序数とする．$\alpha = \emptyset$の場合は
+				\begin{align}
+					F|_\emptyset = \emptyset = H|_\emptyset
+				\end{align}
+				より$F(\emptyset) = H(\emptyset)$となる．$\alpha \neq \emptyset$の場合，
+				\begin{align}
+					\forall \beta \in \alpha\ (\ F(\beta) = H(\beta)\ )
+				\end{align}
+				が成り立っていると仮定すれば
+				\begin{align}
+					F|_\alpha = H|_\alpha
+				\end{align}
+				が成り立つから$F(\alpha) = H(\alpha)$となる．以上で
+				\begin{align}
+					\forall \alpha \in \ON\ \left(\ \forall \beta \in \alpha\ 
+					(\ F(\beta) = H(\beta)\ ) \Longrightarrow F(\alpha) = H(\alpha)\ \right)
+				\end{align}
+				が得られた．超限帰納法より
+				\begin{align}
+					\forall \alpha \in \ON\ (\ F(\alpha) = H(\alpha)\ )
+				\end{align}
+				が従い$F = H$が出る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{itembox}[l]{再帰的定義の応用 : 多数の要素からなる順序対}
+		$a$を$\Natural$から集合$A$への写像とすると，
+		\begin{align}
+			a_n \defeq a(n)
+		\end{align}
+		と書けば
+		\begin{align}
+			a_0, a_1, a_2, \cdots
+		\end{align}
+		なる列が作られる．ここでは
+		\begin{align}
+			(a_0,a_1,\cdots, a_n)
+		\end{align}
+		のような記法の集合論的意味付けを考察する．
+	\end{itembox}
+	
+		$\Univ$上の写像$G$を
+		\begin{align}
+			G(x) = 
+			\begin{cases}
+				a_0 & \mbox{if } \dom{x} = \emptyset \\
+				(x(k),a(\dom{x})) & \mbox{if } \dom{x} = k \cup \{k\} \wedge k \in \Natural \\
+				\emptyset & \mbox{o.w.}
+			\end{cases}
+		\end{align}
+		によって定めてみると，つまり$G$とは
+		\begin{align}
+			\{\, (x,y) \mid \quad &\left(\, \dom{x} = \emptyset \Longrightarrow y = a_0\, \right) \\
+		&\wedge \forall k \in \Natural\, \left(\, \dom{x} = k \cup \{k\} \Longrightarrow y = (x(k),a(\dom{x}))\, \right) \\
+		&\wedge \left[\, \dom{x} \neq \emptyset \wedge \forall k \in \Natural\, \left(\, \dom{x} \neq k \cup \{k\}\, \right)
+		\Longrightarrow y = \emptyset\, \right]\, \}
+		\end{align}
+		のことであるが，$\ON$上の写像$p$で
+		\begin{align}
+			p(n) =
+			\begin{cases}
+				a_0 & \mbox{if } (n = 0) \\
+				(a_0,a_1) & \mbox{if } (n=1) \\
+				((a_0,a_1),a_2) & \mbox{if } (n=2) \\
+				(((a_0,a_1),a_2),a_3) & \mbox{if } (n=3)
+			\end{cases}
+		\end{align}
+		を満たすものが取れる．先の
+		\begin{align}
+			(a_0,a_1,\cdots, a_n)
+		\end{align}
+		という一見不正確であった記法は，この
+		\begin{align}
+			p(n)
+		\end{align}
+		によって定めてしまえば無事解決である．
+	

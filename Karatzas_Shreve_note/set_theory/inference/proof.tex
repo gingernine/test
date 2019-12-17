@@ -296,8 +296,12 @@
 	\begin{align}
 		\mathscr{S}, A
 	\end{align}
-	と書く．もし$A$が既に$\mathscr{S}$の公理であってもこのように表記するが，
-	その場合は$\mathscr{S}, A$とは$\mathscr{S}$のことである．
+	や
+	\begin{align}
+		A, \mathscr{S}
+	\end{align}
+	と書く．$A$が既に$\mathscr{S}$の公理であってもこのように表記するが，
+	その場合は$\mathscr{S}, A$や$A,\mathscr{S}$とは$\mathscr{S}$そのものである．
 	
 	\begin{screen}
 		\begin{metathm}[演繹法則]
@@ -433,76 +437,3 @@
 		が成り立つ．
 		\QED
 	\end{metaprf}
-	
-	\begin{description}
-		\item[$\vee$の導入] $A$と$B$を文とするとき
-			\begin{align}
-				A &\vdash A \vee B, \\
-				B &\vdash A \vee B.
-			\end{align}
-		
-		\item[$\wedge$の導入] $A$と$B$を文とするとき
-			\begin{align}
-				A,B \vdash A \wedge B.
-			\end{align}
-			
-		\item[場合分け法則] $A$と$B$と$C$を文とするとき
-			\begin{align}
-				A \vee B, A \rarrow C, B \rarrow C \vdash C.
-			\end{align}
-	\end{description}
-	
-	\begin{screen}
-		\begin{logicalaxm}[論理積の導入]
-		\label{logicalaxm:introduction_of_conjunction}
-			$A$と$B$を文とするとき
-			\begin{align}
-				A,B \vdash A \wedge B.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	論理積の導入に演繹規則を適用すれば
-	\begin{align}
-		A,B &\vdash A \wedge B, \\
-		A &\vdash B \rarrow A \wedge B, \\
-		&\vdash A \rarrow (B \rarrow A \wedge B)
-	\end{align}
-	となる．これで
-	\begin{align}
-		\vdash A \rarrow (B \rarrow A \wedge B)
-	\end{align}
-	なる推論法則が得られた．
-	
-	\begin{screen}
-		\begin{logicalaxm}[論理積の除去]
-		\label{logicalaxm:elimination_of_conjunction}
-			$A$と$B$を文とするとき
-			\begin{align}
-				A &\wedge B \vdash A, \\
-				A &\wedge B \vdash B.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	例えばいま
-	\begin{align}
-		\mathscr{S} \vdash A
-	\end{align}
-	かつ
-	\begin{align}
-		\mathscr{S} \vdash B
-	\end{align}
-	であるとすれば
-	\begin{align}
-		\mathscr{S} \vdash A \wedge B
-	\end{align}
-	が成り立つ．実際，$\wedge$の導入に演繹規則を二度適用すれば
-	\begin{align}
-		\vdash A \rarrow (B \rarrow (A \wedge B))
-	\end{align}
-	が成り立つのであるから，
-	$\mathscr{S}$からの$A$への証明に$A \rarrow (B \rarrow (A \wedge B))$と
-	$B \rarrow (A \wedge B)$を追加した文の列は$\mathscr{S}$からの
-	$B \rarrow (A \wedge B)$への証明となり，ここに$\mathscr{S}$からの$B$への証明を追加して
-	最後に$A \wedge B$を載せれば，その文の列は$\mathscr{S}$からの$A \wedge B$への証明となっている．
