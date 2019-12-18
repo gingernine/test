@@ -32,6 +32,52 @@
 		\end{logicalaxm}
 	\end{screen}
 	
+	場合分け規則に演繹規則を二回適用すれば
+	\begin{align}
+		\vdash (A \rarrow C) \rarrow ((B \rarrow C) \rarrow (A \vee B \rarrow C))
+	\end{align}
+	なる推論法則が得られる．場合分け規則を実際に用いる際には主にこちらの推論法則を使う．
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和の可換律]
+		\label{logicalthm:commutative_law_of_disjunction}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash A \vee B \rarrow B \vee A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理和の導入と演繹規則により
+		\begin{align}
+			\vdash A \rarrow (B \vee A)
+			\label{fom:logicalthm_commutative_law_of_disjunction_1}
+		\end{align}
+		と
+		\begin{align}
+			\vdash B \rarrow (A \vee B)
+			\label{fom:logicalthm_commutative_law_of_disjunction_2}
+		\end{align}
+		が成り立つ．また場合分け規則より
+		\begin{align}
+			\vdash (A \rarrow B \vee A) \rarrow ((B \rarrow B \vee A) 
+			\rarrow (A \vee B \rarrow B \vee A))
+		\end{align}
+		が成り立つので，(\refeq{fom:logicalthm_commutative_law_of_disjunction_1})と
+		三段論法より
+		\begin{align}
+			\vdash (B \rarrow B \vee A) \rarrow (A \vee B \rarrow B \vee A)
+		\end{align}
+		となり，(\refeq{fom:logicalthm_commutative_law_of_disjunction_2})と
+		三段論法より
+		\begin{align}
+			\vdash A \vee B \rarrow B \vee A
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
+	
 	\begin{screen}
 		\begin{logicalaxm}[論理積の導入]
 		\label{logicalaxm:introduction_of_conjunction}
@@ -66,51 +112,53 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalthm}[論理和・論理積の可換律]
-		\label{logicalthm:commutative_law_of_disjunction_and_conjunction}
+		\begin{logicalthm}[論理積の可換律]
+		\label{logicalthm:commutative_law_of_conjunction}
 			$A,B$を文とするとき
-			\begin{itemize}
-				\item $\vdash (A \vee B) \rarrow (B \vee A)$.
-				\item $\vdash (A \wedge B) \rarrow (B \wedge A)$.
-			\end{itemize}
+			\begin{align}
+				\vdash A \wedge B \rarrow B \wedge A.
+			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
-		$\vee$の導入により
-		\begin{align}
-			\vdash A \rarrow (B \vee A)
-		\end{align}
-		と
-		\begin{align}
-			\vdash B \rarrow (A \vee B)
-		\end{align}
-		が成り立つので，場合分け法則より
-		\begin{align}
-			\vdash (A \vee B) \rarrow (B \vee A)
-		\end{align}
-		が成り立つ．また，$\wedge$の除去より
+		論理積の除去と演繹規則より
 		\begin{align}
 			A \wedge B \vdash A
+			\label{fom:logicalthm_commutative_law_of_conjunction_1}
 		\end{align}
 		と
 		\begin{align}
 			A \wedge B \vdash B
+			\label{fom:logicalthm_commutative_law_of_conjunction_2}
 		\end{align}
-		となるので，$\wedge$の導入により
+		が成り立つ．また論理積の導入により
+		\begin{align}
+			\vdash B \rarrow (A \rarrow B \wedge A)
+		\end{align}
+		となるので
+		\begin{align}
+			A \wedge B \vdash B \rarrow (A \rarrow B \wedge A)
+		\end{align}
+		も成り立つ．(\refeq{fom:logicalthm_commutative_law_of_conjunction_1})と三段論法より
+		\begin{align}
+			A \wedge B \vdash A \rarrow B \wedge A
+		\end{align}
+		となり，(\refeq{fom:logicalthm_commutative_law_of_conjunction_2})と三段論法より
 		\begin{align}
 			A \wedge B \vdash B \wedge A
 		\end{align}
-		が成り立つ．よって演繹法則より
+		となり，演繹規則より
 		\begin{align}
-			\vdash (A \wedge B) \rarrow (B \wedge A)
+			\vdash A \wedge B \rarrow B \wedge A
 		\end{align}
-		が成り立つ．
+		が得られる．
 		\QED
 	\end{prf}
 	
 	\begin{screen}
-		\begin{logicalthm}[含意の推移律]\label{logicalthm:transitive_law_of_implication}
+		\begin{logicalthm}[含意の推移律]
+		\label{logicalthm:transitive_law_of_implication}
 			$A,B,C$を文とするとき
 			\begin{align}
 				\vdash ((A \rarrow B) \wedge (B \rarrow C)) 
@@ -302,7 +350,7 @@
 	$A$と$B$を$\mathcal{L}'$の式とするとき，
 	\begin{align}
 		(A \lrarrow B) \defarrow
-		(A \rarrow B \wedge B \rarrow A)
+		(A \rarrow B) \wedge (B \rarrow A)
 	\end{align}
 	により$\lrarrow$を定め，式`$A \lrarrow B$'を
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
@@ -317,7 +365,7 @@
 	\end{screen}
 	
 	\begin{sketch}
-		$A \lrarrow B$が成り立っているならば，推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction}より
+		$A \lrarrow B$が成り立っているならば，推論法則\ref{logicalthm:commutative_law_of_disjunction}より
 		\begin{align}
 			B \rarrow A \wedge A \rarrow B
 		\end{align}
@@ -635,7 +683,7 @@
 				\begin{align}
 					A \rarrow B \vdash B \vee \negation A
 				\end{align}
-				が成り立ち，論理和の可換律(推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction})より
+				が成り立ち，論理和の可換律(推論法則\ref{logicalthm:commutative_law_of_disjunction})より
 				\begin{align}
 					A \rarrow B \vdash\ \negation A \vee B
 				\end{align}
@@ -715,7 +763,7 @@
 					\vdash (A \rarrow B) \rarrow (\negation A \vee B)
 					\label{eq:thm_contraposition_is_true_1}
 				\end{align}
-				が成り立つ．また論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction})
+				が成り立つ．また論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction})
 				\begin{align}
 					\vdash (\negation A \vee B) \rarrow (B \vee \negation A)
 					\label{eq:thm_contraposition_is_true_2}
@@ -772,7 +820,7 @@
 					\rarrow (B \vee \negation A)
 					\label{eq:thm_contraposition_is_true_6}
 				\end{align}
-				が成立する．論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction_and_conjunction})
+				が成立する．論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction})
 				\begin{align}
 					\vdash (B \vee \negation A) \rarrow (\negation A \vee B)
 					\label{eq:thm_contraposition_is_true_7}
