@@ -161,47 +161,35 @@
 		\label{logicalthm:transitive_law_of_implication}
 			$A,B,C$を文とするとき
 			\begin{align}
-				\vdash ((A \rarrow B) \wedge (B \rarrow C)) 
-				\rarrow (A \rarrow C).
+				\vdash (A \rarrow B) \rarrow ((B \rarrow C) \rarrow (A \rarrow C)).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
 		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C),A \vdash 
-			(A \rarrow B) \wedge (B \rarrow C)
+			A \rarrow B,\ B \rarrow C,\ A &\vdash A, \\
+			A \rarrow B,\ B \rarrow C,\ A &\vdash A \rarrow B, \\
 		\end{align}
-		であるから，$\wedge$の除去より
+		と三段論法より
 		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C),A \vdash A \rarrow B
+			A \rarrow B,\ B \rarrow C,\ A \vdash B
 		\end{align}
-		となる．また
+		となる．これと
 		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C),A \vdash A
+			A \rarrow B,\ B \rarrow C,\ A \vdash B \rarrow C
 		\end{align}
-		でもあるから，三段論法より
+		と三段論法より
 		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C),A \vdash B
+			A \rarrow B,\ B \rarrow C,\ A \vdash C
 		\end{align}
-		となる．$\wedge$の除去より
+		となる．これに演繹規則を三回適用すれば
 		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C),A \vdash B \rarrow C
+			A \rarrow B,\ B \rarrow C &\vdash A \rarrow C, \\
+			A \rarrow B &\vdash (B \rarrow C) \rarrow (A \rarrow C), \\
+			&\vdash (A \rarrow B) \rarrow ((B \rarrow C) \rarrow (A \rarrow C))
 		\end{align}
-		も成り立つから，再び三段論法より
-		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C),A \vdash C
-		\end{align}
-		となる．よって演繹法則より
-		\begin{align}
-			(A \rarrow B) \wedge (B \rarrow C) \vdash A \rarrow C
-		\end{align}
-		となり，
-		\begin{align}
-			\vdash ((A \rarrow B) \wedge (B \rarrow C)) 
-			\rarrow (A \rarrow C)
-		\end{align}
-		を得る．
+		が得られる．
 		\QED
 	\end{prf}
 	
@@ -210,47 +198,54 @@
 		\label{logicalthm:conjunction_of_consequences}
 			$A,B,C$を文とするとき
 			\begin{align}
-				\vdash ((A \rarrow B) \wedge (A \rarrow C))
-				\rarrow (A \rarrow (B \wedge C))
+				\vdash (A \rarrow B) \rarrow ((A \rarrow C) 
+				\rarrow (A \rarrow B \wedge C).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{prf}
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C),A \vdash
-			(A \rarrow B) \wedge (A \rarrow C)
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A, \\
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A \rarrow B
 		\end{align}
-		であるから，$\wedge$の除去より
+		と三段論法より
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C),A \vdash
-			A \rarrow B
+			A \rarrow B,\ A \rarrow C,\ A \vdash B
+			\label{fom:logicalthm_conjunction_of_consequences_1}
 		\end{align}
-		が成り立つ．
+		が得られ，同様に
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C),A \vdash A
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A, \\
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A \rarrow C
 		\end{align}
-		でもあるから
+		と三段論法より
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C),A \vdash B
+			A \rarrow B,\ A \rarrow C,\ A \vdash C
+			\label{fom:logicalthm_conjunction_of_consequences_2}
 		\end{align}
-		となる．同様にして
+		が得られる．ここで論理積の導入より
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C),A \vdash C
+			\vdash B \rarrow (C \rarrow B \wedge C)
 		\end{align}
-		となるので，$\wedge$の導入により
+		が成り立つので
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C),A \vdash B \wedge C
+			A \rarrow B,\ A \rarrow C,\ A \vdash B \rarrow (C \rarrow B \wedge C)
 		\end{align}
-		となり，演繹法則より
+		も成り立つ．これと(\refeq{fom:logicalthm_conjunction_of_consequences_1})との
+		三段論法より
 		\begin{align}
-			(A \rarrow B) \wedge (A \rarrow C) \vdash
-			A \rarrow (B \wedge C)
+			A \rarrow B,\ A \rarrow C,\ A \vdash C \rarrow B \wedge C
 		\end{align}
-		が成り立つ．ゆえに
+		となり，(\refeq{fom:logicalthm_conjunction_of_consequences_2})との三段論法より
 		\begin{align}
-			\vdash ((A \rarrow B) \wedge (A \rarrow C))
-			\rarrow (A \rarrow (B \wedge C))
+			A \rarrow B,\ A \rarrow C,\ A \vdash B \wedge C
+		\end{align}
+		となる．あとは演繹規則を三回適用すれば
+		\begin{align}
+			A \rarrow B,\ A \rarrow C &\vdash A \rarrow B \wedge C, \\
+			A \rarrow B &\vdash (A \rarrow C) \rarrow (A \rarrow B \wedge C), \\
+			&\vdash (A \rarrow B) \rarrow ((A \rarrow C) \rarrow (A \rarrow B \wedge C))
 		\end{align}
 		が得られる．
 		\QED
