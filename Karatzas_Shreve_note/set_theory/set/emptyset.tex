@@ -1,5 +1,47 @@
 \section{空集合}
 	\begin{screen}
+		\begin{logicalthm}[分配された論理積の簡約]
+		\label{logicalthm:contraction_law_of_distributed_injunctions}
+			$A,B,C$を$\mathcal{L}$の文とするとき，
+			\begin{align}
+				\vdash (A \wedge C) \wedge (B \wedge C) \rarrow A \wedge B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去規則より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash A \wedge C
+		\end{align}
+		となり，また同じく論理積の除去規則より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) &\vdash A \wedge C \rarrow A
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) &\vdash A, 
+			\label{fom:logicalthm_contraction_law_of_injunctions_1}
+		\end{align}
+		が従う．同様にして
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash B
+			\label{fom:logicalthm_contraction_law_of_injunctions_2}
+		\end{align}
+		も得られる．ここで論理積の導入規則より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash A \rarrow (B \rarrow A \wedge B)
+		\end{align}
+		が成り立つので，(\refeq{fom:logicalthm_contraction_law_of_injunctions_1})と
+		(\refeq{fom:logicalthm_contraction_law_of_injunctions_2})との三段論法より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash A \wedge B
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{dfn}[空集合]
 			$\emptyset \defeq \Set{x}{x \neq x}$で定める類$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
 		\end{dfn}
@@ -29,9 +71,9 @@
 				\REPAX \defarrow \forall x\, \forall y\, \forall z\, 
 				(\, \varphi(x,y) \wedge \varphi(x,z)
 				\rarrow y = z\, )
-				\rarrow \forall a\, \exists z\, \forall y\,
-				(\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
-				\varphi(x,y)\, )\, ).
+				\rarrow \forall a\, \exists u\, \forall v\,
+				(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,v)\, )\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -45,70 +87,252 @@
 	置換公理によってそのこと保証され，分出定理として知られている．
 	
 	\begin{screen}
-		\begin{thm}[分出定理]
+		\begin{thm}[分出定理]\label{thm:axiom_of_separation}
 			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
 			$\varphi$に自由に現れる項は$x$のみであるとする．このとき
 			\begin{align}
+				\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash 
 				\forall a\, \exists s\, \forall x\,
 				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
+				\label{fom:thm_axiom_of_separation_0}
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$y$と$z$を，$\varphi(x)$に現れる自由な$x$を$y$や$z$に置き換えても
-		束縛されない変項とする．そして$x$と$y$が自由に現れる式$\psi(x,y)$を
+		$y$を，$\varphi$の$x$への代入について自由である変項とする．
+		そして$x$と$y$が自由に現れる式$\psi(x,y)$を
 		\begin{align}
 			x = y \wedge \varphi(x)
 		\end{align}
-		と設定すると，これは
-		\begin{align}
-			\forall x\, \forall y\, \forall z\, 
-			\left[\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, \right]
-		\end{align}
-		を満たすので，置換公理より集合$a$に対して
-		\begin{align}
-			\forall y\, (\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
-			\psi(x,y)\, )\, )
-		\end{align}
-		を満たす集合$z$が取れる．このとき
-		\begin{align}
-			\Set{y}{y \in a \wedge \varphi(y)} = z
-		\end{align}
-		が成立する．実際，任意の$\varepsilon$項$y$に対して，
-		\begin{align}
-			y \in z
-		\end{align}
-		ならば
-		\begin{align}
-			x \in a \wedge x = y \wedge \varphi(x)
-		\end{align}
-		を満たす集合$x$が取れるが，このとき相等性から
-		\begin{align}
-			y \in a \wedge \varphi(y)
-		\end{align}
-		が成立する．逆に
-		\begin{align}
-			y \in a \wedge \varphi(y)
-		\end{align}
-		であれば，
-		\begin{align}
-			\tau \defeq \varepsilon s\, (\, y = s\, )
-		\end{align}
-		とおけば
-		\begin{align}
-			\tau \in a \wedge (\, \tau = y \wedge \varphi(\tau)\, )
-		\end{align}
-		が成り立つので，すなわち
-		\begin{align}
-			\exists x\, (\, x \in a \wedge \psi(x,y)\, )
-		\end{align}
-		が成り立ち
-		\begin{align}
-			y \in z
-		\end{align}
-		となる．
-		\QED
+		と設定する．
+		\begin{description}
+			\item[step1]
+				まず
+				\begin{align}
+					\EXTAX,\EQAX \vdash \forall x\, \forall y\, \forall z\, 
+					(\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, )
+					\label{fom:thm_axiom_of_separation_1}
+				\end{align}
+				が成り立つことを示す．これを見越して
+				\begin{align}
+					\tau &\defeq \varepsilon x\, \forall y\, \forall z\, 
+					(\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, ), \\
+					\sigma &\defeq \varepsilon y\, \forall z\, 
+					(\, \psi(\tau,y) \wedge \psi(\tau,z) \rarrow y = z\, ), \\
+					\rho &\defeq \varepsilon z\, 
+					(\, \psi(\tau,\sigma) \wedge \psi(\tau,z) \rarrow \sigma = z\, )
+				\end{align}
+				とおく．これは縮約可能であって(
+				推論法則\ref{logicalthm:contraction_law_of_distributed_injunctions})
+				\begin{align}
+					\vdash (\, \tau = \sigma \wedge \varphi(\tau)\, )
+						\wedge (\, \tau = \rho \wedge \varphi(\tau)\, )
+						\rarrow \tau = \sigma \wedge \tau = \rho
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) 
+					\vdash \tau = \sigma \wedge \tau = \rho
+				\end{align}
+				がとなり，さらに論理積の除去法則より
+				\begin{align}
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) &\vdash \tau = \sigma, \\
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) &\vdash \tau = \rho
+				\end{align}
+				が出る．ここで等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					\EXTAX,\EQAX \vdash \tau = \sigma \rarrow 
+						(\, \tau = \rho \rarrow \sigma = \rho\, )
+				\end{align}
+				が成り立つので，三段論法を二回用いれば
+				\begin{align}
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho),\ \EXTAX,\EQAX 
+					\vdash \sigma = \rho
+				\end{align}
+				が得られる．ゆえに演繹法則より
+				\begin{align}
+					\EXTAX,\EQAX \vdash \psi(\tau,\sigma) \wedge \psi(\tau,\rho)
+					\rarrow \sigma = \rho
+				\end{align}
+				となり，全称記号の推論規則より
+				\begin{align}
+					\EXTAX,\EQAX &\vdash \forall z\, 
+						(\, \psi(\tau,\sigma) \wedge \psi(\tau,z) 
+						\rarrow \sigma = z\, ), \\
+					\EXTAX,\EQAX &\vdash \forall y\, \forall z\, 
+						(\, \psi(\tau,y) \wedge \psi(\tau,z) \rarrow y = z\, ), \\
+					\EXTAX,\EQAX &\vdash \forall x\, \forall y\, \forall z\, 
+						(\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, )
+				\end{align}
+				が従う．
+			
+			\item[step2]
+				置換公理より
+				\begin{align}
+					\REPAX \vdash \forall x\, \forall y\, \forall z\, 
+					(\, \psi(x,y) \wedge \psi(x,z)
+					\rarrow y = z\, )
+					\rarrow \forall a\, \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+					\psi(x,v)\, )\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:thm_axiom_of_separation_1})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+					\psi(x,v)\, )\, )
+					\label{fom:thm_axiom_of_separation_2}
+				\end{align}
+				が成立する．(\refeq{fom:thm_axiom_of_separation_1})を示したいので
+				\begin{align}
+					\alpha \defeq \varepsilon a \negation \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
+				\end{align}
+				とおくと，全称記号の推論規則より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash &\forall a\, \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+					\psi(x,v)\, )\, ) \\
+					&\rarrow \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+				\end{align}
+				となるので，(\refeq{fom:thm_axiom_of_separation_2})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+					\label{fom:thm_axiom_of_separation_3}
+				\end{align}
+				が従う．ここで
+				\begin{align}
+					\zeta \defeq \varepsilon u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+				\end{align}
+				とおけば，量化子の推論規則と(\refeq{fom:thm_axiom_of_separation_2})との
+				三段論法により
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash \forall v\,
+					(\, v \in \zeta \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+					\label{fom:thm_axiom_of_separation_4}
+				\end{align}
+				が成り立つ．
+			
+			\item[step3]
+				最後に
+				\begin{align}
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \forall x\,
+					(\, x \in \zeta \lrarrow x \in \alpha \wedge \varphi(x)\, )
+					\label{fom:thm_axiom_of_separation_8}
+				\end{align}
+				となることを示す．いま
+				\begin{align}
+					\tau \defeq \varepsilon x \negation
+					(\, x \in \zeta \lrarrow x \in \alpha \wedge \varphi(x)\, )
+				\end{align}
+				とおけば，(\refeq{fom:thm_axiom_of_separation_4})と全称記号の推論規則より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\tau \in \zeta \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,\tau)\, )
+					\label{fom:thm_axiom_of_separation_5}
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX \vdash
+					\exists x\, (\, x \in \alpha \wedge \psi(x,\tau)\, )
+				\end{align}
+				となる．ここで
+				\begin{align}
+					\sigma \defeq \varepsilon x\, (\, x \in \alpha \wedge
+					\psi(x,\tau)\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX \vdash
+					\sigma \in \alpha \wedge \psi(\sigma,\tau)
+				\end{align}
+				となるので，
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \sigma \in \alpha, \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \sigma = \tau, \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \varphi(\sigma)
+				\end{align}
+				が従う．ところで相等性公理と代入原理
+				(定理\ref{thm:the_principle_of_substitution})より
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash 
+						\sigma = \tau \rarrow (\, \sigma \in \alpha \rarrow
+						\tau \in \alpha\, ), \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX &\vdash
+						\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow
+						\varphi(\tau)\, ), \\
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \tau \in \alpha, \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX &\vdash \varphi(\tau)
+				\end{align}
+				が従い
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX \vdash
+					\tau \in \alpha \wedge \varphi(\tau)
+				\end{align}
+				となる．以上で
+				\begin{align}
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \tau \in \zeta \rarrow
+					\tau \in \alpha \wedge \varphi(\tau)
+					\label{fom:thm_axiom_of_separation_6}
+				\end{align}
+				が得られた．逆に定理\ref{thm:any_class_equals_to_itself}と併せて
+				\begin{align}
+					\tau \in \alpha \wedge \varphi(\tau),\ 
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash
+					\tau \in \alpha \wedge (\, \tau = \tau \wedge \varphi(\tau)\, )
+				\end{align}
+				が成り立つので，存在記号の推論規則より
+				\begin{align}
+					\tau \in \alpha \wedge \varphi(\tau),\ 
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash
+					\exists x\, (\, x \in \alpha \wedge \psi(x,\tau)\, )
+				\end{align}
+				となる．他方で(\refeq{fom:thm_axiom_of_separation_5})より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\exists x\, (\, x \in \alpha \wedge 
+					\psi(x,\tau)\, ) \rarrow \tau \in \zeta
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\tau \in \alpha \wedge \varphi(\tau),\ 
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \tau \in \zeta
+				\end{align}
+				が従う．以上で
+				\begin{align}
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash 
+					\tau \in \alpha \wedge \varphi(\tau) \rarrow \tau \in \zeta
+					\label{fom:thm_axiom_of_separation_7}
+				\end{align}
+				も得られた．(\refeq{fom:thm_axiom_of_separation_6})と
+				(\refeq{fom:thm_axiom_of_separation_7})および存在記号の推論規則より
+				(\refeq{fom:thm_axiom_of_separation_8})が出る．
+				すると存在記号の推論規則より
+				\begin{align}
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in \alpha \wedge \varphi(x)\, )
+				\end{align}
+				となり，全称記号の推論規則より
+				\begin{align}
+					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash 
+					\forall a\, \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{screen}

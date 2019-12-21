@@ -1,0 +1,151 @@
+\section{代入原理}
+	$a$と$b$を類とし，$\varphi$を$x$のみが自由に現れる式とするとき，
+	\begin{align}
+		a = b
+	\end{align}
+	ならば$a$と$b$をそれぞれ$\varphi$の自由な$x$に代入しても
+	\begin{align}
+		\varphi(a) \lrarrow \varphi(b)
+	\end{align}
+	が成立するというのは{\bf 代入原理}\index{だいにゅうげんり@代入原理}
+	{\bf (the principle of substitution)}と呼ばれる．
+	この原理の証明は相等性公理に負うところが多いが，
+	本稿では$\varepsilon$項という厄介なものを抱え込んでいるため
+	$\EQAX$だけでは不十分であり，次に追加する公理が必要になる．
+	
+	\begin{screen}
+		\begin{axm}[$\varepsilon$項に対する相等性公理]
+			$a,b$を類とし，$\varphi$を$\lang{\varepsilon}$の式とし，$\varphi$には変項$x,y$が
+			自由に現れ，また$\varphi$に自由に現れる変項はこれらのみであるとする．このとき
+			\begin{align}
+				\EQAXEP \defarrow
+				a = b \rarrow \varepsilon x \varphi(x,a) = \varepsilon x \varphi(x,b).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	代入原理を示すには構造的帰納法の原理が必要になるので，証明はメタなものとなる．
+	
+	\begin{screen}
+		\begin{thm}[代入原理]\label{thm:the_principle_of_substitution}
+			$a,b$を類とし，$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項
+			とし，$\varphi$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\EQAXEP \vdash a = b \rarrow 
+				(\, \varphi(a) \lrarrow \varphi(b)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				$c$を類として，$\varphi$が
+				\begin{align}
+					x \in c
+				\end{align}
+				なる式であるとき，
+				\begin{align}
+					a = b,\ \EQAX \vdash a \in c \rarrow b \in c
+				\end{align}
+				となる．また
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash b = a
+				\end{align}
+				より
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash b \in c \rarrow a \in c
+				\end{align}
+				も成り立つ．ゆえに
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash a \in c \lrarrow b \in c
+				\end{align}
+				が得られる．同様に
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash c \in a \lrarrow c \in b
+				\end{align}
+				も得られる．
+				
+			\item[step2]
+				$\varphi$が
+				\begin{align}
+					x \in \varepsilon y\, R(x,y)
+				\end{align}
+				なる式であるとき，
+				\begin{align}
+					a = b,\ \EQAXEP \vdash \varepsilon y\, R(a,y) = \varepsilon y\, R(b,y)
+				\end{align}
+				となる．
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX 
+					\vdash (\, \varepsilon y\, R(a,y) = \varepsilon y\, R(b,y)\, )
+					\rarrow (\, a \in \varepsilon y\, R(a,y) \lrarrow a \in \varepsilon y\, R(b,y)\, )
+				\end{align}
+				なので
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX,\EQAXEP \vdash 
+					a \in \varepsilon y\, R(a,y) \lrarrow a \in \varepsilon y\, R(b,y)
+				\end{align}
+				となる．
+				\begin{align}
+					a=b,\ \EXTAX,\EQAX \vdash 
+					a \in \varepsilon y\, R(b,y) \lrarrow b \in \varepsilon y\, R(b,y)
+				\end{align}
+				も成り立つので
+				\begin{align}
+					a=b,\ \EXTAX,\EQAX,\EQAXEP \vdash 
+					a \in \varepsilon y\, R(a,y) \lrarrow b \in \varepsilon y\, R(b,y)
+				\end{align}
+				が得られる．
+				
+			\item[step3]
+				$\varphi$が
+				\begin{align}
+					\varepsilon y R(x,y) \in \varepsilon z T(x,z)
+				\end{align}
+				なる形のとき，
+				\begin{align}
+					a = b,\ \EQAXEP \vdash 
+					\varepsilon y R(a,y) = \varepsilon y R(b,y)
+				\end{align}
+				と
+				\begin{align}
+					a = b,\ \EQAX, \EQAXEP \vdash 
+					(\, \varepsilon y R(a,y) = \varepsilon y R(b,y)\, )
+					\rarrow (\, \varepsilon y R(a,y) \in \varepsilon z T(a,z)
+					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(a,z)\, )
+				\end{align}
+				より
+				\begin{align}
+					a = b,\ \EQAX, \EQAXEP \vdash 
+					\varepsilon y R(a,y) \in \varepsilon z T(a,z)
+					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(a,z)
+				\end{align}
+				が成り立つ．他方で
+				\begin{align}
+					a = b,\ \EQAXEP \vdash 
+					\varepsilon z T(a,z) = \varepsilon z T(b,z)
+				\end{align}
+				と
+				\begin{align}
+					a = b,\ \EQAX, \EQAXEP \vdash 
+					(\, \varepsilon z T(a,z) = \varepsilon z T(b,z)\, )
+					\rarrow (\, \varepsilon y R(b,y) \in \varepsilon z T(a,z)
+					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)\, )
+				\end{align}
+				より
+				\begin{align}
+					a = b,\ \EQAX, \EQAXEP \vdash 
+					\varepsilon y R(b,y) \in \varepsilon z T(a,z)
+					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
+				\end{align}
+				が成り立つ．同値関係の推移律
+				(\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+				\begin{align}
+					a = b,\ \EQAX, \EQAXEP \vdash 
+					\varepsilon y R(a,y) \in \varepsilon z T(a,z)
+					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
+				\end{align}
+				が成立する．
+		\end{description}
+	\end{sketch}
