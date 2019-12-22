@@ -649,51 +649,43 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[空集合はいかなる類も持たない]
+		\begin{thm}[類を要素として持てば空ではない]
 		\label{thm:emptyset_does_not_contain_any_class}
 			$a,b$を類とするとき
 			\begin{align}
-				b = \emptyset \rarrow a \notin b.
+				a \in b \rarrow \exists x\, (\, x \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		いま$a \in b$が成り立っていると仮定する．このとき要素の公理と三段論法より
+		要素の公理より
 		\begin{align}
-			\set{a}
+			\ELEAX \vdash a \in b \rarrow \set{a}
 		\end{align}
-		が成立する．ここで
+		が成立するので，
 		\begin{align}
 			\tau \defeq \varepsilon x\, (\, a = x\, )
 		\end{align}
-		とおけば，存在記号に関する規則から
+		とおけば(必要ならば$a = x$を$\lang{\varepsilon}$の式に書き換える)，存在記号の推論規則から
 		\begin{align}
-			a = \tau
+			a \in b,\ \ELEAX \vdash a = \tau
 		\end{align}
-		が成り立つので，相等性の公理より
+		が成り立つ．相等性の公理より
 		\begin{align}
-			\tau \in b
+			\EQAX \vdash a = \tau \rarrow (\, a \in b \rarrow \tau \in b\, )
 		\end{align}
-		が従い，存在記号に関する規則より
+		となるので，三段論法より
 		\begin{align}
-			\exists x\, (\, x \in b\, )
+			a \in b,\ \EQAX,\ELEAX \vdash \tau \in b
 		\end{align}
-		が成り立つ．よって演繹法則から
+		となる．存在記号の推論規則より
 		\begin{align}
-			a \in b \rarrow \exists x\, (\, x \in b\, )
+			a \in b,\ \EQAX,\ELEAX \vdash \exists x\, (\, x \in b\, )
 		\end{align}
-		が成り立つ．この対偶を取り推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}を適用すれば
+		が成り立ち，演繹法則から
 		\begin{align}
-			\forall x\, (\, x \notin b\, ) \rarrow a \notin b
-		\end{align}
-		が得られる．定理\ref{thm:uniqueness_of_emptyset}より
-		\begin{align}
-			b = \emptyset \rarrow \forall x\, (\, x \notin b\, )
-		\end{align}
-		も正しいので，含意の推移律から
-		\begin{align}
-			b = \emptyset \rarrow a \notin b
+			\EQAX,\ELEAX \vdash a \in b \rarrow \exists x\, (\, x \in b\, )
 		\end{align}
 		が得られる．
 		\QED
