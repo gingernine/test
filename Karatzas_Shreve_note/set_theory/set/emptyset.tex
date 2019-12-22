@@ -269,7 +269,8 @@
 						\tau \in \alpha\, ), \\
 					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX &\vdash
 						\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow
-						\varphi(\tau)\, ), \\
+						\varphi(\tau)\, ), 
+						\label{fom:thm_axiom_of_separation_9} \\
 				\end{align}
 				が成り立つので，三段論法より
 				\begin{align}
@@ -335,69 +336,152 @@
 		\end{description}
 	\end{sketch}
 	
+	分出定理は$\EQAXEP$を前提としているが，ステートメントの$\varphi(x)$が
+	\begin{align}
+		x \neq x
+	\end{align}
+	なる式の場合は
+	\begin{align}
+		\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
+			(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
+	\end{align}
+	が成立する．そもそも分出定理の証明で$\EQAXEP$が必要になったのは
+	\begin{align}
+		\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow \varphi(\tau)\, )
+	\end{align}
+	を用いるためであったが(\refeq{fom:thm_axiom_of_separation_9})，
+	$\varphi(x)$が$x \neq x$なる単純な式である場合は
+	\begin{align}
+		\EXTAX \vdash \sigma = \tau \rarrow
+		(\, \sigma \neq \sigma \rarrow \tau \neq \tau\, )
+	\end{align}
+	が成り立つのである．実際
+	\begin{align}
+		\sigma = \tau,\ \tau = \tau,\ \EXTAX &\vdash \sigma = \sigma,
+		&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}) \\
+		\sigma = \tau,\ \EXTAX &\vdash \tau = \tau \rarrow \sigma = \sigma,
+		&& (\mbox{演繹法則(メタ定理\ref{metathm:deduction_theorem})}) \\
+		\sigma = \tau,\ \EXTAX &\vdash \sigma \neq \sigma \rarrow \tau \neq \tau,
+		&& (\mbox{対偶(推論法則\ref{thm:contraposition_is_true})})
+	\end{align}
+	となる．
+	
 	\begin{screen}
 		\begin{thm}[$\emptyset$は集合]\label{thm:emptyset_is_a_set}
-			$\emptyset$は集合である:
 			\begin{align}
-				\set{\emptyset}.
+				\EXTAX,\EQAX,\REPAX \vdash \set{\emptyset}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		分出定理より
+		前述のとおり
 		\begin{align}
-			\forall z\, \exists y\, \forall x\,
-			(\, x \in y \lrarrow x \in z \wedge x \neq x\, )
+			\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
+			(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
 			\label{fom:thm_emptyset_is_a_set_1}
 		\end{align}
-		が成立するが，この式から
+		が成立する．$\alpha$を類である$\varepsilon$項とすれば，全称記号の推論規則より
 		\begin{align}
-			\exists y\, \forall x\, (\, x \in y \lrarrow x \neq x\, )
+			\EXTAX,\EQAX,\REPAX \vdash \exists s\, \forall x\,
+			(\, x \in s \lrarrow x \in \alpha \wedge x \neq x\, )
+		\end{align}
+		となり，また
+		\begin{align}
+			\sigma \defeq \varepsilon s\, \forall x\,
+			(\, x \in s \lrarrow x \in \alpha \wedge x \neq x\, )
+		\end{align}
+		とおけば存在記号の推論規則より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \forall x\,
+			(\, x \in \sigma \lrarrow x \in \alpha \wedge x \neq x\, )
 			\label{fom:thm_emptyset_is_a_set_2}
 		\end{align}
-		を示せる．これはすなわち$\emptyset$が集合であるということを示唆する．
-		$\zeta$を勝手な$\varepsilon$項として，後々の便宜のために
+		が成立する．いま
 		\begin{align}
-			\sigma &\defeq \varepsilon y\, \forall x\,
-			(\, x \in y \lrarrow x \in \zeta \wedge x \neq x\, ), \\
-			\tau &\defeq \varepsilon x \negation
-			(\, x \in \sigma \lrarrow x \neq x\, )
+			\tau \defeq \varepsilon x \negation (\, x \in s \lrarrow x \neq x\, )
 		\end{align}
-		とおけば，(\refeq{fom:thm_emptyset_is_a_set_1})より
+		とおけば，(\refeq{fom:thm_emptyset_is_a_set_2})と全称記号の推論規則より
 		\begin{align}
-			\tau \in \sigma \lrarrow \tau \in \zeta \wedge \tau \neq \tau
+			\EXTAX,\EQAX,\REPAX \vdash 
+			\tau \in \sigma \lrarrow \tau \in \alpha \wedge \tau \neq \tau
 		\end{align}
-		が成立する．論理和の規則より
+		となるので
 		\begin{align}
-			\tau \in \zeta \wedge \tau \neq \tau \rarrow \tau \neq \tau
+			\tau \in \sigma,\ \EXTAX,\EQAX,\REPAX \vdash
+			\tau \in \alpha \wedge \tau \neq \tau
 		\end{align}
-		が満たされるので，まずは
+		が従い，論理積の除去により
 		\begin{align}
-			\tau \in \sigma \rarrow \tau \neq \tau
+			\tau \in \sigma,\ \EXTAX,\EQAX,\REPAX \vdash \tau \neq \tau
 		\end{align}
-		が得られる．また
+		が従う．以上で
 		\begin{align}
-			\tau = \tau
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \rarrow \tau \neq \tau
+			\label{fom:thm_emptyset_is_a_set_3}
 		\end{align}
-		は正しいので，
+		が得られた．逆に，定理\ref{thm:any_class_equals_to_itself}より
 		\begin{align}
-			\tau = \tau \rarrow (\, \tau \notin \sigma \rarrow
-			\tau = \tau\, )
+			\EXTAX \vdash \tau = \tau 
 		\end{align}
-		と併せて
+		が成り立つので矛盾の推論規則と併せて
 		\begin{align}
-			\tau \notin \sigma \rarrow \tau = \tau
+			\tau \neq \tau,\ \EXTAX,\EQAX,\REPAX \vdash \bot
 		\end{align}
-		が成り立ち，対偶を取れば
+		となり，爆発律(推論法則\ref{logicalthm:contradiction_derives_any_formula})より
 		\begin{align}
-			\tau \neq \tau \rarrow \tau \in \sigma
+			\tau \neq \tau,\ \EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma
 		\end{align}
-		も得られる．ゆえに
+		が従う．以上で
 		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \neq \tau \rarrow \tau \in \sigma
+			\label{fom:thm_emptyset_is_a_set_4}
+		\end{align}
+		も得られた．ゆえに(\refeq{fom:thm_emptyset_is_a_set_3})
+		と(\refeq{fom:thm_emptyset_is_a_set_4})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \neq \tau
+		\end{align}
+		が成立し，全称記号の推論規則より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash 
 			\forall x\, (\, x \in \sigma \lrarrow x \neq x\, )
+			\label{fom:thm_emptyset_is_a_set_6}
 		\end{align}
-		が得られ，(\refeq{fom:thm_emptyset_is_a_set_2})が従う．
+		が得られる．次に
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash
+			\forall x\, (\, x \in \sigma \lrarrow x \Set{x}{x \neq x}\, )
+			\label{fom:thm_emptyset_is_a_set_5}
+		\end{align}
+		を示す．いま
+		\begin{align}
+			\chi \defeq x \negation (\, x \in \sigma \lrarrow x \Set{x}{x \neq x}\, )
+		\end{align}
+		とおけば，(\refeq{fom:thm_emptyset_is_a_set_6})と全称記号の推論規則より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \chi \in \sigma \lrarrow \chi \neq \chi
+		\end{align}
+		となり，他方で内包性公理より
+		\begin{align}
+			\COMAX \vdash \chi \neq \chi \lrarrow \chi \in \Set{x}{x \neq x}
+		\end{align}
+		が成り立つので，同値関係の推移律
+		(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash
+			\chi \in \sigma \lrarrow \chi \in \Set{x}{x \neq x}
+		\end{align}
+		が従い，全称記号の推論規則より(\refeq{fom:thm_emptyset_is_a_set_5})が出る．
+		ゆえに外延性公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \sigma = \emptyset
+		\end{align}
+		となり，存在記号の推論規則より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \exists s\, (\, \emptyset = s\, )
+		\end{align}
+		が得られる．
 		\QED
 	\end{sketch}
 	
