@@ -498,11 +498,11 @@
 	\begin{sketch}
 		$\forall x\, (\, x \notin \emptyset\, )$とは
 		\begin{align}
-			\forall x\, \negation (\, x \in \emptyset\, )
+			\forall x \negation (\, x \in \emptyset\, )
 		\end{align}
 		の略記であり，これを$\lang{\varepsilon}$の式に書き換えると
 		\begin{align}
-			\forall x\, \negation (\, x \neq x\, )
+			\forall x \negation (\, x \neq x\, )
 		\end{align}
 		となる．ここで
 		\begin{align}
@@ -755,7 +755,7 @@
 		\label{thm:subclass_contains_all_elements}
 			$a,b,c$を類とするとき
 			\begin{align}
-				\EXTAX,\EQAX,\ELEAX \vdash 
+				\EQAX,\ELEAX \vdash 
 				a \subset b \rarrow (\, c \in a \rarrow c \in b\, ).
 			\end{align}
 		\end{thm}
@@ -793,13 +793,13 @@
 			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash \tau \in b
 			\label{fom:subclass_contains_all_elements_2}
 		\end{align}
-		が従う．等号の可換律(定理\ref{thm:symmetry_of_equality})より
+		が従う．相等性公理より
 		\begin{align}
-			\EXTAX,\EQAX \vdash c = \tau \rarrow \tau = c
+			\EQAX \vdash c = \tau \rarrow \tau = c
 		\end{align}
 		が成り立つので，(\refeq{fom:subclass_contains_all_elements_1})との三段論法より
 		\begin{align}
-			a \subset b,\ c \in a,\ \EXTAX,\EQAX,\ELEAX \vdash \tau = c
+			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash \tau = c
 			\label{fom:subclass_contains_all_elements_3}
 		\end{align}
 		となり，相等性公理より
@@ -809,11 +809,11 @@
 		が成り立つので，(\refeq{fom:subclass_contains_all_elements_3})と
 		(\refeq{fom:subclass_contains_all_elements_2})との三段論法より
 		\begin{align}
-			a \subset b,\ c \in a,\ \EXTAX,\EQAX,\ELEAX \vdash c \in b
+			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash c \in b
 		\end{align}
 		が従う．そして演繹法則より
 		\begin{align}
-			\EXTAX,\EQAX,\ELEAX \vdash 
+			\EQAX,\ELEAX \vdash 
 			a \subset b \rarrow (\, c \in a \rarrow c \in b\, )
 		\end{align}
 		が得られる．
@@ -823,96 +823,137 @@
 	宇宙$\Univ$は類の一つであった．当然のようであるが，それは最大の類である．
 	\begin{screen}
 		\begin{thm}[$\Univ$は最大の類である]
-			$a$を類とするとき次が成り立つ:
+			$a$を類とするとき
 			\begin{align}
-				a \subset \Univ.
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{prf}
-		$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:any_class_equals_to_itself}と類の公理より
-		\begin{align}
-			\tau \in \Univ
-		\end{align}
-		が成立するので，推論規則\ref{logicalaxm:fundamental_rules_of_inference}より
-		\begin{align}
-			\tau \notin a \vee \tau \in \Univ
-		\end{align}
-		が成立する．このとき推論法則\ref{logicalthm:rule_of_inference_3}より
-		\begin{align}
-			\tau \in a \rarrow \tau \in \Univ
-		\end{align}
-		が成立し，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
-		\begin{align}
-			\forall x\, (\, x \in a \rarrow x \in \Univ\, )
-		\end{align}
-		が従う．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{thm}[互いに互いの部分類となる類同士は等しい]\label{thm:mutually_sub_classes_are_equivalent}
-			$a,b$を類とするとき次が成り立つ:
-			\begin{align}
-				a \subset b \wedge b \subset a \lrarrow a = b.
+				\EXTAX,\COMAX \vdash a \subset \Univ.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$a \subset b \wedge b \subset a$が成り立っていると仮定する．
-		このとき$\tau$を$\mathcal{L}$の任意の対象とすれば，
-		$a \subset b$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		いま
 		\begin{align}
-			\tau \in a \rarrow \tau \in b
+			\tau \defeq \varepsilon x \negation (\, x \in a \rarrow a \in \Univ\, )
 		\end{align}
-		が成立し，$b \subset a$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		とおく．定理\ref{thm:any_class_equals_to_itself}より
 		\begin{align}
-			\tau \in b \rarrow \tau \in a
+			\EXTAX \vdash \tau = \tau
 		\end{align}
-		が成立するので，
+		となり，他方で内包性公理より
 		\begin{align}
-			\tau \in a \lrarrow \tau \in b
+			\COMAX \vdash \tau = \tau \rarrow \tau \in \Univ
 		\end{align}
-		が成り立つ．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}および
-		外延性の公理より
+		が成り立つので，三段論法より
 		\begin{align}
-			a = b
+			\EXTAX,\COMAX \vdash \tau \in \Univ
 		\end{align}
-		が出るので，演繹法則より
+		が成立する．ゆえに
 		\begin{align}
-			a \subset b \wedge b \subset a \rarrow a = b
+			\tau \in a,\ \EXTAX,\COMAX \vdash \tau \in \Univ
 		\end{align}
-		が得られる．逆に$a = b$が満たされていると仮定するとき，$\tau$を$\mathcal{L}$の任意の対象とすれば
+		も成り立ち，演繹法則より
 		\begin{align}
-			\tau \in a \rarrow \tau \in b
+			\EXTAX,\COMAX \vdash \tau \in a \rarrow \tau \in \Univ
 		\end{align}
-		と
+		が従い，全称記号の推論規則より
 		\begin{align}
-			\tau \in b \rarrow \tau \in a
+			\EXTAX,\COMAX \vdash \forall x\, (\, x \in a \rarrow x \in \Univ\, )
 		\end{align}
-		が共に成り立つ. よって推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[等しい類は相手を包含する]
+		\label{thm:equivalent_classes_includes_the_other}
+			$a,b$を類とするとき
+			\begin{align}
+				\EQAX \vdash a = b \rarrow a \subset b \wedge b \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
 		\begin{align}
-			a \subset b
+			\tau \defeq \varepsilon x \negation (\, x \in a \rarrow x \in b\, )
 		\end{align}
-		と
+		とおけば，外延性公理の逆(定理\ref{thm:axiom_of_extensionality_equivalent})と
+		全称記号の推論規則，および論理積の除去により
 		\begin{align}
-			b \subset a
+			a = b,\ \EQAX \vdash \tau \in a \rarrow \tau \in b
 		\end{align}
-		が共に従う．よって演繹法則より
+		が成り立つので，全称記号の推論規則より
 		\begin{align}
-			a = b \rarrow a \subset b \wedge b \subset a
+			a = b,\ \EQAX \vdash \forall x\, (\, x \in a \rarrow x \in b\, )
+		\end{align}
+		が成り立つ．また$\tau$を
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in b \rarrow x \in a\, )
+		\end{align}
+		として，先ほどの$a$と$b$を入れ替えれば
+		\begin{align}
+			\EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
+		\end{align}
+		が得られるが，相等性公理より
+		\begin{align}
+			a = b,\ \EQAX \vdash b = a
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in b \rarrow \tau \in a
+		\end{align}
+		が従う．ゆえに全称記号の推論規則より
+		\begin{align}
+			a = b,\ \EQAX \vdash b \subset a
 		\end{align}
 		も得られる．
 		\QED
 	\end{sketch}
 	
-	\monologue{
-		定理\ref{thm:subclass_contains_all_elements}と定理\ref{thm:mutually_sub_classes_are_equivalent}より，
-			類$a,b$が$a = b$を満たすならば，$a$と$b$は要素に持つ$\mathcal{L}$の対象のみならず，
-			要素に持つ類までも一致するのですね．
-	}
+	\begin{screen}
+		\begin{thm}[互いに相手を包含する類同士は等しい]
+		\label{thm:mutually_including_classes_are_equivalent}
+			$a,b$を類とするとき
+			\begin{align}
+				\EXTAX \vdash a \subset b \wedge b \subset a \rarrow a = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in a \lrarrow x \in b\, )
+		\end{align}
+		とおく．論理積の除去により
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash a \subset b
+		\end{align}
+		となり，全称記号の推論規則より
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash \tau \in a \rarrow \tau \in b
+		\end{align}
+		が成り立つ．同様にして
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash \tau \in b \rarrow \tau \in a
+		\end{align}
+		も成り立つので，論理積の導入により
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash \tau \in a \lrarrow \tau \in b
+		\end{align}
+		となり，全称記号の推論規則より
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash 
+			\forall x\, (\, x \in a \lrarrow x \in b\, )
+		\end{align}
+		が得られる．そして外延性公理により
+		\begin{align}
+			a \subset b \wedge b \subset a,\ \EXTAX \vdash a = b 
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
 	
 \section{順序型について}
 	$(A,R)$を整列集合とするとき，

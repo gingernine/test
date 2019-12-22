@@ -131,7 +131,7 @@
 		が成り立つ．外延性の公理より
 		\begin{align}
 			\EXTAX \vdash \forall s\, (\, s \in \tau  \lrarrow s \in \tau\, )
-			\rightarrow \tau = \tau
+			\rarrow \tau = \tau
 		\end{align}
 		となるので，三段論法より
 		\begin{align}
@@ -181,6 +181,7 @@
 			\begin{align}
 				\EQAX \defarrow
 				\begin{cases}
+					a = b \rarrow b = a, & \\
 					a = b \rarrow (\, a \in c \rarrow b \in c\, ), & \\
 					a = b \rarrow (\, c \in a \rarrow c \in b\, ). & 
 				\end{cases}
@@ -190,11 +191,12 @@
 	
 	\begin{screen}
 		\begin{thm}[外延性の公理の逆も成り立つ]
+		\label{thm:inverse_of_axiom_of_extensionality}
 		\label{thm:axiom_of_extensionality_equivalent}
 			$a$と$b$を類とするとき
 			\begin{align}
 				\EQAX \vdash 
-				a=b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, ).
+				a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -204,23 +206,52 @@
 		\begin{align}
 			\tau \defeq \varepsilon x \negation (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
-		とおく．相等性の公理より
+		とおく．相等性公理より
 		\begin{align}
-			\EQAX \vdash a = b \rightarrow (\, \tau \in a \lrarrow \tau \in b\, )
+			\EQAX \vdash a = b \rarrow (\, \tau \in a \rarrow \tau \in b\, )
 		\end{align}
 		となるので，演繹法則の逆より
 		\begin{align}
-			a = b, \EQAX \vdash \tau \in a \lrarrow \tau \in b
+			a = b,\ \EQAX \vdash \tau \in a \rarrow \tau \in b
+			\label{fom:inverse_of_axiom_of_extensionality_1}
 		\end{align}
-		となる．全称記号の推論規則より
+		となる．また相等性公理と演繹法則の逆により
 		\begin{align}
-			a = b, \EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
+			a = b,\ \EQAX \vdash b = a
 		\end{align}
-		が成立する．よって演繹法則より
+		が成り立ち，同じく相等性公理より
+		\begin{align}
+			\EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in b \rarrow \tau \in a
+			\label{fom:inverse_of_axiom_of_extensionality_2}
+		\end{align}
+		も得られる．論理積の導入により
+		\begin{align}
+			a = b,\ \EQAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
+			\rarrow (\, (\, \tau \in b \rarrow \tau \in a\, )
+			\rarrow (\, \tau \in a \lrarrow \tau \in b\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:inverse_of_axiom_of_extensionality_1})との三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash (\, \tau \in b \rarrow \tau \in a\, )
+			\rarrow (\, \tau \in a \lrarrow \tau \in b\, )
+		\end{align}
+		が従い，(\refeq{fom:inverse_of_axiom_of_extensionality_2})との三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in a \lrarrow \tau \in b
+		\end{align}
+		が従う．全称記号の推論規則より
+		\begin{align}
+			a = b,\ \EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
+		\end{align}
+		が成立し，演繹法則より
 		\begin{align}
 			\EQAX \vdash a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
-		が成り立つ．
+		が得られる．
 		\QED
 	\end{prf}
 	
@@ -258,7 +289,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[等号の対称律]\label{thm:symmetry_of_equality}
+		\begin{thm}[(ボツ!!!)等号の対称律]\label{thm:symmetry_of_equality}
 			$a,b$を類とするとき
 			\begin{align}
 				\EXTAX,\EQAX \vdash a = b \rarrow b = a.
@@ -269,33 +300,33 @@
 	\begin{prf}
 		定理\ref{thm:axiom_of_extensionality_equivalent}より
 		\begin{align}
-			a=b,\EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
+			a=b,\ \EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
 		\end{align}
 		となるが，ここで類である任意の$\varepsilon$項$\tau$に対して
 		\begin{align}
-			a=b,\EQAX \vdash \tau \in a \lrarrow \tau \in b
+			a=b,\ \EQAX \vdash \tau \in a \lrarrow \tau \in b
 		\end{align}
 		となるが，他方で推論法則\ref{logicalthm:symmetry_of_equivalence_arrows}より
 		\begin{align}
-			a=b,\EQAX \vdash (\, \tau \in a \lrarrow \tau \in b\, )
+			a=b,\ \EQAX \vdash (\, \tau \in a \lrarrow \tau \in b\, )
 				\rarrow (\, \tau \in b \lrarrow \tau \in a\, )
 		\end{align}
 		が成り立つので，三段論法より
 		\begin{align}
-			a=b,\EQAX \vdash \tau \in b \lrarrow \tau \in a
+			a=b,\ \EQAX \vdash \tau \in b \lrarrow \tau \in a
 		\end{align}
 		となる．そして$\tau$の任意性より
 		\begin{align}
-			a=b,\EQAX \vdash \forall x\, (\, x \in b  \lrarrow x \in a\, )
+			a=b,\ \EQAX \vdash \forall x\, (\, x \in b  \lrarrow x \in a\, )
 		\end{align}
 		が成り立つ．外延性の公理より
 		\begin{align}
-			a=b,\EXTAX,\EQAX \vdash \forall x\, (\, x \in b  \lrarrow x \in a\, )
+			a=b,\ \EXTAX,\EQAX \vdash \forall x\, (\, x \in b  \lrarrow x \in a\, )
 			\rarrow b = a
 		\end{align}
 		となるので，三段論法より
 		\begin{align}
-			a=b,\EXTAX,\EQAX \vdash b = a
+			a=b,\ \EXTAX,\EQAX \vdash b = a
 		\end{align}
 		となる．最後に演繹法則より
 		\begin{align}
@@ -311,7 +342,7 @@
 			$\varphi$に自由に現れる項は$y$のみであるとし，
 			$x$は$\varphi$で$y$への代入について自由であるとするとき，
 			\begin{align}
-				\COMAX \defarrow \forall x\, \left(\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, \right).
+				\COMAX \defarrow \forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
@@ -428,7 +459,7 @@
 			\EXTAX,\COMAX \vdash \tau \in \Univ
 			\label{fom:thm_V_is_the_whole_of_sets_2}
 		\end{align}
-		となる．ここで定理\ref{thm:symmetry_of_equality}より
+		となる．ここで相等性公理より
 		\begin{align}
 			\EQAX \vdash a = \tau \rarrow \tau = a
 		\end{align}
@@ -437,17 +468,17 @@
 			\set{a},\EQAX \vdash \tau = a
 			\label{fom:thm_V_is_the_whole_of_sets_3}
 		\end{align}
-		となる．また相等性公理より
+		となる．同じく相等性公理より
 		\begin{align}
 			\EQAX \vdash \tau = a \rarrow (\, \tau \in \Univ \rarrow a \in \Univ\, )
 		\end{align}
 		が成り立つので，(\refeq{fom:thm_V_is_the_whole_of_sets_3})と三段論法より
 		\begin{align}
-			\set{a},\EQAX \vdash \tau \in \Univ \rarrow a \in \Univ
+			\set{a},\ \EQAX \vdash \tau \in \Univ \rarrow a \in \Univ
 		\end{align}
 		となり，(\refeq{fom:thm_V_is_the_whole_of_sets_2})と三段論法より
 		\begin{align}
-			\set{a},\EXTAX,\EQAX,\COMAX \vdash a \in \Univ
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \Univ
 		\end{align}
 		が成り立つ．最後に演繹法則より
 		\begin{align}
@@ -590,85 +621,86 @@
 		が成り立つので，
 		\begin{align}
 			a = b,\ a = c,\ \EQAX \vdash a = b
+			\label{fom:thm_transitive_law_of_equality_0}
 		\end{align}
 		との三段論法より
 		\begin{align}
 			a = b,\ a = c,\ \EQAX \vdash \tau \in a \rarrow \tau \in b
 			\label{fom:thm_transitive_law_of_equality_1}
 		\end{align}
-		となる．他方で定理\ref{thm:symmetry_of_equality}より
+		となる．同じく相等性公理より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash a = b \rarrow b = a, \\
+			a = b,\ a = c,\ \EQAX \vdash a = b \rarrow b = a, \\
 		\end{align}
-		が成り立つので
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_0})との三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash b = a
+			a = b,\ a = c,\ \EQAX \vdash b = a
 		\end{align}
 		となり，同様に相等性公理から
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
+			a = b,\ a = c,\ \EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
 		\end{align}
-		が成り立つので三段論法より
+		が成り立つので，三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \tau \in b \rarrow \tau \in a
+			a = b,\ a = c,\ \EQAX \vdash \tau \in b \rarrow \tau \in a
 			\label{fom:thm_transitive_law_of_equality_2}
 		\end{align}
 		となる．論理積の導入規則より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash (\tau \in a \rarrow \tau \in b)
+			a = b,\ a = c,\ \EQAX \vdash (\tau \in a \rarrow \tau \in b)
 			\rarrow ((\tau \in b \rarrow \tau \in a) \rarrow 
 			(\tau \in a \lrarrow \tau \in b))
 		\end{align}
 		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_1})との三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash (\tau \in b \rarrow \tau \in a) \rarrow 
+			a = b,\ a = c,\ \EQAX \vdash (\tau \in b \rarrow \tau \in a) \rarrow 
 			(\tau \in a \lrarrow \tau \in b)
 		\end{align}
 		となり，(\refeq{fom:thm_transitive_law_of_equality_2})との三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \tau \in a \lrarrow \tau \in b
-			\label{fom:thm_transitive_law_of_equality_1}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in a \lrarrow \tau \in b
+			\label{fom:thm_transitive_law_of_equality_4}
 		\end{align}
 		となる．対称的に
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \tau \in a \lrarrow \tau \in c
+			a = b,\ a = c,\ \EQAX \vdash \tau \in a \lrarrow \tau \in c
 			\label{fom:thm_transitive_law_of_equality_3}
 		\end{align}
 		も得られる．ここで含意の可換律
 		(推論法則\ref{logicalthm:commutative_law_of_equivalence_symbol})より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash (\, \tau \in a \lrarrow \tau \in b\, )
+			a = b,\ a = c,\ \EQAX \vdash (\, \tau \in a \lrarrow \tau \in b\, )
 			\rarrow (\, \tau \in b \lrarrow \tau \in a\, ) 
 		\end{align}
-		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_1})との三段論法より
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_4})との三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \tau \in b \lrarrow \tau \in a
-			\label{fom:thm_transitive_law_of_equality_2}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in b \lrarrow \tau \in a
+			\label{fom:thm_transitive_law_of_equality_5}
 		\end{align}
 		となる．また含意の推移律
 		(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash (\, \tau \in b \lrarrow \tau \in a\, )
+			a = b,\ a = c,\ \EQAX \vdash (\, \tau \in b \lrarrow \tau \in a\, )
 			\rarrow ((\, \tau \in a \lrarrow \tau \in c\, )
 			\rarrow (\, \tau \in b \lrarrow \tau \in c\, )) 
 		\end{align}
-		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_2})との三段論法より
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_5})との三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash (\, \tau \in a \lrarrow \tau \in c\, )
+			a = b,\ a = c,\ \EQAX \vdash (\, \tau \in a \lrarrow \tau \in c\, )
 			\rarrow (\, \tau \in b \lrarrow \tau \in c\, )
 		\end{align}
 		となり，(\refeq{fom:thm_transitive_law_of_equality_3})との三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \tau \in b \lrarrow \tau \in c
+			a = b,\ a = c,\ \EQAX \vdash \tau \in b \lrarrow \tau \in c
 		\end{align}
 		が得られる．全称記号の推論規則より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash (\tau \in b \lrarrow \tau \in c)
+			a = b,\ a = c,\ \EQAX \vdash (\tau \in b \lrarrow \tau \in c)
 			\rarrow \forall x\, (\, x \in b \lrarrow x \in c\, )
 		\end{align}
 		となるので，三段論法より
 		\begin{align}
-			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \forall x\, (\, x \in b \lrarrow x \in c\, )
+			a = b,\ a = c,\ \EQAX \vdash \forall x\, (\, x \in b \lrarrow x \in c\, )
 		\end{align}
 		となり，外延性公理より
 		\begin{align}
