@@ -353,30 +353,37 @@
 	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
 	
 	\begin{screen}
-		\begin{logicalthm}[同値記号の可換律]\label{logicalthm:commutative_law_of_equivalence}
-			$A$と$B$を$\mathcal{L}'$の閉式とするとき
+		\begin{logicalthm}[同値関係の対称律]
+		\label{logicalthm:symmetry_of_equivalence_arrows}
+			$A,B$を$\mathcal{L}$の文とするとき
 			\begin{align}
-				(A \lrarrow B) \rarrow (B \lrarrow A).
+				\vdash (A \lrarrow B) \rarrow (B \lrarrow A).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
-	\begin{sketch}
-		$A \lrarrow B$が成り立っているならば，推論法則\ref{logicalthm:commutative_law_of_disjunction}より
+	\begin{prf}
+		$\wedge$の除去(推論規則\ref{logicalaxm:elimination_of_conjunction})より
 		\begin{align}
-			B \rarrow A \wedge A \rarrow B
+			A \lrarrow B &\vdash A \rarrow B, \\
+			A \lrarrow B &\vdash B \rarrow A
 		\end{align}
-		が成立する．すなわち
+		となる．他方で論理積の導入(推論規則\ref{logicalaxm:introduction_of_conjunction})より
 		\begin{align}
-			B \lrarrow A
+			\vdash (B \rarrow A) \rarrow ((A \rarrow B) \rarrow 
+			(B \rarrow A) \wedge (A \rarrow B))
 		\end{align}
-		が成立する．そして演繹法則から
+		が成り立つので，三段論法を二回適用すれば
 		\begin{align}
-			(A \lrarrow B) \rarrow (B \lrarrow A)
+			A \lrarrow B \vdash (B \rarrow A) \wedge (A \rarrow B)
 		\end{align}
-		が成立する．
+		となる．つまり
+		\begin{align}
+			A \lrarrow B \vdash B \lrarrow A
+		\end{align}
+		が得られた．
 		\QED
-	\end{sketch}
+	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[同値記号の遺伝性質]\label{logicalthm:hereditary_of_equivalence}
