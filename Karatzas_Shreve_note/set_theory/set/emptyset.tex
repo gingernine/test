@@ -448,15 +448,17 @@
 			\forall x\, (\, x \in \sigma \lrarrow x \neq x\, )
 			\label{fom:thm_emptyset_is_a_set_6}
 		\end{align}
-		が得られる．次に
+		が得られる．
+		
+		次に
 		\begin{align}
 			\EXTAX,\EQAX,\COMAX,\REPAX \vdash
-			\forall x\, (\, x \in \sigma \lrarrow x \Set{x}{x \neq x}\, )
+			\forall x\, (\, x \in \sigma \lrarrow x \in \Set{x}{x \neq x}\, )
 			\label{fom:thm_emptyset_is_a_set_5}
 		\end{align}
 		を示す．いま
 		\begin{align}
-			\chi \defeq x \negation (\, x \in \sigma \lrarrow x \Set{x}{x \neq x}\, )
+			\chi \defeq x \negation (\, x \in \sigma \lrarrow x \in \Set{x}{x \neq x}\, )
 		\end{align}
 		とおけば，(\refeq{fom:thm_emptyset_is_a_set_6})と全称記号の推論規則より
 		\begin{align}
@@ -486,119 +488,170 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[空集合は$\mathcal{L}$のいかなる対象も要素に持たない]\label{thm:emptyset_has_nothing}
+		\begin{thm}[空集合はいかなる集合も持たない]\label{thm:emptyset_has_nothing}
 			\begin{align}
-				\forall x\, (\, x \notin \emptyset\, ).
+				\EXTAX,\COMAX \vdash \forall x\, (\, x \notin \emptyset\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$\tau$を$\mathscr{L}$の対象とするとき，類の公理より
+		$\forall x\, (\, x \notin \emptyset\, )$とは
 		\begin{align}
-			\tau \in \emptyset \rarrow \tau \neq \tau
+			\forall x\, \negation (\, x \in \emptyset\, )
+		\end{align}
+		の略記であり，これを$\lang{\varepsilon}$の式に書き換えると
+		\begin{align}
+			\forall x\, \negation (\, x \neq x\, )
+		\end{align}
+		となる．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, \negation (\, x \neq x\, )\, )
+		\end{align}
+		とおけば，内包性公理と全称記号の推論規則より
+		\begin{align}
+			\COMAX \vdash \tau \in \emptyset \rarrow \tau \neq \tau
 		\end{align}
 		が成り立つから，対偶を取れば
 		\begin{align}
-			\tau = \tau \rarrow \tau \notin \emptyset
+			\COMAX \vdash \tau = \tau \rarrow \tau \notin \emptyset
 		\end{align}
-		が成り立つ(推論法則\ref{thm:contraposition_is_true})．定理\ref{thm:any_class_equals_to_itself}より
+		が成り立つ(推論法則\ref{thm:contraposition_is_true})．
+		定理\ref{thm:any_class_equals_to_itself}より
 		\begin{align}
-			\tau = \tau
+			\EXTAX \vdash \tau = \tau
 		\end{align}
-		は正しいので，三段論法より
+		となるので，三段論法より
 		\begin{align}
-			\tau \notin \emptyset
+			\EXTAX,\COMAX \vdash \tau \notin \emptyset
 		\end{align}
-		が成り立つ．そして$\tau$の任意性より
+		が成り立つ．そして全称記号の推論規則より
 		\begin{align}
-			\forall x\, (\, x \notin \emptyset\, )
+			\EXTAX,\COMAX \vdash \forall x\, (\, x \notin \emptyset\, )
 		\end{align}
 		が得られる．
 		\QED
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[$\mathcal{L}$のいかなる対象も要素に持たない類は空集合に等しい]
-		\label{thm:uniqueness_of_emptyset}
-			$a$を類とするとき次が成り立つ:
+		\begin{thm}[空の類は空集合に等しい]\label{thm:uniqueness_of_emptyset}
+			$a$を類とするとき
 			\begin{align}
-				\forall x\, (\, x \notin a\, ) \lrarrow a = \emptyset.
+				\EXTAX,\COMAX &\vdash \forall x\, (\, x \notin a\, ) \rarrow a = \emptyset, \\
+				\EXTAX,\EQAX,\COMAX &\vdash a = \emptyset \rarrow \forall x\, (\, x \notin a\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$a$を類として$\forall x\, (\, x \notin a\, )$が成り立っていると仮定する．このとき
-		$\tau$を$\mathcal{L}$の任意の対象とすれば
-		\begin{align}
-			\tau \notin a \vee \tau \in \emptyset
-		\end{align}
-		と
-		\begin{align}
-			\tau \notin \emptyset \vee \tau \in a
-		\end{align}
-		が共に成り立つので，推論法則\ref{logicalthm:rule_of_inference_3}より
-		\begin{align}
-			\tau \in a \rarrow \tau \in \emptyset
-		\end{align}
-		と
-		\begin{align}
-			\tau \in \emptyset \rarrow \tau \in a
-		\end{align}
-		が共に成り立つ．よって
-		\begin{align}
-			\tau \in a \lrarrow \tau \in \emptyset
-		\end{align}
-		が成立し，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
-		\begin{align}
-			\forall x\, (\, x \in a \lrarrow x \in \emptyset\, )
-		\end{align}
-		が得られる．ゆえに外延性の公理より
-		\begin{align}
-			a = \emptyset
-		\end{align}
-		が成立し，演繹法則より
-		\begin{align}
-			\forall x\, (\, x \notin a\, ) \rarrow a = \emptyset
-		\end{align}
-		が得られる．逆に
-		\begin{align}
-			a = \emptyset
-		\end{align}
-		が成り立っていると仮定する．ここで$\chi$を$\mathcal{L}$の任意の対象とすれば，
-		相等性の公理より
-		\begin{align}
-			\chi \in a \rarrow \chi \in \emptyset
-		\end{align}
-		が成立するので，対偶を取れば
-		\begin{align}
-			\chi \notin \emptyset \rarrow \chi \notin a
-		\end{align}
-		が成り立つ．定理\ref{thm:emptyset_has_nothing}より
-		\begin{align}
-			\chi \notin \emptyset
-		\end{align}
-		が満たされているので，三段論法より
-		\begin{align}
-			\chi \notin a
-		\end{align}
-		が成立し，$\chi$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-		\begin{align}
-			\forall x\, (\, x \notin a\, )
-		\end{align}
-		が成立する．ここに演繹法則を適用して
-		\begin{align}
-			a = \emptyset \rarrow \forall x\, (\, x \notin a\, )
-		\end{align}
-		も得られる．
-		\QED
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[step1]
+				いま
+				\begin{align}
+					\varepsilon x \negation (\, x \in a \lrarrow x \in \emptyset\, )
+				\end{align}
+				(実際には$x \in a \lrarrow x \in \emptyset$を
+				$\lang{\varepsilon}$の式に書き換える)とすれば，
+				\begin{align}
+					\forall x\, (\, x \notin a\, ) \vdash \tau \notin a
+				\end{align}
+				と論理和の導入により
+				\begin{align}
+					\forall x\, (\, x \notin a\, ) \vdash 
+					\tau \notin a \vee \tau \in \emptyset
+				\end{align}
+				となり，含意に書き換えれば(推論法則\ref{logicalthm:rule_of_inference_3})
+				\begin{align}
+					\forall x\, (\, x \notin a\, ) \vdash 
+					\tau \in a \rarrow \tau \in \emptyset
+					\label{fom:uniqueness_of_emptyset_1}
+				\end{align}
+				が得られる．また定理\ref{thm:emptyset_has_nothing}より
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \notin \emptyset
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \notin \emptyset \vee \tau \in a
+				\end{align}
+				となり，含意に書き換えれば
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \in \emptyset \rarrow \tau \in a
+					\label{fom:uniqueness_of_emptyset_2}
+				\end{align}
+				が得られる．(\refeq{fom:uniqueness_of_emptyset_1})と
+				(\refeq{fom:uniqueness_of_emptyset_2})より
+				\begin{align}
+					\forall x\, (\, x \notin a\, ),\ \EXTAX,\COMAX \vdash
+					\tau \in a \lrarrow \tau \in \emptyset
+				\end{align}
+				が従い，全称記号の推論規則より
+				\begin{align}
+					\forall x\, (\, x \notin a\, ),\ \EXTAX,\COMAX \vdash
+					\forall x\, (\, x \in a \lrarrow x \in \emptyset\, )
+				\end{align}
+				が従い，外延性公理より
+				\begin{align}
+					\forall x\, (\, x \notin a\, ),\ \EXTAX,\COMAX \vdash
+					a = \emptyset
+				\end{align}
+				が従い，演繹法則より
+				\begin{align}
+					\EXTAX,\COMAX \vdash
+					\forall x\, (\, x \notin a\, ) \rarrow a = \emptyset
+				\end{align}
+				が得られる．
+				
+			\item[step2]
+				外延性公理の逆(定理\ref{thm:axiom_of_extensionality_equivalent})より
+				\begin{align}
+					a = \emptyset,\ \EQAX \vdash
+					\forall x\, (\, x \in a \lrarrow x \in \emptyset\, )
+					\label{fom:uniqueness_of_emptyset_3}
+				\end{align}
+				が成り立つ．ここで
+				\begin{align}
+					\tau \defeq \varepsilon x \negation (\, x \notin a\, )
+				\end{align}
+				とおけば(必要ならば$x \notin a$を$\lang{\varepsilon}$の式に書き換える)，
+				(\refeq{fom:uniqueness_of_emptyset_3})と全称記号の推論規則より
+				\begin{align}
+					a = \emptyset,\ \EQAX \vdash \tau \in a \rarrow \tau \in \emptyset
+				\end{align}
+				が成立し，これの対偶を取れば
+				\begin{align}
+					a = \emptyset,\ \EQAX \vdash 
+					\tau \notin \emptyset \rarrow \tau \notin a
+					\label{fom:uniqueness_of_emptyset_4}
+				\end{align}
+				となる(推論法則\ref{thm:contraposition_is_true})．
+				ところで定理\ref{thm:emptyset_has_nothing}より
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \notin \emptyset
+				\end{align}
+				が成り立つので，(\refeq{fom:uniqueness_of_emptyset_4})との三段論法より
+				\begin{align}
+					a = \emptyset,\ \EXTAX,\EQAX,\COMAX \vdash \tau \notin a
+				\end{align}
+				が従う．全称記号の推論規則より
+				\begin{align}
+					a = \emptyset,\ \EXTAX,\EQAX,\COMAX \vdash 
+					\forall x\, (\, x \notin a\, )
+				\end{align}
+				が成り立ち，演繹法則より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					a = \emptyset \rarrow \forall x\, (\, x \notin a\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{prf}
 	
 	\begin{screen}
-		\begin{thm}[空集合はいかなる類も要素に持たない]
+		\begin{thm}[空集合はいかなる類も持たない]
 		\label{thm:emptyset_does_not_contain_any_class}
-			$a,b$を類とするとき次が成り立つ:
+			$a,b$を類とするとき
 			\begin{align}
 				b = \emptyset \rarrow a \notin b.
 			\end{align}
