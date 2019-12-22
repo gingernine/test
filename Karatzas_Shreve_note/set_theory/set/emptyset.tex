@@ -653,7 +653,7 @@
 		\label{thm:emptyset_does_not_contain_any_class}
 			$a,b$を類とするとき
 			\begin{align}
-				a \in b \rarrow \exists x\, (\, x \in b\, ).
+				\EQAX,\ELEAX \vdash a \in b \rarrow \exists x\, (\, x \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -693,98 +693,130 @@
 	
 	\begin{screen}
 		\begin{dfn}[部分類]
-			$a,b$を$\mathcal{L}'$の項とするとき，
+			$x,y$を$\mathcal{L}$の項とするとき，
 			\begin{align}
-				a \subset b \overset{\mathrm{def}}{\lrarrow}
-				\forall x\ (\ x \in a \rarrow x \in b\ )
+				x \subset y \defarrow
+				\forall z\, (\, z \in x \rarrow z \in y\, )
 			\end{align}
-			と定める．式$a \subset b$を``$a$は$b$の{\bf 部分類}\index{ぶぶんるい@部分類}{\bf (subclass)}である''
-			と翻訳し，特に$a$が集合である場合は``$a$は$b$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である''と翻訳する．
-			また次の記号も定める:
+			と定める．式$z \subset y$を「$x$は$y$の{\bf 部分類}\index{ぶぶんるい@部分類}
+			{\bf (subclass)}である」や「$x$は$y$に含まれる」などと翻訳し，特に$x$が集合である場合は
+			「$x$は$y$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である」
+			と翻訳する．また
 			\begin{align}
-				a \subsetneq b \defarrow a \subset b \wedge a \neq b.
+				x \subsetneq y \defarrow x \subset y \wedge x \neq y
 			\end{align}
+			と定め，これを「$x$は$y$に{\bf 真に含まれる}」と翻訳する．
 		\end{dfn}
 	\end{screen}
 	
 	空虚な真の一例として次の結果を得る．
 	
 	\begin{screen}
-		\begin{thm}[空集合は全ての類に含まれる]\label{thm:emptyset_if_a_subset_of_every_class}
-			$a$を類とするとき次が成り立つ:
+		\begin{thm}[空集合は全ての類に含まれる]
+		\label{thm:emptyset_if_a_subset_of_every_class}
+			$a$を類とするとき
 			\begin{align}
-				\emptyset \subset a.
+				\EXTAX,\COMAX \vdash \emptyset \subset a.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類とする．$\tau$を$\mathcal{L}$の任意の対象とすれば
+		いま
 		\begin{align}
-			\tau \notin \emptyset
+			\tau \defeq \varepsilon x \negation (\, x \in \emptyset \rarrow x \in a\, )
 		\end{align}
-		が成り立つから，推論規則\ref{logicalaxm:fundamental_rules_of_inference}を適用して
+		とおく(実際は$x \in \emptyset \rarrow x \in a$は$\lang{\varepsilon}$の式に書き換える)．
+		定理\ref{thm:emptyset_has_nothing}より
 		\begin{align}
-			\tau \notin \emptyset \vee \tau \in a
+			\EXTAX,\COMAX \vdash \tau \notin \emptyset
 		\end{align}
-		が成り立つ．従って
+		が成り立つから，論理和の導入により
 		\begin{align}
-			\tau \in \emptyset \rarrow \tau \in a
+			\EXTAX,\COMAX \vdash \tau \notin \emptyset \vee \tau \in a
 		\end{align}
-		が成り立ち，$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		が成り立つ．これを含意の形になおせば
 		\begin{align}
-			\forall x\, (\, x \in \emptyset \rarrow x \in a\, )
+			\EXTAX,\COMAX \vdash \tau \in \emptyset \rarrow \tau \in a
 		\end{align}
-		が成立する．
+		が成り立ち(推論法則\ref{logicalthm:rule_of_inference_3})，全称記号の推論規則より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall x\, (\, x \in \emptyset \rarrow x \in a\, )
+		\end{align}
+		が従う．
 		\QED
 	\end{prf}
 	
-	$a \subset b$とは$a$に属する全ての``$\mathcal{L}$の対象''は$b$に属するという定義であったが，
-	要素となりうる類は集合であるという公理から，$a$に属する全ての``類''もまた$b$に属する．
+	$a \subset b$とは$a$に属する全ての``類である$\varepsilon$項''が$b$に属するという定義であったが，
+	要素となりうる類は集合であるという公理から，$a$に属する全ての類もまた$b$に属する．
 	
 	\begin{screen}
-		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]\label{thm:subclass_contains_all_elements}
-			$a,b,c$を類とすれば次が成り立つ:
+		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]
+		\label{thm:subclass_contains_all_elements}
+			$a,b,c$を類とするとき
 			\begin{align}
+				\EXTAX,\EQAX,\ELEAX \vdash 
 				a \subset b \rarrow (\, c \in a \rarrow c \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}	
-		いま$a \subset b$が成り立っているとする．このとき
+		要素の公理より
 		\begin{align}
-			c \in a
+			c \in a,\ \ELEAX \vdash \set{c}
 		\end{align}
-		が成り立っていると仮定すれば，要素の公理より
-		\begin{align}
-			\set{c}
-		\end{align}
-		が成り立つ．ここで
+		が成り立つので，
 		\begin{align}
 			\tau \defeq \varepsilon x\, (\, c=x\, )
 		\end{align}
-		とおくと
+		とおくと(必要ならば$c = x$を$\lang{\varepsilon}$の式に書き換える)
+		存在記号の推論規則より
 		\begin{align}
-			c = \tau
+			c \in a,\ \ELEAX \vdash c = \tau
+			\label{fom:subclass_contains_all_elements_1}
 		\end{align}
-		が成り立つので，相等性の公理より
+		となる．相等性公理より
 		\begin{align}
-			\tau \in a
+			\EQAX \vdash c = \tau \rarrow (\, c \in a \rarrow \tau \in a\, )
 		\end{align}
-		が成り立ち，$a \subset b$と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}から
+		が成り立つので，三段論法より
 		\begin{align}
-			\tau \in b
+			c \in a,\ \EQAX,\ELEAX \vdash \tau \in a
 		\end{align}
-		が従う．再び相等性の公理を適用すれば
+		が従う．ところで，$\subset$の定義と全称記号の推論規則より
 		\begin{align}
-			c \in b
+			a \subset b \vdash \tau \in a \rarrow \tau \in b
 		\end{align}
-		が成り立つので，演繹法則より，$a \subset b$が成り立っている下で
+		が成り立つので，三段論法より
 		\begin{align}
-			c \in a \rarrow c \in b
+			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash \tau \in b
+			\label{fom:subclass_contains_all_elements_2}
 		\end{align}
-		が成立する．再び演繹法則を適用すれば定理の主張が得られる．
+		が従う．等号の可換律(定理\ref{thm:symmetry_of_equality})より
+		\begin{align}
+			\EXTAX,\EQAX \vdash c = \tau \rarrow \tau = c
+		\end{align}
+		が成り立つので，(\refeq{fom:subclass_contains_all_elements_1})との三段論法より
+		\begin{align}
+			a \subset b,\ c \in a,\ \EXTAX,\EQAX,\ELEAX \vdash \tau = c
+			\label{fom:subclass_contains_all_elements_3}
+		\end{align}
+		となり，相等性公理より
+		\begin{align}
+			\EQAX \vdash \tau = c \rarrow (\, \tau \in b \rarrow c \in b\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:subclass_contains_all_elements_3})と
+		(\refeq{fom:subclass_contains_all_elements_2})との三段論法より
+		\begin{align}
+			a \subset b,\ c \in a,\ \EXTAX,\EQAX,\ELEAX \vdash c \in b
+		\end{align}
+		が従う．そして演繹法則より
+		\begin{align}
+			\EXTAX,\EQAX,\ELEAX \vdash 
+			a \subset b \rarrow (\, c \in a \rarrow c \in b\, )
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
 	
