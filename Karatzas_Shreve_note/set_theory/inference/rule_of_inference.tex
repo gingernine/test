@@ -205,15 +205,85 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{logicalaxm}[論理和の導入]
-		\label{logicalaxm:introduction_of_disjunction}
+		\begin{logicalaxm}[論理積の除去]
+		\label{logicalaxm:elimination_of_conjunction}
 			$A$と$B$を文とするとき
 			\begin{align}
-				A &\vdash A \vee B, \\
-				B &\vdash A \vee B.
+				A &\wedge B \vdash A, \\
+				A &\wedge B \vdash B.
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[無矛盾律]
+		\label{logicalthm:law_of_noncontradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \wedge \negation A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理積の除去規則より
+		\begin{align}
+			A \wedge \negation A &\vdash A, \\
+			A \wedge \negation A &\vdash\ \negation A
+		\end{align}
+		が成り立ち，また矛盾の導入規則より
+		\begin{align}
+			A \wedge \negation A \vdash A \rarrow (\, \negation A \rarrow \bot\, )
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A \wedge \negation A \vdash \bot
+		\end{align}
+		が従う．ゆえに演繹規則より
+		\begin{align}
+			\vdash (\, A \wedge \negation A\, ) \rarrow \bot
+		\end{align}
+		となり，否定の導入規則
+		\begin{align}
+			\vdash (\, (\, A \wedge \negation A\, ) \rarrow \bot\, )
+			\rarrow \negation (\, A \wedge \negation A\, )
+		\end{align}
+		との三段論法より
+		\begin{align}
+			\vdash\ \negation (\, A \wedge \negation A\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	ここで新しい論理記号$\lrarrow$を定めるが，そのときに$\defarrow$なる記号を用いる．
+	これは{\bf 定義記号}\index{ていぎきごう@定義記号}と呼ばれ，
+	\begin{align}
+		P \defarrow \varphi
+	\end{align}
+	と書けば「式$\varphi$を記号$P$で置き換えて良い」という意味で略記法を導入できる．
+	
+	\begin{screen}
+		\begin{dfn}[同値記号]
+			$A$と$B$を$\mathcal{L}$の式とするとき，
+			\begin{align}
+				A \lrarrow B  \defarrow
+				(\, A \rarrow B\, ) \wedge (\, B \rarrow A\, )
+			\end{align}
+			により$\lrarrow$を定め，式`$A \lrarrow B$'を
+			「$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}」と読む．
+		\end{dfn}
+	\end{screen}
+	
+	以降で{\bf De Morgan の法則}\index{De Morgan の法則}{\bf (De Morgan's laws)}
+	\begin{align}
+		&\vdash\ \negation (\, \varphi \vee \psi\, ) \lrarrow\ \negation \varphi
+		\wedge \negation \psi, \\
+		&\vdash\ \negation (\, \varphi \wedge \psi\, ) \lrarrow\ \negation \varphi
+		\vee \negation \psi
+	\end{align}
+	を順番に示していくが，区別するために前者を{\bf 弱 De Morgan の法則}と呼び，
+	後者を{\bf 強 De Morgan の法則}と呼ぶ．
 	
 	\begin{screen}
 		\begin{logicalaxm}[場合分け規則]
@@ -225,11 +295,175 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	場合分け規則に演繹規則を二回適用すれば
+	場合分け規則とは{\bf 論理和の除去}とも呼ばれる．また場合分け規則に演繹規則を二回適用すれば
 	\begin{align}
-		\vdash (A \rarrow C) \rarrow ((B \rarrow C) \rarrow (A \vee B \rarrow C))
+		\vdash (\, A \rarrow C\, ) 
+		\rarrow (\, (\, B \rarrow C\, ) \rarrow (\, A \vee B \rarrow C\, )\, )
 	\end{align}
 	なる推論法則が得られる．場合分け規則を実際に用いる際には主にこちらの推論法則を使う．
+	
+	\begin{screen}
+		\begin{logicalthm}[弱 De Morgan の法則(1)]
+		\label{logicalthm:weak_De_Morgan_law_1}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \wedge \negation B
+				\rarrow\ \negation (\, A \vee B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理積の除去規則より
+		\begin{align}
+			\negation A \wedge \negation B \vdash\ \negation A
+			\label{fom:weak_De_Morgan_law_1_1}
+		\end{align}
+		となり，また矛盾の導入規則より
+		\begin{align}
+			\vdash\ \negation A \rarrow (\, A \rarrow \bot\, )
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\negation A \wedge \negation B 
+			\vdash\ \negation A \rarrow (\, A \rarrow \bot\, )
+		\end{align}
+		も成り立ち，(\refeq{fom:weak_De_Morgan_law_1_1})との三段論法より
+		\begin{align}
+			\negation A \wedge \negation B &\vdash A \rarrow \bot
+			\label{fom:weak_De_Morgan_law_1_2}
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			\negation A \wedge \negation B \vdash B \rarrow \bot
+			\label{fom:weak_De_Morgan_law_1_3}
+		\end{align}
+		も得られる．ところで場合分け規則より
+		\begin{align}
+			\vdash (\, A \rarrow \bot\, ) \rarrow (\, (\, B \rarrow \bot\, )
+			\rarrow (\, A \vee B \rarrow \bot\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:weak_De_Morgan_law_1_2})と
+		(\refeq{fom:weak_De_Morgan_law_1_3})との三段論法より
+		\begin{align}
+			\negation A \wedge \negation B &\vdash (\, A \rarrow \bot\, ) 
+			\rarrow (\, (\, B \rarrow \bot\, ) 
+			\rarrow (\, A \vee B \rarrow \bot\, )\, ), \\
+			\negation A \wedge \negation B &\vdash (\, B \rarrow \bot\, ) 
+			\rarrow (\, A \vee B \rarrow \bot\, ), \\
+			\negation A \wedge \negation B &\vdash A \vee B \rarrow \bot
+		\end{align}
+		となり，否定の導入規則から得られる推論法則
+		\begin{align}
+			\vdash (\, A \vee B \rarrow \bot\, ) \rarrow\ \negation (\, A \vee B\, )
+		\end{align}
+		との三段論法より
+		\begin{align}
+			\negation A \wedge \negation B \vdash\ \negation (\, A \vee B\, ) 
+		\end{align}
+		が得られる．そして演繹規則より
+		\begin{align}
+			\vdash\ \negation A \wedge \negation B
+				\rarrow\ \negation (\, A \vee B\, )
+		\end{align}
+		が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalaxm}[論理和の導入]
+		\label{logicalaxm:introduction_of_disjunction}
+			$A$と$B$を文とするとき
+			\begin{align}
+				A &\vdash A \vee B, \\
+				B &\vdash A \vee B.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[論理積の導入]
+		\label{logicalaxm:introduction_of_conjunction}
+			$A$と$B$を文とするとき
+			\begin{align}
+				A,\ B \vdash A \wedge B.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	論理積の導入に演繹規則を適用すれば
+	\begin{align}
+		A,B &\vdash A \wedge B, \\
+		A &\vdash B \rarrow A \wedge B, \\
+		&\vdash A \rarrow (\, B \rarrow A \wedge B\, )
+	\end{align}
+	となる．これで
+	\begin{align}
+		\vdash A \rarrow (\, B \rarrow A \wedge B\, )
+	\end{align}
+	なる推論法則が得られた．
+	
+	\begin{screen}
+		\begin{logicalthm}[弱 De Morgan の法則(2)]
+		\label{logicalthm:weak_De_Morgan_law_2}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \vee B\, ) 
+				\rarrow\ \negation A \wedge \negation B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理和の導入規則より
+		\begin{align}
+			\vdash A \rarrow A \vee B
+		\end{align}
+		が成り立つが，対偶を取れば
+		\begin{align}
+			\vdash\ \negation (\, A \vee B\, ) \rarrow\ \negation A
+			\label{fom:weak_De_Morgan_law_2_1}
+		\end{align}
+		となる(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		同じく論理和の導入規則より
+		\begin{align}
+			\vdash B \rarrow A \vee B
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\vdash\ \negation (\, A \vee B\, ) \rarrow\ \negation B
+			\label{fom:weak_De_Morgan_law_2_2}
+		\end{align}
+		も得られる．ここで(\refeq{fom:weak_De_Morgan_law_2_1})と
+		(\refeq{fom:weak_De_Morgan_law_2_2})と演繹法則の逆より
+		\begin{align}
+			\negation (\, A \vee B\, ) &\vdash\ \negation A, 
+			\label{fom:weak_De_Morgan_law_2_3} \\
+			\negation (\, A \vee B\, ) &\vdash\ \negation B
+			\label{fom:weak_De_Morgan_law_2_4}
+		\end{align}
+		が従う．ところで論理積の導入規則より
+		\begin{align}
+			\vdash\ \negation A \rarrow (\, \negation B \rarrow\
+			\negation A \wedge \negation B\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:weak_De_Morgan_law_2_3})と
+		(\refeq{fom:weak_De_Morgan_law_2_4})との三段論法より
+		\begin{align}
+			\negation (\, A \vee B\, ) &\vdash\ \negation A \rarrow 
+				(\, \negation B \rarrow\ \negation A \wedge \negation B\, ), \\
+			\negation (\, A \vee B\, ) &\vdash\ 
+				\negation B \rarrow\ \negation A \wedge \negation B, \\
+			\negation (\, A \vee B\, ) &\vdash\ \negation A \wedge \negation B
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\vdash\ \negation (\, A \vee B\, ) 
+			\rarrow\ \negation A \wedge \negation B
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[論理和の可換律]
@@ -270,39 +504,6 @@
 		となる．
 		\QED
 	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalaxm}[論理積の導入]
-		\label{logicalaxm:introduction_of_conjunction}
-			$A$と$B$を文とするとき
-			\begin{align}
-				A,\ B \vdash A \wedge B.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	論理積の導入に演繹規則を適用すれば
-	\begin{align}
-		A,B &\vdash A \wedge B, \\
-		A &\vdash B \rarrow A \wedge B, \\
-		&\vdash A \rarrow (B \rarrow A \wedge B)
-	\end{align}
-	となる．これで
-	\begin{align}
-		\vdash A \rarrow (B \rarrow A \wedge B)
-	\end{align}
-	なる推論法則が得られた．
-	
-	\begin{screen}
-		\begin{logicalaxm}[論理積の除去]
-		\label{logicalaxm:elimination_of_conjunction}
-			$A$と$B$を文とするとき
-			\begin{align}
-				A &\wedge B \vdash A, \\
-				A &\wedge B \vdash B.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
 	
 	\begin{screen}
 		\begin{logicalthm}[論理積の可換律]
@@ -534,14 +735,6 @@
 				\QED
 		\end{description}
 	\end{prf}
-	
-	$A$と$B$を$\mathcal{L}'$の式とするとき，
-	\begin{align}
-		(A \lrarrow B) \defarrow
-		(A \rarrow B) \wedge (B \rarrow A)
-	\end{align}
-	により$\lrarrow$を定め，式`$A \lrarrow B$'を
-	``$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}''と翻訳する．
 	
 	\begin{screen}
 		\begin{logicalthm}[同値関係の対称律]

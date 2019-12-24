@@ -39,7 +39,8 @@
 			\begin{align}
 				\mathscr{S} \vdash \varphi
 			\end{align}
-			と書く．
+			と書く．ただし，公理系に変項が生じた場合の証明可能性には
+			演繹規則や後述の演繹法則，およびその逆の結果を適用することが出来る．
 		\end{metadfn}
 	\end{screen}
 	
@@ -109,10 +110,25 @@
 		\end{metathm}
 	\end{screen}
 	
+	\begin{screen}
+		\begin{metathm}[演繹法則の逆]
+		\ref{metathm:inverse_of_deduction_theorem}
+			$\mathscr{S}$を公理系とし，$A$と$B$を文とするとき，
+			\begin{align}
+				\mathscr{S} \vdash A \rarrow B
+			\end{align}
+			であれば
+			\begin{align}
+				A,\ \mathscr{S} \vdash B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
 \section{推論}
 	\begin{screen}
 		\begin{logicalaxm}[否定と矛盾に関する規則]
-		\label{logicalaxm:rules_of_negation_and_contradiction}
+		\ref{logicalaxm:rules_of_negation_and_contradiction}
 			$A$を文とするとき以下が成り立つ:
 			\begin{description}
 				\item[矛盾の導入] 否定が共に成り立つとき矛盾が起きる:
@@ -149,14 +165,36 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalaxm}[論理和の導入]
-		\ref{logicalaxm:introduction_of_disjunction}
+		\begin{logicalaxm}[論理積の除去]
+		\ref{logicalaxm:elimination_of_conjunction}
 			$A$と$B$を文とするとき
 			\begin{align}
-				A &\vdash A \vee B, \\
-				B &\vdash A \vee B.
+				A &\wedge B \vdash A, \\
+				A &\wedge B \vdash B.
 			\end{align}
 		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[無矛盾律]
+		\ref{logicalthm:law_of_noncontradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \wedge \negation A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[同値記号]
+			$A$と$B$を$\mathcal{L}$の式とするとき，
+			\begin{align}
+				A \lrarrow B  \defarrow
+				(\, A \rarrow B\, ) \wedge (\, B \rarrow A\, )
+			\end{align}
+			により$\lrarrow$を定め，式`$A \lrarrow B$'を
+			「$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}」と読む．
+		\end{dfn}
 	\end{screen}
 	
 	\begin{screen}
@@ -170,13 +208,25 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalthm}[論理和の可換律]
-		\ref{logicalthm:commutative_law_of_disjunction}
-			$A,B$を文とするとき
+		\begin{logicalthm}[弱 De Morgan の法則(1)]
+		\ref{logicalthm:weak_De_Morgan_law_1}
+			$A$と$B$を文とするとき
 			\begin{align}
-				\vdash A \vee B \rarrow B \vee A.
+				\vdash\ \negation A \wedge \negation B
+				\rarrow\ \negation (\, A \vee B\, ).
 			\end{align}
 		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[論理和の導入]
+		\ref{logicalaxm:introduction_of_disjunction}
+			$A$と$B$を文とするとき
+			\begin{align}
+				A &\vdash A \vee B, \\
+				B &\vdash A \vee B.
+			\end{align}
+		\end{logicalaxm}
 	\end{screen}
 	
 	\begin{screen}
@@ -190,14 +240,24 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalaxm}[論理積の除去]
-		\ref{logicalaxm:elimination_of_conjunction}
+		\begin{logicalthm}[弱 De Morgan の法則(2)]
+		\ref{logicalthm:weak_De_Morgan_law_2}
 			$A$と$B$を文とするとき
 			\begin{align}
-				A &\wedge B \vdash A, \\
-				A &\wedge B \vdash B.
+				\vdash\ \negation (\, A \vee B\, ) 
+				\rarrow\ \negation A \wedge \negation B.
 			\end{align}
-		\end{logicalaxm}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和の可換律]
+		\ref{logicalthm:commutative_law_of_disjunction}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash A \vee B \rarrow B \vee A.
+			\end{align}
+		\end{logicalthm}
 	\end{screen}
 	
 	\begin{screen}
