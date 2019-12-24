@@ -24,7 +24,7 @@
 	$\vdash$のルールを定める．
 	
 	\begin{screen}
-		\begin{logicalaxm}[演繹規則]
+		\begin{logicalaxm}[演繹規則]\label{logicalaxm:deduction_rule}
 			$A,B,C,D$を文とするとき，
 			\begin{description}
 				\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
@@ -194,7 +194,7 @@
 		\begin{logicalthm}[含意の導入]\label{logicalthm:rule_of_inference_2}
 			$A,B$を文とするとき
 			\begin{align}
-				\vdash B \rarrow (A \rarrow B).
+				\vdash B \rarrow (\, A \rarrow B\, ).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -209,7 +209,7 @@
 		\end{align}
 		となり，再び演繹規則より
 		\begin{align}
-			\vdash B \rarrow (A \rarrow B)
+			\vdash B \rarrow (\, A \rarrow B\, )
 		\end{align}
 		が得られる．
 		\QED
@@ -222,7 +222,8 @@
 		\label{logicalthm:distributive_law_of_implication}
 			$A,B,C$を文とするとき
 			\begin{align}
-				\vdash (A \rarrow (B \rarrow C)) \rarrow ((A \rarrow B) \rarrow (A \rarrow C)).
+				\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
+				\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, ).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -230,40 +231,40 @@
 	\begin{prf}
 		証明可能性の規則より
 		\begin{align}
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
 			&\vdash A, \\
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
 			&\vdash A \rarrow B
 		\end{align}
 		となるので
 		\begin{align}
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
 			\vdash B
 		\end{align}
 		が成り立つし，同じように
 		\begin{align}
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
 			&\vdash A, \\
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
-			&\vdash A \rarrow (B \rarrow C)
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+			&\vdash A \rarrow (\, B \rarrow C\, )
 		\end{align}
 		であるから
 		\begin{align}
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
 			\vdash B \rarrow C
 		\end{align}
 		も成り立つ．これによって
 		\begin{align}
-			A \rarrow (B \rarrow C),\ A \rarrow B,\ A
-			\vdash C
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A \vdash C
 		\end{align}
 		も成り立つから，あとは演繹規則を順次適用すれば
 		\begin{align}
-			A \rarrow (B \rarrow C),\ A \rarrow B
+			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B
 			&\vdash A \rarrow C, \\
-			A \rarrow (B \rarrow C)
-			&\vdash (A \rarrow B) \rarrow (A \rarrow C), \\
-			&\vdash (A \rarrow (B \rarrow C)) \rarrow ((A \rarrow B) \rarrow (A \rarrow C))
+			A \rarrow (\, B \rarrow C\, )
+			&\vdash (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, ), \\
+			&\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
+				\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, )
 		\end{align}
 		となる．
 		\QED
@@ -286,11 +287,11 @@
 	
 	公理系$\mathscr{S}$に文$A$を追加した公理系を
 	\begin{align}
-		\mathscr{S}, A
+		A,\ \mathscr{S}
 	\end{align}
 	や
 	\begin{align}
-		A, \mathscr{S}
+		\mathscr{S},\ A
 	\end{align}
 	と書く．$A$が既に$\mathscr{S}$の公理であってもこのように表記するが，
 	その場合は$\mathscr{S}, A$や$A,\mathscr{S}$とは$\mathscr{S}$そのものである．
@@ -325,7 +326,7 @@
 				\end{align}
 				が成り立つが，他方で推論法則\ref{logicalthm:rule_of_inference_2}より
 				\begin{align}
-					\mathscr{S} \vdash B \rarrow (A \rarrow B) 
+					\mathscr{S} \vdash B \rarrow (\, A \rarrow B\, ) 
 				\end{align}
 				も成り立つので，証明可能性の定義より
 				\begin{align}
@@ -337,7 +338,7 @@
 				$C$及び$C \rarrow B$が$\mathscr{S}$の定理であるような
 				文$C$と文$B$が取れた場合，
 				\begin{align}
-					\mathscr{S} \vdash A \rarrow (C \rarrow B)
+					\mathscr{S} \vdash A \rarrow (\, C \rarrow B\, )
 				\end{align}
 				かつ
 				\begin{align}
@@ -347,11 +348,13 @@
 				(\ref{logicalthm:distributive_law_of_implication})より
 				\begin{align}
 					\mathscr{S} \vdash 
-					(A \rarrow (C \rarrow B)) \rarrow ((A \rarrow C) \rarrow (A \rarrow B))
+					(\, A \rarrow (\, C \rarrow B\, )\, ) 
+					\rarrow (\, (\, A \rarrow C\, ) \rarrow (\, A \rarrow B\, )\, )
 				\end{align}
 				が満たされるので，証明可能性の定義の通りに
 				\begin{align}
-					\mathscr{S} \vdash (A \rarrow C) \rarrow (A \rarrow B)
+					\mathscr{S} \vdash (\, A \rarrow C\, ) 
+					\rarrow (\, A \rarrow B\, )
 				\end{align}
 				が従い，
 				\begin{align}
@@ -366,6 +369,7 @@
 		\end{description}
 	\end{metaprf}
 	
+\subsection{演繹法則の逆}
 	演繹法則の逆も得られる．つまり，
 	$\mathscr{S}$を文の集合とし，$A$と$B$を文とするとき，
 	\begin{align}
@@ -373,21 +377,21 @@
 	\end{align}
 	であれば
 	\begin{align}
-		\mathscr{S}, A \vdash B
+		A,\ \mathscr{S} \vdash B
 	\end{align}
 	が成り立つ．実際
 	\begin{align}
-		\mathscr{S}, A \vdash A
+		A,\ \mathscr{S} \vdash A
 	\end{align}
 	が成り立つのは証明の定義の通りであるし，
 	$A \rarrow B$が$\mathscr{S}$の定理ならば
 	\begin{align}
-		\mathscr{S}, A \vdash A \rarrow B
+		A,\ \mathscr{S} \vdash A \rarrow B
 		\label{fom:inversion_of_deduction_theorem}
 	\end{align}
 	が成り立つので，併せて
 	\begin{align}
-		\mathscr{S}, A \vdash B
+		A,\ \mathscr{S} \vdash B
 	\end{align}
 	が従う．ただし(\refeq{fom:inversion_of_deduction_theorem})に
 	関しては次のメタ定理を示さなくてはいけない．
@@ -397,7 +401,7 @@
 			$\mathscr{S}$を公理系とし，$A$を文とするとき，
 			$\mathscr{S}$の任意の定理$B$に対して
 			\begin{align}
-				\mathscr{S}, A \vdash B
+				A,\ \mathscr{S} \vdash B
 			\end{align}
 			が成り立つ．
 		\end{metathm}
@@ -406,7 +410,7 @@
 	\begin{metaprf}
 		$B$が$\mathscr{S}$の公理であるか推論規則であれば
 		\begin{align}
-			\mathscr{S}, A \vdash B
+			A,\ \mathscr{S} \vdash B
 		\end{align}
 		は言える．また
 		\begin{align}
@@ -415,16 +419,16 @@
 		\end{align}
 		を満たす文$C$が取れるとき，
 		\begin{align}
-			\mathscr{S}, A &\vdash C, \\
-			\mathscr{S}, A &\vdash C \rarrow B
+			A,\ \mathscr{S} &\vdash C, \\
+			A,\ \mathscr{S} &\vdash C \rarrow B
 		\end{align}
 		と仮定すれば
 		\begin{align}
-			\mathscr{S}, A &\vdash B
+			A,\ \mathscr{S} \vdash B
 		\end{align}
 		となる．以上と構造的帰納法より$\mathscr{S}$の任意の定理$B$に対して
 		\begin{align}
-			\mathscr{S}, A &\vdash B
+			A,\ \mathscr{S} \vdash B
 		\end{align}
 		が成り立つ．
 		\QED

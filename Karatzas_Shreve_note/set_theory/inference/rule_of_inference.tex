@@ -14,6 +14,197 @@
 	\end{itemize}
 	
 	\begin{screen}
+		\begin{logicalaxm}[否定と矛盾に関する規則]
+		\label{logicalaxm:rules_of_negation_and_contradiction}
+			$A$を文とするとき以下が成り立つ:
+			\begin{description}
+				\item[矛盾の導入] 否定が共に成り立つとき矛盾が起きる:
+					\begin{align}
+						A,\ \negation A \vdash \bot.
+					\end{align}
+				\item[否定の導入] 矛盾が導かれるとき否定が成り立つ:
+					\begin{align}
+						A \rarrow \bot \vdash\ \negation A.
+					\end{align}
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	矛盾の導入規則に演繹規則を適用すれば
+	\begin{align}
+		\vdash A \rarrow (\, \negation A \rarrow \bot\, )
+	\end{align}
+	が得られる．証明可能性の定義では推論法則を直接用いることはが許されているので，
+	実際の証明の最中にこの規則を``適用する''ときは，上ように推論法則に直したものを使う．
+	たとえば公理系$\mathscr{S}$の下で
+	\begin{align}
+		\mathscr{S} \vdash A
+	\end{align}
+	と
+	\begin{align}
+		\mathscr{S} \vdash\ \negation A
+	\end{align}
+	が導かれたとすれば，矛盾の導入規則から得られた推論法則は
+	\begin{align}
+		\mathscr{S} \vdash A \rarrow (\, \negation A \rarrow \bot\, )
+	\end{align}
+	を満たすので，三段論法より
+	\begin{align}
+		\mathscr{S} \vdash \bot
+	\end{align}
+	が従う．これを結論だけ見て直感的に
+	\begin{prooftree}
+		\AxiomC{$\mathscr{S} \vdash A$}
+		\AxiomC{$\mathscr{S} \vdash\ \negation A$}
+		\BinaryInfC{$\mathscr{S} \vdash \bot$}
+	\end{prooftree}
+	と書いてみれば，こちらは矛盾の導入規則そのままの形に似ているので，
+	あたかも矛盾の導入規則を``直接''適用したように見える．他の推論規則も
+	実際の証明で用いる際は推論法則に直したものを用いるのであるが，
+	結論だけ見れば
+	\begin{prooftree}
+		\AxiomC{$\mathscr{S} \vdash A \rarrow \bot$}
+		\UnaryInfC{$\mathscr{S} \vdash\ \negation A$}
+	\end{prooftree}
+	であったり
+	\begin{prooftree}
+		\AxiomC{$\mathscr{S} \vdash A$}
+		\UnaryInfC{$\mathscr{S} \vdash A \vee B$}
+	\end{prooftree}
+	であったり
+	\begin{prooftree}
+		\AxiomC{$\mathscr{S} \vdash A(\tau)$}
+		\UnaryInfC{$\mathscr{S} \vdash \exists x A(x)$}
+	\end{prooftree}
+	であったりが``成り立つ''のである．そしてこれらの水平線が入った規則(もどき)は
+	他の証明体系では正式な推論規則であったりする．
+	どうせすぐに推論法則に直してしまうものを，どうして法則の形で推論の公理として導入するのではなく
+	わざわざ推論規則として導入したのかというと，他の証明体系の規則との対応を意識しているのと，
+	$\vdash$によって前後に分割してある方が若干見やすいからである．
+	
+	$\varphi \rarrow \psi$なる式に対して
+	\begin{align}
+		\negation \psi \rarrow \negation \varphi
+	\end{align}
+	を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}{\bf (contraposition)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶命題が導かれる]
+		\label{logicalthm:introduction_of_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, A \rarrow B\, ) 
+				\rarrow (\, \negation B \rarrow \negation A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		証明可能性の定義より
+		\begin{align}
+			A,\ \negation B,\ A \rarrow B &\vdash A, \\
+			A,\ \negation B,\ A \rarrow B &\vdash A \rarrow B
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			A,\ \negation B,\ A \rarrow B \vdash B
+			\label{fom:introduction_of_contraposition_1}
+		\end{align}
+		が従う．同じく証明可能性の定義より
+		\begin{align}
+			A,\ \negation B,\ A \rarrow B \vdash\ \negation B
+			\label{fom:introduction_of_contraposition_2}
+		\end{align}
+		も成り立つ．ところで矛盾の導入規則より
+		\begin{align}
+			\vdash B \rarrow (\, \negation B \rarrow \bot\, )
+		\end{align}
+		が成り立つので，証明可能性の定義より
+		\begin{align}
+			A,\ \negation B,\ A \rarrow B \vdash
+			B \rarrow (\, \negation B \rarrow \bot\, )
+		\end{align}
+		となる．これと(\refeq{fom:introduction_of_contraposition_1})との三段論法より
+		\begin{align}
+			A,\ \negation B,\ A \rarrow B \vdash\ \negation B \rarrow \bot
+		\end{align}
+		が従い，これと(\refeq{fom:introduction_of_contraposition_2})との三段論法より
+		\begin{align}
+			A,\ \negation B,\ A \rarrow B \vdash \bot
+		\end{align}
+		が従う．演繹規則より
+		\begin{align}
+			\negation B,\ A \rarrow B \vdash A \rarrow \bot
+		\end{align}
+		となるが，今度は否定の導入規則より
+		\begin{align}
+			\negation B,\ A \rarrow B \vdash 
+			(\, A \rarrow \bot\, ) \rarrow \negation A
+		\end{align}
+		が満たされるので，三段論法より
+		\begin{align}
+			\negation B,\ A \rarrow B \vdash\ \negation A
+		\end{align}
+		が出る．そして演繹規則より
+		\begin{align}
+			A \rarrow B \vdash\ \negation B \rarrow \negation A
+		\end{align}
+		が得られ，再び演繹規則より
+		\begin{align}
+			\vdash (\, A \rarrow B\, ) \rarrow
+			(\, \negation B \rarrow \negation A\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	式$\varphi$に対して，$\negation$を二つ連結させた式
+	\begin{align}
+		\negation \negation \varphi
+	\end{align}
+	を$\varphi$の{\bf 二重否定}\index{にじゅうひてい@二重否定}{\bf (double negation)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{logicalthm}[二重否定の導入]
+		\label{logicalthm:introduction_of_double_negation}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \rarrow \negation \negation A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		矛盾の導入規則より
+		\begin{align}
+			A,\ \negation A \vdash \bot
+		\end{align}
+		となるので，演繹規則より
+		\begin{align}
+			A \vdash\ \negation A \rarrow \bot
+			\label{fom:introduction_of_double_negation}
+		\end{align}
+		が従う．また否定の導入規則より
+		\begin{align}
+			\vdash (\, \negation A \rarrow \bot\, ) \rarrow \negation \negation A
+		\end{align}
+		が成り立つので，証明可能性の定義より
+		\begin{align}
+			A \vdash (\, \negation A \rarrow \bot\, ) \rarrow \negation \negation A
+		\end{align}
+		も成り立ち，(\refeq{fom:introduction_of_double_negation})との三段論法より
+		\begin{align}
+			A \vdash\ \negation \negation A
+		\end{align}
+		が従う．そして演繹規則より
+		\begin{align}
+			\vdash A \rarrow \negation \negation A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{logicalaxm}[論理和の導入]
 		\label{logicalaxm:introduction_of_disjunction}
 			$A$と$B$を文とするとき
@@ -879,7 +1070,7 @@
 				\begin{align}
 					\vdash\ \negation (A \vee B) \rarrow \negation B
 				\end{align}
-				が成り立つ(推論法則\ref{thm:contraposition_is_true})．
+				が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．
 				二式が同時に導かれるならその論理積も導かれるので(推論法則\ref{logicalthm:conjunction_of_consequences})
 				\begin{align}
 					\vdash\ \negation (A \vee B) \rarrow (\negation A \wedge \negation B)
@@ -916,7 +1107,7 @@
 				\begin{align}
 					\vdash (\negation A \wedge \negation B) \rarrow \negation (A \vee B)
 				\end{align}
-				が得られる(推論法則\ref{thm:contraposition_is_true})．
+				が得られる(推論法則\ref{logicalthm:introduction_of_contraposition})．
 				
 			\item[第二段]
 				前段の結果より
@@ -934,7 +1125,7 @@
 					\vdash (A \wedge B) 
 					\lrarrow \negation (\negation A \vee \negation B)
 				\end{align}
-				が成り立つ．対偶命題の同値性(推論法則\ref{thm:contraposition_is_true})から
+				が成り立つ．対偶命題の同値性(推論法則\ref{logicalthm:introduction_of_contraposition})から
 				\begin{align}
 					\vdash\ \negation (A \wedge B)
 					\lrarrow (\negation A \vee \negation B)
