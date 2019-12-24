@@ -813,6 +813,122 @@
 		\end{logicalaxm}
 	\end{screen}
 	
+	\begin{screen}
+		\begin{logicalthm}[対偶論法の原理]
+		\label{logicalthm:proof_by_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation B \rarrow\ \negation A\, )
+				\rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		二重否定の導入(推論法則\ref{logicalthm:introduction_of_double_negation})より
+		\begin{align}
+			\negation B \rarrow\ \negation A \vdash 
+			A \rarrow\ \negation \negation A
+		\end{align}
+		が成り立つので，演繹法則の逆より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation A
+		\end{align}
+		となる．また$\negation B \rarrow\ \negation A$の対偶を取れば
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ 
+			\negation \negation A \rarrow\ \negation \negation B
+		\end{align}
+		が成り立つので(定理\ref{logicalthm:introduction_of_contraposition})，
+		三段論法より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation B
+		\end{align}
+		となる．ここで二重否定の除去より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ 
+			\negation \negation B \rarrow B
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash B
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\negation B \rarrow\ \negation A &\vdash A \rarrow B, \\
+			&\vdash (\, \negation B \rarrow\ \negation A\, ) 
+			\rarrow (\, A \rarrow B\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+		\label{logicalthm:proof_by_contradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		否定の導入規則より
+		\begin{align}
+			\negation A \rarrow \bot \vdash\ \negation \negation A
+		\end{align}
+		が成り立ち，二重否定の法則より
+		\begin{align}
+			\negation A \rarrow \bot \vdash\ \negation \negation A \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\negation A \rarrow \bot \vdash A
+		\end{align}
+		となる．そして演繹規則より
+		\begin{align}
+			\vdash (\, \negation A \rarrow \bot\, ) \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[爆発律(矛盾からはあらゆる式が導かれる)]
+		\label{logicalthm:contradiction_derives_any_formula}
+			$A$を文とするとき
+			\begin{align}
+				\vdash \bot \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		推論法則\ref{logicalthm:rule_of_inference_2}より
+		\begin{align}
+			\vdash \bot \rarrow (\, \negation A \rarrow \bot\, )
+		\end{align}
+		が成り立つので，演繹法則の逆より
+		\begin{align}
+			\bot \vdash\ \negation A \rarrow \bot
+		\end{align}
+		となる．また背理法の原理(推論法則\ref{logicalthm:proof_by_contradiction})より
+		\begin{align}
+			\bot \vdash (\, \negation A \rarrow \bot\, ) \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\bot \vdash A
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\vdash \bot \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
 	文$A$が$\mathscr{S} \vdash\ \negation A$を満たすとき，
 	$A$は公理系$\mathscr{S}$において{\bf 偽である}\index{ぎ@偽}{\bf (false)}という．
 	
@@ -851,43 +967,6 @@
 	$\vdash (A \wedge B) \rarrow C$が成り立つ．
 	$A,B \vdash A \wedge B$と三段論法より
 	$A, B \vdash C$が成り立つ．
-	
-	\begin{screen}
-		\begin{logicalthm}[背理法の原理]
-			$A$を文とするとき
-			\begin{align}
-				\vdash (\negation A \rarrow \bot) \rarrow A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		否定の導出より
-		\begin{align}
-			\vdash (\negation A \rarrow \bot) \rarrow \negation \negation A
-		\end{align}
-		が成り立ち，二重否定の法則より
-		\begin{align}
-			\vdash\ \negation \negation A \rarrow A
-		\end{align}
-		が成り立つので，$\wedge$の導入より
-		\begin{align}
-			\vdash ((\negation A \rarrow \bot) \rarrow \negation \negation A)
-			\wedge (\negation \negation A \rarrow A)
-		\end{align}
-		が成り立つ．含意の推移律(推論法則\ref{logicalthm:transitive_law_of_implication})より
-		\begin{align}
-			\vdash ((\negation A \rarrow \bot) \rarrow \negation \negation A)
-			\wedge (\negation \negation A \rarrow A)
-			\rarrow ((\negation A \rarrow \bot) \rarrow A)
-		\end{align}
-		が成り立つので，三段論法より
-		\begin{align}
-			\vdash (\negation A \rarrow \bot) \rarrow A
-		\end{align}
-		が得られる．
-		\QED
-	\end{prf}
 	
 	\begin{screen}
 		\begin{logicalthm}[排中律]\label{logicalthm:law_of_excluded_middle}
@@ -956,33 +1035,6 @@
 	
 	\begin{prf}
 		排中律を適用することにより従う．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalthm}[爆発律(矛盾からはあらゆる式が導かれる)]
-		\label{logicalthm:contradiction_derives_any_formula}
-			$A$を文とするとき
-			\begin{align}
-				\vdash \bot \rarrow A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		推論法則\ref{logicalthm:rule_of_inference_2}より
-		\begin{align}
-			\vdash \bot \rarrow (\negation A \rarrow \bot)
-		\end{align}
-		が成り立つ．また背理法の原理より
-		\begin{align}
-			\vdash (\negation A \rarrow \bot) \rarrow A
-		\end{align}
-		が成り立つので，含意の推移律を適用すれば
-		\begin{align}
-			\vdash \bot \rarrow A
-		\end{align}
-		が得られる．
 		\QED
 	\end{prf}
 	
