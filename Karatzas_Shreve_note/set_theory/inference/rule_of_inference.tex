@@ -382,6 +382,47 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{logicalthm}[論理和の可換律]
+		\label{logicalthm:commutative_law_of_disjunction}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash A \vee B \rarrow B \vee A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理和の導入規則と演繹規則により
+		\begin{align}
+			\vdash A \rarrow B \vee A
+			\label{fom:logicalthm_commutative_law_of_disjunction_1}
+		\end{align}
+		と
+		\begin{align}
+			\vdash B \rarrow B \vee A
+			\label{fom:logicalthm_commutative_law_of_disjunction_2}
+		\end{align}
+		が成り立つ．また場合分け規則より
+		\begin{align}
+			\vdash (\, A \rarrow B \vee A\, ) \rarrow (\, (\, B \rarrow B \vee A\, ) 
+			\rarrow (\, A \vee B \rarrow B \vee A\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:logicalthm_commutative_law_of_disjunction_1})と
+		三段論法より
+		\begin{align}
+			\vdash (\, B \rarrow B \vee A\, ) 
+			\rarrow (\, A \vee B \rarrow B \vee A\, )
+		\end{align}
+		となり，(\refeq{fom:logicalthm_commutative_law_of_disjunction_2})と
+		三段論法より
+		\begin{align}
+			\vdash A \vee B \rarrow B \vee A
+		\end{align}
+		となる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
 		\begin{logicalaxm}[論理積の導入]
 		\label{logicalaxm:introduction_of_conjunction}
 			$A$と$B$を文とするとき
@@ -466,46 +507,6 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{logicalthm}[論理和の可換律]
-		\label{logicalthm:commutative_law_of_disjunction}
-			$A,B$を文とするとき
-			\begin{align}
-				\vdash A \vee B \rarrow B \vee A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		論理和の導入と演繹規則により
-		\begin{align}
-			\vdash A \rarrow B \vee A
-			\label{fom:logicalthm_commutative_law_of_disjunction_1}
-		\end{align}
-		と
-		\begin{align}
-			\vdash B \rarrow A \vee B
-			\label{fom:logicalthm_commutative_law_of_disjunction_2}
-		\end{align}
-		が成り立つ．また場合分け規則より
-		\begin{align}
-			\vdash (A \rarrow B \vee A) \rarrow ((B \rarrow B \vee A) 
-			\rarrow (A \vee B \rarrow B \vee A))
-		\end{align}
-		が成り立つので，(\refeq{fom:logicalthm_commutative_law_of_disjunction_1})と
-		三段論法より
-		\begin{align}
-			\vdash (B \rarrow B \vee A) \rarrow (A \vee B \rarrow B \vee A)
-		\end{align}
-		となり，(\refeq{fom:logicalthm_commutative_law_of_disjunction_2})と
-		三段論法より
-		\begin{align}
-			\vdash A \vee B \rarrow B \vee A
-		\end{align}
-		となる．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
 		\begin{logicalthm}[論理積の可換律]
 		\label{logicalthm:commutative_law_of_conjunction}
 			$A,B$を文とするとき
@@ -528,17 +529,17 @@
 		\end{align}
 		が成り立つ．また論理積の導入により
 		\begin{align}
-			\vdash B \rarrow (A \rarrow B \wedge A)
+			\vdash B \rarrow (\, A \rarrow B \wedge A\, )
 		\end{align}
 		となるので
 		\begin{align}
-			A \wedge B \vdash B \rarrow (A \rarrow B \wedge A)
+			A \wedge B \vdash B \rarrow (\, A \rarrow B \wedge A\, )
 		\end{align}
-		も成り立つ．(\refeq{fom:logicalthm_commutative_law_of_conjunction_1})と三段論法より
+		も成り立ち，(\refeq{fom:logicalthm_commutative_law_of_conjunction_2})との三段論法より
 		\begin{align}
 			A \wedge B \vdash A \rarrow B \wedge A
 		\end{align}
-		となり，(\refeq{fom:logicalthm_commutative_law_of_conjunction_2})と三段論法より
+		となり，(\refeq{fom:logicalthm_commutative_law_of_conjunction_1})との三段論法より
 		\begin{align}
 			A \wedge B \vdash B \wedge A
 		\end{align}
@@ -803,22 +804,12 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{logicalaxm}[矛盾と否定に関する規則]\label{logicalaxm:rules_of_contradiction}
+		\begin{logicalaxm}[二重否定の除去]
+		\label{logicalaxm:elimination_of_double_negation}
 			$A$を文とするとき以下が成り立つ:
-			\begin{description}
-				\item[矛盾の発生] 否定が共に成り立つとき矛盾が起きる:
-					\begin{align}
-						A,\ \negation A \vdash \bot.
-					\end{align}
-				\item[否定の導出] 矛盾が導かれるとき否定が成り立つ:
-					\begin{align}
-						A \rarrow \bot \vdash\ \negation A.
-					\end{align}
-				\item[二重否定の法則] 二重に否定された式は元の式を導く:
-					\begin{align}
-						\negation \negation A \vdash A.
-					\end{align}
-			\end{description}
+			\begin{align}
+				\negation \negation A \vdash A.
+			\end{align}
 		\end{logicalaxm}
 	\end{screen}
 	
