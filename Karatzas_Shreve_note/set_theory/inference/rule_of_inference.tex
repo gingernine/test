@@ -89,11 +89,16 @@
 	他の証明体系の規則との対応を意識しているのと，
 	$\vdash$によって前後に分割してある方が若干見やすいからである．
 	
-	$\varphi \rarrow \psi$なる式に対して
-	\begin{align}
-		\negation \psi \rarrow\ \negation \varphi
-	\end{align}
-	を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}{\bf (contraposition)}と呼ぶ．
+	\begin{screen}
+		\begin{dfn}[対偶]
+			$\varphi \rarrow \psi$なる式に対して
+			\begin{align}
+				\negation \psi \rarrow\ \negation \varphi
+			\end{align}
+			を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}
+			{\bf (contraposition)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{logicalthm}[対偶命題が導かれる]
@@ -165,12 +170,30 @@
 		\QED
 	\end{prf}
 	
-	式$\varphi$に対して，$\negation$を二つ連結させた式
+	公理系$\mathscr{S}$の下で$A \rarrow B$が導かれたとすれば，上の推論法則より
 	\begin{align}
-		\negation \negation \varphi
+		\mathscr{S} \vdash (\, A \rarrow B\, ) 
+		\rarrow (\, \negation B \rarrow\ \negation A\, )
 	\end{align}
-	を$\varphi$の{\bf 二重否定}\index{にじゅうひてい@二重否定}{\bf (double negation)}と呼ぶ．
+	が成り立つので三段論法より
+	\begin{align}
+		\mathscr{S} \vdash\ \negation B \rarrow\ \negation A
+	\end{align}
+	が従う．以下では，$\mathscr{S} \vdash A \rarrow B$であるときに
+	{\bf 「対偶を取る」}と宣言して$\mathscr{S} \vdash\ \negation B \rarrow\ \negation A$
+	に繋げることもある．
 	
+	\begin{screen}
+		\begin{dfn}[二重否定]
+			式$\varphi$に対して，$\negation$を二つ連結させた式
+			\begin{align}
+				\negation \negation \varphi
+			\end{align}
+			を$\varphi$の{\bf 二重否定}\index{にじゅうひてい@二重否定}
+			{\bf (double negation)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+		
 	\begin{screen}
 		\begin{logicalthm}[二重否定の導入]
 		\label{logicalthm:introduction_of_double_negation}
@@ -796,6 +819,38 @@
 		\end{align}
 		が得られる．
 		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[強 De Morgan の法則(2)]
+		\label{logicalthm:strong_De_Morgan_law_2}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \wedge B\, )
+				\rarrow\ \negation A \vee \negation B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理積の導入規則より
+		\begin{align}
+			A \vdash B \rarrow A \wedge B
+		\end{align}
+		が成り立つので，これの対偶を取って
+		\begin{align}
+			A \vdash\ \negation (\, A \wedge B\, ) \rarrow\ \negation B
+		\end{align}
+		を得る(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		そして演繹法則の逆より
+		\begin{align}
+			A,\ \negation (\, A \wedge B\, ) \vdash\ \negation B
+		\end{align}
+		が成立し，演繹規則より
+		\begin{align}
+			\negation (\, A \wedge B\, ) \vdash A \rarrow\ \negation B
+		\end{align}
+		となる．
 	\end{prf}
 	
 	\begin{screen}
