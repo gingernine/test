@@ -1,0 +1,684 @@
+\section{その他の推論規則}
+	\begin{screen}
+		\begin{logicalthm}[含意の推移律]
+		\label{logicalthm:transitive_law_of_implication}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \rarrow ((B \rarrow C) \rarrow (A \rarrow C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			A \rarrow B,\ B \rarrow C,\ A &\vdash A, \\
+			A \rarrow B,\ B \rarrow C,\ A &\vdash A \rarrow B, \\
+		\end{align}
+		と三段論法より
+		\begin{align}
+			A \rarrow B,\ B \rarrow C,\ A \vdash B
+		\end{align}
+		となる．これと
+		\begin{align}
+			A \rarrow B,\ B \rarrow C,\ A \vdash B \rarrow C
+		\end{align}
+		と三段論法より
+		\begin{align}
+			A \rarrow B,\ B \rarrow C,\ A \vdash C
+		\end{align}
+		となる．これに演繹規則を三回適用すれば
+		\begin{align}
+			A \rarrow B,\ B \rarrow C &\vdash A \rarrow C, \\
+			A \rarrow B &\vdash (B \rarrow C) \rarrow (A \rarrow C), \\
+			&\vdash (A \rarrow B) \rarrow ((B \rarrow C) \rarrow (A \rarrow C))
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[二式が同時に導かれるならその論理積が導かれる]
+		\label{logicalthm:conjunction_of_consequences}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \rarrow ((A \rarrow C) 
+				\rarrow (A \rarrow B \wedge C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A, \\
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A \rarrow B
+		\end{align}
+		と三段論法より
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A \vdash B
+			\label{fom:logicalthm_conjunction_of_consequences_1}
+		\end{align}
+		が得られ，同様に
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A, \\
+			A \rarrow B,\ A \rarrow C,\ A &\vdash A \rarrow C
+		\end{align}
+		と三段論法より
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A \vdash C
+			\label{fom:logicalthm_conjunction_of_consequences_2}
+		\end{align}
+		が得られる．ここで論理積の導入より
+		\begin{align}
+			\vdash B \rarrow (C \rarrow B \wedge C)
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A \vdash B \rarrow (C \rarrow B \wedge C)
+		\end{align}
+		も成り立つ．これと(\refeq{fom:logicalthm_conjunction_of_consequences_1})との
+		三段論法より
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A \vdash C \rarrow B \wedge C
+		\end{align}
+		となり，(\refeq{fom:logicalthm_conjunction_of_consequences_2})との三段論法より
+		\begin{align}
+			A \rarrow B,\ A \rarrow C,\ A \vdash B \wedge C
+		\end{align}
+		となる．あとは演繹規則を三回適用すれば
+		\begin{align}
+			A \rarrow B,\ A \rarrow C &\vdash A \rarrow B \wedge C, \\
+			A \rarrow B &\vdash (A \rarrow C) \rarrow (A \rarrow B \wedge C), \\
+			&\vdash (A \rarrow B) \rarrow ((A \rarrow C) \rarrow (A \rarrow B \wedge C))
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は遺伝する]\label{logicalthm:rule_of_inference_1}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \rarrow B) \rarrow ( (A \vee C) \rarrow (B \vee C) )$.
+				
+				\item[(b)] $(A \rarrow B) \rarrow ( (A \wedge C) \rarrow (B \wedge C) )$.
+				
+				\item[(c)] $(A \rarrow B) \rarrow ( (B \rarrow C) \rarrow (A \rarrow C) )$.
+				
+				\item[(c)] $(A \rarrow B) \rarrow ( (C \rarrow A) \rarrow (C \rarrow B) )$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)]
+				いま$A \rarrow B$が成り立っていると仮定する．
+				論理和の導入により
+				\begin{align}
+					C \rarrow (B \vee C)
+				\end{align}
+				は定理であるから，含意の推移律より
+				\begin{align}
+					A \rarrow (B \vee C)
+				\end{align}
+				が従い，場合分け法則より
+				\begin{align}
+					(A \vee C) \rarrow (B \vee C)
+				\end{align}
+				が成立する．ここに演繹法則を適用して
+				\begin{align}
+					(A \rarrow B) \rarrow 
+					( (A \vee C) \rarrow (B \vee C) )
+				\end{align}
+				が得られる．
+				
+			\item[(b)]
+				いま$A \rarrow B$が成り立っていると仮定する．論理積の除去より
+				\begin{align}
+					(A \wedge C) \rarrow A
+				\end{align}
+				は定理であるから，含意の推移律より
+				\begin{align}
+					(A \wedge C) \rarrow B
+				\end{align}
+				が従い，他方で論理積の除去より
+				\begin{align}
+					(A \wedge C) \rarrow C
+				\end{align}
+				も満たされる．そして推論法則\ref{logicalthm:conjunction_of_consequences}から
+				\begin{align}
+					(A \wedge C) \rarrow (B \wedge C)
+				\end{align}
+				が成り立ち，演繹法則より
+				\begin{align}
+					(A \rarrow B) \rarrow ((A \wedge C) \rarrow (B \wedge C))
+				\end{align}
+				が得られる．
+				
+			\item[(c)]
+				いま$A \rarrow B$，$B \rarrow C$および
+				$A$が成り立っていると仮定する．このとき三段論法より$B$が成り立つので再び三段論法より
+				$C$が成立する．ゆえに演繹法則より$A \rarrow B$と$B \rarrow C$が
+				成り立っている下で
+				\begin{align}
+					A \rarrow C
+				\end{align}
+				が成立し，演繹法則を更に順次適用すれば
+				\begin{align}
+					(A \rarrow B) \rarrow ( (B \rarrow C) \rarrow (A \rarrow C) )
+				\end{align}
+				が得られる．
+				
+			\item[(d)]
+				いま$A \rarrow B$，$C \rarrow A$および
+				$C$が成り立っていると仮定する．このとき三段論法より$A$が成り立つので再び三段論法より$B$が成立し，
+				ここに演繹法則を適用すれば，$A \rarrow B$と$C \rarrow A$が成立している下で
+				\begin{align}
+					C \rarrow B
+				\end{align}
+				が成立する．演繹法則を更に順次適用すれば
+				\begin{align}
+					(A \rarrow B) \rarrow ( (C \rarrow A) \rarrow (C \rarrow B) )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の対称律]
+		\label{logicalthm:symmetry_of_equivalence_arrows}
+			$A,B$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (A \lrarrow B) \rarrow (B \lrarrow A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		$\wedge$の除去(推論規則\ref{logicalaxm:elimination_of_conjunction})より
+		\begin{align}
+			A \lrarrow B &\vdash A \rarrow B, \\
+			A \lrarrow B &\vdash B \rarrow A
+		\end{align}
+		となる．他方で論理積の導入(推論規則\ref{logicalaxm:introduction_of_conjunction})より
+		\begin{align}
+			\vdash (B \rarrow A) \rarrow ((A \rarrow B) \rarrow 
+			(B \rarrow A) \wedge (A \rarrow B))
+		\end{align}
+		が成り立つので，三段論法を二回適用すれば
+		\begin{align}
+			A \lrarrow B \vdash (B \rarrow A) \wedge (A \rarrow B)
+		\end{align}
+		となる．つまり
+		\begin{align}
+			A \lrarrow B \vdash B \lrarrow A
+		\end{align}
+		が得られた．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の遺伝性質]\label{logicalthm:hereditary_of_equivalence}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \lrarrow B) \rarrow ((A \vee C) \lrarrow (B \vee C))$.
+				\item[(b)] $(A \lrarrow B) \rarrow ((A \wedge C) \lrarrow (B \wedge C))$.
+				\item[(c)] $(A \lrarrow B) \rarrow ((B \rarrow C) \lrarrow (A \rarrow C))$.
+				
+				\item[(d)] $(A \lrarrow B) \rarrow ((C \rarrow A) \lrarrow (C \rarrow B))$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		まず(a)を示す．いま$A \lrarrow B$が成り立っていると仮定する．このとき$A \rarrow B$と
+		$B \rarrow A$が共に成立し，他方で含意の遺伝性質より
+		\begin{align}
+			&(A \rarrow B) \rarrow ((A \vee C) \rarrow (B \vee C)), \\
+			&(B \rarrow A) \rarrow ((B \vee C) \rarrow (A \vee C))
+		\end{align}
+		が成立するから三段論法より$(A \vee C) \rarrow (B \vee C)$と
+		$(B \vee C) \rarrow (A \vee C)$が共に成立する．ここに$\wedge$の導入を適用すれば
+		\begin{align}
+			(A \vee C) \lrarrow (B \vee C)
+		\end{align}
+		が成立し，演繹法則を適用すれば
+		\begin{align}
+			(A \lrarrow B) \rarrow ((A \vee C) \lrarrow (B \vee C))
+		\end{align}
+		が得られる．(b)(c)(d)も含意の遺伝性を適用すれば得られる．
+		\QED
+	\end{prf}
+	
+	文$A$が$\mathscr{S} \vdash\ \negation A$を満たすとき，
+	$A$は公理系$\mathscr{S}$において{\bf 偽である}\index{ぎ@偽}{\bf (false)}という．
+	
+	\begin{screen}
+		\begin{logicalthm}[偽な式は矛盾を導く]\label{logicalthm:false_and_negation_are_equivalent}
+			$A$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \rarrow (A \rarrow \bot).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		矛盾の規則より
+		\begin{align}
+			A,\negation A \vdash \bot
+		\end{align}
+		である．演繹法則より
+		\begin{align}
+			\negation A \vdash A \rarrow \bot
+		\end{align}
+		が成り立ち，再び演繹法則より
+		\begin{align}
+			\vdash\ \negation A \rarrow (A \rarrow \bot)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	$A,B \vdash C$と$A \wedge B \vdash C$は同値である．$A,B \vdash C$が成り立っているとすると，
+	$\vdash A \rarrow (B \rarrow C)$が成り立つ．
+	$A \wedge B \vdash A$と三段論法より
+	$A \wedge B \vdash B \rarrow C$が成り立ち，
+	$A \wedge B \vdash B$と三段論法より
+	$A \wedge B \vdash C$が成り立つ．逆に$A \wedge B \vdash C$が成り立っているとすると
+	$\vdash (A \wedge B) \rarrow C$が成り立つ．
+	$A,B \vdash A \wedge B$と三段論法より
+	$A, B \vdash C$が成り立つ．
+	
+	\begin{screen}
+		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
+			$a$を類とするとき
+			\begin{align}
+				\vdash \set{a} \vee \negation \set{a}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律を適用することにより従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[矛盾を導く式はあらゆる式を導く]\label{logicalthm:formula_leading_to_contradiction_derives_any_formula}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow \bot) \rarrow (A \rarrow B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		推論法則\ref{logicalthm:principle_of_explosion}より
+		\begin{align}
+			\vdash \bot \rarrow B
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A \rarrow \bot \vdash \bot \rarrow B
+		\end{align}
+		が成り立つ．
+		\begin{align}
+			A \rarrow \bot \vdash A \rarrow \bot
+		\end{align}
+		も成り立つので，含意の推移律(推論法則\ref{logicalthm:transitive_law_of_implication})より
+		\begin{align}
+			A \rarrow \bot \vdash A \rarrow B
+		\end{align}
+		が成り立つ．そして演繹法則より
+		\begin{align}
+			\vdash (A \rarrow \bot) \rarrow (A \rarrow B)
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{itembox}[l]{空虚な真}
+		$A,B$を文とするとき，偽な式は矛盾を導くので(推論法則\ref{logicalthm:false_and_negation_are_equivalent})
+		\begin{align}
+			\vdash\ \negation A \rarrow (A \rarrow \bot)
+		\end{align}
+		が成り立ち，矛盾を導く式はあらゆる式を導くから(推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula})
+		\begin{align}
+			\vdash (A \rarrow \bot) \rarrow (A \rarrow B)
+		\end{align}
+		が成り立つ．以上と含意の推移律より
+		\begin{align}
+			\vdash\ \negation A \rarrow (A \rarrow B)
+		\end{align}
+		が得られる．つまり``偽な式はあらゆる式を導く''のであり，この現象を
+		{\bf 空虚な真}\index{くうきょなしん@空虚な真}{\bf (vacuous truth)}と呼ぶ．
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は否定と論理和で表せる]\label{logicalthm:rule_of_inference_3}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \lrarrow (\negation A \vee B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				含意の遺伝性質より
+				\begin{align}
+					\vdash (A \rarrow B) \rarrow 
+					((A \vee \negation A) \rarrow (B \vee \negation A))
+				\end{align}
+				が成り立つので
+				\begin{align}
+					A \rarrow B \vdash (A \vee \negation A) \rarrow (B \vee \negation A)
+				\end{align}
+				となる．排中律より
+				\begin{align}
+					A \rarrow B \vdash A \vee \negation A
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					A \rarrow B \vdash B \vee \negation A
+				\end{align}
+				が成り立ち，論理和の可換律(推論法則\ref{logicalthm:commutative_law_of_disjunction})より
+				\begin{align}
+					A \rarrow B \vdash\ \negation A \vee B
+				\end{align}
+				が得られ，演繹法則より
+				\begin{align}
+					\vdash (A \rarrow B) \rarrow (\negation A \vee B)
+				\end{align}
+				が得られる．
+				
+			\item[第二段]
+				推論法則\ref{logicalthm:false_and_negation_are_equivalent}より
+				\begin{align}
+					\vdash\ \negation A \rarrow (A \rarrow \bot)
+				\end{align}
+				が成り立ち，一方で推論法則\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula}より
+				\begin{align}
+					\vdash (A \rarrow \bot) \rarrow (A \rarrow B)
+				\end{align}
+				も成り立つので，含意の推移律より
+				\begin{align}
+					\vdash\ \negation A \rarrow (A \rarrow B)
+				\end{align}
+				が成立する．推論法則\ref{logicalthm:introduction_of_implication}より
+				\begin{align}
+					\vdash B \rarrow (A \rarrow B)
+				\end{align}
+				も成り立つから，場合分けの法則より
+				\begin{align}
+					\vdash (\negation A \vee B) \rarrow (A \rarrow B)
+				\end{align}
+				が成り立つ．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[二重否定の法則の逆が成り立つ]\label{logicalthm:converse_of_law_of_double_negative}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \rarrow \negation \negation A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		排中律より
+		\begin{align}
+			\vdash\ \negation A \vee \negation \negation A
+		\end{align}
+		が成立し，また推論法則\ref{logicalthm:rule_of_inference_3}より
+		\begin{align}
+			\vdash (\negation A \vee \negation \negation A)
+			\rarrow (A \rarrow \negation \negation A)
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			\vdash A \rarrow \negation \negation A
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶命題は同値]\label{thm:contraposition_is_true}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \lrarrow (\negation B \rarrow \negation A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				含意は否定と論理和で表せるので(推論法則\ref{logicalthm:rule_of_inference_3})
+				\begin{align}
+					\vdash (A \rarrow B) \rarrow (\negation A \vee B)
+					\label{eq:thm_contraposition_is_true_1}
+				\end{align}
+				が成り立つ．また論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction})
+				\begin{align}
+					\vdash (\negation A \vee B) \rarrow (B \vee \negation A)
+					\label{eq:thm_contraposition_is_true_2}
+				\end{align}
+				が成り立つ．ところで二重否定の法則の逆(推論法則\ref{logicalthm:converse_of_law_of_double_negative})より
+				\begin{align}
+					\vdash B \rarrow \negation \negation B
+				\end{align}
+				が成り立ち，また含意の遺伝性質より
+				\begin{align}
+					\vdash (B \rarrow \negation \negation B)
+					\rarrow ((B \vee \negation A) 
+					\rarrow (\negation \negation B \vee \negation A))
+				\end{align}
+				も成り立つから，三段論法より
+				\begin{align}
+					\vdash (B \vee \negation A) 
+					\rarrow (\negation \negation B \vee \negation A)
+					\label{eq:thm_contraposition_is_true_3}
+				\end{align}
+				が成立する．再び推論法則\ref{logicalthm:rule_of_inference_3}によって
+				\begin{align}
+					\vdash (\negation \negation B \vee \negation A)
+					\rarrow (\negation B \rarrow \negation A)
+					\label{eq:thm_contraposition_is_true_4}
+				\end{align}
+				が成り立つ．(\refeq{eq:thm_contraposition_is_true_1})と(\refeq{eq:thm_contraposition_is_true_2})と
+				(\refeq{eq:thm_contraposition_is_true_3})と(\refeq{eq:thm_contraposition_is_true_4})に含意の推移律を適用すれば
+				\begin{align}
+					\vdash (A \rarrow B) \rarrow (\negation B \rarrow \negation A)
+				\end{align}
+				が得られる．
+				
+			\item[第二段]
+				含意は否定と論理和で表せるので(推論法則\ref{logicalthm:rule_of_inference_3})
+				\begin{align}
+					\vdash (\negation B \rarrow \negation A)
+					\rarrow (\negation \negation B \vee \negation A)
+					\label{eq:thm_contraposition_is_true_5}
+				\end{align}
+				が成り立つ．ところで二重否定の法則より
+				\begin{align}
+					\vdash\ \negation \negation B \rarrow B
+				\end{align}
+				が成り立ち，また含意の遺伝性質より
+				\begin{align}
+					\vdash (\negation \negation B \rarrow B)
+					\rarrow ((\negation \negation B \vee \negation A)
+					\rarrow (B \vee \negation A))
+				\end{align}
+				も成り立つから，三段論法より
+				\begin{align}
+					\vdash (\negation \negation B \vee \negation A)
+					\rarrow (B \vee \negation A)
+					\label{eq:thm_contraposition_is_true_6}
+				\end{align}
+				が成立する．論理和は可換であるから(推論法則\ref{logicalthm:commutative_law_of_disjunction})
+				\begin{align}
+					\vdash (B \vee \negation A) \rarrow (\negation A \vee B)
+					\label{eq:thm_contraposition_is_true_7}
+				\end{align}
+				が成り立つ．再び推論法則\ref{logicalthm:rule_of_inference_3}によって
+				\begin{align}
+					\vdash (\negation A \vee B)
+					\rarrow (A \rarrow B)
+					\label{eq:thm_contraposition_is_true_8}
+				\end{align}
+				が成り立つ．(\refeq{eq:thm_contraposition_is_true_5})と(\refeq{eq:thm_contraposition_is_true_6})と
+				(\refeq{eq:thm_contraposition_is_true_7})と(\refeq{eq:thm_contraposition_is_true_8})に含意の推移律を適用すれば
+				\begin{align}
+					\vdash (\negation B \rarrow \negation A) \rarrow (A \rarrow B)
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	上の証明は簡単に書けば
+	\begin{align}
+		(A \rarrow B) &\lrarrow (\negation A \vee B) \\
+		&\lrarrow (B \vee \negation A) \\
+		&\lrarrow (\negation \negation B \vee \negation A) \\
+		&\lrarrow (\negation B \rarrow \negation A)
+	\end{align}
+	で足りる．
+	
+	\begin{screen}
+		\begin{logicalthm}[De Morganの法則]
+			$A,B$を文とするとき
+			\begin{itemize}
+				\item $\vdash\ \negation (A \vee B) \lrarrow \negation A \wedge \negation B$.
+			
+				\item $\vdash\ \negation (A \wedge B) \lrarrow \negation A \vee \negation B$.
+			\end{itemize}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[第一段]	論理和の導入の対偶を取れば
+				\begin{align}
+					\vdash\ \negation (A \vee B) \rarrow \negation A
+				\end{align}
+				と
+				\begin{align}
+					\vdash\ \negation (A \vee B) \rarrow \negation B
+				\end{align}
+				が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．
+				二式が同時に導かれるならその論理積も導かれるので(推論法則\ref{logicalthm:conjunction_of_consequences})
+				\begin{align}
+					\vdash\ \negation (A \vee B) \rarrow (\negation A \wedge \negation B)
+				\end{align}
+				が得られる．また
+				\begin{align}
+					A, \negation A \wedge \negation B \vdash A
+				\end{align}
+				かつ
+				\begin{align}
+					A, \negation A \wedge \negation B \vdash\ \negation A
+				\end{align}
+				より
+				\begin{align}
+					A, \negation A \wedge \negation B \vdash \bot
+				\end{align}
+				が成り立つので，演繹法則より
+				\begin{align}
+					A \vdash (\negation A \wedge \negation B) \rarrow \bot
+				\end{align}
+				が従い，否定の導入により
+				\begin{align}
+					A \vdash\ \negation (\negation A \wedge \negation B)
+				\end{align}
+				が成り立つ．同様にして
+				\begin{align}
+					B \vdash\ \negation (\negation A \wedge \negation B)
+				\end{align}
+				も成り立つので，場合分け法則より
+				\begin{align}
+					\vdash (A \vee B) \rarrow \negation (\negation A \wedge \negation B)
+				\end{align}
+				が成立する．この対偶を取れば
+				\begin{align}
+					\vdash (\negation A \wedge \negation B) \rarrow \negation (A \vee B)
+				\end{align}
+				が得られる(推論法則\ref{logicalthm:introduction_of_contraposition})．
+				
+			\item[第二段]
+				前段の結果より
+				\begin{align}
+					\vdash (\negation \negation A \wedge \negation \negation B)
+					\lrarrow \negation (\negation A \vee \negation B)
+				\end{align}
+				が成り立つ．ところで二重否定の法則とその逆(推論法則\ref{logicalthm:converse_of_law_of_double_negative})より
+				\begin{align}
+					\vdash (\negation \negation A \wedge \negation \negation B)
+					\lrarrow (A \wedge B)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\vdash (A \wedge B) 
+					\lrarrow \negation (\negation A \vee \negation B)
+				\end{align}
+				が成り立つ．対偶命題の同値性(推論法則\ref{logicalthm:introduction_of_contraposition})から
+				\begin{align}
+					\vdash\ \negation (A \wedge B)
+					\lrarrow (\negation A \vee \negation B)
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\monologue{
+		以上で``集合であり真類でもある類は存在しない''という言明を証明する準備が整いました．
+	}
+	
+	\begin{screen}
+		\begin{thm}[集合であり真類でもある類は存在しない]
+			$a$を類とするとき
+			\begin{align}
+				\vdash\ \negation (\ \set{a} \wedge \negation \set{a}\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を類とするとき，排中律より
+		\begin{align}
+			\vdash \set{a} \vee \negation \set{a}
+		\end{align}
+		が成り立ち，論理和の可換律より
+		\begin{align}
+			\vdash\ \negation \set{a} \vee \set{a}
+		\end{align}
+		も成立する．そしてDe Morganの法則より
+		\begin{align}
+			\vdash\ \negation (\ \negation \negation \set{a} \wedge \negation \set{a}\ )
+		\end{align}
+		が成り立つが，二重否定の法則より$\negation \negation \set{a}$と
+		$\set{a}$は同値となるので
+		\begin{align}
+			\vdash\ \negation (\ \set{a} \wedge \negation \set{a}\ )
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{prf}
+	
+	「集合であり真類でもある類は存在しない」とは言ったものの，それはあくまで
+	\begin{align}
+		\Sigma \vdash\ \negation (\ \set{a} \wedge \negation \set{a}\ )
+	\end{align}
+	を翻訳したに過ぎないのであって，もしかすると
+	\begin{align}
+		\Sigma \vdash \set{a} \wedge \negation \set{a}
+	\end{align}
+	も導かれるかもしれない．この場合$\Sigma$は矛盾することになるが，$\Sigma$の無矛盾性が不明であるため
+	この事態が起こらないとは言えない．
