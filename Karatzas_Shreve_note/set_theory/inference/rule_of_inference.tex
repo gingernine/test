@@ -552,6 +552,364 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{logicalaxm}[二重否定の除去]
+		\label{logicalaxm:elimination_of_double_negation}
+			$A$を文とするとき以下が成り立つ:
+			\begin{align}
+				\negation \negation A \vdash A.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶論法の原理]
+		\label{logicalthm:proof_by_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation B \rarrow\ \negation A\, )
+				\rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		二重否定の導入(推論法則\ref{logicalthm:introduction_of_double_negation})より
+		\begin{align}
+			\negation B \rarrow\ \negation A \vdash 
+			A \rarrow\ \negation \negation A
+		\end{align}
+		が成り立つので，演繹法則の逆より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation A
+		\end{align}
+		となる．また$\negation B \rarrow\ \negation A$の対偶を取れば
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ 
+			\negation \negation A \rarrow\ \negation \negation B
+		\end{align}
+		が成り立つので(定理\ref{logicalthm:introduction_of_contraposition})，
+		三段論法より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation B
+		\end{align}
+		となる．ここで二重否定の除去より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ 
+			\negation \negation B \rarrow B
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash B
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\negation B \rarrow\ \negation A &\vdash A \rarrow B, \\
+			&\vdash (\, \negation B \rarrow\ \negation A\, ) 
+			\rarrow (\, A \rarrow B\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+		\label{logicalthm:proof_by_contradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		否定の導入規則より
+		\begin{align}
+			\negation A \rarrow \bot \vdash\ \negation \negation A
+		\end{align}
+		が成り立ち，二重否定の法則より
+		\begin{align}
+			\negation A \rarrow \bot \vdash\ \negation \negation A \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\negation A \rarrow \bot \vdash A
+		\end{align}
+		となる．そして演繹規則より
+		\begin{align}
+			\vdash (\, \negation A \rarrow \bot\, ) \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	次の推論法則は{\bf 爆発律}\index{ばくはつりつ@爆発律}{\bf (principle of explosion)}
+	と呼ばれるもので，矛盾からはあらゆる式が導かれることを述べている．
+	また爆発律によってなぜ$\bot$が「矛盾」と呼ばれるのかが明確になる．
+	実際，公理系$\mathscr{S}$からひとたび$\bot$が導かれれば，爆発律との三段論法によって
+	どんな式でも$\mathscr{S}$の定理となってしまう．この場合$\mathscr{S}$においては
+	$A$とその否定$\negation A$など食い違う結論が共に定理となってしまい，
+	この意味での``矛盾''を引き起こすのである．
+	
+	\begin{screen}
+		\begin{logicalthm}[爆発律]
+		\label{logicalthm:principle_of_explosion}
+			$A$を文とするとき
+			\begin{align}
+				\vdash \bot \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		含意の導入(推論法則\ref{logicalthm:introduction_of_implication})より
+		\begin{align}
+			\vdash \bot \rarrow (\, \negation A \rarrow \bot\, )
+		\end{align}
+		が成り立つので，演繹法則の逆より
+		\begin{align}
+			\bot \vdash\ \negation A \rarrow \bot
+		\end{align}
+		となる．また背理法の原理(推論法則\ref{logicalthm:proof_by_contradiction})より
+		\begin{align}
+			\bot \vdash (\, \negation A \rarrow \bot\, ) \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\bot \vdash A
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\vdash \bot \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[否定の論理和は含意で書ける]
+		\label{logicalthm:disjunction_of_negation_rewritable_by_implication}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \vee B \rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		矛盾の導入規則より
+		\begin{align}
+			A,\ \negation A \vdash \bot
+		\end{align}
+		が成り立ち，爆発律(推論法則\ref{logicalthm:principle_of_explosion})より
+		\begin{align}
+			A,\ \negation A \vdash \bot \rarrow B
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A,\ \negation A \vdash B
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\vdash\ \negation A \rarrow (\, A \rarrow B\, )
+			\label{fom:disjunction_of_negation_rewritable_by_implication_1}
+		\end{align}
+		が得られる．また含意の導入(推論法則\ref{logicalthm:introduction_of_implication})より
+		\begin{align}
+			\vdash B \rarrow (\, A \rarrow B\, )
+			\label{fom:disjunction_of_negation_rewritable_by_implication_2}
+		\end{align}
+		も得られる．ところで場合分け規則より
+		\begin{align}
+			\vdash (\, \negation A \rarrow (\, A \rarrow B\, )\, )
+			\rarrow (\, (\, B \rarrow (\, A \rarrow B\, )\, )
+			\rarrow (\, \negation A \vee B \rarrow (\, A \rarrow B\, )\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:disjunction_of_negation_rewritable_by_implication_1})
+		との三段論法より
+		\begin{align}
+			\vdash (\, B \rarrow (\, A \rarrow B\, )\, )
+			\rarrow (\, \negation A \vee B \rarrow (\, A \rarrow B\, )\, )
+		\end{align}
+		となり，(\refeq{fom:disjunction_of_negation_rewritable_by_implication_2})
+		との三段論法より
+		\begin{align}
+			\vdash\ \negation A \vee B \rarrow (\, A \rarrow B\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			$A$に自由に現れる項が$x$のみであるとする．
+			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
+			\begin{align}
+				A(\tau) &\vdash \exists x A(x), \\
+				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
+				\forall x A(x) &\vdash A(\tau), \\
+				A(\varepsilon x \negation A(x)) &\vdash \forall x A(x).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	どれでも一つ，$A$を成り立たせるような$\varepsilon$項$\tau$が取れれば
+	$\exists x A(x)$が成り立つのだし，逆に$\exists x A(x)$が成り立つならば
+	$\varepsilon x A(x)$なる$\epsilon$項が$A$を満たすのであるから，
+	$\exists x A(x)$が成り立つということと$A$を満たす$\varepsilon$項が取れるということは
+	同じ意味になる．
+	
+	$\forall x A(x)$が成り立つならばいかなる$\varepsilon$項も$A$を満たすし，
+	逆にいかなる$\varepsilon$項も$A$を満たすならば，特に$\varepsilon x \negation A(x)$
+	なる$\varepsilon$項も$A$を満たすのだから，$\forall x A(x)$が成立する．
+	つまり，$\forall x A(x)$が成り立つということと，任意の$\varepsilon$項が$A$を満たすということは
+	同じ意味になる．
+	
+	後述することであるが，$\varepsilon$項はどれも集合であって，また集合である類は
+	いずれかの$\varepsilon$項と等しい．ゆえに，量化子の亘る範囲は集合に制限されるのである．
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
+			$\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{align}
+				A(\tau) \lrarrow B(\tau)
+			\end{align}
+			が成り立っているとき，
+			\begin{align}
+				\exists x A(x) \lrarrow \exists x B(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x A(x) \lrarrow \forall x B(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		いま，$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \lrarrow B(\tau)
+			\label{logicalthm:properties_of_quantifiers_1}
+		\end{align}
+		が成り立っているとする．
+		ここで
+		\begin{align}
+			\exists x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		\begin{align}
+			\tau \defeq \varepsilon x A(x)
+		\end{align}
+		とおけば存在記号に関する規則より
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．再び存在記号に関する規則より
+		\begin{align}
+			\exists x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\exists x A(x) \rarrow \exists x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\exists x B(x) \rarrow \exists x A(x)
+		\end{align}
+		も得られる．今度は
+		\begin{align}
+			\forall x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\forall x A(x) \rarrow \forall x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\forall x B(x) \rarrow \forall x A(x)
+		\end{align}
+		も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する De Morgan の法則]\label{logicalthm:De_Morgan_law_for_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			\begin{align}
+				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			\exists x \negation A(x) \lrarrow 
+			\negation A(\varepsilon x \negation A(x))
+		\end{align}
+		は定理である．他方で推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			A(\varepsilon x \negation A(x)) \lrarrow \forall x A(x) 
+		\end{align}
+		もまた定理であり，この対偶を取れば
+		\begin{align}
+			\negation A(\varepsilon x \negation A(x)) \lrarrow 
+			\negation \forall x A(x)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+		\end{align}
+		が従う．$A$を$\negation A$に置き換えれば
+		\begin{align}
+			\forall x \negation A(x) \lrarrow 
+			\negation \exists x \negation \negation A(x)
+		\end{align}
+		が成り立ち，また$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \lrarrow \negation \negation A(\tau)
+		\end{align}
+		が成り立つので，推論法則\ref{logicalthm:properties_of_quantifiers}より
+		\begin{align}
+			\exists x \negation \negation A(x)
+			\lrarrow \exists x A(x)
+		\end{align}
+		も成り立つ．ゆえに
+		\begin{align}
+			\forall x \negation A(x) \lrarrow 
+			\negation \exists x A(x)
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+
+\section{その他の推論規則}
+	\begin{screen}
 		\begin{logicalthm}[含意の推移律]
 		\label{logicalthm:transitive_law_of_implication}
 			$A,B,C$を文とするとき
@@ -738,7 +1096,7 @@
 	\end{prf}
 	
 	\begin{screen}
-		\begin{logicalthm}[同値関係の対称律]
+		\begin{logicalthm}[同値記号の対称律]
 		\label{logicalthm:symmetry_of_equivalence_arrows}
 			$A,B$を$\mathcal{L}$の文とするとき
 			\begin{align}
@@ -800,132 +1158,6 @@
 			(A \lrarrow B) \rarrow ((A \vee C) \lrarrow (B \vee C))
 		\end{align}
 		が得られる．(b)(c)(d)も含意の遺伝性を適用すれば得られる．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalaxm}[二重否定の除去]
-		\label{logicalaxm:elimination_of_double_negation}
-			$A$を文とするとき以下が成り立つ:
-			\begin{align}
-				\negation \negation A \vdash A.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[対偶論法の原理]
-		\label{logicalthm:proof_by_contraposition}
-			$A$と$B$を文とするとき
-			\begin{align}
-				\vdash (\, \negation B \rarrow\ \negation A\, )
-				\rarrow (\, A \rarrow B\, ).
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		二重否定の導入(推論法則\ref{logicalthm:introduction_of_double_negation})より
-		\begin{align}
-			\negation B \rarrow\ \negation A \vdash 
-			A \rarrow\ \negation \negation A
-		\end{align}
-		が成り立つので，演繹法則の逆より
-		\begin{align}
-			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation A
-		\end{align}
-		となる．また$\negation B \rarrow\ \negation A$の対偶を取れば
-		\begin{align}
-			A,\ \negation B \rarrow\ \negation A \vdash\ 
-			\negation \negation A \rarrow\ \negation \negation B
-		\end{align}
-		が成り立つので(定理\ref{logicalthm:introduction_of_contraposition})，
-		三段論法より
-		\begin{align}
-			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation B
-		\end{align}
-		となる．ここで二重否定の除去より
-		\begin{align}
-			A,\ \negation B \rarrow\ \negation A \vdash\ 
-			\negation \negation B \rarrow B
-		\end{align}
-		となるので，三段論法より
-		\begin{align}
-			A,\ \negation B \rarrow\ \negation A \vdash B
-		\end{align}
-		が従い，演繹規則より
-		\begin{align}
-			\negation B \rarrow\ \negation A &\vdash A \rarrow B, \\
-			&\vdash (\, \negation B \rarrow\ \negation A\, ) 
-			\rarrow (\, A \rarrow B\, )
-		\end{align}
-		が得られる．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalthm}[背理法の原理]
-		\label{logicalthm:proof_by_contradiction}
-			$A$を文とするとき
-			\begin{align}
-				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		否定の導入規則より
-		\begin{align}
-			\negation A \rarrow \bot \vdash\ \negation \negation A
-		\end{align}
-		が成り立ち，二重否定の法則より
-		\begin{align}
-			\negation A \rarrow \bot \vdash\ \negation \negation A \rarrow A
-		\end{align}
-		が成り立つので，三段論法より
-		\begin{align}
-			\negation A \rarrow \bot \vdash A
-		\end{align}
-		となる．そして演繹規則より
-		\begin{align}
-			\vdash (\, \negation A \rarrow \bot\, ) \rarrow A
-		\end{align}
-		が得られる．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalthm}[爆発律(矛盾からはあらゆる式が導かれる)]
-		\label{logicalthm:contradiction_derives_any_formula}
-			$A$を文とするとき
-			\begin{align}
-				\vdash \bot \rarrow A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		推論法則\ref{logicalthm:rule_of_inference_2}より
-		\begin{align}
-			\vdash \bot \rarrow (\, \negation A \rarrow \bot\, )
-		\end{align}
-		が成り立つので，演繹法則の逆より
-		\begin{align}
-			\bot \vdash\ \negation A \rarrow \bot
-		\end{align}
-		となる．また背理法の原理(推論法則\ref{logicalthm:proof_by_contradiction})より
-		\begin{align}
-			\bot \vdash (\, \negation A \rarrow \bot\, ) \rarrow A
-		\end{align}
-		が成り立つので，三段論法より
-		\begin{align}
-			\bot \vdash A
-		\end{align}
-		が従い，演繹規則より
-		\begin{align}
-			\vdash \bot \rarrow A
-		\end{align}
-		が得られる．
 		\QED
 	\end{prf}
 	
@@ -1048,7 +1280,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		推論法則\ref{logicalthm:contradiction_derives_any_formula}より
+		推論法則\ref{logicalthm:principle_of_explosion}より
 		\begin{align}
 			\vdash \bot \rarrow B
 		\end{align}
@@ -1141,7 +1373,7 @@
 				\begin{align}
 					\vdash\ \negation A \rarrow (A \rarrow B)
 				\end{align}
-				が成立する．推論法則\ref{logicalthm:rule_of_inference_2}より
+				が成立する．推論法則\ref{logicalthm:introduction_of_implication}より
 				\begin{align}
 					\vdash B \rarrow (A \rarrow B)
 				\end{align}
@@ -1417,171 +1649,3 @@
 	も導かれるかもしれない．この場合$\Sigma$は矛盾することになるが，$\Sigma$の無矛盾性が不明であるため
 	この事態が起こらないとは言えない．
 	
-	\begin{screen}
-		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}
-			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
-			$A$に自由に現れる項が$x$のみであるとする．
-			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
-			\begin{align}
-				A(\tau) &\vdash \exists x A(x), \\
-				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
-				\forall x A(x) &\vdash A(\tau), \\
-				A(\varepsilon x \negation A(x)) &\vdash \forall x A(x).
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	どれでも一つ，$A$を成り立たせるような$\varepsilon$項$\tau$が取れれば
-	$\exists x A(x)$が成り立つのだし，逆に$\exists x A(x)$が成り立つならば
-	$\varepsilon x A(x)$なる$\epsilon$項が$A$を満たすのであるから，
-	$\exists x A(x)$が成り立つということと$A$を満たす$\varepsilon$項が取れるということは
-	同じ意味になる．
-	
-	$\forall x A(x)$が成り立つならばいかなる$\varepsilon$項も$A$を満たすし，
-	逆にいかなる$\varepsilon$項も$A$を満たすならば，特に$\varepsilon x \negation A(x)$
-	なる$\varepsilon$項も$A$を満たすのだから，$\forall x A(x)$が成立する．
-	つまり，$\forall x A(x)$が成り立つということと，任意の$\varepsilon$項が$A$を満たすということは
-	同じ意味になる．
-	
-	後述することであるが，$\varepsilon$項はどれも集合であって，また集合である類は
-	いずれかの$\varepsilon$項と等しい．ゆえに，量化子の亘る範囲は集合に制限されるのである．
-	
-	\begin{screen}
-		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
-			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
-			$\mathcal{L}$の任意の対象$\tau$に対して
-			\begin{align}
-				A(\tau) \lrarrow B(\tau)
-			\end{align}
-			が成り立っているとき，
-			\begin{align}
-				\exists x A(x) \lrarrow \exists x B(x)
-			\end{align}
-			および
-			\begin{align}
-				\forall x A(x) \lrarrow \forall x B(x)
-			\end{align}
-			が成り立つ．
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		いま，$\mathcal{L}$の任意の対象$\tau$に対して
-		\begin{align}
-			A(\tau) \lrarrow B(\tau)
-			\label{logicalthm:properties_of_quantifiers_1}
-		\end{align}
-		が成り立っているとする．
-		ここで
-		\begin{align}
-			\exists x A(x)
-		\end{align}
-		が成り立っていると仮定すると，
-		\begin{align}
-			\tau \defeq \varepsilon x A(x)
-		\end{align}
-		とおけば存在記号に関する規則より
-		\begin{align}
-			A(\tau)
-		\end{align}
-		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
-		\begin{align}
-			B(\tau)
-		\end{align}
-		が成立する．再び存在記号に関する規則より
-		\begin{align}
-			\exists x B(x)
-		\end{align}
-		が成り立つので，演繹法則から
-		\begin{align}
-			\exists x A(x) \rarrow \exists x B(x)
-		\end{align}
-		が得られる．$A$と$B$の立場を入れ替えれば
-		\begin{align}
-			\exists x B(x) \rarrow \exists x A(x)
-		\end{align}
-		も得られる．今度は
-		\begin{align}
-			\forall x A(x)
-		\end{align}
-		が成り立っていると仮定すると，
-		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-		$\mathcal{L}$の任意の対象$\tau$に対して
-		\begin{align}
-			A(\tau)
-		\end{align}
-		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
-		\begin{align}
-			B(\tau)
-		\end{align}
-		が成立する．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-		\begin{align}
-			\forall x B(x)
-		\end{align}
-		が成り立つので，演繹法則から
-		\begin{align}
-			\forall x A(x) \rarrow \forall x B(x)
-		\end{align}
-		が得られる．$A$と$B$の立場を入れ替えれば
-		\begin{align}
-			\forall x B(x) \rarrow \forall x A(x)
-		\end{align}
-		も得られる．
-		\QED
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalthm}[量化記号に対する De Morgan の法則]\label{logicalthm:De_Morgan_law_for_quantifiers}
-			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
-			\begin{align}
-				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
-			\end{align}
-			および
-			\begin{align}
-				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
-			\end{align}
-			が成り立つ．
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{sketch}
-		推論規則\ref{logicalaxm:rules_of_quantifiers}より
-		\begin{align}
-			\exists x \negation A(x) \lrarrow 
-			\negation A(\varepsilon x \negation A(x))
-		\end{align}
-		は定理である．他方で推論規則\ref{logicalaxm:rules_of_quantifiers}より
-		\begin{align}
-			A(\varepsilon x \negation A(x)) \lrarrow \forall x A(x) 
-		\end{align}
-		もまた定理であり，この対偶を取れば
-		\begin{align}
-			\negation A(\varepsilon x \negation A(x)) \lrarrow 
-			\negation \forall x A(x)
-		\end{align}
-		が成り立つ．ゆえに
-		\begin{align}
-			\exists x \negation A(x) \lrarrow \negation \forall x A(x)
-		\end{align}
-		が従う．$A$を$\negation A$に置き換えれば
-		\begin{align}
-			\forall x \negation A(x) \lrarrow 
-			\negation \exists x \negation \negation A(x)
-		\end{align}
-		が成り立ち，また$\mathcal{L}$の任意の対象$\tau$に対して
-		\begin{align}
-			A(\tau) \lrarrow \negation \negation A(\tau)
-		\end{align}
-		が成り立つので，推論法則\ref{logicalthm:properties_of_quantifiers}より
-		\begin{align}
-			\exists x \negation \negation A(x)
-			\lrarrow \exists x A(x)
-		\end{align}
-		も成り立つ．ゆえに
-		\begin{align}
-			\forall x \negation A(x) \lrarrow 
-			\negation \exists x A(x)
-		\end{align}
-		が従う．
-		\QED
-	\end{sketch}

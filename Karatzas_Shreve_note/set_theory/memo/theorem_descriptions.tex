@@ -55,7 +55,8 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalthm}[含意の導入]\ref{logicalthm:rule_of_inference_2}
+		\begin{logicalthm}[含意の導入]
+		\ref{logicalthm:introduction_of_implication}
 			$A,B$を文とするとき
 			\begin{align}
 				\vdash B \rarrow (A \rarrow B).
@@ -271,6 +272,98 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{logicalaxm}[二重否定の除去]
+		\ref{logicalaxm:elimination_of_double_negation}
+			$A$を文とするとき以下が成り立つ:
+			\begin{align}
+				\negation \negation A \vdash A.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶論法の原理]
+		\ref{logicalthm:proof_by_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation B \rarrow\ \negation A\, )
+				\rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+		\ref{logicalthm:proof_by_contradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[爆発律]
+		\ref{logicalthm:principle_of_explosion}
+			$A$を文とするとき
+			\begin{align}
+				\vdash \bot \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[量化記号に関する規則]
+		\ref{logicalaxm:rules_of_quantifiers}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			$A$に自由に現れる項が$x$のみであるとする．
+			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
+			\begin{align}
+				A(\tau) &\vdash \exists x A(x), \\
+				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
+				\forall x A(x) &\vdash A(\tau), \\
+				A(\varepsilon x \negation A(x)) &\vdash \forall x A(x).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(イ)]
+		\ref{logicalthm:properties_of_quantifiers}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
+			$\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{align}
+				A(\tau) \lrarrow B(\tau)
+			\end{align}
+			が成り立っているとき，
+			\begin{align}
+				\exists x A(x) \lrarrow \exists x B(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x A(x) \lrarrow \forall x B(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する De Morgan の法則]
+		\ref{logicalthm:De_Morgan_law_for_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			\begin{align}
+				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+
+\section{その他の推論法則}
+	\begin{screen}
 		\begin{logicalthm}[含意の推移律]
 		\ref{logicalthm:transitive_law_of_implication}
 			$A,B,C$を文とするとき
@@ -308,7 +401,7 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalthm}[同値関係の対称律]
+		\begin{logicalthm}[同値記号の対称律]
 		\ref{logicalthm:symmetry_of_equivalence_arrows}
 			$A,B$を$\mathcal{L}$の文とするとき
 			\begin{align}
@@ -328,47 +421,6 @@
 				
 				\item[(d)] $(A \lrarrow B) \rarrow ((C \rarrow A) \lrarrow (C \rarrow B))$.
 			\end{description}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalaxm}[二重否定の除去]
-		\ref{logicalaxm:elimination_of_double_negation}
-			$A$を文とするとき以下が成り立つ:
-			\begin{align}
-				\negation \negation A \vdash A.
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[対偶論法の原理]
-		\ref{logicalthm:proof_by_contraposition}
-			$A$と$B$を文とするとき
-			\begin{align}
-				\vdash (\, \negation B \rarrow\ \negation A\, )
-				\rarrow (\, A \rarrow B\, ).
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[背理法の原理]
-		\ref{logicalthm:proof_by_contradiction}
-			$A$を文とするとき
-			\begin{align}
-				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[爆発律(矛盾からはあらゆる式が導かれる)]
-		\ref{logicalthm:contradiction_derives_any_formula}
-			$A$を文とするとき
-			\begin{align}
-				\vdash \bot \rarrow A.
-			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
@@ -457,56 +509,6 @@
 				\vdash\ \negation (\ \set{a} \wedge \negation \set{a}\ ).
 			\end{align}
 		\end{thm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalaxm}[量化記号に関する規則]
-		\ref{logicalaxm:rules_of_quantifiers}
-			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
-			$A$に自由に現れる項が$x$のみであるとする．
-			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
-			\begin{align}
-				A(\tau) &\vdash \exists x A(x), \\
-				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
-				\forall x A(x) &\vdash A(\tau), \\
-				A(\varepsilon x \negation A(x)) &\vdash \forall x A(x).
-			\end{align}
-		\end{logicalaxm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[量化記号の性質(イ)]
-		\ref{logicalthm:properties_of_quantifiers}
-			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
-			$\mathcal{L}$の任意の対象$\tau$に対して
-			\begin{align}
-				A(\tau) \lrarrow B(\tau)
-			\end{align}
-			が成り立っているとき，
-			\begin{align}
-				\exists x A(x) \lrarrow \exists x B(x)
-			\end{align}
-			および
-			\begin{align}
-				\forall x A(x) \lrarrow \forall x B(x)
-			\end{align}
-			が成り立つ．
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[量化記号に対する De Morgan の法則]
-		\ref{logicalthm:De_Morgan_law_for_quantifiers}
-			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
-			\begin{align}
-				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
-			\end{align}
-			および
-			\begin{align}
-				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
-			\end{align}
-			が成り立つ．
-		\end{logicalthm}
 	\end{screen}
 	
 \section{集合}
