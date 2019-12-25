@@ -39,20 +39,26 @@
 	たとえば公理系$\mathscr{S}$の下で
 	\begin{align}
 		\mathscr{S} \vdash A
+		\label{fom:introduction_of_contradiction_1}
 	\end{align}
 	と
 	\begin{align}
 		\mathscr{S} \vdash\ \negation A
+		\label{fom:introduction_of_contradiction_2}
 	\end{align}
 	が導かれたとすれば，矛盾の導入規則から得られた推論法則は
 	\begin{align}
 		\mathscr{S} \vdash A \rarrow (\, \negation A \rarrow \bot\, )
 	\end{align}
-	を満たすので，三段論法より
+	を満たすので，(\refeq{fom:introduction_of_contradiction_1})との三段論法より
+	\begin{align}
+		\mathscr{S} \vdash\ \negation A \rarrow \bot
+	\end{align}
+	となり，(\refeq{fom:introduction_of_contradiction_2})との三段論法より
 	\begin{align}
 		\mathscr{S} \vdash \bot
 	\end{align}
-	が従う．これを結論だけ見て直感的に
+	が従う，といった要領である．これを始めと結論だけ見て直感的に
 	\begin{prooftree}
 		\AxiomC{$\mathscr{S} \vdash A$}
 		\AxiomC{$\mathscr{S} \vdash\ \negation A$}
@@ -60,8 +66,8 @@
 	\end{prooftree}
 	と書いてみれば，こちらは矛盾の導入規則そのままの形に似ているので，
 	あたかも矛盾の導入規則を``直接''適用したように見える．他の推論規則も
-	実際の証明で用いる際は推論法則に直したものを用いるのであるが，
-	結論だけ見れば
+	実際の証明では推論法則に直したものを用いるのであるが，
+	始めと結論だけ見れば
 	\begin{prooftree}
 		\AxiomC{$\mathscr{S} \vdash A \rarrow \bot$}
 		\UnaryInfC{$\mathscr{S} \vdash\ \negation A$}
@@ -76,15 +82,16 @@
 		\AxiomC{$\mathscr{S} \vdash A(\tau)$}
 		\UnaryInfC{$\mathscr{S} \vdash \exists x A(x)$}
 	\end{prooftree}
-	であったりが``成り立つ''のである．そしてこれらの水平線が入った規則(もどき)は
+	であったりが``成り立つ''のである．そしてこれらの水平線が入った規則もどきは
 	他の証明体系では正式な推論規則であったりする．
-	どうせすぐに推論法則に直してしまうものを，どうして法則の形で推論の公理として導入するのではなく
-	わざわざ推論規則として導入したのかというと，他の証明体系の規則との対応を意識しているのと，
+	どうせすぐに推論法則に直してしまうものを，どうしてわざわざ推論規則として導入したのかというと
+	(推論法則の形で推論の公理として導入しても同じである)，
+	他の証明体系の規則との対応を意識しているのと，
 	$\vdash$によって前後に分割してある方が若干見やすいからである．
 	
 	$\varphi \rarrow \psi$なる式に対して
 	\begin{align}
-		\negation \psi \rarrow \negation \varphi
+		\negation \psi \rarrow\ \negation \varphi
 	\end{align}
 	を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}{\bf (contraposition)}と呼ぶ．
 	
@@ -94,7 +101,7 @@
 			$A$と$B$を文とするとき
 			\begin{align}
 				\vdash (\, A \rarrow B\, ) 
-				\rarrow (\, \negation B \rarrow \negation A\, ).
+				\rarrow (\, \negation B \rarrow\ \negation A\, ).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -139,7 +146,7 @@
 		となるが，今度は否定の導入規則より
 		\begin{align}
 			\negation B,\ A \rarrow B \vdash 
-			(\, A \rarrow \bot\, ) \rarrow \negation A
+			(\, A \rarrow \bot\, ) \rarrow\ \negation A
 		\end{align}
 		が満たされるので，三段論法より
 		\begin{align}
@@ -147,12 +154,12 @@
 		\end{align}
 		が出る．そして演繹規則より
 		\begin{align}
-			A \rarrow B \vdash\ \negation B \rarrow \negation A
+			A \rarrow B \vdash\ \negation B \rarrow\ \negation A
 		\end{align}
 		が得られ，再び演繹規則より
 		\begin{align}
 			\vdash (\, A \rarrow B\, ) \rarrow
-			(\, \negation B \rarrow \negation A\, )
+			(\, \negation B \rarrow\ \negation A\, )
 		\end{align}
 		が得られる．
 		\QED
@@ -214,6 +221,8 @@
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
+	
+	肯定と否定は両立しない．
 	
 	\begin{screen}
 		\begin{logicalthm}[無矛盾律]
@@ -286,7 +295,7 @@
 	後者を{\bf 強 De Morgan の法則}と呼ぶ．
 	
 	\begin{screen}
-		\begin{logicalaxm}[場合分け規則]
+		\begin{logicalaxm}[論理和の除去]
 		\label{logicalaxm:elimination_of_disjunction}
 			$A$と$B$と$C$を文とするとき
 			\begin{align}
@@ -295,7 +304,8 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	場合分け規則とは{\bf 論理和の除去}とも呼ばれる．また場合分け規則に演繹規則を二回適用すれば
+	{\bf 論理和の除去}とは{\bf 場合分け}\index{ばあいわけ@場合分け}{\bf (proof by case)}
+	とも呼ばれる．また場合分け規則に演繹規則を二回適用すれば
 	\begin{align}
 		\vdash (\, A \rarrow C\, ) 
 		\rarrow (\, (\, B \rarrow C\, ) \rarrow (\, A \vee B \rarrow C\, )\, )
@@ -367,6 +377,55 @@
 				\rarrow\ \negation (\, A \vee B\, )
 		\end{align}
 		が出る．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[強 De Morgan の法則(1)]
+		\label{logicalthm:strong_De_Morgan_law_1}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \vee \negation B
+				\rarrow\ \negation (\, A \wedge B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理積の除去より
+		\begin{align}
+			\vdash (\, A \wedge B\, ) \rarrow A
+		\end{align}
+		が成り立つので，対偶を取れば
+		\begin{align}
+			\vdash\ \negation A \rarrow\ \negation (\, A \wedge B\, )
+			\label{fom:strong_De_Morgan_law_1_1}
+		\end{align}
+		が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		同様に
+		\begin{align}
+			\vdash\ \negation B \rarrow\ \negation (\, A \wedge B\, )
+			\label{fom:strong_De_Morgan_law_1_2}
+		\end{align}
+		も得られる．また論理和の除去規則より
+		\begin{align}
+			\vdash (\, \negation A \rarrow\ \negation (\, A \wedge B\, )\, )
+			\rarrow (\, (\, \negation B \rarrow\ \negation (\, A \wedge B\, )\, )
+			\rarrow (\, \negation A \vee \negation B 
+			\rarrow\ \negation (\, A \wedge B\, )\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:strong_De_Morgan_law_1_1})との三段論法より
+		\begin{align}
+			\vdash (\, \negation B \rarrow\ \negation (\, A \wedge B\, )\, )
+			\rarrow (\, \negation A \vee \negation B 
+			\rarrow\ \negation (\, A \wedge B\, )\, )
+		\end{align}
+		が従い，(\refeq{fom:strong_De_Morgan_law_1_2})との三段論法より
+		\begin{align}
+			\vdash\ \negation A \vee \negation B 
+			\rarrow\ \negation (\, A \wedge B\, )
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
 	
@@ -642,13 +701,13 @@
 		\QED
 	\end{prf}
 	
-	次の推論法則は{\bf 爆発律}\index{ばくはつりつ@爆発律}{\bf (principle of explosion)}
-	と呼ばれるもので，矛盾からはあらゆる式が導かれることを述べている．
-	また爆発律によってなぜ$\bot$が「矛盾」と呼ばれるのかが明確になる．
+	次の{\bf 爆発律}\index{ばくはつりつ@爆発律}{\bf (principle of explosion)}
+	とは「矛盾からはあらゆる式が導かれる」ことを表している．
+	またなぜ$\bot$が「矛盾」と呼ばれるのかが明確になる．
 	実際，公理系$\mathscr{S}$からひとたび$\bot$が導かれれば，爆発律との三段論法によって
-	どんな式でも$\mathscr{S}$の定理となってしまう．この場合$\mathscr{S}$においては
+	どんな式でも$\mathscr{S}$の定理となる．すると$\mathscr{S}$においては
 	$A$とその否定$\negation A$など食い違う結論が共に定理となってしまい，
-	この意味での``矛盾''を引き起こすのである．
+	まさしく``矛盾''が引き起こされるのである．
 	
 	\begin{screen}
 		\begin{logicalthm}[爆発律]
