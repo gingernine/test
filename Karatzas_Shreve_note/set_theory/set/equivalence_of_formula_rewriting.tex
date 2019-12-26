@@ -106,7 +106,7 @@
 		とおけば，まず外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})より
 		\begin{align}
 			\Set{y}{\varphi(y)} = b,\ \EQAX \vdash 
-			\tau \in \Set{z}{\psi(z)} \lrarrow \tau \in b
+			\tau \in \Set{y}{\varphi(z)} \lrarrow \tau \in b
 			\label{fom:equivalent_formula_rewriting_3_1}
 		\end{align}
 		が成り立つ．他方で内包性公理より
@@ -136,6 +136,69 @@
 	
 	\begin{screen}
 		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_5}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
+				\rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon u \negation (\, \varphi(u) \lrarrow \psi(u)\, )
+		\end{align}
+		とおけば，まず外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX \vdash 
+			\tau \in \Set{y}{\varphi(z)} \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_5_1}
+		\end{align}
+		が成り立つ．また内包性公理より
+		\begin{align}
+			\COMAX &\vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau), 
+			\label{fom:equivalent_formula_rewriting_5_2} \\
+			\COMAX &\vdash \tau \in \Set{z}{\varphi(z)} \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_5_3}
+		\end{align}
+		が成り立つが，(\refeq{fom:equivalent_formula_rewriting_5_2})と
+		同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \varphi(\tau) \lrarrow \tau \in \Set{y}{\varphi(y)}
+			\label{fom:equivalent_formula_rewriting_5_4}
+		\end{align}
+		も成り立つ．(\refeq{fom:equivalent_formula_rewriting_5_4})と
+		(\refeq{fom:equivalent_formula_rewriting_5_1})と同値記号の推移律
+		(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
+			 \varphi(\tau) \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_5_5}
+		\end{align}
+		が従い，(\refeq{fom:equivalent_formula_rewriting_5_5})と
+		(\refeq{fom:equivalent_formula_rewriting_5_3})と同値記号の推移律より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
+			\varphi(\tau) \lrarrow \psi(\tau)
+		\end{align}
+		が従う．そして全称記号の推論規則より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_7}
 			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
 			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
 			\begin{align}
@@ -155,6 +218,7 @@
 	
 	\begin{screen}
 		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_8}
 			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
 			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
 			\begin{align}
