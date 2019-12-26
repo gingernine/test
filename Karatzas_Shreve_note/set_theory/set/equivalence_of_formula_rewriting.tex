@@ -102,6 +102,60 @@
 	
 	\begin{screen}
 		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_2}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall v\, (\, v \in a \lrarrow \psi(v)\, )
+				\rarrow a = \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq 
+			\varepsilon x \negation (\, x \in a \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		とおく．まず全称記号の推論規則より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, )
+			\vdash \tau \in a \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_2_1}
+		\end{align}
+		が成り立つ．また内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \Set{z}{\psi(z)} \lrarrow \psi(\tau)
+		\end{align}
+		となるので，同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \psi(\tau) \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_2_2}
+		\end{align}
+		が成り立つ．(\refeq{fom:equivalent_formula_rewriting_2_1})と
+		(\refeq{fom:equivalent_formula_rewriting_2_2})と同値記号の推移律
+		(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, ),\ \COMAX \vdash
+			\tau \in a \lrarrow \tau \in \Set{z}{\psi(z)}
+		\end{align}
+		となり，全称記号の推論規則より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, ),\ \COMAX \vdash
+			\forall x\, (\, x \in a \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, ),\ \EXTAX,\COMAX \vdash
+			a = \Set{z}{\psi(z)}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_3}
 			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
 			$y$を$\varphi$に自由に現れる変項とし，$\varphi$に自由に現れる変項は$y$のみ
@@ -144,6 +198,57 @@
 		\begin{align}
 			\Set{y}{\varphi(y)} = b,\ \EQAX,\COMAX \vdash 
 			\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_4}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，$\varphi$に自由に現れる変項は$y$のみ
+			であるとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+				\rarrow \Set{y}{\varphi(y)} = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq 
+			\varepsilon x \negation (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in b\, )
+		\end{align}
+		とおく．まず全称記号の推論規則より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+			\vdash \varphi(\tau) \lrarrow \tau \in b
+			\label{fom:equivalent_formula_rewriting_4_1}
+		\end{align}
+		が成り立ち，また内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau)
+			\label{fom:equivalent_formula_rewriting_4_2}
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_4_1})と
+		(\refeq{fom:equivalent_formula_rewriting_4_2})と同値記号の推移律
+		(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ \COMAX \vdash
+			\tau \in \Set{y}{\varphi(y)} \lrarrow \tau \in b
+		\end{align}
+		が成り立つ．全称記号の推論規則より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ \COMAX \vdash
+			\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in b\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ \EXTAX,\COMAX \vdash
+			\Set{y}{\varphi(y)} = b
 		\end{align}
 		が得られる．
 		\QED
