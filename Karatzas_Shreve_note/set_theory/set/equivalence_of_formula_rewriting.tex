@@ -20,6 +20,7 @@
 	この節では$\varphi$が文であるときに
 	\begin{align}
 		\varphi \lrarrow \hat{\varphi}
+		\label{formula_rewriting_1}
 	\end{align}
 	が成り立つことを示す．
 	これが示されれば，仮に$\varphi$に変項$x$が自由に現れていても
@@ -48,6 +49,31 @@
 		\varphi(\sigma,\rho) \lrarrow \hat{\varphi}(\sigma,\rho)
 	\end{align}
 	が成り立つので，全称記号の推論規則を適用すればいい．
+	(\refeq{formula_rewriting_1})の証明は$\varphi$が原子式であるときに
+	(\refeq{formula_rewriting_1})が成り立つことを言えば十分であるが，先に結論を書いておくと
+	\begin{align}
+		\EQAX,\COMAX &\vdash a = \Set{z}{\psi(z)} 
+			\rarrow \forall v\, (\, v \in a \lrarrow \psi(v)\, ), \\
+		\EXTAX,\COMAX &\vdash \forall v\, (\, v \in a \lrarrow \psi(v)\, )
+			\rarrow a = \Set{z}{\psi(z)}, \\
+		\EQAX,\COMAX &\vdash \Set{y}{\varphi(y)} = b 
+			\rarrow \forall u\, (\, \varphi(u) \lrarrow u \in b\, ), \\
+		\EXTAX,\COMAX &\vdash \forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+			\rarrow \Set{y}{\varphi(y)} = b, \\
+		\EQAX,\COMAX &\vdash \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
+			\rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ), \\
+		\EXTAX,\COMAX &\vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+			\rarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}, \\
+		\COMAX &\vdash a \in \Set{z}{\psi(z)} \rarrow \psi(a), \\
+		\COMAX &\vdash \psi(a) \rarrow a \in \Set{z}{\psi(z)}, \\
+		\EQAX,\COMAX,\ELEAX &\vdash \Set{y}{\varphi(y)} \in b
+			\rarrow \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ), \\
+		\EXTAX,\EQAX,\COMAX &\vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ) \rarrow \Set{y}{\varphi(y)} \in b, \\
+		\EQAX,\COMAX,\ELEAX &\vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+			\rarrow \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ), \\
+		\EXTAX,\EQAX,\COMAX &\vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ) \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+	\end{align}
+	が成立する．
 	
 	\begin{screen}
 		\begin{logicalthm}[同値記号の対称律]
@@ -348,7 +374,7 @@
 			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
 			\begin{align}
 				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
-				\lrarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}.
+				\rarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}.
 			\end{align}
 		\end{thm}
 	\end{screen}
