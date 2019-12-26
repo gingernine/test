@@ -512,6 +512,57 @@
 	
 	\begin{screen}
 		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_10}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ) \rarrow \Set{y}{\varphi(y)} \in b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+		\end{align}
+		とおけば，存在記号の推論規則と論理積の除去より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+			&\vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ), 
+			\label{fom:equivalent_formula_rewriting_10_1} \\
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+			&\vdash \sigma \in b
+			\label{fom:equivalent_formula_rewriting_10_2}
+		\end{align}
+		が成り立つ．ここで定理\ref{thm:equivalent_formula_rewriting_4}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+			\rarrow \Set{y}{\varphi(y)} = \sigma
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_10_1})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ),\ \EXTAX,\COMAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\label{fom:equivalent_formula_rewriting_10_3}
+		\end{align}
+		が得られる．また相等性公理より
+		\begin{align}
+			\EQAX &\vdash \Set{y}{\varphi(y)} = \sigma \rarrow \sigma = \Set{y}{\varphi(y)}, \\
+			\EQAX &\vdash \sigma = \Set{y}{\varphi(y)} \rarrow
+			(\, \sigma \in b \rarrow \Set{y}{\varphi(y)} \in b\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_10_2})と
+		(\refeq{fom:equivalent_formula_rewriting_10_3})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ),\ \EXTAX,\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} \in b
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_11}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
 			$y$を$\varphi$に自由に現れる変項とし，
@@ -579,5 +630,67 @@
 			\exists s\, (\forall u\, (\, \varphi(u) \lrarrow u \in x\, ) \wedge \psi(x)\, )
 		\end{align}
 		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_12}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ) \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, )
+		\end{align}
+		とおけば，存在記号の推論規則と論理積の除去より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, )
+			&\vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ), 
+			\label{fom:equivalent_formula_rewriting_12_1} \\
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, )
+			&\vdash \psi(\sigma)
+			\label{fom:equivalent_formula_rewriting_12_2}
+		\end{align}
+		が成り立つ．ここで定理\ref{thm:equivalent_formula_rewriting_4}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+			\rarrow \Set{y}{\varphi(y)} = \sigma
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_12_1})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ),\ \EXTAX,\COMAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\label{fom:equivalent_formula_rewriting_12_3}
+		\end{align}
+		が得られる．また内包性公理より
+		\begin{align}
+			\COMAX \vdash \psi(\sigma) \rarrow \sigma \in \Set{z}{\psi(z)}
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_12_1})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ),\ \COMAX \vdash \sigma \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_12_4}
+		\end{align}
+		が得られる．相等性公理より
+		\begin{align}
+			\EQAX &\vdash \Set{y}{\varphi(y)} = \sigma \rarrow \sigma = \Set{y}{\varphi(y)}, \\
+			\EQAX &\vdash \sigma = \Set{y}{\varphi(y)} \rarrow
+			(\, \sigma \in \Set{z}{\psi(z)} \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_12_3})と
+		(\refeq{fom:equivalent_formula_rewriting_12_4})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ),\ \EXTAX,\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+		\end{align}
+		が従う．
 		\QED
 	\end{sketch}
