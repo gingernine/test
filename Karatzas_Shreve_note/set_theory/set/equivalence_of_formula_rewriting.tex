@@ -1,4 +1,32 @@
-\section{変換の同値性}
+\section{書き換えの同値性}
+	
+	$\mathcal{L}$の式を$\lang{\varepsilon}$の式に変換するときは，まず原子式に対して
+	\begin{table}[h]
+		\begin{center}
+		\begin{tabular}{c|c}
+			元の式 & 書き換え後 \\ \hline \hline
+			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(v/z)\, )$ \\ \hline
+			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(u/y) \lrarrow u \in b\, )$ \\ \hline
+			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(u/y) \lrarrow \psi(u/z)\, )$ \\ \hline
+			$a \in \Set{z}{\psi}$ & $\psi(a/z)$ \\ \hline
+			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(u/y) \lrarrow u \in s\, ) \wedge s \in b\, )$ \\ \hline
+			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(u/y) \lrarrow u \in s\, ) \wedge \psi(s/z)\, )$ \\ \hline
+		\end{tabular}
+		\end{center}
+	\end{table}
+	
+	とし，あとは帰納的に式を書き換えることによって$\mathcal{L}$の式$\varphi$から
+	$\lang{\varepsilon}$の式$\hat{\varphi}$を得たのであった．
+	この節では$\varphi$が文であるときに
+	\begin{align}
+		\varphi \lrarrow \hat{\varphi}
+	\end{align}
+	が，また変項$x$が自由に現れるときに
+	\begin{align}
+		\forall x\, (\, \varphi(x) \lrarrow \hat{\varphi}(x)\, )
+	\end{align}
+	が成り立つことを示す．
+	
 	\begin{screen}
 		\begin{logicalthm}[同値記号の対称律]
 		\label{logicalthm:symmetry_of_equivalence_arrows}
@@ -31,19 +59,6 @@
 		が得られた．
 		\QED
 	\end{prf}
-	
-	\begin{itemize}
-		\item $a = \Set{z}{\psi(z)} \rarrow \forall v\, (\, v \in a \lrarrow \psi(v)\, )$
-		\item $\Set{y}{\varphi(y)} = b \rarrow \forall u\, (\, \varphi(u) \lrarrow u \in b\, )$
-		\item $\Set{y}{\varphi(y)} = \Set{z}{\psi(z)} \rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )$
-		\item $a \in \Set{z}{\psi(z)} \rarrow \psi(a)$
-		\item $\Set{y}{\varphi(y)} \in b
-			\rarrow \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
-			\wedge s \in b\, )$
-		\item $\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)} 
-			\rarrow \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
-			\wedge \psi(s)\, )$
-	\end{itemize}
 	
 	\begin{screen}
 		\begin{thm}
