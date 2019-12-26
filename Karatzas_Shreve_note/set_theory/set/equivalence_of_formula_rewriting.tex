@@ -21,11 +21,33 @@
 	\begin{align}
 		\varphi \lrarrow \hat{\varphi}
 	\end{align}
-	が，また変項$x$が自由に現れるときに
+	が成り立つことを示す．
+	これが示されれば，仮に$\varphi$に変項$x$が自由に現れていても
 	\begin{align}
 		\forall x\, (\, \varphi(x) \lrarrow \hat{\varphi}(x)\, )
 	\end{align}
-	が成り立つことを示す．
+	が成り立つし，$x$に加えて$y$が自由に現れていても
+	\begin{align}
+		\forall x\, \forall y\, (\, \varphi(x,y) \lrarrow \hat{\varphi}(x,y)\, )
+	\end{align}
+	が成り立つ．前者の場合は
+	\begin{align}
+		\tau \defeq \varepsilon x \negation (\, \hat{\varphi}(x) \lrarrow \hat{\varphi}(x)\, )
+	\end{align}
+	に対して
+	\begin{align}
+		\varphi(\tau) \lrarrow \hat{\varphi}(\tau)
+	\end{align}
+	が成り立つのだし，後者の場合は
+	\begin{align}
+		\sigma &\defeq \varepsilon x \negation \forall y\, (\, \hat{\varphi}(x,y) \lrarrow \hat{\varphi}(x,y)\, ), \\
+		\rho &\defeq \varepsilon y \negation (\, \hat{\varphi}(\sigma,y) \lrarrow \hat{\varphi}(\sigma,y)\, )
+	\end{align}
+	に対して
+	\begin{align}
+		\varphi(\sigma,\rho) \lrarrow \hat{\varphi}(\sigma,\rho)
+	\end{align}
+	が成り立つので，全称記号の推論規則を適用すればいい．
 	
 	\begin{screen}
 		\begin{logicalthm}[同値記号の対称律]
@@ -311,6 +333,71 @@
 		\begin{align}
 			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
 			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_6}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+				\lrarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		とおく．まず全称記号の推論規則より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+			\vdash \varphi(\tau) \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_6_1}
+		\end{align}
+		が成り立つ．また内包性公理より
+		\begin{align}
+			\COMAX &\vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau), 
+			\label{fom:equivalent_formula_rewriting_6_2} \\
+			\COMAX &\vdash \tau \in \Set{z}{\psi(z)} \lrarrow \psi(\tau)
+		\end{align}
+		となり，同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \psi(\tau) \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_6_3}
+		\end{align}
+		も成り立つ．(\refeq{fom:equivalent_formula_rewriting_6_1})と
+		(\refeq{fom:equivalent_formula_rewriting_6_2})と同値記号の推移律
+		(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \COMAX \vdash
+			\tau \in \Set{y}{\varphi(y)} \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_6_4}
+		\end{align}
+		となり，(\refeq{fom:equivalent_formula_rewriting_6_3})と
+		(\refeq{fom:equivalent_formula_rewriting_6_4})と同値記号の推移律より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \COMAX \vdash
+			\tau \in \Set{y}{\varphi(y)} \lrarrow \tau \in \Set{z}{\psi(z)}
+		\end{align}
+		となり，全称記号の推論規則より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \COMAX \vdash
+			\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \EXTAX,\COMAX \vdash
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
 		\end{align}
 		が得られる．
 		\QED
