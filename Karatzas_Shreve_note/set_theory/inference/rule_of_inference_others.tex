@@ -649,3 +649,229 @@
 	\end{align}
 	も導かれるかもしれない．この場合$\Sigma$は矛盾することになるが，$\Sigma$の無矛盾性が不明であるため
 	この事態が起こらないとは言えない．
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(ロ)]\label{logicalthm:properties_of_quantifiers_2}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
+			\begin{description}
+				\item[(a)] $\exists x ( A(x) \vee B(x) ) \lrarrow \exists x A(x) \vee \exists x B(x)$.
+				
+				\item[(b)] $\forall x ( A(x) \wedge B(x) ) \lrarrow \forall x A(x) \wedge \forall x B(x)$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[(a)]
+				いま$c(x) \overset{\mathrm{def}}{\lrarrow} A(x) \vee B(x)$とおけば，
+				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \rarrow \exists x C(x)
+					\label{eq:logicalthm_properties_of_quantifiers_1}
+				\end{align}
+				が成立する．また推論法則\ref{logicalthm:transitive_law_of_implication}より
+				\begin{align}
+					\exists x C(x) \rarrow C(\varepsilon x C(x))
+					\label{eq:logicalthm_properties_of_quantifiers_2}
+				\end{align}
+				が成立する．$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$
+				は同じ記号列であるから
+				\begin{align}
+					C(\varepsilon x C(x)) \rarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\label{eq:logicalthm_properties_of_quantifiers_3}
+				\end{align}
+				が成立する．ここで推論法則\ref{logicalthm:transitive_law_of_implication}と
+				推論規則\ref{logicalaxm:fundamental_rules_of_inference}より
+				\begin{align}
+					A(\varepsilon x C(x)) &\rarrow \exists x A(x) \\
+						&\rarrow \exists x A(x) \vee \exists x B(x), \\
+					B(\varepsilon x C(x)) &\rarrow \exists x B(x) \\
+						&\rarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が成立するので，場合分け法則より
+				\begin{align}
+					A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
+					\rarrow \exists x A(x) \vee \exists x B(x)
+					\label{eq:logicalthm_properties_of_quantifiers_4}
+				\end{align}
+				が成り立つ．(\refeq{eq:logicalthm_properties_of_quantifiers_1})
+				(\refeq{eq:logicalthm_properties_of_quantifiers_2})
+				(\refeq{eq:logicalthm_properties_of_quantifiers_3})
+				(\refeq{eq:logicalthm_properties_of_quantifiers_4})
+				に推論法則\ref{logicalthm:transitive_law_of_implication}を順次適用すれば
+				\begin{align}
+					\exists x ( A(x) \vee B(x) ) \rarrow \exists x A(x) \vee \exists x B(x)
+				\end{align}
+				が得られる．他方，推論規則\ref{logicalaxm:rules_of_quantifiers}より
+				\begin{align}
+					\exists x A(x) &\rarrow A(\varepsilon x A(x)) \\
+						&\rarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) \\
+						&\rarrow C(\varepsilon x A(x)) \\
+						&\rarrow C(\varepsilon x C(x)) \\
+						&\rarrow \exists x C(x) \\
+						&\rarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				が成立し，$A$を$B$に置き換えれば
+				$\exists x B(x) \rarrow \exists x (A(x) \vee B(x))$も成り立つので，
+				場合分け法則より
+				\begin{align}
+					\exists x A(x) \vee \exists x B(x) \rarrow \exists x (A(x) \vee B(x))
+				\end{align}
+				も得られる．
+			
+			\item[(b)]
+				簡略して説明すれば
+				\begin{align}
+					\forall x \left( A(x) \wedge B(x) \right)
+					&\lrarrow\ \negation \exists x \negation \left( A(x) \wedge B(x) \right) & (\mbox{推論法則\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_1}}) \\
+					&\lrarrow\ \negation \exists x \left( \negation A(x) \vee \negation B(x) \right) & (\mbox{De Morganの法則}) \\
+					&\lrarrow\ \negation \left( \exists x \negation A(x) \vee \exists x \negation B(x) \right) & (\mbox{前段の対偶}) \\
+					&\lrarrow\ \negation \left( \negation \forall x A(x) \vee \negation \forall x B(x) \right) & (\mbox{推論法則\ref{logicalthm:weak_De_Morgan_law_for_quantifiers_1}}) \\
+					&\lrarrow\ \negation \negation \forall x A(x) \wedge \negation \negation \forall x B(x) & (\mbox{De Morganの法則}) \\
+					&\lrarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
+				\end{align}
+				となる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
+			$\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{align}
+				A(\tau) \lrarrow B(\tau)
+			\end{align}
+			が成り立っているとき，
+			\begin{align}
+				\exists x A(x) \lrarrow \exists x B(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x A(x) \lrarrow \forall x B(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		いま，$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \lrarrow B(\tau)
+			\label{logicalthm:properties_of_quantifiers_1}
+		\end{align}
+		が成り立っているとする．
+		ここで
+		\begin{align}
+			\exists x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		\begin{align}
+			\tau \defeq \varepsilon x A(x)
+		\end{align}
+		とおけば存在記号に関する規則より
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．再び存在記号に関する規則より
+		\begin{align}
+			\exists x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\exists x A(x) \rarrow \exists x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\exists x B(x) \rarrow \exists x A(x)
+		\end{align}
+		も得られる．今度は
+		\begin{align}
+			\forall x A(x)
+		\end{align}
+		が成り立っていると仮定すると，
+		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau)
+		\end{align}
+		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
+		\begin{align}
+			B(\tau)
+		\end{align}
+		が成立する．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		\begin{align}
+			\forall x B(x)
+		\end{align}
+		が成り立つので，演繹法則から
+		\begin{align}
+			\forall x A(x) \rarrow \forall x B(x)
+		\end{align}
+		が得られる．$A$と$B$の立場を入れ替えれば
+		\begin{align}
+			\forall x B(x) \rarrow \forall x A(x)
+		\end{align}
+		も得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する De Morgan の法則]\label{logicalthm:De_Morgan_law_for_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			\begin{align}
+				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			\exists x \negation A(x) \lrarrow 
+			\negation A(\varepsilon x \negation A(x))
+		\end{align}
+		は定理である．他方で推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		\begin{align}
+			A(\varepsilon x \negation A(x)) \lrarrow \forall x A(x) 
+		\end{align}
+		もまた定理であり，この対偶を取れば
+		\begin{align}
+			\negation A(\varepsilon x \negation A(x)) \lrarrow 
+			\negation \forall x A(x)
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+		\end{align}
+		が従う．$A$を$\negation A$に置き換えれば
+		\begin{align}
+			\forall x \negation A(x) \lrarrow 
+			\negation \exists x \negation \negation A(x)
+		\end{align}
+		が成り立ち，また$\mathcal{L}$の任意の対象$\tau$に対して
+		\begin{align}
+			A(\tau) \lrarrow \negation \negation A(\tau)
+		\end{align}
+		が成り立つので，推論法則\ref{logicalthm:properties_of_quantifiers}より
+		\begin{align}
+			\exists x \negation \negation A(x)
+			\lrarrow \exists x A(x)
+		\end{align}
+		も成り立つ．ゆえに
+		\begin{align}
+			\forall x \negation A(x) \lrarrow 
+			\negation \exists x A(x)
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}

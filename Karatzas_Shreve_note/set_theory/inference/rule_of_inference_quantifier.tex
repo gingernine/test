@@ -1,168 +1,216 @@
 	\begin{screen}
-		\begin{logicalaxm}[量化記号に関する規則]\label{logicalaxm:rules_of_quantifiers}
+		\begin{logicalaxm}[量化記号に関する規則]
+		\label{logicalaxm:rules_of_quantifiers}
 			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
 			$A$に自由に現れる項が$x$のみであるとする．
-			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
+			また$\tau$を主要$\varepsilon$項とする．このとき以下を推論規則とする．
 			\begin{align}
 				A(\tau) &\vdash \exists x A(x), \\
-				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
+				\exists x A(x) &\vdash A(\varepsilon x \hat{A}(x)), \\
 				\forall x A(x) &\vdash A(\tau), \\
-				A(\varepsilon x \negation A(x)) &\vdash \forall x A(x).
+				A(\varepsilon x \negation \hat{A}(x)) &\vdash \forall x A(x).
 			\end{align}
+			ただし$\hat{A}$とは必要に応じて$A$を$\lang{\varepsilon}$の式に書き直したものである．
 		\end{logicalaxm}
 	\end{screen}
 	
-	どれでも一つ，$A$を成り立たせるような$\varepsilon$項$\tau$が取れれば
+	どれでも一つ，$A(\tau)$を成り立たせるような主要$\varepsilon$項$\tau$が取れれば
 	$\exists x A(x)$が成り立つのだし，逆に$\exists x A(x)$が成り立つならば
-	$\varepsilon x A(x)$なる$\epsilon$項が$A$を満たすのであるから，
-	$\exists x A(x)$が成り立つということと$A$を満たす$\varepsilon$項が取れるということは
-	同じ意味になる．
+	$\varepsilon x A(x)$なる$\epsilon$項が$A(\varepsilon x A(x))$を満たすのである．
+	そして主要$\varepsilon$項は集合であるから(定理\ref{thm:critical_epsilon_term_is_set})，
+	「$A(x)$を満たす集合$x$が存在する」ということと
+	「$A(x)$を満たす集合$x$が{\bf ``実際に取れる''}」ということが同じ意味になる．
 	
-	$\forall x A(x)$が成り立つならばいかなる$\varepsilon$項も$A$を満たすし，
-	逆にいかなる$\varepsilon$項も$A$を満たすならば，特に$\varepsilon x \negation A(x)$
-	なる$\varepsilon$項も$A$を満たすのだから，$\forall x A(x)$が成立する．
-	つまり，$\forall x A(x)$が成り立つということと，任意の$\varepsilon$項が$A$を満たすということは
-	同じ意味になる．
+	$\forall x A(x)$が成り立つならばいかなる主要$\varepsilon$項$\tau$も$A(\tau)$を満たすし，
+	逆にいかなる主要$\varepsilon$項$\tau$も$A(\tau)$を満たすならば，
+	特に$\varepsilon x \negation A(x)$なる$\varepsilon$項も
+	$A(\varepsilon x \negation A(x))$を満たすのだから$\forall x A(x)$が成立する．
+	つまり，「$\forall x A(x)$が成り立つ」ということと
+	「任意の主要$\varepsilon$項$\tau$が$A(\tau)$を満たす」ということは同じ意味になる．
 	
-	後述することであるが，$\varepsilon$項はどれも集合であって，また集合である類は
-	いずれかの$\varepsilon$項と等しい．ゆえに，量化子の亘る範囲は集合に制限されるのである．
+	後述することであるが，主要$\varepsilon$項はどれも集合であって
+	(定理\ref{thm:critical_epsilon_term_is_set})，また集合である類は
+	いずれかの主要$\varepsilon$項と等しい
+	(定理\ref{thm:if_a_class_is_a_set_then_equal_to_some_epsilon_term})．
+	ゆえに，{\bf 量化子の亘る範囲は集合に制限される}のである．
 	
-	\begin{screen}
-		\begin{logicalthm}[量化記号の性質(イ)]\label{logicalthm:properties_of_quantifiers}
-			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
-			$\mathcal{L}$の任意の対象$\tau$に対して
-			\begin{align}
-				A(\tau) \lrarrow B(\tau)
-			\end{align}
-			が成り立っているとき，
-			\begin{align}
-				\exists x A(x) \lrarrow \exists x B(x)
-			\end{align}
-			および
-			\begin{align}
-				\forall x A(x) \lrarrow \forall x B(x)
-			\end{align}
-			が成り立つ．
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		いま，$\mathcal{L}$の任意の対象$\tau$に対して
-		\begin{align}
-			A(\tau) \lrarrow B(\tau)
-			\label{logicalthm:properties_of_quantifiers_1}
-		\end{align}
-		が成り立っているとする．
-		ここで
-		\begin{align}
-			\exists x A(x)
-		\end{align}
-		が成り立っていると仮定すると，
-		\begin{align}
-			\tau \defeq \varepsilon x A(x)
-		\end{align}
-		とおけば存在記号に関する規則より
-		\begin{align}
-			A(\tau)
-		\end{align}
-		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
-		\begin{align}
-			B(\tau)
-		\end{align}
-		が成立する．再び存在記号に関する規則より
-		\begin{align}
-			\exists x B(x)
-		\end{align}
-		が成り立つので，演繹法則から
-		\begin{align}
-			\exists x A(x) \rarrow \exists x B(x)
-		\end{align}
-		が得られる．$A$と$B$の立場を入れ替えれば
-		\begin{align}
-			\exists x B(x) \rarrow \exists x A(x)
-		\end{align}
-		も得られる．今度は
-		\begin{align}
-			\forall x A(x)
-		\end{align}
-		が成り立っていると仮定すると，
-		推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-		$\mathcal{L}$の任意の対象$\tau$に対して
-		\begin{align}
-			A(\tau)
-		\end{align}
-		が成立し，(\refeq{logicalthm:properties_of_quantifiers_1})と併せて
-		\begin{align}
-			B(\tau)
-		\end{align}
-		が成立する．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
-		\begin{align}
-			\forall x B(x)
-		\end{align}
-		が成り立つので，演繹法則から
-		\begin{align}
-			\forall x A(x) \rarrow \forall x B(x)
-		\end{align}
-		が得られる．$A$と$B$の立場を入れ替えれば
-		\begin{align}
-			\forall x B(x) \rarrow \forall x A(x)
-		\end{align}
-		も得られる．
-		\QED
-	\end{prf}
+	量化記号についても De Morgan の法則があり，それを
+	\begin{description}
+		\item[弱 De Morgan の法則] $\vdash \exists x \negation A(x) \rarrow\ \negation \forall x A(x)$,
+		\item[強 De Morgan の法則] $\vdash \forall x \negation A(x) \rarrow\ \negation \exists x A(x)$,
+	\end{description}
+	と呼ぶことにする．
 	
 	\begin{screen}
-		\begin{logicalthm}[量化記号に対する De Morgan の法則]\label{logicalthm:De_Morgan_law_for_quantifiers}
-			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+		\begin{logicalthm}[量化記号に対する弱 De Morgan の法則(1)]
+		\label{logicalthm:weak_De_Morgan_law_for_quantifiers_1}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
 			\begin{align}
-				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+				\vdash \exists x \negation A(x) \rarrow\ \negation \forall x A(x).
 			\end{align}
-			および
-			\begin{align}
-				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
-			\end{align}
-			が成り立つ．
 		\end{logicalthm}
 	\end{screen}
 	
 	\begin{sketch}
-		推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		必要に応じて$A$を$\lang{\varepsilon}$の式に書き換えたものを$\hat{A}$とする．
+		存在記号の推論規則より
 		\begin{align}
-			\exists x \negation A(x) \lrarrow 
-			\negation A(\varepsilon x \negation A(x))
+			\exists x \negation A(x) \vdash\ \negation A(\varepsilon x \negation \hat{A}(x))
+			\label{fom:weak_De_Morgan_law_for_quantifiers_1_1}
 		\end{align}
-		は定理である．他方で推論規則\ref{logicalaxm:rules_of_quantifiers}より
+		となる．また全称記号の推論規則より
 		\begin{align}
-			A(\varepsilon x \negation A(x)) \lrarrow \forall x A(x) 
+			\vdash \forall x A(x) \rarrow A(\varepsilon x \negation \hat{A}(x))
 		\end{align}
-		もまた定理であり，この対偶を取れば
+		が成り立つので，対偶を取って
 		\begin{align}
-			\negation A(\varepsilon x \negation A(x)) \lrarrow 
-			\negation \forall x A(x)
+			\vdash\ \negation A(\varepsilon x \negation \hat{A}(x)) \rarrow\ \negation \forall x A(x)
+			\label{fom:weak_De_Morgan_law_for_quantifiers_1_2}
 		\end{align}
-		が成り立つ．ゆえに
+		となる(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		(\refeq{fom:weak_De_Morgan_law_for_quantifiers_1_1})と
+		(\refeq{fom:weak_De_Morgan_law_for_quantifiers_1_2})の三段論法より
 		\begin{align}
-			\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+			\exists x \negation A(x) \vdash\ \negation \forall x A(x)
 		\end{align}
-		が従う．$A$を$\negation A$に置き換えれば
+		が従い，演繹規則より
 		\begin{align}
-			\forall x \negation A(x) \lrarrow 
-			\negation \exists x \negation \negation A(x)
+			\vdash \exists x \negation A(x) \rarrow\ \negation \forall x A(x)
 		\end{align}
-		が成り立ち，また$\mathcal{L}$の任意の対象$\tau$に対して
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する弱 De Morgan の法則(2)]
+		\label{logicalthm:weak_De_Morgan_law_for_quantifiers_2}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash\ \negation \forall x A(x) \rarrow \exists x \negation A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		必要に応じて$A$を$\lang{\varepsilon}$の式に書き換えたものを$\hat{A}$とする．
+		存在記号の推論規則より
 		\begin{align}
-			A(\tau) \lrarrow \negation \negation A(\tau)
+			\vdash\ \negation A(\varepsilon x \negation \hat{A}(x)) \rarrow \exists x \negation A(x)
 		\end{align}
-		が成り立つので，推論法則\ref{logicalthm:properties_of_quantifiers}より
+		が成り立つので，対偶を取って
 		\begin{align}
-			\exists x \negation \negation A(x)
-			\lrarrow \exists x A(x)
+			\vdash\ \negation \exists x \negation A(x) \rarrow\ \negation\negation A(\varepsilon x \negation \hat{A}(x))
 		\end{align}
-		も成り立つ．ゆえに
+		が従い(推論法則\ref{logicalthm:introduction_of_contraposition})，演繹法則の逆より
 		\begin{align}
-			\forall x \negation A(x) \lrarrow 
-			\negation \exists x A(x)
+			\negation \exists x \negation A(x) \vdash\ \negation\negation A(\varepsilon x \negation \hat{A}(x))
 		\end{align}
-		が従う．
+		となる．そして二重否定の除去規則より
+		\begin{align}
+			\negation \exists x \negation A(x) \vdash A(\varepsilon x \negation \hat{A}(x))
+		\end{align}
+		が成立し，全称記号の推論規則より
+		\begin{align}
+			\negation \exists x \negation A(x) \vdash \forall x A(x)
+		\end{align}
+		が従う．演繹規則より
+		\begin{align}
+			\vdash\ \negation \exists x \negation A(x) \rarrow \forall x A(x)
+		\end{align}
+		となり，対偶を取れば
+		\begin{align}
+			\vdash\ \negation \forall x A(x) \rarrow\ \negation\negation \exists x \negation A(x)
+		\end{align}
+		となるが，先と同様に二重否定の除去によって
+		\begin{align}
+			\vdash\ \negation \forall x A(x) \rarrow \exists x \negation A(x)
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する強 De Morgan の法則(1)]
+		\label{logicalthm:strong_De_Morgan_law_for_quantifiers_1}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash \forall x \negation A(x) \rarrow\ \negation \exists x A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		必要に応じて$A$を$\lang{\varepsilon}$の式に書き換えたものを$\hat{A}$とする．
+		まず存在記号の推論規則より
+		\begin{align}
+			\vdash \exists x A(x) \rarrow A(\varepsilon x \hat{A}(x))
+		\end{align}
+		が成り立つので，対偶を取って
+		\begin{align}
+			\vdash\ \negation A(\varepsilon x \hat{A}(x)) 
+			\rarrow\ \negation \exists x A(x)
+		\end{align}
+		が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．また
+		全称記号の推論規則より
+		\begin{align}
+			\forall x \negation A(x) \vdash\ \negation A(\varepsilon x \hat{A}(x))
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\forall x \negation A(x) \vdash\ \negation \exists x A(x)
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\vdash \forall x \negation A(x) \rarrow\ \negation \exists x A(x)
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する強 De Morgan の法則(2)]
+		\label{logicalthm:strong_De_Morgan_law_for_quantifiers_2}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash\ \negation \exists x A(x) \rarrow \forall x \negation A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		必要に応じて$A$を$\lang{\varepsilon}$の式に書き換えたものを$\hat{A}$とする．
+		まず存在記号の推論規則より
+		\begin{align}
+			\vdash A(\varepsilon x \negation \negation \hat{A}(x))
+			\rarrow \exists x A(x)
+		\end{align}
+		が成り立つので，対偶を取って
+		\begin{align}
+			\vdash\ \negation \exists x A(x) 
+			\rarrow\ \negation A(\varepsilon x \negation \negation \hat{A}(x))
+		\end{align}
+		が成り立ち(推論法則\ref{logicalthm:introduction_of_contraposition})，
+		演繹法則の逆より
+		\begin{align}
+			\negation \exists x A(x) \vdash\ \negation A(\varepsilon x \negation \negation \hat{A}(x))
+		\end{align}
+		が従う．また全称記号の推論規則より
+		\begin{align}
+			\vdash \negation A(\varepsilon x \negation \negation \hat{A}(x))
+			\rarrow \forall x \negation A(x)
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\negation \exists x A(x) \vdash \forall x \negation A(x)
+		\end{align}
+		が従い，演繹規則より
+		\begin{align}
+			\vdash\ \negation \exists x A(x) \rarrow \forall x \negation A(x)
+		\end{align}
+		が得られる．
 		\QED
 	\end{sketch}

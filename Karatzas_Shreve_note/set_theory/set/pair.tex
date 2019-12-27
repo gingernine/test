@@ -164,7 +164,7 @@
 				\begin{align}
 					\set{a} \wedge \set{b} &\vdash a = \tau, 
 					\label{fom:pair_of_sets_is_a_set_1} \\
-					\set{a} \wedge \set{b} &\vdash b = \tau
+					\set{a} \wedge \set{b} &\vdash b = \sigma
 				\end{align}
 				が成り立つ．対の公理より$\tau$と$\sigma$に対しては
 				\begin{align}
@@ -263,96 +263,10 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{logicalthm}[量化記号の性質(ロ)]\label{logicalthm:properties_of_quantifiers_2}
-			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
-			\begin{description}
-				\item[(a)] $\exists x ( A(x) \vee B(x) ) \lrarrow \exists x A(x) \vee \exists x B(x)$.
-				
-				\item[(b)] $\forall x ( A(x) \wedge B(x) ) \lrarrow \forall x A(x) \wedge \forall x B(x)$.
-			\end{description}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(a)]
-				いま$c(x) \overset{\mathrm{def}}{\lrarrow} A(x) \vee B(x)$とおけば，
-				$\exists x ( A(x) \vee B(x) )$と$\exists x ( C(x) )$は同じ記号列であるから
-				\begin{align}
-					\exists x ( A(x) \vee B(x) ) \rarrow \exists x C(x)
-					\label{eq:logicalthm_properties_of_quantifiers_1}
-				\end{align}
-				が成立する．また推論法則\ref{logicalthm:transitive_law_of_implication}より
-				\begin{align}
-					\exists x C(x) \rarrow C(\varepsilon x C(x))
-					\label{eq:logicalthm_properties_of_quantifiers_2}
-				\end{align}
-				が成立する．$C(\varepsilon x C(x))$と$A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))$
-				は同じ記号列であるから
-				\begin{align}
-					C(\varepsilon x C(x)) \rarrow A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
-					\label{eq:logicalthm_properties_of_quantifiers_3}
-				\end{align}
-				が成立する．ここで推論法則\ref{logicalthm:transitive_law_of_implication}と
-				推論規則\ref{logicalaxm:fundamental_rules_of_inference}より
-				\begin{align}
-					A(\varepsilon x C(x)) &\rarrow \exists x A(x) \\
-						&\rarrow \exists x A(x) \vee \exists x B(x), \\
-					B(\varepsilon x C(x)) &\rarrow \exists x B(x) \\
-						&\rarrow \exists x A(x) \vee \exists x B(x)
-				\end{align}
-				が成立するので，場合分け法則より
-				\begin{align}
-					A(\varepsilon x C(x)) \vee B(\varepsilon x C(x))
-					\rarrow \exists x A(x) \vee \exists x B(x)
-					\label{eq:logicalthm_properties_of_quantifiers_4}
-				\end{align}
-				が成り立つ．(\refeq{eq:logicalthm_properties_of_quantifiers_1})
-				(\refeq{eq:logicalthm_properties_of_quantifiers_2})
-				(\refeq{eq:logicalthm_properties_of_quantifiers_3})
-				(\refeq{eq:logicalthm_properties_of_quantifiers_4})
-				に推論法則\ref{logicalthm:transitive_law_of_implication}を順次適用すれば
-				\begin{align}
-					\exists x ( A(x) \vee B(x) ) \rarrow \exists x A(x) \vee \exists x B(x)
-				\end{align}
-				が得られる．他方，推論規則\ref{logicalaxm:rules_of_quantifiers}より
-				\begin{align}
-					\exists x A(x) &\rarrow A(\varepsilon x A(x)) \\
-						&\rarrow A(\varepsilon x A(x)) \vee B(\varepsilon x A(x)) \\
-						&\rarrow C(\varepsilon x A(x)) \\
-						&\rarrow C(\varepsilon x C(x)) \\
-						&\rarrow \exists x C(x) \\
-						&\rarrow \exists x (A(x) \vee B(x))
-				\end{align}
-				が成立し，$A$を$B$に置き換えれば
-				$\exists x B(x) \rarrow \exists x (A(x) \vee B(x))$も成り立つので，
-				場合分け法則より
-				\begin{align}
-					\exists x A(x) \vee \exists x B(x) \rarrow \exists x (A(x) \vee B(x))
-				\end{align}
-				も得られる．
-			
-			\item[(b)]
-				簡略して説明すれば
-				\begin{align}
-					\forall x \left( A(x) \wedge B(x) \right)
-					&\lrarrow\ \negation \exists x \negation \left( A(x) \wedge B(x) \right) & (\mbox{推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}}) \\
-					&\lrarrow\ \negation \exists x \left( \negation A(x) \vee \negation B(x) \right) & (\mbox{De Morganの法則}) \\
-					&\lrarrow\ \negation \left( \exists x \negation A(x) \vee \exists x \negation B(x) \right) & (\mbox{前段の対偶}) \\
-					&\lrarrow\ \negation \left( \negation \forall x A(x) \vee \negation \forall x B(x) \right) & (\mbox{推論法則\ref{logicalthm:De_Morgan_law_for_quantifiers}}) \\
-					&\lrarrow\ \negation \negation \forall x A(x) \wedge \negation \negation \forall x B(x) & (\mbox{De Morganの法則}) \\
-					&\lrarrow \forall x A(x) \wedge \forall x B(x) &(\mbox{二重否定の法則})
-				\end{align}
-				となる．
-				\QED
-		\end{description}
-	\end{prf}
-	
-	\begin{screen}
 		\begin{thm}[集合は対の要素たりうる]\label{thm:set_is_an_element_of_its_pair}
-			$a,b$を類とするとき，
+			$a$と$b$を類とするとき
 			\begin{align}
-				\set{a} \rarrow a \in \{a,b\}.
+				\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow a \in \{a,b\}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -360,41 +274,113 @@
 	\begin{sketch}
 		いま
 		\begin{align}
-			\set{a}
-		\end{align}
-		が成り立っているとする．ここで
-		\begin{align}
 			\tau \defeq \varepsilon x\, (\, a = x\, )
 		\end{align}
-		とおけば，存在記号に関する規則より
+		とおくと
 		\begin{align}
-			a = \tau
+			\set{a} \vdash a = \tau
 		\end{align}
-		が成り立つ．ゆえに
+		が成り立ち，論理和の導入規則より
 		\begin{align}
-			\tau = a \vee \tau = b
+			\set{a} \vdash a = \tau \vee b = \tau
 		\end{align}
-		も成り立つ．ゆえに
+		も成り立つ．定理\ref{thm:pair_members_are_exactly_the_given_two}より
 		\begin{align}
-			\tau \in \{a,b\}
+			\EXTAX,\EQAX,\COMAX \vdash 
+			a = \tau \vee b = \tau \rarrow \tau \in \{a,b\}
 		\end{align}
-		が成り立ち，相当性の公理より
+		が成り立つので三段論法より
 		\begin{align}
-			a \in \{a,b\}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
 		\end{align}
-		が従う．そして演繹法則より\
+		が従い，相等性公理より
 		\begin{align}
-			\set{a} \rarrow a \in \{a,b\}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	$a$を集合とすれば対の公理より$\{a\}$も集合となるので，
+	定理\ref{thm:set_is_an_element_of_its_pair}より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow a \in \{a\}
+	\end{align}
+	が成立する．一方で$a$も$b$も真類であると$\{a,b\}$は空になる．
+	
+	\begin{screen}
+		\begin{thm}[真類同士の対は空]\label{thm:pair_of_proper_classes_is_emptyset}
+			$a$と$b$を類とするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash\ 
+				\negation \set{a} \wedge \negation \set{b} \rarrow \{a,b\} = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \notin \{a,b\}\, )
+		\end{align}
+		とおく($x \notin \{a,b\}$は$\lang{\varepsilon}$の式に書き換える)．
+		\begin{align}
+			\negation \set{a} \wedge\ \negation \set{b}
+			\vdash\ \negation \exists x\, (\, a = x\, )
+		\end{align}
+		が成り立ち，De Morgan の法則
+		(推論法則\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_2})より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b}
+			\vdash \forall x\, (\, a \neq x\, )
+		\end{align}
+		が従い，全称記号の推論規則より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash a \neq \tau
+		\end{align}
+		となる．同様にして
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash b \neq \tau
+		\end{align}
+		も成り立つので，論理積の導入規則より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash
+			a \neq \tau \wedge b \neq \tau
+		\end{align}
+		が成立し，De Morgan の法則(推論法則\ref{logicalthm:weak_De_Morgan_law_1})より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash\ 
+			\negation (\, a = \tau \vee b = \tau\, )
+			\label{fom:pair_of_proper_classes_is_emptyset_1}
+		\end{align}
+		が従う．ところで定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \rarrow a = \tau \vee b = \tau
+		\end{align}
+		が成り立つので，対偶を取って
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash\ 
+			\negation (\, a = \vee b = \tau\, ) \rarrow \tau \notin \{a,b\}
+		\end{align}
+		が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		そして(\refeq{fom:pair_of_proper_classes_is_emptyset_1})との三段論法より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b},\ \EXTAX,\EQAX,\COMAX \vdash
+			\tau \notin \{a,b\}
+		\end{align}
+		が従い，全称記号の推論規則より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b},\ \EXTAX,\EQAX,\COMAX \vdash
+			\forall x\, (\, x \notin \{a,b\}\, )
+		\end{align}
+		が従う．要素を持たない類は空集合である(定理\ref{thm:uniqueness_of_emptyset})ので
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b},\ \EXTAX,\EQAX,\COMAX \vdash
+			\{a,b\} = \emptyset
 		\end{align}
 		が得られる．
 		\QED
 	\end{sketch}
-	
-	$a$を集合とすれば対の公理より$\{a\}$も集合となり，定理\ref{thm:set_is_an_element_of_its_pair}より
-	\begin{align}
-		a \in \{a\}
-	\end{align}
-	が成立する．
 	
 	\begin{screen}
 		\begin{thm}[真類同士の対は空]\label{thm:pair_of_proper_classes_is_emptyset}
