@@ -70,7 +70,8 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[要素の表示の順番を入れ替えても対は等しい]\label{thm:commutative_law_of_pairs}
+		\begin{thm}[要素の表示の順番を入れ替えても対は等しい]
+		\label{thm:commutative_law_of_pairs}
 			$a$と$b$を類とするとき
 			\begin{align}
 				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}.
@@ -263,42 +264,83 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[集合は対の要素たりうる]\label{thm:set_is_an_element_of_its_pair}
+		\begin{thm}[集合は対の要素となれる]\label{thm:set_is_an_element_of_its_pair}
 			$a$と$b$を類とするとき
 			\begin{align}
-				\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow a \in \{a,b\}.
+				\EXTAX,\EQAX,\COMAX &\vdash \set{a} \rarrow a \in \{a,b\}, \\
+				\EXTAX,\EQAX,\COMAX &\vdash \set{b} \rarrow b \in \{a,b\}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		いま
-		\begin{align}
-			\tau \defeq \varepsilon x\, (\, a = x\, )
-		\end{align}
-		とおくと
-		\begin{align}
-			\set{a} \vdash a = \tau
-		\end{align}
-		が成り立ち，論理和の導入規則より
-		\begin{align}
-			\set{a} \vdash a = \tau \vee b = \tau
-		\end{align}
-		も成り立つ．定理\ref{thm:pair_members_are_exactly_the_given_two}より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX \vdash 
-			a = \tau \vee b = \tau \rarrow \tau \in \{a,b\}
-		\end{align}
-		が成り立つので三段論法より
-		\begin{align}
-			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
-		\end{align}
-		が従い，相等性公理より
-		\begin{align}
-			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
-		\end{align}
-		が成立する．
-		\QED
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				いま
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, a = x\, )
+				\end{align}
+				とおくと
+				\begin{align}
+					\set{a} \vdash a = \tau
+					\label{fom:set_is_an_element_of_its_pair_1}
+				\end{align}
+				が成り立ち，論理和の導入規則より
+				\begin{align}
+					\set{a} \vdash a = \tau \vee b = \tau
+				\end{align}
+				も成り立つ．定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					a = \tau \vee b = \tau \rarrow \tau \in \{a,b\}
+				\end{align}
+				が成り立つので三段論法より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
+					\label{fom:set_is_an_element_of_its_pair_2}
+				\end{align}
+				が従う．また(\refeq{fom:set_is_an_element_of_its_pair_1})と相等性公理より
+				\begin{align}
+					\set{a},\ \EQAX \vdash \tau = a
+				\end{align}
+				となり
+				\begin{align}
+					\set{a},\ \EQAX \vdash \tau \in \{a,b\} \rarrow a \in \{a,b\}
+				\end{align}
+				となるので，(\refeq{fom:set_is_an_element_of_its_pair_2})と三段論法より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
+				\end{align}
+				が成立する．
+			
+			\item[step2]
+				前段で$a$と$b$を入れ替えれば
+				\begin{align}
+					\set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{b,a\}
+					\label{fom:set_is_an_element_of_its_pair_3}
+				\end{align}
+				が成立する．ところで対の対称性(定理\ref{thm:commutative_law_of_pairs})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \{b,a\} = \{a,b\}
+				\end{align}
+				が成立し，また相等性公理より
+				\begin{align}
+					\EQAX \vdash \{b,a\} = \{a,b\}
+					\rarrow (\, b \in \{b,a\} \rarrow b \in \{a,b\}\, )
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash b \in \{b,a\} \rarrow b \in \{a,b\}
+					\label{fom:set_is_an_element_of_its_pair_4}
+				\end{align}
+				が従う．(\refeq{fom:set_is_an_element_of_its_pair_3})と
+				(\refeq{fom:set_is_an_element_of_its_pair_4})と三段論法より
+				\begin{align}
+					\set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{a,b\}
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	$a$を集合とすれば対の公理より$\{a\}$も集合となるので，
@@ -382,11 +424,14 @@
 		\QED
 	\end{sketch}
 	
+	上の定理とは逆に$\{a,b\}$が空ならば$a$も$b$も真類である．
+	
 	\begin{screen}
-		\begin{thm}[真類同士の対は空]\label{thm:pair_of_proper_classes_is_emptyset}
-			$a,b$を類とするとき，
+		\begin{thm}[空な対に表示されている類は集合ではない]
+		\label{thm:classes_displayed_in_empty_pair_are_not_sets}
+			$a$と$b$を類とするとき，
 			\begin{align}
-				\negation \set{a} \wedge \negation \set{b} \lrarrow \{a,b\} = \emptyset.
+				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a} \wedge \negation \set{b}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -394,65 +439,60 @@
 	\begin{sketch}
 		いま
 		\begin{align}
-			\negation \set{a} \wedge \negation \set{b}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
 		\end{align}
-		が成り立っているとする．このとき
+		とおけば
 		\begin{align}
-			\forall x\, (\, a \neq x\, ) \wedge \forall x\, (\, b \neq x\, )
+			\set{a} \vdash a = \tau
 		\end{align}
-		が成立し，推論法則\ref{logicalthm:properties_of_quantifiers_2}より
+		が成立し，また定理\ref{thm:set_is_an_element_of_its_pair}より
 		\begin{align}
-			\forall x\, (\, a \neq x \wedge b \neq x\, )
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
 		\end{align}
-		が成立する．すなわち$\chi$を$\mathcal{L}$の任意の対象とすれば
+		が成り立つので相等性公理より
 		\begin{align}
-			a \neq \chi \wedge b \neq \chi
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
 		\end{align}
-		が成立する．他方で
+		が従い，存在記号の推論規則より
 		\begin{align}
-			a \neq \chi \wedge b \neq \chi \lrarrow \chi \notin \{a,b\}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \exists x\, (\, x \in \{a,b\}\, )
 		\end{align}
-		も満たされているので，三段論法より
+		が成り立つ．演繹規則より
 		\begin{align}
-			\chi \notin \{a,b\}
+			\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow \exists x\, (\, x \in \{a,b\}\, )
 		\end{align}
-		が成立する．$\chi$の任意性より
+		となり，対偶を取れば
 		\begin{align}
-			\forall x\, (\, x \notin \{a,b\}\, )
+			\EXTAX,\EQAX,\COMAX \vdash\ \negation \exists x\, (\, x \in \{a,b\}\, )
+			\rarrow\ \negation \set{a}
+			\label{fom:classes_displayed_in_empty_pair_are_not_sets_1}
 		\end{align}
-		が成立し，定理\ref{thm:uniqueness_of_emptyset}
+		が得られる(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		他方で空の類は要素を持たない(定理\ref{thm:uniqueness_of_emptyset})ので
 		\begin{align}
-			\{a,b\} = \emptyset
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow \forall x\, (\, x \notin \{a,b\}\, )
+			\label{fom:classes_displayed_in_empty_pair_are_not_sets_2}
 		\end{align}
-		が従う．そして演繹法則を適用して
+		が成り立ち，また De Morgan の法則
+		(推論法則\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_1})より
 		\begin{align}
-			\negation \set{a} \wedge \negation \set{b} \rarrow \{a,b\} = \emptyset
+			\vdash \forall x\, (\, x \notin \{a,b\}\, ) \rarrow\ \negation \exists x\, (\, x \in \{a,b\}\, )
+			\label{fom:classes_displayed_in_empty_pair_are_not_sets_3}
 		\end{align}
-		が得られる．逆に，定理\ref{thm:set_is_an_element_of_its_pair}から
+		も成り立つので，(\refeq{fom:classes_displayed_in_empty_pair_are_not_sets_2})
+		(\refeq{fom:classes_displayed_in_empty_pair_are_not_sets_3})
+		(\refeq{fom:classes_displayed_in_empty_pair_are_not_sets_1})を併せて
 		\begin{align}
-			\set{a} \rarrow a \in \{a,b\}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a}
 		\end{align}
-		が成り立ち，定理\ref{thm:emptyset_does_not_contain_any_class}から
+		が従う．同様にして
 		\begin{align}
-			a \in \{a,b\} \rarrow \{a,b\} \neq \emptyset
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{b}
 		\end{align}
-		が成り立つので，含意の推移律より
+		も成り立ち，論理積の導入規則より
 		\begin{align}
-			\set{a} \rarrow \{a,b\} \neq \emptyset
-		\end{align}
-		が成立する．同様に
-		\begin{align}
-			\set{b} \rarrow \{a,b\} \neq \emptyset
-		\end{align}
-		も成り立つから，場合分け法則より
-		\begin{align}
-			\set{a} \vee \set{b} \rarrow \{a,b\} \neq \emptyset
-		\end{align}
-		が成立し，この対偶を取って
-		\begin{align}
-			\{a,b\} = \emptyset \rarrow\ \negation \set{a} \wedge \negation \set{b}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a} \wedge \negation \set{b}
 		\end{align}
 		が得られる．
 		\QED
 	\end{sketch}
-	
