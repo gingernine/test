@@ -19,7 +19,7 @@
 	
 	\begin{screen}
 		\begin{dfn}[対]
-			$x,y$を$\mathcal{L}$の項とするとき，
+			$x,y$を$\mathcal{L}$の項とし，$z$を$x$にも$y$にも自由に現れない変項とするとき，
 			\begin{align}
 				\{x,y\} \defeq \Set{z}{z = x \vee z = y}
 			\end{align}
@@ -28,51 +28,46 @@
 		\end{dfn}
 	\end{screen}
 	
-	上の定義では$x$や$y$が内包項である場合も包含しているので，そういった場合は
-	$z = x \vee z = y$を$\lang{\varepsilon}$の式に書き換える．
+	上の定義では省略したが，$x$や$y$が内包項である場合は$z = x \vee z = y$を
+	$\lang{\varepsilon}$の式に書き換えてから$\{x,y\}$を定めるのである．つまり
+	\begin{align}
+		\varphi \defarrow z = x \vee z = y
+	\end{align}
+	とおけば，$\varphi$を$\lang{\varepsilon}$の式に書き換えた式$\hat{\varphi}$によって
+	\begin{align}
+		\{x,y\} \defeq \Set{z}{\hat{\varphi}(z)}
+	\end{align}
+	と定めるのである．たとえば$\varphi$に自由に現れる変項が$z$だけならば
+	\begin{align}
+		\COMAX \vdash \forall z\, (\, z \in \{x,y\} \lrarrow \hat{\varphi}(z)\, )
+	\end{align}
+	が成立するし，同時に定理\ref{thm:equivalent_formula_rewriting_1}と
+	定理\ref{thm:equivalent_formula_rewriting_2}より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash 
+		\forall z\, (\, \hat{\varphi}(z) \lrarrow \varphi(z)\, )
+	\end{align}
+	も成り立つので
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash 
+		\forall z\, (\, z \in \{x,y\} \lrarrow z = x \vee z = y\, )
+	\end{align}
+	が得られる．
 	
 	\begin{screen}
 		\begin{thm}[対は表示されている要素しか持たない]
 		\label{thm:pair_members_are_exactly_the_given_two}
 			$a$と$b$を類とするとき次が成立する:
 			\begin{align}
-				\forall x\, (\, x \in \{a,b\} \lrarrow a=x \vee b=x\, ).
+				\EXTAX,\EQAX,\COMAX \vdash 
+				\forall x\, (\, x \in \{a,b\} \lrarrow x = a \vee x = b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	この定理はメタ的な定理\ref{metathm:rewritten_formula_is_equivalent}を適用しただけの主張であるが，
-	直接確認することも出来る．実際，$a$が
-	\begin{align}
-		\Set{x}{A(x)}
-	\end{align}
-	で表される類で，$b$が
-	\begin{align}
-		\Set{x}{B(x)}
-	\end{align}
-	で表される類であるとき，$\chi$を$\mathcal{L}$の任意の対象とすれば
-	\begin{align}
-		\forall t\, (\, A(t) \lrarrow t \in \chi\, ) \lrarrow a = \chi
-	\end{align}
-	と
-	\begin{align}
-		\forall t\, (\, B(t) \lrarrow t \in \chi\, ) \lrarrow b = \chi
-	\end{align}
-	から
-	\begin{align}
-		\left[\, \forall t\, (\, A(t) \lrarrow t \in \chi\, ) \vee
-		\forall t\, (\, B(t) \lrarrow t \in \chi\, )\, \right]
-		\lrarrow
-		\left[\, a = \chi \vee b = \chi\, \right]
-	\end{align}
-	が成り立つので，
-	\begin{align}
-		\forall x\, \left[\, \left[\, \forall t\, (\, A(t) \lrarrow t \in x\, ) \vee
-		\forall t\, (\, B(t) \lrarrow t \in x\, )\, \right]
-		\lrarrow
-		\left[\, a = x \vee b = x\, \right]\, \right]
-	\end{align}
-	が成立する．
+	\begin{sketch}
+		大まかな流れは前述したので
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[要素の表示の順番を入れ替えても対は等しい]\label{thm:commutative_law_of_pairs}

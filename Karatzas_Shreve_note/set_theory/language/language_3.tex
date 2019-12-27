@@ -284,77 +284,38 @@
 		\end{dfn}
 	\end{screen}
 	
-\subsection{式の書き換え}
-	$\Set{x}{A(x)}$なる形の項を内包項，$\varepsilon x A(x)$なる形の項を$\varepsilon$項と呼び，
-	これらを類と総称することにする．
-	また$\varepsilon$項が現れない$\mathcal{L}$の式を甲種式，
-	乙種項が現れる$\mathcal{L}$の式を乙種式と呼ぶことにする．
-	
-	\begin{itembox}[l]{乙種式は書き換えない}
-		たとえば，$x \in \varepsilon y B(y)$なる式を$\lang{\in}$の式に書き換えるならば，
-		$\varepsilon$項に込められた意味から
-		\begin{align}
-			\exists t\, (\, x \in t \wedge 
-			(\, \exists y B(y) \rarrow B(t)\, )\, )
-		\end{align}
-		とするのが妥当であるだろう．しかしこうすると集合論では
-		\begin{align}
-			\forall x\, (\, x \in \varepsilon y\, (\, y=y\, )\, )
-		\end{align}
-		が成り立ってしまい，これは矛盾を起こす．実際，任意の集合$x$に対して，$t$として$\{x\}$を取れば
-		\begin{align}
-			\exists t\, (\, x \in t \wedge 
-			(\, \exists y B(y) \rarrow B(t)\, )\, )
-		\end{align}
-		が満たされるので
-		\begin{align}
-			\forall x\, \exists t\, (\, x \in t \wedge 
-			(\, \exists y\, (\, y = y\, ) \rarrow t = t\, )\, )
-		\end{align}
-		すなわち$\forall x\, (\, x \in \varepsilon y\, (\, y=y\, )\, )$が成り立つ．
-		ところが本稿の体系では$\varepsilon y\, (\, y = y\, )$は集合であり，
-		その一方で全ての集合を要素に持つ集まりというのは集合ではないから，矛盾が起こる．
-		
-		他に乙種式を$\lang{\in}$の式に変換する有効な方法が見つかれば話は別だが，
-		それが見つからないうちは乙種式は書き換えの対象ではない．
-	\end{itembox}
-	
-	\begin{itemize}
-		\item $x \in \Set{y}{B(y)}$は$B(x)$と書き換える．
-			
-			これは次の公理
-			\begin{align}
-				\forall x\, \left(\, x \in \Set{y}{B(y)} \leftrightarrow B(x)\, \right)
-			\end{align}
-			に基づく式の書き換えである．
-			
-		\item $\Set{x}{A(x)} \in y$は$\exists s\, \left(\, s \in y \wedge 
-			\forall u\, (\, u \in s \lrarrow A(s)\, )\, \right)$
-			と書き換える．
-			これの同値性は
-			\begin{align}
-				a \in b \rarrow \exists x\, (\, a = x\, )
-			\end{align}
-			の公理による．
-			
-	\end{itemize}
-	
-	量化は$\varepsilon$項についての規則とする．甲種乙種関係なく，式$A(x)$と任意の$\varepsilon$項$\tau$に対して
+\subsection{拡張$\varepsilon$項}
+	$\varepsilon$項を取り入れた当初の目的は，「$\varphi(x)$を満たす集合$x$が存在するならば
+	$\varepsilon x \varphi(x)$はその$x$の一つである」という意味で
+	{\bf 存在文}\index{そんざいぶん@存在文}{\bf (existential sentence)}に対して
+	{\bf 証人}\index{しょうにん@証人}{\bf (witness)}を付けることであった．
+	ただし$\varepsilon$項を作れる式は$\lang{\varepsilon}$の式のみであるので，
+	$\varphi$が$\mathcal{L}$の式であると$\varepsilon x \varphi(x)$を使うことが出来ない．
+	だが$\mathcal{L}$の式の存在文も往々にして登場するので
+	そういった場合でも証人を用意できると便利である．
+	そこで$\mathcal{L}$の式を``同値な''$\lang{\varepsilon}$の式に書き換えて，
+	その書き換えた式で作る$\varepsilon$項を使うことにする．つまり
+	$\varphi$が$\mathcal{L}$の式である場合は，$\varphi$を
+	$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えてから
 	\begin{align}
-		A(\tau) \vdash \exists x A(x).
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \hat{\varphi}(x))
 	\end{align}
+	を保証するのである．``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}	節
+	で述べてあるような意味であるが，直感的な意味に即して考えれば次の式の書き換え
 	
-	$A(x)$が甲種式であるとき，
-	\begin{align}
-		\exists x A(x) \vdash A\left(\varepsilon x \mathcal{L}A(x)\right).
-	\end{align}
-	
-	$A(x)$を式とするとき，次の推論規則によって，$\forall x A(x)$とは
-	全ての$\varepsilon$項$\tau$で$A(\tau)$が成り立つことを意味するようになる．
-	\begin{align}
-		\forall x A(x) &\vdash A(\tau). \\
-		A(\varepsilon x \negation \mathcal{L}A(x)) &\vdash \forall x A(x). 
-	\end{align}
+	\begin{table}[H]
+		\begin{center}
+		\begin{tabular}{c|c}
+			元の式 & 書き換え後 \\ \hline \hline
+			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(v/z)\, )$ \\ \hline
+			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(u/y) \lrarrow u \in b\, )$ \\ \hline
+			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(u/y) \lrarrow \psi(u/z)\, )$ \\ \hline
+			$a \in \Set{z}{\psi}$ & $\psi(a/z)$ \\ \hline
+			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(u/y) \lrarrow u \in s\, ) \wedge s \in b\, )$ \\ \hline
+			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(u/y) \lrarrow u \in s\, ) \wedge \psi(s/z)\, )$ \\ \hline
+		\end{tabular}
+		\end{center}
+	\end{table}
 	
 \subsection{中置記法}
 	たとえば$\in s t$なる原子式は「$s$は$t$の要素である」と読むのだから，語順通りに
