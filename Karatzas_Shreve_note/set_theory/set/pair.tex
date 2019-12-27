@@ -21,7 +21,7 @@
 		\begin{dfn}[対]
 			$x,y$を$\mathcal{L}$の項とし，$z$を$x$にも$y$にも自由に現れない変項とするとき，
 			\begin{align}
-				\{x,y\} \defeq \Set{z}{z = x \vee z = y}
+				\{x,y\} \defeq \Set{z}{x = z \vee y = z}
 			\end{align}
 			で$\{x,y\}$を定義し，これを$x$と$y$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
 			特に$\{x,x\}$を$\{x\}$と書く．
@@ -31,7 +31,7 @@
 	上の定義では省略したが，$x$や$y$が内包項である場合は$z = x \vee z = y$を
 	$\lang{\varepsilon}$の式に書き換えてから$\{x,y\}$を定めるのである．つまり
 	\begin{align}
-		\varphi \defarrow z = x \vee z = y
+		\varphi \defarrow x = z \vee y = z
 	\end{align}
 	とおけば，$\varphi$を$\lang{\varepsilon}$の式に書き換えた式$\hat{\varphi}$によって
 	\begin{align}
@@ -50,7 +50,7 @@
 	も成り立つので
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX \vdash 
-		\forall z\, (\, z \in \{x,y\} \lrarrow z = x \vee z = y\, )
+		\forall z\, (\, z \in \{x,y\} \lrarrow x = z \vee y = z\, )
 	\end{align}
 	が得られる．
 	
@@ -60,7 +60,7 @@
 			$a$と$b$を類とするとき次が成立する:
 			\begin{align}
 				\EXTAX,\EQAX,\COMAX \vdash 
-				\forall x\, (\, x \in \{a,b\} \lrarrow x = a \vee x = b\, ).
+				\forall x\, (\, x \in \{a,b\} \lrarrow a = x \vee b = x\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -73,56 +73,194 @@
 		\begin{thm}[要素の表示の順番を入れ替えても対は等しい]\label{thm:commutative_law_of_pairs}
 			$a$と$b$を類とするとき
 			\begin{align}
-				\{a,b\} = \{b,a\}.
+				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$\tau$を$\mathcal{L}$の任意の対象とする．定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		いま
 		\begin{align}
-			\tau \in \{a,b\} \lrarrow \tau = a \vee \tau = b
+			\tau \defeq \varepsilon x \negation (\, x \in \{a,b\} \lrarrow x \in \{b,a\}\, )
 		\end{align}
-		が成立し，推論法則\ref{logicalthm:commutative_law_of_disjunction}より
+		とおく(必要に応じて$x \in \{a,b\} \lrarrow x \in \{b,a\}$は$\lang{\varepsilon}$の
+		式に書き換える)．
+		定理\ref{thm:pair_members_are_exactly_the_given_two}より
 		\begin{align}
-			\tau = a \vee \tau = b \lrarrow \tau = b \vee \tau = a
+			\EXTAX,\EQAX,\COMAX \vdash
+			\tau \in \{a,b\} \rarrow a = \tau \vee b = \tau
 		\end{align}
-		が成立し，定理\ref{thm:pair_members_are_exactly_the_given_two}と推論法則\ref{logicalthm:commutative_law_of_equivalence}より
+		が成り立つので，演繹法則の逆より
 		\begin{align}
-			\tau = b \vee \tau = a \lrarrow \tau \in \{b,a\}
+			\tau \in \{a,b\},\ \EXTAX,\EQAX,\COMAX \vdash a = \tau \vee b = \tau
 		\end{align}
-		が成立する．そして含意の推移律から
+		となる．また論理和の可換律
+		(推論法則\ref{logicalthm:commutative_law_of_disjunction})より
 		\begin{align}
-			\tau \in \{a,b\} \lrarrow \tau \in \{b,a\}
+			\tau \in \{a,b\},\ \EXTAX,\EQAX,\COMAX \vdash b = \tau \vee a = \tau
 		\end{align}
-		が従う．$\tau$は任意に与えられていたから
+		が成り立ち，定理\ref{thm:pair_members_are_exactly_the_given_two}より
 		\begin{align}
-			\forall t\, \left(\, t \in \{a,b\} \lrarrow t \in \{b,a\}\, \right)
+			\tau \in \{a,b\},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{b,a\}
 		\end{align}
-		が従い，外延性の公理より
+		が従う．そして演繹規則より
 		\begin{align}
-			\{a,b\} = \{b,a\}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \rarrow \tau \in \{b,a\}
 		\end{align}
-		が出る．
+		が得られる．$a$と$b$を入れ替えれば
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{b,a\} \rarrow \tau \in \{a,b\}
+		\end{align}
+		が得られるので，論理積の導入規則より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \lrarrow \tau \in \{b,a\}
+		\end{align}
+		が成り立ち，全称記号の推論規則より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in \{a,b\} \lrarrow x \in \{b,a\}\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}
+		\end{align}
+		が従う．
 		\QED
 	\end{sketch}
 		
 	\begin{screen}
 		\begin{axm}[対の公理]
-			集合同士の対は集合である．つまり，$a$と$b$を集合とするとき
 			\begin{align}
-				\set{\{a,b\}}.
+				\PAIAX \defarrow \forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
-	\monologue{
-		対の公理の主張は，$a$と$b$を類とするとき
-		\begin{align}
-			\set{a} \wedge \set{b} \rarrow \set{\{a,b\}}
-		\end{align}
-		が成り立つということですが，式にまとめてしまうと見づらいのではじめから$a$と$b$を集合としています．
-	}
+	\begin{screen}
+		\begin{thm}[集合の対は集合である]
+		\label{thm:pair_of_sets_is_a_set}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+				\set{a} \wedge \set{b} \rarrow \set{\{a,b\}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				論理積の除去規則より
+				\begin{align}
+					\set{a} \wedge \set{b} &\vdash \exists x\, (\, a = x\, ), \\
+					\set{a} \wedge \set{b} &\vdash \exists x\, (\, b = x\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\tau &\defeq \varepsilon x\, (\, a = x\, ), \\
+					\sigma &\defeq \varepsilon x\, (\, b = x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\set{a} \wedge \set{b} &\vdash a = \tau, 
+					\label{fom:pair_of_sets_is_a_set_1} \\
+					\set{a} \wedge \set{b} &\vdash b = \tau
+				\end{align}
+				が成り立つ．対の公理より$\tau$と$\sigma$に対しては
+				\begin{align}
+					\PAIAX \vdash \exists p\, \forall z\, 
+						(\, \tau = z \vee \sigma = z \lrarrow z \in p\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\rho \defeq \varepsilon p\, \forall z\, 
+						(\, \tau = z \vee \sigma = z \lrarrow z \in p\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\PAIAX \vdash \forall z\, (\, \tau = z \vee \sigma = z \lrarrow z \in \rho\, )
+					\label{fom:pair_of_sets_is_a_set_2}
+				\end{align}
+				となる．
+				
+			\item[step2]
+				次に
+				\begin{align}
+					\forall z\, (\, z \in \{a,b\} \lrarrow z \in \rho\, )
+				\end{align}
+				を示すために
+				\begin{align}
+					\zeta \defeq \varepsilon z \negation (\, z \in \{a,b\} \lrarrow z \in \rho\, )
+				\end{align}
+				とおく(当然$\lang{\varepsilon}$の式に書き換える)．
+				等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					\EXTAX,\EQAX \vdash a = \tau \rarrow (\, a = \zeta \rarrow \tau = \zeta\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:pair_of_sets_is_a_set_1})との三段論法より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \rarrow \tau = \zeta
+				\end{align}
+				が成り立ち，論理和の導入規則より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \rarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				が従う．同様にして
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					b = \zeta \rarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				も成り立つので，論理和の除去規則より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \vee b = \zeta \rarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				が得られる．同様に
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					\tau = \zeta \vee \sigma = \zeta \rarrow a = \zeta \vee b = \zeta
+				\end{align}
+				も得られ，論理積の導入規則より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \vee b = \zeta \lrarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				が従う．他方で定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					\zeta \in \{a,b\} \lrarrow a = \zeta \vee b = \zeta
+				\end{align}
+				が成り立ち，また(\refeq{fom:pair_of_sets_is_a_set_2})より
+				\begin{align}
+					\PAIAX \vdash \tau = \zeta \vee \sigma = \zeta \lrarrow \zeta \in \rho
+				\end{align}
+				も成り立つので，同値記号の推移律
+				(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\zeta \in \{a,b\} \lrarrow \zeta \in \rho
+				\end{align}
+				が従う．そして全称記号の推論規則より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\forall z\, (\, z \in \{a,b\} \lrarrow z \in \rho\, )
+				\end{align}
+				が成り立ち，外延性公理より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\{a,b\} = \rho
+				\end{align}
+				が従い，存在記号の推論規則より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\exists p\, (\, \{a,b\} = p\, )
+				\end{align}
+				が成り立つ．
+				\QED
+		\end{description}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{logicalthm}[量化記号の性質(ロ)]\label{logicalthm:properties_of_quantifiers_2}
