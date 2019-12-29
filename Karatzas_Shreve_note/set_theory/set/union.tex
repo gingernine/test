@@ -512,7 +512,85 @@
 		が成り立つということですが，式にまとめてしまうと見づらいのではじめから$a$と$b$を集合としています．
 	}
 	
-	\begin{sketch}
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				いま
+				\begin{align}
+					\tau \defeq \varepsilon x \negation 
+					(\, x \in a \cup b \rarrow x \in a \vee x \in b\, )
+				\end{align}
+				とおくと，定理\ref{thm:comprehension_of_unions}より
+				\begin{align}
+					\tau \in a \cup b,\ \COMAX \vdash
+					\exists z\, (\, z \in \{a,b\} \wedge \tau \in z\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\zeta \defeq \varepsilon z\, 
+					(\, z \in \{a,b\} \wedge \tau \in z\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\tau \in a \cup b,\ \COMAX &\vdash \zeta \in \{a,b\}, 
+					\label{fom:union_of_pair_is_union_of_their_elements_1} \\
+					\tau \in a \cup b,\ \COMAX &\vdash \tau \in \zeta
+					\label{fom:union_of_pair_is_union_of_their_elements_2}
+				\end{align}
+				が成り立つ．(\refeq{fom:union_of_pair_is_union_of_their_elements_2})と
+				\begin{align}
+					a = \zeta,\ \EQAX &\vdash \zeta = a, \\
+					a = \zeta,\ \EQAX &\vdash \zeta = a \rarrow
+					(\, \tau \in \zeta \rarrow \tau \in a\, )
+				\end{align}
+				より
+				\begin{align}
+					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+					a = \zeta \rarrow \tau \in a 
+				\end{align}
+				が従い，
+				\begin{align}
+					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+					a = \zeta \rarrow \tau \in a \vee \tau \in b
+				\end{align}
+				が成り立つ．同様に
+				\begin{align}
+					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+					b = \zeta \rarrow \tau \in a \vee \tau \in b
+				\end{align}
+				が成り立ち，場合分け規則より
+				\begin{align}
+					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+					a = \zeta \vee b = \zeta \rarrow \tau \in a \vee \tau \in b
+					\label{fom:union_of_pair_is_union_of_their_elements_3}
+				\end{align}
+				が成り立つ．他方で定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash
+					\zeta \in \{a,b\} \rarrow a = \zeta \vee b = \zeta
+				\end{align}
+				が成り立つので，(\refeq{fom:union_of_pair_is_union_of_their_elements_1})
+				と併せて
+				\begin{align}
+					\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX &\vdash 
+					a = \zeta \vee b = \zeta
+				\end{align}
+				が成り立つ．よって(\refeq{fom:union_of_pair_is_union_of_their_elements_3})
+				と併せて
+				\begin{align}
+					\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX \vdash 
+					\tau \in a \vee \tau \in b
+				\end{align}
+				が従い，全称記号の推論規則より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					\forall x\, (\, x \in a \cup b \rarrow x \in a \vee x \in b\, )
+				\end{align}
+				が得られる．
+				
+		\end{description}
+		
+		
 		$\chi$を$\mathcal{L}$の任意の対象とする．
 		\begin{align}
 			\chi \in a \cup b
