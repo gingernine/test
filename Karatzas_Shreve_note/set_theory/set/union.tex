@@ -49,8 +49,119 @@
 	\end{description}
 	
 	\begin{screen}
+		\begin{thm}[合併の内包性]
+		\label{thm:comprehension_of_unions}
+			$a$を類とするとき
+			\begin{align}
+				\COMAX \vdash \forall y\, (\, y \in \bigcup a \lrarrow 
+				\exists z\, (\, z \in a \wedge y \in z\, )\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$が主要$\varepsilon$項である場合は
+		\begin{align}
+			\COMAX \vdash \forall y\, (\, y \in \bigcup a \lrarrow 
+				\exists z\, (\, z \in a \wedge y \in z\, )\, )
+		\end{align}
+		が成立する．$a$が$\Set{x}{\varphi(x)}$なる内包項の場合は
+		\begin{align}
+			\bigcup a \defeq \Set{y}{\exists z\, (\, \varphi(z) \wedge y \in z\, )}
+		\end{align}
+		と定義されることになり，
+		\begin{align}
+			\COMAX \vdash \forall y\, (\, y \in \bigcup a \lrarrow 
+				\exists z\, (\, \varphi(z) \wedge y \in z\, )\, )
+			\label{fom:comprehension_of_unions_1}
+		\end{align}
+		が成立する．ここで
+		\begin{align}
+			\COMAX \vdash \forall y\, (\, y \in \bigcup a \lrarrow 
+				\exists z\, (\, z \in a \wedge y \in z\, )\, )
+		\end{align}
+		を示すために
+		\begin{align}
+			\eta \defeq \varepsilon y \negation (\, y \in \bigcup a \lrarrow 
+				\exists z\, (\, z \in a \wedge y \in z\, )\, )
+		\end{align}
+		とおく(右辺は$\lang{\varepsilon}$の式に直す)．
+		\begin{description}
+			\item[step1]
+				いま
+				\begin{align}
+					\zeta \defeq \varepsilon z\, (\, \varphi(z) \wedge \eta \in z\, )
+				\end{align}
+				とおけば，(\refeq{fom:comprehension_of_unions_1})より
+				\begin{align}
+					\eta \in \bigcup a,\ \COMAX \vdash
+					\varphi(\zeta) \wedge \eta \in \zeta
+				\end{align}
+				が成立する．他方で
+				\begin{align}
+					\COMAX \vdash \varphi(\zeta) \rarrow \zeta \in a
+				\end{align}
+				も成り立つので
+				\begin{align}
+					\eta \in \bigcup a,\ \COMAX \vdash
+					\zeta \in a \wedge \eta \in \zeta
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\COMAX \vdash \eta \in \bigcup a \rarrow
+					\exists z\, (\, z \in a \wedge \eta \in z\, )
+					\label{fom:comprehension_of_unions_2}
+				\end{align}
+				が得られる．
+				
+			\item[step2]
+				$\zeta$を先と同じものにすれば
+				\begin{align}
+					\exists z\, (\, z \in a \wedge \eta \in z\, )
+					\vdash \zeta \in a \wedge \eta \in \zeta
+				\end{align}
+				が成立する．また
+				\begin{align}
+					\COMAX \vdash \zeta \in a \rarrow \varphi(\zeta)
+				\end{align}
+				も成り立つので
+				\begin{align}
+					\exists z\, (\, z \in a \wedge \eta \in z\, ),\ \COMAX
+					\vdash \varphi(\zeta) \wedge \eta \in \zeta
+				\end{align}
+				が従う．(\refeq{fom:comprehension_of_unions_1})より
+				\begin{align}
+					\COMAX \vdash \varphi(\zeta) \wedge \eta \in \zeta
+					\rarrow \eta \in \bigcup a
+				\end{align}
+				も成り立つので
+				\begin{align}
+					\exists z\, (\, z \in a \wedge \eta \in z\, ),\ \COMAX \vdash 
+					\eta \in \bigcup a
+					\label{fom:comprehension_of_unions_3}
+				\end{align}
+				が得られる．
+			
+			\item[step3]
+				(\refeq{fom:comprehension_of_unions_2})と
+				(\refeq{fom:comprehension_of_unions_3})より
+				\begin{align}
+					\COMAX \vdash \eta \in \bigcup a 
+					\lrarrow \exists z\, (\, z \in a \wedge \eta \in z\, )
+				\end{align}
+				が成立するので，全称記号の推論規則より
+				\begin{align}
+					\COMAX \vdash \forall y\, (\, y \in \bigcup a 
+					\lrarrow \exists z\, (\, z \in a \wedge y \in z\, )\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{axm}[合併の公理]
-			次の式を$\POWAX$によって参照する:
+			次の式を$\UNIAX$によって参照する:
 			\begin{align}
 				\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).
 			\end{align}
@@ -62,7 +173,7 @@
 		\label{thm:union_of_a_set_is_a_set}
 			$a$を類とするとき
 			\begin{align}
-				\EXTAX,\EQAX,\COMAX,\POWAX \vdash \set{a} \rarrow \set{\bigcup a}.
+				\EXTAX,\EQAX,\COMAX,\UNIAX \vdash \set{a} \rarrow \set{\bigcup a}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -80,7 +191,7 @@
 				\end{align}
 				が成立する．$\tau$に対して
 				\begin{align}
-					\POWAX \vdash \exists u\, \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in u\, )
+					\UNIAX \vdash \exists u\, \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in u\, )
 				\end{align}
 				が成り立つので，
 				\begin{align}
@@ -88,12 +199,12 @@
 				\end{align}
 				とおけば
 				\begin{align}
-					\POWAX \vdash \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
+					\UNIAX \vdash \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
 					\label{fom:union_of_a_set_is_a_set_1}
 				\end{align}
 				が成立する．次に$\tau$を$a$に置き換えた場合に
 				\begin{align}
-					\set{a},\ \EQAX,\POWAX \vdash \forall y\, (\, \exists z\, (\, z \in a \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
+					\set{a},\ \EQAX,\UNIAX \vdash \forall y\, (\, \exists z\, (\, z \in a \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
 				\end{align}
 				が成立することを示す．
 				
@@ -104,7 +215,7 @@
 				\end{align}
 				とおけば，(\refeq{fom:union_of_a_set_is_a_set_1})より
 				\begin{align}
-					\POWAX \vdash \exists z\, (\, z \in \tau \wedge \eta \in z\, )
+					\UNIAX \vdash \exists z\, (\, z \in \tau \wedge \eta \in z\, )
 					\lrarrow \eta \in \upsilon
 				\end{align}
 				が成立する．
@@ -127,16 +238,16 @@
 				\end{align}
 				が成立する．また(\refeq{fom:union_of_a_set_is_a_set_1})より
 				\begin{align}
-					\POWAX \vdash (\, \zeta \in \tau \wedge \eta \in \zeta\, )
+					\UNIAX \vdash (\, \zeta \in \tau \wedge \eta \in \zeta\, )
 					\rarrow \eta \in \upsilon
 				\end{align}
 				が成り立つので
 				\begin{align}
-					\exists z\, (\, z \in a \wedge \eta \in z\, ),\ \set{a},\ \EQAX,\POWAX \vdash \eta \in \upsilon
+					\exists z\, (\, z \in a \wedge \eta \in z\, ),\ \set{a},\ \EQAX,\UNIAX \vdash \eta \in \upsilon
 				\end{align}
 				が従う．ゆえに
 				\begin{align}
-					\set{a},\ \EQAX,\POWAX \vdash 
+					\set{a},\ \EQAX,\UNIAX \vdash 
 					\exists z\, (\, z \in a \wedge \eta \in z\, ) \rarrow \eta \in \upsilon
 					\label{fom:union_of_a_set_is_a_set_2}
 				\end{align}
@@ -145,12 +256,12 @@
 			\item[step3]
 				逆に(\refeq{fom:union_of_a_set_is_a_set_1})より
 				\begin{align}
-					\eta \in \upsilon,\ \POWAX \vdash
+					\eta \in \upsilon,\ \UNIAX \vdash
 					\exists z\, (\, z \in \tau \wedge \eta \in z\, )
 				\end{align}
 				が成り立つので
 				\begin{align}
-					\eta \in \upsilon,\ \POWAX \vdash
+					\eta \in \upsilon,\ \UNIAX \vdash
 					\zeta \in \tau \wedge \eta \in \zeta
 				\end{align}
 				が従い，
@@ -160,17 +271,17 @@
 				\end{align}
 				と併せて
 				\begin{align}
-					\eta \in \upsilon,\ \set{a},\ \EQAX,\POWAX \vdash
+					\eta \in \upsilon,\ \set{a},\ \EQAX,\UNIAX \vdash
 					\zeta \in a \wedge \eta \in \zeta
 				\end{align}
 				が従い，
 				\begin{align}
-					\eta \in \upsilon,\ \set{a},\ \EQAX,\POWAX \vdash
+					\eta \in \upsilon,\ \set{a},\ \EQAX,\UNIAX \vdash
 					\exists z\, (\, z \in a \wedge \eta \in z\, )
 				\end{align}
 				が従う．そして演繹規則より
 				\begin{align}
-					\set{a},\ \EQAX,\POWAX \vdash
+					\set{a},\ \EQAX,\UNIAX \vdash
 					\eta \in \upsilon \rarrow \exists z\, (\, z \in a \wedge \eta \in z\, )
 					\label{fom:union_of_a_set_is_a_set_3}
 				\end{align}
@@ -180,22 +291,22 @@
 				(\refeq{fom:union_of_a_set_is_a_set_2})と
 				(\refeq{fom:union_of_a_set_is_a_set_3})より
 				\begin{align}
-					\set{a},\ \EQAX,\POWAX \vdash
+					\set{a},\ \EQAX,\UNIAX \vdash
 					\exists z\, (\, z \in a \wedge \eta \in z\, ) \lrarrow \eta \in \upsilon
 				\end{align}
 				が得られ，全称記号の推論規則より
 				\begin{align}
-					\set{a},\ \EQAX,\POWAX \vdash
+					\set{a},\ \EQAX,\UNIAX \vdash
 					\forall y\, (\, \exists z\, (\, z \in a \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
 				\end{align}
 				となり，定理\ref{thm:equivalent_formula_rewriting_4}より
 				\begin{align}
-					\set{a},\ \EXTAX,\EQAX,\COMAX,\POWAX \vdash
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\UNIAX \vdash
 					\Set{z}{\exists z\, (\, z \in a \wedge y \in z\, )} = \upsilon
 				\end{align}
 				が成り立つ．存在記号の推論規則より
 				\begin{align}
-					\set{a},\ \EXTAX,\EQAX,\COMAX,\POWAX \vdash
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\UNIAX \vdash
 					\exists u\, (\, \Set{z}{\exists z\, (\, z \in a \wedge y \in z\, )} = u\, )
 				\end{align}
 				が成り立つので，定理が得られた．
