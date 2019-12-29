@@ -381,70 +381,10 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[要素の部分集合は合併の部分集合]
-		\label{thm:union_is_bigger_than_any_member}
-			$a$を類とするとき
-			\begin{align}
-				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right].
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		$\chi$を$\mathcal{L}$の任意の対象として
-		\begin{align}
-			\exists t \in a\, (\, x \subset t\, )
-			\label{fom:thm_union_is_bigger_than_any_member_1}
-		\end{align}
-		であるとする．ここで
-		\begin{align}
-			\tau \defeq \varepsilon t\, (\, t \in a \wedge \chi \subset t\, )
-		\end{align}
-		とおく．$s$を$\mathcal{L}$の任意の対象として
-		\begin{align}
-			s \in \chi
-		\end{align}
-		であるとすると，
-		\begin{align}
-			\chi \subset \tau
-		\end{align}
-		より
-		\begin{align}
-			\tau \in a \wedge s \in \tau
-		\end{align}
-		が成立するので，存在記号の規則より
-		\begin{align}
-			\exists t\, \left(\, t \in a \wedge s \in t\, \right)
-		\end{align}
-		が成り立ち
-		\begin{align}
-			s \in \bigcup a
-		\end{align}
-		が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
-		\begin{align}
-			\forall s\, (\, s \in \chi \rarrow s \in \bigcup a\, )
-		\end{align}
-		すなわち
-		\begin{align}
-			\chi \subset \bigcup a
-		\end{align}
-		が成り立つ．ゆえに
-		\begin{align}
-			\exists t \in a\, \left(\, \chi \subset t\, \right) \rarrow \chi \subset \bigcup a
-		\end{align}
-		が従い，$\chi$も任意に与えられていたので
-		\begin{align}
-			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right]
-		\end{align}
-		が得られる．
-		\QED
-	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}[部分集合の合併は部分類]\label{thm:union_of_subsets_is_subclass}
+		\begin{thm}[等しい類の合併は等しい]\label{thm:unions_of_equal_classes_are_equal}
 			$a$と$b$を類とするとき
 			\begin{align}
-				\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b.
+				\EXTAX,\EQAX,\COMAX \vdash a = b \rarrow \bigcup a = \bigcup b.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -452,59 +392,110 @@
 	\begin{sketch}
 		いま
 		\begin{align}
-			\forall x \in a\, (\, x \subset b\, )
-			\label{fom:thm_union_of_subsets_is_subclass_1}
+			\eta \defeq \varepsilon y \negation (\, y \in \bigcup a 
+			\lrarrow y \in \bigcup b\, )
 		\end{align}
-		が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象とし，
+		とおく．合併の内包性(定理\ref{thm:comprehension_of_unions})より
 		\begin{align}
-			\chi \in \bigcup a
-		\end{align}
-		であるとする．すると
-		\begin{align}
-			\exists t\, \left(\, t \in a \wedge \chi \in t\, \right)
+			\eta \in \bigcup a,\ \COMAX \vdash
+			\exists z\, (\, z \in a \wedge \eta \in z\, )
 		\end{align}
 		が成り立つので，
 		\begin{align}
-			\tau \defeq \varepsilon t\, \left(\, t \in a \wedge \chi \in t\, \right)
+			\zeta \defeq \varepsilon z\, (\, z \in a \wedge \eta \in z\, )
 		\end{align}
 		とおけば
 		\begin{align}
-			\tau \in a \wedge \chi \in \tau
+			\eta \in \bigcup a,\ \COMAX \vdash
+			\zeta \in a \wedge \eta \in \zeta
 		\end{align}
-		が成立する．ここで(\refeq{fom:thm_union_of_subsets_is_subclass_1})より
+		となる．ところで
 		\begin{align}
-			\tau \subset b
+			\EQAX \vdash a = b \rarrow (\, \zeta \in a \rarrow \zeta \in b\, )
 		\end{align}
-		となるから
+		が成り立つので
 		\begin{align}
-			\chi \in b
+			a = b,\ \eta \in \bigcup a,\ \EQAX,\COMAX \vdash
+			\zeta \in b \wedge \eta \in \zeta
 		\end{align}
-		が従い，演繹法則より(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
+		が得られ，
 		\begin{align}
-			\chi \in \bigcup a \rarrow \chi \in b
+			a = b,\ \eta \in \bigcup a,\ \EQAX,\COMAX \vdash
+			\exists z\, (\, z \in b \wedge \eta \in z\, )
 		\end{align}
-		が成立する．$\chi$の任意性ゆえに(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
+		が従う．そして合併の内包性(定理\ref{thm:comprehension_of_unions})より
 		\begin{align}
-			\bigcup a \subset b
+			a = b,\ \eta \in \bigcup a,\ \EQAX,\COMAX \vdash \eta \in \bigcup b
+			\label{fom:unions_of_equal_classes_are_equal_1}
 		\end{align}
-		が成立し，演繹法則より
+		が得られる．$a$と$b$を入れ替えれば
 		\begin{align}
-			\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b
+			\EQAX,\COMAX \vdash 
+			b = a \rarrow (\, \eta \in \bigcup b \rarrow \eta \in \bigcup a\, )
 		\end{align}
-		が得られる．
+		となるが，
+		\begin{align}
+			a = b,\ \EQAX \vdash b = a 
+		\end{align}
+		と併せて
+		\begin{align}
+			a = b,\ \EQAX,\COMAX \vdash 
+			\eta \in \bigcup b \rarrow \eta \in \bigcup a
+			\label{fom:unions_of_equal_classes_are_equal_2}
+		\end{align}
+		が得られる．(\refeq{fom:unions_of_equal_classes_are_equal_1})と
+		(\refeq{fom:unions_of_equal_classes_are_equal_2})より
+		\begin{align}
+			a = b,\ \EQAX,\COMAX \vdash 
+			\eta \in \bigcup a \lrarrow \eta \in \bigcup b
+		\end{align}
+		が従い，全称記号の推論規則より
+		\begin{align}
+			a = b,\ \EQAX,\COMAX \vdash 
+			\forall y\, (\, y \in \bigcup a \lrarrow y \in \bigcup b\, )
+		\end{align}
+		が成立し，外延性公理と併せて
+		\begin{align}
+			a = b,\ \EXTAX,\EQAX,\COMAX \vdash 
+			\bigcup a = \bigcup b
+		\end{align}
+		を得る．
 		\QED
 	\end{sketch}
 	
 	\begin{itembox}[l]{対の合併}
-		$a,b$を類とするとき，その対の合併を
+		$x$と$y$を$\mathcal{L}$の項とするとき，その対の合併を
 		\begin{align}
-			a \cup b \defeq \bigcup \{a,b\}
+			x \cup y \defeq \bigcup \{x,y\}
 		\end{align}
 		と書く．
 	\end{itembox}
 	
 	\begin{screen}
-		\begin{thm}[対の合併はそれぞれの要素を合わせたもの]\label{thm:union_of_pair_is_union_of_their_elements}
+		\begin{thm}[対の合併の可換律]
+			$a$と$b$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash a \cup b = b \cup a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:commutative_law_of_pairs}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}
+		\end{align}
+		が成り立つので，定理\ref{thm:unions_of_equal_classes_are_equal}から
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash a \cup b = b \cup a
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[対の合併はそれぞれの要素を合わせたもの]
+		\label{thm:union_of_pair_is_union_of_their_elements}
 			$a$と$b$を集合とするとき
 			\begin{align}
 				\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
@@ -619,10 +610,70 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[等しい類の合併は等しい]\label{thm:unions_of_equal_classes_are_equal}
+		\begin{thm}[要素の部分集合は合併の部分集合]
+		\label{thm:union_is_bigger_than_any_member}
+			$a$を類とするとき
+			\begin{align}
+				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\chi$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			\exists t \in a\, (\, x \subset t\, )
+			\label{fom:thm_union_is_bigger_than_any_member_1}
+		\end{align}
+		であるとする．ここで
+		\begin{align}
+			\tau \defeq \varepsilon t\, (\, t \in a \wedge \chi \subset t\, )
+		\end{align}
+		とおく．$s$を$\mathcal{L}$の任意の対象として
+		\begin{align}
+			s \in \chi
+		\end{align}
+		であるとすると，
+		\begin{align}
+			\chi \subset \tau
+		\end{align}
+		より
+		\begin{align}
+			\tau \in a \wedge s \in \tau
+		\end{align}
+		が成立するので，存在記号の規則より
+		\begin{align}
+			\exists t\, \left(\, t \in a \wedge s \in t\, \right)
+		\end{align}
+		が成り立ち
+		\begin{align}
+			s \in \bigcup a
+		\end{align}
+		が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
+		\begin{align}
+			\forall s\, (\, s \in \chi \rarrow s \in \bigcup a\, )
+		\end{align}
+		すなわち
+		\begin{align}
+			\chi \subset \bigcup a
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\exists t \in a\, \left(\, \chi \subset t\, \right) \rarrow \chi \subset \bigcup a
+		\end{align}
+		が従い，$\chi$も任意に与えられていたので
+		\begin{align}
+			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right]
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[部分集合の合併は部分類]\label{thm:union_of_subsets_is_subclass}
 			$a$と$b$を類とするとき
 			\begin{align}
-				a = b \rarrow \bigcup a = \bigcup b.
+				\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -630,71 +681,45 @@
 	\begin{sketch}
 		いま
 		\begin{align}
-			a = b
-			\label{fom:thm_unions_of_equal_classes_are_equal}
+			\forall x \in a\, (\, x \subset b\, )
+			\label{fom:thm_union_of_subsets_is_subclass_1}
 		\end{align}
-		が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象として
+		が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象とし，
 		\begin{align}
 			\chi \in \bigcup a
 		\end{align}
-		であるとすれば，
+		であるとする．すると
+		\begin{align}
+			\exists t\, \left(\, t \in a \wedge \chi \in t\, \right)
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\tau \defeq \varepsilon t\, \left(\, t \in a \wedge \chi \in t\, \right)
+		\end{align}
+		とおけば
 		\begin{align}
 			\tau \in a \wedge \chi \in \tau
 		\end{align}
-		なる$\mathcal{L}$の対象$\tau$が取れる．このとき相等性の公理より
+		が成立する．ここで(\refeq{fom:thm_union_of_subsets_is_subclass_1})より
 		\begin{align}
-			\tau \in b
+			\tau \subset b
 		\end{align}
-		が成り立つから
+		となるから
 		\begin{align}
-			\tau \in b \wedge \chi \in \tau
+			\chi \in b
 		\end{align}
-		が従い，ゆえに
+		が従い，演繹法則より(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
 		\begin{align}
-			\chi \in \bigcup b
+			\chi \in \bigcup a \rarrow \chi \in b
 		\end{align}
-		が従う．ゆえに(\refeq{fom:thm_unions_of_equal_classes_are_equal})の下で
+		が成立する．$\chi$の任意性ゆえに(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
 		\begin{align}
-			\chi \in \bigcup a \rarrow \chi \in \bigcup b
+			\bigcup a \subset b
 		\end{align}
-		が得られたが，$a$と$b$を入れ替えれば
+		が成立し，演繹法則より
 		\begin{align}
-			\chi \in \bigcup b \rarrow \chi \in \bigcup a
+			\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b
 		\end{align}
-		も得られるので
-		\begin{align}
-			\chi \in \bigcup a \lrarrow \chi \in \bigcup b
-		\end{align}
-		が成立する．そして$\chi$の任意性と外延性の公理から
-		\begin{align}
-			\bigcup a = \bigcup b
-		\end{align}
-		が成立する．ゆえに演繹法則から
-		\begin{align}
-			a = b \rarrow \bigcup a = \bigcup b
-		\end{align}
-		が従う．
-		\QED
-	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}[合併の可換律]
-			$a$と$b$を類とするとき
-			\begin{align}
-				a \cup b = b \cup a.
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		定理\ref{thm:commutative_law_of_pairs}より
-		\begin{align}
-			\{a,b\} = \{b,a\}
-		\end{align}
-		が成り立つので，定理\ref{thm:unions_of_equal_classes_are_equal}から
-		\begin{align}
-			a \cup b = b \cup a
-		\end{align}
-		が従う．
+		が得られる．
 		\QED
 	\end{sketch}
