@@ -8,9 +8,10 @@
 	
 	\begin{screen}
 		\begin{dfn}[合併]
-			$a$を類とするとき，$a$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}を
+			$x$を$\mathcal{L}$の項とするとき，
+			$x$の{\bf 合併}\index{がっぺい@合併}{\bf (union)}を
 			\begin{align}
-				\bigcup a \defeq \Set{x}{\exists t \in a\, (\, x \in t\, )}
+				\bigcup x \defeq \Set{y}{\exists z \in x\, (\, y \in z\, )}
 				\label{eq:definition_of_union_1}
 			\end{align}
 			で定める．
@@ -21,48 +22,186 @@
 		\item[量化子が付いた式の略記法]
 		上の定義で
 		\begin{align}
-			\exists t \in a\, (\, x \in t\, )
+			\exists z \in x\, (\, y \in z\, )
 		\end{align}
 		という式を書いたが，これは
 		\begin{align}
-			\exists t \in a\, (\, x \in t\, ) \defarrow \exists t\, (\, t \in a \wedge x \in t\, )
+			\exists z \in x\, (\, y \in z\, ) \defarrow 
+			\exists z\, (\, z \in x \wedge y \in z\, )
 		\end{align}
-		により定義される省略形である．同様にして，$A$を$\mathcal{L}'$の式とするとき
+		により定義される省略形である．同様にして，$\varphi$を式とするとき
 		\begin{align}
-			\exists t\, \left(\, (t \in a) \wedge (A)\, \right)
+			\exists z\, \left(\, z \in x \wedge \varphi\, \right)
 		\end{align}
 		なる式を
 		\begin{align}
-			\exists t \in a\, (\, A\, )
+			\exists z \in x\, \varphi
 		\end{align}
 		と略記する．また全称記号についても
 		\begin{align}
-			\forall t\, \left(\, (t \in a) \Longrightarrow (A)\, \right)
+			\forall z\, \left(\, z \in x \rarrow \varphi\, \right)
 		\end{align}
 		なる式を
 		\begin{align}
-			\forall t \in a\, (\, A\, )
+			\forall z \in x\, \varphi
 		\end{align}
 		と略記する．
 	\end{description}
 	
 	\begin{screen}
 		\begin{axm}[合併の公理]
+			次の式を$\POWAX$によって参照する:
 			\begin{align}
-				\POWAX \defarrow
-				\forall x\, \exists u\, \forall z\, (\, \exists y\, (\, y \in x \wedge z \in y\, ) \lrarrow z \in u\, ).
+				\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).
 			\end{align}
 		\end{axm}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}[集合の合併は集合]
-			$u$を類とするとき
+		\label{thm:union_of_a_set_is_a_set}
+			$a$を類とするとき
 			\begin{align}
-				\set{u} \rarrow \set{\bigcup u}.
+				\EXTAX,\EQAX,\COMAX,\POWAX \vdash \set{a} \rarrow \set{\bigcup a}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				まず
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, a = x\, )
+				\end{align}
+				とおけば(必要に応じて$a = x$を$\lang{\varepsilon}$の式に書き換える)，
+				\begin{align}
+					\set{a} \vdash a = \tau
+				\end{align}
+				が成立する．$\tau$に対して
+				\begin{align}
+					\POWAX \vdash \exists u\, \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in u\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\upsilon \defeq \varepsilon u\, \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in u\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\POWAX \vdash \forall y\, (\, \exists z\, (\, z \in \tau \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
+					\label{fom:union_of_a_set_is_a_set_1}
+				\end{align}
+				が成立する．次に$\tau$を$a$に置き換えた場合に
+				\begin{align}
+					\set{a},\ \EQAX,\POWAX \vdash \forall y\, (\, \exists z\, (\, z \in a \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
+				\end{align}
+				が成立することを示す．
+				
+			\item[step2]
+				いま
+				\begin{align}
+					\eta \defeq \varepsilon y \negation  (\, \exists z\, (\, z \in a \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
+				\end{align}
+				とおけば，(\refeq{fom:union_of_a_set_is_a_set_1})より
+				\begin{align}
+					\POWAX \vdash \exists z\, (\, z \in \tau \wedge \eta \in z\, )
+					\lrarrow \eta \in \upsilon
+				\end{align}
+				が成立する．
+				\begin{align}
+					\zeta \defeq \varepsilon z\, (\, z \in a \wedge \eta \in z\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\exists z\, (\, z \in a \wedge \eta \in z\, )
+					\vdash \zeta \in a \wedge \eta \in \zeta
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\EQAX \vdash a = \tau \rarrow (\, \zeta \in a \rarrow \zeta \in \tau\, )
+				\end{align}
+				と併せて
+				\begin{align}
+					\exists z\, (\, z \in a \wedge \eta \in z\, ),\ \set{a},\ \EQAX
+					\vdash \zeta \in \tau \wedge \eta \in \zeta
+				\end{align}
+				が成立する．また(\refeq{fom:union_of_a_set_is_a_set_1})より
+				\begin{align}
+					\POWAX \vdash (\, \zeta \in \tau \wedge \eta \in \zeta\, )
+					\rarrow \eta \in \upsilon
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\exists z\, (\, z \in a \wedge \eta \in z\, ),\ \set{a},\ \EQAX,\POWAX \vdash \eta \in \upsilon
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\set{a},\ \EQAX,\POWAX \vdash 
+					\exists z\, (\, z \in a \wedge \eta \in z\, ) \rarrow \eta \in \upsilon
+					\label{fom:union_of_a_set_is_a_set_2}
+				\end{align}
+				が得られた．
+				
+			\item[step3]
+				逆に(\refeq{fom:union_of_a_set_is_a_set_1})より
+				\begin{align}
+					\eta \in \upsilon,\ \POWAX \vdash
+					\exists z\, (\, z \in \tau \wedge \eta \in z\, )
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\eta \in \upsilon,\ \POWAX \vdash
+					\zeta \in \tau \wedge \eta \in \zeta
+				\end{align}
+				が従い，
+				\begin{align}
+					\set{a},\ \EQAX \vdash
+					\zeta \in \tau \rarrow \zeta \in a
+				\end{align}
+				と併せて
+				\begin{align}
+					\eta \in \upsilon,\ \set{a},\ \EQAX,\POWAX \vdash
+					\zeta \in a \wedge \eta \in \zeta
+				\end{align}
+				が従い，
+				\begin{align}
+					\eta \in \upsilon,\ \set{a},\ \EQAX,\POWAX \vdash
+					\exists z\, (\, z \in a \wedge \eta \in z\, )
+				\end{align}
+				が従う．そして演繹規則より
+				\begin{align}
+					\set{a},\ \EQAX,\POWAX \vdash
+					\eta \in \upsilon \rarrow \exists z\, (\, z \in a \wedge \eta \in z\, )
+					\label{fom:union_of_a_set_is_a_set_3}
+				\end{align}
+				も得られる．
+				
+			\item[step4]
+				(\refeq{fom:union_of_a_set_is_a_set_2})と
+				(\refeq{fom:union_of_a_set_is_a_set_3})より
+				\begin{align}
+					\set{a},\ \EQAX,\POWAX \vdash
+					\exists z\, (\, z \in a \wedge \eta \in z\, ) \lrarrow \eta \in \upsilon
+				\end{align}
+				が得られ，全称記号の推論規則より
+				\begin{align}
+					\set{a},\ \EQAX,\POWAX \vdash
+					\forall y\, (\, \exists z\, (\, z \in a \wedge y \in z\, ) \lrarrow y \in \upsilon\, )
+				\end{align}
+				となり，定理\ref{thm:equivalent_formula_rewriting_4}より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\POWAX \vdash
+					\Set{z}{\exists z\, (\, z \in a \wedge y \in z\, )} = \upsilon
+				\end{align}
+				が成り立つ．存在記号の推論規則より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\POWAX \vdash
+					\exists u\, (\, \Set{z}{\exists z\, (\, z \in a \wedge y \in z\, )} = u\, )
+				\end{align}
+				が成り立つので，定理が得られた．
+				\QED
+		\end{description}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[空集合の合併は空]\label{thm:the_union_of_the_emptyset_is_empty}
@@ -73,56 +212,69 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{prf}
-		$\chi$と$\tau$を$\mathcal{L}$の任意の対象とすれば，定理\ref{thm:emptyset_has_nothing}より
+	\begin{sketch}
+		いま
 		\begin{align}
-			\chi \notin \emptyset
+			\zeta &\defeq \varepsilon z \negation (\, z \notin \bigcup \emptyset\, ), \\
+			\eta &\defeq \varepsilon y \negation \negation (\, y \in \emptyset \wedge \zeta \in y\, )
+		\end{align}
+		とおく．定理\ref{thm:emptyset_has_nothing}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \eta \notin \emptyset
 		\end{align}
 		が成り立つので
 		\begin{align}
-			\chi \notin \emptyset \vee \tau \notin \chi
+			\EXTAX,\COMAX \vdash \eta \notin \emptyset \vee \zeta \notin \eta
 		\end{align}
-		が成立し，$\chi$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		も成立し，De Morgan の法則(推論法則\ref{logicalthm:strong_De_Morgan_law_1})より
 		\begin{align}
-			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
+			\EXTAX,\COMAX \vdash\ \negation (\, \eta \in \emptyset \wedge \zeta \in \eta\, )
 		\end{align}
-		が成り立つ．ここで推論法則\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_1}
-		及び\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_2}より
+		が成立し，全称記号の推論規則より
 		\begin{align}
-			\forall x\, (\, x \notin \emptyset \vee \tau \notin x\, )
-			&\Longleftrightarrow \forall x\, \rightharpoondown (\, x \in \emptyset \wedge \tau \in x\, ) \\
-			&\Longleftrightarrow\, \rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+			\EXTAX,\COMAX \vdash \forall y \negation (\, y \in \emptyset \wedge \zeta \in y\, )
 		\end{align}
-		が成立するので，三段論法より
+		が成立する．そして量化子の De Morgan の法則
+		(推論法則\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_1})より
 		\begin{align}
-			\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
+			\EXTAX,\COMAX \vdash\ \negation \exists y\, (\, y \in \emptyset \wedge \zeta \in y\, )
+			\label{fom:the_union_of_the_emptyset_is_empty_1}
 		\end{align}
-		が従う．他方で合併の定義から
+		が得られる．他方で
 		\begin{align}
-			\rightharpoondown \exists x\, (\, x \in \emptyset \wedge \tau \in x\, )
-			\Longleftrightarrow \tau \notin \bigcup \emptyset
+			\COMAX \vdash \zeta \in \bigcup \emptyset
+			\rarrow \exists y\, (\, y \in \emptyset \wedge \zeta \in y\, )
 		\end{align}
-		が満たされているので，再び三段論法より
+		が成り立つので，対偶を取って
 		\begin{align}
-			\tau \notin \bigcup \emptyset
+			\COMAX \vdash\ 
+			\negation \exists y\, (\, y \in \emptyset \wedge \zeta \in y\, )
+			\rarrow \zeta \notin \bigcup \emptyset
+			\label{fom:the_union_of_the_emptyset_is_empty_2}
 		\end{align}
-		が従う．$\tau$の任意性と推論法則\ref{logicalthm:fundamental_law_of_universal_quantifier}より
+		が得られる．(\refeq{fom:the_union_of_the_emptyset_is_empty_1})と
+		(\refeq{fom:the_union_of_the_emptyset_is_empty_2})より
 		\begin{align}
-			\forall t\, (\, t \notin \bigcup \emptyset\, )
+			\EXTAX,\COMAX \vdash \zeta \notin \bigcup \emptyset
 		\end{align}
-		が成立し，定理\ref{thm:uniqueness_of_emptyset}より
+		が成り立つので，全称記号の推論規則より
 		\begin{align}
-			\bigcup \emptyset = \emptyset
+			\EXTAX,\COMAX \vdash \forall z\, (\, z \notin \bigcup \emptyset\, )
 		\end{align}
-		が従う．
+		が従い，定理\ref{thm:uniqueness_of_emptyset}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \bigcup \emptyset = \emptyset
+		\end{align}
+		が得られる．
 		\QED
-	\end{prf}
+	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[要素の部分集合は合併の部分集合]\label{thm:union_is_bigger_than_any_member}
+		\begin{thm}[要素の部分集合は合併の部分集合]
+		\label{thm:union_is_bigger_than_any_member}
 			$a$を類とするとき
 			\begin{align}
-				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \Longrightarrow x \subset \bigcup a\, \right].
+				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right].
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -159,7 +311,7 @@
 		\end{align}
 		が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
 		\begin{align}
-			\forall s\, (\, s \in \chi \Longrightarrow s \in \bigcup a\, )
+			\forall s\, (\, s \in \chi \rarrow s \in \bigcup a\, )
 		\end{align}
 		すなわち
 		\begin{align}
@@ -167,11 +319,11 @@
 		\end{align}
 		が成り立つ．ゆえに
 		\begin{align}
-			\exists t \in a\, \left(\, \chi \subset t\, \right) \Longrightarrow \chi \subset \bigcup a
+			\exists t \in a\, \left(\, \chi \subset t\, \right) \rarrow \chi \subset \bigcup a
 		\end{align}
 		が従い，$\chi$も任意に与えられていたので
 		\begin{align}
-			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \Longrightarrow x \subset \bigcup a\, \right]
+			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right]
 		\end{align}
 		が得られる．
 		\QED
@@ -181,7 +333,7 @@
 		\begin{thm}[部分集合の合併は部分類]\label{thm:union_of_subsets_is_subclass}
 			$a$と$b$を類とするとき
 			\begin{align}
-				\forall x \in a\, (\, x \subset b\, ) \Longrightarrow \bigcup a \subset b.
+				\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -218,7 +370,7 @@
 		\end{align}
 		が従い，演繹法則より(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
 		\begin{align}
-			\chi \in \bigcup a \Longrightarrow \chi \in b
+			\chi \in \bigcup a \rarrow \chi \in b
 		\end{align}
 		が成立する．$\chi$の任意性ゆえに(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
 		\begin{align}
@@ -226,7 +378,7 @@
 		\end{align}
 		が成立し，演繹法則より
 		\begin{align}
-			\forall x \in a\, (\, x \subset b\, ) \Longrightarrow \bigcup a \subset b
+			\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b
 		\end{align}
 		が得られる．
 		\QED
@@ -244,7 +396,7 @@
 		\begin{thm}[対の合併はそれぞれの要素を合わせたもの]\label{thm:union_of_pair_is_union_of_their_elements}
 			$a$と$b$を集合とするとき
 			\begin{align}
-				\forall x\, (\, x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\, ).
+				\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -252,8 +404,8 @@
 	\monologue{
 		この定理の主張は，$a$と$b$を類とするとき
 		\begin{align}
-			\set{a} \wedge \set{b} \Longrightarrow
-			\forall x\, (\, x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\, )
+			\set{a} \wedge \set{b} \rarrow
+			\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, )
 		\end{align}
 		が成り立つということですが，式にまとめてしまうと見づらいのではじめから$a$と$b$を集合としています．
 	}
@@ -286,19 +438,19 @@
 		\end{align}
 		が従う．ここで相等性の公理より
 		\begin{align}
-			\tau = a \Longrightarrow \chi \in a
+			\tau = a \rarrow \chi \in a
 		\end{align}
 		が成り立ち，論理和の規則から
 		\begin{align}
-			\tau = a \Longrightarrow \chi \in a \vee \chi \in b
+			\tau = a \rarrow \chi \in a \vee \chi \in b
 		\end{align}
 		も成り立つ．同様にして
 		\begin{align}
-			\tau = b \Longrightarrow \chi \in a \vee \chi \in b
+			\tau = b \rarrow \chi \in a \vee \chi \in b
 		\end{align}
 		が成り立つので，場合分け法則より
 		\begin{align}
-			\tau = a \vee \tau = b \Longrightarrow \chi \in a \vee \chi \in b
+			\tau = a \vee \tau = b \rarrow \chi \in a \vee \chi \in b
 		\end{align}
 		が成立し，(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_1})と三段論法より
 		\begin{align}
@@ -306,7 +458,7 @@
 		\end{align}
 		が成立する．ゆえに演繹法則から
 		\begin{align}
-			\chi \in a \cup b \Longrightarrow \chi \in a \vee \chi \in b
+			\chi \in a \cup b \rarrow \chi \in a \vee \chi \in b
 			\label{fom:thm_union_of_pair_is_union_of_their_elements_2}
 		\end{align}
 		が成立する．逆に
@@ -331,25 +483,25 @@
 		\end{align}
 		が従う．これでまず
 		\begin{align}
-			\chi \in a \Longrightarrow \chi \in a \cup b
+			\chi \in a \rarrow \chi \in a \cup b
 		\end{align}
 		が得られた．同様にして
 		\begin{align}
-			\chi \in b \Longrightarrow \chi \in a \cup b
+			\chi \in b \rarrow \chi \in a \cup b
 		\end{align}
 		も得られ，場合分け法則より
 		\begin{align}
-			\chi \in a \vee \chi \in b \Longrightarrow \chi \in a \cup b
+			\chi \in a \vee \chi \in b \rarrow \chi \in a \cup b
 			\label{fom:thm_union_of_pair_is_union_of_their_elements_3}
 		\end{align}
 		が成立する．以上(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_2})と
 		(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_3})から
 		\begin{align}
-			\chi \in a \cup b \Longleftrightarrow \chi \in a \vee \chi \in b
+			\chi \in a \cup b \lrarrow \chi \in a \vee \chi \in b
 		\end{align}
 		が従い，$\chi$の任意性より
 		\begin{align}
-			\forall x\, (\, x \in a \cup b \Longleftrightarrow x \in a \vee x \in b\, ).
+			\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
 		\end{align}
 		が出る．
 		\QED
@@ -359,7 +511,7 @@
 		\begin{thm}[等しい類の合併は等しい]\label{thm:unions_of_equal_classes_are_equal}
 			$a$と$b$を類とするとき
 			\begin{align}
-				a = b \Longrightarrow \bigcup a = \bigcup b.
+				a = b \rarrow \bigcup a = \bigcup b.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -392,15 +544,15 @@
 		\end{align}
 		が従う．ゆえに(\refeq{fom:thm_unions_of_equal_classes_are_equal})の下で
 		\begin{align}
-			\chi \in \bigcup a \Longrightarrow \chi \in \bigcup b
+			\chi \in \bigcup a \rarrow \chi \in \bigcup b
 		\end{align}
 		が得られたが，$a$と$b$を入れ替えれば
 		\begin{align}
-			\chi \in \bigcup b \Longrightarrow \chi \in \bigcup a
+			\chi \in \bigcup b \rarrow \chi \in \bigcup a
 		\end{align}
 		も得られるので
 		\begin{align}
-			\chi \in \bigcup a \Longleftrightarrow \chi \in \bigcup b
+			\chi \in \bigcup a \lrarrow \chi \in \bigcup b
 		\end{align}
 		が成立する．そして$\chi$の任意性と外延性の公理から
 		\begin{align}
@@ -408,7 +560,7 @@
 		\end{align}
 		が成立する．ゆえに演繹法則から
 		\begin{align}
-			a = b \Longrightarrow \bigcup a = \bigcup b
+			a = b \rarrow \bigcup a = \bigcup b
 		\end{align}
 		が従う．
 		\QED
