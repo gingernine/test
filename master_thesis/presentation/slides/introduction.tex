@@ -1,0 +1,108 @@
+\section{導入}
+\subsection{$\varepsilon$計算について}
+	\begin{itemize}
+		\item 量化$\exists,\forall$を使う証明を命題論理の証明に埋め込むためにHilbertが開始．
+		
+		\vspace{5pt}
+		
+		\item 式$\varphi(x)$に対して
+			\begin{align}
+				\varepsilon x \varphi(x)
+			\end{align}
+			という形のオブジェクトを作り，$\varepsilon$項と呼ぶ．また
+			\begin{align}
+				\exists x \varphi(x) &\lrarrow \varphi(x/\varepsilon x \varphi(x)), \\
+				\forall x \varphi(x) &\lrarrow \varphi(x/\varepsilon \negation x \varphi(x))
+			\end{align}
+			を公理とする．
+			
+		\item 命題論理の証明に埋め込む際には$\exists$や$\forall$の付いた式を$\varepsilon$項を
+			代入した式に変換すればよい．
+			
+		\item ただし，今回$\varepsilon$項を導入したのは埋め込むためではなく
+			\textcolor{red}{集合を「具体化」}するため．
+	
+\newpage
+		\item ``生の''集合論では\textcolor{red}{集合というオブジェクトが用意されていない}ため，
+			「存在」は「実在」ではない．たとえば
+			\begin{align}
+				\exists x\, (\, x = x\, )
+			\end{align}
+			は公理であり「集合は存在する」と読むが，集合を``実際に取ってくる''ことはできない．
+			
+		\item $\varepsilon$項を使えば，$\exists$の公理と集合の存在公理によって
+			\begin{align}
+				\varepsilon x\, (\, x = x\, ) = \varepsilon x\, (\, x = x\, )
+			\end{align}
+			が成り立つ．つまり$\varepsilon$項は「存在」を「実在」に変える
+			(ある種の$\varepsilon$項は集合である)．
+	\end{itemize}
+	
+	\begin{itembox}[l]{$\varepsilon$項のメリット}
+		\begin{itemize}
+			\item 「存在」と「実在」が同じになる．
+			\item ある種の$\varepsilon$項は集合であり，集合を具体的なオブジェクトとして扱える．
+			\item 証明で用いる推論規則は三段論法のみで済む．
+			\item 証明は全て閉じた式で行える．
+		\end{itemize}
+	\end{itembox}
+	
+\newpage
+\subsection{クラスについて}
+	\begin{itemize}
+		\item ブルバキ\cite{}や島内\cite{}でも$\varepsilon$項を使った集合論を展開．
+		
+		\item ところで，「$\varphi(x)$を満たす集合$x$の全体」の意味の
+			\begin{align}
+				\Set{x}{\varphi(x)}
+			\end{align}
+			というオブジェクトも取り入れたい．
+		
+		\item ``生の''集合論では``インフォーマル''な導入．
+		
+		\item ブルバキ\cite{}や島内\cite{}では
+			\begin{align}
+				\Set{x}{\varphi(x)} \defeq \varepsilon x\, \forall u\, 
+				(\, \varphi(u) \lrarrow u \in x\, )
+			\end{align}
+			と定める．これは欠点がある．
+			\begin{align}
+				\exists x\, \forall u\, (\, \varphi(u) \lrarrow u \in x\, )
+			\end{align}
+			が成立しない場合は「$\varphi(x)$を満たす集合$x$の全体」という意味を持たない．
+			
+		\item 式$\varphi$から直接$\Set{x}{\varphi(x)}$の形のオブジェクトを作ればよい．
+	\end{itemize}
+	
+\newpage
+	\begin{screen}
+		\begin{dfn}[クラス]
+			式$\varphi$に$x$が自由に現れていて，かつ自由に現れているのは$x$のみであるとき，
+			\begin{align}
+				\varepsilon x \varphi(x), \quad \Set{x}{\varphi(x)}
+			\end{align}
+			の形のオブジェクトを{\bf クラス(class)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{itemize}
+		\item 集合はクラスである．
+		\item クラスである$\varepsilon$項は集合である．
+		\item 集合でないクラスもある．たとえば$\Set{x}{x = x}$や$\Set{x}{x \notin x}$
+			は集合ではない．
+	\end{itemize}
+	
+	集合の定義は竹内\cite{}に倣う．
+	\begin{screen}
+		\begin{dfn}[集合]
+			\begin{align}
+				\exists x\, (\, c = x\, )
+			\end{align}
+			を満たすクラス$c$を{\bf 集合(set)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{description}
+		\item[NBG集合論] クラスの概念を取り入れたNBG集合論というものがあるが，
+			こちらのクラスは「実在」しない．
+	\end{description}

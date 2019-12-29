@@ -1,4 +1,4 @@
-\section{導入}
+	\begin{comment}
 	\begin{itemize}
 		\item 集合論の言語$\mathcal{L}_{\in} = \{\in\}$の自然な拡張によりクラスを導入することは容易い:
 			\begin{align}
@@ -59,9 +59,73 @@
 		\item この言語の拡張がZFCの単純な保存拡大ではないのでZFCと厳密にどう関係しているかは未だ不明
 			(ZFCで示せることは示せるはず．逆に本稿の集合論で示せることがZFCから示せるかは不明)．
 	\end{itemize}
+	\end{comment}
 	
 \section{言語}
 	\begin{itemize}
+		\item クラスという新しいオブジェクトを導入したら，
+			この導入操作が``妥当''であるかどうかが問題になる．
+		
+		\item 妥当性は，``生の''集合論の式$\varphi$に対して
+			\begin{align}
+				\mbox{``生の''集合論で$\varphi$が証明される}
+				\Longleftrightarrow
+				\mbox{新しい集合論で$\varphi$が証明される}
+			\end{align}
+			が成り立つかどうかで判断する．
+		
+		\item 精密な検証のためには，集合論の\textcolor{red}{言語}と
+			証明のルールを明らかにしなくてはならない．
+		
+		\item 言語とは「\textcolor{red}{変項}」，「\textcolor{red}{述語記号}」，
+			「\textcolor{red}{論理記号}」とその他もろもろの記号からなる．
+			たとえば文字は主な変項であり，
+			\begin{align}
+				s \in t
+			\end{align}
+			と書けば一つの「\textcolor{red}{式}」が出来上がる．
+		
+		\item まず``生の''集合論の言語
+			\begin{align}
+				\lang{\in}
+			\end{align}
+			を明示する．
+	\end{itemize}
+		
+\newpage
+\subsection{``生の''集合論の言語}
+	\begin{itembox}[l]{$\lang{\in}$}
+		\begin{description}
+			\item[矛盾記号] $\bot$
+			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
+			\item[量化子] $\forall,\ \exists$
+			\item[述語記号] $=,\ \in$
+			\item[変項] $x,y,z,\cdots$など．
+		\end{description}
+	\end{itembox}
+	
+	また$\lang{\in}$の項(term)と式(formula)は次の規則で生成する．
+	
+	\begin{itembox}[l]{$\lang{\in}$の項と式}
+		\begin{description}
+			\item[項] 変項は項であり，またこれらのみが項である．
+				
+			\item[式] 
+				\begin{itemize}
+					\item 項$\tau$と項$\sigma$に対して
+						$\tau \in \sigma$と$\tau = \sigma$は式である．
+					\item 式$\varphi$に対して$\negation \varphi$は式である．
+					\item 式$\varphi$と式$\psi$に対して$\varphi \vee \psi$と
+						$\varphi \wedge \psi$と$\varphi \rarrow \psi$
+						はいずれも式である．
+					\item 式$\varphi$と項$x$に対して$\exists x \varphi$と
+						$\forall x \varphi$は式である．
+					\item これらのみが式である．
+				\end{itemize}
+		\end{description}
+	\end{itembox}
+	
+	\begin{comment}		
 		\item 本稿で使う言語は，論理学的に書けば
 			\begin{align}
 				\mathcal{L}_{\in} = \{\in,\natural\}
@@ -110,47 +174,13 @@
 			「感覚として持っているもの」の二つがあるが，
 			字面では同じなのであまり使いたくない．
 	\end{itemize}
+	\end{comment}
 
 \newpage
-	\begin{itembox}[l]{$\mathcal{L}_{\in}$の項と式の定義}
-		\begin{description}
-			\item[項] 
-				\begin{itemize}
-					\item 文字は項である．
-					\item 項$\tau$と項$\sigma$に対して
-						$\natural \tau \sigma$は項である．
-					\item これらのみが項である．
-				\end{itemize}
-			
-			\item[式] 
-				\begin{itemize}
-					\item 項$\tau$と項$\sigma$に対して
-						$\in \tau \sigma$と$= \tau \sigma$は式である．
-					\item 式$\varphi$に対して$\rightharpoondown \varphi$は式である．
-					\item 式$\varphi$と式$\psi$に対して$\vee \varphi \psi$と
-						$\wedge \varphi \psi$と$\Longrightarrow \varphi \psi$
-						はいずれも式である．
-					\item 式$\varphi$と項$x$に対して$\exists x \varphi$と
-						$\forall x \varphi$は式である．
-					\item これらのみが式である．
-				\end{itemize}
-		\end{description}
-	\end{itembox}
-	
-\section{言語の拡張}
-	\begin{itembox}[l]{拡張の動機}
-		$\mathcal{L}_{\in}$の式$\varphi(x)$に対して
-		\begin{align}
-			\Set{x}{\varphi(x)}
-		\end{align}
-		や
-		\begin{align}
-			\varepsilon x \varphi(x)
-		\end{align}
-		の形のオブジェクトを\textcolor{red}{項として}式に組み込みたい．
-	\end{itembox}
-	
-\newpage
+\subsection{言語の拡張}
+	\begin{itemize}
+		\item 
+	\end{itemize}
 	$\Set{x}{\varphi(x)}$の形の項を\textcolor{red}{内包項}，
 	$\varepsilon x \varphi(x)$の形の項を\textcolor{red}{$\varepsilon$項}と呼ぶことにして，
 	$\mathcal{L}_{\in}$に内包項と$\varepsilon$項を追加した言語を
