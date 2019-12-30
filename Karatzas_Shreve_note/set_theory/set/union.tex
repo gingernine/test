@@ -60,7 +60,7 @@
 	\end{screen}
 	
 	\begin{sketch}
-		$a$が主要$\varepsilon$項である場合は
+		$a$が主要$\varepsilon$項である場合は内包性公理から直接
 		\begin{align}
 			\COMAX \vdash \forall y\, (\, y \in \bigcup a \lrarrow 
 				\exists z\, (\, z \in a \wedge y \in z\, )\, )
@@ -472,7 +472,8 @@
 	\end{itembox}
 	
 	\begin{screen}
-		\begin{thm}[対の合併の可換律]
+		\begin{thm}[対の合併の対称性]
+		\label{thm:symmetry_of_union_of_a_pair}
 			$a$と$b$を類とするとき
 			\begin{align}
 				\EXTAX,\EQAX,\COMAX \vdash a \cup b = b \cup a.
@@ -494,23 +495,41 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{thm}[対の合併はそれぞれの要素を合わせたもの]
+		\begin{thm}[二つの集合の合併はそれぞれの要素を合わせたもの]
 		\label{thm:union_of_pair_is_union_of_their_elements}
-			$a$と$b$を集合とするとき
+			$a$と$b$を類とするとき
 			\begin{align}
-				\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
+				\EXTAX,\EQAX,\COMAX &\vdash 
+				\forall x\, (\, x \in a \cup b \rarrow x \in a \vee x \in b\, ), \\
+				\EXTAX,\EQAX,\COMAX &\vdash 
+				\set{a} \rarrow \forall x\, (\, x \in a \rarrow x \in a \cup b\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
-	\monologue{
-		この定理の主張は，$a$と$b$を類とするとき
-		\begin{align}
-			\set{a} \wedge \set{b} \rarrow
-			\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, )
-		\end{align}
-		が成り立つということですが，式にまとめてしまうと見づらいのではじめから$a$と$b$を集合としています．
-	}
+	定理の二つ目の主張で$a$と$b$を入れ替えれば
+	\begin{align}
+		\set{b},\ \EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in b \rarrow x \in b \cup a\, )
+	\end{align}
+	が成り立つが，対の合併の対称性(定理\ref{thm:symmetry_of_union_of_a_pair})より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash b \cup a = a \cup b
+	\end{align}
+	が成り立つので
+	\begin{align}
+		\set{b},\ \EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in b \rarrow x \in a \cup b\, )
+	\end{align}
+	が従う．ゆえに
+	\begin{align}
+		\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash 
+		\forall x\, (\, x \in a \vee x \in b \rarrow x \in a \cup b\, )
+	\end{align}
+	が成り立つ．そして一つ目の主張と併せれば
+	\begin{align}
+		\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash 
+		\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, )
+	\end{align}
+	が得られる．つまり，{\bf ``二つの集合の合併は''それぞれの要素を合わせたものに等しいのである}．
 	
 	\begin{sketch}\mbox{}
 		\begin{description}
@@ -588,103 +607,57 @@
 				\end{align}
 				が得られる．
 				
+			\item[step2]
+				いま
+				\begin{align}
+					\chi &\defeq \varepsilon x \negation (\, x \in a \rarrow x \in a \cup b\, ), \\
+					\tau &\defeq \varepsilon s\, (\, a = s\, )
+				\end{align}
+				とおく(右辺は$\lang{\varepsilon}$の式に書き換える)．まず存在記号の推論規則より
+				\begin{align}
+					\set{a} \vdash a = \tau
+				\end{align}
+				が成り立つ．また集合は対の要素になれる
+				(定理\ref{thm:set_is_an_element_of_its_pair})ので
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
+				\end{align}
+				も成り立ち，相等性公理より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
+				\end{align}
+				が従う．同じく相等性公理より
+				\begin{align}
+					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash \chi \in \tau
+				\end{align}
+				も成立する．ゆえに
+				\begin{align}
+					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\tau \in \{a,b\} \wedge \chi \in \tau
+				\end{align}
+				が成立し，存在記号の推論規則より
+				\begin{align}
+					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\exists z\, (\, z \in \{a,b\} \wedge \chi \in z\, )
+				\end{align}
+				が従う．合併の内包性(定理\ref{thm:comprehension_of_unions})より
+				\begin{align}
+					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\chi \in a \cup b
+				\end{align}
+				となり，演繹法則より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\chi \in a \rarrow \chi \in a \cup b
+				\end{align}
+				となり，全称記号の推論規則より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\forall x\, (\, x \in a \rarrow x \in a \cup b\, )
+				\end{align}
+				が得られる．
+				\QED
 		\end{description}
-		
-		
-		$\chi$を$\mathcal{L}$の任意の対象とする．
-		\begin{align}
-			\chi \in a \cup b
-		\end{align}
-		であるとき，
-		\begin{align}
-			\exists t\, \left(\, t \in \{a,b\} \wedge \chi \in t\, \right)
-		\end{align}
-		が成り立つので，
-		\begin{align}
-			\tau \defeq \varepsilon t\, \left(\, t \in \{a,b\} \wedge \chi \in t\, \right)
-		\end{align}
-		とおけば
-		\begin{align}
-			\tau \in \{a,b\} \wedge \chi \in \tau
-		\end{align}
-		が成立する．
-		\begin{align}
-			\tau \in \{a,b\}
-		\end{align}
-		が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
-		\begin{align}
-			\tau = a \vee \tau = b
-			\label{fom:thm_union_of_pair_is_union_of_their_elements_1}
-		\end{align}
-		が従う．ここで相等性の公理より
-		\begin{align}
-			\tau = a \rarrow \chi \in a
-		\end{align}
-		が成り立ち，論理和の規則から
-		\begin{align}
-			\tau = a \rarrow \chi \in a \vee \chi \in b
-		\end{align}
-		も成り立つ．同様にして
-		\begin{align}
-			\tau = b \rarrow \chi \in a \vee \chi \in b
-		\end{align}
-		が成り立つので，場合分け法則より
-		\begin{align}
-			\tau = a \vee \tau = b \rarrow \chi \in a \vee \chi \in b
-		\end{align}
-		が成立し，(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_1})と三段論法より
-		\begin{align}
-			\chi \in a \vee \chi \in b
-		\end{align}
-		が成立する．ゆえに演繹法則から
-		\begin{align}
-			\chi \in a \cup b \rarrow \chi \in a \vee \chi \in b
-			\label{fom:thm_union_of_pair_is_union_of_their_elements_2}
-		\end{align}
-		が成立する．逆に
-		\begin{align}
-			\chi \in a
-		\end{align}
-		であるとすると，
-		\begin{align}
-			\tau_a \defeq \varepsilon x\, (\, a = x\, )
-		\end{align}
-		とおけば定理\ref{thm:set_is_an_element_of_its_pair}より
-		\begin{align}
-			\tau_a \in \{a,b\} \wedge \chi \in \tau_a
-		\end{align}
-		が成り立つので，
-		\begin{align}
-			\exists t\, \left(\, t \in \{a,b\} \wedge \chi \in t\, \right)
-		\end{align}
-		が成り立ち
-		\begin{align}
-			\chi \in a \cup b
-		\end{align}
-		が従う．これでまず
-		\begin{align}
-			\chi \in a \rarrow \chi \in a \cup b
-		\end{align}
-		が得られた．同様にして
-		\begin{align}
-			\chi \in b \rarrow \chi \in a \cup b
-		\end{align}
-		も得られ，場合分け法則より
-		\begin{align}
-			\chi \in a \vee \chi \in b \rarrow \chi \in a \cup b
-			\label{fom:thm_union_of_pair_is_union_of_their_elements_3}
-		\end{align}
-		が成立する．以上(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_2})と
-		(\refeq{fom:thm_union_of_pair_is_union_of_their_elements_3})から
-		\begin{align}
-			\chi \in a \cup b \lrarrow \chi \in a \vee \chi \in b
-		\end{align}
-		が従い，$\chi$の任意性より
-		\begin{align}
-			\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
-		\end{align}
-		が出る．
-		\QED
 	\end{sketch}
 	
 	\begin{screen}
