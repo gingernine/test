@@ -26,10 +26,169 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{thm}[集合の冪は集合]
+		\begin{thm}[集合の冪は集合]\label{thm:power_of_a_set_is_a_set}
 			$a$を類とするとき
 			\begin{align}
-				\set{a} \rarrow \set{\power{a}}.
+				\EXTAX,\EQAX,\COMAX,\POWAX \vdash \set{a} \rarrow \set{\power{a}}.
 			\end{align}
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				$a$が主要$\varepsilon$項であるとき，
+				\begin{align}
+					\POWAX \vdash \exists p\, \forall y\, (\, \forall z\, (\, z \in y \rarrow z \in a\, ) \lrarrow y \in p\, )
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\rho \defeq \varepsilon p\, \forall y\, (\, \forall z\, (\, z \in y \rarrow z \in a\, ) \lrarrow y \in p\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\POWAX \vdash \forall y\, (\, \forall z\, (\, z \in y \rarrow z \in a\, ) \lrarrow y \in \rho\, )
+					\label{fom:power_of_a_set_is_a_set_1}
+				\end{align}
+				となる．よって定理\ref{thm:equivalent_formula_rewriting_4}より
+				\begin{align}
+					\EXTAX,\COMAX,\POWAX \vdash 
+					\Set{y}{\forall z\, (\, z \in y \rarrow z \in a\, )} = \rho
+				\end{align}
+				が従い，存在記号の推論規則より
+				\begin{align}
+					\EXTAX,\COMAX,\POWAX \vdash \exists p\, 
+					(\, \Set{y}{\forall z\, (\, z \in y \rarrow z \in a\, )} = p\, )
+				\end{align}
+				が得られる．
+				
+			\item[step2]
+				$a$が$\Set{x}{\varphi(x)}$なる形の項であるとき
+				($\varphi$は$\lang{\varepsilon}$の式)，
+				\begin{align}
+					\tau &\defeq \varepsilon x\, (\, a = x\, ), \\
+					\rho &\defeq \varepsilon p\, \forall y\, (\, \forall z\, (\, z \in y \rarrow z \in \tau\, ) \lrarrow y \in p\, )
+				\end{align}
+				とおけば，前段の(\refeq{fom:power_of_a_set_is_a_set_1})より
+				\begin{align}
+					\POWAX \vdash \forall y\, (\, \forall z\, (\, z \in y \rarrow z \in \tau\, ) \lrarrow y \in \rho\, )
+					\label{fom:power_of_a_set_is_a_set_4}
+				\end{align}
+				が成立する．今の場合の$\power{a}$は
+				\begin{align}
+					\power{a} \defeq \Set{y}{\forall z\, (\, z \in y \rarrow \varphi(z)\, )}
+				\end{align}
+				によって定められているので，
+				\begin{align}
+					\forall y\, (\, \forall z\, (\, z \in y \rarrow \varphi(z)\, ) \lrarrow y \in \rho\, )
+					\label{fom:power_of_a_set_is_a_set_2}
+				\end{align}
+				を導くために
+				\begin{align}
+					\eta \defeq \varepsilon y \negation (\, \forall z\, (\, z \in y \rarrow \varphi(z)\, ) \lrarrow y \in \rho\, )
+				\end{align}
+				とおき，まずは
+				\begin{align}
+					\set{a},\ \EQAX,\COMAX \vdash 
+					\forall z\, (\, z \in \eta \rarrow \varphi(z)\, )
+					\lrarrow \forall z\, (\, z \in \eta \rarrow z \in \tau\, )
+					\label{fom:power_of_a_set_is_a_set_3}
+				\end{align}
+				を示す．
+				\begin{itemize}
+					\item (\refeq{fom:power_of_a_set_is_a_set_3})の$\rarrow$をしめす．
+						\begin{align}
+							\zeta \defeq \varepsilon z \negation
+							(\, z \in \eta \rarrow z \in \tau\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\forall z\, (\, z \in \eta \rarrow \varphi(z)\, )
+							\vdash \zeta \in \eta \rarrow \varphi(\zeta)
+						\end{align}
+						が成り立つが，
+						\begin{align}
+							\COMAX \vdash \varphi(\zeta) \rarrow \zeta \in a
+						\end{align}
+						と
+						\begin{align}
+							\set{a},\ \EQAX \vdash \zeta \in a \rarrow \zeta \in \tau
+						\end{align}
+						より
+						\begin{align}
+							\forall z\, (\, z \in \eta \rarrow \varphi(z)\, ),\ 
+							\set{a},\ \EQAX,\COMAX
+							\vdash \zeta \in \eta \rarrow \zeta \in \tau
+						\end{align}
+						が従い，全称記号の推論規則より
+						\begin{align}
+							\forall z\, (\, z \in \eta \rarrow \varphi(z)\, ),\ 
+							\set{a},\ \EQAX,\COMAX \vdash 
+							\forall z\, (\, z \in \eta \rarrow z \in \tau\, )
+						\end{align}
+						が得られる．
+					
+					\item (\refeq{fom:power_of_a_set_is_a_set_3})の逆を示す．
+						\begin{align}
+							\zeta \defeq \varepsilon z \negation
+							(\, z \in \eta \rarrow \varphi(z)\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\forall z\, (\, z \in \eta \rarrow z \in \tau\, )
+							\vdash \zeta \in \eta \rarrow \zeta \in \tau
+						\end{align}
+						が成り立つが，
+						\begin{align}
+							\COMAX \vdash \zeta \in a \rarrow \varphi(\zeta)
+						\end{align}
+						と
+						\begin{align}
+							\set{a},\ \EQAX \vdash \zeta \in \tau \rarrow \zeta \in a
+						\end{align}
+						より
+						\begin{align}
+							\forall z\, (\, z \in \eta \rarrow z \in \tau\, ),\ 
+							\set{a},\ \EQAX,\COMAX
+							\vdash \zeta \in \eta \rarrow \varphi(\zeta)
+						\end{align}
+						が従い，全称記号の推論規則より
+						\begin{align}
+							\forall z\, (\, z \in \eta \rarrow z \in \tau\, ),\ 
+							\set{a},\ \EQAX,\COMAX \vdash 
+							\forall z\, (\, z \in \eta \rarrow \varphi(z)\, )
+						\end{align}
+						が得られる．
+				\end{itemize}
+				(\refeq{fom:power_of_a_set_is_a_set_4})より
+				\begin{align}
+					\POWAX \vdash \forall z\, (\, z \in \eta \rarrow z \in \tau\, )
+					\lrarrow \eta \in \rho
+					\label{fom:power_of_a_set_is_a_set_5}
+				\end{align}
+				が成り立つので，(\refeq{fom:power_of_a_set_is_a_set_3})と
+				(\refeq{fom:power_of_a_set_is_a_set_5})と同値記号の推移律
+				(推論法則\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+				\begin{align}
+					\set{a},\ \EQAX,\COMAX,\POWAX \vdash 
+					\forall z\, (\, z \in \eta \rarrow \varphi(z)\, ) \lrarrow \eta \in \rho
+				\end{align}
+				が得られ，全称記号の推論規則より
+				\begin{align}
+					\set{a},\ \EQAX,\COMAX,\POWAX \vdash 
+					\forall y\, (\, \forall z\, (\, z \in y \rarrow \varphi(z)\, ) \lrarrow y \in \rho\, )
+				\end{align}
+				が従う．そして定理\ref{thm:equivalent_formula_rewriting_4}と併せて
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\POWAX \vdash 
+					\Set{y}{\forall z\, (\, z \in y \rarrow \varphi(z)\, )} = \rho
+				\end{align}
+				が従い，存在記号の推論規則より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\POWAX \vdash \exists p\, 
+					(\, \Set{y}{\forall z\, (\, z \in y \rarrow \varphi(z)\, )} = p\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{sketch}
