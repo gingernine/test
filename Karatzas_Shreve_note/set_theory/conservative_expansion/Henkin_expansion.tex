@@ -1,6 +1,52 @@
 \section{Henkin拡大}
 	第\ref{chap:inference}章における証明を{\bf HK}の証明に書き直す．
-	その手順は次のとおりである．
+	第\ref{chap:inference}章における証明体系は，次を推論の公理とした証明体系{\bf HE}と同一である．
+	もちろん{\bf HE}の推論規則は三段論法のみである．
+	
+	\begin{screen}
+		\begin{logicalaxm}[{\bf HE}の公理(命題論理)]
+			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の文とするとき，
+			次は{\bf HE}の公理である．
+			\begin{description}
+				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
+					\rarrow (\, (\, \varphi \rarrow \psi\, )
+					\rarrow (\, \varphi \rarrow \chi\, )\, ).$
+				\item[(K)] $\varphi \rarrow (\, \psi \rarrow \varphi\, ).$
+				\item[(CTD1)] $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
+				\item[(CTD2)] $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
+				\item[(DI)] $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
+				\item[(DI1)] $\varphi \rarrow (\, \varphi \vee \psi\, ).$
+				\item[(DI2)] $\psi \rarrow (\, \varphi \vee \psi\, ).$
+				\item[(DE)] $(\, \varphi \rarrow \chi\, ) \rarrow 
+					(\, (\, \psi \rarrow \chi\, ) 
+					\rarrow (\, (\, \varphi \vee \psi) \rarrow \chi\, )\, ).$
+				\item[(CI)] $\varphi \rarrow (\, \psi \rarrow (\, \varphi \wedge \psi\, )\, ).$
+				\item[(CE1)] $(\, \varphi \wedge \psi\, ) \rarrow \varphi.$
+				\item[(CE2)] $(\, \varphi \wedge \psi\, ) \rarrow \psi.$
+				\item[(DNE)] $\negation \negation \varphi \rarrow \varphi$.
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[{\bf HE}の公理(量化)]
+			$\varphi$を$\lang{\varepsilon}の$式とし，$t$を主要$\varepsilon$項とし，
+			$x$を変項とし，$\varphi$には$x$のみが自由に現れているとする．
+			このとき次は{\bf HE}の公理である．
+			\begin{description}
+				\item[(UI)] $\varphi(x/\varepsilon x \negation \varphi)
+					\rarrow \forall x \varphi.$
+				
+				\item[(UE)] $\forall x \varphi \rarrow \varphi(x/t).$
+				
+				\item[(EI)] $\varphi(x/t) \rarrow \exists x \varphi.$
+				
+				\item[(EE)] $\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi).$
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	証明を書き直す手順は次のとおりである．
 	
 	\begin{description}
 		\item[step1]

@@ -34,8 +34,11 @@
 	\end{screen}
 	
 	$\lang{\in}$の正則証明は$\lang{\varepsilon}$の証明に書き直せる．
-	$\varphi$を$\lang{\in}$の文とし，$\varphi_{1},\cdots,\varphi_{n}$を
-	$\varphi$への$\lang{\in}$の正則証明とする．そして
+	$\psi$を$\lang{\in}$の文とし，
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
+	\end{align}
+	$\varphi_{1},\cdots,\varphi_{n}$を$\psi$への$\lang{\in}$の正則証明とする．そして
 	\begin{align}
 		a_{1},\cdots,a_{m}
 	\end{align}
@@ -56,40 +59,107 @@
 			\end{align}
 			と書く．このとき，
 			\begin{itemize}
-				\item $\varphi_{i}$が{\bf HK}の公理ならば
-					$\hat{\varphi}_{i}$も{\bf HK}の公理である．
+				\item $\varphi_{i}$が(UI)と(EE)以外の{\bf HK}の公理ならば
+					$\hat{\varphi}_{i}$は第\ref{chap:inference}章の推論法則である．
+				\item $\varphi_{i}$が(UI)か(EE)ならば
+					$\hat{\varphi}_{i}$は第\ref{chap:inference}章の体系から証明可能である(step3)．
 				\item $\varphi_{i}$が$\mathscr{S}$の公理ならば，
 					$\varphi_{i}$は変項の置換による影響を受けないので
 					$\hat{\varphi}_{i}$は$\varphi_{i}$と同一である．
 				\item $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
 					三段論法で得られているならば，$\hat{\varphi}_{i}$も
 					$\hat{\varphi}_{j},\hat{\varphi}_{k}$から三段論法で得られる．
+				\item $\varphi_{i}$が前の式$\varphi_{j}$から
+					汎化で得られているならば，$\hat{\varphi}_{i}$も
+					$\hat{\varphi}_{j}$から汎化で得られる．
 			\end{itemize}
 			
 		\item[step2]
-			次に固有変数を置き換える．$a_{i}$が
+			次に$a_{m},a_{m-1},\cdots$の順に固有変項を置き換える．$a_{i}$が
 			\begin{align}
-				\hat{\varphi}_{j} \equiv F \rarrow G(a_{i})
+				F(a_{i})
 			\end{align}
 			から
 			\begin{align}
-				\hat{\varphi}_{k} \equiv F \rarrow \forall x G
+				\forall x F
 			\end{align}
-			への全称汎化に使われている固有変数ならば，証明を通して自由に現れる全て$a_{i}$を
-			$\varepsilon x \negation G$に置き換えて，
-			置き換えた後の式$\tilde{\varphi}_{j}$と$\tilde{\varphi}_{k}$の間に
+			への汎化に使われているならば，$\hat{\varphi}_{1}, \cdots, \hat{\varphi}_{n}$に
+			自由に現れる$a_{i}$を全て$\varepsilon x \negation F$に置き換えて，
+			$\forall x F$の前の列に
 			\begin{align}
-				&G(\varepsilon x \negation G) \rarrow \forall x G, \\
-				&(\, G(\varepsilon x \negation G) \rarrow \forall x G\, )
-				\rarrow (\, F \rarrow (\, G(\varepsilon x \negation G) \rarrow \forall x G\, )\, ), \\
-				&F \rarrow (\, G(\varepsilon x \negation G) \rarrow \forall x G\, ), \\
-				&(\, F \rarrow (\, G(\varepsilon x \negation G) \rarrow \forall x G\, )\, ) \rarrow
-				(\, (\, F \rarrow G(\varepsilon x \negation G)\, ) \rarrow
-				(\, F \rarrow \forall x G\, )\, ), \\
-				&(\, F \rarrow G(\varepsilon x \negation G)\, ) \rarrow
-				(\, F \rarrow \forall x G\, )
+				F(\varepsilon x \negation F) \rarrow \forall x F
 			\end{align}
-			を差し入れる．
+			を挿入すればよい．
+		
+		\item[step3]
+			step2の終了後に得られる式の列を
+			$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{m}$とする．
+			これらは全て$\lang{\varepsilon}$の文であるが，
+			この中には{\bf HK}の公理(UI)と(EE)の形の式が残っている場合があるので，
+			これはまだ第\ref{chap:inference}章における証明とはなっていない．
+			(UI)と(EE)は第\ref{chap:inference}章の体系で証明可能であるから，
+			$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{m}$の中で
+			(UI)または(EE)の形の式があれば，それより前の列に
+			第\ref{chap:inference}章の体系からその式への証明を挿入すればよい．
+			
+			最後に(UI)と(EE)が第\ref{chap:inference}章の体系で証明可能であることを示す．
+			
+			\begin{description}
+				\item[(UI)]
+					$\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) 
+					\rarrow (\, \psi \rarrow \forall x \varphi\, )$を示す．
+					全称記号に関する規則より
+					\begin{align}
+						\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \vdash 
+						\psi \rarrow \varphi(x/\varepsilon x \negation \varphi)
+					\end{align}
+					が成り立つので
+					\begin{align}
+						\psi,\ \forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \vdash 
+						\varphi(x/\varepsilon x \negation \varphi)
+					\end{align}
+					が成り立ち，
+					\begin{align}
+						\vdash \varphi(x/\varepsilon x \negation \varphi)
+						\rarrow \forall x \varphi
+					\end{align}
+					との三段論法より
+					\begin{align}
+						\psi,\ \forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \vdash
+						\forall x \varphi
+					\end{align}
+					が従う．よって演繹規則より
+					\begin{align}
+						\vdash \forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+						\rarrow (\, \psi \rarrow \forall x \varphi\, )
+					\end{align}
+					が得られる．
+					\QED
+					
+				\item[(EE)]
+					$\forall y\, (\, \varphi(x/y) \rarrow \psi\, ) 
+					\rarrow (\, \exists x \varphi \rarrow \psi\, )$を示す．
+					全称記号に関する規則より
+					\begin{align}
+						\forall y\, (\, \varphi(x/y) \rarrow \psi\, ) \vdash
+						\varphi(x/\varepsilon x \varphi) \rarrow \psi
+					\end{align}
+					が成り立ち，他方で
+					\begin{align}
+						\exists x \varphi \vdash \varphi(x/\varepsilon x \varphi)
+					\end{align}
+					も成り立つので，三段論法より
+					\begin{align}
+						\exists x \varphi,\ \forall y\, (\, \varphi(x/y) \rarrow \psi\, ) \vdash \psi
+					\end{align}
+					が成り立つ．よって演繹規則より
+					\begin{align}
+						\vdash \forall y\, (\, \varphi(x/y) \rarrow \psi\, ) 
+						\rarrow (\, \exists x \varphi \rarrow \psi\, )
+					\end{align}
+					が得られる．
+					\QED
+			\end{description}
 	\end{description}
 	以上で$\lang{\varepsilon}$の文による$\varphi$への証明が得られる．
 	
