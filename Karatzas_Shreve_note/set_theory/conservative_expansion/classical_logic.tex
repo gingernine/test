@@ -18,17 +18,18 @@
 					\rarrow (\, (\, \varphi \rarrow \psi\, )
 					\rarrow (\, \varphi \rarrow \chi\, )\, ).$
 				\item[(K)] $\varphi \rarrow (\, \psi \rarrow \varphi\, ).$
-				\item[] $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
-				\item[] $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
-				\item[] $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
+				\item[(CTD1)] $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
+				\item[(CTD2)] $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
+				\item[(DI)] $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
 				\item[(DI1)] $\varphi \rarrow (\, \varphi \vee \psi\, ).$
 				\item[(DI2)] $\psi \rarrow (\, \varphi \vee \psi\, ).$
 				\item[(DE)] $(\, \varphi \rarrow \chi\, ) \rarrow 
 					(\, (\, \psi \rarrow \chi\, ) 
 					\rarrow (\, (\, \varphi \vee \psi) \rarrow \chi\, )\, ).$
 				\item[(CI)] $\varphi \rarrow (\, \psi \rarrow (\, \varphi \wedge \psi\, )\, ).$
-				\item[(CE1)] $(\, \varphi \wedge \psi\, ) \rarrow \varphi.$
+				\item[(CE1] $(\, \varphi \wedge \psi\, ) \rarrow \varphi.$
 				\item[(CE2)] $(\, \varphi \wedge \psi\, ) \rarrow \psi.$
+				\item[(DNE)] $\negation \negation \varphi \rarrow \varphi$.
 			\end{description}
 		\end{logicalaxm}
 	\end{screen}
@@ -53,15 +54,6 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	\begin{screen}
-		\begin{logicalaxm}[{\bf HK}の公理(二重否定の除去)]
-			$\varphi$を式とするとき，次は{\bf HK}の公理である．
-			\begin{description}
-				\item[(DNE)] $\negation \negation \varphi \rarrow \varphi$.
-			\end{description}
-		\end{logicalaxm}
-	\end{screen}
-	
 	古典論理で証明可能なことを$\provable{\mbox{{\bf HK}}}$と書く．
 	
 	\begin{screen}
@@ -71,7 +63,7 @@
 			{\bf (provable)}ということは，
 			\begin{itemize}
 				\item $\varphi$は$\mathscr{S}$の公理である．
-				\item $\varphi$は古典論理の公理である．
+				\item $\varphi$は{\bf HK}の公理である．
 				\item 式$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\mathscr{S}$から
 				証明されているものが取れる({\bf 三段論法}\index{さんだんろんぽう@三段論法}
 				{\bf (Modus Pones)})．
@@ -98,8 +90,8 @@
 	\end{screen}
 	
 	\begin{sketch}
-		$a$を$\varphi$の中で$x$への代入について自由である変項とすると，
-		量化公理(EI)より
+		$a$を，$\varphi$には現れず，かつ$\varphi$の中で$x$への代入について自由である変項とすると，
+		存在記号の導入規則より
 		\begin{align}
 			\provable{\mbox{{\bf HK}}} \varphi(x/a) \rarrow \exists x \varphi
 		\end{align}
@@ -116,6 +108,17 @@
 		が成り立つ．
 		\QED
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$\varphi$を$\lang{\varepsilon}$の式とし，
+			変項$x$が$\varphi$に自由に現れるとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \forall x \negation \varphi
+				\rarrow\ \negation \exists x \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{thm}
@@ -140,5 +143,79 @@
 	\end{screen}
 	
 	\begin{sketch}
-		量化公理()
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$\varphi$と$\psi$に変項$x$が自由に現れるとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \forall x\, (\, \varphi \rarrow \psi\, )
+				\rarrow (\, \exists x \varphi \rarrow \exists x \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		全称記号の除去より
+		\begin{align}
+			\forall x\, (\, \varphi \rarrow \psi\, ) \provable{\mbox{{\bf HK}}}
+			\varphi \rarrow \psi
+		\end{align}
+		となるので，
+		\begin{align}
+			\varphi,\ \forall x\, (\, \varphi \rarrow \psi\, ) 
+			\provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		が成り立ち，存在記号の導入より
+		\begin{align}
+			\varphi,\ \forall x\, (\, \varphi \rarrow \psi\, ) 
+			\provable{\mbox{{\bf HK}}} \exists x \psi
+		\end{align}
+		が成り立ち，演繹法則より
+		\begin{align}
+			\forall x\, (\, \varphi \rarrow \psi\, ) 
+			\provable{\mbox{{\bf HK}}} \varphi \rarrow \exists x \psi
+		\end{align}
+		が従う．汎化によって
+		\begin{align}
+			\forall x\, (\, \varphi \rarrow \psi\, ) \provable{\mbox{{\bf HK}}} 
+			\forall x\, (\, \varphi \rarrow \exists x \psi\, )
+		\end{align}
+		となり，存在記号の除去より
+		\begin{align}
+			\forall x\, (\, \varphi \rarrow \psi\, ) \provable{\mbox{{\bf HK}}} 
+			\exists x \varphi \rarrow \exists x \psi
+		\end{align}
+		が従う．
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$\psi$には$x$が自由に現れて，$\varphi$には$x$が自由に現れないとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \varphi \rarrow \exists x \psi\, ) 
+				\rarrow \exists x\, (\, \varphi \rarrow \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			(\, \varphi \rarrow \exists x \psi\, ) &\rarrow 
+				(\, \negation \varphi \vee \exists x \psi\, ), \\
+			(\, \negation \varphi \vee \exists x \psi\, ) &\rarrow
+				\ \negation (\, \varphi \wedge \negation \exists x \psi\, ), \\
+			\negation (\, \varphi \wedge \negation \exists x \psi\, ) &\rarrow 
+				\ \negation (\, \varphi \wedge \forall x \negation \psi\, ), \\
+			\negation (\, \varphi \wedge \forall x \negation \psi\, ) &\rarrow 
+				\ \negation \forall x\, (\, \varphi \wedge \negation \psi\, ), \\
+			\negation \forall x\, (\, \varphi \wedge \negation \psi\, ) &\rarrow 
+				\exists x \negation (\, \varphi \wedge \negation \psi\, ), \\
+			\exists x \negation (\, \varphi \wedge \negation \psi\, ) &\rarrow 
+				\exists x\, (\, \negation \varphi \vee \psi\, ), \\
+			\exists x\, (\, \negation \varphi \vee \psi\, ) &\rarrow 
+				\exists x\, (\, \varphi \rarrow \psi\, )
+		\end{align}
+	\end{sketch}
+	
