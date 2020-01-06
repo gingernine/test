@@ -1,4 +1,58 @@
 \section{導入}
+	Hilbertの$\varepsilon$計算は，項を形成するオペレーター$\varepsilon$を用いた
+	述語計算の拡張である．$\varepsilon$は式$\varphi(x)$から
+	項$\varepsilon x \varphi(x)$を作るものであり，
+	このオペレーターは次の主要論理式によって制御される：
+	\begin{align}
+		\varphi(t) \rarrow \varphi(\varepsilon x \varphi(x)).
+	\end{align}
+	Hilbertがこの$\varepsilon$を導入したのは述語計算を
+	命題計算に埋め込むためであり，その際には$\exists$や$\forall$の付いた式を
+	\begin{align}
+		\varphi(\varepsilon x \varphi(x)) &\defarrow \exists x \varphi(x), \\
+		\varphi(\varepsilon x \negation \varphi(x)) &\defarrow \forall x \varphi(x)
+	\end{align}
+	と変換する．この変換は本稿において最も重要な公理の基となるが，
+	ただし本稿において$\varepsilon$を導入したのは
+	述語計算を埋め込むためではなく，集合を「具体化」するためである．
+	
+	純粋に一階述語論理のシンタックスから構築される集合論を
+	``生の''集合論と呼ぶことにすれば，``生の''集合論のシンタックスでは
+	集合というオブジェクトが用意されていないため「存在」は「実在」を意味しない．たとえば
+	\begin{align}
+		\exists x\, \forall y\, (\, y \notin x\, )
+	\end{align}
+	は「空集合は存在する」という定理を表しているが，存在するはずの空集合を実際に取ってくることは
+	出来ないのである．ところが$\varepsilon$を用いると空集合は
+	\begin{align}
+		\varepsilon x\, \forall y\, (\, y \notin x\, )
+	\end{align}
+	によって特定できる．つまり$\varepsilon$項には「存在」を「実在」に格上げする効果がある．
+	適切な推論規則によって$\varepsilon$項が集合となるような体系を構築できるので，
+	この意味で$\varepsilon$項によって集合の「具体化」が実現する．
+	その他にも$\varepsilon$項を導入することで得られるメリットとして，
+	証明で用いる推論規則が三段論法のみで済むといった点がある．
+	
+	ブルバキ\cite{}や島内\cite{}でも$\varepsilon$計算を使った集合論を展開している
+	(ブルバキ\cite{}では$\varepsilon$ではなく$\tau$が使われている)．
+	ところで，本稿では$\varepsilon$項だけではなく，
+	「$\varphi(x)$を満たす集合$x$の全体」の役割を期して
+	\begin{align}
+		\Set{x}{\varphi(x)}
+	\end{align}
+	というオブジェクトも取り入れる．ブルバキ\cite{}や島内\cite{}では
+	\begin{align}
+		\Set{x}{\varphi(x)} \defeq \varepsilon x\, \forall u\, 
+		(\, \varphi(u) \lrarrow u \in x\, )
+	\end{align}
+	と定めるが，これは欠点がある．
+	\begin{align}
+		\exists x\, \forall u\, (\, \varphi(u) \lrarrow u \in x\, )
+	\end{align}
+	が成立しない場合は「$\varphi(x)$を満たす集合$x$の全体」という意味を持たないためである．
+	この欠点を解消するには$\varphi$から直接$\Set{x}{\varphi(x)}$の形のオブジェクトを作ればよい．
+	
+	\begin{comment}
 	Hilbertの$\varepsilon$計算は，項を形成するオペレーター$\varepsilon$と
 	そのような項を含む initial formula による初等的，或いは述語計算の拡張である．
 	$\varepsilon$計算の基本的な結果は$\varepsilon$定理と呼ばれ，それらは
@@ -52,4 +106,5 @@
 	この論文の目的はHerbrand複雑度の解析であり，それは元の式の最短のHerbrand選言の長さ$k$のことである．
 	
 	Hilbertの$\varepsilon$計算の大元は形式主義にあり，我々は古典的一階論理に焦点を絞る．
+	\end{comment}
 	
