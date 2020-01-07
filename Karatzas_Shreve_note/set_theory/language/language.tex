@@ -14,13 +14,7 @@
 		\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
 		\item[量化子] $\forall,\ \exists$
 		\item[述語記号] $=,\ \in$
-		\item[文字] $a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z$, \\
-			$A,B,C,D,E,F,G,H,U,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z$, \\
-			$\alpha,\beta,\gamma,\delta,\epsilon,\zeta,\eta,\theta,\iota,
-			\kappa,\lambda,\mu,\nu,\xi,\pi,\rho,\sigma,\tau,\upsilon,
-			\phi,\chi,\psi,\omega$, \\
-			$\Gamma,\Delta,\Theta,\Lambda,\Xi,\Pi,\Sigma,\Upsilon,\Phi,\Psi,\Omega$, \\
-			$\vartheta,\ \varpi,\ \varrho,\ \varsigma,\ \varphi$
+		\item[変項] 後述．
 			
 			%\begin{table}
 			%	\begin{tabular}{ccccc ccccc ccccc ccccc ccccc c}
@@ -31,29 +25,28 @@
 			%	\end{tabular}
 			%\end{table}
 			
-		\item[接項記号] $\natural$
 	\end{description}
 	
 	日本語と同様に，決められた規則に従って並ぶ記号列のみを$\lang{\in}$の単語や文章として扱う．
-	$\lang{\in}$において，名詞にあたるものは{\bf 変項}\index{へんこう@変項}
-	{\bf (variable)}と呼ばれる．文字は最もよく使われる変項である．述語とは変項同士を結ぶものであり，
+	$\lang{\in}$において，名詞にあたるものは{\bf 項}\index{こう@項}{\bf (term)}と呼ばれる．
+	文字は最もよく使われる項である．述語とは項同士を結ぶものであり，
 	最小の文章を形成する．例えば
 	\begin{align}
 		\in st
 	\end{align}
-	は$\lang{\in}$の文章となり，日本語には``$s$は$t$の要素である''と翻訳される．
+	は$\lang{\in}$の文章となり，「$s$は$t$の要素である」と読む．
 	$\lang{\in}$の文章を($\lang{\in}$の){\bf 式}\index{しき@式}
 	{\bf (formula)}或いは($\lang{\in}$の){\bf 論理式}\index{ろんりしき@論理式}と呼ぶ．
 	論理記号は主に式同士を繋ぐ役割を持つ．
 	
-	論理学的な言語とは論理記号と変項記号を除く記号をすべて集めたものである．
+	論理学的な言語とは論理記号と変項以外の記号をすべて集めたものである．
 	本稿で用意した記号で言うと，論理記号とは
 	\begin{align}
 		\bot,\ \negation,\ \vee,\ \wedge,\ \rarrow,\ \forall,\ \exists,\ =
 	\end{align}
 	であり，変項記号とは文字であって，$\lang{\in}$の語彙は
 	\begin{align}
-		\in,\ \natural
+		\in
 	\end{align}
 	しかない．だが本稿の目的は集合論の構築であって一般の言語について考察するわけではないので，
 	論理記号も文字もすべて$\lang{\in}$の一員と見做す方が自然である．
@@ -67,60 +60,72 @@
 	以上の変更点は殆ど無意味であるが，
 	いかに``直観的
 	\footnote{
-		ここでの直観とは{\bf 直観主義論理}の意味ではなく日常的な感覚としての
-		 intuitive の意味である．
-		直観主義論理は古典論理から{\bf 二重否定の除去}を差し引いた論理体系であるが，
-		本稿では二重否定の除去は公理である．通ずるものがあるとすれば{\bf 真偽}についての観点であって，
+		ここでの直観とは{\bf 直観主義論理}の意味ではなく日常的な感覚としての意味である．
+		直観主義論理は最小論理に爆発律のみを追加した論理体系であるが，
+		本稿は古典論理に準じているので爆発律よりも強い二重否定の除去が公理となる．
+		通ずるものがあるとすれば{\bf 真偽}についての観点であって，
 		本稿では「真である」ということは「証明できること」であるとする．
 		また証明も{\bf 構成的}であることにこだわり，
 		「…と仮定すると矛盾する」といった{\bf 背理法}はなるべく用いない．
 		ただし，その代わりに{\bf 対偶法}はよく用いる．対偶法とは二重否定の除去から導かれ，
-		そもそも二重否定の除去とは直観主義論理の下で背理法と同値なのであるが，
-		矛盾に頼っていないように見えるという意味で対偶法による証明は``構成的''になる．
+		そもそも二重否定の除去とは最小論理の下で背理法と同値なのであるが，
+		矛盾に頼っていないように見えるという点で対偶法による証明は``構成的''になる．
 	}
 	な''集合論を構築するかという目的を勘案すれば良いスタートであるように思える．
 	
-\section{項}
+\section{変項}
 	
-	文字は項として使われるが，文字だけを項とするのは不十分であり，
-	例えば$1000$個の相異なる項が必要であるといった場合には異体字まで駆使しても不足する．
+	{\bf 変項}\index{へんこう@変項}{\bf (variable)}と呼ばれる最も典型的なものは文字であり，
+	本稿では以下の文字を変項として用いる：
+	\begin{align}
+		&a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, \\
+		&A,B,C,D,E,F,G,H,U,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z, \\
+		&\alpha,\beta,\gamma,\delta,\epsilon,\zeta,\eta,\theta,\iota,
+			\kappa,\lambda,\mu,\nu,\xi,\pi,\rho,\sigma,\tau,\upsilon,
+			\phi,\chi,\psi,\omega, \\
+		&\Gamma,\Delta,\Theta,\Lambda,\Xi,\Pi,\Sigma,\Upsilon,\Phi,\Psi,\Omega, \\
+		&\vartheta,\ \varpi,\ \varrho,\ \varsigma,\ \varphi
+	\end{align}
+	
+	だが文字だけを変項とするのは不十分であり，
+	例えば$200$個の相異なる変項が必要であるといった場合には上の文字だけでは不足してしまう．
 	そこで，文字$x$に対して
 	\begin{align}
 		\natural x
 	\end{align}
-	もまた項であると約束する．
-	また，$\tau$を項とするときに
+	もまた変項であると約束する．
+	さらに，$\tau$を変項とするときに
 	\begin{align}
 		\natural \tau
 	\end{align}
-	も項であると約束する．この約束に従えば，文字$x$だけを用いたとしても
+	も変項であると約束する．この約束に従えば，文字$x$だけを用いたとしても
 	\begin{align}
 		x,\quad \natural x, \quad \natural \natural x, \quad \natural \natural \natural x
 	\end{align}
-	はいずれも項ということになる．極端なことを言えば，「$1000$個の項を用意してくれ」と頼まれたとしても
-	$\natural$と$x$だけで$1000$個の項を作り出すことが可能なのだ．
+	はいずれも変項ということになる．極端なことを言えば，「$1000$個の変項を用意してくれ」と頼まれたとしても
+	$\natural$と$x$だけで$1000$個の変項を作り出すことが可能なのだ．
 	
-	大切なのは，$\natural$を用いれば理屈の上では項に不足しないということであって，
+	大切なのは，$\natural$を用いれば理屈の上では変項に不足しないということであって，
 	具体的な数式を扱うときに$\natural$が出てくるかと言えば否である．
 	$\natural$が必要になるほどに長い式を読解するのは困難であるから，
 	通常は何らかの略記法を導入して複雑なところを覆い隠してしまう．
 	
 	\begin{itembox}[l]{超記号}
-		上で「$\tau$を項とするときに」と書いたが，これは一時的に
-		$\tau$を或る項に代用しているだけであって，
-		$\tau$が指している項の本来の字面は$x$であるかもしれない．
+		上で「$\tau$を変項とするときに」と書いたが，これは一時的に
+		$\tau$を或る変項に代用しているだけであって，
+		$\tau$が指している変項の本来の字面は$x$であるかもしれない．
 		この場合の$\tau$を{\bf 超記号}\index{ちょうきごう@超記号}と呼ぶ．
 		「$A$を式とする」など式にも超記号が宣言される．
 	\end{itembox}
 	
-	項は形式的には次のよう定義される:
+	変項は形式的には次のよう定義される:
 	
 	\begin{description}
-		\item[項]
+		\item[変項]
 			\begin{itemize}
-				\item 文字は項である．
-				\item $\tau$を項とするとき，$\natural \tau$は項である．
-				\item 以上のみが項である．
+				\item 文字は変項である．
+				\item $\tau$を変項とするとき，$\natural \tau$は項変である．
+				\item 以上のみが変項である．
 			\end{itemize}
 	\end{description}
 	
@@ -128,6 +133,7 @@
 	{\bf 帰納的定義}\index{きのうてきていぎ@帰納的定義}{\bf (inductive definition)}と呼ぶ．
 	ただしそれだけでは項の範囲が定まらないので，最後に「以上のみが項である」と加えている．
 	
+	\begin{comment}
 	「以上のみが項である」という約束によって，例えば「$\tau$が項である」という言明が与えられたとき，この言明が
 	``$\tau$は或る文字に代用されている''か
 	``項$\sigma$が取れて(超記号)，$\tau$は$\natural \sigma$に代用されている''
@@ -146,6 +152,14 @@
 		良いのかもしれないが，はじめの書き方でも文脈上は超記号として解釈するのが自然であるし，
 		何より言い方がまどろこくない．このように見た目の簡潔さのために超記号の宣言を省略する場合もある．
 	\end{itembox}
+	
+	\end{comment}
+	
+	続いて$\lang{\in}$における{\bf 項}\index{こう@項}{\bf (term)}も定義しておく．
+	\begin{description}
+		\item[項] 変項は$\lang{\in}$の項であり，またこれらのみが$\lang{\in}$の項である．
+	\end{description}
+	
 	
 \section{式}
 	式も項と同様に帰納的に定義される:
