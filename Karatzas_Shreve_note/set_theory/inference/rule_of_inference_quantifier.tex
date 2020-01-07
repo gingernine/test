@@ -1,6 +1,6 @@
 	\begin{screen}
-		\begin{logicalaxm}[量化記号に関する規則]
-		\label{logicalaxm:rules_of_quantifiers}
+		\begin{logicalrule}[量化記号に関する規則]
+		\label{logicalrule:rules_of_quantifiers}
 			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
 			$A$に自由に現れる項が$x$のみであるとする．
 			また$\tau$を主要$\varepsilon$項とする．このとき以下を推論規則とする．
@@ -8,10 +8,41 @@
 				A(\tau) &\vdash \exists x A(x), \\
 				\exists x A(x) &\vdash A(\varepsilon x \hat{A}(x)), \\
 				\forall x A(x) &\vdash A(\tau), \\
-				A(\varepsilon x \negation \hat{A}(x)) &\vdash \forall x A(x).
+				\negation \forall x A(x) &\vdash \exists x \negation A(x).
 			\end{align}
 			ただし$\hat{A}$とは必要に応じて$A$を$\lang{\varepsilon}$の式に書き直したものである．
-		\end{logicalaxm}
+		\end{logicalrule}
+	\end{screen}
+	
+	存在記号の推論規則より
+	\begin{align}
+		\vdash \exists x \negation A \rarrow\ \negation A(\varepsilon x \widehat{\negation A})
+	\end{align}
+	が成り立つが，ここで$\widehat{\negation A}$と$\negation \hat{A}$は同一の記号列なので
+	(もとより$A$が$\lang{\varepsilon}$の式ならばどちらも$\negation A$である)
+	\begin{align}
+		\vdash \exists x \negation A \rarrow\ \negation A(\varepsilon x \negation \hat{A})
+	\end{align}
+	となり，量化の四番目の推論規則との三段論法で
+	\begin{align}
+		\negation \forall x A \vdash\ \negation A(\varepsilon x \negation \hat{A})
+	\end{align}
+	が従う．そして対偶論法(推論法則\ref{logicalthm:proof_by_contraposition})より
+	\begin{align}
+		\vdash A(\varepsilon x \negation \hat{A}) \rarrow \forall x A
+	\end{align}
+	が得られる．これは非常に有用な結果であるから一つの定理として述べておく．
+	
+	\begin{screen}
+		\begin{logicalthm}[$\varepsilon$項による全称の導出]
+		\label{logicalthm:derivation_of_universal_by_epsilon}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			$A$に自由に現れる項が$x$のみであるとする．このとき
+			\begin{align}
+				\vdash A(\varepsilon x \negation \hat{A}(x)) \rarrow \forall x A(x).
+			\end{align}
+			ただし$\hat{A}$とは必要に応じて$A$を$\lang{\varepsilon}$の式に書き直したものである．
+		\end{logicalthm}
 	\end{screen}
 	
 	どれでも一つ，$A(\tau)$を成り立たせるような主要$\varepsilon$項$\tau$が取れれば
@@ -94,6 +125,15 @@
 	\end{screen}
 	
 	\begin{sketch}
+		推論規則
+		\begin{align}
+			\negation \forall x A(x) \vdash \exists x \negation A(x)
+		\end{align}
+		に演繹規則を適用して得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{comment}
 		必要に応じて$A$を$\lang{\varepsilon}$の式に書き換えたものを$\hat{A}$とする．
 		存在記号の推論規則より
 		\begin{align}
@@ -111,7 +151,7 @@
 		\begin{align}
 			\negation \exists x \negation A(x) \vdash A(\varepsilon x \negation \hat{A}(x))
 		\end{align}
-		が成立し，全称記号の推論規則より
+		が成立し，全称の導出(推論法則\ref{derivation_of_universal_by_epsilon})より
 		\begin{align}
 			\negation \exists x \negation A(x) \vdash \forall x A(x)
 		\end{align}
@@ -129,7 +169,7 @@
 		\end{align}
 		が得られる．
 		\QED
-	\end{sketch}
+	\end{comment}
 	
 	\begin{screen}
 		\begin{logicalthm}[量化記号に対する強 De Morgan の法則(1)]
@@ -198,7 +238,7 @@
 		\begin{align}
 			\negation \exists x A(x) \vdash\ \negation A(\varepsilon x \negation \negation \hat{A}(x))
 		\end{align}
-		が従う．また全称記号の推論規則より
+		が従う．また全称の導出(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})より
 		\begin{align}
 			\vdash \negation A(\varepsilon x \negation \negation \hat{A}(x))
 			\rarrow \forall x \negation A(x)
