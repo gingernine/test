@@ -1,0 +1,186 @@
+\section{推論の公理}
+\subsection{$\exists$の導入}
+	$\lang{\varepsilon}$の式$\varphi$に$x$のみが自由に現れているとき，
+	$\varepsilon x \varphi$を\textcolor{red}{主要$\varepsilon$項}と呼ぶ．
+	
+	\begin{screen}
+		\begin{logicalaxm}[$\exists$の導入]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとし，
+			$\tau$を主要$\varepsilon$項とするとき，
+			\begin{align}
+				\varphi(\tau) \rarrow \exists x \varphi(x).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	とくに，任意の$\varepsilon$項$\tau$に対して
+	\begin{align}
+		\tau = \tau.
+	\end{align}
+	だから
+	\begin{align}
+		\exists x\, (\, x = \tau\, )
+	\end{align}
+	が成り立つ．つまり\textcolor{red}{$\varepsilon$項はすべて集合}．
+	
+\newpage
+\subsection{$\exists$の除去}
+	\begin{screen}
+		\begin{logicalaxm}[$\exists$の除去(NG版)]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとするとき，
+			\begin{align}
+				\exists x \varphi(x) \vdash \varphi(\varepsilon x \varphi(x)).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	$\varphi$が$\lang{\varepsilon}$の式でない場合
+	\begin{align}
+		\varepsilon x \varphi(x)
+	\end{align}
+	なる項は無い．
+	
+	\begin{itembox}[l]{解決法}
+		$\mathcal{L}$の式を$\lang{\varepsilon}$の式に書き換える手順を用意する．
+	\end{itembox}
+
+\newpage
+\subsection{式の書き換え}
+	$\mathcal{L}$の式はすべて$\lang{\varepsilon}$の式に書き換え可能(構造的帰納法による)．
+	
+	\begin{table}[H]
+		\begin{center}
+		\begin{tabular}{c|c}
+			元の式 & 書き換え後 \\ \hline \hline
+			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ \\ \hline
+			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ \\ \hline
+			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ \\ \hline
+			$a \in \Set{z}{\psi}$ & $\psi(z/a)$ \\ \hline
+			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ \\ \hline
+			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ \\ \hline
+		\end{tabular}
+		\end{center}
+	\end{table}
+	
+	ただし上の記号に課している条件は
+	\begin{itemize}
+		\item $a,b$は$\lang{\varepsilon}$の項である．
+		\item $\varphi,\psi$は$\lang{\varepsilon}$の式である．
+		\item $\varphi$には$y$が自由に現れ，$\psi$には$z$が自由に現れている．
+		\item $u$は$\varphi$の中で$y$への代入について自由であり，
+			$v$は$\psi$の中で$z$への代入について自由である．
+	\end{itemize}
+	
+\newpage
+	$\mathcal{L}$の式$\varphi$を$\lang{\varepsilon}$の式に書き換えたものを$\hat{\varphi}$と書く．
+	
+	\begin{screen}
+		\begin{logicalaxm}[$\exists$の除去]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとするとき，
+			\begin{align}
+				\exists x \varphi(x) \rarrow 
+				\varphi\left(\varepsilon x \hat{\varphi}(x)\right).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[集合は主要$\varepsilon$項に等しい]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとするとき，
+			\begin{align}
+				\exists s\, (\, \Set{x}{\varphi(x)} = s\, )
+				\vdash \Set{x}{\varphi(x)} = 
+				\varepsilon s\, \forall x\, (\, \varphi(x) \lrarrow x \in s\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\exists s\, \left(\, \Set{x}{\varphi(x)} = s\, \right)$を
+		$\mathcal{L}_{\in}$の式に書き直せば
+		\begin{align}
+			\exists s\, \forall x\, (\, \varphi(x) \lrarrow x \in s\, ).
+		\end{align}
+		存在記号の規則より結論が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{comment}
+	\begin{screen}
+		\begin{thm}
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとするとき，
+			\begin{align}
+				\exists x \varphi(x) \lrarrow \varphi(\varepsilon x \hat{\varphi}(x)).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	\end{comment}
+
+\newpage
+\subsection{$\forall$の導入}
+	\begin{screen}
+		\begin{logicalaxm}[$\forall$の導入]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとするとき，
+			\begin{align}
+				\varphi(\varepsilon x \negation \hat{\varphi}(x))
+				\rarrow \forall x \varphi(x).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[$\forall$の除去]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとし，
+			$\tau$を主要$\varepsilon$項とするとき，
+			\begin{align}
+				\forall x \varphi(x) \rarrow \varphi(\tau).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	主要$\varepsilon$項は集合であるから，\textcolor{red}{量化の亘る範囲は集合の上だけ}．
+	
+	\begin{comment}
+	\begin{screen}
+		\begin{thm}
+			甲種式$\varphi(x)$に対して
+			\begin{align}
+				\forall x \varphi(x) \Longleftrightarrow
+				\varphi\left(\varepsilon x \rightharpoondown \hat{\varphi}(x)\right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	\end{comment}
+
+\newpage
+\subsection{その他の公理}
+	\begin{screen}
+		\begin{logicalaxm}
+			$\varphi,\psi,\chi$を$\mathcal{L}$の文とするとき，
+			\begin{itemize}
+				\item $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
+					\rarrow (\, (\, \varphi \rarrow \psi\, )
+					\rarrow (\, \varphi \rarrow \chi\, )\, ).$
+				\item $\varphi \rarrow (\, \psi \rarrow \varphi\, ).$
+				\item $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
+				\item $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
+				\item $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
+				\item $\varphi \rarrow (\, \varphi \vee \psi\, ).$
+				\item $\psi \rarrow (\, \varphi \vee \psi\, ).$
+				\item $(\, \varphi \rarrow \chi\, ) \rarrow 
+					(\, (\, \psi \rarrow \chi\, ) 
+					\rarrow (\, (\, \varphi \vee \psi) \rarrow \chi\, )\, ).$
+				\item $\varphi \rarrow (\, \psi \rarrow (\, \varphi \wedge \psi\, )\, ).$
+				\item $(\, \varphi \wedge \psi\, ) \rarrow \varphi.$
+				\item $(\, \varphi \wedge \psi\, ) \rarrow \psi.$
+				\item $\negation \negation \varphi \rarrow \varphi$.
+			\end{itemize}
+		\end{logicalaxm}
+	\end{screen}

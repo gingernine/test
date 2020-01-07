@@ -12,35 +12,48 @@
 		\varphi(\varepsilon x \varphi(x)) &\defarrow \exists x \varphi(x), \\
 		\varphi(\varepsilon x \negation \varphi(x)) &\defarrow \forall x \varphi(x)
 	\end{align}
-	と変換する．この変換は本稿において最も重要な公理の基となるが，
-	ただし本稿において$\varepsilon$を導入したのは
-	述語計算を埋め込むためではなく，集合を「具体化」するためである．
+	と変換する．
 	
-	純粋に一階述語論理のシンタックスから構築される集合論を
-	``生の''集合論と呼ぶことにすれば，``生の''集合論のシンタックスでは
+	この変換は本稿において最も重要な公理の基となるが，
+	ただし本稿において$\varepsilon$を導入したのは述語計算を埋め込むためではなく，
+	集合を「具体化」するためである．本稿で実践しているのはHilbertの$\varepsilon$計算ではなく
+	一種のHenkin拡大であり，先述の主要論理式は本稿では全く不要であって，代わりに
+	\begin{align}
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \varphi(x))
+	\end{align}
+	が主要な量化の公理となる．「具体化」に対する問題意識の源は，
+	通常の公理的集合論においては集合が「無定義」であるという不可解さである．
+	純粋に一階述語論理の言語から構築される集合論を
+	``生の''集合論と呼ぶことにすれば，``生の''集合論の言語では
 	集合というオブジェクトが用意されていないため「存在」は「実在」を意味しない．たとえば
 	\begin{align}
 		\exists x\, \forall y\, (\, y \notin x\, )
 	\end{align}
 	は「空集合は存在する」という定理を表しているが，存在するはずの空集合を実際に取ってくることは
-	出来ないのである．ところが$\varepsilon$を用いると空集合は
+	出来ないのである．それなのに集合論において$\emptyset$が恰も実在するオブジェクトとして扱われているのは，
+	一つには$\forall y\, (\, y \notin \emptyset\, )$を
+	$\emptyset$の定義式として$\emptyset$を言語に追加している(定義による拡張)か，或いは
+	$\exists x\, \forall y\, (\, y \notin x\, )$と書くべきところをインフォーマルに
+	$\emptyset$を用いて略記しているかであろうが，$\varepsilon$項はそのどちらでもなく，単に
 	\begin{align}
 		\varepsilon x\, \forall y\, (\, y \notin x\, )
 	\end{align}
-	によって特定できる．つまり$\varepsilon$項には「存在」を「実在」に格上げする効果がある．
-	適切な推論規則によって$\varepsilon$項が集合となるような体系を構築できるので，
+	と書くだけで「存在」を「実在」に格上げする効果がある．
+	適切な推論規則と集合の定義によって，
+	$\varepsilon$項及び$\varepsilon$項に等しいオブジェクトが全て集合であり，
+	かつ集合はこれらに限られるといった体系を構築できるので，
 	この意味で$\varepsilon$項によって集合の「具体化」が実現する．
 	その他にも$\varepsilon$項を導入することで得られるメリットとして，
 	証明で用いる推論規則が三段論法のみで済むといった点がある．
 	
-	ブルバキ\cite{}や島内\cite{}でも$\varepsilon$計算を使った集合論を展開している
-	(ブルバキ\cite{}では$\varepsilon$ではなく$\tau$が使われている)．
+	ブルバキ\cite{key5}や島内\cite{key6}でも$\varepsilon$計算を使った集合論を展開している
+	(ブルバキ\cite{key5}では$\varepsilon$ではなく$\tau$が使われている)．
 	ところで，本稿では$\varepsilon$項だけではなく，
 	「$\varphi(x)$を満たす集合$x$の全体」の役割を期して
 	\begin{align}
 		\Set{x}{\varphi(x)}
 	\end{align}
-	というオブジェクトも取り入れる．ブルバキ\cite{}や島内\cite{}では
+	というオブジェクトも取り入れる．ブルバキ\cite{key5}や島内\cite{key6}では
 	\begin{align}
 		\Set{x}{\varphi(x)} \defeq \varepsilon x\, \forall u\, 
 		(\, \varphi(u) \lrarrow u \in x\, )
@@ -50,7 +63,8 @@
 		\exists x\, \forall u\, (\, \varphi(u) \lrarrow u \in x\, )
 	\end{align}
 	が成立しない場合は「$\varphi(x)$を満たす集合$x$の全体」という意味を持たないためである．
-	この欠点を解消するには$\varphi$から直接$\Set{x}{\varphi(x)}$の形のオブジェクトを作ればよい．
+	この欠点を解消するには，竹内\cite{key4}に倣って$\varphi$から直接$\Set{x}{\varphi(x)}$
+	の形のオブジェクトを作ればよい．
 	
 	\begin{comment}
 	Hilbertの$\varepsilon$計算は，項を形成するオペレーター$\varepsilon$と
