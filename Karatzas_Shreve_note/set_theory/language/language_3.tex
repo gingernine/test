@@ -15,8 +15,7 @@
 		\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
 		\item[量化子] $\forall,\ \exists$
 		\item[述語記号] $=,\ \in$
-		\item[変項] $\lang{\in}$の項は$\mathcal{L}$の変項である．またこれらのみが
-			$\mathcal{L}$の変項である．
+		\item[変項] \ref{sec:variables}節のもの．
 		\item[補助記号] $\{,\ |,\ \}$
 	\end{description}
 	
@@ -52,6 +51,17 @@
 					$\exists x \varphi$は$\mathcal{L}$の式である．
 			\end{itemize}
 	\end{description}
+	
+	\begin{screen}
+		\begin{dfn}[内包項]
+			$\Set{x}{\varphi}$なる項を{\bf 内包項}\index{ないほうこう@内包項}
+			と呼ぶ．ここで$x$は変項であり，$\varphi$は$\mathcal{L}$の式である．
+		\end{dfn}
+	\end{screen}
+	
+	定義通りなら，式$\varepsilon$に$x$が自由に現れていない場合でも$\Set{x}{\varphi}$は
+	$\mathcal{L}$の項である．ただしそのような項は全く無用であるから，
+	後で実際に集合論を構築する際には排除してしまう(\ref{sec:restriction_of_formulas}節参照)．
 	
 	言語の拡張の仕方より明らかであるが，次が成り立つ:
 	
@@ -205,27 +215,69 @@
 			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
 	\end{description}
 	
+\subsection{量化}
+	自由の意味，束縛とスコープ，$\varepsilon$項と内包項の束縛
+	
 \subsection{代入}
-	変項とは束縛されうる項であったが，代入可能な項でもある．
-	代入とはすなわち別の項で置き換えるということである．
-	たとえば
+	変項とは束縛されうる項であったが，別の項を代入されうる項でもある．
+	代入とは別の項で置き換えるということであり，また代入されうるのは式の中で自由な変項のみである．
+	ただし，代入には「{\bf 式の中の自由な変項を別の変項に取り替えても式の意味を変えてはならない}」という
+	大前提がある．たとえば
 	\begin{align}
-		x \in \forall y\, (\, y = y\, )
+		\forall u\, (\, u \in x\, )
 	\end{align}
-	といった式(中置記法)では$x$は自由に現れているが，この$x$に$z$を代入すれば
+	という式で考察すると，この式で$x$は自由であるから別の項を代入して良いのであり，$z$を代入すれば
 	\begin{align}
-		z \in \forall y\, (\, y = y\, )
+		\forall u\, (\, u \in z\, )
 	\end{align}
-	となる．では
+	となる．そしてこの場合はどちらの式も意味は同じである．意味が同じであるとは
+	量化してみれば一目瞭然であって，両式を全称記号で量化すれば
 	\begin{align}
-		x \in \forall y\, (\, y = z\, )
+		&\forall x\, \forall u\, (\, u \in x\, ), \\
+		&\forall z\, \forall u\, (\, u \in z\, )
 	\end{align}
-	という式ではどうなるかというと，今度の式には$x$と$z$が自由に現れていることになり，
-	$x$に$z$を代入すれば
+	はどちらも「どの集合も，全ての集合を要素に持つ」と解釈され，
+	両式を存在記号で量化すれば
 	\begin{align}
-		z \in \forall y\, (\, y = z\, )
+		&\exists x\, \forall u\, (\, u \in x\, ), \\
+		&\exists z\, \forall u\, (\, u \in z\, )
 	\end{align}
-	となるので式の意味が変わってしまう．
+	はどちらも「或る集合は，全ての集合を要素に持つ」と解釈される．
+	ところが$x$に$u$を代入すると
+	\begin{align}
+		\forall u\, (\, u \in u\, )
+	\end{align}
+	となり，これは「全ての集合は自分自身を要素に持つ」という意味に変わる．
+	つまり先の大前提に立てば，代入する際には{\bf 代入後に束縛されてしまう変項は使ってはいけない}のである．
+	
+	代入するのは変項だけではない．$\varepsilon$項や内包項だって上の$x$に代入して良い．
+	ただし上と同様の注意が必要で，$\varepsilon$項や内包項に$u$が自由に現れている場合と
+	そうでない場合では代入後の式の意味が分かれてしまうので，
+	代入して良い項は$u$が自由に現れていないものに限る．
+	
+	以上の考察を一般的な代入規則に敷衍して言えば，
+	
+	\begin{itembox}[l]{代入可能な項}
+		$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とするとき，
+		$\varphi$に自由に現れる$x$に代入して良いのは
+		\begin{itemize}
+			\item 代入した後で束縛されない変項
+			\item 代入するのが$\varepsilon$項や内包項である場合は，
+				その項の中に自由に現れる変項が，代入した箇所で束縛されないもの
+		\end{itemize}
+		に限る．$\mathcal{L}$の項$\tau$がこの条件を満たすとき，
+		{\bf 「$\tau$は$\varphi$の中で$x$への代入について自由である」}という．
+	\end{itembox}
+	
+	ちなみに$\varphi$に自由に現れる$x$に$\tau$を代入する際は，特筆が無い限り
+	$\varphi$に自由に現れる\underline{{\bf 全ての$x$}} に$\tau$を代入する．
+	そして「$\tau$が$\varphi$の中で$x$への代入について自由である」とは，
+	$\tau$は$\varphi$に代入されたどの箇所でも束縛の影響を受けないということである．
+	$\varphi$に自由に現れる$x$に$\tau$を代入した後の式を
+	\begin{align}
+		\varphi(x/\tau)
+	\end{align}
+	と書く($x/\tau$とは``replace $x$ by $\tau$''の順である)．
 	
 \subsection{類}
 	\begin{comment}
@@ -265,7 +317,8 @@
 		\Set{y}{\psi}
 	\end{align}
 	なる項は閉じてはいるが，導入の意図には適っていない．意味不明ながらこういった項が存在しているのは
-	導入時にこれらを排除する面倒を避けたからであり，また後で排除するほうが楽である．
+	導入時にこれらを排除する面倒を避けたからであり，また一旦すべてを作り終えた後で
+	余計なものを排除するほうが楽である．
 	
 	とりあえず，導入の意図に適っている項は特別の名前を持っていて然るべきである．
 	
@@ -278,6 +331,7 @@
 		\end{dfn}
 	\end{screen}
 	
+	類には二種類あるので，それらも名前を分けておく．
 	\begin{screen}
 		\begin{dfn}[主要$\varepsilon$項]
 			類である$\varepsilon$項を{\bf 主要${\boldsymbol \varepsilon}$項}
@@ -286,6 +340,29 @@
 		\end{dfn}
 	\end{screen}
 	
+	\begin{screen}
+		\begin{dfn}[主要内包項]
+			類である内包項を{\bf 主要内包項}\index{しゅようないほうこう@主要内包項}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	内包項に関しては便宜上自由な変項の出現も許すことにするが，
+	たとえば$\Set{x}{\varphi}$と書いたら少なくとも$x$は$\varphi$に自由に現れているべきであり，
+	この意味で性質の良い内包項に対しても特別な名前を付けておく．
+	
+	\begin{screen}
+		\begin{dfn}[正則内包項]
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を変項とし，
+			$\varphi$に$x$が自由に現れているとするとき，
+			$\Set{x}{\varphi}$を{\bf 正則内包項}\index{せいそくないほうこう@正則内包項}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+\subsection{扱う式の制限}
+\label{sec:restriction_of_formulas}
+	{\bf 以降では扱う式は，そこに現れる$\varepsilon$項は全て主要$\varepsilon$項であり，
+	現れる内包項は全て正則内包項であるとする．}
+
 \subsection{式の書き換え}
 	$\varepsilon$項を取り入れた当初の目的は，「$\varphi(x)$を満たす集合$x$が存在するならば
 	$\varepsilon x \varphi(x)$はその$x$の一つである」という意味で
@@ -293,17 +370,19 @@
 	{\bf 証人}\index{しょうにん@証人}{\bf (witness)}を付けることであった．
 	ただし$\varepsilon$項を作れる式は$\lang{\varepsilon}$の式のみであるので，
 	$\varphi$が$\mathcal{L}$の式であると$\varepsilon x \varphi(x)$を使うことが出来ない．
-	だが$\mathcal{L}$の式の存在文も往々にして登場するので
+	だが$\mathcal{L}$の式の存在文も往々にして登場するから
 	そういった場合でも証人を用意できると便利である．
-	そこで$\mathcal{L}$の式を``同値な''$\lang{\varepsilon}$の式に書き換えて，
+	そこで$\mathcal{L}$の式を``同値''な$\lang{\varepsilon}$の式に書き換えて，
 	その書き換えた式で作る$\varepsilon$項を使うことにする．つまり
 	$\varphi$が$\mathcal{L}$の式である場合は，$\varphi$を
 	$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えてから
 	\begin{align}
 		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \hat{\varphi}(x))
 	\end{align}
-	を保証するのである．``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}	節
-	で述べてあるような意味であるが，直感的な意味に即して考えれば次の式の書き換え
+	を保証するのである．書き換える必要があるのは内包項を含んでいる式のみであり，
+	式を書き換える際にはその式の中で{\bf 内包項が使われている原子式だけを書き換えれば十分である}．
+	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
+	で述べてあるような意味であるが，それは直感的に妥当なものである．原子式の書き換えは次の要領で行う：
 	
 	\begin{table}[H]
 		\begin{center}
@@ -321,11 +400,33 @@
 	
 	ただし上の記号に課している条件は
 	\begin{itemize}
-		\item $a,b$は$\lang{\varepsilon}$の項である．
+		\item $a,b$は$\lang{\varepsilon}$の項である
+			(\ref{sec:restriction_of_formulas}節の約束によって
+			$a,b$は変項であるか主要$\varepsilon$項である)．
 		\item $\varphi,\psi$は$\lang{\varepsilon}$の式である．
-		\item $\varphi$には$y$が自由に現れ，$\psi$には$z$が自由に現れている．
+		\item $\varphi$には$y$が自由に現れ，$\psi$には$z$が自由に現れている
+			(\ref{sec:restriction_of_formulas}節の約束によってどちらも正則内包項である)．
 		\item $u$は$\varphi$の中で$y$への代入について自由であり，
 			$v$は$\psi$の中で$z$への代入について自由である．
+		\item 注意が必要なのは$a$が変項である場合の$a \in \Set{z}{\psi}$の書き換えであり，
+			$a$を$\psi$の中の自由な$z$に代入した後で$a$が束縛される場合，
+			束縛変項の名前替えをしなくてはならない．たとえば
+			\begin{align}
+				a \in \Set{z}{\forall a\, (\, z \in a\, )}
+			\end{align}
+			という式では，左辺の$a$は自由であるのに，書き換えの規則を直接適用すると
+			\begin{align}
+				\forall a\, (\, a \in a\, )
+			\end{align}
+			となり束縛されてしまう．代入後の$a$が束縛されないためには
+			\begin{align}
+				a \in \Set{z}{\forall b\, (\, z \in b\, )}
+			\end{align}
+			のように束縛変項$a$を別の変項$b$に替えて
+			\begin{align}
+				\forall b\, (\, a \in b\, )
+			\end{align}
+			とすればよい．
 	\end{itemize}
 	
 \subsection{中置記法}
