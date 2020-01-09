@@ -1,0 +1,323 @@
+\section{極大原理}
+	いま，$P$が集合で，$O$が$P$上の順序関係であるとする．$c$が$P$の部分集合で
+	\begin{align}
+		\forall x,y \in c\, (\, (x,y) \in O \vee (y,x) \in O\, )
+	\end{align}
+	を満たすとき，つまり$c$のどの$2$要素も比較可能であるということだが，
+	$c$を順序集合$(P,O)$の{\bf 鎖}\index{さ@鎖}{\bf (chain)}と呼ぶ．
+	ここで$(P,O)$の鎖の全体を
+	\begin{align}
+		\mathscr{C}
+	\end{align}
+	とする．つまり$\mathscr{C}$とは
+	\begin{align}
+		\mathscr{C} \defeq \Set{c}{c \subset P \wedge \forall x,y \in c\, (\, (x,y) \in O \vee (y,x) \in O\, )}
+	\end{align}	
+	で定められた集合である．$\mathscr{C}$の要素$c$で
+	\begin{align}
+		\forall u \in \mathscr{C}\, (\, c \subset u \Longrightarrow c=u\, )
+	\end{align}
+	を満たすものを$(P,O)$の{\bf 極大鎖}\index{きょくだいさ@極大鎖}{\bf (maximal chain)}と呼ぶ．
+	つまり，$c$が$(P,O)$の極大鎖であるとは$c$を含む鎖が$c$の他に無いということである．
+	
+	\begin{screen}
+		\begin{thm}[極大鎖は必ず存在する]
+		\label{thm:existence_of_maximal_chain}
+			$P$を集合とし，$O$を$P$上の順序関係とするとき，$(P,O)$の極大鎖を取ることが出来る．
+		\end{thm}
+	\end{screen}
+	
+	$P$が空ならば$O$は当然空であるから(空虚な真により$\emptyset$は$P$上の順序関係である)，
+	\begin{align}
+		\mathscr{C} = \{\emptyset\}
+	\end{align}
+	が成り立つ．従って$(P,O)$の極大鎖は$\emptyset$ということになる．以下では$P$は空でないとする．
+	つまり$P$の要素$x$が取れるわけだが，
+	\begin{align}
+		\{x\}
+	\end{align}
+	はこれで一つの鎖をなすので$\mathscr{C}$は空ではない．
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[第一段]
+				始めに全体のあらすじを書いておく．$\mathscr{C}$上の写像$h$を
+				\begin{align}
+					\mathscr{C} \ni c \longmapsto
+					\begin{cases}
+						\Set{u \in \mathscr{C}}{ c \subset u \wedge c \neq u} 
+						& \mbox{if } \exists u \in \mathscr{C}\, (\, c \subset u \wedge c \neq u\, ) \\
+						\{c\} &\mbox{if } \forall u \in \mathscr{C}\, (\, \rightharpoondown c \subset u \vee c=u\, )
+					\end{cases}
+				\end{align}
+				なる関係により定めると，定理(\ref{thm:direct_product_of_non_empty_sets_is_not_empty})より
+				$\mathscr{C}$上の写像$f$で，$\mathscr{C}$の任意の要素$c$に対して
+				\begin{align}
+					\begin{cases}
+						c \subset f(c) \wedge c \neq f(c) 
+						& \mbox{if } \exists u \in \mathscr{C}\, (\, c \subset u \wedge c \neq u\, ) \\
+						c=f(c) & \mbox{if } \forall u \in \mathscr{C}\, (\, \rightharpoondown c \subset u \vee c=u\, )
+					\end{cases}
+				\end{align}
+				を満たすものが取れる．ここで$\mathscr{C}$から要素$c$を選び，また$\Univ$の上の写像$G$を
+				\begin{align}
+					x \longmapsto
+					\begin{cases}
+						c & \mbox{if } \dom{x} = \emptyset \\
+						f(x(\beta)) & \mbox{if } \beta \in \ON \wedge \dom{x} = \beta+1 \wedge x(\beta) \in \mathscr{C} \\
+						\bigcup \ran{x} & \mbox{otherwise}
+					\end{cases}
+				\end{align}
+				なる関係により定めると，$\ON$上の写像$F$で
+				\begin{itemize}
+					\item $F(0) = c$
+					\item 任意の順序数$\alpha$に対して，$F(\alpha) \in \mathscr{C}$ならば$F(\alpha+1)=f(F(\alpha))$
+					\item $\alpha$が極限数ならば$F(\alpha)=\bigcup_{\beta \in \alpha} F(\beta)$
+				\end{itemize}
+				を満たすものが取れる．以降はこの$F$をメインに考察する．
+				
+				まず，次の第二段では，任意の順序数$\alpha$に対して$F(\alpha)$が$(P,O)$の鎖であること，つまり
+				\begin{align}
+					\forall \alpha \in \ON\, (\, F(\alpha) \in \mathscr{C}\, )
+				\end{align}
+				が成り立つことを示す．
+				
+				第三段では，$\alpha$を極限数としたときに，$F(\alpha)$が極大鎖でないならば
+				\begin{align}
+					\card{\alpha} \leq \card{F(\alpha)}
+				\end{align}
+				が成り立つことを示す．
+				
+				第四段では，任意の順序数$\beta$に対して，
+				\begin{align}
+					\card{\beta} \leq \card{F(\beta)}
+				\end{align}
+				が満たされていてかつ$F(\beta)$が極大鎖ではないときに
+				\begin{align}
+					\card{(\beta+1)} \leq \card{F(\beta+1)}
+				\end{align}
+				が成り立つこと，つまり
+				\begin{align}
+					\card{\beta} \leq \card{F(\beta)} \wedge
+					\exists u \in \mathscr{C}\, \left(\, F(\beta) \subset u \wedge F(\beta) \neq u\, \right)
+					\Longrightarrow \card{(\beta+1)} \leq \card{F(\beta+1)}
+				\end{align}
+				が成り立つことを示す．
+				
+				以上を踏まえて，いま
+				\begin{align}
+					\delta \defeq \card{P}
+				\end{align}
+				とおけば，定理\ref{thm:no_ordinal_number_is_bigger_than_its_aleph_number}より
+				\begin{align}
+					\card{F(\aleph_{\delta+1})} \leq \card{P}
+					=\delta < \aleph_{\delta+1}
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\card{F(\alpha)} < \card{\alpha}
+				\end{align}
+				を満たす最小の順序数$\alpha$を取ることが出来る．
+				\begin{align}
+					0 \leq \card{F(0)}
+				\end{align}
+				なので$\alpha$は$0$ではない．
+				$\alpha$が極限数であるとき，第三段の対偶より$F(\alpha)$は極大鎖である．
+				$\alpha$が極限数でないとき，つまり
+				\begin{align}
+					\alpha = \beta+1
+				\end{align}
+				を満たす順序数$\beta$が取れるとき，$\alpha$の取り方より
+				\begin{align}
+					\card{\beta} \leq \card{F(\beta)}
+				\end{align}
+				が成り立つので，第四段の対偶と選言三段論法(P. \pageref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\rightharpoondown \exists u \in \mathscr{C}\, (\, F(\beta) \subset u \wedge F(\beta) \neq u\, )
+				\end{align}
+				が従う．つまり$F(\beta)$は$(P,O)$の極大鎖である．以上より，いずれの場合も極大鎖は取れる．
+			
+			\item[第二段]
+				 始めに
+				 \begin{align}
+					\forall \beta,\gamma \in \ON\,
+					\left(\, \beta < \gamma \wedge \forall \delta \in \gamma\, (\, F(\delta) \in \mathscr{C}\, )
+					\Longrightarrow F(\beta) \subset F(\gamma)\, \right)
+				\end{align}
+				が成り立つことを示す．これは，$\beta$を任意の順序数として
+				\begin{align}
+					\forall \gamma \in \ON\, \left(\, \beta < \gamma \wedge
+					\forall \delta \in \gamma\, (\, F(\delta) \in \mathscr{C}\, )
+					\Longrightarrow F(\beta) \subset F(\gamma)\, \right)
+				\end{align}
+				が成り立つことを超限帰納法で示せばよい．
+				\begin{align}
+					\gamma = 0
+				\end{align}
+				の場合は
+				\begin{align}
+					\beta < \gamma \wedge \forall \delta \in \gamma\, (\, F(\delta) \in \mathscr{C}\, )
+				\end{align}
+				の仮定が偽になるので
+				\begin{align}
+					\beta < \gamma \wedge \forall \delta \in \gamma\, (\, F(\delta) \in \mathscr{C}\, )
+					\Longrightarrow F(\beta) \subset F(\gamma)
+				\end{align}
+				は成立する．次に$\gamma$を$0$でない順序数として，$\gamma$の任意の要素$\rho$に対して
+				\begin{align}
+					\beta < \rho \wedge \forall \delta \in \rho\, (\, F(\delta) \in \mathscr{C}\, )
+					\Longrightarrow F(\beta) \subset F(\rho)
+					\label{fom:thm_existence_of_maximal_chain_1}
+				\end{align}
+				が成り立っているとし，この下で
+				\begin{align}
+					\beta < \gamma \wedge \forall \delta \in \gamma\, (\, F(\delta) \in \mathscr{C}\, )
+				\end{align}
+				が満たされているとする．
+				\begin{align}
+					\gamma = \rho + 1
+				\end{align}
+				を満たす順序数$\rho$が取れるとき，
+				\begin{align}
+					\beta = \rho
+				\end{align}
+				ならば
+				\begin{align}
+					F(\beta) \subset f(F(\beta)) = F(\gamma)
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\beta < \rho
+				\end{align}
+				ならば(\refeq{fom:thm_existence_of_maximal_chain_1})より
+				\begin{align}
+					F(\beta) \subset F(\rho) \subset f(F(\rho)) = F(\gamma)
+				\end{align}
+				が成り立つ．$\gamma$が極限数であるとき，
+				\begin{align}
+					F(\beta) \subset \bigcup_{\delta \in \gamma} F(\delta) = F(\gamma)
+				\end{align}
+				が成り立つ．以上と超限帰納法より
+				\begin{align}
+					\forall \gamma \in \ON\, \left(\, \beta < \gamma \wedge
+					\forall \delta \in \gamma\, (\, F(\delta) \in \mathscr{C}\, )
+					\Longrightarrow F(\beta) \subset F(\gamma)\, \right)
+				\end{align}
+				を得る．
+				
+				では，任意の順序数$\alpha$に対して$F(\alpha)$が鎖であることを超限帰納法により示す．まず
+				\begin{align}
+					F(0) = c
+				\end{align}
+				なので
+				\begin{align}
+					F(0) \in \mathscr{C}
+				\end{align}
+				が成り立つ．次に$\alpha$を$0$でない任意の順序数として
+				\begin{align}
+					\forall \beta \in \alpha\, (\, F(\beta) \in \mathscr{C}\, )
+				\end{align}
+				が満たされているとする．このとき
+				\begin{align}
+					\alpha = \beta + 1
+				\end{align}
+				を満たす順序数$\beta$が取れるならば
+				\begin{align}
+					F(\alpha) = f(F(\beta))
+				\end{align}
+				が成り立つので$F(\alpha)$は鎖である．
+				$\alpha$が極限数である場合，$x$と$y$を$F(\alpha)$の任意の要素とすれば，
+				\begin{align}
+					F(\alpha) = \bigcup_{\beta \in \alpha} F(\beta)
+				\end{align}
+				より
+				\begin{align}
+					x \in F(\beta)
+				\end{align}
+				を満たす$\alpha$の要素$\beta$と
+				\begin{align}
+					y \in F(\gamma)
+				\end{align}
+				を満たす$\alpha$の要素$\gamma$が取れて，
+				\begin{align}
+					F(\beta) \subset F(\gamma)
+				\end{align}
+				または
+				\begin{align}
+					F(\gamma) \subset F(\beta)
+				\end{align}
+				が成り立つが，いずれの場合も
+				\begin{align}
+					(x,y) \in O \vee (y,x) \in O
+				\end{align}
+				が従う．つまりこの場合も$F(\alpha)$は鎖である．よって超限帰納法より
+				\begin{align}
+					\forall \alpha \in \ON\, (\, F(\alpha) \in \mathscr{C}\, )
+				\end{align}
+				が成立する．
+				
+			\item[第三段]
+				$\alpha$が極限数であるとし，$F(\alpha)$が極大鎖でないとする．$\alpha$の任意の要素$\beta$に対して
+				\begin{align}
+					F(\beta) \subset F(\alpha)
+				\end{align}
+				が成り立つので$F(\beta)$もまた極大鎖ではなく，ゆえに
+				\begin{align}
+					F(\beta) \subset F(\beta + 1) \wedge F(\beta) \neq F(\beta + 1)
+				\end{align}
+				が成立する．定理(\ref{thm:direct_product_of_non_empty_sets_is_not_empty})より
+				$\alpha$上の写像$g$で，$\alpha$の任意の要素$\beta$に対して
+				\begin{align}
+					g(\beta) \in F(\beta+1) \wedge g(\beta) \notin F(\beta)
+				\end{align}
+				を満たすものが取れる．この$g$は単射である．実際，$\alpha$の二要素$\beta$と$\gamma$に対して，
+				\begin{align}
+					\beta < \gamma
+				\end{align}
+				ならば
+				\begin{align}
+					F(\beta+1) \subset F(\gamma)
+				\end{align}
+				が成り立つが，
+				\begin{align}
+					g(\beta) \in F(\beta + 1)
+				\end{align}
+				かつ
+				\begin{align}
+					g(\gamma) \notin F(\gamma)
+				\end{align}
+				が満たされているので
+				\begin{align}
+					g(\beta) \neq g(\gamma)
+				\end{align}
+				が従う．$\alpha$から$F(\alpha)$への単射が得られたので
+				\begin{align}
+					\card{\alpha} \leq \card{F(\alpha)}
+				\end{align}
+				が成立する．
+			
+			\item[第四段]
+				いま$\beta$を順序数として
+				\begin{align}
+					\card{\beta} \leq \card{F(\beta)}
+				\end{align}
+				が満たされていて，かつ$F(\beta)$は極大鎖ではないとする．
+				ここで$\beta$から$\card{\beta}$への全単射を$p$とし，
+				$\card{F(\beta)}$から$F(\beta)$への全単射を$q$とすると，
+				$q \circ p$は$\beta$から$F(\beta)$への単射である．
+				いま$F(\beta)$は極大鎖ではないので
+				\begin{align}
+					x \notin F(\beta) \wedge x \in F(\beta + 1)
+				\end{align}
+				を満たす$x$が取れて，
+				\begin{align}
+					g \defeq (q \circ p) \cup \{(\beta,x)\}
+				\end{align}
+				と$g$を定めると，$g$は$\beta+1$から$F(\beta+1)$への単射となる．すなわち
+				\begin{align}
+					\card{(\beta+1)} \leq \card{F(\beta+1)}
+				\end{align}
+				が成立する．
+				\QED
+		\end{description}
+	\end{sketch}

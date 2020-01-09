@@ -1,0 +1,443 @@
+	
+	\begin{screen}
+		\begin{dfn}[選択関数]
+			$a$を集合とするとき，
+			\begin{align}
+				f \fon a \wedge \forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )
+			\end{align}
+			を満たす写像$f$を$a$上の{\bf 選択関数}\index{せんたくかんすう@選択関数}{\bf (choice function)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$a = \emptyset$ならば空写像が$a$上の選択関数となる．
+	選択公理とは，空集合に限らずどの集合の上にも選択関数が存在することを保証する．
+	
+	\begin{screen}
+		\begin{axm}[選択公理]
+			いかなる集合の上にも選択関数が存在する:
+			\begin{align}
+				\forall a\, \exists f\ \left[\ 
+				f \fon a \wedge \forall x \in a\ 
+				(\ x \neq \emptyset \Longrightarrow f(x) \in x\ )\ \right]. 
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	後述する直積は選択公理と密接な関係がある．いま$a$を集合として
+	\begin{align}
+		b \defeq a \backslash \{\emptyset\}
+	\end{align}
+	とおき，$h$を$b$上の恒等写像とすると
+	\begin{align}
+		\forall x \in b\, (\, h(x) \neq \emptyset\, )
+	\end{align}
+	が成り立つが，ここで
+	\begin{align}
+		\forall x \in b\, (\, g(x) \in h(x)\, )
+	\end{align}
+	を満たす$b$上の写像$g$が取れるとする．この主張は``$h$の直積は空ではない''という意味なのだが，このとき
+	\begin{align}
+		f \defeq 
+		\begin{cases}
+			g \cup \{(\emptyset,\emptyset)\} & \mbox{if } \emptyset \in a \\
+			g & \mbox{if } \emptyset \notin a
+		\end{cases}
+	\end{align}
+	により$a$上の写像$f$を定めれば
+	\begin{align}
+		\forall x \in a\, (\, x \neq \emptyset \Longrightarrow f(x) \in x\, )
+	\end{align}
+	が成立する．つまり{\bf 空な値を取らない写像の直積は空でない}という主張を真とすれば選択公理が導かれるのだが，
+	実は両者は同値である．本稿では選択公理はその名の通り公理であるから，この主張は定理として得られることになる．
+	
+	\begin{screen}
+		\begin{dfn}[直積]
+			$a$を類とし，$h$を$a$上の写像とするとき，
+			\begin{align}
+				\prod_{x \in a} h(x) \defeq
+				\Set{f}{f \fon a \wedge \forall x \in a\, (\, f(x) \in h(x)\, )} 
+			\end{align}
+			で定める類を$h$の{\bf 直積}\index{ちょくせき@直積}{\bf (direct product)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$a$を集合とし，$h$を$a$上の写像とし，
+	\begin{align}
+		h(x) = \emptyset
+	\end{align}
+	なる$a$の要素$x$が取れるとする．このとき
+	\begin{align}
+		\prod_{x \in a} h(x) = \emptyset
+	\end{align}
+	が成立する．実際，$a$上の任意の写像$f$に対して必ず
+	\begin{align}
+		f(x) \notin h(x)
+	\end{align}
+	が成り立つので
+	\begin{align}
+		f \notin \prod_{x \in a} h(x)
+	\end{align}
+	が成立する．つまり任意の集合$a$及び$a$上の写像$h$に対して
+	\begin{align}
+		\exists x \in a\, (\, h(x) = \emptyset\, )
+		\Longrightarrow \prod_{x \in a} h(x) = \emptyset
+	\end{align}
+	が成り立つわけだが，選択公理から演繹すればこの逆の主張も得られる．
+	
+	\begin{screen}
+		\begin{thm}[空な値を取らない写像の直積は空でない]
+		\label{thm:direct_product_of_non_empty_sets_is_not_empty}
+			\begin{align}
+			\forall a\, \forall h\, \left(\, h \fon a \wedge \forall x \in a\, (\, h(x) \neq \emptyset\, )
+				\Longrightarrow \prod_{x \in a} h(x) \neq \emptyset\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま$a$を集合とし，$h$を$a$上の写像とし，
+		\begin{align}
+			\forall x \in a\, (\, h(x) \neq \emptyset\, )
+			\label{fom:thm_direct_product_of_non_empty_sets_is_not_empty_1}
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			b \defeq h \ast a
+		\end{align}
+		とおけば，選択公理より$b$上の写像$g$で
+		\begin{align}
+			\forall t \in b\, \left(\, t \neq \emptyset \Longrightarrow g(t) \in t\, \right)
+			\label{fom:thm_direct_product_of_non_empty_sets_is_not_empty_2}
+		\end{align}
+		を満たすものが取れる．ここで
+		\begin{align}
+			f \defeq \Set{t}{\exists x \in a\, \left[\, t = (x,g(h(x)))\, \right]}
+		\end{align}
+		と定めれば，$f$は$a$上の写像であって
+		\begin{align}
+			\forall x \in a\, \left(\, f(x) \in h(x)\, \right)
+		\end{align}
+		が成立する．実際，任意の集合$s,t,u$に対して
+		\begin{align}
+			(s,t) \in f \wedge (s,u) \in f
+		\end{align}
+		であるとすれば
+		\begin{align}
+			(s,t) = (x,g(h(x)))
+		\end{align}
+		を満たす$a$の要素$x$と
+		\begin{align}
+			(s,u) = (y,g(h(y)))
+		\end{align}
+		を満たす$a$の要素$y$が取れるが，このとき
+		\begin{align}
+			x = s = y
+		\end{align}
+		が成り立つので
+		\begin{align}
+			t = g(h(x)) = g(h(y)) = u
+		\end{align}
+		が従う．また$x$を$a$の要素とすれば
+		\begin{align}
+			(x,g(h(x))) \in f
+		\end{align}
+		が成り立つので
+		\begin{align}
+			x \in \dom{f}
+		\end{align}
+		となり，逆に$x$を$\dom{f}$の要素とすれば
+		\begin{align}
+			(x,y) \in f
+		\end{align}
+		を満たす集合$y$が取れるが，このとき
+		\begin{align}
+			(x,y) = (z,g(h(z)))
+		\end{align}
+		を満たす$a$の要素$z$が取れるので
+		\begin{align}
+			x \in a
+		\end{align}
+		が従う．ゆえに$f$は$a$上の写像である．そして$x$を$a$の要素とすれば
+		\begin{align}
+			f(x) = g(h(x))
+		\end{align}
+		が成り立つが，(\refeq{fom:thm_direct_product_of_non_empty_sets_is_not_empty_1})より
+		\begin{align}
+			h(x) \neq \emptyset
+		\end{align}
+		が満たされるので，(\refeq{fom:thm_direct_product_of_non_empty_sets_is_not_empty_2})より
+		\begin{align}
+			f(x) \in h(x)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+\section{整列可能定理}
+	\monologue{
+		整列可能定理の証明は幾分技巧的で見通しが悪いですから，はじめに直感的な解説をしておきます．
+		定理の主張は集合$a$に対して順序数$\alpha$と写像$f$で
+		\begin{align}
+			f:\alpha \bij a
+		\end{align}
+		を満たすものが取れるというものです．順序数は
+		\begin{align}
+			0,1,2,3,\cdots
+		\end{align}
+		と順番に並んでいますから，まず$0$に対して$a$の何らかの要素$x_0$を対応させます．
+		次は$1$に対して$a \backslash \{x_0\}$の何らかの要素$x_1$を対応させ，
+		その次は$2$に対して$a \backslash \{x_0,x_1\}$の要素を対応させ...と，同様の操作を
+		$a$の要素が尽きるまで繰り返します．操作が終了した時点で，それまでに使われなかった順序数のうちで
+		最小のものを$\alpha$とすれば，写像
+		\begin{align}
+			f:\alpha \ni \beta \longmapsto x_\beta \in a
+		\end{align}
+		が得られるという寸法です．`$a \backslash \{\cdots\}$の何らかの要素を対応させる'
+		という不明瞭な操作を$\mathcal{L}'$のことばで表現する際に選択公理が使われますから
+		整列可能定理は選択公理から導かれると言えますが，
+		逆に整列可能定理が真であると仮定すれば選択公理の主張が導かれます．
+		つまり(\ref{sec:logic_and_set_theory}節で登場した公理体系の下で)
+		選択公理と整列可能定理は同値な主張となります．
+	}
+	
+	
+	\begin{screen}
+		\begin{thm}[整列可能定理]\label{thm:well_ordering_theorem}
+			任意の集合は，或る順序数との間に全単射を持つ:
+			\begin{align}
+				\forall a\ \exists \alpha \in \ON\ 
+				\exists f\, \left(\, f:\alpha \bij a\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	次の主張は整列可能定理と証明が殆ど被るのでまとめて述べておく．
+	\begin{screen}
+		\begin{thm}[整列集合は唯一つの順序数に順序同型である]\label{thm:existence_of_order_type}
+			$(a,O_W)$を整列集合とするとき，或るただ一つの順序数$\alpha$と
+			$\alpha$から$a$への全単射$f$が存在して
+			\begin{align}
+				\gamma \leq \delta \Longrightarrow (f(\gamma),f(\delta)) \in O_W
+			\end{align}
+			を満たす．
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf} $\chi$を任意に与えられた$\mathcal{L}$の対象とする．
+		\begin{description}
+			\item[第一段]
+				$\chi = \emptyset$の場合，
+				\begin{align}
+					\emptyset: \emptyset \bij \chi
+				\end{align}
+				が満たされるから
+				\begin{align}
+					\exists f\, \left(\, f:\emptyset \bij \chi\, \right)
+				\end{align}
+				が成立し，$\emptyset$は$\ON$の要素であるから
+				\begin{align}
+					\exists \alpha \in \ON\, \exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				が従う．以上より
+				\begin{align}
+					\chi = \emptyset \Longrightarrow \exists \alpha \in \ON\, 
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				が成り立つ．
+				
+			\item[第二段]
+				$\chi \neq \emptyset$の場合，
+				\begin{align}
+					P \coloneqq \power{\chi} \backslash \{\chi\}
+				\end{align}
+				とおけば
+				\begin{align}
+					\forall p \in P\, (\, \chi \backslash p \neq \emptyset\, )
+				\end{align}
+				が満たされるので，選択公理より
+				\begin{align}
+					g \fon P \wedge \forall p \in P\, (\, g(p) \in \chi \backslash p\, ) 
+				\end{align}
+				を満たす写像$g$が存在する．
+				\begin{align}
+					G \coloneqq \Set{z}{\exists s\, \left(\, 
+						\left(\, \ran{s} \in P \Longrightarrow z=(s,g(\ran{s}))\, \right) 
+						\wedge \left(\, \ran{s} \notin P \Longrightarrow z=(s,\emptyset)\, \right)\, \right)}
+				\end{align}
+				で$\Univ$上の写像$G$を定めれば
+				\begin{align}
+					\forall \alpha \in \ON\, \left(\, F(\alpha) = G(F|_\alpha)\, \right)
+				\end{align}
+				を満たす類$F$が存在して，$G$の定め方より
+				\begin{align}
+					\alpha \in \ON \Longrightarrow F(\alpha) = 
+					\begin{cases}
+						g(F \ast \alpha) & (F \ast \alpha \subsetneq \chi) \\
+						\emptyset & (F \ast \alpha = a \vee F \ast \alpha \not\subset \chi)
+					\end{cases}
+				\end{align}
+				が成立する．
+				\begin{align}
+					\forall \alpha \in \ON\, \left(\, 
+					F \ast \alpha \subsetneq \chi \Longrightarrow g(F \ast \alpha) \in \chi\, \right)
+				\end{align}
+				が満たさるので
+				\begin{align}
+					F:\ON \longrightarrow \chi \cup \{\emptyset\}
+				\end{align}
+				が成立することに注意しておく．以下，適当な順序数$\gamma$を選べば
+				\begin{align}
+					F|_\gamma
+				\end{align}
+				が$\gamma$から$\chi$への全単射となることを示す．
+			
+			\item[第三段]
+				$S$を類とするとき
+				\begin{align}
+					\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq \chi\, \right)
+					\Longrightarrow \set{F \ast S} \wedge
+					F|_S:S \bij F \ast S \wedge \set{S}
+					\label{eq:thm_well_ordering_theorem_1}
+				\end{align}
+				が成り立つことを示す．いま
+				\begin{align}
+					\ord{S} \wedge \forall \alpha \in S\, \left(\, F \ast \alpha \neq \chi\, \right)
+				\end{align}
+				が成り立っているとする．このとき
+				\begin{align}
+					F(\emptyset) = g(\emptyset) \in \chi
+				\end{align}
+				が成立し，また$\alpha$を任意の順序数とすれば，
+				\begin{align}
+					\forall \beta \in \alpha\, \left(\, \beta \in S \Longrightarrow F(\beta) \in \chi\, \right)
+				\end{align}
+				が満たされているとき
+				\begin{align}
+					\alpha \in S &\Longrightarrow \alpha \subset S \\
+					&\Longrightarrow \forall \beta \in \alpha\, (\, \beta \in S\, ) \\
+					&\Longrightarrow \forall \beta \in \alpha\, (\, F(\beta) \in \chi\, ) \\
+					&\Longrightarrow F \ast \alpha \subset \chi, \\
+					\alpha \in S &\Longrightarrow F \ast \alpha \neq \chi
+				\end{align}
+				より
+				\begin{align}
+					\alpha \in S \Longrightarrow F(\alpha) \in \chi
+				\end{align}
+				が成立する．よって超限帰納法より
+				\begin{align}
+					\forall \alpha \in S\, (\, F(\alpha) \in \chi\, )
+				\end{align}
+				となる．従って
+				\begin{align}
+					F \ast S \subset \chi
+				\end{align}
+				が得られる．そして$\chi$は集合であるから
+				\begin{align}
+					\set{F \ast S}
+				\end{align}
+				が出る．次に$F|_S$が単射であることを示す．$\ord{S}$から
+				\begin{align}
+					S \subset \ON
+				\end{align}
+				が満たされるので，$\beta,\gamma \in S$に対して$\beta \neq \gamma$ならば
+				\begin{align}
+					\beta \in \gamma \vee \gamma \in \beta
+				\end{align}
+				が成り立つ．$\beta \in \gamma$の場合
+				\begin{align}
+					F(\gamma) = g(F \ast \gamma) \in \chi \backslash (F \ast \gamma)
+				\end{align}
+				が成り立つので
+				\begin{align}
+					F(\gamma) \notin F \ast \gamma
+				\end{align}
+				が従う．他方で
+				\begin{align}
+					F(\beta) \in F \ast \gamma
+				\end{align}
+				が満たされるので
+				\begin{align}
+					F(\gamma) \neq F(\beta)
+				\end{align}
+				が満たされる．よって
+				\begin{align}
+					\beta \in \gamma \Longrightarrow F(\gamma) \neq F(\beta)
+				\end{align}
+				が成立する．$\beta$と$\gamma$を入れ替えれば
+				\begin{align}
+					\gamma \in \beta \Longrightarrow F(\gamma) \neq F(\beta)
+				\end{align}
+				も得られるので，場合分け法則より
+				\begin{align}
+					\beta \neq \gamma \Longrightarrow F(\gamma) \neq F(\beta)
+				\end{align}
+				が成り立つ．よって$F|_S$は単射である．このとき
+				\begin{align}
+					F|_S:S \bij F \ast S
+				\end{align}
+				となり
+				\begin{align}
+					S = {F|_S}^{-1}(F \ast S)
+				\end{align}
+				が成り立つので，置換公理より
+				\begin{align}
+					\set{S}
+				\end{align}
+				が出る．
+				
+			\item[第四段]
+				Burali-Fortiの定理より
+				\begin{align}
+					\rightharpoondown \set{\ON}
+				\end{align}
+				が成り立つので，式(\refeq{eq:thm_well_ordering_theorem_1})の対偶から
+				\begin{align}
+					\rightharpoondown \ord{\ON} \vee 
+					\exists \alpha \in \ON\, \left(\, F \ast \alpha = \chi\, \right)
+				\end{align}
+				が従う．一方で
+				\begin{align}
+					\ord{\ON}
+				\end{align}
+				は正しいので，選言三段論法より
+				\begin{align}
+					\exists \alpha \in \ON\, \left(\, F \ast \alpha = \chi\, \right)
+				\end{align}
+				が成立する．$\gamma$を
+				\begin{align}
+					F \ast \alpha = \chi
+				\end{align}
+				を満たす順序数$\alpha$のうちで最小のものとすれば，式(\refeq{eq:thm_well_ordering_theorem_1})より
+				\begin{align}
+					F|_\gamma:\gamma \bij \chi
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\chi \neq \emptyset \Longrightarrow \exists \alpha \in \ON\ 
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				も得られた．場合分け法則より
+				\begin{align}
+					\chi = \emptyset \vee \chi \neq \emptyset \Longrightarrow \exists \alpha \in \ON\ 
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				が成立し，排中律から
+				\begin{align}
+					\exists f\, \left(\, f:\alpha \bij \chi\, \right)
+				\end{align}
+				は真となる．そして$\chi$の任意性より定理の主張が出る．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\monologue{
+		整列定理により{\bf いかなる集合の上にも整列順序が定められます}．実際，$a$を集合として
+		\begin{align}
+			g \coloneqq \varepsilon f\ \left( f:\alpha \bij a \right)
+		\end{align}
+		とおき，
+		\begin{align}
+			R \coloneqq \Set{x}{\exists s,t \in a\, \left(\, g^{-1}(s) \subset g^{-1}(t) \wedge x = (s,t)\, \right)}
+		\end{align}
+		で$a$上の関係を定めれば，$R$は$a$上の整列順序となります．まさしく`整列可能'なのですね．
+	}
