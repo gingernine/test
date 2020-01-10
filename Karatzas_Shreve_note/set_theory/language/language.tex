@@ -170,7 +170,7 @@
 			\begin{itemize}
 				\item $\bot$は式である．
 				\item $\sigma$と$\tau$を項とするとき，$\in st$と$=st$は式である．
-					これを{\bf 原子式}\index{げんししき@原子式}{\bf (atomic formula)}と呼ぶ．
+					これらを{\bf 原子式}\index{げんししき@原子式}{\bf (atomic formula)}と呼ぶ．
 				\item $\varphi$を式とするとき，$\negation \varphi$は式である．
 				\item $\varphi$と$\psi$を式とするとき，$\vee \varphi \psi,\ 
 					\wedge \varphi \psi,\ \rarrow \varphi \psi$はいずれも式である．
@@ -301,8 +301,8 @@
 			$\lang{\in}$の項に対する言明Xに対し(Xとは，例えば上の(★))，
 			\begin{itemize}
 				\item 文字に対してXが言える．
-				\item 無作為に項が与えられたとき，その全ての真部分項に対してXが言えるならば，
-					その項に対してもXが言える．
+				\item 無作為に選ばれた項$\tau$について，その全ての真部分項に対してXが言える
+					と仮定すれば，$\tau$に対してもXが言える．
 			\end{itemize}
 			ならば，いかなる項に対してもXが言える．
 		\end{metaaxm}
@@ -312,10 +312,9 @@
 		\begin{metaaxm}[$\lang{\in}$の式に対する構造的帰納法]
 			$\lang{\in}$の式に対する言明Xに対し(Xとは，例えば上の(★))，
 			\begin{itemize}
-				\item $\bot$に対してXが言える．
 				\item 原子式に対してXが言える．
-				\item 無作為に式が与えられたとき，その全ての真部分式に対してXが言えるならば，
-					その式に対してもXが言える．
+				\item 無作為に選ばれた式$\varphi$について，その全ての真部分式に対してXが言える
+					と仮定すれば，$\varphi$に対してもXが言える．
 			\end{itemize}
 			ならば，いかなる式に対してもXが言える．
 		\end{metaaxm}
@@ -363,7 +362,7 @@
 						\begin{align}
 							\negation \psi
 						\end{align}
-						なる形の式であるとき，$\varphi$の始切片で式であるももまた
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
 						\begin{align}
 							\negation \xi
 						\end{align}
@@ -449,7 +448,8 @@
 	
 	しかも$\in,\wedge,\forall$のスコープは上にあげた部分式のほかに取りようが無い．
 	上の具体例を見れば，直感的に「現れた記号のスコープはただ一つだけ，必ず取ることが出来る」
-	が一般の式に対しても当てはまるであるように思えるが，直感を排除してこれを認めるには構造的帰納法の原理が必要になる．
+	ということが一般の式に対しても当てはまるように思えるが，
+	直感を排除してこれを認めるには構造的帰納法の原理が必要になる．
 	
 	当然ながら$\lang{\in}$の式には同じ記号が何か所にも出現しうるので，
 	式$\varphi$に記号$s$が現れたと言ってもそれがどこの$s$を指定しているのかはっきりしない．
@@ -498,10 +498,10 @@
 				$t$の中に現れるものであるが，$t$は$s$の真部分項であって，
 				$t$については(※)が言えるので，結局$s$に対しても(※)が言えるのである．
 			
-			\item[case2]
-				$\bot$に対しては上の言明は当てはまる．
+			%\item[case2]
+			%	$\bot$に対しては上の言明は当てはまる．
 			
-			\item[case3]
+			\item[case2]
 				$\in s t$なる式に対しては，$\in$のスコープは$\in s t$に他ならない．
 				実際，$\in$から始まる$\in s t$の部分式は，項$u,v$が取れて
 				\begin{align}
@@ -513,40 +513,51 @@
 				メタ定理\ref{metathm:initial_segment_L_in}より$v$と$t$も一致する．
 				
 				$\in s t$に$\natural$が現れた場合，これが$s$に現れているとすると，
-				前段より項$u$が取れて，この$\natural$の出現位置から$\natural u$なる項が$s$の上に現れる．
-				また項$v$が取れて，この$\natural$の出現位置から$\natural v$なる項が
-				$\in s t$の上に現れているとしても，$u$と$v$は一方が他方の始切片となるから
-				メタ定理\ref{metathm:initial_segment_L_in}より
-				$u$と$v$は一致する．$\natural$が$t$に現れたときも同じである．
+				前段より項$u$が取れて，この$\natural$の出現位置から$\natural u$なる項が
+				$s$の上に現れる．$\natural$が$t$に現れたときも同じである．
 				以上より$\in s t$に対して定理の主張が当てはまる．
 					
-			\item[case4]
-				$\varphi$を任意に与えられた式とし，$\varphi$の全ての真部分式に対しては
-				定理の主張が当てはまっているとする．
-		
-				式$\varphi$と$\psi$に対して上の言明が当てはまるとする．
-				式$\negation \varphi$に対して，
-				$\sigma$が左端の$\negation$であるとき
-				$\sigma \varphi$は$\negation \varphi$の部分式である．
-				また$\sigma \psi$が$\sigma$のその出現位置から始まる$\negation \varphi$の部分式
-				であるとすると，
-				$\psi$は$\varphi$の左端から始まる$\varphi$の部分式ということになるので
-				メタ定理\ref{metathm:initial_segment_L_in}より$\varphi$と$\psi$は一致する．
-				$\sigma$が$\varphi$に現れる記号であれば，帰納法の仮定より
-				$\sigma$から始まる$\varphi$の部分式が一意的に得られる．
-				その部分式は$\negation \varphi$の部分式でもあるし，
-				$\negation \varphi$の部分式としての一意性は
-				メタ定理\ref{metathm:initial_segment_L_in}より従う．
-	
-				式$\vee \varphi \psi$に対して，
-				$\sigma$が左端の$\vee$であるとき，式$\xi$と$\eta$が得られて$\sigma \xi \eta$が
-				$\vee \varphi \psi$の部分式となったとすると，
-				$\xi$と$\varphi$は左端を同じくし，どちらか一方は他方の部分式である．
-				$\xi$が$\varphi$の部分式であるならば，
-				メタ定理\ref{metathm:initial_segment_L_in}より$\xi$と$\varphi$は一致する．
-				$\varphi$が$\xi$の部分式であるならば，$\xi$と$\psi$が重なるとなると
-				$\psi$の左端の記号から始まる$\xi$の部分式と$\psi$は一致しなくてはならない．
-				\QED
+			\item[case3]
+				$\varphi$を任意に与えられた式として
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の全ての真部分式に対しては(a)から(e)の主張が当てはまる
+				\end{itembox}
+				と仮定する．このとき，
+				\begin{itemize}
+					\item $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる形の式であるとき，$\natural,\in,\vee,\exists$が
+						$\varphi$に現れたなら，それらは$\psi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\negation$が現れた場合，
+						その$\negation$が$\psi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\negation$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						
+					\item $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる形の式であるとき，$\natural,\in,\negation,\exists$が
+						$\varphi$に現れたなら，それらは$\psi$か$\chi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\vee$が現れた場合，
+						その$\vee$が$\psi,\chi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\vee$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						
+					\item $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\natural,\in,\negation,\vee$が
+						$\varphi$に現れたなら，それらは$\psi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\exists$が現れた場合，
+						その$\exists$が$\psi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\exists$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						\QED
+				\end{itemize}
 		\end{description}
 	\end{metaprf}
 	

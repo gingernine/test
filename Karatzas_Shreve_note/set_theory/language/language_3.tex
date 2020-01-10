@@ -1,4 +1,4 @@
-\subsection{言語$\mathcal{L}$}
+\subsection{内包項}
 	本稿における主流の言語は，次に定める$\mathcal{L}$である．$\mathcal{L}$の最大の特徴は
 	\begin{align}
 		\Set{x}{\varphi(x)}
@@ -41,6 +41,8 @@
 				\item $\bot$は$\mathcal{L}$の式である．
 				\item $\sigma$と$\tau$を$\mathcal{L}$の項とするとき，
 					$\in st$と$=st$は$\mathcal{L}$の式である．
+					これらは$\mathcal{L}$の{\bf 原子式}\index{げんししき@原子式}
+					{\bf (atomic formula)}である．
 				\item $\varphi$を$\mathcal{L}$の式とするとき，
 					$\negation \varphi$は$\mathcal{L}$の式である．
 				\item $\varphi$と$\psi$を$\mathcal{L}$の式とするとき，
@@ -59,11 +61,9 @@
 		\end{dfn}
 	\end{screen}
 	
-	定義通りなら，式$\varepsilon$に$x$が自由に現れていない場合でも$\Set{x}{\varphi}$は
-	$\mathcal{L}$の項である．ただしそのような項は全く無用であるから，
+	定義通りなら，$\Set{x}{y=y}$のように式$\varphi$に$x$が自由に現れていない場合でも
+	$\Set{x}{\varphi}$は$\mathcal{L}$の項である．ただしそのような項は全く無用であるから，
 	後で実際に集合論を構築する際には排除してしまう(\ref{sec:restriction_of_formulas}節参照)．
-	
-	言語の拡張の仕方より明らかであるが，次が成り立つ:
 	
 	\begin{screen}
 		\begin{metathm}
@@ -123,97 +123,212 @@
 		\end{description}
 	\end{metaprf}
 	
-	$\varphi$を$\mathcal{L}$の式とし，$s$を$\varphi$に現れる記号とすると，
-	\begin{description}
-		\item[(1)] $s$は文字である．
-		\item[(2)] $s$は$\natural$である．
-		\item[(2)] $s$は$\{$である．
-		\item[(3)] $s$は$|$である．
-		\item[(4)] $s$は$\}$である．
-		\item[(5)] $s$は$\bot$である．
-		\item[(6)] $s$は$\in$か$=$である．
-		\item[(7)] $s$は$\negation$である．
-		\item[(8)] $s$は$\vee,\wedge,\rightarrow$のいずれかである．
-	\end{description}
-	
 	\begin{screen}
-		(★★) いま，$\varphi$を任意に与えられた式としよう．
-		\begin{itemize}
-			\item $\natural$が$\varphi$に現れたとき，$\lang{\in}$の項$\tau$と$\sigma$が得られて，$\natural \tau \sigma$は
-				$\natural$のその出現位置から始まる$\lang{\in}$の項となる．
-				また$\natural$のその出現位置から始まる$\lang{\in}$の項は$\natural \tau \sigma$のみである．
-				
-			\item $\{$が$\varphi$に現れたとき，$\lang{\in}$の変項$x$及び$\lang{\in}$の式$A$が得られて，
-				$\{ x|A\}$は$\{$のその出現位置から始まる項となる．
-				また$\{$のその出現位置から始まる項は$\{x|A\}$のみである．
-				
-			\item $|$が$\varphi$に現れたとき，，変項$x$と$\lang{\in}$の式$A$が得られて，
-				$\{x|A\}$は$|$のその出現位置から広がる項となる．
-				また$|$のその出現位置から広がる項は$\{x|A\}$のみである．
-				
-			\item $\}$が$\varphi$に現れたとき，変項$x$と式$A$が得られて，
-				$\{x|A\}$は$\}$のその出現位置を終点とする項となる．
-				また$\}$のその出現位置を終点とする項は$\{x|A\}$のみである．
-		\end{itemize}
+		\begin{metaaxm}[$\mathcal{L}$の式に対する構造的帰納法]
+			$\mathcal{L}$の式に対する言明Xに対し，
+			\begin{itemize}
+				\item 原子式に対してXが言える．
+				\item 無作為に選ばれた式$\varphi$について，その全ての真部分式に対してXが言える
+					と仮定すれば，$\varphi$に対してもXが言える．
+			\end{itemize}
+			ならば，いかなる式に対してもXが言える．
+		\end{metaaxm}
 	\end{screen}
 	
-	\begin{description}
-		\item[$\natural$に対して$\natural \tau \sigma$なる変項$\tau$と$\sigma$が得られること]
-			$\natural$が原子項に現れたら，原子項とは文字$x,y$によって
-			\begin{align}
-				\natural xy
-			\end{align}
-			と表されるものであるから，$\natural$に対して変項$\tau,\sigma$ (すなわち文字$x,y$)が取れたことになる．
-			$\natural$が項に現れたとする．項とは，変項$x,y$によって
-			\begin{align}
-				\natural xy
-			\end{align}
-			で表されるものであり，$\natural$は左端の$\natural$であるか，$x$に現れるか，$y$に現れる．
-			$\natural$が$x$か$y$に現れるときは帰納法の仮定により，
-			$\natural$が左端のものである場合は$x$が$\tau$，$y$が$\sigma$ということになる．
+	$\mathcal{L}$の項は帰納的な構成になっていないので構造的帰納法は不要である．
+	
+	\begin{screen}
+		\begin{metathm}[$\mathcal{L}$の始切片の一意性]
+		\label{metathm:initial_segment_L}
+			$\tau$を$\mathcal{L}$の項とするとき，$\tau$の始切片で$\mathcal{L}$の項であるものは
+			$\tau$自信に限られる．また$\varphi$を$\mathcal{L}$の式とするとき，$\varphi$の
+			始切片で$\mathcal{L}$の式であるものは$\varphi$自信に限られる．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[項について]
+				$\tau$を項とするとき，$\tau$が変項ならば
+				メタ定理\ref{metathm:initial_segment_L_in}によって，
+				$\tau$が$\lang{\varepsilon}$の項ならば
+				メタ定理\ref{metathm:initial_segment_L_epsilon}によって，
+				$\tau$の始切片で$\mathcal{L}$の項であるものは$\tau$自身に限られる．
+				$\tau$が
+				\begin{align}
+					\Set{x}{\varphi}
+				\end{align}
+				なる内包項である場合，$\tau$の始切片で項であるものも
+				\begin{align}
+					\Set{y}{\psi}
+				\end{align}
+				なる形をしている．メタ定理\ref{metathm:initial_segment_L_in}より
+				$x$と$y$が一致し，メタ定理\ref{metathm:initial_segment_L_epsilon}より
+				$\varphi$と$\psi$も一致するので，この場合も$\tau$の始切片で項であるものは
+				$\tau$自身に限られる．
+				
+			\item[式について]
+				$\in st$なる原子式については，その始切片で式であるものは
+				\begin{align}
+					\in uv
+				\end{align}
+				なる形をしているが，前段の結果より$s$と$u$，$t$と$v$は一致する．
+				$=st$なる原子式についても，その始切片で$\mathcal{L}$の式であるものは
+				$=st$に限られる．
+				
+				いま$\varphi$を任意に与えられた$\mathcal{L}$の式とし，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$に現れる任意の真部分式$\psi$に対して，
+					その始切片で式であるものは$\psi$に限られる．
+				\end{itembox}
+				と仮定する．このとき
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\negation \xi
+						\end{align}
+						なる形をしている．このとき$\xi$は$\psi$の始切片であるから，
+						(IH)より$\xi$と$\psi$は一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
 			
-		\item[変項の始切片で変項であるものは自分自身のみ]
-			$x$が文字である場合はそう．$x$の任意の部分変項が言明を満たしているなら，
-			$x$は$\natural st$なる変項である(生成規則)から，$x$の始切片は$\natural uv$なる変項である．
-			$s,t,u,v$はいずれも$x$の部分変項なので仮定が適用されている．
-			ゆえに$s$と$u$は一方が他方の始切片であり，一致する．すなわち$t$と$v$も一方が他方の始切片であり一致する．
-			ゆえに$x$の始切片で変項であるものは$x$自身である．
-			
-		\item[$\natural$に対して得られる変項の一意性]
-			$\natural xy$と$\natural st$が共に変項であるとき，$x$と$s$，$y$と$t$は一致するか．
-			$\natural xy$が原子項であるときは明らかである．
-			$x$の始切片で変項であるものは$x$自身に限られるので，
-			$x$と$s$は一致する．ゆえに$t$は$y$の始切片であり，$t$と$y$も一致する．
-		
-		\item[生成規則より$x$と$A$が得られるか]
-			$\varphi$が原子式であるとき，
-			$\{$が現れるとすれば項の中である．項とは$\lang{\in}$の項であるか$\{x|A\}$なるものであるので
-			$\{$が現れたならば$\{$とは$\{x|A\}$の$\{$である．
-			
-			$\varphi$の任意の部分式に対して言明が満たされているとする．
-			$\varphi$とは$\negation \psi,\vee \psi \xi,...$の形であるから，
-			$\varphi$に現れた$\{$とは$\psi$や$\xi$に現れるのである．ゆえに
-			仮定より$x$と$A$が取れるわけである．
-			
-		\item[$\{$に対して]
-			項の生成規則より$x$と$A$が得られる．
-			$\{y|B\}$もまた$\{$から始まる項である場合，順番に見ていって
-			$x$と$y$は一方が他方の始切片という関係になるから一致する．
-			すると$A$と$B$は一方が他方の始切片という関係になり，(★)より$A$と$B$は一致する．
-			
-		\item[$|$について]
-			項の生成規則より$x$と$A$が得られる．
-			$\{y|B\}$もまた$|$から広がる項である場合，順番に見ていって
-			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
-			$A$と$B$は一方が他方の始切片という関係になるので(★)より$A$と$B$は一致する．
-			
-		\item[$\}$について]
-			項の生成規則より$x$と$A$が得られる．
-			$\{y|B\}$もまた$\}$のその出現位置を終点とする変項である場合，
-			$A$と$B$は$\lang{\in}$の式なので$|$という記号は現れない．ゆえに
-			$A$と$B$は一致する．すると$x$と$y$は右端で揃うが，
-			$x$にも$y$にも$\{$という記号は現れないので$x$と$y$は一致する．
-	\end{description}
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \xi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\vee \eta \zeta
+						\end{align}
+						なる形をしている．このとき$\psi$と$\eta$は一方が他方の始切片であるので
+						(IH)より一致する．すると$\xi$と$\zeta$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\exists y \xi
+						\end{align}
+						なる形の式である．このとき$x$と$y$は一方が他方の始切片であり，これらは
+						変項であるからメタ定理\ref{metathm:initial_segment_L_in}より
+						一致する．すると$\psi$と$\chi$も一方が他方の始切片ということになり，
+						(IH)より一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[$\mathcal{L}$のスコープの存在]
+		\label{metathm:existence_of_scopes_L}
+			$\varphi$を$\mathcal{L}$の式，或いは$\mathcal{L}$の項とするとき，
+			\begin{description}
+				\item[(a)] $\natural$が$\varphi$に現れたとき，変項$t$が得られて，
+					$\natural$のその位置から$\natural t$なる項が$\varphi$の上に現れる．
+					
+				\item[(b)] $\{$が$\varphi$に現れたとき，変項$x$と$\mathcal{L}$の式$\psi$が得られて，
+					$\{$のその出現位置から$\Set{x}{\psi}$なる項が$\varphi$の上に現れる．
+					
+				\item[(c)] $|$が$\varphi$に現れたとき，変項$x$と$\mathcal{L}$の式$\psi$が得られて，
+					$|$のその出現位置を跨いで$\Set{x}{\psi}$なる項が$\varphi$の上に現れる．
+					
+				\item[(d)] $\}$が$\varphi$に現れたとき，変項$x$と$\mathcal{L}$の式$\psi$が得られて，
+					$\}$のその出現位置右端にして$\Set{x}{\psi}$なる項が$\varphi$の上に現れる．
+					
+				\item[(e)] $\in$が$\varphi$に現れたとき，$\mathcal{L}$の項$\sigma,\tau$が得られて，
+					$\in$のその出現位置から$\in \sigma \tau$なる式が$\varphi$の上に現れる．
+				
+				\item[(f)] $\negation$が$\varphi$に現れたとき，$\mathcal{L}$の式$\psi$が得られて，
+					$\negation$のその出現位置から$\negation \psi$なる式が
+					$\varphi$の上に現れる．	
+				
+				\item[(g)] $\vee$が$\varphi$に現れたとき，$\mathcal{L}$の式$\psi,\xi$が得られて，
+					$\vee$のその出現位置から$\vee \psi \xi$なる式が$\varphi$の上に現れる．
+				
+				\item[(h)] $\exists$が$\varphi$に現れたとき，変項$x$と$\mathcal{L}$の式$\psi$が得られて，
+					$\exists$のその出現位置から$\exists x \psi$なる式が$\varphi$の上に現れる．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[case1] $\in st$なる原子式に対しては，
+				\begin{itemize}
+					\item $\natural,\negation,\vee,\exists$が現れたとすれば，
+						それらは$s$か$t$の中に現れているのであり，
+						メタ定理\ref{metathm:existence_of_scopes_L_in}と
+						メタ定理\ref{metathm:existence_of_scopes_L_epsilon}より
+						それらのスコープは取れる．仮に$s$と$t$の一方が
+						\begin{align}
+							\Set{x}{\psi}
+						\end{align}
+						なる内包項であるとしても，$\natural,\negation,\vee,\exists$が
+						現れうるのは$x$か$\psi$の中であるから，
+						スコープの存在は上記の定理に訴えればよい．
+				
+					\item $\in st$に$\in$が現れたとすれば，それが$s,t$の中のものであるならば
+						上記の定理によってスコープは取れるし，それが$\in st$の左端の
+						$\in$を指しているなら$\in st$自身をスコープとして取れば良い．
+						
+					\item $\in st$に$\{,|,\}$が現れたとすれば，$s$と$t$の少なくとも一方は
+						\begin{align}
+							\Set{x}{\psi}
+						\end{align}
+						なる項であることになるので，スコープとしてこの内包項を取れば良い．
+				\end{itemize}
+				
+			\item[case2] $\varphi$を任意に与えられた$\mathcal{L}$の式として
+				$\varphi$を任意に与えられた式として
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の全ての真部分式に対しては(a)から(h)の主張が当てはまる
+				\end{itembox}
+				と仮定する．このとき，
+				\begin{itemize}
+					\item $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる形の式であるとき，$\natural,\{,|,\},\in,\vee,\exists$が
+						$\varphi$に現れたなら，それらは$\psi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\negation$が現れた場合，
+						その$\negation$が$\psi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\negation$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						
+					\item $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる形の式であるとき，$\natural,\{,|,\},\in,\negation,\exists$が
+						$\varphi$に現れたなら，それらは$\psi$か$\chi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\vee$が現れた場合，
+						その$\vee$が$\psi,\chi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\vee$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						
+					\item $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\natural,\{,|,\}\in,\negation,\vee$が
+						$\varphi$に現れたなら，それらは$\psi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\exists$が現れた場合，
+						その$\exists$が$\psi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\exists$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						\QED
+				\end{itemize}
+		\end{description}
+	\end{metaprf}
 	
 \subsection{量化}
 	$\varphi$を$\mathcal{L}$の式とする．もし$\varphi$に$\forall$が現れたら，
