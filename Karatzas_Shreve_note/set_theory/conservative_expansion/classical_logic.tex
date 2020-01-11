@@ -314,9 +314,73 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{thm}[論理和の対称律]
+		\label{classic:symmetry_of_disjunction}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				\varphi \vee \psi \rarrow \psi \vee \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理和の導入(DI1)(DI2)より
+		\begin{align}
+			&\provable{\mbox{{\bf HK}}} \varphi \rarrow \psi \vee \varphi, \\
+			&\provable{\mbox{{\bf HK}}} \psi \rarrow \psi \vee \varphi
+		\end{align}
+		が成り立つので，論理和の除去(DE)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \varphi \vee \psi \rarrow \psi \vee \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[含意の論理和への遺伝性]
+		\label{classic:heredity_of_implication_to_disjunction}
+			$\varphi$と$\psi$と$\chi$を$\lang{\varepsilon}$の式とするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \varphi \rarrow \psi\, )
+				\rarrow (\, \varphi \wedge \chi \rarrow \psi \wedge \chi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			\varphi,\ \varphi \rarrow \psi \provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		が成り立ち，論理和の導入(DI1)より
+		\begin{align}
+			\varphi,\ \varphi \rarrow \psi \provable{\mbox{{\bf HK}}} \psi \vee \chi
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}} 
+			\varphi \rarrow \psi \vee \chi
+		\end{align}
+		が得られる．他方で論理和の導入(DI2)より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}} 
+			\chi \rarrow \psi \vee \chi
+		\end{align}
+		も成り立つので，論理和の除去(DE)より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}} 
+			\varphi \vee \chi \rarrow \psi \vee \chi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[含意の論理積への遺伝性]
 		\label{classic:heredity_of_implication_to_conjunction}
-			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$と$\psi$と$\chi$を$\lang{\varepsilon}$の式とするとき，
 			\begin{align}
 				\provable{\mbox{{\bf HK}}} (\, \psi \rarrow \chi\, )
 				\rarrow (\, \varphi \wedge \psi \rarrow \varphi \wedge \chi\, ).
@@ -691,6 +755,27 @@
 		\end{thm}
 	\end{screen}
 	
+	\begin{sketch}
+		含意の論理和への遺伝性(定理\ref{classic:heredity_of_implication_to_disjunction})
+		と演繹定理より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}}
+			\varphi \vee \negation \varphi \rarrow \psi \vee \negation \varphi
+		\end{align}
+		が成り立ち，排中律(定理\ref{classic:law_of_excluded_middle})との三段論法より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}}
+			\psi \vee \negation \varphi
+		\end{align}
+		が従い，論理和の対称律(定理\ref{classic:symmetry_of_disjunction})より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation \varphi \vee \psi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
 		\begin{thm}[De Morganの法則2]
 		\label{classic:De_Morgan_law_2}
@@ -732,20 +817,6 @@
 	
 	\begin{screen}
 		\begin{thm}
-			$\varphi$と$\lang{\varepsilon}$の式とし，$x$と$y$を変項とし，$\varphi$には$x$が
-			自由に現れて，$y$は$\varphi$の中で$x$への代入について自由であるとするとき，
-			\begin{align}
-				\provable{\mbox{{\bf HK}}} \exists x \varphi \rarrow \exists y \varphi(x/y).
-			\end{align}
-		\end{thm}
-	\end{screen}
-	
-	\begin{sketch}
-		
-	\end{sketch}
-	
-	\begin{screen}
-		\begin{thm}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
 			$\psi$には$x$が自由に現れて，$\varphi$に$x$が自由に現れないとするとき，
 			\begin{align}
@@ -768,6 +839,32 @@
 		\end{align}
 	\end{sketch}
 	
+	\begin{screen}
+		\begin{thm}
+			$\varphi$と$\lang{\varepsilon}$の式とし，$x$と$y$を変項とし，$\varphi$には$x$が
+			自由に現れて，$y$は$\varphi$の中で$x$への代入について自由であるとするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \exists x \varphi \rarrow \exists y \varphi(x/y).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		量化の公理(EI)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \varphi \rarrow \exists y \varphi(x/y)
+		\end{align}
+		が成り立ち，汎化によって
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x\, (\, \varphi \rarrow \exists y \varphi(x/y)\, )
+		\end{align}
+		となり，量化の公理(EE)によって
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \exists x \varphi \rarrow \exists y \varphi(x/y).
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}
