@@ -67,6 +67,7 @@
 		\end{metadfn}
 	\end{screen}
 	
+\subsection{最小論理}
 	\begin{screen}
 		\begin{thm}[対偶律$1$]\label{classic:contraposition_1}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
@@ -422,7 +423,8 @@
 		が従う．
 		\QED
 	\end{sketch}
-	
+
+\subsection{二重否定の除去}
 %以下(DNE)を使う．
 	\begin{screen}
 		\begin{thm}[対偶律3]\label{classic:contraposition_3}
@@ -500,6 +502,185 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{thm}[背理法の原理]
+		\label{classic:proof_by_contradiction}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \negation \varphi \rarrow \bot\, )
+				\rarrow \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		否定の導入(NI)と演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow \bot \provable{\mbox{{\bf HK}}}\ 
+			\negation \negation \varphi
+		\end{align}
+		が成り立ち，二重否定の除去(DNE)より
+		\begin{align}
+			\negation \varphi \rarrow \bot \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[爆発律]
+		\label{classic:principle_of_explosion}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \bot \rarrow \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		含意の導入(K)と演繹定理より
+		\begin{align}
+			\bot \provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot
+		\end{align}
+		が成り立ち，背理法の原理(定理\ref{classic:proof_by_contradiction})より
+		\begin{align}
+			\bot \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[否定の論理和は含意で表せる]
+		\label{classic:disjunction_of_negation_rewritable_by_implication}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \negation \varphi \vee \psi\, )
+				\rarrow (\, \varphi \rarrow \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		矛盾の導入(CTD1)と演繹定理より
+		\begin{align}
+			\negation \varphi,\ \varphi \provable{\mbox{{\bf HK}}} \bot 
+		\end{align}
+		となり，爆発律(定理\ref{classic:principle_of_explosion})より
+		\begin{align}
+			\negation \varphi,\ \varphi \provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow 
+			(\, \varphi \rarrow \psi\, )
+		\end{align}
+		が得られる．他方で含意の導入(K)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \psi \rarrow (\, \varphi \rarrow \psi\, )
+		\end{align}
+		も成り立つので，論理和の除去(DE)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} (\, \negation \varphi \vee \psi\, ) 
+			\rarrow (\, \varphi \rarrow \psi\, )
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[驚嘆すべき帰結]\label{classic:consequentia_mirabilis}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				(\, \negation \varphi \rarrow \varphi\, ) \rarrow \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			\negation \varphi,\ \negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が成り立ち，矛盾の導入(CTD1)より
+		\begin{align}
+			\negation \varphi,\ \negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot
+		\end{align}
+		が成り立ち，三段論法より
+		\begin{align}
+			\negation \varphi,\ \negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}} \bot
+		\end{align}
+		が従う．演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot
+		\end{align}
+		となり，背理法の原理(定理\ref{classic:proof_by_contradiction})より
+		\begin{align}
+			\negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[排中律]\label{classic:law_of_excluded_middle}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理和の導入(DI1)と演繹定理より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi
+		\end{align}
+		が成り立ち，矛盾の導入(CTD1)より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \vee \negation \varphi\, ) \rarrow \bot
+		\end{align}
+		が成り立ち，演繹定理より
+		\begin{align}
+			\varphi,\ \negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}} \bot
+		\end{align}
+		となり，再び演繹定理より
+		\begin{align}
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}} \varphi \rarrow \bot
+		\end{align}
+		となり，否定の導入(NI)より
+		\begin{align}
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi
+		\end{align}
+		が成り立つ．論理和の導入(DI2)より
+		\begin{align}
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\rarrow \varphi \vee \negation \varphi
+		\end{align}
+		が成り立ち，驚嘆すべき帰結(定理\ref{classic:consequentia_mirabilis})との三段論法より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[含意は否定と論理和で表せる]
 		\label{classic:implication_rewritable_by_disjunction_of_negation}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
@@ -523,7 +704,7 @@
 	\end{screen}
 	
 	\begin{sketch}
-		論理積の導入(CI)より
+		論理積の導入(CI2)より
 		\begin{align}
 			\varphi \provable{\mbox{{\bf HK}}}\ \negation \psi
 			\rarrow \varphi \wedge \negation \psi
@@ -535,15 +716,15 @@
 		\end{align}
 		が成り立つ．演繹定理より
 		\begin{align}
-			\varphi,\ \varphi \wedge \negation \psi &\provable{\mbox{{\bf HK}}}
-			\psi, \\
-			\varphi \wedge \negation \psi \provable{\mbox{{\bf HK}}}
-			\varphi \rarrow \psi
+			\varphi,\ \negation (\, \varphi \wedge \negation \psi\, ) 
+			&\provable{\mbox{{\bf HK}}} \psi, \\
+			\negation (\, \varphi \wedge \negation \psi\, ) 
+			&\provable{\mbox{{\bf HK}}} \varphi \rarrow \psi
 		\end{align}
-		が従い，否定と論理和に書き換えれば
+		が従い，右辺を否定と論理和に書き換えれば
 		\begin{align}
-			\varphi \wedge \negation \psi \provable{\mbox{{\bf HK}}}
-			\ \negation \varphi \vee \psi
+			\negation (\, \varphi \wedge \negation \psi\, ) 
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \vee \psi
 		\end{align}
 		が得られる(定理\ref{classic:implication_rewritable_by_disjunction_of_negation})．
 		\QED
