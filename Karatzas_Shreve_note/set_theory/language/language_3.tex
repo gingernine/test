@@ -226,6 +226,45 @@
 		\end{description}
 	\end{metaprf}
 	
+	$\varphi$を$\mathcal{L}$の式とし，$s$を
+	\begin{align}
+		\natural,\ \{,\ \in,\ \negation,\ \vee,
+		\ \wedge,\ \rarrow,\ \exists,\ \forall,\ \varepsilon
+	\end{align}
+	のいずれかの記号とするとき，$s$が$\varphi$に現れたら$s$のその出現位置から始まる$\varphi$の部分式
+	(ただし$s$が``$\natural,\{,\varepsilon$''である場合は部分項)を$s$の
+	{\bf スコープ}\index{スコープ}{\bf (scope)}と呼ぶ．ところで$\varphi$には
+	\begin{align}
+		|, \quad \}
+	\end{align}
+	も現れるので，これらにもスコープを割り当てるために
+	\begin{itemize}
+		\item $\varphi$に``$|$''が現れたら，``$|$''のその出現位置を跨いで$\varphi$の上に
+			現れる内包項$\Set{x}{\psi}$をその``$|$''のスコープと呼ぶ．
+			つまり現れた``$|$''とは$\Set{x}{\psi}$の中心線``$|$''のことである．
+			
+		\item $\varphi$に``$\}$''が現れたら，``$\}$''のその出現位置を右端にして$\varphi$の上に
+			現れる内包項$\Set{x}{\psi}$をその``$\}$''のスコープと呼ぶ．
+			つまり現れた``$\}$''とは$\Set{x}{\psi}$の右端の``$\}$''のことである．
+	\end{itemize}
+	と定める．すると，次のメタ定理によって``$\natural,\ \{,\ |,\ \},\ \in,\ \negation,\ \vee,
+	\ \wedge,\ \rarrow,\ \exists,\ \forall,\ \varepsilon$''の全ての記号に対して
+	スコープが取れることが保証される．
+	
+	取れるスコープの唯一性はメタ定理\ref{metathm:initial_segment_L}からすぐに従い，
+	その証明は$\lang{\in}$や$\lang{\varepsilon}$の場合と殆ど同様であるが，
+	``$|$''と``$\}$''のスコープの唯一性について書いておくと
+	\begin{itemize}
+		\item $\varphi$の中で``$|$''のスコープ$\Set{x}{\psi}$と$\Set{y}{\chi}$が取れたとすれば，
+			$\psi$と$\chi$は$\varphi$の中で同じ位置から始まる式であるから
+			メタ定理\ref{metathm:initial_segment_L_epsilon}より一致する．
+			また$x$と$y$は変項であるからその中に``$\{$''が現れるはずはなく，$x$と$y$も一致すると判る．
+			
+		\item $\varphi$の中で``$\}$''のスコープ$\Set{x}{\psi}$と$\Set{y}{\chi}$が取れたとすれば，
+			$\psi$と$\chi$は$\lang{\varepsilon}$の式であるからその中に``$|$''が現れるはずはなく，
+			両者は一致していなくてはならない．すると上と同様に$x$と$y$も一致していなくてはならない．
+	\end{itemize}
+	
 	\begin{screen}
 		\begin{metathm}[$\mathcal{L}$のスコープの存在]
 		\label{metathm:existence_of_scopes_L}
@@ -272,14 +311,14 @@
 							\Set{x}{\psi}
 						\end{align}
 						なる内包項であるとしても，$\natural,\negation,\vee,\exists$が
-						現れうるのは$x$か$\psi$の中であるから，
-						スコープの存在は上記の定理に訴えればよい．
+						現れうるのは$x$或いは$\psi$の中であるから，
+						スコープの存在は上記のメタ定理に訴えればよい．
 				
-					\item $\in st$に$\in$が現れたとすれば，それが$s,t$の中のものであるならば
+					\item $\in st$に$\in$が現れたとすれば，それが$s,t$の中のものならば
 						上記の定理によってスコープは取れるし，それが$\in st$の左端の
 						$\in$を指しているなら$\in st$自身をスコープとして取れば良い．
 						
-					\item $\in st$に$\{,|,\}$が現れたとすれば，$s$と$t$の少なくとも一方は
+					\item $\in st$に$\{,\ |,\ \}$が現れたとすれば，$s$と$t$の少なくとも一方は
 						\begin{align}
 							\Set{x}{\psi}
 						\end{align}
