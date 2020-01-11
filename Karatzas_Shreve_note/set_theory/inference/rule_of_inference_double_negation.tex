@@ -187,6 +187,58 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{thm}[驚嘆すべき帰結]\label{logicalthm:consequentia_mirabilis}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow A\, ) \rarrow A.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash A
+		\end{align}
+		が成り立ち，他方で矛盾の導入(CTD1)より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A
+			\vdash A \rarrow (\, \negation A \rarrow \bot\, )
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash\ \negation A \rarrow \bot
+		\end{align}
+		が従う．
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash\ \negation A
+		\end{align}
+		との三段論法より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash \bot
+		\end{align}
+		となり，演繹規則より
+		\begin{align}
+			\negation A \rarrow A \vdash\ \negation A \rarrow \bot
+		\end{align}
+		が従う．背理法の原理(推論法則\ref{logicalthm:proof_by_contradiction})より
+		\begin{align}
+			\negation A \rarrow A \vdash (\, \negation A \rarrow \bot\, )
+			\rarrow A
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			\negation A \rarrow A \vdash A
+		\end{align}
+		となり，演繹規則より
+		\begin{align}
+			\vdash (\, \negation A \rarrow A\, ) \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{logicalthm}[排中律]\label{logicalthm:law_of_excluded_middle}
 			$A$を文とするとき
 			\begin{align}
@@ -196,46 +248,60 @@
 	\end{screen}
 	
 	\begin{prf}
+		論理和の導入より
 		\begin{align}
-			\negation (A \vee \negation A), A \vdash A
+			A \vdash A \vee \negation A
 		\end{align}
-		と$\vee$の導入より
+		となり，他方で矛盾の導入より
 		\begin{align}
-			\negation (A \vee \negation A), A \vdash A \vee \negation A
+			A \vdash (\, A \vee \negation A\, )
+			\rarrow (\, \negation (\, A \vee \negation A\, ) \rarrow \bot\, )
 		\end{align}
-		が成り立つ．一方で
+		も成り立つので三段論法より
 		\begin{align}
-			\negation (A \vee \negation A), A \vdash\ \negation (A \vee \negation A)
+			A \vdash\ \negation (\, A \vee \negation A\, ) \rarrow \bot
 		\end{align}
-		も成り立つので
+		が従う．演繹法則の逆より
 		\begin{align}
-			\negation (A \vee \negation A), A \vdash \bot
+			\negation (\, A \vee \negation A\, ),\ A \vdash \bot
 		\end{align}
-		が成り立つ．演繹法則より
+		となり，演繹規則より
 		\begin{align}
-			\negation (A \vee \negation A) \vdash A \rarrow \bot
+			\negation (\, A \vee \negation A\, ) \vdash A \rarrow \bot
 		\end{align}
-		が成り立つので，否定の導出より
+		となる．否定の導入より
 		\begin{align}
-			\negation (A \vee \negation A) \vdash\ \negation A
+			\negation (\, A \vee \negation A\, ) \vdash (\, A \rarrow \bot\, )
+			\rarrow\ \negation A
 		\end{align}
-		が成り立つ．再び$\vee$の導入によって
+		が成り立つので三段論法より
 		\begin{align}
-			\negation (A \vee \negation A) \vdash A \vee \negation A
+			\negation (\, A \vee \negation A\, ) \vdash\ \negation A
 		\end{align}
-		が成り立つ．再び否定の導出より
+		が従う．論理和の導入より
 		\begin{align}
-			\negation (A \vee \negation A) \vdash \bot
+			\negation (\, A \vee \negation A\, ) \vdash\ \negation A
+			\rarrow A \vee \negation A
 		\end{align}
-		が成り立つ．ゆえに
+		が成り立つので三段論法より
 		\begin{align}
-			\vdash\ \negation (A \vee \negation A) \rarrow \bot
+			\negation (\, A \vee \negation A\, ) \vdash A \vee \negation A
 		\end{align}
-		が成り立ち，背理法の原理より
+		が従い，演繹規則より
+		\begin{align}
+			\vdash\ \negation (\, A \vee \negation A\, ) \rarrow A \vee \negation A
+		\end{align}
+		が成り立つ．驚嘆すべき帰結(推論法則\ref{logicalthm:consequentia_mirabilis})より
+		\begin{align}
+			\vdash
+			(\, \negation (\, A \vee \negation A\, ) \rarrow A \vee \negation A\, )
+			\rarrow A \vee \negation A
+		\end{align}
+		が成り立つので三段論法より
 		\begin{align}
 			\vdash A \vee \negation A
 		\end{align}
-		が得られる．
+		が出る．
 		\QED
 	\end{prf}
 	
