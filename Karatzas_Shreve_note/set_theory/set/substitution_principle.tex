@@ -9,6 +9,105 @@
 	\end{align}
 	が成立するというのは{\bf 代入原理}\index{だいにゅうげんり@代入原理}
 	{\bf (the principle of substitution)}と呼ばれる．
+	第\ref{sec:restriction_of_formulas}節で決めたことをここでも注意しておくと，
+	{\bf 扱う式は全て，そこに現れる$\varepsilon$項は全て主要$\varepsilon$項であり，
+	現れる内包項は全て正則内包項であるとする．}始めにいくつか必要な定理を示しておく．
+	
+	\begin{screen}
+		\begin{logicalthm}
+		\label{logicalthm:lemma_for_principle_of_substitution}
+			$\psi,\chi,\psi',\chi'$を文とするとき，
+			\begin{align}
+				\psi \rarrow \psi',\ \chi \rarrow \chi' &\vdash
+				\psi \vee \chi \rarrow \psi' \vee \chi', 
+				\label{fom:lemma_for_principle_of_substitution_1} \\
+				\psi \rarrow \psi',\ \chi \rarrow \chi' &\vdash
+				\psi \wedge \chi \rarrow \psi' \wedge \chi', 
+				\label{fom:lemma_for_principle_of_substitution_2} \\
+				\psi' \rarrow \psi,\ \chi \rarrow \chi' &\vdash
+				(\, \psi \rarrow \chi\, ) \rarrow (\, \psi' \rarrow \chi'\, )
+				\label{fom:lemma_for_principle_of_substitution_3}.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{itemize}
+			\item (\refeq{fom:lemma_for_principle_of_substitution_1})を示す．
+				\begin{align}
+					\psi,\ \psi \rarrow \psi',\ \chi \rarrow \chi' \vdash \psi'
+				\end{align}
+				と論理和の導入より
+				\begin{align}
+					\psi,\ \psi \rarrow \psi',\ \chi \rarrow \chi' \vdash \psi' \vee \chi'
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\psi \rarrow \psi',\ \chi \rarrow \chi' \vdash 
+					\psi \rarrow \psi' \vee \chi'
+				\end{align}
+				が従う．同様に
+				\begin{align}
+					\psi \rarrow \psi',\ \chi \rarrow \chi' \vdash 
+					\chi \rarrow \psi' \vee \chi'
+				\end{align}
+				も成り立ち，論理和の除去より
+				\begin{align}
+					\psi \rarrow \psi',\ \chi \rarrow \chi' \vdash 
+					\psi \vee \chi \rarrow \psi' \vee \chi'
+				\end{align}
+				が得られる．
+				
+			\item (\refeq{fom:lemma_for_principle_of_substitution_2})を示す．
+				論理積の除去より
+				\begin{align}
+					\psi \wedge \chi,\ \psi \rarrow \psi',\ \chi \rarrow \chi' 
+					\vdash \psi
+				\end{align}
+				が成り立つので三段論法より
+				\begin{align}
+					\psi \wedge \chi,\ \psi \rarrow \psi',\ \chi \rarrow \chi' 
+					\vdash \psi'
+				\end{align}
+				が従う．同様に
+				\begin{align}
+					\psi \wedge \chi,\ \psi \rarrow \psi',\ \chi \rarrow \chi' 
+					\vdash \chi'
+				\end{align}
+				も成り立ち，論理積の導入より
+				\begin{align}
+					\psi \wedge \chi,\ \psi \rarrow \psi',\ \chi \rarrow \chi' 
+					\vdash \psi' \wedge \chi'
+				\end{align}
+				が得られる．
+				
+			\item (\refeq{fom:lemma_for_principle_of_substitution_3})を示す．
+				\begin{align}
+					\psi',\ \psi \rarrow \chi,\ \psi' \rarrow \psi,\ \chi \rarrow \chi' &\vdash \psi, \\
+					\psi',\ \psi \rarrow \chi,\ \psi' \rarrow \psi,\ \chi \rarrow \chi' &\vdash \psi \rarrow \chi
+				\end{align}
+				より
+				\begin{align}
+					\psi',\ \psi \rarrow \chi,\ \psi' \rarrow \psi,\ \chi \rarrow \chi' \vdash \chi
+				\end{align}
+				が成り立ち，再び三段論法より
+				\begin{align}
+					\psi',\ \psi \rarrow \chi,\ \psi' \rarrow \psi,\ \chi \rarrow \chi' \vdash \chi'
+				\end{align}
+				が従う．演繹法則より
+				\begin{align}
+					\psi' \rarrow \psi,\ \chi \rarrow \chi' \vdash
+					(\, \psi \rarrow \chi\, ) \rarrow (\, \psi' \rarrow \chi'\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{itemize}
+	\end{sketch}
+	
+	代入原理を示すには構造的帰納法の原理が必要になるので，証明はメタなものとなる．
+	
+	\begin{comment}
+	
 	この原理の証明は相等性公理に負うところが多いが，
 	本稿では$\varepsilon$項という厄介なものを抱え込んでいるため
 	$\EQAX$だけでは不十分であり，次に追加する公理が必要になる．
@@ -24,27 +123,47 @@
 		\end{axm}
 	\end{screen}
 	
-	代入原理を示すには構造的帰納法の原理が必要になるので，証明はメタなものとなる．
+	\end{comment}
 	
 	\begin{screen}
 		\begin{thm}[代入原理]\label{thm:the_principle_of_substitution}
-			$a,b$を類とし，$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項
-			とし，$\varphi$に自由に現れる変項は$x$のみであるとする．このとき
+			$a,b$を類とし，$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみ自由に現れるとする．このとき
 			\begin{align}
-				\EXTAX,\EQAX,\EQAXEP \vdash a = b \rarrow 
+				\EXTAX,\ \EQAX,\ \COMAX,\ \ELEAX \vdash a = b \rarrow 
+				(\, \varphi(a) \lrarrow \varphi(b)\, )
+			\end{align}
+			が成り立つ．ただし$\varphi$が$\lang{\varepsilon}$の式であるときは
+			\begin{align}
+				\EXTAX,\EQAX \vdash a = b \rarrow 
 				(\, \varphi(a) \lrarrow \varphi(b)\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
+	$\varphi$が$\lang{\varepsilon}$の式であるとして証明すれば十分である．
+	実際$\varphi$を$x$のみが自由に現れる$\mathcal{L}$の式とし，
+	$\varphi$を$\lang{\varepsilon}$の式に書き直したものを$\hat{\varphi}$と書くと，
+	$\lang{\varepsilon}$の式に対して代入原理が成り立つのであれば
+	\begin{align}
+		a = b,\ \EXTAX,\EQAX \vdash \hat{\varphi}(a) \lrarrow \hat{\varphi}(b)
+	\end{align}
+	がとなるが，書き換えの同値性(\ref{sec:equivalence_of_formula_rewriting}節)より
+	\begin{align}
+		\EXTAX,\ \EQAX,\ \COMAX,\ \ELEAX &\vdash \varphi(a) \rarrow \hat{\varphi}(a), \\
+		\EXTAX,\ \EQAX,\ \COMAX,\ \ELEAX &\vdash \hat{\varphi}(b) \rarrow \varphi(b)
+	\end{align}
+	が成り立つので
+	\begin{align}
+		a = b,\ \EXTAX,\ \EQAX,\ \COMAX,\ \ELEAX \vdash \varphi(a) \lrarrow \varphi(b)
+	\end{align}
+	が従う．
+	
 	\begin{sketch}\mbox{}
 		\begin{description}
 			\item[step1]
-				$c$を類として，$\varphi$が
-				\begin{align}
-					x \in c
-				\end{align}
-				なる式であるとき，
+				始めの$3$ステップでは$\varphi$が原子式であるとして考察する．
+				$c$を類とすると，相等性公理から直接
 				\begin{align}
 					a = b,\ \EQAX \vdash a \in c \rarrow b \in c
 				\end{align}
@@ -56,7 +175,7 @@
 				\begin{align}
 					a = b,\ \EQAX \vdash b \in c \rarrow a \in c
 				\end{align}
-				も成り立つ．ゆえに
+				も成り立つ．従って
 				\begin{align}
 					a = b,\ \EQAX \vdash a \in c \lrarrow b \in c
 				\end{align}
@@ -64,8 +183,162 @@
 				\begin{align}
 					a = b,\ \EQAX \vdash c \in a \lrarrow c \in b
 				\end{align}
-				も得られる．
+				も得られるので，$\varphi$が
+				\begin{align}
+					x \in c
+				\end{align}
+				や
+				\begin{align}
+					c \in x
+				\end{align}
+				なる式であるときは
+				\begin{align}
+					\EQAX \vdash a = b \rarrow (\, \varphi(a) \lrarrow \varphi(b)\, )
+				\end{align}
+				が成り立つ．
+			
+			\item[step2]
+				$c$を類とすると，等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash a = c \rarrow b = c
+				\end{align}
+				となる．また
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX b = a
+				\end{align}
+				と等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash b = c \rarrow a = c
+				\end{align}
+				も成り立つ．従って
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash a = c \lrarrow b = c
+				\end{align}
+				が得られる．つまり$\varphi$が
+				\begin{align}
+					x = c
+				\end{align}
+				なる式であるときは
+				\begin{align}
+					\EQAX \vdash a = b \rarrow (\, \varphi(a) \lrarrow \varphi(b)\, )
+				\end{align}
+				が成り立つ．
 				
+			\item[step3]
+				$c$を類とすると，等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash a = c \rarrow b = c
+				\end{align}
+				となるが，ここで
+				\begin{align}
+					c = a,\ \EQAX \vdash a = c
+				\end{align}
+				なので
+				\begin{align}
+					c = a,\ a = b,\ \EXTAX,\EQAX \vdash b = c
+				\end{align}
+				が成り立ち，また
+				\begin{align}
+					\EQAX \vdash b = c \rarrow c = b
+				\end{align}
+				より
+				\begin{align}
+					c = a,\ a = b,\ \EXTAX,\EQAX \vdash c = b
+				\end{align}
+				が従い，演繹法則より
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash c = a \rarrow c = b
+					\label{fom:the_principle_of_substitution_1}
+				\end{align}
+				が得られる．
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash b = a
+				\end{align}
+				と(\refeq{fom:the_principle_of_substitution_1})より
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash c = b \rarrow c = a
+				\end{align}
+				も得られるので
+				\begin{align}
+					a = b,\ \EXTAX,\EQAX \vdash c = a \lrarrow c = b
+				\end{align}
+				が成り立つ．従って$\varphi$が
+				\begin{align}
+					c = x
+				\end{align}
+				なる式であるときも
+				\begin{align}
+					\EXTAX,\EQAX \vdash a = b \rarrow (\, \varphi(a) \lrarrow \varphi(b)\, )
+				\end{align}
+				が成り立つ．
+			
+			\item[step4]
+				$\varphi$を$x$のみが自由に現れる$\lang{\varepsilon}$の式として
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式$\psi$に対して，
+					$\psi$に$x$が自由に現れているならば
+					\begin{align}
+						\EXTAX,\EQAX \vdash a = b \rarrow (\, \psi(a) \lrarrow \psi(b)\, )
+					\end{align}
+				\end{itembox}
+				と仮定する．このとき
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式であるとき，(IH)より
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash \psi(a) \lrarrow \psi(b)
+						\end{align}
+						が成り立つので，対偶を取れば
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash\ 
+							\negation \psi(a) \lrarrow\ \negation \psi(b)
+						\end{align}
+						が成り立つ．
+						
+					\item[case2]
+						$\varphi$が
+						\begin{align}
+							\psi \vee \chi
+						\end{align}
+						なる式であるとき，
+						\begin{align}
+							\psi_{a} \defarrow
+							\begin{cases}
+								\psi(a) & \mbox{if $\psi$に$x$が自由に現れる} \\
+								\psi & \mbox{if $\psi$に$x$が自由に現れない}
+							\end{cases}
+						\end{align}
+						と定め，同様に$\psi_{b},\chi_{a},\chi_{b}$も定めれば，(IH)より
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX &\vdash \psi_{a} \lrarrow \psi_{b}, \\
+							a = b,\ \EXTAX,\EQAX &\vdash \chi_{a} \lrarrow \chi_{b}
+						\end{align}
+						が満たされる．
+						(\refeq{fom:lemma_for_principle_of_substitution_1})より
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash\ 
+							\negation \psi_{a} \vee \chi_{a} \lrarrow\ \negation \psi_{b} \vee \chi_{b}
+						\end{align}
+						が成り立つ．$\varphi$が
+						\begin{align}
+							\psi \wedge \chi
+						\end{align}
+						や
+						\begin{align}
+							\psi \rarrow \chi
+						\end{align}
+						なる式であるときも同様である．
+					
+					\item[case3]
+						
+						
+				\end{description}
+				
+			\begin{comment}
+			%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%
 			\item[step2]
 				$\varphi$が
 				\begin{align}
@@ -147,5 +420,8 @@
 					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
 				\end{align}
 				が成立する．
+			%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%
+			\end{comment}
+			
 		\end{description}
 	\end{sketch}
