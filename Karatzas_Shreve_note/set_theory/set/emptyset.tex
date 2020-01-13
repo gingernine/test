@@ -79,22 +79,29 @@
 	\end{screen}
 	
 	$\Set{x}{\varphi(x)}$は集合であるとは限らないが，
-	集合$a$に対して
+	集合$a$との交叉(後述)
 	\begin{align}
 		a \cap \Set{x}{\varphi(x)}
 	\end{align}
-	なる類は当然$a$より``小さい集まり''なのだから，集合であってほしいものである．
-	置換公理によってそのこと保証され，分出定理として知られている．
+	は当然$a$より``小さい集まり''なのだから，集合であってほしいものである．
+	これを公理化した式は{\bf 分出公理}\index{ぶんしゅつこうり@分出公理}
+	{\bf (axiom of separation)}と呼ばれるが，公理化せずとも置換公理によって導かれる．
 	
 	\begin{screen}
 		\begin{thm}[分出定理]\label{thm:axiom_of_separation}
-			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる項は$x$のみであるとする．このとき
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，$\varphi$には
+			$x$のみが自由に現れるとするとき，
 			\begin{align}
-				\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash 
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash 
 				\forall a\, \exists s\, \forall x\,
 				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
 				\label{fom:thm_axiom_of_separation_0}
+			\end{align}
+			が成り立つ．ただし$\varphi$が$\lang{\varepsilon}$の式であるときは
+			\begin{align}
+				\EXTAX,\EQAX,\REPAX \vdash 
+				\forall a\, \exists s\, \forall x\,
+				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -135,7 +142,7 @@
 					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) 
 					\vdash \tau = \sigma \wedge \tau = \rho
 				\end{align}
-				がとなり，さらに論理積の除去法則より
+				がとなり，さらに論理積の除去より
 				\begin{align}
 					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) &\vdash \tau = \sigma, \\
 					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) &\vdash \tau = \rho
@@ -184,7 +191,7 @@
 					\psi(x,v)\, )\, )
 					\label{fom:thm_axiom_of_separation_2}
 				\end{align}
-				が成立する．(\refeq{fom:thm_axiom_of_separation_1})を示したいので
+				が成立する．(\refeq{fom:thm_axiom_of_separation_0})を示したいので
 				\begin{align}
 					\alpha \defeq \varepsilon a \negation \exists s\, \forall x\,
 					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
@@ -211,8 +218,7 @@
 					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
 					\psi(x,v)\, )\, )
 				\end{align}
-				とおけば，量化子の推論規則と(\refeq{fom:thm_axiom_of_separation_2})との
-				三段論法により
+				とおけば，存在記号の推論規則により
 				\begin{align}
 					\EXTAX,\EQAX,\REPAX \vdash \forall v\,
 					(\, v \in \zeta \lrarrow \exists x\, (\, x \in \alpha \wedge 
@@ -224,7 +230,7 @@
 			\item[step3]
 				最後に
 				\begin{align}
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \forall x\,
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash \forall x\,
 					(\, x \in \zeta \lrarrow x \in \alpha \wedge \varphi(x)\, )
 					\label{fom:thm_axiom_of_separation_8}
 				\end{align}
@@ -267,7 +273,7 @@
 					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash 
 						\sigma = \tau \rarrow (\, \sigma \in \alpha \rarrow
 						\tau \in \alpha\, ), \\
-					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX &\vdash
+					\tau \in \zeta,\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX &\vdash
 						\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow
 						\varphi(\tau)\, ), 
 						\label{fom:thm_axiom_of_separation_9} \\
@@ -275,29 +281,27 @@
 				が成り立つので，三段論法より
 				\begin{align}
 					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \tau \in \alpha, \\
-					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX &\vdash \varphi(\tau)
+					\tau \in \zeta,\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX &\vdash \varphi(\tau)
 				\end{align}
 				が従い
 				\begin{align}
-					\tau \in \zeta,\ \EXTAX,\EQAX,\EQAXEP,\REPAX \vdash
+					\tau \in \zeta,\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash
 					\tau \in \alpha \wedge \varphi(\tau)
 				\end{align}
 				となる．以上で
 				\begin{align}
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \tau \in \zeta \rarrow
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash \tau \in \zeta \rarrow
 					\tau \in \alpha \wedge \varphi(\tau)
 					\label{fom:thm_axiom_of_separation_6}
 				\end{align}
 				が得られた．逆に定理\ref{thm:any_class_equals_to_itself}と併せて
 				\begin{align}
-					\tau \in \alpha \wedge \varphi(\tau),\ 
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash
+					\tau \in \alpha \wedge \varphi(\tau),\ \EXTAX \vdash
 					\tau \in \alpha \wedge (\, \tau = \tau \wedge \varphi(\tau)\, )
 				\end{align}
 				が成り立つので，存在記号の推論規則より
 				\begin{align}
-					\tau \in \alpha \wedge \varphi(\tau),\ 
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash
+					\tau \in \alpha \wedge \varphi(\tau),\ \EXTAX \vdash
 					\exists x\, (\, x \in \alpha \wedge \psi(x,\tau)\, )
 				\end{align}
 				となる．他方で(\refeq{fom:thm_axiom_of_separation_5})より
@@ -309,11 +313,11 @@
 				が成り立つので，三段論法より
 				\begin{align}
 					\tau \in \alpha \wedge \varphi(\tau),\ 
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \tau \in \zeta
+					\EXTAX,\EQAX,\REPAX \vdash \tau \in \zeta
 				\end{align}
 				が従う．以上で
 				\begin{align}
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash 
+					\EXTAX,\EQAX,\REPAX \vdash 
 					\tau \in \alpha \wedge \varphi(\tau) \rarrow \tau \in \zeta
 					\label{fom:thm_axiom_of_separation_7}
 				\end{align}
@@ -322,49 +326,57 @@
 				(\refeq{fom:thm_axiom_of_separation_8})が出る．
 				すると存在記号の推論規則より
 				\begin{align}
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash \exists s\, \forall x\,
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash \exists s\, \forall x\,
 					(\, x \in s \lrarrow x \in \alpha \wedge \varphi(x)\, )
 				\end{align}
 				となり，全称の導出(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})より
 				\begin{align}
-					\EXTAX,\EQAX,\EQAXEP,\REPAX \vdash 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash 
 					\forall a\, \exists s\, \forall x\,
 					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
 				\end{align}
-				が従う．
+				が従う．$\varphi$が$\lang{\varepsilon}$の式である場合は
+				(\refeq{fom:thm_axiom_of_separation_9})で$\COMAX$と$\ELEAX$が
+				追加されないので
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\forall a\, \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
+				\end{align}
+				が得られる．
 				\QED
 		\end{description}
 	\end{sketch}
 	
-	分出定理は$\EQAXEP$を前提としているが，ステートメントの$\varphi(x)$が
-	\begin{align}
-		x \neq x
-	\end{align}
-	なる式の場合は
-	\begin{align}
-		\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
-			(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
-	\end{align}
-	が成立する．そもそも分出定理の証明で$\EQAXEP$が必要になったのは
-	\begin{align}
-		\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow \varphi(\tau)\, )
-	\end{align}
-	を用いるためであったが(\refeq{fom:thm_axiom_of_separation_9})，
-	$\varphi(x)$が$x \neq x$なる単純な式である場合は
-	\begin{align}
-		\EXTAX \vdash \sigma = \tau \rarrow
-		(\, \sigma \neq \sigma \rarrow \tau \neq \tau\, )
-	\end{align}
-	が成り立つのである．実際
-	\begin{align}
-		\sigma = \tau,\ \tau = \tau,\ \EXTAX &\vdash \sigma = \sigma,
-		&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}) \\
-		\sigma = \tau,\ \EXTAX &\vdash \tau = \tau \rarrow \sigma = \sigma,
-		&& (\mbox{演繹法則(メタ定理\ref{metathm:deduction_theorem})}) \\
-		\sigma = \tau,\ \EXTAX &\vdash \sigma \neq \sigma \rarrow \tau \neq \tau,
-		&& (\mbox{対偶(推論法則\ref{logicalthm:introduction_of_contraposition})})
-	\end{align}
-	となる．
+	%分出定理は$\EQAXEP$を前提としているが，ステートメントの$\varphi(x)$が
+	%\begin{align}
+	%	x \neq x
+	%\end{align}
+	%なる式の場合は
+	%\begin{align}
+	%	\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
+	%		(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
+	%\end{align}
+	%が成立する．そもそも分出定理の証明で$\EQAXEP$が必要になったのは
+	%\begin{align}
+	%	\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow \varphi(\tau)\, )
+	%\end{align}
+	%を用いるためであったが(\refeq{fom:thm_axiom_of_separation_9})，
+	%$\varphi(x)$が$x \neq x$なる単純な式である場合は
+	%\begin{align}
+	%	\EXTAX \vdash \sigma = \tau \rarrow
+	%	(\, \sigma \neq \sigma \rarrow \tau \neq \tau\, )
+	%\end{align}
+	%が成り立つのである．実際
+	%\begin{align}
+	%	\sigma = \tau,\ \tau = \tau,\ \EXTAX &\vdash \sigma = \sigma,
+	%	&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}) \\
+	%	\sigma = \tau,\ \EXTAX &\vdash \tau = \tau \rarrow \sigma = \sigma,
+	%	&& (\mbox{演繹法則(メタ定理\ref{metathm:deduction_theorem})}) \\
+	%	\sigma = \tau,\ \EXTAX &\vdash \sigma \neq \sigma \rarrow \tau \neq \tau,
+	%	&& (\mbox{対偶(推論法則\ref{logicalthm:introduction_of_contraposition})})
+	%\end{align}
+	%となる．
 	
 	\begin{screen}
 		\begin{thm}[$\emptyset$は集合]\label{thm:emptyset_is_a_set}
@@ -375,7 +387,7 @@
 	\end{screen}
 	
 	\begin{sketch}
-		前述のとおり
+		分出定理(\ref{thm:axiom_of_separation})より
 		\begin{align}
 			\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
 			(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
