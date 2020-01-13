@@ -1,12 +1,11 @@
 \section{Henkin拡大}
 	第\ref{chap:inference}章における証明を{\bf HK}の証明に書き直す．
-	第\ref{chap:inference}章における証明体系は，次を推論の公理とした証明体系{\bf HE}と
-	実質的に同一である．もちろん{\bf HE}の推論規則は三段論法のみである．
+	第\ref{chap:inference}章における証明体系は次を公理とした証明体系であり，
+	推論規則は三段論法のみである．
 	
 	\begin{screen}
-		\begin{logicalaxm}[{\bf HE}の公理(命題論理)]
-			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の文とするとき，
-			次は{\bf HE}の公理である．
+		\begin{logicalaxm}[第\ref{chap:inference}章の公理(命題論理)]
+			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の文とするとき
 			\begin{description}
 				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
 					\rarrow (\, (\, \varphi \rarrow \psi\, )
@@ -29,10 +28,9 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalaxm}[{\bf HE}の公理(量化)]
+		\begin{logicalaxm}[第\ref{chap:inference}章の公理(量化)]
 			$\varphi$を$\lang{\varepsilon}の$式とし，$t$を主要$\varepsilon$項とし，
-			$x$を変項とし，$\varphi$には$x$のみが自由に現れているとする．
-			このとき次は{\bf HE}の公理である．
+			$x$を変項とし，$\varphi$には$x$のみが自由に現れているとするとき
 			\begin{description}
 				\item[(DM)] $\negation \forall x \varphi
 					\rarrow \exists x \negation \varphi.$
@@ -46,32 +44,135 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	証明を書き直す手順は次のとおりである．
-	
+	いま{\bf HK}の公理に
 	\begin{description}
-		\item[step1]
-			まずは{\bf HK}の公理に
-			\begin{description}
-				\item[存在記号の除去] 
-					変項$x$のみが自由に現れる$\lang{\varepsilon}$の式$\varphi$に対して
-					\begin{align}
-						\exists x \varphi \rarrow \varphi(\varepsilon x \varphi)
-					\end{align}
-			\end{description}
-			を追加した証明体系を{\bf HK$\varepsilon$}とし，第\ref{chap:inference}章における
-			証明を{\bf HK$\varepsilon$}の証明に書き直す．
-			
-		\item[step2]
-			{\bf HK}${}_\varepsilon$の証明から{\bf HK}の証明を構成する．
-			
-		\item[step3]
-			step2で得られた証明に残っている主要$\varepsilon$項を何らかの変項に置き換えれば，
-			$\lang{\in}$の式による{\bf HK}の証明が得られる．
+		\item[存在記号の除去] 
+			変項$x$のみが自由に現れる$\lang{\varepsilon}$の式$\varphi$に対して
+			\begin{align}
+				\exists x \varphi \rarrow \varphi(\varepsilon x \varphi)
+			\end{align}
 	\end{description}
+	を追加した証明体系を{\bf HK$\varepsilon$}とする．
+	
+	\begin{screen}
+		\begin{metathm}[第\ref{chap:inference}章の体系で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
+		\label{metathm:Henkin_expansion_1}
+			$\varphi$を$\lang{\varepsilon}$の文とするとき
+			\begin{align}
+				\vdash \varphi
+			\end{align}
+			ならば
+			\begin{align}
+				\provable{\mbox{{\bf HK$\varepsilon$}}} \varphi
+			\end{align}
+			である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		第\ref{chap:inference}章の公理が{\bf HK$\varepsilon$}で証明可能であることを示せばよい．
+		第\ref{chap:inference}章の公理で{\bf HK$\varepsilon$}の公理でないものは
+		\begin{align}
+			\negation \forall x \varphi \rarrow \exists x \negation \varphi
+		\end{align}
+		だけであるが，これはDe Morgan の法則
+		(定理\ref{classic:strong_De_Morgan_law_for_quantifier_1})より導かれる．
+		\QED
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[{\bf HK$\varepsilon$}で証明可能なら{\bf HK}でも証明可能]
+		\label{metathm:Henkin_expansion_2}
+			$\psi$を$\lang{\in}$の文とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK$\varepsilon$}}} \psi
+			\end{align}
+			ならば
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \psi
+			\end{align}
+			である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\psi$を$\lang{\in}$の文とし，
+		\begin{align}
+			\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
+		\end{align}
+		であるとする．このときの証明を$\varphi_{1},\cdots,\varphi_{n}$とし，
+		この中から「存在記号の除去」であるものを全て取り出して
+		$\varphi_{i_{1}},\cdots\varphi_{i_{m}}$と並べる．すると，
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m}}\} 
+			\provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		ということになる．各$\varphi_{i_{j}}$は
+		\begin{align}
+			\exists x_{j} F_{j}(x_{j}) \rarrow F_{j}(\varepsilon x_{j} F_{j})
+		\end{align}
+		なる形をしているが，ここで$\varepsilon x_{m} F_{m}$は
+		$\varepsilon x_{1} F_{1},\cdots,\varepsilon x_{m} F_{m}$の中で
+		極大である(他の項の真部分項ではない)とする．すると
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
+			\provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		が示される．実際，
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m}}\} 
+			\provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		に対して演繹法則より
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
+			\provable{\mbox{{\bf HK}}} 
+			(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(\varepsilon x_{m} F_{m})\, ) \rarrow \psi
+		\end{align}
+		が成り立つので，$\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\}$から
+		$(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(\varepsilon x_{m} F_{m})\, ) \rarrow \psi$
+		への証明に現れる$\varepsilon x_{m} F_{m}$を，
+		この証明に使われていない変項$y$に置き換えれば
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
+			\provable{\mbox{{\bf HK}}} 
+			(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi
+		\end{align}
+		が成り立つ．すると汎化により
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
+			\provable{\mbox{{\bf HK}}} 
+			\forall y\, (\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi\, )
+		\end{align}
+		となり，量化規則(EE)により
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
+			\provable{\mbox{{\bf HK}}} 
+			\exists y\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi
+		\end{align}
+		が従う．定理\ref{classic:lemma_for_Henkin_expansion}より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} 
+			\exists y\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, )
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
+			\provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		が得られる．以降も同様にして，極大な主要$\varepsilon$項が属する
+		「存在記号の除去」を一本ずつ削除していけば
+		\begin{align}
+			\mathscr{S} \provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
 	
 	第\ref{chap:inference}章の$\Sigma$の公理は$\lang{\varepsilon}$の文の集まりであったが，
 	それらを$\lang{\in}$の文に直した公理体系を$\mathscr{S}$と書く．$\mathscr{S}$とは
 	\begin{description}
+		\item[集合の存在] $\exists x\, (\, x = x\, ).$
 		\item[相等性] 
 			\begin{align}
 				&\forall x\, \forall y\, \forall z\, 
@@ -119,150 +220,68 @@
 		\item[選択]
 			
 	\end{description}
-	である．
+	からなる．
 	
-	\begin{description}
-		\item[step0]
-			step1に入る前に公理系を$\mathscr{S}$に揃える．
-			いま$\psi$を$\lang{\in}$の文とし，
+	\begin{screen}
+		\begin{metathm}
+		\label{metathm:Henkin_expansion_3}
+			$\varphi$を$\lang{\varepsilon}$の文とするとき
+			\begin{align}
+				\Sigma \vdash \varphi
+			\end{align}
+			ならば
+			\begin{align}
+				\mathscr{S} \vdash \varphi
+			\end{align}
+			である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\Sigma$の公理が$\mathscr{S}$から証明可能であることを示せばよい．
+		たとえば外延性公理については，どんな主要$\varepsilon$項$a,b$に対しても
+		全称記号の推論規則によって
+		\begin{align}
+			\mathscr{S} &\vdash \forall x\, \forall y\, (\, \forall z\, 
+				(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ), \\
+			\mathscr{S} &\vdash \forall y\, (\, \forall z\, 
+				(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
+			\mathscr{S} &\vdash \forall z\, 
+				(\, z \in a \lrarrow z \in b\, ) \rarrow a = b
+		\end{align}
+		となる．他の公理も同様に$\mathscr{S}$から証明可能である．
+		ただし内包性公理だけは$\lang{\varepsilon}$の文ではありえないので考慮する必要はない．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{metathm}
+			$\psi$を$\lang{\in}$の文とするとき
 			\begin{align}
 				\Sigma \vdash \psi
 			\end{align}
-			であるとする．このとき
-			\begin{align}
-				\mathscr{S} \vdash \psi
-			\end{align}
-			である．これには$\Sigma$の公理が$\mathscr{S}$から証明可能であることを示せばよい．
-			たとえば外延性公理については，どんな主要$\varepsilon$項$a,b$に対しても
-			全称記号の推論規則によって
-			\begin{align}
-				\mathscr{S} &\vdash \forall x\, \forall y\, (\, \forall z\, 
-					(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ), \\
-				\mathscr{S} &\vdash \forall y\, (\, \forall z\, 
-					(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
-				\mathscr{S} &\vdash \forall z\, 
-					(\, z \in a \lrarrow z \in b\, ) \rarrow a = b
-			\end{align}
-			となる．他の公理も同様に$\mathscr{S}$から証明可能である．
-			ただし内包性公理だけは$\lang{\varepsilon}$の文ではありえないので考慮する必要はない．
-			
-		\item[step1]
-			$\psi$を$\lang{\in}$の文とし，
-			\begin{align}
-				\mathscr{S} \vdash \psi
-			\end{align}
-			であるとする．このとき
-			\begin{align}
-				\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
-			\end{align}
-			であることを示す．第\ref{chap:inference}章の推論規則であって
-			{\bf HK$\varepsilon$}の公理でないものは
-			\begin{align}
-				\varphi(\varepsilon x \negation \varphi) \rarrow \forall x \varphi
-			\end{align}
-			の形の文のみであるから，これが{\bf HK$\varepsilon$}から導かれることを示せばよい．
-			いま$\varphi$を$\lang{\varepsilon}$の式とし，$\varphi$には変項$x$のみが
-			自由に現れているとする．
-			このとき
-			\begin{align}
-				\provable{\mbox{{\bf HK$\varepsilon$}}}
-				\ \negation \forall x \varphi \rarrow \exists x \negation \varphi
-			\end{align}
-			と
-			\begin{align}
-				\provable{\mbox{{\bf HK$\varepsilon$}}}
-				\exists x \negation \varphi \rarrow\ 
-				\negation \varphi(\varepsilon x \negation \varphi)
-			\end{align}
-			が成り立つので
-			\begin{align}
-				\provable{\mbox{{\bf HK$\varepsilon$}}}
-				\ \negation \forall x \varphi \rarrow\ 
-				\negation \varphi(\varepsilon x \negation \varphi)
-			\end{align}
-			が従い，対偶論法より
-			\begin{align}
-				\provable{\mbox{{\bf HK$\varepsilon$}}}
-				\varphi(\varepsilon x \negation \varphi) \rarrow \forall x \varphi
-			\end{align}
-			が得られる．
-			
-		\item[step2]
-			$\psi$を$\lang{\in}$の文とし，
-			\begin{align}
-				\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
-			\end{align}
-			であるとする．このときの証明を$\varphi_{1},\cdots,\varphi_{n}$とし，
-			この中から「存在記号の除去」であるものを全て取り出して
-			$\varphi_{i_{1}},\cdots\varphi_{i_{m}}$と並べる．すると，
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m}}\} 
-				\provable{\mbox{{\bf HK}}} \psi
-			\end{align}
-			ということになる．各$\varphi_{i_{j}}$は
-			\begin{align}
-				\exists x_{j} F_{j}(x_{j}) \rarrow F_{j}(\varepsilon x_{j} F_{j})
-			\end{align}
-			なる形をしているが，ここで$\varepsilon x_{m} F_{m}$は
-			$\varepsilon x_{1} F_{1},\cdots,\varepsilon x_{m} F_{m}$の中で
-			極大である(他の項の真部分項ではない)とする．すると
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
-				\provable{\mbox{{\bf HK}}} \psi
-			\end{align}
-			が示される．実際，
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m}}\} 
-				\provable{\mbox{{\bf HK}}} \psi
-			\end{align}
-			に対して演繹法則より
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
-				\provable{\mbox{{\bf HK}}} 
-				(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(\varepsilon x_{m} F_{m})\, ) \rarrow \psi
-			\end{align}
-			が成り立つので，$\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\}$から
-			$(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(\varepsilon x_{m} F_{m})\, ) \rarrow \psi$
-			への証明に現れる$\varepsilon x_{m} F_{m}$を，
-			この証明に使われていない変項$y$に置き換えれば
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
-				\provable{\mbox{{\bf HK}}} 
-				(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi
-			\end{align}
-			が成り立つ．すると汎化により
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
-				\provable{\mbox{{\bf HK}}} 
-				\forall y\, (\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi\, )
-			\end{align}
-			となり，量化規則(EE)により
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
-				\provable{\mbox{{\bf HK}}} 
-				\exists y\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi
-			\end{align}
-			が従う．他方で
-			\begin{align}
-				\provable{\mbox{{\bf HK}}} \exists x_{m} F_{m}(x_{m}) 
-				\rarrow \exists y F_{m}(y)
-			\end{align}
-			と
-			\begin{align}
-				\provable{\mbox{{\bf HK}}} 
-				(\, \exists x_{m} F_{m}(x_{m}) \rarrow \exists y F_{m}(y)\, )
-				\rarrow \exists y\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, )
-			\end{align}
-			が成り立つので，三段論法より
-			\begin{align}
-				\mathscr{S} \cup \{\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}\} 
-				\provable{\mbox{{\bf HK}}} \psi
-			\end{align}
-			が得られる．以降も同様にして，極大な主要$\varepsilon$項が属する
-			「存在記号の除去」を一本ずつ削除していけば
+			ならば
 			\begin{align}
 				\mathscr{S} \provable{\mbox{{\bf HK}}} \psi
 			\end{align}
-			が出る．
-			\QED
-	\end{description}
+			である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\Sigma \vdash \psi$ならば，
+		メタ定理\ref{metathm:Henkin_expansion_3}より
+		\begin{align}
+			\mathscr{S} \vdash \psi
+		\end{align}
+		となり，メタ定理\ref{metathm:Henkin_expansion_1}より
+		\begin{align}
+			\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
+		\end{align}
+		となり，メタ定理\ref{metathm:Henkin_expansion_2}より
+		\begin{align}
+			\mathscr{S} \provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		となる．
+		\QED
+	\end{sketch}
