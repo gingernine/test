@@ -1,5 +1,5 @@
 \section{推論}
-	この節では後の集合論で使ういくつかの演繹定理を導出する．
+	この節では後の集合論で使ういくつかの推論法則を導出する．
 	%「類は集合であるか真類であるかのいずれかには定まる」と
 	%「集合であり真類でもある類は存在しない」の二つの言明を得ることを主軸に
 	
@@ -8,8 +8,8 @@
 		\label{logicalaxm:introduction_of_contradiction}
 			否定が共に成り立つとき矛盾が起きる．$A$を文とするとき
 			\begin{align}
-				&A \rarrow (\, \negation A \rarrow \bot\, ), \\
-				&\negation A \rarrow (\, A \rarrow \bot\, ).
+				A &\rarrow (\, \negation A \rarrow \bot\, ), \\
+				\negation A &\rarrow (\, A \rarrow \bot\, ).
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
@@ -55,8 +55,8 @@
 		\AxiomC{$\mathscr{S} \vdash\ \negation A$}
 		\BinaryInfC{$\mathscr{S} \vdash \bot$}
 	\end{prooftree}
-	と書いてみれば，こちらは矛盾の導入規則そのままの形に似ているので，
-	あたかも矛盾の導入規則を``直接''適用したように見える．他の演繹定理も
+	と書いてみれば，こちらは矛盾の導入そのままの形に似ているので，
+	あたかも矛盾の導入を``直接''適用したように見える．他の演繹定理も
 	実際の証明では演繹定理に直したものを用いるのであるが，
 	始めと結論だけ見れば
 	\begin{prooftree}
@@ -116,7 +116,7 @@
 			A,\ \negation B,\ A \rarrow B \vdash\ \negation B
 			\label{fom:introduction_of_contraposition_2}
 		\end{align}
-		も成り立つ．ところで矛盾の導入規則より
+		も成り立つ．ところで矛盾の導入より
 		\begin{align}
 			\vdash B \rarrow (\, \negation B \rarrow \bot\, )
 		\end{align}
@@ -133,11 +133,11 @@
 		\begin{align}
 			A,\ \negation B,\ A \rarrow B \vdash \bot
 		\end{align}
-		が従う．演繹規則より
+		が従う．演繹定理より
 		\begin{align}
 			\negation B,\ A \rarrow B \vdash A \rarrow \bot
 		\end{align}
-		となるが，今度は否定の導入規則より
+		となるが，今度は否定の導入より
 		\begin{align}
 			\negation B,\ A \rarrow B \vdash 
 			(\, A \rarrow \bot\, ) \rarrow\ \negation A
@@ -146,11 +146,11 @@
 		\begin{align}
 			\negation B,\ A \rarrow B \vdash\ \negation A
 		\end{align}
-		が出る．そして演繹規則より
+		が出る．そして演繹定理より
 		\begin{align}
 			A \rarrow B \vdash\ \negation B \rarrow\ \negation A
 		\end{align}
-		が得られ，再び演繹規則より
+		が得られ，再び演繹定理より
 		\begin{align}
 			\vdash (\, A \rarrow B\, ) \rarrow
 			(\, \negation B \rarrow\ \negation A\, )
@@ -159,7 +159,7 @@
 		\QED
 	\end{prf}
 	
-	公理系$\mathscr{S}$の下で$A \rarrow B$が導かれたとすれば，上の演繹定理より
+	公理系$\mathscr{S}$の下で$A \rarrow B$が導かれたとすれば，上の推論法則より
 	\begin{align}
 		\mathscr{S} \vdash (\, A \rarrow B\, ) 
 		\rarrow (\, \negation B \rarrow\ \negation A\, )
@@ -172,17 +172,12 @@
 	{\bf 「対偶を取る」}と宣言して$\mathscr{S} \vdash\ \negation B \rarrow\ \negation A$
 	に繋げることもある．
 	
-	\begin{screen}
-		\begin{dfn}[二重否定]
-			式$\varphi$に対して，$\negation$を二つ連結させた式
-			\begin{align}
-				\negation \negation \varphi
-			\end{align}
-			を$\varphi$の{\bf 二重否定}\index{にじゅうひてい@二重否定}
-			{\bf (double negation)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
-		
+	式$\varphi$に対して，$\negation$を二つ連結させた式
+	\begin{align}
+		\negation \negation \varphi
+	\end{align}
+	を$\varphi$の{\bf 二重否定}\index{にじゅうひてい@二重否定}{\bf (double negation)}と呼ぶ．
+	
 	\begin{screen}
 		\begin{logicalthm}[二重否定の導入]
 		\label{logicalthm:introduction_of_double_negation}
@@ -194,16 +189,16 @@
 	\end{screen}
 	
 	\begin{prf}
-		矛盾の導入規則より
+		矛盾の導入より
 		\begin{align}
 			A,\ \negation A \vdash \bot
 		\end{align}
-		となるので，演繹規則より
+		となるので，演繹定理より
 		\begin{align}
 			A \vdash\ \negation A \rarrow \bot
 			\label{fom:introduction_of_double_negation}
 		\end{align}
-		が従う．また否定の導入規則より
+		が従う．また否定の導入より
 		\begin{align}
 			\vdash (\, \negation A \rarrow \bot\, ) \rarrow \negation \negation A
 		\end{align}
@@ -215,7 +210,7 @@
 		\begin{align}
 			A \vdash\ \negation \negation A
 		\end{align}
-		が従う．そして演繹規則より
+		が従う．そして演繹定理より
 		\begin{align}
 			\vdash A \rarrow \negation \negation A
 		\end{align}
@@ -228,8 +223,8 @@
 		\label{logicalaxm:elimination_of_conjunction}
 			$A$と$B$を文とするとき
 			\begin{align}
-				A &\wedge B \vdash A, \\
-				A &\wedge B \vdash B.
+				A \wedge B &\rarrow A, \\
+				A \wedge B &\rarrow B.
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
@@ -247,12 +242,12 @@
 	\end{screen}
 	
 	\begin{prf}
-		論理積の除去規則より
+		論理積の除去より
 		\begin{align}
 			A \wedge \negation A &\vdash A, \\
 			A \wedge \negation A &\vdash\ \negation A
 		\end{align}
-		が成り立ち，また矛盾の導入規則より
+		が成り立ち，また矛盾の導入より
 		\begin{align}
 			A \wedge \negation A \vdash A \rarrow (\, \negation A \rarrow \bot\, )
 		\end{align}
@@ -260,11 +255,11 @@
 		\begin{align}
 			A \wedge \negation A \vdash \bot
 		\end{align}
-		が従う．ゆえに演繹規則より
+		が従う．ゆえに演繹定理より
 		\begin{align}
 			\vdash (\, A \wedge \negation A\, ) \rarrow \bot
 		\end{align}
-		となり，否定の導入規則
+		となり，否定の導入
 		\begin{align}
 			\vdash (\, (\, A \wedge \negation A\, ) \rarrow \bot\, )
 			\rarrow \negation (\, A \wedge \negation A\, )
@@ -286,7 +281,7 @@
 	と書けば「式$\varphi$を記号$P$で置き換えて良い」という意味での略記法を導入できる．
 	
 	\begin{screen}
-		\begin{dfn}[同値記号]
+		\begin{metadfn}[同値記号]
 			$A$と$B$を$\mathcal{L}$の式とするとき，
 			\begin{align}
 				A \lrarrow B  \defarrow
@@ -294,7 +289,7 @@
 			\end{align}
 			により$\lrarrow$を定め，式`$A \lrarrow B$'を
 			「$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}」と読む．
-		\end{dfn}
+		\end{metadfn}
 	\end{screen}
 	
 	以降で{\bf De Morgan の法則}\index{De Morgan の法則}{\bf (De Morgan's laws)}
@@ -312,18 +307,14 @@
 		\label{logicalaxm:elimination_of_disjunction}
 			$A$と$B$と$C$を文とするとき
 			\begin{align}
-				A \rarrow C,\ B \rarrow C \vdash A \vee B \rarrow C.
+				(\, A \rarrow C\, ) \rarrow (\, (\, B \rarrow C\, )
+				\rarrow (\, A \vee B \rarrow C\, )\, ).
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
 	
 	{\bf 論理和の除去}とは{\bf 場合分け}\index{ばあいわけ@場合分け}{\bf (proof by case)}
-	とも呼ばれる．また場合分け規則に演繹規則を二回適用すれば
-	\begin{align}
-		\vdash (\, A \rarrow C\, ) 
-		\rarrow (\, (\, B \rarrow C\, ) \rarrow (\, A \vee B \rarrow C\, )\, )
-	\end{align}
-	なる演繹定理が得られる．場合分け規則を実際に用いる際には主にこちらの演繹定理を使う．
+	とも呼ばれる．
 	
 	\begin{screen}
 		\begin{logicalthm}[弱 De Morgan の法則(1)]
@@ -337,12 +328,12 @@
 	\end{screen}
 	
 	\begin{prf}
-		論理積の除去規則より
+		論理積の除去より
 		\begin{align}
 			\negation A \wedge \negation B \vdash\ \negation A
 			\label{fom:weak_De_Morgan_law_1_1}
 		\end{align}
-		となり，また矛盾の導入規則より
+		となり，また矛盾の導入より
 		\begin{align}
 			\vdash\ \negation A \rarrow (\, A \rarrow \bot\, )
 		\end{align}
@@ -361,7 +352,7 @@
 			\negation A \wedge \negation B \vdash B \rarrow \bot
 			\label{fom:weak_De_Morgan_law_1_3}
 		\end{align}
-		も得られる．ところで場合分け規則より
+		も得られる．ところで論理和の除去より
 		\begin{align}
 			\vdash (\, A \rarrow \bot\, ) \rarrow (\, (\, B \rarrow \bot\, )
 			\rarrow (\, A \vee B \rarrow \bot\, )\, )
@@ -376,7 +367,7 @@
 			\rarrow (\, A \vee B \rarrow \bot\, ), \\
 			\negation A \wedge \negation B &\vdash A \vee B \rarrow \bot
 		\end{align}
-		となり，否定の導入規則から得られる演繹定理
+		となり，否定の導入
 		\begin{align}
 			\vdash (\, A \vee B \rarrow \bot\, ) \rarrow\ \negation (\, A \vee B\, )
 		\end{align}
@@ -384,7 +375,7 @@
 		\begin{align}
 			\negation A \wedge \negation B \vdash\ \negation (\, A \vee B\, ) 
 		\end{align}
-		が得られる．そして演繹規則より
+		が得られる．そして演繹定理より
 		\begin{align}
 			\vdash\ \negation A \wedge \negation B
 				\rarrow\ \negation (\, A \vee B\, )
@@ -414,13 +405,13 @@
 			\vdash\ \negation A \rarrow\ \negation (\, A \wedge B\, )
 			\label{fom:strong_De_Morgan_law_1_1}
 		\end{align}
-		が成り立つ(演繹定理\ref{logicalthm:introduction_of_contraposition})．
+		が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．
 		同様に
 		\begin{align}
 			\vdash\ \negation B \rarrow\ \negation (\, A \wedge B\, )
 			\label{fom:strong_De_Morgan_law_1_2}
 		\end{align}
-		も得られる．また論理和の除去規則より
+		も得られる．また論理和の除去より
 		\begin{align}
 			\vdash (\, \negation A \rarrow\ \negation (\, A \wedge B\, )\, )
 			\rarrow (\, (\, \negation B \rarrow\ \negation (\, A \wedge B\, )\, )
@@ -447,8 +438,8 @@
 		\label{logicalaxm:introduction_of_disjunction}
 			$A$と$B$を文とするとき
 			\begin{align}
-				A &\vdash A \vee B, \\
-				B &\vdash A \vee B.
+				A &\rarrow A \vee B, \\
+				B &\rarrow A \vee B.
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
@@ -464,7 +455,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		論理和の導入規則と演繹規則により
+		論理和の導入により
 		\begin{align}
 			\vdash A \rarrow B \vee A
 			\label{fom:logicalthm_commutative_law_of_disjunction_1}
@@ -474,7 +465,7 @@
 			\vdash B \rarrow B \vee A
 			\label{fom:logicalthm_commutative_law_of_disjunction_2}
 		\end{align}
-		が成り立つ．また場合分け規則より
+		が成り立つ．また論理和の除去より
 		\begin{align}
 			\vdash (\, A \rarrow B \vee A\, ) \rarrow (\, (\, B \rarrow B \vee A\, ) 
 			\rarrow (\, A \vee B \rarrow B \vee A\, )\, )
@@ -499,22 +490,10 @@
 		\label{logicalaxm:introduction_of_conjunction}
 			$A$と$B$を文とするとき
 			\begin{align}
-				A,\ B \vdash A \wedge B.
+				A \rarrow (\, B \rarrow A \wedge B\, ).
 			\end{align}
 		\end{logicalaxm}
 	\end{screen}
-	
-	論理積の導入に演繹規則を適用すれば
-	\begin{align}
-		A,B &\vdash A \wedge B, \\
-		A &\vdash B \rarrow A \wedge B, \\
-		&\vdash A \rarrow (\, B \rarrow A \wedge B\, )
-	\end{align}
-	となる．これで
-	\begin{align}
-		\vdash A \rarrow (\, B \rarrow A \wedge B\, )
-	\end{align}
-	なる演繹定理が得られた．
 	
 	\begin{screen}
 		\begin{logicalthm}[弱 De Morgan の法則(2)]
@@ -528,7 +507,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		論理和の導入規則より
+		論理和の導入より
 		\begin{align}
 			\vdash A \rarrow A \vee B
 		\end{align}
@@ -537,8 +516,8 @@
 			\vdash\ \negation (\, A \vee B\, ) \rarrow\ \negation A
 			\label{fom:weak_De_Morgan_law_2_1}
 		\end{align}
-		となる(演繹定理\ref{logicalthm:introduction_of_contraposition})．
-		同じく論理和の導入規則より
+		となる(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		同じく論理和の導入より
 		\begin{align}
 			\vdash B \rarrow A \vee B
 		\end{align}
@@ -548,14 +527,14 @@
 			\label{fom:weak_De_Morgan_law_2_2}
 		\end{align}
 		も得られる．ここで(\refeq{fom:weak_De_Morgan_law_2_1})と
-		(\refeq{fom:weak_De_Morgan_law_2_2})と演繹法則の逆より
+		(\refeq{fom:weak_De_Morgan_law_2_2})と演繹定理の逆より
 		\begin{align}
 			\negation (\, A \vee B\, ) &\vdash\ \negation A, 
 			\label{fom:weak_De_Morgan_law_2_3} \\
 			\negation (\, A \vee B\, ) &\vdash\ \negation B
 			\label{fom:weak_De_Morgan_law_2_4}
 		\end{align}
-		が従う．ところで論理積の導入規則より
+		が従う．ところで論理積の導入より
 		\begin{align}
 			\vdash\ \negation A \rarrow (\, \negation B \rarrow\
 			\negation A \wedge \negation B\, )
@@ -569,7 +548,7 @@
 				\negation B \rarrow\ \negation A \wedge \negation B, \\
 			\negation (\, A \vee B\, ) &\vdash\ \negation A \wedge \negation B
 		\end{align}
-		が従い，演繹規則より
+		が従い，演繹定理より
 		\begin{align}
 			\vdash\ \negation (\, A \vee B\, ) 
 			\rarrow\ \negation A \wedge \negation B
@@ -589,7 +568,7 @@
 	\end{screen}
 	
 	\begin{prf}
-		論理積の除去と演繹規則より
+		論理積の除去と演繹定理の逆より
 		\begin{align}
 			A \wedge B \vdash A
 			\label{fom:logicalthm_commutative_law_of_conjunction_1}
@@ -615,7 +594,7 @@
 		\begin{align}
 			A \wedge B \vdash B \wedge A
 		\end{align}
-		となり，演繹規則より
+		となり，演繹定理より
 		\begin{align}
 			\vdash A \wedge B \rarrow B \wedge A
 		\end{align}
