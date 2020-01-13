@@ -3,10 +3,10 @@
 	現れる内包項は全て正則内包項であるとする．
 	
 \section{証明}
-	本節では{\bf 推論規則}\index{すいろんきそく@推論規則}{\bf (rule of inference)}を導入し，
-	基本的な{\bf 推論法則}\index{すいろんほうそく@推論法則}を導出する．
-	推論法則とは，他の本ではそれが用いている証明体系の定理などと呼ばれるが，
-	本稿では集合論特有の定理と区別するために推論法則と呼ぶ．
+	本節では{\bf 推論公理}\index{すいろんこうり@推論公理}{\bf (axiom of inference)}を導入し，
+	基本的な{\bf 推論法則}\index{すいろんほうそく@推論法則}{\bf (law of inference)}を導出する．
+	推論公理と推論法則とは，他の本ではそれが用いている証明体系の公理・定理などと呼ばれるが，
+	本稿では集合論特有の公理・定理と区別するために推論公理・推論法則と呼ぶ．
 	以下では
 	\begin{align}
 		\vdash
@@ -15,20 +15,24 @@
 	\begin{align}
 		\varphi \vdash \psi
 	\end{align}
-	などと書く．$\vdash$の左右にあるのは必ず($\mathcal{L}$の)文であって，
+	などと書き，「$\vdash$の右の文は，$\vdash$の左の文から証明できる」と読む．
+	$\vdash$の左右にあるのは必ず$\mathcal{L}$の文であって，
 	右側に置かれる文は必ず一本だけであるが，左側には文がいくつあっても良いし，全く無くても良い．
 	特に
 	\begin{align}
 		\vdash \psi
 	\end{align}
 	を満たす文$\psi$を推論法則と呼ぶ．
-	{\bf ``$\vdash$の右の文は，$\vdash$の左の文から証明できる''}，と読むが，
+	
+	\begin{comment}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
 	証明とはどのようにされるのだとか，$\vdash \psi$を満たすとは
 	どういう意味なのか，とかいったことは後に回して，とりあえず記号のパズルゲームと見立てて
 	$\vdash$のルールを定める．
 	
 	\begin{screen}
-		\begin{logicalrule}[演繹規則]\label{logicalrule:deduction_rule}
+		\begin{logicalrule}[演繹定理]\label{logicalrule:deduction_rule}
 			$A,B,C,D$を文とするとき，
 			\begin{description}
 				\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
@@ -49,18 +53,18 @@
 		\end{logicalrule}
 	\end{screen}
 	
-	演繹規則においては$\vdash$の左側にせいぜい三つの文しかないのだが，
+	演繹定理においては$\vdash$の左側にせいぜい三つの文しかないのだが，
 	実は$\vdash$の左側に不特定多数の文を持ってきても
-	演繹規則じみたことが成立する(後述の演繹法則)．
+	演繹定理じみたことが成立する(後述の演繹定理)．
 	
-	では{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定する．
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{comment}
 	
-	自由な変項が現れない($\mathcal{L}$の)式を{\bf 文}\index{ぶん@文}{\bf (sentence)}や
-	{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
+	まずは{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定する．
 	証明される式や証明の過程で出てくる式は全て文である．本稿では証明された文を
 	{\bf 真な}\index{しん@真}{\bf (true)}文と呼ぶことにするが，
 	``証明された''や``真である''という状態は議論が立脚している前提に依存する．
-	ここでいう前提とは，推論規則や言語ではなくて
+	ここでいう前提とは，推論公理や言語ではなくて
 	{\bf 公理系}\index{こうりけい@公理系}{\bf (axioms)}と呼ばれるものを指している．
 	公理系とは文の集まりである．$\mathscr{S}$を公理系とするとき，
 	$\mathscr{S}$に集められた文を$\mathscr{S}$の{\bf 公理}\index{こうり@公理}{\bf (axiom)}
@@ -138,8 +142,8 @@
 			{\bf 証明された}だとか{\bf 証明可能である}\index{しょうめいかのう@証明可能}
 			{\bf (provable)}ということは，
 			\begin{itemize}
+				\item $\varphi$は推論公理である．
 				\item $\varphi$は$\mathscr{S}$の公理である．
-				\item $\vdash \varphi$である．
 				\item 文$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\mathscr{S}$から
 				証明されているものが取れる({\bf 三段論法}\index{さんだんろんぽう@三段論法}
 				{\bf (Modus Pones)})．
@@ -152,8 +156,8 @@
 	\begin{align}
 		\mathscr{S} \vdash \varphi
 	\end{align}
-	と書く．ただし，{\bf 公理系に変項が生じた場合の証明可能性には
-	演繹規則や後述の演繹法則，およびその逆の結果を適用することが出来る}．
+	と書く．ただし{\bf 公理系に変項が生じた場合の証明可能性には，後述の演繹定理
+	およびその逆の結果を適用することが出来る}．
 	
 	たとえばどんな文$\varphi$に対しても
 	\begin{align}
@@ -165,22 +169,57 @@
 	\end{align}
 	となる．これらは最も単純なケースであり，大抵の定理は数多くの複雑なステップを踏まなくては得られない．
 	$\mathscr{S}$から証明済みの$\varphi$を起点にして$\mathscr{S} \vdash \psi$であると判明すれば，
-	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業は$\psi$の$\mathscr{S}$からの
-	{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼ばれ，
-	$\psi$は$\mathscr{S}$の{\bf 定理}\index{ていり@定理}{\bf (theorem)}と呼ばれる．
+	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業を$\psi$の$\mathscr{S}$からの
+	{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼び，
+	$\psi$を$\mathscr{S}$の{\bf 定理}\index{ていり@定理}{\bf (theorem)}と呼ぶ．
 	
 	$A,B \vdash \varphi$とは
 	$A$と$B$の二つの文のみを公理とした体系において$\varphi$が証明可能であることを表している．
-	特に{\bf 推論法則とは公理の無い体系で推論規則だけから導かれる定理}のことである．
+	特に{\bf 推論法則とは推論公理だけから導かれる定理}のことである．
 	
-	ではさっそく演繹法則の証明に進む．ところで，後で見るとおり演繹法則とは
+	ではさっそく演繹定理の証明に進む．ところで，後で見るとおり演繹定理とは
 	証明が持つ性質に対する言明であって，つまりメタ視点での定理ということになるので，
-	演繹法則の``証明''とは言っても上で規定した証明とは意味が違う．
+	演繹定理の``証明''とは言っても上で規定した証明とは意味が違う．
 	メタ定理の``証明''は，本稿では{\bf メタ証明}と呼んで区別する．
-	演繹法則を示す前に推論法則を三本用意しなくてはならない．
+	
+	ここで論理記号の名称を書いておく．
+	\begin{itemize}
+		\item $\vee$を{\bf 論理和}\index{ろんりわ@論理和}{\bf (logical disjunction)}
+			や{\bf 選言}と呼ぶ．
+		\item $\wedge$を{\bf 論理積}\index{ろんりせき@論理積}{\bf (logical conjunction)}
+			や{\bf 連言}と呼ぶ．
+		\item $\rarrow$を{\bf 含意}\index{がんい@含意}{\bf (implication)}と呼ぶ．
+		\item $\negation$を{\bf 否定}\index{ひてい@否定}{\bf (negation)}と呼ぶ．
+	\end{itemize}
 	
 	\begin{screen}
-		\begin{logicalthm}[含意の反射律]\label{logicalthm:reflective_law_of_implication}
+		\begin{logicalaxm}[含意の分配律]
+		\label{logicalaxm:distributive_law_of_implication}
+			$A,B,C$を文とするとき
+			\begin{align}
+				(\, A \rarrow (\, B \rarrow C\, )\, ) 
+				\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, ).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	上の言明は``どんな文でも持ってくれば，その式に対して含意の分配律が成立する''という意味である．
+	このように無数に存在し得る定理を一括して表す書き方は{\bf 公理図式}\index{こうりずしき@公理図式}
+	{\bf (schema)}と呼ばれる．公理に限らず推論法則や定理であっても図式であるものが多い．
+	
+	\begin{screen}
+		\begin{logicalaxm}[含意の導入]
+		\label{logicalaxm:introduction_of_implication}
+			$A,B$を文とするとき
+			\begin{align}
+				B \rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の反射律]
+		\label{logicalthm:reflective_law_of_implication}
 			$A$を文とするとき
 			\begin{align}
 				\vdash A \rarrow A.
@@ -188,13 +227,39 @@
 		\end{logicalthm}
 	\end{screen}
 	
-	上の言明は``どんな文でも持ってくれば，その式に対して反射律が成立する''という意味である．
-	このように無数に存在し得る定理を一括して表す式は{\bf 公理図式}\index{こうりずしき@公理図式}{\bf (schema)}と呼ばれる．
-	
 	\begin{prf}
-		$A \vdash A$であるから，演繹規則より$\vdash A \rarrow A$となる．
+		含意の導入より
+		\begin{align}
+			&\vdash A \rarrow (\, (\, A \rarrow A\, ) \rarrow A\, ), 
+			\label{fom:reflective_law_of_implication_1} \\
+			&\vdash A \rarrow (\, A \rarrow A\, )
+			\label{fom:reflective_law_of_implication_2}
+		\end{align}
+		が成り立ち，含意の分配律より
+		\begin{align}
+			\vdash (\, A \rarrow (\, (\, A \rarrow A\, ) \rarrow A\, )\, )
+				\rarrow (\, (\, A \rarrow (\, A \rarrow A\, )\, )
+				\rarrow (\, A \rarrow A\, )\, )
+				\label{fom:reflective_law_of_implication_3}
+		\end{align}
+		が成り立つ．(\refeq{fom:reflective_law_of_implication_1})と
+		(\refeq{fom:reflective_law_of_implication_3})との三段論法より
+		\begin{align}
+			\vdash (\, A \rarrow (\, A \rarrow A\, )\, )
+				\rarrow (\, A \rarrow A\, )
+			\label{fom:reflective_law_of_implication_4}
+		\end{align}
+		となり，(\refeq{fom:reflective_law_of_implication_2})と
+		(\refeq{fom:reflective_law_of_implication_4})との三段論法より
+		\begin{align}
+			\vdash A \rarrow A
+		\end{align}
+		が出る．
 		\QED
 	\end{prf}
+	
+	\begin{comment}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\begin{screen}
 		\begin{logicalthm}[含意の導入]
@@ -210,11 +275,11 @@
 		\begin{align}
 			A,B \vdash B
 		\end{align}
-		より演繹規則から
+		より演繹定理から
 		\begin{align}
 			B \vdash A \rarrow B
 		\end{align}
-		となり，再び演繹規則より
+		となり，再び演繹定理より
 		\begin{align}
 			\vdash B \rarrow (\, A \rarrow B\, )
 		\end{align}
@@ -222,7 +287,7 @@
 		\QED
 	\end{prf}
 	
-	演繹法則を示すための推論法則の導出は次で最後である．
+	演繹定理を示すための推論法則の導出は次で最後である．
 	
 	\begin{screen}
 		\begin{logicalthm}[含意の分配則]
@@ -264,7 +329,7 @@
 		\begin{align}
 			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A \vdash C
 		\end{align}
-		も成り立つから，あとは演繹規則を順次適用すれば
+		も成り立つから，あとは演繹定理を順次適用すれば
 		\begin{align}
 			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B
 			&\vdash A \rarrow C, \\
@@ -276,6 +341,9 @@
 		となる．
 		\QED
 	\end{prf}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{comment}
 	
 	\begin{screen}
 		\begin{metaaxm}[証明に対する構造的帰納法]
@@ -304,7 +372,7 @@
 	その場合は$\mathscr{S}, A$や$A,\mathscr{S}$とは$\mathscr{S}$そのものである．
 	
 	\begin{screen}
-		\begin{metathm}[演繹法則]\label{metathm:deduction_theorem}
+		\begin{metathm}[演繹定理]\label{metathm:deduction_theorem}
 			$\mathscr{S}$を公理系とし，$A$を文とするとき，
 			$\mathscr{S}, A$の任意の定理$B$に対して
 			\begin{align}
@@ -331,8 +399,7 @@
 				\begin{align}
 					\mathscr{S} \vdash B
 				\end{align}
-				が成り立つが，他方で含意の導入
-				(推論法則\ref{logicalthm:introduction_of_implication})より
+				が成り立つが，他方で含意の導入より
 				\begin{align}
 					\mathscr{S} \vdash B \rarrow (\, A \rarrow B\, ) 
 				\end{align}
@@ -352,8 +419,7 @@
 				\begin{align}
 					\mathscr{S} \vdash A \rarrow C
 				\end{align}
-				であると仮定する．含意の分配則
-				(\ref{logicalthm:distributive_law_of_implication})より
+				であると仮定する．含意の分配律より
 				\begin{align}
 					\mathscr{S} \vdash 
 					(\, A \rarrow (\, C \rarrow B\, )\, ) 
@@ -377,7 +443,7 @@
 		\end{description}
 	\end{metaprf}
 	
-	演繹法則の逆も得られる．つまり，
+	演繹定理の逆も得られる．つまり，
 	$\mathscr{S}$を公理系とし，$A$と$B$を文とするとき，
 	\begin{align}
 		\mathscr{S} \vdash A \rarrow B
@@ -415,7 +481,7 @@
 	\end{screen}
 	
 	\begin{metaprf}
-		$B$が$\mathscr{S}$の公理であるか推論規則であれば
+		$B$が$\mathscr{S}$の公理であるか推論公理であれば
 		\begin{align}
 			A,\ \mathscr{S} \vdash B
 		\end{align}
@@ -442,7 +508,7 @@
 	\end{metaprf}
 	
 	\begin{screen}
-		\begin{metathm}[演繹法則の逆]
+		\begin{metathm}[演繹定理の逆]
 		\label{metathm:inverse_of_deduction_theorem}
 			$\mathscr{S}$を公理系とし，$A$と$B$を文とするとき，
 			\begin{align}

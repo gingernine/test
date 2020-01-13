@@ -1,41 +1,32 @@
 \section{推論}
-	この節では「類は集合であるか真類であるかのいずれかには定まる」と
-	「集合であり真類でもある類は存在しない」の二つの言明を得ることを主軸に
-	基本的な推論法則を導出する．
-	
-	ここで論理記号の名称を書いておく．
-	\begin{itemize}
-		\item $\vee$を{\bf 論理和}\index{ろんりわ@論理和}{\bf (logical disjunction)}
-			や{\bf 選言}と呼ぶ．
-		\item $\wedge$を{\bf 論理積}\index{ろんりせき@論理積}{\bf (logical conjunction)}
-			や{\bf 連言}と呼ぶ．
-		\item $\rarrow$を{\bf 含意}\index{がんい@含意}{\bf (implication)}と呼ぶ．
-		\item $\negation$を{\bf 否定}\index{ひてい@否定}{\bf (negation)}と呼ぶ．
-	\end{itemize}
+	この節では後の集合論で使ういくつかの演繹定理を導出する．
+	%「類は集合であるか真類であるかのいずれかには定まる」と
+	%「集合であり真類でもある類は存在しない」の二つの言明を得ることを主軸に
 	
 	\begin{screen}
-		\begin{logicalaxm}[否定と矛盾に関する規則]
-		\label{logicalaxm:rules_of_negation_and_contradiction}
-			$A$を文とするとき以下が成り立つ:
-			\begin{description}
-				\item[矛盾の導入] 否定が共に成り立つとき矛盾が起きる:
-					\begin{align}
-						A,\ \negation A \vdash \bot.
-					\end{align}
-				\item[否定の導入] 矛盾が導かれるとき否定が成り立つ:
-					\begin{align}
-						A \rarrow \bot \vdash\ \negation A.
-					\end{align}
-			\end{description}
+		\begin{logicalaxm}[矛盾の導入]
+		\label{logicalaxm:introduction_of_contradiction}
+			否定が共に成り立つとき矛盾が起きる．$A$を文とするとき
+			\begin{align}
+				&A \rarrow (\, \negation A \rarrow \bot\, ), \\
+				&\negation A \rarrow (\, A \rarrow \bot\, ).
+			\end{align}
 		\end{logicalaxm}
 	\end{screen}
 	
-	矛盾の導入規則に演繹規則を適用すれば
-	\begin{align}
-		\vdash A \rarrow (\, \negation A \rarrow \bot\, )
-	\end{align}
-	が得られる．証明可能性の定義より証明には推論法則を直接用いることはが許されているので，
-	実際の証明の最中にこの公理を適用するときは，上ように推論法則に直したものを使う．
+	\begin{screen}
+		\begin{logicalaxm}[否定の導入]
+		\label{logicalaxm:introduction_of_negation}
+			矛盾が導かれるとき否定が成り立つ．$A$を文とするとき
+			\begin{align}
+				(\, A \rarrow \bot\, ) \rarrow\ \negation A.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{comment}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
 	たとえば公理系$\mathscr{S}$の下で
 	\begin{align}
 		\mathscr{S} \vdash A
@@ -46,7 +37,7 @@
 		\mathscr{S} \vdash\ \negation A
 		\label{fom:introduction_of_contradiction_2}
 	\end{align}
-	が導かれたとすれば，矛盾の導入規則から得られた推論法則は
+	が導かれたとすれば，矛盾の導入は
 	\begin{align}
 		\mathscr{S} \vdash A \rarrow (\, \negation A \rarrow \bot\, )
 	\end{align}
@@ -58,15 +49,15 @@
 	\begin{align}
 		\mathscr{S} \vdash \bot
 	\end{align}
-	が従う，といった要領である．これを始めと結論だけ見て直感的に
+	が従う．これを始めと結論だけ見て直感的に
 	\begin{prooftree}
 		\AxiomC{$\mathscr{S} \vdash A$}
 		\AxiomC{$\mathscr{S} \vdash\ \negation A$}
 		\BinaryInfC{$\mathscr{S} \vdash \bot$}
 	\end{prooftree}
 	と書いてみれば，こちらは矛盾の導入規則そのままの形に似ているので，
-	あたかも矛盾の導入規則を``直接''適用したように見える．他の推論規則も
-	実際の証明では推論法則に直したものを用いるのであるが，
+	あたかも矛盾の導入規則を``直接''適用したように見える．他の演繹定理も
+	実際の証明では演繹定理に直したものを用いるのであるが，
 	始めと結論だけ見れば
 	\begin{prooftree}
 		\AxiomC{$\mathscr{S} \vdash A \rarrow \bot$}
@@ -83,22 +74,20 @@
 		\UnaryInfC{$\mathscr{S} \vdash \exists x A(x)$}
 	\end{prooftree}
 	であったりが``成り立つ''のである．そしてこれらの水平線が入った規則もどきは
-	他の証明体系では正式な推論規則であったりする．
-	%どうせすぐに推論法則に直してしまうものを，どうしてわざわざ推論規則として導入したのかというと
-	%(推論法則の形で推論の公理として導入しても同じである)，
-	%他の証明体系の規則との対応を意識しているのと，
-	%$\vdash$によって前後に分割してある方が若干見やすいからである．
+	他の証明体系では正式な演繹定理であったりする．
+	どうせすぐに演繹定理に直してしまうものを，どうしてわざわざ演繹定理として導入したのかというと
+	(演繹定理の形で推論の公理として導入しても同じである)，
+	他の証明体系の規則との対応を意識しているのと，
+	$\vdash$によって前後に分割してある方が若干見やすいからである．
 	
-	\begin{screen}
-		\begin{dfn}[対偶]
-			$\varphi \rarrow \psi$なる式に対して
-			\begin{align}
-				\negation \psi \rarrow\ \negation \varphi
-			\end{align}
-			を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}
-			{\bf (contraposition)}と呼ぶ．
-		\end{dfn}
-	\end{screen}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\end{comment}
+	
+	$\varphi \rarrow \psi$なる式に対して
+	\begin{align}
+		\negation \psi \rarrow\ \negation \varphi
+	\end{align}
+	を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}{\bf (contraposition)}と呼ぶ．
 	
 	\begin{screen}
 		\begin{logicalthm}[対偶命題が導かれる]
@@ -170,7 +159,7 @@
 		\QED
 	\end{prf}
 	
-	公理系$\mathscr{S}$の下で$A \rarrow B$が導かれたとすれば，上の推論法則より
+	公理系$\mathscr{S}$の下で$A \rarrow B$が導かれたとすれば，上の演繹定理より
 	\begin{align}
 		\mathscr{S} \vdash (\, A \rarrow B\, ) 
 		\rarrow (\, \negation B \rarrow\ \negation A\, )
@@ -334,7 +323,7 @@
 		\vdash (\, A \rarrow C\, ) 
 		\rarrow (\, (\, B \rarrow C\, ) \rarrow (\, A \vee B \rarrow C\, )\, )
 	\end{align}
-	なる推論法則が得られる．場合分け規則を実際に用いる際には主にこちらの推論法則を使う．
+	なる演繹定理が得られる．場合分け規則を実際に用いる際には主にこちらの演繹定理を使う．
 	
 	\begin{screen}
 		\begin{logicalthm}[弱 De Morgan の法則(1)]
@@ -387,7 +376,7 @@
 			\rarrow (\, A \vee B \rarrow \bot\, ), \\
 			\negation A \wedge \negation B &\vdash A \vee B \rarrow \bot
 		\end{align}
-		となり，否定の導入規則から得られる推論法則
+		となり，否定の導入規則から得られる演繹定理
 		\begin{align}
 			\vdash (\, A \vee B \rarrow \bot\, ) \rarrow\ \negation (\, A \vee B\, )
 		\end{align}
@@ -425,7 +414,7 @@
 			\vdash\ \negation A \rarrow\ \negation (\, A \wedge B\, )
 			\label{fom:strong_De_Morgan_law_1_1}
 		\end{align}
-		が成り立つ(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		が成り立つ(演繹定理\ref{logicalthm:introduction_of_contraposition})．
 		同様に
 		\begin{align}
 			\vdash\ \negation B \rarrow\ \negation (\, A \wedge B\, )
@@ -525,7 +514,7 @@
 	\begin{align}
 		\vdash A \rarrow (\, B \rarrow A \wedge B\, )
 	\end{align}
-	なる推論法則が得られた．
+	なる演繹定理が得られた．
 	
 	\begin{screen}
 		\begin{logicalthm}[弱 De Morgan の法則(2)]
@@ -548,7 +537,7 @@
 			\vdash\ \negation (\, A \vee B\, ) \rarrow\ \negation A
 			\label{fom:weak_De_Morgan_law_2_1}
 		\end{align}
-		となる(推論法則\ref{logicalthm:introduction_of_contraposition})．
+		となる(演繹定理\ref{logicalthm:introduction_of_contraposition})．
 		同じく論理和の導入規則より
 		\begin{align}
 			\vdash B \rarrow A \vee B
