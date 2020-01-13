@@ -37,9 +37,13 @@
 	\begin{align}
 		\{x,y\} \defeq \Set{z}{\hat{\varphi}(z)}
 	\end{align}
-	と定めるのである．たとえば$\varphi$に自由に現れる変項が$z$だけならば
+	と定めるのである．たとえば$a$や$b$を類として
 	\begin{align}
-		\COMAX \vdash \forall z\, (\, z \in \{x,y\} \lrarrow \hat{\varphi}(z)\, )
+		\varphi \defarrow a = z \vee b = z
+	\end{align}
+	とおけば，
+	\begin{align}
+		\COMAX \vdash \forall z\, (\, z \in \{a,b\} \lrarrow \hat{\varphi}(z)\, )
 	\end{align}
 	が成立するし，同時に定理\ref{thm:equivalent_formula_rewriting_1}と
 	定理\ref{thm:equivalent_formula_rewriting_2}より
@@ -50,7 +54,7 @@
 	も成り立つので
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX \vdash 
-		\forall z\, (\, z \in \{x,y\} \lrarrow x = z \vee y = z\, )
+		\forall z\, (\, z \in \{a,b\} \lrarrow a = z \vee b = z\, )
 	\end{align}
 	が得られる．
 	
@@ -65,12 +69,67 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		大まかな流れは前述したので
-	\end{sketch}
+	$\ELEAX$を加えれば次が得られる．
 	
 	\begin{screen}
-		\begin{thm}[要素の表示の順番を入れ替えても対は等しい]
+		\begin{thm}[対の要素は表示されている要素の一方には等しい]
+		\label{cor:pair_members_are_exactly_the_given_two}
+			$a,b,c$を類とするとき次が成立する:
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+				c \in \{a,b\} \rarrow a = c \vee b = c.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		要素の公理より
+		\begin{align}
+			c \in \{a,b\},\ \ELEAX \vdash \set{c}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\tau \defeq \varepsilon s\, (\, c = s\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			c \in \{a,b\},\ \ELEAX \vdash c = \tau
+			\label{fom:pair_members_are_exactly_the_given_two_2}
+		\end{align}
+		となる．$\tau$に対しては定理\ref{thm:pair_members_are_exactly_the_given_two}より 
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash 
+			\tau \in \{a,b\} \rarrow a = \tau \vee b = \tau
+		\end{align}
+		が成り立つが，ここで(\refeq{fom:pair_members_are_exactly_the_given_two_2})より
+		\begin{align}
+			c \in \{a,b\},\ \EQAX,\ELEAX \vdash \tau \in \{a,b\}
+		\end{align}
+		となるので
+		\begin{align}
+			c \in \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = \tau \vee b = \tau
+		\end{align}
+		が従い，代入原理(定理\ref{thm:the_principle_of_substitution})と
+		(\refeq{fom:pair_members_are_exactly_the_given_two_2})より
+		\begin{align}
+			c \in \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c \vee b = c
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	この逆，つまり
+	\begin{align}
+		a = c \vee b = c \rarrow c \in \{a,b\}
+	\end{align}
+	は一般には成立しない．実際$a,b$が共に真類であるときは
+	\begin{align}
+		\{a,b\} = \emptyset
+	\end{align}
+	となるためである(定理\ref{thm:pair_of_proper_classes_is_emptyset})．
+	
+	\begin{screen}
+		\begin{thm}[表示の順番を入れ替えても対は等しい]
 		\label{thm:commutative_law_of_pairs}
 			$a$と$b$を類とするとき
 			\begin{align}
@@ -129,9 +188,9 @@
 	\end{sketch}
 		
 	\begin{screen}
-		\begin{axm}[対の公理]
+		\begin{axm}[対の公理] 次の式を$\PAIAX$により参照する：
 			\begin{align}
-				\PAIAX \defarrow \forall x\, \forall y\, \exists p\, \forall z\, 
+				\forall x\, \forall y\, \exists p\, \forall z\, 
 				(\, x = z \vee y = z \lrarrow z \in p\, ).
 			\end{align}
 		\end{axm}
