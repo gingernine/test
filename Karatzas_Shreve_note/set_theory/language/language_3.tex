@@ -385,8 +385,11 @@
 		\Set{x}{\psi}
 	\end{align}
 	なる内包項が現れたら，$x$は「この内包項の中で量化されている」という．
+	他方で$\psi$の中に$x$とは別の変項が現れていても，その変項は
+	$\forall x \psi,\ \exists x \psi,\ \varepsilon x \psi,\ \Set{x}{\psi}$
+	の中では「量化されていない」と解釈する．
 	まとめれば，$\forall,\exists,\varepsilon,$そして$\{$は
-	直後の変項をそのスコープ内で量化しているのである．たとえば
+	直後に来る変項のみをそのスコープ内で量化しているのである．たとえば
 	\begin{align}
 		\forall x\, (\, x \in y\, )
 	\end{align}
@@ -418,7 +421,7 @@
 	\begin{screen}
 		\begin{metadfn}[文]
 			自由な変項が現れない$\mathcal{L}$の式を{\bf 文}\index{ぶん@文}{\bf (sentence)}
-			{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
+			や{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
 		\end{metadfn}
 	\end{screen}
 	
@@ -462,21 +465,20 @@
 	以上の考察を一般的な代入規則に敷衍して言えば，
 	
 	\begin{itembox}[l]{代入可能な項}
-		$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とするとき，
-		$\varphi$に自由に現れる$x$に代入して良いのは
+		$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+		$\tau$を$\mathcal{L}$の項とする．このとき「$\varphi$に自由に現れる$x$に$\tau$を
+		代入する」とは，特筆が無い限り$\varphi$に自由に現れる全ての$x$に
+		$\tau$を代入することであって，その際に$\tau$が満たすべき条件は
 		\begin{itemize}
-			\item 代入した後で束縛されない変項
-			\item 代入するのが$\varepsilon$項や内包項である場合は，
-				その項の中に自由に現れる変項が，代入した箇所で束縛されないもの
+			\item $\tau$が変項ならば$\tau$は$\varphi$に代入されたどの箇所でも自由である
+			\item $\tau$が$\varepsilon$項や内包項である場合は，
+				$\tau$の中に自由に現れる変項があったとしても，
+				それらは全て$\tau$が代入されたどの箇所でも束縛されない
 		\end{itemize}
-		に限る．$\mathcal{L}$の項$\tau$がこの条件を満たすとき，
+		とする．$\tau$がこの条件を満たすとき，
 		{\bf 「$\tau$は$\varphi$の中で$x$への代入について自由である」}という．
 	\end{itembox}
 	
-	ちなみに$\varphi$に自由に現れる$x$に$\tau$を代入する際は，特筆が無い限り
-	$\varphi$に自由に現れる\underline{{\bf 全ての$x$}} に$\tau$を代入する．
-	そして「$\tau$が$\varphi$の中で$x$への代入について自由である」とは，
-	$\tau$は$\varphi$に代入されたどの箇所でも束縛の影響を受けないということである．
 	$\varphi$に自由に現れる$x$に$\tau$を代入した後の式を
 	\begin{align}
 		\varphi(x/\tau)
