@@ -19,7 +19,7 @@
 	\begin{align}
 		\Sigma \vdash R \notin R \lrarrow R \in R
 	\end{align}
-	が成り立ってしまい(正式な推論は無視してラフに考えれば)，これは$\Sigma \vdash \bot$を導く．
+	が成り立ってしまい，これは$\Sigma \vdash \bot$を導く(定理\ref{thm:Russell_paradox})．
 	この種の矛盾を回避するために類を導入したのであり，
 	集合とは類の中で特定の性質をもつものに限られる．
 	
@@ -315,11 +315,11 @@
 	
 	\begin{screen}
 		\begin{thm}[条件を満たす集合は要素である]\label{thm:satisfactory_set_is_an_element}
-			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
-			$x$のみが$\varphi$で束縛されていないとする．このとき，任意の類$a$に対して
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとする．このとき，任意の類$a$に対して
 			\begin{align}
 				\EQAX,\COMAX \vdash \varphi(a) \rarrow 
-				\left(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, \right).
+				(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -364,6 +364,124 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{thm}[Russellのパラドックス]\label{thm:Russell_paradox}
+			\begin{align}
+				\EQAX,\COMAX \vdash \set{\Set{x}{x \notin x}} \rarrow \bot.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま$R \defeq \Set{x}{x \notin x}$とし
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, R = x\, )
+		\end{align}
+		とおけば，存在記号の推論公理より
+		\begin{align}
+			\set{R} \vdash R = \tau
+			\label{fom:Russell_paradox_1}
+		\end{align}
+		が成立する．また全称記号の推論公理と論理積の除去より
+		\begin{align}
+			\COMAX &\vdash \tau \in R \rarrow \tau \notin \tau, 
+			\label{fom:Russell_paradox_2} \\
+			\COMAX &\vdash \tau \notin \tau \rarrow \tau \in R
+			\label{fom:Russell_paradox_3}
+		\end{align}
+		が成り立つ．
+		
+		\begin{description}
+			\item[step1]
+				まず
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash \tau \in R \rarrow \bot
+					\label{fom:Russell_paradox_4}
+				\end{align}
+				を示す．(\refeq{fom:Russell_paradox_1})と
+				\begin{align}
+					\EQAX \vdash R = \tau \rarrow (\, \tau \in R \rarrow \tau \in \tau\, )
+				\end{align}
+				との三段論法より
+				\begin{align}
+					\tau \in R,\ \set{R},\ \EQAX \vdash \tau \in \tau
+				\end{align}
+				がとなり，また(\refeq{fom:Russell_paradox_2})より
+				\begin{align}
+					\tau \in R,\ \COMAX \vdash \tau \notin \tau
+				\end{align}
+				も成り立つので，矛盾の導入
+				\begin{align}
+					\vdash \tau \in \tau \rarrow (\, \tau \notin \tau \rarrow \bot\, )
+				\end{align}
+				との三段論法および演繹定理より(\refeq{fom:Russell_paradox_4})が得られる．
+				
+			\item[step2]
+				次に
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash \tau \notin R \rarrow \bot
+					\label{fom:Russell_paradox_5}
+				\end{align}
+				を示す．まず(\refeq{fom:Russell_paradox_3})と
+				対偶律3 (推論法則\ref{logicalthm:contraposition_3})より
+				\begin{align}
+					\COMAX \vdash \tau \notin R \rarrow \tau \in \tau
+				\end{align}
+				が成り立ち
+				\begin{align}
+					\tau \notin R,\ \COMAX \vdash \tau \in \tau
+					\label{fom:Russell_paradox_6}
+				\end{align}
+				が従う．また(\refeq{fom:Russell_paradox_1})と
+				\begin{align}
+					\EQAX \vdash R = \tau \rarrow \tau = R
+				\end{align}
+				より
+				\begin{align}
+					\set{R},\ \EQAX \vdash \tau = R
+				\end{align}
+				となり，
+				\begin{align}
+					\EQAX \vdash \tau = R \rarrow (\, \tau \in \tau \rarrow 
+					\tau \in R\, )
+				\end{align}
+				との三段論法より
+				\begin{align}
+					\set{R},\ \EQAX \vdash \tau \in \tau \rarrow \tau \in R
+				\end{align}
+				が成り立つので，対偶律1 
+				(推論法則\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\set{R},\ \EQAX \vdash \tau \notin R \rarrow \tau \notin \tau
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\tau \notin R,\ \set{R},\ \EQAX \vdash \tau \notin \tau
+					\label{fom:Russell_paradox_7}
+				\end{align}
+				が従う．(\refeq{fom:Russell_paradox_6})(\refeq{fom:Russell_paradox_7})と
+				矛盾の導入および演繹定理より(\refeq{fom:Russell_paradox_5})が得られる．
+				
+			\item[step3]
+				(\refeq{fom:Russell_paradox_4})と(\refeq{fom:Russell_paradox_5})と
+				論理和の除去より
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash
+					\tau \in R \vee \tau \notin R \rarrow \bot
+				\end{align}
+				が成り立つが，排中律(推論法則\ref{logicalthm:law_of_excluded_middle})より
+				\begin{align}
+					\vdash \tau \in R \vee \tau \notin R
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash \bot
+				\end{align}
+				が出る．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{dfn}[宇宙]
 			$\Univ \defeq \Set{x}{x=x}$で定める類$\Univ$を{\bf 宇宙}\index{うちゅう@宇宙}
 			{\bf (Universe)}と呼ぶ．
@@ -375,8 +493,8 @@
 	「$a$が$\Univ$の要素ならば$a$は集合であり，逆に
 	$a$が集合ならば$a$は$\Univ$の要素である」という意味である
 	(定理\ref{thm:V_is_the_whole_of_sets})．
-	また$\Univ$のより具体的な構造ものちに判る(定理\ref{})．
-	ちなみに名前のVとはVon NeumannのVである．
+	%また$\Univ$のより具体的な構造ものちに判る(定理\ref{})．
+	%ちなみに名前のVとはVon NeumannのVである．
 	
 	\begin{screen}
 		\begin{axm}[要素の公理]
