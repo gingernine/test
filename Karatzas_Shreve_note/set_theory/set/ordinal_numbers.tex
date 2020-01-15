@@ -7,15 +7,131 @@
 		3 &\defeq \{0,1,2\} = \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}
 	\end{align}
 	といった反復操作で定められる．上の操作を受け継いで``頑張れば手で書き出せる''類を自然数と呼ぶ．
-	$0$は集合であり，対集合の公理から$1$もまた集合である．
-	そして和集合の公理から$2$が集合であること，更には$3,4,\cdots$と続く自然数が全て集合であることがわかる．
+	$0$は集合であり，集合の対は集合であるから$1$もまた集合である．
+	更には集合の合併も集合であるから$2,3,4,\cdots$と続く自然数が全て集合であることがわかる．
 	自然数の冪も自然数同士の集合演算もその結果は全て集合になるが，
-	ここで
-	\begin{align}
-		\mbox{集合は$0$に集合演算を施しただけの素姓が明らかなものに限られるか}
-	\end{align}
+	ここで「集合は$0$に集合演算を施しただけの素姓が明らかなものに限られるか」
 	という疑問というか期待が自然に生まれてくる．実際それは正則性公理によって肯定されるわけだが，
 	そこでキーになるのは順序数と呼ばれる概念である．
+	
+	\begin{screen}
+		\begin{axm}[正則性公理]
+			空でない集合は自分自身と交わらない要素を持つ．
+			次の式を$\REGAX$で参照する:
+			\begin{align}
+				\forall r\, (\, \exists x\, (\, x \in r\, )
+				\rarrow \exists y\, (\, y \in r \wedge \forall z\, 
+				(\, z \in r \rarrow z \notin y\, )\, )\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[類は自分自身を要素に持たない]
+		\label{thm:no_class_contains_itself}
+			$a$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash a \notin a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		要素の公理の対偶より
+		\begin{align}
+			\ELEAX \vdash\ \negation \set{a} \rarrow a \notin a
+		\end{align}
+		が成り立つので，後は
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX 
+			\vdash \set{a} \rarrow a \notin a
+		\end{align}
+		を示せばよい．集合の対は集合である(定理\ref{thm:pair_of_sets_is_a_set})から
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{a\}}
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, \{a\} = x\, )
+		\end{align}
+		とおけば，量化記号の推論公理より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{a\} = \tau
+			\label{fom:no_class_contains_itself_1}
+		\end{align}
+		と
+		\begin{align}
+			\REGAX \vdash \exists x\, (\, x \in \tau\, )
+			\rarrow \exists y\, (\, y \in \tau \wedge \forall z\, (\, 
+			z \in \tau \rarrow z \notin y\, )\, )
+			\label{fom:no_class_contains_itself_2}
+		\end{align}
+		が成り立つ．集合は自分自身の対の要素である
+		(定理\ref{thm:set_is_an_element_of_its_pair})から
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a\}
+			\label{fom:no_class_contains_itself_3}
+		\end{align}
+		が成り立ち，(\refeq{fom:no_class_contains_itself_1})と併せて
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash a \in \tau
+		\end{align}
+		が成り立つ．これによって
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \vdash 
+			\exists x\, (\, x \in \tau\, )
+		\end{align}
+		が従い(定理\ref{thm:emptyset_does_not_contain_any_class})，
+		(\refeq{fom:no_class_contains_itself_2})との三段論法より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash
+			\exists y\, (\, y \in \tau \wedge \forall z\, (\, 
+			z \in \tau \rarrow z \notin y\, )\, )
+		\end{align}
+		となる．
+		\begin{align}
+			\zeta &\defeq \varepsilon x\, (\, a = x\, ), \\
+			\eta &\defeq \varepsilon y\, (\, y \in \tau \wedge \forall z\, (\, 
+			z \in \tau \rarrow z \notin y\, )\, )
+		\end{align}
+		とおけば存在記号の推論公理より
+		\begin{align}
+			\set{a} &\vdash a = \zeta, \label{fom:no_class_contains_itself_4} \\
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX &\vdash 
+			\eta \in \tau, \label{fom:no_class_contains_itself_5} \\
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX &\vdash 
+			\forall z\, (\, z \in \tau \rarrow z \notin \eta\, )
+			\label{fom:no_class_contains_itself_6}
+		\end{align}
+		が成り立つが，まず(\refeq{fom:no_class_contains_itself_3})と
+		(\refeq{fom:no_class_contains_itself_1})と
+		(\refeq{fom:no_class_contains_itself_4})より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \zeta \in \tau
+		\end{align}
+		が成り立つので，(\refeq{fom:no_class_contains_itself_6})より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash 
+			\zeta \notin \eta
+			\label{fom:no_class_contains_itself_7}
+		\end{align}
+		が従う．また(\refeq{fom:no_class_contains_itself_5})と
+		(\refeq{fom:no_class_contains_itself_1})より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \eta \in \{a\}
+		\end{align}
+		が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \eta = a
+		\end{align}
+		が従い，(\refeq{fom:no_class_contains_itself_7})と
+		(\refeq{fom:no_class_contains_itself_4})と併せて
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash a \notin a
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{logicalthm}[論理和・論理積の結合律]\label{logicalthm:associative_law}
