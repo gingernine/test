@@ -16,7 +16,6 @@
 	
 	\begin{screen}
 		\begin{axm}[正則性公理]
-			空でない集合は自分自身と交わらない要素を持つ．
 			次の式を$\REGAX$で参照する:
 			\begin{align}
 				\forall r\, (\, \exists x\, (\, x \in r\, )
@@ -25,6 +24,8 @@
 			\end{align}
 		\end{axm}
 	\end{screen}
+	
+	正則性公理の主張は「空でない集合は自分自身と交わらない要素を持つ」ということである．
 	
 	\begin{screen}
 		\begin{thm}[類は自分自身を要素に持たない]
@@ -134,172 +135,56 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{logicalthm}[論理和・論理積の結合律]\label{logicalthm:associative_law}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
-			\begin{description}
-				\item[(イ)] $(A \vee B) \vee C \Longleftrightarrow A \vee (B \vee C)$.
-				\item[(ロ)] $(A \wedge B) \wedge C \Longleftrightarrow A \wedge (B \wedge C)$.
-			\end{description}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{screen}
-		\begin{logicalthm}[論理和・論理積の分配律]\label{logicalthm:distributive_law}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
-			\begin{description}
-				\item[(イ)] $(A \vee B) \wedge C \Longleftrightarrow (A \wedge C) \vee (B \wedge C)$.
-				\item[(ロ)] $(A \wedge B) \vee C \Longleftrightarrow (A \vee C) \wedge (B \vee C)$.
-			\end{description}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}\mbox{}
-		\begin{description}
-			\item[(イ)] いま$(A \vee B) \wedge C$が成立していると仮定する．
-				このとき論理積の除去により$A \vee B$と$C$が同時に成り立つ．ここで$A$が成り立っているとすれば，
-				論理積の導入により
-				\begin{align}
-					A \wedge C
-				\end{align}
-				が成り立つので演繹法則より
-				\begin{align}
-					A \Longrightarrow (A \wedge C)
-				\end{align}
-				が成立する．他方で論理和の導入より
-				\begin{align}
-					(A \wedge C) \Longrightarrow (A \wedge C) \vee (B \wedge C)
-				\end{align}
-				も成り立つので，含意の推移律から
-				\begin{align}
-					A \Longrightarrow (A \wedge C) \vee (B \wedge C)
-				\end{align}
-				が従う．$A$と$B$を入れ替えれば
-				\begin{align}
-					B \Longrightarrow (B \wedge C) \vee (A \wedge C)
-				\end{align}
-				が成り立つが，論理和の可換律より
-				\begin{align}
-					(B \wedge C) \vee (A \wedge C) \Longrightarrow (A \wedge C) \vee (B \wedge C)
-				\end{align}
-				が成り立つので
-				\begin{align}
-					B \Longrightarrow (A \wedge C) \vee (B \wedge C)
-				\end{align}
-				が従う．よって場合分け法則から
-				\begin{align}
-					(A \vee B) \Longrightarrow (A \wedge C) \vee (B \wedge C)
-				\end{align}
-				が成立するが，いま$A \vee B$は満たされているので三段論法より
-				\begin{align}
-					(A \wedge C) \vee (B \wedge C)
-				\end{align}
-				が成立する．ここに演繹法則を適用すれば
-				\begin{align}
-					(A \vee B) \wedge C \Longrightarrow (A \wedge C) \vee (B \wedge C)
-				\end{align}
-				が得られる．次に$A \wedge C$が成り立っていると仮定する．このとき
-				$A$が成り立つので$A \vee B$も成立し，同時に$C$も成り立つので
-				$(A \vee B) \wedge C$が成立する．すなわち
-				\begin{align}
-					A \wedge C \Longrightarrow (A \vee B) \wedge C
-				\end{align}
-				が成立する．$A$と$B$を入れ替えれば
-				\begin{align}
-					B \wedge C \Longrightarrow (A \vee B) \wedge C
-				\end{align}
-				も成立するので
-				\begin{align}
-					(A \wedge C) \vee (B \wedge C) \Longrightarrow (A \vee B) \wedge C
-				\end{align}
-				が得られる．
-				
-			\item[(ロ)]
-				(イ)の結果を$\rightharpoondown A,\rightharpoondown B,\rightharpoondown C$に適用すれば
-				\begin{align}
-					(\rightharpoondown A \vee \rightharpoondown B) \wedge \rightharpoondown C
-					\Longleftrightarrow (\rightharpoondown A \wedge \rightharpoondown C) 
-						\vee (\rightharpoondown B \wedge \rightharpoondown C)
-				\end{align}
-				が得られる．ここでDe Morganの法則と同値記号の遺伝性質から
-				\begin{align}
-					(\rightharpoondown A \vee \rightharpoondown B) \wedge \rightharpoondown C
-					&\Longleftrightarrow\ \rightharpoondown (A \wedge B) \wedge \rightharpoondown C \\
-					&\Longleftrightarrow\ \rightharpoondown ((A \wedge B) \vee C)
-				\end{align}
-				が成立し，一方で
-				\begin{align}
-					(\rightharpoondown A \wedge \rightharpoondown C) 
-						\vee (\rightharpoondown B \wedge \rightharpoondown C)
-					&\Longleftrightarrow\ \rightharpoondown (A \vee C) \vee \rightharpoondown (B \vee C) \\
-					&\Longleftrightarrow\ \rightharpoondown ((A \vee C) \wedge (B \vee C))
-				\end{align}
-				も成立するから，含意の推移律より
-				\begin{align}
-					\rightharpoondown ((A \wedge B) \vee C)
-					\Longleftrightarrow\ \rightharpoondown ((A \vee C) \wedge (B \vee C))
-				\end{align}
-				が従う．最後に対偶を取れば
-				\begin{align}
-					(A \wedge B) \vee C \Longleftrightarrow (A \vee C) \wedge (B \vee C)
-				\end{align}
-				が得られる．
-				\QED
-		\end{description}
-	\end{prf}
-	
-	\begin{screen}
-		\begin{logicalthm}[選言三段論法]\label{logicalthm:disjunctive_syllogism}
-			$A,B,C$を$\mathcal{L}'$の閉式とするとき次が成り立つ:
+		\begin{logicalthm}[選言三段論法]
+		\label{logicalthm:disjunctive_syllogism}
+			$A$と$B$を文とするとき
 			\begin{align}
-				(A \vee B) \wedge \rightharpoondown B \Longrightarrow A.
+				\vdash A \vee B \rarrow (\, \negation A \rarrow B\, ).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
 	
-	\begin{prf}
-		分配律(推論法則\ref{logicalthm:distributive_law})より
+	\begin{sketch}
+		まず含意の導入より
 		\begin{align}
-			(A \vee B) \wedge \rightharpoondown B
-			\Longrightarrow (A \wedge \rightharpoondown B) \vee (B \wedge \rightharpoondown B)
+			\vdash B \rarrow (\, \negation A \rarrow B\, )
 		\end{align}
-		が成立する．ここで矛盾に関する規則から
+		が成り立つ．また矛盾の導入より
 		\begin{align}
-			B \wedge \rightharpoondown B \Longrightarrow \bot
+			A,\ \negation A \vdash \bot
 		\end{align}
-		が満たされるので
+		が成り立つが，爆発律(推論法則\ref{logicalthm:principle_of_explosion})より
 		\begin{align}
-			(A \wedge \rightharpoondown B) \vee (B \wedge \rightharpoondown B)
-			\Longrightarrow (A \wedge \rightharpoondown B) \vee \bot
+			A,\ \negation A \vdash B
 		\end{align}
-		が従う．また，論理積の除去より
+		が従い，演繹定理より
 		\begin{align}
-			(A \wedge \rightharpoondown B) \Longrightarrow A
+			\vdash A \rarrow (\, \negation A \rarrow B\, )
 		\end{align}
-		が成り立ち，他方で矛盾に関する規則より
+		も得られる．そして論理和の除去より
 		\begin{align}
-			\bot \Longrightarrow A
+			\vdash A \vee B \rarrow (\, \negation A \rarrow B\, )
 		\end{align}
-		も成り立つから，場合分け法則より
-		\begin{align}
-			(A \wedge \rightharpoondown B) \vee \bot \Longrightarrow A
-		\end{align}
-		が従う．以上の式と含意の推移律から
-		\begin{align}
-			(A \vee B) \wedge \rightharpoondown B \Longrightarrow A
-		\end{align}
-		が得られる．
+		が出る．
 		\QED
-	\end{prf}
+	\end{sketch}
 	
 	\begin{screen}
-		\begin{axm}[正則性公理]
-			$a$を類とするとき，$a$は空でなければ自分自身と交わらない要素を持つ:
+		\begin{thm}[互いを要素として持ち合う集合同士は存在しない]
 			\begin{align}
-				a \neq \emptyset \Longrightarrow 
-				\exists x \in a\, (\, x \cap a = \emptyset\, ).
+				\vdash \forall x,y\, (\, x \in y \rarrow y \notin x\, ).
 			\end{align}
-		\end{axm}
+		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau &\defeq \varepsilon x \negation \forall y\, (\, x \in y \rarrow y \notin x\, ), \\
+			\eta &\defeq \varepsilon y \negation (\, \tau \in y \rarrow y \notin \tau\, )
+		\end{align}
+		とおく．
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[いかなる類も自分自身を要素に持たない]
@@ -553,7 +438,7 @@
 		\label{thm:transitive_totally_ordered_class_is_contained_in_ON}
 			$S$を類とするとき
 			\begin{align}
-				\ord{S} \Longrightarrow S \subset \ON.
+				\ord{S} \rarrow S \subset \ON.
 			\end{align}
 		\end{thm}
 	\end{screen}
