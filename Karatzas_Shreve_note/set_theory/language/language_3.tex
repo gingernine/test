@@ -580,36 +580,39 @@
 	主要$\varepsilon$項であり，現れる内包項は全て正則内包項であるとする．}
 
 \subsection{式の書き換え}
-	$\varepsilon$項を取り入れた当初の目的は，「$\varphi(x)$を満たす集合$x$が存在するならば
-	$\varepsilon x \varphi(x)$はその$x$の一つである」という意味で
-	{\bf 存在文}\index{そんざいぶん@存在文}{\bf (existential sentence)}に対して
-	{\bf 証人}\index{しょうにん@証人}{\bf (witness)}を付けることであった．
-	ただし$\varepsilon$項を作れる式は$\lang{\varepsilon}$の式のみであるので，
-	$\varphi$が$\mathcal{L}$の式であると$\varepsilon x \varphi(x)$を使うことが出来ない．
-	だが$\mathcal{L}$の式の存在文も往々にして登場するから
-	そういった場合でも証人を用意できると便利である．
+	$\varepsilon$項を取り入れた目的は{\bf 存在文}\index{そんざいぶん@存在文}
+	{\bf (existential sentence)}に対して{\bf 証人}\index{しょうにん@証人}{\bf (witness)}
+	を与えることであり，それは
+	\begin{align}
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \varphi(x))
+	\end{align}
+	なる式を公理とすることで実質的に裏付けされる．
+	ただし$\varepsilon$項を作れる式は$\lang{\varepsilon}$の式のみであるから，
+	$\varphi$が内包項を含んだ式であると$\varepsilon x \varphi(x)$を使うことが出来ない．
+	とはいえ$\mathcal{L}$の式の存在文も往々にして登場するので
+	それらに対しても証人を用意できると便利である．
 	そこで$\mathcal{L}$の式を``同値''な$\lang{\varepsilon}$の式に書き換えて，
 	その書き換えた式で作る$\varepsilon$項を使うことにする．つまり
 	$\varphi$が$\mathcal{L}$の式である場合は，$\varphi$を
-	$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えてから
+	``同値''な$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えてから
 	\begin{align}
 		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \hat{\varphi}(x))
 	\end{align}
 	を保証するのである．書き換える必要があるのは内包項を含んでいる式のみであり，
-	式を書き換える際にはその式の中で{\bf 内包項が使われている原子式だけを書き換えれば十分である}．
+	また原子式だけを書き換えれば十分である．
 	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
 	で述べてあるような意味であるが，それは直感的に妥当なものである．原子式の書き換えは次の要領で行う：
 	
 	\begin{table}[H]
 		\begin{center}
-		\begin{tabular}{c|c}
-			元の式 & 書き換え後 \\ \hline \hline
-			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ \\ \hline
-			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ \\ \hline
-			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ \\ \hline
-			$a \in \Set{z}{\psi}$ & $\psi(z/a)$ \\ \hline
-			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ \\ \hline
-			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ \\ \hline
+		\begin{tabular}{c|c|c}
+			元の式 & 書き換え後 & 付記 \\ \hline \hline
+			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
+			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
+			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
+			$a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら束縛変項の名前替えをする\footnotemark \\ \hline
+			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
+			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
 		\end{center}
 	\end{table}
@@ -617,20 +620,24 @@
 	ただし上の記号に課している条件は
 	\begin{itemize}
 		\item $a,b$は$\lang{\varepsilon}$の項である
-			(\ref{sec:restriction_of_formulas}節の約束によって
-			$a,b$は変項であるか主要$\varepsilon$項である)．
-		\item $\varphi,\psi$は$\lang{\varepsilon}$の式である．
-		\item $\varphi$には$y$が自由に現れ，$\psi$には$z$が自由に現れている
-			(\ref{sec:restriction_of_formulas}節の約束によってどちらも正則内包項である)．
+			(\ref{sec:restriction_of_formulas}節より
+			$a,b$は変項か主要$\varepsilon$項)．
+		\item $\Set{y}{\varphi}$と$\Set{z}{\psi}$を正則内包項である．
 		\item $u$は$\varphi$の中で$y$への代入について自由であり，
 			$u,v,s$は$\psi$の中で$z$への代入について自由である．
-		\item 注意が必要なのは$a$が変項である場合の$a \in \Set{z}{\psi}$の書き換えであり，
+			上の式の書き換えにおいては変項$u,v,s$を追加したが，
+			代入について自由である限りどの変項を選んでも構わない．
+			従って式の書き換えは一つに決まらないということになるが，
+			違う変項を選んでも式の意味は変わらない．
+	\end{itemize}
+	
+	\footnotetext{
 			$a$を$\psi$の中の自由な$z$に代入した後で$a$が束縛される場合，
 			束縛変項の名前替えをしなくてはならない．たとえば
 			\begin{align}
 				a \in \Set{z}{\forall a\, (\, z \in a\, )}
 			\end{align}
-			という式では，左辺の$a$は自由であるのに，書き換えの規則を直接適用すると
+			という式では左辺の$a$は自由であるのに，書き換えの規則をそのまま適用すると
 			\begin{align}
 				\forall a\, (\, a \in a\, )
 			\end{align}
@@ -643,7 +650,97 @@
 				\forall b\, (\, a \in b\, )
 			\end{align}
 			とすればよい．
-	\end{itemize}
+	}
+	
+	原子式に対する書き換えが掲示されたので，$\mathcal{L}$の一般の式$\varphi$から
+	$\lang{\varepsilon}$の式$\hat{\varphi}$を得る操作は次の帰納的な要領で行えばよい．
+	\begin{description}
+		\item[case1] $\varphi$が
+			\begin{align}
+				\negation \psi
+			\end{align}
+			なる式であるとき，$\psi$を$\lang{\varepsilon}$の式に書き換えた$\hat{\psi}$を用いて
+			\begin{align}
+				\negation \hat{\psi}
+			\end{align}
+			を$\hat{\varphi}$とする．
+			
+		\item[case2] $\varphi$が
+			\begin{align}
+				\vee \psi \chi
+			\end{align}
+			なる式であるとき，$\psi,\chi$を$\lang{\varepsilon}$の式に書き換えた
+			$\hat{\psi},\hat{\chi}$を用いて
+			\begin{align}
+				\vee \hat{\psi} \hat{\chi}
+			\end{align}
+			を$\hat{\varphi}$とする．$\varphi$が$\wedge \psi \chi$や$\rarrow \psi \chi$
+			の形の時も同様にする．
+			
+		\item[case3] $\varphi$が
+			\begin{align}
+				\exists x \psi
+			\end{align}
+			なる式であるとき，$\psi$を$\lang{\varepsilon}$の式に書き換えた
+			$\hat{\psi}$を用いて
+			\begin{align}
+				\exists x \hat{\psi}
+			\end{align}
+			を$\hat{\varphi}$とする．$\varphi$が$\forall x \psi$の形の時も同様にする．
+	\end{description}
+	
+	もちろん$\varphi$が$\lang{\varepsilon}$の式ならわざわざ書き換える必要は無い．
+	
+	\begin{screen}
+		\begin{metathm}[書き換え後も自由な変項は増減しない]
+			$\varphi$を$\mathcal{L}$の式とし，これを$\lang{\varepsilon}$の式に
+			書き換えたものを$\hat{\varphi}$とする．このとき
+			$\varphi$に自由に現れる変項と$\hat{\varphi}$に自由に現れる変項は一致する．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\varphi$が原子式であるときは上の書き換え表より一目瞭然である．
+			
+			\item[step2]
+				$\varphi$が一般の式であるとき
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式$\psi$と，それを$\lang{\varepsilon}$の式
+					に書き換えた$\hat{\psi}$は，自由に現れる変項が一致する
+				\end{itembox}
+				と仮定する．すると
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式の場合，$\varphi$に自由に現れる変項は
+						$\psi$に自由に現れる変項と一致するが，それは
+						$\hat{\psi}$に自由に現れる変項と一致するので，
+						$\negation \hat{\psi}$に自由に現れる変項とも一致する．
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる式の場合，$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる
+						変項と一致するが，それは$\hat{\psi},\hat{\chi}$に
+						自由に現れる変項と一致するので，
+						$\negation \hat{\psi} \hat{\chi}$に自由に現れる変項とも一致する．
+					
+					\item $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる式の場合，$\varphi$に自由に現れる変項は
+						$\psi$に自由に現れる$x$以外の変項と一致するが，それは
+						$\hat{\psi}$に自由に現れる$x$以外の変項変項と一致するので，
+						$\negation \hat{\psi}$に自由に現れる変項とも一致する．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
 	
 \subsection{中置記法}
 	たとえば$\in s t$なる原子式は「$s$は$t$の要素である($s$ is in $t$)」と読むのだから，語順通りに，
