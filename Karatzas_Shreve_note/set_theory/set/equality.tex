@@ -119,7 +119,8 @@
 			\sigma \defeq 
 			\varepsilon s \negation (\, s \in a \lrarrow s \in a\, )
 		\end{align}
-		とおく．推論法則\ref{logicalthm:reflective_law_of_implication}より
+		とおく．含意の反射律(推論法則\ref{logicalthm:reflective_law_of_implication})
+		と論理積の導入より
 		\begin{align}
 			\vdash \sigma \in a \lrarrow \sigma \in a
 		\end{align}
@@ -314,6 +315,33 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{thm}[主要$\varepsilon$項は内包項で書ける]
+		\label{thm:critical_epsilon_term_can_be_written_by_intensional_notation}
+			$\tau$を主要$\varepsilon$項とするとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \Set{x}{x \in \tau} = \tau.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		内包性公理より直接
+		\begin{align}
+			\COMAX \vdash \forall x\, (\, x \in \Set{x}{x \in \tau} \lrarrow x \in \tau\, )
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\EXTAX \vdash \forall x\, (\, x \in \Set{x}{x \in \tau} \lrarrow x \in \tau\, ) \rarrow \Set{x}{x \in \tau} = \tau
+		\end{align}
+		と三段論法より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \Set{x}{x \in \tau} = \tau
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[条件を満たす集合は要素である]\label{thm:satisfactory_set_is_an_element}
 			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を変項とし，
 			$\varphi$には$x$のみが自由に現れているとする．このとき，任意の類$a$に対して
@@ -505,7 +533,7 @@
 	%ちなみに名前のVとはVon NeumannのVである．
 	
 	\begin{screen}
-		\begin{axm}[要素の公理]
+		\begin{axm}[要素]
 			次の公理を$\ELEAX$によって参照する:
 			$a$と$b$を類とするとき
 			\begin{align}

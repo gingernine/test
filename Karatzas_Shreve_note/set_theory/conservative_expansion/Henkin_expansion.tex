@@ -1,10 +1,10 @@
 \section{Henkin拡大}
-	第\ref{chap:inference}章における証明を{\bf HK}の証明に書き直す．
-	第\ref{chap:inference}章における証明体系は次を公理とした証明体系であり，
-	推論規則は三段論法のみである．
-	
+	第\ref{chap:inference}章の体系の証明は，$\lang{\varepsilon}$の文しか使われていない場合に
+	{\bf HK}の証明に書き直せることを示す．そもそも第\ref{chap:inference}章における証明体系は
+	次を公理とした証明体系であり，便宜上{\bf HE}と呼ぶことにする．
+	{\bf HK}と違って{\bf HE}の証明に使われる式は全て文である．
 	\begin{screen}
-		\begin{logicalaxm}[第\ref{chap:inference}章の公理(命題論理)]
+		\begin{logicalaxm}[{\bf HE}の公理(命題論理)]
 			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の文とするとき
 			\begin{description}
 				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
@@ -28,21 +28,47 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{logicalaxm}[第\ref{chap:inference}章の公理(量化)]
-			$\varphi$を$\lang{\varepsilon}の$式とし，$t$を主要$\varepsilon$項とし，
+		\begin{logicalaxm}[{\bf HE}の公理(量化)]
+			$\varphi$を$\lang{\varepsilon}の$式とし，$\tau$を主要$\varepsilon$項とし，
 			$x$を変項とし，$\varphi$には$x$のみが自由に現れているとするとき
 			\begin{description}
 				\item[(DM)] $\negation \forall x \varphi
 					\rarrow \exists x \negation \varphi.$
 				
-				\item[(UE)] $\forall x \varphi \rarrow \varphi(x/t).$
+				\item[(UE)] $\forall x \varphi \rarrow \varphi(x/\tau).$
 				
-				\item[(EI)] $\varphi(x/t) \rarrow \exists x \varphi.$
+				\item[(EI)] $\varphi(x/\tau) \rarrow \exists x \varphi.$
 				
 				\item[(EE)] $\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi).$
 			\end{description}
 		\end{logicalaxm}
 	\end{screen}
+	
+	第\ref{chap:inference}章での証明可能性の定義を列の概念を用いて書き直しておく．
+	
+	\begin{screen}
+		\begin{metadfn}[{\bf HE}における証明]
+			$\mathscr{S}$を$\lang{\varepsilon}$の文からなる公理系とする．
+			このとき$\lang{\varepsilon}$の文の列$\varphi_{1},\varphi_{2},\cdots,
+			\varphi_{n}$が$\mathscr{S}$から$\varphi_{n}$への{\bf HE}の証明であるとは，
+			各$\varphi_{i}$に対して
+			\begin{itemize}
+				\item $\varphi_{i}$は{\bf HK}の公理である．
+				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
+				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$と$\varphi_{k}$の
+					三段論法で得られる．
+			\end{itemize}
+			が満たされているということである．
+		\end{metadfn}
+	\end{screen}
+	
+	{\bf HE}の証明と第\ref{chap:inference}章の証明の違いは
+	使われている文が$\lang{\varepsilon}$のものに限定されているか否かであるが，
+	区別がつきやすいように$\lang{\varepsilon}$の文だけからなる証明が存在することを
+	\begin{align}
+		\provable{\mbox{{\bf HE}}}
+	\end{align}
+	と書くことにする．
 	
 	いま{\bf HK}に
 	\begin{description}
@@ -55,18 +81,17 @@
 	の形の公理を追加した証明体系を{\bf HK$\varepsilon$}とする．
 	
 	\begin{screen}
-		\begin{metathm}[第\ref{chap:inference}章の体系で証明可能なら
-		{\bf HK$\varepsilon$}でも証明可能]
+		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
 		\label{metathm:Henkin_expansion_1}
 			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，
-			$\psi$を$\lang{\in}$の文とするとき，$\mathscr{S} \vdash \psi$ならば
+			$\psi$を$\lang{\in}$の文とするとき，$\mathscr{S} \provable{\mbox{{\bf HE}}} \psi$ならば
 			$\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{metaprf}
-		第\ref{chap:inference}章の公理が{\bf HK$\varepsilon$}で証明可能であることを示せばよい．
-		第\ref{chap:inference}章の公理で{\bf HK$\varepsilon$}の公理でないものは
+		{\bf HE}の公理が{\bf HK$\varepsilon$}で証明可能であることを示せばよい．
+		{\bf HE}の公理で{\bf HK$\varepsilon$}の公理でないものは
 		\begin{align}
 			\negation \forall x \varphi \rarrow \exists x \negation \varphi
 		\end{align}
@@ -243,64 +268,83 @@
 	}
 	
 	\begin{screen}
-		\begin{metathm}
+		\begin{metathm}[$\Sigma$の定理は$\Gamma$の定理]
 		\label{metathm:Henkin_expansion_3}
-			$\varphi$を$\lang{\varepsilon}$の文とするとき
-			\begin{align}
-				\Sigma \vdash \varphi
-			\end{align}
-			ならば
-			\begin{align}
-				\mathscr{S} \vdash \varphi
-			\end{align}
-			である．
+			$\psi$を$\lang{\in}$の文とするとき，$\Sigma \provable{\mbox{{\bf HE}}} \psi$ならば
+			$\Gamma \provable{\mbox{{\bf HE}}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{sketch}
-		$\Sigma$の公理が$\mathscr{S}$から証明可能であることを示せばよい．
-		たとえば外延性公理については，どんな主要$\varepsilon$項$a,b$に対しても
-		全称記号の推論規則によって
-		\begin{align}
-			\mathscr{S} &\vdash \forall x\, \forall y\, (\, \forall z\, 
-				(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ), \\
-			\mathscr{S} &\vdash \forall y\, (\, \forall z\, 
-				(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
-			\mathscr{S} &\vdash \forall z\, 
-				(\, z \in a \lrarrow z \in b\, ) \rarrow a = b
-		\end{align}
-		となる．他の公理も同様に$\mathscr{S}$から証明可能である．
+		$\Sigma$の公理が$\lang{\varepsilon}$の文であるときに$\Gamma$から証明できることを示せばよい．
+		$\Sigma$と$\Gamma$で形が違う公理は外延性，相等性，要素，置換である
+		(内包性公理は$\lang{\varepsilon}$の式ではありえないので今回は対象外)．
+		\begin{description}
+			\item[外延性]	$a$と$b$を主要$\varepsilon$項とするとき，{\bf HE}の公理(UE)によって
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HE}}} \forall x\, \forall y\, (\, \forall z\, 
+						(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ), \\
+					\Gamma &\provable{\mbox{{\bf HE}}} \forall y\, (\, \forall z\, 
+						(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
+					\Gamma &\provable{\mbox{{\bf HE}}} \forall z\, 
+						(\, z \in a \lrarrow z \in b\, ) \rarrow a = b
+				\end{align}
+				となる．$\Sigma$の相等性の公理も同様に導かれる．
+				
+			\item[要素] $a$と$b$を主要$\varepsilon$項とするとき，
+				定理\ref{thm:any_class_equals_to_itself}と
+				定理\ref{thm:critical_epsilon_term_is_set}の証明をもう一度おさらいすれば
+				\begin{align}
+					\sigma &\defeq \varepsilon z \negation (\, z \in a \lrarrow z \in a\, ), \\
+					&\vdash \sigma \in a \lrarrow \sigma \in a, 
+						&& \mbox{含意の反射律(推論法則\ref{logicalthm:reflective_law_of_implication})と論理積の導入} \\
+					&\vdash \forall z\, (\, z \in a \lrarrow z \in a\, ), 
+						&& \mbox{全称の導出(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})} \\
+					\Gamma &\vdash \forall z\, (\, z \in a \lrarrow z \in a\, ) \rarrow a = a, 
+						&& \mbox{前段の結果} \\
+					\Gamma &\vdash a = a, 
+						&& \mbox{三段論法} \\
+					\Gamma &\vdash \exists x\, (\, a = x\, )
+						&& \mbox{{\bf HE}の公理(EI)}
+				\end{align}
+				となる．含意の導入(K)より
+				\begin{align}
+					\vdash \exists x\, (\, a = x\, ) \rarrow
+					(\, a \in b \rarrow \exists x\, (\, a = x\, )\, )
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\Gamma \vdash a \in b \rarrow \exists x\, (\, a = x\, )
+				\end{align}
+				が従う．
+				
+			\item[置換]
+		\end{description}
+		他の公理も同様に$\mathscr{S}$から証明可能である．
 		ただし内包性公理だけは$\lang{\varepsilon}$の文ではありえないので考慮する必要はない．
 		\QED
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{metathm}
-			$\psi$を$\lang{\in}$の文とするとき
-			\begin{align}
-				\Sigma \vdash \psi
-			\end{align}
-			ならば
-			\begin{align}
-				\mathscr{S} \provable{\mbox{{\bf HK}}} \psi
-			\end{align}
-			である．
+		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
+			$\psi$を$\lang{\in}$の文とするとき，$\Sigma \provable{\mbox{{\bf HE}}} \psi$ならば
+			$\Gamma \provable{\mbox{{\bf HK}}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{sketch}
-		$\Sigma \vdash \psi$ならば，
+		$\Sigma \provable{\mbox{{\bf HE}}} \psi$ならば，
 		メタ定理\ref{metathm:Henkin_expansion_3}より
 		\begin{align}
-			\mathscr{S} \vdash \psi
+			\Gamma \provable{\mbox{{\bf HE}}} \psi
 		\end{align}
 		となり，メタ定理\ref{metathm:Henkin_expansion_1}より
 		\begin{align}
-			\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
+			\Gamma \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
 		\end{align}
 		となり，メタ定理\ref{metathm:Henkin_expansion_2}より
 		\begin{align}
-			\mathscr{S} \provable{\mbox{{\bf HK}}} \psi
+			\Gamma \provable{\mbox{{\bf HK}}} \psi
 		\end{align}
 		となる．
 		\QED
