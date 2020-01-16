@@ -1,0 +1,504 @@
+\subsection{二重否定の除去}
+%以下(DNE)を使う．
+	\begin{screen}
+		\begin{thm}[対偶律3]\label{classic:contraposition_3}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \negation \varphi \rarrow \psi\, )
+				\rarrow (\, \negation \psi \rarrow \varphi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		対偶律1 (定理\ref{classic:contraposition_1})より
+		\begin{align}
+			\negation \varphi \rarrow \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation \psi \rarrow\ \negation \negation \varphi
+		\end{align}
+		が成り立つので，演繹定理より
+		\begin{align}
+			\negation \psi,\ \negation \varphi \rarrow \psi 
+			\provable{\mbox{{\bf HK}}}\ \negation \negation \varphi
+		\end{align}
+		となり，二重否定の除去(DNE)より
+		\begin{align}
+			\negation \psi,\ \negation \varphi \rarrow \psi 
+			\provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow \psi 
+			\provable{\mbox{{\bf HK}}}\ \negation \psi \rarrow \varphi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[強 De Morgan の法則$2$]
+		\label{classic:strong_De_Morgan_law_for_quantifier_2}
+			$\varphi$を$\lang{\varepsilon}$の式とし，
+			変項$x$が$\varphi$に自由に現れるとするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}}\ \negation \forall x \varphi \rarrow 
+				\exists x \negation \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$y$を$\varphi$に現れない変項とすれば，量化の公理(EI)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi(x/y) \rarrow \exists x \negation \varphi
+		\end{align}
+		となり，対偶律3 (定理\ref{classic:contraposition_3})より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ 
+			\negation \exists x \varphi \rarrow \varphi(x/y)
+		\end{align}
+		が成り立つ．汎化によって
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}
+			\forall y\, (\, \negation \exists x \varphi \rarrow \varphi(x/y)\, )
+		\end{align}
+		となり，量化の公理(UI)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ 
+			\negation \exists x \varphi \rarrow \forall x \varphi
+		\end{align}
+		が従い，再び対偶律3 (定理\ref{classic:contraposition_3})より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ \negation \forall x \varphi \rarrow \exists x \negation \varphi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[対偶律4]\label{classic:contraposition_4}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \negation \varphi \rarrow\ \negation \psi\, )
+				\rarrow (\, \psi \rarrow \varphi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		対偶律3 (定理\ref{classic:contraposition_3})と演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow\ \negation \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation \negation \psi \rarrow \varphi
+		\end{align}
+		が成り立つ．二重否定の導入(定理\ref{classic:introduction_of_double_negation})より
+		\begin{align}
+			\psi \provable{\mbox{{\bf HK}}}\ \negation \negation \psi
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\psi,\ \negation \varphi \rarrow\ \negation \psi \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow\ \negation \psi \provable{\mbox{{\bf HK}}} 
+			\psi \rarrow \varphi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[背理法の原理]
+		\label{classic:proof_by_contradiction}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \negation \varphi \rarrow \bot\, )
+				\rarrow \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		否定の導入(NI)と演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow \bot \provable{\mbox{{\bf HK}}}\ 
+			\negation \negation \varphi
+		\end{align}
+		が成り立ち，二重否定の除去(DNE)より
+		\begin{align}
+			\negation \varphi \rarrow \bot \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[爆発律]
+		\label{classic:principle_of_explosion}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \bot \rarrow \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		含意の導入(K)と演繹定理より
+		\begin{align}
+			\bot \provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot
+		\end{align}
+		が成り立ち，背理法の原理(定理\ref{classic:proof_by_contradiction})より
+		\begin{align}
+			\bot \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[否定の論理和は含意で表せる]
+		\label{classic:disjunction_of_negation_rewritable_by_implication}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \negation \varphi \vee \psi\, )
+				\rarrow (\, \varphi \rarrow \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		矛盾の導入(CTD1)と演繹定理より
+		\begin{align}
+			\negation \varphi,\ \varphi \provable{\mbox{{\bf HK}}} \bot 
+		\end{align}
+		となり，爆発律(定理\ref{classic:principle_of_explosion})より
+		\begin{align}
+			\negation \varphi,\ \varphi \provable{\mbox{{\bf HK}}} \psi
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow 
+			(\, \varphi \rarrow \psi\, )
+		\end{align}
+		が得られる．他方で含意の導入(K)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \psi \rarrow (\, \varphi \rarrow \psi\, )
+		\end{align}
+		も成り立つので，論理和の除去(DE)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} (\, \negation \varphi \vee \psi\, ) 
+			\rarrow (\, \varphi \rarrow \psi\, )
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[驚嘆すべき帰結]\label{classic:consequentia_mirabilis}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				(\, \negation \varphi \rarrow \varphi\, ) \rarrow \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			\negation \varphi,\ \negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が成り立ち，矛盾の導入(CTD1)より
+		\begin{align}
+			\negation \varphi,\ \negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot
+		\end{align}
+		が成り立ち，三段論法より
+		\begin{align}
+			\negation \varphi,\ \negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}} \bot
+		\end{align}
+		が従う．演繹定理より
+		\begin{align}
+			\negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot
+		\end{align}
+		となり，背理法の原理(定理\ref{classic:proof_by_contradiction})より
+		\begin{align}
+			\negation \varphi \rarrow \varphi
+			\provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[排中律]\label{classic:law_of_excluded_middle}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理和の導入(DI1)と演繹定理より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi
+		\end{align}
+		が成り立ち，矛盾の導入(CTD1)より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \vee \negation \varphi\, ) \rarrow \bot
+		\end{align}
+		が成り立ち，演繹定理より
+		\begin{align}
+			\varphi,\ \negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}} \bot
+		\end{align}
+		となり，再び演繹定理より
+		\begin{align}
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}} \varphi \rarrow \bot
+		\end{align}
+		となり，否定の導入(NI)より
+		\begin{align}
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi
+		\end{align}
+		が成り立つ．論理和の導入(DI2)より
+		\begin{align}
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \vee \negation \varphi\, )
+			\rarrow \varphi \vee \negation \varphi
+		\end{align}
+		が成り立ち，驚嘆すべき帰結(定理\ref{classic:consequentia_mirabilis})との三段論法より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \varphi \vee \negation \varphi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[含意は否定と論理和で表せる]
+		\label{classic:implication_rewritable_by_disjunction_of_negation}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \varphi \rarrow \psi\, )
+				\rarrow (\, \negation \varphi \vee \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		含意の論理和への遺伝性(定理\ref{classic:heredity_of_implication_to_disjunction})
+		と演繹定理より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}}
+			\varphi \vee \negation \varphi \rarrow \psi \vee \negation \varphi
+		\end{align}
+		が成り立ち，排中律(定理\ref{classic:law_of_excluded_middle})との三段論法より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}}
+			\psi \vee \negation \varphi
+		\end{align}
+		が従い，論理和の対称律(定理\ref{classic:symmetry_of_disjunction})より
+		\begin{align}
+			\varphi \rarrow \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation \varphi \vee \psi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[De Morganの法則2]
+		\label{classic:De_Morgan_law_2}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき
+			\begin{align}
+				\provable{\mbox{{\bf HK}}}\ 
+				\negation (\, \varphi \wedge \negation \psi\, )
+				\rarrow (\, \negation \varphi \vee \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の導入(CI2)より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}}\ \negation \psi
+			\rarrow \varphi \wedge \negation \psi
+		\end{align}
+		が成り立つので，対偶律3 (定理\ref{classic:contraposition_3})より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \wedge \negation \psi\, ) \rarrow \psi
+		\end{align}
+		が成り立つ．演繹定理より
+		\begin{align}
+			\varphi,\ \negation (\, \varphi \wedge \negation \psi\, ) 
+			&\provable{\mbox{{\bf HK}}} \psi, \\
+			\negation (\, \varphi \wedge \negation \psi\, ) 
+			&\provable{\mbox{{\bf HK}}} \varphi \rarrow \psi
+		\end{align}
+		が従い，右辺を否定と論理和に書き換えれば
+		\begin{align}
+			\negation (\, \varphi \wedge \negation \psi\, ) 
+			\provable{\mbox{{\bf HK}}}\ \negation \varphi \vee \psi
+		\end{align}
+		が得られる(定理\ref{classic:implication_rewritable_by_disjunction_of_negation})．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{classic:no_description_2}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$\psi$には$x$が自由に現れて，$\varphi$に$x$が自由に現れないとするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \varphi \rarrow \exists x \psi\, )
+				\rarrow \exists x\, (\, \varphi \rarrow \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		含意は否定と論理和で表せる
+		(定理\ref{classic:implication_rewritable_by_disjunction_of_negation})ので
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation \varphi \vee \exists x \psi
+		\end{align}
+		となり，De Morgan の法則(定理\ref{classic:De_Morgan_law_1})より
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \wedge \negation \exists x \psi\, )
+			\label{fom:classic_no_description_2_1}
+		\end{align}
+		となる．ところで量化記号についてのDe Morganの法則
+		(定理\ref{classic:weak_De_Morgan_law_for_quantifier_2})より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x \negation \psi
+			\rarrow\ \negation \exists x \psi
+		\end{align}
+		が成り立つので，含意の論理積への遺伝性
+		(定理\ref{classic:heredity_of_implication_to_conjunction})より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} 
+			\varphi \wedge \forall x \negation \psi
+			\rarrow \varphi \wedge \negation \exists x \psi
+		\end{align}
+		が得られ，対偶律4 (定理\ref{classic:contraposition_4})より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \wedge \negation \exists x \psi\, )
+			\rarrow\ \negation (\, \varphi \wedge \forall x \negation \psi\, )
+		\end{align}
+		となり，(\refeq{fom:classic_no_description_2_1})との三段論法より
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \wedge \forall x \negation \psi\, )
+			\label{fom:classic_no_description_2_2}
+		\end{align}
+		が従う．また論理積と全称の交換
+		(定理\ref{classic:commutation_of_conjunction_and_universal_quantifier})
+		と対偶律4 (定理\ref{classic:contraposition_4})より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}}\ 
+			\negation (\, \varphi \wedge \forall x \negation \psi\, ) 
+			\rarrow\ \negation \forall x\, (\, \varphi \wedge \negation \psi\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:classic_no_description_2_2})との三段論法より
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}\ 
+			\negation \forall x\, (\, \varphi \wedge \negation \psi\, )
+		\end{align}
+		が従い，量化記号についてのDe Morganの法則
+		(定理\ref{classic:strong_De_Morgan_law_for_quantifier_2})より
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}\ 
+			\exists x \negation (\, \varphi \wedge \negation \psi\, )
+			\label{fom:classic_no_description_2_3}
+		\end{align}
+		が従う．ここでDe Morganの法則(定理\ref{classic:De_Morgan_law_2})と汎化により
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x\, 
+			(\, \negation (\, \varphi \wedge \negation \psi\, )
+			\rarrow (\, \negation \varphi \vee \psi\, )\, )
+		\end{align}
+		が成り立つので，定理\ref{classic:no_description_1}より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \exists x \negation (\, \varphi \wedge \negation \psi\, )
+			\rarrow \exists x\, (\, \negation \varphi \vee \psi\, )
+		\end{align}
+		が得られ，(\refeq{fom:classic_no_description_2_3})との三段論法より
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}
+			\exists x\, (\, \negation \varphi \vee \psi\, )
+			\label{fom:classic_no_description_2_4}
+		\end{align}
+		が従う．同様に
+		定理\ref{classic:disjunction_of_negation_rewritable_by_implication}と汎化により
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x\, 
+			(\, (\, \negation \varphi \vee \psi\, )
+			\rarrow (\, \varphi \rarrow \psi\, )\, )
+		\end{align}
+		が成り立つので，定理\ref{classic:no_description_1}より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \exists x\, (\, \negation \varphi \vee \psi\, )
+			\rarrow \exists x\, (\, \varphi \rarrow \psi\, )
+		\end{align}
+		が得られ，(\refeq{fom:classic_no_description_2_4})との三段論法より
+		\begin{align}
+			\varphi \rarrow \exists x \psi \provable{\mbox{{\bf HK}}}
+			\exists x\, (\, \varphi \rarrow \psi\, )
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$\varphi$と$\lang{\varepsilon}$の式とし，$x$と$y$を変項とし，$\varphi$には$x$が
+			自由に現れて，$y$は$\varphi$の中で$x$への代入について自由であるとするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \exists x \varphi \rarrow \exists y \varphi(x/y).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		量化の公理(EI)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \varphi \rarrow \exists y \varphi(x/y)
+		\end{align}
+		が成り立ち，汎化によって
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x\, (\, \varphi \rarrow \exists y \varphi(x/y)\, )
+		\end{align}
+		となり，量化の公理(EE)によって
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \exists x \varphi \rarrow \exists y \varphi(x/y).
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}\label{classic:lemma_for_Henkin_expansion}
+			$\varphi$と$\lang{\varepsilon}$の式とし，$x$と$y$を変項とし，
+			$\varphi$には$x$が自由に現れて，$y$は$\varphi$の中で$x$への代入について自由であるとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} \exists y\, (\, \exists x \varphi \rarrow \varphi(x/y)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
