@@ -1,6 +1,6 @@
 	第\ref{sec:restriction_of_formulas}節で決めた通り，
 	扱う式は全て，そこに現れる$\varepsilon$項は全て主要$\varepsilon$項であり，
-	現れる内包項は全て正則内包項であるとする．
+	現れる内包項は全て正則内包項である．
 	
 \section{証明}
 	本節では{\bf 推論公理}\index{すいろんこうり@推論公理}{\bf (axiom of inference)}を導入し，
@@ -61,50 +61,42 @@
 	\end{comment}
 	
 	まずは{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定する．
-	証明される式や証明の過程で出てくる式は全て文である．本稿では証明された文を
+	\underline{証明される式や証明の過程で出てくる式は全て文である}．本稿では証明された文を
 	{\bf 真な}\index{しん@真}{\bf (true)}文と呼ぶことにするが，
-	``証明された''や``真である''という状態は議論が立脚している前提に依存する．
+	``証明された''や``真である''という状況は議論が立脚している前提に依存する．
 	ここでいう前提とは，推論公理や言語ではなくて
 	{\bf 公理系}\index{こうりけい@公理系}{\bf (axioms)}と呼ばれるものを指している．
 	公理系とは文の集まりである．$\mathscr{S}$を公理系とするとき，
-	$\mathscr{S}$に集められた文を$\mathscr{S}$の{\bf 公理}\index{こうり@公理}{\bf (axiom)}
+	$\mathscr{S}$に収容された文を$\mathscr{S}$の{\bf 公理}\index{こうり@公理}{\bf (axiom)}
 	と呼ぶ．以下では本稿の集合論が立脚する公理系を$\Sigma$と書くが，
 	$\Sigma$に属する文は単に公理と呼んだりもする．
 	
 	$\Sigma$とは以下の文からなる:
 	\begin{description}
-		\item[相等性] $a,b,c$を類とするとき
-			\begin{align}
-				&a = b \rarrow b = a, \\
-				&a = b \rarrow (\, a \in c \rarrow b \in c\, ), \\
-				&a = b \rarrow (\, c \in a \rarrow c \in b\, ).
-			\end{align}
-			
 		\item[外延性] $a$と$b$を類とするとき
 			\begin{align}
 				\forall x\, (\, x \in a \lrarrow x \in b\, ) \rarrow a = b.
 			\end{align}
 			
+		\item[相等性] $a,b,c$を類とするとき
+			\begin{align}
+				a = b &\rarrow b = a, \\
+				a = b &\rarrow (\, a \in c \rarrow b \in c\, ), \\
+				a = b &\rarrow (\, c \in a \rarrow c \in b\, ).
+			\end{align}
+		
 		\item[内包性] $\varphi$を$\mathcal{L}$の式とし，$y$を$\varphi$に自由に現れる変項とし，
 			$\varphi$に自由に現れる項は$y$のみであるとし，
 			$x$は$\varphi$で$y$への代入について自由であるとするとき，
 			\begin{align}
-				\forall x\, \left(\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, \right).
+				\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, ).
 			\end{align}
 		
 		\item[要素] $a,b$を類とするとき
 			\begin{align}
 				a \in b \rarrow \exists x\, (\, x = a\, ).
 			\end{align}
-			
-		\item[対] $\forall x\, \forall y\, \exists p\, \forall z\, 
-			(\, x = z \vee y = z \lrarrow z \in p\, ).$
-			
-		\item[合併] $\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).$
-			
-		\item[冪] $\forall x\, \exists p\, \forall y\, 
-			(\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, ).$
-			
+		
 		\item[置換] $\varphi$を$\mathcal{L}$の式とし，
 			$s,t$を$\varphi$に自由に現れる変項とし，
 			$\varphi$に自由に現れる項は$s,t$のみであるとし，
@@ -119,17 +111,39 @@
 				\varphi(x,y)\, )\, ).
 			\end{align}
 			
-		\item[正則性]
-			$\forall r\, (\, \exists x\, (\, x \in r\, )
-			\rarrow \exists y\, (\, y \in r \wedge \forall z\, 
-			(\, z \in r \rarrow z \notin y\, )\, )\, ).$
+		\item[対] 
+			\begin{align}
+				\forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
+			\end{align}
 			
-		\item[無限] $\exists x\, (\, 
+		\item[合併] 
+			\begin{align}
+				\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).
+			\end{align}
+			
+		\item[冪] 
+			\begin{align}
+				\forall x\, \exists p\, \forall y\, 
+				(\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, ).
+			\end{align}
+			
+		\item[正則性]
+			\begin{align}
+				\forall r\, (\, \exists x\, (\, x \in r\, )
+				\rarrow \exists y\, (\, y \in r \wedge \forall z\, 
+				(\, z \in r \rarrow z \notin y\, )\, )\, ).
+			\end{align}
+			
+		\item[無限] 
+			\begin{align}
+				\exists x\, (\, 
 				\exists s\, (\, \forall t\, (\, t \notin s\, ) \wedge s \in x\, ) 
 				\wedge \forall y\, (\, 
 				y \in x \rarrow \exists u\, (\, 
 				\forall v\, (\, v \in u \lrarrow v \in y \vee v = y\, )
-				\wedge u \in x\, )\, )\, ).$
+				\wedge u \in x\, )\, )\, ).
+			\end{align}
 	\end{description}
 	
 	\begin{screen}
@@ -152,7 +166,7 @@
 	\begin{align}
 		\mathscr{S} \vdash \varphi
 	\end{align}
-	と書く．ただし{\bf 公理系に変項が生じた場合の証明可能性には，後述の演繹定理
+	と書く．ただし\uline{公理系に変項が生じた場合の証明可能性には，後述の演繹定理
 	およびその逆の結果を適用することが出来る}．
 	
 	たとえばどんな文$\varphi$に対しても
@@ -171,7 +185,7 @@
 	
 	$A,B \vdash \varphi$とは
 	$A$と$B$の二つの文のみを公理とした体系において$\varphi$が証明可能であることを表している．
-	特に{\bf 推論法則とは推論公理だけから導かれる定理}のことである．
+	特に\uline{推論法則とは推論公理だけから導かれる定理}のことである．
 	
 	ではさっそく演繹定理の証明に進む．ところで，後で見るとおり演繹定理とは
 	証明が持つ性質に対する言明であって，つまりメタ視点での定理ということになるので，

@@ -44,7 +44,7 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	いま{\bf HK}の公理に
+	いま{\bf HK}に
 	\begin{description}
 		\item[存在記号の除去] 
 			変項$x$のみが自由に現れる$\lang{\varepsilon}$の式$\varphi$に対して
@@ -52,20 +52,15 @@
 				\exists x \varphi \rarrow \varphi(\varepsilon x \varphi)
 			\end{align}
 	\end{description}
-	を追加した証明体系を{\bf HK$\varepsilon$}とする．
+	の形の公理を追加した証明体系を{\bf HK$\varepsilon$}とする．
 	
 	\begin{screen}
-		\begin{metathm}[第\ref{chap:inference}章の体系で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
+		\begin{metathm}[第\ref{chap:inference}章の体系で証明可能なら
+		{\bf HK$\varepsilon$}でも証明可能]
 		\label{metathm:Henkin_expansion_1}
-			$\varphi$を$\lang{\varepsilon}$の文とするとき
-			\begin{align}
-				\vdash \varphi
-			\end{align}
-			ならば
-			\begin{align}
-				\provable{\mbox{{\bf HK$\varepsilon$}}} \varphi
-			\end{align}
-			である．
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，
+			$\psi$を$\lang{\in}$の文とするとき，$\mathscr{S} \vdash \psi$ならば
+			$\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
@@ -83,15 +78,9 @@
 	\begin{screen}
 		\begin{metathm}[{\bf HK$\varepsilon$}で証明可能なら{\bf HK}でも証明可能]
 		\label{metathm:Henkin_expansion_2}
-			$\psi$を$\lang{\in}$の文とするとき
-			\begin{align}
-				\provable{\mbox{{\bf HK$\varepsilon$}}} \psi
-			\end{align}
-			ならば
-			\begin{align}
-				\provable{\mbox{{\bf HK}}} \psi
-			\end{align}
-			である．
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文
+			とするとき，$\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi$ならば
+			$\mathscr{S} \provable{\mbox{{\bf HK}}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
@@ -170,33 +159,33 @@
 	\end{sketch}
 	
 	第\ref{chap:inference}章の$\Sigma$の公理は$\lang{\varepsilon}$の文の集まりであったが，
-	それらを$\lang{\in}$の文に直した公理体系を$\mathscr{S}$と書く．$\mathscr{S}$とは
+	それらを$\lang{\in}$の文に直した公理体系を$\Gamma$と書く．$\Gamma$とは
 	\begin{description}
-		\item[集合の存在] $\exists x\, (\, x = x\, ).$
+		\item[集合の存在]
+			\begin{align}
+				\exists x\, (\, x = x\, ).
+			\end{align}
+		
+		\item[外延性]
+			\begin{align}
+				\forall x\, \forall y\, (\, \forall z\, 
+				(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ).
+			\end{align}
+			
 		\item[相等性] 
 			\begin{align}
+				&\forall x\, \forall y\, (\, x = y \rarrow y = x\, ), \\
 				&\forall x\, \forall y\, \forall z\, 
 				(\, x = y \rarrow (\, x \in z \rarrow y \in z\, )\, ), \\
 				&\forall x\, \forall y\, \forall z\, 
 				(\, x = y \rarrow (\, z \in x \rarrow z \in y\, )\, ).
 			\end{align}
-			
-		\item[外延性] $\forall x\, \forall y\, (\, \forall z\, 
-			(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ).$
-			
-		\item[対] $\forall x\, \forall y\, \exists p\, \forall z\, 
-			(\, x = z \vee y = z \lrarrow z \in p\, ).$
-			
-		\item[合併] $\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).$
-			
-		\item[冪] $\forall x\, \exists p\, \forall y\, 
-			(\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, ).$
-			
+		
 		\item[置換] $\varphi$を$\lang{\in}$の式とし，
 			$s,t$を$\varphi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる項は$s,t$のみであるとし，
 			$x$は$\varphi$で$s$への代入について自由であり，
 			$y,z$は$\varphi$で$t$への代入について自由であるとするとき，
+			次の式の全称閉包\footnotemark は公理である：
 			\begin{align}
 				\forall x\, \forall y\, \forall z\, 
 				(\, \varphi(x,y) \wedge \varphi(x,z)
@@ -206,21 +195,52 @@
 				\varphi(x,y)\, )\, ).
 			\end{align}
 			
-		\item[正則性] $\forall r\, (\, \exists x\, (\, x \in r\, ) \rarrow
-				\exists y\, (\, y \in r \wedge \forall z\, (\, z \in y \rarrow
-				z \notin r\, )\, )\, ).$
+		\item[対] 
+			\begin{align}
+				\forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
+			\end{align}
 			
-		\item[無限] $\exists x\, (\, 
+		\item[合併] 
+			\begin{align}
+				\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).
+			\end{align}
+			
+		\item[冪] 
+			\begin{align}
+				\forall x\, \exists p\, \forall y\, 
+				(\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, ).
+			\end{align}
+			
+		\item[正則性] 
+			\begin{align}
+				\forall r\, (\, \exists x\, (\, x \in r\, ) \rarrow
+				\exists y\, (\, y \in r \wedge \forall z\, (\, z \in r \rarrow
+				z \notin y\, )\, )\, ).
+			\end{align}
+			
+		\item[無限] 
+			\begin{align}
+				\exists x\, (\, 
 				\exists s\, (\, \forall t\, (\, t \notin s\, ) \wedge s \in x\, ) 
 				\wedge \forall y\, (\, 
 				y \in x \rarrow \exists u\, (\, 
 				\forall v\, (\, v \in u \lrarrow v \in y \vee v = y\, )
-				\wedge u \in x\, )\, )\, ).$
-			
-		\item[選択]
-			
+				\wedge u \in x\, )\, )\, ).
+			\end{align}
 	\end{description}
 	からなる．
+	
+	\footnotetext{
+		$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の{\bf 全称閉包}
+		\index{ぜんしょうへいほう@全称閉包}{\bf (universal closure)}とは
+		\begin{align}
+			\forall x_{1}\, \cdots \forall x_{n} \varphi
+		\end{align}
+		なる形の文を指す．ただし$x_{1},\cdots,x_{n}$は$\varphi$に自由に現れる変項であって，
+		また$\varphi$に自由に現れる変項はこれらのみであるとする．$\varphi$が文であるときは
+		$\varphi$自身を全称閉包とする．
+	}
 	
 	\begin{screen}
 		\begin{metathm}
