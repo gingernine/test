@@ -37,6 +37,68 @@
 	\end{screen}
 	
 	\begin{screen}
+		\begin{metathm}[証明の変項は取り替えても可能]
+			$\varphi_{1},\cdots,\varphi_{n}$を$\Gamma$から$\varphi_{n}$への{\bf HK}の
+			証明とし，$a$をこの証明に自由に現れる変項とし，$b$をこの証明に現れない変項とする．このとき
+			\begin{align}
+				\varphi_{1}(a/b),\ \varphi_{2}(a/b),\ \cdots,\ \varphi_{n}(a/b)
+			\end{align}
+			は$\Gamma$から$\varphi_{n}(a/b)$への{\bf HK}の証明となる．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		式の列が証明であるための条件に照合していく．各$\varphi_{i}$に対して
+		\begin{description}
+			\item[case1] $\varphi_{i}$が{\bf HK}の公理である場合，たとえば$\varphi_{i}$が
+				\begin{align}
+					\varphi \rarrow (\, \psi \rarrow \varphi\, )
+				\end{align}
+				なる形の公理ならば，$\varphi_{i}(a/b)$は
+				\begin{align}
+					\varphi(a/b) \rarrow (\, \psi(a/b) \rarrow \varphi(a/b)\, )
+				\end{align}
+				なる式であるから{\bf HK}の公理である．$\varphi_{i}$が
+				\begin{align}
+					\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+					\rarrow (\, \psi \rarrow \forall x \varphi\, )
+				\end{align}
+				なる形の公理ならば，$\varphi_{i}(a/b)$は
+				\begin{align}
+					\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+					\rarrow (\, \psi \rarrow \forall x \varphi\, )
+				\end{align}
+				
+			\item[case2] $\varphi_{i}$が$\Gamma$の公理である場合，
+				$\varphi_{i}$は文なので$\varphi_{i}(a/b)$は$\varphi_{i}$である．
+			
+			\item[case3] $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
+				三段論法で得られるとき，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$
+				なる形の式であるとすれば，$\varphi_{k}(a/b)$は
+				\begin{align}
+					\varphi_{j}(a/b) \rarrow \varphi_{i}(a/b)
+				\end{align}
+				となる．つまり$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$と$\varphi_{k}(a/b)$から
+				三段論法で得られる．
+				
+			\item[case4] $\varphi_{i}$が前の式$\varphi_{j}$から汎化で得られるとき，
+				変項$e,x$と$x$が自由に現れる式$\psi$が取れて，$\varphi_{j}$は$\psi(x/e)$，
+				$\varphi_{i}$は$\forall x \psi$なる式である．また$e$は$\psi$の中で$x$への代入
+				について自由であり，$e$は$\forall x \psi$に自由に現れない．
+				このとき$\varphi_{j}(a/b)$は
+				\begin{align}
+					\psi(a/b)(x/e)
+				\end{align}
+				となり，$\varphi_{i}(a/b)$は
+				\begin{align}
+					\forall x \psi(a/b)
+				\end{align}
+				となるので，$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$から汎化で得られる．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
 		\begin{metathm}[どんな証明も正則化できる]
 			$\varphi_{1},\cdots,\varphi_{n}$を$\Gamma$から$\varphi_{n}$への{\bf HK}の
 			証明とするとき，$\Gamma$から$\varphi_{n}$への{\bf HK}の正則証明が得られる．
@@ -51,36 +113,50 @@
 			\varphi_{i_{1}} \quad &\mbox{から} \quad \varphi_{j_{1}}, \\
 			\varphi_{i_{2}} \quad &\mbox{から} \quad \varphi_{j_{2}}, \\
 			&\vdots \\
-			\varphi_{i_{m}} \quad &\mbox{から} \quad \varphi_{j_{m}}
+			\varphi_{i_{\ell}} \quad &\mbox{から} \quad \varphi_{j_{\ell}}
 		\end{align}
-		とすべて列挙し(ただし$i_{1} < i_{2} < \cdots < i_{m}$)，
-		$a_{1},\cdots,a_{m}$をそれぞれの固有変項とする．
+		とすべて列挙し(ただし$i_{1} < i_{2} < \cdots < i_{\ell}$)，
+		$a_{1},\cdots,a_{\ell}$をそれぞれの固有変項とする．
 		ただし，もしかすると$a_{2}$と$a_{5}$は同じ文字$x$であるかもしれない．
 		いま想定しているのはこのような状況であり，これから正則証明を構成するのである．
 		
 		$\varphi_{i_{1}}$の直後に$\varphi_{j_{1}}$を移動し，
 		$\varphi_{i_{2}}$の直後に$\varphi_{j_{2}}$に移動し，…，
-		$\varphi_{i_{m}}$の直後に$\varphi_{j_{m}}$を移動することによって
+		$\varphi_{i_{\ell}}$の直後に$\varphi_{j_{\ell}}$を移動することによって
 		$\varphi_{1},\cdots,\varphi_{n}$を並べ替えたものを
 		\begin{align}
 			\psi_{1},\cdots,\psi_{n}
 		\end{align}
 		と書けば，これもまた{\bf HK}の証明となっている．なぜならこの並び替えでは
 		三段論法と汎化の順番が崩れないためである．並び替えによって
-		$\varphi_{i_{1}},\cdots,\varphi_{i_{m}}$の位置も変動しうるが，
-		動いた先をそれぞれ$\psi_{k_{1}},\cdots,\psi_{k_{m}}$とする．
-		そして$b_{1},\cdots,b_{m}$を$\varphi_{i_{1}},\cdots,\varphi_{i_{m}}$に
+		$\varphi_{i_{1}},\cdots,\varphi_{i_{\ell}}$の位置も変動しうるが，
+		動いた先をそれぞれ$\psi_{k_{1}},\cdots,\psi_{k_{\ell}}$とする．
+		そして$b_{1},\cdots,b_{\ell}$を$\varphi_{i_{1}},\cdots,\varphi_{i_{\ell}}$に
 		現れない相異なる変項とする．このとき
 		\begin{align}
-			&\psi_{1}(a_{1}/b_{1}),\ \cdots,\ \psi_{k_{1}}(a_{1}/b_{1}),\ \psi_{k_{1}+1}(a_{1}/b_{1}), \\
-			&\psi_{1}(a_{2}/b_{2}),\ \cdots,\ \psi_{k_{1}}(a_{2}/b_{2}),\ \psi_{k_{1}+2}(a_{2}/b_{2}),\ \cdots,\ \psi_{k_{2}}(a_{2}/b_{2}),\ \psi_{k_{2}+1}(a_{2}/b_{2}), \\
-			&\psi_{1}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{1}}(a_{3}/b_{3}),\ \psi_{k_{1}+2}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{2}}(a_{3}/b_{3}),\ \psi_{k_{2}+2}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{3}}(a_{3}/b_{3}),\ \psi_{k_{3}+1}(a_{3}/b_{3}), \\
-			&\cdots \\
-			&\psi_{1}(a_{m}/b_{m}),\ \cdots,\ \psi_{k_{1}}(a_{m}/b_{m}),\ \psi_{k_{1}+2}(a_{m}/b_{m}),\ \cdots,\ \psi_{k_{2}}(a_{m}/b_{m}),\ \psi_{k_{2}+2}(a_{m}/b_{m}),\ \cdots,\ \psi_{k_{3}}(a_{m}/b_{m}),\ \psi_{k_{3}+2}(a_{m}/b_{m}), \\
-			&\cdots,\ \psi_{k_{m}}(a_{m}/b_{m}),\ \psi_{k_{m}+1}(a_{m}/b_{m}),\ \cdots,\ \psi_{n}(a_{m}/b_{m})
+			&\psi_{1}(a_{1}/b_{1}),\ \cdots,\ \textcolor{red}{\psi_{k_{1}+1}(a_{1}/b_{1})}, \\
+			&\psi_{1}(a_{2}/b_{2}),\ \cdots,\ \psi_{k_{1}+1}(a_{2}/b_{2}),\ \cdots,\ \textcolor{red}{\psi_{k_{2}+1}(a_{2}/b_{2})}, \\
+			&\psi_{1}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{1}+2}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{2}+1}(a_{3}/b_{3}),\ \cdots,\ \textcolor{red}{\psi_{k_{3}+1}(a_{3}/b_{3})}, \\
+			&\vdots \\
+			&\psi_{1}(a_{\ell}/b_{\ell}),\ \cdots,\ \psi_{k_{1}+1}(a_{\ell}/b_{\ell}),\ \cdots,\ \psi_{k_{2}+1}(a_{\ell}/b_{\ell}),\ \cdots,\ 
+			\psi_{k_{3}+1}(a_{\ell}/b_{\ell}), \cdots,\ \textcolor{red}{\psi_{k_{\ell}+1}(a_{\ell}/b_{\ell})}, \\
+			&\psi_{k_{\ell}+2}(a_{\ell}/b_{\ell}),\ \cdots,\ \psi_{n}(a_{\ell}/b_{\ell})
 		\end{align}
-		
-		
+		は{\bf HK}の証明となっている．ところで，固有変項の条件より$a_{1}$は$\psi_{k_{1}+1}$に
+		自由に現れないので$\psi_{k_{1}+1}(a_{1}/b_{1})$は$\psi_{k_{1}+1}$に一致する．
+		同様に，赤字の$\psi_{k_{2}+1}(a_{2}/b_{2}),\ \psi_{k_{3}+1}(a_{3}/a_{3}),\ 
+		\cdots,\ \psi_{k_{\ell}+1}(a_{\ell}/b_{\ell})$はそれぞれ
+		$\psi_{k_{2}+1},\ \psi_{k_{3}+1},\ \cdots,\ \psi_{k_{\ell}+1}$と同じ式である．つまり
+		\begin{align}
+			&\psi_{1}(a_{1}/b_{1}),\ \cdots,\ \textcolor{red}{\psi_{k_{1}+1}}, \\
+			&\psi_{1}(a_{2}/b_{2}),\ \cdots,\ \psi_{k_{1}+1}(a_{2}/b_{2}),\ \cdots,\ \textcolor{red}{\psi_{k_{2}+1}}, \\
+			&\psi_{1}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{1}+2}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{2}+1}(a_{3}/b_{3}),\ \cdots,\ \textcolor{red}{\psi_{k_{3}+1}}, \\
+			&\vdots \\
+			&\psi_{1}(a_{\ell}/b_{\ell}),\ \cdots,\ \psi_{k_{1}+1}(a_{\ell}/b_{\ell}),\ \cdots,\ \psi_{k_{2}+1}(a_{\ell}/b_{\ell}),\ \cdots,\ 
+			\psi_{k_{3}+1}(a_{\ell}/b_{\ell}), \cdots,\ \textcolor{red}{\psi_{k_{\ell}+1}}, \\
+			&\psi_{k_{\ell}+2}(a_{\ell}/b_{\ell}),\ \cdots,\ \psi_{n}(a_{\ell}/b_{\ell})
+		\end{align}
+		は{\bf HK}の証明である．
 		
 		$\varphi$を$\lang{\in}$の文とし，$\varphi_{1},\cdots,\varphi_{n}$を
 		$\lang{\in}$の式からなる$\varphi$への{\bf HK}の証明とする．
