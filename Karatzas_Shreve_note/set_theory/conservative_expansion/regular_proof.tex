@@ -1,7 +1,7 @@
 \section{正則証明}
-	今度は逆に，$\lang{\in}$の式による{\bf HK}の証明から
-	$\lang{\varepsilon}$の文による第\ref{chap:inference}章の証明を構成する．
-	{\bf HK}の証明の中で汎化が使われている場合，その固有変項を
+	今度は逆に，$\lang{\in}$の式からなる{\bf HK}の証明から
+	$\lang{\varepsilon}$の文からなる{\bf HE}の証明を構成する．
+	{\bf HK}の証明の中で汎化が使われている場合，その固有変項は
 	適当な主要$\varepsilon$項に置き換えることになる．たとえば
 	\begin{align}
 		\psi(x/a)
@@ -15,25 +15,73 @@
 		\psi(x/\varepsilon x \negation \psi), 
 		\quad \psi(x/\varepsilon x \negation \psi) \rarrow \forall x \psi
 	\end{align}
-	から三段論法で$\forall x \psi$が出てくる．
-	しかし二つの汎化に対して同じ固有変項が使われている場合は，
-	その固有変項をどういった主要$\varepsilon$項に置き換えれば良いのかわからない．
-	ゆえに，一つの固有変項が一つの汎化にしか用いられないように証明を直す必要がある．
+	から三段論法で$\forall x \psi$が出てくる．ここで注意しておくと，汎化の固有変項の条件より
+	$a$は$\forall x \psi$に自由に現れないので，$a$は$\psi$にも自由に現れず，
+	\begin{align}
+		\psi(x/a)(a/\varepsilon x \negation \psi)
+	\end{align}
+	と
+	\begin{align}
+		\psi(x/\varepsilon x \negation \psi)
+	\end{align}
+	は一致しているのである．固有変項の置き換えは証明全体で一斉に行うので，
+	二つの汎化に対して同じ固有変項が使われている場合は
+	代入する主要$\varepsilon$項をうまく選ぶことが出来ない．
+	従って，どの固有変項も一度の汎化にしか用いられないように証明を直す必要がある．
 	
 	\begin{screen}
 		\begin{metadfn}[正則証明]
 			{\bf 正則証明}\index{せいそくしょうめい@正則証明}{\bf (regular proof)}とは，
-			その証明の中に現れるどの固有変項も一度しか汎化に用いられていないものである．
+			その証明の中に現れるどの固有変項も一度の汎化にしか用いられていないものである．
 		\end{metadfn}
 	\end{screen}
 	
 	\begin{screen}
 		\begin{metathm}[どんな証明も正則化できる]
-			
+			$\varphi_{1},\cdots,\varphi_{n}$を$\Gamma$から$\varphi_{n}$への{\bf HK}の
+			証明とするとき，$\Gamma$から$\varphi_{n}$への{\bf HK}の正則証明が得られる．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{metaprf}
+		$\varphi_{1},\cdots,\varphi_{n}$の中で汎化が使われていなければ
+		これ自体が正則証明である．汎化が使われている場合，
+		使われている箇所を
+		\begin{align}
+			\varphi_{i_{1}} \quad &\mbox{から} \quad \varphi_{j_{1}}, \\
+			\varphi_{i_{2}} \quad &\mbox{から} \quad \varphi_{j_{2}}, \\
+			&\vdots \\
+			\varphi_{i_{m}} \quad &\mbox{から} \quad \varphi_{j_{m}}
+		\end{align}
+		とすべて列挙し(ただし$i_{1} < i_{2} < \cdots < i_{m}$)，
+		$a_{1},\cdots,a_{m}$をそれぞれの固有変項とする．
+		ただし，もしかすると$a_{2}$と$a_{5}$は同じ文字$x$であるかもしれない．
+		いま想定しているのはこのような状況であり，これから正則証明を構成するのである．
+		
+		$\varphi_{i_{1}}$の直後に$\varphi_{j_{1}}$を移動し，
+		$\varphi_{i_{2}}$の直後に$\varphi_{j_{2}}$に移動し，…，
+		$\varphi_{i_{m}}$の直後に$\varphi_{j_{m}}$を移動することによって
+		$\varphi_{1},\cdots,\varphi_{n}$を並べ替えたものを
+		\begin{align}
+			\psi_{1},\cdots,\psi_{n}
+		\end{align}
+		と書けば，これもまた{\bf HK}の証明となっている．なぜならこの並び替えでは
+		三段論法と汎化の順番が崩れないためである．並び替えによって
+		$\varphi_{i_{1}},\cdots,\varphi_{i_{m}}$の位置も変動しうるが，
+		動いた先をそれぞれ$\psi_{k_{1}},\cdots,\psi_{k_{m}}$とする．
+		そして$b_{1},\cdots,b_{m}$を$\varphi_{i_{1}},\cdots,\varphi_{i_{m}}$に
+		現れない相異なる変項とする．このとき
+		\begin{align}
+			&\psi_{1}(a_{1}/b_{1}),\ \cdots,\ \psi_{k_{1}}(a_{1}/b_{1}),\ \psi_{k_{1}+1}(a_{1}/b_{1}), \\
+			&\psi_{1}(a_{2}/b_{2}),\ \cdots,\ \psi_{k_{1}}(a_{2}/b_{2}),\ \psi_{k_{1}+2}(a_{2}/b_{2}),\ \cdots,\ \psi_{k_{2}}(a_{2}/b_{2}),\ \psi_{k_{2}+1}(a_{2}/b_{2}), \\
+			&\psi_{1}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{1}}(a_{3}/b_{3}),\ \psi_{k_{1}+2}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{2}}(a_{3}/b_{3}),\ \psi_{k_{2}+2}(a_{3}/b_{3}),\ \cdots,\ \psi_{k_{3}}(a_{3}/b_{3}),\ \psi_{k_{3}+1}(a_{3}/b_{3}), \\
+			&\cdots \\
+			&\psi_{1}(a_{m}/b_{m}),\ \cdots,\ \psi_{k_{1}}(a_{m}/b_{m}),\ \psi_{k_{1}+2}(a_{m}/b_{m}),\ \cdots,\ \psi_{k_{2}}(a_{m}/b_{m}),\ \psi_{k_{2}+2}(a_{m}/b_{m}),\ \cdots,\ \psi_{k_{3}}(a_{m}/b_{m}),\ \psi_{k_{3}+2}(a_{m}/b_{m}), \\
+			&\cdots,\ \psi_{k_{m}}(a_{m}/b_{m}),\ \psi_{k_{m}+1}(a_{m}/b_{m}),\ \cdots,\ \psi_{n}(a_{m}/b_{m})
+		\end{align}
+		
+		
+		
 		$\varphi$を$\lang{\in}$の文とし，$\varphi_{1},\cdots,\varphi_{n}$を
 		$\lang{\in}$の式からなる$\varphi$への{\bf HK}の証明とする．
 		$\varphi_{i}$から$\varphi_{j}$にかけて汎化が用いられ(固有変項$a$)，
