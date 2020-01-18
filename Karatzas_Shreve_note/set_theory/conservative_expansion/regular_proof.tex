@@ -1,7 +1,8 @@
 \section{正則証明}
 \label{sec:regular_proof}
-	今度は逆に，$\lang{\in}$の式からなる{\bf HK}の証明から
-	$\lang{\varepsilon}$の文からなる{\bf HE}の証明を構成する．
+	この節では「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+	式の列であるものが取れる」ならば「$\Sigma$から$\psi$への{\bf HE}の証明で
+	$\lang{\varepsilon}$の文の列であるものが取れる」ことを示す
 	{\bf HK}の証明の中で汎化が使われている場合，その固有変項は
 	適当な主要$\varepsilon$項に置き換えることになる．たとえば
 	\begin{align}
@@ -32,8 +33,11 @@
 	
 	\begin{screen}
 		\begin{metadfn}[正則証明]
-			{\bf 正則証明}\index{せいそくしょうめい@正則証明}{\bf (regular proof)}とは，
-			その証明の中に現れるどの固有変項も一度の汎化にしか用いられていないものである．
+			{\bf 正則証明}\index{せいそくしょうめい@正則証明}{\bf (regular proof)}とは
+			次を満たす証明$\varphi_{1},\cdots,\varphi_{n}$である．
+			第一に，証明の中に現れるどの固有変項も一度の汎化にしか用いられない．
+			第二に，$a$が$\varphi_{i}$から$\varphi_{j}$への汎化の固有変項ならば，
+			$a$は$\varphi_{i+1}$以降の式には自由に現れない．
 		\end{metadfn}
 	\end{screen}
 	
@@ -179,9 +183,8 @@
 		\label{metathm:theorems_in_HK_provable_in_HE}
 			$\mathscr{S}$を$\lang{\varepsilon}$の文からなる公理系とし，
 			$\psi$を$\lang{\in}$の文とするとき，
-			$\mathscr{S} \provable{\mbox{{\bf HK}}} \psi$ならば
-			$\mathscr{S} \provable{\mbox{{\bf HE}}} \psi$である．
-			ただし$\psi$への{\bf HK}の証明は$\lang{\in}$の式だけからなるものとする．
+			$\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\in}} \psi$ならば
+			$\mathscr{S} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
@@ -195,60 +198,59 @@
 	
 		\begin{description}
 			\item[step1]
-				まず$\varphi_{1},\cdots,\varphi_{n}$の中に
-				自由に現れる変項のうち，$a_{1},\cdots,a_{m}$以外のものをすべて相異なる
-				主要$\varepsilon$項に置き換える．たとえば$x$が$\varphi_{1},\cdots,\varphi_{n}$
-				のいずれかの式の中に自由に現れているなら，主要$\varepsilon$項$\tau$を取ってきて，
-				$\varphi_{1},\cdots,\varphi_{n}$
-				に自由に現れている$x$を一斉に$\tau$に置き換えるといった要領である．
-				$a_{1},\cdots,a_{m}$以外の自由な変項を全て主要$\varepsilon$項に
-				置き換え終わった式の列を
+				$\varphi_{1},\cdots,\varphi_{n}$の中に
+				自由に現れる変項のうち，$a_{1},\cdots,a_{m}$以外の全てを
+				$x_{1},\cdots,x_{k}$とする．これらに対し
+				相異なる主要$\varepsilon$項$\tau_{1},\cdots,\tau_{k}$を用意して，
+				自由に現れる全ての$x_{i}$に$\tau_{i}$を代入する($1 \leq i \leq n$)．
+				そして得られる式の列を$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{n}$とする．
+				
+			\item[step2]
+				次に$a_{m},a_{m-1},\cdots$の順に固有変項を置き換える．$a_{m}$が
 				\begin{align}
-					\hat{\varphi}_{1}, \cdots, \hat{\varphi}_{n}
+					\varphi(x/a_{m})
 				\end{align}
-				と書く．このとき，
+				から
+				\begin{align}
+					\forall x \varphi
+				\end{align}
+				への汎化に使われているならば，$\tilde{\varphi}_{1},\cdots,
+				\tilde{\varphi}_{n}$に自由に現れる$a_{m}$を全て
+				$\varepsilon x \negation \varphi$に置き換えて，列の$\forall x \varphi$の前に
+				\begin{align}
+					\varphi(x/\varepsilon x \negation \varphi) 
+					\rarrow \forall x \varphi
+				\end{align}
+				への{\bf HE}の証明を挿入する
+				(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})．
+				同じ要領で$a_{m-1},\cdots,a_{1}$も主要$\varepsilon$項に置き換えていく．
+				
+			\item[step3]
+				step2の終了後に得られる式の列を$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{m}$
+				とする．これらは全て$\lang{\varepsilon}$の文であり，
+				各$\hat{\varphi}_{i}$は次のいずれかである：
 				\begin{itemize}
 					\item $\varphi_{i}$が(UI)と(EE)以外の{\bf HK}の公理ならば
-						$\hat{\varphi}_{i}$は第\ref{chap:inference}章の推論法則である．
-					\item $\varphi_{i}$が(UI)か(EE)ならば
-						$\hat{\varphi}_{i}$は{\bf HE}から証明可能である(step3)．
+						$\hat{\varphi}_{i}$は{\bf HE}の公理である．
+						
+					\item $\varphi_{i}$が(UI)か(EE)ならば後述．
+					
 					\item $\varphi_{i}$が$\mathscr{S}$の公理ならば，
 						$\varphi_{i}$は変項の置換による影響を受けないので
 						$\hat{\varphi}_{i}$は$\varphi_{i}$と同一である．
+					
 					\item $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
 						三段論法で得られているならば，$\hat{\varphi}_{i}$も
 						$\hat{\varphi}_{j},\hat{\varphi}_{k}$から三段論法で得られる．
+					
 					\item $\varphi_{i}$が前の式$\varphi_{j}$から
 						汎化で得られているならば，$\hat{\varphi}_{i}$も
 						$\hat{\varphi}_{j}$から汎化で得られる．
 				\end{itemize}
 			
-			\item[step2]
-				次に$a_{m},a_{m-1},\cdots$の順に固有変項を置き換える．$a_{m}$が
-				\begin{align}
-					F(x/a_{m})
-				\end{align}
-				から
-				\begin{align}
-					\forall x F
-				\end{align}
-				への汎化に使われているならば，$\hat{\varphi}_{1}, \cdots, \hat{\varphi}_{n}$に
-				自由に現れる$a_{m}$を全て$\varepsilon x \negation F$に置き換えて，
-				$\forall x F$の前の列に
-				\begin{align}
-					F(x/\varepsilon x \negation F) \rarrow \forall x F
-				\end{align}
-				への{\bf HE}の証明を挿入すればよい
-				(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})．
-				同様にして$a_{m-1},\cdots,a_{1}$も主要$\varepsilon$項に置き換えていく．
-				
-			\item[step3]
-				step2の終了後に得られる式の列を
-				$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{m}$とする．
-				これらは全て$\lang{\varepsilon}$の文であるが，
 				この列の中に{\bf HK}の公理(UI)と(EE)の形の式が残っている場合は
 				まだ{\bf HE}の証明ではない．とはいえ下で示す通り(UI)と(EE)は{\bf HE}で証明できるから，
-				$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{m}$の中で
+				$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{m}$の中で
 				(UI)または(EE)の形の式があれば，その式の前の列にその式への{\bf HE}の
 				証明を挿入すればよい．
 			
