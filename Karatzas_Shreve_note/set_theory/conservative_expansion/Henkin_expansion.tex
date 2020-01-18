@@ -66,16 +66,33 @@
 		\end{metadfn}
 	\end{screen}
 	
-	いま{\bf HK}の公理に{\bf HE}の(EE)を追加した証明体系を{\bf HK$\varepsilon$}とする．
+	$\psi$を文とし，$\mathscr{S}$を公理系とするとき，$\mathscr{S}$から$\psi$への
+	{\bf HE}の証明で$\lang{\varepsilon}$の文の列であるものが取れることを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi
+	\end{align}
+	と書く．他方で$\mathscr{S}$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが
+	取れることは，第\ref{chap:inference}章の証明可能性と同義であるから
+	\begin{align}
+		\mathscr{S} \vdash \psi
+	\end{align}
+	と書く．
+	
+	いま{\bf HK}の公理に{\bf HE}の(EE)を追加した証明体系を{\bf HK$\varepsilon$}とし，
+	公理系$\mathscr{S}$から文$\psi$への{\bf HK$\varepsilon$}の証明で
+	$\lang{\varepsilon}$の式の列であるものが取れることを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HK}$\varepsilon$},\lang{\varepsilon}} \psi
+	\end{align}
+	と書く．
 	
 	\begin{screen}
 		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
 		\label{metathm:Henkin_expansion_1}
 			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とする．
-			また$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から$\psi$への{\bf HE}の
-			証明とし，これらは全て$\lang{\varepsilon}$の文であるとする．このとき
-			$\mathscr{S}$から$\psi$への{\bf HK$\varepsilon$}の証明で，
-			$\lang{\varepsilon}$の式の列であるものが取れる．
+			このとき$\mathscr{S} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば
+			$\mathscr{S} \provable{\mbox{{\bf HK}$\varepsilon$},\lang{\varepsilon}} \psi$
+			である．
 		\end{metathm}
 	\end{screen}
 	
@@ -86,9 +103,8 @@
 		\end{align}
 		だけであるが，これはDe Morgan の法則
 		(定理\ref{classic:weak_De_Morgan_law_for_quantifier_1})より導かれる．
-		従って，もし$\varphi_{1},\cdots,\varphi_{n}$の中に
-		{\bf HE}の公理(DM)があれば，それより前の列に(DM)への{\bf HK}の証明を挿入すれば，
-		$\mathscr{S}$から$\psi$への{\bf HK$\varepsilon$}の証明になる．
+		従って，証明の中に{\bf HE}の公理(DM)があれば，それより前の列に(DM)への
+		{\bf HK}の証明を挿入すれば，$\mathscr{S}$から$\psi$への{\bf HK$\varepsilon$}の証明になる．
 		\QED
 	\end{metaprf}
 	
@@ -183,11 +199,9 @@
 	\begin{screen}
 		\begin{metathm}[{\bf HK$\varepsilon$}で証明可能なら{\bf HK}でも証明可能]
 		\label{metathm:Henkin_expansion_2}
-			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とする．
-			また$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から$\psi$への
-			{\bf HK$\varepsilon$}の証明で$\lang{\varepsilon}$の式の列であるものとする．
-			このとき$\mathscr{S}$から$\psi$への{\bf HK}の証明で
-			$\lang{\varepsilon}$の式の列であるものが取れる．
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とするとき，
+			$\mathscr{S} \provable{\mbox{{\bf HK}$\varepsilon$},\lang{\varepsilon}} \psi$
+			ならば$\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
@@ -275,7 +289,7 @@
 	\end{sketch}
 	
 	第\ref{chap:inference}章の$\Sigma$の公理は$\lang{\varepsilon}$の文の集まりであったが，
-	それらを$\lang{\in}$の文に直した公理体系を$\Gamma$と書く．$\Gamma$とは
+	それらを$\lang{\in}$の文に直した公理体系を$\Gamma$と書く．$\Gamma$は次の文からなる．
 	\begin{description}
 	\label{axioms_of_Gamma}
 		\item[集合の存在]
@@ -346,7 +360,6 @@
 				\wedge u \in x\, )\, )\, ).
 			\end{align}
 	\end{description}
-	からなる．
 	
 	\footnotetext{
 		$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の{\bf 全称閉包}
@@ -362,8 +375,9 @@
 	\begin{screen}
 		\begin{metathm}[$\Sigma$の定理は$\Gamma$の定理]
 		\label{metathm:Henkin_expansion_3}
-			$\psi$を$\lang{\in}$の文とするとき，$\Sigma \provable{\mbox{{\bf HE}}} \psi$ならば
-			$\Gamma \provable{\mbox{{\bf HE}}} \psi$である．
+			$\psi$を$\lang{\in}$の文とするとき，
+			$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば
+			$\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
@@ -374,11 +388,11 @@
 		\begin{description}
 			\item[外延性]	$a$と$b$を主要$\varepsilon$項とするとき，{\bf HE}の公理(UE)によって
 				\begin{align}
-					\Gamma &\provable{\mbox{{\bf HE}}} \forall x\, \forall y\, (\, \forall z\, 
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x\, \forall y\, (\, \forall z\, 
 						(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ), \\
-					\Gamma &\provable{\mbox{{\bf HE}}} \forall y\, (\, \forall z\, 
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall y\, (\, \forall z\, 
 						(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
-					\Gamma &\provable{\mbox{{\bf HE}}} \forall z\, 
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, 
 						(\, z \in a \lrarrow z \in b\, ) \rarrow a = b
 				\end{align}
 				となる．$\Sigma$の相等性の公理も同様に導かれる．
@@ -388,25 +402,25 @@
 				定理\ref{thm:critical_epsilon_term_is_set}の証明をもう一度おさらいすれば
 				\begin{align}
 					\sigma &\defeq \varepsilon z \negation (\, z \in a \lrarrow z \in a\, ), \\
-					&\vdash \sigma \in a \lrarrow \sigma \in a, 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a \lrarrow \sigma \in a, 
 						&& \mbox{含意の反射律(推論法則\ref{logicalthm:reflective_law_of_implication})と論理積の導入} \\
-					&\vdash \forall z\, (\, z \in a \lrarrow z \in a\, ), 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, (\, z \in a \lrarrow z \in a\, ), 
 						&& \mbox{全称の導出(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})} \\
-					\Gamma &\vdash \forall z\, (\, z \in a \lrarrow z \in a\, ) \rarrow a = a, 
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, (\, z \in a \lrarrow z \in a\, ) \rarrow a = a, 
 						&& \mbox{前段の結果} \\
-					\Gamma &\vdash a = a, 
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} a = a, 
 						&& \mbox{三段論法} \\
-					\Gamma &\vdash \exists x\, (\, a = x\, )
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, )
 						&& \mbox{{\bf HE}の公理(EI)}
 				\end{align}
 				となる．含意の導入(K)より
 				\begin{align}
-					\vdash \exists x\, (\, a = x\, ) \rarrow
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, ) \rarrow
 					(\, a \in b \rarrow \exists x\, (\, a = x\, )\, )
 				\end{align}
 				が成り立つので，三段論法より
 				\begin{align}
-					\Gamma \vdash a \in b \rarrow \exists x\, (\, a = x\, )
+					\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} a \in b \rarrow \exists x\, (\, a = x\, )
 				\end{align}
 				が従う．
 				
@@ -432,11 +446,11 @@
 				主要$\varepsilon$項を$\tau_{1},\cdots,\tau_{n}$とすれば，
 				{\bf HE}の公理(UE)より
 				\begin{align}
-					\Gamma &\vdash \forall x_{1} \cdots \forall x_{n} \tilde{\psi}(x_{1},\cdots,x_{n}), \\
-					\Gamma &\vdash \forall x_{2} \cdots \forall x_{n} \tilde{\psi}(\tau_{1},x_{2},\cdots,x_{n}), \\
-					\Gamma &\vdash \forall x_{3} \cdots \forall x_{n} \tilde{\psi}(\tau_{1},\tau_{2},x_{3},\cdots,x_{n}), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x_{1} \cdots \forall x_{n} \tilde{\psi}(x_{1},\cdots,x_{n}), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x_{2} \cdots \forall x_{n} \tilde{\psi}(\tau_{1},x_{2},\cdots,x_{n}), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x_{3} \cdots \forall x_{n} \tilde{\psi}(\tau_{1},\tau_{2},x_{3},\cdots,x_{n}), \\
 					&\vdots \\
-					\Gamma &\vdash \tilde{\psi}(\tau_{1},\cdots,\tau_{n}), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \tilde{\psi}(\tau_{1},\cdots,\tau_{n}), \\
 				\end{align}
 				が得られる．$\tilde{\psi}(\tau_{1},\cdots,\tau_{n})$とは$\psi$のことであるから
 				$\psi$は$\Gamma$の定理である．
@@ -445,48 +459,34 @@
 	\end{sketch}
 	
 	\begin{screen}
-		\begin{metathm}[主要$\varepsilon$項を変項に置き換えても{\bf HK}の証明]
-		\label{metathm:Henkin_expansion_4}
-			$\varphi_{1},\cdots,\varphi_{n}$を$\Gamma$から$\varphi_{n}$への{\bf HK}の
-			証明とし，$\tau$を$\varphi_{1},\cdots,\varphi_{n}$に現れる主要$\varepsilon$項
-			とし，$x$を$\varphi_{1},\cdots,\varphi_{n}$に現れない変項とするとき，
-			$\varphi_{1},\cdots,\varphi_{n}$の中で$\tau$が極大に
-			(他の項の真部分項としてではなく)現れる箇所を全て$x$に置き換えた証明の列
-			$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{n}$は{\bf HK}の証明である．
-		\end{metathm}
-	\end{screen}
-	
-	\begin{screen}
 		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK}でも証明可能]
 		\label{metathm:Henkin_expansion_HE_to_HK}
-			$\psi$を$\lang{\in}$の文とするとき，$\Sigma \provable{\mbox{{\bf HE}}} \psi$ならば
-			$\Gamma \provable{\mbox{{\bf HK}}} \psi$であり，その{\bf HK}の証明は
-			$\lang{\in}$の式だけからなるものとして取れる．
+			$\psi$を$\lang{\in}$の文とするとき，$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば
+			$\Gamma \provable{\mbox{{\bf HK}},\lang{\in}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{sketch}
-		$\Sigma \provable{\mbox{{\bf HE}}} \psi$ならば，
+		$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば，
 		メタ定理\ref{metathm:Henkin_expansion_3}より
 		\begin{align}
-			\Gamma \provable{\mbox{{\bf HE}}} \psi
+			\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi
 		\end{align}
 		となり，メタ定理\ref{metathm:Henkin_expansion_1}より
 		\begin{align}
-			\Gamma \provable{\mbox{{\bf HK$\varepsilon$}}} \psi
+			\Gamma \provable{\mbox{{\bf HK$\varepsilon$}},\lang{\varepsilon}} \psi
 		\end{align}
 		となり，メタ定理\ref{metathm:Henkin_expansion_2}より
 		\begin{align}
-			\Gamma \provable{\mbox{{\bf HK}}} \psi
+			\Gamma \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi
 		\end{align}
-		となる．いま得た{\bf HK}の証明を$\varphi_{1},\cdots,\varphi_{n}$とすれば，
-		$\varphi_{1},\cdots,\varphi_{n}$には主要$\varepsilon$項が残っているかもしれない．
-		$\lang{\in}$の式からなる$\psi$への証明を得るには，$\varphi_{1},\cdots,\varphi_{n}$
-		の中で極大である(他の項の真部分項になっていない)主要$\varepsilon$項を
-		$\varphi_{1},\cdots,\varphi_{n}$に現れない変項で置き換えれば良い．
-		メタ定理\ref{metathm:Henkin_expansion_4}より$\varphi_{1},\cdots,\varphi_{n}$は
-		主要$\varepsilon$項を変項で置き換えた後も{\bf HK}の証明となっている．
-		ただしその際には主要$\varepsilon$項ごとに違う変項を用いて，
-		また同じ主要$\varepsilon$項は同じ変項で置き換える．
+		となる．最後の{\bf HK}の証明を$\varphi_{1},\cdots,\varphi_{n}$とする．
+		$\varphi_{1},\cdots,\varphi_{n}$には主要$\varepsilon$項が残っている場合，
+		$\varphi_{1},\cdots,\varphi_{n}$の中で極大に現れる(他の項の真部分項ではない)
+		主要$\varepsilon$項が$e_{1},\cdots,e_{m}$で全てであるなら，
+		$\varphi_{1},\cdots,\varphi_{n}$に現れない相異なる変項$y_{1},\cdots,y_{m}$
+		を用意して，$e_{1}$を$y_{1}$に，$e_{2}$を$y_{2}$に，…，$e_{m}$を$y_{m}$に置き換える．
+		全て置き換え終わった後の式の列はメタ定理\ref{metathm:Henkin_expansion_2_lemma}より
+		{\bf HK}の証明であるし，式自体は$\lang{\in}$のものとなる．
 		\QED
 	\end{sketch}
