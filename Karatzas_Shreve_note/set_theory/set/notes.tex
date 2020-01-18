@@ -1,0 +1,137 @@
+\section{順序型について}
+	$(A,R)$を整列集合とするとき，
+	\begin{align}
+		x \longmapsto 
+		\begin{cases}
+			\min{A \backslash \ran{x}} & \mbox{if } \ran{x} \subsetneq A \\
+			A & \mbox{o.w.} \\
+		\end{cases}
+	\end{align}
+	なる写像$G$に対して
+	\begin{align}
+		\forall \alpha\, F(\alpha) = G(\rest{F}{\alpha})
+	\end{align}
+	なる写像$F$を取り
+	\begin{align}
+		\alpha \defeq \min{\Set{\alpha \in \ON}{F(\alpha) = A}}
+	\end{align}
+	とおけば，$\alpha$は$(A,R)$の順序型．
+	
+\section{超限再帰について}
+	$\Univ$上の写像$G$が与えられたら，
+	\begin{align}
+		F \defeq \Set{(\alpha,x)}{\ord{\alpha} \wedge
+		\exists f\, \left(\, f \fon \alpha \wedge
+		\forall \beta \in \alpha\, \left(\, f(\beta) = G(\rest{f}{\beta})\, \right)
+		\wedge x = G(f)\, \right)}
+	\end{align}
+	により$F$を定めれば
+	\begin{align}
+		\forall \alpha\, F(\alpha) = G(\rest{F}{\alpha})
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		任意の順序数$\alpha$および$\alpha$上の写像$f$と$g$に対して，
+		\begin{align}
+			\forall \beta \in \alpha\,
+			\left(\, f(\beta) = G(\rest{f}{\beta})\, \right)
+		\end{align}
+		かつ
+		\begin{align}
+			\forall \beta \in \alpha\,
+			\left(\, g(\beta) = G(\rest{g}{\beta})\, \right)
+		\end{align}
+		ならば$f = g$である．
+	\end{screen}
+	
+	まず
+	\begin{align}
+		f(0) = G(\rest{f}{0}) = G(0) = G(\rest{g}{0}) = g(0)
+	\end{align}
+	が成り立つ．また
+	\begin{align}
+		\forall \delta \in \beta\, \left(\, 
+		\delta \in \alpha \rarrow f(\delta) = g(\delta)\, \right)
+	\end{align}
+	ならば，$\beta \in \alpha$であるとき
+	\begin{align}
+		\rest{f}{\beta} = \rest{g}{\beta}
+	\end{align}
+	となるので
+	\begin{align}
+		\beta \in \alpha \rarrow f(\beta) = g(\beta)
+	\end{align}
+	が成り立つ．ゆえに
+	\begin{align}
+		f = g
+	\end{align}
+	が得られる．
+	
+	\begin{screen}
+		任意の順序数$\alpha$に対して，$\alpha$上の写像$f$で
+		\begin{align}
+			\forall \beta \in \alpha\, \left(\, 
+			f(\beta) = G(\rest{f}{\beta})\, \right)
+		\end{align}
+		を満たすものが取れる．
+	\end{screen}
+	
+	$\alpha = 0$のとき$f \defeq 0$とすればよい．$\alpha$の任意の要素$\beta$に対して
+	\begin{align}
+		g \fon \beta \wedge \forall \gamma\in \beta\, \left(\, 
+		g(\gamma) = G(\rest{g}{\gamma})\, \right)
+	\end{align}
+	なる$g$が存在するとき，
+	\begin{align}
+		f \defeq \Set{(\beta,x)}{\beta \in \alpha \wedge
+		\exists g\, \left(\, g \fon \beta \wedge
+		\forall \gamma \in \beta\, \left(\, g(\gamma) = G(\rest{g}{\gamma})\, \right)
+		\wedge x = G(g)\, \right)}
+	\end{align}
+	と定めれば，$f$は$\alpha$上の写像であって
+	\begin{align}
+		\forall \beta \in \alpha\, \left(\, 
+		f(\beta) = G(\rest{f}{\beta})\, \right)
+	\end{align}
+	を満たす．
+	
+	\begin{screen}
+		任意の順序数$\alpha$に対して$F(\alpha) = G(\rest{F}{\alpha})$が成り立つ．
+	\end{screen}
+	
+	$\alpha = 0$ならば，$0$上の写像は$0$のみなので
+	\begin{align}
+		F(0) = G(0) = G(\rest{F}{0})
+	\end{align}
+	である．
+	\begin{align}
+		\forall \beta \in \alpha\, F(\beta) = G(\rest{F}{\beta})
+	\end{align}
+	が成り立っているとき，
+	\begin{align}
+		\forall \beta \in \alpha\, f(\beta) = G(\rest{f}{\beta})
+	\end{align}
+	を満たす$\alpha$上の写像$f$を取れば，前の一意性より
+	\begin{align}
+		f = \rest{F}{\alpha}
+	\end{align}
+	が成立する．よって
+	\begin{align}
+		F(\alpha) = G(f) = G(\rest{F}{\alpha})
+	\end{align}
+	となる．
+	\QED
+	
+\section{自然数の全体について}
+	$\Natural$を
+	\begin{align}
+		\Natural \defeq \Set{\beta}{\mbox{$\alpha \leq \beta$である$\alpha$は
+		$0$であるか後続型順序数}}
+	\end{align}
+	によって定めれば，無限公理より
+	\begin{align}
+		\set{\Natural}
+	\end{align}
+	である．また$\ord{\Natural}$と$\limo{\Natural}$も証明できるはず．
+	$\Natural$が最小の極限数であることは$\Natural$を定義した論理式より従う．
