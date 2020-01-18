@@ -42,13 +42,11 @@
 	\end{screen}
 	
 	\begin{screen}
-		\begin{metathm}[証明の変項は取り替えても可能]
+		\begin{metathm}[証明に現れる変項に代入しても証明]
 			$\varphi_{1},\cdots,\varphi_{n}$を$\Gamma$から$\varphi_{n}$への{\bf HK}の
-			証明とし，$a$をこの証明に自由に現れる変項とし，$b$をこの証明に現れない変項とする．このとき
-			\begin{align}
-				\varphi_{1}(a/b),\ \varphi_{2}(a/b),\ \cdots,\ \varphi_{n}(a/b)
-			\end{align}
-			は$\Gamma$から$\varphi_{n}(a/b)$への{\bf HK}の証明となる．
+			証明で$\lang{\varepsilon}$の式の列であるものとし，$a$をこの証明に自由に現れる変項とし，
+			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．このとき
+			$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は$\Gamma$からの{\bf HK}の証明となる．
 		\end{metathm}
 	\end{screen}
 	
@@ -188,7 +186,7 @@
 		\end{metathm}
 	\end{screen}
 	
-	\begin{sketch}
+	\begin{metaprf}
 		$\lang{\in}$の式の列$\varphi_{1},\cdots,\varphi_{n}$を
 		$\mathscr{S}$から$\psi$への{\bf HK}の正則な証明とし，また
 		\begin{align}
@@ -201,7 +199,8 @@
 				$\varphi_{1},\cdots,\varphi_{n}$の中に
 				自由に現れる変項のうち，$a_{1},\cdots,a_{m}$以外の全てを
 				$x_{1},\cdots,x_{k}$とする．これらに対し
-				相異なる主要$\varepsilon$項$\tau_{1},\cdots,\tau_{k}$を用意して，
+				相異なる主要$\varepsilon$項$\tau_{1},\cdots,\tau_{k}$を用意して
+				(これらは$\varphi_{1},\cdots,\varphi_{n}$に現れないものとする)，
 				自由に現れる全ての$x_{i}$に$\tau_{i}$を代入する($1 \leq i \leq n$)．
 				そして得られる式の列を$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{n}$とする．
 				
@@ -214,7 +213,7 @@
 				\begin{align}
 					\forall x \varphi
 				\end{align}
-				への汎化に使われているならば，$\tilde{\varphi}_{1},\cdots,
+				への汎化に使われているなら，$\tilde{\varphi}_{1},\cdots,
 				\tilde{\varphi}_{n}$に自由に現れる$a_{m}$を全て
 				$\varepsilon x \negation \varphi$に置き換えて，列の$\forall x \varphi$の前に
 				\begin{align}
@@ -226,7 +225,7 @@
 				同じ要領で$a_{m-1},\cdots,a_{1}$も主要$\varepsilon$項に置き換えていく．
 				
 			\item[step3]
-				step2の終了後に得られる式の列を$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{m}$
+				step2の終了後に得られる式の列を$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{r}$
 				とする．これらは全て$\lang{\varepsilon}$の文であり，
 				各$\hat{\varphi}_{i}$は次のいずれかである：
 				\begin{itemize}
@@ -243,9 +242,8 @@
 						三段論法で得られているならば，$\hat{\varphi}_{i}$も
 						$\hat{\varphi}_{j},\hat{\varphi}_{k}$から三段論法で得られる．
 					
-					\item $\varphi_{i}$が前の式$\varphi_{j}$から
-						汎化で得られているならば，$\hat{\varphi}_{i}$も
-						$\hat{\varphi}_{j}$から汎化で得られる．
+					\item $\varphi_{i}$が前の式から汎化で得られているならば，
+						$\hat{\varphi}_{i}$は前の式から三段論法で得られる．
 				\end{itemize}
 			
 				この列の中に{\bf HK}の公理(UI)と(EE)の形の式が残っている場合は
@@ -253,83 +251,81 @@
 				$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{m}$の中で
 				(UI)または(EE)の形の式があれば，その式の前の列にその式への{\bf HE}の
 				証明を挿入すればよい．
-			
-				最後に(UI)と(EE)が{\bf HE}で証明可能であることを示す．
+				
 				\begin{description}
-					\item[(UI)]
+					\item[(UI)の証明]
 						$\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) 
 						\rarrow (\, \psi \rarrow \forall x \varphi\, )$を示す．
 						{\bf HE}の公理(UE)より
 						\begin{align}
-							\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \provable{\mbox{{\bf HE}}} 
+							\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
 							\psi \rarrow \varphi(x/\varepsilon x \negation \varphi)
 						\end{align}
 						が成り立つので
 						\begin{align}
-							\psi,\ \forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \provable{\mbox{{\bf HE}}} 
+							\psi,\ \forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
 							\varphi(x/\varepsilon x \negation \varphi)
 						\end{align}
 						となり，全称の導出
 						(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})
 						\begin{align}
-							\provable{\mbox{{\bf HE}}} \varphi(x/\varepsilon x \negation \varphi)
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(x/\varepsilon x \negation \varphi)
 							\rarrow \forall x \varphi
 						\end{align}
 						との三段論法より
 						\begin{align}
-							\psi,\ \forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \provable{\mbox{{\bf HE}}}
+							\psi,\ \forall y\, (\, \psi \rarrow \varphi(x/y)\, ) \provable{\mbox{{\bf HE}},\lang{\varepsilon}}
 							\forall x \varphi
 						\end{align}
 						が従う．よって演繹定理より
 						\begin{align}
-							\provable{\mbox{{\bf HE}}} \forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall y\, (\, \psi \rarrow \varphi(x/y)\, )
 							\rarrow (\, \psi \rarrow \forall x \varphi\, )
 						\end{align}
 						が得られる．
 					
-					\item[(EE)]
+					\item[(EE)の証明]
 						$\forall y\, (\, \varphi(x/y) \rarrow \psi\, ) 
 						\rarrow (\, \exists x \varphi \rarrow \psi\, )$を示す．
 						{\bf HE}の公理(UE)より
 						\begin{align}
-							\forall y\, (\, \varphi(x/y) \rarrow \psi\, ) \provable{\mbox{{\bf HE}}}
+							\forall y\, (\, \varphi(x/y) \rarrow \psi\, ) \provable{\mbox{{\bf HE}},\lang{\varepsilon}}
 							\varphi(x/\varepsilon x \varphi) \rarrow \psi
 						\end{align}
 						が成り立ち，他方で{\bf HE}の公理(EE)より
 						\begin{align}
-							\exists x \varphi \provable{\mbox{{\bf HE}}} \varphi(x/\varepsilon x \varphi)
+							\exists x \varphi \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(x/\varepsilon x \varphi)
 						\end{align}
 						も成り立つので，三段論法より
 						\begin{align}
-							\exists x \varphi,\ \forall y\, (\, \varphi(x/y) \rarrow \psi\, ) \provable{\mbox{{\bf HE}}} \psi
+							\exists x \varphi,\ \forall y\, (\, \varphi(x/y) \rarrow \psi\, ) \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi
 						\end{align}
 						が成り立つ．よって演繹定理より
 						\begin{align}
-							\provable{\mbox{{\bf HE}}} \forall y\, (\, \varphi(x/y) \rarrow \psi\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall y\, (\, \varphi(x/y) \rarrow \psi\, ) 
 							\rarrow (\, \exists x \varphi \rarrow \psi\, )
 						\end{align}
 						が得られる．
 						\QED
 				\end{description}
 		\end{description}
-	\end{sketch}
+	\end{metaprf}
 	
 	\begin{screen}
 		\begin{metathm}[$\Gamma$の定理は$\Sigma$の定理]
 			$\psi$を$\lang{\in}$の文とするとき，
-			$\Gamma \provable{\mbox{{\bf HK}}} \psi$ならば
-			$\Sigma \provable{\mbox{{\bf HE}}} \psi$である．
-			ただし$\psi$への{\bf HK}の証明は$\lang{\in}$の式だけからなるものとする．
+			$\Gamma \provable{\mbox{{\bf HK}},\lang{\in}} \psi$ならば
+			$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
-	\begin{sketch}
-		$\Gamma \provable{\mbox{{\bf HK}}} \psi$ならば
+	\begin{metaprf}
 		メタ定理\ref{metathm:theorems_in_HK_provable_in_HE}より
-		$\Gamma \provable{\mbox{{\bf HE}}} \psi$であるから，あとは
+		$\Gamma \provable{\mbox{{\bf HK}},\lang{\in}} \psi$ならば
+		$\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$であるから，あとは
 		$\Gamma$の公理が$\Sigma$から証明可能であることを示せばよい．
 		$\Sigma$のものと違う$\Gamma$の公理は外延性，相等性，置換であるが，
-		たとえば外延性公理
+		たとえば外延性
 		\begin{align}
 			\forall x\, \forall y\, (\, \forall z\, 
 			(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, )
@@ -343,16 +339,16 @@
 		\end{align}
 		とおけば
 		\begin{align}
-			\Sigma \vdash \forall z\, (\, z \in a \lrarrow z \in b\, ) \rarrow a = b
+			\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, (\, z \in a \lrarrow z \in b\, ) \rarrow a = b
 		\end{align}
 		が成り立つので，全称の導出
 		(推論法則\ref{logicalthm:derivation_of_universal_by_epsilon})より
 		\begin{align}
-			\Sigma &\vdash \forall y\, (\, \forall z\, 
+			\Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall y\, (\, \forall z\, 
 			(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
-			\Sigma &\vdash \forall x\, \forall y\, (\, \forall z\, 
+			\Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x\, \forall y\, (\, \forall z\, 
 			(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, )
 		\end{align}
 		が従う．相等性と置換の公理も同様にして導かれる．
 		\QED
-	\end{sketch}
+	\end{metaprf}
