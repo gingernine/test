@@ -1,28 +1,69 @@
-	この章では，$\lang{\in}$の任意の文$\varphi$に対して
+	第\ref{chap:inference}章では明記しなかったが，
 	\begin{align}
-		\Sigma \vdash \varphi
+		\mathscr{S} \vdash \varphi
 	\end{align}
-	と
-	\begin{align}
-		\mathscr{S} \provable{\mbox{{\bf HK}}} \varphi
-	\end{align}
-	が同値であるということを示す．ここで$\mathscr{S}$とは
+	ということは$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で
+	\footnote{
+		ここで添え字に数字が使われているが，これらは集合論の中で定義される数字ではなく
+		生活の中にありふれた数字である．足し算や大小の比較は日常的な感覚で行えるものとする．
+	}
+	\begin{description}
+		\item[(1)] 各$\varphi_{i}$に対して
+			\begin{itemize}
+				\item $\varphi_{i}$は推論公理である．
+				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
+				\item $\varphi_{i}$は，これより前の文$\varphi_{j}$と$\varphi_{k}$の
+					三段論法で得られる．つまり$\varphi_{k}$は
+					$\varphi_{j} \rarrow \varphi_{i}$なる式である．
+			\end{itemize}
+		
+		\item[(2)] $\varphi_{n}$は$\varphi$である．
+	\end{description}
+	を満たすものが取れるということである．以下ではこの列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
+	を$\mathscr{S}$から$\varphi$への{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼ぶ．
+	第\ref{chap:inference}章で規定した証明とは若干違ってしまっているが，
+	異なる証明体系を比較するには証明は列であると考える方が都合が良い．
+	ただし，集合の章で実演した通り実際の証明でこのような列を構成することは殆どなく，
+	第\ref{chap:inference}章で規定した証明の方が現実的であろう．
 	
-	始めの二節では
+	この章では{\bf 古典論理}\index{こてんろんり@古典論理}{\bf (classical logic)}と呼ばれる
+	(Hilbert流)証明体系を新しく導入する．「証明体系」とはその体系の公理と証明方法を合わせたものである．
+	既に第\ref{chap:inference}章で推論公理と証明可能性を提示したが，あれも一つの証明体系であり，
+	便宜上{\bf HE}と書くことにする．古典論理の証明体系は{\bf HK}と書く．
 	
-	以下で「証明体系」と呼ぶものは，そこに掲示された公理と証明方法を合わせたものを指す．
+	この章で示すことは，$\lang{\in}$の任意の文$\psi$
+	(つまり$\lang{\in}$で書かれた集合論の定理)に対して
+	「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列からなるものが取れる」ことと
+	「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列からなるものが取れる」ことが
+	同値であるということである．この$\Gamma$とは$\Sigma$の公理を$\lang{\in}$の文に直した公理系
+	である(参照P. \pageref{axioms_of_Gamma})．ただいきなりこれを示すのは難しいので，
+	次の段階をふんで明らかにしていく．
+	
+	\begin{description}
+		\item[step1] 「$\Sigma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+			からなるものが取れる」ならば「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+			式の列からなるものが取れる」ことを示す(第\ref{sec:Henkin_expansion}節)．
+			
+		\item[step2] 「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+			式の列からなるものが取れる」ならば「$\Sigma$から$\psi$への{\bf HE}の証明で
+			$\lang{\varepsilon}$の文の列からなるものが取れる」ことを示す
+			(第\ref{sec:regular_proof}節)．
+		
+		\item[step3]  「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列
+			からなるものが取れる」ならば 「$\Sigma$から$\psi$への{\bf HE}の証明で
+			$\lang{\varepsilon}$の文の列からなるものが取れる」ことを示す
+			(第\ref{sec:L_proof_to_L_epsilon_proof}節)．
+	\end{description}
 	
 \section{古典論理}
-	{\bf HK}とは{\bf 古典論理}\index{こてんろんり@古典論理}{\bf (classical logic)}と呼ばれる
-	(Hilbert流)証明体系である．{\bf HK}の公理は以下のように与えられる．
-	この節で扱う項と式は全て$\lang{\varepsilon}$のものであり，
-	また第\ref{sec:restriction_of_formulas}節
-	で決めた通り式に現れる$\varepsilon$項は全て主要$\varepsilon$項であり，
-	内包項は全て正則内包項である．
+	{\bf HK}の公理は以下のように与えられる．ここで扱う式や項は，
+	$\lang{\in}$のものか$\lang{\varepsilon}$のものを想定している．
+	第\ref{chap:inference}章では証明に使われる式は全て文であるとしたが，
+	\underline{{\bf HK}の証明では文に限らず一般の式も使用する}．
 	
 	\begin{screen}
 		\begin{logicalaxm}[{\bf HK}の公理(命題論理)]
-			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の式とするとき
+			$\varphi$と$\psi$と$\xi$を式とするとき
 			\begin{description}
 				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
 					\rarrow (\, (\, \varphi \rarrow \psi\, )
@@ -46,8 +87,8 @@
 	
 	\begin{screen}
 		\begin{logicalaxm}[{\bf HK}の公理(量化)]
-			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の式とし，
-			$x$と$y$を変項とし，$t$を$\lang{\varepsilon}$の項とする．また
+			$\varphi$と$\psi$と$\xi$を式とし，
+			$x$と$y$を変項とし，$t$を項とする．また
 			$y$は$\psi,\forall x \varphi, \exists x \varphi$には自由に現れず，
 			$\varphi$には$x$が自由に現れ，$y$と$t$は$\varphi$の中で$x$への代入について
 			自由であるとする．
@@ -65,43 +106,11 @@
 		\end{logicalaxm}
 	\end{screen}
 	
-	第\ref{chap:inference}章では明記しなかったが，
-	\begin{align}
-		\mathscr{S} \vdash \varphi
-	\end{align}
-	ということは$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で
-	\footnote{
-		ここで添え字に数字が使われているが，これらは集合論の中で定義される数字ではなく
-		生活の中にありふれた数字である．足し算や引き算，大小関係も日常的な感覚で使えるものとする．
-	}
-	\begin{description}
-		\item[(1)] 各$\varphi_{i}$に対して
-			\begin{itemize}
-				\item $\varphi_{i}$は推論公理である．
-				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
-				\item $\varphi_{i}$は，これより前の文$\varphi_{j}$と$\varphi_{k}$の
-					三段論法で得られる．つまり$\varphi_{k}$は
-					$\varphi_{j} \rarrow \varphi_{i}$なる式である．
-			\end{itemize}
-		
-		\item[(2)] $\varphi_{n}$は$\varphi$である．
-	\end{description}
-	を満たすものが取れるということである．そしてこの列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
-	を$\mathscr{S}$から$\varphi$への{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼ぶ．
-	第\ref{chap:inference}章で規定した証明とは若干違ってしまっているが，
-	異なる証明体系を比較するには証明は列であると考える方が都合が良い．
-	ただし，集合の章で実演した通り実際の証明でこのような列を構成することは殆どなく，
-	第\ref{chap:inference}章で規定した証明の方が現実的であろう．
-	
-	第\ref{chap:inference}章では証明に使われる式は全て文であるとしたが，
-	\underline{{\bf HK}の証明では文に限らず一般の式も使用する}．
-	これは$\lang{\in}$の式による証明を得ることを予定しているためである．
-	
 	\begin{screen}
 		\begin{metadfn}[{\bf HK}における証明]
-			$\mathscr{S}$を$\lang{\varepsilon}$の式からなる公理系とする．
-			このとき$\lang{\varepsilon}$の式の列$\varphi_{1},\varphi_{2},\cdots,
-			\varphi_{n}$が$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の証明であるとは，
+			$\mathscr{S}$を式からなる公理系とする．
+			このとき式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$が
+			$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の証明であるとは，
 			各$\varphi_{i}$に対して
 			\begin{itemize}
 				\item $\varphi_{i}$は{\bf HK}の公理である．

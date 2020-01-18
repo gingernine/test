@@ -1,11 +1,12 @@
 \section{Henkin拡大}
-	第\ref{chap:inference}章の体系の証明は，$\lang{\varepsilon}$の文しか使われていない場合に
-	{\bf HK}の証明に書き直せることを示す．そもそも第\ref{chap:inference}章における証明体系は
+\label{sec:Henkin_expansion}
+	第\ref{chap:inference}章の証明は，$\lang{\varepsilon}$の文しか使われていない場合に
+	{\bf HK}の証明に書き直せることを示す．第\ref{chap:inference}章の証明体系は
 	次を公理とした証明体系であり，便宜上{\bf HE}と呼ぶことにする．
-	{\bf HK}と違って{\bf HE}の証明に使われる式は全て文である．
+	{\bf HK}と違って{\bf HE}の証明に使われる式は全て\underline{文}である．
 	\begin{screen}
 		\begin{logicalaxm}[{\bf HE}の公理(命題論理)]
-			$\varphi$と$\psi$と$\xi$を$\lang{\varepsilon}$の文とするとき
+			$\varphi$と$\psi$と$\xi$を$\mathcal{L}$の文とするとき
 			\begin{description}
 				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
 					\rarrow (\, (\, \varphi \rarrow \psi\, )
@@ -29,7 +30,7 @@
 	
 	\begin{screen}
 		\begin{logicalaxm}[{\bf HE}の公理(量化)]
-			$\varphi$を$\lang{\varepsilon}の$式とし，$\tau$を主要$\varepsilon$項とし，
+			$\varphi$を$\mathcal{L}の$式とし，$\tau$を主要$\varepsilon$項とし，
 			$x$を変項とし，$\varphi$には$x$のみが自由に現れているとするとき
 			\begin{description}
 				\item[(DM)] $\negation \forall x \varphi
@@ -39,7 +40,11 @@
 				
 				\item[(EI)] $\varphi(x/\tau) \rarrow \exists x \varphi.$
 				
-				\item[(EE)] $\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi).$
+				\item[(EE)] $\hat{\varphi}$を$\varphi$か或いは$\varphi$の束縛変項を取り替えた式
+					とするとき
+					\begin{align}
+						\exists x \varphi \rarrow \varphi(x/\varepsilon x \hat{\varphi}).
+					\end{align}
 			\end{description}
 		\end{logicalaxm}
 	\end{screen}
@@ -48,12 +53,12 @@
 	
 	\begin{screen}
 		\begin{metadfn}[{\bf HE}における証明]
-			$\mathscr{S}$を$\lang{\varepsilon}$の文からなる公理系とする．
-			このとき$\lang{\varepsilon}$の文の列$\varphi_{1},\varphi_{2},\cdots,
+			$\mathscr{S}$を$\mathcal{L}$の文からなる公理系とする．
+			このとき$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,
 			\varphi_{n}$が$\mathscr{S}$から$\varphi_{n}$への{\bf HE}の証明であるとは，
 			各$\varphi_{i}$に対して
 			\begin{itemize}
-				\item $\varphi_{i}$は{\bf HK}の公理である．
+				\item $\varphi_{i}$は{\bf HE}の公理である．
 				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
 				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$と$\varphi_{k}$の
 					三段論法で得られる．
@@ -62,35 +67,24 @@
 		\end{metadfn}
 	\end{screen}
 	
-	{\bf HE}の証明と第\ref{chap:inference}章の証明の違いは
-	使われている文が$\lang{\varepsilon}$のものに限定されているか否かであるが，
-	区別がつきやすいように$\lang{\varepsilon}$の文だけからなる証明が存在することを
-	\begin{align}
-		\provable{\mbox{{\bf HE}}}
-	\end{align}
-	と書くことにする．
+	$\mathcal{L}$の文$\varphi$に対して，$\mathscr{S} \vdash \varphi$とは
+	$\mathscr{S}$から$\varphi$への{\bf HE}の証明列が取れるということである．
 	
-	いま{\bf HK}に
-	\begin{description}
-		\item[存在記号の除去] 
-			変項$x$のみが自由に現れる$\lang{\varepsilon}$の式$\varphi$に対して
-			\begin{align}
-				\exists x \varphi \rarrow \varphi(\varepsilon x \varphi)
-			\end{align}
-	\end{description}
-	の形の公理を追加した証明体系を{\bf HK$\varepsilon$}とする．
+	いま{\bf HK}の公理に{\bf HE}の(EE)を追加した証明体系を{\bf HK$\varepsilon$}とする．
 	
 	\begin{screen}
 		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
 		\label{metathm:Henkin_expansion_1}
-			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，
-			$\psi$を$\lang{\in}$の文とするとき，$\mathscr{S} \provable{\mbox{{\bf HE}}} \psi$ならば
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とし，
+			$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から$\psi$への{\bf HE}の証明とし，
+			これらは全て$\lang{\varepsilon}$の文であるとする．このとき
 			$\mathscr{S} \provable{\mbox{{\bf HK$\varepsilon$}}} \psi$である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{metaprf}
-		{\bf HE}の公理が{\bf HK$\varepsilon$}で証明可能であることを示せばよい．
+		{\bf HE}の公理はそれが$\lang{\varepsilon}$の文であるときに
+		{\bf HK$\varepsilon$}で証明可能であることを示せばよい．
 		{\bf HE}の公理で{\bf HK$\varepsilon$}の公理でないものは
 		\begin{align}
 			\negation \forall x \varphi \rarrow \exists x \negation \varphi
@@ -111,7 +105,7 @@
 	
 	\begin{sketch}
 		$\mathscr{S}$から$\psi$への{\bf HK$\varepsilon$}の証明を
-		$\varphi_{1},\cdots,\varphi_{n}$とし，この中から「存在記号の除去」であるものを全て取り出して
+		$\varphi_{1},\cdots,\varphi_{n}$とし，この中から{\bf HE}の(EE)であるものを全て取り出して
 		$\varphi_{i_{1}},\cdots\varphi_{i_{m}}$と並べる．すると，
 		\begin{align}
 			\varphi_{i_{1}},\cdots,\varphi_{i_{m}},\mathscr{S} 
@@ -181,6 +175,7 @@
 	第\ref{chap:inference}章の$\Sigma$の公理は$\lang{\varepsilon}$の文の集まりであったが，
 	それらを$\lang{\in}$の文に直した公理体系を$\Gamma$と書く．$\Gamma$とは
 	\begin{description}
+	\label{axioms_of_Gamma}
 		\item[集合の存在]
 			\begin{align}
 				\exists x\, (\, x = x\, ).
