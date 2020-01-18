@@ -1,0 +1,87 @@
+\subsection{代入}
+	変項とは束縛されうる項であったが，別の項を代入されうる項でもある．
+	代入とは別の項で置き換えるということであり，また代入されうるのは式の中で自由な変項のみである．
+	ただし，代入には「{\bf 式の中の自由な変項を別の変項に取り替えても式の意味を変えてはならない}」という
+	大前提がある．たとえば
+	\begin{align}
+		\forall u\, (\, u \in x\, )
+	\end{align}
+	という式で考察すると，この式で$x$は自由であるから別の項を代入して良いのであり，$z$を代入すれば
+	\begin{align}
+		\forall u\, (\, u \in z\, )
+	\end{align}
+	となる．そしてこの場合はどちらの式も意味は同じである．意味が同じであるとは
+	量化してみれば一目瞭然であって，両式を全称記号で量化すれば
+	\begin{align}
+		&\forall x\, \forall u\, (\, u \in x\, ), \\
+		&\forall z\, \forall u\, (\, u \in z\, )
+	\end{align}
+	はどちらも「どの集合も，全ての集合を要素に持つ」と解釈され，
+	両式を存在記号で量化すれば
+	\begin{align}
+		&\exists x\, \forall u\, (\, u \in x\, ), \\
+		&\exists z\, \forall u\, (\, u \in z\, )
+	\end{align}
+	はどちらも「或る集合は，全ての集合を要素に持つ」と解釈される．
+	ところが$x$に$u$を代入すると
+	\begin{align}
+		\forall u\, (\, u \in u\, )
+	\end{align}
+	となり，これは「全ての集合は自分自身を要素に持つ」という意味に変わる．
+	つまり先の大前提に立てば，代入する際には{\bf 代入後に束縛されてしまう変項は使ってはいけない}のである．
+	
+	代入するのは変項だけではない．$\varepsilon$項や内包項だって上の$x$に代入して良い．
+	ただし上と同様の注意が必要で，$\varepsilon$項や内包項に$u$が自由に現れている場合と
+	そうでない場合では代入後の式の意味が分かれてしまうので，
+	代入して良い項は$u$が自由に現れていないものに限る．
+	
+	以上の考察を一般的な代入規則に敷衍して言えば，
+	
+	\begin{itembox}[l]{代入可能な項}
+		$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+		$\tau$を$\mathcal{L}$の項とする．このとき「$\varphi$に自由に現れる$x$に$\tau$を
+		代入する」とは，特筆が無い限り$\varphi$に自由に現れる全ての$x$に
+		$\tau$を代入することであって，その際に$\tau$が満たすべき条件は
+		\begin{itemize}
+			\item $\tau$が変項ならば$\tau$は$\varphi$に代入されたどの箇所でも自由である
+			\item $\tau$が$\varepsilon$項や内包項である場合は，
+				$\tau$の中に自由に現れる変項があったとしても，
+				それらは全て$\tau$が代入されたどの箇所でも束縛されない
+		\end{itemize}
+		とする．$\tau$がこの条件を満たすとき，
+		{\bf 「$\tau$は$\varphi$の中で$x$への代入について自由である」}という．
+	\end{itembox}
+	
+	$\varphi$に自由に現れる$x$に$\tau$を代入した後の式を
+	\begin{align}
+		\varphi(x/\tau)
+	\end{align}
+	と書く($x/\tau$は``replace $x$ by $\tau$''の順)．
+	特に$\varphi$の中に自由に現れている変項が$x$だけである場合は，$\varphi(x/\tau)$を
+	\begin{align}
+		\varphi(\tau)
+	\end{align}
+	とも書く．$\tau$が$x$自身である場合は$\varphi(x)$は$\varphi$そのものであるが，
+	「$\varphi$に自由に現れているのは$x$だけである」ということを強調するために
+	\begin{align}
+		\varphi(x)
+	\end{align}
+	と書くことも多い．$\varphi$に別の変項$y$が現れていて，$y$に項$\sigma$を代入するときは，
+	\begin{align}
+		\varphi(x/\tau)(y/\sigma)
+	\end{align}
+	を
+	\begin{align}
+		\varphi(x/\tau,y/\sigma)
+	\end{align}
+	とも書く．特に$\varphi$の中に自由に現れている変項が$x$と$y$だけである場合は，
+	$\tau$と$\sigma$の代入先がはっきりしていれば
+	\begin{align}
+		\varphi(\tau,\sigma)
+	\end{align}
+	とも書くし，「$\varphi$に自由に現れているのは$x$と$y$だけである」ということを強調するために
+	\begin{align}
+		\varphi(x,y)
+	\end{align}
+	と書くことも多い．$\varphi$に$x$が自由に現れていない場合でも$\varphi(x/\tau)$などと書かれていたら，
+	その式は$\varphi$のことであると理解する．

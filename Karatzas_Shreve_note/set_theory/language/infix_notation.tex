@@ -1,0 +1,79 @@
+\subsection{中置記法}
+	たとえば$\in s t$なる原子式は「$s$は$t$の要素である($s$ is in $t$)」と読むのだから，語順通りに，
+	或いは$s$が$t$の中にあるというイメージ通りに
+	\begin{align}
+		s \in t
+	\end{align}
+	と書きかえる方が見やすくなる．同じように，$\vee \varphi \psi$なる式も
+	「$\varphi$または$\psi$」と読むのだから
+	\begin{align}
+		\varphi \vee \psi
+	\end{align}
+	と書きかえる方が見やすくなる．$\rarrow \vee \varphi \psi \wedge \chi \xi$のように長い式も，
+	上の作法に倣えば
+	\begin{align}
+		\begin{gathered}
+			\rarrow \vee \varphi \psi \wedge \chi \xi \\
+			\rarrow \color{red}{\varphi \vee \psi} \color{blue}{\chi \wedge \xi} \\
+			\color{red}{\varphi \vee \psi} \color{black}{\rarrow} \color{blue}{\chi \wedge \xi}
+		\end{gathered}
+	\end{align}
+	と書きかえることになるが，一々色分けするわけにもいかないので``(''と``)''を使って
+	\begin{align}
+		(\varphi \vee \psi) \rarrow (\chi \wedge \xi)
+	\end{align}
+	と書くようにすれば良い．
+	
+	\begin{itembox}[l]{{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}}
+			$\mathcal{L}$の式は以下の手順で中置記法に書き換える．
+			\begin{enumerate}
+				\item $\in s t$なる形の原子式は$s \in t$と書きかえる．
+					$= s t$も同様に書き換える．
+					
+				\item $\negation \varphi$なる形の式はそのままにする．
+				
+				\item $\vee \varphi \psi$なる形の式は$(\varphi \vee \psi)$と書きかえる．
+					$\wedge \varphi \psi$と$\rarrow \varphi \psi$の形の式も同様に書き換える．
+				
+				\item $\exists x \varphi$なる形の式はそのままにする．
+					$\forall x \varphi$なる形の式も同様にする．
+			\end{enumerate}
+	\end{itembox}
+	
+	上の書き換え法では，たとえば$\rarrow \vee \varphi \psi \wedge \chi \xi$なる式は
+	\begin{align}
+		((\varphi \vee \psi) \rarrow (\chi \wedge \xi))
+	\end{align}
+	となるが，括弧はあくまで式の境界の印として使うものであるから，一番外側の括弧は外して
+	\begin{align}
+		(\varphi \vee \psi) \rarrow (\chi \wedge \xi)
+	\end{align}
+	と書く方が良い．よって{\bf 中置記法に書き換え終わったときに一番外側にある括弧は外す}ことにする．
+	
+	$\wedge \vee \exists x \varphi \psi \negation \rarrow \chi \in s t$なる式は
+	\begin{align}
+		\begin{gathered}
+			\wedge \vee \exists x \varphi \psi \negation \rarrow \chi s \in t \\
+			\wedge (\exists x \varphi \vee \psi) \negation (\chi \rarrow s \in t) \\
+			(\exists x \varphi \vee \psi) \wedge \negation (\chi \rarrow s \in t)
+		\end{gathered}
+	\end{align}
+	となる．
+	
+	ただしあまり括弧が連なると読みづらくなるので，
+	\begin{align}
+		(\varphi \vee \psi) \rarrow \chi
+	\end{align}
+	なる形の式は
+	\begin{align}
+		\varphi \vee \psi \rarrow \chi
+	\end{align}
+	に，同様に
+	\begin{align}
+		\varphi \rarrow (\psi \vee \chi)
+	\end{align}
+	なる形の式は
+	\begin{align}
+		\varphi \rarrow \psi \vee \chi
+	\end{align}
+	とも書く．また$\vee$が$\wedge$であっても同じように括弧を省く．
