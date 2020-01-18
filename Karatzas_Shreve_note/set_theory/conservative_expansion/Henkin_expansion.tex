@@ -93,6 +93,69 @@
 	\end{metaprf}
 	
 	\begin{screen}
+		\begin{metathm}[$\varepsilon$項を変項に取り替えても証明]
+		\label{metathm:Henkin_expansion_2_lemma}
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とし，
+			$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から$\psi$への
+			{\bf HK}の証明で$\lang{\varepsilon}$の式の列であるものとする．
+			また$e$をこの列の式に現れる主要$\varepsilon$項とし，$y$を
+			この証明に現れない変項とする．そして各$\varphi_{i}$に対して
+			そこに現れる$e$を全て$y$に取り替えた式を$\hat{\varphi}_{i}$と書く．
+			ただし取り替えるのは他の項の真部分項になっていない$e$のみであり，
+			$\varphi_{i}$に$e$が現れなければ$\hat{\varphi}_{i}$は$\varphi_{i}$とする．
+			このとき
+			\begin{align}
+				\hat{\varphi}_{1},\ \cdots,\ \hat{\varphi}_{n}
+			\end{align}
+			は$\mathscr{S}$から$\psi$への{\bf HK}の証明である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[case1] $\varphi_{i}$が{\bf HK}の命題論理の公理であるとき，
+				たとえば$\varphi_{i}$が
+				\begin{align}
+					\varphi \rarrow (\, \chi \rarrow \varphi\, )
+				\end{align}
+				なる式なら，$\hat{\varphi}_{i}$も
+				\begin{align}
+					\hat{\varphi} \rarrow (\, \hat{\chi} \rarrow \hat{\varphi}\, )
+				\end{align}
+				なる形の式となるので{\bf HK}の公理である．他の場合も同様である．
+				
+			\item[case2] $\varphi_{i}$が{\bf HK}の量化公理であるとき，つまり
+				\begin{align}
+					&\forall z\, (\, \chi \rarrow \varphi(x/z)\, ) 
+						\rarrow (\, \chi \rarrow \forall x \varphi\, ), \\
+					&\forall x \varphi \rarrow \varphi(x/t), \\
+					&\varphi(x/t) \rarrow \exists x \varphi, \\
+					&\forall z\, (\, \varphi(x/z) \rarrow \chi\, )
+						\rarrow (\, \exists x \varphi \rarrow \chi\, )
+				\end{align}
+				のいずれかであるとき，$\hat{\varphi}_{i}$は
+				\begin{align}
+					&\forall z\, (\, \hat{\chi} \rarrow \hat{\varphi}(x/z)\, ) 
+						\rarrow (\, \hat{\chi} \rarrow \forall x \hat{\varphi}\, ), \\
+					&\forall x \hat{\varphi} \rarrow \hat{\varphi}(x/t), \\
+					&\hat{\varphi}(x/t) \rarrow \exists x \hat{\varphi}, \\
+					&\forall z\, (\, \hat{\varphi}(x/z) \rarrow \hat{\chi}\, )
+						\rarrow (\, \exists x \hat{\varphi} \rarrow \hat{\chi}\, )
+				\end{align}
+				なる形の式となり，{\bf HK}の公理であるための変項の条件も満たされる．
+				ここで注意しておくと，$e$が$\varphi(x/t)$に現れる場合，
+				$\varphi$で$x$に代入された$t$を含むようには$e$は現れない．もし
+				そのような$t$が$e$に現れたら，$e$のその$t$を$x$に置き換えた$\varepsilon$項$e'$は，
+				$\varphi$すなわち$\exists x \varphi$の中に現れることになるが，$e'$は
+				主要$\varepsilon$項ではないので第\ref{sec:restriction_of_formulas}節の
+				約束に違反してしまう．従って$\varphi(x/t)$に現れる$e$を$y$に置き換えた式は
+				$\hat{\varphi}(x/t)$なる形で書けるのである．
+				
+			\item[case3]
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
 		\begin{metathm}[{\bf HK$\varepsilon$}で証明可能なら{\bf HK}でも証明可能]
 		\label{metathm:Henkin_expansion_2}
 			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とする．
@@ -138,19 +201,21 @@
 		\rarrow \psi$への証明に現れる$\varepsilon x_{m} F_{m}$を，
 		その証明に使われていない変項$y$に置き換えれば
 		\footnote{
-			置き換える$\varepsilon x_{m} F_{m}$は，他の項の真部分項になっていない
-			箇所のものだけである．$\varepsilon x_{m} F_{m}$は
+			置き換える$\varepsilon x_{m} F_{m}$は他の項の真部分項になっていない
+			箇所のものだけである．また$\varepsilon x_{m} F_{m}$は
 			$F_{1},\cdots,F_{m-1}$の中には現れないので
 			$\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}$の中にも現れない．ここで注意しておくと，
 			たとえば$\varepsilon x_{m} F_{m}$が$F_{1}(\varepsilon x_{1} F_{1})$に
 			現れたとすると，その$\varepsilon x_{m} F_{m}$の中の$\varepsilon x_{1} F_{1}$を
 			$x_{1}$に置き換えた$\varepsilon$項が$F_{1}$に現れることになる．しかし
-			そのような$\varepsilon$項は主要$\varepsilon$項ではなく，
+			その$\varepsilon$項は主要$\varepsilon$項ではなく，
 			第\ref{sec:restriction_of_formulas}節の約束に違反してしまう．
 			ゆえに$\varepsilon x_{m} F_{m}$は$\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}}$
 			の中に現れず，これらの式は置換による影響を受けない．
 			$\mathscr{S}$の公理も$\lang{\in}$の文であるから置換による影響を受けない．
-		}，
+		}，それで得られる式の列は$\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}},\mathscr{S}$
+		から$(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi$への
+		{\bf HK}の証明となる．つまり
 		\begin{align}
 			\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}},\mathscr{S} 
 			\provable{\mbox{{\bf HK}}} 
@@ -178,8 +243,8 @@
 			\varphi_{i_{1}},\cdots,\varphi_{i_{m-1}},\mathscr{S} 
 			\provable{\mbox{{\bf HK}}} \psi
 		\end{align}
-		が得られる．以降も同様にして極大な主要$\varepsilon$項が使われている
-		「存在記号の除去」を一本ずつ削除していけば，$\mathscr{S}$から$\psi$への{\bf HK}の証明で
+		が従う．以降も同様にして{\bf HK}の公理(EE)を一本ずつ削除していけば，
+		$\mathscr{S}$から$\psi$への{\bf HK}の証明で
 		$\lang{\varepsilon}$の式の列であるものが得られる．
 		\QED
 	\end{sketch}
