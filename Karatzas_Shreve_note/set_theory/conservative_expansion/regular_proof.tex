@@ -43,10 +43,12 @@
 	
 	\begin{screen}
 		\begin{metathm}[証明に現れる変項に代入しても証明]
-			$\varphi_{1},\cdots,\varphi_{n}$を$\Gamma$から$\varphi_{n}$への{\bf HK}の
-			証明で$\lang{\varepsilon}$の式の列であるものとし，$a$をこの証明に自由に現れる変項とし，
-			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．このとき
-			$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は$\Gamma$からの{\bf HK}の証明となる．
+		\label{metathm:substitute_HK_proof}
+			$\lang{\varepsilon}$の式の列$\varphi_{1},\cdots,\varphi_{n}$を
+			$\Gamma$から$\varphi_{n}$への{\bf HK}の証明とし，$a$をこの証明に自由に現れる変項とし，
+			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．このとき，
+			$a$がこの証明の固有変項でなければ$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は
+			$\Gamma$からの{\bf HK}の証明となる．
 		\end{metathm}
 	\end{screen}
 	
@@ -65,59 +67,81 @@
 				なる式であるから{\bf HK}の公理である．
 				
 			\item[case2] $\varphi_{i}$が{\bf HK}の量化公理である場合，
-				たとえば$\varphi_{i}$が{\bf HK}の(UI)
-				\begin{align}
-					\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
-					\rarrow (\, \psi \rarrow \forall x \varphi\, )
-				\end{align}
-				であるとする．このとき，$a$が$x$であれば$\varphi_{i}(a/b)$は
-				\begin{align}
-					\forall y\, (\, \psi(a/b) \rarrow \varphi(x/y)\, )
-					\rarrow (\, \psi(a/b) \rarrow \forall x \varphi\, )
-				\end{align}
-				なる式となる．$a$が$y$であれば$a$は$\varphi_{i}$には自由に現れないので
-				$\varphi_{i}(a/b)$と$\varphi_{i}$は一致する．$a$が$x$とも
-				$y$とも違うとき，$\varphi(x/y)(a/b)$と$\varphi(a/b)(x/y)$は一致するので
-				$\varphi_{i}(a/b)$は
-				\begin{align}
-					\forall y\, (\, \psi(a/b) \rarrow \varphi(a/b)(x/y)\, )
-					\rarrow (\, \psi(a/b) \rarrow \forall x \varphi(a/b)\, )
-				\end{align}
-				なる式となる．ゆえに$\varphi_{i}(a/b)$もまた{\bf HK}の(UI)となる．
-				同様に$\varphi_{i}$が{\bf HK}の(EE)であるときも
-				$\varphi_{i}(a/b)$は{\bf HK}の(EE)となる．
+				\begin{itemize}
+					\item たとえば$\varphi_{i}$が{\bf HK}の(UI)
+						\begin{align}
+							\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+							\rarrow (\, \psi \rarrow \forall x \varphi\, )
+						\end{align}
+						であるとする．このとき，$a$が$x$であれば$\varphi_{i}(a/b)$は
+						\begin{align}
+							\forall y\, (\, \psi(a/b) \rarrow \varphi(x/y)\, )
+							\rarrow (\, \psi(a/b) \rarrow \forall x \varphi\, )
+						\end{align}
+						なる式となる．$a$が$y$であれば$a$は$\varphi_{i}$には自由に現れないので
+						$\varphi_{i}(a/b)$と$\varphi_{i}$は一致する．$a$が$x$とも$y$とも
+						違うとき，$\varphi(x/y)(a/b)$と$\varphi(a/b)(x/y)$は一致するので
+						$\varphi_{i}(a/b)$は
+						\begin{align}
+							\forall y\, (\, \psi(a/b) \rarrow \varphi(a/b)(x/y)\, )
+							\rarrow (\, \psi(a/b) \rarrow \forall x \varphi(a/b)\, )
+						\end{align}
+						なる式となる．ゆえにいずれの場合も$\varphi_{i}(a/b)$は{\bf HK}の(UI)となる．
+						同様に$\varphi_{i}$が{\bf HK}の(EE)であるときも
+						$\varphi_{i}(a/b)$は{\bf HK}の(EE)となる．
 				
-				たとえば$\varphi_{i}$が{\bf HK}の(EI)
-				\begin{align}
-					\varphi(x/t) \rarrow \exists x \varphi
-				\end{align}
-				であるとする．
+					\item たとえば$\varphi_{i}$が{\bf HK}の(EI)
+						\begin{align}
+							\varphi(x/t) \rarrow \exists x \varphi
+						\end{align}
+						であるとする．このとき，$a$が$x$であれば，$x$と$t$が違えば$\varphi_{i}$に
+						$a$は自由に現れないので$\varphi_{i}(a/b)$は$\varphi_{i}$に一致する．
+						$x$と$t$が同じであれば$\varphi_{i}(a/b)$は
+						\begin{align}
+							\varphi(x/b) \rarrow \exists x \varphi
+						\end{align}
+						なる式となる．$a$が$t$であれば($t$と$x$は違うとする)，
+						$\varphi(x/t)(a/b)$と$\varphi(a/b)(x/b)$は一致するので
+						$\varphi_{i}(a/b)$は
+						\begin{align}
+							\varphi(a/b)(x/b) \rarrow \exists x \varphi(a/b)
+						\end{align}
+						なる式となる．$a$が$x$とも$t$とも違うとき，$\varphi(x/t)(a/b)$と
+						$\varphi(a/b)(x/t)$は一致するので$\varphi_{i}(a/b)$は
+						\begin{align}
+							\varphi(a/b)(x/t) \rarrow \exists x \varphi(a/b)
+						\end{align}
+						なる式となる．ゆえにいずれの場合も$\varphi_{i}(a/b)$は{\bf HK}の(EI)となる．
+						同様に$\varphi_{i}$が{\bf HK}の(UE)であるときも
+						$\varphi_{i}(a/b)$は{\bf HK}の(UE)となる．
+				\end{itemize}
 				
-			\item[case2] $\varphi_{i}$が$\Gamma$の公理である場合，
+			\item[case3] $\varphi_{i}$が$\Gamma$の公理である場合，
 				$\varphi_{i}$は文なので$\varphi_{i}(a/b)$は$\varphi_{i}$である．
 			
-			\item[case3] $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
+			\item[case4] $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
 				三段論法で得られるとき，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$
-				なる形の式であるとすれば，$\varphi_{k}(a/b)$は
+				なる形の式ならば$\varphi_{k}(a/b)$は
 				\begin{align}
 					\varphi_{j}(a/b) \rarrow \varphi_{i}(a/b)
 				\end{align}
-				となる．つまり$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$と$\varphi_{k}(a/b)$から
-				三段論法で得られる．
+				なる式となる．つまり$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$と
+				$\varphi_{k}(a/b)$から三段論法で得られる．
 				
 			\item[case4] $\varphi_{i}$が前の式$\varphi_{j}$から汎化で得られるとき，
 				変項$e,x$と$x$が自由に現れる式$\psi$が取れて，$\varphi_{j}$は$\psi(x/e)$，
 				$\varphi_{i}$は$\forall x \psi$なる式である．また$e$は$\psi$の中で$x$への代入
 				について自由であり，$e$は$\forall x \psi$に自由に現れない．
-				このとき$\varphi_{j}(a/b)$は
-				\begin{align}
-					\psi(a/b)(x/e)
-				\end{align}
-				となり，$\varphi_{i}(a/b)$は
-				\begin{align}
-					\forall x \psi(a/b)
-				\end{align}
-				となるので，$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$から汎化で得られる．
+				$a$は固有変項ではないので$a$と$e$は違う変項である．
+				
+				$a$が$x$であれば，$\psi(x/e)$に$a$は自由に現れないので
+				$\varphi_{j}(a/b)$は$\psi(x/e)$のままであり，
+				$\varphi_{i}(a/b)$も$\forall x \psi$のままである．
+				
+				$a$が$x$と違うとき，$\varphi_{j}(a/b)$は$\psi(a/b)(x/e)$に一致し，
+				$\varphi_{i}(a/b)$は$\forall x \psi(a/b)$となる．
+				
+				ゆえに，いずれの場合も$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$から汎化で得られる．
 				\QED
 		\end{description}
 	\end{metaprf}
@@ -224,6 +248,7 @@
 				(これらは$\varphi_{1},\cdots,\varphi_{n}$に現れないものとする)，
 				自由に現れる全ての$x_{i}$に$\tau_{i}$を代入する($1 \leq i \leq n$)．
 				そして得られる式の列を$\tilde{\varphi}_{1},\cdots,\tilde{\varphi}_{n}$とする．
+				この列は{\bf HK}の証明である(メタ定理\ref{metathm:substitute_HK_proof})．
 				
 			\item[step2]
 				次に$a_{m},a_{m-1},\cdots$の順に固有変項を置き換える．$a_{m}$が
@@ -248,7 +273,7 @@
 			\item[step3]
 				step2の終了後に得られる式の列を$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{r}$
 				とする．これらは全て$\lang{\varepsilon}$の文であり，
-				各$\hat{\varphi}_{i}$は次のいずれかである：
+				そして各$\hat{\varphi}_{i}$は次のいずれかである：
 				\begin{itemize}
 					\item $\varphi_{i}$が(UI)と(EE)以外の{\bf HK}の公理ならば
 						$\hat{\varphi}_{i}$は{\bf HE}の公理である．
