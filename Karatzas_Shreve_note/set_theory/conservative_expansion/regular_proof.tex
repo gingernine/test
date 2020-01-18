@@ -46,13 +46,28 @@
 		\label{metathm:substitute_HK_proof}
 			$\lang{\varepsilon}$の式の列$\varphi_{1},\cdots,\varphi_{n}$を
 			$\Gamma$から$\varphi_{n}$への{\bf HK}の証明とし，$a$をこの証明に自由に現れる変項とし，
-			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．このとき，
-			$a$がこの証明の固有変項でなければ$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は
-			$\Gamma$からの{\bf HK}の証明となる．
+			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．このとき
+			\begin{description}
+				\item[(1)] $b$が変項である場合，
+					$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は
+					$\Gamma$からの{\bf HK}の証明となる．
+				
+				\item[(2)] $b$が変項でない場合\footnotemark，$a$がこの証明の固有変項でなければ
+					$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は
+					$\Gamma$からの{\bf HK}の証明となる．
+			\end{description}
+			(1)の場合も(2)の場合も$\varphi_{i}$が$\varphi_{j}$の汎化で得られているなら
+			$\varphi_{i}(a/b)$も$\varphi_{j}(a/b)$の汎化で得られる．
 		\end{metathm}
 	\end{screen}
 	
+	\footnotetext{
+		第\ref{sec:restriction_of_formulas}節の約束によって，
+		この場合$b$は主要$\varepsilon$項である．
+	}
+	
 	\begin{metaprf}
+		$b$が変項であるか否かが関係するのは case5 である．
 		式の列が証明であるための条件に照合していく．各$\varphi_{i}$に対して
 		\begin{description}
 			\item[case1] $\varphi_{i}$が{\bf HK}の命題論理の公理である場合，
@@ -128,18 +143,34 @@
 				なる式となる．つまり$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$と
 				$\varphi_{k}(a/b)$から三段論法で得られる．
 				
-			\item[case4] $\varphi_{i}$が前の式$\varphi_{j}$から汎化で得られるとき，
+			\item[case5] $\varphi_{i}$が前の式$\varphi_{j}$から汎化で得られるとき，
 				変項$e,x$と$x$が自由に現れる式$\psi$が取れて，$\varphi_{j}$は$\psi(x/e)$，
 				$\varphi_{i}$は$\forall x \psi$なる式である．また$e$は$\psi$の中で$x$への代入
-				について自由であり，$e$は$\forall x \psi$に自由に現れない．
-				$a$は固有変項ではないので$a$と$e$は違う変項である．
+				について自由であり，$e$は$\forall x \psi$に自由に現れない．このとき
 				
-				$a$が$x$であれば，$\psi(x/e)$に$a$は自由に現れないので
-				$\varphi_{j}(a/b)$は$\psi(x/e)$のままであり，
-				$\varphi_{i}(a/b)$も$\forall x \psi$のままである．
+				\begin{description}
+					\item[(1)] $b$が変項である場合，
+						$a$が$x$であれば，$x$と$e$が同じなら$\varphi_{j}(a/b)$は
+						$\psi(x/b)$となり，$\varphi_{i}(a/b)$は$\forall x \psi$のままである．
+						$x$と$e$が違うなら$\psi(x/e)$に$a$は自由に現れないので，
+						$\varphi_{j}(a/b)$は$\psi(x/e)$のままであり，
+						$\varphi_{i}(a/b)$も$\forall x \psi$のままである．
+						
+						$a$が$e$であれば，$\psi$に$e$は自由に現れないので$\varphi_{j}(a/b)$は
+						$\psi(x/b)$となり，$\varphi_{i}(a/b)$は$\forall x \psi$のままである．
 				
-				$a$が$x$と違うとき，$\varphi_{j}(a/b)$は$\psi(a/b)(x/e)$に一致し，
-				$\varphi_{i}(a/b)$は$\forall x \psi(a/b)$となる．
+						$a$が$x$とも$e$とも違うとき，$\varphi_{j}(a/b)$は$\psi(a/b)(x/e)$に
+						一致し，$\varphi_{i}(a/b)$は$\forall x \psi(a/b)$となる．
+						
+					\item[(2)] $b$が変項でない場合，
+						$a$は固有変項ではないので$a$と$e$は違う変項である．
+						$a$が$x$であれば，$\psi(x/e)$に$a$は自由に現れないので
+						$\varphi_{j}(a/b)$は$\psi(x/e)$のままであり，
+						$\varphi_{i}(a/b)$も$\forall x \psi$のままである．
+				
+						$a$が$x$と違うとき，$\varphi_{j}(a/b)$は$\psi(a/b)(x/e)$に一致し，
+						$\varphi_{i}(a/b)$は$\forall x \psi(a/b)$となる．
+				\end{description}
 				
 				ゆえに，いずれの場合も$\varphi_{i}(a/b)$は$\varphi_{j}(a/b)$から汎化で得られる．
 				\QED
@@ -163,10 +194,10 @@
 			&\vdots \\
 			\varphi_{i_{\ell}} \quad &\mbox{から} \quad \varphi_{j_{\ell}}
 		\end{align}
-		とすべて列挙し(ただし$i_{1} < i_{2} < \cdots < i_{\ell}$)，
+		とすべて列挙し($i_{1} < i_{2} < \cdots < i_{\ell}$)，
 		$a_{1},\cdots,a_{\ell}$をそれぞれの固有変項とする．
-		ただし，もしかすると$a_{2}$と$a_{5}$は同じ文字$x$であるかもしれない．
-		いま想定しているのはこのような状況であり，これから正則証明を構成するのである．
+		ただし，もしかすると$a_{2}$と$a_{5}$は同じ文字$b$であるかもしれない．
+		いま想定しているのはそのような状況であり，これから正則証明を構成するのである．
 		
 		$\varphi_{i_{1}}$の直後に$\varphi_{j_{1}}$を移動し，
 		$\varphi_{i_{2}}$の直後に$\varphi_{j_{2}}$に移動し，…，
@@ -176,10 +207,10 @@
 			\psi_{1},\cdots,\psi_{n}
 		\end{align}
 		と書けば，これもまた{\bf HK}の証明となっている．なぜならこの並び替えでは
-		三段論法と汎化の順番が崩れないためである．並び替えによって
+		三段論法と汎化の順番が崩れないからである．並び替えによって
 		$\varphi_{i_{1}},\cdots,\varphi_{i_{\ell}}$の位置も変動しうるが，
-		動いた先をそれぞれ$\psi_{k_{1}},\cdots,\psi_{k_{\ell}}$とする．
-		そして$b_{1},\cdots,b_{\ell}$を$\varphi_{i_{1}},\cdots,\varphi_{i_{\ell}}$に
+		これらが動いた先をそれぞれ$\psi_{k_{1}},\cdots,\psi_{k_{\ell}}$とする．
+		また$b_{1},\cdots,b_{\ell}$を$\varphi_{i_{1}},\cdots,\varphi_{i_{\ell}}$に
 		現れない相異なる変項とする．このとき
 		\begin{align}
 			&\psi_{1}(a_{1}/b_{1}),\ \cdots,\ \textcolor{red}{\psi_{k_{1}+1}(a_{1}/b_{1})}, \\
