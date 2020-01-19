@@ -78,6 +78,81 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{thm}[共終なら共終数は同じ]
+			\begin{align}
+				\forall \alpha \in \ON\, 
+				(\, \limo{\alpha} \wedge \limo{\beta} \wedge \cof{\alpha}{\beta}
+				 \rarrow \cf{\alpha} = \cf{\alpha}\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\cof{\cf{\alpha}}{\alpha}$と$\cof{\alpha}{\beta}$より
+		$\cof{\cf{\alpha}}{\beta}$が成り立つので
+		\begin{align}
+			\cf{\beta} \leq \cf{\alpha}
+		\end{align}
+		となる．$f$を$\alpha$から$\beta$への共終写像とし，$g$を
+		$\cf{\beta}$から$\beta$への共終写像とし，$\cf{\beta}$から$\alpha$への写像$h$を
+		\begin{align}
+			\xi \longmapsto \min{\Set{\eta \in \alpha}{g(\xi) < f(\eta)}}
+		\end{align}
+		なるものとして定める．このとき$\alpha$の任意の要素$\delta$に対して
+		\begin{align}
+			f(\delta) < g(\xi)
+		\end{align}
+		なる$\xi$が取れて，
+		\begin{align}
+			g(\xi) < f(\eta)
+		\end{align}
+		なる$\eta$が取れるから，
+		\begin{align}
+			f(\delta) < g(\xi) < f(h(\xi))
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\delta < h(\xi)
+		\end{align}
+		である．ゆえに
+		\begin{align}
+			\forall \delta \in \alpha\, \exists \xi \in \cf{\beta}\, 
+			(\, \delta < h(\xi)\, )
+		\end{align}
+		が成り立つ．今度は$\cf{\beta}$から$\alpha$への写像$H$を
+		\begin{align}
+			\xi \longmapsto \max{\{g(\xi),\sup{\Set{H(\kappa)+1}{\kappa < \xi}}\}}
+		\end{align}
+		なるものとして再帰的に定義する．このとき
+		\begin{align}
+			\xi_{1} < \xi_{2}
+		\end{align}
+		ならば
+		\begin{align}
+			H(\xi_{1}) < H(\xi_{1}) + 1 \leq \sup{\Set{H(\kappa)+1}{\kappa < \xi_{2}}}
+			\leq H(\xi_{2})
+		\end{align}
+		が成り立つし，また$\alpha$の任意の要素$\delta$に対して
+		\begin{align}
+			\delta < g(\xi)
+		\end{align}
+		なる$\xi$が取れるが，
+		\begin{align}
+			\delta < g(\xi) \leq H(\xi)
+		\end{align}
+		となる．ゆえに$H$は$\cf{\beta}$から$\alpha$への共終写像である．従って
+		\begin{align}
+			\cof{\cf{\beta}}{\alpha}
+		\end{align}
+		となり，
+		\begin{align}
+			\cf{\alpha} \leq \cf{\beta}
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[共終数は基数である]
 			\begin{align}
 				\forall \alpha \in \ON\, (\, \limo{\alpha} \rarrow \cf{\alpha} \in \CN\, ).
