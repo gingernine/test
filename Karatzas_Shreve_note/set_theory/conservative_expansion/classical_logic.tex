@@ -2,41 +2,45 @@
 	\begin{align}
 		\mathscr{S} \vdash \varphi
 	\end{align}
-	ということは$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で
+	ということは次の条件を満たす$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
 	\footnote{
 		ここで添え字に数字が使われているが，これらは集合論の中で定義される数字ではなく
 		生活の中にありふれた数字である．足し算や大小の比較は日常的な感覚で行えるものとする．
 	}
-	\begin{description}
-		\item[(1)] 各$\varphi_{i}$に対して
+	が取れるということである．
+	\begin{itemize}
+		\item 各$\varphi_{i}$は次のいずれかを満たす：
 			\begin{itemize}
-				\item $\varphi_{i}$は推論公理である．
+				\item $\varphi_{i}$は論理的公理である．
 				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
 				\item $\varphi_{i}$は，これより前の文$\varphi_{j}$と$\varphi_{k}$の
-					三段論法で得られる．つまり$\varphi_{k}$は
-					$\varphi_{j} \rarrow \varphi_{i}$なる式である．
+					三段論法で得られる．つまり$\varphi_{j}$が
+					$\varphi_{k} \rarrow \varphi_{i}$なる式であるか，
+					$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる式である．
 			\end{itemize}
 		
-		\item[(2)] $\varphi_{n}$は$\varphi$である．
-	\end{description}
-	を満たすものが取れるということである．以下ではこの列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
+		\item $\varphi_{n}$は$\varphi$である．
+	\end{itemize}
+	以下ではこの列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
 	を$\mathscr{S}$から$\varphi$への{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼ぶ．
-	第\ref{chap:inference}章で規定した証明とは若干違ってしまっているが，
+	第\ref{chap:inference}章で規定した証明とは若干違うが，
 	異なる証明体系を比較するには証明は列であると考える方が都合が良い．
 	ただし，集合の章で実演した通り実際の証明でこのような列を構成することは殆どなく，
-	第\ref{chap:inference}章で規定した証明の方が現実的であろう．
+	第\ref{chap:inference}章で規定した証明プロセスの方が現実的であろう．
 	
-	この章では{\bf 古典論理}\index{こてんろんり@古典論理}{\bf (classical logic)}と呼ばれる
-	(Hilbert流)証明体系を新しく導入する．「証明体系」とはその体系の公理と証明方法を合わせたものである．
-	既に第\ref{chap:inference}章で推論公理と証明可能性を提示したが，あれも一つの証明体系であり，
-	便宜上{\bf HE}と書くことにする．古典論理の証明体系は{\bf HK}と書く．
-	
-	この章で示すことは，$\lang{\in}$の任意の文$\psi$
-	(つまり$\lang{\in}$で書かれた集合論の定理)に対して
-	「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」ことと
-	「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」ことが
-	同値であるということである．この$\Gamma$とは$\Sigma$の公理を$\lang{\in}$の文に直した公理系
-	である(参照P. \pageref{axioms_of_Gamma})．ただいきなりこれを示すのは難しいので，
+	この章の主題は，本稿の集合論が{\bf ZF}集合論の妥当な拡張であるかどうかである．
+	当然，{\bf ZF}集合論の定理とは何か，つまり証明がどのように行われるかが
+	判っていなければならないが，ここでは{\bf 古典論理}\index{こてんろんり@古典論理}
+	{\bf (classical logic)}と呼ばれる(Hilbert流){\bf 証明体系}
+	\index{しょうめいたいけい@証明体系}{\bf (proof system)}を採用する．
+	証明体系とは論理的公理と推論規則を合わせたものであり，
+	第\ref{chap:inference}章で出した論理的公理と三段論法も一つの証明体系をなしている．
+	この証明体系を便宜上{\bf HE}と書き，古典論理の証明体系は{\bf HK}と書く．
+	妥当性の判断は，{\bf ZF}集合論の任意の命題(つまり$\lang{\in}$の任意の文)
+	$\psi$に対して「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」
+	ことと「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」ことが
+	同値であるということを示して決着をつける．この$\Gamma$とは$\Sigma$の公理を$\lang{\in}$の文に直した
+	公理系である(参照P. \pageref{axioms_of_Gamma})．ただいきなりこれを示すのは難しいので，
 	次の段階をふんで明らかにしていく．
 	
 	\begin{description}
@@ -106,6 +110,21 @@
 		\end{logicalaxm}
 	\end{screen}
 	
+	{\bf HK}の推論規則は「三段論法」と「{\bf 汎化}\index{はんか@汎化}{\bf (generalization)}」
+	の二つである．式$\varphi$が式$\chi$から汎化で得られるとは，
+	変項$a,x$と$x$が自由に現れる式$\psi$が取れて，$a$は$\psi$の中で$x$への代入について自由であり，
+	$\chi$は
+	\begin{align}
+		\psi(x/a)
+	\end{align}
+	なる式，$\varphi$は
+	\begin{align}
+		\forall x \psi	
+	\end{align}
+	なる式であるということである．ただし$a$は$\forall x \psi$に自由に現れず，
+	また公理系$\mathscr{S}$が与えられているならば$a$は$\mathscr{S}$のどの公理にも自由に現れない．
+	$a$をこの汎化の{\bf 固有変項}\index{こゆうへんこう@固有変項}{\bf (eigenvariable)}と呼ぶ．
+	
 	\begin{screen}
 		\begin{metadfn}[{\bf HK}における証明]
 			$\mathscr{S}$を式からなる公理系とする．
@@ -117,24 +136,12 @@
 				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
 				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$と$\varphi_{k}$の
 					三段論法で得られる．
-				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$から
-					{\bf 汎化}\index{はんか@汎化}{\bf (generalization)}で得られる．
-					汎化で得られるというのは，変項$a,x$と$x$が自由に現れる式$\psi$が取れて，
-					$\varphi_{j}$は$\psi(x/a)$，$\varphi_{i}$は$\forall x \psi$
-					であるということである．ただし$a$は$\forall x \psi$にも
-					$\mathscr{S}$のどの公理にも自由に現れず，
-					また$\psi$の中で$x$への代入について自由である．
-					$a$をこの汎化の{\bf 固有変項}\index{こゆうへんこう@固有変項}
-					{\bf (eigenvariable)}と呼ぶ．
+				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$から汎化で得られる．
 			\end{itemize}
 		\end{metadfn}
 	\end{screen}
 	
-	公理系$\mathscr{S}$から式$\varphi$への{\bf HK}の証明が取れることを
-	\begin{align}
-		\mathscr{S} \provable{\mbox{{\bf HK}}} \varphi
-	\end{align}
-	と書く．本稿では複数の言語を同時に扱っているので，混乱を避けるために
+	本稿では複数の言語を同時に扱っているので，混乱を避けるために
 	「$\mathscr{S}$から式$\varphi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」ことを
 	\begin{align}
 		\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\in}} \varphi
@@ -144,11 +151,10 @@
 	\begin{align}
 		\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \varphi
 	\end{align}
-	と書くこともあるが，これでは見た目が悪い．
-	そこで，以下では$\mathscr{S} \provable{\mbox{{\bf HK}}} \varphi$と書いたら
-	$\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\in}} \varphi$か
-	$\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \varphi$のどちらか一方を
-	意味していると見做すことにする．
+	と書く．ただこれでは見た目が悪いので$\provable{\mbox{{\bf HK}}}$とだけ書くこともある．
+	この場合は$\provable{\mbox{{\bf HK}}}$は$\provable{\mbox{{\bf HK}},\lang{\in}}$か
+	$\provable{\mbox{{\bf HK}},\lang{\varepsilon}}$のどちらか一方を指しているのだが，
+	一つの定理の中で$\provable{\mbox{{\bf HK}}}$が指すのは一貫して片方だけである．
 	
 \subsection{演繹定理}
 	\begin{screen}
