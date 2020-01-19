@@ -85,6 +85,7 @@
 	
 	\begin{screen}
 		\begin{metathm}[書き換えは$\lang{\varepsilon}$の式]
+		\label{metathm:rewritten_formulas_are_of_L_epsilon}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
 			$\hat{\varphi}$を$\varphi$の書き換えとするとき，
 			$\hat{\varphi}$は$\lang{\varepsilon}$の式である．
@@ -115,7 +116,7 @@
 						\begin{align}
 							\negation \hat{\psi}
 						\end{align}
-						なる式で書けるが，$\hat{\psi}$は$\psi$の書き換えであり，
+						なる形の式であるが，$\hat{\psi}$は$\psi$の書き換えであり，
 						(IH)より$\lang{\varepsilon}$の式である．ゆえに
 						$\hat{\varphi}$も$\lang{\varepsilon}$の式である．
 						
@@ -134,7 +135,7 @@
 						\begin{align}
 							\vee \hat{\psi} \hat{\chi}
 						\end{align}
-						なる式で書けるが，$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の
+						なる形の式であるが，$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の
 						書き換えであり(もしくは，$\psi,\chi$の一方は元から
 						$\lang{\varepsilon}$の式かもしれない)，(IH)よりどちらも
 						$\lang{\varepsilon}$の式である．ゆえに
@@ -150,7 +151,7 @@
 						\begin{align}
 							\exists x \hat{\psi}
 						\end{align}
-						なる式で書けるが，$\hat{\psi}$は$\psi$の書き換えであり，
+						なる形の式であるが，$\hat{\psi}$は$\psi$の書き換えであり，
 						(IH)より$\lang{\varepsilon}$の式である．ゆえに
 						$\hat{\varphi}$も$\lang{\varepsilon}$の式である．
 						\QED
@@ -160,17 +161,18 @@
 	
 	\begin{screen}
 		\begin{metathm}[部分式の書き換えとの関係]
+		\label{metathm:relation_to_subformula_rewriting}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
 			\begin{description}
 				\item[case1] $\varphi$が$\negation \psi$なる式のとき，
 					$\varphi$の書き換え$\hat{\varphi}$は$\negation \hat{\psi}$
-					なる式であるが，このとき$\hat{\psi}$は$\psi$の書き換えである．
+					なる形の式であるが，このとき$\hat{\psi}$は$\psi$の書き換えである．
 					逆に$\check{\psi}$を$\psi$の書き換えとすれば$\negation \check{\psi}$
 					は$\varphi$の書き換えである．
 					
 				\item[case2] $\varphi$が$\vee \psi \chi$なる式のとき，
 					$\varphi$の書き換え$\hat{\varphi}$は$\vee \hat{\psi} \hat{\chi}$
-					なる式であるが，このとき$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の
+					なる形の式であるが，このとき$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の
 					書き換えである．逆に$\check{\psi},\check{\chi}$をそれぞれ$\psi,\chi$の
 					書き換えとすれば$\vee \check{\psi} \check{\chi}$は$\varphi$の
 					書き換えである．なお，$\psi,\chi$の一方は元から
@@ -179,7 +181,7 @@
 					
 				\item[case3] $\varphi$が$\exists x \psi$なる式のとき，
 					$\varphi$の書き換え$\hat{\varphi}$は$\exists x \hat{\psi}$
-					なる式であるが，このとき$\hat{\psi}$は$\psi$の書き換えである．
+					なる形の式であるが，このとき$\hat{\psi}$は$\psi$の書き換えである．
 					逆に$\check{\psi}$を$\psi$の書き換えとすれば$\exists x \check{\psi}$
 					は$\varphi$の書き換えである．
 			\end{description}
@@ -214,9 +216,12 @@
 	
 	\begin{screen}
 		\begin{metathm}[書き換え後も自由な変項は増減しない]
-			$\varphi$を$\mathcal{L}$の式とし，これを$\lang{\varepsilon}$の式に
-			書き換えたものを$\hat{\varphi}$とする．このとき
-			$\varphi$に自由に現れる変項と$\hat{\varphi}$に自由に現れる変項は一致する．
+		\label{metathm:variables_unchanged_after_rewriting}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			この書き換えを$\hat{\varphi}$とする．このとき
+			$\varphi$に自由に現れる変項は$\hat{\varphi}$にも自由に現れ，
+			逆に$\hat{\varphi}$に自由に現れる変項は$\varphi$にも自由に現れる．
+			特に，$\varphi$が文ならば$\hat{\varphi}$も文である．
 		\end{metathm}
 	\end{screen}
 	
@@ -227,8 +232,11 @@
 			\item[step2]
 				$\varphi$が一般の式であるとき
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式$\psi$と，それを$\lang{\varepsilon}$の式
-					に書き換えた$\hat{\psi}$は，自由に現れる変項が一致する
+					$\varphi$の任意の真部分式$\psi$に対し，その書き換えを
+					$\hat{\psi}$とすれば($\psi$が$\lang{\varepsilon}$の式ならば
+					$\hat{\psi}$は$\psi$とする)，
+					$\psi$に自由に現れる変項は$\hat{\psi}$にも自由に現れ，
+					逆に$\hat{\psi}$に自由に現れる変項は$\psi$にも自由に現れる．
 				\end{itembox}
 				と仮定する．すると
 				\begin{description}
@@ -236,28 +244,49 @@
 						\begin{align}
 							\negation \psi
 						\end{align}
-						なる式の場合，$\varphi$に自由に現れる変項は
-						$\psi$に自由に現れる変項と一致するが，それは
-						$\hat{\psi}$に自由に現れる変項と一致するので，
-						$\negation \hat{\psi}$に自由に現れる変項とも一致する．
+						なる式の場合，$\hat{\varphi}$は
+						\begin{align}
+							\negation \hat{\psi}
+						\end{align}
+						なる形の式であるが，
+						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\hat{\psi}$は$\psi$の書き換えである．
+						$\varphi$に自由に現れる変項は$\psi$に自由に現れる変項と一致するが，
+						(IH)よりそれは$\hat{\psi}$に自由に現れる変項と一致するので，
+						$\hat{\varphi}$に自由に現れる変項とも一致する．
 						
 					\item[case2] $\varphi$が
 						\begin{align}
 							\vee \psi \chi
 						\end{align}
-						なる式の場合，$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる
-						変項と一致するが，それは$\hat{\psi},\hat{\chi}$に
-						自由に現れる変項と一致するので，
-						$\negation \hat{\psi} \hat{\chi}$に自由に現れる変項とも一致する．
+						なる式の場合，$\hat{\varphi}$は
+						\begin{align}
+							\vee \hat{\psi} \hat{\chi}
+						\end{align}
+						なる形の式であるが，
+						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の書き換えである
+						($\psi,\chi$の一方は元から$\lang{\varepsilon}$の式かもしれないが，
+						たとえば$\psi$がそうなら$\hat{\psi}$も$\check{\psi}$も$\psi$
+						であるとする)．
+						$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる変項と
+						一致するが，(IH)よりそれは$\hat{\psi},\hat{\chi}$に自由に現れる
+						変項と一致するので，$\hat{\varphi}$に自由に現れる変項とも一致する．
 					
-					\item $\varphi$が
+					\item[case3] $\varphi$が
 						\begin{align}
 							\exists x \psi
 						\end{align}
-						なる式の場合，$\varphi$に自由に現れる変項は
-						$\psi$に自由に現れる$x$以外の変項と一致するが，それは
-						$\hat{\psi}$に自由に現れる$x$以外の変項変項と一致するので，
-						$\negation \hat{\psi}$に自由に現れる変項とも一致する．
+						なる式の場合，$\hat{\varphi}$は
+						\begin{align}
+							\exists x \hat{\psi}
+						\end{align}
+						なる形の式であるが，
+						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\hat{\psi}$は$\psi$の書き換えである．
+						$\varphi$に自由に現れる変項は$\psi$に自由に現れる$x$以外の
+						変項と一致するが，(IH)よりそれは$\hat{\psi}$に自由に現れる$x$以外の
+						変項と一致するので，$\hat{\varphi}$に自由に現れる変項とも一致する．
 						\QED
 				\end{description}
 		\end{description}
