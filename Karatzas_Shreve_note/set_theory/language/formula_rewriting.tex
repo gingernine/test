@@ -1,26 +1,29 @@
 \subsection{式の書き換え}
-	$\varepsilon$項を取り入れた目的は{\bf 存在文}\index{そんざいぶん@存在文}
-	{\bf (existential sentence)}に対して{\bf 証人}\index{しょうにん@証人}{\bf (witness)}
-	を与えることであり，それは
+\label{subsec:formula_rewriting}
+	$\varepsilon$項を取り入れたのは{\bf 存在文}\index{そんざいぶん@存在文}
+	{\bf (existential sentence)}に対して{\bf 証人}\index{しょうにん@証人}
+	{\bf (witnessing term)}を与えるためであり，それは
 	\begin{align}
 		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \varphi(x))
 	\end{align}
-	なる式を公理とすることで実質的に裏付けされる．
-	ただし$\varepsilon$項を作れる式は$\lang{\varepsilon}$の式のみであるから，
-	$\varphi$が内包項を含んだ式であると$\varepsilon x \varphi(x)$を使うことが出来ない．
-	とはいえ$\mathcal{L}$の式の存在文も往々にして登場するので
-	それらに対しても証人を用意できると便利である．
-	そこで$\mathcal{L}$の式を``同値''な$\lang{\varepsilon}$の式に書き換えて，
-	その書き換えた式で作る$\varepsilon$項を使うことにする．つまり
-	$\varphi$が$\mathcal{L}$の式である場合は，$\varphi$を
-	``同値''な$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えてから
+	なる式を公理とすることで裏付けされる．ただし$\varepsilon$項を作れるのは$\lang{\varepsilon}$
+	の式のみであるから，$\varphi$が内包項を含んだ式であると$\varepsilon x \varphi(x)$を
+	使うことが出来ない．とはいえ内包項を含んだ存在文も往々にして登場するので，それらに対しても
+	証人を用意できると便利である．そこで$\varphi$を内包項を含んだ$\mathcal{L}$の式とするとき，
+	$\varphi$を``同値''な$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えて
 	\begin{align}
 		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \hat{\varphi}(x))
 	\end{align}
-	を保証するのである．書き換える必要があるのは内包項を含んでいる式のみであり，
-	また原子式だけを書き換えれば十分である．
+	を公理とする(量化公理\ref{logicalaxm:rules_of_quantifiers})．
+	注意点は\underline{同値な書き換えはいくらでも作れる}ということであり，
+	$\check{\varphi}$も$\varphi$の書き換えならば
+	\begin{align}
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \check{\varphi}(x))
+	\end{align}
+	も公理とする．書き換える必要があるのは内包項を含んでいる式のみであり，
+	またそのような式の原子式の部分，つまり$\in$と$=$のスコープ，だけを書き換えれば十分である．
 	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
-	で述べてあるような意味であるが，それは直感的に妥当なものである．原子式の書き換えは次の要領で行う：
+	で述べてあるような意味であるが，直感的に妥当な範囲でしかない．原子式の書き換えは次の要領で行う：
 	
 	\begin{table}[H]
 		\begin{center}
@@ -29,7 +32,7 @@
 			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
 			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
 			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
-			$a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら束縛変項の名前替えをする\footnotemark \\ \hline
+			$a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら束縛変項の名前替えをする \\ \hline
 			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
 			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
@@ -41,16 +44,17 @@
 		\item $a,b$は$\lang{\varepsilon}$の項である
 			(\ref{sec:restriction_of_formulas}節より
 			$a,b$は変項か主要$\varepsilon$項)．
+		
 		\item $\Set{y}{\varphi}$と$\Set{z}{\psi}$を正則内包項である．
+		
 		\item $u$は$\varphi$の中で$y$への代入について自由であり，
 			$u,v,s$は$\psi$の中で$z$への代入について自由である．
 			上の式の書き換えにおいては変項$u,v,s$を追加したが，
 			代入について自由である限りどの変項を選んでも構わない．
-			従って式の書き換えは一つに決まらないということになるが，
+			従って\underline{式の書き換えは一つに決まらない}ということになるが，
 			違う変項を選んでも式の意味は変わらない．
-	\end{itemize}
-	
-	\footnotetext{
+			
+		\item 付記「束縛変項の名前替え」について．
 			$a$を$\psi$の中の自由な$z$に代入した後で$a$が束縛される場合，
 			束縛変項の名前替えをしなくてはならない．たとえば
 			\begin{align}
@@ -69,46 +73,144 @@
 				\forall b\, (\, a \in b\, )
 			\end{align}
 			とすればよい．
-	}
+	\end{itemize}
 	
-	原子式に対する書き換えが掲示されたので，$\mathcal{L}$の一般の式$\varphi$から
-	$\lang{\varepsilon}$の式$\hat{\varphi}$を得る操作は次の帰納的な要領で行えばよい．
-	\begin{description}
-		\item[case1] $\varphi$が
-			\begin{align}
-				\negation \psi
-			\end{align}
-			なる式であるとき，$\psi$を$\lang{\varepsilon}$の式に書き換えた$\hat{\psi}$を用いて
-			\begin{align}
-				\negation \hat{\psi}
-			\end{align}
-			を$\hat{\varphi}$とする．
-			
-		\item[case2] $\varphi$が
-			\begin{align}
-				\vee \psi \chi
-			\end{align}
-			なる式であるとき，$\psi,\chi$を$\lang{\varepsilon}$の式に書き換えた
-			$\hat{\psi},\hat{\chi}$を用いて
-			\begin{align}
-				\vee \hat{\psi} \hat{\chi}
-			\end{align}
-			を$\hat{\varphi}$とする．$\varphi$が$\wedge \psi \chi$や$\rarrow \psi \chi$
-			の形の時も同様にする．
-			
-		\item[case3] $\varphi$が
-			\begin{align}
-				\exists x \psi
-			\end{align}
-			なる式であるとき，$\psi$を$\lang{\varepsilon}$の式に書き換えた
-			$\hat{\psi}$を用いて
-			\begin{align}
-				\exists x \hat{\psi}
-			\end{align}
-			を$\hat{\varphi}$とする．$\varphi$が$\forall x \psi$の形の時も同様にする．
-	\end{description}
+	\begin{screen}
+		\begin{metadfn}[式の書き換え]
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+			$\varphi$の原子式の部分，つまり$\in$と$=$のスコープを全て上表に従って直した式を
+			$\varphi$の{\bf 書き換え}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
 	
-	もちろん$\varphi$が$\lang{\varepsilon}$の式ならわざわざ書き換える必要は無い．
+	\begin{screen}
+		\begin{metathm}[書き換えは$\lang{\varepsilon}$の式]
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\hat{\varphi}$を$\varphi$の書き換えとするとき，
+			$\hat{\varphi}$は$\lang{\varepsilon}$の式である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\varphi$が原子式なら，表の通り$\hat{\varphi}$は
+				$\lang{\varepsilon}$の式である．
+			
+			\item[step2] $\varphi$が原子式ないとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式は，それが$\lang{\varepsilon}$の式でない場合
+					その書き換えは$\lang{\varepsilon}$の式である．
+				\end{itembox}
+				と仮定する．
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式のとき，$\varphi$の$\in,=$のスコープはいずれも
+						$\psi$の部分原子式であり，逆に$\psi$の$\in,=$のどのスコープも
+						$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
+						全て書き換えるということは$\psi$の原子式の部分を全て書き換える
+						ということになる．$\hat{\varphi}$は
+						\begin{align}
+							\negation \hat{\psi}
+						\end{align}
+						なる式で書けるが，$\hat{\psi}$は$\psi$の書き換えであり，
+						(IH)より$\lang{\varepsilon}$の式である．ゆえに
+						$\hat{\varphi}$も$\lang{\varepsilon}$の式である．
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる式のとき，$\varphi$の$\in,=$のスコープはいずれも
+						$\psi$か$\chi$の一方の部分原子式であり(始切片の一意性
+						のメタ定理\ref{metathm:initial_segment_L}より
+						$\varphi$の真部分式が$\psi$と$\chi$の境を跨ぐことはない)，
+						逆に$\psi,\chi$の$\in,=$のどのスコープも
+						$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
+						全て書き換えるということは$\psi$と$\chi$の原子式の部分を全て書き換える
+						ということになる．$\hat{\varphi}$は
+						\begin{align}
+							\vee \hat{\psi} \hat{\chi}
+						\end{align}
+						なる式で書けるが，$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の
+						書き換えであり(もしくは，$\psi,\chi$の一方は元から
+						$\lang{\varepsilon}$の式かもしれない)，(IH)よりどちらも
+						$\lang{\varepsilon}$の式である．ゆえに
+						$\hat{\varphi}$も$\lang{\varepsilon}$の式である．
+						
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる式のとき，case1 と同様の理由で$\varphi$の原子式の部分を
+						全て書き換えるということは$\psi$の原子式の部分を全て書き換える
+						ということになる．$\hat{\varphi}$は
+						\begin{align}
+							\exists x \hat{\psi}
+						\end{align}
+						なる式で書けるが，$\hat{\psi}$は$\psi$の書き換えであり，
+						(IH)より$\lang{\varepsilon}$の式である．ゆえに
+						$\hat{\varphi}$も$\lang{\varepsilon}$の式である．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[部分式の書き換えとの関係]
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+			\begin{description}
+				\item[case1] $\varphi$が$\negation \psi$なる式のとき，
+					$\varphi$の書き換え$\hat{\varphi}$は$\negation \hat{\psi}$
+					なる式であるが，このとき$\hat{\psi}$は$\psi$の書き換えである．
+					逆に$\check{\psi}$を$\psi$の書き換えとすれば$\negation \check{\psi}$
+					は$\varphi$の書き換えである．
+					
+				\item[case2] $\varphi$が$\vee \psi \chi$なる式のとき，
+					$\varphi$の書き換え$\hat{\varphi}$は$\vee \hat{\psi} \hat{\chi}$
+					なる式であるが，このとき$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の
+					書き換えである．逆に$\check{\psi},\check{\chi}$をそれぞれ$\psi,\chi$の
+					書き換えとすれば$\vee \check{\psi} \check{\chi}$は$\varphi$の
+					書き換えである．なお，$\psi,\chi$の一方は元から
+					$\lang{\varepsilon}$の式かもしれないが，たとえば$\psi$がそうなら
+					$\hat{\psi}$も$\check{\psi}$も$\psi$であるとする．
+					
+				\item[case3] $\varphi$が$\exists x \psi$なる式のとき，
+					$\varphi$の書き換え$\hat{\varphi}$は$\exists x \hat{\psi}$
+					なる式であるが，このとき$\hat{\psi}$は$\psi$の書き換えである．
+					逆に$\check{\psi}$を$\psi$の書き換えとすれば$\exists x \check{\psi}$
+					は$\varphi$の書き換えである．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		証明は前定理の説明と大方被ってしまうがもう一度載せて置く．
+		\begin{description}
+			\item[case1] $\varphi$の$\in,=$のスコープはいずれも
+				$\psi$の部分原子式であり，逆に$\psi$の$\in,=$のどのスコープも
+				$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
+				全て書き換えることと$\psi$の原子式の部分を全て書き換えることは同じである．
+				従って$\hat{\psi}$は$\psi$の書き換えであり，$\negation \check{\psi}$は
+				$\varphi$の書き換えである．
+			
+			\item[case2] $\varphi$の$\in,=$のスコープはいずれも
+				$\psi$か$\chi$の一方の部分原子式であり(始切片の一意性
+				のメタ定理\ref{metathm:initial_segment_L}より
+				$\varphi$の真部分式が$\psi$と$\chi$の境を跨ぐことはない)，
+				逆に$\psi,\chi$の$\in,=$のどのスコープも
+				$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
+				全て書き換えることと$\psi$と$\chi$の原子式の部分を全て書き換えることは同じである．
+				従って$\hat{\psi},\hat{\chi}$はそれぞれ$\psi,\chi$の書き換えであり，
+				$\negation \check{\psi} \check{\chi}$は$\varphi$の書き換えである．
+				
+			\item[case3] case1 と同じ理由によって，$\hat{\psi}$は$\psi$の書き換えであり，
+				$\exists x \check{\psi}$は$\varphi$の書き換えである．
+				\QED
+		\end{description}
+	\end{metaprf}
 	
 	\begin{screen}
 		\begin{metathm}[書き換え後も自由な変項は増減しない]
