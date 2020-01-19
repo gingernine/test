@@ -22,10 +22,10 @@
 		$\hat{\varphi}_{1},\cdots,\hat{\varphi}_{n}$はいずれも
 		$\lang{\varepsilon}$の文であり，また各$\hat{\varphi}_{i}$について次が言える：
 		\begin{description}
-			\item[(1)] $\varphi_{i}$が{\bf HE}の公理ならば$\hat{\varphi}_{i}$も
+			\item[(1)] $\varphi_{i}$が{\bf HE}の命題論理の公理ならば$\hat{\varphi}_{i}$も
 				{\bf HE}の公理である．
 				
-			\item[(2)] $\varphi_{i}$が$\Sigma$の公理ならば$\Sigma 
+			\item[(2)] $\varphi_{i}$が{\bf HE}の量化公理か$\Sigma$の公理ならば$\Sigma 
 				\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \hat{\varphi}_{i}$である．
 				
 			\item[(3)] $\varphi_{i}$が前の文$\varphi_{j},\varphi_{k}$から三段論法で
@@ -35,14 +35,26 @@
 		
 		(1)については，例えば$\varphi_{i}$が
 		\begin{align}
-			\exists x \varphi \rarrow \varphi(\varepsilon x \tilde{\varphi})
+			\exists x \varphi \rarrow \varphi(\varepsilon x \check{\varphi})
 		\end{align}
-		なる公理であれば($\tilde{\varphi}$は$\varphi$を$\lang{\varepsilon}$の式に
+		なる公理であれば($\check{\varphi}$は$\varphi$を$\lang{\varepsilon}$の式に
 		書き直したもの)，$\hat{\varphi}_{i}$は
 		\begin{align}
-			\exists x \hat{\varphi} \rarrow \hat{\varphi}(\varepsilon x \tilde{\varphi})
+			\exists x \hat{\varphi} \rarrow \hat{\varphi}(\varepsilon x \check{\varphi})
 		\end{align}
-		なる形の式である．これは{\bf HE}の公理である．
+		なる形の式である．これは
+		\begin{align}
+			\exists x \hat{\varphi} &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \hat{\varphi}(\varepsilon x \hat{\varphi}), \\
+			\Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \hat{\varphi}(\varepsilon x \hat{\varphi}) \rarrow \check{\varphi}(\varepsilon x \hat{\varphi}), \\
+			\exists x \hat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \hat{\varphi}), \\
+			&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \hat{\varphi}) \rarrow \exists x \check{\varphi}, \\
+			\exists x \hat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi}, \\
+			&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi} \rarrow \check{\varphi}(\varepsilon x \check{\varphi}), \\
+			\exists x \hat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}), \\
+			\Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}) \rarrow  \hat{\varphi}(\varepsilon x \check{\varphi}), \\
+			\exists x \hat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \hat{\varphi}(\varepsilon x \check{\varphi})
+		\end{align}
+		から従う．
 		
 		(3)については，$\varphi_{k}$を$\varphi_{j} \rarrow \varphi_{i}$なる文とすれば，
 		同じ原子式の書き換えは証明全体で一致しているので$\hat{\varphi_{k}}$は
@@ -72,12 +84,12 @@
 				とおけば
 				\begin{align}
 					\forall x\, (\, \varphi(x) \lrarrow x \in b\, ) 
-					\provable{\mbox{{\bf HE}}} \varphi(\zeta) \lrarrow \zeta \in b
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\zeta) \lrarrow \zeta \in b
 				\end{align}
 				が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
 				\begin{align}
 					\forall x\, (\, \varphi(x) \lrarrow x \in b\, ) 
-					\provable{\mbox{{\bf HE}}}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
 					\forall z\, (\, \varphi(z) \lrarrow z \in b\, )
 				\end{align}
 				となる．$a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる
@@ -104,11 +116,11 @@
 				\end{align}
 				とおけば，含意の反射律(論理的定理\ref{logicalthm:reflective_law_of_implication})と論理積の導入より
 				\begin{align}
-					\provable{\mbox{{\bf HE}}} \varphi(\tau) \lrarrow \varphi(\tau)
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\tau) \lrarrow \varphi(\tau)
 				\end{align}
 				が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
 				\begin{align}
-					\provable{\mbox{{\bf HE}}} \forall x\, (\, x \in \varphi(x) \lrarrow \varphi(x)\, )
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x\, (\, x \in \varphi(x) \lrarrow \varphi(x)\, )
 				\end{align}
 				となる．
 			
@@ -118,16 +130,16 @@
 				\end{align}
 				なる式であるとき，$a$も$b$も主要$\varepsilon$項ならば
 				\begin{align}
-					\Sigma \provable{\mbox{{\bf HE}}} \exists x\, (\, a = x\, )
+					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, )
 				\end{align}
 				(定理\ref{thm:critical_epsilon_term_is_set})と含意の導入
 				\begin{align}
-					\provable{\mbox{{\bf HE}}} \exists x\, (\, a = x\, )
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, )
 					\rarrow (\, a \in b \rarrow \exists x\, (\, a = x\, )\, )
 				\end{align}
 				から
 				\begin{align}
-					\Sigma \provable{\mbox{{\bf HE}}} a \in b \rarrow \exists x\, (\, a = x\, )
+					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} a \in b \rarrow \exists x\, (\, a = x\, )
 				\end{align}
 				が従う．$a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であるとき，
 				$\hat{\varphi}_{i}$は
@@ -150,18 +162,18 @@
 				\begin{align}
 					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
 					\wedge s \in b\, )
-					&\provable{\mbox{{\bf HE}}} 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
 					\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
 					\wedge \sigma \in b, \\
 					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
 					\wedge s \in b\, )
-					&\provable{\mbox{{\bf HE}}} 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
 					\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ), \\
 					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
 					\wedge s \in b\, )
-					&\provable{\mbox{{\bf HE}}} \varphi(\tau) \lrarrow \tau \in \sigma, \\
-					&\provable{\mbox{{\bf HE}}} \forall v\, (\, \varphi(v) \lrarrow v \in \sigma\, ), \\
-					&\provable{\mbox{{\bf HE}}} \exists x\, \forall v\, (\, \varphi(v) \lrarrow v \in x\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\tau) \lrarrow \tau \in \sigma, \\
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \varphi(v) \lrarrow v \in \sigma\, ), \\
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, \forall v\, (\, \varphi(v) \lrarrow v \in x\, )
 				\end{align}
 				が成り立つ．$a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項
 				であるとき，$\hat{\varphi}_{i}$は
@@ -188,10 +200,10 @@
 				とおけば
 				\begin{align}
 					\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
-					&\provable{\mbox{{\bf HE}}} \varphi(\tau) \lrarrow \tau \in b, \\
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\tau) \lrarrow \tau \in b, \\
 					\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
-					&\provable{\mbox{{\bf HE}}} \tau \in b \lrarrow \varphi(\tau), \\
-					&\provable{\mbox{{\bf HE}}} \forall v\, (\, v \in b \lrarrow \varphi(v)\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \tau \in b \lrarrow \varphi(\tau), \\
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, v \in b \lrarrow \varphi(v)\, )
 				\end{align}
 				が成り立つ．$a$も$b$も内包項である場合や，$a$が主要$\varepsilon$項で
 				$b$が内包項である場合も同様のことが言える．
