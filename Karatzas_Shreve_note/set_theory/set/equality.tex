@@ -8,7 +8,7 @@
 	\end{align}
 	で$x \neq y$を定める．
 	
-	集合は類の一部として定義されるが，類が全て集合であると考えると矛盾が起こる．
+	集合は特定の性質を持つ類として定義されるが，類が全て集合であると考えると矛盾が起こる．
 	たとえばRussellのパラドックスで有名な
 	\begin{align}
 		R \defeq \Set{x}{x \notin x}
@@ -17,11 +17,9 @@
 	(P. \pageref{fom:defining_arrow})，
 	これと同様に$\defeq$とは``類''に対する略記を導入するために使う定義記号である)
 	\begin{align}
-		\Sigma \vdash R \notin R \lrarrow R \in R
+		R \notin R \lrarrow R \in R
 	\end{align}
-	が成り立ってしまい，これは$\Sigma \vdash \bot$を導く(定理\ref{thm:Russell_paradox})．
-	この種の矛盾を回避するために類を導入したのであり，
-	集合とは類の中で特定の性質をもつものに限られる．
+	が成り立ってしまい，これは矛盾を導く(定理\ref{thm:Russell_paradox})．
 	
 	\begin{screen}
 		\begin{dfn}[集合]
@@ -29,9 +27,9 @@
 			\begin{align}
 				\set{a} \defarrow \exists x\, (\, a = x\, )
 			\end{align}
-			で定める．$\Sigma \vdash \set{a}$を満たす類$a$を
+			で定める．$\Sigma \vdash \set{a}$ならば$a$を
 			{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
-			$\Sigma \vdash\ \negation \set{a}$を満たす類$a$を
+			$\Sigma \vdash\ \negation \set{a}$ならば$a$を
 			{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
 		\end{dfn}
 	\end{screen}
@@ -55,7 +53,7 @@
 		\set{\Set{x}{\varphi(x)}} \vdash \Set{x}{\varphi(x)} = 
 		\varepsilon y\, \forall x\, (\, \varphi(x) \lrarrow x \in y\, )
 	\end{align}
-	が得られる．
+	が得られる．これは集合と$\varepsilon$項との関係の基本定理である．
 	
 	\begin{screen}
 		\begin{thm}[集合である内包項は$\varepsilon$項で書ける]
@@ -68,19 +66,6 @@
 			\end{align}
 		\end{thm}
 	\end{screen}
-	
-	ブルバキ\cite{key4}では$\tau$項を，島内\cite{key6}では$\varepsilon$項のみを導入して
-	$\varepsilon y \forall x\, (\, \varphi(x) \lrarrow x \in y\, )$
-	によって$\Set{x}{\varphi(x)}$を定めているが，この定め方には欠点がある．
-	というのも，本稿と同じくブルバキ\cite{key4}の$\tau$項も島内\cite{key6}の$\varepsilon$項も
-	集合であるから，
-	\begin{align}
-		\exists y\, \forall x\, (\, \varphi(x) \lrarrow x \in y\, )
-	\end{align}
-	が成立しない場合は$\varepsilon y \forall x\, (\, \varphi(x) \lrarrow x \in y\, )$
-	は正体不明になってしまい，$\Set{x}{\varphi(x)}$が「性質$\varphi$を持つ集合の全体」
-	の意味を持たないのである．本稿では内包項と$\varepsilon$項を別々に
-	生成しているのでこの欠点は解消される．
 	
 \section{相等性}
 	本稿において``等しい''とは項に対する言明であって，$a$と$b$を項とするとき
@@ -854,22 +839,20 @@
 		\QED
 	\end{sketch}
 	
-	\begin{itembox}[l]{等号の対称律と推移律について}
-		本稿では等号の対称律
-		\begin{align}
-			a = b \rarrow b = a
-		\end{align}
-		を公理としたが，逆に推移律を公理にすれば
-		\begin{align}
-			\EXTAX,\EQAX \vdash a = b \rarrow b = a
-		\end{align}
-		が成立する．実際
-		\begin{align}
-			a = b,\ \EQAX &\vdash a = a \rarrow b = a, && \\
-			\EXTAX &\vdash a = a, 
-			&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}), \\
-			a = b,\ \EXTAX,\EQAX &\vdash b = a
-			&& (\mbox{三段論法})
-		\end{align}
-		となる．つまり等号の対称律と推移律は外延性公理の下で同値なのである．
-	\end{itembox}
+	この節の最後に等号の対称律と推移律の同値性について書いておく．本稿では等号の対称律
+	\begin{align}
+		a = b \rarrow b = a
+	\end{align}
+	を公理としたが，逆に推移律を公理にすれば
+	\begin{align}
+		\EXTAX,\EQAX \vdash a = b \rarrow b = a
+	\end{align}
+	が成立する．実際
+	\begin{align}
+		a = b,\ \EQAX &\vdash a = a \rarrow b = a, && \\
+		\EXTAX &\vdash a = a, 
+		&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}), \\
+		a = b,\ \EXTAX,\EQAX &\vdash b = a
+		&& (\mbox{三段論法})
+	\end{align}
+	となる．つまり等号の対称律と推移律は外延性公理の下で同値なのである．
