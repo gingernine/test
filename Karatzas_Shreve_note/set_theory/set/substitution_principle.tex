@@ -276,10 +276,16 @@
 				$\varphi$を$x$のみが自由に現れる$\lang{\varepsilon}$の式として
 				\begin{itembox}[l]{IH (帰納法の仮定)}
 					$\varphi$の任意の真部分式$\psi$に対して，
-					$\psi$に$x$が自由に現れているならば
+					$\psi$に$x$のみが自由に現れているならば
 					\begin{align}
 						\EXTAX,\EQAX \vdash a = b \rarrow (\, \psi(a) \lrarrow \psi(b)\, )
 					\end{align}
+					が成り立つ．$\psi$に$x$以外の変項$y$もまた自由に現れているならば，
+					任意の主要$\varepsilon$項$\tau$に対して
+					\begin{align}
+						\EXTAX,\EQAX \vdash a = b \rarrow (\, \psi(x/a,y/\tau) \lrarrow \psi(x/b,y/\tau)\, )
+					\end{align}
+					が成り立つ．
 				\end{itembox}
 				と仮定する．このとき
 				\begin{description}
@@ -316,7 +322,7 @@
 							a = b,\ \EXTAX,\EQAX &\vdash \psi_{a} \lrarrow \psi_{b}, \\
 							a = b,\ \EXTAX,\EQAX &\vdash \chi_{a} \lrarrow \chi_{b}
 						\end{align}
-						が満たされる．
+						が満たされる．従って論理的定理\ref{logicalthm:lemma_for_principle_of_substitution}の
 						(\refeq{fom:lemma_for_principle_of_substitution_1})より
 						\begin{align}
 							a = b,\ \EXTAX,\EQAX \vdash\ 
@@ -333,8 +339,103 @@
 						なる式であるときも同様である．
 					
 					\item[case3]
+						$\varphi$が
+						\begin{align}
+							\exists y \psi
+						\end{align}
+						なる式であるとき，つまり$\psi$には$x$と$y$が自由に現れるが，
+						\begin{align}
+							\tau \defeq \varepsilon y \psi(x/a)
+						\end{align}
+						と主要$\varepsilon$項を定めると，存在記号の論理的公理より
+						\begin{align}
+							\exists y \psi(x/a) \vdash \psi(x/a,y/\tau)
+						\end{align}
+						が成り立つ($\varphi(a)$と$\exists y \psi(x/a)$は一致する)．(IH)より
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\psi(x/a,y/\tau) \rarrow \psi(x/b,y/\tau)
+						\end{align}
+						が成り立つので三段論法より
+						\begin{align}
+							\exists y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
+							\psi(x/b,y/\tau)
+						\end{align}
+						が従い，存在記号の論理的公理より
+						\begin{align}
+							\exists y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
+							\exists y \psi(x/b)
+						\end{align}
+						となり，演繹定理より
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\exists y \psi(x/a) \rarrow \exists y \psi(x/b)
+						\end{align}
+						が出る．今度は
+						\begin{align}
+							\tau \defeq \varepsilon y \psi(x/b)
+						\end{align}
+						とおけば上と同様に
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\exists y \psi(x/b) \rarrow \exists y \psi(x/a)
+						\end{align}
+						が成り立ち，
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\exists y \psi(x/a) \lrarrow \exists y \psi(x/b)
+						\end{align}
+						が得られる．
 						
-						
+					\item[case4]
+						$\varphi$が
+						\begin{align}
+							\forall y \psi
+						\end{align}
+						なる式の場合は，まず$\tau$を
+						\begin{align}
+							\varepsilon y \negation \psi(x/b)
+						\end{align}
+						なる主要$\varepsilon$項とする．このとき全称記号の論理的公理より
+						\begin{align}
+							\forall y \psi(x/a) \vdash \psi(x/a,y/\tau)
+						\end{align}
+						が成り立ち($\varphi(a)$と$\forall y \psi(x/a)$は一致する)，(IH)より
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\psi(x/a,y/\tau) \rarrow \psi(x/b,y/\tau)
+						\end{align}
+						が成り立つので三段論法より
+						\begin{align}
+							\forall y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
+							\psi(x/b,y/\tau)
+						\end{align}
+						が従い，全称の導出\ref{logicalthm:derivation_of_universal_by_epsilon}より
+						\begin{align}
+							\forall y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
+							\forall y \psi(x/b)
+						\end{align}
+						となり
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\forall y \psi(x/a) \rarrow \forall y \psi(x/b)
+						\end{align}
+						が出る．今度は
+						\begin{align}
+							\tau \defeq \varepsilon \negation y \psi(x/a)
+						\end{align}
+						とおけば上と同様に
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\forall y \psi(x/b) \rarrow \forall y \psi(x/a)
+						\end{align}
+						が成り立ち，
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\forall y \psi(x/a) \lrarrow \forall y \psi(x/b)
+						\end{align}
+						が得られる．
+						\QED
 				\end{description}
 				
 			\begin{comment}
