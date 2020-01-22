@@ -25,7 +25,8 @@
 	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
 	で述べてあるような意味であり，直感的には妥当な範囲でしかないのだが，
 	書き換え時に課す条件が多いため読むだけでも嫌気がさすかもしれない．
-	実際のところは，とりあえず「式の書き換えが可能である」ということと「式の書き換えの形」だけを認識されれば，
+	これらは全て{\bf 自由に現れる変項が書き換え後も自由ならしめるため}のものであるが，
+	とりあえずは「式の書き換えが可能である」ということと「式の書き換えの形」だけを認識されれば，
 	その他の些末事項を当面無視しても大して問題は無い．
 	原子式の書き換えは次の要領で行う：
 	
@@ -246,7 +247,8 @@
 	
 	\begin{metaprf}\mbox{}
 		\begin{description}
-			\item[step1] $\varphi$が原子式であるときは上の書き換え表より一目瞭然である．
+			\item[step1] $\varphi$が原子式であるときは，書き換え時の変項条件より
+				$\varphi$と$\widehat{\varphi}$に現れる変項は一致する．
 			
 			\item[step2]
 				$\varphi$が一般の式であるとき
@@ -752,5 +754,36 @@
 								$\varphi(x/\tau)$の書き換えである．
 						\end{itemize}
 				\end{description}
+			
+			\item[step2] $\varphi$が一般の式であるとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式$\psi$に対して，
+					$\psi$が$\lang{\varepsilon}$の式でなければ，
+					$\widehat{\psi}$を$\psi$の書き換えとすれば
+					$\widehat{\psi}(x/\tau)$は$\psi(x/\tau)$の書き換えである．
+				\end{itembox}
+				と仮定する
+				\footnote{
+					メタ定理\ref{metathm:variables_unchanged_after_rewriting}より
+					$\psi$に$x$が自由に現れていなければ$\widehat{\psi}$にも
+					$x$は自由に現れないので，$\psi$に$x$が自由に現れていない場合は
+					$\psi(x/\tau)$は$\psi$であり，$\widehat{\psi}(x/\tau)$は
+					$\widehat{\psi}$である．
+				}．
+				
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式である場合，(IH)より$\widehat{\psi}(x/\tau)$は
+						$\psi(x/\tau)$の書き換えであるから，
+						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\negation \widehat{\psi}(x/\tau)$は
+						$\negation \psi(x/\tau)$の書き換えである．
+						$\negation \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから
+						
+				\end{description}
+				
 		\end{description}
 	\end{metaprf}
