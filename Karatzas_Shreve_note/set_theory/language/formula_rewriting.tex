@@ -24,27 +24,30 @@
 	またそのような式の{\bf 原子式の部分，つまり$\in$と$=$のスコープ，だけを書き換えれば十分}である．
 	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
 	で述べてあるような意味であり，直感的には妥当な範囲でしかないのだが，
-	書き換え時に課す条件が多いため読むだけでも嫌気がさすかもしれない．
-	これらは全て{\bf 自由に現れる変項が書き換え後も自由ならしめるため}のものであるが，
+	書き換え時に課す変項の条件が多いため読むだけでも嫌気がさすかもしれない．
+	これらは全て{\bf 自由に現れる変項を書き換え後も自由ならしめるため}のものであるが，
 	とりあえずは「式の書き換えが可能である」ということと「式の書き換えの形」だけを認識されれば，
 	その他の些末事項を当面無視しても大して問題は無い．
 	原子式の書き換えは次の要領で行う：
 	
 	\begin{table}[H]
 		\begin{center}
-		\begin{tabular}{c|c|c}
-			元の式 & 書き換え後 & 付記 \\ \hline \hline
-			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & $a$と$v$は違う項である \\ \hline
-			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & $b$と$u$は違う項である \\ \hline
-			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
-			$a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら束縛変項の名前替えをする \\ \hline
-			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & $s$は$b$とも$u$とも違う項である \\ \hline
-			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & $s$と$u$は違う項である \\ \hline
+		\begin{tabular}{c|c|c|c}
+			 & 元の式 & 書き換え後 & 付記 \\ \hline \hline
+			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
+			(2) & $\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
+			(3) & $\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
+			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら束縛変項の名前替え \\ \hline
+			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
+			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
 		\end{center}
 	\end{table}
 	
-	ただし上の項が満たすべき条件は
+	上の表の書き換えでは変項$u,v,s$を追加したが，以下の条件を満たす限りどの変項を選んでも構わない．
+	従って\underline{式の書き換えは一つに決まらない}ということになるが，
+	違う変項を選んでも式の意味は変わらない．上の表にある項が満たすべき条件は次である：
+			
 	\begin{itemize}
 		\item $a,b$は$\lang{\varepsilon}$の項である
 			(\ref{sec:restriction_of_formulas}節より
@@ -52,28 +55,24 @@
 		
 		\item $\Set{y}{\varphi}$と$\Set{z}{\psi}$を正則内包項である．
 		
-		\item 一つ目の書き換えでは$v$は$\psi$に自由に現れる$z$以外のどの変項とも違う．
+		\item (1)で$v$は$\psi$に自由に現れる$z$以外のどの変項とも$a$とも違う．
 		
-		\item 二つ目の書き換えでは$u$は$\varphi$に自由に現れる$y$以外のどの変項とも違う．
+		\item (2)で$u$は$\varphi$に自由に現れる$y$以外のどの変項とも$b$とも違う．
 		
-		\item 三つ目の書き換えでは$u$は，$\varphi$に自由に現れる$y$以外のどの変項とも，
+		\item (3)で$u$は$\varphi$に自由に現れる$y$以外のどの変項とも，
 			$\psi$に自由に現れる$z$以外のどの変項とも違う．
 		
-		\item 五つ目の書き換えでは$s$と$u$は$\varphi$に自由に現れる$y$以外のどの変項とも違う．
+		\item (5)で$s$は$\varphi$に自由に現れる$y$以外のどの変項とも$b,u$とも違う．
+			$u$は$\varphi$に自由に現れる$y$以外のどの変項とも違う．
 		
-		\item 六つ目の書き換えでは，$s$は$\varphi$に自由に現れる$y$以外のどの変項とも，
-			$\psi$に自由に現れる$z$以外のどの変項とも違う．
+		\item (6)で$s$は，$\varphi$に自由に現れる$y$以外のどの変項とも，
+			$\psi$に自由に現れる$z$以外のどの変項とも，$u$とも違う．
 			$u$は$\varphi$に自由に現れる$y$以外のどの変項とも違う．
 			
-		\item $u$は$\varphi$の中で$y$への代入について自由であり，
+		\item (1)から(6)では，$u$は$\varphi$の中で$y$への代入について自由であり，
 			$u,v,s$は$\psi$の中で$z$への代入について自由である．
 			
-		\item 上の式の書き換えにおいては変項$u,v,s$を追加したが，
-			以上の条件を満たす限りどの変項を選んでも構わない．
-			従って\underline{式の書き換えは一つに決まらない}ということになるが，
-			違う変項を選んでも式の意味は変わらない．
-			
-		\item 付記「束縛変項の名前替え」について．
+		\item (4)の「束縛変項の名前替え」について．
 			$a$を$\psi$の中の自由な$z$に代入した後で$a$が束縛される場合，
 			束縛変項の名前替えをしなくてはならない．たとえば
 			\begin{align}
@@ -776,14 +775,62 @@
 						\begin{align}
 							\negation \psi
 						\end{align}
-						なる式である場合，(IH)より$\widehat{\psi}(x/\tau)$は
+						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
+						\begin{align}
+							\negation \widehat{\psi}
+						\end{align}
+						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えである．
+						(IH)より$\widehat{\psi}(x/\tau)$は
 						$\psi(x/\tau)$の書き換えであるから，
-						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
 						$\negation \widehat{\psi}(x/\tau)$は
 						$\negation \psi(x/\tau)$の書き換えである．
-						$\negation \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから
-						
+						$\negation \widehat{\psi}(x/\tau)$とは
+						$\widehat{\varphi}(x/\tau)$のことであり，
+						$\negation \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから，
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+					
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
+						\begin{align}
+							\vee \widehat{\psi} \widehat{\chi}
+						\end{align}
+						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えであり，
+						$\widehat{\chi}$は$\chi$の書き換えである．
+						(IH)より$\widehat{\psi}(x/\tau)$は
+						$\psi(x/\tau)$の書き換えであり，また$\widehat{\chi}(x/\tau)$は
+						$\chi(x/\tau)$の書き換えであるから，
+						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\vee \widehat{\psi}(x/\tau)\widehat{\chi}(x/\tau)$は
+						$\vee \psi(x/\tau)\chi(x/\tau)$の書き換えである．．
+						$\vee \widehat{\psi}(x/\tau)\widehat{\chi}(x/\tau)$とは
+						$\widehat{\varphi}(x/\tau)$のことであり，
+						$\vee \psi(x/\tau)\chi(x/\tau)$とは
+						$\varphi(x/\tau)$のことであるから，
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+					
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
+						\begin{align}
+							\exists y \widehat{\psi}
+						\end{align}
+						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えである．
+						(IH)より$\widehat{\psi}(x/\tau)$は
+						$\psi(x/\tau)$の書き換えであるから，
+						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\exists y \widehat{\psi}(x/\tau)$は
+						$\exists y \psi(x/\tau)$の書き換えである．
+						$\exists y \widehat{\psi}(x/\tau)$とは
+						$\widehat{\varphi}(x/\tau)$のことであり，
+						$\exists y \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから，
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+						\QED
 				\end{description}
-				
 		\end{description}
 	\end{metaprf}
