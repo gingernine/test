@@ -446,13 +446,6 @@
 						\end{align}
 						が成り立つ．
 						
-						
-						\begin{align}
-							\forall u\, (\, u \in a \lrarrow \psi(u)\, )\, a \in c
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )\, )
-						\end{align}
-						となる．
-						
 					\item[case(8-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
@@ -623,7 +616,7 @@
 						\begin{align}
 							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) \vdash c \in a \rarrow \psi(c)
 						\end{align}
-						より従う．
+						より直接得られる．
 						
 					\item[case(9-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
@@ -641,7 +634,7 @@
 							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) 
 							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a, \\
 							\forall u\, (\, u \in a \lrarrow \psi(u)\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a \lrarrow \psi(\sigma)
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a \rarrow \psi(\sigma)
 						\end{align}
 						より
 						\begin{align}
@@ -704,178 +697,136 @@
 						$z$が$\Set{x}{\xi(x)}$なる項の場合，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
-							\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\rarrow \xi(b)\, )
+							&\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+							&\rarrow \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge t \in b\, )\, )
 						\end{align}
 						となるが，
 						\begin{align}
-							\sigma &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ), \\
-							\delta &\defeq \varepsilon u \negation (\, u \in \sigma \lrarrow u \in b\, )
+							\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, )
+						\end{align}
+						とおけば，
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma), \\
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma) \rarrow \sigma \in b
+						\end{align}
+						より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in b
+						\end{align}
+						が成り立つ．他方で
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, )
+						\end{align}
+						も成り立つので，
+						\begin{align}
+							\omega \defeq \varepsilon v \negation (\, \xi(v) \lrarrow v \in \sigma\, )
 						\end{align}
 						とおけば
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\delta) \lrarrow \delta \in b, \\
-							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\delta) \lrarrow \delta \in \sigma
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\omega) \lrarrow \omega \in \sigma
 						\end{align}
-						が成り立つので
+						となり
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \delta \in \sigma \lrarrow \delta \in b
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, )
 						\end{align}
-						が従い，
+						が従う．ゆえに
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, u \in \sigma \lrarrow u \in b\, )
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, ) \wedge \sigma \in b
+							\end{gathered}
 						\end{align}
-						となり，外延性公理より
+						が従い
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ),\ 
-							\Sigma
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma = b
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge t \in b\, )
+							\end{gathered}
 						\end{align}
-						が出る．一方で
-						\begin{align}
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\sigma)
-						\end{align}
-						となるので，代入原理(定理\ref{thm:the_principle_of_substitution})より
-						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ),\ 
-							\Sigma
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(b)
-						\end{align}
-						が成り立つ．
+						が出る．
 						
-						
-						\begin{align}
-							\forall u\, (\, u \in a \lrarrow \psi(u)\, )\, a \in c
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )\, )
-						\end{align}
-						となる．
-						
-					\item[case(8-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(9-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) \rarrow (\, \varphi(c) \rarrow \psi(c)\, )
+						\end{align}
+						となるが，これは
+						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
-							&\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ) \\
-							&\rarrow \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+							\varphi(c) \rarrow \psi(c)
 						\end{align}
-						となるが，
-						\begin{align}
-							\tau &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ), \\
-							\omega &\defeq \varepsilon w \negation (\, \psi(w) \lrarrow w \in t\, )
-						\end{align}
-						とおけば，まず
-						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \psi(\omega), \\
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \omega \in \tau
-						\end{align}
-						が成り立つので
-						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\omega) \lrarrow \omega \in \tau
-						\end{align}
-						が従い
-						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in \tau\, )
-						\end{align}
-						が出る．他方で
-						\begin{align}
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \tau \in c, \\
-						\end{align}
-						が成り立つので，
-						\begin{align}
-							\begin{gathered}
-								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ) \\
-								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
-								\forall w\, (\, \psi(w) \lrarrow w \in \tau\, ) \wedge \tau \in c
-							\end{gathered}
-						\end{align}
-						となり
-						\begin{align}
-							\begin{gathered}
-								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ) \\
-								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
-								\exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )
-							\end{gathered}
-						\end{align}
-						が得られる．
+						から直接得られる．
 						
-					\item[case(8-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(9-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
-							&\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ) \\
-							&\rarrow \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(t)\, )\, )
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							&\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+							&\rarrow \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge \psi(t)\, )\, )
 						\end{align}
 						となるが，
 						\begin{align}
-							\tau &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ), \\
-							\omega &\defeq \varepsilon w \negation (\, \psi(w) \lrarrow w \in t\, )
+							\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, )
 						\end{align}
-						とおけば，まず
+						とおけば，
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \psi(\omega), \\
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \omega \in \tau
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma), \\
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma) \rarrow \psi(\sigma)
 						\end{align}
-						が成り立つので
+						より
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\omega) \lrarrow \omega \in \tau
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\sigma)
 						\end{align}
-						が従い
+						が成り立つ．他方で
 						\begin{align}
-							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in \tau\, )
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, )
 						\end{align}
-						が出る．他方で
+						も成り立つので，
 						\begin{align}
-							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
-							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\tau), \\
+							\omega \defeq \varepsilon v \negation (\, \xi(v) \lrarrow v \in \sigma\, )
 						\end{align}
-						が成り立つので，
+						とおけば
 						\begin{align}
-							\begin{gathered}
-								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ) \\
-								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
-								\forall w\, (\, \psi(w) \lrarrow w \in \tau\, ) \wedge \xi(\tau)
-							\end{gathered}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\omega) \lrarrow \omega \in \sigma
 						\end{align}
 						となり
 						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						が従う．ゆえに
+						\begin{align}
 							\begin{gathered}
-								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
-								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ) \\
-								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
-								\exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(t)\, )
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, ) \wedge \psi(\sigma)
 							\end{gathered}
 						\end{align}
-						が得られる．
+						が従い
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge \psi(t)\, )
+							\end{gathered}
+						\end{align}
+						が出る．
 				\end{description}
 				\QED
 		\end{description}
