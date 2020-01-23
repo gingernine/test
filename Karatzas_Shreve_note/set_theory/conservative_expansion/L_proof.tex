@@ -33,7 +33,7 @@
 				$\widehat{\varphi}_{k}$から三段論法で得られる．
 		\end{description}
 		
-		(1)については，書き換えによって式の結合形式が変わらないため．
+		(1)については，書き換えても式の結合形式が変わらないため．
 		
 		(3)については，$\varphi_{k}$を$\varphi_{j} \rarrow \varphi_{i}$なる文とすれば，
 		同じ原子式の書き換えは証明全体で一致しているので$\widehat{\varphi_{k}}$は
@@ -53,20 +53,44 @@
 				\begin{align}
 					\exists x \widehat{\varphi} \rarrow \widetilde{\varphi}(\varepsilon x \check{\varphi})
 				\end{align}
-				なる形の式である($\widetilde{\varphi}$は$\varphi$を$\lang{\varepsilon}$の式に
-				書き直したもの)．これは
+				なる形の式である($\widehat{\varphi},\widetilde{\varphi}$は$\varphi$を$\lang{\varepsilon}$の式に
+				書き直したもの)．まず量化公理と演繹定理の逆より
 				\begin{align}
-					\exists x \widehat{\varphi} &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi}), \\
-					\Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \check{\varphi}(\varepsilon x \widehat{\varphi}), \\
-					\exists x \widehat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi}), \\
-					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \exists x \check{\varphi}, \\
-					\exists x \widehat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi}, \\
-					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi} \rarrow \check{\varphi}(\varepsilon x \check{\varphi}), \\
-					\exists x \widehat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}), \\
-					\Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}) \rarrow  \widetilde{\varphi}(\varepsilon x \check{\varphi}), \\
-					\exists x \widehat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\varepsilon x \check{\varphi})
+					\exists x \widehat{\varphi} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi})
 				\end{align}
-				から従う．
+				となる．ここで定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \check{\varphi}(\varepsilon x \widehat{\varphi})
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\exists x \widehat{\varphi},\ \Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi})
+				\end{align}
+				となり，
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \exists x \check{\varphi}
+				\end{align}
+				と併せて
+				\begin{align}
+					\exists x \widehat{\varphi},\ \Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi}
+				\end{align}
+				が従う．{\bf HE}の量化公理より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi} \rarrow \check{\varphi}(\varepsilon x \check{\varphi})
+				\end{align}
+				が成り立つので，再び三段論法より
+				\begin{align}
+					\exists x \widehat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi})
+				\end{align}
+				が従う．ここで定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}) \rarrow  \widetilde{\varphi}(\varepsilon x \check{\varphi})
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\exists x \widehat{\varphi},\ \Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\varepsilon x \check{\varphi})
+				\end{align}
+				が出る．
 				
 			\item[case2] $\varphi_{i}$が
 				\begin{align}
@@ -827,7 +851,7 @@
 							\end{gathered}
 						\end{align}
 						が出る．
+						\QED
 				\end{description}
-				\QED
 		\end{description}
 	\end{metaprf}
