@@ -321,6 +321,65 @@
 				が従う．
 				
 			\item[step2]
+				$\forall y \psi$に変項$x$のみが自由に現れているとき，
+				任意の主要$\varepsilon$項$\tau$に対して
+				\begin{align}
+					\vdash (\forall y \psi)(x/\tau) \lrarrow (\forall z \psi(y/z))(x/\tau)
+				\end{align}
+				が成り立つことを示す．まず$x$は$\forall y \psi$に自由に現れているので$x$と$y$は違う変項である．
+				また$x$は$\psi$に自由に現れていて，$z$はこれを束縛しないように選ばれているので，
+				$x$と$z$も違う変項である．ゆえに，$(\forall y \psi)(x/\tau)$は
+				$\forall y \psi(x/\tau)$と同じ式で，$(\forall z \psi(y/z))(x/\tau)$は
+				$\forall z \psi(y/z)(x/\tau)$と同じ式である．
+				\begin{align}
+					\zeta \defeq \varepsilon z \negation \psi(y/z)(x/\tau)
+				\end{align}
+				とおけば，全称記号の論理公理より
+				\begin{align}
+					\forall y \psi(x/\tau) \vdash \psi(x/\tau)(y/\zeta)
+				\end{align}
+				が成り立つが，$\psi(x/\tau)(y/\zeta)$と$\psi(y/z)(x/\tau)(z/\zeta)$は同じ式なので
+				\begin{align}
+					\forall y \psi(x/\tau) \vdash \psi(y/z)(x/\tau)(z/\zeta)
+				\end{align}
+				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\forall y \psi(x/\tau) \vdash \forall z \psi(y/z)(x/\tau)
+				\end{align}
+				が従い，
+				\begin{align}
+					\vdash (\forall y \psi)(x/\tau) \rarrow (\forall z \psi(y/z))(x/\tau)
+					\label{fom:equivalence_by_replacing_bound_variables_3}
+				\end{align}
+				が得られる．逆に
+				\begin{align}
+					\zeta \defeq \varepsilon y \negation \psi(x/\tau)
+				\end{align}
+				とおけば，全称記号の論理公理より
+				\begin{align}
+					\forall z \psi(y/z)(x/\tau) \vdash \psi(y/z)(x/\tau)(z/\zeta)
+				\end{align}
+				が成り立つが，$\psi(y/z)(x/\tau)(z/\zeta)$と$\psi(x/\tau)(y/\zeta)$は同じ式なので
+				\begin{align}
+					\forall z \psi(y/z)(x/\tau) \vdash \psi(x/\tau)(y/\zeta)
+				\end{align}
+				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\forall z \psi(y/z)(x/\tau) \vdash \forall y \psi(x/\tau)
+				\end{align}
+				が従い，
+				\begin{align}
+					\vdash (\forall z \psi(y/z))(x/\tau) \rarrow (\forall y \psi)(x/\tau)
+					\label{fom:equivalence_by_replacing_bound_variables_4}
+				\end{align}
+				が得られる．(\refeq{fom:equivalence_by_replacing_bound_variables_3})と
+				(\refeq{fom:equivalence_by_replacing_bound_variables_4})と論理積の導入より
+				\begin{align}
+					\vdash (\forall y \psi)(x/\tau) \lrarrow (\forall z \psi(y/z))(x/\tau)
+				\end{align}
+				が従う．
+				
+			\item[step3]
 				$\varphi$が$\forall y \psi$ではないとき，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
 					$\varphi$の任意の真部分式$\chi$に対して，$\forall z \psi(y/z)$で置き換えた
