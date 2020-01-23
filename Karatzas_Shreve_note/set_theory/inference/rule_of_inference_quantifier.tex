@@ -265,6 +265,224 @@
 	\begin{screen}
 		\begin{logicalthm}[束縛された変項を取り替えても同値]
 		\label{logicalthm:equivalence_by_replacing_bound_variables}
-			
+			$\varphi$を$\lang{\varepsilon}$の文とし，$\forall y \psi$を$\varphi$の部分式とする．
+			また$z$を$\psi$に自由に現れない変項とし，$\psi$の中で$y$への代入について自由であるとする．
+			このとき，$\varphi$の中の$\forall y \psi$のその一か所を
+			$\forall z \psi(y/z)$で置き換えた文を$\widehat{\varphi}$とすれば
+			\begin{align}
+				\vdash \varphi \lrarrow \widehat{\varphi}
+			\end{align}
+			が成り立つ．$\forall x \psi$ではなく$\exists x \psi$であったとしても同じことが成り立つ．
 		\end{logicalthm}
 	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				$\varphi$が$\forall y \psi$であるとき，
+				\begin{align}
+					\zeta \defeq \varepsilon z \negation \psi(y/z)
+				\end{align}
+				とおけば全称記号の論理的公理より
+				\begin{align}
+					\forall y \psi \vdash \psi(y/\zeta)
+				\end{align}
+				が成り立つが，$z$の選び方より$\psi(y/\zeta)$は$\psi(y/z)(z/\zeta)$と同じ式であるから
+				\begin{align}
+					\forall y \psi \vdash \psi(y/z)(z/\zeta)
+				\end{align}
+				が成り立つ．そして全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\forall y \psi \vdash \forall z \psi(y/z)
+					\label{fom:equivalence_by_replacing_bound_variables_1}
+				\end{align}
+				が成り立つ．逆に
+				\begin{align}
+					\zeta \defeq \varepsilon y \negation \psi
+				\end{align}
+				とおけば
+				\begin{align}
+					\forall z \psi(y/z) \vdash \psi(y/z)(z/\zeta)
+				\end{align}
+				が成り立つが，$\psi(y/z)(z/\zeta)$は$\psi(y/\zeta)$と同じ式であるから
+				\begin{align}
+					\forall z \psi(y/z) \vdash \psi(y/\zeta)
+				\end{align}
+				が成り立つ．そして全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\forall z \psi(y/z) \vdash \forall y \psi
+					\label{fom:equivalence_by_replacing_bound_variables_2}
+				\end{align}
+				が成り立つ．(\refeq{fom:equivalence_by_replacing_bound_variables_1})と
+				(\refeq{fom:equivalence_by_replacing_bound_variables_2})と論理積の導入より
+				\begin{align}
+					\vdash \varphi \lrarrow \widehat{\varphi}
+				\end{align}
+				が従う．
+				
+			\item[step2]
+				$\varphi$が$\forall y \psi$ではないとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式$\chi$に対して，$\forall z \psi(y/z)$で置き換えた
+					$\forall y \psi$が$\chi$の部分式として現れている場合，
+					$\chi$の上のその$\forall y \psi$を$\forall z \psi(y/z)$で置き換えた式を
+					$\widehat{\chi}$と書く．$\chi$にその$\forall y \psi$が現れていない場合は
+					$\widehat{\chi}$は$\chi$自身とする．このとき，$\chi$が文ならば
+					\begin{align}
+						\vdash \chi \lrarrow \widehat{\chi}
+					\end{align}
+					が成り立つ\footnotemark．$\chi$に変項$x$のみが自由に現れる場合は，任意の主要$\varepsilon$項$\tau$に対して
+					\begin{align}
+						\vdash \chi(x/\tau) \lrarrow \widehat{\chi}(x/\tau)
+					\end{align}
+					が成り立つ．
+				\end{itembox}
+				と仮定する．
+			
+				\footnotetext{
+					$\widehat{\chi}$は$\chi$自身であるときは，わざわざ仮定しなくとも
+					含意の反射律(論理的定理\ref{logicalthm:reflective_law_of_implication})と
+					論理積の導入より$\vdash \chi \lrarrow \widehat{\chi}$が成り立つ．
+				}
+				
+			\begin{description}
+				\item[case1] $\varphi$が
+					\begin{align}
+						\negation \eta
+					\end{align}
+					なる式のとき，$\widehat{\varphi}$とは
+					\begin{align}
+						\negation \widehat{\eta}
+					\end{align}
+					なる式であって，(IH)より
+					\begin{align}
+						\vdash \eta \lrarrow \widehat{\eta}
+					\end{align}
+					が成り立つ．論理積の除去より
+					\begin{align}
+						&\vdash \eta \rarrow \widehat{\eta}, \\
+						&\vdash \widehat{\eta} \rarrow \eta
+					\end{align}
+					が成り立ち，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+					\begin{align}
+						&\vdash\ \negation \widehat{\eta} \rarrow\ \negation \eta, \\
+						&\vdash\ \negation \eta \rarrow\ \negation \widehat{\eta}
+					\end{align}
+					が従う．そして論理積の導入より
+					\begin{align}
+						\vdash \varphi \lrarrow \widehat{\varphi}
+					\end{align}
+					が得られる．
+					
+				\item[case2] 
+					$\varphi$が
+					\begin{align}
+						\eta \vee \chi
+					\end{align}
+					なる式のとき，$\widehat{\varphi}$とは
+					\begin{align}
+						\vee \widehat{\eta} \widehat{\chi}
+					\end{align}
+					なる式であって，(IH)より
+					\begin{align}
+						&\vdash \eta \lrarrow \widehat{\eta}, \\
+						&\vdash \chi \lrarrow \widehat{\chi}
+					\end{align}
+					が成り立つ．ここで論理的定理\ref{}より
+					\begin{align}
+						\eta \lrarrow \widehat{\eta},\ \chi \lrarrow \widehat{\chi} \vdash 
+						\eta \vee \chi \lrarrow \widehat{\eta} \vee \widehat{\chi}
+					\end{align}
+					が成り立つので，三段論法より
+					\begin{align}
+						\vdash \varphi \lrarrow \widehat{\varphi}
+					\end{align}
+					が得られる．$\varphi$が
+					\begin{align}
+						\eta \wedge \chi
+					\end{align}
+					や
+					\begin{align}
+						\eta \rarrow \chi
+					\end{align}
+					なる式のときも同様である．
+					
+				\item[case3] $\varphi$が
+					\begin{align}
+						\exists x \eta
+					\end{align}
+					なる式のとき，$\widehat{\varphi}$とは
+					\begin{align}
+						\exists x \widehat{\eta}
+					\end{align}
+					なる式であって，
+					\begin{align}
+						\tau \defeq \varepsilon x \widehat{\eta}
+					\end{align}
+					とおけば存在記号の論理的公理より
+					\begin{align}
+						\exists x \widehat{\eta} \vdash \widehat{\eta}(x/\tau)
+					\end{align}
+					が成り立つ．(IH)より
+					\begin{align}
+						\vdash \widehat{\eta}(x/\tau) \rarrow \eta(x/\tau)
+					\end{align}
+					が成り立つので三段論法より
+					\begin{align}
+						\exists x \widehat{\eta} \vdash \eta(x/\tau)
+					\end{align}
+					が従い，存在記号の論理的公理と演繹定理より
+					\begin{align}
+						\vdash \exists x \widehat{\eta} \rarrow \exists x \eta
+					\end{align}
+					が得られる．同様に
+					\begin{align}
+						\vdash \exists x \eta \rarrow \exists x \widehat{\eta}
+					\end{align}
+					も成り立つので，論理積の導入より
+					\begin{align}
+						\vdash \varphi \lrarrow \widehat{\varphi}
+					\end{align}
+					が得られる．
+					
+				\item[case4] $\varphi$が
+					\begin{align}
+						\forall x \eta
+					\end{align}
+					なる式のとき，$\widehat{\varphi}$とは
+					\begin{align}
+						\forall x \widehat{\eta}
+					\end{align}
+					なる式であって，
+					\begin{align}
+						\tau \defeq \varepsilon x \negation \eta
+					\end{align}
+					とおけば全称記号の論理的公理より
+					\begin{align}
+						\forall x \widehat{\eta} \vdash \widehat{\eta}(x/\tau)
+					\end{align}
+					が成り立つ．(IH)より
+					\begin{align}
+						\vdash \widehat{\eta}(x/\tau) \rarrow \eta(x/\tau)
+					\end{align}
+					が成り立つので三段論法より
+					\begin{align}
+						\forall x \widehat{\eta} \vdash \eta(x/\tau)
+					\end{align}
+					が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})と演繹定理より
+					\begin{align}
+						\vdash \forall x \widehat{\eta} \rarrow \forall x \eta
+					\end{align}
+					が得られる．同様に
+					\begin{align}
+						\vdash \forall x \eta \rarrow \forall x \widehat{\eta}
+					\end{align}
+					も成り立つので，論理積の導入より
+					\begin{align}
+						\vdash \varphi \lrarrow \widehat{\varphi}
+					\end{align}
+					が得られる．
+					\QED
+			\end{description}
+		\end{description}
+	\end{sketch}
