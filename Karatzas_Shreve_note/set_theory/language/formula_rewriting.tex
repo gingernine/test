@@ -21,7 +21,7 @@
 		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \check{\varphi}(x))
 	\end{align}
 	も公理とする．書き換える必要があるのは内包項を含んでいる式のみであり，
-	またそのような式の{\bf 原子式の部分，つまり$\in$と$=$のスコープ，だけを書き換えれば十分}である．
+	またそのような式の{\bf 原子式の部分だけを書き換えれば十分}である．
 	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
 	で述べてあるような意味であり，直感的には妥当な範囲でしかないのだが，
 	書き換え時に課す変項の条件が多いため読むだけでも嫌気がさすかもしれない．
@@ -74,11 +74,10 @@
 			$u,v,s$は$\psi$の中で$z$への代入について自由である．
 			
 		\item (4)の「変項の名前替え」について．
-			$a$が$\psi$の中で$z$への代入について自由でない場合，
-			つまり$z$が$\forall a \chi$或いは$\exists a \chi$なる形の
-			$\varphi$の部分式の中に自由に現れている場合，
-			その$\forall a \chi$或いは$\exists a \chi$を
-			$\forall b \chi(a/b)$或いは$\exists b \chi(a/b)$で置き換える．たとえば
+			$\psi$の中の$z$の自由な出現が$\psi$の$\forall a \chi$なる形の部分式の中にある場合に，
+			その部分式を$\forall b \chi(a/b)$なる式で置き換える．
+			この$b$としては，$\chi$に自由に現れず，かつ$\chi$の中で$a$への代入について自由である変項を取る．
+			たとえば
 			\begin{align}
 				a \in \Set{z}{\exists a\, (\, z \in a\, )}
 			\end{align}
@@ -94,16 +93,13 @@
 			\begin{align}
 				\exists b\, (\, a \in b\, )
 			\end{align}
-			とすればよい．ただし新しく選ぶ変項$b$としては，その$\chi$には自由に現れていないものを取る．
-			これは$\forall a \chi$或いは$\exists a \chi$に自由に現れていた項を束縛しないためである．
+			とすればよい．$b$の選び方の条件は，$\forall a \chi$或いは$\exists a \chi$に自由に現れる項を束縛しないためにある．
 	\end{itemize}
 	
 	\begin{screen}
 		\begin{metadfn}[式の書き換え]
-			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
-			$\varphi$の{\bf 書き換え}を，$\varphi$の原子式の部分を全て
-			上表に従って直した式のこととする．また既存の変項の自由な出現を束縛しないように
-			変項の名前替えをしただけの式も書き換えと認める．
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，$\varphi$の{\bf 書き換え}とは，
+			$\varphi$の部分式のうち原子式であるものを全て上表に従って直した式のこととする．
 		\end{metadfn}
 	\end{screen}
 	
@@ -562,7 +558,7 @@
 						名前替えをしたものを$\widetilde{\psi}$とする．ただし
 						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
 						$\widehat{\varphi}$は$\widetilde{\psi}(z/x)$なる式であるから
-						$\widehat{\varphi}(x/\tau)$は$\tilde{\psi}(z/x)(x/\tau)$
+						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/x)(x/\tau)$
 						となる．
 						\begin{itemize}
 							\item $x$と$z$が同じならば$\psi$の変項の名前替えは必要ない．
@@ -580,10 +576,10 @@
 								\begin{align}
 									\tau \in \Set{z}{\psi(x/\tau)}
 								\end{align}
-								となるが，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$は
-								変項の名前が違うだけであるから，
-								$\widetilde{\psi}(x/\tau)(z/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
+								となるから，$\psi(x/\tau)(z/\tau)$は$\varphi(x/\tau)$の書き換えとなる．
+								$\psi(x/\tau)(z/\tau)$と$\widetilde{\psi}(x/\tau)(z/\tau)$は，
+								もし違う式でも$\forall x$か$\exists x$から始まる或る部分式が違うだけであるから，
+								$\widetilde{\psi}(x/\tau)(z/\tau)$もまた$\varphi(x/\tau)$の書き換えである．
 						\end{itemize}
 						
 					\item[case7] $\varphi$が
@@ -597,15 +593,13 @@
 						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/a)(x/\tau)$
 						となる．$\varphi$には$x$が自由に現れているので，つまり
 						$x$は$\psi$に自由に現れているから$x$は$z$とも違う変項である．
-						従って$\tilde{\psi}(z/a)(x/\tau)$は
+						従って$\widetilde{\psi}(z/a)(x/\tau)$は
 						$\widetilde{\psi}(x/\tau)(z/a)$である．他方で
 						$\varphi(x/\tau)$は
 						\begin{align}
 							a \in \Set{z}{\psi(x/\tau)}
 						\end{align}
-						となるが，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$は変項の
-						名前が違うだけであるから，$\widetilde{\psi}(x/\tau)(z/a)$は
-						$\varphi(x/\tau)$の書き換えである．
+						となるから，$\widetilde{\psi}(x/\tau)(z/a)$は$\varphi(x/\tau)$の書き換えとなる．
 					
 					\item[case8] $\varphi$が
 						\begin{align}
