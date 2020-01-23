@@ -37,7 +37,7 @@
 			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
 			(2) & $\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
 			(3) & $\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
-			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら束縛変項の名前替え \\ \hline
+			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら変項の名前替え \\ \hline
 			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
 			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
@@ -72,26 +72,29 @@
 		\item (1)から(6)では，$u$は$\varphi$の中で$y$への代入について自由であり，
 			$u,v,s$は$\psi$の中で$z$への代入について自由である．
 			
-		\item (4)の「束縛変項の名前替え」について．
-			$a$を$\psi$の中の自由な$z$に代入した後で$a$が束縛される場合，
-			束縛変項の名前替えをしなくてはならない．たとえば
+		\item (4)の「変項の名前替え」について．
+			$a$が$\psi$の中で$z$への代入について自由でない場合，
+			つまり$z$が$\forall a \chi$或いは$\exists a \chi$なる形の
+			$\varphi$の部分式の中に自由に現れている場合，
+			その$\forall a \chi$或いは$\exists a \chi$を
+			$\forall b \chi(a/b)$或いは$\exists b \chi(a/b)$で置き換える．たとえば
 			\begin{align}
-				a \in \Set{z}{\forall a\, (\, z \in a\, )}
+				a \in \Set{z}{\exists a\, (\, z \in a\, )}
 			\end{align}
 			という式では左辺の$a$は自由であるのに，書き換えの規則をそのまま適用すると
 			\begin{align}
-				\forall a\, (\, a \in a\, )
+				\exists a\, (\, a \in a\, )
 			\end{align}
-			となり束縛されてしまう．代入後の$a$が束縛されないためには
+			となり束縛されてしまう．こうならないためには
 			\begin{align}
-				a \in \Set{z}{\forall b\, (\, z \in b\, )}
+				a \in \Set{z}{\exists b\, (\, z \in b\, )}
 			\end{align}
-			のように束縛変項$a$を別の変項$b$に替えて
+			のように$a$を別の変項$b$に替えて
 			\begin{align}
-				\forall b\, (\, a \in b\, )
+				\exists b\, (\, a \in b\, )
 			\end{align}
-			とすればよい．ただし新しく選ぶ束縛変項は，
-			当該のスコープに元々自由に現れていた$a$以外の項を束縛してはならない．
+			とすればよい．ただし新しく選ぶ変項$b$としては，その$\chi$には自由に現れていないものを取る．
+			これは$\forall a \chi$或いは$\exists a \chi$に自由に現れていた項を束縛しないためである．
 	\end{itemize}
 	
 	\begin{screen}
@@ -99,7 +102,7 @@
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
 			$\varphi$の{\bf 書き換え}を，$\varphi$の原子式の部分を全て
 			上表に従って直した式のこととする．また既存の変項の自由な出現を束縛しないように
-			束縛変項の名前替えをしただけの式も書き換えと認める．
+			変項の名前替えをしただけの式も書き換えと認める．
 		\end{metadfn}
 	\end{screen}
 	
@@ -554,14 +557,14 @@
 						\begin{align}
 							x \in \Set{z}{\psi}
 						\end{align}
-						なる式のとき，必要ならば$\psi$の束縛変項の
+						なる式のとき，必要ならば$\psi$の変項の
 						名前替えをしたものを$\widetilde{\psi}$とする．ただし
 						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
 						$\widehat{\varphi}$は$\widetilde{\psi}(z/x)$なる式であるから
 						$\widehat{\varphi}(x/\tau)$は$\tilde{\psi}(z/x)(x/\tau)$
 						となる．
 						\begin{itemize}
-							\item $x$と$z$が同じならば$\psi$の束縛変項の名前替えは必要ない．
+							\item $x$と$z$が同じならば$\psi$の変項の名前替えは必要ない．
 								$\psi(z/x)$とは$\psi$そのものであるから，
 								$\psi(z/x)(x/\tau)$は$\psi(x/\tau)$となる．
 								他方で$\varphi(x/\tau)$は
@@ -577,7 +580,7 @@
 									\tau \in \Set{z}{\psi(x/\tau)}
 								\end{align}
 								となるが，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$は
-								束縛変項の名前が違うだけであるから，
+								変項の名前が違うだけであるから，
 								$\widetilde{\psi}(x/\tau)(z/\tau)$は
 								$\varphi(x/\tau)$の書き換えである．
 						\end{itemize}
@@ -586,7 +589,7 @@
 						\begin{align}
 							a \in \Set{z}{\psi}
 						\end{align}
-						なる式のとき($a$は$x$とは違う項)，必要ならば$\psi$の束縛変項の
+						なる式のとき($a$は$x$とは違う項)，必要ならば$\psi$の変項の
 						名前替えをしたものを$\widetilde{\psi}$とする．ただし
 						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
 						$\widehat{\varphi}$は$\widetilde{\psi}(z/a)$なる式であるから
@@ -599,7 +602,7 @@
 						\begin{align}
 							a \in \Set{z}{\psi(x/\tau)}
 						\end{align}
-						となるが，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$は束縛変項の
+						となるが，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$は変項の
 						名前が違うだけであるから，$\widetilde{\psi}(x/\tau)(z/a)$は
 						$\varphi(x/\tau)$の書き換えである．
 					
