@@ -263,6 +263,105 @@
 	\end{sketch}
 	
 	\begin{screen}
+		\begin{logicalthm}[含意の論理和への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_disjunction_2}
+			$A,B,C,D$を文とするとき
+			\begin{align}
+				A \rarrow C,\ B \rarrow D \vdash A \vee B \rarrow C \vee D.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			A,\ A \rarrow C \vdash C
+		\end{align}
+		が成り立ち，論理和の導入より
+		\begin{align}
+			A,\ A \rarrow C \vdash C \vee D
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			A \rarrow C \vdash A \rarrow C \vee D
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			B \rarrow D \vdash B \rarrow C \vee D
+		\end{align}
+		も成り立ち，論理和の除去より
+		\begin{align}
+			A \rarrow C,\ B \rarrow D \vdash A \vee B \rarrow C \vee D
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理積への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_conjunction_2}
+			$A,B,C,D$を文とするとき，
+			\begin{align}
+				A \rarrow C,\ B \rarrow D \vdash A \wedge B \rarrow C \wedge D.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去より
+		\begin{align}
+			A \wedge B \vdash A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A \wedge B,\ A \rarrow C \vdash C
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			A \wedge B,\ B \rarrow D \vdash D
+		\end{align}
+		も成り立ち，論理積の導入より
+		\begin{align}
+			A \wedge B,\ A \rarrow C,\ B \rarrow D \vdash C \wedge D
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	次の定理は，上の二つの定理と仮定が若干異なる．
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の含意への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_implication_2}
+			$A,B,C,D$を文とするとき，
+			\begin{align}
+				C \rarrow A,\ B \rarrow D \vdash (\, A \rarrow B\, ) \rarrow (\, C \rarrow D\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			C,\ C \rarrow A \vdash A
+		\end{align}
+		が成り立つので，再び三段論法より
+		\begin{align}
+			C,\ A \rarrow B,\ C \rarrow A \vdash B
+		\end{align}
+		が成り立ち，再び三段論法より
+		\begin{align}
+			C,\ A \rarrow B,\ C \rarrow A,\ B \rarrow D \vdash D
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			C \rarrow A,\ B \rarrow D \vdash (\, A \rarrow B\, ) \rarrow (\, C \rarrow D\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{logicalthm}[束縛された変項を取り替えても同値]
 		\label{logicalthm:equivalence_by_replacing_bound_variables}
 			$\varphi$を$\lang{\varepsilon}$の文とし，$\forall y \psi$を$\varphi$の部分式とする．
@@ -448,7 +547,7 @@
 						&\vdash \eta \lrarrow \widehat{\eta}, \\
 						&\vdash \chi \lrarrow \widehat{\chi}
 					\end{align}
-					が成り立つ．ここで論理的定理\ref{}より
+					が成り立つ．ここで論理的定理\ref{logicalthm:heredity_of_implication_to_disjunction_2}より
 					\begin{align}
 						\eta \lrarrow \widehat{\eta},\ \chi \lrarrow \widehat{\chi} \vdash 
 						\eta \vee \chi \lrarrow \widehat{\eta} \vee \widehat{\chi}
