@@ -47,16 +47,18 @@
 	\begin{screen}
 		\begin{metathm}[証明に現れる変項に代入しても証明]
 		\label{metathm:substitute_HK_proof}
+			$\mathscr{S}$を$\lang{\varepsilon}$の文からなる公理系とし，
 			$\lang{\varepsilon}$の式の列$\varphi_{1},\cdots,\varphi_{n}$を
-			$\Gamma$から$\varphi_{n}$への{\bf HK}の証明とし，$a$をこの証明に自由に現れる変項とし，
-			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．
+			$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の証明とし，
+			$a$をこの証明に自由に現れる変項とし，
+			$b$をこの証明に現れない$\lang{\varepsilon}$の項とする．このとき
 			\begin{description}
 				\item[(1)] $b$が変項である場合，$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$
-					は$\Gamma$からの{\bf HK}の証明となる．
+					は$\mathscr{S}$からの{\bf HK}の証明となる．
 					
 				\item[(2)] $b$が変項でない場合\footnotemark，$a$がこの証明の固有変項でなければ
 					$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は
-					$\Gamma$からの{\bf HK}の証明となる．
+					$\mathscr{S}$からの{\bf HK}の証明となる．
 					
 				\item[(3)] $\varphi_{i}$が$\varphi_{j}$の汎化で得られていて，その固有変項が
 					$e$であるとするとき，(1)の場合も(2)の場合も$\varphi_{i}(a/b)$は
@@ -84,7 +86,7 @@
 				\begin{align}
 					\varphi(a/b) \rarrow (\, \psi(a/b) \rarrow \varphi(a/b)\, )
 				\end{align}
-				なる式であるから{\bf HK}の公理である．
+				なる式であるから{\bf HK}の公理である．他の式も同様に結合形式は崩れない．
 				
 			\item[case2] $\varphi_{i}$が{\bf HK}の量化公理である場合，
 				\begin{itemize}
@@ -136,7 +138,7 @@
 						$\varphi_{i}(a/b)$は{\bf HK}の(UE)となる．
 				\end{itemize}
 				
-			\item[case3] $\varphi_{i}$が$\Gamma$の公理である場合，
+			\item[case3] $\varphi_{i}$が$\mathscr{S}$の公理である場合，
 				$\varphi_{i}$は文なので$\varphi_{i}(a/b)$は$\varphi_{i}$である．
 			
 			\item[case4] $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
@@ -198,28 +200,58 @@
 			\item[step1] $\varphi_{1},\cdots,\varphi_{n}$の中で汎化が一度も使われていなければ
 				これ自体が正則証明である．
 				
-			\item[step2] $n$を任意の自然数として次を仮定する：
+			\item[step2] $N$を任意の自然数として次を仮定する：
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					証明の中で汎化が$n-1$回使われている場合は
-					正則証明が取れる．
+					証明の中の汎化の適用が$N$回以下ならば正則証明が取れる．
 				\end{itembox}
-				$\varphi_{1},\cdots,\varphi_{n}$の中で$n$回汎化が使われているとし，
-				最後の汎化が$\varphi_{i}$から$\varphi_{j}$の導出に使われているとする．
-				この汎化の固有変数を$a$とする．$b$を$\varphi_{1},\cdots,\varphi_{n}$
-				に現れない変項とすれば，メタ定理\ref{metathm:substitute_HK_proof}より
+				
+				$\varphi_{1},\cdots,\varphi_{n}$の中で$N+1$回汎化が使われているとし，
+				最後の汎化が$\varphi_{i}$から$\varphi_{j}$の導出に使われているとし，
+				この汎化の固有変項を$a$とする．任意の$k$ $(1 \leq k \leq i)$に対して
 				\begin{align}
-					\varphi_{1}(a/b),\ \varphi_{2}(a/b),\ \cdots,\ \varphi_{i}(a/b)
+					\varphi_{1},\ \varphi_{2},\ \cdots,\ \varphi_{k}
 				\end{align}
-				は{\bf HK}の証明であって，汎化の数を増やさないので，
-				この列で使われている汎化の数は$n-1$回である．従って
-				$\varphi_{i}(a/b)$への正則証明$P$が取れる．
-				$\varphi_{j}$は$\varphi_{i}$の汎化で得られるが，
-				$\varphi_{i}(a/b)$の汎化でも得られる．ゆえに
+				は$\varphi_{k}$への{\bf HK}の証明であるが，汎化の適用は$N$回以下なので
+				(IH)より$\varphi_{k}$への正則証明$P_{k}$が取れる．
+				$P_{1},\cdots,P_{i}$に現れる固有変項には重複があるかもしれないから，
+				固有変項を取り替えて重複を取らなくてはいけない．$P_{k}$に現れる固有変項が全てで
 				\begin{align}
-					\varphi_{1},\ \cdots,\ \varphi_{i},\ P,\ 
-					\varphi_{i+1},\ \cdots,\ \varphi_{j},\ \cdots,\ \varphi_{n}
+					a_{k}^{1},\ a_{k}^{2},\ \cdots,\ a_{k}^{e_{k}}
 				\end{align}
-				は正則証明である．
+				であるとして，$a_{1}^{1},\cdots,a_{i}^{e_{i}}$のそれぞれに対して
+				新しい変項$b_{1}^{1},\cdots,b_{i}^{e_{i}}$を用意する．
+				ただし$b_{1}^{1},\cdots,b_{i}^{e_{i}}$としては$P_{1},\cdots,P_{k}$および
+				$\varphi_{1},\cdots,\varphi_{n}$の中に全く現れない変項を取る．
+				このとき，$P_{k}$が
+				\begin{align}
+					\varphi_{k}^{1},\cdots,\varphi_{k}^{u_{k}}
+				\end{align}
+				である式の列として，$P_{k}'$を
+				\begin{align}
+					\varphi_{k}^{1}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}}),\cdots,
+					\varphi_{k}^{u_{k}}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}})
+				\end{align}
+				とすれば，メタ定理\ref{metathm:substitute_HK_proof}より$P_{k}'$は
+				{\bf HK}の正則証明である．また$\varphi_{k}^{u_{k}}$とは$\varphi_{k}$のことであり，
+				$P_{k}$は正則証明なので$a_{k}^{1},\cdots,a_{k}^{e_{k}}$は$\varphi_{k}$
+				に現れない．ゆえに$P_{k}'$は$\varphi_{k}$への{\bf HK}の正則証明である．
+				
+				ここで$b$を$P_{1}',\cdots,P_{i}'$および$\varphi_{1},\cdots,\varphi_{n}$の
+				中に全く現れない変項とし，$Q$を$\varphi_{i}(a/b)$への正則証明とする．
+				$Q$に現れる固有変項も$P_{1}',\cdots,P_{i}'$のものと被らないように
+				取り替えて，そして得られる証明を$Q'$とする．$Q'$もまた$\varphi_{i}(a/b)$への
+				正則証明である．このとき
+				\begin{align}
+					P_{1}',P_{2}',\ \cdots,P_{i}',\ Q',\ \varphi_{i+1},\ 
+					\cdots,\ \varphi_{j},\ \cdots,\ \varphi_{n}
+				\end{align}
+				は証明となる．実際，$P_{1}',\cdots,P_{i}',Q'$はそれぞれ証明であるし，
+				またこの列には$\varphi_{1},\cdots,\varphi_{n}$が部分的に現れるので，
+				この列のどの式も{\bf HK}の公理であるか$\mathscr{S}$の公理であるか前の式から
+				三段論法で得られるか前の式から汎化で得られる，
+				ちなみに$\varphi_{j}$は$\varphi_{i}(a/b)$から汎化で得られる．
+				しかもこの証明の固有変数は汎化に使われた後は二度と現れないので
+				正則証明となっている．
 				\QED
 		\end{description}
 	\end{metaprf}
