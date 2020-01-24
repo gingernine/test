@@ -25,11 +25,11 @@
 	を保証する(内包性公理)．
 	
 	追加する項はもう一種類ある．$A(x)$を上記のものとするが，この$A(x)$は$x$に関する性質という見方もできる．
-	そして``$A(x)$という性質を具えている集合$x$''という意味を込めて
+	そして「$A(x)$という性質を具えている集合$x$」という意味を込めて
 	\begin{align}
 		\varepsilon x A(x)
 	\end{align}
-	なる形の項を導入するのだ．これはHilbertの{\bf $\varepsilon$項}\index{イプシロン項}
+	なる形の項を導入するのである．これはHilbertの{\bf $\varepsilon$項}\index{イプシロン項}
 	{\bf (epsilon term)}と呼ばれるオブジェクトであるが，
 	導入の意図とは裏腹に$\varepsilon x A(x)$は性質$A(x)$を持つとは限らない．
 	$\varepsilon x A(x)$が性質$A(x)$を持つのは，$A(x)$を満たす集合$x$が存在するとき，またその時に限られる
@@ -49,9 +49,8 @@
 		\item[変項] \ref{sec:variables}節のもの．
 	\end{description}
 	
-	$\lang{\in}$からの変更点は，``使用文字''が``変項''に代わったことと
-	量化子に$\varepsilon$が加わったことである．続いて項と式の定義に移るが，
-	帰納のステップは$\lang{\in}$より複雑になる:
+	$\lang{\in}$からの変更点は量化子に$\varepsilon$が加わったことである．
+	続いて項と式の定義に移るが，帰納のステップは$\lang{\in}$より複雑になる:
 	
 	\begin{itemize}
 		\item $\lang{\varepsilon}$の変項は$\lang{\varepsilon}$の項である．
@@ -121,11 +120,8 @@
 		\item 第$n$世代の$\varepsilon$項をが出来たら，
 			それらと変項を項として第$n+1$世代の式を作り，
 			第$n+1$世代$\varepsilon$項を作る．
-			
-			\begin{itemize}
-				\item ちなみに，このように考えると第$n$世代$\varepsilon$項は
-					第$n+1$世代$\varepsilon$項でもある．
-			\end{itemize}
+			ちなみに，このように考えると第$n$世代$\varepsilon$項は
+			第$n+1$世代$\varepsilon$項でもある．
 	\end{enumerate}
 	
 	$\lang{\varepsilon}$の項と式は以上のような帰納的構造を持っているのだから，
@@ -133,8 +129,8 @@
 	まずは粗く考察してみると，項と式に対する言明Xが与えられたとき，
 	
 	\begin{enumerate}
-		\item まずは$\lang{\in}$の項と式に対してXが言えて，かつ
-			第$1$世代の$\varepsilon$項に対してもXが言えることがスタート地点である．
+		\item $\lang{\in}$の項と式に対してXが言えて，かつ
+			第$1$世代の$\varepsilon$項に対してもXが言えることからスタートする．
 		\item 第$2$世代の式に対してXが言えることと，第$2$世代の$\varepsilon$項に対してXが言えること
 			を示す．
 			
@@ -149,14 +145,76 @@
 	インフォーマルなものであり，更に簡略されたやり方でこの操作が実質的に為されることが期される．
 	
 	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の項の部分項]
+		\label{metadfn:L_epsilon_subterm_of_term}
+			$\tau$を$\lang{\varepsilon}$の項とするとき，
+			\begin{itemize}
+				\item $\tau$に現れる$\lang{\varepsilon}$の項を
+					$\tau$の{\bf 部分項}\index{ぶぶんこう@部分項}{\bf (subterm)}と呼ぶ．
+				\item $\tau$自身を除く$\tau$の部分項を$\tau$の
+					{\bf 真部分項}\index{しんぶぶんこう@真部分項}{\bf (proper subterm)}
+					と呼ぶ．
+				\item $\tau$の真部分項のうち，$\tau$の他の真部分項のいずれにも格納されていない
+					$\lang{\varepsilon}$の項を$\tau$の{\bf 直部分項}
+					\index{ちょくぶぶんこう@直部分項}{\bf (immediate subterm)}と呼ぶ．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば$\sigma$を$\lang{\varepsilon}$の項とするとき，
+	$\sigma$は$\in \sigma \tau$の部分項であり，真部分項でもあり，直部分項でもある．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の式の項]
+		\label{metadfn:L_epsilon_term_of_formula}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$に現れる$\lang{\varepsilon}$の項のうち，
+			$\varphi$の上に現れる他の$\lang{\varepsilon}$の項の
+			いずれにも格納されていないものを「$\varphi$の項」と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば$\lang{\varepsilon}$の式$\varphi$の上に$\varepsilon$項$e$が現れているとき，
+	$e$の真部分項は$\varphi$の項ではない．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の部分式]
+		\label{metadfn:L_epsilon_subformula}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$に現れる$\lang{\varepsilon}$の式のうち，
+			$\varphi$に現れる$\varepsilon$項のいずれにも格納されていないものを
+			$\varphi$の{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (subformula)}と呼ぶ．
+			$\varphi$自身を除く$\varphi$の部分式を特に$\varphi$の
+			{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper subformula)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の直部分式]
+		\label{metadfn:L_epsilon_immediate_subformula}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の{\bf 直部分式}
+			\index{ちょくぶぶんしき@直部分式}{\bf (immediate subformula)}を
+			\begin{itemize}
+				\item $\varphi$が$\negation \psi$なる式ならば$\psi$のこと，
+				\item $\varphi$が$\vee \psi \chi,\ \wedge \psi \chi,\ \rarrow \psi \chi$
+					なる式ならば$\psi$と$\chi$のこと，
+				\item $\varphi$が$\exists x \psi,\ \forall x \psi$なる式ならば$\psi$のこと，
+			\end{itemize}
+			とする．また$\varepsilon x \psi$なる$\varepsilon$項の直部分式は$\psi$とする．
+		\end{metadfn}
+	\end{screen}
+	
+	$\lang{\in}$の項と式に関しては，以上の定義と P. \pageref{metadfn:L_in_subterm_of_term}
+	の定義は一致する．
+	
+	\begin{screen}
 		\begin{metaaxm}[$\lang{\varepsilon}$の項と式に対する構造的帰納法]
 			$\lang{\varepsilon}$の項に対する言明Xと式に対する言明Yに対し，
 			\begin{enumerate}
 				\item $\lang{\in}$の項と式，および$\lang{\in}$の式
 					で作る$\varepsilon$項に対してX及びYが言える．
 				\item $\varphi$を任意に与えられた$\lang{\varepsilon}$の式として，
-					$\varphi$に現れる全ての項及び真部分式に対して
-					X及びYが言えると仮定するとき，
+					$\varphi$の項および直部分式に対してXおよびYが言えると仮定するとき，
 					\begin{itemize}
 						\item $\varphi$が$\in \sigma \tau$なる形の原子式であるとき
 							$\varphi$に対してYが言える．
@@ -173,10 +231,6 @@
 			ならば，いかなる項と式に対してもXが言える．
 		\end{metaaxm}
 	\end{screen}
-	
-	$\varphi$を$\lang{\varepsilon}$の式としたら，$\varphi$の部分式とは，
-	$\varphi$から切り取られる一続きの記号列で，それ自身が$\lang{\varepsilon}$の式であるものを指す．
-	$\varphi$自身もまた$\varphi$の部分式である．
 	
 	\begin{screen}
 		\begin{metathm}[$\lang{\varepsilon}$の始切片の一意性]
@@ -207,17 +261,12 @@
 				つまり$\tau$は$\varepsilon x \varphi$そのものである．
 				
 			\item[step2]
-				$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の
-				すべての項や真部分式に対して定理の主張が当たっているなら
-				$\varphi$に対しても定理の主張通りのことが満たされる，
-				ということはメタ定理\ref{metathm:initial_segment_L_in}と同じように示される．
-				もう一度書けば，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$に現れる任意の項$\tau$に対して，その始切片で項であるものは$\tau$
-					に限られる．また$\varphi$に現れる任意の真部分式$\psi$に対して，
+					$\varphi$の任意の項$\tau$に対して，その始切片で項であるものは$\tau$
+					に限られる．また$\varphi$の任意の直部分式$\psi$に対して，
 					その始切片で式であるものは$\psi$に限られる．
 				\end{itembox}
-				として
+				と仮定する．
 				\begin{description}
 					\item[case1]
 						$\varphi$が

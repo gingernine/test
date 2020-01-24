@@ -176,6 +176,70 @@
 	\end{itemize}
 	のいずれか一つに限られる．
 	
+	以下では，$\theta$を$\lang{\in}$の項或いは式とするとき，
+	$\theta$から切り取った一続きの記号列$e$のことを
+	「{\bf $\theta$に現れる$e$}\index{あらわれる@現れる}」，
+	「{\bf $\theta$の上の$e$}\index{うえの@上の}」，
+	「{\bf $\theta$の中の$e$}\index{なかの@中の}」などと表現する．
+	この慣行は後で登場する拡張言語においても踏襲する．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の項の部分項]\label{metadfn:L_in_subterm_of_term}
+			$\tau$を$\lang{\in}$の項とするとき，
+			\begin{itemize}
+				\item $\tau$に現れる$\lang{\in}$の項を
+					$\tau$の{\bf 部分項}\index{ぶぶんこう@部分項}{\bf (subterm)}と呼ぶ．
+				\item $\tau$自身を除く$\tau$の部分項を$\tau$の
+					{\bf 真部分項}\index{しんぶぶんこう@真部分項}{\bf (proper subterm)}
+					と呼ぶ．
+				\item $\tau$が$\natural \sigma$なる項であるとき，$\sigma$を
+					$\tau$の{\bf 直部分項}\index{ちょくぶぶんこう@直部分項}
+					{\bf (immediate subterm)}と呼ぶ．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば文字$x$の部分項は$x$のみである．また
+	$\tau$を変項とするとき，$\tau$は$\natural \tau$の部分項であり，真部分項でもあり，
+	直部分項でもある．他方で$\tau$は$\natural \natural \tau$の部分項であり，真部分項でもあるが，
+	直部分項ではない．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の式の項]\label{metadfn:L_in_term_of_formula}
+			$\varphi$を$\lang{\in}$の式とするとき，$\varphi$に現れる
+			$\lang{\in}$の項のうち，$\varphi$に現れる他の$\lang{\in}$の項の
+			いずれにも格納されていないものを「$\varphi$の項」と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば$\varphi$が$\in \tau \sigma$なる式で，$\tau$が$\natural x$なる項であるとき，
+	$x$は$\varphi$の上に現れる$\lang{\in}$の項であるが$\varphi$の項ではない．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の部分式]\label{metadfn:L_in_subformula}
+			$\varphi$を$\lang{\in}$の式とするとき，
+			$\varphi$に現れる$\lang{\in}$の式を
+			$\varphi$の{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (subformula)}と呼ぶ．
+			$\varphi$自身を除く$\varphi$の部分項を特に$\varphi$の
+			{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper subformula)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[直部分式]
+		\label{metadfn:L_in_immediate_subformula}
+			$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の{\bf 直部分式}
+			\index{ちょくぶぶんしき@直部分式}{\bf (immediate subformula)}を
+			\begin{itemize}
+				\item $\varphi$が$\negation \psi$なる式ならば$\psi$のこと，
+				\item $\varphi$が$\vee \psi \chi,\ \wedge \psi \chi,\ \rarrow \psi \chi$
+					なる式ならば$\psi$と$\chi$のこと，
+				\item $\varphi$が$\exists x \psi,\ \forall x \psi$なる式ならば$\psi$のこと，
+			\end{itemize}
+			とする．
+		\end{metadfn}
+	\end{screen}
+	
 \section{構造的帰納法}
 	まず
 	\begin{align}
@@ -223,30 +287,6 @@
 	実際そのような心配は無用であると後で保証するわけだが，
 	その準備に{\bf 始切片}という概念から取り掛かる．
 	
-	\begin{screen}
-		\begin{metadfn}[部分項・部分式]
-		\label{metadfn:subterm_subformula}\mbox{}
-			\begin{description}
-				\item[部分項]
-					項から切り取ったひとつづきの部分列で，それ自体が項であるものを元の項に対して
-					{\bf 部分項}\index{ぶぶんこう@部分項}{\bf (sub term)}と呼ぶ．
-					元の項全体も部分項と捉えるが，自分自身を除く部分項を特に
-					{\bf 真部分項}\index{しんぶぶんこう@真部分項}{\bf (proper sub term)}
-					と呼ぶ．例えば，文字$x$の部分項は$x$自身のみであって，
-					また$\tau$を項とすると$\tau$は$\natural \tau$の部分項である．
-		
-				\item[部分式]
-					式から切り取ったひとつづきの部分列で，それ自体が式であるものを元の式に対して
-					{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (sub formula)}と呼ぶ．
-					例えば$\varphi$と$\psi$を式とするとき，$\varphi$と$\psi$は
-					$\vee \varphi \psi$の部分式である．
-					元の式全体も部分式と捉えるが，自分自身を除く部分式を特に
-					{\bf 真部分式}\index{しんぶぶんしき@真部分式}
-					{\bf (proper sub formula)}と呼ぶ．
-			\end{description}
-		\end{metadfn}
-	\end{screen}
-	
 \subsection{始切片}
 	$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の左端から切り取るひとつづきの部分列を
 	$\varphi$の{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ．
@@ -289,7 +329,7 @@
 			$\lang{\in}$の項に対する言明Xに対し(Xとは，例えば上の(★))，
 			\begin{itemize}
 				\item 文字に対してXが言える．
-				\item 無作為に選ばれた項$\tau$について，その全ての真部分項に対してXが言える
+				\item 無作為に選ばれた項$\tau$について，その直部分項に対してXが言える
 					と仮定すれば，$\tau$に対してもXが言える．
 			\end{itemize}
 			ならば，いかなる項に対してもXが言える．
@@ -301,7 +341,7 @@
 			$\lang{\in}$の式に対する言明Xに対し(Xとは，例えば上の(★))，
 			\begin{itemize}
 				\item 原子式に対してXが言える．
-				\item 無作為に選ばれた式$\varphi$について，その全ての真部分式に対してXが言える
+				\item 無作為に選ばれた式$\varphi$について，その直部分式に対してXが言える
 					と仮定すれば，$\varphi$に対してもXが言える．
 			\end{itemize}
 			ならば，いかなる式に対してもXが言える．
@@ -316,7 +356,8 @@
 				$s$を項とするとき，$s$が文字ならば$s$の始切片は$s$のみである．つまり(★)が言える．
 				$s$が文字でないとき，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$s$の全ての真部分項に対して(★)が言える．
+					$s$の任意の直部分項$\tau$に対して，
+					$\tau$の始切片で$\lang{\in}$の項であるものは$\tau$自身に限られる．
 				\end{itembox}
 				と仮定する．(項の構成法より)項$t$が取れて$s$は
 				\begin{align}
@@ -342,7 +383,8 @@
 	
 				いま$\varphi$を任意に与えられた式とし，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の真部分式に対しては(★)が言える．
+					$\varphi$の任意の直部分式$\psi$に対して，
+					$\psi$の始切片で$\lang{\in}$の式であるものは$\psi$自身に限られる．
 				\end{itembox}
 				と仮定する．このとき
 				\begin{description}
@@ -478,13 +520,13 @@
 				「項に$\natural$が現れたとき，項$t$が取れて，
 				その$\natural$の出現位置から$\natural t$がその項の部分項として現れる」---(※)，を示す．
 				$s$を項とするとき，$s$が文字ならば$s$に対して(※)が言える．
-				$s$が文字でないとき，$s$の全ての真部分項に対して(※)が言えるとする．
+				$s$が文字でないとき，$s$の直部分項に対して(※)が言えるとする．
 				$s$は文字ではないので，(項の構成法より)項$t$が取れて$s$は
 				\begin{align}
 					\natural t
 				\end{align}
 				と表せる．$s$に現れる$\natural$とは$s$の左端のものであるか
-				$t$の中に現れるものであるが，$t$は$s$の真部分項であって，
+				$t$の中に現れるものであるが，$t$は$s$の直部分項であって，
 				$t$については(※)が言えるので，結局$s$に対しても(※)が言えるのである．
 			
 			%\item[case2]
@@ -509,7 +551,7 @@
 			\item[case3]
 				$\varphi$を任意に与えられた式として
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の全ての真部分式に対しては(a)から(e)の主張が当てはまる
+					$\varphi$の直部分式に対しては(a)から(e)の主張が当てはまる
 				\end{itembox}
 				と仮定する．このとき，
 				\begin{itemize}
