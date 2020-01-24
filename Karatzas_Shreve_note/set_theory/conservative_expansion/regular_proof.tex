@@ -230,6 +230,56 @@
 		\end{description}
 	\end{metaprf}
 	
+	上のメタ定理において，$\varphi_{1},\cdots,\varphi_{n}$が$\lang{\in}$の式の列であるとき，
+	$b$が変項ならば$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$もまた
+	{\bf HK}の証明となるが，各式は$\lang{\in}$の式であるからこれは$\lang{\in}$の式からなる
+	{\bf HK}の証明である．
+	
+	\begin{screen}
+		\begin{metathm}[正則証明に現れる変項に代入しても正則]
+		\label{metathm:substitute_regular_HK_proof}
+			$\mathscr{S}$を$\lang{\varepsilon}$の文からなる公理系とし，
+			$\lang{\varepsilon}$の式の列$\varphi_{1},\cdots,\varphi_{n}$を
+			$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の正則証明とし，
+			$a$をこの証明に自由に現れる変項とし，
+			$b$をこの証明に現れない変項とする．このとき
+			$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$
+			は$\mathscr{S}$から$\varphi_{n}(a/b)$への{\bf HK}の正則証明である．
+			特に$a$が$\varphi_{1},\cdots,\varphi_{n}$の固有変項なら，
+			$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は
+			$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の正則証明である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		メタ定理\ref{metathm:substitute_HK_proof}より
+		$\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)$は$\mathscr{S}$から$\varphi_{n}(a/b)$への
+		{\bf HK}の証明であるから，あとは汎化について見ればよい．
+		\begin{description}
+			\item[case1] $a$がいずれかの固有変項と一致しているとき，つまり
+				$a$が$\varphi_{m}$から$\varphi_{k}$を導く汎化の固有変項であるとき，
+				正則証明の条件より$a$が固有変項として使われる汎化はここだけであるが，
+				$\varphi_{m}(a/b)$から$\varphi_{k}(a/b)$への汎化の固有変項は$b$となる．
+				他の汎化の固有変項は据え置かれる(メタ定理\ref{metathm:substitute_HK_proof}より
+				証明の中での汎化の適用の位置は不変)．
+				また$a$は$\varphi_{m+1}$以後の式には自由に現れないので，
+				$b$は$\varphi_{m+1}(a/b)$以後の式には現れない．
+				特に$\varphi_{m+1}(a/b),\cdots,\varphi_{n}(a/b)$は
+				それぞれ$\varphi_{m+1},\cdots,\varphi_{n}$に一致する．
+				ゆえに
+				\begin{align}
+					\varphi_{1}(a/b),\cdots,\varphi_{n}(a/b)
+				\end{align}
+				は$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の正則証明である．
+				
+			\item[case2] $a$がどの固有変項とも違うとき，
+				メタ定理\ref{metathm:substitute_HK_proof}よりどの汎化も
+				固有変数は変わらないし，証明の中での汎化の適用の位置は不変である．ゆえに
+				どの固有変項も一度の汎化にしか使われないし，汎化に使われた後の式には自由に現れない．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
 	\begin{screen}
 		\begin{metathm}[どんな証明も正則化できる]
 		\label{metathm:regularization_of_HK_proof}
@@ -244,12 +294,14 @@
 	\begin{metaprf}
 		証明内の汎化の数に関する帰納法で示す．
 		\begin{description}
-			\item[step1] $\varphi_{1},\cdots,\varphi_{n}$の中で汎化が一度も使われていなければ
-				これ自体が正則証明である．
+			\item[step1] 証明の中で汎化が一度も使われていなければその証明自体が正則証明である．
 				
 			\item[step2] $N$を任意の自然数として次を仮定する：
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					証明の中の汎化の適用が$N$回以下ならば正則証明が取れる．
+					$\psi_{1},\cdots,\psi_{m}$を$\mathscr{S}$から
+					$\psi_{m}$への{\bf HK}の証明で$\lang{\in}$の式の列であるものとするとき，
+					証明の中の汎化の適用が$N$回以下ならば，$\mathscr{S}$から$\psi_{m}$への
+					{\bf HK}の正則証明で$\lang{\in}$の式の列であるものが取れる．
 				\end{itembox}
 				
 				$\varphi_{1},\cdots,\varphi_{n}$の中で$N+1$回汎化が使われているとし，
@@ -273,31 +325,47 @@
 				\begin{align}
 					\varphi_{k}^{1},\cdots,\varphi_{k}^{u_{k}}
 				\end{align}
-				である式の列として，$P_{k}'$を
+				である式の列として($\varphi_{k}^{u_{k}}$は$\varphi_{k}$である)，$P_{k}'$を
 				\begin{align}
-					\varphi_{k}^{1}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}}),\cdots,
-					\varphi_{k}^{u_{k}}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}})
+					&\varphi_{k}^{1}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}}), \\
+					&\varphi_{k}^{2}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}}), \\
+					&\vdots \\ 
+					&\varphi_{k}^{u_{k}}(a_{k}^{1}/b_{k}^{1})\cdots(a_{k}^{e_{k}}/b_{1}^{e_{k}})
 				\end{align}
-				とすれば，メタ定理\ref{metathm:substitute_HK_proof}より$P_{k}'$は
-				{\bf HK}の正則証明である．また$\varphi_{k}^{u_{k}}$とは$\varphi_{k}$のことであり，
-				$P_{k}$は正則証明なので$a_{k}^{1},\cdots,a_{k}^{e_{k}}$は$\varphi_{k}$
-				に現れない．ゆえに$P_{k}'$は$\varphi_{k}$への{\bf HK}の正則証明である．
+				とすると，メタ定理\ref{metathm:substitute_regular_HK_proof}より$P_{k}'$は
+				$\varphi_{k}$への{\bf HK}の正則証明である．
 				
-				ここで$b$を$P_{1}',\cdots,P_{i}'$および$\varphi_{1},\cdots,\varphi_{n}$の
-				中に全く現れない変項とし，$Q$を$\varphi_{i}(a/b)$への正則証明とする．
+				ここで$b$を$P_{1}',\cdots,P_{i}'$および$\varphi_{i+1},\cdots,\varphi_{n}$の
+				中に全く現れない変項とする．メタ定理\ref{metathm:substitute_HK_proof}より
+				\begin{align}
+					\varphi_{1}(a/b),\ \varphi_{2}(a/b),\ \cdots,\ \varphi_{i}(a/b)
+				\end{align}
+				は$\lang{\in}$の式からなる{\bf HK}の証明であり，また
+				代入後も証明の中での汎化の位置は変わらないので，この証明の汎化は$N$回以下である．
+				従って(IH)より$\varphi_{i}(a/b)$への正則証明が取れるから，これを$Q$とする．
 				$Q$に現れる固有変項も$P_{1}',\cdots,P_{i}'$のものと被らないように
-				取り替えて，そして得られる証明を$Q'$とする．$Q'$もまた$\varphi_{i}(a/b)$への
-				正則証明である．このとき
+				取り替えて，そして得られる証明を$Q'$とする．
+				$Q$の最終式$\varphi_{i}(a/b)$に$b$が自由に現れているので，
+				$b$は$Q$の固有変項ではない．
+				ゆえにメタ定理\ref{metathm:substitute_regular_HK_proof}より$Q'$もまた
+				$\varphi_{i}(a/b)$への正則証明である．このとき
 				\begin{align}
 					P_{1}',P_{2}',\ \cdots,P_{i}',\ Q',\ \varphi_{i+1},\ 
 					\cdots,\ \varphi_{j},\ \cdots,\ \varphi_{n}
+					\label{seq:regularization_of_HK_proof_1}
 				\end{align}
 				は証明となる．実際，$P_{1}',\cdots,P_{i}',Q'$はそれぞれ証明であるし，
-				またこの列には$\varphi_{1},\cdots,\varphi_{n}$が部分的に現れるので，
-				この列のどの式も{\bf HK}の公理であるか$\mathscr{S}$の公理であるか前の式から
+				またこの列には$\varphi_{1},\cdots,\varphi_{i}$が部分的に現れるので，
+				元の証明
+				\begin{align}
+					\varphi_{1},\cdots,\varphi_{n}
+				\end{align}
+				の構造も崩さない．従って，(\refeq{seq:regularization_of_HK_proof_1})の列のどの
+				式も{\bf HK}の公理であるか$\mathscr{S}$の公理であるか前の式から
 				三段論法で得られるか前の式から汎化で得られる，
-				ちなみに$\varphi_{j}$は$\varphi_{i}(a/b)$から汎化で得られる．
-				しかもこの証明の固有変数は汎化に使われた後は二度と現れないので
+				ちなみに$\varphi_{j}$は$\varphi_{i}(a/b)$から汎化で得られるし，
+				$b$は$\varphi_{i+1},\cdots,\varphi_{n}$には現れない変項である．
+				つまりこの証明の固有変数は全て汎化に使われた後は二度と現れないので
 				正則証明となっている．
 				\QED
 		\end{description}
