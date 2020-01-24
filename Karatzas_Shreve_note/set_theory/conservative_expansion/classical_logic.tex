@@ -4,8 +4,9 @@
 	\end{align}
 	ということは次の条件を満たす$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
 	\footnote{
-		ここで添え字に数字が使われているが，これらは集合論の中で定義される数字ではなく
-		生活の中にありふれた数字である．足し算や大小の比較は日常的な感覚で行えるものとする．
+		ここで添え字に数字が使われているが，これらは集合論の中で定義される数字ではなく生活の中にありふれた
+		数字である．足し算や大小の比較や帰納的推論は日常的な感覚で行えるものとする．
+		また「列」という用語も集合論の写像ではなく日常的な「列」を意味する．
 	}
 	が取れるということである．
 	\begin{itemize}
@@ -14,14 +15,14 @@
 				\item $\varphi_{i}$は論理的公理である．
 				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
 				\item $\varphi_{i}$は，これより前の文$\varphi_{j}$と$\varphi_{k}$の
-					三段論法で得られる．つまり$\varphi_{j}$が
-					$\varphi_{k} \rarrow \varphi_{i}$なる式であるか，
-					$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる式である．
+					三段論法で得られる．つまりこの$\varphi_{j}$と$\varphi_{k}$は，
+					$\varphi_{j}$が$\varphi_{k} \rarrow \varphi_{i}$なる文であるか，
+					$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる文である．
 			\end{itemize}
 		
 		\item $\varphi_{n}$は$\varphi$である．
 	\end{itemize}
-	以下ではこの列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
+	以下ではこの$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$のような列
 	を$\mathscr{S}$から$\varphi$への{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼ぶ．
 	第\ref{chap:inference}章で規定した証明とは若干違うが，
 	異なる証明体系を比較するには証明は列であると考える方が都合が良い．
@@ -61,14 +62,14 @@
 	\end{description}
 	
 \section{古典論理}
-	{\bf HK}の公理は以下のように与えられる．ここで扱う項と式は
-	$\lang{\in}$のものか$\lang{\varepsilon}$のものを想定している．
+	この節で扱う項と式は$\lang{\in}$のものか$\lang{\varepsilon}$のものを想定している．
 	第\ref{chap:inference}章では証明に使われる式は全て文であるとしたが，
-	\underline{{\bf HK}の証明では文に限らず一般の式も使用する}．
+	\underline{{\bf HK}の証明では文に限らず一般の式も使用する}
+	(ただし\ref{sec:restriction_of_formulas}節の条件を満たす式に限る)．
 	
 	\begin{screen}
 		\begin{logicalaxm}[{\bf HK}の公理(命題論理)]
-			$\varphi$と$\psi$と$\xi$を式とするとき
+			$\varphi$と$\psi$と$\chi$を式とするとき
 			\begin{description}
 				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
 					\rarrow (\, (\, \varphi \rarrow \psi\, )
@@ -92,11 +93,10 @@
 	
 	\begin{screen}
 		\begin{logicalaxm}[{\bf HK}の公理(量化)]
-			$\varphi$と$\psi$と$\xi$を式とし，
-			$x$と$y$を変項とし，$t$を項とする．また
-			$y$は$\psi,\forall x \varphi, \exists x \varphi$には自由に現れず，
-			$\varphi$には$x$が自由に現れ，$y$と$t$は$\varphi$の中で$x$への代入について
-			自由であるとする．
+			$\varphi$と$\psi$を式とし，$x$と$y$を変項とし，$t$を項とする．また
+			\textcolor{red}{$y$は$\psi,\forall x \varphi, \exists x \varphi$には
+			自由に現れず，$\varphi$には$x$が自由に現れ，$y$と$t$は$\varphi$の中で$x$への代入
+			について自由であるとする(量化公理の変項条件)．}
 			\begin{description}
 				\item[(UI)] $\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) 
 					\rarrow (\, \psi \rarrow \forall x \varphi\, ).$
@@ -122,9 +122,10 @@
 	\begin{align}
 		\forall x \psi	
 	\end{align}
-	なる式であるということである．ただし$a$は$\forall x \psi$に自由に現れず，
-	また公理系$\mathscr{S}$が与えられているならば$a$は$\mathscr{S}$のどの公理にも自由に現れない．
-	$a$をこの汎化の{\bf 固有変項}\index{こゆうへんこう@固有変項}{\bf (eigenvariable)}と呼ぶ．
+	なる式であるということである．ただし\textcolor{red}{$a$は$\forall x \psi$に自由に現れず，
+	また公理系$\mathscr{S}$が与えられているならば$a$は$\mathscr{S}$のどの公理にも自由に現れない
+	(固有変項条件)．}$a$をこの汎化の{\bf 固有変項}\index{こゆうへんこう@固有変項}
+	{\bf (eigenvariable)}と呼ぶ．
 	
 	\begin{screen}
 		\begin{metadfn}[{\bf HK}における証明]
