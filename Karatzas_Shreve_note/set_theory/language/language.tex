@@ -218,7 +218,7 @@
 			$\varphi$を$\lang{\in}$の式とするとき，
 			$\varphi$に現れる$\lang{\in}$の式を
 			$\varphi$の{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (subformula)}と呼ぶ．
-			$\varphi$自身を除く$\varphi$の部分項を特に$\varphi$の
+			$\varphi$自身を除く$\varphi$の部分式を特に$\varphi$の
 			{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper subformula)}と呼ぶ．
 		\end{metadfn}
 	\end{screen}
@@ -271,9 +271,9 @@
 	\begin{align}
 		\forall x \in x y
 	\end{align}
-	しかないのである．$\forall$が係る$x$が束縛されている範囲は
-	``$\forall$から始まる式''であるので，$\in x z$の$x$とは
-	量化子$\forall$による``束縛''から漏れた``自由な''$x$ということになる．
+	しかないのである．$\forall$が係る$x$が束縛される範囲は
+	``$\forall$から始まる式''であるから，$\in x z$の$x$は
+	$\forall$の``束縛''から漏れた``自由な''$x$ということになる．
 	
 	上の例でみたように，量化はその範囲が重要になる．
 	量化子$\forall$が式$\varphi$に現れたとき，
@@ -283,10 +283,10 @@
 	$\forall$のスコープは唯一つでないと都合が悪い．
 	もしも異なるスコープが存在したら，同じ式なのに全く違う解釈に分かれてしまうからである．
 	実際そのような心配は無用であると後で保証するわけだが，
-	その準備に{\bf 始切片}という概念から取り掛かる．
+	その前に{\bf 始切片}という概念を準備しておく必要がある．
 	
 \subsection{始切片}
-	$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の左端から切り取るひとつづきの部分列を
+	$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の左端から切り取る一続きの記号列を
 	$\varphi$の{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ．
 	例えば$\varphi$が
 	\begin{align}
@@ -301,7 +301,6 @@
 		\textcolor{red}{\rarrow \forall x \wedge \rarrow \in xy} \in xz \rarrow \in xz \in xy = yz
 	\end{align}
 	など赤字で分けられた部分は$\varphi$の始切片である．また$\varphi$自身も$\varphi$の始切片である．
-	
 	項についても同様に，項の左端から切り取るひとつづきの部分列をその項の始切片と呼ぶ．
 	
 	\begin{screen}
@@ -322,10 +321,15 @@
 	\end{screen}
 	
 	\footnote[0]{
-		メタ定理とは式や項或いは証明の形状的な性質に対する主張であって，
-		メタ証明はメタ定理の妥当性を日本語によって検証するものである．
-		またメタ証明に必要な直感的真理をメタ公理として提示する．
-		メタ公理は通常は暗黙の裡に認められている．
+		{\bf メタ定理}\index{めたていり@メタ定理}とは式や項或いは証明の形状的な性質
+		に対する主張であって，{\bf メタ証明}\index{めたしょうめい@メタ証明}はメタ定理の妥当性を
+		日本語によって検証するものである．またメタ証明に必要な直感的真理を{\bf メタ公理}
+		\index{めたこうり@メタ公理}として明示する．メタ公理は通常は暗黙の裡に認められている．
+		
+		本稿では第\ref{chap:set_theory}章から集合論の内側に入る構成になっている．
+		だからそれまでの内容は殆ど集合論の外側の話である．
+		{\bf メタ定義}\index{めたていぎ@メタ定義}とは既に何の断りもなく出してしまったが，
+		集合論の外側で出てくる概念に特別の名前を付ける際にメタ定義として提示する．
 	}
 	
 	「項の始切片で項であるものはその項自身に限られる．また，式の始切片で式であるものはその式自身に限られる．」という言明を(★)と書くことにする．
@@ -363,7 +367,7 @@
 				$s$を項とするとき，$s$が文字ならば$s$の始切片は$s$のみである．つまり(★)が言える．
 				$s$が文字でないとき，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$s$の任意の直部分項$\tau$に対して，
+					$s$の直部分項$\tau$に対して，
 					$\tau$の始切片で$\lang{\in}$の項であるものは$\tau$自身に限られる．
 				\end{itembox}
 				と仮定する．(項の構成法より)項$t$が取れて$s$は
@@ -454,7 +458,7 @@
 	\begin{align}
 		\rarrow \forall x \wedge \rarrow \textcolor{red}{\in xy} \in xz \rarrow \in xz \in xy = yz.
 	\end{align}
-	これは{\bf $\varphi$における左から6番目の$\in$のスコープ}である．他にも，$\varphi$の左から$4$番目に$\wedge$が現れるが，この右側に
+	これは{\bf $\varphi$における左から6番目の記号$\in$のスコープ}である．他にも，$\varphi$の左から$4$番目に$\wedge$が現れるが，この右側に
 	\begin{align}
 		\rarrow \in xy \in xz
 	\end{align}
@@ -470,7 +474,7 @@
 	\begin{align}
 		\rarrow \forall x \textcolor{red}{\wedge \rarrow \in xy \in xz \rarrow \in xz \in xy} = yz.
 	\end{align}
-	これは{\bf $\varphi$における左から4番目の$\wedge$のスコープ}である．$\varphi$の左から$2$番目には$\forall$が現れて，
+	これは{\bf $\varphi$における左から4番目の記号$\wedge$のスコープ}である．$\varphi$の左から$2$番目には$\forall$が現れて，
 	この$\forall$に対して項$x$と
 	\begin{align}
 		\wedge \rarrow \in xy \in xz \rarrow \in xz \in xy
@@ -493,7 +497,7 @@
 	式$\varphi$に記号$s$が現れたと言ってもそれがどこの$s$を指定しているのかはっきりしない．
 	しかし{\bf スコープを考える際には，$\varphi$に複数現れうる$s$のどれか一つを選んで，
 	その$s$に終始注目している}のであり，
-	「その$s$の...」や「$s$のその出現位置から...」のように限定詞を付けてそのことを示唆することにする．
+	「その$s$の...」や「$s$のその出現位置から...」のように限定詞を付けてそれを示唆することにする．
 	
 	\begin{screen}
 		\begin{metadfn}[$\lang{\in}$のスコープ]
