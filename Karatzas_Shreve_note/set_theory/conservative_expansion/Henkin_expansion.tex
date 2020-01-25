@@ -127,18 +127,24 @@
 			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とし，
 			$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から$\psi$への
 			{\bf HK}の証明で$\lang{\varepsilon}$の式の列であるものとする．
-			また$e$をこの列のうち少なくとも一本の式に直部分項として現れる主要$\varepsilon$項とし，
-			$y$をこの証明に現れない変項とする．そして各$\varphi_{i}$に対して
-			そこに直部分項として現れる$e$を全て$y$に取り替えた式を$\hat{\varphi}_{i}$と書く．
-			ただし取り替えるのは他の項の真部分項になっていない$e$のみであり，
-			$\varphi_{i}$に$e$が現れなければ$\hat{\varphi}_{i}$は$\varphi_{i}$とする．
+			また$e$をこの列のいずれかの式に項として現れる\footnotemark
+			主要$\varepsilon$項とし，$y$をこの証明に現れない変項とする．
+			そして各$\varphi_{i}$で項として現れる$e$を全て$y$に取り替えた式を
+			$\widehat{\varphi}_{i}$と書く．
+			ただし$\varphi_{i}$に$e$が現れなければ$\widehat{\varphi}_{i}$は$\varphi_{i}$とする．
 			このとき
 			\begin{align}
-				\hat{\varphi}_{1},\ \cdots,\ \hat{\varphi}_{n}
+				\widehat{\varphi}_{1},\ \widehat{\varphi}_{2},\ 
+				\cdots,\ \widehat{\varphi}_{n}
 			\end{align}
 			は$\mathscr{S}$から$\psi$への{\bf HK}の証明である．
 		\end{metathm}
 	\end{screen}
+	
+	\footnotetext{
+		「項として現れる」とは，$e$はいずれかの$\varphi_{i}$の項
+		(定義\ref{metadfn:L_term_of_formula})であるということである．
+	}
 	
 	\begin{metaprf}\mbox{}
 		\begin{description}
@@ -147,9 +153,10 @@
 				\begin{align}
 					\varphi \rarrow (\, \chi \rarrow \varphi\, )
 				\end{align}
-				なる式なら，$\hat{\varphi}_{i}$も
+				なる式なら，$\widehat{\varphi}_{i}$も
 				\begin{align}
-					\hat{\varphi} \rarrow (\, \hat{\chi} \rarrow \hat{\varphi}\, )
+					\widehat{\varphi} \rarrow 
+					(\, \widehat{\chi} \rarrow \widehat{\varphi}\, )
 				\end{align}
 				なる形の式となるので{\bf HK}の公理である．他の場合も同様である．
 				
@@ -162,49 +169,52 @@
 					&\forall z\, (\, \varphi(x/z) \rarrow \chi\, )
 						\rarrow (\, \exists x \varphi \rarrow \chi\, )
 				\end{align}
-				のいずれかであるとき，$\hat{\varphi}_{i}$は
+				のいずれかであるとき，$\widehat{\varphi}_{i}$は
 				\begin{align}
-					&\forall z\, (\, \hat{\chi} \rarrow \hat{\varphi}(x/z)\, ) 
-						\rarrow (\, \hat{\chi} \rarrow \forall x \hat{\varphi}\, ), \\
-					&\forall x \hat{\varphi} \rarrow \hat{\varphi}(x/t), \\
-					&\hat{\varphi}(x/t) \rarrow \exists x \hat{\varphi}, \\
-					&\forall z\, (\, \hat{\varphi}(x/z) \rarrow \hat{\chi}\, )
-						\rarrow (\, \exists x \hat{\varphi} \rarrow \hat{\chi}\, )
+					&\forall z\, (\, \widehat{\chi} \rarrow \widehat{\varphi}(x/z)\, ) 
+						\rarrow (\, \widehat{\chi} \rarrow \forall x \widehat{\varphi}\, ), \\
+					&\forall x \widehat{\varphi} \rarrow \widehat{\varphi}(x/t), \\
+					&\widehat{\varphi}(x/t) \rarrow \exists x \widehat{\varphi}, \\
+					&\forall z\, (\, \widehat{\varphi}(x/z) \rarrow \widehat{\chi}\, )
+						\rarrow (\, \exists x \widehat{\varphi} \rarrow \widehat{\chi}\, )
 				\end{align}
 				なる形の式となり，{\bf HK}の公理であるための変項の条件も満たされる．
 				ここで注意しておくと，$e$が$\varphi(x/t)$に現れる場合，
 				$\varphi$で$x$に代入された$t$を含むようには$e$は現れない．もし
-				そのような$t$が$e$に現れたら，$e$のその$t$を$x$に置き換えた$\varepsilon$項$e'$は，
+				そのような$t$が$e$に現れたら，$e$の中のその$t$を$x$に置き換えた$\varepsilon$項$e'$は，
 				$\varphi$すなわち$\exists x \varphi$の中に現れることになるが，$e'$は
 				主要$\varepsilon$項ではないので第\ref{sec:restriction_of_formulas}節の
 				約束に違反してしまう．従って$\varphi(x/t)$に現れる$e$を$y$に置き換えた式は
-				$\hat{\varphi}(x/t)$なる形で書けるのである．
+				$\widehat{\varphi}(x/t)$なる形で書けるのである．同じように，
+				$\varphi$で$x$に代入された$z$を含むようには$e$は現れない．
 				
-			\item[case3] $\varphi_{i}$が$\mathscr{S}$の公理であるときは
-				$\lang{\in}$の文なので，$\hat{\varphi}_{i}$は$\varphi_{i}$である．
+			\item[case3] $\varphi_{i}$が$\mathscr{S}$の公理であるとき，$\varphi_{i}$は
+				$\lang{\in}$の文なので，$\widehat{\varphi}_{i}$は$\varphi_{i}$である．
 				
 			\item[case4] $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
 				三段論法で得られているとき，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$
-				なる式なら$\hat{\varphi}_{k}$は
+				なる式なら$\widehat{\varphi}_{k}$は
 				\begin{align}
-					\hat{\varphi}_{j} \rarrow \hat{\varphi}_{i}
+					\widehat{\varphi}_{j} \rarrow \widehat{\varphi}_{i}
 				\end{align}
-				なる式であるから，$\hat{\varphi}_{i}$は$\hat{\varphi}_{j}$と
-				$\hat{\varphi}_{k}$から三段論法で得られる．
+				なる式であるから，$\widehat{\varphi}_{i}$は$\widehat{\varphi}_{j}$と
+				$\widehat{\varphi}_{k}$から三段論法で得られる．
 				
 			\item[case5] $\varphi_{i}$が前の式$\varphi_{j}$から
 				汎化で得られているとき，つまり変項$a,x$と$x$が自由に現れる式$\chi$が取れて，
 				$\varphi_{j}$が$\chi(x/a)$で$\varphi_{i}$が$\forall x \chi$であるとき，
-				$\hat{\varphi}_{j}$は
+				$x$に代入された$a$は$\chi(x/a)$の中で自由であるから，
+				主要$\varepsilon$項である$e$はそれらの$a$を含むようには
+				$\chi(x/a)$に現れない．従って$\widehat{\varphi}_{j}$は
 				\begin{align}
-					\hat{\chi}(x/a)
+					\widehat{\chi}(x/a)
 				\end{align}
-				なる式で($e$は主要$\varepsilon$項なので$x$に代入された$a$を含むようには現れない)
-				$\hat{\varphi}_{i}$は
+				なる式で，$\widehat{\varphi}_{i}$は
 				\begin{align}
-					\forall x \hat{\chi}
+					\forall x \widehat{\chi}
 				\end{align}
-				なる式であるから，$\hat{\varphi}_{i}$は$\hat{\varphi}_{j}$から汎化で得られる．
+				なる式である．すなわち$\widehat{\varphi}_{i}$もまた$\widehat{\varphi}_{j}$から
+				汎化で得られる．
 				\QED
 		\end{description}
 	\end{metaprf}
