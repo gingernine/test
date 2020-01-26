@@ -32,6 +32,7 @@
 	
 	\begin{table}[H]
 		\begin{center}
+		\caption{式の書き換え表}
 		\begin{tabular}{c|c|c|c}
 			 & 元の式 & 書き換え後 & 付記 \\ \hline \hline
 			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
@@ -41,6 +42,7 @@
 			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
 			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
+		\label{tab:formula_rewriting}
 		\end{center}
 	\end{table}
 	
@@ -82,7 +84,7 @@
 			その部分式を$\forall b \chi(a/b)$或いは$\exists b \chi(a/b)$で置き換える．
 			この$b$としては，\underline{$\chi$に自由に現れず，かつ$\chi$の中で$a$への代入について
 			自由である変項}を取るが，これは$\forall a \chi$或いは$\exists a \chi$に
-			自由に現れる項を束縛しないためである．たとえば
+			自由に現れる変項を束縛しないためである．たとえば
 			\begin{align}
 				a \in \Set{z}{\exists a\, (\, z \in a\, )}
 			\end{align}
@@ -100,33 +102,165 @@
 			\end{align}
 			とすればよい．ただし，
 			\begin{align}
-				\forall a\, (\, ...\forall a\, (\, ...\, z\, ...\, )...\, )
+				\forall a\, (\, ...\exists a\, (\, ...\, z\, ...\, )...\, )
 			\end{align}
-			のように$\forall a$の多層構造の内部に$z$の自由な出現がある場合，$\forall a \chi$
-			としては$\forall a$から始まる$\psi$の部分式のうち\underline{最も狭いもの}を取る．
+			のように$\forall a,\exists a$の多層構造の内部に$z$の自由な出現がある場合，
+			$z$のその自由な出現がある$\forall a,\exists a$から始まる$\psi$の部分式
+			(定義\ref{metadfn:L_subformula})のうちまずは最も狭いものを取り，
+			その直部分式(定義\ref{metadfn:L_immediate_subformula})に
+			自由に現れる$a$に$b$を代入して$b$の量化式とする．次は二番目に狭い部分式を取り，
+			その直部分式に自由に現れる$a$に$b$を代入して$b$の量化式とする．
+			同じ操作を$\forall a,\exists a$のスコープから抜け出るまで繰り返す．
+			たとえば$\psi$が
+			\begin{align}
+				\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists a \chi\, )\, )
+			\end{align}
+			なる式で(他に$a$の量化はないとする)，$z$の自由な出現が$\chi$の中にある状況では，まず
+			\begin{align}
+				\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists b \chi(a/b)\, )\, )
+			\end{align}
+			とし，次に
+			\begin{align}
+				\forall a (\, \eta \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
+			\end{align}
+			とし，最後に
+			\begin{align}
+				\forall b (\, \eta(a/b) \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
+			\end{align}
+			とするということである．
 	\end{itemize}
+	
+	ここで「部分式を取り替えても式である」ということを示しておく．
+	
+	\begin{screen}
+		\begin{metathm}[部分式を取り替えても式]
+		\label{metathm:replace_subformula_with_some_formula}
+			$\varphi$を$\mathcal{L}$の式とし，$\psi$を$\varphi$の部分式
+			(定義\ref{metadfn:L_subformula})とし，$\chi$を$\mathcal{L}$の式とする．
+			このとき，$\varphi$のその$\psi$の部分(一か所)を$\chi$に置き換えて得られる記号列
+			$\widetilde{\varphi}$は$\mathcal{L}$の式である．
+			また$\varphi$と$\chi$が$\lang{\in}$の式ならば$\widetilde{\varphi}$も
+			$\lang{\in}$の式であるし，$\varphi$と$\chi$が$\lang{\varepsilon}$の式ならば
+			$\widetilde{\varphi}$も$\lang{\varepsilon}$の式である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf} $\varphi$と$\chi$が$\lang{\in}$或いは$\lang{\varepsilon}$の式の場合は，
+		下の証明の「$\mathcal{L}$」の部分を「$\lang{\in}$」或いは「$\lang{\varepsilon}$」と
+		読み替えればよい．
+		\begin{description}
+			\item[step1] $\varphi$が原子式である場合，$\psi$とは$\varphi$自身のことである．
+				従って$\widetilde{\varphi}$は$\chi$となり，これは$\mathcal{L}$の式である．
+				
+			\item[step2] $\varphi$が原子式でないとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式に対して，その部分式を一か所$\mathcal{L}$の
+					他の式に置き換えて得られる記号列は$\mathcal{L}$の式である
+				\end{itembox}
+				と仮定する．このとき
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \xi
+						\end{align}
+						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$の部分式である．
+						前者の場合は$\widetilde{\varphi}$は$\chi$となる．
+						後者の場合は，$\xi$のその$\psi$の部分を$\chi$に置き換えた記号列
+						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\negation \widetilde{\xi}
+						\end{align}
+						なる記号列となる．ゆえにいずれの場合も$\widetilde{\varphi}$は
+						$\mathcal{L}$の式である．
+					
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \xi \zeta
+						\end{align}
+						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$或いは
+						$\zeta$の部分式である．
+						前者の場合は$\widetilde{\varphi}$は$\chi$となる．
+						後者の場合は，その$\psi$が$\xi$に現れているとして，
+						$\xi$のその$\psi$の部分を$\chi$に置き換えた記号列
+						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\vee \widetilde{\xi} \zeta
+						\end{align}
+						なる記号列となる．その$\psi$が$\zeta$に現れていれば
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\vee \xi \widetilde{\zeta}
+						\end{align}
+						なる記号列となる．ゆえにいずれの場合も$\widetilde{\varphi}$は
+						$\mathcal{L}$の式である．
+						
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \xi
+						\end{align}
+						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$の部分式である．
+						前者の場合は$\widetilde{\varphi}$は$\chi$となる．
+						後者の場合は，$\xi$のその$\psi$の部分を$\chi$に置き換えた記号列
+						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\exists x \widetilde{\xi}
+						\end{align}
+						なる記号列となる．ゆえにいずれの場合も$\widetilde{\varphi}$は
+						$\mathcal{L}$の式である．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
 	
 	\begin{screen}
 		\begin{metadfn}[式の書き換え]
-			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，$\varphi$の{\bf 書き換え}とは，
-			$\varphi$の部分式のうち原子式であるものを全て上表に従って直した式のこととする．
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+			$\varphi$の{\bf 書き換え}\index{かきかえ@書き換え}とは次の手順で得られる式のこととする：
+			\begin{enumerate}
+				\item $\varphi$の部分式のうち原子式であるものを全て
+					表\ref{tab:formula_rewriting}に従って直した式は
+					$\varphi$の書き換えである．
+					
+				\item $\widehat{\varphi}$を$\varphi$の書き換えとし，$\widehat{\varphi}$に
+					$\forall x \xi$の形の部分式\footnotemark
+					が現れているとし，$y$を$\xi$に自由に現れない変項で
+					$\xi$の中で$x$への代入について自由であるものとするとき，
+					$\widehat{\varphi}$のその$\forall x \xi$の部分を(一か所)
+					$\forall y \xi(x/y)$に置き換えた式は$\varphi$の書き換えである．
+			\end{enumerate}
 		\end{metadfn}
 	\end{screen}
+	
+	\footnotetext{
+		第\ref{sec:restriction_of_formulas}節の約束により，$\chi$には$x$が自由に現れている．
+	}
 	
 	\begin{screen}
 		\begin{metathm}[書き換えは$\lang{\varepsilon}$の式]
 		\label{metathm:rewritten_formulas_are_of_L_epsilon}
-			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
-			$\widehat{\varphi}$を$\varphi$の書き換えとするとき，
-			$\widehat{\varphi}$は$\lang{\varepsilon}$の式である．
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+			$\varphi$の任意の書き換えは$\lang{\varepsilon}$の式である．
 		\end{metathm}
 	\end{screen}
 	
 	\begin{metaprf}\mbox{}
 		\begin{description}
-			\item[step1] $\varphi$が原子式なら，表の通り$\widehat{\varphi}$は
-				$\lang{\varepsilon}$の式である．
-			
+			\item[step1] $\varphi$が原子式であるとする．
+				\begin{enumerate}
+					\item $\varphi$を表\ref{tab:formula_rewriting}の通りに書き換えた式は，
+						表の通り$\lang{\varepsilon}$の式である．
+						ちなみに表\ref{tab:formula_rewriting}の(4)の場合では
+						$\psi$の部分式を取り替えることもあるが，
+						メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+						取り替えた後の式$\widetilde{\psi}$も$\lang{\varepsilon}$の式
+						であり，$\widetilde{\psi}(z/a)$は$\lang{\varepsilon}$の式である．
+						
+					\item s
+				\end{enumerate}
+				
 			\item[step2] $\varphi$が原子式でないとき，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
 					$\varphi$の任意の真部分式は，それが$\lang{\varepsilon}$の式でない場合
