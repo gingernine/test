@@ -1,0 +1,515 @@
+	\begin{screen}
+		\begin{metathm}[書き換えへの代入は代入した式の書き換え]
+		\label{metathm:substitution_to_rewritten_formula}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\varphi$には変項$x$が自由に現れているとし，$\tau$を主要$\varepsilon$項とし，
+			$\widehat{\varphi}$を$\varphi$の書き換えとする．このとき
+			$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\varphi$が原子式であるとする．
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							x = \Set{z}{\psi}
+						\end{align}
+						なる式のとき，$\widehat{\varphi}$は
+						\begin{align}
+							\forall v\, (\, v \in x \lrarrow \psi(z/v)\, )
+						\end{align}
+						なる式である．
+						\begin{itemize}
+							\item $x$と$z$が同じならば$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall v\, (\, v \in \tau \lrarrow \psi(z/v)\, )
+								\end{align}
+								となる．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\tau = \Set{z}{\psi}
+								\end{align}
+								であるから$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$と$z$が違うとき$\widehat{\varphi}(x/\tau)$は，
+								$\psi$に$x$が自由に現れていれば
+								\begin{align}
+									\forall v\, (\, v \in \tau \lrarrow \psi(z/v)(x/\tau)\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$v$とも違うので
+								$\psi(z/v)(x/\tau)$と$\psi(x/\tau)(z/v)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall v\, (\, v \in \tau \lrarrow \psi(x/\tau)(z/v)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\tau = \Set{z}{\psi(x/\tau)}
+								\end{align}
+								であるから，この場合は$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								$\psi$に$x$が自由に現れていない場合，
+								$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall v\, (\, v \in \tau \lrarrow \psi(z/v)\, )
+								\end{align}
+								となるが，$\varphi(x/\tau)$は
+								\begin{align}
+									\tau = \Set{z}{\psi}
+								\end{align}
+								であるからこの場合も$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+						\end{itemize}
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							a = \Set{z}{\psi}
+						\end{align}
+						なる式のとき($a$と$x$は違う項)，$\widehat{\varphi}$は
+						\begin{align}
+							\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )
+						\end{align}
+						なる式である．$\varphi$には$x$が自由に現れているので，つまり
+						$x$は$\psi$に自由に現れている．従って$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\forall v\, (\, v \in a \lrarrow \psi(z/v)(x/\tau)\, )
+						\end{align}
+						となるが，書き換えの変項条件より$x$は$v$とも違うので
+						$\psi(z/v)(x/\tau)$と$\psi(x/\tau)(z/v)$は
+						同じである．従って$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\forall v\, (\, v \in a \lrarrow \psi(x/\tau)(z/v)\, )
+						\end{align}
+						と同じである．他方で$\varphi(x/\tau)$は
+						\begin{align}
+							a = \Set{z}{\psi(x/\tau)}
+						\end{align}
+						であるから$\widehat{\varphi}(x/\tau)$は
+						$\varphi(x/\tau)$の書き換えである．
+					
+					\item[case3] $\varphi$が
+						\begin{align}
+							\Set{y}{\chi} = x
+						\end{align}
+						なる式のとき，$\widehat{\varphi}$は
+						\begin{align}
+							\forall u\, (\, \chi(y/u) \lrarrow u \in x\, )
+						\end{align}
+						なる式である．
+						\begin{itemize}
+							\item $x$と$y$が同じならば$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(y/u) \lrarrow u \in \tau\, )
+								\end{align}
+								となる．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi} = \tau
+								\end{align}
+								であるから$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$と$y$が違うとき$\widehat{\varphi}(x/\tau)$は，
+								$\chi$に$x$が自由に現れていれば
+								\begin{align}
+									\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in \tau\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$u$とも違うので
+								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in \tau\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi(x/\tau)} = \tau
+								\end{align}
+								であるから，この場合は$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								$\chi$に$x$が自由に現れていない場合，
+								$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(y/u) \lrarrow u \in \tau\, )
+								\end{align}
+								となるが，$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi} = \tau
+								\end{align}
+								であるからこの場合も$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+						\end{itemize}
+						
+					\item[case4] $\varphi$が
+						\begin{align}
+							\Set{y}{\chi} = b
+						\end{align}
+						なる式のとき($b$は$x$と違う項)，$\widehat{\varphi}$は
+						\begin{align}
+							\forall u\, (\, \chi(y/u) \lrarrow u \in b\, )
+						\end{align}
+						なる式である．$\varphi$には$x$が自由に現れているので，つまり
+						$x$は$\chi$に自由に現れている．従って$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in b\, )
+						\end{align}
+						となるが，書き換えの変項条件より$x$は$u$とも違うので
+						$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
+						同じである．従って$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in b\, )
+						\end{align}
+						と同じである．他方で$\varphi(x/\tau)$は
+						\begin{align}
+							\Set{y}{\chi(x/\tau)} = b
+						\end{align}
+						であるから$\widehat{\varphi}(x/\tau)$は
+						$\varphi(x/\tau)$の書き換えである．
+					
+					\item[case5] $\varphi$が
+						\begin{align}
+							\Set{y}{\chi} = \Set{z}{\psi}
+						\end{align}
+						なる式のとき，$\widehat{\varphi}$は
+						\begin{align}
+							\forall u\, (\, \chi(y/u) \lrarrow \psi(z/u)\, )
+						\end{align}
+						なる式である．
+						\begin{itemize}
+							\item $x$と$y$が同じならば，$x$は$\Set{y}{\chi}$には自由に
+								現れないので，$x$が$\varphi$に自由に現れている以上
+								$\psi$に自由に現れることになる．すなわち$x$と$z$は違う項である．
+								このとき$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(y/u) \lrarrow \psi(z/u)(x/\tau)\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$u$とも違うので
+								$\psi(z/u)(x/\tau)$と$\psi(x/\tau)(z/u)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(y/u) \lrarrow \psi(x/\tau)(z/u)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi} = \Set{z}{\psi(x/\tau)}
+								\end{align}
+								であるから$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$と$z$が同じならば，$x$は$\Set{z}{\psi}$には自由に
+								現れないので，$x$が$\varphi$に自由に現れている以上
+								$\chi$に自由に現れることになる．すなわち$x$と$y$は違う項である．
+								このとき$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow \psi(z/u)\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$u$とも違うので
+								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow \psi(z/u)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi(x/\tau)} = \Set{z}{\psi}
+								\end{align}
+								であるから$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+							
+							\item $x$が$y$とも$z$とも違うならば，$x$は$\chi$か$\psi$の
+								少なくとも一方には自由に現れている．
+								このとき$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow \psi(z/u)(x/\tau)\, )
+								\end{align}
+								となるが，書き換えの変項条件より
+								$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow \psi(x/\tau)(z/u)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi(x/\tau)} = \Set{z}{\psi(x/\tau)}
+								\end{align}
+								であるから$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+						\end{itemize}
+						
+					\item[case6] $\varphi$が
+						\begin{align}
+							x \in \Set{z}{\psi}
+						\end{align}
+						なる式のとき，必要ならば$\psi$の変項の
+						名前替えをしたものを$\widetilde{\psi}$とする．ただし
+						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
+						$\widehat{\varphi}$は$\widetilde{\psi}(z/x)$なる式であるから
+						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/x)(x/\tau)$
+						となる．
+						\begin{itemize}
+							\item $x$と$z$が同じならば$\psi$の変項の名前替えは必要ない．
+								$\psi(z/x)$とは$\psi$そのものであるから，
+								$\psi(z/x)(x/\tau)$は$\psi(x/\tau)$となる．
+								他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\tau \in \Set{z}{\psi}
+								\end{align}
+								となるから，$\psi(z/\tau)$は$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$と$z$が違うとき，$\widetilde{\psi}(z/x)(x/\tau)$は
+								$\widetilde{\psi}(x/\tau)(z/\tau)$である．他方で
+								$\varphi(x/\tau)$は
+								\begin{align}
+									\tau \in \Set{z}{\psi(x/\tau)}
+								\end{align}
+								となるから，$\psi(x/\tau)(z/\tau)$は$\varphi(x/\tau)$の書き換えとなる．
+								$\psi(x/\tau)(z/\tau)$と$\widetilde{\psi}(x/\tau)(z/\tau)$は，
+								もし違う式でも$\forall x$か$\exists x$から始まる或る部分式が違うだけであるから，
+								$\widetilde{\psi}(x/\tau)(z/\tau)$もまた$\varphi(x/\tau)$の書き換えである．
+						\end{itemize}
+						
+					\item[case7] $\varphi$が
+						\begin{align}
+							a \in \Set{z}{\psi}
+						\end{align}
+						なる式のとき($a$は$x$とは違う項)，必要ならば$\psi$の変項の
+						名前替えをしたものを$\widetilde{\psi}$とする．ただし
+						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
+						$\widehat{\varphi}$は$\widetilde{\psi}(z/a)$なる式であるから
+						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/a)(x/\tau)$
+						となる．$\varphi$には$x$が自由に現れているので，つまり
+						$x$は$\psi$に自由に現れているから$x$は$z$とも違う変項である．
+						従って$\widetilde{\psi}(z/a)(x/\tau)$は
+						$\widetilde{\psi}(x/\tau)(z/a)$である．他方で
+						$\varphi(x/\tau)$は
+						\begin{align}
+							a \in \Set{z}{\psi(x/\tau)}
+						\end{align}
+						となるから，$\widetilde{\psi}(x/\tau)(z/a)$は$\varphi(x/\tau)$の書き換えとなる．
+					
+					\item[case8] $\varphi$が
+						\begin{align}
+							\Set{y}{\chi} \in x
+						\end{align}
+						なる式のとき，$\widehat{\varphi}$は
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in x\, )
+						\end{align}
+						なる式である．
+						\begin{itemize}
+							\item $x$と$y$が同じならば$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in \tau\, )
+								\end{align}
+								となる．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi} \in \tau
+								\end{align}
+								であるから$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$と$y$が違うとき$\widehat{\varphi}(x/\tau)$は，
+								$x$が$\chi$に自由に現れているならば
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge s \in \tau\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$u$とも違うので
+								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge s \in \tau\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi(x/\tau)} \in \tau
+								\end{align}
+								であるから，この場合は$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								$x$が$\chi$に自由に現れていない場合，
+								$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in \tau\, )
+								\end{align}
+								となり，$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi} \in \tau
+								\end{align}
+								であるからこの場合も$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+						\end{itemize}
+					
+					\item[case9] $\varphi$が
+						\begin{align}
+							\Set{y}{\chi} \in b
+						\end{align}
+						なる式のとき($b$は$x$と違う項)，$\widehat{\varphi}$は
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )
+						\end{align}
+						なる式である．$\varphi$には$x$が自由に現れているので，つまり
+						$x$は$\chi$に自由に現れている．従って$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge s \in b\, )
+						\end{align}
+						となるが，書き換えの変項条件より$x$は$u$とも違うので
+						$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
+						同じである．従って$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )
+						\end{align}
+						と同じである．他方で$\varphi(x/\tau)$は
+						\begin{align}
+							\Set{y}{\chi(x/\tau)} \in b
+						\end{align}
+						であるから，$\widehat{\varphi}(x/\tau)$は
+						$\varphi(x/\tau)$の書き換えである．
+						
+					\item[case10] $\varphi$が
+						\begin{align}
+							\Set{y}{\chi} \in \Set{z}{\psi}
+						\end{align}
+						なる式のとき，$\widehat{\varphi}$は
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )
+						\end{align}
+						なる式である．
+						\begin{itemize}
+							\item $x$と$y$が同じならば，$x$は$\Set{y}{\chi}$には自由に
+								現れないので，$x$が$\varphi$に自由に現れている以上
+								$\psi$に自由に現れることになる．すなわち$x$と$z$は違う項である．
+								このとき$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)(x/\tau)\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$s$とも違うので
+								$\psi(z/s)(x/\tau)$と$\psi(x/\tau)(z/s)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge \psi(x/\tau)(z/s)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi} \in \Set{z}{\psi(x/\tau)}
+								\end{align}
+								であるから，$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$と$z$が同じならば，$x$は$\Set{z}{\psi}$には自由に
+								現れないので，$x$が$\varphi$に自由に現れている以上
+								$\chi$に自由に現れることになる．すなわち$x$と$y$は違う項である．
+								このとき$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )
+								\end{align}
+								となるが，書き換えの変項条件より$x$は$s$とも違うので
+								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
+								同じである．従って$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi(x/\tau)} \in \Set{z}{\psi}
+								\end{align}
+								であるから，$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+								
+							\item $x$が$y$とも$z$とも違うならば，$x$は$\chi$か$\psi$の
+								少なくとも一方にはには自由に現れている．
+								このとき$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge \psi(z/s)(x/\tau)\, )
+								\end{align}
+								となるが，書き換えの変項条件より
+								$\widehat{\varphi}(x/\tau)$は
+								\begin{align}
+									\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge \psi(x/\tau)(z/s)\, )
+								\end{align}
+								と同じである．他方で$\varphi(x/\tau)$は
+								\begin{align}
+									\Set{y}{\chi(x/\tau)} \in \Set{z}{\psi(x/\tau)}
+								\end{align}
+								であるから，$\widehat{\varphi}(x/\tau)$は
+								$\varphi(x/\tau)$の書き換えである．
+						\end{itemize}
+				\end{description}
+			
+			\item[step2] $\varphi$が一般の式であるとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式$\psi$に対して，
+					$\psi$が$\lang{\varepsilon}$の式でなければ，
+					$\widehat{\psi}$を$\psi$の書き換えとすれば
+					$\widehat{\psi}(x/\tau)$は$\psi(x/\tau)$の書き換えである．
+				\end{itembox}
+				と仮定する
+				\footnote{
+					メタ定理\ref{metathm:variables_unchanged_after_rewriting}より
+					$\psi$に$x$が自由に現れていなければ$\widehat{\psi}$にも
+					$x$は自由に現れないので，$\psi$に$x$が自由に現れていない場合は
+					$\psi(x/\tau)$は$\psi$であり，$\widehat{\psi}(x/\tau)$は
+					$\widehat{\psi}$である．
+				}．
+				
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
+						\begin{align}
+							\negation \widehat{\psi}
+						\end{align}
+						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えである．
+						(IH)より$\widehat{\psi}(x/\tau)$は
+						$\psi(x/\tau)$の書き換えであるから，
+						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\negation \widehat{\psi}(x/\tau)$は
+						$\negation \psi(x/\tau)$の書き換えである．
+						$\negation \widehat{\psi}(x/\tau)$とは
+						$\widehat{\varphi}(x/\tau)$のことであり，
+						$\negation \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから，
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+					
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
+						\begin{align}
+							\vee \widehat{\psi} \widehat{\chi}
+						\end{align}
+						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えであり，
+						$\widehat{\chi}$は$\chi$の書き換えである．
+						(IH)より$\widehat{\psi}(x/\tau)$は
+						$\psi(x/\tau)$の書き換えであり，また$\widehat{\chi}(x/\tau)$は
+						$\chi(x/\tau)$の書き換えであるから，
+						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\vee \widehat{\psi}(x/\tau)\widehat{\chi}(x/\tau)$は
+						$\vee \psi(x/\tau)\chi(x/\tau)$の書き換えである．．
+						$\vee \widehat{\psi}(x/\tau)\widehat{\chi}(x/\tau)$とは
+						$\widehat{\varphi}(x/\tau)$のことであり，
+						$\vee \psi(x/\tau)\chi(x/\tau)$とは
+						$\varphi(x/\tau)$のことであるから，
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+					
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
+						\begin{align}
+							\exists y \widehat{\psi}
+						\end{align}
+						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えである．
+						(IH)より$\widehat{\psi}(x/\tau)$は
+						$\psi(x/\tau)$の書き換えであるから，
+						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
+						$\exists y \widehat{\psi}(x/\tau)$は
+						$\exists y \psi(x/\tau)$の書き換えである．
+						$\exists y \widehat{\psi}(x/\tau)$とは
+						$\widehat{\varphi}(x/\tau)$のことであり，
+						$\exists y \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから，
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}

@@ -385,57 +385,337 @@
 	\end{metaprf}
 	
 	\begin{screen}
-		\begin{metathm}[部分式の書き換えとの関係]
+		\begin{metathm}[部分式の書き換えとの関係1]
 		\label{metathm:relation_to_subformula_rewriting}
-			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+		\label{metathm:relation_to_subformula_rewriting_1}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			\begin{align}
+				\negation \psi
+			\end{align}
+			なる形であるとする．このとき
 			\begin{description}
-				\item[case1] $\varphi$が$\negation \psi$なる式のとき，
-					$\varphi$の書き換え$\widehat{\varphi}$は$\negation \widehat{\psi}$
-					なる形の式であるが，このとき$\widehat{\psi}$は$\psi$の書き換えである．
-					逆に$\check{\psi}$を$\psi$の書き換えとすれば$\negation \check{\psi}$
-					は$\varphi$の書き換えである．
+				\item[(1)] $\varphi$の書き換え$\widehat{\varphi}$は
+					$\negation \widehat{\psi}$なる形の式であり，
+					この$\widehat{\psi}$は$\psi$の書き換えである．
 					
-				\item[case2] $\varphi$が$\vee \psi \chi$なる式のとき，
-					$\varphi$の書き換え$\widehat{\varphi}$は$\vee \widehat{\psi} \widehat{\chi}$
-					なる形の式であるが，このとき$\widehat{\psi},\widehat{\chi}$はそれぞれ$\psi,\chi$の
-					書き換えである．逆に$\check{\psi},\check{\chi}$をそれぞれ$\psi,\chi$の
-					書き換えとすれば$\vee \check{\psi} \check{\chi}$は$\varphi$の
-					書き換えである．なお，$\psi,\chi$の一方は元から
-					$\lang{\varepsilon}$の式かもしれないが，たとえば$\psi$がそうなら
-					$\widehat{\psi}$も$\check{\psi}$も$\psi$であるとする．
-					
-				\item[case3] $\varphi$が$\exists x \psi$なる式のとき，
-					$\varphi$の書き換え$\widehat{\varphi}$は$\exists x \widehat{\psi}$
-					なる形の式であるが，このとき$\widehat{\psi}$は$\psi$の書き換えである．
-					逆に$\check{\psi}$を$\psi$の書き換えとすれば$\exists x \check{\psi}$
-					は$\varphi$の書き換えである．
+				\item[(2)] $\check{\psi}$を$\psi$の書き換えとすれば
+					$\negation \check{\psi}$は$\varphi$の書き換えである．
 			\end{description}
 		\end{metathm}
 	\end{screen}
 	
 	\begin{metaprf}
-		証明は前定理の説明と大方被ってしまうがもう一度載せて置く．
+		[注] $\varphi$の部分式で原子式であるものは
+		$\psi$の部分式で原子式であり，逆に部分式で原子式であるものは
+		$\varphi$の部分式で原子式であるから，$\varphi$の原子式の部分を
+		全て書き換えることと$\psi$の原子式の部分を全て書き換えることは同じである．
 		\begin{description}
-			\item[case1] $\varphi$の$\in,=$のスコープはいずれも
-				$\psi$の部分原子式であり，逆に$\psi$の$\in,=$のどのスコープも
-				$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
-				全て書き換えることと$\psi$の原子式の部分を全て書き換えることは同じである．
-				従って$\widehat{\psi}$は$\psi$の書き換えであり，$\negation \check{\psi}$は
-				$\varphi$の書き換えである．
-			
-			\item[case2] $\varphi$の$\in,=$のスコープはいずれも
-				$\psi$か$\chi$の一方の部分原子式であり(始切片の一意性
-				のメタ定理\ref{metathm:initial_segment_L}より
-				$\varphi$の真部分式が$\psi$と$\chi$の境を跨ぐことはない)，
-				逆に$\psi,\chi$の$\in,=$のどのスコープも
-				$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
-				全て書き換えることと$\psi$と$\chi$の原子式の部分を全て書き換えることは同じである．
-				従って$\widehat{\psi},\widehat{\chi}$はそれぞれ$\psi,\chi$の書き換えであり，
-				$\negation \check{\psi} \check{\chi}$は$\varphi$の書き換えである．
+			\item[(1)] 
+				\begin{description}
+					\item[step1]
+						$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式は，
+						[注]より次の形で表される：
+						\begin{align}
+							\negation \hat{\psi},
+						\end{align}
+						ここで$\hat{\psi}$とは，$\psi$の部分式で
+						原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに直した式である．
+						ゆえに$\hat{\psi}$は$\psi$の書き換えである．
+						
+					\item[step2]
+						$\widehat{\varphi}$を$\varphi$の書き換えとし，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\widehat{\varphi}$は$\negation \dot{\psi}$
+							なる形で書けて，この$\dot{\psi}$は$\psi$の
+							書き換えである
+						\end{itembox}
+						と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとすれば，$\widehat{\varphi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式は，
+						(IH)より$\dot{\psi}$のその$\forall x \xi$
+						(resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式
+						$\ddot{\psi}$によって
+						\begin{align}
+							\negation \ddot{\psi}
+						\end{align}
+						と表される．(IH)より$\dot{\psi}$は$\psi$の書き換えである
+						から，$\ddot{\psi}$は$\psi$の書き換えである．
+				\end{description}
 				
-			\item[case3] case1 と同じ理由によって，$\widehat{\psi}$は$\psi$の書き換えであり，
-				$\exists x \check{\psi}$は$\varphi$の書き換えである．
-				\QED
+			\item[(2)]		
+				\begin{description}
+					\item[step1]
+						$\psi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた
+						式を$\check{\psi}$とすれば，[注]より
+						\begin{align}
+							\negation \check{\psi}
+						\end{align}
+						は$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式である．
+						従ってこれは$\varphi$の書き換えである．
+								
+					\item[step2]
+						$\widetilde{\psi}$を$\psi$の書き換えとし，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\negation \widetilde{\psi}$は$\varphi$の
+							書き換えである
+						\end{itembox}
+						と仮定する．このとき，$\widetilde{\psi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとし，$\widetilde{\psi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式を
+						$\overline{\psi}$とすれば，
+						\begin{align}
+							\negation \overline{\psi}
+						\end{align}
+						は$\negation \widetilde{\psi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式と同じである．
+						(IH)より$\negation \widetilde{\psi}$は$\varphi$の
+						書き換えであるから，$\negation \overline{\psi}$もまた$\varphi$の
+						書き換えである．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[部分式の書き換えとの関係2]
+		\label{metathm:relation_to_subformula_rewriting_2}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			\begin{align}
+				\vee \psi \xi
+			\end{align}
+			なる形であるとする．
+			\begin{description}
+				\item[(1)] $\varphi$の書き換え$\widehat{\varphi}$は
+					$\vee \widehat{\psi} \widehat{\xi}$なる形の式であり，
+					この$\widehat{\psi},\widehat{\xi}$はそれぞれ$\psi,\xi$の
+					書き換えである．
+					
+				\item[(2)] $\check{\psi},\check{\xi}$をそれぞれ$\psi,\xi$の
+					書き換えとすれば$\vee \check{\psi} \check{\xi}$は$\varphi$の
+					書き換えである．なお，$\psi,\xi$の一方は元から
+					$\lang{\varepsilon}$の式かもしれないが，たとえば$\psi$がそうなら
+					$\widehat{\psi}$も$\check{\psi}$も$\psi$であるとする．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		[注] $\varphi$の部分式で原子式であるものは$\psi$か$\xi$の一方の部分式で原子式であり，
+		(始切片の一意性のメタ定理\ref{metathm:initial_segment_L}より
+		$\varphi$の真部分式が$\psi$と$\xi$の境を跨ぐことはない)，
+		逆に$\psi,\xi$の部分式で原子式であるものは$\varphi$の
+		部分式で原子式であるから，$\varphi$の原子式の部分を
+		全て書き換えることと$\psi,\xi$の原子式の部分を全て書き換えることは同じである．
+		\begin{description}
+			\item[(1)] 
+				\begin{description}
+					\item[step1]
+						$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式は，
+						[注]より次の形で表される：
+						\begin{align}
+							\vee \hat{\psi} \hat{\xi},
+						\end{align}
+						ここで$\hat{\psi},\hat{\xi}$とは，それぞれ$\psi,\xi$の部分式で
+						原子式であるものを全て表\ref{tab:formula_rewriting}の通りに
+						直した式である．ゆえに$\hat{\psi},\hat{\xi}$は
+						それぞれ$\psi,\xi$の書き換えである．
+						
+					\item[step2]
+						$\widehat{\varphi}$を$\varphi$の書き換えとし，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\widehat{\varphi}$は$\negation \dot{\psi} \dot{\xi}$
+							なる形で書けて，この$\dot{\psi},\dot{\xi}$はそれぞれ
+							$\psi,\xi$の書き換えである
+						\end{itembox}
+						と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとすれば，$\widehat{\varphi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式は，
+						(IH)より$\dot{\psi}$或いは$\dot{\xi}$のその$\forall x \xi$
+						(resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式
+						$\ddot{\psi},\ddot{\xi}$によって
+						\begin{align}
+							\vee \ddot{\psi} \ddot{\xi}
+						\end{align}
+						と表される(たとえば$\dot{\xi}$にその$\forall x \xi$
+						(resp. $\exists x \xi$)が現れていなければ
+						$\ddot{\xi}$は$\dot{\xi}$であるとする)．
+						(IH)より$\dot{\psi},\dot{\xi}$はそれぞれ
+						$\psi,\xi$の書き換えであるから，
+						$\ddot{\psi},\ddot{\xi}$はそれぞれ$\psi,\xi$の書き換えである．
+				\end{description}
+				
+			\item[(2)]		
+				\begin{description}
+					\item[step1]
+						$\psi,\xi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた
+						式をそれぞれ$\check{\psi},\check{\xi}$とすれば，[注]より
+						\begin{align}
+							\vee \check{\psi} \check{\xi}
+						\end{align}
+						は$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式である．
+						従ってこれは$\varphi$の書き換えである．
+								
+					\item[step2]
+						$\widetilde{\psi},\widetilde{\xi}$をそれぞれ$\psi,\xi$の
+						書き換えとし，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\vee \widetilde{\psi} \widetilde{\xi}$は$\varphi$の
+							書き換えである
+						\end{itembox}
+						と仮定する．このとき，$\widetilde{\psi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとし，$\widetilde{\psi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式を
+						$\overline{\psi}$とすれば，
+						\begin{align}
+							\vee \overline{\psi} \widetilde{\xi}
+						\end{align}
+						は$\vee \widetilde{\psi} \widetilde{\xi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						(一か所) $\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式と同じである．
+						(IH)より$\vee \widetilde{\psi} \widetilde{\xi}$は$\varphi$の
+						書き換えであるから，$\vee \overline{\psi} \widetilde{\xi}$もまた
+						$\varphi$の書き換えである．$\forall x \xi$ 
+						(resp. $\exists x \xi$)が$\widetilde{\xi}$の部分式であったとしても
+						同様のことが言える．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[部分式の書き換えとの関係3]
+		\label{metathm:relation_to_subformula_rewriting_1}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			\begin{align}
+				\exists x \psi
+			\end{align}
+			なる形であるとする．。
+			\begin{description}
+				\item[(1)] $\varphi$の書き換え$\widehat{\varphi}$は
+					$\exists x \widehat{\psi}$
+					なる形の式であり，この$\widehat{\psi}$は$\psi$の書き換えである．
+			
+				\item[(2)] $\check{\psi}$を$\psi$の書き換えとすれば
+					$\exists x \check{\psi}$は$\varphi$の書き換えである．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		[注] $\varphi$の部分式で原子式であるものは
+		$\psi$の部分式で原子式であり，逆に部分式で原子式であるものは
+		$\varphi$の部分式で原子式であるから，$\varphi$の原子式の部分を
+		全て書き換えることと$\psi$の原子式の部分を全て書き換えることは同じである．
+		\begin{description}
+			\item[(1)] 
+				\begin{description}
+					\item[step1]
+						$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式は，
+						[注]より次の形で表される：
+						\begin{align}
+							\exists x \hat{\psi},
+						\end{align}
+						ここで$\hat{\psi}$とは，$\psi$の部分式で
+						原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに直した式である．
+						ゆえに$\hat{\psi}$は$\psi$の書き換えである．
+						
+					\item[step2]
+						$\widehat{\varphi}$を$\varphi$の書き換えとし，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\widehat{\varphi}$は$\exists x \dot{\psi}$
+							なる形で書けて，この$\dot{\psi}$は$\psi$の
+							書き換えである
+						\end{itembox}
+						と仮定する．このとき，$\widehat{\varphi}$に$\forall z \xi$ 
+						(resp. $\exists z \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$z$への代入に
+						ついて自由であるものとすれば，$\widehat{\varphi}$のその
+						$\forall z \xi$ (resp. $\exists z \xi$)の部分を
+						(一か所) $\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に置き換えた式は，
+						(IH)より$\dot{\psi}$のその$\forall z \xi$
+						(resp. $\exists z \xi$)の部分を
+						(一か所) $\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に置き換えた式
+						$\ddot{\psi}$によって
+						\begin{align}
+							\exists x \ddot{\psi}
+						\end{align}
+						と表される．(IH)より$\dot{\psi}$は$\psi$の書き換えである
+						から，$\ddot{\psi}$は$\psi$の書き換えである．
+				\end{description}
+				
+			\item[(2)]		
+				\begin{description}
+					\item[step1]
+						$\psi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた
+						式を$\check{\psi}$とすれば，[注]より
+						\begin{align}
+							\exists x \check{\psi}
+						\end{align}
+						は$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式である．
+						従ってこれは$\varphi$の書き換えである．
+								
+					\item[step2]
+						$\widetilde{\psi}$を$\psi$の書き換えとし，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\exists x \widetilde{\psi}$は$\varphi$の
+							書き換えである
+						\end{itembox}
+						と仮定する．このとき，$\widetilde{\psi}$に$\forall z \xi$ 
+						(resp. $\exists z \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$z$への代入に
+						ついて自由であるものとし，$\widetilde{\psi}$のその
+						$\forall z \xi$ (resp. $\exists z \xi$)の部分を
+						(一か所) $\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に置き換えた式を
+						$\overline{\psi}$とすれば，
+						\begin{align}
+							\exists x \overline{\psi}
+						\end{align}
+						は$\exists x \widetilde{\psi}$のその
+						$\forall z \xi$ (resp. $\exists z \xi$)の部分を
+						(一か所) $\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に置き換えた式と同じである．
+						(IH)より$\exists x \widetilde{\psi}$は$\varphi$の
+						書き換えであるから，$\exists x \overline{\psi}$もまた$\varphi$の
+						書き換えである．
+						\QED
+				\end{description}
 		\end{description}
 	\end{metaprf}
 	
@@ -513,522 +793,6 @@
 						$\varphi$に自由に現れる変項は$\psi$に自由に現れる$x$以外の
 						変項と一致するが，(IH)よりそれは$\widehat{\psi}$に自由に現れる$x$以外の
 						変項と一致するので，$\widehat{\varphi}$に自由に現れる変項とも一致する．
-						\QED
-				\end{description}
-		\end{description}
-	\end{metaprf}
-	
-	\begin{screen}
-		\begin{metathm}[書き換えへの代入は代入した式の書き換え]
-		\label{metathm:substitution_to_rewritten_formula}
-			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
-			$\varphi$には変項$x$が自由に現れているとし，$\tau$を主要$\varepsilon$項とし，
-			$\widehat{\varphi}$を$\varphi$の書き換えとする．このとき
-			$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
-		\end{metathm}
-	\end{screen}
-	
-	\begin{metaprf}\mbox{}
-		\begin{description}
-			\item[step1] $\varphi$が原子式であるとする．
-				\begin{description}
-					\item[case1] $\varphi$が
-						\begin{align}
-							x = \Set{z}{\psi}
-						\end{align}
-						なる式のとき，$\widehat{\varphi}$は
-						\begin{align}
-							\forall v\, (\, v \in x \lrarrow \psi(z/v)\, )
-						\end{align}
-						なる式である．
-						\begin{itemize}
-							\item $x$と$z$が同じならば$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall v\, (\, v \in \tau \lrarrow \psi(z/v)\, )
-								\end{align}
-								となる．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\tau = \Set{z}{\psi}
-								\end{align}
-								であるから$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$と$z$が違うとき$\widehat{\varphi}(x/\tau)$は，
-								$\psi$に$x$が自由に現れていれば
-								\begin{align}
-									\forall v\, (\, v \in \tau \lrarrow \psi(z/v)(x/\tau)\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$v$とも違うので
-								$\psi(z/v)(x/\tau)$と$\psi(x/\tau)(z/v)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall v\, (\, v \in \tau \lrarrow \psi(x/\tau)(z/v)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\tau = \Set{z}{\psi(x/\tau)}
-								\end{align}
-								であるから，この場合は$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								$\psi$に$x$が自由に現れていない場合，
-								$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall v\, (\, v \in \tau \lrarrow \psi(z/v)\, )
-								\end{align}
-								となるが，$\varphi(x/\tau)$は
-								\begin{align}
-									\tau = \Set{z}{\psi}
-								\end{align}
-								であるからこの場合も$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-						\end{itemize}
-						
-					\item[case2] $\varphi$が
-						\begin{align}
-							a = \Set{z}{\psi}
-						\end{align}
-						なる式のとき($a$と$x$は違う項)，$\widehat{\varphi}$は
-						\begin{align}
-							\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )
-						\end{align}
-						なる式である．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$\psi$に自由に現れている．従って$\widehat{\varphi}(x/\tau)$は
-						\begin{align}
-							\forall v\, (\, v \in a \lrarrow \psi(z/v)(x/\tau)\, )
-						\end{align}
-						となるが，書き換えの変項条件より$x$は$v$とも違うので
-						$\psi(z/v)(x/\tau)$と$\psi(x/\tau)(z/v)$は
-						同じである．従って$\widehat{\varphi}(x/\tau)$は
-						\begin{align}
-							\forall v\, (\, v \in a \lrarrow \psi(x/\tau)(z/v)\, )
-						\end{align}
-						と同じである．他方で$\varphi(x/\tau)$は
-						\begin{align}
-							a = \Set{z}{\psi(x/\tau)}
-						\end{align}
-						であるから$\widehat{\varphi}(x/\tau)$は
-						$\varphi(x/\tau)$の書き換えである．
-					
-					\item[case3] $\varphi$が
-						\begin{align}
-							\Set{y}{\chi} = x
-						\end{align}
-						なる式のとき，$\widehat{\varphi}$は
-						\begin{align}
-							\forall u\, (\, \chi(y/u) \lrarrow u \in x\, )
-						\end{align}
-						なる式である．
-						\begin{itemize}
-							\item $x$と$y$が同じならば$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(y/u) \lrarrow u \in \tau\, )
-								\end{align}
-								となる．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi} = \tau
-								\end{align}
-								であるから$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$と$y$が違うとき$\widehat{\varphi}(x/\tau)$は，
-								$\chi$に$x$が自由に現れていれば
-								\begin{align}
-									\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in \tau\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$u$とも違うので
-								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in \tau\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi(x/\tau)} = \tau
-								\end{align}
-								であるから，この場合は$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								$\chi$に$x$が自由に現れていない場合，
-								$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(y/u) \lrarrow u \in \tau\, )
-								\end{align}
-								となるが，$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi} = \tau
-								\end{align}
-								であるからこの場合も$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-						\end{itemize}
-						
-					\item[case4] $\varphi$が
-						\begin{align}
-							\Set{y}{\chi} = b
-						\end{align}
-						なる式のとき($b$は$x$と違う項)，$\widehat{\varphi}$は
-						\begin{align}
-							\forall u\, (\, \chi(y/u) \lrarrow u \in b\, )
-						\end{align}
-						なる式である．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$\chi$に自由に現れている．従って$\widehat{\varphi}(x/\tau)$は
-						\begin{align}
-							\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in b\, )
-						\end{align}
-						となるが，書き換えの変項条件より$x$は$u$とも違うので
-						$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
-						同じである．従って$\widehat{\varphi}(x/\tau)$は
-						\begin{align}
-							\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in b\, )
-						\end{align}
-						と同じである．他方で$\varphi(x/\tau)$は
-						\begin{align}
-							\Set{y}{\chi(x/\tau)} = b
-						\end{align}
-						であるから$\widehat{\varphi}(x/\tau)$は
-						$\varphi(x/\tau)$の書き換えである．
-					
-					\item[case5] $\varphi$が
-						\begin{align}
-							\Set{y}{\chi} = \Set{z}{\psi}
-						\end{align}
-						なる式のとき，$\widehat{\varphi}$は
-						\begin{align}
-							\forall u\, (\, \chi(y/u) \lrarrow \psi(z/u)\, )
-						\end{align}
-						なる式である．
-						\begin{itemize}
-							\item $x$と$y$が同じならば，$x$は$\Set{y}{\chi}$には自由に
-								現れないので，$x$が$\varphi$に自由に現れている以上
-								$\psi$に自由に現れることになる．すなわち$x$と$z$は違う項である．
-								このとき$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(y/u) \lrarrow \psi(z/u)(x/\tau)\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$u$とも違うので
-								$\psi(z/u)(x/\tau)$と$\psi(x/\tau)(z/u)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(y/u) \lrarrow \psi(x/\tau)(z/u)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi} = \Set{z}{\psi(x/\tau)}
-								\end{align}
-								であるから$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$と$z$が同じならば，$x$は$\Set{z}{\psi}$には自由に
-								現れないので，$x$が$\varphi$に自由に現れている以上
-								$\chi$に自由に現れることになる．すなわち$x$と$y$は違う項である．
-								このとき$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow \psi(z/u)\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$u$とも違うので
-								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow \psi(z/u)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi(x/\tau)} = \Set{z}{\psi}
-								\end{align}
-								であるから$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-							
-							\item $x$が$y$とも$z$とも違うならば，$x$は$\chi$か$\psi$の
-								少なくとも一方には自由に現れている．
-								このとき$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(y/u)(x/\tau) \lrarrow \psi(z/u)(x/\tau)\, )
-								\end{align}
-								となるが，書き換えの変項条件より
-								$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\forall u\, (\, \chi(x/\tau)(y/u) \lrarrow \psi(x/\tau)(z/u)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi(x/\tau)} = \Set{z}{\psi(x/\tau)}
-								\end{align}
-								であるから$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-						\end{itemize}
-						
-					\item[case6] $\varphi$が
-						\begin{align}
-							x \in \Set{z}{\psi}
-						\end{align}
-						なる式のとき，必要ならば$\psi$の変項の
-						名前替えをしたものを$\widetilde{\psi}$とする．ただし
-						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
-						$\widehat{\varphi}$は$\widetilde{\psi}(z/x)$なる式であるから
-						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/x)(x/\tau)$
-						となる．
-						\begin{itemize}
-							\item $x$と$z$が同じならば$\psi$の変項の名前替えは必要ない．
-								$\psi(z/x)$とは$\psi$そのものであるから，
-								$\psi(z/x)(x/\tau)$は$\psi(x/\tau)$となる．
-								他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\tau \in \Set{z}{\psi}
-								\end{align}
-								となるから，$\psi(z/\tau)$は$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$と$z$が違うとき，$\widetilde{\psi}(z/x)(x/\tau)$は
-								$\widetilde{\psi}(x/\tau)(z/\tau)$である．他方で
-								$\varphi(x/\tau)$は
-								\begin{align}
-									\tau \in \Set{z}{\psi(x/\tau)}
-								\end{align}
-								となるから，$\psi(x/\tau)(z/\tau)$は$\varphi(x/\tau)$の書き換えとなる．
-								$\psi(x/\tau)(z/\tau)$と$\widetilde{\psi}(x/\tau)(z/\tau)$は，
-								もし違う式でも$\forall x$か$\exists x$から始まる或る部分式が違うだけであるから，
-								$\widetilde{\psi}(x/\tau)(z/\tau)$もまた$\varphi(x/\tau)$の書き換えである．
-						\end{itemize}
-						
-					\item[case7] $\varphi$が
-						\begin{align}
-							a \in \Set{z}{\psi}
-						\end{align}
-						なる式のとき($a$は$x$とは違う項)，必要ならば$\psi$の変項の
-						名前替えをしたものを$\widetilde{\psi}$とする．ただし
-						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
-						$\widehat{\varphi}$は$\widetilde{\psi}(z/a)$なる式であるから
-						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/a)(x/\tau)$
-						となる．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$\psi$に自由に現れているから$x$は$z$とも違う変項である．
-						従って$\widetilde{\psi}(z/a)(x/\tau)$は
-						$\widetilde{\psi}(x/\tau)(z/a)$である．他方で
-						$\varphi(x/\tau)$は
-						\begin{align}
-							a \in \Set{z}{\psi(x/\tau)}
-						\end{align}
-						となるから，$\widetilde{\psi}(x/\tau)(z/a)$は$\varphi(x/\tau)$の書き換えとなる．
-					
-					\item[case8] $\varphi$が
-						\begin{align}
-							\Set{y}{\chi} \in x
-						\end{align}
-						なる式のとき，$\widehat{\varphi}$は
-						\begin{align}
-							\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in x\, )
-						\end{align}
-						なる式である．
-						\begin{itemize}
-							\item $x$と$y$が同じならば$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in \tau\, )
-								\end{align}
-								となる．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi} \in \tau
-								\end{align}
-								であるから$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$と$y$が違うとき$\widehat{\varphi}(x/\tau)$は，
-								$x$が$\chi$に自由に現れているならば
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge s \in \tau\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$u$とも違うので
-								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge s \in \tau\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi(x/\tau)} \in \tau
-								\end{align}
-								であるから，この場合は$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								$x$が$\chi$に自由に現れていない場合，
-								$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in \tau\, )
-								\end{align}
-								となり，$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi} \in \tau
-								\end{align}
-								であるからこの場合も$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-						\end{itemize}
-					
-					\item[case9] $\varphi$が
-						\begin{align}
-							\Set{y}{\chi} \in b
-						\end{align}
-						なる式のとき($b$は$x$と違う項)，$\widehat{\varphi}$は
-						\begin{align}
-							\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )
-						\end{align}
-						なる式である．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$\chi$に自由に現れている．従って$\widehat{\varphi}(x/\tau)$は
-						\begin{align}
-							\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge s \in b\, )
-						\end{align}
-						となるが，書き換えの変項条件より$x$は$u$とも違うので
-						$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
-						同じである．従って$\widehat{\varphi}(x/\tau)$は
-						\begin{align}
-							\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )
-						\end{align}
-						と同じである．他方で$\varphi(x/\tau)$は
-						\begin{align}
-							\Set{y}{\chi(x/\tau)} \in b
-						\end{align}
-						であるから，$\widehat{\varphi}(x/\tau)$は
-						$\varphi(x/\tau)$の書き換えである．
-						
-					\item[case10] $\varphi$が
-						\begin{align}
-							\Set{y}{\chi} \in \Set{z}{\psi}
-						\end{align}
-						なる式のとき，$\widehat{\varphi}$は
-						\begin{align}
-							\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )
-						\end{align}
-						なる式である．
-						\begin{itemize}
-							\item $x$と$y$が同じならば，$x$は$\Set{y}{\chi}$には自由に
-								現れないので，$x$が$\varphi$に自由に現れている以上
-								$\psi$に自由に現れることになる．すなわち$x$と$z$は違う項である．
-								このとき$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)(x/\tau)\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$s$とも違うので
-								$\psi(z/s)(x/\tau)$と$\psi(x/\tau)(z/s)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u) \lrarrow u \in s\, ) \wedge \psi(x/\tau)(z/s)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi} \in \Set{z}{\psi(x/\tau)}
-								\end{align}
-								であるから，$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$と$z$が同じならば，$x$は$\Set{z}{\psi}$には自由に
-								現れないので，$x$が$\varphi$に自由に現れている以上
-								$\chi$に自由に現れることになる．すなわち$x$と$y$は違う項である．
-								このとき$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )
-								\end{align}
-								となるが，書き換えの変項条件より$x$は$s$とも違うので
-								$\chi(y/u)(x/\tau)$と$\chi(x/\tau)(y/u)$は
-								同じである．従って$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi(x/\tau)} \in \Set{z}{\psi}
-								\end{align}
-								であるから，$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-								
-							\item $x$が$y$とも$z$とも違うならば，$x$は$\chi$か$\psi$の
-								少なくとも一方にはには自由に現れている．
-								このとき$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(y/u)(x/\tau) \lrarrow u \in s\, ) \wedge \psi(z/s)(x/\tau)\, )
-								\end{align}
-								となるが，書き換えの変項条件より
-								$\widehat{\varphi}(x/\tau)$は
-								\begin{align}
-									\exists s\, (\, \forall u\, (\, \chi(x/\tau)(y/u) \lrarrow u \in s\, ) \wedge \psi(x/\tau)(z/s)\, )
-								\end{align}
-								と同じである．他方で$\varphi(x/\tau)$は
-								\begin{align}
-									\Set{y}{\chi(x/\tau)} \in \Set{z}{\psi(x/\tau)}
-								\end{align}
-								であるから，$\widehat{\varphi}(x/\tau)$は
-								$\varphi(x/\tau)$の書き換えである．
-						\end{itemize}
-				\end{description}
-			
-			\item[step2] $\varphi$が一般の式であるとき，
-				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式$\psi$に対して，
-					$\psi$が$\lang{\varepsilon}$の式でなければ，
-					$\widehat{\psi}$を$\psi$の書き換えとすれば
-					$\widehat{\psi}(x/\tau)$は$\psi(x/\tau)$の書き換えである．
-				\end{itembox}
-				と仮定する
-				\footnote{
-					メタ定理\ref{metathm:variables_unchanged_after_rewriting}より
-					$\psi$に$x$が自由に現れていなければ$\widehat{\psi}$にも
-					$x$は自由に現れないので，$\psi$に$x$が自由に現れていない場合は
-					$\psi(x/\tau)$は$\psi$であり，$\widehat{\psi}(x/\tau)$は
-					$\widehat{\psi}$である．
-				}．
-				
-				\begin{description}
-					\item[case1] $\varphi$が
-						\begin{align}
-							\negation \psi
-						\end{align}
-						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
-						\begin{align}
-							\negation \widehat{\psi}
-						\end{align}
-						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えである．
-						(IH)より$\widehat{\psi}(x/\tau)$は
-						$\psi(x/\tau)$の書き換えであるから，
-						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
-						$\negation \widehat{\psi}(x/\tau)$は
-						$\negation \psi(x/\tau)$の書き換えである．
-						$\negation \widehat{\psi}(x/\tau)$とは
-						$\widehat{\varphi}(x/\tau)$のことであり，
-						$\negation \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから，
-						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
-					
-					\item[case2] $\varphi$が
-						\begin{align}
-							\vee \psi \chi
-						\end{align}
-						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
-						\begin{align}
-							\vee \widehat{\psi} \widehat{\chi}
-						\end{align}
-						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えであり，
-						$\widehat{\chi}$は$\chi$の書き換えである．
-						(IH)より$\widehat{\psi}(x/\tau)$は
-						$\psi(x/\tau)$の書き換えであり，また$\widehat{\chi}(x/\tau)$は
-						$\chi(x/\tau)$の書き換えであるから，
-						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
-						$\vee \widehat{\psi}(x/\tau)\widehat{\chi}(x/\tau)$は
-						$\vee \psi(x/\tau)\chi(x/\tau)$の書き換えである．．
-						$\vee \widehat{\psi}(x/\tau)\widehat{\chi}(x/\tau)$とは
-						$\widehat{\varphi}(x/\tau)$のことであり，
-						$\vee \psi(x/\tau)\chi(x/\tau)$とは
-						$\varphi(x/\tau)$のことであるから，
-						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
-					
-					\item[case3] $\varphi$が
-						\begin{align}
-							\exists x \psi
-						\end{align}
-						なる式である場合，メタ定理\ref{metathm:relation_to_subformula_rewriting}より$\widehat{\varphi}$は
-						\begin{align}
-							\exists y \widehat{\psi}
-						\end{align}
-						なる形で書けて，$\widehat{\psi}$は$\psi$の書き換えである．
-						(IH)より$\widehat{\psi}(x/\tau)$は
-						$\psi(x/\tau)$の書き換えであるから，
-						再びメタ定理\ref{metathm:relation_to_subformula_rewriting}より
-						$\exists y \widehat{\psi}(x/\tau)$は
-						$\exists y \psi(x/\tau)$の書き換えである．
-						$\exists y \widehat{\psi}(x/\tau)$とは
-						$\widehat{\varphi}(x/\tau)$のことであり，
-						$\exists y \psi(x/\tau)$とは$\varphi(x/\tau)$のことであるから，
-						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
 						\QED
 				\end{description}
 		\end{description}
