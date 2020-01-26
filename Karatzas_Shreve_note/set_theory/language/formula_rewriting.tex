@@ -130,91 +130,6 @@
 			とするということである．
 	\end{itemize}
 	
-	ここで「部分式を取り替えても式である」ということを示しておく．
-	
-	\begin{screen}
-		\begin{metathm}[部分式を取り替えても式]
-		\label{metathm:replace_subformula_with_some_formula}
-			$\varphi$を$\mathcal{L}$の式とし，$\psi$を$\varphi$の部分式
-			(定義\ref{metadfn:L_subformula})とし，$\chi$を$\mathcal{L}$の式とする．
-			このとき，$\varphi$のその$\psi$の部分(一か所)を$\chi$に置き換えて得られる記号列
-			$\widetilde{\varphi}$は$\mathcal{L}$の式である．
-			また$\varphi$と$\chi$が$\lang{\in}$の式ならば$\widetilde{\varphi}$も
-			$\lang{\in}$の式であるし，$\varphi$と$\chi$が$\lang{\varepsilon}$の式ならば
-			$\widetilde{\varphi}$も$\lang{\varepsilon}$の式である．
-		\end{metathm}
-	\end{screen}
-	
-	\begin{metaprf} $\varphi$と$\chi$が$\lang{\in}$或いは$\lang{\varepsilon}$の式の場合は，
-		下の証明の「$\mathcal{L}$」の部分を「$\lang{\in}$」或いは「$\lang{\varepsilon}$」と
-		読み替えればよい．
-		\begin{description}
-			\item[step1] $\varphi$が原子式である場合，$\psi$とは$\varphi$自身のことである．
-				従って$\widetilde{\varphi}$は$\chi$となり，これは$\mathcal{L}$の式である．
-				
-			\item[step2] $\varphi$が原子式でないとき，
-				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式に対して，その部分式を一か所$\mathcal{L}$の
-					他の式に置き換えて得られる記号列は$\mathcal{L}$の式である
-				\end{itembox}
-				と仮定する．このとき
-				\begin{description}
-					\item[case1] $\varphi$が
-						\begin{align}
-							\negation \xi
-						\end{align}
-						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$の部分式である．
-						前者の場合は$\widetilde{\varphi}$は$\chi$となる．
-						後者の場合は，$\xi$のその$\psi$の部分を$\chi$に置き換えた記号列
-						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
-						$\widetilde{\varphi}$は
-						\begin{align}
-							\negation \widetilde{\xi}
-						\end{align}
-						なる記号列となる．ゆえにいずれの場合も$\widetilde{\varphi}$は
-						$\mathcal{L}$の式である．
-					
-					\item[case2] $\varphi$が
-						\begin{align}
-							\vee \xi \zeta
-						\end{align}
-						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$或いは
-						$\zeta$の部分式である．
-						前者の場合は$\widetilde{\varphi}$は$\chi$となる．
-						後者の場合は，その$\psi$が$\xi$に現れているとして，
-						$\xi$のその$\psi$の部分を$\chi$に置き換えた記号列
-						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
-						$\widetilde{\varphi}$は
-						\begin{align}
-							\vee \widetilde{\xi} \zeta
-						\end{align}
-						なる記号列となる．その$\psi$が$\zeta$に現れていれば
-						$\widetilde{\varphi}$は
-						\begin{align}
-							\vee \xi \widetilde{\zeta}
-						\end{align}
-						なる記号列となる．ゆえにいずれの場合も$\widetilde{\varphi}$は
-						$\mathcal{L}$の式である．
-						
-					\item[case3] $\varphi$が
-						\begin{align}
-							\exists x \xi
-						\end{align}
-						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$の部分式である．
-						前者の場合は$\widetilde{\varphi}$は$\chi$となる．
-						後者の場合は，$\xi$のその$\psi$の部分を$\chi$に置き換えた記号列
-						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
-						$\widetilde{\varphi}$は
-						\begin{align}
-							\exists x \widetilde{\xi}
-						\end{align}
-						なる記号列となる．ゆえにいずれの場合も$\widetilde{\varphi}$は
-						$\mathcal{L}$の式である．
-						\QED
-				\end{description}
-		\end{description}
-	\end{metaprf}
-	
 	\begin{screen}
 		\begin{metadfn}[式の書き換え]
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
@@ -258,8 +173,8 @@
 					の部分を(一か所)$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)
 					に置き換えた式に対してXが言える．
 			\end{itemize}
-			ならば，$\lang{\varepsilon}$の式ではない$\mathcal{L}$の任意の式に対して
-			Xが言える．
+			ならば，$\lang{\varepsilon}$の式ではない$\mathcal{L}$の任意の式の
+			全ての書き換えに対してXが言える．
 		\end{metaaxm}
 	\end{screen}
 	
@@ -719,7 +634,7 @@
 	\end{metaprf}
 	
 	\begin{screen}
-		\begin{metathm}[書き換え後も自由な変項は増減しない]
+		\begin{metathm}[書き換えによって自由な変項は増減しない]
 		\label{metathm:variables_unchanged_after_rewriting}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
 			この書き換えを$\widehat{\varphi}$とする．このとき
@@ -731,68 +646,107 @@
 	
 	\begin{metaprf}\mbox{}
 		\begin{description}
-			\item[step1] $\varphi$が原子式であるときは，書き換え時の変項条件より
-				$\varphi$と$\widehat{\varphi}$に現れる変項は一致する．
+			\item[step1] $\widehat{\varphi}$が$\varphi$の部分式で原子式であるものを全て
+				表\ref{tab:formula_rewriting}の通りに直した式であるとき，
+				$\varphi$と$\widehat{\varphi}$に自由に現れる変項が一致することを示す．
+				\begin{description}
+					\item[case1] $\varphi$が原子式であるとき
+						表\ref{tab:formula_rewriting}の通り
+						$\varphi$と$\widehat{\varphi}$に自由に現れる変項は一致する．
+						表\ref{tab:formula_rewriting}の(4)の
+						\begin{align}
+							a \in \Set{z}{\psi}
+						\end{align}
+						の書き換えでは$\psi$の部分式を取り替えることもあるが
+						(取り替えた後の式を$\widetilde{\psi}$とする)，
+						その部分式と代替の式は自由に現れる変項が一致しているので，
+						メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+						$\psi$と$\widetilde{\psi}$に自由に現れる変項は一致する．
+						ゆえに$a$は$\widetilde{\psi}$の中で$z$への代入について自由なので，
+						$a \in \Set{z}{\psi}$と$\psi(z/a)$に自由に現れる
+						変項は一致する．
+						
+					\item[case2] $\varphi$が原子式でないとき，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\varphi$の任意の真部分式$\psi$に対し，その書き換えを
+							$\widehat{\psi}$とすれば($\psi$が$\lang{\varepsilon}$の
+							式ならば$\widehat{\psi}$は$\psi$とする)，
+							$\psi$と$\widehat{\psi}$に自由に現れる変項は一致する
+						\end{itembox}
+						と仮定する．このとき
+						\begin{description}
+							\item[case1] $\varphi$が
+								\begin{align}
+									\negation \psi
+								\end{align}
+								なる式の場合，メタ定理
+								\ref{metathm:relation_to_subformula_rewriting_1}より
+								$\widehat{\varphi}$は
+								\begin{align}
+									\negation \widehat{\psi}
+								\end{align}
+								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである．
+								$\varphi$に自由に現れる変項は$\psi$に自由に現れる変項と
+								一致するが，(IH)よりそれは$\widehat{\psi}$に自由に現れる
+								変項と一致するので，$\widehat{\varphi}$に自由に現れる変項
+								とも一致する．
+						
+							\item[case2] $\varphi$が
+								\begin{align}
+									\vee \psi \chi
+								\end{align}
+								なる式の場合，メタ定理
+								\ref{metathm:relation_to_subformula_rewriting_2}より
+								$\widehat{\varphi}$は
+								\begin{align}
+									\vee \widehat{\psi} \widehat{\chi}
+								\end{align}
+								なる形の式であり，$\widehat{\psi},\widehat{\chi}$は
+								それぞれ$\psi,\chi$の書き換えである($\psi,\chi$の一方は
+								元から$\lang{\varepsilon}$の式かもしれないが，たとえば
+								$\psi$がそうなら$\widehat{\psi}$は$\psi$であるとする)．
+								$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる
+								変項と一致するが，(IH)よりそれは
+								$\widehat{\psi},\widehat{\chi}$に自由に現れる
+								変項と一致するので，$\widehat{\varphi}$に自由に現れる
+								変項とも一致する．
+					
+							\item[case3] $\varphi$が
+								\begin{align}
+									\exists x \psi
+								\end{align}
+								なる式の場合，メタ定理
+								\ref{metathm:relation_to_subformula_rewriting_3}より
+								$\widehat{\varphi}$は
+								\begin{align}
+									\exists x \widehat{\psi}
+								\end{align}
+								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである．
+								$\varphi$に自由に現れる変項は$\psi$に自由に現れる
+								$x$以外の変項と一致するが，(IH)よりそれは$\widehat{\psi}$
+								に自由に現れる$x$以外の変項と一致するので，
+								$\widehat{\varphi}$に自由に現れる変項とも一致する．
+								\QED
+						\end{description}
+				\end{description}
 			
 			\item[step2]
-				$\varphi$が一般の式であるとき
+				$\widehat{\varphi}$を$\varphi$の書き換えとするとき，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式$\psi$に対し，その書き換えを
-					$\widehat{\psi}$とすれば($\psi$が$\lang{\varepsilon}$の式ならば
-					$\widehat{\psi}$は$\psi$とする)，
-					$\psi$に自由に現れる変項は$\widehat{\psi}$にも自由に現れ，
-					逆に$\widehat{\psi}$に自由に現れる変項は$\psi$にも自由に現れる．
+					$\varphi$と$\widehat{\varphi}$に自由に現れる変項は一致する
 				\end{itembox}
-				と仮定する．すると
-				\begin{description}
-					\item[case1] $\varphi$が
-						\begin{align}
-							\negation \psi
-						\end{align}
-						なる式の場合，$\widehat{\varphi}$は
-						\begin{align}
-							\negation \widehat{\psi}
-						\end{align}
-						なる形の式であるが，
-						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
-						$\widehat{\psi}$は$\psi$の書き換えである．
-						$\varphi$に自由に現れる変項は$\psi$に自由に現れる変項と一致するが，
-						(IH)よりそれは$\widehat{\psi}$に自由に現れる変項と一致するので，
-						$\widehat{\varphi}$に自由に現れる変項とも一致する．
-						
-					\item[case2] $\varphi$が
-						\begin{align}
-							\vee \psi \chi
-						\end{align}
-						なる式の場合，$\widehat{\varphi}$は
-						\begin{align}
-							\vee \widehat{\psi} \widehat{\chi}
-						\end{align}
-						なる形の式であるが，
-						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
-						$\widehat{\psi},\widehat{\chi}$はそれぞれ$\psi,\chi$の書き換えである
-						($\psi,\chi$の一方は元から$\lang{\varepsilon}$の式かもしれないが，
-						たとえば$\psi$がそうなら$\widehat{\psi}$も$\check{\psi}$も$\psi$
-						であるとする)．
-						$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる変項と
-						一致するが，(IH)よりそれは$\widehat{\psi},\widehat{\chi}$に自由に現れる
-						変項と一致するので，$\widehat{\varphi}$に自由に現れる変項とも一致する．
-					
-					\item[case3] $\varphi$が
-						\begin{align}
-							\exists x \psi
-						\end{align}
-						なる式の場合，$\widehat{\varphi}$は
-						\begin{align}
-							\exists x \widehat{\psi}
-						\end{align}
-						なる形の式であるが，
-						メタ定理\ref{metathm:relation_to_subformula_rewriting}より
-						$\widehat{\psi}$は$\psi$の書き換えである．
-						$\varphi$に自由に現れる変項は$\psi$に自由に現れる$x$以外の
-						変項と一致するが，(IH)よりそれは$\widehat{\psi}$に自由に現れる$x$以外の
-						変項と一致するので，$\widehat{\varphi}$に自由に現れる変項とも一致する．
-						\QED
-				\end{description}
+				と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+				(resp. $\exists x \xi$)の形の部分式が現れているとし，
+				$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入について
+				自由であるものとすれば，$\forall x \xi$ (resp. $\exists x \xi$)と
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に自由に現れる変項は
+				一致する．従って，$\widehat{\varphi}$のその$\forall x \xi$ 
+				(resp. $\exists x \xi$)の部分を(一か所)
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に置き換えた式
+				を$\widetilde{\varphi}$とすれば，
+				メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+				$\widetilde{\varphi}$と$\widehat{\varphi}$に自由に現れる変項は一致する．
+				すなわち$\widetilde{\varphi}$と$\varphi$に自由に現れる変項も一致する．
+				\QED
 		\end{description}
 	\end{metaprf}
