@@ -528,7 +528,7 @@
 	
 	\begin{screen}
 		\begin{metathm}[部分式の書き換えとの関係3]
-		\label{metathm:relation_to_subformula_rewriting_1}
+		\label{metathm:relation_to_subformula_rewriting_3}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
 			\begin{align}
 				\exists x \psi
@@ -638,8 +638,8 @@
 		\label{metathm:variables_unchanged_after_rewriting}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
 			この書き換えを$\widehat{\varphi}$とする．このとき
-			$\varphi$に自由に現れる変項は$\widehat{\varphi}$にも自由に現れ，
-			逆に$\widehat{\varphi}$に自由に現れる変項は$\varphi$にも自由に現れる．
+			$\varphi$に自由に現れる変項は全て$\widehat{\varphi}$にも自由に現れ，
+			逆に$\widehat{\varphi}$に自由に現れる変項も全て$\varphi$にも自由に現れる．
 			特に，$\varphi$が文ならば$\widehat{\varphi}$も文である．
 		\end{metathm}
 	\end{screen}
@@ -650,26 +650,32 @@
 				表\ref{tab:formula_rewriting}の通りに直した式であるとき，
 				$\varphi$と$\widehat{\varphi}$に自由に現れる変項が一致することを示す．
 				\begin{description}
-					\item[case1] $\varphi$が原子式であるとき
+					\item[case1] $\varphi$が原子式であるときは
 						表\ref{tab:formula_rewriting}の通り
 						$\varphi$と$\widehat{\varphi}$に自由に現れる変項は一致する．
-						表\ref{tab:formula_rewriting}の(4)の
+						一つ見ておくと，表\ref{tab:formula_rewriting}の(4)の
 						\begin{align}
 							a \in \Set{z}{\psi}
 						\end{align}
 						の書き換えでは$\psi$の部分式を取り替えることもあるが
 						(取り替えた後の式を$\widetilde{\psi}$とする)，
-						その部分式と代替の式は自由に現れる変項が一致しているので，
+						$\psi$のその部分式と代替の式は自由に現れる変項が一致しているので，
 						メタ定理\ref{metathm:replace_subformula_with_some_formula}より
-						$\psi$と$\widetilde{\psi}$に自由に現れる変項は一致する．
-						ゆえに$a$は$\widetilde{\psi}$の中で$z$への代入について自由なので，
-						$a \in \Set{z}{\psi}$と$\psi(z/a)$に自由に現れる
-						変項は一致する．
+						$\psi$と$\widetilde{\psi}$に自由に現れる変項は一致する
+						($\psi$の中での$z$の自由な出現が$\forall a,\exists a$の
+						多層構造の奥にある場合には部分式の取り替えは複数回実行することになる
+						が，メタ定理\ref{metathm:replace_subformula_with_some_formula}
+						をその回数分適用すれば良い)．
+						$a$は$\widetilde{\psi}$の中で$z$への代入について自由なので，
+						$a \in \Set{z}{\psi}$と$\tilde{\psi}(z/a)$に自由に現れる
+						変項も一致する．
 						
 					\item[case2] $\varphi$が原子式でないとき，
 						\begin{itembox}[l]{IH (帰納法の仮定)}
-							$\varphi$の任意の真部分式$\psi$に対し，その書き換えを
-							$\widehat{\psi}$とすれば($\psi$が$\lang{\varepsilon}$の
+							$\varphi$の任意の真部分式$\psi$に対し，$\widehat{\psi}$が
+							$\psi$の部分式で原子式であるものを全て
+							表\ref{tab:formula_rewriting}の通りに直した式
+							であるとすれば($\psi$が$\lang{\varepsilon}$の
 							式ならば$\widehat{\psi}$は$\psi$とする)，
 							$\psi$と$\widehat{\psi}$に自由に現れる変項は一致する
 						\end{itembox}
@@ -685,7 +691,12 @@
 								\begin{align}
 									\negation \widehat{\psi}
 								\end{align}
-								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである．
+								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである
+								(いま$\widehat{\varphi}$は$\varphi$の部分式で原子式で
+								あるものを全て表\ref{tab:formula_rewriting}の通りに直した
+								式なので，$\widehat{\psi}$は$\psi$の部分式で原子式である
+								ものを全て表\ref{tab:formula_rewriting}の通りに直した式
+								である)．
 								$\varphi$に自由に現れる変項は$\psi$に自由に現れる変項と
 								一致するが，(IH)よりそれは$\widehat{\psi}$に自由に現れる
 								変項と一致するので，$\widehat{\varphi}$に自由に現れる変項
@@ -702,8 +713,14 @@
 									\vee \widehat{\psi} \widehat{\chi}
 								\end{align}
 								なる形の式であり，$\widehat{\psi},\widehat{\chi}$は
-								それぞれ$\psi,\chi$の書き換えである($\psi,\chi$の一方は
-								元から$\lang{\varepsilon}$の式かもしれないが，たとえば
+								それぞれ$\psi,\chi$の書き換えである(いま
+								$\widehat{\varphi}$は$\varphi$の部分式で原子式で
+								あるものを全て表\ref{tab:formula_rewriting}の通りに直した
+								式なので，$\widehat{\psi},\widehat{\chi}$は
+								$\psi,\chi$の部分式で原子式である
+								ものを全て表\ref{tab:formula_rewriting}の通りに直した式
+								である．ただし，$\psi,\chi$の一方は
+								元から$\lang{\varepsilon}$の式かもしれない．たとえば
 								$\psi$がそうなら$\widehat{\psi}$は$\psi$であるとする)．
 								$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる
 								変項と一致するが，(IH)よりそれは
@@ -721,7 +738,12 @@
 								\begin{align}
 									\exists x \widehat{\psi}
 								\end{align}
-								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである．
+								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである
+								(いま$\widehat{\varphi}$は$\varphi$の部分式で原子式で
+								あるものを全て表\ref{tab:formula_rewriting}の通りに直した
+								式なので，$\widehat{\psi}$は$\psi$の部分式で原子式である
+								ものを全て表\ref{tab:formula_rewriting}の通りに直した式
+								である)．
 								$\varphi$に自由に現れる変項は$\psi$に自由に現れる
 								$x$以外の変項と一致するが，(IH)よりそれは$\widehat{\psi}$
 								に自由に現れる$x$以外の変項と一致するので，
