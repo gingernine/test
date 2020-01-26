@@ -225,18 +225,43 @@
 					$\varphi$の書き換えである．
 					
 				\item $\widehat{\varphi}$を$\varphi$の書き換えとし，$\widehat{\varphi}$に
-					$\forall x \xi$の形の部分式\footnotemark
+					$\forall x \xi$ (resp. $\exists x \xi$)の形の部分式\footnotemark
 					が現れているとし，$y$を$\xi$に自由に現れない変項で
 					$\xi$の中で$x$への代入について自由であるものとするとき，
-					$\widehat{\varphi}$のその$\forall x \xi$の部分を(一か所)
-					$\forall y \xi(x/y)$に置き換えた式は$\varphi$の書き換えである．
+					$\widehat{\varphi}$のその$\forall x \xi$ (resp. $\exists x \xi$)
+					の部分を(一か所) $\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)
+					に置き換えた式は$\varphi$の書き換えである．
 			\end{enumerate}
 		\end{metadfn}
 	\end{screen}
 	
 	\footnotetext{
-		第\ref{sec:restriction_of_formulas}節の約束により，$\chi$には$x$が自由に現れている．
+		第\ref{sec:restriction_of_formulas}節の約束により，$\xi$には$x$が自由に現れている．
 	}
+	
+	\begin{screen}
+		\begin{metaaxm}[式の書き換えに関する構造的帰納法の原理]
+			$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式の書き換えに対する言明Xに対し，
+			\begin{itemize}
+				\item $\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式
+					とするとき，$\varphi$の部分式で原子式であるものを全て
+					表\ref{tab:formula_rewriting}の通り
+					に直した式に対してXが言える．
+					
+				\item $\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+					$\widehat{\varphi}$を$\varphi$の書き換えとし，$\widehat{\varphi}$
+					に対してXが言えると仮定する．このとき，$\widehat{\varphi}$に
+					$\forall x \xi$ (resp. $\exists x \xi$)の形の部分式が現れているとし，
+					$y$を$\xi$に自由に現れない変項で
+					$\xi$の中で$x$への代入について自由であるものとすれば，
+					$\widehat{\varphi}$のその$\forall x \xi$ (resp. $\exists x \xi$)
+					の部分を(一か所)$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)
+					に置き換えた式に対してXが言える．
+			\end{itemize}
+			ならば，$\lang{\varepsilon}$の式ではない$\mathcal{L}$の任意の式に対して
+			Xが言える．
+		\end{metaaxm}
+	\end{screen}
 	
 	\begin{screen}
 		\begin{metathm}[書き換えは$\lang{\varepsilon}$の式]
@@ -248,78 +273,114 @@
 	
 	\begin{metaprf}\mbox{}
 		\begin{description}
-			\item[step1] $\varphi$が原子式であるとする．
-				\begin{enumerate}
-					\item $\varphi$を表\ref{tab:formula_rewriting}の通りに書き換えた式は，
+			\item[step1] $\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式
+				とするとき，$\varphi$の部分式で原子式であるものを全て
+				表\ref{tab:formula_rewriting}の通り
+				に直した式が$\lang{\varepsilon}$の式であることを示す．
+				\begin{description}
+					\item[case1] $\varphi$が原子式であるとき，
+						$\varphi$を表\ref{tab:formula_rewriting}の通りに書き換えた式は，
 						表の通り$\lang{\varepsilon}$の式である．
 						ちなみに表\ref{tab:formula_rewriting}の(4)の場合では
 						$\psi$の部分式を取り替えることもあるが，
 						メタ定理\ref{metathm:replace_subformula_with_some_formula}より
 						取り替えた後の式$\widetilde{\psi}$も$\lang{\varepsilon}$の式
-						であり，$\widetilde{\psi}(z/a)$は$\lang{\varepsilon}$の式である．
+						であり，$\widetilde{\psi}(z/a)$は$\lang{\varepsilon}$の式である
+						(メタ定理\ref{metathm:substitutions_into_L_epsilon_formulas})．
 						
-					\item s
-				\end{enumerate}
-				
-			\item[step2] $\varphi$が原子式でないとき，
-				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式は，それが$\lang{\varepsilon}$の式でない場合
-					その書き換えは$\lang{\varepsilon}$の式である．
-				\end{itembox}
-				と仮定する．
-				\begin{description}
-					\item[case1] $\varphi$が
-						\begin{align}
-							\negation \psi
-						\end{align}
-						なる式のとき，$\varphi$の$\in,=$のスコープはいずれも
-						$\psi$の部分原子式であり，逆に$\psi$の$\in,=$のどのスコープも
-						$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
-						全て書き換えるということは$\psi$の原子式の部分を全て書き換える
-						ということになる．$\widehat{\varphi}$は
-						\begin{align}
-							\negation \widehat{\psi}
-						\end{align}
-						なる形の式であるが，$\widehat{\psi}$は$\psi$の書き換えであり，
-						(IH)より$\lang{\varepsilon}$の式である．ゆえに
-						$\widehat{\varphi}$も$\lang{\varepsilon}$の式である．
-						
-					\item[case2] $\varphi$が
-						\begin{align}
-							\vee \psi \chi
-						\end{align}
-						なる式のとき，$\varphi$の$\in,=$のスコープはいずれも
-						$\psi$か$\chi$の一方の部分原子式であり(始切片の一意性
-						のメタ定理\ref{metathm:initial_segment_L}より
-						$\varphi$の真部分式が$\psi$と$\chi$の境を跨ぐことはない)，
-						逆に$\psi,\chi$の$\in,=$のどのスコープも
-						$\varphi$の部分原子式であるから，$\varphi$の原子式の部分を
-						全て書き換えるということは$\psi$と$\chi$の原子式の部分を全て書き換える
-						ということになる．$\widehat{\varphi}$は
-						\begin{align}
-							\vee \widehat{\psi} \widehat{\chi}
-						\end{align}
-						なる形の式であるが，$\widehat{\psi},\widehat{\chi}$はそれぞれ$\psi,\chi$の
-						書き換えであり(もしくは，$\psi,\chi$の一方は元から
-						$\lang{\varepsilon}$の式かもしれない)，(IH)よりどちらも
-						$\lang{\varepsilon}$の式である．ゆえに
-						$\widehat{\varphi}$も$\lang{\varepsilon}$の式である．
-						
-					\item[case3] $\varphi$が
-						\begin{align}
-							\exists x \psi
-						\end{align}
-						なる式のとき，case1 と同様の理由で$\varphi$の原子式の部分を
-						全て書き換えるということは$\psi$の原子式の部分を全て書き換える
-						ということになる．$\widehat{\varphi}$は
-						\begin{align}
-							\exists x \widehat{\psi}
-						\end{align}
-						なる形の式であるが，$\widehat{\psi}$は$\psi$の書き換えであり，
-						(IH)より$\lang{\varepsilon}$の式である．ゆえに
-						$\widehat{\varphi}$も$\lang{\varepsilon}$の式である．
-						\QED
+					\item[case2] $\varphi$が原子式でないとき，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\varphi$の任意の真部分式に対して，
+							その部分式で原子式であるものを全て
+							表\ref{tab:formula_rewriting}の通りに直した式は
+							$\lang{\varepsilon}$の式である
+						\end{itembox}
+						と仮定する．
+						\begin{description}
+							\item[case2-1] $\varphi$が
+								\begin{align}
+									\negation \psi
+								\end{align}
+								なる式であるとき，$\varphi$の部分式で原子式であるものは
+								$\psi$の部分式で原子式であり，逆に$\psi$の部分式で
+								原子式であるものは$\varphi$の部分式で原子式であるから，
+								$\varphi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								次のように表される：
+								\begin{align}
+									\negation \widehat{\psi}
+								\end{align}
+								ここで$\widehat{\psi}$とは，$\psi$の部分式で
+								原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式である．
+								(IH)より$\widehat{\psi}$は$\lang{\varepsilon}$の式
+								なので，$\widehat{\varphi}$も$\lang{\varepsilon}$の式
+								である．
+								
+							\item[case2-2] $\varphi$が
+								\begin{align}
+									\vee \psi \xi
+								\end{align}
+								なる式であるとき，$\varphi$の部分式で原子式であるものは
+								$\psi$か$\xi$の一方の部分式で原子式であり
+								(始切片の一意性のメタ定理
+								\ref{metathm:initial_segment_L}より
+								$\varphi$の真部分式が$\psi$と$\xi$の境を跨ぐことはない)，
+								逆に$\psi,\xi$の部分式で原子式であるものは$\varphi$の
+								部分式で原子式であるから，
+								$\varphi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								次のように表される：
+								\begin{align}
+									\vee \widehat{\psi} \widehat{\xi}
+								\end{align}
+								ここで$\widehat{\psi},\widehat{\xi}$とは，
+								それぞれ$\psi,\xi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式である．
+								(IH)より$\widehat{\psi},\widehat{\xi}$は
+								$\lang{\varepsilon}$の式なので，
+								$\widehat{\varphi}$も$\lang{\varepsilon}$の式
+								である．
+								
+							\item[case2-3] $\varphi$が
+								\begin{align}
+									\exists x \psi
+								\end{align}
+								なる式であるとき，$\varphi$の部分式で原子式であるものは
+								$\psi$の部分式で原子式であり，逆に$\psi$の部分式で
+								原子式であるものは$\varphi$の部分式で原子式であるから，
+								$\varphi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								次のように表される：
+								\begin{align}
+									\exists x \widehat{\psi}
+								\end{align}
+								ここで$\widehat{\psi}$とは，$\psi$の部分式で
+								原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式である．
+								(IH)より$\widehat{\psi}$は$\lang{\varepsilon}$の式
+								なので，$\widehat{\varphi}$も$\lang{\varepsilon}$の式
+								である．
+						\end{description}
 				\end{description}
+				
+			\item[step2] $\widehat{\varphi}$を$\varphi$の書き換えとするとき，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\widehat{\varphi}$は$\lang{\varepsilon}$の式である
+				\end{itembox}
+				と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+				(resp. $\exists x \xi$)の形の部分式が現れているとし，
+				$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入について
+				自由であるものとすれば，
+				メタ定理\ref{metathm:substitutions_into_L_epsilon_formulas}より
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)は
+				$\lang{\varepsilon}$の式である．従って，
+				メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+				$\widehat{\varphi}$のその$\forall x \xi$ (resp. $\exists x \xi$)の
+				部分を(一か所)
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に置き換えた式は
+				$\lang{\varepsilon}$の式である．
+				\QED
 		\end{description}
 	\end{metaprf}
 	
