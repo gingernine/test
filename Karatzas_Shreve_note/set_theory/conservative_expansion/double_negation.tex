@@ -359,6 +359,7 @@
 	\end{sketch}
 	
 \subsection{保存拡大の補題}
+	\begin{comment}
 	\begin{screen}
 		\begin{thm}
 		\label{classic:no_description_2}
@@ -467,6 +468,52 @@
 		が従う．
 		\QED
 	\end{sketch}
+	\end{comment}
+	
+	\begin{screen}
+		\begin{thm}\label{classic:order_exchange_of_conjunction_and_existence}
+			$\varphi$と$\psi$を式とし，$x$を変項とし，$x$が$\psi$に自由に現れているとするとき，
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \varphi \vee \exists x \psi\, ) \rarrow \exists x\, (\, \varphi \vee \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		{\bf HK}の公理(DI1)より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}} \varphi \vee \psi
+		\end{align}
+		となり，{\bf HK}の公理(EI)より
+		\begin{align}
+			\varphi \provable{\mbox{{\bf HK}}} \exists x\, (\, \varphi \vee \psi\, )
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \varphi \rarrow \exists x\, (\, \varphi \vee \psi\, )
+			\label{fom:no_description_4_1}
+		\end{align}
+		が得られる．同様に{\bf HK}の公理(DI2)より始めて
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \psi \rarrow \exists x\, (\, \varphi \vee \psi\, )
+		\end{align}
+		が得られるが，ここで汎化により
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x\, (\, \psi \rarrow \exists x\, (\, \varphi \vee \psi\, )\, )
+		\end{align}
+		が成り立ち，{\bf HK}の公理(EE)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \exists x \psi \rarrow \exists x\, (\, \varphi \vee \psi\, )
+			\label{fom:no_description_4_2}
+		\end{align}
+		が従う．(\refeq{fom:no_description_4_1})と(\refeq{fom:no_description_4_2})と
+		{\bf HK}の公理(DE)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} (\, \varphi \vee \exists x \psi\, ) \rarrow \exists x\, (\, \varphi \vee \psi\, ).
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}\label{classic:no_description_3}
@@ -507,20 +554,43 @@
 	\end{screen}
 	
 	\begin{sketch}
-		定理\ref{classic:no_description_2}より
-		\begin{align}
-			\provable{\mbox{{\bf HK}}} 
-			(\, \exists x \varphi \rarrow \exists y \varphi(x/y)\, )
-			\rarrow \exists y\, (\, \exists x \varphi \rarrow \varphi(x/y)\, )
-		\end{align}
-		が成り立ち，定理\ref{classic:no_description_3}より
+		定理\ref{classic:no_description_3}より
 		\begin{align}
 			\provable{\mbox{{\bf HK}}} 
 			\exists x \varphi \rarrow \exists y \varphi(x/y)
 		\end{align}
-		が成り立つので，三段論法より
+		が成り立ち，含意と否定で表せば
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} 
+			\ \negation \exists x \varphi \vee \exists y \varphi(x/y)
+		\end{align}
+		となる(定理\ref{classic:implication_rewritable_by_disjunction_of_negation})．
+		そして定理\ref{classic:order_exchange_of_conjunction_and_existence}より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} 
+			\exists y(\, \negation \exists x \varphi \vee \varphi(x/y)\, )
+			\label{fom:lemma_for_Henkin_expansion_1}
+		\end{align}
+		が成り立つ．ところで定理\ref{classic:disjunction_of_negation_rewritable_by_implication}
+		(否定と論理和は含意で表せる)より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} (\, \negation \exists x \varphi \vee \varphi(x/y)\, )
+			\rarrow (\, \exists x \varphi \rarrow \varphi(x/y)\, )
+		\end{align}
+		が成り立ち，汎化によって
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall y\, (\, (\, \negation \exists x \varphi \vee \varphi(x/y)\, )
+			\rarrow (\, \exists x \varphi \rarrow \varphi(x/y)\, )\, )
+		\end{align}
+		が従う．そして定理\ref{classic:no_description_1}より
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \exists y\, (\, \negation \exists x \varphi \vee \varphi(x/y)\, )
+			\rarrow \exists y\, (\, \exists x \varphi \rarrow \varphi(x/y)\, )
+		\end{align}
+		となり，(\refeq{fom:lemma_for_Henkin_expansion_1})との三段論法より
 		\begin{align}
 			\provable{\mbox{{\bf HK}}} \exists y\, (\, \exists x \varphi \rarrow \varphi(x/y)\, )
 		\end{align}
 		が出る．
+		\QED
 	\end{sketch}
