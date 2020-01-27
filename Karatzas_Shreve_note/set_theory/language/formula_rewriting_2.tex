@@ -2,11 +2,17 @@
 		\begin{metathm}[書き換えへの代入は代入した式の書き換え]
 		\label{metathm:substitution_to_rewritten_formula}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
-			$\varphi$には変項$x$が自由に現れているとし，$\tau$を主要$\varepsilon$項とし，
-			$\widehat{\varphi}$を$\varphi$の書き換えとする．このとき
-			$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+			$\varphi$には変項$x$が自由に現れているとし，$\tau$を$\lang{\varepsilon}$の項とし，
+			$\widehat{\varphi}$を$\varphi$の書き換えとし，$\tau$は$\varphi$と
+			$\widehat{\varphi}$の中で$x$への代入について自由であるとする\footnotemark
+			．このとき$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
 		\end{metathm}
 	\end{screen}
+	
+	\footnotetext{
+		定理\ref{metathm:variables_unchanged_after_rewriting}より
+		$\widehat{\varphi}$にも$x$は自由に現れている．
+	}
 	
 	証明が長いので第一証明と第二証明に分割する．第一証明では$\widehat{\varphi}$が$\varphi$の
 	部分式で原子式であるものを全て表\ref{tab:formula_rewriting}の通りに直した式である場合を扱い，
@@ -47,7 +53,8 @@
 										\begin{align}
 											\forall v\, (\, v \in \tau \lrarrow \psi(z/v)(x/\tau)\, )
 										\end{align}
-										となるが，書き換えの変項条件より$x$は$v$とも違うので
+										となるが，書き換えの変項条件より$x$は$v$とも違い，
+										代入条件より$\tau$もまた$z$とも$v$とも違うので，
 										$\psi(z/v)(x/\tau)$と$\psi(x/\tau)(z/v)$は
 										同じである．従って$\widehat{\varphi}(x/\tau)$は
 										\begin{align}
@@ -86,12 +93,13 @@
 							\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )
 						\end{align}
 						なる式である．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$z$ではなく，また$\psi$に自由に現れている．従って
+						$x$は$z$ではなく，また$\Set{z}{\psi}$に自由に現れている．従って
 						$\widehat{\varphi}(x/\tau)$は
 						\begin{align}
 							\forall v\, (\, v \in a \lrarrow \psi(z/v)(x/\tau)\, )
 						\end{align}
-						となるが，書き換えの変項条件より$x$は$v$とも違うので
+						となるが，書き換えの変項条件より$x$は$v$とも違い，
+						代入条件より$\tau$もまた$z$とも$v$とも違うので，
 						$\psi(z/v)(x/\tau)$と$\psi(x/\tau)(z/v)$は
 						同じである．従って$\widehat{\varphi}(x/\tau)$は
 						\begin{align}
@@ -133,7 +141,8 @@
 										\begin{align}
 											\forall u\, (\, \xi(y/u)(x/\tau) \lrarrow u \in \tau\, )
 										\end{align}
-										となるが，書き換えの変項条件より$x$は$u$とも違うので
+										となるが，書き換えの変項条件より$x$は$u$とも違い，
+										代入条件より$\tau$もまた$y$とも$u$とも違うので，
 										$\xi(y/u)(x/\tau)$と$\xi(x/\tau)(y/u)$は
 										同じである．従って$\widehat{\varphi}(x/\tau)$は
 										\begin{align}
@@ -171,12 +180,13 @@
 							\forall u\, (\, \xi(y/u) \lrarrow u \in b\, )
 						\end{align}
 						なる式である．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$y$ではなく，また$\xi$に自由に現れている．
+						$x$は$y$ではなく，また$\Set{y}{\xi}$に自由に現れている．
 						従って$\widehat{\varphi}(x/\tau)$は
 						\begin{align}
 							\forall u\, (\, \xi(y/u)(x/\tau) \lrarrow u \in b\, )
 						\end{align}
-						となるが，書き換えの変項条件より$x$は$u$とも違うので
+						となるが，書き換えの変項条件より$x$は$u$とも違い，
+						代入条件より$\tau$もまた$y$とも$u$とも違うので，
 						$\xi(y/u)(x/\tau)$と$\xi(x/\tau)(y/u)$は
 						同じである．従って$\widehat{\varphi}(x/\tau)$は
 						\begin{align}
@@ -208,7 +218,8 @@
 								\begin{align}
 									\forall u\, (\, \xi(y/u) \lrarrow \psi(z/u)(x/\tau)\, )
 								\end{align}
-								となるが，書き換えの変項条件より$x$は$u$とも違うので
+								となるが，書き換えの変項条件より$x$は$u$とも違い，
+								代入条件より$\tau$もまた$z$とも$u$とも違うので，
 								$\psi(z/u)(x/\tau)$と$\psi(x/\tau)(z/u)$は
 								同じである．従って$\widehat{\varphi}(x/\tau)$は
 								\begin{align}
@@ -228,7 +239,8 @@
 								\begin{align}
 									\forall u\, (\, \xi(y/u)(x/\tau) \lrarrow \psi(z/u)\, )
 								\end{align}
-								となるが，書き換えの変項条件より$x$は$u$とも違うので
+								となるが，書き換えの変項条件より$x$は$u$とも違い，
+								代入条件より$\tau$もまた$y$とも$u$とも違うので，
 								$\xi(y/u)(x/\tau)$と$\xi(x/\tau)(y/u)$は
 								同じである．従って$\widehat{\varphi}(x/\tau)$は
 								\begin{align}
@@ -248,7 +260,7 @@
 								\begin{align}
 									\forall u\, (\, \xi(y/u)(x/\tau) \lrarrow \psi(z/u)(x/\tau)\, )
 								\end{align}
-								となるが，書き換えの変項条件より
+								となるが，書き換えの変項条件および代入条件より
 								$\widehat{\varphi}(x/\tau)$は
 								\begin{align}
 									\forall u\, (\, \xi(x/\tau)(y/u) \lrarrow \psi(x/\tau)(z/u)\, )
@@ -274,6 +286,8 @@
 						\begin{itemize}
 							\item $x$と$z$が同じであるとする．
 								このときは$\psi$の変項の名前替えは必要ない．
+								$\widehat{\varphi}$とは$\psi$そのものであり，
+								$\tau$は$\psi$の中で$z$への代入について自由である．
 								$\psi(z/x)$とは$\psi$そのものであるから，
 								$\psi(z/x)(x/\tau)$は$\psi(z/\tau)$となる．
 								他方で$\varphi(x/\tau)$は
