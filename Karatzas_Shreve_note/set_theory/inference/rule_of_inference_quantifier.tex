@@ -371,7 +371,7 @@
 			\begin{align}
 				\vdash \varphi \lrarrow \widehat{\varphi}
 			\end{align}
-			が成り立つ．$\forall x \psi$ではなく$\exists x \psi$であったとしても同じことが成り立つ．
+			が成り立つ．$\forall x \psi$ではなく$\exists x \psi$であったとしても同様のことが成り立つ．
 		\end{logicalthm}
 	\end{screen}
 	
@@ -420,16 +420,15 @@
 				が従う．
 				
 			\item[step2]
-				$\forall y \psi$に変項$x$のみが自由に現れているとき，
+				$\varphi$が$\forall y \psi$であり，$\forall y \psi$に変項$x$のみが自由に現れているとき，
 				任意の主要$\varepsilon$項$\tau$に対して
 				\begin{align}
-					\vdash (\forall y \psi)(x/\tau) \lrarrow (\forall z \psi(y/z))(x/\tau)
+					\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
 				\end{align}
 				が成り立つことを示す．まず$x$は$\forall y \psi$に自由に現れているので$x$と$y$は違う変項である．
-				また$x$は$\psi$に自由に現れていて，$z$はこれを束縛しないように選ばれているので，
-				$x$と$z$も違う変項である．ゆえに，$(\forall y \psi)(x/\tau)$は
-				$\forall y \psi(x/\tau)$と同じ式で，$(\forall z \psi(y/z))(x/\tau)$は
-				$\forall z \psi(y/z)(x/\tau)$と同じ式である．
+				また$z$は$x$を束縛しないように選ばれているので，$x$と$z$も違う変項である．
+				ゆえに，$\varphi(x/\tau)$は$\forall y \psi(x/\tau)$と同じ式で，
+				$\widehat{\varphi}(x/\tau)$は$\forall z \psi(y/z)(x/\tau)$と同じ式である．
 				\begin{align}
 					\zeta \defeq \varepsilon z \negation \psi(y/z)(x/\tau)
 				\end{align}
@@ -445,9 +444,9 @@
 				\begin{align}
 					\forall y \psi(x/\tau) \vdash \forall z \psi(y/z)(x/\tau)
 				\end{align}
-				が従い，
+				が従い，演繹定理より
 				\begin{align}
-					\vdash (\forall y \psi)(x/\tau) \rarrow (\forall z \psi(y/z))(x/\tau)
+					\vdash \varphi(x/\tau) \rarrow \widehat{\varphi}(x/\tau)
 					\label{fom:equivalence_by_replacing_bound_variables_3}
 				\end{align}
 				が得られる．逆に
@@ -466,50 +465,57 @@
 				\begin{align}
 					\forall z \psi(y/z)(x/\tau) \vdash \forall y \psi(x/\tau)
 				\end{align}
-				が従い，
+				が従い，演繹定理より
 				\begin{align}
-					\vdash (\forall z \psi(y/z))(x/\tau) \rarrow (\forall y \psi)(x/\tau)
+					\vdash \widehat{\varphi}(x/\tau) \rarrow \varphi(x/\tau)
 					\label{fom:equivalence_by_replacing_bound_variables_4}
 				\end{align}
 				が得られる．(\refeq{fom:equivalence_by_replacing_bound_variables_3})と
 				(\refeq{fom:equivalence_by_replacing_bound_variables_4})と論理積の導入より
 				\begin{align}
-					\vdash (\forall y \psi)(x/\tau) \lrarrow (\forall z \psi(y/z))(x/\tau)
+					\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
 				\end{align}
 				が従う．
 				
 			\item[step3]
-				$\varphi$が$\forall y \psi$ではないとき，
+				$\varphi$が$\forall y \psi$を真部分式に持つ式であるとき，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式$\chi$に対して，$\forall z \psi(y/z)$で置き換えた
-					$\forall y \psi$が$\chi$の部分式として現れている場合，
+					$\varphi$の直部分式$\chi$に対して，
+					その$\forall y \psi$が$\chi$の部分式として現れている場合，
 					$\chi$の上のその$\forall y \psi$を$\forall z \psi(y/z)$で置き換えた式を
 					$\widehat{\chi}$と書く．$\chi$にその$\forall y \psi$が現れていない場合は
 					$\widehat{\chi}$は$\chi$自身とする．このとき，$\chi$が文ならば
 					\begin{align}
 						\vdash \chi \lrarrow \widehat{\chi}
 					\end{align}
-					が成り立つ\footnotemark．また$x$を変項とし，$\chi$に$x$のみが自由に現れるとするとき，
+					が成り立つ\footnotemark．また$x$を変項として，$\chi$に$x$のみが自由に現れているとするとき，
 					任意の主要$\varepsilon$項$\tau$に対して
 					\begin{align}
 						\vdash \chi(x/\tau) \lrarrow \widehat{\chi}(x/\tau)
 					\end{align}
 					が成り立つ．
 				\end{itembox}
-				と仮定する．
+				と仮定する．そして
+				\begin{enumerate}
+					\item $\varphi$が文なら$\vdash \varphi \lrarrow \widehat{\varphi}$．
+					\item $x$を変項として，$\varphi$に$x$のみが自由に現れるとするとき，
+						任意の主要$\varepsilon$項$\tau$に対して
+						$\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)$．
+				\end{enumerate}
+				となることを示す．
 			
 				\footnotetext{
-					$\widehat{\chi}$は$\chi$自身であるときは，わざわざ仮定しなくとも
+					$\widehat{\chi}$は$\chi$自身であるときは，
 					含意の反射律(論理的定理\ref{logicalthm:reflective_law_of_implication})と
 					論理積の導入より$\vdash \chi \lrarrow \widehat{\chi}$が成り立つ．
 				}
 				
 			\begin{description}
-				\item[case1] $\varphi$が
+				\item[case1-1] $\varphi$が
 					\begin{align}
 						\negation \eta
 					\end{align}
-					なる式のとき，$\widehat{\varphi}$とは
+					なる文であるとき，$\widehat{\varphi}$とは
 					\begin{align}
 						\negation \widehat{\eta}
 					\end{align}
@@ -532,15 +538,37 @@
 						\vdash \varphi \lrarrow \widehat{\varphi}
 					\end{align}
 					が得られる．
+				
+				\item[case1-2] $\varphi$が
+					\begin{align}
+						\negation \eta
+					\end{align}
+					なる式で，$\varphi$に$x$のみ自由に現れるとき，$\widehat{\varphi}(x/\tau)$とは
+					\begin{align}
+						\negation \widehat{\eta}(x/\tau)
+					\end{align}
+					なる式であって，(IH)より
+					\begin{align}
+						\vdash \eta(x/\tau) \lrarrow \widehat{\eta}(x/\tau)
+					\end{align}
+					が成り立つので，前段と同様にして
+					\begin{align}
+						\vdash\ \negation \eta(x/\tau) \lrarrow\ \negation \widehat{\eta}(x/\tau)
+					\end{align}
+					が成り立つ．つまり
+					\begin{align}
+						\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
+					\end{align}
+					が得られる．
 					
-				\item[case2] 
+				\item[case2-1] 
 					$\varphi$が
 					\begin{align}
 						\eta \vee \chi
 					\end{align}
-					なる式のとき，$\widehat{\varphi}$とは
+					なる文であるとき，$\widehat{\varphi}$とは
 					\begin{align}
-						\vee \widehat{\eta} \widehat{\chi}
+						\widehat{\eta} \vee \widehat{\chi}
 					\end{align}
 					なる式であって，(IH)より
 					\begin{align}
@@ -549,58 +577,95 @@
 					\end{align}
 					が成り立つ．ここで論理的定理\ref{logicalthm:heredity_of_implication_to_disjunction_2}より
 					\begin{align}
-						\eta \lrarrow \widehat{\eta},\ \chi \lrarrow \widehat{\chi} \vdash 
-						\eta \vee \chi \lrarrow \widehat{\eta} \vee \widehat{\chi}
+						\vdash (\, \eta \lrarrow \widehat{\eta}\, ) \rarrow (\, (\, \chi \lrarrow \widehat{\chi}\, )
+						\rarrow (\, \eta \vee \chi \lrarrow \widehat{\eta} \vee \widehat{\chi}\, )\, )
 					\end{align}
 					が成り立つので，三段論法より
 					\begin{align}
 						\vdash \varphi \lrarrow \widehat{\varphi}
 					\end{align}
-					が得られる．$\varphi$が
-					\begin{align}
-						\eta \wedge \chi
-					\end{align}
-					や
-					\begin{align}
-						\eta \rarrow \chi
-					\end{align}
-					なる式のときも同様である．
+					が得られる．$\varphi$が$\eta \wedge \chi$や$\eta \rarrow \chi$なる文のときも同様である．
 					
-				\item[case3] $\varphi$が
+				\item[case2-2] $\varphi$が
 					\begin{align}
-						\exists x \eta
+						\eta \vee \chi
 					\end{align}
-					なる式のとき，$\widehat{\varphi}$とは
+					なる式で，$\varphi$に$x$のみ自由に現れるとき，$\widehat{\varphi}(x/\tau)$とは
 					\begin{align}
-						\exists x \widehat{\eta}
+						\widehat{\eta}(x/\tau) \vee \widehat{\chi}(x/\tau)
+					\end{align}
+					なる式であって，(IH)より
+					\begin{align}
+						&\vdash \eta(x/\tau) \lrarrow \widehat{\eta}(x/\tau), \\
+						&\vdash \chi(x/\tau) \lrarrow \widehat{\chi}(x/\tau)
+					\end{align}
+					が成り立つので，前段と同様にして
+					\begin{align}
+						\vdash \eta(x/\tau) \vee \chi(x/\tau) \lrarrow \widehat{\eta}(x/\tau) \vee \widehat{\chi}(x/\tau)
+					\end{align}
+					が成り立つ．つまり
+					\begin{align}
+						\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
+					\end{align}
+					が得られる．
+					
+				\item[case3-1] $\varphi$が
+					\begin{align}
+						\exists w \eta
+					\end{align}
+					なる文のとき，$\widehat{\varphi}$とは
+					\begin{align}
+						\exists w \widehat{\eta}
 					\end{align}
 					なる式であって，
 					\begin{align}
-						\tau \defeq \varepsilon x \widehat{\eta}
+						\tau \defeq \varepsilon w \widehat{\eta}
 					\end{align}
 					とおけば存在記号の論理的公理より
 					\begin{align}
-						\exists x \widehat{\eta} \vdash \widehat{\eta}(x/\tau)
+						\exists w \widehat{\eta} \vdash \widehat{\eta}(w/\tau)
 					\end{align}
 					が成り立つ．(IH)より
 					\begin{align}
-						\vdash \widehat{\eta}(x/\tau) \rarrow \eta(x/\tau)
+						\vdash \widehat{\eta}(w/\tau) \rarrow \eta(w/\tau)
 					\end{align}
 					が成り立つので三段論法より
 					\begin{align}
-						\exists x \widehat{\eta} \vdash \eta(x/\tau)
+						\exists w \widehat{\eta} \vdash \eta(w/\tau)
 					\end{align}
 					が従い，存在記号の論理的公理と演繹定理より
 					\begin{align}
-						\vdash \exists x \widehat{\eta} \rarrow \exists x \eta
+						\vdash \exists w \widehat{\eta} \rarrow \exists w \eta
 					\end{align}
 					が得られる．同様に
 					\begin{align}
-						\vdash \exists x \eta \rarrow \exists x \widehat{\eta}
+						\vdash \exists w \eta \rarrow \exists w \widehat{\eta}
 					\end{align}
 					も成り立つので，論理積の導入より
 					\begin{align}
 						\vdash \varphi \lrarrow \widehat{\varphi}
+					\end{align}
+					が得られる．$\varphi$が$\forall w \eta$なる文であるときも同様である．
+					
+				\item[case3-2] $\varphi$が
+					\begin{align}
+						\exists w \eta
+					\end{align}
+					なる式で，$\varphi$に$x$のみ自由に現れるとき，$\widehat{\varphi}(x/\tau)$とは
+					\begin{align}
+						\exists w \widehat{\eta}(x/\tau)
+					\end{align}
+					なる式であって，(IH)より，任意の主要$\varepsilon$項$\sigma$に対して
+					\begin{align}
+						\vdash \eta(x/\tau) \lrarrow \widehat{\eta}(x/\tau)
+					\end{align}
+					が成り立つ．前段と同様にして
+					\begin{align}
+						\vdash \exists w \eta(x/\tau) \lrarrow \exists w \widehat{\eta}(x/\tau)
+					\end{align}
+					が成り立つ．つまり
+					\begin{align}
+						\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
 					\end{align}
 					が得られる．
 					
