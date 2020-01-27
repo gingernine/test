@@ -31,35 +31,153 @@
 	\begin{metaprf} $\varphi$に現れているのが$\forall z \xi$だとして示すが，$\exists z \xi$
 		に替えても同じである．
 		\begin{description}
-			\item[step1] $\varphi$が$\forall z \xi$なる式である場合，$\tilde{\varphi}$とは
+			\item[step1] $\varphi$が$\forall z \xi$なる式である場合，$\widetilde{\varphi}$とは
 				$\forall y \xi(z/y)$なる式であり，$x$は$\varphi$に自由に現れているので
-				$\tilde{\varphi}$にも自由に現れている．ゆえに$x$は$z$でも$y$でもなく，
+				$\widetilde{\varphi}$にも自由に現れている．ゆえに$x$は$z$でも$y$でもなく，
 				代入条件より$\tau$もまた$z$でも$y$でもない．
-				$\tilde{\varphi}(x/\tau)$とは
+				$\widetilde{\varphi}(x/\tau)$とは
 				\begin{align}
 					\forall y \xi(z/y)(x/\tau)
 				\end{align}
 				なる式であるが，いま$\xi(z/y)(x/\tau)$と$\xi(x/\tau)(z/y)$は同じ式なので，
-				$\tilde{\varphi}(x/\tau)$は
+				$\widetilde{\varphi}(x/\tau)$は
 				\begin{align}
 					\forall y \xi(x/\tau)(z/y)
 				\end{align}
 				と同じ式である．ゆえにいまの場合では(1)の主張が成り立つ．
 				
-			\item[step2] 
+			\item[step2]\mbox{}
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式$\psi$に対して，$\psi$にその
-					$\forall z \xi$が部分式とし現れているとするとき，
-					$\varphi$で自由に出現している$x$で$\psi$の中にあるものを
-					全て$\tau$に置き換えた式を$\widetilde{\psi}$とすれば，
+					$\varphi$の直部分式\footnotemark
+					$\psi$に対して，$\psi$にその$\forall z \xi$が部分式として現れているとするとき，
+					$\psi$のその$\forall z \xi$の部分を(一か所)$\forall y \xi(z/y)$ 
+					に置き換えた式を$\widetilde{\psi}$とする．このとき
 					\begin{description}
-						\item[(1)] $\widetilde{\psi}$は$\psi$の
-							$\forall z \widetilde{\xi}$を
-							$\forall y \widetilde{\xi}(z/y)$に置き換えた式である．
+						\item[(1)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中にある場合，
+							$\widetilde{\psi}(x/\tau)$は$\psi(x/\tau)$の部分式$\forall z \widetilde{\xi}$ 
+							を$\forall y \widetilde{\xi}(z/y)$に置き換えた式である．
+						
+						\item[(2)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中に無い場合，
+							$\widetilde{\psi}(x/\tau)$は$\psi(x/\tau)$の部分式$\forall z \xi$ 
+							を$\forall y \xi(z/y)$に置き換えた式である．
 					\end{description}
 				\end{itembox}
+				と仮定する．このとき，
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式である場合，その$\forall z \xi$は$\psi$に現れる．$\varphi(x/\tau)$は
+						\begin{align}
+							\negation \psi(x/\tau)
+						\end{align}
+						なる式であり，$\widetilde{\varphi}$は
+						\begin{align}
+							\negation \widetilde{\psi}
+						\end{align}
+						なる式であり，$\widetilde{\varphi}(x/\tau)$は
+						\begin{align}
+							\negation \widetilde{\psi}(x/\tau)
+						\end{align}
+						なる式である．
+						\begin{description}
+							\item[(1)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中にある場合，
+								$\varphi(x/\tau)$の部分式$\forall z \widetilde{\xi}$を
+								$\forall y \widetilde{\xi}(z/y)$に置き換えた式は，(IH)より
+								\begin{align}
+									\negation \widetilde{\psi}(x/\tau)
+								\end{align}
+								と同じ式である．従ってその式は$\widetilde{\varphi}(x/\tau)$とも同じ式である．
+								
+							\item[(2)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中に無い場合，
+								$\varphi(x/\tau)$の部分式$\forall z \xi$を
+								$\forall y \xi(z/y)$に置き換えた式は，(IH)より
+								\begin{align}
+									\negation \widetilde{\psi}(x/\tau)
+								\end{align}
+								と同じ式である．従ってその式は$\widetilde{\varphi}(x/\tau)$とも同じ式である．
+						\end{description}
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる式である場合，その$\forall z \xi$は$\psi$か$\chi$どちらか一方に現れるが，以下では
+						$\psi$の側に現れているとする．$\varphi(x/\tau)$は
+						\begin{align}
+							\vee \psi(x/\tau) \chi(x/\tau)
+						\end{align}
+						なる式であり，$\widetilde{\varphi}$は
+						\begin{align}
+							\vee \widetilde{\psi} \chi
+						\end{align}
+						なる式であり，$\widetilde{\varphi}(x/\tau)$は
+						\begin{align}
+							\vee \widetilde{\psi}(x/\tau) \chi(x/\tau)
+						\end{align}
+						なる式である．
+						\begin{description}
+							\item[(1)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中にある場合，
+								$\varphi(x/\tau)$の部分式$\forall z \widetilde{\xi}$を
+								$\forall y \widetilde{\xi}(z/y)$に置き換えた式は，(IH)より
+								\begin{align}
+									\vee \widetilde{\psi}(x/\tau) \chi(x/\tau)
+								\end{align}
+								と同じ式である．従ってその式は$\widetilde{\varphi}(x/\tau)$とも同じ式である．
+								
+							\item[(2)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中に無い場合，
+								$\varphi(x/\tau)$の部分式$\forall z \xi$を
+								$\forall y \xi(z/y)$に置き換えた式は，(IH)より
+								\begin{align}
+									\vee \widetilde{\psi}(x/\tau) \chi(x/\tau)
+								\end{align}
+								と同じ式である．従ってその式は$\widetilde{\varphi}(x/\tau)$とも同じ式である．
+						\end{description}
+						
+					\item[case1] $\varphi$が
+						\begin{align}
+							\exists w \psi
+						\end{align}
+						なる式である場合，その$\forall z \xi$は$\psi$に現れる．$\varphi(x/\tau)$は
+						\begin{align}
+							\exists w \psi(x/\tau)
+						\end{align}
+						なる式であり，$\widetilde{\varphi}$は
+						\begin{align}
+							\exists w \widetilde{\psi}
+						\end{align}
+						なる式であり，$\widetilde{\varphi}(x/\tau)$は
+						\begin{align}
+							\exists w \widetilde{\psi}(x/\tau)
+						\end{align}
+						なる式である．
+						\begin{description}
+							\item[(1)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中にある場合，
+								$\varphi(x/\tau)$の部分式$\forall z \widetilde{\xi}$を
+								$\forall y \widetilde{\xi}(z/y)$に置き換えた式は，(IH)より
+								\begin{align}
+									\exists w \widetilde{\psi}(x/\tau)
+								\end{align}
+								と同じ式である．従ってその式は$\widetilde{\varphi}(x/\tau)$とも同じ式である．
+								
+							\item[(2)] $\varphi$における$x$の自由な出現がその$\forall z \xi$の中に無い場合，
+								$\varphi(x/\tau)$の部分式$\forall z \xi$を
+								$\forall y \xi(z/y)$に置き換えた式は，(IH)より
+								\begin{align}
+									\exists w \widetilde{\psi}(x/\tau)
+								\end{align}
+								と同じ式である．従ってその式は$\widetilde{\varphi}(x/\tau)$とも同じ式である．
+								\QED
+						\end{description}
+				\end{description}
 		\end{description}
 	\end{metaprf}
+	
+	\footnotetext{
+		「任意の真部分式に対し，それが直部分式ならば...」と書き改めれば構造的帰納法の原理を適用できるが，
+		始めから直部分式と限定しても実質的には変わらない．
+	}
 	
 	\begin{screen}
 		\begin{metathm}[書き換えへの代入は代入した式の書き換え]
