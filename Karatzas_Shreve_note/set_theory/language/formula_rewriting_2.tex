@@ -1,4 +1,67 @@
 	\begin{screen}
+		\begin{metathm}[部分式の取り替えと代入]
+		\label{metathm:subformula_replacing_and_substitution}
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を$\varphi$に自由に現れる変項とする．
+			また$\varphi$に$\forall z \xi$ (resp. $\exists z \xi$)の
+			形の部分式が現れているとし，$y$を$\xi$に自由に現れない変項で$\xi$の中で$z$への
+			代入について自由であるものとし，$\varphi$のその$\forall z \xi$ 
+			(resp. $\exists z \xi$)の部分を(一か所)$\forall y \xi(z/y)$ 
+			(resp. $\exists y \xi(z/y)$)に置き換えた式を$\widetilde{\varphi}$とする．
+			それから$\tau$を$\lang{\varepsilon}$の項とし，$\varphi$と$\widetilde{\varphi}$
+			の中で$x$への代入について自由であるとする．このとき，
+			\begin{description}
+				\item[(1)] $\varphi$における$x$の自由な出現がその$\forall z \xi$ 
+					(resp. $\exists z \xi$)の中にある場合，$\xi$の中のその$x$
+					($\varphi$で自由に出現している$x$)を全て$\tau$に置き換えた式を
+					$\widetilde{\xi}$とすれば，$\widetilde{\varphi}(x/\tau)$
+					は$\varphi(x/\tau)$の部分式$\forall z \widetilde{\xi}$ 
+					(resp. $\exists z \widetilde{\xi}$)を
+					$\forall y \widetilde{\xi}(z/y)$ 
+					(resp. $\exists y \widetilde{\xi}(z/y)$)に置き換えた式である．
+					
+				\item[(2)] $\varphi$における$x$の自由な出現がその$\forall z \xi$ 
+					(resp. $\exists z \xi$)の中に無い場合，$\widetilde{\varphi}(x/\tau)$
+					は$\varphi(x/\tau)$の部分式$\forall z \xi$ 
+					(resp. $\exists z \xi$)を$\forall y \xi(z/y)$ 
+					(resp. $\exists y \xi(z/y)$)に置き換えた式である．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf} $\varphi$に現れているのが$\forall z \xi$だとして示すが，$\exists z \xi$
+		に替えても同じである．
+		\begin{description}
+			\item[step1] $\varphi$が$\forall z \xi$なる式である場合，$\tilde{\varphi}$とは
+				$\forall y \xi(z/y)$なる式であり，$x$は$\varphi$に自由に現れているので
+				$\tilde{\varphi}$にも自由に現れている．ゆえに$x$は$z$でも$y$でもなく，
+				代入条件より$\tau$もまた$z$でも$y$でもない．
+				$\tilde{\varphi}(x/\tau)$とは
+				\begin{align}
+					\forall y \xi(z/y)(x/\tau)
+				\end{align}
+				なる式であるが，いま$\xi(z/y)(x/\tau)$と$\xi(x/\tau)(z/y)$は同じ式なので，
+				$\tilde{\varphi}(x/\tau)$は
+				\begin{align}
+					\forall y \xi(x/\tau)(z/y)
+				\end{align}
+				と同じ式である．ゆえにいまの場合では(1)の主張が成り立つ．
+				
+			\item[step2] 
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$の任意の真部分式$\psi$に対して，$\psi$にその
+					$\forall z \xi$が部分式とし現れているとするとき，
+					$\varphi$で自由に出現している$x$で$\psi$の中にあるものを
+					全て$\tau$に置き換えた式を$\widetilde{\psi}$とすれば，
+					\begin{description}
+						\item[(1)] $\widetilde{\psi}$は$\psi$の
+							$\forall z \widetilde{\xi}$を
+							$\forall y \widetilde{\xi}(z/y)$に置き換えた式である．
+					\end{description}
+				\end{itembox}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
 		\begin{metathm}[書き換えへの代入は代入した式の書き換え]
 		\label{metathm:substitution_to_rewritten_formula}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
@@ -595,4 +658,16 @@
 						\QED
 				\end{description}
 		\end{description}
+	\end{metaprf}
+	
+	\begin{metaprf}[第二]
+		$\widehat{\varphi}$を$\varphi$の書き換えとし，
+		\begin{itembox}[l]{IH (帰納法の仮定)}
+			$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである
+		\end{itembox}
+		と仮定する．このとき，$\widehat{\varphi}$に$\forall z \xi$ (resp. $\exists z \xi$)の
+		形の部分式が現れているとし，$y$を$\xi$に自由に現れない変項で$\xi$の中で$z$への代入について
+		自由であるものとし，$\widehat{\varphi}$のその$\forall z \xi$ (resp. $\exists z \xi$)
+		の部分を(一か所)$\forall y \xi(z/y)$ (resp. $\exists y \xi(z/y)$)
+		に置き換えた式を$\widetilde{\varphi}$とする．
 	\end{metaprf}
