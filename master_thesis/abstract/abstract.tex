@@ -1,5 +1,6 @@
 \documentclass[twocolumn,10pt]{jsarticle}
 \setlength{\columnsep}{3zw}
+\addtolength{\textheight}{1cm}
 
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
@@ -149,8 +150,8 @@
 \begin{document}
 \mathtoolsset{showonlyrefs = true}
 \maketitle
-	本論文では{\bf ZF}集合論の一つの拡張を提示したが，そこでの主要な定理は，
-	{\bf ZF}集合論のどの命題に対しても「{\bf ZF}集合論で証明可能」ならば
+	本論文では類(class)を扱うための{\bf ZF}集合論の一つの拡張を提示したが，
+	そこでの主要な定理は，{\bf ZF}集合論のどの命題に対しても「{\bf ZF}集合論で証明可能」ならば
 	「本論文の集合論で証明可能」であり，逆に「本論文の集合論で証明可能」ならば
 	「{\bf ZF}集合論で証明可能」であるということである．これを精密に言い直せば，
 	{\bf ZF}集合論の任意の命題$\psi$に対して
@@ -158,64 +159,73 @@
 	ことと「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」
 	ことが同値であるということになる．以下で記号を解説する．
 	
-	$\lang{\in}$とは{\bf ZF}集合論の言語$\{\in\}$のことである．
+	$\lang{\in}$とは{\bf ZF}集合論の言語のことである．
 	本論文ではもう二つの言語$\lang{\varepsilon}$と$\mathcal{L}$があり，
-	項および式の形成規則はそれぞれの言語の中で指定される．変項の自由な出現が無い式を文と呼ぶ．
+	項および式の形成規則はそれぞれの言語の中で指定される．
 	$\Gamma$とは$\lang{\in}$の文で書かれた{\bf ZF}集合論の公理系
-	(外延性・相等性・置換・対・合併・冪・正則性・無限)を表す．
+	(外延性・相等性・置換・対・合併・冪・正則性・無限)であり，
+	ここで文とは変項の自由な出現が無い式を指す．
 	{\bf HK}とは古典論理のHilbert流証明体系のことであり，
 	「$\Gamma$からの{\bf HK}の証明で$\lang{\in}$の式の列であるもの」とは，
-	$\lang{\in}$の式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で，
-	各$\varphi_{i}$について以下のいずれかが満たされるものを言う：
-	(1) {\bf HK}の公理である．(2) $\Gamma$の公理である．(3) 列の前の式
-	$\varphi_{j},\varphi_{k}$から三段論法で得られる．
-	つまりその場合は$\varphi_{j}$が$\varphi_{k} \rarrow \varphi_{i}$
-	なる式であるか，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる式である．
-	(4) 列の前の式$\varphi_{j}$から汎化で得られる．
+	$\lang{\in}$の式の列$\varphi_{1},\cdots,\varphi_{n}$で，
+	各$\varphi_{i}$について以下のいずれかが満たされるものである：
+	(1) {\bf HK}の公理である．(2) $\Gamma$の公理である．(3) 列の前の式から三段論法で得られる．
+	(4) 列の前の式から汎化で得られる．
 	%つまりその場合は$\varphi_{j}$は
 	%$\xi(x/a)$なる式で$\varphi_{i}$は$\forall x \xi$なる式である．ここで
 	%$\xi(x/a)$とは$\xi$に自由に現れる$x$に変項$a$を代入した式であり，
 	%この$a$はこの汎化の固有変項(eigenvariable)と呼ばれる．
 	
-	これらに対して，$\mathcal{L}$も$\Sigma$も{\bf HE}も本論文特有のものである．
+	一方で$\mathcal{L}$も$\Sigma$も{\bf HE}も本論文特有のものである．
 	$\mathcal{L}$とは$\lang{\in}$の語彙を拡張した言語であり，拡張の中間に
-	もう一つ$\lang{\varepsilon}$がある．$\lang{\varepsilon}$とは
+	$\lang{\varepsilon}$がある．$\lang{\varepsilon}$は
 	$\lang{\in}$に$\varepsilon$を追加した言語であるが，
 	この$\varepsilon$とは数論の無矛盾性の考察過程でHilbert\cite{Hilbert}が発案したものである．
-	$\mathcal{L}$には$\Set{x}{\varphi}$の形の項を追加し，正式に類(class)が扱えるようになる．
+	$\mathcal{L}$には$\Set{x}{\varphi}$の形の項(内包項)を追加し，正式に類が扱えるようになる．
 	$\Sigma$とは本論文における集合論の公理系であり，
-	$\Gamma$の「外延性」，「相等性」が類に対する言明に変更され，
+	$\Gamma$の「外延性」と「相等性」が類に対する言明に変更され，
 	また「内包性」と「要素」の公理が新たに追加される．内包性公理は
 	\begin{align}
 		\forall u\, (\, u \in \Set{x}{\varphi(x)} \lrarrow \varphi(u)\, )
 	\end{align}
 	なる式を指し，$\Set{x}{\varphi(x)}$に対して「$\varphi$である$x$の全体」の意味を与える．
-	一方要素の公理は
+	要素の公理は
 	\begin{align}
 		a \in b \rarrow \exists x\, (\, a = x\, )
 	\end{align}
 	なる式を指し，これによって要素となりうるものは集合に限られる．
-	右辺の$\exists x\, (\, a = x\, )$は「$a$は集合である」という意味の式であり，
+	右辺の$\exists x\, (\, a = x\, )$は「$a$は集合である」の意味の式であり，
 	竹内\cite{TakeuchiSet}の集合の定義を引用したものである．
-	{\bf HE}とは{\bf HK}を改造した証明体系で，量化の公理に違いがあり，
+	{\bf HE}とは{\bf HK}の量化の公理を改造した証明体系である．
 	%両者に共通するのは$\varphi(x/\tau) \rarrow \exists x \varphi$
 	%と$\forall x \varphi \rarrow \varphi(x/\tau)$であるが，
-	{\bf HK}の公理である$\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+	{\bf HE}では{\bf HK}の公理である$\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
 	\rarrow (\, \psi \rarrow \forall x \varphi\, )$と
 	$\forall y\, (\, \varphi(x/y) \rarrow \psi\, )
-	\rarrow (\, \exists x \varphi \rarrow \psi\, )$が削除され，
-	代わりに
+	\rarrow (\, \exists x \varphi \rarrow \psi\, )$が削除され，代わりに
 	\begin{align}
-		\negation \forall x &\varphi \rarrow \exists x \negation \varphi, \\
-		\exists x \varphi &\rarrow \varphi(x/\varepsilon x \varphi)
+		\begin{gathered}
+			\negation \forall x \varphi \rarrow \exists x \negation \varphi, \\
+			\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi)
+		\end{gathered}
 	\end{align}
-	が{\bf HE}の公理となる．{\bf HE}の証明は全て文で行う．
+	が公理となる．{\bf HE}の証明は全て文で行う．
 	「$\Sigma$からの{\bf HE}の証明で$\mathcal{L}$の文の列であるもの」とは，
-	$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で，
-	各$\varphi_{i}$について以下のいずれかが満たされるものを言う：
-	(1) {\bf HE}の公理である．(2) $\Sigma$の公理である．(3) 列の前の式
-	$\varphi_{j},\varphi_{k}$から三段論法で得られる．
+	$\mathcal{L}$の文の列$\varphi_{1},\cdots,\varphi_{n}$で，
+	各$\varphi_{i}$について以下のいずれかが満たされるものである：
+	(1) {\bf HE}の公理である．(2) $\Sigma$の公理である．
+	(3) 列の前の式から三段論法で得られる．
 	$\varepsilon$項の作用によって{\bf HE}では汎化は不要になる．
+	
+	なお，$\varepsilon x \varphi$なる形の項を$\varepsilon$項と呼ぶが，
+	特に$\varphi$に$x$のみ自由に現れている場合は主要$\varepsilon$項と呼ぶ．
+	また$\Set{x}{\varphi}$なる内包項に関しては$\varphi$に$x$が自由に現れている場合に
+	正則内包項と呼ぶ．そして扱う$\mathcal{L}$の式には次の制限を付ける：
+	(1) 式に現れる$\varepsilon$項は主要$\varepsilon$項である．
+	(2) 式に現れる内包項は正則内包項である．
+	{\bf HE}の量化公理と外延性公理および集合の定義式によって，
+	主要$\varepsilon$項は全て集合となり，また集合である類は
+	いずれかの主要$\varepsilon$項と等しいものに限られる．
 	
 	\begin{thebibliography}{数字}
 		\bibitem{Hilbert} D. ヒルベルト and P. ベルナイス, 数学の基礎(吉田夏彦, 渕野昌訳), 丸善出版株式会社, 2012, pp. 23-63, ISBN 978-4-621-06405-4.
