@@ -143,11 +143,70 @@
 \newcommand{\cf}[1]{cf(#1)} %共終数
 
 \title{$\varepsilon$計算とクラスの導入による具体的で直観的な集合論の構築}
-\author{百合川尚学}
+\author{関根深澤研修士二年 百合川尚学 \\ 学籍番号：29C17095}
 \date{\today}
 
 \begin{document}
 \maketitle
+	本論文の主要な結果は，{\bf ZF}集合論のどの命題に対しても「{\bf ZF}集合論で証明可能」ならば
+	「本論文の集合論で証明可能」であり，逆に「本論文の集合論で証明可能」ならば
+	「{\bf ZF}集合論で証明可能」であるということである．これを精密に言い直せば，
+	{\bf ZF}集合論の任意の命題$\psi$に対して
+	「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」
+	ことと「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の式の列であるものが取れる」
+	ことが同値であるという意味になる．以下で記号を解説する．
+	
+	$\lang{\in}$とは{\bf ZF}集合論の言語$\{\in\}$のことであり，
+	$\Gamma$とは$\lang{\in}$の文で書かれた{\bf ZF}集合論の公理系
+	(外延性・相等性・置換・対・合併・冪・正則性・無限)を表す．
+	{\bf HK}とは古典論理のHilbert流証明体系を指し，
+	「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるもの」とは，
+	$\lang{\in}$の式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で，
+	各$\varphi_{i}$について以下のいずれかが満たされるものを言う：
+	(1) {\bf HK}の公理である．(2) $\Gamma$の公理である．(3) 列の前の式
+	$\varphi_{j},\varphi_{k}$から三段論法で得られる．
+	つまりその場合は$\varphi_{j}$が$\varphi_{k} \rarrow \varphi_{i}$
+	なる式であるか，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる式である．
+	(4) 列の前の式$\varphi_{j}$から汎化で得られる．つまりその場合は$\varphi_{j}$は
+	$\xi(x/a)$なる式で$\varphi_{i}$は$\forall x \xi$なる式である．ここで
+	$\xi(x/a)$とは$\xi$に自由に現れる$x$に変項$a$を代入した式であり，
+	この$a$はこの汎化の固有変項と呼ばれる．
+	
+	これに対して，$\mathcal{L}$も$\Sigma$も{\bf HE}も本論文特有のものである．
+	$\mathcal{L}$とは$\lang{\in}$の語彙を拡張した言語である．本論文に登場する言語は
+	もう一つ$\lang{\varepsilon}$というものがある．$\lang{\varepsilon}$とは
+	$\lang{\in}$に$\varepsilon$項と呼ばれる項を追加した言語であるが，
+	$\varepsilon$項とは形式的述語計算から存在論理式を削除するために
+	Hilbert\cite{}が発案したものである．
+	$\mathcal{L}$に追加するものは$\Set{x}{\varphi}$の形の項であり，この内包的記法にちなんで
+	これを内包項と呼ぶことにする．$\Sigma$とは本論文における集合論の公理であり，
+	$\Gamma$と違うところは「外延性」，「相等性」が類に対する言明に変更されることと，
+	「内包性」と「要素」の公理が新たに追加されることである．内包性公理は
+	\begin{align}
+		\forall u\, (\, u \in \Set{x}{\varphi(x)} \lrarrow \varphi(u)\, )
+	\end{align}
+	なる図式を指し，$\Set{x}{\varphi(x)}$に対して$\varphi$である$x$の全体」の意味を与える．
+	要素の公理は
+	\begin{align}
+		a \in b \rarrow \exists x\, (\, a = x\, )
+	\end{align}
+	なる図式を指し，これによって要素となりうるものは集合に限られる．右辺の$\exists x\, (\, a = x\, )$
+	とは$a$が集合であるという意味の式であり，竹内\cite{}の集合の定義を引用したものである．
+	{\bf HE}とは{\bf HK}を改造した証明体系であり，量化の公理に違いがある．
+	{\bf HK}と{\bf HE}で被るのは「$\exists$導入」$\varphi(x/\tau) \rarrow \exists x \varphi$
+	と「$\forall$除去」$\forall x \varphi \rarrow \varphi(x/\tau)$であるが，
+	{\bf HK}にはもう二つ$\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+	\rarrow (\, \psi \rarrow \forall x \varphi\, )$と
+	$\forall y\, (\, \varphi(x/y) \rarrow \psi\, )
+	\rarrow (\, \forall x \varphi \rarrow \psi\, )$があるが，
+	{\bf HE}ではこれらの代わりに
+	\begin{align}
+		&\negation \forall x \varphi \rarrow \exists x \negation \varphi, \\
+		&\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi)
+	\end{align}
+	を公理とする．
+	
+\newpage
 \section{導入}
 \section{言語}
 	本稿の言語は三つある．一つ目は言語$\lang{\in}$であり，その語彙は次から成る：
