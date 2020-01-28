@@ -1,4 +1,4 @@
-\documentclass[twocolumn,10pt]{jarticle}
+\documentclass[twocolumn,10pt]{jsarticle}
 \setlength{\columnsep}{3zw}
 
 \usepackage{amsmath,amssymb}
@@ -142,25 +142,28 @@
 \newcommand{\cof}[2]{\operatorname*{cof}\hspace{0.15em}(#1,#2)} %共終写像が存在する
 \newcommand{\cf}[1]{cf(#1)} %共終数
 
-\title{$\varepsilon$計算とクラスの導入による具体的で直観的な集合論の構築}
+\title{\vspace{-3cm}$\varepsilon$計算とクラスの導入による具体的で直観的な集合論の構築}
 \author{関根深澤研修士二年 百合川尚学 \\ 学籍番号：29C17095}
 \date{\today}
 
 \begin{document}
 \mathtoolsset{showonlyrefs = true}
 \maketitle
-	本論文の主要な結果は，{\bf ZF}集合論のどの命題に対しても「{\bf ZF}集合論で証明可能」ならば
+	本論文では{\bf ZF}集合論の一つの拡張を提示したが，そこでの主要な定理は，
+	{\bf ZF}集合論のどの命題に対しても「{\bf ZF}集合論で証明可能」ならば
 	「本論文の集合論で証明可能」であり，逆に「本論文の集合論で証明可能」ならば
 	「{\bf ZF}集合論で証明可能」であるということである．これを精密に言い直せば，
 	{\bf ZF}集合論の任意の命題$\psi$に対して
 	「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」
-	ことと「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の式の列であるものが取れる」
-	ことが同値であるという意味になる．以下で記号を解説する．
+	ことと「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」
+	ことが同値であるということになる．以下で記号を解説する．
 	
-	$\lang{\in}$とは{\bf ZF}集合論の言語$\{\in\}$のことであり，
+	$\lang{\in}$とは{\bf ZF}集合論の言語$\{\in\}$のことである．
+	本論文ではもう二つの言語$\lang{\varepsilon}$と$\mathcal{L}$があり，
+	項および式の形成規則はそれぞれの言語の中で指定される．変項の自由な出現が無い式を文と呼ぶ．
 	$\Gamma$とは$\lang{\in}$の文で書かれた{\bf ZF}集合論の公理系
 	(外延性・相等性・置換・対・合併・冪・正則性・無限)を表す．
-	{\bf HK}とは古典論理のHilbert流証明体系を指し，
+	{\bf HK}とは古典論理のHilbert流証明体系のことであり，
 	「$\Gamma$からの{\bf HK}の証明で$\lang{\in}$の式の列であるもの」とは，
 	$\lang{\in}$の式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で，
 	各$\varphi_{i}$について以下のいずれかが満たされるものを言う：
@@ -168,44 +171,45 @@
 	$\varphi_{j},\varphi_{k}$から三段論法で得られる．
 	つまりその場合は$\varphi_{j}$が$\varphi_{k} \rarrow \varphi_{i}$
 	なる式であるか，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる式である．
-	(4) 列の前の式$\varphi_{j}$から汎化で得られる．つまりその場合は$\varphi_{j}$は
-	$\xi(x/a)$なる式で$\varphi_{i}$は$\forall x \xi$なる式である．ここで
-	$\xi(x/a)$とは$\xi$に自由に現れる$x$に変項$a$を代入した式であり，
-	この$a$はこの汎化の固有変項と呼ばれる．
+	(4) 列の前の式$\varphi_{j}$から汎化で得られる．
+	%つまりその場合は$\varphi_{j}$は
+	%$\xi(x/a)$なる式で$\varphi_{i}$は$\forall x \xi$なる式である．ここで
+	%$\xi(x/a)$とは$\xi$に自由に現れる$x$に変項$a$を代入した式であり，
+	%この$a$はこの汎化の固有変項(eigenvariable)と呼ばれる．
 	
-	これに対して，$\mathcal{L}$も$\Sigma$も{\bf HE}も本論文特有のものである．
-	$\mathcal{L}$とは$\lang{\in}$の語彙を拡張した言語である．本論文に登場する言語は
-	もう一つ$\lang{\varepsilon}$というものがある．$\lang{\varepsilon}$とは
-	$\lang{\in}$に$\varepsilon$項と呼ばれる項を追加した言語であるが，
-	$\varepsilon$項とは形式的述語計算から存在論理式を削除するために
-	Hilbert\cite{}が発案したものである．
-	$\mathcal{L}$に追加するものは$\Set{x}{\varphi}$の形の項であり，この内包的記法にちなんで
-	これを内包項と呼ぶことにする．$\Sigma$とは本論文における集合論の公理であり，
-	$\Gamma$と違うところは「外延性」，「相等性」が類に対する言明に変更されることと，
-	「内包性」と「要素」の公理が新たに追加されることである．内包性公理は
+	これらに対して，$\mathcal{L}$も$\Sigma$も{\bf HE}も本論文特有のものである．
+	$\mathcal{L}$とは$\lang{\in}$の語彙を拡張した言語であり，拡張の中間に
+	もう一つ$\lang{\varepsilon}$がある．$\lang{\varepsilon}$とは
+	$\lang{\in}$に$\varepsilon$を追加した言語であるが，
+	この$\varepsilon$とは数論の無矛盾性の考察過程でHilbert\cite{Hilbert}が発案したものである．
+	$\mathcal{L}$には$\Set{x}{\varphi}$の形の項を追加し，正式に類(class)が扱えるようになる．
+	$\Sigma$とは本論文における集合論の公理系であり，
+	$\Gamma$の「外延性」，「相等性」が類に対する言明に変更され，
+	また「内包性」と「要素」の公理が新たに追加される．内包性公理は
 	\begin{align}
 		\forall u\, (\, u \in \Set{x}{\varphi(x)} \lrarrow \varphi(u)\, )
 	\end{align}
-	なる図式を指し，$\Set{x}{\varphi(x)}$に対して$\varphi$である$x$の全体」の意味を与える．
-	要素の公理は
+	なる式を指し，$\Set{x}{\varphi(x)}$に対して「$\varphi$である$x$の全体」の意味を与える．
+	一方要素の公理は
 	\begin{align}
 		a \in b \rarrow \exists x\, (\, a = x\, )
 	\end{align}
-	なる図式を指し，これによって要素となりうるものは集合に限られる．右辺の$\exists x\, (\, a = x\, )$
-	とは$a$が集合であるという意味の式であり，竹内\cite{}の集合の定義を引用したものである．
-	{\bf HE}とは{\bf HK}を改造した証明体系であり，量化の公理に違いがある．
-	{\bf HK}と{\bf HE}で被るのは「$\exists$導入」$\varphi(x/\tau) \rarrow \exists x \varphi$
-	と「$\forall$除去」$\forall x \varphi \rarrow \varphi(x/\tau)$であるが，
-	{\bf HK}にはもう二つ$\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
+	なる式を指し，これによって要素となりうるものは集合に限られる．
+	右辺の$\exists x\, (\, a = x\, )$は「$a$は集合である」という意味の式であり，
+	竹内\cite{TakeuchiSet}の集合の定義を引用したものである．
+	{\bf HE}とは{\bf HK}を改造した証明体系で，量化の公理に違いがあり，
+	%両者に共通するのは$\varphi(x/\tau) \rarrow \exists x \varphi$
+	%と$\forall x \varphi \rarrow \varphi(x/\tau)$であるが，
+	{\bf HK}の公理である$\forall y\, (\, \psi \rarrow \varphi(x/y)\, )
 	\rarrow (\, \psi \rarrow \forall x \varphi\, )$と
 	$\forall y\, (\, \varphi(x/y) \rarrow \psi\, )
-	\rarrow (\, \forall x \varphi \rarrow \psi\, )$があるが，
-	{\bf HE}ではこれらの代わりに
+	\rarrow (\, \exists x \varphi \rarrow \psi\, )$が削除され，
+	代わりに
 	\begin{align}
 		\negation \forall x &\varphi \rarrow \exists x \negation \varphi, \\
 		\exists x \varphi &\rarrow \varphi(x/\varepsilon x \varphi)
 	\end{align}
-	を公理とする．{\bf HE}の証明は全て文で行う．
+	が{\bf HE}の公理となる．{\bf HE}の証明は全て文で行う．
 	「$\Sigma$からの{\bf HE}の証明で$\mathcal{L}$の文の列であるもの」とは，
 	$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$で，
 	各$\varphi_{i}$について以下のいずれかが満たされるものを言う：
@@ -213,62 +217,9 @@
 	$\varphi_{j},\varphi_{k}$から三段論法で得られる．
 	$\varepsilon$項の作用によって{\bf HE}では汎化は不要になる．
 	
-\newpage
-\section{導入}
-\section{言語}
-	本稿の言語は三つある．一つ目は言語$\lang{\in}$であり，その語彙は次から成る：
-	\begin{description}
-		\item[矛盾記号] $\bot$
-		\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
-		\item[量化子] $\forall,\ \exists$
-		\item[述語記号] $=,\ \in$
-		\item[変項] $x,y,z,\cdots$．
-	\end{description}
+	\begin{thebibliography}{数字}
+		\bibitem{Hilbert} D. ヒルベルト and P. ベルナイス, 数学の基礎(吉田夏彦, 渕野昌訳), 丸善出版株式会社, 2012, pp. 23-63, ISBN 978-4-621-06405-4.
 	
-	$\lang{\in}$の項と式は次で定義される：
-	
-	\begin{description}
-		\item[項] 変項のみが$\lang{\in}$の項である．
-		\item[式] 
-			\begin{itemize}
-				\item $\bot$は式である．
-				\item $s,t$を項とするとき$\in st, =st$は式である．
-				\item $\varphi,\psi$を式とするとき$\vee \varphi\psi,\wedge \varphi \psi,\rarrow \varphi \psi$は式である．
-				\item $x$を項とし$\varphi$を式とするとき$\exists x \varphi,\exists x \varphi$は式である．
-			\end{itemize}
-	\end{description}
-	
-	二つ目は言語$\lang{\varepsilon}$であり，その語彙は$\lang{\in}$の語彙に
-	$\varepsilon$を追加したものである．$\lang{\varepsilon}$の項と式は循環定義になる．
-	
-	\begin{itemize}
-		\item $\bot$は式である．
-		\item $s,t$を項とするとき$\in st, =st$は式である．
-		\item $\varphi,\psi$を式とするとき$\vee \varphi\psi,\wedge \varphi \psi,\rarrow \varphi \psi$は式である．
-		\item $x$を変項とし$\varphi$を式とするとき$\exists x \varphi,\exists x \varphi$は式である．
-		\item $x$を変項とし$\varphi$を式とするとき$\varepsilon x \varphi$は項である．
-	\end{itemize}
-	
-	$x$を変項とし$\varphi$を$\lang{\varepsilon}$の式とするとき，
-	以下では$\varepsilon x \varphi$なる項を$\varepsilon$項と呼び，
-	$\Set{x}{\varphi}$なる項を内包項と呼ぶ．
-	三つめは言語$\mathcal{L}$である．$\mathcal{L}$の語彙は$\lang{\in}$の
-	語彙に$\varepsilon$項及び内包項が加えたものである．
-	
-	\begin{description}
-		\item[項] 変項，$\varepsilon$項，内包項のみが項である．
-		\item[式] 
-			\begin{itemize}
-				\item $\bot$は式である．
-				\item $s,t$を項とするとき$\in st, =st$は式である．
-				\item $\varphi,\psi$を式とするとき$\vee \varphi\psi,\wedge \varphi \psi,\rarrow \varphi \psi$は式である．
-				\item $x$を項とし$\varphi$を式とするとき$\exists x \varphi,\exists x \varphi$は式である．
-			\end{itemize}
-	\end{description}
-	
-	$\varepsilon$項と内包項の中でも性質の良いものは
-	
-\section{証明と公理}
-\section{類と集合}
-\section{保存拡大}
+		\bibitem{TakeuchiSet} 竹内外史, 現代集合論入門, 増強版, 日本評論社, 2016, pp. 138-183, ISBN 978-4-535-60116-1.
+	\end{thebibliography}
 \end{document}
