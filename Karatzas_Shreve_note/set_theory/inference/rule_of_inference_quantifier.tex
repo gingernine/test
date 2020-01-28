@@ -322,7 +322,7 @@
 		\end{align}
 		が成り立つので，再び三段論法より
 		\begin{align}
-			A,\ B \rarrow C,\ A \rarrow B \vdash C
+			A,\ A \rarrow B,\ B \rarrow C \vdash C
 		\end{align}
 		が成り立つ．そして演繹定理より
 		\begin{align}
@@ -462,7 +462,7 @@
 			%	が従う．
 				
 			\item[step2]
-				以下では便宜上，$\varphi$に対して行うような量化部分式の差し替えの操作を
+				以下では便宜上，$\varphi$に対して行うような部分式の差し替えによって得る式を
 				「量化部分式の差し替え」と呼ぶことにする．
 				
 				\begin{itembox}[l]{IH (帰納法の仮定)}
@@ -472,7 +472,7 @@
 					$\eta(x_{1}/\tau_{1})\cdots(x_{n}/\tau_{n})$なる文を
 					$\eta^{*}$とする．$\eta$が文なら$\eta^{*}$を$\eta$とする．
 					このとき，$\eta^{*}$の任意の量化部分式の差し替え
-					$\widehat{\chi}^{*}$に対して
+					$\widehat{\eta}^{*}$に対して
 					\begin{align}
 						\vdash \eta^{*} \lrarrow \widehat{\eta}^{*}
 					\end{align}
@@ -601,7 +601,7 @@
 				%	\end{align}
 				%	が得られる．
 					
-				\item[case3-1] $\varphi$が
+				\item[case3] $\varphi$が
 					\begin{align}
 						\exists w \eta
 					\end{align}
@@ -609,7 +609,8 @@
 					\begin{align}
 						\exists w \widehat{\eta}
 					\end{align}
-					なる式であって，
+					なる式であって($\widehat{\eta}$は$\eta$の$\forall y \psi$を
+					$\forall z \psi(y/z)$に差し替えた文)，
 					\begin{align}
 						\tau \defeq \varepsilon w \widehat{\eta}
 					\end{align}
@@ -638,67 +639,70 @@
 						\vdash \varphi \lrarrow \widehat{\varphi}
 					\end{align}
 					が得られる．$\varphi$が$\forall w \eta$なる文であるときも同様である．
-					
-				\item[case3-2] $\varphi$が
-					\begin{align}
-						\exists w \eta
-					\end{align}
-					なる式で，$\varphi$に$x$のみ自由に現れるとき，$\widehat{\varphi}(x/\tau)$とは
-					\begin{align}
-						\exists w \widehat{\eta}(x/\tau)
-					\end{align}
-					なる式であって，(IH)より，任意の主要$\varepsilon$項$\sigma$に対して
-					\begin{align}
-						\vdash \eta(x/\tau) \lrarrow \widehat{\eta}(x/\tau)
-					\end{align}
-					が成り立つ．前段と同様にして
-					\begin{align}
-						\vdash \exists w \eta(x/\tau) \lrarrow \exists w \widehat{\eta}(x/\tau)
-					\end{align}
-					が成り立つ．つまり
-					\begin{align}
-						\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
-					\end{align}
-					が得られる．
-					
-				\item[case4] $\varphi$が
-					\begin{align}
-						\forall x \eta
-					\end{align}
-					なる式のとき，$\widehat{\varphi}$とは
-					\begin{align}
-						\forall x \widehat{\eta}
-					\end{align}
-					なる式であって，
-					\begin{align}
-						\tau \defeq \varepsilon x \negation \eta
-					\end{align}
-					とおけば全称記号の論理的公理より
-					\begin{align}
-						\forall x \widehat{\eta} \vdash \widehat{\eta}(x/\tau)
-					\end{align}
-					が成り立つ．(IH)より
-					\begin{align}
-						\vdash \widehat{\eta}(x/\tau) \rarrow \eta(x/\tau)
-					\end{align}
-					が成り立つので三段論法より
-					\begin{align}
-						\forall x \widehat{\eta} \vdash \eta(x/\tau)
-					\end{align}
-					が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})と演繹定理より
-					\begin{align}
-						\vdash \forall x \widehat{\eta} \rarrow \forall x \eta
-					\end{align}
-					が得られる．同様に
-					\begin{align}
-						\vdash \forall x \eta \rarrow \forall x \widehat{\eta}
-					\end{align}
-					も成り立つので，論理積の導入より
-					\begin{align}
-						\vdash \varphi \lrarrow \widehat{\varphi}
-					\end{align}
-					が得られる．
 					\QED
+				%\item[case3-2] $\varphi$が
+				%	\begin{align}
+				%		\exists w \eta
+				%	\end{align}
+				%	なる式で，$\varphi$に$x$のみ自由に現れるとき，
+				%	$\widehat{\varphi}(x/\tau)$とは
+				%	\begin{align}
+				%		\exists w \widehat{\eta}(x/\tau)
+				%	\end{align}
+				%	なる式であって，(IH)より，任意の主要$\varepsilon$項$\sigma$に対して
+				%	\begin{align}
+				%		\vdash \eta(x/\tau) \lrarrow \widehat{\eta}(x/\tau)
+				%	\end{align}
+				%	が成り立つ．前段と同様にして
+				%	\begin{align}
+				%		\vdash \exists w \eta(x/\tau) \lrarrow 
+				%		\exists w \widehat{\eta}(x/\tau)
+				%	\end{align}
+				%	が成り立つ．つまり
+				%	\begin{align}
+				%		\vdash \varphi(x/\tau) \lrarrow \widehat{\varphi}(x/\tau)
+				%	\end{align}
+				%	が得られる．
+					
+				%\item[case4] $\varphi$が
+				%	\begin{align}
+				%		\forall x \eta
+				%	\end{align}
+				%	なる式のとき，$\widehat{\varphi}$とは
+				%	\begin{align}
+				%		\forall x \widehat{\eta}
+				%	\end{align}
+				%	なる式であって，
+				%	\begin{align}
+				%		\tau \defeq \varepsilon x \negation \eta
+				%	\end{align}
+				%	とおけば全称記号の論理的公理より
+				%	\begin{align}
+				%		\forall x \widehat{\eta} \vdash \widehat{\eta}(x/\tau)
+				%	\end{align}
+				%	が成り立つ．(IH)より
+				%	\begin{align}
+				%		\vdash \widehat{\eta}(x/\tau) \rarrow \eta(x/\tau)
+				%	\end{align}
+				%	が成り立つので三段論法より
+				%	\begin{align}
+				%		\forall x \widehat{\eta} \vdash \eta(x/\tau)
+				%	\end{align}
+				%	が従い，全称の導出
+				%	(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})と
+				%	演繹定理より
+				%	\begin{align}
+				%		\vdash \forall x \widehat{\eta} \rarrow \forall x \eta
+				%	\end{align}
+				%	が得られる．同様に
+				%	\begin{align}
+				%		\vdash \forall x \eta \rarrow \forall x \widehat{\eta}
+				%	\end{align}
+				%	も成り立つので，論理積の導入より
+				%	\begin{align}
+				%		\vdash \varphi \lrarrow \widehat{\varphi}
+				%	\end{align}
+				%	が得られる．
 			\end{description}
 		\end{description}
 	\end{sketch}
