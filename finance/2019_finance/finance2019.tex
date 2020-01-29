@@ -1,0 +1,214 @@
+\documentclass[11pt,a4paper]{jsarticle}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{makeidx}
+\usepackage{txfonts}
+\usepackage{mathrsfs} %花文字
+\usepackage{mathtools} %参照式のみ式番号表示
+\usepackage{latexsym} %qed
+\usepackage{ascmac}
+\usepackage{color}
+
+\usepackage{comment}
+\newtheoremstyle{mystyle}% % Name
+	{20pt}%                      % Space above
+	{20pt}%                      % Space below
+	{\rm}%           % Body font
+	{}%                      % Indent amount
+	{\gt}%             % Theorem head font
+	{.}%                      % Punctuation after theorem head
+	{10pt}%                     % Space after theorem head, ' ', or \newline
+	{}%                      % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+
+\allowdisplaybreaks[1]
+\newcommand{\bhline}[1]{\noalign {\hrule height #1}} %表の罫線を太くする．
+\newcommand{\bvline}[1]{\vrule width #1} %表の罫線を太くする．
+\newtheorem{Prop}{$Proposition.$}
+\newtheorem{Proof}{$Proof.$}
+\newcommand{\QED}{% %証明終了
+	\relax\ifmmode
+		\eqno{%
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}}
+	\else
+		\begingroup
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\hfill\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}
+		\endgroup
+	\fi}
+\newtheorem*{thm}{定理}
+\newtheorem*{prp}{命題}
+\newtheorem*{dfn}{定義}
+\newtheorem*{prf}{証明}
+\newtheorem*{asm}{仮定}
+\newtheorem*{ans}{答案}
+
+%\renewcommand{\contentsname}{\bm Index}
+%
+\makeindex
+%
+\setlength{\textheight}{40\baselineskip}
+\setlength{\fullwidth}{\textwidth}
+\addtolength{\textheight}{\topskip}
+\setlength{\voffset}{-0.2in}
+\setlength{\topmargin}{0pt}
+\setlength{\headheight}{0pt}
+\setlength{\headsep}{0pt}
+%
+\title{金融確率解析レポート}
+\author{基礎工学研究科システム創成専攻修士2年\\学籍番号29C17095\\百合川尚学\\選択問題\ 1)\ 5)\ 6)}
+\date{\today}
+
+\begin{document}
+\mathtoolsset{showonlyrefs = true}
+\maketitle
+
+\begin{itembox}[l]{5)}
+	定数$-1 \leq \rho \leq 1$を用いて
+	\begin{align}
+		\bar{W}_{t} \coloneqq \rho W^{1}_{t} + \sqrt{1-\rho^{2}} W^{2}_{t},
+		\quad t \geq 0
+	\end{align}
+	を定義する．$(\bar{W}_{t})_{t \geq 0}$は標準ブラウン運動であることを示せ．また
+	$W^{1}_{t}$と$\bar{W}_{t}$との共分散を求めよ．
+\end{itembox}
+
+\begin{ans}\mbox{}
+	\begin{description}
+		\item[連続性]
+			連続関数の定数倍も連続関数同士の和も連続関数になるので
+			$t \longmapsto \bar{W}_{t}$は連続である．
+			
+		\item[$0$出発]
+			$W^{1}_{0} = 0$かつ$W^{2}_{0} = 0$なので$\bar{W}_{0} = 0$である．
+			
+		\item[独立増分性と分布]
+			$(\bar{W}_{t})_{t \geq 0}$の独立増分性と
+			任意の時点$0 \leq s < t$に対して$\bar{W}_{t} - \bar{W}_{s}$が
+			$N(0,t-s)$に従うことを言うには，
+			任意の自然数$n$に対して
+			任意の$0 = t_{0} < t_{1} < \cdots < t_{n}$および
+			任意の実数$\alpha_{1},\cdots,\alpha_{n}$を取って
+			\begin{align}
+				\operatorname{E}\left[\exp{\left(\sum_{j=1}^{n}\alpha_{j}(\bar{W}_{t_{j}} - \bar{W}_{t_{j-1}})\right)}\right]
+				= \prod_{j=1}^{n} \exp{\left(\frac{1}{2}\alpha_{j}^{2}(t_{j}-t_{j-1})\right)}
+			\end{align}
+			を示せばよい．まず
+			\begin{align}
+				&\operatorname{E}\left[\exp{\left(\sum_{j=1}^{n}\alpha_{j}(\bar{W}_{t_{j}} - \bar{W}_{t_{j-1}})\right)}\right] \\
+				&= \operatorname{E}\left[e^{\sum_{j=1}^{n}\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}e^{\sum_{j=1}^{n}\sqrt{1-\rho^{2}}\alpha_{j}(W^{2}_{t_{j}} - W^{2}_{t_{j-1}})}\right] \\
+				&=  \operatorname{E}\left[e^{\sum_{j=1}^{n}\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}\right] \operatorname{E}\left[e^{\sum_{j=1}^{n}\sqrt{1-\rho^{2}}\alpha_{j}(W^{2}_{t_{j}} - W^{2}_{t_{j-1}})}\right] && \mbox{($W^{1}$と$W^{2}$は独立なので)}
+			\end{align}
+			となるが，ここで$W^{1}$の独立増分性より
+			\begin{align}
+				\operatorname{E}\left[e^{\sum_{j=1}^{n}\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}\right] 
+				= \prod_{j=1}^{n} \operatorname{E}\left[e^{\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}\right]
+			\end{align}
+			が成り立つ．この右辺については
+			\begin{align}
+				&\operatorname{E}\left[e^{\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}\right] \\
+				&= \int_{-\infty}^{\infty} e^{\rho\alpha_{j}x}\frac{1}{\sqrt{2\pi(t_{j}-t_{j-1})}}e^{-\frac{x^{2}}{2(t_{j}-t_{j-1})}}\ dx \\
+				&= \int_{-\infty}^{\infty} e^{\rho\alpha_{j}\sqrt{t_{j}-t_{j-1}}x}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}\ dx \\
+				&= e^{\frac{1}{2}\rho^{2}\alpha_{j}^{2}(t_{j}-t_{j-1})}\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}}e^{-\frac{(x-\rho\alpha_{j}\sqrt{t_{j}-t_{j-1}})^{2}}{2}}\ dx \\
+				&= e^{\frac{1}{2}\rho^{2}\alpha_{j}^{2}(t_{j}-t_{j-1})}
+			\end{align}
+			が成り立つので
+			\begin{align}
+				\operatorname{E}\left[e^{\sum_{j=1}^{n}\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}\right] 
+				= \prod_{j=1}^{n} e^{\frac{1}{2}\rho^{2}\alpha_{j}^{2}(t_{j}-t_{j-1})}
+			\end{align}
+			となる．同様にして
+			\begin{align}
+				\operatorname{E}\left[e^{\sum_{j=1}^{n}\sqrt{1-\rho^{2}}\alpha_{j}(W^{2}_{t_{j}} - W^{2}_{t_{j-1}})}\right] 
+				= \prod_{j=1}^{n} e^{\frac{1}{2}(1-\rho^{2})\alpha_{j}^{2}(t_{j}-t_{j-1})}
+			\end{align}
+			が成り立つので
+			\begin{align}
+				&\operatorname{E}\left[\exp{\left(\sum_{j=1}^{n}\alpha_{j}(\bar{W}_{t_{j}} - \bar{W}_{t_{j-1}})\right)}\right] \\
+				&=  \operatorname{E}\left[e^{\sum_{j=1}^{n}\rho\alpha_{j}(W^{1}_{t_{j}} - W^{1}_{t_{j-1}})}\right] \operatorname{E}\left[e^{\sum_{j=1}^{n}\sqrt{1-\rho^{2}}\alpha_{j}(W^{2}_{t_{j}} - W^{2}_{t_{j-1}})}\right] \\
+				&= \prod_{j=1}^{n} e^{\frac{1}{2}\rho^{2}\alpha_{j}^{2}(t_{j}-t_{j-1})}e^{\frac{1}{2}(1-\rho^{2})\alpha_{j}^{2}(t_{j}-t_{j-1})} \\
+				&= \prod_{j=1}^{n} e^{\frac{1}{2}\alpha_{j}^{2}(t_{j}-t_{j-1})}
+			\end{align}
+			が従う．これで求める式を得た．
+			\QED
+	\end{description}
+	
+\begin{itembox}[l]{6)}
+	$\mbox{USD}/\mbox{JPY}$為替レート過程を表す$S^{1}$と
+	$\mbox{EUR}/\mbox{JPY}$為替レート過程を表す$S^{2}$が
+	\begin{align}
+		dS^{1}_{t} &= S^{1}_{t}(\sigma_{1}dW^{1}_{t} + \mu_{1}dt), \quad S^{1}_{0} > 0, \\
+		dS^{2}_{t} &= S^{2}_{t}(\sigma_{2}dW^{2}_{t} + \mu_{2}dt), \quad S^{2}_{0} > 0, 
+	\end{align}
+	と与えられている(すなわち，時刻$t$で$1\mbox{USD}$が$S^{1}_{t}$円であり，
+	$\mbox{1EUR}$が$S^{2}_{t}$円である)．ただし$\sigma_{1},\sigma_{2} > 0,\ 
+	\mu_{1},\mu_{2} \in \mathbb{R}$である．このとき$\mbox{USD}/\mbox{EUR}$為替レート過程を
+	計算し，そのボラティリティと期待収益率を求めよ．
+\end{itembox}
+
+\begin{ans}
+	$\mbox{USD}/\mbox{EUR}$為替レート過程は$S^{1}/S^{2}$を計算すればよい．
+	\begin{align}
+		d\begin{bmatrix}
+			X^{1}_{t} \\
+			X^{2}_{t} \\
+		\end{bmatrix} = 
+		\begin{bmatrix}
+			S^{1}_{t} & 0 \\
+			0 & S^{2}_{t} \\
+		\end{bmatrix}
+		\left(
+		\begin{bmatrix}
+			\sigma_{1} & 0 \\
+			0 & \sigma_{2} \\
+		\end{bmatrix}
+		\begin{bmatrix}
+			dW^{1}_{t} \\
+			dW^{2}_{t} \\
+		\end{bmatrix}
+		+ 
+		\begin{bmatrix}
+			\mu_{1} \\
+			\mu_{2} \\
+		\end{bmatrix}
+		dt
+		\right)
+	\end{align}
+	なので，伊藤の公式より
+	\begin{align}
+		\frac{S^{1}_{t}}{S^{2}_{t}} 
+		&= \frac{S^{1}_{0}}{S^{2}_{0}} + \int_{0}^{t} \frac{1}{S^{2}_{s}}\ dS^{1}_{s}
+		+ \int_{0}^{t} \frac{-S^{1}_{s}}{(S^{2}_{s})^{2}}\ dS^{2}_{s} \\
+		&\quad + \frac{1}{2}\int_{0}^{t} \mbox{tr}\left(
+		\begin{bmatrix}
+			0 & \frac{-1}{(S^{2}_{s})^{2}} \\
+			\frac{-1}{(S^{2}_{s})^{2}} & \frac{2S^{1}_{s}}{(S^{2}_{s})^{3}} \\
+		\end{bmatrix}
+		\begin{bmatrix}
+			S^{1}_{s}\sigma_{1} & 0 \\
+			0 & S^{2}_{s}\sigma_{2} \\
+		\end{bmatrix}
+		\begin{bmatrix}
+			S^{1}_{s}\sigma_{1} & 0 \\
+			0 & S^{2}_{s}\sigma_{2} \\
+		\end{bmatrix}
+		\right)ds \\
+		&= \frac{S^{1}_{0}}{S^{2}_{0}} + \int_{0}^{t} \frac{1}{S^{2}_{s}}\ dS^{1}_{s}
+		+ \int_{0}^{t} \frac{-S^{1}_{s}}{(S^{2}_{s})^{2}}\ dS^{2}_{s}
+		+ \int_{0}^{t} \frac{S^{1}_{s}}{S^{2}_{s}} \sigma_{2}^{2}\ ds \\
+		&= \frac{S^{1}_{0}}{S^{2}_{0}} + 
+		\int_{0}^{t} \frac{1}{S^{2}_{s}}\ S^{1}_{s}(\sigma_{1}dW^{1}_{s} + \mu_{1}ds) \\
+		&\quad+ \int_{0}^{t} \frac{-S^{1}_{s}}{(S^{2}_{s})^{2}}\ S^{2}_{s}(\sigma_{2}dW^{2}_{s} + \mu_{2}ds) \\
+		&\quad+ \int_{0}^{t} \frac{S^{1}_{s}}{S^{2}_{s}} \sigma_{2}^{2}\ ds \\
+		&= \frac{S^{1}_{0}}{S^{2}_{0}} + 
+		\int_{0}^{t}\frac{S^{1}_{s}}{S^{2}_{s}}\sigma_{1}\ dW^{1}_{s}
+		+ \int_{0}^{t}\frac{-S^{1}_{s}}{S^{2}_{s}}\sigma_{2}\ dW^{2}_{s}
+		+ \int_{0}^{t}\frac{S^{1}_{s}}{S^{2}_{s}}(\mu_{1}-\mu_{2}+\sigma_{2}^{2})\ ds
+	\end{align}
+	が成り立つ．これが$\mbox{USD}/\mbox{EUR}$為替レート過程の式である．
+\end{ans}
+
+\end{ans}
+\end{document}
