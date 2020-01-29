@@ -153,7 +153,7 @@
 	\begin{align}
 		a = b,\ \EXTAX,\EQAX \vdash \widehat{\varphi}(a) \lrarrow \widehat{\varphi}(b)
 	\end{align}
-	がとなる．ここでメタ定理\ref{metathm:substitution_to_rewritten_formula}より
+	となる．ここでメタ定理\ref{metathm:substitution_to_rewritten_formula}より
 	$\widehat{\varphi}(a)$は$\varphi(a)$の書き換えであって，
 	$\widehat{\varphi}(b)$は$\varphi(b)$の書き換えであるから，
 	書き換えの同値性(\ref{sec:equivalence_of_formula_rewriting}節)より
@@ -171,7 +171,7 @@
 	
 	\begin{sketch}\mbox{}
 		\begin{description}
-			\item[step1]
+			\item[step1-1]
 				始めの$3$ステップでは$\varphi$が原子式であるとして考察する．
 				$c$を類とすると，相等性公理から直接
 				\begin{align}
@@ -193,21 +193,13 @@
 				\begin{align}
 					a = b,\ \EQAX \vdash c \in a \lrarrow c \in b
 				\end{align}
-				も得られるので，$\varphi$が
-				\begin{align}
-					x \in c
-				\end{align}
-				や
-				\begin{align}
-					c \in x
-				\end{align}
-				なる式であるときは
+				も得られるので，$\varphi$が$x \in c$や$c \in x$なる式であるときは
 				\begin{align}
 					\EQAX \vdash a = b \rarrow (\, \varphi(a) \lrarrow \varphi(b)\, )
 				\end{align}
 				が成り立つ．
 			
-			\item[step2]
+			\item[step1-2]
 				$c$を類とすると，等号の推移律(定理\ref{thm:transitive_law_of_equality})より
 				\begin{align}
 					a = b,\ \EXTAX,\EQAX \vdash a = c \rarrow b = c
@@ -234,7 +226,7 @@
 				\end{align}
 				が成り立つ．
 				
-			\item[step3]
+			\item[step1-3]
 				$c$を類とすると，等号の推移律(定理\ref{thm:transitive_law_of_equality})より
 				\begin{align}
 					a = b,\ \EXTAX,\EQAX \vdash a = c \rarrow b = c
@@ -282,22 +274,23 @@
 				\end{align}
 				が成り立つ．
 			
-			\item[step4]
+			\item[step2]
 				$\varphi$を$x$のみが自由に現れる$\lang{\varepsilon}$の式として
 				\begin{itembox}[l]{IH (帰納法の仮定)}
-					$\varphi$の任意の真部分式$\psi$に対して，
-					$\psi$に$x$のみが自由に現れているならば
+					$\varphi$の任意の真部分式$\psi$に対して，$\psi$に$x$が自由に現れていて，
+					また$\psi$に自由に現れている$x$以外の変項が$x_{1},\cdots,x_{n}$で全て
+					であるとき，任意に主要$\varepsilon$項$\tau_{1},\cdots,\tau_{n}$を取って
+					$\psi(x_{1}/\tau_{1})\cdots(x_{n}/\tau_{n})$なる文を
+					$\psi^{*}$とする．$\psi$に自由に現れる変項が$x$のみなら$\psi^{*}$
+					を$\psi$とする．このとき
 					\begin{align}
-						\EXTAX,\EQAX \vdash a = b \rarrow (\, \psi(a) \lrarrow \psi(b)\, )
-					\end{align}
-					が成り立つ．$\psi$に$x$以外の変項$y$もまた自由に現れているならば，
-					任意の主要$\varepsilon$項$\tau$に対して
-					\begin{align}
-						\EXTAX,\EQAX \vdash a = b \rarrow (\, \psi(x/a,y/\tau) \lrarrow \psi(x/b,y/\tau)\, )
+						\EXTAX,\EQAX \vdash a = b \rarrow 
+						(\, \psi^{*}(a) \lrarrow \psi^{*}(b)\, )
 					\end{align}
 					が成り立つ．
 				\end{itembox}
-				と仮定する．このとき
+				と仮定する(帰納法の考え方としては，$\varphi$よりも``前の段階''で作られた
+				任意の式に対して代入原理が満たされていると仮定している)．このとき
 				\begin{description}
 					\item[case1] $\varphi$が
 						\begin{align}
@@ -323,49 +316,58 @@
 						\begin{align}
 							\psi_{a} \defarrow
 							\begin{cases}
-								\psi(a) & \mbox{if $\psi$に$x$が自由に現れる} \\
-								\psi & \mbox{if $\psi$に$x$が自由に現れない}
+								\psi(a) & \mbox{if $\psi$に$x$が自由に現れている} \\
+								\psi & \mbox{if $\psi$に$x$が自由に現れていない}
 							\end{cases}
 						\end{align}
-						と定め，同様に$\psi_{b},\chi_{a},\chi_{b}$も定めれば，(IH)より
+						と定め，同様に$\psi_{b},\chi_{a},\chi_{b}$も定めれば，(IH)
+						或いは含意の反射律(論理的定理
+						\ref{logicalthm:reflective_law_of_implication})より
 						\begin{align}
 							a = b,\ \EXTAX,\EQAX &\vdash \psi_{a} \lrarrow \psi_{b}, \\
 							a = b,\ \EXTAX,\EQAX &\vdash \chi_{a} \lrarrow \chi_{b}
 						\end{align}
-						が満たされる．従って論理的定理\ref{logicalthm:heredity_of_implication_to_disjunction_2}より
+						が満たされる．従って論理的定理
+						\ref{logicalthm:heredity_of_implication_to_disjunction_2}より
 						\begin{align}
-							a = b,\ \EXTAX,\EQAX \vdash\ 
-							\negation \psi_{a} \vee \chi_{a} \lrarrow\ \negation \psi_{b} \vee \chi_{b}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\psi_{a} \vee \chi_{a} \lrarrow \psi_{b} \vee \chi_{b}
 						\end{align}
-						が成り立つ．$\varphi$が
-						\begin{align}
-							\psi \wedge \chi
-						\end{align}
-						や
-						\begin{align}
-							\psi \rarrow \chi
-						\end{align}
-						なる式であるときも同様である．
+						が成り立つ．$\varphi$が$\psi \wedge \chi$や$\psi \rarrow \chi$
+						なる式であるときも，論理的定理
+						\ref{logicalthm:heredity_of_implication_to_conjunction_2}
+						或いは論理的定理
+						\ref{logicalthm:heredity_of_implication_to_implication_2}
+						を用いれば同様にして$a = b,\ \EXTAX,\EQAX \vdash 
+						\varphi(a) \lrarrow \varphi(b)$が示される．
 					
 					\item[case3]
 						$\varphi$が
 						\begin{align}
 							\exists y \psi
 						\end{align}
-						なる式であるとき，つまり$\psi$には$x$と$y$が自由に現れるが，
+						なる式であるとき，$x$は$\varphi$に自由に現れているので
+						$x$は$y$とは違う変項である．いま
 						\begin{align}
 							\tau \defeq \varepsilon y \psi(x/a)
 						\end{align}
 						と主要$\varepsilon$項を定めると，存在記号の論理的公理より
 						\begin{align}
-							\exists y \psi(x/a) \vdash \psi(x/a,y/\tau)
+							\exists y \psi(x/a) \vdash \psi(x/a)(y/\tau)
 						\end{align}
 						が成り立つ($\varphi(a)$と$\exists y \psi(x/a)$は一致する)．(IH)より
 						\begin{align}
 							a = b,\ \EXTAX,\EQAX \vdash 
-							\psi(x/a,y/\tau) \rarrow \psi(x/b,y/\tau)
+							\psi(y/\tau)(x/a) \rarrow \psi(y/\tau)(x/b)
 						\end{align}
-						が成り立つので三段論法より
+						が成り立つが，$x$と$y$は違う変項であるから，$\psi(x/a)(y/\tau)$と
+						$\psi(y/\tau)(x/a)$，$\psi(x/b)(y/\tau)$と
+						$\psi(y/\tau)(x/b)$はそれぞれ同じ式である．従って
+						\begin{align}
+							a = b,\ \EXTAX,\EQAX \vdash 
+							\psi(x/a)(y/\tau) \rarrow \psi(x/b)(y/\tau)
+						\end{align}
+						が成り立つ．三段論法より
 						\begin{align}
 							\exists y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
 							\psi(x/b,y/\tau)
@@ -380,158 +382,154 @@
 							a = b,\ \EXTAX,\EQAX \vdash 
 							\exists y \psi(x/a) \rarrow \exists y \psi(x/b)
 						\end{align}
-						が出る．今度は
-						\begin{align}
-							\tau \defeq \varepsilon y \psi(x/b)
-						\end{align}
-						とおけば上と同様に
+						が出る．$a$と$b$を入れ替えれば
 						\begin{align}
 							a = b,\ \EXTAX,\EQAX \vdash 
 							\exists y \psi(x/b) \rarrow \exists y \psi(x/a)
 						\end{align}
-						が成り立ち，
+						も成り立つので，論理積の導入より
 						\begin{align}
 							a = b,\ \EXTAX,\EQAX \vdash 
 							\exists y \psi(x/a) \lrarrow \exists y \psi(x/b)
 						\end{align}
-						が得られる．
-						
-					\item[case4]
-						$\varphi$が
-						\begin{align}
-							\forall y \psi
-						\end{align}
-						なる式の場合は，まず$\tau$を
-						\begin{align}
-							\varepsilon y \negation \psi(x/b)
-						\end{align}
-						なる主要$\varepsilon$項とする．このとき全称記号の論理的公理より
-						\begin{align}
-							\forall y \psi(x/a) \vdash \psi(x/a,y/\tau)
-						\end{align}
-						が成り立ち($\varphi(a)$と$\forall y \psi(x/a)$は一致する)，(IH)より
-						\begin{align}
-							a = b,\ \EXTAX,\EQAX \vdash 
-							\psi(x/a,y/\tau) \rarrow \psi(x/b,y/\tau)
-						\end{align}
-						が成り立つので三段論法より
-						\begin{align}
-							\forall y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
-							\psi(x/b,y/\tau)
-						\end{align}
-						が従い，全称の導出\ref{logicalthm:derivation_of_universal_by_epsilon}より
-						\begin{align}
-							\forall y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
-							\forall y \psi(x/b)
-						\end{align}
-						となり
-						\begin{align}
-							a = b,\ \EXTAX,\EQAX \vdash 
-							\forall y \psi(x/a) \rarrow \forall y \psi(x/b)
-						\end{align}
-						が出る．今度は
-						\begin{align}
-							\tau \defeq \varepsilon \negation y \psi(x/a)
-						\end{align}
-						とおけば上と同様に
-						\begin{align}
-							a = b,\ \EXTAX,\EQAX \vdash 
-							\forall y \psi(x/b) \rarrow \forall y \psi(x/a)
-						\end{align}
-						が成り立ち，
-						\begin{align}
-							a = b,\ \EXTAX,\EQAX \vdash 
-							\forall y \psi(x/a) \lrarrow \forall y \psi(x/b)
-						\end{align}
-						が得られる．
+						が得られる．$\varphi$が$\forall y \psi$なる式であっても，全称の導出
+						(論理的定理
+						\ref{logicalthm:derivation_of_universal_by_epsilon})
+						を利用すれば同様にして$a = b,\ \EXTAX,\EQAX \vdash 
+						\varphi(a) \lrarrow \varphi(b)$が示される．
 						\QED
+					%\item[case4]
+					%	$\varphi$が
+					%	\begin{align}
+					%		\forall y \psi
+					%	\end{align}
+					%	なる式の場合は，まず$\tau$を
+					%	\begin{align}
+					%		\varepsilon y \negation \psi(x/b)
+					%	\end{align}
+					%	なる主要$\varepsilon$項とする．このとき全称記号の論理的公理より
+					%	\begin{align}
+					%		\forall y \psi(x/a) \vdash \psi(x/a,y/\tau)
+					%	\end{align}
+					%	が成り立ち($\varphi(a)$と$\forall y \psi(x/a)$は一致する)，(IH)より
+					%	\begin{align}
+					%		a = b,\ \EXTAX,\EQAX \vdash 
+					%		\psi(x/a,y/\tau) \rarrow \psi(x/b,y/\tau)
+					%	\end{align}
+					%	が成り立つので三段論法より
+					%	\begin{align}
+					%		\forall y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
+					%		\psi(x/b,y/\tau)
+					%	\end{align}
+					%	が従い，全称の導出
+					%	\ref{logicalthm:derivation_of_universal_by_epsilon}より
+					%	\begin{align}
+					%		\forall y \psi(x/a),\ a = b,\ \EXTAX,\EQAX \vdash 
+					%		\forall y \psi(x/b)
+					%	\end{align}
+					%	となり
+					%	\begin{align}
+					%		a = b,\ \EXTAX,\EQAX \vdash 
+					%		\forall y \psi(x/a) \rarrow \forall y \psi(x/b)
+					%	\end{align}
+					%	が出る．今度は
+					%	\begin{align}
+					%		\tau \defeq \varepsilon \negation y \psi(x/a)
+					%	\end{align}
+					%	とおけば上と同様に
+					%	\begin{align}
+					%		a = b,\ \EXTAX,\EQAX \vdash 
+					%		\forall y \psi(x/b) \rarrow \forall y \psi(x/a)
+					%	\end{align}
+					%	が成り立ち，
+					%	\begin{align}
+					%		a = b,\ \EXTAX,\EQAX \vdash 
+					%		\forall y \psi(x/a) \lrarrow \forall y \psi(x/b)
+					%	\end{align}
+					%	が得られる．
+					%	\QED
 				\end{description}
 				
-			\begin{comment}
-			%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%
-			\item[step2]
-				$\varphi$が
-				\begin{align}
-					x \in \varepsilon y\, R(x,y)
-				\end{align}
-				なる式であるとき，
-				\begin{align}
-					a = b,\ \EQAXEP \vdash \varepsilon y\, R(a,y) = \varepsilon y\, R(b,y)
-				\end{align}
-				となる．
-				\begin{align}
-					a = b,\ \EXTAX,\EQAX 
-					\vdash (\, \varepsilon y\, R(a,y) = \varepsilon y\, R(b,y)\, )
-					\rarrow (\, a \in \varepsilon y\, R(a,y) \lrarrow a \in \varepsilon y\, R(b,y)\, )
-				\end{align}
-				なので
-				\begin{align}
-					a = b,\ \EXTAX,\EQAX,\EQAXEP \vdash 
-					a \in \varepsilon y\, R(a,y) \lrarrow a \in \varepsilon y\, R(b,y)
-				\end{align}
-				となる．
-				\begin{align}
-					a=b,\ \EXTAX,\EQAX \vdash 
-					a \in \varepsilon y\, R(b,y) \lrarrow b \in \varepsilon y\, R(b,y)
-				\end{align}
-				も成り立つので
-				\begin{align}
-					a=b,\ \EXTAX,\EQAX,\EQAXEP \vdash 
-					a \in \varepsilon y\, R(a,y) \lrarrow b \in \varepsilon y\, R(b,y)
-				\end{align}
-				が得られる．
+			%\item[step2]
+			%	$\varphi$が
+			%	\begin{align}
+			%		x \in \varepsilon y\, R(x,y)
+			%	\end{align}
+			%	なる式であるとき，
+			%	\begin{align}
+			%		a = b,\ \EQAXEP \vdash \varepsilon y\, R(a,y) = \varepsilon y\, R(b,y)
+			%	\end{align}
+			%	となる．
+			%	\begin{align}
+			%		a = b,\ \EXTAX,\EQAX 
+			%		\vdash (\, \varepsilon y\, R(a,y) = \varepsilon y\, R(b,y)\, )
+			%		\rarrow (\, a \in \varepsilon y\, R(a,y) \lrarrow a \in \varepsilon y\, R(b,y)\, )
+			%	\end{align}
+			%	なので
+			%	\begin{align}
+			%		a = b,\ \EXTAX,\EQAX,\EQAXEP \vdash 
+			%		a \in \varepsilon y\, R(a,y) \lrarrow a \in \varepsilon y\, R(b,y)
+			%	\end{align}
+			%	となる．
+			%	\begin{align}
+			%		a=b,\ \EXTAX,\EQAX \vdash 
+			%		a \in \varepsilon y\, R(b,y) \lrarrow b \in \varepsilon y\, R(b,y)
+			%	\end{align}
+			%	も成り立つので
+			%	\begin{align}
+			%		a=b,\ \EXTAX,\EQAX,\EQAXEP \vdash 
+			%		a \in \varepsilon y\, R(a,y) \lrarrow b \in \varepsilon y\, R(b,y)
+			%	\end{align}
+			%	が得られる．
 				
-			\item[step3]
-				$\varphi$が
-				\begin{align}
-					\varepsilon y R(x,y) \in \varepsilon z T(x,z)
-				\end{align}
-				なる形のとき，
-				\begin{align}
-					a = b,\ \EQAXEP \vdash 
-					\varepsilon y R(a,y) = \varepsilon y R(b,y)
-				\end{align}
-				と
-				\begin{align}
-					a = b,\ \EQAX, \EQAXEP \vdash 
-					(\, \varepsilon y R(a,y) = \varepsilon y R(b,y)\, )
-					\rarrow (\, \varepsilon y R(a,y) \in \varepsilon z T(a,z)
-					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(a,z)\, )
-				\end{align}
-				より
-				\begin{align}
-					a = b,\ \EQAX, \EQAXEP \vdash 
-					\varepsilon y R(a,y) \in \varepsilon z T(a,z)
-					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(a,z)
-				\end{align}
-				が成り立つ．他方で
-				\begin{align}
-					a = b,\ \EQAXEP \vdash 
-					\varepsilon z T(a,z) = \varepsilon z T(b,z)
-				\end{align}
-				と
-				\begin{align}
-					a = b,\ \EQAX, \EQAXEP \vdash 
-					(\, \varepsilon z T(a,z) = \varepsilon z T(b,z)\, )
-					\rarrow (\, \varepsilon y R(b,y) \in \varepsilon z T(a,z)
-					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)\, )
-				\end{align}
-				より
-				\begin{align}
-					a = b,\ \EQAX, \EQAXEP \vdash 
-					\varepsilon y R(b,y) \in \varepsilon z T(a,z)
-					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
-				\end{align}
-				が成り立つ．同値関係の推移律
-				(\ref{logicalthm:transitive_law_of_equivalence_symbol})より
-				\begin{align}
-					a = b,\ \EQAX, \EQAXEP \vdash 
-					\varepsilon y R(a,y) \in \varepsilon z T(a,z)
-					\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
-				\end{align}
-				が成立する．
-			%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%
-			\end{comment}
-			
+			%\item[step3]
+			%	$\varphi$が
+			%	\begin{align}
+			%		\varepsilon y R(x,y) \in \varepsilon z T(x,z)
+			%	\end{align}
+			%	なる形のとき，
+			%	\begin{align}
+			%		a = b,\ \EQAXEP \vdash 
+			%		\varepsilon y R(a,y) = \varepsilon y R(b,y)
+			%	\end{align}
+			%	と
+			%	\begin{align}
+			%		a = b,\ \EQAX, \EQAXEP \vdash 
+			%		(\, \varepsilon y R(a,y) = \varepsilon y R(b,y)\, )
+			%		\rarrow (\, \varepsilon y R(a,y) \in \varepsilon z T(a,z)
+			%		\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(a,z)\, )
+			%	\end{align}
+			%	より
+			%	\begin{align}
+			%		a = b,\ \EQAX, \EQAXEP \vdash 
+			%		\varepsilon y R(a,y) \in \varepsilon z T(a,z)
+			%		\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(a,z)
+			%	\end{align}
+			%	が成り立つ．他方で
+			%	\begin{align}
+			%		a = b,\ \EQAXEP \vdash 
+			%		\varepsilon z T(a,z) = \varepsilon z T(b,z)
+			%	\end{align}
+			%	と
+			%	\begin{align}
+			%		a = b,\ \EQAX, \EQAXEP \vdash 
+			%		(\, \varepsilon z T(a,z) = \varepsilon z T(b,z)\, )
+			%		\rarrow (\, \varepsilon y R(b,y) \in \varepsilon z T(a,z)
+			%		\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)\, )
+			%	\end{align}
+			%	より
+			%	\begin{align}
+			%		a = b,\ \EQAX, \EQAXEP \vdash 
+			%		\varepsilon y R(b,y) \in \varepsilon z T(a,z)
+			%		\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
+			%	\end{align}
+			%	が成り立つ．同値関係の推移律
+			%	(\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+			%	\begin{align}
+			%		a = b,\ \EQAX, \EQAXEP \vdash 
+			%		\varepsilon y R(a,y) \in \varepsilon z T(a,z)
+			%		\lrarrow \varepsilon y R(b,y) \in \varepsilon z T(b,z)
+			%	\end{align}
+			%	が成立する．
 		\end{description}
 	\end{sketch}
