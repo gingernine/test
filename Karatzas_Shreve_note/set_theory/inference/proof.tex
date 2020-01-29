@@ -27,46 +27,40 @@
 	\end{align}
 	を満たす文$\psi$を論理的定理と呼ぶ．
 	
-	\begin{comment}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%証明とはどのようにされるのだとか，$\vdash \psi$を満たすとは
+	%どういう意味なのか，とかいったことは後に回して，とりあえず記号のパズルゲームと見立てて
+	%$\vdash$のルールを定める．
 	
-	証明とはどのようにされるのだとか，$\vdash \psi$を満たすとは
-	どういう意味なのか，とかいったことは後に回して，とりあえず記号のパズルゲームと見立てて
-	$\vdash$のルールを定める．
+	%\begin{screen}
+	%	\begin{logicalrule}[演繹定理]\label{logicalrule:deduction_rule}
+	%		$A,B,C,D$を文とするとき，
+	%		\begin{description}
+	%			\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
+	%			\item[(b)] $A,B \vdash D$ならば
+	%				\begin{align}
+	%					B \vdash A \rarrow D,\quad
+	%					A \vdash B \rarrow D
+	%				\end{align}
+	%				が成り立つ．
+	%			\item[(c)] $A,B,C \vdash D$ならば
+	%				\begin{align}
+	%					B,C \vdash A \rarrow D,\quad
+	%					A,C \vdash B \rarrow D,\quad
+	%					A,B \vdash C \rarrow D
+	%				\end{align}
+	%				のいずれも成り立つ．
+	%		\end{description}
+	%	\end{logicalrule}
+	%\end{screen}
 	
-	\begin{screen}
-		\begin{logicalrule}[演繹定理]\label{logicalrule:deduction_rule}
-			$A,B,C,D$を文とするとき，
-			\begin{description}
-				\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
-				\item[(b)] $A,B \vdash D$ならば
-					\begin{align}
-						B \vdash A \rarrow D,\quad
-						A \vdash B \rarrow D
-					\end{align}
-					が成り立つ．
-				\item[(c)] $A,B,C \vdash D$ならば
-					\begin{align}
-						B,C \vdash A \rarrow D,\quad
-						A,C \vdash B \rarrow D,\quad
-						A,B \vdash C \rarrow D
-					\end{align}
-					のいずれも成り立つ．
-			\end{description}
-		\end{logicalrule}
-	\end{screen}
-	
-	演繹定理においては$\vdash$の左側にせいぜい三つの文しかないのだが，
-	実は$\vdash$の左側に不特定多数の文を持ってきても
-	演繹定理じみたことが成立する(後述の演繹定理)．
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\end{comment}
+	%演繹定理においては$\vdash$の左側にせいぜい三つの文しかないのだが，
+	%実は$\vdash$の左側に不特定多数の文を持ってきても
+	%演繹定理じみたことが成立する(後述の演繹定理)．
 	
 	まずは{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定する．
 	\underline{証明される式や証明の過程で出てくる式は全て文である}．本稿では証明された文を
 	{\bf 真な}\index{しん@真}{\bf (true)}文と呼ぶことにするが，
-	``証明された''や``真である''という状況は議論が立脚している前提に依存する．
+	「証明された」や「真である」という状況は議論が立脚している前提に依存する．
 	ここでいう前提とは，論理的公理や言語ではなくて
 	{\bf 公理系}\index{こうりけい@公理系}{\bf (axioms)}と呼ばれるものを指している．
 	公理系とは文の集まりである．$\mathscr{S}$を公理系とするとき，
@@ -157,22 +151,26 @@
 				\item $\varphi$は$\mathscr{S}$の公理である．
 				\item 文$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\mathscr{S}$から
 				既に証明されているものが取れる({\bf 三段論法}\index{さんだんろんぽう@三段論法}
-				{\bf (Modus Pones)})．
+				{\bf (Modus Pones)}\footnotemark)．
 			\end{itemize}
-			のいずれかが満たされているということである．
+			のいずれかが満たされているということである．ただし公理系を変項した場合の証明可能性には，
+			後述の演繹定理およびその逆の結果を適用することが出来る．
 		\end{metadfn}
 	\end{screen}		
 	
-	三段論法のように或る式から他の式を導き出す規則のことを{\bf 推論規則}
-	\index{すいろんきそく@推論規則}{\bf (rule of inference)}と呼ぶ．
+	\footnotetext{
+		三段論法のように或る式から他の式を導き出す規則のことを{\bf 推論規則}
+		\index{すいろんきそく@推論規則}{\bf (rule of inference)}と呼ぶ．
+		第\ref{chap:conservative_extension}章では{\bf 汎化}
+		\index{はんか@汎化}{\bf (generalization)}と呼ばれる規則も登場する．
+	}
 	
 	$\varphi$が$\mathscr{S}$から証明可能であることを
 	\begin{align}
 		\mathscr{S} \vdash \varphi
 	\end{align}
-	と書く．ただし公理系を変項した場合の証明可能性には，後述の演繹定理
-	およびその逆の結果を適用することが出来る．
-	
+	と書く．$A,B \vdash \varphi$と書いてあれば，これは$A$と$B$の二つの文のみを
+	公理とした体系において$\varphi$が証明可能であることを表している．
 	たとえばどんな文$\varphi$に対しても
 	\begin{align}
 		\varphi \vdash \varphi
@@ -186,8 +184,6 @@
 	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業を$\psi$の$\mathscr{S}$からの
 	{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼び，
 	$\psi$を$\mathscr{S}$の{\bf 定理}\index{ていり@定理}{\bf (theorem)}と呼ぶ．
-	$A,B \vdash \varphi$とは
-	$A$と$B$の二つの文のみを公理とした体系において$\varphi$が証明可能であることを表している．
 	特に論理的定理とは論理的公理だけから導かれる定理のことである．
 	
 	\begin{screen}
@@ -279,92 +275,86 @@
 		\QED
 	\end{prf}
 	
-	\begin{comment}
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%\begin{screen}
+	%	\begin{logicalthm}[含意の導入]
+	%	\label{logicalthm:introduction_of_implication}
+	%		$A,B$を文とするとき
+	%		\begin{align}
+	%			\vdash B \rarrow (\, A \rarrow B\, ).
+	%		\end{align}
+	%	\end{logicalthm}
+	%\end{screen}
 	
-	\begin{screen}
-		\begin{logicalthm}[含意の導入]
-		\label{logicalthm:introduction_of_implication}
-			$A,B$を文とするとき
-			\begin{align}
-				\vdash B \rarrow (\, A \rarrow B\, ).
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
+	%\begin{prf}
+	%	\begin{align}
+	%		A,B \vdash B
+	%	\end{align}
+	%	より演繹定理から
+	%	\begin{align}
+	%		B \vdash A \rarrow B
+	%	\end{align}
+	%	となり，再び演繹定理より
+	%	\begin{align}
+	%		\vdash B \rarrow (\, A \rarrow B\, )
+	%	\end{align}
+	%	が得られる．
+	%	\QED
+	%\end{prf}
 	
-	\begin{prf}
-		\begin{align}
-			A,B \vdash B
-		\end{align}
-		より演繹定理から
-		\begin{align}
-			B \vdash A \rarrow B
-		\end{align}
-		となり，再び演繹定理より
-		\begin{align}
-			\vdash B \rarrow (\, A \rarrow B\, )
-		\end{align}
-		が得られる．
-		\QED
-	\end{prf}
+	%演繹定理を示すための論理的定理の導出は次で最後である．
 	
-	演繹定理を示すための論理的定理の導出は次で最後である．
+	%\begin{screen}
+	%	\begin{logicalthm}[含意の分配則]
+	%	\label{logicalthm:distributive_law_of_implication}
+	%		$A,B,C$を文とするとき
+	%		\begin{align}
+	%			\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
+	%			\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, ).
+	%		\end{align}
+	%	\end{logicalthm}
+	%\end{screen}
 	
-	\begin{screen}
-		\begin{logicalthm}[含意の分配則]
-		\label{logicalthm:distributive_law_of_implication}
-			$A,B,C$を文とするとき
-			\begin{align}
-				\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
-				\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, ).
-			\end{align}
-		\end{logicalthm}
-	\end{screen}
-	
-	\begin{prf}
-		証明可能性の規則より
-		\begin{align}
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
-			&\vdash A, \\
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
-			&\vdash A \rarrow B
-		\end{align}
-		となるので
-		\begin{align}
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
-			\vdash B
-		\end{align}
-		が成り立つし，同じように
-		\begin{align}
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
-			&\vdash A, \\
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
-			&\vdash A \rarrow (\, B \rarrow C\, )
-		\end{align}
-		であるから
-		\begin{align}
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
-			\vdash B \rarrow C
-		\end{align}
-		も成り立つ．これによって
-		\begin{align}
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A \vdash C
-		\end{align}
-		も成り立つから，あとは演繹定理を順次適用すれば
-		\begin{align}
-			A \rarrow (\, B \rarrow C\, ),\ A \rarrow B
-			&\vdash A \rarrow C, \\
-			A \rarrow (\, B \rarrow C\, )
-			&\vdash (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, ), \\
-			&\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
-				\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, )
-		\end{align}
-		となる．
-		\QED
-	\end{prf}
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%%%%コメント%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\end{comment}
+	%\begin{prf}
+	%	証明可能性の規則より
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A, \\
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A \rarrow B
+	%	\end{align}
+	%	となるので
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		\vdash B
+	%	\end{align}
+	%	が成り立つし，同じように
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A, \\
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A \rarrow (\, B \rarrow C\, )
+	%	\end{align}
+	%	であるから
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		\vdash B \rarrow C
+	%	\end{align}
+	%	も成り立つ．これによって
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A \vdash C
+	%	\end{align}
+	%	も成り立つから，あとは演繹定理を順次適用すれば
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B
+	%		&\vdash A \rarrow C, \\
+	%		A \rarrow (\, B \rarrow C\, )
+	%		&\vdash (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, ), \\
+	%		&\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
+	%			\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, )
+	%	\end{align}
+	%	となる．
+	%	\QED
+	%\end{prf}
 	
 	\begin{screen}
 		\begin{metaaxm}[証明に対する構造的帰納法]
