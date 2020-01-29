@@ -214,9 +214,8 @@
 		\begin{metathm}[書き換えへの代入は代入した式の書き換え]
 		\label{metathm:substitution_to_rewritten_formula}
 			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
-			$\varphi$には変項$x$が自由に現れているとし，$\tau$を$\lang{\varepsilon}$の項とし，
-			$\widehat{\varphi}$を$\varphi$の書き換えとし，$\tau$は$\varphi$と
-			$\widehat{\varphi}$の中で$x$への代入について自由であるとする\footnotemark
+			$\varphi$には変項$x$が自由に現れているとし，$\tau$を主要$\varepsilon$項とし，
+			$\widehat{\varphi}$を$\varphi$の書き換えとする\footnotemark
 			．このとき$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
 		\end{metathm}
 	\end{screen}
@@ -489,24 +488,23 @@
 						\begin{align}
 							x \in \Set{z}{\psi}
 						\end{align}
-						なる式のとき，必要ならば$\psi$の変項の
+						なる式のとき，$\widehat{\varphi}$を得るために必要ならば$\psi$の変項の
 						名前替えをしたものを$\widetilde{\psi}$とする．ただし
 						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
-						$\widehat{\varphi}$は$\widetilde{\psi}(z/x)$なる式であるから
+						$\widehat{\varphi}$は$\widetilde{\psi}(z/x)$なる式であり，
 						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/x)(x/\tau)$
 						となる．
 						\begin{itemize}
 							\item $x$と$z$が同じであるとする．
 								このときは$\psi$の変項の名前替えは必要ない．
 								$\widehat{\varphi}$とは$\psi$そのものであり，
-								$\tau$は$\psi$の中で$z$への代入について自由である．
-								$\psi(z/x)$とは$\psi$そのものであるから，
-								$\psi(z/x)(x/\tau)$は$\psi(z/\tau)$となる．
+								$\widehat{\varphi}(x/\tau)$は$\psi(z/\tau)$と同じ式である．
 								他方で$\varphi(x/\tau)$は
 								\begin{align}
 									\tau \in \Set{z}{\psi}
 								\end{align}
 								となるから，$\psi(z/\tau)$は$\varphi(x/\tau)$の書き換えである．
+								従って$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
 								
 							\item $x$と$z$が違うとする．このとき
 								\begin{itemize}
@@ -517,37 +515,55 @@
 										\begin{align}
 											\tau \in \Set{z}{\psi(x/\tau)}
 										\end{align}
-										となるから，$\varphi(x/\tau)$の書き換えは
-										\begin{align}
-											\widetilde{\psi(x/\tau)}(z/\tau)
-										\end{align}
-										なる式で表せる(ここで$\widetilde{\psi(x/\tau)}$とは
-										必要に応じて$\psi(x/\tau)$の名前替えをしたものである)．
-										メタ定理\ref{metathm:subformula_replacing_and_substitution}より
-										$\widetilde{\psi(x/\tau)}(z/\tau)$は
-										$\psi(x/\tau)(z/\tau)$の部分式を入れ替えたものである．
+										となるから，$\varphi(x/\tau)$の書き換えは$\psi(x/\tau)(z/\tau)$となる．
 										
-										$\psi(x/\tau)(z/\tau)$は
-										$\varphi(x/\tau)$の書き換えとなる．
-										$\psi(x/\tau)(z/\tau)$と
-										$\widetilde{\psi}(x/\tau)(z/\tau)$は，
-										もし違う式でも$\forall x$か$\exists x$から
-										始まる或る部分式が違うだけであるから，
-										$\widetilde{\psi}(x/\tau)(z/\tau)$もまた
+										ここで$\widetilde{\psi}(x/\tau)(z/\tau)$が
+										$\psi(x/\tau)(z/\tau)$の量化部分式を
+										(ゼロ回乃至数回だけ)差し替えた式であることを示す．
+										ゼロ回というのは$\widetilde{\psi}$が$\psi$であるということだから，
+										既に$\widehat{\varphi}(x/\tau)$が
+										$\varphi(x/\tau)$の書き換えであると判ってしまう．
+										以下では$\widetilde{\psi}$は$\psi$ではないと仮定して話を進める．
+										そもそも$\widetilde{\psi}$とはどのように出来ていたかというと，
+										表\ref{tab:formula_rewriting}の下の変項条件で書いたように，
+										$\psi$の量化部分式を一回乃至数回差し替えているのである．
+										それが$n$回あったとして，$\psi$から$\widetilde{\psi}$に至るまでの
+										差し替えの履歴を
+										\begin{align}
+											\psi_{1},\ \psi_{2},\ \cdots,\ \psi_{n}
+										\end{align}
+										としよう．$\psi_{n}$とは$\widetilde{\psi}$のことである．
+										メタ定理\ref{metathm:subformula_replacing_and_substitution}より，
+										$\psi_{1}(x/\tau)$とは$\psi(x/\tau)$の量化部分式を一つ差し替えた式である．
+										すると再びメタ定理\ref{metathm:subformula_replacing_and_substitution}より
+										$\psi_{1}(x/\tau)(z/\tau)$は$\psi(x/\tau)(z/\tau)$
+										の量化部分式を一つ差し替えた式となる．
+										同様に$\psi_{i+1}(x/\tau)(z/\tau)$は$\psi_{i}(x/\tau)(z/\tau)$の
+										量化部分式を一つ差し替えた式であるから，$\widetilde{\psi}(x/\tau)(z/\tau)$
+										は$\psi(x/\tau)(z/\tau)$の量化部分式を$n$回差し替えた式なのである．
+										$\psi(x/\tau)(z/\tau)$とは$\varphi(x/\tau)$の書き換えなのだから，
+										書き換えの定義によって$\widetilde{\psi}(x/\tau)(z/\tau)$は
+										$\varphi(x/\tau)$の書き換えである．つまり$\widehat{\varphi}(x/\tau)$は
 										$\varphi(x/\tau)$の書き換えである．
 										
+										
 									\item $x$が$\Set{z}{\psi}$に自由に現れていない場合．
-										このときは$\psi$に$x$は自由に現れないので
+										$\psi$に$x$は自由に現れないので
 										$\widetilde{\psi}$にも
-										$x$は自由に現れない．従って
-										$\widetilde{\psi}(z/x)(x/\tau)$は
-										$\widetilde{\psi}(z/\tau)$である．
+										$x$は自由に現れない($\widetilde{\psi}$は
+										$\psi$に自由に現れる変項に影響しないように
+										部分式を差し替えて作られているため)．
+										従って$\widetilde{\psi}(z/x)(x/\tau)$は
+										$\widetilde{\psi}(z/\tau)$と同じ式である．
 										他方で$\varphi(x/\tau)$は
 										\begin{align}
 											\tau \in \Set{z}{\psi}
 										\end{align}
-										となるから，$\widetilde{\psi}(z/\tau)$は
-										$\varphi(x/\tau)$の書き換えとなる．
+										となるから，$\psi(z/\tau)$は$\varphi(x/\tau)$の書き換えとなる．
+										先と同じ論法で$\widetilde{\psi}(z/\tau)$が
+										$\psi(z/\tau)$の量化部分式をゼロ回乃至数回だけ差し替えた
+										式であると判るので，書き換えの定義より
+										$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
 								\end{itemize}
 						\end{itemize}
 						
@@ -556,22 +572,29 @@
 							a \in \Set{z}{\psi}
 						\end{align}
 						なる式のとき($a$は$x$とは違う$\lang{\varepsilon}$の項)，
-						必要ならば$\psi$の変項の
-						名前替えをしたものを$\widetilde{\psi}$とする．ただし
+						$x$は$\varphi$に自由に現れているので，$x$は$z$とは違う変項であり，
+						$\psi$に自由に現れている．$\widehat{\varphi}$を得るために
+						必要ならば$\psi$の変項の名前替えをして$\widetilde{\psi}$を作る．ただし
 						名前替えをしなかったら$\widetilde{\psi}$は$\psi$とする．
-						$\widehat{\varphi}$は$\widetilde{\psi}(z/a)$なる式であるから
+						$\widehat{\varphi}$は$\widetilde{\psi}(z/a)$なる式であり，
 						$\widehat{\varphi}(x/\tau)$は$\widetilde{\psi}(z/a)(x/\tau)$
-						となる．$\varphi$には$x$が自由に現れているので，つまり
-						$x$は$\Set{z}{\psi}$に自由に現れているから$x$は$z$とも違う変項である．
-						また代入条件より$\tau$も$z$と違う項である．
-						従って$\widetilde{\psi}(z/a)(x/\tau)$は
-						$\widetilde{\psi}(x/\tau)(z/a)$である．他方で
-						$\varphi(x/\tau)$は
+						となるが，$x$は$z$とも$a$とも違うので$\widehat{\varphi}(x/\tau)$は
+						\begin{align}
+							\widetilde{\psi}(x/\tau)(z/a)
+						\end{align}
+						と一致する．他方で$\varphi(x/\tau)$は
 						\begin{align}
 							a \in \Set{z}{\psi(x/\tau)}
 						\end{align}
-						となるから，$\widetilde{\psi}(x/\tau)(z/a)$は$\varphi(x/\tau)$の書き換えとなる．
-					
+						となる．ところで，$\widetilde{\psi}$は$\psi$の量化部分式を
+						或る$n$回だけ差し替えた式であるから，
+						メタ定理\ref{metathm:subformula_replacing_and_substitution}
+						とcase6の説明より，$\widetilde{\psi}(x/\tau)$もまた
+						$\psi(x/\tau)$の量化部分式を$n$回だけ差し替えた式である．
+						すなわち$\widetilde{\psi}(x/\tau)(z/a)$は
+						$\varphi(x/\tau)$の書き換えとなっている．ゆえに
+						$\widehat{\varphi}(x/\tau)$は$\varphi(x/\tau)$の書き換えである．
+						
 					\item[case8] $\varphi$が
 						\begin{align}
 							\Set{y}{\xi} \in x
