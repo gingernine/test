@@ -27,34 +27,37 @@
 		\label{formula_rewriting_1}
 	\end{align}
 	が成り立つことを示す．
-	これが示されれば，仮に$\varphi$に変項$x$が自由に現れていても
+	これが示されれば，たとえば$\varphi$に変項$x$のみが自由に現れている場合は
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall x\, (\, \varphi(x) \lrarrow \widehat{\varphi}(x)\, )
 	\end{align}
-	が成り立つし，$x$に加えて$y$が自由に現れていても
+	が成り立つし，$x$と$y$のみが自由に現れている場合も
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall x\, \forall y\, (\, \varphi(x,y) \lrarrow \widehat{\varphi}(x,y)\, )
 	\end{align}
-	が成り立つ．前者の場合は
+	が成り立つ．実際，前者の場合は
 	\begin{align}
 		\tau \defeq \varepsilon x \negation (\, \widehat{\varphi}(x) \lrarrow \widehat{\varphi}(x)\, )
 	\end{align}
-	に対して
+	とおけば(\refeq{formula_rewriting_1})より
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi(\tau) \lrarrow \widehat{\varphi}(\tau)
 	\end{align}
-	が成り立つのだし，後者の場合は
+	が成り立つのだし(メタ定理\ref{metathm:variables_unchanged_after_rewriting}より
+	$\widehat{\varphi}$に自由に現れるのは$x$だけであり，
+	メタ定理\ref{metathm:substitution_to_rewritten_formula}より
+	$\widehat{\varphi}(\tau)$は$\varphi(\tau)$の書き換えである)，後者の場合は
 	\begin{align}
 		\sigma &\defeq \varepsilon x \negation \forall y\, (\, \widehat{\varphi}(x,y) \lrarrow \widehat{\varphi}(x,y)\, ), \\
 		\rho &\defeq \varepsilon y \negation (\, \widehat{\varphi}(\sigma,y) \lrarrow \widehat{\varphi}(\sigma,y)\, )
 	\end{align}
-	に対して
+	とおけば(\refeq{formula_rewriting_1})より
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi(\sigma,\rho) \lrarrow \widehat{\varphi}(\sigma,\rho)
 	\end{align}
 	が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})を適用すればいい．
-	一般の式$\varphi$に対して(\refeq{formula_rewriting_1})を示すには
-	$\varphi$が原子式であるときに(\refeq{formula_rewriting_1})が成り立つことを言えば十分であり，
+	一般の文$\varphi$に対して(\refeq{formula_rewriting_1})を示すには
+	$\varphi$が原子式であるとして(\refeq{formula_rewriting_1})を示せば殆ど十分であり，
 	それについて先に結論を書いておくと
 	\begin{align}
 		\EQAX,\COMAX &\vdash a = \Set{z}{\psi(z)} 
