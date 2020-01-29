@@ -1,24 +1,26 @@
 \section{書き換えの同値性}
 \label{sec:equivalence_of_formula_rewriting}
-	$\mathcal{L}$の式を$\lang{\varepsilon}$の式に変換するときは，まず原子式に対して
+	$\mathcal{L}$の式を$\lang{\varepsilon}$の式に変換するときは，まず部分式のうち原子式に対して
 	\begin{table}[H]
 		\begin{center}
-		\begin{tabular}{c|c}
-			元の式 & 書き換え後 \\ \hline \hline
-			$a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ \\ \hline
-			$\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ \\ \hline
-			$\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ \\ \hline
-			$a \in \Set{z}{\psi}$ & $\widetilde{\psi}(z/a)$ \\ \hline
-			$\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ \\ \hline
-			$\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ \\ \hline
+		\caption{式の書き換え表(再掲)}
+		\begin{tabular}{c|c|c|c}
+			 & 元の式 & 書き換え後 & 付記 \\ \hline \hline
+			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
+			(2) & $\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
+			(3) & $\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
+			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら変項の名前替え \\ \hline
+			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
+			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
 		\end{center}
 	\end{table}
-	とし，あとは帰納的に式を書き換えることによって$\mathcal{L}$の式$\varphi$から
-	$\lang{\varepsilon}$の式$\widehat{\varphi}$を得たのであった．
-	なお表の$\widetilde{\psi}$とは必要に応じて$\psi$の変項の名前替えを行った式であるが，
-	\ref{subsec:formula_rewriting}節で述べた他の細かい注意点も全て満たされているとする．
-	この節では$\varphi$が文であるときに
+	
+	に則って変換したのであった．また量化部分式を逐次的に差し替えることによって得られる式も書き換えと呼んだ
+	(定義\ref{def:formula_rewriting})．
+	以下では表\ref{tab:formula_rewriting}の直後で述べた細かい変項条件等は全て満たされているとする．
+	この節では，$\varphi$が$\lang{\varepsilon}$の式ではない$\mathcal{L}$の文であるとして，
+	その書き換え$\widehat{\varphi}$に対して
 	\begin{align}
 		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
 		\label{formula_rewriting_1}
@@ -82,7 +84,7 @@
 		\label{logicalthm:symmetry_of_equivalence_arrows}
 			$A,B$を$\mathcal{L}$の文とするとき
 			\begin{align}
-				\vdash (A \lrarrow B) \rarrow (B \lrarrow A).
+				\vdash (\, A \lrarrow B\, ) \rarrow (\, B \lrarrow A\, ).
 			\end{align}
 		\end{logicalthm}
 	\end{screen}
@@ -95,12 +97,12 @@
 		\end{align}
 		となる．他方で論理積の導入より
 		\begin{align}
-			\vdash (B \rarrow A) \rarrow ((A \rarrow B) \rarrow 
-			(B \rarrow A) \wedge (A \rarrow B))
+			\vdash (\, B \rarrow A\, ) \rarrow (\, (\, A \rarrow B\, ) \rarrow 
+			(\, B \rarrow A\, ) \wedge (\, A \rarrow B\, )\, )
 		\end{align}
 		が成り立つので，三段論法を二回適用すれば
 		\begin{align}
-			A \lrarrow B \vdash (B \rarrow A) \wedge (A \rarrow B)
+			A \lrarrow B \vdash (\, B \rarrow A\, ) \wedge (\, A \rarrow B\, )
 		\end{align}
 		となる．つまり
 		\begin{align}
@@ -114,7 +116,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_1}
 			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
-			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EQAX,\COMAX \vdash a = \Set{z}{\psi(z)} 
 				\rarrow \forall v\, (\, v \in a \lrarrow \psi(v)\, ).
@@ -154,7 +156,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_2}
 			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
-			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EXTAX,\COMAX \vdash \forall v\, (\, v \in a \lrarrow \psi(v)\, )
 				\rarrow a = \Set{z}{\psi(z)}.
@@ -208,8 +210,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_3}
 			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，$\varphi$に自由に現れる変項は$y$のみ
-			であるとする．このとき
+			$\varphi$には$y$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = b 
 				\rarrow \forall u\, (\, \varphi(u) \lrarrow u \in b\, ).
@@ -257,8 +258,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_4}
 			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，$\varphi$に自由に現れる変項は$y$のみ
-			であるとする．このとき
+			$\varphi$には$y$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in b\, )
 				\rarrow \Set{y}{\varphi(y)} = b.
@@ -308,10 +308,8 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_5}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，
-			$z$を$\psi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる変項は$y$のみであるとし，
-			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
 				\rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ).
@@ -370,10 +368,8 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_6}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，
-			$z$を$\psi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる変項は$y$のみであるとし，
-			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
 				\rarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}.
@@ -435,7 +431,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_7}
 			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
-			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\COMAX \vdash a \in \Set{z}{\psi(z)} \rarrow \psi(a).
 			\end{align}
@@ -455,7 +451,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_8}
 			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
-			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\COMAX \vdash \psi(a) \rarrow a \in \Set{z}{\psi(z)}.
 			\end{align}
@@ -475,8 +471,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_9}
 			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる変項は$y$のみであるとする．このとき
+			$\varphi$には$y$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EQAX,\COMAX,\ELEAX \vdash \Set{y}{\varphi(y)} \in b
 				\rarrow \exists s\, (\, 
@@ -542,8 +537,7 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_10}
 			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる変項は$y$のみであるとする．このとき
+			$\varphi$には$y$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ) \rarrow \Set{y}{\varphi(y)} \in b.
 			\end{align}
@@ -593,10 +587,8 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_11}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，
-			$z$を$\psi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる変項は$y$のみであるとし，
-			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EQAX,\COMAX,\ELEAX \vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
 				\rarrow \exists s\, (\, 
@@ -665,10 +657,8 @@
 		\begin{thm}
 		\label{thm:equivalent_formula_rewriting_12}
 			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
-			$y$を$\varphi$に自由に現れる変項とし，
-			$z$を$\psi$に自由に現れる変項とし，
-			$\varphi$に自由に現れる変項は$y$のみであるとし，
-			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
 			\begin{align}
 				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ) \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}.
 			\end{align}
@@ -722,3 +712,47 @@
 		が従う．
 		\QED
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[書き換えの同値性]
+		\label{thm:equivalence_of_formula_rewritings}
+			$\varphi$を$\lang{\varepsilon}$の文ではない$\mathcal{L}$の文とし，
+			$\widehat{\varphi}$を$\varphi$の書き換えとするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1] $\widehat{\varphi}$が，$\varphi$の部分式で原子式であるものを全て書き換えた式である場合を扱う．
+				
+			\item[step2] $\widehat{\varphi}$を$\varphi$の書き換えとして，
+				\begin{itembox}[l]{IH (帰納法の仮定)}
+					$\varphi$と$\widehat{\varphi}$は$\EXTAX,\EQAX,\COMAX,\ELEAX$の下で同値である：
+					\begin{align}
+						\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+					\end{align}
+				\end{itembox}
+				であると仮定する．このとき，$\widehat{\varphi}$の量化部分式を
+				一つ差し替えた式を$\widetilde{\varphi}$とする．
+				つまり$\widetilde{\varphi}$とは，
+				$\widehat{\varphi}$に現れる$\forall x \xi$ (resp. $\exists x \xi$)の形の部分式を
+				一つだけ$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に差し替えた式である．
+				ここで$y$は$\xi$に自由に現れない変項で，$\xi$の中で$x$への代入について自由であるものとする．
+				このとき定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\vdash \widehat{\varphi} \lrarrow \widetilde{\varphi}
+				\end{align}
+				が成り立つので，(IH)と同値関係の推移律
+				(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widetilde{\varphi}
+				\end{align}
+				が成立する．ゆえに構造的帰納法の原理より，$\varphi$とその任意の書き換えは
+				$\EXTAX,\EQAX,\COMAX,\ELEAX$の下で同値である．
+				\QED
+		\end{description}
+	\end{sketch}
+	
