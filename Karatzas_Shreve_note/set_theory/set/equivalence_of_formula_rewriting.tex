@@ -13,6 +13,7 @@
 			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
 			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
 		\end{tabular}
+		\label{tab:formula_rewriting_repeat}
 		\end{center}
 	\end{table}
 	
@@ -713,6 +714,107 @@
 		\QED
 	\end{sketch}
 	
+	一般の式に対して書き換えの同値性を示す前に，いくつか必要な論理的定理を準備する．
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理和への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_disjunction_2}
+			$A,B,C,D$を文とするとき
+			\begin{align}
+				A \rarrow C,\ B \rarrow D \vdash A \vee B \rarrow C \vee D.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			A,\ A \rarrow C \vdash C
+		\end{align}
+		が成り立ち，論理和の導入より
+		\begin{align}
+			A,\ A \rarrow C \vdash C \vee D
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			A \rarrow C \vdash A \rarrow C \vee D
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			B \rarrow D \vdash B \rarrow C \vee D
+		\end{align}
+		も成り立ち，論理和の除去より
+		\begin{align}
+			A \rarrow C,\ B \rarrow D \vdash A \vee B \rarrow C \vee D
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理積への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_conjunction_2}
+			$A,B,C,D$を文とするとき，
+			\begin{align}
+				A \rarrow C,\ B \rarrow D \vdash A \wedge B \rarrow C \wedge D.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去より
+		\begin{align}
+			A \wedge B \vdash A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A \wedge B,\ A \rarrow C \vdash C
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			A \wedge B,\ B \rarrow D \vdash D
+		\end{align}
+		も成り立ち，論理積の導入より
+		\begin{align}
+			A \wedge B,\ A \rarrow C,\ B \rarrow D \vdash C \wedge D
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の含意への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_implication_2}
+			$A,B,C,D$を文とするとき，
+			\begin{align}
+				C \rarrow A,\ B \rarrow D \vdash (\, A \rarrow B\, ) 
+				\rarrow (\, C \rarrow D\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			C,\ C \rarrow A \vdash A
+		\end{align}
+		が成り立つので，再び三段論法より
+		\begin{align}
+			C,\ A \rarrow B,\ C \rarrow A \vdash B
+		\end{align}
+		が成り立ち，再び三段論法より
+		\begin{align}
+			C,\ A \rarrow B,\ C \rarrow A,\ B \rarrow D \vdash D
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			C \rarrow A,\ B \rarrow D \vdash 
+			(\, A \rarrow B\, ) \rarrow (\, C \rarrow D\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
 	\begin{screen}
 		\begin{thm}[書き換えの同値性]
 		\label{thm:equivalence_of_formula_rewritings}
@@ -726,7 +828,152 @@
 	
 	\begin{sketch}\mbox{}
 		\begin{description}
-			\item[step1] $\widehat{\varphi}$が，$\varphi$の部分式で原子式であるものを全て書き換えた式である場合を扱う．
+			\item[step1] $\widehat{\varphi}$が，$\varphi$の部分式で原子式であるものを全て
+				表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である場合を扱う．
+				\begin{description}
+					\item[step1-1] $\varphi$が原子式であるならば，すでに示した通り
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+						\end{align}
+						が成立する．
+							
+					\item[step1-2] $\varphi$が原子式でないとき，
+						\begin{itembox}[l]{IH (帰納法の仮定)}
+							$\varphi$の任意の真部分式$\psi$に対して，
+							$\psi$に自由に現れている変項が$x_{1},\cdots,x_{n}$で全てであるとき，
+							任意に主要$\varepsilon$項$\tau_{1},\cdots,\tau_{n}$を取って
+							$\psi(x_{1}/\tau_{1})\cdots(x_{n}/\tau_{n})$なる文を
+							$\psi^{*}$とする．$\psi$が文なら$\psi^{*}$を$\psi$とする．
+							このとき，$\psi^{*}$の部分式で原子式であるものを全て
+							表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式\footnotemark
+							$\widehat{\psi^{*}}$に対して
+							\begin{align}
+								\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi^{*} \lrarrow \widehat{\psi^{*}}
+							\end{align}
+							となる
+						\end{itembox}
+						と仮定する(帰納法の考え方としては，$\varphi$よりも``前の段階''で作られた
+						任意の文に対して同値性が満たされていると仮定している)．
+						
+						\footnotetext{
+							文の書き換えは文である(メタ定理\ref{metathm:variables_unchanged_after_rewriting})．
+						}
+						
+						\begin{description}
+							\item[case1] $\varphi$が
+								\begin{align}
+									\negation \psi
+								\end{align}
+								なる文であるとき，$\widehat{\varphi}$は
+								\begin{align}
+									\negation \widehat{\psi}
+								\end{align}
+								なる形で書ける．ただし$\widehat{\psi}$とは$\psi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である．
+								(IH)より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi \lrarrow \widehat{\psi}
+								\end{align}
+								が成り立つので，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash\ \negation \psi \lrarrow\ \negation \widehat{\psi}
+								\end{align}
+								が従う．すなわち
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+								\end{align}
+								が成り立つ．
+								
+							\item[case2] $\varphi$が
+								\begin{align}
+									\psi \vee \chi
+								\end{align}
+								なる文であるとき，$\widehat{\varphi}$は
+								\begin{align}
+									\widehat{\psi} \vee \widehat{\chi}
+								\end{align}
+								なる形で書ける．ただし$\widehat{\psi},\widehat{\chi}$とは
+								それぞれ$\psi,\chi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である．
+								(IH)より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \psi \lrarrow \widehat{\psi}, \\
+									\EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \chi \lrarrow \widehat{\chi}
+								\end{align}
+								が成り立つので，含意の論理和への遺伝性
+								(論理的定理\ref{logicalthm:heredity_of_implication_to_conjunction_2})より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi \vee \chi 
+									\lrarrow \widehat{\psi} \vee \widehat{\chi}
+								\end{align}
+								が従う．すなわち
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+								\end{align}
+								が成り立つ．$\varphi$が$\eta \wedge \chi$や$\eta \rarrow \chi$
+								なる文の場合も論理的定理
+								\ref{logicalthm:heredity_of_implication_to_conjunction_2}
+								或いは論理的定理
+								\ref{logicalthm:heredity_of_implication_to_implication_2}を使えば
+								同様にして書き換えの同値性が得られる．
+								
+							\item[case3] $\varphi$が
+								\begin{align}
+									\exists x \psi
+								\end{align}
+								なる文であるとき，$\widehat{\varphi}$は
+								\begin{align}
+									\exists x \widehat{\psi}
+								\end{align}
+								なる形で書ける．ただし$\widehat{\psi}$とは$\psi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である．
+								\begin{align}
+									\tau \defeq \varepsilon x \widehat{\psi}
+								\end{align}
+								とおけば，存在記号の論理的公理より
+								\begin{align}
+									\exists x \widehat{\psi} \vdash \widehat{\psi}(x/\tau)
+								\end{align}
+								が成り立つが，いま$\widehat{\psi}$は$\psi$の書き換えであるから，
+								メタ定理\ref{metathm:substitution_to_rewritten_formula}より
+								$\widehat{\psi}(x/\tau)$は$\psi(x/\tau)$の書き換えである．従って(IH)より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \widehat{\psi}(x/\tau) \rarrow \psi(x/\tau)
+								\end{align}
+								が成り立つ．ここについて間違いの内容に述べておくと，実はこの場合$\widehat{\psi}(x/\tau)$は
+								$\psi(x/\tau)$の原子式を書き換えただけの式であるかは
+								定かではない(メタ定理\ref{metathm:substitution_to_rewritten_formula}
+								証明中のcase 6,7参照)．
+								しかし書き換えである以上は，原子式を書き換えただけでなくとも
+								せいぜい何回かの量化部分式の差し替えが行われただけであり，
+								その差し替え前後の同値性は定理\ref{logicalthm:equivalence_by_replacing_bound_variables}
+								より保証される．従って，$\psi(x/\tau)$とその原子式を書き換えただけの式との同値性が
+								(IH)により保証されれば，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$も同値となるのである．
+								話を戻せば，三段論法より
+								\begin{align}
+									\exists x \widehat{\psi},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi(x/\tau)
+								\end{align}
+								となり，存在記号の論理的公理より
+								\begin{align}
+									\exists x \widehat{\psi},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x \psi
+								\end{align}
+								が従う．同様にして(いまの$\tau$で$\exists x \psi \rarrow \psi(x/\tau)$が公理であることを使う)
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x \psi \rarrow \exists x \widehat{\psi}
+								\end{align}
+								も成り立つので，論理積の導入より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x \psi \lrarrow \exists x \widehat{\psi}
+								\end{align}
+								が従う．すなわち
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+								\end{align}
+								が成り立つ．$\varphi$が$\forall y \psi$なる式であっても，全称の導出
+								(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})を利用すれば
+								同様にして書き換えの同値性が得られる．
+						\end{description}
+				\end{description}
 				
 			\item[step2] $\widehat{\varphi}$を$\varphi$の書き換えとして，
 				\begin{itembox}[l]{IH (帰納法の仮定)}
