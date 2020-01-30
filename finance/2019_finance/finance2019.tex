@@ -65,6 +65,79 @@
 \mathtoolsset{showonlyrefs = true}
 \maketitle
 
+\begin{itembox}[l]{3)}
+	コールオプションのベガ
+	\begin{align}
+		\mathcal{V}_{t} = \partial_{\sigma}C_{BS}(t,T,S_{t},K,r,\sigma)
+	\end{align}
+	を計算せよ(計算の途中経過も示せ)．また，ボラティリティに関してコールオプション価格が単調増加であること，
+	すなわち
+	\begin{align}
+		\sigma \longmapsto C_{BS}(t,T,x,K,r,\sigma)
+	\end{align}
+	が単調増加であることを示せ．
+\end{itembox}
+
+\begin{ans}
+	$\tau \coloneqq T - t$として，まず$C_{BS}(t,T,x,K,r,\sigma)$を偏微分すれば
+	\begin{align}
+		\partial_{\sigma}C_{BS}
+		= x \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}}\partial_{\sigma}d_{1}
+		- e^{-r\tau}K\frac{1}{\sqrt{2\pi}}e^{-\frac{d_{2}^{2}}{2}}\partial_{\sigma}d_{2}
+		\label{formula:3_1}
+	\end{align}
+	となる．ここで
+	\begin{align}
+		\partial_{\sigma}d_{1} &= \frac{-1}{\sigma^{2}\sqrt{\tau}}
+		\left\{\log{\left(\frac{x}{K}\right)}+\left(r+\frac{\sigma^{2}}{2}\right)\tau\right\} + \sqrt{\tau} \\
+		&= \frac{-1}{\sigma^{2}\sqrt{\tau}}
+		\left\{\log{\left(\frac{x}{K}\right)}+\left(r-\frac{\sigma^{2}}{2}\right)\tau\right\} \\
+		&= \frac{-d_{2}}{\sigma}
+	\end{align}
+	および
+	\begin{align}
+		\partial_{\sigma}d_{2} &= \partial_{\sigma}d_{1}-\sqrt{\tau} \\
+		&= -\frac{d_{2} + \sigma \sqrt{\tau}}{\sigma} \\
+		&= \frac{-d_{1}}{\sigma}
+	\end{align}
+	が成り立つので，(\refeq{formula:3_1})は
+	\begin{align}
+		\partial_{\sigma}C_{BS} &= x \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}}
+		\frac{-d_{2}}{\sigma} + e^{-r\tau}K\frac{1}{\sqrt{2\pi}}e^{-\frac{d_{2}^{2}}{2}}\frac{d_{1}}{\sigma} \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}}
+		\left\{x\frac{-d_{2}}{\sigma} + e^{-r\tau}K\frac{d_{1}}{\sigma}e^{\frac{1}{2}(d_{1}^{2}-d_{2}^{2})}\right\} \\
+		&= \Phi'(d_{1}) \left\{x\frac{-d_{2}}{\sigma} + e^{-r\tau}K\frac{d_{1}}{\sigma}e^{\frac{1}{2}(d_{1}^{2}-d_{2}^{2})}\right\}
+		\label{formula:3_2}
+	\end{align}
+	となる．ここで
+	\begin{align}
+		d_{1}^{2}-d_{2}^{2}
+		&= (d_{1}-d_{2})(d_{1}+d_{2}) \\
+		&= \sigma \sqrt{\tau}(2d_{1}-\sigma \sqrt{\tau}) \\
+		&= 2\log{\left(\frac{x}{K}\right)} + 2\left(r+\frac{\sigma^{2}}{2}\right)\tau
+		- \sigma^{2}\tau \\
+		&= 2\log{\left(\frac{x}{K}\right)} + 2r\tau
+	\end{align}
+	が成り立つので
+	\begin{align}
+		(\refeq{formula:3_2}) &= 
+		\Phi'(d_{1}) \left\{x\frac{-d_{2}}{\sigma} + e^{-r\tau}K\frac{d_{1}}{\sigma}e^{\log{\left(\frac{x}{K}\right)}+r\tau}\right\} \\
+		&= \Phi'(d_{1}) \left\{x\frac{-d_{2}}{\sigma} + x\frac{d_{1}}{\sigma}\right\} \\
+		&= \Phi'(d_{1}) \left\{x \frac{d_{1}-d_{2}}{\sigma}\right\} \\
+		&= \Phi'(d_{1}) x \sqrt{\tau}
+	\end{align}
+	が出る．以上より
+	\begin{align}
+		\mathcal{V}_{t} = \Phi'(d_{1}(\tau,S_{t},K,r,\sigma)) S_{t} \sqrt{\tau}
+	\end{align}
+	である．また単調増大性については，$\Phi'(x) = e^{-x^{2}/2}/\sqrt{2\pi}$
+	が非負関数のため($x$を正の数とすれば)
+	\begin{align}
+		\partial_{\sigma}C_{BS} = \Phi'(d_{1}) x \sqrt{\tau} > 0
+	\end{align}
+	となるからである．
+\end{ans}
+
 \begin{itembox}[l]{5)}
 	定数$-1 \leq \rho \leq 1$を用いて
 	\begin{align}
@@ -132,6 +205,17 @@
 				&= \prod_{j=1}^{n} e^{\frac{1}{2}\alpha_{j}^{2}(t_{j}-t_{j-1})}
 			\end{align}
 			が従う．これで求める式を得た．
+			
+		\item[$W^{1}_{t}$と$\bar{W}_{t}$との共分散]
+			$W^{1}_{t}$も$\bar{W}_{t}$も平均は$0$なので
+			\begin{align}
+				\operatorname{E}\left[W^{1}_{t}\bar{W}_{t}\right]
+				&= \operatorname{E}\left[W^{1}_{t}\left(\rho W^{1}_{t} + \sqrt{1-\rho^{2}}W^{2}_{t}\right)\right] \\
+				&= \rho\operatorname{E}\left[{W^{1}_{t}}^{2}\right] +
+				\sqrt{1-\rho^{2}}\operatorname{E}\left[W^{1}_{t}W^{2}_{t}\right] \\
+				&= \rho t 
+			\end{align}
+			が共分散である．
 			\QED
 	\end{description}
 	
