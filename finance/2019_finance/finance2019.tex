@@ -58,7 +58,7 @@
 \setlength{\headsep}{0pt}
 %
 \title{金融確率解析レポート}
-\author{基礎工学研究科システム創成専攻修士2年\\学籍番号29C17095\\百合川尚学\\選択問題\ 1)\ 5)\ 6)}
+\author{基礎工学研究科システム創成専攻修士2年\\学籍番号29C17095 百合川尚学\\選択問題\ 3)\ 4)\ 5)\ 6)}
 \date{\today}
 
 \begin{document}
@@ -100,9 +100,9 @@
 		&= -\frac{d_{2} + \sigma \sqrt{\tau}}{\sigma} \\
 		&= \frac{-d_{1}}{\sigma}
 	\end{align}
-	が成り立つので，(\refeq{formula:3_1})は
+	が成り立つので，
 	\begin{align}
-		\partial_{\sigma}C_{BS} &= x \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}}
+		(\refeq{formula:3_1}) &= x \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}}
 		\frac{-d_{2}}{\sigma} + e^{-r\tau}K\frac{1}{\sqrt{2\pi}}e^{-\frac{d_{2}^{2}}{2}}\frac{d_{1}}{\sigma} \\
 		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}}
 		\left\{x\frac{-d_{2}}{\sigma} + e^{-r\tau}K\frac{d_{1}}{\sigma}e^{\frac{1}{2}(d_{1}^{2}-d_{2}^{2})}\right\} \\
@@ -117,6 +117,7 @@
 		&= 2\log{\left(\frac{x}{K}\right)} + 2\left(r+\frac{\sigma^{2}}{2}\right)\tau
 		- \sigma^{2}\tau \\
 		&= 2\log{\left(\frac{x}{K}\right)} + 2r\tau
+		\label{formula:3_3}
 	\end{align}
 	が成り立つので
 	\begin{align}
@@ -128,14 +129,100 @@
 	\end{align}
 	が出る．以上より
 	\begin{align}
-		\mathcal{V}_{t} = \Phi'(d_{1}(\tau,S_{t},K,r,\sigma)) S_{t} \sqrt{\tau}
+		\mathcal{V}_{t} = S_{t} \sqrt{\tau} \Phi'(d_{1}(\tau,S_{t},K,r,\sigma))
+		\label{formula:3_4}
 	\end{align}
 	である．また単調増大性については，$\Phi'(x) = e^{-x^{2}/2}/\sqrt{2\pi}$
 	が非負関数のため($x$を正の数とすれば)
 	\begin{align}
-		\partial_{\sigma}C_{BS} = \Phi'(d_{1}) x \sqrt{\tau} > 0
+		\partial_{\sigma}C_{BS} = x \sqrt{\tau} \Phi'(d_{1}) > 0
 	\end{align}
 	となるからである．
+\end{ans}
+
+\begin{itembox}[l]{4)}
+	コールオプションのガンマ
+	\begin{align}
+		\Gamma_{t} \coloneqq \partial_{xx}C_{BS}(t,T,S_{t},K,r,\sigma)
+	\end{align}
+	とベガの間に
+	\begin{align}
+		\mathcal{V}_{t} = \sigma S_{t}^{2}(T-t)\Gamma_{t}
+	\end{align}
+	が成り立つことを示せ．
+\end{itembox}
+
+\begin{ans}
+	$\tau \coloneqq T - t$として，まず$C_{BS}(t,T,x,K,r,\sigma)$を一回偏微分すれば
+	\begin{align}
+		\partial_{x}C_{BS} = \Phi(d_{1}) + x \Phi'(d_{1}) \partial_{x}d_{1}
+		- e^{-r\tau}K\Phi'(d_{2})\partial_{x}d_{2} 
+	\end{align}
+	となり，もう一度偏微分すれば
+	\begin{align}
+		\partial_{x}C_{BS} &= \Phi'(d_{1})\partial_{x}d_{1} 
+		+ \Phi'(d_{1}) \partial_{x}d_{1} + x \Phi''(d_{1}) (\partial_{x} d_{1})^{2}
+		+ x \Phi'(d_{1}) \partial_{xx} d_{1} \\
+		&\quad - e^{-r\tau}K\left(\Phi''(d_{2})(\partial_{x}d_{2})^{2}
+		+ \Phi'(d_{2})\partial_{xx}d_{2}\right)
+		\label{formula:4_1}
+	\end{align}
+	となる．ここで
+	\begin{align}
+		\Phi''(z) &= \frac{-z}{\sqrt{2\pi}}e^{-\frac{z^{2}}{2}}, \\
+		\partial_{x} d_{1} &= \frac{1}{\sigma\sqrt{\tau}} \frac{1}{x}, \\
+		\partial_{xx} d_{1} &= \frac{1}{\sigma\sqrt{\tau}} \frac{-1}{x^{2}} \\
+		\partial_{x} d_{2} &= \frac{1}{\sigma\sqrt{\tau}} \frac{1}{x}, \\
+		\partial_{xx} d_{2} &= \frac{1}{\sigma\sqrt{\tau}} \frac{-1}{x^{2}}
+	\end{align}
+	であるから
+	\begin{align}
+		&\Phi'(d_{1})\partial_{x}d_{1} 
+		+ \Phi'(d_{1}) \partial_{x}d_{1} + x \Phi''(d_{1}) (\partial_{x} d_{1})^{2}
+		+ x \Phi'(d_{1}) \partial_{xx} d_{1}, \\
+		&= 2\frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{\sigma\sqrt{\tau}}\frac{1}{x} 
+		+ x\frac{-d_{1}}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} 
+		\frac{1}{\sigma^{2}\tau}\frac{1}{x^{2}}
+		+ x\frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{\sigma\sqrt{\tau}}\frac{-1}{x^{2}} \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{\sigma\sqrt{\tau}}\frac{1}{x} 
+		+ \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{-d_{1}}{\sigma^{2}\tau} \frac{1}{x} \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{x\sigma^{2}\tau}
+		(\sigma \sqrt{\tau} - d_{1}) \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{-d_{2}}{x\sigma^{2}\tau}
+	\end{align}
+	および
+	\begin{align}
+		&\Phi''(d_{2})(\partial_{x}d_{2})^{2} + \Phi'(d_{2})\partial_{xx}d_{2} \\
+		&= \frac{-d_{2}}{\sqrt{2\pi}}e^{-\frac{d_{2}^{2}}{2}} \frac{1}{\sigma^{2}\tau}
+		\frac{1}{x^{2}} + \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{2}^{2}}{2}}
+		\frac{1}{\sigma \sqrt{\tau}}\frac{-1}{x^{2}} \\
+		&= \frac{1}{\sqrt{2\pi}} e^{-\frac{d_{2}^{2}}{2}} \frac{1}{x^{2}\sigma^{2}\tau}
+		(d_{2} + \sigma \sqrt{\tau}) \\
+		&= \frac{1}{\sqrt{2\pi}} e^{-\frac{d_{2}^{2}}{2}} \frac{-d_{1}}{x^{2}\sigma^{2}\tau}
+	\end{align}
+	が成り立つ．従って
+	\begin{align}
+		(\refeq{formula:4_1}) 
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{-d_{2}}{x\sigma^{2}\tau}
+		+ e^{-r\tau}K \frac{1}{\sqrt{2\pi}} e^{-\frac{d_{2}^{2}}{2}} \frac{d_{1}}{x^{2}\sigma^{2}\tau} \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{x\sigma^{2}\tau}
+		\left(-d_{2} + e^{-r\tau}K e^{\frac{1}{2}(d_{1}^{2} - d_{2}^{2})}
+		\frac{d_{1}}{x}\right) \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{x\sigma^{2}\tau}
+		(-d_{2} + d_{1}) 
+		&& (\mbox{(\refeq{formula:3_3})より$e^{\frac{1}{2}(d_{1}^{2} - d_{2}^{2})} = (x/K)e^{r\tau}$}) \\
+		&= \frac{1}{\sqrt{2\pi}}e^{-\frac{d_{1}^{2}}{2}} \frac{1}{x\sigma\sqrt{\tau}}
+	\end{align}
+	が成立する．特に
+	\begin{align}
+		\Gamma_{t} = \frac{1}{S_{t}\sigma\sqrt{\tau}}\Phi'(d_{1}(\tau,S_{t},K,r,\sigma))
+	\end{align}
+	なので，(\refeq{formula:3_4})との関係式
+	\begin{align}
+		\mathcal{V}_{t} = \sigma S_{t}^{2} (T-t) \Gamma_{t}
+	\end{align}
+	が得られる．
+	\QED
 \end{ans}
 
 \begin{itembox}[l]{5)}
