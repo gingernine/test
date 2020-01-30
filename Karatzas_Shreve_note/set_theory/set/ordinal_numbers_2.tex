@@ -19,7 +19,8 @@
 				\ord{x} \defarrow \tran{x} \wedge 
 				\forall t,u \in x\, (\, t \in u \vee t = u \vee u \in t\, )
 			\end{align}
-			と定め，
+			と定め($t \in u \vee t = u \vee u \in t$は
+			$(\, t \in u \vee t = u\, ) \vee u \in t$の略記とする)，
 			\begin{align}
 				\ON \defeq \Set{x}{\ord{x}}
 			\end{align}
@@ -67,6 +68,7 @@
 		\label{thm:transitive_totally_ordered_class}
 			$a$を類とするとき
 			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
 				\ord{a} \rarrow a \subset \ON.
 			\end{align}
 		\end{thm}
@@ -75,7 +77,7 @@
 	\begin{sketch}
 		いま
 		\begin{align}
-			\chi \defeq \varepsilon \varepsilon x \negation 
+			\chi \defeq \varepsilon x \negation 
 			(\, x \in a \rarrow x \in \ON\, )
 		\end{align}
 		とおく．
@@ -141,7 +143,8 @@
 				
 			\item[step2] 次に
 				\begin{align}
-					\tran{\chi}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash \tran{\chi}
 				\end{align}
 				を示す．いま
 				\begin{align}
@@ -188,7 +191,7 @@
 						
 					\item[step2-2] この段では
 						\begin{align}
-							\zeta \in \eta,\ \eta \in \chi\ 
+							\zeta \in \eta,\ \eta \in \chi,\ 
 							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
 							\vdash \zeta \neq \chi
 						\end{align}
@@ -208,7 +211,8 @@
 							\EQAX \vdash \eta \notin \zeta 
 							\rarrow \zeta \neq \chi \vee \eta \notin \chi
 						\end{align}
-						が成り立つので
+						が成り立つので($\zeta = \chi \wedge \eta \in \chi 
+						\rarrow \eta \in \zeta$の対偶を取ってDe Morganの法則)
 						\begin{align}
 							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
 							\vdash \zeta \neq \chi \vee \eta \notin \chi
@@ -228,58 +232,114 @@
 						\end{align}
 						となるので
 						\begin{align}
-							\zeta \in \eta,\ \eta \in \chi\ 
+							\zeta \in \eta,\ \eta \in \chi,\ 
 							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
 							\vdash \zeta \neq \chi
+							\label{fom:thm_transitive_totally_ordered_class_6}
 						\end{align}
 						が得られる．
+						
+					\item[step2-3] この段では
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \in \chi
+						\end{align}
+						を示す．定理\ref{thm:no_three_sets_go_round}
+						(所属関係で堂々巡りしない)より
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \in \eta \wedge \eta \in \chi \rarrow 
+							\chi \notin \zeta
+						\end{align}
+						が成り立つので，
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\chi \notin \zeta
+						\end{align}
+						が従う．ここで
+						(\refeq{fom:thm_transitive_totally_ordered_class_6})
+						と論理積の導入より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \neq \chi \wedge \chi \notin \zeta
+						\end{align}
+						となり，De Morganの法則
+						(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash\ 
+							\negation (\, \zeta = \chi \vee \chi \in \zeta\, )
+							\label{fom:thm_transitive_totally_ordered_class_7}
+						\end{align}
+						が成り立つ．ところで
+						(\refeq{fom:thm_transitive_totally_ordered_class_5})と
+						論理和の結合律
+						(論理的定理\ref{logicalthm:associative_law_of_disjunctions})
+						より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash 
+							\zeta \in \chi \vee (\, \zeta = \chi \vee \chi \in \zeta\, )
+						\end{align}
+						が成り立つので，
+						(\refeq{fom:thm_transitive_totally_ordered_class_7})と
+						選言三段論法
+						(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \in \chi
+							\label{fom:thm_transitive_totally_ordered_class_8}
+						\end{align}
+						が出る．
 				\end{description}
-				他方で定理\ref{thm:no_set_is_an_element_of_itself}より
-		\begin{align}
-			z \in y \wedge y \in x \Longrightarrow x \notin z
-		\end{align}
-		が成立するから，ゆえにいま
-		\begin{align}
-			z \neq x \wedge x \notin z
-		\end{align}
-		が，つまり
-		\begin{align}
-			\rightharpoondown (\, z = x \vee x \in z\, )
-			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_4}
-		\end{align}
-		が成立している．ここで選言三段論法より
-		\begin{align}
-			(\, z \in x \vee z = x \vee x \in z\, ) \wedge 
-			\rightharpoondown (\, z = x \vee x \in z\, )
-			\Longrightarrow z \in x
-		\end{align}
-		も成り立つので，(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_3})と
-		(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_4})と併せて
-		\begin{align}
-			z \in x
-		\end{align}
-		が従う．以上より，$y$を$x$の要素とすれば
-		\begin{align}
-			\forall z \in y\, (\, z \in y \Longrightarrow z \in x\, )
-		\end{align}
-		が成り立ち，ゆえに
-		\begin{align}
-			y \subset x
-		\end{align}
-		が成り立つ．ゆえに$x$は推移的である．ゆえに
-		\begin{align}
-			\ord{x}
-		\end{align}
-		が成立し
-		\begin{align}
-			x \in \ON
-		\end{align}
-		となる．$x$の任意性より
-		\begin{align}
-			S \subset \ON
-		\end{align}
-		が得られる．
-		\QED
+				(\refeq{fom:thm_transitive_totally_ordered_class_8})と演繹定理より
+				\begin{align}
+					\eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\zeta \in \eta \rarrow \zeta \in \chi
+				\end{align}
+				が成り立つので，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\eta \subset \chi
+				\end{align}
+				が得られ，再び演繹定理と全称の導出により
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\forall y\, (\, y \in \chi \rarrow y \subset \chi\, )
+				\end{align}
+				が得られる．すなわち
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash \tran{\chi}
+				\end{align}
+				が成立する．
+				
+			\item[step3] step1 と step2 の結果を併せれば
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash \ord{\chi}
+				\end{align}
+				が成り立つので，演繹定理より
+				\begin{align}
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\chi \in a \rarrow \chi \in \ON
+				\end{align}
+				となり，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					a \subset \ON
+				\end{align}
+				が出る．
+				\QED
 		\end{description}
 	\end{sketch}
 	
