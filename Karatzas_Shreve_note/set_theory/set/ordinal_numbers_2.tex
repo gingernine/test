@@ -1,147 +1,5 @@
-	\begin{screen}
-		\begin{thm}[いかなる類も自分自身を要素に持たない]
-		\label{thm:no_set_is_an_element_of_itself}
-			$a,b,c$を類とするとき次が成り立つ:
-			\begin{description}
-				\item[(イ)] $a \notin a$.
-				
-				\item[(ロ)] $a \notin b \vee b \notin a$.
-				
-				\item[(ハ)] $a \notin b \vee b \notin c \vee c \notin a$.
-			\end{description}
-		\end{thm}
-	\end{screen}
-	
 	\begin{prf}\mbox{}
 		\begin{description}
-			\item[(イ)] $a$を類とする．まず要素の公理の対偶より
-				\begin{align}
-					\rightharpoondown \set{a} \Longrightarrow a \notin a
-				\end{align}
-				が満たされる．次に$a$が集合であるとする．
-				このとき定理\ref{thm:set_is_an_element_of_its_pair}より
-				\begin{align}
-					a \in \{a\}
-				\end{align}
-				が成り立つから，正則性公理より
-				\begin{align}
-					\exists x\, \left(\, x \in \{a\} \wedge x \cap \{a\} = \emptyset\, \right)
-				\end{align}
-				が従う．ここで$\chi \coloneqq \varepsilon x\, \left(\, x \in \{a\} \wedge x \cap \{a\} = \emptyset\, \right)$とおけば
-				\begin{align}
-					\chi = a
-				\end{align}
-				となるので，相等性の公理より
-				\begin{align}
-					a \cap \{a\} = \emptyset
-				\end{align}
-				が成り立つ．$a \in \{a\}$であるから
-				定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
-				$a \notin a$が従い，演繹法則から
-				\begin{align}
-					\set{a} \Longrightarrow a \notin a
-				\end{align}
-				が得られる．そして場合分け法則から
-				\begin{align}
-					\set{a} \vee \rightharpoondown \set{a} \Longrightarrow a \notin a
-				\end{align}
-				が成立し，排中律と三段論法から
-				\begin{align}
-					a \notin a
-				\end{align}
-				が出る．
-			
-			\item[(ロ)]
-				要素の公理より
-				\begin{align}
-					a \in b \Longrightarrow \set{a}
-				\end{align}
-				となり，定理\ref{thm:set_is_an_element_of_its_pair}より
-				\begin{align}
-					\set{a} \Longrightarrow a \in \{a,b\}
-				\end{align}
-				となるので，
-				\begin{align}
-					a \in b \Longrightarrow a \in \{a,b\}
-				\end{align}
-				が成立する．また定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
-				\begin{align}
-					a \in b \wedge a \in \{a,b\} 
-					&\Longrightarrow \exists x\, \left(\, x \in b \wedge x \in \{a,b\}\, \right) \\
-					&\Longrightarrow b \cap \{a,b\} \neq \emptyset
-				\end{align}
-				が成立する．他方で正則性公理より
-				\begin{align}
-					a \in \{a,b\} &\Longrightarrow \exists x\, \left(\, x \in \{a,b\}\, \right) \\
-					&\Longrightarrow \{a,b\} \neq \emptyset \\
-					&\Longrightarrow \exists x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
-				\end{align}
-				も成立する．以上を踏まえて$a \in b$が成り立っていると仮定する．このとき
-				\begin{align}
-					a \in \{a,b\}
-				\end{align}
-				が成立するので
-				\begin{align}
-					b \cap \{a,b\} \neq \emptyset
-				\end{align}
-				も成り立ち，さらに
-				\begin{align}
-					\exists x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
-				\end{align}
-				も満たされる．ここで
-				\begin{align}
-					\chi \coloneqq \varepsilon x\, \left(\, x \in \{a,b\} \wedge x \cap \{a,b\} = \emptyset\, \right)
-				\end{align}
-				とおけば$\chi \in \{a,b\}$から
-				\begin{align}
-					\chi = a \vee \chi = b
-				\end{align}
-				が従うが，相等性の公理より
-				\begin{align}
-					\chi = b \Longrightarrow b \cap \{a,b\} = \emptyset
-				\end{align}
-				となるので，$b \cap \{a,b\} \neq \emptyset$と併せて
-				\begin{align}
-					\chi \neq b
-				\end{align}
-				が成立する．選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
-				\begin{align}
-					(\chi = a \vee \chi = b) \wedge \chi \neq b \Longrightarrow \chi = a
-				\end{align}
-				となるから
-				\begin{align}
-					\chi = a
-				\end{align}
-				が従い，相等性の公理より
-				\begin{align}
-					a \cap \{a,b\} = \emptyset
-				\end{align}
-				が成立する．いま要素の公理より
-				\begin{align}
-					\rightharpoondown \set{b} \Longrightarrow b \notin a
-				\end{align}
-				が満たされ，他方で定理\ref{thm:set_is_an_element_of_its_pair}より
-				\begin{align}
-					\set{b} \Longrightarrow b \in \{a,b\},
-				\end{align}
-				$a \cap \{a,b\}$の仮定と定理\ref{thm:if_pair_is_empty_then_its_members_do_not_intersect}より
-				\begin{align}
-					b \in \{a,b\} = \emptyset \Longrightarrow b \notin a
-				\end{align}
-				が満たされるので
-				\begin{align}
-					\set{b} \Longrightarrow b \notin a
-				\end{align}
-				が成立する．従って
-				\begin{align}
-					b \notin a
-				\end{align}
-				が従い，演繹法則より
-				\begin{align}
-					a \in b \Longrightarrow b \notin a
-				\end{align}
-				が得られる．これは$a \notin b \vee b \notin a$と同値である．
-				
 			\item[(ハ)]
 				$a \in b \wedge b \in c$が満たされていると仮定すれば，$a,b$は集合であるから
 				\begin{align}
@@ -177,15 +35,17 @@
 	
 	\begin{screen}
 		\begin{dfn}[順序数]
-			類$a$に対して，$a$が{\bf 推移的類}\index{すいいてきるい@推移的類}{\bf (transitive class)}であるということを
+			$\mathcal{L}$の項$x$に対して，$x$が{\bf 推移的}\index{すいいてき@推移的}
+			{\bf (transitive)}であるということを
 			\begin{align}
-				\tran{a} \defarrow
-				\forall s\, (\, s \in a \Longrightarrow s \subset a\, )
+				\tran{x} \defarrow
+				\forall s\, (\, s \in x \rarrow s \subset x\, )
 			\end{align}
-			で定める．また$a$が(集合であるならば){\bf 順序数}\index{じゅんじょすう@順序数}{\bf (ordinal number)}であるということを
+			で定める．また$x$が(集合であるならば){\bf 順序数}\index{じゅんじょすう@順序数}
+			{\bf (ordinal number)}であるということを
 			\begin{align}
-				\ord{a} \defarrow
-				\tran{a} \wedge \forall t,u \in a\, (\, t \in u \vee t = u \vee u \in t\, )
+				\ord{x} \defarrow \tran{x} \wedge 
+				\forall t,u \in x\, (\, t \in u \vee t = u \vee u \in t\, )
 			\end{align}
 			で定める．順序数の全体を
 			\begin{align}
@@ -214,28 +74,12 @@
 		\leq\ \defeq \Set{x}{\exists \alpha,\beta \in \ON\, 
 		(\, x=(\alpha,\beta) \wedge \alpha \subset \beta\, )}
 	\end{align}
-	と定める．
-		
-	\begin{itembox}[l]{中置記法について}
-		$x$と$y$を項とするとき，
-		\begin{align}
-			(x,y) \in\ \leq
-		\end{align}
-		なることを往々にして
-		\begin{align}
-			x \leq y
-		\end{align}
-		とも書くが，このような書き方を{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}と呼ぶ．
-		同様にして，
-		\begin{align}
-			(x,y) \in\ \leq \wedge x \neq y
-		\end{align}
-		なることを
-		\begin{align}
-			x < y
-		\end{align}
-		とも書く．
-	\end{itembox}
+	と定める．そして
+	\begin{align}
+		x \leq y &\defarrow (x,y) \in \leq
+		x < y &\defarrow (x,y) \in \leq \wedge x \neq y
+	\end{align}
+	と書く(中置記法)．
 	
 	以下順序数の性質を列挙するが，長いので主張だけ先に述べておく．
 	\begin{itemize}
