@@ -64,80 +64,177 @@
 	
 	\begin{screen}
 		\begin{thm}[推移的で$\in$が全順序となる類は$\ON$に含まれる]
-		\label{thm:transitive_totally_ordered_class_is_contained_in_ON}
-			$S$を類とするとき
+		\label{thm:transitive_totally_ordered_class}
+			$a$を類とするとき
 			\begin{align}
-				\ord{S} \rarrow S \subset \ON.
+				\ord{a} \rarrow a \subset \ON.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		$x$を$S$の要素とする．まず
+		いま
 		\begin{align}
-			\forall s,t \in x\, (\, s \in t \vee s = t \vee t \in s\, )
-			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_1}
+			\chi \defeq \varepsilon \varepsilon x \negation 
+			(\, x \in a \rarrow x \in \ON\, )
 		\end{align}
-		が成り立つことを示す．実際$S$の推移性より
-		\begin{align}
-			x \subset S
-		\end{align}
-		が成り立つので，$x$の要素は全て$S$の要素となり
-		(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_1})が満たされる．次に
-		\begin{align}
-			\tran{x}
-		\end{align}
-		が成り立つことを示す．$y$を$x$の要素とする．また$z$を$y$の要素とする．このとき
-		\begin{align}
-			x \subset S
-		\end{align}
-		から
-		\begin{align}
-			y \in S
-		\end{align}
-		が成り立つので
-		\begin{align}
-			y \subset S
-		\end{align}
-		が成り立ち，ゆえに
-		\begin{align}
-			z \in S
-		\end{align}
-		となる．従って
-		\begin{align}
-			z \in x \vee z = x \vee x \in z
-			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_2}
-		\end{align}
-		が成立する．ところで定理\ref{thm:no_set_is_an_element_of_itself}より
-		\begin{align}
-			z \in y \Longrightarrow y \notin z
-		\end{align}
-		が成り立つから
-		\begin{align}
-			y \notin z
-			\label{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_3}
-		\end{align}
-		が成立する．また相当性の公理から
-		\begin{align}
-			z = x \vee y \in x \Longrightarrow y \in z
-		\end{align}
-		が成り立つので，その対偶と(\refeq{fom:thm_transitive_totally_ordered_class_is_contained_in_ON_2})から
-		\begin{align}
-			z \neq x \vee y \notin x
-		\end{align}
-		も満たされる．いま
-		\begin{align}
-			y \in x
-		\end{align}
-		が成り立っていて，さらに選言三段論法より
-		\begin{align}
-			(\, z \neq x \vee y \notin x\, ) \wedge y \in x \Longrightarrow z \neq x
-		\end{align}
-		も成り立つから，
-		\begin{align}
-			z \neq x
-		\end{align}
-		が成立する．他方で定理\ref{thm:no_set_is_an_element_of_itself}より
+		とおく．
+		\begin{description}
+			\item[step1] まず
+				\begin{align}
+					\chi \in a,\ \ord{a} \vdash 
+					\forall s,t \in \chi\, (\, s \in t \vee s = t \vee t \in s\, )
+					\label{fom:thm_transitive_totally_ordered_class_1}
+				\end{align}
+				を示す．$a$の推移性より
+				\begin{align}
+					\chi \in a,\ \ord{a} \vdash \chi \subset a
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\sigma &\defeq \varepsilon s \negation 
+					(\, s \in \chi \rarrow \forall t\, (\, t \in \chi \rarrow 
+					(\, s \in t \vee s = t \vee t \in s\, )\, )\, ), \\
+					\tau &\defeq \varepsilon t \negation (\, t \in \chi \rarrow 
+					(\, \sigma \in t \vee \sigma = t \vee t \in \sigma\, )\, )
+				\end{align}
+				とおけば，
+				\begin{align}
+					\tau \in \chi,\ \sigma \in \chi,\ \chi \in a,\ \ord{a} 
+					&\vdash \sigma \in a, 
+					\label{fom:thm_transitive_totally_ordered_class_2} \\
+					\tau \in \chi,\ \sigma \in \chi,\ \chi \in a,\ \ord{a} 
+					&\vdash \tau \in a
+					\label{fom:thm_transitive_totally_ordered_class_3}
+				\end{align}
+				となる．他方で$\ord{a}$の定義式より
+				\begin{align}
+					\ord{a} \vdash 
+					\forall s\, (\, s \in a \rarrow 
+					\forall t\, (\, t \in a \rarrow (\, \sigma \in t \vee \sigma = t \vee t \in \sigma\, )\, )\, )
+					\label{fom:thm_transitive_totally_ordered_class_4}
+				\end{align}
+				が成り立つので，全称記号の論理的公理および
+				(\refeq{fom:thm_transitive_totally_ordered_class_2})と
+				(\refeq{fom:thm_transitive_totally_ordered_class_3})との三段論法により
+				\begin{align}
+					\tau \in \chi,\ \sigma \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+					\sigma \in \tau \vee \sigma = \tau \vee \tau \in \sigma
+				\end{align}
+				が従う．演繹定理より
+				\begin{align}
+					\sigma \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+					\tau \in \chi \rarrow (\, \sigma \in \tau \vee \sigma = \tau \vee \tau \in \sigma\, )
+				\end{align}
+				が成り立つので，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\sigma \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+					\forall t\, (\, t \in \chi \rarrow (\, \sigma \in t \vee \sigma = t \vee t \in \sigma\, )
+				\end{align}
+				となり，再び演繹定理と全称の導出によって
+				\begin{align}
+					\chi \in a,\ \ord{a} \vdash 
+					\forall s\, (\, s \in \chi \rarrow \forall t\, (\, t \in \chi \rarrow (\, s \in t \vee s = t \vee t \in s\, )\, )
+				\end{align}
+				が得られる．
+				
+			\item[step2] 次に
+				\begin{align}
+					\tran{\chi}
+				\end{align}
+				を示す．いま
+				\begin{align}
+					\eta &\defeq \varepsilon y \negation (\, y \in \chi \rarrow y \subset \chi\, ), \\
+					\zeta &\defeq \varepsilon z \negation (\, z \in \eta \rarrow z \in \chi\, )
+				\end{align}
+				とおく．
+				\begin{description}
+					\item[step2-1]
+						この段では
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash 
+							\zeta \in \chi \vee \zeta = \chi \vee \chi \in \zeta
+						\end{align}
+						を示す．$a$の推移性より
+						\begin{align}
+							\chi \in a,\ \ord{a} \vdash \chi \subset a
+						\end{align}
+						が成り立つので，
+						\begin{align}
+							\eta \in \chi,\ \chi \in a,\ \ord{a} \vdash \eta \in a
+						\end{align}
+						が成り立ち，再び$a$の推移性より
+						\begin{align}
+							\eta \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+							\eta \subset a
+						\end{align}
+						となる．従って
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash \zeta \in a
+						\end{align}
+						も成り立ち，
+						(\refeq{fom:thm_transitive_totally_ordered_class_4})と
+						全称記号の論理的公理より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash 
+							\zeta \in \chi \vee \zeta = \chi \vee \chi \in \zeta
+							\label{fom:thm_transitive_totally_ordered_class_5}
+						\end{align}
+						が得られる．
+						
+					\item[step2-2] この段では
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \zeta \neq \chi
+						\end{align}
+						を示す．定理\ref{thm:no_pair_of_sets_go_round}
+						(所属関係で堂々巡りしない)より
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+							\zeta \in \eta \rarrow \eta \notin \zeta
+						\end{align}
+						が成り立つので，演繹定理の逆より
+						\begin{align}
+							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \eta \notin \zeta
+						\end{align}
+						となる．他方で
+						\begin{align}
+							\EQAX \vdash \eta \notin \zeta 
+							\rarrow \zeta \neq \chi \vee \eta \notin \chi
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \zeta \neq \chi \vee \eta \notin \chi
+						\end{align}
+						が従い，選言三段論法
+						(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+						\begin{align}
+							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash\ \negation \eta \notin \chi
+							\rarrow \zeta \neq \chi
+						\end{align}
+						となる．ここで二重否定の導入
+						(論理的定理\ref{logicalthm:introduction_of_double_negation})
+						より
+						\begin{align}
+							\eta \in \chi \vdash\ \negation \eta \notin \chi
+						\end{align}
+						となるので
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \zeta \neq \chi
+						\end{align}
+						が得られる．
+				\end{description}
+				他方で定理\ref{thm:no_set_is_an_element_of_itself}より
 		\begin{align}
 			z \in y \wedge y \in x \Longrightarrow x \notin z
 		\end{align}
@@ -183,6 +280,7 @@
 		\end{align}
 		が得られる．
 		\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{screen}
