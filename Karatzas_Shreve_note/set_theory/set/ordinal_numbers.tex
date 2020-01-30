@@ -197,134 +197,151 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		いま
-		\begin{align}
-			\chi &\defeq \varepsilon x \negation \forall y\, (\, x \in y \rarrow y \notin x\, ), \\
-			\eta &\defeq \varepsilon y \negation (\, \tau \in y \rarrow y \notin \tau\, )
-		\end{align}
-		とおく．$\chi$と$\eta$は主要$\varepsilon$項であるから
-		定理\ref{thm:critical_epsilon_term_is_set}より
-		\begin{align}
-			\EXTAX &\vdash \set{\chi}, \\
-			\EXTAX &\vdash \set{\eta}
-		\end{align}
-		となり，従って定理\ref{thm:pair_of_sets_is_a_set}より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{\chi,\eta\}}
-		\end{align}
-		となり，また定理\ref{thm:set_is_an_element_of_its_pair}より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX \vdash \chi \in \{\chi,\eta\}
-			\label{fom:no_pair_of_sets_go_round_1}
-		\end{align}
-		となる．ここで
-		\begin{align}
-			\tau \defeq \varepsilon x\, (\, \{\chi,\eta\} = x\, )
-		\end{align}
-		とおけば
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{\chi,\eta\} = \tau
-			\label{fom:no_pair_of_sets_go_round_2}
-		\end{align}
-		および
-		\begin{align}
-			\REGAX \vdash \exists x\, (\, x \in \tau\, ) 
-			\rarrow \exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau 
-			\rarrow z \notin y\, )\, )
-			\label{fom:no_pair_of_sets_go_round_3}
-		\end{align}
-		が成り立つ．(\refeq{fom:no_pair_of_sets_go_round_1})と
-		(\refeq{fom:no_pair_of_sets_go_round_2})より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \chi \in \tau
-			\label{fom:no_pair_of_sets_go_round_6}
-		\end{align}
-		が成り立つので%定理\ref{thm:emptyset_does_not_contain_any_class}より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \exists x\, (\, x \in \tau\, )
-		\end{align}
-		となり，(\refeq{fom:no_pair_of_sets_go_round_3})より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash
-			\exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau 
-			\rarrow z \notin y\, )\, )
-		\end{align}
-		が従う．ここで
-		\begin{align}
-			\gamma \defeq \varepsilon y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau \rarrow z \in y\, )\, )
-		\end{align}
-		とおけば
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX &\vdash \gamma \in \tau, 
-			\label{fom:no_pair_of_sets_go_round_4} \\
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX &\vdash \forall z\, (\, z \in \tau \rarrow z \notin \gamma\, )
-			\label{fom:no_pair_of_sets_go_round_5}
-		\end{align}
-		が成り立つ．(\refeq{fom:no_pair_of_sets_go_round_5})より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\chi \in \tau \rarrow \chi \notin \gamma
-		\end{align}
-		となり，(\refeq{fom:no_pair_of_sets_go_round_6})との三段論法より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \chi \notin \gamma
-			\label{fom:no_pair_of_sets_go_round_8}
-		\end{align}
-		が成り立つが，
-		\begin{align}
-			\EQAX \vdash \chi \notin \gamma \rarrow 
-			(\, \eta = \gamma \rarrow \chi \notin \eta\, )
-		\end{align}
-		も成り立つので三段論法より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\eta = \gamma \rarrow \chi \notin \eta
-		\end{align}
-		となり，対偶律2 (論理的定理\ref{logicalthm:contraposition_2})と演繹定理の逆より
-		\begin{align}
-			\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\eta \neq \gamma
-			\label{fom:no_pair_of_sets_go_round_7}
-		\end{align}
-		が従う．他方で(\refeq{fom:no_pair_of_sets_go_round_2})と
-		(\refeq{fom:no_pair_of_sets_go_round_4})より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \gamma \in \{\chi,\eta\}
-		\end{align}
-		が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \chi = \gamma \vee \eta = \gamma
-		\end{align}
-		が従う．これと(\refeq{fom:no_pair_of_sets_go_round_7})と
-		選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
-		\begin{align}
-			\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\chi = \gamma
-			\label{fom:no_pair_of_sets_go_round_9}
-		\end{align}
-		が従う．(\refeq{fom:no_pair_of_sets_go_round_8})を導いたのと同様にして
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \eta \notin \gamma
-		\end{align}
-		も成り立つので，(\refeq{fom:no_pair_of_sets_go_round_9})と相等性公理より
-		\begin{align}
-			\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\eta \notin \chi
-		\end{align}
-		が従う．演繹定理より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\chi \in \eta \rarrow \eta \notin \chi
-		\end{align}
-		が成り立ち，全称の導出
-		(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
-		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
-			\forall x\, \forall y\, (\, x \in y \rarrow y \notin x\, )
-		\end{align}
-		が得られる．
-		\QED
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1] いま
+				\begin{align}
+					\chi &\defeq \varepsilon x \negation \forall y\, (\, x \in y \rarrow y \notin x\, ), \\
+					\eta &\defeq \varepsilon y \negation (\, \tau \in y \rarrow y \notin \tau\, )
+				\end{align}
+				とおく．$\chi$と$\eta$は主要$\varepsilon$項であるから
+				定理\ref{thm:critical_epsilon_term_is_set}より
+				\begin{align}
+					\EXTAX &\vdash \set{\chi}, \\
+					\EXTAX &\vdash \set{\eta}
+				\end{align}
+				となり，従って定理\ref{thm:pair_of_sets_is_a_set}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{\chi,\eta\}}
+				\end{align}
+				となる．また定理\ref{thm:set_is_an_element_of_its_pair}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \chi \in \{\chi,\eta\}
+					\label{fom:no_pair_of_sets_go_round_1}
+				\end{align}
+				が成り立つ．
+				
+			\item[step2] ここで
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, \{\chi,\eta\} = x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{\chi,\eta\} = \tau
+					\label{fom:no_pair_of_sets_go_round_2}
+				\end{align}
+				および
+				\begin{align}
+					\REGAX \vdash \exists x\, (\, x \in \tau\, ) 
+					\rarrow \exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau 
+					\rarrow z \notin y\, )\, )
+					\label{fom:no_pair_of_sets_go_round_3}
+				\end{align}
+				が成り立つ．(\refeq{fom:no_pair_of_sets_go_round_1})と
+				(\refeq{fom:no_pair_of_sets_go_round_2})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \chi \in \tau
+					\label{fom:no_pair_of_sets_go_round_6}
+				\end{align}
+				が成り立つので%定理\ref{thm:emptyset_does_not_contain_any_class}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \exists x\, (\, x \in \tau\, )
+				\end{align}
+				となり，(\refeq{fom:no_pair_of_sets_go_round_3})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash
+					\exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau 
+					\rarrow z \notin y\, )\, )
+					\label{fom:no_pair_of_sets_go_round_10}
+				\end{align}
+				が従う．
+				
+			\item[step3] いま
+				\begin{align}
+					\gamma \defeq \varepsilon y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau \rarrow z \in y\, )\, )
+				\end{align}
+				とおく．この段では
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\eta \neq \gamma
+				\end{align}
+				を示す．
+				(\refeq{fom:no_pair_of_sets_go_round_10})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX &\vdash \gamma \in \tau, 
+					\label{fom:no_pair_of_sets_go_round_4} \\
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX &\vdash \forall z\, (\, z \in \tau \rarrow z \notin \gamma\, )
+					\label{fom:no_pair_of_sets_go_round_5}
+				\end{align}
+				が成り立つ．(\refeq{fom:no_pair_of_sets_go_round_5})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi \in \tau \rarrow \chi \notin \gamma
+				\end{align}
+				となり，(\refeq{fom:no_pair_of_sets_go_round_6})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \chi \notin \gamma
+					\label{fom:no_pair_of_sets_go_round_8}
+				\end{align}
+				が成り立つが，
+				\begin{align}
+					\EQAX \vdash \chi \notin \gamma \rarrow 
+					(\,\chi \in \eta  \rarrow \eta \neq \gamma\, )
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi \in \eta  \rarrow \eta \neq \gamma
+				\end{align}
+				となり，%対偶律2 (論理的定理\ref{logicalthm:contraposition_2})と
+				演繹定理の逆より
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\eta \neq \gamma
+					\label{fom:no_pair_of_sets_go_round_7}
+				\end{align}
+				が従う．
+				
+			\item[step4] (\refeq{fom:no_pair_of_sets_go_round_2})と
+				(\refeq{fom:no_pair_of_sets_go_round_4})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \gamma \in \{\chi,\eta\}
+				\end{align}
+				が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi = \gamma \vee \eta = \gamma
+				\end{align}
+				が従う．これと(\refeq{fom:no_pair_of_sets_go_round_7})と
+				選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi = \gamma
+					\label{fom:no_pair_of_sets_go_round_9}
+				\end{align}
+				が従う．他方で(\refeq{fom:no_pair_of_sets_go_round_8})を導いたのと同様にして
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \eta \notin \gamma
+				\end{align}
+				が成り立ち，(\refeq{fom:no_pair_of_sets_go_round_9})と相等性公理より
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\eta \notin \chi
+				\end{align}
+				が従う．演繹定理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi \in \eta \rarrow \eta \notin \chi
+				\end{align}
+				が成り立ち，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\forall x\, \forall y\, (\, x \in y \rarrow y \notin x\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{screen}
