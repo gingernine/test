@@ -660,6 +660,128 @@
 		\end{description}
 	\end{sketch}
 	
+	\begin{itembox}[l]{三つ組の``対''}
+		$\mathcal{L}$の項$x,y,z$に対して
+		\begin{align}
+			\{x,y,z\} \defeq \{x,y\} \cup \{z\}
+		\end{align}
+		と定める．
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{thm}[三つ組も表示されている要素しか持たない]
+		\label{thm:triple_members_are_exactly_the_given_three}
+			$a,b,c$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash 
+				\forall x\, (\, x \in \{a,b,c\} \lrarrow 
+				(\, a = x \vee b = x\, ) \vee c = x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in \{a,b,c\} \lrarrow 
+			(\, a = x \vee b = x\, ) \vee c = x\, )
+		\end{align}
+		とおく．後は
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b,c\} \lrarrow 
+			(\, a = \tau \vee b = \tau\, ) \vee c = \tau
+		\end{align}
+		を示せば，全称の導出
+		(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash 
+			\forall x\, (\, x \in \{a,b,c\} \lrarrow 
+			(\, a = x \vee b = x\, ) \vee c = x\, )
+		\end{align}
+		を得る．
+		\begin{description}
+			\item[step1]
+				この段では
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b,c\} \rarrow 
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau
+				\end{align}
+				を示す．定理\ref{thm:union_of_pair_is_union_of_their_elements}より
+				\begin{align}
+					\tau \in \{a,b,c\},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\tau \in \{a,b\} \vee \tau \in \{c\}
+				\end{align}
+				が成り立つが，定理\ref{thm:pair_members_are_exactly_the_given_two}
+				(対は表示されている要素しか持たない)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \rarrow 
+					a = \tau \vee b = \tau
+				\end{align}
+				および
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{c\} \rarrow c = \tau
+				\end{align}
+				となり，論理和の導入より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX &\vdash \tau \in \{a,b\} \rarrow 
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau, \\
+					\EXTAX,\EQAX,\COMAX &\vdash \tau \in \{c\} \rarrow 
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau
+				\end{align}
+				となり，論理和の除去より
+				\begin{align}
+					\tau \in \{a,b,c\},\ \EXTAX,\EQAX,\COMAX \vdash 
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau
+				\end{align}
+				が従う．
+				
+			\item[step2]
+				この段では
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau \rarrow 
+					\tau \in \{a,b,c\}
+				\end{align}
+				を示す．定理\ref{thm:pair_members_are_exactly_the_given_two}
+				(対は表示されている要素しか持たない)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash a = \tau \vee b = \tau 
+					\rarrow \tau \in \{a,b\}
+				\end{align}
+				および
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash c = \tau
+					\rarrow \tau \in \{c\}
+				\end{align}
+				となり，論理和の導入より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX &\vdash a = \tau \vee b = \tau 
+					\rarrow \tau \in \{a,b\} \vee \tau \in \{c\}, \\
+					\EXTAX,\EQAX,\COMAX &\vdash c = \tau 
+					\rarrow \tau \in \{a,b\} \vee \tau \in \{c\}
+				\end{align}
+				となり，論理和の除去と演繹定理の逆より
+				\begin{align}
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau,\ 
+					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \vee \tau \in \{c\}
+				\end{align}
+				が従う．定理\ref{thm:union_of_pair_is_union_of_their_elements}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					\tau \in \{a,b\} \vee \tau \in \{c\} 
+					\rarrow \tau \in \{a,b,c\}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau,\ 
+					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b,c\}
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{comment}
 	\begin{screen}
 		\begin{thm}[要素の部分集合は合併の部分集合]
 		\label{thm:union_is_bigger_than_any_member}
@@ -774,3 +896,4 @@
 		が得られる．
 		\QED
 	\end{sketch}
+	\end{comment}

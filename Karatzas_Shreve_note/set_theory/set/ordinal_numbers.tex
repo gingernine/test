@@ -314,11 +314,55 @@
 		\QED
 	\end{sketch}
 	
-	$\mathcal{L}$の項$x,y,z$に対して
-	\begin{align}
-		\{x,y,z\} \defeq \{x,y\} \cup \{z\}
-	\end{align}
-	と定める．
+	\begin{screen}
+		\begin{logicalthm}[論理和の結合律]
+		\label{logicalthm:associative_law_of_conjunctions}
+			$A,B,C$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (\, A \vee B\, ) \vee C \rarrow A \vee (\, B \vee C\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理和の導入より
+		\begin{align}
+			\vdash A \rarrow A \vee (\, B \vee C\, )
+			\label{fom:associative_law_of_conjunctions_1}
+		\end{align}
+		となる．同じく論理和の導入より
+		\begin{align}
+			B \vdash B \vee C
+		\end{align}
+		となるが，再び論理和の導入より
+		\begin{align}
+			\vdash B \vee C \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			B \vdash A \vee (\, B \vee C\, )
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\vdash B \rarrow A \vee (\, B \vee C\, )
+			\label{fom:associative_law_of_conjunctions_2}
+		\end{align}
+		が従う．(\refeq{fom:associative_law_of_conjunctions_1})と
+		(\refeq{fom:associative_law_of_conjunctions_2})と論理和の除去より
+		\begin{align}
+			\vdash A \vee B \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		が得られる．他方で(\refeq{fom:associative_law_of_conjunctions_2})の導出と同様にして
+		\begin{align}
+			\vdash C \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		も得られるから，再び論理和の除去により
+		\begin{align}
+			\vdash (\, A \vee B\, ) \vee C \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[集合のどの三組も所属関係で堂々巡りしない]
@@ -378,7 +422,7 @@
 		\end{align}
 		となる．同様にして
 		\begin{align}
-			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \eta \in \{\chi,\eta,\zeta\}
+			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \eta \in \{\chi,\eta,\zeta\},
 			\label{fom:no_three_sets_go_round_8}
 		\end{align}
 		も成り立つ．また(\refeq{fom:no_three_sets_go_round_4})
@@ -451,5 +495,71 @@
 			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX &\vdash \eta \notin \gamma
 			\label{fom:no_three_sets_go_round_16}
 		\end{align}
-		が従う．
+		が従う．ところで
+		\begin{align}
+			\EQAX &\vdash \chi \notin \gamma \rarrow (\, \chi \in \eta \rarrow \eta \neq \gamma\, ), \\
+			\EQAX &\vdash \eta \notin \gamma \rarrow (\, \eta \in \zeta \rarrow \zeta \neq \gamma\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:no_three_sets_go_round_15})と
+		(\refeq{fom:no_three_sets_go_round_16})から
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX &\vdash \chi \in \eta \rarrow \eta \neq \gamma, 
+			\label{fom:no_three_sets_go_round_17} \\
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX &\vdash \eta \in \zeta \rarrow \zeta \neq \gamma
+			\label{fom:no_three_sets_go_round_18}
+		\end{align}
+		が従い，
+		\begin{align}
+			\chi \in \eta \wedge \eta \in \zeta,\ 
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash \eta \neq \gamma \wedge \zeta \neq \gamma
+		\end{align}
+		が従い，De Morgan の法則(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+		\begin{align}
+			\chi \in \eta \wedge \eta \in \zeta,\ 
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash\ 
+			\negation (\, \eta = \gamma \vee \zeta = \gamma\, )
+			\label{fom:no_three_sets_go_round_19}
+		\end{align}
+		となる．他方で定理\ref{thm:union_of_pair_is_union_of_their_elements}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash 
+			\set{\{\zeta\}} \rarrow \forall x\, (\, x \in \{\zeta\}
+			\rarrow x \in \{\zeta\} \cup \{\chi,\eta\}\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:no_three_sets_go_round_5})と
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \zeta \in \{\zeta\}
+		\end{align}
+		(定理\ref{thm:set_is_an_element_of_its_pair})との三段論法より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \zeta \in \{\zeta\} \cup \{\chi,\eta\}
+		\end{align}
+		が従い，定理\ref{thm:symmetry_of_union_of_a_pair}
+		(合併の対称性)より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \zeta \in \{\chi,\eta,\zeta\}
+		\end{align}
+		が成り立つ．従って(\refeq{fom:no_three_sets_go_round_10})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX \vdash \zeta \in \tau
+			\label{fom:no_three_sets_go_round_20}
+		\end{align}
+		となる．(\refeq{fom:no_three_sets_go_round_13})と
+		(\refeq{fom:no_three_sets_go_round_10})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash \gamma \in \{\chi,\eta,\zeta\}
+		\end{align}
+		が成り立つので，定理\ref{thm:triple_members_are_exactly_the_given_three}
+		(表示されている要素しか持たない)より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+			(\, \chi = \gamma \vee \eta = \gamma\, ) \vee \zeta = \gamma
+		\end{align}
+		となるが，論理和の結合律
+		(論理的定理\ref{logicalthm:associative_law_of_conjunctions})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+			\chi = \gamma \vee (\, \eta = \gamma \vee \zeta = \gamma\, )
+		\end{align}
+		となる．
 	\end{sketch}
