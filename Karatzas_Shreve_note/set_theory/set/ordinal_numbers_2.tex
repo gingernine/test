@@ -452,8 +452,8 @@
 		\begin{thm}[$\ON$において$\in$と$<$は同義]
 		\label{thm:element_and_proper_subset_correspond}
 			\begin{align}
-				\forall \alpha,\beta \in \ON\,
-				(\, \alpha \in \beta \lrarrow \alpha < \beta\, ).
+				\EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX 
+				\vdash \forall \alpha,\beta \in \ON\, (\, \alpha \in \beta \lrarrow \alpha < \beta\, ).
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -471,7 +471,7 @@
 		\begin{description}
 			\item[step1] まず
 				\begin{align}
-					\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
 					a \in b \rarrow a < b
 				\end{align}
 				を示す．順序数の推移性より
@@ -553,8 +553,8 @@
 				\end{align}
 				となるので，
 				\begin{align}
-					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX\REGAX 
-					\vdash a < b
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash a < b
+					\label{fom:element_and_proper_subset_correspond_21}
 				\end{align}
 				が得られる．
 				
@@ -684,108 +684,174 @@
 				
 			\item[step4] この段では
 				\begin{align}
-					a \subset \eta 
+					a < b,\ \ord{a},\ \ord{b} \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \subset \eta 
 				\end{align}
 				を示す．いま
 				\begin{align}
 					\chi \defeq \varepsilon x \negation (\, x \in a \rarrow x \in \eta\, )
 				\end{align}
-				とおく．
+				とおく．(\refeq{fom:element_and_proper_subset_correspond_8})と
+				(\refeq{fom:element_and_proper_subset_correspond_9})より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \in b, 
+					\label{fom:element_and_proper_subset_correspond_11} \\
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin a
+					\label{fom:element_and_proper_subset_correspond_12}
+				\end{align}
+				となり，他方で
+				\begin{align}
+					\chi \in a,\ a < b \vdash \chi \in b
+				\end{align}
+				となるから，$\ord{b}$を公理に追加すれば
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					\vdash \chi \in \eta \vee \chi = \eta \vee \eta \in \chi
+					\label{fom:element_and_proper_subset_correspond_13}
+				\end{align}
+				が成り立つ．ところで
+				\begin{align}
+					\EQAX \vdash \chi = \eta \wedge \chi \in a \rarrow \eta \in a
+				\end{align}
+				が成り立つので，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\EQAX \vdash \eta \notin a \rarrow \chi \neq \eta \vee \chi \notin a
+				\end{align}
+				となる．また
+				\begin{align}
+					\ord{a} \vdash \eta \in \chi \wedge \chi \in a \rarrow \eta \in a
+				\end{align}
+				が成り立つので，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\ord{a} \vdash \eta \notin a \rarrow \eta \notin \chi \vee \chi \notin a
+				\end{align}
+				となる．よって，(\refeq{fom:element_and_proper_subset_correspond_12})と併せて
+				\begin{align}
+					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta \vee \chi \notin a, \\
+					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin \chi \vee \chi \notin a
+				\end{align}
+				が成り立ち，選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					&\vdash \chi \in a \rarrow \chi \neq \eta, \\
+					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					&\vdash \chi \in a \rarrow \eta \notin \chi
+				\end{align}
+				が成り立ち，演繹定理の逆により
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta,
+					\label{fom:element_and_proper_subset_correspond_14} \\
+					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin \chi
+					\label{fom:element_and_proper_subset_correspond_15}
+				\end{align}
+				となり，論理積の導入とDe Morganの法則(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash\ 
+					\negation (\, \chi = \eta \vee \eta \in \chi\, )
+				\end{align}
+				が従う．これと(\refeq{fom:element_and_proper_subset_correspond_13})と
+				選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in \eta
+				\end{align}
+				が成立するので，演繹定理より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash 
+					\chi \in a \rarrow \chi \in \eta
+				\end{align}
+				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \subset \eta
+					\label{fom:element_and_proper_subset_correspond_16}
+				\end{align}
+				が出る．
+			
+			\item[step5] この段では
+				\begin{align}
+					a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \eta \subset a
+				\end{align}
+				を示す．いま
+				\begin{align}
+					\chi \defeq \varepsilon x \negation (\, x \in \eta \rarrow x \in a\, )
+				\end{align}
+				とおく．(\refeq{fom:element_and_proper_subset_correspond_11})と順序数の推移性より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in b
+					\label{fom:element_and_proper_subset_correspond_17}
+				\end{align}
+				となる．他方で(\refeq{fom:element_and_proper_subset_correspond_10})と
+				対偶律2 (論理的定理\ref{logicalthm:contraposition_2})より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash 
+					\chi \in \eta \rarrow \chi \notin \sigma
+				\end{align}
+				となり，演繹定理の逆より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin \sigma
+				\end{align}
+				となるが，(\refeq{fom:element_and_proper_subset_correspond_8})より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin b \backslash a
+					\label{fom:element_and_proper_subset_correspond_18}
+				\end{align}
+				が従う．ところで
+				\begin{align}
+					\COMAX \vdash \chi \in b \backslash a \lrarrow \chi \in b \wedge \chi \notin a
+				\end{align}
+				が成り立つので，対偶を取って
+				\begin{align}
+					\COMAX \vdash \chi \notin b \backslash a \lrarrow \chi \notin b \vee \chi \in a
+				\end{align}
+				となる．よって(\refeq{fom:element_and_proper_subset_correspond_18})から
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin b \vee \chi \in a
+				\end{align}
+				が従い，論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in b \rarrow \chi \in a
+				\end{align}
+				が成り立つ．これと(\refeq{fom:element_and_proper_subset_correspond_17})との三段論法より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in a
+				\end{align}
+				が成り立ち，演繹定理と全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \eta \subset a
+					\label{fom:element_and_proper_subset_correspond_19}
+				\end{align}
+				が出る．
+			
+			\item[step5] (\refeq{fom:element_and_proper_subset_correspond_16})と
+				(\refeq{fom:element_and_proper_subset_correspond_19})および
+				定理\ref{thm:mutually_including_classes_are_equivalent} (互いに相手を包含する類同士は等しい)より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \vdash \eta = a
+				\end{align}
+				が成り立ち，(\refeq{fom:element_and_proper_subset_correspond_11})と相等性公理より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \vdash a \in b
+					\label{fom:element_and_proper_subset_correspond_20}
+				\end{align}
+				が従う．(\refeq{fom:element_and_proper_subset_correspond_21})と
+				(\refeq{fom:element_and_proper_subset_correspond_20})と演繹定理および論理積の導入より
+				\begin{align}
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\ord{b} \rarrow (\, a \in b \lrarrow a < b\, )
+				\end{align}
+				が成り立つが，ここで全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					&\ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \\
+					&\vdash \forall \beta\, (\, \beta \in \ON \rarrow (\, a \in \beta \lrarrow a < \beta\, )\, )
+				\end{align}
+				が従い，同様にして
+				\begin{align}
+					&\EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \\
+					&\vdash \forall \alpha\, (\, \alpha \in \ON \rarrow
+					\forall \beta\, (\, \beta \in \ON \rarrow (\, \alpha \in \beta \lrarrow \alpha < \beta\, )\, )\, )
+				\end{align}
+				が得られる．
+				\QED
 		\end{description}
-		
-		
-		\begin{align}
-			\alpha = \gamma
-		\end{align}
-		が成り立つことを示す．$x$を$\alpha$の任意の要素とすれば，
-		$x,\gamma$は共に$\beta$に属するから
-		\begin{align}
-			x \in \gamma \vee x = \gamma \vee \gamma \in x
-			\label{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1}
-		\end{align}
-		が成り立つ．ところで相等性の公理から
-		\begin{align}
-			x = \gamma \wedge x \in \alpha \Longrightarrow \gamma \in \alpha
-		\end{align}
-		が成り立ち，$\alpha$の推移性から
-		\begin{align}
-			\gamma \in x \wedge x \in \alpha \Longrightarrow \gamma \in \alpha
-		\end{align}
-		が成り立つから，それぞれ対偶を取れば
-		\begin{align}
-			\gamma \notin \alpha \Longrightarrow x \neq \gamma \vee x \notin \alpha
-		\end{align}
-		と
-		\begin{align}
-			\gamma \notin \alpha \Longrightarrow \gamma \notin x \vee x \notin \alpha
-		\end{align}
-		が成立する．いま
-		\begin{align}
-			\gamma \notin \alpha
-		\end{align}
-		が成り立っているので
-		\begin{align}
-			x \neq \gamma \vee x \notin \alpha
-		\end{align}
-		と
-		\begin{align}
-			\gamma \notin x \vee x \notin \alpha
-		\end{align}
-		が共に成り立ち，また
-		\begin{align}
-			x \in \alpha
-		\end{align}
-		でもあるから選言三段論法より
-		\begin{align}
-			x \neq \gamma
-		\end{align}
-		と
-		\begin{align}
-			\gamma \notin x
-		\end{align}
-		が共に成立する．そして(\refeq{eq:thm_element_and_proper_subset_correspond_between_ordinal_numbers_1})と
-		選言三段論法より
-		\begin{align}
-			x \in \gamma
-		\end{align}
-		が従うので
-		\begin{align}
-			\alpha \subset \gamma
-		\end{align}
-		が得られる．逆に$x$を$\gamma$に任意の要素とすると
-		\begin{align}
-			x \in \beta \wedge x \notin \beta \backslash \alpha
-		\end{align}
-		が成り立つから，すなわち
-		\begin{align}
-			x \in \beta \wedge (\, x \notin \beta \vee x \in \alpha\, )
-		\end{align}
-		が成立する．ゆえに選言三段論法より
-		\begin{align}
-			x \in \alpha
-		\end{align}
-		が成り立ち，$x$の任意性より
-		\begin{align}
-			\gamma \subset \alpha
-		\end{align}
-		となる．従って
-		\begin{align}
-			\gamma = \alpha
-		\end{align}
-		が成立し，
-		\begin{align}
-			\gamma \in \beta
-		\end{align}
-		なので
-		\begin{align}
-			\alpha \in \beta
-		\end{align}
-		が成り立つ．以上で
-		\begin{align}
-			\alpha < \beta \Longrightarrow \alpha \in \beta
-		\end{align}
-		も得られた．
-		\QED
 	\end{prf}
 	
 	\begin{screen}
