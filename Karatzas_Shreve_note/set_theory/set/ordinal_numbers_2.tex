@@ -863,6 +863,7 @@
 		\begin{thm}[$\leq$は$\ON$の全順序]
 		\label{thm:ON_is_totally_ordered}
 			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
 				\forall \alpha,\beta \in \ON\,
 				(\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, ).
 			\end{align}
@@ -870,103 +871,215 @@
 	\end{screen}
 	
 	\begin{sketch}
-		$\leq$が全順序であることを示す．$\alpha$と$\beta$を順序数とする．このとき
+		いま
+		\begin{align}
+			a &\defeq \varepsilon \alpha \negation 
+			(\, \alpha \in \ON \rarrow \forall \beta\, (\, \beta \in \ON \rarrow 
+			(\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, )\,) \,), \\
+			b &\defeq \varepsilon \beta \negation (\, \beta \in \ON \rarrow 
+			(\, a \in \beta \vee a = \beta \vee \beta \in a\, )\,)
+		\end{align}
+		とおく．
+		\begin{description}
+			\item[step1] この段では
 				\begin{align}
-					\ord{\alpha \cap \beta}
+					\ord{a},\ \ord{b} \vdash \ord{a \cap b}
+					\label{fom:ON_is_totally_ordered_1}
 				\end{align}
-				が成り立ち，他方で定理\ref{thm:no_set_is_an_element_of_itself}より
+				を示す．実際，
 				\begin{align}
-					\alpha \cap \beta \notin \alpha \cap \beta
+					\chi &\defeq \varepsilon x \negation 
+					(\, x \in a \cap b \rarrow \forall y\, (\, 
+					y \in a \cap b \rarrow (\, x \in y \vee x = y \vee y \in x\, )\, )\, ), \\
+					\eta &\defeq \varepsilon y \negation (\, 
+					y \in a \cap b \rarrow (\, \chi \in y \vee \chi = y \vee y \in \chi\, )\, )
 				\end{align}
-				が満たされるので
+				とおけば，
 				\begin{align}
-					\alpha \cap \beta \notin \alpha \vee \alpha \cap \beta \notin \beta
-					\label{eq:thm_On_is_wellordered_5}
+					\chi \in a \cap b \vdash \chi \in a
 				\end{align}
-				が成立する．ところで
+				および
 				\begin{align}
-					\alpha \cap \beta \subset \alpha
+					\eta \in a \cap b \vdash \eta \in a
 				\end{align}
-				は正しいので定理\ref{thm:element_and_proper_subset_correspond_between_ordinal_numbers}から
+				および
 				\begin{align}
-					\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha
+					\ord{a} \vdash \chi \in a \rarrow (\, 
+					\eta \in a \rarrow (\, \chi \in \eta \vee \chi = \eta \vee \eta \in \chi\, )\, )
 				\end{align}
-				が成立する．従って
+				より
 				\begin{align}
-					\alpha \cap \beta \notin \alpha \Longrightarrow 
-					(\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha) \wedge \alpha \cap \beta \notin \alpha
-					\label{eq:thm_On_is_wellordered_2}
+					\eta \in a \cap b,\ \chi \in a \cap b,\ \ord{a} 
+					\vdash \chi \in \eta \vee \chi = \eta \vee \eta \in \chi
 				\end{align}
-				が成り立ち，他方で選言三段論法より
+				が成り立つので，演繹定理と全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
 				\begin{align}
-					(\alpha \cap \beta \in \alpha \vee \alpha \cap \beta = \alpha) \wedge \alpha \cap \beta \notin \alpha
-					\Longrightarrow \alpha \cap \beta = \alpha
-					\label{eq:thm_On_is_wellordered_3}
+					\ord{a} \vdash \forall x,y \in a \cap b\, 
+					(\, x \in y \vee x = y \vee y \in x\, )
 				\end{align}
-				も成り立ち，かつ
+				が得られる．今度は
 				\begin{align}
-					\alpha \cap \beta = \alpha \Longrightarrow \alpha \subset \beta
-					\label{eq:thm_On_is_wellordered_4}
+					\chi \defeq \varepsilon x \negation 
+					(\, x \in a \cap b \rarrow x \subset a \cap b\, )
 				\end{align}
-				も成り立つので，(\refeq{eq:thm_On_is_wellordered_2})と(\refeq{eq:thm_On_is_wellordered_3})と
-				(\refeq{eq:thm_On_is_wellordered_4})から
+				とおき直せば，順序数の推移性より
 				\begin{align}
-					\alpha \cap \beta \notin \alpha \Longrightarrow \alpha \subset \beta
+					\chi \in a \cap b,\ \ord{a} &\vdash \chi \subset a, \\
+					\chi \in a \cap b,\ \ord{b} &\vdash \chi \subset b
 				\end{align}
-				が得られる．同様にして
+				が成り立つので
 				\begin{align}
-					\alpha \cap \beta \notin \beta \Longrightarrow \beta \subset \alpha
+					\chi \in a \cap b,\ \ord{a},\ \ord{b} \vdash \chi \subset a \cap b
 				\end{align}
-				も得られる．さらに論理和の規則から
+				となり，演繹定理と全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
 				\begin{align}
-					\alpha \cap \beta \notin \alpha \Longrightarrow \alpha \subset \beta \vee \beta \subset \alpha
+					\ord{a},\ \ord{b} \vdash 
+					\forall x\, (\, x \in a \cap b \rarrow x \subset a \cap b\, )
 				\end{align}
-				と
+				も得られる．
+				
+			\item[step2] 
+				%\ELEAX \vdash a \cap b \in a \rarrow \exists x\, (\, a \cap b = x\, )
+				%\tau \defeq \varepsilon x\, (\, a \cap b = x\, )
+				%a \cap b \in a,\ \ELEAX \vdash a \cap b = \tau
+				%a \cap b \in a,\ \ELEAX,\EQAX \vdash a \cap b = \tau \rarrow (\, a \cap b \in a \rarrow \tau \in a\, )
+				%a \cap b \in a,\ \ELEAX,\EQAX \vdash \tau \in a
+				%a \cap b \in b,\ \ELEAX,\EQAX \vdash \tau \in b
+				%a \cap b \in a,\ a \cap b \in b,\ \ELEAX,\EQAX \vdash \tau \in a \wedge \tau \in b
+				%a \cap b \in a,\ a \cap b \in b,\ \ELEAX,\EQAX,\COMAX \vdash \tau \in a \cap b
+				%a \cap b \in a,\ a \cap b \in b,\ \ELEAX,\EQAX,\COMAX \vdash a \cap b \in a \cap b
+				%\ELEAX,\EQAX,\COMAX \vdash a \cap b \in a \wedge a \cap b \in b \rarrow a \cap b \in a \cap b
+				定理\ref{thm:no_class_contains_itself} (自分自身は要素に持たない)より
 				\begin{align}
-					\alpha \cap \beta \notin \beta \Longrightarrow \alpha \subset \beta \vee \beta \subset \alpha
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash a \cap b \notin a \cap b
 				\end{align}
-				が従うので，(\refeq{eq:thm_On_is_wellordered_5})と場合分け法則より
+				が成り立ち，他方で
 				\begin{align}
-					\alpha \subset \beta \vee \beta \subset \alpha
+					\EQAX,\COMAX,\ELEAX \vdash a \cap b \notin a \cap b
+					\rarrow a \cap b \notin a \vee a \cap b \notin b
 				\end{align}
-				が成立して
+				も成り立つので，三段論法より
 				\begin{align}
-					(\alpha,\beta) \in\ \leq \vee (\beta,\alpha) \in\ \leq
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash 
+					a \cap b \notin a \vee a \cap b \notin b
+					\label{fom:ON_is_totally_ordered_2}
 				\end{align}
-				が成立する．ゆえに$\leq$は全順序である．
+				が従う．ところで
+				\begin{align}
+					\COMAX \vdash a \cap b \subset a
+				\end{align}
+				と定理\ref{thm:element_and_proper_subset_correspond}
+				および(\refeq{fom:ON_is_totally_ordered_1})より
+				\begin{align}
+					\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \cap b \in a \vee a \cap b = a
+				\end{align}
+				が成り立つので，選言三段論法
+				(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \cap b \notin a \rarrow a \cap b = a
+				\end{align}
+				が成り立つ．演繹定理の逆より
+				\begin{align}
+					a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \cap b = a
+				\end{align}
+				となるが，ここで
+				\begin{align}
+					a \cap b = a,\ \COMAX \vdash a \subset b
+				\end{align}
+				が成り立つので
+				\begin{align}
+					a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \subset b
+				\end{align}
+				が従い，定理\ref{thm:element_and_proper_subset_correspond}より
+				\begin{align}
+					a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \in b \vee a = b
+				\end{align}
+				が成り立つ．論理和の導入より
+				\begin{align}
+					&a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+					&\vdash a \in b \vee a = b \vee b \in a
+				\end{align}
+				となり，演繹定理より
+				\begin{align}
+					&\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+					&\vdash a \cap b \notin a \rarrow a \in b \vee a = b \vee b \in a
+				\end{align}
+				が従う．同様にして
+				\begin{align}
+					&\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+					&\vdash a \cap b \notin b \rarrow a \in b \vee a = b \vee b \in a
+				\end{align}
+				も成り立つので，論理和の除去より
+				\begin{align}
+					&\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+					&\vdash 
+					a \cap b \notin a \vee a \cap b \notin b
+					\rarrow a \in b \vee a = b \vee b \in a
+				\end{align}
+				が成り立ち，(\refeq{fom:ON_is_totally_ordered_2})との三段論法より
+				\begin{align}
+					\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					\rarrow a \in b \vee a = b \vee b \in a
+				\end{align}
+				が従う．あとは演繹定理と全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					\forall \alpha,\beta \in \ON\, (\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, )
+				\end{align}
+				が出る．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[Burali-Forti]\label{thm:Burali_Forti}
 			順序数の全体は集合ではない．
 			\begin{align}
-				\rightharpoondown \set{\ON}.
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+				\vdash\ \negation \set{\ON}.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{prf}
-		$a$を類とするとき，定理\ref{thm:satisfactory_set_is_an_element}より
+		定理\ref{thm:satisfactory_set_is_an_element}より
 		\begin{align}
-			\ord{a} \Longrightarrow \left(\, \set{a} \Longrightarrow a \in \ON\, \right)
-		\end{align}
-		が成り立つ．定理\ref{thm:On_is_transitive}と定理\ref{thm:On_is_wellordered}より
-		\begin{align}
-			\ord{\ON}
-		\end{align}
-		が成り立つから
-		\begin{align}
-			\set{\ON} \Longrightarrow \ON \in \ON
+			\EQAX,\COMAX \vdash \ord{\ON} \rarrow (\, \set{\ON} \rarrow \ON \in \ON\, )
 			\label{eq:Burali_Forti_1}
 		\end{align}
-		が従い，また定理\ref{thm:no_set_is_an_element_of_itself}より
+		が成り立つ．定理\ref{thm:On_is_transitive}と定理\ref{thm:ON_is_totally_ordered}より
 		\begin{align}
-			\ON \notin \ON
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash \ord{\ON}
 		\end{align}
-		も成り立つので，(\refeq{eq:Burali_Forti_1})の対偶から
+		が成り立つから，(\refeq{eq:Burali_Forti_1})との三段論法より
 		\begin{align}
-			\rightharpoondown \set{\ON}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash \set{\ON} \rarrow \ON \in \ON
 		\end{align}
-		が成立する．
+		となり，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash \ON \notin \ON \rarrow\ \negation \set{\ON}
+			\label{eq:Burali_Forti_2}
+		\end{align}
+		が従う．他方で定理\ref{thm:no_class_contains_itself} (自分自身は要素に持たない)より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \ON \notin \ON
+		\end{align}
+		も成り立つので，(\refeq{eq:Burali_Forti_2})との三段論法から
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash\ \negation \set{\ON}
+		\end{align}
+		が得られる．
 		\QED
 	\end{prf}
