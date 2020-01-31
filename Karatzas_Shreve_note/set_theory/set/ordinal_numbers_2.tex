@@ -217,20 +217,14 @@
 							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
 							\vdash \zeta \neq \chi \vee \eta \notin \chi
 						\end{align}
-						が従い，選言三段論法
-						(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+						が従い，論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+						(含意の論理和は否定で書ける)より
 						\begin{align}
 							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
-							\vdash\ \negation \eta \notin \chi
+							\vdash \eta \in \chi
 							\rarrow \zeta \neq \chi
 						\end{align}
-						となる．ここで二重否定の導入
-						(論理的定理\ref{logicalthm:introduction_of_double_negation})
-						より
-						\begin{align}
-							\eta \in \chi \vdash\ \negation \eta \notin \chi
-						\end{align}
-						となるので
+						となる．そして演繹定理の逆より
 						\begin{align}
 							\zeta \in \eta,\ \eta \in \chi,\ 
 							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
@@ -488,7 +482,7 @@
 					a \in b,\ \ord{b},\ \COMAX 
 					\vdash b \in \ON \wedge (\, \tau = (a,b) \wedge a \subset b\, )
 				\end{align}
-				となり
+				となり，存在記号の論理的公理より
 				\begin{align}
 					a \in b,\ \ord{b},\ \COMAX  
 					\vdash \exists \beta\, (\, \beta \in \ON \wedge 
@@ -505,21 +499,21 @@
 					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
 					\vdash a \in \ON
 				\end{align}
-				となる．すなわち，(\refeq{fom:element_and_proper_subset_correspond_2})と
+				となり，(\refeq{fom:element_and_proper_subset_correspond_2})と
 				論理積の導入より
 				\begin{align}
 					&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
 					&\vdash a \in \ON \wedge \exists \beta\, (\, \beta \in \ON \wedge 
 					(\, \tau = (a,\beta) \wedge a \subset \beta\, )\, )
 				\end{align}
-				が成り立ち，
+				が成り立ち，存在記号の論理的公理より
 				\begin{align}
 					&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
 					&\vdash \exists \alpha\, (\, \alpha \in \ON \wedge 
 					\exists \beta\, (\, \beta \in \ON \wedge 
 					(\, \tau = (\alpha,\beta) \wedge \alpha \subset \beta\, )\, )\, )
 				\end{align}
-				が成り立ち，ゆえに
+				が成り立つ．ゆえに
 				\begin{align}
 					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
 					\vdash \tau \in\ \leq
@@ -527,18 +521,14 @@
 				となり，
 				\begin{align}
 					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
-					\vdash (a,b) \in\ \leq
+					\vdash a \leq b
 					\label{fom:element_and_proper_subset_correspond_3}
 				\end{align}
 				が従う．他方で
 				\begin{align}
-					\EQAX \vdash a \in b \rarrow (\, a \notin a \rarrow a \neq b\, )
-				\end{align}
-				と演繹定理の逆より
-				\begin{align}
 					a \in b,\ \EQAX \vdash a \notin a \rarrow a \neq b
 				\end{align}
-				となり，定理\ref{thm:no_class_contains_itself}
+				が成り立つので，定理\ref{thm:no_class_contains_itself}
 				(自分自身は要素ではない)と併せて
 				\begin{align}
 					a \in b,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
@@ -549,7 +539,7 @@
 				(\refeq{fom:element_and_proper_subset_correspond_4})と論理積の導入より
 				\begin{align}
 					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
-					\vdash (a,b) \in\ \leq \wedge a \neq b
+					\vdash a \leq b \wedge a \neq b
 				\end{align}
 				となるので，
 				\begin{align}
@@ -581,26 +571,18 @@
 					a \neq b,\ \EXTAX \vdash\ \negation (\, \tau \in a \rarrow \tau \in b\, ) \vee
 					\negation (\, \tau \in b \rarrow \tau \in a\, )
 				\end{align}
-				が従う．よって選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
-				\begin{align}
-					a \neq b,\ \EXTAX \vdash\ \negation \negation (\, \tau \in a \rarrow \tau \in b\, )
-					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
-				\end{align}
-				が成り立つが，二重否定の導入
-				(論理的定理\ref{logicalthm:introduction_of_double_negation})より
-				\begin{align}
-					\tau \in a \rarrow \tau \in b \vdash\ \negation \negation (\, \tau \in a \rarrow \tau \in b\, )
-				\end{align}
-				となるので，三段論法および演繹定理より
+				が従う．よって論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)より
 				\begin{align}
 					a \neq b,\ \EXTAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
 					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+					\label{fom:element_and_proper_subset_correspond_22}
 				\end{align}
-				が得られる．他方で
+				が成り立つ．他方で
 				\begin{align}
-					a < b \vdash a \subset b \wedge a \neq b
+					a < b \vdash a \neq b
 				\end{align}
-				であるから
+				であるから，(\refeq{fom:element_and_proper_subset_correspond_22})より
 				\begin{align}
 					a < b,\ \EXTAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
 					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
@@ -642,7 +624,7 @@
 				\end{align}
 				が成り立つので，
 				\begin{align}
-					\sigma \defeq \exists s\, (\, b \backslash a = s\, )
+					\sigma \defeq \varepsilon s\, (\, b \backslash a = s\, )
 				\end{align}
 				とおけば
 				\begin{align}
@@ -680,11 +662,14 @@
 					\forall z\, (\, z \in \sigma \rarrow z \notin \eta\, )
 					\label{fom:element_and_proper_subset_correspond_10}
 				\end{align}
-				が成り立つ．
+				が成り立つ．正則性公理の式の意味を考えれば，ここで取られた$\eta$は
+				「$b \backslash a$の要素であり，$b \backslash a$とは交わらない」
+				という性質を持っている．$a$と$b$が順序数であれば$\eta$は$a$に等しくなる
+				ことが示されるが，それは次段以降で解説する．
 				
 			\item[step4] この段では
 				\begin{align}
-					a < b,\ \ord{a},\ \ord{b} \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \subset \eta 
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \subset \eta 
 				\end{align}
 				を示す．いま
 				\begin{align}
@@ -716,7 +701,7 @@
 				\begin{align}
 					\EQAX \vdash \eta \notin a \rarrow \chi \neq \eta \vee \chi \notin a
 				\end{align}
-				となる．また
+				となる．また順序数の推移性より
 				\begin{align}
 					\ord{a} \vdash \eta \in \chi \wedge \chi \in a \rarrow \eta \in a
 				\end{align}
@@ -726,19 +711,20 @@
 				\end{align}
 				となる．よって，(\refeq{fom:element_and_proper_subset_correspond_12})と併せて
 				\begin{align}
-					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta \vee \chi \notin a, \\
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta \vee \chi \notin a, \\
 					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin \chi \vee \chi \notin a
 				\end{align}
-				が成り立ち，選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				が成り立ち，論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)より
 				\begin{align}
-					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
 					&\vdash \chi \in a \rarrow \chi \neq \eta, \\
 					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
 					&\vdash \chi \in a \rarrow \eta \notin \chi
 				\end{align}
 				が成り立ち，演繹定理の逆により
 				\begin{align}
-					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta,
+					\chi \in a,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta,
 					\label{fom:element_and_proper_subset_correspond_14} \\
 					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin \chi
 					\label{fom:element_and_proper_subset_correspond_15}
@@ -801,7 +787,7 @@
 				\begin{align}
 					\COMAX \vdash \chi \notin b \backslash a \lrarrow \chi \notin b \vee \chi \in a
 				\end{align}
-				となる．よって(\refeq{fom:element_and_proper_subset_correspond_18})から
+				となるから，(\refeq{fom:element_and_proper_subset_correspond_18})より
 				\begin{align}
 					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin b \vee \chi \in a
 				\end{align}
@@ -821,15 +807,15 @@
 				\end{align}
 				が出る．
 			
-			\item[step5] (\refeq{fom:element_and_proper_subset_correspond_16})と
+			\item[step6] (\refeq{fom:element_and_proper_subset_correspond_16})と
 				(\refeq{fom:element_and_proper_subset_correspond_19})および
 				定理\ref{thm:mutually_including_classes_are_equivalent} (互いに相手を包含する類同士は等しい)より
 				\begin{align}
-					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \vdash \eta = a
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \eta = a
 				\end{align}
 				が成り立ち，(\refeq{fom:element_and_proper_subset_correspond_11})と相等性公理より
 				\begin{align}
-					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \vdash a \in b
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \in b
 					\label{fom:element_and_proper_subset_correspond_20}
 				\end{align}
 				が従う．(\refeq{fom:element_and_proper_subset_correspond_21})と
