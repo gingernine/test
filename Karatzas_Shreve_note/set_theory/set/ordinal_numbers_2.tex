@@ -43,9 +43,9 @@
 	\end{align}
 	が成り立つから，数字は全て順序数である．
 	
-	いま$\ON$上の関係を
+	いま関係を
 	\begin{align}
-		\leq\ \defeq \Set{x}{\exists \alpha,\beta \in \ON\, 
+		\leq\ \defeq \Set{x}{\exists \alpha,\beta\, 
 		(\, x=(\alpha,\beta) \wedge \alpha \subset \beta\, )}
 	\end{align}
 	と定める．そして
@@ -58,6 +58,7 @@
 	以下順序数の性質を列挙するが，長いので主張だけ先に述べておく．
 	\begin{itemize}
 		\item $\ON$は推移的類である．
+		\item $\ON$上で$\in$と$<$は同義になる．
 		\item $\leq$は$\ON$において整列順序となる．
 		%\item $a$を$a \subset \ON$なる集合とすると，$\bigcup a$は$a$の$\leq$に関する上限となる．
 		\item $\ON$は集合ではない．
@@ -446,7 +447,7 @@
 		\begin{thm}[$\ON$において$\in$と$<$は同義]
 		\label{thm:element_and_proper_subset_correspond}
 			\begin{align}
-				\EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX 
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX 
 				\vdash \forall \alpha,\beta \in \ON\, (\, \alpha \in \beta \lrarrow \alpha < \beta\, ).
 			\end{align}
 		\end{thm}
@@ -465,62 +466,80 @@
 		\begin{description}
 			\item[step1] まず
 				\begin{align}
-					\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash 
 					a \in b \rarrow a < b
 				\end{align}
-				を示す．順序数の推移性より
+				を示す．定理\ref{thm:critical_epsilon_term_is_set} (主要$\varepsilon$項は集合)と
+				定理\ref{thm:ordered_pair_of_sets_is_a_set} (集合の順序対は集合)より
 				\begin{align}
-					a \in b,\ \ord{b} \vdash a \subset b
-					\label{fom:element_and_proper_subset_correspond_1}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{(a,b)}
 				\end{align}
-				が成り立つから，
+				が成り立つので，
 				\begin{align}
 					\tau \defeq \varepsilon x\, (\, (a,b) = x\, )
 				\end{align}
 				とおけば
 				\begin{align}
-					a \in b,\ \ord{b},\ \COMAX 
-					\vdash b \in \ON \wedge (\, \tau = (a,b) \wedge a \subset b\, )
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash (a,b) = \tau
+					\label{fom:element_and_proper_subset_correspond_1}
+				\end{align}
+				となる．ところで順序数の推移性より
+				\begin{align}
+					a \in b,\ \ord{b} \vdash a \subset b
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \tau = (a,b) \wedge a \subset b
 				\end{align}
 				となり，存在記号の論理的公理より
 				\begin{align}
-					a \in b,\ \ord{b},\ \COMAX  
-					\vdash \exists \beta\, (\, \beta \in \ON \wedge 
-					(\, \tau = (a,\beta) \wedge a \subset \beta\, )\, )
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \exists \alpha\, \exists \beta\, (\, \tau = (\alpha,\beta) \wedge \alpha \subset \beta\, )
+				\end{align}
+				が従う．よって注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula}より
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \vdash \tau \in\ \leq
 					\label{fom:element_and_proper_subset_correspond_2}
 				\end{align}
-				が従う．ところで定理\ref{thm:transitive_totally_ordered_class}より
-				\begin{align}
-					\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
-					b \subset \ON
-				\end{align}
-				が成り立つので，
-				\begin{align}
-					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
-					\vdash a \in \ON
-				\end{align}
-				となり，(\refeq{fom:element_and_proper_subset_correspond_2})と
-				論理積の導入より
-				\begin{align}
-					&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
-					&\vdash a \in \ON \wedge \exists \beta\, (\, \beta \in \ON \wedge 
-					(\, \tau = (a,\beta) \wedge a \subset \beta\, )\, )
-				\end{align}
-				が成り立ち，存在記号の論理的公理より
-				\begin{align}
-					&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
-					&\vdash \exists \alpha\, (\, \alpha \in \ON \wedge 
-					\exists \beta\, (\, \beta \in \ON \wedge 
-					(\, \tau = (\alpha,\beta) \wedge \alpha \subset \beta\, )\, )\, )
-				\end{align}
-				が成り立つ．ゆえに
-				\begin{align}
-					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
-					\vdash \tau \in\ \leq
-				\end{align}
 				となり，
+				%\begin{align}
+				%	a \in b,\ \ord{b},\ \EQAX,\COMAX 
+				%	\vdash a \leq b
+				%\end{align}
+				%ところで定理\ref{thm:transitive_totally_ordered_class}より
+				%\begin{align}
+				%	\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+				%	b \subset \ON
+				%\end{align}
+				%が成り立つので，
+				%\begin{align}
+				%	a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
+				%	\vdash a \in \ON
+				%\end{align}
+				%となり，(\refeq{fom:element_and_proper_subset_correspond_2})と
+				%論理積の導入より
+				%\begin{align}
+				%	&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
+				%	&\vdash a \in \ON \wedge \exists \beta\, (\, \beta \in \ON \wedge 
+				%	(\, \tau = (a,\beta) \wedge a \subset \beta\, )\, )
+				%\end{align}
+				%が成り立ち，存在記号の論理的公理より
+				%\begin{align}
+				%	&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
+				%	&\vdash \exists \alpha\, (\, \alpha \in \ON \wedge 
+				%	\exists \beta\, (\, \beta \in \ON \wedge 
+				%	(\, \tau = (\alpha,\beta) \wedge \alpha \subset \beta\, )\, )\, )
+				%\end{align}
+				%が成り立つ．ゆえに
+				%\begin{align}
+				%	a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
+				%	\vdash \tau \in\ \leq
+				%\end{align}
+				%となり，
+				(\refeq{fom:element_and_proper_subset_correspond_1})と相等性公理より
 				\begin{align}
-					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX 
 					\vdash a \leq b
 					\label{fom:element_and_proper_subset_correspond_3}
 				\end{align}
@@ -538,12 +557,12 @@
 				が従う．(\refeq{fom:element_and_proper_subset_correspond_3})と
 				(\refeq{fom:element_and_proper_subset_correspond_4})と論理積の導入より
 				\begin{align}
-					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX 
 					\vdash a \leq b \wedge a \neq b
 				\end{align}
 				となるので，
 				\begin{align}
-					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash a < b
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash a < b
 					\label{fom:element_and_proper_subset_correspond_21}
 				\end{align}
 				が得られる．
@@ -821,17 +840,17 @@
 				が従う．(\refeq{fom:element_and_proper_subset_correspond_21})と
 				(\refeq{fom:element_and_proper_subset_correspond_20})と演繹定理および論理積の導入より
 				\begin{align}
-					\ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
 					\ord{b} \rarrow (\, a \in b \lrarrow a < b\, )
 				\end{align}
 				が成り立つが，ここで全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
 				\begin{align}
-					&\ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \\
+					&\ord{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
 					&\vdash \forall \beta\, (\, \beta \in \ON \rarrow (\, a \in \beta \lrarrow a < \beta\, )\, )
 				\end{align}
 				が従い，同様にして
 				\begin{align}
-					&\EXTAX,\EQAX,\COMAX,\REPAX,\PAIAX,\UNIAX,\REGAX \\
+					&\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
 					&\vdash \forall \alpha\, (\, \alpha \in \ON \rarrow
 					\forall \beta\, (\, \beta \in \ON \rarrow (\, \alpha \in \beta \lrarrow \alpha < \beta\, )\, )\, )
 				\end{align}
