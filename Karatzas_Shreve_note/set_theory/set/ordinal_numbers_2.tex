@@ -374,7 +374,7 @@
 	
 	\begin{screen}
 		\begin{thm}[$\ON$において$\in$と$<$は同義]
-		\label{thm:element_and_proper_subset_correspond_between_ordinal_numbers}
+		\label{thm:element_and_proper_subset_correspond}
 			\begin{align}
 				\forall \alpha,\beta \in \ON\,
 				(\, \alpha \in \beta \lrarrow \alpha < \beta\, ).
@@ -383,27 +383,59 @@
 	\end{screen}
 	
 	\begin{prf}
-		$\alpha,\beta$を任意に与えられた順序数とする．
+		いま
 		\begin{align}
-			\alpha \in \beta
+			a &\defeq \varepsilon \alpha \negation 
+			(\, \alpha \in \ON \rarrow \forall \beta\, (\, \beta \in \ON \rarrow 
+			(\, \alpha \in \beta \lrarrow \alpha < \beta\, )\,) \,), \\
+			b &\defeq \varepsilon \beta \negation (\, \beta \in \ON \rarrow 
+			(\, a \in \beta \lrarrow a < \beta\, )\,)
 		\end{align}
-		が成り立っているとすると，順序数の推移性より
-		\begin{align}
-			\alpha \subset \beta
-		\end{align}
-		が成り立つ．定理\ref{thm:no_set_is_an_element_of_itself}より
-		\begin{align}
-			\alpha \neq \beta
-		\end{align}
-		も成り立つから
-		\begin{align}
-			\alpha < \beta
-		\end{align}
-		が成り立つ．ゆえに
-		\begin{align}
-			\alpha \in \beta \Longrightarrow \alpha < \beta
-		\end{align}
-		が成立する．逆に
+		とおく．
+		\begin{description}
+			\item[step1] まず
+				\begin{align}
+					\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					a \in b \rarrow a < b
+				\end{align}
+				を示す．順序数の推移性より
+				\begin{align}
+					a \in b,\ \ord{b} \vdash a \subset b
+					\label{fom:element_and_proper_subset_correspond_1}
+				\end{align}
+				が成り立つ．また
+				\begin{align}
+					\EQAX \vdash a \in b \rarrow (\, a \notin a \rarrow a \neq b\, )
+				\end{align}
+				と演繹定理の逆より
+				\begin{align}
+					a \in b,\ \EQAX \vdash a \notin a \rarrow a \neq b
+				\end{align}
+				となり，定理\ref{thm:no_class_contains_itself}
+				(自分自身は要素ではない)と併せて
+				\begin{align}
+					a \in b,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					a \neq b
+					\label{fom:element_and_proper_subset_correspond_2}
+				\end{align}
+				が従う．(\refeq{fom:element_and_proper_subset_correspond_1})と
+				(\refeq{fom:element_and_proper_subset_correspond_2})と論理積の導入より
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					a \subset b \wedge a \neq b
+				\end{align}
+				となるので，すなわち
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					a < b
+				\end{align}
+				が得られる．
+				
+			\item[step2]
+				
+		\end{description}
+		
+		逆に
 		\begin{align}
 			\alpha < \beta
 		\end{align}
