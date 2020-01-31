@@ -373,6 +373,82 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{dfn}[類の差]
+			$x$と$y$を$\mathcal{L}$の項とするとき，
+			\begin{align}
+				x \backslash y \defeq \Set{z}{z \in x \wedge z \notin y}
+			\end{align}
+			と定める．$x$と$y$が類であれば$x \backslash y$を{\bf 差類}\index{さるい@差類}{\bf (class difference)}と呼び，
+			$x$と$y$が集合であれば$x \backslash y$を{\bf 差集合}\index{さしゅうごう@差集合}{\bf (set difference)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$a$と$b$を類とするとき，任意の主要$\varepsilon$項$\tau$に対して
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in b \backslash a \lrarrow \tau \in b \wedge \tau \notin a
+	\end{align}
+	が成り立つので(注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula})，
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash b \backslash a \subset b
+	\end{align}
+	は常に満たされる．
+	
+	\begin{screen}
+		\begin{thm}[差集合は集合]\label{thm:set_difference_is_set}
+			$a$と$b$を主要$\varepsilon$項とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\REPAX \vdash \set{b \backslash a}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		分出定理(定理\ref{thm:axiom_of_separation})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \exists s\, \forall x\, (\, x \in s \lrarrow x \in b \wedge (\, x \in b \wedge x \notin a\, )\, )
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			\sigma &\defeq \varepsilon s\, \forall x\, (\, x \in s \lrarrow x \in b \wedge (\, x \in b \wedge x \notin a\, )\, ), \\
+			\tau &\defeq \varepsilon x\, (\, x \in \sigma \lrarrow x \in b \backslash a\, )
+		\end{align}
+		とおけば，
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \in b \wedge (\, \tau \in b \wedge \tau \notin a\, )
+		\end{align}
+		が成り立つ．ところで
+		\begin{align}
+			\vdash \tau \in b \wedge (\, \tau \in b \wedge \tau \notin a\, ) \lrarrow \tau \in b \wedge \tau \notin a
+		\end{align}
+		であるから，同値関係の推移律(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \in b \wedge \tau \notin a
+		\end{align}
+		が従う．また
+		\begin{align}
+			\COMAX \vdash \tau \in b \wedge \tau \notin a \lrarrow \tau \in b \backslash a
+		\end{align}
+		も成り立つので，再び同値関係の推移律によって
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \in b \backslash a
+		\end{align}
+		となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \forall x\, (\, x \in \sigma \lrarrow x \in b \backslash a\, )
+		\end{align}
+		が従い，外延性公理と相等性公理(等号の対称性)より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash b \backslash a = \sigma
+		\end{align}
+		が出る．従って存在記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \exists s\, (\, b \backslash a = s\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[$\ON$において$\in$と$<$は同義]
 		\label{thm:element_and_proper_subset_correspond}
 			\begin{align}
@@ -483,22 +559,141 @@
 				が得られる．
 				
 			\item[step2]
-				次は
+				外延性公理と対偶律1 
+				(論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation\forall x\, (\, x \in a \lrarrow x \in b\, )
+				\end{align}
+				となり，量化子の論理的公理より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash \exists x \negation (\, x \in a \lrarrow x \in b\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\tau \defeq \varepsilon x \negation (\, x \in a \lrarrow x \in b\, )
+				\end{align}
+				とおけば，存在記号の論理的公理より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation (\, \tau \in a \lrarrow \tau \in b\, )
+				\end{align}
+				が成り立ち，De Morganの法則(論理的定理\ref{logicalthm:strong_De_Morgan_law_2})より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation (\, \tau \in a \rarrow \tau \in b\, ) \vee
+					\negation (\, \tau \in b \rarrow \tau \in a\, )
+				\end{align}
+				が従う．よって選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation \negation (\, \tau \in a \rarrow \tau \in b\, )
+					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+				\end{align}
+				が成り立つが，二重否定の導入
+				(論理的定理\ref{logicalthm:introduction_of_double_negation})より
+				\begin{align}
+					\tau \in a \rarrow \tau \in b \vdash\ \negation \negation (\, \tau \in a \rarrow \tau \in b\, )
+				\end{align}
+				となるので，三段論法および演繹定理より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
+					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+				\end{align}
+				が得られる．他方で
+				\begin{align}
+					a < b \vdash a \subset b \wedge a \neq b
+				\end{align}
+				であるから
+				\begin{align}
+					a < b,\ \EXTAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
+					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+					\label{fom:element_and_proper_subset_correspond_6}
+				\end{align}
+				が成り立ち，また
+				\begin{align}
+					a < b \vdash \tau \in a \rarrow \tau \in b
+				\end{align}
+				も成り立つので，(\refeq{fom:element_and_proper_subset_correspond_6})との三段論法より
+				\begin{align}
+					a < b,\ \EXTAX \vdash\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+					\label{fom:element_and_proper_subset_correspond_7}
+				\end{align}
+				となる．ところで論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)と対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\vdash\ \negation (\, \tau \in b \rarrow \tau \in a\, ) \rarrow\ 
+					\negation (\, \tau \notin b \vee \tau \in a\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:element_and_proper_subset_correspond_7})との三段論法より
+				\begin{align}
+					a < b,\ \EXTAX \vdash\ \negation (\, \tau \notin b \vee \tau \in a\, )
+				\end{align}
+				が従い，De Morganの法則(論理的定理\ref{logicalthm:weak_De_Morgan_law_2})と二重否定の除去より
+				\begin{align}
+					a < b,\ \EXTAX \vdash \tau \in b \wedge \tau \notin a
+				\end{align}
+				が従う．そして
+				\begin{align}
+					a < b,\ \EXTAX,\COMAX \vdash \tau \in b \backslash a
+					\label{fom:element_and_proper_subset_correspond_5}
+				\end{align}
+				が得られる．
+				
+			\item[step3] 定理\ref{thm:set_difference_is_set}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\REPAX \vdash \set{b \backslash a}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\sigma \defeq \exists s\, (\, b \backslash a = s\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\REPAX \vdash b \backslash a = \sigma
+					\label{fom:element_and_proper_subset_correspond_8}
+				\end{align}
+				となる．(\refeq{fom:element_and_proper_subset_correspond_5})と併せて
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX \vdash \tau \in \sigma
+				\end{align}
+				となり，存在記号の論理的公理より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX \vdash \exists x\, (\, x \in \sigma\, )
+				\end{align}
+				となるが，正則性公理より
+				\begin{align}
+					\REGAX \vdash \exists x\, (\, x \in \sigma\, ) 
+					\rarrow \exists y\, (\, y \in \sigma \wedge \forall z\, (\, z \in \sigma \rarrow z \notin y\, )\, )
+				\end{align}
+				が成り立つので
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash 
+					\exists y\, (\, y \in \sigma \wedge \forall z\, (\, z \in \sigma \rarrow z \notin y\, )\, )
+				\end{align}
+				が従う．ここで
+				\begin{align}
+					\eta \defeq \varepsilon y\, (\, y \in \sigma \wedge 
+					\forall z\, (\, z \in \sigma \rarrow z \notin y\, )\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \in \sigma, 
+					\label{fom:element_and_proper_subset_correspond_9} \\
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash 
+					\forall z\, (\, z \in \sigma \rarrow z \notin \eta\, )
+					\label{fom:element_and_proper_subset_correspond_10}
+				\end{align}
+				が成り立つ．
+				
+			\item[step4] この段では
+				\begin{align}
+					a \subset \eta 
+				\end{align}
+				を示す．いま
+				\begin{align}
+					\chi \defeq \varepsilon x \negation (\, x \in a \rarrow x \in \eta\, )
+				\end{align}
+				とおく．
 		\end{description}
 		
-		逆に
-		\begin{align}
-			\alpha < \beta
-		\end{align}
-		が成り立っているとすると
-		\begin{align}
-			\beta \backslash \alpha \neq \emptyset
-		\end{align}
-		が成り立つので，正則性公理より
-		\begin{align}
-			\gamma \in \beta \backslash \alpha \wedge \gamma \cap (\beta \backslash \alpha) = \emptyset
-		\end{align}
-		を満たす$\gamma$が取れる．このとき
+		
 		\begin{align}
 			\alpha = \gamma
 		\end{align}
