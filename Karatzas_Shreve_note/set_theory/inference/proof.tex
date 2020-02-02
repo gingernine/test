@@ -359,6 +359,7 @@
 	
 	\begin{screen}
 		\begin{metaaxm}[証明に対する構造的帰納法]
+		\label{metaaxm:induction_principle_of_proofs}
 			$\mathscr{S}$を公理系とし，Xを文に対する何らかの言明とするとき，
 			\begin{itemize}
 				\item $\mathscr{S}$の公理に対してXが言える．
@@ -423,15 +424,13 @@
 				
 			\item[第二段]
 				$C$及び$C \rarrow B$が$\mathscr{S}$の定理であるような
-				文$C$と文$B$が取れた場合，
-				\begin{align}
-					\mathscr{S} \vdash A \rarrow (\, C \rarrow B\, )
-				\end{align}
-				かつ
-				\begin{align}
-					\mathscr{S} \vdash A \rarrow C
-				\end{align}
-				であると仮定する．含意の分配律より
+				文$C$と文$B$が取れたとして，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_proofs}の仮定)]
+						$\mathscr{S} \vdash A \rarrow (\, C \rarrow B\, )$かつ
+						$\mathscr{S} \vdash A \rarrow C$
+				\end{description}
+				と仮定する．含意の分配律より
 				\begin{align}
 					\mathscr{S} \vdash 
 					(\, A \rarrow (\, C \rarrow B\, )\, ) 
@@ -498,11 +497,11 @@
 			\mathscr{S} &\vdash C, \\
 			\mathscr{S} &\vdash C \rarrow B
 		\end{align}
-		を満たす文$C$が取れるとき，
-		\begin{align}
-			A,\ \mathscr{S} &\vdash C, \\
-			A,\ \mathscr{S} &\vdash C \rarrow B
-		\end{align}
+		を満たす文$C$が取れたとして，
+		\begin{description}
+			\item[IH (帰納法\ref{metaaxm:induction_principle_of_proofs}の仮定)]
+				$A,\ \mathscr{S} \vdash C$かつ$A,\ \mathscr{S} \vdash C \rarrow B$
+		\end{description}
 		と仮定すれば
 		\begin{align}
 			A,\ \mathscr{S} \vdash B
