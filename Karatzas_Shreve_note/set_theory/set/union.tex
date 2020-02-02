@@ -466,32 +466,264 @@
 	\begin{itembox}[l]{対の合併}
 		$x$と$y$を$\mathcal{L}$の項とするとき，その対の合併を
 		\begin{align}
-			x \cup y \defeq \bigcup \{x,y\}
+			x \cup y \defeq \Set{z}{z \in x \vee z \in y}
 		\end{align}
 		と書く．
 	\end{itembox}
+	
+	\begin{screen}
+		\begin{thm}[二つのクラスの合併はそれぞれの要素を合わせたもの]
+		\label{thm:elements_of_pair_union}
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
+			\end{align}
+			ただし$a$と$b$が共に主要$\varepsilon$項であれば
+			\begin{align}
+				\COMAX \vdash \forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		前者の主張は注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula}より，
+		後者の主張は内包性公理の直接の適用で得られる．
+		\QED
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{thm}[対の合併の対称性]
 		\label{thm:symmetry_of_union_of_a_pair}
 			$a$と$b$をクラスとするとき
 			\begin{align}
-				\EXTAX,\EQAX,\COMAX \vdash a \cup b = b \cup a.
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \cup b = b \cup a.
+			\end{align}
+			ただし，$a$と$b$が共に主要$\varepsilon$項であれば
+			\begin{align}
+				\EXTAX,\COMAX \vdash a \cup b = b \cup a.
 			\end{align}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
-		定理\ref{thm:commutative_law_of_pairs}より
+		いま
 		\begin{align}
-			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}
+			\zeta \defeq \varepsilon z \negation (\, z \in a \cup b \lrarrow z \in b \cup a\, )
 		\end{align}
-		が成り立つので，定理\ref{thm:unions_of_equal_classes_are_equal}から
+		とおく．定理\ref{thm:elements_of_pair_union}より
 		\begin{align}
-			\EXTAX,\EQAX,\COMAX \vdash a \cup b = b \cup a
+			\zeta \in a \cup b,\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in a \vee \zeta \in b
+			\label{fom:symmetry_of_union_of_a_pair_1}
 		\end{align}
-		が従う．
+		が成り立ち，論理和の可換律(論理的定理\ref{logicalthm:commutative_law_of_disjunction})より
+		\begin{align}
+			\zeta \in a \cup b,\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in b \vee \zeta \in a
+		\end{align}
+		が従い，再び定理\ref{thm:elements_of_pair_union}より
+		\begin{align}
+			\zeta \in a \cup b,\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in b \cup a
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in a \cup b \rarrow \zeta \in b \cup a
+		\end{align}
+		が得られる．同様にして
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in b \cup a \rarrow \zeta \in a \cup b
+		\end{align}
+		も得られるから，論理積の導入より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in a \cup b \lrarrow \zeta \in b \cup a
+		\end{align}
+		が成り立ち，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall z\, (\, z \in a \cup b \lrarrow z \in b \cup a\, )
+		\end{align}
+		が従う．そして外延性公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \cup b = b \cup a
+			\label{fom:symmetry_of_union_of_a_pair_2}
+		\end{align}
+		が出る．$a$と$b$が主要$\varepsilon$項である場合は，(\refeq{fom:symmetry_of_union_of_a_pair_1})
+		の前提のうち$\EXTAX,\EQAX,\ELEAX$が不要になり，(\refeq{fom:symmetry_of_union_of_a_pair_2})で$\EXTAX$が追加される．
 		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[二つの集合の合併は対の合併]
+		\label{thm:union_of_two_sets_is_union_of_pair}
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \cup b = \bigcup \{a,b\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in a \cup b \lrarrow x \in \bigcup \{a,b\}\, )
+		\end{align}
+		とおく．
+		\begin{description}
+			\item[step1] この段では
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\tau \in a \cup b \rarrow \tau \in \bigcup \{a,b\}
+				\end{align}
+				を示す．
+				\begin{align}
+					\chi \defeq \varepsilon x\, (\, a = x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\set{a} \vdash a = \chi
+				\end{align}
+				が成り立つが，他方で定理\ref{thm:pair_members_are_exactly_the_given_two}
+				(対は表示されている要素しか持たない)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash a = \chi \vee b = \chi \rarrow \chi \in \{a,b\}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \chi \in \{a,b\}
+				\end{align}
+				となる．また相等性公理より
+				\begin{align}
+					\tau \in a,\ \set{a},\ \EQAX \vdash \tau \in \chi
+				\end{align}
+				も成り立つから，論理積の導入より
+				\begin{align}
+					\tau \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash \chi \in \{a,b\} \wedge \tau \in \chi
+				\end{align}
+				が従い，存在記号の論理的公理より
+				\begin{align}
+					\tau \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash \exists x\, (\, x \in \{a,b\} \wedge \tau \in x\, )
+				\end{align}
+				となる．合併の定義と注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x\, (\, x \in \{a,b\} \wedge \tau \in x\, )
+					\rarrow \tau \in \bigcup \{a,b\}
+				\end{align}
+				が成り立つから，三段論法より
+				\begin{align}
+					\tau \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in \bigcup \{a,b\}
+				\end{align}
+				が従い，演繹定理より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\tau \in a \rarrow \tau \in \bigcup \{a,b\}
+				\end{align}
+				が得られる．同様にして
+				\begin{align}
+					\set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in b \rarrow \tau \in \bigcup \{a,b\}
+				\end{align}
+				も得られるので，論理和の除去より
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\tau \in a \vee \tau \in b \rarrow \tau \in \bigcup \{a,b\}
+				\end{align}
+				が従う．ところで定理\ref{thm:elements_of_pair_union}より
+				\begin{align}
+					\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in a \vee \tau \in b
+				\end{align}
+				が成り立つので，三段論法と演繹定理より
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\tau \in a \cup b \rarrow \tau \in \bigcup \{a,b\}
+					\label{fom:union_of_two_sets_is_union_of_pair_5}
+				\end{align}
+				が出る．
+				
+			\item[step2] この段では
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\tau \in \bigcup \{a,b\} \rarrow \tau \in a \cup b
+				\end{align}
+				を示す．合併の定義と注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula}より
+				\begin{align}
+					\tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\exists x\, (\, x \in \{a,b\} \wedge \tau \in x\, )
+				\end{align}
+				が成り立つから，ここで
+				\begin{align}
+					\chi \defeq \varepsilon x\, (\, x \in \{a,b\} \wedge \tau \in x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \chi \in \{a,b\}, 
+					\label{fom:union_of_two_sets_is_union_of_pair_1} \\
+					\tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \tau \in \chi
+					\label{fom:union_of_two_sets_is_union_of_pair_2}
+				\end{align}
+				が成り立つ．定理\ref{thm:pair_members_are_exactly_the_given_two}
+				(対は表示されている要素しか持たない)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \chi \in \{a,b\} \rarrow a = \chi \vee b = \chi
+				\end{align}
+				が成り立ち，(\refeq{fom:union_of_two_sets_is_union_of_pair_1})との三段論法より
+				\begin{align}
+					\tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = \chi \vee b = \chi
+					\label{fom:union_of_two_sets_is_union_of_pair_3}
+				\end{align}
+				が従う．他方で，相等性公理より
+				\begin{align}
+					a = \chi,\ \tau \in \chi,\ \EQAX \vdash \tau \in a, \\
+					b = \chi,\ \tau \in \chi,\ \EQAX \vdash \tau \in b
+				\end{align}
+				が成り立つので，論理和の導入より
+				\begin{align}
+					a = \chi,\ \tau \in \chi,\ \EQAX \vdash \tau \in a \vee \tau \in b, \\
+					b = \chi,\ \tau \in \chi,\ \EQAX \vdash \tau \in a \vee \tau \in b
+				\end{align}
+				となり，演繹定理と論理和の除去より
+				\begin{align}
+					\tau \in \chi,\ \EQAX \vdash a = \chi \vee b = \chi \rarrow \tau \in a \vee \tau \in b
+				\end{align}
+				が成り立つ．これと(\refeq{fom:union_of_two_sets_is_union_of_pair_3})との三段論法より
+				\begin{align}
+					\tau \in \chi,\ \tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX 
+					\vdash \tau \in a \vee \tau \in b
+				\end{align}
+				が成り立ち，演繹定理より
+				\begin{align}
+					\tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX 
+					\vdash \tau\ \in \chi \rarrow \tau \in a \vee \tau \in b
+				\end{align}
+				が従い，(\refeq{fom:union_of_two_sets_is_union_of_pair_2})との三段論法より
+				\begin{align}
+					\tau \in \bigcup \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX 
+					\vdash \tau \in a \vee \tau \in b
+				\end{align}
+				となる．定理\ref{thm:elements_of_pair_union}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in a \vee \tau \in b \rarrow \tau \in a \cup b
+				\end{align}
+				が成り立つので，三段論法と演繹定理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in \bigcup \{a,b\} \rarrow \tau \in a \cup b
+					\label{fom:union_of_two_sets_is_union_of_pair_4}
+				\end{align}
+				が出る．
+				
+			\item[step3] (\refeq{fom:union_of_two_sets_is_union_of_pair_4})と
+				(\refeq{fom:union_of_two_sets_is_union_of_pair_5})と論理積の導入より
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\tau \in a \cup b \lrarrow \tau \in \bigcup \{a,b\}
+				\end{align}
+				が成り立ち，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\forall x\, (\, x \in a \cup b \lrarrow x \in \bigcup \{a,b\}\, )
+				\end{align}
+				となり，外延性公理より
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \cup b = \bigcup \{a,b\}
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
 	\end{sketch}
 	
 	\begin{screen}
