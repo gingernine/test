@@ -24,7 +24,7 @@
 	\begin{prf}
 		集合の対は集合(定理\ref{thm:pair_of_sets_is_a_set})であるから
 		\begin{align}
-			\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX &\vdash \set{\{a\}}, \\
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX &\vdash \set{\{a\}}, \\
 			\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX &\vdash \set{\{a,b\}}
 		\end{align}
 		が成り立つので
@@ -139,41 +139,85 @@
 				が従い，(\refeq{fom:equality_of_ordered_pairs_2})との三段論法より
 				\begin{align}
 					(a,b) = (c,d),\ \set{a},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c
+					\label{fom:equality_of_ordered_pairs_5}
 				\end{align}
 				が出る．
 				
 			\item[step5]
-		ゆえに
-		\begin{align}
-			\{\{a\},\{a,b\}\} = \{\{a\},\{a,d\}\}
-		\end{align}
-		である．$(a,b) = (c,d)$に加えて
-		\begin{align}
-			a = d
-		\end{align}
-		と仮定すると，
-		\begin{align}
-			\{a,b\} = \{a\} \vee \{a,b\} = \{a,d\}
-		\end{align}
-		と
-		\begin{align}
-			\{a,b\} = \{a\} \rarrow b = a = d
-		\end{align}
-		となり，
-		\begin{align}
-			\{a,b\} = \{a,d\} &\rarrow b = a \vee b = d, \\
-			b = a &\rarrow b = d, \\
-			b = d &\rarrow b = d
-		\end{align}
-		より
-		\begin{align}
-			\{a,b\} = \{a,d\} \rarrow b = d
-		\end{align}
-		も成り立つ．ゆえに
-		\begin{align}
-			a = d \rarrow b = d
-		\end{align}
-		である．今度は$(a,b) = (c,d)$に加えて
+				定理\ref{thm:set_is_an_element_of_its_pair}より
+				\begin{align}
+					\set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{a,b\}
+					\label{fom:equality_of_ordered_pairs_8}
+				\end{align}
+				が成り立つので，相等性公理より
+				\begin{align}
+					\{a,b\} = \{c\},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{c\}
+				\end{align}
+				となる．また定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash b \in \{c\} \rarrow c = b
+				\end{align}
+				となるから，三段論法より
+				\begin{align}
+					\{a,b\} = \{c\},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash c = b
+					\label{fom:equality_of_ordered_pairs_6}
+				\end{align}
+				が従う．他方で等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					\EXTAX,\EQAX \vdash a = c \rarrow (\, c = b \rarrow a = b\, )
+				\end{align}
+				が成り立つから，(\refeq{fom:equality_of_ordered_pairs_5})との三段論法より
+				\begin{align}
+					(a,b) = (c,d),\ \set{a},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash c = b \rarrow a = b
+					\label{fom:equality_of_ordered_pairs_11}
+				\end{align}
+				となり，(\refeq{fom:equality_of_ordered_pairs_6})との三段論法より
+				\begin{align}
+					\begin{gathered}
+						\{a,b\} = \{c\},\ (a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \\
+						\vdash a = b
+					\end{gathered}
+				\end{align}
+				となる．再び等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					\begin{gathered}
+						\{a,b\} = \{c\},\ (a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ 
+						\EXTAX,\EQAX,\COMAX,\ELEAX \\
+						\vdash a = d \rarrow b = d
+					\end{gathered}
+					\label{fom:equality_of_ordered_pairs_7}
+				\end{align}
+				が従う．演繹定理より
+				\begin{align}
+					\begin{gathered}
+						(a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ 
+						\EXTAX,\EQAX,\COMAX,\ELEAX \\ 
+						\vdash \{a,b\} = \{c\} \rarrow (\, a = d \rarrow b = d\, )
+					\end{gathered}
+					\label{fom:equality_of_ordered_pairs_9}
+				\end{align}
+				となる．
+				
+			\item[step6] 定理\ref{thm:set_is_an_element_of_its_pair}より
+				(\refeq{fom:equality_of_ordered_pairs_8})と相等性公理より
+				\begin{align}
+					\{a,b\} = \{c,d\},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{c,d\}
+				\end{align}
+				となり，また定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash b \in \{c,d\} \rarrow c = b \vee d = b
+				\end{align}
+				となるから，三段論法より
+				\begin{align}
+					\{a,b\} = \{c,d\},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash c = b \vee d = b
+					\label{fom:equality_of_ordered_pairs_10}
+				\end{align}
+				が従う．ここで(\refeq{fom:equality_of_ordered_pairs_11})と相等性公理より
+				\begin{align}
+					(a,b) = (c,d),\ \set{a},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash c = b \rarrow a = b
+				\end{align}
+		
+		今度は$(a,b) = (c,d)$に加えて
 		\begin{align}
 			a \neq d
 		\end{align}
