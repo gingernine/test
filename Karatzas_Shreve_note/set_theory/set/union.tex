@@ -726,171 +726,171 @@
 		\end{description}
 	\end{sketch}
 	
-	\begin{screen}
-		\begin{thm}[二つの集合の合併はそれぞれの要素を合わせたもの]
-		\label{thm:union_of_pair_is_union_of_their_elements}
-			$a$と$b$をクラスとするとき
-			\begin{align}
-				\EXTAX,\EQAX,\COMAX &\vdash 
-				\forall x\, (\, x \in a \cup b \rarrow x \in a \vee x \in b\, ), \\
-				\EXTAX,\EQAX,\COMAX &\vdash 
-				\set{a} \rarrow \forall x\, (\, x \in a \rarrow x \in a \cup b\, ).
-			\end{align}
-		\end{thm}
-	\end{screen}
+	%\begin{screen}
+	%	\begin{thm}[二つの集合の合併はそれぞれの要素を合わせたもの]
+	%	\label{thm:union_of_pair_is_union_of_their_elements}
+	%		$a$と$b$をクラスとするとき
+	%		\begin{align}
+	%			\EXTAX,\EQAX,\COMAX &\vdash 
+	%			\forall x\, (\, x \in a \cup b \rarrow x \in a \vee x \in b\, ), \\
+	%			\EXTAX,\EQAX,\COMAX &\vdash 
+	%			\set{a} \rarrow \forall x\, (\, x \in a \rarrow x \in a \cup b\, ).
+	%		\end{align}
+	%	\end{thm}
+	%\end{screen}
 	
-	定理の二つ目の主張で$a$と$b$を入れ替えれば
-	\begin{align}
-		\set{b},\ \EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in b \rarrow x \in b \cup a\, )
-	\end{align}
-	が成り立つが，対の合併の対称性(定理\ref{thm:symmetry_of_union_of_a_pair})より
-	\begin{align}
-		\EXTAX,\EQAX,\COMAX \vdash b \cup a = a \cup b
-	\end{align}
-	が成り立つので
-	\begin{align}
-		\set{b},\ \EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in b \rarrow x \in a \cup b\, )
-	\end{align}
-	が従う．ゆえに
-	\begin{align}
-		\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash 
-		\forall x\, (\, x \in a \vee x \in b \rarrow x \in a \cup b\, )
-	\end{align}
-	が成り立つ．そして一つ目の主張と併せれば
-	\begin{align}
-		\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash 
-		\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, )
-	\end{align}
-	が得られる．つまり，{\bf ``二つの集合の合併は''それぞれの要素を合わせたものに等しいのである}．
+	%定理の二つ目の主張で$a$と$b$を入れ替えれば
+	%\begin{align}
+	%	\set{b},\ \EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in b \rarrow x \in b \cup a\, )
+	%\end{align}
+	%が成り立つが，対の合併の対称性(定理\ref{thm:symmetry_of_union_of_a_pair})より
+	%\begin{align}
+	%	\EXTAX,\EQAX,\COMAX \vdash b \cup a = a \cup b
+	%\end{align}
+	%が成り立つので
+	%\begin{align}
+	%	\set{b},\ \EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in b \rarrow x \in a \cup b\, )
+	%\end{align}
+	%が従う．ゆえに
+	%\begin{align}
+	%	\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%	\forall x\, (\, x \in a \vee x \in b \rarrow x \in a \cup b\, )
+	%\end{align}
+	%が成り立つ．そして一つ目の主張と併せれば
+	%\begin{align}
+	%	\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%	\forall x\, (\, x \in a \cup b \lrarrow x \in a \vee x \in b\, )
+	%\end{align}
+	%が得られる．つまり，{\bf ``二つの集合の合併は''それぞれの要素を合わせたものに等しいのである}．
 	
-	\begin{sketch}\mbox{}
-		\begin{description}
-			\item[step1]
-				いま
-				\begin{align}
-					\tau \defeq \varepsilon x \negation 
-					(\, x \in a \cup b \rarrow x \in a \vee x \in b\, )
-				\end{align}
-				とおくと，定理\ref{thm:comprehension_of_unions}より
-				\begin{align}
-					\tau \in a \cup b,\ \COMAX \vdash
-					\exists z\, (\, z \in \{a,b\} \wedge \tau \in z\, )
-				\end{align}
-				が成り立つので，
-				\begin{align}
-					\zeta \defeq \varepsilon z\, 
-					(\, z \in \{a,b\} \wedge \tau \in z\, )
-				\end{align}
-				とおけば
-				\begin{align}
-					\tau \in a \cup b,\ \COMAX &\vdash \zeta \in \{a,b\}, 
-					\label{fom:union_of_pair_is_union_of_their_elements_1} \\
-					\tau \in a \cup b,\ \COMAX &\vdash \tau \in \zeta
-					\label{fom:union_of_pair_is_union_of_their_elements_2}
-				\end{align}
-				が成り立つ．(\refeq{fom:union_of_pair_is_union_of_their_elements_2})と
-				\begin{align}
-					a = \zeta,\ \EQAX &\vdash \zeta = a, \\
-					a = \zeta,\ \EQAX &\vdash \zeta = a \rarrow
-					(\, \tau \in \zeta \rarrow \tau \in a\, )
-				\end{align}
-				より
-				\begin{align}
-					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
-					a = \zeta \rarrow \tau \in a 
-				\end{align}
-				が従い，
-				\begin{align}
-					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
-					a = \zeta \rarrow \tau \in a \vee \tau \in b
-				\end{align}
-				が成り立つ．同様に
-				\begin{align}
-					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
-					b = \zeta \rarrow \tau \in a \vee \tau \in b
-				\end{align}
-				が成り立ち，論理和の除去より
-				\begin{align}
-					\tau \in a \cup b,\ \EQAX,\COMAX \vdash
-					a = \zeta \vee b = \zeta \rarrow \tau \in a \vee \tau \in b
-					\label{fom:union_of_pair_is_union_of_their_elements_3}
-				\end{align}
-				が成り立つ．他方で定理\ref{thm:pair_members_are_exactly_the_given_two}より
-				\begin{align}
-					\EXTAX,\EQAX,\COMAX \vdash
-					\zeta \in \{a,b\} \rarrow a = \zeta \vee b = \zeta
-				\end{align}
-				が成り立つので，(\refeq{fom:union_of_pair_is_union_of_their_elements_1})
-				と併せて
-				\begin{align}
-					\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX &\vdash 
-					a = \zeta \vee b = \zeta
-				\end{align}
-				が成り立つ．よって(\refeq{fom:union_of_pair_is_union_of_their_elements_3})
-				と併せて
-				\begin{align}
-					\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX \vdash 
-					\tau \in a \vee \tau \in b
-				\end{align}
-				が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
-				\begin{align}
-					\EXTAX,\EQAX,\COMAX \vdash 
-					\forall x\, (\, x \in a \cup b \rarrow x \in a \vee x \in b\, )
-				\end{align}
-				が得られる．
+	%\begin{sketch}\mbox{}
+	%	\begin{description}
+	%		\item[step1]
+	%			いま
+	%			\begin{align}
+	%				\tau \defeq \varepsilon x \negation 
+	%				(\, x \in a \cup b \rarrow x \in a \vee x \in b\, )
+	%			\end{align}
+	%			とおくと，定理\ref{thm:comprehension_of_unions}より
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \COMAX \vdash
+	%				\exists z\, (\, z \in \{a,b\} \wedge \tau \in z\, )
+	%			\end{align}
+	%			が成り立つので，
+	%			\begin{align}
+	%				\zeta \defeq \varepsilon z\, 
+	%				(\, z \in \{a,b\} \wedge \tau \in z\, )
+	%			\end{align}
+	%			とおけば
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \COMAX &\vdash \zeta \in \{a,b\}, 
+	%				\label{fom:union_of_pair_is_union_of_their_elements_1} \\
+	%				\tau \in a \cup b,\ \COMAX &\vdash \tau \in \zeta
+	%				\label{fom:union_of_pair_is_union_of_their_elements_2}
+	%			\end{align}
+	%			が成り立つ．(\refeq{fom:union_of_pair_is_union_of_their_elements_2})と
+	%			\begin{align}
+	%				a = \zeta,\ \EQAX &\vdash \zeta = a, \\
+	%				a = \zeta,\ \EQAX &\vdash \zeta = a \rarrow
+	%				(\, \tau \in \zeta \rarrow \tau \in a\, )
+	%			\end{align}
+	%			より
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+	%				a = \zeta \rarrow \tau \in a 
+	%			\end{align}
+	%			が従い，
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+	%				a = \zeta \rarrow \tau \in a \vee \tau \in b
+	%			\end{align}
+	%			が成り立つ．同様に
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+	%				b = \zeta \rarrow \tau \in a \vee \tau \in b
+	%			\end{align}
+	%			が成り立ち，論理和の除去より
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \EQAX,\COMAX \vdash
+	%				a = \zeta \vee b = \zeta \rarrow \tau \in a \vee \tau \in b
+	%				\label{fom:union_of_pair_is_union_of_their_elements_3}
+	%			\end{align}
+	%			が成り立つ．他方で定理\ref{thm:pair_members_are_exactly_the_given_two}より
+	%			\begin{align}
+	%				\EXTAX,\EQAX,\COMAX \vdash
+	%				\zeta \in \{a,b\} \rarrow a = \zeta \vee b = \zeta
+	%			\end{align}
+	%			が成り立つので，(\refeq{fom:union_of_pair_is_union_of_their_elements_1})
+	%			と併せて
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX &\vdash 
+	%				a = \zeta \vee b = \zeta
+	%			\end{align}
+	%			が成り立つ．よって(\refeq{fom:union_of_pair_is_union_of_their_elements_3})
+	%			と併せて
+	%			\begin{align}
+	%				\tau \in a \cup b,\ \EXTAX,\EQAX,\COMAX \vdash 
+	%				\tau \in a \vee \tau \in b
+	%			\end{align}
+	%			が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+	%			\begin{align}
+	%				\EXTAX,\EQAX,\COMAX \vdash 
+	%				\forall x\, (\, x \in a \cup b \rarrow x \in a \vee x \in b\, )
+	%			\end{align}
+	%			が得られる．
 				
-			\item[step2]
-				いま
-				\begin{align}
-					\chi &\defeq \varepsilon x \negation (\, x \in a \rarrow x \in a \cup b\, ), \\
-					\tau &\defeq \varepsilon s\, (\, a = s\, )
-				\end{align}
-				とおく(右辺は$\lang{\varepsilon}$の式に書き換える)．まず存在記号の論理的公理より
-				\begin{align}
-					\set{a} \vdash a = \tau
-				\end{align}
-				が成り立つ．また集合は対の要素になれる
-				(定理\ref{thm:set_is_an_element_of_its_pair})ので
-				\begin{align}
-					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
-				\end{align}
-				も成り立ち，相等性公理より
-				\begin{align}
-					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
-				\end{align}
-				が従う．同じく相等性公理より
-				\begin{align}
-					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash \chi \in \tau
-				\end{align}
-				も成立する．ゆえに
-				\begin{align}
-					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
-					\tau \in \{a,b\} \wedge \chi \in \tau
-				\end{align}
-				が成立し，存在記号の論理的公理より
-				\begin{align}
-					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
-					\exists z\, (\, z \in \{a,b\} \wedge \chi \in z\, )
-				\end{align}
-				が従う．合併の内包性(定理\ref{thm:comprehension_of_unions})より
-				\begin{align}
-					\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
-					\chi \in a \cup b
-				\end{align}
-				となり，演繹定理より
-				\begin{align}
-					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
-					\chi \in a \rarrow \chi \in a \cup b
-				\end{align}
-				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
-				\begin{align}
-					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
-					\forall x\, (\, x \in a \rarrow x \in a \cup b\, )
-				\end{align}
-				が得られる．
-				\QED
-		\end{description}
-	\end{sketch}
+	%		\item[step2]
+	%			いま
+	%			\begin{align}
+	%				\chi &\defeq \varepsilon x \negation (\, x \in a \rarrow x \in a \cup b\, ), \\
+	%				\tau &\defeq \varepsilon s\, (\, a = s\, )
+	%			\end{align}
+	%			とおく(右辺は$\lang{\varepsilon}$の式に書き換える)．まず存在記号の論理的公理より
+	%			\begin{align}
+	%				\set{a} \vdash a = \tau
+	%			\end{align}
+	%			が成り立つ．また集合は対の要素になれる
+	%			(定理\ref{thm:set_is_an_element_of_its_pair})ので
+	%			\begin{align}
+	%				\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
+	%			\end{align}
+	%			も成り立ち，相等性公理より
+	%			\begin{align}
+	%				\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
+	%			\end{align}
+	%			が従う．同じく相等性公理より
+	%			\begin{align}
+	%				\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash \chi \in \tau
+	%			\end{align}
+	%			も成立する．ゆえに
+	%			\begin{align}
+	%				\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%				\tau \in \{a,b\} \wedge \chi \in \tau
+	%			\end{align}
+	%			が成立し，存在記号の論理的公理より
+	%			\begin{align}
+	%				\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%				\exists z\, (\, z \in \{a,b\} \wedge \chi \in z\, )
+	%			\end{align}
+	%			が従う．合併の内包性(定理\ref{thm:comprehension_of_unions})より
+	%			\begin{align}
+	%				\chi \in a,\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%				\chi \in a \cup b
+	%			\end{align}
+	%			となり，演繹定理より
+	%			\begin{align}
+	%				\set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%				\chi \in a \rarrow \chi \in a \cup b
+	%			\end{align}
+	%			となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+	%			\begin{align}
+	%				\set{a},\ \EXTAX,\EQAX,\COMAX \vdash 
+	%				\forall x\, (\, x \in a \rarrow x \in a \cup b\, )
+	%			\end{align}
+	%			が得られる．
+	%			\QED
+	%	\end{description}
+	%\end{sketch}
 	
 	\begin{itembox}[l]{三つ組の``対''}
 		$\mathcal{L}$の項$x,y,z$に対して
@@ -905,7 +905,7 @@
 		\label{thm:triple_members_are_exactly_the_given_three}
 			$a,b,c$をクラスとするとき
 			\begin{align}
-				\EXTAX,\EQAX,\COMAX \vdash 
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
 				\forall x\, (\, x \in \{a,b,c\} \lrarrow 
 				(\, a = x \vee b = x\, ) \vee c = x\, ).
 			\end{align}
@@ -920,13 +920,13 @@
 		\end{align}
 		とおく．後は
 		\begin{align}
-			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b,c\} \lrarrow 
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in \{a,b,c\} \lrarrow 
 			(\, a = \tau \vee b = \tau\, ) \vee c = \tau
 		\end{align}
 		を示せば，全称の導出
 		(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
 		\begin{align}
-			\EXTAX,\EQAX,\COMAX \vdash 
+			\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
 			\forall x\, (\, x \in \{a,b,c\} \lrarrow 
 			(\, a = x \vee b = x\, ) \vee c = x\, )
 		\end{align}
@@ -938,12 +938,14 @@
 					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b,c\} \rarrow 
 					(\, a = \tau \vee b = \tau\, ) \vee c = \tau
 				\end{align}
-				を示す．定理\ref{thm:union_of_pair_is_union_of_their_elements}より
+				を示す．定理\ref{thm:elements_of_pair_union}
+				(二つのクラスの合併はそれぞれの要素を合わせたもの)より
 				\begin{align}
-					\tau \in \{a,b,c\},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\tau \in \{a,b,c\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
 					\tau \in \{a,b\} \vee \tau \in \{c\}
+					\label{fom:triple_members_are_exactly_the_given_three_1}
 				\end{align}
-				が成り立つが，定理\ref{thm:pair_members_are_exactly_the_given_two}
+				が成り立つ．ここで定理\ref{thm:pair_members_are_exactly_the_given_two}
 				(対は表示されている要素しか持たない)より
 				\begin{align}
 					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \rarrow 
@@ -962,7 +964,12 @@
 				\end{align}
 				となり，論理和の除去より
 				\begin{align}
-					\tau \in \{a,b,c\},\ \EXTAX,\EQAX,\COMAX \vdash 
+					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \vee \tau \in \{c\} \rarrow 
+					(\, a = \tau \vee b = \tau\, ) \vee c = \tau
+				\end{align}
+				が成り立つ．これと(\refeq{fom:triple_members_are_exactly_the_given_three_1})との三段論法より
+				\begin{align}
+					\tau \in \{a,b,c\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
 					(\, a = \tau \vee b = \tau\, ) \vee c = \tau
 				\end{align}
 				が従う．
@@ -970,7 +977,7 @@
 			\item[step2]
 				この段では
 				\begin{align}
-					\EXTAX,\EQAX,\COMAX \vdash 
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
 					(\, a = \tau \vee b = \tau\, ) \vee c = \tau \rarrow 
 					\tau \in \{a,b,c\}
 				\end{align}
@@ -997,135 +1004,133 @@
 					(\, a = \tau \vee b = \tau\, ) \vee c = \tau,\ 
 					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \vee \tau \in \{c\}
 				\end{align}
-				が従う．定理\ref{thm:union_of_pair_is_union_of_their_elements}より
+				が従う．他方で定理\ref{thm:elements_of_pair_union}より
 				\begin{align}
-					\EXTAX,\EQAX,\COMAX \vdash 
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
 					\tau \in \{a,b\} \vee \tau \in \{c\} 
 					\rarrow \tau \in \{a,b,c\}
 				\end{align}
 				が成り立つので
 				\begin{align}
 					(\, a = \tau \vee b = \tau\, ) \vee c = \tau,\ 
-					\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b,c\}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in \{a,b,c\}
 				\end{align}
 				が得られる．
 				\QED
 		\end{description}
 	\end{sketch}
 	
-	\begin{comment}
-	\begin{screen}
-		\begin{thm}[要素の部分集合は合併の部分集合]
-		\label{thm:union_is_bigger_than_any_member}
-			$a$をクラスとするとき
-			\begin{align}
-				\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right].
-			\end{align}
-		\end{thm}
-	\end{screen}
+	%\begin{screen}
+	%	\begin{thm}[要素の部分集合は合併の部分集合]
+	%	\label{thm:union_is_bigger_than_any_member}
+	%		$a$をクラスとするとき
+	%		\begin{align}
+	%			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right].
+	%		\end{align}
+	%	\end{thm}
+	%\end{screen}
 	
-	\begin{sketch}
-		$\chi$を$\mathcal{L}$の任意の対象として
-		\begin{align}
-			\exists t \in a\, (\, x \subset t\, )
-			\label{fom:thm_union_is_bigger_than_any_member_1}
-		\end{align}
-		であるとする．ここで
-		\begin{align}
-			\tau \defeq \varepsilon t\, (\, t \in a \wedge \chi \subset t\, )
-		\end{align}
-		とおく．$s$を$\mathcal{L}$の任意の対象として
-		\begin{align}
-			s \in \chi
-		\end{align}
-		であるとすると，
-		\begin{align}
-			\chi \subset \tau
-		\end{align}
-		より
-		\begin{align}
-			\tau \in a \wedge s \in \tau
-		\end{align}
-		が成立するので，存在記号の論理的公理より
-		\begin{align}
-			\exists t\, \left(\, t \in a \wedge s \in t\, \right)
-		\end{align}
-		が成り立ち
-		\begin{align}
-			s \in \bigcup a
-		\end{align}
-		が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
-		\begin{align}
-			\forall s\, (\, s \in \chi \rarrow s \in \bigcup a\, )
-		\end{align}
-		すなわち
-		\begin{align}
-			\chi \subset \bigcup a
-		\end{align}
-		が成り立つ．ゆえに
-		\begin{align}
-			\exists t \in a\, \left(\, \chi \subset t\, \right) \rarrow \chi \subset \bigcup a
-		\end{align}
-		が従い，$\chi$も任意に与えられていたので
-		\begin{align}
-			\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right]
-		\end{align}
-		が得られる．
-		\QED
-	\end{sketch}
+	%\begin{sketch}
+	%	$\chi$を$\mathcal{L}$の任意の対象として
+	%	\begin{align}
+	%		\exists t \in a\, (\, x \subset t\, )
+	%		\label{fom:thm_union_is_bigger_than_any_member_1}
+	%	\end{align}
+	%	であるとする．ここで
+	%	\begin{align}
+	%		\tau \defeq \varepsilon t\, (\, t \in a \wedge \chi \subset t\, )
+	%	\end{align}
+	%	とおく．$s$を$\mathcal{L}$の任意の対象として
+	%	\begin{align}
+	%		s \in \chi
+	%	\end{align}
+	%	であるとすると，
+	%	\begin{align}
+	%		\chi \subset \tau
+	%	\end{align}
+	%	より
+	%	\begin{align}
+	%		\tau \in a \wedge s \in \tau
+	%	\end{align}
+	%	が成立するので，存在記号の論理的公理より
+	%	\begin{align}
+	%		\exists t\, \left(\, t \in a \wedge s \in t\, \right)
+	%	\end{align}
+	%	が成り立ち
+	%	\begin{align}
+	%		s \in \bigcup a
+	%	\end{align}
+	%	が従う．$s$は任意に与えられていたので，(\refeq{fom:thm_union_is_bigger_than_any_member_1})の下で
+	%	\begin{align}
+	%		\forall s\, (\, s \in \chi \rarrow s \in \bigcup a\, )
+	%	\end{align}
+	%	すなわち
+	%	\begin{align}
+	%		\chi \subset \bigcup a
+	%	\end{align}
+	%	が成り立つ．ゆえに
+	%	\begin{align}
+	%		\exists t \in a\, \left(\, \chi \subset t\, \right) \rarrow \chi \subset \bigcup a
+	%	\end{align}
+	%	が従い，$\chi$も任意に与えられていたので
+	%	\begin{align}
+	%		\forall x\, \left[\, \exists t \in a\, (\, x \subset t\, ) \rarrow x \subset \bigcup a\, \right]
+	%	\end{align}
+	%	が得られる．
+	%	\QED
+	%\end{sketch}
 	
-	\begin{screen}
-		\begin{thm}[部分集合の合併は部分クラス]\label{thm:union_of_subsets_is_subclass}
-			$a$と$b$をクラスとするとき
-			\begin{align}
-				\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b.
-			\end{align}
-		\end{thm}
-	\end{screen}
+	%\begin{screen}
+	%	\begin{thm}[部分集合の合併は部分クラス]\label{thm:union_of_subsets_is_subclass}
+	%		$a$と$b$をクラスとするとき
+	%		\begin{align}
+	%			\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b.
+	%		\end{align}
+	%	\end{thm}
+	%\end{screen}
 	
-	\begin{sketch}
-		いま
-		\begin{align}
-			\forall x \in a\, (\, x \subset b\, )
-			\label{fom:thm_union_of_subsets_is_subclass_1}
-		\end{align}
-		が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象とし，
-		\begin{align}
-			\chi \in \bigcup a
-		\end{align}
-		であるとする．すると
-		\begin{align}
-			\exists t\, \left(\, t \in a \wedge \chi \in t\, \right)
-		\end{align}
-		が成り立つので，
-		\begin{align}
-			\tau \defeq \varepsilon t\, \left(\, t \in a \wedge \chi \in t\, \right)
-		\end{align}
-		とおけば
-		\begin{align}
-			\tau \in a \wedge \chi \in \tau
-		\end{align}
-		が成立する．ここで(\refeq{fom:thm_union_of_subsets_is_subclass_1})より
-		\begin{align}
-			\tau \subset b
-		\end{align}
-		となるから
-		\begin{align}
-			\chi \in b
-		\end{align}
-		が従い，演繹定理より(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
-		\begin{align}
-			\chi \in \bigcup a \rarrow \chi \in b
-		\end{align}
-		が成立する．$\chi$の任意性ゆえに(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
-		\begin{align}
-			\bigcup a \subset b
-		\end{align}
-		が成立し，演繹定理より
-		\begin{align}
-			\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b
-		\end{align}
-		が得られる．
-		\QED
-	\end{sketch}
-	\end{comment}
+	%\begin{sketch}
+	%	いま
+	%	\begin{align}
+	%		\forall x \in a\, (\, x \subset b\, )
+	%		\label{fom:thm_union_of_subsets_is_subclass_1}
+	%	\end{align}
+	%	が成り立っているとする．$\chi$を$\mathcal{L}$の任意の対象とし，
+	%	\begin{align}
+	%		\chi \in \bigcup a
+	%	\end{align}
+	%	であるとする．すると
+	%	\begin{align}
+	%		\exists t\, \left(\, t \in a \wedge \chi \in t\, \right)
+	%	\end{align}
+	%	が成り立つので，
+	%	\begin{align}
+	%		\tau \defeq \varepsilon t\, \left(\, t \in a \wedge \chi \in t\, \right)
+	%	\end{align}
+	%	とおけば
+	%	\begin{align}
+	%		\tau \in a \wedge \chi \in \tau
+	%	\end{align}
+	%	が成立する．ここで(\refeq{fom:thm_union_of_subsets_is_subclass_1})より
+	%	\begin{align}
+	%		\tau \subset b
+	%	\end{align}
+	%	となるから
+	%	\begin{align}
+	%		\chi \in b
+	%	\end{align}
+	%	が従い，演繹定理より(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
+	%	\begin{align}
+	%		\chi \in \bigcup a \rarrow \chi \in b
+	%	\end{align}
+	%	が成立する．$\chi$の任意性ゆえに(\refeq{fom:thm_union_of_subsets_is_subclass_1})の下で
+	%	\begin{align}
+	%		\bigcup a \subset b
+	%	\end{align}
+	%	が成立し，演繹定理より
+	%	\begin{align}
+	%		\forall x \in a\, (\, x \subset b\, ) \rarrow \bigcup a \subset b
+	%	\end{align}
+	%	が得られる．
+	%	\QED
+	%\end{sketch}
