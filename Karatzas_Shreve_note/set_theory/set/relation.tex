@@ -41,6 +41,54 @@
 	\end{prf}
 	
 	\begin{screen}
+		\begin{logicalthm}[選言三段論法]
+		\label{logicalthm:disjunctive_syllogism}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash A \vee B \rarrow (\, \negation A \rarrow B\, ), \\
+				\vdash A \vee B \rarrow (\, \negation B \rarrow A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		まず含意の導入より
+		\begin{align}
+			\vdash B \rarrow (\, \negation A \rarrow B\, )
+		\end{align}
+		が成り立つ．また矛盾の導入より
+		\begin{align}
+			A,\ \negation A \vdash \bot
+		\end{align}
+		が成り立つが，爆発律(論理的定理\ref{logicalthm:principle_of_explosion})より
+		\begin{align}
+			A,\ \negation A \vdash B
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\vdash A \rarrow (\, \negation A \rarrow B\, )
+		\end{align}
+		も得られる．そして論理和の除去より
+		\begin{align}
+			\vdash A \vee B \rarrow (\, \negation A \rarrow B\, )
+		\end{align}
+		が出る．演繹定理の逆より
+		\begin{align}
+			A \vee B \vdash\ \negation A \rarrow B
+		\end{align}
+		となるが，ここで対偶律$3$ (論理的定理\ref{logicalthm:contraposition_3})より
+		\begin{align}
+			A \vee B \vdash\ \negation B \rarrow A
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\vdash A \vee B \rarrow (\, \negation B \rarrow A\, )
+		\end{align}
+		も得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
 		\begin{thm}[順序対の相等性]
 		\label{thm:equality_of_ordered_pairs}
 			$a,b,c,d$を類とするとき
@@ -82,38 +130,46 @@
 				\begin{align}
 					\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{a\}}
 				\end{align}
-				が成り立つから，三段論法より
+				が成り立ち，三段論法より
 				\begin{align}
-					(a,b) = (c,d),\ \set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{a\} = \{c\} \vee \{a\} = \{c,d\}
+					(a,b) = (c,d),\ \set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \vdash \{a\} = \{c\} \vee \{a\} = \{c,d\}
 					\label{fom:equality_of_ordered_pairs_2}
 				\end{align}
-				が従う．
+				が従う．	
 		
-		
-			\item[step2] 定理\ref{thm:set_is_an_element_of_its_pair}より
+			\item[step2] この段では
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{a\} = \{c\} \rarrow a = c 
+				\end{align}
+				を示す．定理\ref{thm:set_is_an_element_of_its_pair} (集合は自分自身の対の要素)より
 				\begin{align}
 					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a\}
 				\end{align}
-				が成り立つから，相等性公理より
+				が成り立ち，相等性公理より
 				\begin{align}
 					\{a\} = \{c\},\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{c\}
 				\end{align}
-				となる．また定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				となる．また定理\ref{cor:pair_members_are_exactly_the_given_two}
+				(対の要素は表示されている要素の一方には等しい)より
 				\begin{align}
 					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \in \{c\} \rarrow a = c
 				\end{align}
-				となるから，三段論法より
+				も成り立つので，三段論法より
 				\begin{align}
 					\{a\} = \{c\},\ \set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c
 					\label{fom:equality_of_ordered_pairs_3}
 				\end{align}
 				が得られる．
 				
-			\item[step3] 同様に，定理\ref{thm:set_is_an_element_of_its_pair}より
+			\item[step3] この段では
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{a\} = \{c,d\} \rarrow a = c
+				\end{align}
+				同様に，定理\ref{thm:set_is_an_element_of_its_pair}より
 				\begin{align}
 					\set{c},\ \EXTAX,\EQAX,\COMAX \vdash c \in \{c,d\}
 				\end{align}
-				が成り立つので，相等性公理より
+				が成り立ち，相等性公理より
 				\begin{align}
 					\{a\} = \{c,d\},\ \set{c},\ \EXTAX,\EQAX,\COMAX \vdash c \in \{a\}
 				\end{align}
@@ -121,7 +177,7 @@
 				\begin{align}
 					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash c \in \{a\} \rarrow a = c
 				\end{align}
-				となるから，三段論法より
+				も成り立つので，三段論法より
 				\begin{align}
 					\{a\} = \{c,d\},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c
 					\label{fom:equality_of_ordered_pairs_4}
