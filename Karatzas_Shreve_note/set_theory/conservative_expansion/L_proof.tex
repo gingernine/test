@@ -50,49 +50,54 @@
 				\begin{align}
 					\exists x \varphi \rarrow \varphi(\varepsilon x \check{\varphi})
 				\end{align}
-				なる公理であれば($\check{\varphi}$は$\varphi$を$\lang{\varepsilon}$の式に
-				書き直したもの)，$\widehat{\varphi}_{i}$は
+				なる公理であれば($\check{\varphi}$は$\varphi$の書き換え)，
+				$\widehat{\varphi}_{i}$は
 				\begin{align}
-					\exists x \widehat{\varphi} \rarrow \widetilde{\varphi}(\varepsilon x \check{\varphi})
+					\exists x \widehat{\varphi} \rarrow 
+					\widetilde{\varphi(\varepsilon x \check{\varphi})}
 				\end{align}
-				なる形の式である($\widehat{\varphi},\widetilde{\varphi}$は$\varphi$を$\lang{\varepsilon}$の式に
-				書き直したもの)．まず量化公理と演繹定理の逆より
+				なる形の式である．ただし$\widehat{\varphi},
+				\widetilde{\varphi(\varepsilon x \check{\varphi})}$はそれぞれ
+				$\varphi,\varphi(\varepsilon x \check{\varphi})$の書き換えとする．
+				まず量化公理と演繹定理の逆より
 				\begin{align}
 					\exists x \widehat{\varphi} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi})
 				\end{align}
 				となる．ここで定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
 				\begin{align}
-					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \check{\varphi}(\varepsilon x \widehat{\varphi})
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \check{\varphi}(\varepsilon x \widehat{\varphi})
 				\end{align}
 				が成り立つので，三段論法より
 				\begin{align}
-					\exists x \widehat{\varphi},\ \Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi})
+					\exists x \widehat{\varphi}, \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi})
 				\end{align}
-				となり，
+				となり，存在記号の公理
 				\begin{align}
 					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \exists x \check{\varphi}
 				\end{align}
 				と併せて
 				\begin{align}
-					\exists x \widehat{\varphi},\ \Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi}
+					\exists x \widehat{\varphi} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi}
 				\end{align}
-				が従う．{\bf HE}の量化公理より
+				が従う．存在記号の公理より
 				\begin{align}
 					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi} \rarrow \check{\varphi}(\varepsilon x \check{\varphi})
 				\end{align}
 				が成り立つので，再び三段論法より
 				\begin{align}
-					\exists x \widehat{\varphi},\ \Sigma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi})
+					\exists x \widehat{\varphi} &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi})
 				\end{align}
 				が従う．ここで定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
 				\begin{align}
-					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}) \rarrow  \widetilde{\varphi}(\varepsilon x \check{\varphi})
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}) \rarrow  \widetilde{\varphi(\varepsilon x \check{\varphi})}
 				\end{align}
-				が成り立つので
+				が成り立つので(定理\ref{metathm:substitution_to_rewritten_formula}より
+				$\check{\varphi}(\varepsilon x \check{\varphi})$も
+				$\varphi(\varepsilon x \check{\varphi})$の書き換え)
 				\begin{align}
-					\exists x \widehat{\varphi},\ \Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\varepsilon x \check{\varphi})
+					\exists x \widehat{\varphi}, \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi(\varepsilon x \check{\varphi})}
 				\end{align}
-				が出る．
+				が得られる．$\varphi_{i}$が$\varphi(\varepsilon x \negation \check{\varphi}) \rarrow \forall x \varphi$なる式の場合も同様である．
 				
 			\item[case2] $\varphi_{i}$が
 				\begin{align}
@@ -100,45 +105,51 @@
 				\end{align}
 				なる公理であれば，$\widehat{\varphi}_{i}$は
 				\begin{align}
-					\check{\varphi}(\tau) \rarrow \exists x \widetilde{\varphi}
+					\widetilde{\varphi(\tau)} \rarrow \exists x \widehat{\varphi}
 				\end{align}
-				なる式となる．これは{\bf HE}から演繹可能である．実際，定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				なる式となる．ただし$\widetilde{\varphi(\tau)},\widehat{\varphi}$は
+				それぞれ$\varphi(\tau),\varphi$の書き換えとする．
+				これは{\bf HE}から演繹可能である．実際，定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
 				\begin{align}
-					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\tau) \rarrow \widetilde{\varphi}(\tau)
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\widetilde{\varphi(\tau)} \rarrow \widehat{\varphi}(\tau)
 				\end{align}
-				が成り立ち，他方で{\bf HE}の量化公理より
+				が成り立ち，他方で全称記号の公理より
 				\begin{align}
-					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\tau) \rarrow \exists x \widetilde{\varphi}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\widehat{\varphi}(\tau) \rarrow \exists x \widehat{\varphi}
 				\end{align}
 				が成り立つので，
 				\begin{align}
-					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\tau) \rarrow \exists x \widetilde{\varphi}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\widetilde{\varphi(\tau)} \rarrow \exists x \widehat{\varphi}
 				\end{align}
-				が従う．
+				が従う．$\varphi_{i}$が$\forall x \varphi \rarrow \varphi(\tau)$なる
+				式の場合も同様である．
 				
-			\item[case3] $\varphi_{i}$が
-				\begin{align}
-					\forall x \varphi \rarrow \varphi(\tau)
-				\end{align}
-				なる公理であれば，$\widehat{\varphi}_{i}$は
-				\begin{align}
-					\forall x \widetilde{\varphi} \rarrow \check{\varphi}(\tau)
-				\end{align}
-				なる式となる．これは{\bf HE}から演繹可能である．実際，{\bf HE}の量化公理より
-				\begin{align}
-					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x \widetilde{\varphi} \rarrow \widetilde{\varphi}(\tau)
-				\end{align}
-				が成り立ち，他方で定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
-				\begin{align}
-					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\tau) \rarrow \check{\varphi}(\tau)
-				\end{align}
-				が成り立つので，
-				\begin{align}
-					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x \widetilde{\varphi} \rarrow \check{\varphi}(\tau)
-				\end{align}
-				が従う．
+			%\item[case3] $\varphi_{i}$が
+			%	\begin{align}
+			%		\forall x \varphi \rarrow \varphi(\tau)
+			%	\end{align}
+			%	なる公理であれば，$\widehat{\varphi}_{i}$は
+			%	\begin{align}
+			%		\forall x \widetilde{\varphi} \rarrow \check{\varphi}(\tau)
+			%	\end{align}
+			%	なる式となる．これは{\bf HE}から演繹可能である．実際，{\bf HE}の量化公理より
+			%	\begin{align}
+			%		\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x \widetilde{\varphi} \rarrow \widetilde{\varphi}(\tau)
+			%	\end{align}
+			%	が成り立ち，他方で定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+			%	\begin{align}
+			%		\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\tau) \rarrow \check{\varphi}(\tau)
+			%	\end{align}
+			%	が成り立つので，
+			%	\begin{align}
+			%		\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x \widetilde{\varphi} \rarrow \check{\varphi}(\tau)
+			%	\end{align}
+			%	が従う．
 				
-			\item[case4] $\varphi_{i}$が外延性公理
+			\item[case3] $\varphi_{i}$が外延性公理
 				\begin{align}
 					\forall x\, (\, x \in a \lrarrow x \in b\, ) \rarrow a = b
 				\end{align}
@@ -175,7 +186,7 @@
 				$a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項のときも
 				同様に$\widehat{\varphi}_{i}$は{\bf HE}で証明可能である．
 			
-			\item[case5] $\varphi_{i}$が内包性公理
+			\item[case4] $\varphi_{i}$が内包性公理
 				\begin{align}
 					\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, )
 				\end{align}
@@ -197,7 +208,7 @@
 				\end{align}
 				となる．
 			
-			\item[case6] $\varphi_{i}$が要素の公理
+			\item[case5] $\varphi_{i}$が要素の公理
 				\begin{align}
 					a \in b \rarrow \exists x\, (\, a = x\, )
 				\end{align}
@@ -256,7 +267,7 @@
 				\end{align}
 				となるが，これも同様に{\bf HE}で証明可能である．
 				
-			\item[case7] $\varphi_{i}$が相等性公理
+			\item[case6] $\varphi_{i}$が相等性公理
 				\begin{align}
 					a = b \rarrow b = a
 				\end{align}
@@ -281,13 +292,13 @@
 				が成り立つ．$a$も$b$も内包項である場合や，$a$が主要$\varepsilon$項で
 				$b$が内包項である場合も同様のことが言える．
 			
-			\item[case8] $\varphi_{i}$が相等性公理
+			\item[case7] $\varphi_{i}$が相等性公理
 				\begin{align}
 					a = b \rarrow (\, a \in c \rarrow b \in c\, )
 				\end{align}
 				なる式である場合，
 				\begin{description}
-					\item[case(8-1)] $a$と$b$が主要$\varepsilon$項で$c$が$\Set{x}{\xi(x)}$なる項であれば，
+					\item[case(7-1)] $a$と$b$が主要$\varepsilon$項で$c$が$\Set{x}{\xi(x)}$なる項であれば，
 						$\widehat{\varphi}_{i}$は
 						\begin{align}
 							a = b \rarrow (\, \xi(a) \rarrow \xi(b)\, )
@@ -298,7 +309,7 @@
 						\end{align}
 						が成り立つ．
 						
-					\item[case(8-2)] $a$と$c$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であれば，
+					\item[case(7-2)] $a$と$c$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であれば，
 						$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
@@ -331,7 +342,7 @@
 						\end{align}
 						となる．
 						
-					\item[case(8-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(7-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
@@ -364,7 +375,7 @@
 						\end{align}
 						となる．
 						
-					\item[case(8-4)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$と$z$が主要$\varepsilon$項の場合，
+					\item[case(7-4)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$と$z$が主要$\varepsilon$項の場合，
 						$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
@@ -418,7 +429,7 @@
 						\end{align}
 						が成り立つ．
 						
-					\item[case(8-5)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$項で
+					\item[case(7-5)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$項で
 						$z$が$\Set{x}{\xi(x)}$なる項の場合，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
@@ -472,7 +483,7 @@
 						\end{align}
 						が成り立つ．
 						
-					\item[case(8-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(7-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
@@ -530,7 +541,7 @@
 						\end{align}
 						が得られる．
 						
-					\item[case(8-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(7-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
@@ -589,13 +600,13 @@
 						が得られる．
 				\end{description}
 				
-			\item[case9] $\varphi_{i}$が相等性公理
+			\item[case8] $\varphi_{i}$が相等性公理
 				\begin{align}
 					a = b \rarrow (\, c \in a \rarrow c \in b\, )
 				\end{align}
 				なる式である場合，
 				\begin{description}
-					\item[case(9-1)] $a$と$b$が主要$\varepsilon$項で$c$が$\Set{x}{\xi(x)}$なる項であれば，
+					\item[case(8-1)] $a$と$b$が主要$\varepsilon$項で$c$が$\Set{x}{\xi(x)}$なる項であれば，
 						$\widehat{\varphi}_{i}$は
 						\begin{align}
 							a = b &\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) \\
@@ -632,7 +643,7 @@
 						\end{align}
 						が出る．
 						
-					\item[case(9-2)] $a$と$c$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であれば，
+					\item[case(8-2)] $a$と$c$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であれば，
 						$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
@@ -644,7 +655,7 @@
 						\end{align}
 						より直接得られる．
 						
-					\item[case(9-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(8-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
@@ -705,7 +716,7 @@
 						\end{align}
 						が出る．
 						
-					\item[case(9-4)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$と$z$が主要$\varepsilon$項の場合，
+					\item[case(8-4)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$と$z$が主要$\varepsilon$項の場合，
 						$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
@@ -719,7 +730,7 @@
 						\end{align}
 						から直接得られる．
 						
-					\item[case(9-5)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$項で
+					\item[case(8-5)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$項で
 						$z$が$\Set{x}{\xi(x)}$なる項の場合，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
@@ -780,7 +791,7 @@
 						\end{align}
 						が出る．
 						
-					\item[case(9-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(8-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) \rarrow (\, \varphi(c) \rarrow \psi(c)\, )
@@ -793,7 +804,7 @@
 						\end{align}
 						から直接得られる．
 						
-					\item[case(9-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+					\item[case(8-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
 						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
 						\begin{align}
 							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
