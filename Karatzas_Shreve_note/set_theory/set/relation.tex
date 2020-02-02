@@ -50,28 +50,100 @@
 		\end{thm}
 	\end{screen}
 	
-	\begin{sketch}
-		$(a,b) = (c,d)$と仮定すると，
-		\begin{align}
-			\{a\} \in \{\{c\},\{c,d\}\}
-		\end{align}
-		より
-		\begin{align}
-			\{a\} = \{c\} \vee \{a\} = \{c,d\}
-		\end{align}
-		が成り立つ．
-		\begin{align}
-			\{a\} = \{c\} \rarrow a \in \{c\} \rarrow a = c
-		\end{align}
-		となるし，
-		\begin{align}
-			\{a\} = \{c,d\} \rarrow c \in \{a\} \rarrow a = c
-		\end{align}
-		となるので
-		\begin{align}
-			a = c
-		\end{align}
-		が成り立つ．ゆえに
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1] 集合は自分自身の対の要素である(定理\ref{thm:set_is_an_element_of_its_pair})から
+				\begin{align}
+					\set{\{a\}},\ \EXTAX,\EQAX,\COMAX \vdash \{a\} \in (a,b)
+				\end{align}
+				が成り立つ．従って$(a,b) = (c,d)$と仮定すると，相等性公理より
+				\begin{align}
+					(a,b) = (c,d),\ \set{\{a\}},\ \EXTAX,\EQAX,\COMAX \vdash \{a\} \in (c,d)
+				\end{align}
+				が成り立つ．定理\ref{cor:pair_members_are_exactly_the_given_two}
+				(対の要素は表示されている要素の一方には等しい)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{a\} \in (c,d) \rarrow \{a\} = \{c\} \vee \{a\} = \{c,d\}
+					\label{fom:equality_of_ordered_pairs_1}
+				\end{align}
+				となるから，三段論法より
+				\begin{align}
+					(a,b) = (c,d),\ \set{\{a\}},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{a\} = \{c\} \vee \{a\} = \{c,d\}
+				\end{align}
+				が従い，演繹定理より
+				\begin{align}
+					(a,b) = (c,d),\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash
+					\set{\{a\}} \rarrow \{a\} = \{c\} \vee \{a\} = \{c,d\}
+				\end{align}
+				が従う．ところで集合の対は集合(定理\ref{thm:pair_of_sets_is_a_set})なので
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{a\}}
+				\end{align}
+				が成り立つから，三段論法より
+				\begin{align}
+					(a,b) = (c,d),\ \set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{a\} = \{c\} \vee \{a\} = \{c,d\}
+					\label{fom:equality_of_ordered_pairs_2}
+				\end{align}
+				が従う．
+		
+		
+			\item[step2] 定理\ref{thm:set_is_an_element_of_its_pair}より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a\}
+				\end{align}
+				が成り立つから，相等性公理より
+				\begin{align}
+					\{a\} = \{c\},\ \set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{c\}
+				\end{align}
+				となる．また定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \in \{c\} \rarrow a = c
+				\end{align}
+				となるから，三段論法より
+				\begin{align}
+					\{a\} = \{c\},\ \set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c
+					\label{fom:equality_of_ordered_pairs_3}
+				\end{align}
+				が得られる．
+				
+			\item[step3] 同様に，定理\ref{thm:set_is_an_element_of_its_pair}より
+				\begin{align}
+					\set{c},\ \EXTAX,\EQAX,\COMAX \vdash c \in \{c,d\}
+				\end{align}
+				が成り立つので，相等性公理より
+				\begin{align}
+					\{a\} = \{c,d\},\ \set{c},\ \EXTAX,\EQAX,\COMAX \vdash c \in \{a\}
+				\end{align}
+				となる．また定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash c \in \{a\} \rarrow a = c
+				\end{align}
+				となるから，三段論法より
+				\begin{align}
+					\{a\} = \{c,d\},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c
+					\label{fom:equality_of_ordered_pairs_4}
+				\end{align}
+				が得られる．
+				
+			\item[step4] (\refeq{fom:equality_of_ordered_pairs_3})と(\refeq{fom:equality_of_ordered_pairs_4})と
+				演繹定理より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \{a\} = \{c\} \rarrow a = c, \\
+					\set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \{a\} = \{c,d\} \rarrow a = c
+				\end{align}
+				が成り立つので，論理和の除去より
+				\begin{align}
+					\set{a},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\{a\} = \{c\} \vee \{a\} = \{c,d\} \rarrow a = c
+				\end{align}
+				が従い，(\refeq{fom:equality_of_ordered_pairs_2})との三段論法より
+				\begin{align}
+					(a,b) = (c,d),\ \set{a},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c
+				\end{align}
+				が出る．
+				
+			\item[step5]
+		ゆえに
 		\begin{align}
 			\{\{a\},\{a,b\}\} = \{\{a\},\{a,d\}\}
 		\end{align}
@@ -131,4 +203,5 @@
 		\end{align}
 		でもある．
 		\QED
+		\end{description}
 	\end{sketch}
