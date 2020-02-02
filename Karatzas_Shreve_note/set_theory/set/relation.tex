@@ -43,9 +43,12 @@
 	\begin{screen}
 		\begin{thm}[順序対の相等性]
 		\label{thm:equality_of_ordered_pairs}
-			$a,b,c,d$を集合とするとき
+			$a,b,c,d$を類とするとき
 			\begin{align}
-				(a,b) = (c,d) \rarrow a=c \wedge b=d.
+				\begin{gathered}
+					\set{a},\ \set{b},\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+					\vdash (a,b) = (c,d) \rarrow a = c \wedge b = d
+				\end{gathered}.
 			\end{align}
 		\end{thm}
 	\end{screen}
@@ -263,38 +266,185 @@
 						(a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX \\
 						\vdash \{a,b\} = \{c\} \vee \{a,b\} = \{c,d\} \rarrow (\, a = d \rarrow b = d\, )
 					\end{gathered}
+					\label{fom:equality_of_ordered_pairs_13}
+				\end{align}
+				が成り立つ．ところで集合の対は集合(定理\ref{thm:pair_of_sets_is_a_set})なので
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{a,b\}}
+				\end{align}
+				となり，また定理\ref{thm:set_is_an_element_of_its_pair}(集合は自分自身の対の要素)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \set{\{a,b\}} \rarrow \{a,b\} \in (a,b)	
+				\end{align}
+				となる．よって三段論法より
+				\begin{align}
+					\set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{a,b\} \in (a,b)
+				\end{align}
+				となり，相等性公理より
+				\begin{align}
+					(a,b) = (c,d),\ \set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{a,b\} \in (c,d)
+				\end{align}
+				となり，定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					(a,b) = (c,d),\ \set{a},\ \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \{a,b\} = \{c\} \vee \{a,b\} = \{c,d\}
+				\end{align}
+				が従う．これと(\refeq{fom:equality_of_ordered_pairs_13})より
+				\begin{align}
+					\begin{gathered}
+						(a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash a = d \rarrow b = d
+					\end{gathered}
+					\label{fom:equality_of_ordered_pairs_14}
+				\end{align}
+				が従う．
+				
+			\item[step8] 集合の対は集合(定理\ref{thm:pair_of_sets_is_a_set})なので
+				\begin{align}
+					\set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{c,d\}}
+				\end{align}
+				となり，また定理\ref{thm:set_is_an_element_of_its_pair}(集合は自分自身の対の要素)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \set{\{c,d\}} \rarrow \{c,d\} \in (c,d)	
+				\end{align}
+				となる．よって三段論法より
+				\begin{align}
+					\set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{c,d\} \in (c,d)
+				\end{align}
+				が従い，相等性公理より
+				\begin{align}
+					(a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{c,d\} \in (a,b)
+				\end{align}
+				となり，定理\ref{cor:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					(a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \{c,d\} = \{a\} \vee \{c,d\} = \{a,b\}
+					\label{fom:equality_of_ordered_pairs_15}
+				\end{align}
+				が従う．ところで
+				\begin{align}
+					\set{d},\ \EXTAX,\EQAX,\COMAX \vdash d \in \{c,d\}
+					\label{fom:equality_of_ordered_pairs_17}
+				\end{align}
+				であるから，相等性公理より
+				\begin{align}
+					\{c,d\} = \{a\},\ \set{d},\ \EXTAX,\EQAX,\COMAX \vdash d \in \{a\}
+				\end{align}
+				が従い，定理\ref{cor:pair_members_are_exactly_the_given_two} (対の要素は表示されている要素の一方に等しい)より
+				\begin{align}
+					\{c,d\} = \{a\},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = d
+				\end{align}
+				が従う．つまり演繹定理より
+				\begin{align}
+					\set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{c,d\} = \{a\} \rarrow a = d
+				\end{align}
+				となるが，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a \neq d \rarrow \{c,d\} \neq \{a\}
+				\end{align}
+				となり，演繹定理の逆より
+				\begin{align}
+					a \neq d,\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \{c,d\} \neq \{a\}
+					\label{fom:equality_of_ordered_pairs_16}
+				\end{align}
+				が従う．(\refeq{fom:equality_of_ordered_pairs_15})と選言三段論法
+				(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					(a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \{c,d\} \neq \{a\} \rarrow \{c,d\} = \{a,b\}
+				\end{align}
+				が成り立つから，(\refeq{fom:equality_of_ordered_pairs_16})との三段論法より
+				\begin{align}
+					a \neq d,\ (a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX
+					\vdash \{c,d\} = \{a,b\} 
+				\end{align}
+				が従う．相等性公理より
+				\begin{align}
+					\begin{gathered}
+						a \neq d,\ (a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash d \in \{c,d\} \rarrow d \in \{a,b\}
+					\end{gathered}
+				\end{align}
+				となり，(\refeq{fom:equality_of_ordered_pairs_17})との三段論法より
+				\begin{align}
+					\begin{gathered}
+						a \neq d,\ (a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash d \in \{a,b\}
+					\end{gathered}
+				\end{align}
+				となり，定理\ref{cor:pair_members_are_exactly_the_given_two} (対の要素は表示されている要素の一方に等しい)より
+				\begin{align}
+					\begin{gathered}
+						a \neq d,\ (a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash a = d \vee b = d
+					\end{gathered}
+				\end{align}
+				が従う．再び選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\begin{gathered}
+						a \neq d,\ (a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash a \neq d \rarrow b = d
+					\end{gathered}
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\begin{gathered}
+						a \neq d,\ (a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash b = d
+					\end{gathered}
+				\end{align}
+				が従い，演繹定理より
+				\begin{align}
+					\begin{gathered}
+						(a,b) = (c,d),\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash a \neq d \rarrow b = d
+					\end{gathered}
+					\label{fom:equality_of_ordered_pairs_18}
+				\end{align}
+				が得られる．(\refeq{fom:equality_of_ordered_pairs_14})と(\refeq{fom:equality_of_ordered_pairs_18})と
+				論理和の除去より
+				\begin{align}
+					\begin{gathered}
+						(a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash a = d \vee a \neq d \rarrow b = d
+					\end{gathered}
+				\end{align}
+				が成り立つが，排中律(論理的定理\ref{logicalthm:law_of_excluded_middle})より
+				\begin{align}
+					\vdash a = d \vee a \neq d
+				\end{align}
+				となるので，三段論法より
+				\begin{align}
+					\begin{gathered}
+						(a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash b = d
+					\end{gathered}
+				\end{align}
+				が得られる．これと(\refeq{fom:equality_of_ordered_pairs_5})と論理積の導入より
+				\begin{align}
+					\begin{gathered}
+						(a,b) = (c,d),\ \set{a},\ \set{b},\ \set{c},\ \set{d},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \\
+						\vdash a = c \wedge b = d
+					\end{gathered}
 				\end{align}
 				が成り立つ．
-		
-		今度は$(a,b) = (c,d)$に加えて
-		\begin{align}
-			a \neq d
-		\end{align}
-		と仮定する．
-		\begin{align}
-			\{a,d\} = \{a\} \vee \{a,d\} = \{a,b\}
-		\end{align}
-		と
-		\begin{align}
-			\{a,d\} \neq \{a\}
-		\end{align}
-		より
-		\begin{align}
-			\{a,d\} = \{a,b\}
-		\end{align}
-		が成り立ち，
-		\begin{align}
-			d = a \vee d = b
-		\end{align}
-		が成り立つ．$d \neq a$より
-		\begin{align}
-			d = b
-		\end{align}
-		が従う．ゆえに
-		\begin{align}
-			a \neq d \rarrow b = d
-		\end{align}
-		でもある．
-		\QED
+				\QED
 		\end{description}
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[Cartesian積]
+			$a$と$b$を類とするとき，
+			\begin{align}
+				a \times b \defeq \Set{x}{\exists s\, (\, s \in a \wedge \exists t\, (\,t \in b \wedge x = (s,t) \, )\, )}
+			\end{align}
+			により定める類$a \times b$を$a$と$b$の{\bf Cartesian積}
+			\index{Cartesianせき@Cartesian積}{\bf (Cartesian product)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[関係]
+			$R \subset \Univ \times \Univ$を満たす類$R$を{\bf 関係}\index{かんけい@関係}{\bf (relation)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
