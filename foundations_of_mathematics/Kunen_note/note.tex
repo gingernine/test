@@ -1,0 +1,167 @@
+\documentclass[a4j,10.5pt,oneside,openany,report]{jsbook}
+%
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{makeidx}
+\makeindex
+\usepackage{newpxmath,newpxtext}
+\usepackage{mathrsfs} %花文字
+\usepackage{mathtools} %参照式のみ式番号表示
+\usepackage{latexsym} %qed
+\usepackage{ascmac}
+\usepackage{here} %表を記述位置に強制出力する
+\usepackage{tabularx}
+\usepackage{bussproofs} %証明図
+\usepackage{centernot} %\centernot\arrow
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{tikz} %描画
+\usepackage{color}
+\usepackage{relsize}
+\usepackage{comment}
+\usepackage{url}
+\usepackage[normalem]{ulem} %訂正線
+\usepackage[dvipdfm,colorlinks=true,linkcolor=blue,filecolor=blue,urlcolor=blue]{hyperref} %文書内リンク
+\usepackage{pxjahyper} %%hyperref読み込みの直後に
+\setcounter{tocdepth}{3} %table of contents subsection表示
+\newtheoremstyle{mystyle}% % Name
+	{20pt}%                      % Space above
+	{20pt}%                      % Space below
+	{\rm}%           % Body font
+	{}%                      % Indent amount
+	{\gt}%             % Theorem head font
+	{.}%                      % Punctuation after theorem head
+	{10pt}%                     % Space after theorem head, ' ', or \newline
+	{}%                      % Theorem head spec (can be left empty, meaning `normal')
+\theoremstyle{mystyle}
+
+\allowdisplaybreaks[1]
+\newcommand{\bhline}[1]{\noalign {\hrule height #1}} %表の罫線を太くする．
+\newcommand{\bvline}[1]{\vrule width #1} %表の罫線を太くする．
+\newcommand{\QED}{% %証明終了
+	\relax\ifmmode
+		\eqno{%
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}}
+	\else
+		\begingroup
+		\setlength{\fboxsep}{2pt}\setlength{\fboxrule}{0.3pt}
+		\hfill\fcolorbox{black}{black}{\rule[2pt]{0pt}{1ex}}
+		\endgroup
+	\fi}
+
+\definecolor{DarkMidnightBlue}{rgb}{0.0, 0.2, 0.4}
+\definecolor{PakistanGreen}{rgb}{0.0, 0.4, 0.0}
+\definecolor{Mahogany}{rgb}{0.65,0.10,0.10}
+\definecolor{darkgray}{rgb}{0.21, 0.21, 0.21}
+\definecolor{CarolinaBlue}{rgb}{0.6, 0.73, 0.89}
+
+\newtheorem{thm}{\color{DarkMidnightBlue}{定理}}[section]
+\newtheorem{dfn}[thm]{\color{PakistanGreen}{定義}}
+\newtheorem{axm}[thm]{\color{Mahogany}{公理}}
+\newtheorem{schema}[thm]{{公理図式}}
+\newtheorem{logicalrule}[thm]{\color{Mahogany}{推論規則}}
+\newtheorem{logicalaxm}[thm]{\color{Mahogany}{論理的公理}}
+\newtheorem{logicalthm}[thm]{\color{DarkMidnightBlue}{論理的定理}}
+\newtheorem{metadfn}[thm]{\color{PakistanGreen}{メタ定義}}
+\newtheorem{metaaxm}[thm]{\color{Mahogany}{メタ公理}}
+\newtheorem{metathm}[thm]{\color{DarkMidnightBlue}{メタ定理}}
+\newtheorem{prp}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{lem}[thm]{補題}
+\newtheorem*{prf}{証明}
+\newtheorem*{metaprf}{メタ証明}
+\newtheorem*{sketch}{略証}
+\newtheorem{rem}[thm]{\color{Mahogany}{注意}}
+\newtheorem{e.g.}[thm]{例}
+\newcommand{\defunc}{\mbox{1}\hspace{-0.25em}\mbox{l}} %定義関数
+\newcommand*{\sgn}[1]{\operatorname{sgn}\left( #1 \right)} %signal関数
+\newcommand{\monologue}[1]{
+	{\color{CarolinaBlue}\hspace{-10.5pt}\mask{\hspace{21pt}\vbox{
+		\hsize 445pt
+		\normalcolor{\vskip 7pt \noindent #1 \vskip 7pt}
+	}\hspace{21pt}}{E}}
+}
+
+\def\Ddot#1{$\ddot{\mathrm{#1}}$} %文中ddot
+
+%基礎論
+\newcommand{\CON}[2]{\operatorname{CON}_{#1}(#2)}
+\newcommand{\val}[2]{\operatorname{val}_{#1}(#2)}
+
+%論理
+\newcommand{\lang}[1]{\mathcal{L}_{\scalebox{1.2}{$#1$}}} %言語
+\newcommand{\Set}[2]{\{\, #1 \mid #2\, \}} %論理式の対象化
+\newcommand{\defeq}{\overset{\mathrm{def}}{=\joinrel=}} %\scalebox{3}[1]{=}}} %定義記号=(=\joinrel=も使える)
+\newcommand{\defarrow}{\ \overset{\mathrm{def}}{\longleftrightarrow}\ } %定義記号↔
+\newcommand{\provable}[1]{\vdash_{{\scriptsize #1}}} %証明可能
+\newcommand{\negation}{\rightharpoondown\hspace{-0.25em}} %否定
+\newcommand{\rarrow}{\hspace{0.25em}\rightarrow\hspace{0.25em}} %右矢印
+\newcommand{\lrarrow}{\hspace{0.25em}\leftrightarrow\hspace{0.25em}} %左右矢印
+
+%集合
+\newcommand{\EXTAX}{\mbox{{\bf EXT}}} %外延性公理
+\newcommand{\EQAX}{\mbox{{\bf EQ}}} %相等性公理
+%\newcommand{\EQAXEP}{\mbox{{\bf EQ}}_{\scalebox{1.2}{$\varepsilon$}}} %ε項の相等性公理
+\newcommand{\COMAX}{\mbox{\bf COM}} %内包性公理
+\newcommand{\ELEAX}{\mbox{{\bf ELE}}} %要素の公理
+\newcommand{\REPAX}{\mbox{{\bf REP}}} %置換公理
+\newcommand{\PAIAX}{\mbox{{\bf PAI}}} %対集合公理
+\newcommand{\UNIAX}{\mbox{{\bf UNI}}} %合併の公理
+\newcommand{\POWAX}{\mbox{{\bf POW}}} %冪集合公理
+\newcommand{\INFAX}{\mbox{{\bf INF}}} %無限公理
+\newcommand{\REGAX}{\mbox{{\bf REG}}} %正則性公理
+\newcommand{\AC}{\mbox{{\bf CHOICE}}} %選択公理
+
+\newcommand{\Univ}{\mathbf{V}} %宇宙
+\newcommand{\set}[1]{\operatorname*{set}\hspace{0.15em}(#1)} %集合であることの論理式
+\newcommand{\power}[1]{\operatorname*{P}\hspace{0.15em}(#1)} %冪集合
+\newcommand{\rel}[1]{\operatorname*{rel}\hspace{0.15em}(#1)} %関係
+\newcommand{\dom}[1]{\operatorname*{dom}\hspace{0.15em}(#1)} %類の定義域
+\newcommand{\ran}[1]{\operatorname*{ran}\hspace{0.15em}(#1)} %類の値域
+\newcommand{\sing}[1]{\operatorname*{sing}\hspace{0.15em}(#1)} %single-valuedの定義式
+\newcommand{\fnc}[1]{\operatorname*{fnc}\hspace{0.15em}(#1)} %写像の定義式
+\newcommand{\fon}{\operatorname*{:on}} %〇上の写像
+\newcommand{\inj}{\overset{\mathrm{1:1}}{\longrightarrow}} %単射
+\newcommand{\srj}{\overset{\mathrm{onto}}{\longrightarrow}} %全射
+\newcommand{\bij}{\underset{\mathrm{onto}}{\overset{\mathrm{1:1}}{\longrightarrow}}} %全単射
+\newcommand{\inv}[1]{{#1}^{-1}} %^{\operatorname{inv}}} %集合の反転
+\newcommand{\rest}[2]{#1\hspace{-0.25em}\upharpoonright\hspace{-0.25em}{#2}} %制限写像
+\newcommand{\tran}[1]{\operatorname*{tran}\hspace{0.15em}(#1)} %推移的類の定義式
+\newcommand{\ord}[1]{\operatorname*{ord}\hspace{0.15em}(#1)} %順序数の定義式
+\newcommand{\ON}{\mathrm{ON}} %順序数全体
+\newcommand{\limo}[1]{\mathrm{lim.o}\hspace{0.15em}(#1)} %極限数の式
+%\newcommand{\Natural}{{\boldsymbol \omega}} %自然数全体
+\newcommand{\Natural}{\mathbf{N}} %自然数全体
+
+%基数
+\newcommand{\eqp}{\approx} %集合の対等
+\newcommand{\card}[1]{\# #1} %濃度
+%\newcommand{\card}[1]{\operatorname{card} #1} %濃度
+%\newcommand{\card}[1]{\operatorname*{card} \left(#1\right)} %濃度
+\newcommand{\CN}{\mathrm{CN}} %基数全体
+\newcommand{\InfCN}{\mathrm{ICN}} %無限基数全体
+\newcommand{\Fin}[1]{\operatorname*{Fin}\hspace{0.15em}(#1)} %有限集合の定義式
+\newcommand{\Inf}[1]{\operatorname*{Inf}\hspace{0.15em}(#1)} %無限集合の定義式
+\newcommand{\cof}[2]{\operatorname*{cof}\hspace{0.15em}(#1,#2)} %共終写像が存在する
+\newcommand{\cf}[1]{cf(#1)} %共終数
+%
+%
+\setlength{\textwidth}{\fullwidth}
+\setlength{\textheight}{40\baselineskip}
+\addtolength{\textheight}{\topskip}
+%\setlength{\voffset}{-0.55in}
+%
+%
+\title{Kunen note}
+\author{sy}
+%\date{\today}
+
+\begin{document}
+\mathtoolsset{showonlyrefs = true}
+\maketitle
+\tableofcontents
+%\frontmatter
+%\mainmatter
+
+\input{thms/sec12_1}
+\end{document}
