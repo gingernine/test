@@ -159,3 +159,47 @@
 		つまりどのように$\rho$を取っても$\negation \varphi$に到着することはない．ゆえに
 		$\CON{\vdash,\mathcal{L}}{\Pi}$である．
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[補題2.12.13]
+			$\mathcal{L}$の文の極大$(\vdash,\mathcal{L})$無矛盾な集合$\Sigma$を考える．
+			このとき$\mathcal{L}$の任意の文$\varphi$と$\psi$について，
+			\begin{description}
+				\item[(1)] $\varphi \in \Sigma \Longleftrightarrow 
+					\Sigma \provable{\mathcal{L}} \varphi$;
+				\item[(2)] $\varphi \notin \Sigma \Longleftrightarrow 
+					\Sigma \provable{\mathcal{L}}\ \negation \varphi$;
+				\item[(3)] $\varphi \vee \psi \in \Sigma \Longleftrightarrow$
+					$\varphi \in \Sigma$または$\psi \in \Sigma$．
+			\end{description}
+		\end{thm}
+	\end{screen}
+	
+	極大無矛盾なら，任意の文は「証明される」か「否定が証明される」の二択．
+	
+	\begin{sketch}
+		証明可能性の定義より$\varphi \in \Sigma$ならば$\Sigma \provable{\mathcal{L}} \varphi$である．
+		また極大無矛盾の定義より
+		\begin{align}
+			\varphi \notin \Sigma 
+			&\Longrightarrow \Sigma \cup \{\varphi\} \provable{\mathcal{L}} \bot \\
+			&\Longrightarrow \Sigma \provable{\mathcal{L}}\ \negation \varphi
+		\end{align}
+		が成り立つから，$\Sigma \provable{\mathcal{L}} \varphi$なら無矛盾性より
+		$\neg \Sigma \provable{\mathcal{L}}\ \negation \varphi$となるので
+		$\varphi \in \Sigma$が従う．(2)については，$\Sigma \provable{\mathcal{L}}\ \negation \varphi$
+		であれば無矛盾性より$\neg \Sigma \provable{\mathcal{L}} \varphi$となるので
+		(1)から$\varphi \notin \Sigma$が従う．(3)について，$\varphi \vee \psi \in \Sigma$ならば
+		(1)より$\Sigma \provable{\mathcal{L}} \varphi \vee \psi$となるが，ここで選言三段論法より
+		\begin{align}
+			\Sigma \provable{\mathcal{L}}\ \negation \varphi \rarrow \psi
+		\end{align}
+		が成り立つ．このとき，$\varphi \notin \Sigma$ならば(2)より
+		$\Sigma \provable{\mathcal{L}}\ \negation \varphi$となり，
+		$\Sigma \provable{\mathcal{L}} \psi$が従い，(1)より$\psi \in \Sigma$となる．
+		逆に$\varphi \in \Sigma$のときは(1)より$\Sigma \provable{\mathcal{L}} \varphi$となり
+		論理和の導入より$\Sigma \provable{\mathcal{L}} \varphi \vee \psi$となり
+		再び(1)より$\varphi \vee \psi \in \Sigma$となる．同様に$\psi \in \Sigma$のときも
+		$\varphi \vee \psi \in \Sigma$となるから，(3)の$\Longleftarrow$が得られる．
+		
+	\end{sketch}
