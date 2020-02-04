@@ -471,15 +471,15 @@
 	であるが，より精密に書くと
 	\begin{block}{主結果}
 		$\lang{\in}$の任意の文(自由な変項が現れない式) $\psi$に対して，
-		「$\Gamma$から$\psi$への{\bf HK}の証明が取れる」ことと
-		「$\Sigma$から$\psi$への{\bf HE}の証明が取れる」ことは同値．
+		「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」ことと
+		「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」ことは同値．
 	\end{block}
 	
 	ここで，
 	\begin{itemize}
-		\item $\Gamma$は$\lang{\in}$の文で書かれた{\bf ZF}集合論の公理系
+		\item $\Gamma$は$\lang{\in}$の文で書かれた{\bf ZF}集合論の公理系．
 		\item $\Sigma$は$\mathcal{L}$の文で書かれた本論文の公理系．
-		\item {\bf HK}と{\bf HE}は証明体系(論理的公理+推論規則)
+		\item {\bf HK}と{\bf HE}は証明体系(論理的公理+推論規則)．
 	\end{itemize}
 	以下詳細．
 \end{frame}
@@ -552,21 +552,56 @@
 	正則性公理によって集合の範囲が決定する(整礎集合)．また無限公理は唯一「集合の存在」に言及している．
 \end{frame}
 
-\begin{frame}\frametitle{いろんなブロック}
-\begin{block}{ブロック}
-これは普通のブロックです
-\end{block}
-
-\begin{alertblock}{警告ブロック}
-警告！これは警告ブロックだ！
-\end{alertblock}
-
-\begin{exampleblock}{例ブロック}
-例えば、こんなブロックです。
-\end{exampleblock}
+\begin{frame}\frametitle{古典論理}
+	{\bf HK}とは古典論理(classical logic)のHilbert流証明体系である．
+	\begin{alertblock}{{\bf HK}の論理的公理(命題論理)}
+		\begin{description}
+			\item[含意の分配] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
+				\rarrow (\, (\, \varphi \rarrow \psi\, )
+				\rarrow (\, \varphi \rarrow \chi\, )\, ).$
+			\item[含意の導入] $\varphi \rarrow (\, \psi \rarrow \varphi\, ).$
+			\item[矛盾の導入1] $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
+			\item[矛盾の導入2] $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
+			\item[否定の導入] $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
+			\item[論理和の導入1] $\varphi \rarrow \varphi \vee \psi.$
+			\item[論理和の導入2] $\psi \rarrow \varphi \vee \psi.$
+			\item[論理和の除去] $(\, \varphi \rarrow \chi\, ) \rarrow 
+					(\, (\, \psi \rarrow \chi\, ) 
+					\rarrow (\, \varphi \vee \psi \rarrow \chi\, )\, ).$
+			\item[論理積の導入] $\varphi \rarrow (\, \psi \rarrow (\, \varphi \wedge \psi\, )\, ).$
+			\item[論理積の除去1] $\varphi \wedge \psi \rarrow \varphi.$
+			\item[論理積の除去2] $\varphi \wedge \psi \rarrow \psi.$
+			\item[二重否定の除去] $\negation \negation \varphi \rarrow \varphi$.
+		\end{description}
+	\end{alertblock}
 \end{frame}
 
-
+\begin{frame}\frametitle{古典論理}
+	\begin{alertblock}{{\bf HK}の論理的公理(量化)}
+		\begin{description}
+			\item[全称の導入] $\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) 
+				\rarrow (\, \psi \rarrow \forall x \varphi\, ).$
+				
+			\item[全称の除去] $\forall x \varphi \rarrow \varphi(x/t).$
+				
+			\item[存在の導入] $\varphi(x/t) \rarrow \exists x \varphi.$
+				
+			\item[存在の除去] $\forall y\, (\, \varphi(x/y) \rarrow \psi\, )
+				\rarrow (\, \exists x \varphi \rarrow \psi\, ).$
+		\end{description}
+	\end{alertblock}
+	
+	\begin{exampleblock}{{\bf HK}の証明}
+		「$\Gamma$からの{\bf HK}の証明で$\lang{\in}$の式の列であるもの」とは，
+		$\lang{\in}$の式の列$\varphi_{1},\cdots,\varphi_{n}$で，各$\varphi_{i}$が次のいずれかであるもの：
+		\begin{itemize}
+			\item {\bf HK}の公理である
+			\item $\Gamma$の公理である
+			\item $\varphi_{j},\varphi_{k}\ (j,k < i)$から三段論法で得られる
+			\item $\varphi_{j}\ (j < i)$から汎化で得られる．
+		\end{itemize}
+	\end{exampleblock}
+\end{frame}
 
 %\setcounter{framenumber}{\value{finalframe}}
 \end{document}
