@@ -1,4 +1,4 @@
-\documentclass[dvipdfmx,11pt,notheorems]{beamer}
+\documentclass[dvipdfmx,10pt,notheorems]{beamer}
 %%%% 和文用 %%%%%
 \usepackage{bxdpx-beamer}
 \usepackage{pxjahyper}
@@ -6,7 +6,7 @@
 \renewcommand{\kanjifamilydefault}{\gtdefault}%和文用
 
 %%%% スライドの見た目 %%%%%
-\usetheme{Madrid}
+\usetheme{Darmstadt} %Frankfurt, AnnArbor, Antibes, Berlin, Berkeley, Bergen, Boadilla, boxes, CambridgeUS, Copenhagen
 \usefonttheme{professionalfonts}
 \setbeamertemplate{frametitle}[default][center]
 \setbeamertemplate{navigation symbols}{}
@@ -34,7 +34,7 @@
 \usepackage[T1]{fontenc}%8bit フォント
 \usepackage{textcomp}%欧文フォントの追加
 \usepackage[utf8]{inputenc}%文字コードをUTF-8
-\usepackage{otf}%otfパッケージ
+%\usepackage{otf}%otfパッケージ
 \usepackage{pxfonts}%数式・英文ローマン体を Lxfont にする
 \usepackage{bm}%数式太字
 %%%%%%%%%%
@@ -101,7 +101,7 @@
 
 \section{導入}
 
-\begin{frame}\frametitle{導入 $\varepsilon$について}
+\begin{frame}\frametitle{$\varepsilon$について}
 	\begin{itemize}
 	%\setlength{\itemsep}{10pt}
 		\item 量化$\exists,\forall$を使う証明を命題論理の証明に埋め込むためにHilbertが開始．
@@ -117,16 +117,32 @@
 				\varphi(x/\varepsilon x \negation x \varphi(x)) &\defarrow \forall x \varphi(x)
 			\end{align}
 			によって変換すればよい．
-			
-		\item 今回$\varepsilon$項を導入したのは
-			\textcolor{red}{「存在」と「実在」を同義}とするため．
-			
-		\item Hilbertの$\varepsilon$計算ではなく，$\varepsilon$項を用いて
-			一種のHenkin拡大を行う．
 	\end{itemize}
 \end{frame}
 
-\begin{frame}\frametitle{導入 $\varepsilon$について}
+\begin{frame}\frametitle{$\varepsilon$について}
+	\begin{itemize}
+		\item 今回$\varepsilon$項を導入したのは\textcolor{red}{「存在」と「実在」を同義}とするため．
+		
+		\item Hilbertの$\varepsilon$計算ではなく，$\varepsilon$項を用いて一種のHenkin拡大を行う． 
+			
+		\item つまり，導入の意図は\textcolor{red}{存在文}に対して\textcolor{red}{証人}を与えること：
+			\begin{align}
+				\exists x \varphi(x) \rarrow \varphi(\varepsilon x \varphi(x)).
+			\end{align}
+			この式は$\exists$に関する主要な公理．
+			
+		\item 「$\varphi$である集合が存在すれば，その一つは$\varepsilon x \varphi(x)$である．」
+		
+		\item 「$\negation \forall x \varphi(x) \rarrow \exists x \negation \varphi(x)$」と組み合わせると
+			\begin{align}
+				\varphi(\varepsilon x \negation \varphi(x)) \rarrow \forall x \varphi(x)
+			\end{align}
+			が出る．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{$\varepsilon$について}
 	\begin{itemize}
 	\setlength{\itemsep}{10pt}
 		\item {\bf ZF}集合論では\textcolor{red}{集合というオブジェクトが用意されていない}ため，
@@ -141,7 +157,7 @@
 			\begin{align}
 				\forall y\, (\, y \notin \color{red}{\varepsilon x\, \forall y\, (\, y \notin x\, )}\, \color{black}{)}
 			\end{align}
-			が成り立つ
+			が成り立つ．
 	\end{itemize}
 	
 	\begin{block}{$\varepsilon$項を使うメリット}
@@ -152,10 +168,10 @@
 	\end{block}
 \end{frame}
 
-\begin{frame}\frametitle{導入 クラスについて}
+\begin{frame}\frametitle{クラスについて}
 	\begin{itemize}
 	%\setlength{\itemsep}{10pt}
-		\item ブルバキ\cite{}や島内\cite{}でも$\varepsilon$項を使った集合論を展開．
+		\item Bourbaki\cite{}や島内\cite{}でも$\varepsilon$項を使った集合論を展開．
 		
 		\item ところで，「$\varphi$である集合の全体」の意味の
 			\begin{align}
@@ -163,9 +179,9 @@
 			\end{align}
 			というオブジェクトも取り入れたい．
 		
-		\item {\bf ZF}集合論では定義による拡大 or インフォーマルな導入．
+		\item {\bf ZF}集合論では「定義による拡大」 or インフォーマルな導入．
 		
-		\item ブルバキ\cite{}や島内\cite{}では
+		\item Bourbaki\cite{}や島内\cite{}では
 			\begin{align}
 				\Set{x}{\varphi(x)} \defeq \varepsilon y\, \forall x\, 
 				(\, \varphi(x) \lrarrow x \in y\, )
@@ -180,7 +196,7 @@
 	\end{itemize}
 \end{frame}
 
-\begin{frame}\frametitle{導入 クラスについて}
+\begin{frame}\frametitle{クラスについて}
 	\begin{exampleblock}{クラス}
 		式$\varphi$に$x$のみが自由に現れているとき，$\varepsilon x \varphi(x),
 		\quad \Set{x}{\varphi(x)}$の形のオブジェクトを{\bf クラス(class)}と呼ぶ．
@@ -203,27 +219,28 @@
 	\end{exampleblock}
 \end{frame}
 
+\section{言語}
 \begin{frame}\frametitle{言語}
 	\begin{itemize}
 	%\setlength{\itemsep}{10pt}
 		\item クラスという新しいオブジェクトを導入したら，
 			この導入操作が``妥当''であるかどうかが問題になる．
 		
-		\item 妥当性は，{\bf ZF}集合論の命題$\varphi$に対して
+		\item 妥当性は，{\bf ZF}集合論の命題$\psi$に対して
 			\begin{align}
-				\mbox{{\bf ZF}集合論で$\varphi$が証明可能}
+				\mbox{{\bf ZF}集合論で$\psi$が証明可能}
 				\Longleftrightarrow
-				\mbox{新しい集合論で$\varphi$が証明可能}
+				\mbox{新しい集合論で$\psi$が証明可能}
 			\end{align}
 			が成り立つかどうかで検証する．
 		
 		\item 集合論の\textcolor{red}{言語}と
 			\textcolor{red}{証明のルール}を明らかにしなくてはならない．
 		
-		\item 言語とは「\textcolor{red}{変項}」，「\textcolor{red}{述語記号}」，
+		\item 言語(の語彙)とは「\textcolor{red}{変項}」，「\textcolor{red}{述語記号}」，
 			「\textcolor{red}{論理記号}」とその他もろもろの記号からなる．
-			そして「\textcolor{red}{式(formula)}」は言語の記号を用いて作られる．
-			式を作るためには「\textcolor{red}{項(term)}」が必要であり，文字は最もよく使われる項である．
+			「\textcolor{red}{式(formula)}」は言語の語彙を用いて作られる．
+			名詞の役を担うのが「\textcolor{red}{項(term)}」であり，文字は最もよく使われる項である．
 			たとえば
 			\begin{align}
 				s \in t
@@ -235,7 +252,7 @@
 \end{frame}
 
 \begin{frame}\frametitle{言語$\lang{\in}$}
-	\begin{exampleblock}{言語$\lang{\in}$}
+	\begin{exampleblock}{言語$\lang{\in}$の語彙}
 		\begin{description}
 			\item[矛盾記号] $\bot$
 			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
@@ -281,7 +298,7 @@
 		\item 始めの拡張により得る言語を$\lang{\varepsilon}$と名付ける．
 	\end{itemize}
 
-	\begin{exampleblock}{言語$\lang{\varepsilon}$}
+	\begin{exampleblock}{言語$\lang{\varepsilon}$の語彙}
 		\begin{description}
 			\item[矛盾記号] $\bot$
 			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
@@ -313,7 +330,7 @@
 	\begin{itemize}
 	%\setlength{\itemsep}{10pt}
 		\item $\lang{\in}$との大きな違いは
-		 \textcolor{red}{項と式の定義が循環している}点．
+		 \textcolor{red}{項と式の生成が循環している}点．
 		
 		\item$\lang{\varepsilon}$の式が$\lang{\varepsilon}$の項を用いて
 			作られるのは当然ながら，その逆に$\lang{\varepsilon}$の項もまた
@@ -324,30 +341,31 @@
 \end{frame}
 
 \begin{frame}\frametitle{言語$\mathcal{L}$}
-	\begin{exampleblock}{言語$\mathcal{L}$}
+	\begin{itemize}
+		\item $\lang{\varepsilon}$の式$\varphi$と変項$x$に対して，
+			$\varepsilon x \varphi$なる項を\textcolor{red}{$\varepsilon$項(epsilon term)}という．
+			
+		\item $\lang{\varepsilon}$の式$\varphi$と変項$x$に対して，
+			$\Set{x}{\varphi}$なる項を\textcolor{red}{内包項}ということにする．
+	\end{itemize}
+	
+	\begin{exampleblock}{言語$\mathcal{L}$の語彙}
 		\begin{description}
 			\item[矛盾記号] $\bot$
 			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
 			\item[量化子] $\forall,\ \exists$
 			\item[述語記号] $=,\ \in$
 			\item[変項] $x,y,z,\cdots$．
-			\item[補助記号] $\{,\ |,\ \}$
+			\item[$\varepsilon$項と内包項] 上記のもの 
 		\end{description}
 	\end{exampleblock}
 \end{frame}
 
 \begin{frame}\frametitle{$\mathcal{L}$の項と式}
+
 	\begin{exampleblock}{$\mathcal{L}$の項と式の定義}
 		\begin{description}
-			\item[項] 
-				\begin{itemize}
-					\item 変項は項である．
-					\item $\lang{\varepsilon}$の項は項である．
-					\item $x$を変項とし，$\varphi$を
-						$\lang{\varepsilon}$の式とするとき，
-						$\Set{x}{\varphi}$なる記号列は項である．
-					\item これらのみが項である．
-				\end{itemize}
+			\item[項] 変項，$\varepsilon$項，内包項は項である．またこれらのみが項である．
 			
 			\item[式] 
 				\begin{itemize}
@@ -364,6 +382,174 @@
 				\end{itemize}
 		\end{description}
 	\end{exampleblock}
+	
+	言語$\mathcal{L}$こそが本論文の標準言語である．
+	
+\end{frame}
+
+\begin{frame}\frametitle{扱う式の制限}
+	上で作った項や式の中には
+	\begin{align}
+		\varepsilon x\, (\, y = y\, ),\quad \Set{x}{z \neq z},\quad \forall x\, (\, u \in v\, )
+	\end{align}
+	のような意味の通らないものが氾濫しているので，排除する．
+	
+	\begin{itemize}
+		\item $\varepsilon x \varphi(x)$なる形の$\varepsilon$項は，$\varphi$に$x$ ``のみ''自由に現れているとき
+			\textcolor{red}{主要$\varepsilon$項}と呼ぶことにする．
+			
+		\item $\Set{x}{\varphi}$なる形の内包項は，$\varphi$に$x$ ``が''自由に現れているとき，
+			\textcolor{red}{正則内包項}と呼ぶことにする．
+			
+		\item 以降扱う式に現れる$\varepsilon$項は全て主要$\varepsilon$項，内包項は全て正則内包項であるとし，
+			$\forall x \varphi$や$\exists x \varphi$なる式は$\varphi$に$x$が自由に現れているとする．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{クラス}
+	
+	\begin{exampleblock}{クラス}
+		$\varepsilon x \varphi(x)$なる形の$\varepsilon$項，及び$\Set{x}{\varphi(x)}$なる形の内包項は，
+		$\varphi$に$x$ ``のみ''自由に現れているときクラス(class)と呼ぶ．またこれらのみがクラスである．
+	\end{exampleblock}
+	
+	主要$\varepsilon$項はクラスであるが，実際は集合である(後述)．
+	
+\end{frame}
+
+\section{式の書き換え}
+\begin{frame}\frametitle{なぜ書き換えるか}
+	\begin{itemize}
+		\item $\varepsilon$項を導入したのは，\underline{存在文に対して証人を付けるため}：
+			\begin{align}
+				\exists x \varphi(x) \rarrow \varphi(\varepsilon x \varphi(x)).
+			\end{align}
+			
+		\item しかし$\varphi$に内包項が使われているとき，$\varepsilon x \varphi(x)$は使えない(作られていない)．
+		
+		\item そのときは，$\varphi$を``同値''な$\lang{\varepsilon}$の式$\hat{\varphi}$に書き換えて
+			\begin{align}
+				\exists x \varphi(x) \rarrow \varphi(\varepsilon x \hat{\varphi}(x))
+			\end{align}
+			を公理とすればよい．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{式の書き換え}
+	$\varphi$の部分式のうち原子式であるところを表に従って直したものを「$\varphi$の\textcolor{red}{書き換え}」と呼ぶ．
+	%また書き換えた式の中で束縛されている変項を名前替えした式も書き換えとする．
+	
+	\begin{table}[H]
+		\begin{center}
+		\begin{tabular}{c|c|c}
+			 & 元の式 & 書き換え後 \\ \hline \hline
+			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ \\ \hline
+			(2) & $\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ \\ \hline
+			(3) & $\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ \\ \hline
+			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ \\ \hline
+			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ \\ \hline
+			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ \\ \hline
+		\end{tabular}
+		\end{center}
+	\end{table}
+	
+	ここで，
+	\begin{itemize}
+		\item $a,b$は変項か主要$\varepsilon$項．
+		\item $\psi(z/v)$は$\psi$に自由に現れている$z$に$v$を代入した式．
+	\end{itemize}
+\end{frame}
+
+\section{証明}
+\begin{frame}\frametitle{主結果}
+	本論文の主結果は
+	\begin{align}
+		\mbox{{\bf ZF}集合論で$\psi$が証明可能}
+		\Longleftrightarrow
+		\mbox{本論文の集合論で$\psi$が証明可能}
+	\end{align}
+	であるが，より精密に書くと
+	\begin{block}{主結果}
+		$\lang{\in}$の任意の文(自由な変項が現れない式) $\psi$に対して，
+		「$\Gamma$から$\psi$への{\bf HK}の証明が取れる」ことと
+		「$\Sigma$から$\psi$への{\bf HE}の証明が取れる」ことは同値．
+	\end{block}
+	
+	ここで，
+	\begin{itemize}
+		\item $\Gamma$は$\lang{\in}$の文で書かれた{\bf ZF}集合論の公理系
+		\item $\Sigma$は$\mathcal{L}$の文で書かれた本論文の公理系．
+		\item {\bf HK}と{\bf HE}は証明体系(論理的公理+推論規則)
+	\end{itemize}
+	以下詳細．
+\end{frame}
+
+\begin{frame}\frametitle{{\bf ZF}の公理系}
+	\begin{alertblock}{$\Gamma$の公理}
+		\begin{description}
+			\item[外延性] 「同一の要素を持つ集合同士は等しい」
+				\begin{align}
+					\forall x\, \forall y\, (\, \forall z\, (\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, )
+				\end{align}
+			\item[相等性] 「等しい集合同士の服属関係は一致する」
+				\begin{align}
+					&\forall x\, \forall y\, (\, x = y \rarrow y = x\, ), \\
+					&\forall x\, \forall y\, \forall z\, 
+					(\, x = y \rarrow (\, x \in z \rarrow y \in z\, )\, ), \\
+					&\forall x\, \forall y\, \forall z\, 
+					(\, x = y \rarrow (\, z \in x \rarrow z \in y\, )\, ).
+				\end{align}
+			\item[置換] 「集合を写像で写した像は集合」次の式の全称閉包： 
+				\begin{align}
+					&\forall x\, \forall y\, \forall z\, 
+					(\, \varphi(x,y) \wedge \varphi(x,z) \rarrow y = z\, ) \\
+					&\rarrow \forall a\, \exists z\, \forall y\,
+					(\, y \in z \lrarrow \exists x\, (\, x \in a \wedge \varphi(x,y)\, )\, ).
+				\end{align}
+		\end{description}	
+	\end{alertblock}
+	置換公理は式$\varphi$ごとに公理となるので\textcolor{red}{図式(schema)}と呼ばれる．
+\end{frame}
+
+\begin{frame}\frametitle{{\bf ZF}の公理系}
+	\begin{alertblock}{$\Gamma$の公理}
+		\begin{description}
+			\item[対] 「対集合が存在する」
+				\begin{align}
+					\forall x\, \forall y\, \exists p\, \forall z\, (\, x = z \vee y = z \lrarrow z \in p\, )
+				\end{align}
+			\item[合併] 「合併集合が存在する」
+				\begin{align}
+					\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, )
+				\end{align}
+			\item[冪] 「冪集合が存在する」
+				\begin{align}
+					\forall x\, \exists p\, \forall y\, (\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, )
+				\end{align}
+		\end{description}
+	\end{alertblock}
+	これらの公理によって既存の集合から新しい集合が作られる．
+\end{frame}
+
+\begin{frame}\frametitle{{\bf ZF}の公理系}
+	\begin{alertblock}{$\Gamma$の公理}
+		\begin{description}
+			\item[正則性] 「空でない集合は自分自身と交わらない要素を持つ」
+				\begin{align}
+					\forall r\, (\, \exists x\, (\, x \in r\, ) \rarrow
+					\exists y\, (\, y \in r \wedge \forall z\, (\, z \in r \rarrow
+					z \notin y\, )\, )\, )
+				\end{align}
+			\item[無限] 「自然数の全体を含む集合が存在する」
+				\begin{align}
+					&\exists x\, (\, \exists s\, (\, \forall t\, (\, t \notin s\, ) \wedge s \in x\, ) 
+					\wedge \forall y\, (\, y \in x \rarrow \\
+					&\quad \exists u\, (\, \forall v\, (\, v \in u \lrarrow v \in y \vee v = y\, ) 
+					\wedge u \in x\, )\, )\, )
+				\end{align}
+		\end{description}
+	\end{alertblock}
+	正則性公理によって集合の範囲が決定する(整礎集合)．また無限公理は唯一「集合の存在」に言及している．
 \end{frame}
 
 \begin{frame}\frametitle{いろんなブロック}
