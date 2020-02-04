@@ -68,7 +68,12 @@
 		\val{\mathfrak{A}}{f\tau_{1}\cdots\tau_{n}}
 		\equiv [f\tau_{1}\cdots\tau_{n}]
 	\end{align}
-	と定めている．
+	と定めている．また$p_{\mathfrak{A}}$は
+	\begin{align}
+		p_{\mathfrak{A}} \defeq \Set{([\tau_{1}],\cdots,[\tau_{n}])}{
+		\Sigma \vdash p\tau_{1}\cdots\tau_{n}}
+	\end{align}
+	により定めている．
 	
 	\begin{screen}
 		\begin{thm}[補題2.12.10]
@@ -76,11 +81,81 @@
 			$\mathfrak{A} = \mathfrak{CT}(\mathcal{L},\Sigma)$としよう．このとき
 			\begin{description}
 				\item[(1)] $\mathcal{L}$の閉項$\tau$に対して$\val{\mathfrak{A}}{\tau} \equiv [\tau]$.
+				\item[(3)] $\varphi$が原子論理式である文のときは，$\Sigma \vdash \varphi$と
+					$\mathfrak{A} \models \varphi$が同値．
+				\item[(4)] 
 			\end{description}
 		\end{thm}
 	\end{screen}
 	
 	\begin{sketch}
 		(1)について，$\val{\mathfrak{A}}{}$はもともと商写像として設定されているのでこの問いはナンセンス．
-		
+		(3)について，$\Sigma \vdash p\tau_{1}\cdots\tau_{n}$と
+			$([\tau_{1}],\cdots,[\tau_{n}]) \in p_{\mathfrak{A}}$は同値．
+			\begin{align}
+				([\tau_{1}],\cdots,[\tau_{n}]) \equiv 
+				(\val{\mathfrak{A}}{\tau_{1}},\cdots,\val{\mathfrak{A}}{\tau_{n}}).
+			\end{align}
+			$(\val{\mathfrak{A}}{\tau_{1}},\cdots,\val{\mathfrak{A}}{\tau_{n}}) \in p_{\mathfrak{A}}$
+			と$\mathfrak{A} \models p\tau_{1}\cdots\tau_{n}$は同値．
+			他方で，$\Sigma \vdash \tau = \sigma$と$[\tau] \equiv [\sigma]$は同値．
+			つまり
+			\begin{align}
+				\Sigma \vdash \tau = \sigma 
+				&\Longleftrightarrow 
+				\val{\mathfrak{A}}{\tau} \equiv \val{\mathfrak{A}}{\sigma} \\
+				&\Longleftrightarrow \val{\mathfrak{A}}{\tau = \sigma} = T
+			\end{align}
+			となる．
+	\end{sketch}
+	
+	$\Sigma$が矛盾していれば$\val{\mathfrak{A}}{\varphi} = 1$かつ
+	$\val{\mathfrak{A}}{\varphi} = 0$となるので$\val{\mathfrak{A}}$は写像ではない．
+	ゆえに$\mathfrak{A}$は$\Sigma$のモデルとはなりえない．
+	
+	\begin{screen}
+		\begin{dfn}[定義2.12.11]
+			語彙$\mathcal{L}$の文の集合$\Sigma$は次の条件を満たすとき極大$(\vdash,\mathcal{L})$
+			無矛盾であるといわれる：
+			\begin{description}
+				\item[(1)] $\CON{\vdash,\mathcal{L}}{\Sigma}$
+				\item[(2)] $\Sigma$に属さないいかなる文$\varphi$に対しても
+					$\Sigma \cup \{\varphi\} \provable{\mathcal{L}} \bot$．
+			\end{description}
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[補題2.12.12]
+			$\Delta$が$\mathcal{L}$の文の集合で$\CON{\vdash,\mathcal{L}}{\Delta}$であるものとする．
+			$\mathcal{L}$の文の集合$\Sigma$で，$\Delta$を含んで極大$(\vdash,\mathcal{L})$無矛盾である
+			ようなものが存在する．
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$S$を$\mathcal{L}$の文の全体とする．このとき
+		\begin{align}
+			\forall \Pi \in \power{S}\, 
+			(\, \CON{\vdash,\mathcal{L}}{\Pi} \Longleftrightarrow 
+			\forall \Omega \subset \Pi\, (\, \Fin{\Omega} \Longrightarrow \CON{\vdash,\mathcal{L}}{\Omega}\, )\, )
+		\end{align}
+		が成り立つ．実際，$\CON{\vdash,\mathcal{L}}{\Pi}$のとき，$\Omega$を$\Pi$の有限部分集合として
+		$\Omega \provable{\mathcal{L}} \varphi$であるとすると，$\Omega$からの任意の演繹の列$\pi$は
+		$\Pi$からの演繹の列でもあって，$\CON{\vdash,\mathcal{L}}{\Pi}$より$\pi$の終点は
+		$\negation \varphi$ではありえない．すなわち$\CON{\vdash,\mathcal{L}}{\Omega}$である．
+		今度は$\Pi$の任意の有限部分集合$\Omega$に対して$\CON{\vdash,\mathcal{L}}{\Omega}$であるとし，
+		\begin{align}
+			\Pi \provable{\mathcal{L}} \varphi
+		\end{align}
+		とする．この演繹の列を$\pi$とし，$\pi$に使われている$\Pi$の公理の全体を$Ax(\pi)$とする．
+		このとき，$\Pi$からの任意の演繹の列$\rho$を取っても，
+		\begin{align}
+			\Omega \defeq Ax(\pi) \cup Ax(\rho)
+		\end{align}
+		とおけば$\CON{\vdash,\mathcal{L}}{\Omega}$かつ$\Omega \provable{\mathcal{L}} \varphi$なので，
+		$\Omega$から$\negation \varphi$は導かれない．$\rho$は$\Omega$からの演繹の列でもあるから
+		$\rho$の終点は$\negation \varphi$ではありえない．
+		つまりどのように$\rho$を取っても$\negation \varphi$に到着することはない．ゆえに
+		$\CON{\vdash,\mathcal{L}}{\Pi}$である．
 	\end{sketch}
