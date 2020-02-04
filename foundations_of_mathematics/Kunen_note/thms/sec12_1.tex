@@ -73,7 +73,15 @@
 		p_{\mathfrak{A}} \defeq \Set{([\tau_{1}],\cdots,[\tau_{n}])}{
 		\Sigma \vdash p\tau_{1}\cdots\tau_{n}}
 	\end{align}
-	により定めている．
+	により定めている．原子式に対する$\val{\mathfrak{A}}{}$は
+	\begin{align}
+		\val{\mathfrak{A}}{\varphi} = 
+		\begin{cases}
+			T &\mbox{if } \Sigma \provable{\mathcal{L}} \varphi, \\
+			F &\mbox{if } \neg\Sigma \provable{\mathcal{L}} \varphi
+		\end{cases}
+	\end{align}
+	ということになるが，$\Sigma$が極大無矛盾ならば量化子フリーな任意の文$\varphi$に対しても上が成り立つ．
 	
 	\begin{screen}
 		\begin{thm}[補題2.12.10]
@@ -109,9 +117,10 @@
 			となる．
 	\end{sketch}
 	
-	$\Sigma$が矛盾していれば$\val{\mathfrak{A}}{\varphi} = 1$かつ
-	$\val{\mathfrak{A}}{\varphi} = 0$となるので$\val{\mathfrak{A}}$は写像ではない．
-	ゆえに$\mathfrak{A}$は$\Sigma$のモデルとはなりえない．
+	$\Sigma$が矛盾していれば，任意の文$\varphi$で$\val{\mathfrak{A}}{\varphi} = 1$となり，
+	$\val{\mathfrak{A}}{\negation \varphi} = 0$となるが，
+	$\val{\mathfrak{A}}{\negation\varphi} = 1$と衝突する．
+	従って$\val{\mathfrak{A}}{}$は写像ではない．ゆえに$\mathfrak{A}$はモデルとはなりえない．
 	
 	\begin{screen}
 		\begin{dfn}[定義2.12.11]
@@ -201,5 +210,14 @@
 		論理和の導入より$\Sigma \provable{\mathcal{L}} \varphi \vee \psi$となり
 		再び(1)より$\varphi \vee \psi \in \Sigma$となる．同様に$\psi \in \Sigma$のときも
 		$\varphi \vee \psi \in \Sigma$となるから，(3)の$\Longleftarrow$が得られる．
-		
+		\QED
 	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[補題2.12.14]
+			語彙$\mathcal{L}$は$\mathcal{F}_{0} \neq \emptyset$であるものとし，文の集合$\Sigma$は
+			極大$(\vdash,\mathcal{L})$無矛盾であるとする．$\mathfrak{A} = \mathfrak{CT}
+			(\mathcal{L},\Sigma)$とする．$\mathcal{L}$の文$\varphi$が量化記号を用いないものであれば，
+			$\Sigma \provable{\mathcal{L}} \varphi$と$\mathfrak{A} \models \varphi$は同値である．
+		\end{thm}
+	\end{screen}
