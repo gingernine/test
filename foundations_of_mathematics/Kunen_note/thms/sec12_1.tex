@@ -117,10 +117,12 @@
 			となる．
 	\end{sketch}
 	
-	$\Sigma$が矛盾していれば，任意の文$\varphi$で$\val{\mathfrak{A}}{\varphi} = 1$となり，
-	$\val{\mathfrak{A}}{\negation \varphi} = 0$となるが，
-	$\val{\mathfrak{A}}{\negation\varphi} = 1$と衝突する．
-	従って$\val{\mathfrak{A}}{}$は写像ではない．ゆえに$\mathfrak{A}$はモデルとはなりえない．
+	$\Sigma$が矛盾していれば，$\vdash$と整合的になるような真偽割り当ては存在しない．つまりモデルは存在しない．
+	もしもモデルが存在していれば，健全性定理より全ての文はそのモデルで真となるが，真偽は否定で逆転するはずなのであり得ない．
+	%任意の文$\varphi$で$\val{\mathfrak{A}}{\varphi} = 1$となり，
+	%$\val{\mathfrak{A}}{\negation \varphi} = 0$となるが，
+	%$\val{\mathfrak{A}}{\negation\varphi} = 1$と衝突する．
+	%従って$\val{\mathfrak{A}}{}$は写像ではない．ゆえに$\mathfrak{A}$はモデルとはなりえない．
 	
 	\begin{screen}
 		\begin{dfn}[定義2.12.11]
@@ -221,3 +223,35 @@
 			$\Sigma \provable{\mathcal{L}} \varphi$と$\mathfrak{A} \models \varphi$は同値である．
 		\end{thm}
 	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				$\varphi$が原子式であれば補題2.12.10より
+				\begin{align}
+					\Sigma \provable{\mathcal{L}} \varphi \Longleftrightarrow 
+					\mathfrak{A} \models \varphi
+				\end{align}
+				が成り立つ．
+				
+			\item[step2] $\varphi$の任意の真部分式で文であるもの$\psi$に対して
+				\begin{align}
+					\Sigma \provable{\mathcal{L}} \psi \Longleftrightarrow 
+					\mathfrak{A} \models \psi
+				\end{align}
+				と仮定する(IH)．
+				\begin{description}
+					\item[case1] $\varphi$が$\negation \psi$のとき，
+						$\Sigma \provable{\mathcal{L}} \varphi$ならば，無矛盾性より
+						$\neg \Sigma \provable{\mathcal{L}} \psi$となり，(IH)より
+						$\mathfrak{A} \not\models \psi$となる．ゆえに
+						$\mathfrak{A} \models \varphi$となる．逆に
+						$\mathfrak{A} \models \varphi$ならば$\mathfrak{A} \not\models \psi$となり
+						$\neg \Sigma \provable{\mathcal{L}} \psi$となり，
+						補題2.12.13より$\psi \notin \Sigma$となり，
+						$\Sigma \provable{\mathcal{L}} \varphi$が従う．
+						
+					\item[case2] $\varphi$が$\psi \vee \chi$のとき，
+				\end{description}
+		\end{description}
+	\end{sketch}

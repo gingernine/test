@@ -15,7 +15,7 @@
 \setbeamerfont{footline}{size=\normalsize,series=\bfseries}
 \setbeamercolor{footline}{fg=black,bg=black}
 %%%%
-
+\usepackage{mathtools} %参照式のみ式番号表示
 %%%% 定義環境 %%%%%
 \usepackage{amsmath,amssymb}
 \usepackage{amsthm}
@@ -38,12 +38,58 @@
 \usepackage{pxfonts}%数式・英文ローマン体を Lxfont にする
 \usepackage{bm}%数式太字
 %%%%%%%%%%
+
+%論理
+\newcommand{\lang}[1]{\mathcal{L}_{\scalebox{1.2}{$#1$}}} %言語
+\newcommand{\Set}[2]{\left\{\, #1 \mid #2\, \right\}} %論理式の対象化
+\newcommand{\defeq}{\overset{\mathrm{def}}{=\joinrel=}} %\scalebox{3}[1]{=}}} %定義記号=(=\joinrel=も使える)
+\newcommand{\defarrow}{\overset{\mathrm{def}}{\longleftrightarrow}} %定義記号↔
+\newcommand{\provable}[1]{\vdash_{{\scriptsize #1}}} %証明可能
+\newcommand{\negation}{\rightharpoondown\hspace{-0.25em}} %否定
+\newcommand{\rarrow}{\hspace{0.25em}\rightarrow\hspace{0.25em}} %右矢印
+\newcommand{\lrarrow}{\hspace{0.25em}\leftrightarrow\hspace{0.25em}} %左右矢印
+
+%集合
+\newcommand{\EXTAX}{\mbox{{\bf EXT}}} %外延性公理
+\newcommand{\EQAX}{\mbox{{\bf EQ}}} %相等性公理
+\newcommand{\EQAXEP}{\mbox{{\bf EQ}}_{\scalebox{1.2}{$\varepsilon$}}} %ε項の相等性公理
+\newcommand{\COMAX}{\mbox{\bf COM}} %内包性公理
+\newcommand{\ELEAX}{\mbox{{\bf ELE}}} %要素の公理
+\newcommand{\REPAX}{\mbox{{\bf REP}}} %置換公理
+\newcommand{\POWAX}{\mbox{{\bf POW}}} %冪集合公理
+\newcommand{\PAIAX}{\mbox{{\bf PAI}}} %対集合公理
+\newcommand{\INFAX}{\mbox{{\bf INF}}} %無限公理
+\newcommand{\REGAX}{\mbox{{\bf REG}}} %正則性公理
+\newcommand{\AC}{\mbox{{\bf CHOICE}}} %選択公理
+
+\newcommand{\Univ}{\mathbf{V}} %宇宙
+\newcommand{\set}[1]{\operatorname*{set} (#1)} %集合であることの論理式
+\newcommand{\power}[1]{\operatorname*{P} (#1)} %冪集合
+\newcommand{\rel}[1]{\operatorname*{rel} (#1)} %関係
+\newcommand{\dom}[1]{\operatorname*{dom} (#1)} %類の定義域
+\newcommand{\ran}[1]{\operatorname*{ran} (#1)} %類の値域
+\newcommand{\sing}[1]{\operatorname*{sing} (#1)} %single-valuedの定義式
+\newcommand{\fnc}[1]{\operatorname*{fnc} (#1)} %写像の定義式
+\newcommand{\fon}{\operatorname*{:on}} %〇上の写像
+\newcommand{\inj}{\overset{\mathrm{1:1}}{\longrightarrow}} %単射
+\newcommand{\srj}{\overset{\mathrm{onto}}{\longrightarrow}} %全射
+\newcommand{\bij}{\underset{\mathrm{onto}}{\overset{\mathrm{1:1}}{\longrightarrow}}} %全単射
+\newcommand{\inv}[1]{{#1}^{-1}} %^{\operatorname{inv}}} %集合の反転
+\newcommand{\rest}[2]{#1\hspace{-0.25em}\upharpoonright\hspace{-0.25em}{#2}} %制限写像
+\newcommand{\tran}[1]{\operatorname*{tran} \left(#1\right)} %推移的類の定義式
+\newcommand{\ord}[1]{\operatorname*{ord} \left(#1\right)} %順序数の定義式
+\newcommand{\ON}{\mathrm{ON}} %順序数全体
+\newcommand{\limo}[1]{\mathrm{lim.o}\left(#1\right)} %極限数の式
+%\newcommand{\Natural}{{\boldsymbol \omega}} %自然数全体
+\newcommand{\Natural}{\mathbf{N}} %自然数全体
  
 \title{$\varepsilon$計算とクラスの導入による具体的で直観的な集合論の構築}%[略タイトル]{タイトル}
 \author{関根深澤研 百合川尚学 \\ 学籍番号：29C17095}%[略名前]{名前}
 \institute{}%[略所属]{所属}
 \date{\today}%日付
+
 \begin{document}
+\mathtoolsset{showonlyrefs = true}
 
 \begin{frame}[plain]\frametitle{}
 \titlepage %表紙
@@ -55,75 +101,267 @@
 
 \section{導入}
 
-\begin{frame}\frametitle{導入}
-\begin{alertblock}{PowerPointの問題点}
-\begin{itemize}
-\item PowerPointのバージョン・OSに依存する 
-\item PowerPointは有料
-\item 数式が（相当がんばらないと）汚い 
-\end{itemize}
-\end{alertblock}
+\begin{frame}\frametitle{導入 $\varepsilon$について}
+	\begin{itemize}
+	%\setlength{\itemsep}{10pt}
+		\item 量化$\exists,\forall$を使う証明を命題論理の証明に埋め込むためにHilbertが開始．
+		
+		\item 式$\varphi(x)$に対して
+			\begin{align}
+				\varepsilon x \varphi(x)
+			\end{align}
+			という形のオブジェクトを作り，$\varepsilon$項と呼ぶ．また
+			命題論理の証明に埋め込む際には，$\exists$や$\forall$の付いた式を
+			\begin{align}
+				\varphi(x/\varepsilon x \varphi(x)) &\defarrow \exists x \varphi(x), \\
+				\varphi(x/\varepsilon x \negation x \varphi(x)) &\defarrow \forall x \varphi(x)
+			\end{align}
+			によって変換すればよい．
+			
+		\item 今回$\varepsilon$項を導入したのは
+			\textcolor{red}{「存在」と「実在」を同義}とするため．
+			
+		\item Hilbertの$\varepsilon$計算ではなく，$\varepsilon$項を用いて
+			一種のHenkin拡大を行う．
+	\end{itemize}
 \end{frame}
 
-\begin{frame}\frametitle{何故Beamerを使うのか？}
-\begin{block}{Beamerのよいところ}
-\begin{itemize}
-\item 論文・レジメの再利用が容易 
-\item レイアウトの微調整は\LaTeX に任せることができる 
-\item 数式がきれい 
-\end{itemize}
-\end{block}
-
-\begin{exampleblock}{数式の例} 
-\begin{equation*}
-\frac{\pi}{2} =\left( \int_{0}^{\infty} \frac{\sin x}{\sqrt{x}} dx \right)^2 =\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k}(k!)^2} \frac{1}{2k+1} 
-=\prod_{k=1}^{\infty} \frac{4k^2}{4k^2 - 1}
-\end{equation*}
-\end{exampleblock}
+\begin{frame}\frametitle{導入 $\varepsilon$について}
+	\begin{itemize}
+	\setlength{\itemsep}{10pt}
+		\item {\bf ZF}集合論では\textcolor{red}{集合というオブジェクトが用意されていない}ため，
+			「存在」は「実在」ではない．たとえば
+			\begin{align}
+				\exists x\, \forall y\, (\, y \notin x\, )
+			\end{align}
+			は定理であり「空集合は存在する」と読むが，空集合を
+			\underline{``実際に取ってくる''}ことは不可能．
+			
+		\item $\varepsilon$項を使えば，$\exists$の公理と空集合の存在定理によって
+			\begin{align}
+				\forall y\, (\, y \notin \color{red}{\varepsilon x\, \forall y\, (\, y \notin x\, )}\, \color{black}{)}
+			\end{align}
+			が成り立つ
+	\end{itemize}
+	
+	\begin{block}{$\varepsilon$項を使うメリット}
+		\begin{itemize}
+			\item 証明で用いる推論規則は三段論法のみで済む．
+			\item 証明が容易になる場合がある．
+		\end{itemize}
+	\end{block}
 \end{frame}
 
-
-\section{具体例}
-
-\begin{frame}\frametitle{定理環境の例}
-\begin{theorem}[Fermat]
-$a^{p-1} \equiv 1 \pmod{p}$
-\end{theorem}
-\pause
-\begin{theorem}[Wilson]
-\begin{equation}
-(p-1)! \equiv 1 \pmod{p}
-\end{equation}
-\end{theorem}
+\begin{frame}\frametitle{導入 クラスについて}
+	\begin{itemize}
+	%\setlength{\itemsep}{10pt}
+		\item ブルバキ\cite{}や島内\cite{}でも$\varepsilon$項を使った集合論を展開．
+		
+		\item ところで，「$\varphi$である集合の全体」の意味の
+			\begin{align}
+				\Set{x}{\varphi(x)}
+			\end{align}
+			というオブジェクトも取り入れたい．
+		
+		\item {\bf ZF}集合論では定義による拡大 or インフォーマルな導入．
+		
+		\item ブルバキ\cite{}や島内\cite{}では
+			\begin{align}
+				\Set{x}{\varphi(x)} \defeq \varepsilon y\, \forall x\, 
+				(\, \varphi(x) \lrarrow x \in y\, )
+			\end{align}
+			と定めるが，
+			\begin{align}
+				\exists y\, \forall x\, (\, \varphi(x) \lrarrow x \in y\, )
+			\end{align}
+			が成立しない場合は「$\varphi$である集合の全体」という意味を持たない．
+			
+		\item \textcolor{red}{式$\varphi$から直接$\Set{x}{\varphi(x)}$の形のオブジェクトを作ればよい．}
+	\end{itemize}
 \end{frame}
 
-\begin{frame}<1-2>\frametitle{オーバーレイ}
-\onslide*<1>{
-\Large{これは1枚目です}
-}
-\onslide*<2>{
-これは2枚目です
-\begin{theorem}[Euclid]
-There is no largest prime number.
-\end{theorem}
-}
+\begin{frame}\frametitle{導入 クラスについて}
+	\begin{exampleblock}{クラス}
+		式$\varphi$に$x$のみが自由に現れているとき，$\varepsilon x \varphi(x),
+		\quad \Set{x}{\varphi(x)}$の形のオブジェクトを{\bf クラス(class)}と呼ぶ．
+	\end{exampleblock}
+	
+	\begin{itemize}
+		\item クラスである$\varepsilon$項は集合である．
+		\item 集合でないクラスもある．たとえば$\Set{x}{x = x}$や$\Set{x}{x \notin x}$
+			は集合ではない．
+	\end{itemize}
+	
+	集合の定義は竹内\cite{}に倣う．定義により\textcolor{red}{集合はクラスである}．
+	\begin{exampleblock}{集合}
+		クラス$c$が
+		\begin{align}
+			\exists x\, (\, c = x\, )
+		\end{align}
+		を満たすとき$c$を{\bf 集合(set)}と呼び，そうでない場合は
+		{\bf 真クラス(proper class)}と呼ぶ．
+	\end{exampleblock}
 \end{frame}
 
-\begin{frame}\frametitle{色もつけれるよ}
-  {\color{red} red}(\alert{alert}),
-  {\color{blue} blue}(\structure{structure}),
-  {\color{green} green},
-  {\color{cyan} cyan},
-  {\color{magenta} magenta},
-  {\color{yellow} yellow},
-  {\color{black} black},
-  {\color{darkgray} darkgray},
-  {\color{gray} gray},
-  {\color{lightgray} lightgray},
-  {\color{orange} orange},
-  {\color{violet} violet},
-  {\color{purple} purple},
-  {\color{brown} brown},
+\begin{frame}\frametitle{言語}
+	\begin{itemize}
+	%\setlength{\itemsep}{10pt}
+		\item クラスという新しいオブジェクトを導入したら，
+			この導入操作が``妥当''であるかどうかが問題になる．
+		
+		\item 妥当性は，{\bf ZF}集合論の命題$\varphi$に対して
+			\begin{align}
+				\mbox{{\bf ZF}集合論で$\varphi$が証明可能}
+				\Longleftrightarrow
+				\mbox{新しい集合論で$\varphi$が証明可能}
+			\end{align}
+			が成り立つかどうかで検証する．
+		
+		\item 集合論の\textcolor{red}{言語}と
+			\textcolor{red}{証明のルール}を明らかにしなくてはならない．
+		
+		\item 言語とは「\textcolor{red}{変項}」，「\textcolor{red}{述語記号}」，
+			「\textcolor{red}{論理記号}」とその他もろもろの記号からなる．
+			そして「\textcolor{red}{式(formula)}」は言語の記号を用いて作られる．
+			式を作るためには「\textcolor{red}{項(term)}」が必要であり，文字は最もよく使われる項である．
+			たとえば
+			\begin{align}
+				s \in t
+			\end{align}
+			と書けば一つの式が出来上がる．
+		
+		\item まず{\bf ZF}集合論の言語$\lang{\in}$を明示する．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{言語$\lang{\in}$}
+	\begin{exampleblock}{言語$\lang{\in}$}
+		\begin{description}
+			\item[矛盾記号] $\bot$
+			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
+			\item[量化子] $\forall,\ \exists$
+			\item[述語記号] $=,\ \in$
+			\item[変項] $x,y,z,\cdots$．
+		\end{description}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}\frametitle{言語$\lang{\in}$の項と式}
+	$\lang{\in}$の項と式は次の規則で生成する．
+	
+	\begin{exampleblock}{$\lang{\in}$の項と式}
+		\begin{description}
+			\item[項] 変項は項であり，またこれらのみが項である．
+				
+			\item[式] 
+				\begin{itemize}
+					\item $\bot$は式である．
+					\item 項$\tau$と項$\sigma$に対して
+						$\tau \in \sigma$と$\tau = \sigma$は式である．
+					\item 式$\varphi$に対して$\negation \varphi$は式である．
+					\item 式$\varphi$と式$\psi$に対して$\varphi \vee \psi$と
+						$\varphi \wedge \psi$と$\varphi \rarrow \psi$
+						はいずれも式である．
+					\item 式$\varphi$と項$x$に対して$\exists x \varphi$と
+						$\forall x \varphi$は式である．
+					\item これらのみが式である．
+				\end{itemize}
+		\end{description}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}\frametitle{言語の拡張}
+	\begin{itemize}
+	%\setlength{\itemsep}{10pt}
+		\item クラスを正式に導入するには言語を拡張しなくてはならない．
+		\item 拡張は二段階に分けて行う．
+			始めに$\varepsilon$項のために拡張し，
+			次に$\Set{x}{\varphi(x)}$の形の項のために拡張する．
+			
+		\item 始めの拡張により得る言語を$\lang{\varepsilon}$と名付ける．
+	\end{itemize}
+
+	\begin{exampleblock}{言語$\lang{\varepsilon}$}
+		\begin{description}
+			\item[矛盾記号] $\bot$
+			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
+			\item[量化子] $\forall,\ \exists,\ \varepsilon$
+			\item[述語記号] $=,\ \in$
+			\item[変項] $x,y,z,\cdots$．
+		\end{description}
+	\end{exampleblock}
+\end{frame}
+
+\begin{frame}{$\lang{\varepsilon}$の項と式}
+	\begin{exampleblock}{$\lang{\varepsilon}$の項と式の定義}
+		\begin{itemize}
+			\item 変項は項である．
+			\item $\bot$は式である．
+			\item 項$\tau$と項$\sigma$に対して
+				$\tau \in \sigma$と$\tau = \sigma$は式である．
+			\item 式$\varphi$に対して$\negation \varphi$は式である．
+			\item 式$\varphi$と式$\psi$に対して$\varphi \vee \psi$と
+				$\varphi \wedge \psi$と$\varphi \rarrow \psi$
+				はいずれも式である．
+			\item 式$\varphi$と変項$x$に対して$\exists x \varphi$と
+				$\forall x \varphi$は式である．
+			\item \textcolor{red}{式$\varphi$と変項$x$に対して$\varepsilon x \varphi$は項である．}
+			\item これらのみが項と式である．
+		\end{itemize}
+	\end{exampleblock}
+	
+	\begin{itemize}
+	%\setlength{\itemsep}{10pt}
+		\item $\lang{\in}$との大きな違いは
+		 \textcolor{red}{項と式の定義が循環している}点．
+		
+		\item$\lang{\varepsilon}$の式が$\lang{\varepsilon}$の項を用いて
+			作られるのは当然ながら，その逆に$\lang{\varepsilon}$の項もまた
+			$\lang{\varepsilon}$の式から作られる．
+			
+		\item $\lang{\in}$の式は$\lang{\varepsilon}$の式でもある．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{言語$\mathcal{L}$}
+	\begin{exampleblock}{言語$\mathcal{L}$}
+		\begin{description}
+			\item[矛盾記号] $\bot$
+			\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
+			\item[量化子] $\forall,\ \exists$
+			\item[述語記号] $=,\ \in$
+			\item[変項] $x,y,z,\cdots$．
+			\item[補助記号] $\{,\ |,\ \}$
+		\end{description}
+	\end{exampleblock}
+	
+	\begin{exampleblock}{$\mathcal{L}$の項と式の定義}
+		\begin{description}
+			\item[項] 
+				\begin{itemize}
+					\item 変項は項である．
+					\item $\lang{\varepsilon}$の項は項である．
+					\item $x$を変項とし，$\varphi$を
+						$\lang{\varepsilon}$の式とするとき，
+						$\Set{x}{\varphi}$なる記号列は項である．
+					\item これらのみが項である．
+				\end{itemize}
+			
+			\item[式] 
+				\begin{itemize}
+					\item $\bot$は式である．
+					\item 項$\tau$と項$\sigma$に対して
+						$\tau \in \sigma$と$\tau = \sigma$は式である．
+					\item 式$\varphi$に対して$\negation \varphi$は式である．
+					\item 式$\varphi$と式$\psi$に対して$\varphi \vee \psi$と
+						$\varphi \wedge \psi$と$\varphi \rarrow \psi$
+						はいずれも式である．
+					\item 式$\varphi$と変項$x$に対して$\exists x \varphi$と
+						$\forall x \varphi$は式である．
+					\item これらのみが式である．
+				\end{itemize}
+		\end{description}
+	\end{exampleblock}
 \end{frame}
 
 \begin{frame}\frametitle{いろんなブロック}
@@ -140,65 +378,7 @@ There is no largest prime number.
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}<1-2>\frametitle{画像も貼れるよ}
-\onslide*<1>{
-このように画像を貼れるよ
-%\begin{figure}[htb]
-%\centering
-%\includegraphics[width=12cm,clip]{dummygraph.pdf}
-%\caption{$f(x)=e^{-\frac{x}{10}}\sin(x)$}
-%\end{figure}%
-}
-\onslide*<2>{
-画像や表は各自用意してね
-%\begin{figure}[htb]
-%\centering
-%\includegraphics[width=8cm,clip]{sym4.pdf}
-%\caption{Cayley graph of $\mathfrak{S}_{4}$}
-%\end{figure}%
-}
-\end{frame}
 
-\begin{frame}\frametitle{まとめ}
-\LARGE{大事なのは中身です！}
-\end{frame}
 
-\begin{frame}\frametitle{}
-{\Large ありがとうございました}
-\end{frame}
-\appendix
-
-\newcounter{finalframe}
-\setcounter{finalframe}{\value{framenumber}}
-
-\begin{frame}[containsverbatim]\frametitle{dvipngの使い方(1)}
-\begin{block}{この様なファイルを用意する}
-\tiny{
-\begin{verbatim*}
-\documentclass[43pt]{jsarticle}
-\usepackage{amsmath}
-\usepackage{lmodern}
-\pagestyle{empty}
-\begin{document}
-\begin{equation*}
-\sum_{k=0}^{\infty} \frac{(2k)!}{2^{2k}(k!)^2} \frac{1}{2k+1}=\frac{\pi}{2} 
-\end{equation*}
-\end{document}
-\end{verbatim*}
-}
-\end{block}
-\end{frame}
-
-\begin{frame}[containsverbatim]\frametitle{dvipngの使い方(2)}
-\begin{block}{使い方（コマンドライン）}
-\scriptsize{
-\begin{verbatim*}
-latex dvipng-sample.tex
-dvipng dvipng-sample.dvi -T tight -bd 1000
-\end{verbatim*}
-}
-\end{block}
-\end{frame}
-
-\setcounter{framenumber}{\value{finalframe}}
+%\setcounter{framenumber}{\value{finalframe}}
 \end{document}
