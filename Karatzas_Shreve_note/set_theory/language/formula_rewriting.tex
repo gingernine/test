@@ -116,12 +116,15 @@
 			%同じ操作を$\forall a,\exists a$のスコープから抜け出るまで繰り返す．
 	\end{itemize}
 		
-	\begin{itembox}[l]{$a \in \Set{z}{\psi}$の書き換え}
+	\begin{screen}
+		\begin{rem}[$a \in \Set{z}{\psi}$の書き換え]
+		\label{rem:rewriting_of_the_4th_kind}
 			ここで$a$は変項としておく．$\psi$の中の$z$の自由な出現を内部に持つ$\psi$の部分式のうち，
 			$\forall a$または$\exists a$から始まるものが$\xi_{1},\xi_{2},\cdots,\xi_{n}$で
 			全てであるとする．ただし，これらの中に重複があっても出現位置が違えば別個のものと見做す．
 			この設定の下では，$a \in \Set{z}{\psi}$は以下の要領で書き換える．
-	\end{itembox}
+		\end{rem}
+	\end{screen}
 	
 	まずは，便宜上の措置として$\xi_{i}$を$\xi_{i}^{1}$と書き($1 \leq i \leq n$
 	\footnote{
@@ -262,22 +265,47 @@
 				が量化部分式の差し替えであるかという点である．これを次の段で明らかにする．
 			
 			\item[step2]	
-				$\varphi$の部分式のうち原子式であるものが$\psi_{1},\cdots,\psi_{k}$で全てであるとし，
-				$\widehat{\varphi}_{1}$は各$\psi_{i}$を表\ref{tab:formula_rewriting}に従って
-				$\widehat{\xi}_{i}$に書き換えた式であるとし，$\widetilde{\varphi}_{1}$は各$\psi_{i}$を
+				$\varphi$の部分式のうち原子式であるものが$\xi_{1},\cdots,\xi_{k}$で全てであるとし，
+				$\widehat{\varphi}_{1}$は各$\xi_{i}$を表\ref{tab:formula_rewriting}に従って
+				$\widehat{\xi}_{i}$に書き換えた式であるとし，$\widetilde{\varphi}_{1}$は各$\xi_{i}$を
 				表\ref{tab:formula_rewriting}に従って$\widetilde{\xi}_{i}$に書き換えた式であるとする．
-				$\psi_{i}$が表\ref{tab:formula_rewriting}の(4)以外の式であれば，$\widehat{\psi}_{i}$と
-				$\widetilde{\psi}_{i}$の違いは書き換え時の変項の取り方の違いでしかないから，
-				$\widehat{\varphi}_{1}$の$\widehat{\psi}_{i}$の部分を$\widetilde{\psi}_{i}$に
-				差し替えることは量化部分式の差し替えである．$\psi_{i}$が
+				$\xi_{i}$が表\ref{tab:formula_rewriting}の(4)以外の式であれば，$\widehat{\xi}_{i}$と
+				$\widetilde{\xi}_{i}$の違いは書き換え時の変項の取り方の違いでしかないから，
+				$\widehat{\varphi}_{1}$の$\widehat{\xi}_{i}$の部分を$\widetilde{\xi}_{i}$に
+				差し替えることは量化部分式の差し替えである．$\xi_{i}$が
 				\begin{align}
 					a \in \Set{z}{\psi}
 				\end{align}
-				なる式で，$a$が変項である場合は，場合によっては$\psi$を書き換えねばならないので厄介である．
+				なる式で，$a$が変項である場合は，場合によっては$\psi$を書き換えねばならないのが多少厄介である．
 				その厄介な場合を考える．$\psi$の中の$z$の自由な出現を内部に持つ$\psi$の部分式のうち，
 				$\forall a$或いは$\exists a$から始まるものを全て$\chi_{1},\cdots,\chi_{p}$と列挙する．
 				この中に重複があっても出現位置が違えば別個の式と見做す．
-				
+				注意\ref{rem:rewriting_of_the_4th_kind}の通りに書き換えれば，
+				$\chi_{1},\cdots,\chi_{p}$は$\widehat{\xi}_{i}$の中では
+				何らかの量化部分式
+				\begin{align}
+					\widehat{\chi}_{1},\ \cdots,\ \widehat{\chi}_{p}
+				\end{align}
+				となって現れ，$\widetilde{\xi}_{i}$の中でも何らかの量化部分式
+				\begin{align}
+					\widetilde{\chi}_{1},\ \cdots,\ \widetilde{\chi}_{p}
+				\end{align}
+				となって現れる．また$\psi$の$\chi_{1},\cdots,\chi_{p}$を除く部分は書き換えの影響を受けない．
+				ここで$\chi_{1},\cdots,\chi_{p}$の中で極大であるもの(他の部分式ではないもの)を
+				$\chi_{q_{1}},\cdots,\chi_{q_{r}}$とすれば，
+				$\widehat{\chi}_{q_{1}},\cdots,\widehat{\chi}_{q_{r}}$は
+				$\widehat{\chi}_{1},\cdots,\widehat{\chi}_{p}$の中でも極大であるし，
+				$\widetilde{\chi}_{q_{1}},\cdots,\widetilde{\chi}_{q_{r}}$も
+				$\widetilde{\chi}_{1},\cdots,\widetilde{\chi}_{p}$の中で極大である．
+				従って，$\widehat{\xi}_{i}$から$\widetilde{\xi}_{i}$を得るには，
+				$\widehat{\xi}_{i}$の$\widehat{\chi}_{q_{1}},\cdots,\widehat{\chi}_{q_{r}}$を
+				それぞれ$\widetilde{\chi}_{q_{1}},\cdots,\widetilde{\chi}_{q_{r}}$に差し替えればよい．
+				$\widehat{\chi}_{q_{1}},\cdots,\widehat{\chi}_{q_{r}}$は$\widehat{\varphi}_{1}$
+				の部分式(定義\ref{metadfn:L_subformula})でもあるから，
+				この操作は$\widehat{\varphi}_{1}$の量化部分式の差し替えである．
+				以上を総合すれば，$\widehat{\varphi}_{1}$の量化部分式の差し替えによって
+				$\widetilde{\varphi}_{1}$が得られると判る．
+				\QED
 		\end{description}
 	\end{sketch}
 	
