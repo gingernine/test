@@ -80,8 +80,8 @@
 			また$\psi$の中で$z$への代入について自由である．
 			
 		\item (4)の「変項の名前替え」について．$\psi$の中の$z$の自由な出現が，$\psi$の
-			$\forall a \chi$或いは$\exists a \chi$なる形の部分式の中にある場合，
-			その部分式を$\forall b \chi(a/b)$或いは$\exists b \chi(a/b)$で置き換える．
+			$\forall a \chi$或いは$\exists a \chi$なる形の部分式(定義\ref{metadfn:L_subformula})
+			の中にある場合，その部分式を$\forall b \chi(a/b)$或いは$\exists b \chi(a/b)$に差し替える．
 			この$b$としては，\underline{$\chi$に自由に現れず，かつ$\chi$の中で$a$への代入について
 			自由である変項}を取るが，これは$\forall a \chi$或いは$\exists a \chi$に
 			自由に現れる変項を束縛しないためである．たとえば
@@ -106,32 +106,85 @@
 			\end{align}
 			のように$\forall a,\exists a$の多層構造の内部に$z$の自由な出現がある場合，
 			$z$のその自由な出現がある$\forall a,\exists a$から始まる$\psi$の部分式
-			(定義\ref{metadfn:L_subformula})を一本ずつ取り(取る順番はどうでもよい)，
-			上と同じ要領でその直部分式(定義\ref{metadfn:L_immediate_subformula})に
-			自由に現れる$a$に適当な変項$b$を代入して$b$の量化式に変えていく．
+			を一本ずつ取り(取る順番はどうでもよい)，上と同じ要領で差し替えを行う．
+			この操作をより抽象的かつ具体的に述べ直しておく．
+			%その直部分式(定義\ref{metadfn:L_immediate_subformula})を差し替える．
 			%うちまずは最も狭いものを取り，
 			%その直部分式(定義\ref{metadfn:L_immediate_subformula})に
 			%自由に現れる$a$に$b$を代入して$b$の量化式とする．次は二番目に狭い部分式を取り，
 			%その直部分式に自由に現れる$a$に$b$を代入して$b$の量化式とする．
 			%同じ操作を$\forall a,\exists a$のスコープから抜け出るまで繰り返す．
-			たとえば$\psi$が
-			\begin{align}
-				\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists a \chi\, )\, )
-			\end{align}
-			なる式で(他に$a$の量化はないとする)，$z$の自由な出現が$\chi$の中にある状況では，まず
-			\begin{align}
-				\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists b \chi(a/b)\, )\, )
-			\end{align}
-			とし，次に
-			\begin{align}
-				\forall a (\, \eta \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
-			\end{align}
-			とし，最後に
-			\begin{align}
-				\forall b (\, \eta(a/b) \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
-			\end{align}
-			とするということである．
 	\end{itemize}
+		
+	\begin{itembox}[l]{$a \in \Set{z}{\psi}$の書き換え}
+			ここで$a$は変項としておく．$\psi$の中の$z$の自由な出現を内部に持つ$\psi$の部分式のうち，
+			$\forall a$または$\exists a$から始まるものが$\xi_{1},\xi_{2},\cdots,\xi_{n}$で
+			全てであるとする．ただし，これらの中に重複があっても出現位置が違えば別個のものと見做す．
+			この設定の下では，$a \in \Set{z}{\psi}$は以下の要領で書き換える．
+	\end{itembox}
+	
+	まずは，便宜上の措置として$\xi_{i}$を$\xi_{i}^{1}$と書き($1 \leq i \leq n$
+	\footnote{
+		ここでの数字や大小関係は日常的な感覚で扱えるものとする．
+	})，
+	$\chi_{1}^{1}$を$\xi_{1}^{1}$の直部分式(定義\ref{metadfn:L_immediate_subformula})とする．
+	つまり$\xi_{1}^{1}$は$\forall a \chi_{1}^{1}$であるか$\exists a \chi_{1}^{1}$なる形の式である．
+	$b_{1}$を，$\chi_{1}^{1}$に自由に現れず，かつ$\chi_{1}^{1}$の中で$a$への代入について自由である変項とし，
+	$\psi$のこの$\xi_{1}^{1}$の部分を，$\xi_{1}^{1}$が$\forall a \chi_{1}^{1}$である場合は
+	\begin{align}
+		\forall b_{1} \chi_{1}^{1}(a/b_{1})
+	\end{align}
+	に，$\xi_{1}^{1}$が$\exists a \chi_{1}^{1}$である場合は
+	\begin{align}
+		\exists b_{1} \chi_{1}^{1}(a/b_{1})
+	\end{align}
+	に差し替える．$\psi$の$\xi_{1}^{1}$を差し替えた後の式を$\psi_{1}$とし，
+	$\xi_{i}^{2}$を，$\xi_{i}^{1}$に$\xi_{1}^{1}$が部分式として表れていない場合は$\xi_{i}^{1}$のままとし，
+	$\xi_{i}^{1}$に$\xi_{1}^{1}$が部分式として表れている場合は$\xi_{1}^{1}$を上式に差し替えた式とする．
+	このときメタ定理\ref{metathm:replace_subformula_with_some_formula}より
+	$\psi_{1}$も$\xi_{i}^{2}$も$\lang{\varepsilon}$の式であるし，差し替え前後で自由に現れる変項は一致している．
+	また$\psi_{1}$の中での$z$の自由な出現を内部に持つ$\psi_{1}$の部分式のうち，$\forall a$または
+	$\exists a$から始まるものは
+	\begin{align}
+		\xi_{2}^{2},\ \xi_{3}^{2},\ \cdots,\ \xi_{n}^{2}
+	\end{align}
+	だけである．実際，$\psi$のどの部分式も差し替え前後で自由に現れる変項は一致しているし，
+	$\xi_{2}^{1},\cdots,\xi_{n}^{1}$には$z$が自由に現れるので，
+	$\xi_{2}^{2},\cdots,\xi_{n}^{2}$にも$z$は自由に現れる．
+	また差し替えによって$\forall a$或いは$\exists a$から始まる部分式が増えることはないので，
+	$\psi_{1}$の中での$z$の自由な出現を内部に持つ$\psi_{1}$の部分式のうち，$\forall a$または$\exists a$
+	から始まるものは，差し替え前の$\xi_{2}^{1},\cdots,\xi_{n}^{1}$のいずれかであったものである．
+	
+	先と同じ要領で，今度は$\psi_{1}$の$\xi_{2}^{2}$を$\forall b_{2} \chi_{2}^{2}(a/b_{2})$或いは
+	$\exists b_{2}\chi_{2}^{2}(a/b_{2})$に差し替える．$\psi_{1}$の$\xi_{2}^{2}$を差し替えた後の式を
+	$\psi_{2}$とし，$\xi_{i}^{3}$を，$\xi_{i}^{2}$に$\xi_{2}^{2}$が部分式として表れていない場合は
+	$\xi_{i}^{2}$のままとし，$\xi_{i}^{2}$に$\xi_{2}^{2}$が部分式として表れている場合は
+	$\xi_{2}^{2}$を先述の式に差し替えた式とする．すると同様に$\psi_{2}$の中での$z$の自由な出現を内部に持つ
+	$\psi_{2}$の部分式のうち，$\forall a$または$\exists a$から始まるものは
+	%或いはそのような$\psi_{2}$の部分式を部分式として持つような式(例えば$\xi_{3}$が$\xi_{1}$の部分式である場合)は
+	\begin{align}
+		\xi_{3}^{3},\ \xi_{4}^{3},\ \cdots,\ \xi_{n}^{3}
+	\end{align}
+	に限られる．この操作をあと$n-2$回継続すれば，$a$は$\psi_{n}$の中で$z$への代入について自由となる．
+	\QED
+			
+	少し煩雑になってしまったが，たとえば$\psi$が
+	\begin{align}
+		\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists a \chi\, )\, )
+	\end{align}
+	なる式で(他に$a$の量化はないとする)，$z$の自由な出現が$\chi$の中にある状況では，まず
+	\begin{align}
+		\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists b \chi(a/b)\, )\, )
+	\end{align}
+	とし，次に
+	\begin{align}
+		\forall a (\, \eta \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
+	\end{align}
+	とし，最後に
+	\begin{align}
+		\forall b (\, \eta(a/b) \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
+	\end{align}
+	とすればよい．
 	
 	\begin{screen}
 		\begin{metadfn}[式の書き換え]\label{def:formula_rewriting}
