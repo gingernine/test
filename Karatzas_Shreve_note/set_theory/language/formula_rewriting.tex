@@ -206,7 +206,8 @@
 			\end{enumerate}
 		\end{metadfn}
 	\end{screen}
-	
+	この「resp. 」とは並列表現を簡素化するための記号であり，「a (resp. b)はA (resp. B)である」と書いたら
+	「aはAであり，bはBである」と読む．
 	\footnotetext{
 		第\ref{sec:restriction_of_formulas}節の約束により，$\xi$には$x$が自由に現れている．
 	}
@@ -218,6 +219,51 @@
 	
 	便宜上，$\forall x \xi$や$\exists x \xi$の形の部分式を
 	{\bf 量化部分式}\index{りょうかぶぶんしき@量化部分式}と呼ぶことにする．
+	
+	\begin{screen}
+		\begin{metathm}[同じ式の別の書き換えには量化部分式の複数回の書き換えで辿り着ける]
+		\label{metathm:formula_rewritings_coincide_except_the_differences_of_bound_variables}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\widehat{\varphi}$と$\widetilde{\varphi}$をそれぞれ$\varphi$の書き換えとする．
+			このとき，$\widehat{\varphi}$の量化部分式を複数回だけ差し替えれば$\widetilde{\varphi}$が得られる．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				便宜上，$\varphi$の部分式のうち原子式であるものを全て表\ref{tab:formula_rewriting}に従って
+				直した式を$\varphi$の「一次書き換え」と呼ぶことにする．書き換えの定義より，$\widehat{\varphi}$と
+				$\widetilde{\varphi}$にはそれぞれスタート地点である一次書き換え$\widehat{\varphi}_{1}$と
+				$\widetilde{\varphi}_{1}$があり，量化部分式を一本ずつ差し替えていった履歴
+				\begin{align}
+					\widehat{\varphi}_{1},\ \cdots,\ \widehat{\varphi}_{n}
+				\end{align}
+				と
+				\begin{align}
+					\widetilde{\varphi}_{1},\ \cdots,\ \widetilde{\varphi}_{m}
+				\end{align}
+				が取れる．ここで$\widehat{\varphi}_{n}$は$\widehat{\varphi}$であり，
+				$\widetilde{\varphi}_{m}$は$\widetilde{\varphi}$である．
+				$\widehat{\varphi}$から$\widetilde{\varphi}$へ量化部分式の差し替えで辿るには
+				\begin{align}
+					&\widehat{\varphi}_{n} \dashrightarrow \widehat{\varphi}_{n-1} 
+					\dashrightarrow \widehat{\varphi}_{n-2} \dashrightarrow \cdots 
+					\dashrightarrow \widehat{\varphi}_{1} \\
+					&\dashrightarrow \widetilde{\varphi}_{1} 
+					\dashrightarrow \widetilde{\varphi}_{2} 
+					\dashrightarrow \widetilde{\varphi}_{3} 
+					\dashrightarrow \cdots \dashrightarrow \widetilde{\varphi}_{m}
+				\end{align}
+				の道を通ればよいが，問題は
+				\begin{align}
+					\widehat{\varphi}_{1} \dashrightarrow \widetilde{\varphi}_{1}
+				\end{align}
+				が量化部分式の差し替えであるかという点である．これを次の段で明らかにする．
+			
+			\item[step2]	
+		\end{description}
+	\end{sketch}
 	
 	\begin{screen}
 		\begin{metaaxm}[式の書き換えに関する構造的帰納法の原理]
