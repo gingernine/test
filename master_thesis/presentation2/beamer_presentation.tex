@@ -157,17 +157,32 @@
 			\underline{``実際に取ってくる''}ことは不可能．
 		
 		\item 空集合を手に入れる一つの方法は「定義による拡大」．
-			
+		
+		\item $\forall y\, (\, y \notin \emptyset\, )$を$\emptyset$の定義式として
+			公理に追加し，$\emptyset$を``語彙''に追加．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{$\varepsilon$について}
+	\begin{itemize}
 		\item $\varepsilon$項を使えば，$\exists$の公理と空集合の存在定理によって次が成立：
 			\begin{align}
 				\forall y\, (\, y \notin \textcolor{red}{\varepsilon x\, \forall y\, (\, y \notin x\, )}\, ).
 			\end{align}
+			\textcolor{red}{赤字}の部分が空集合を表す．
+			
+		\item 「定義による拡大」とε項による拡大の違い：
+			\begin{itemize}
+				\item 前者は``$\exists x \varphi(x)$''が証明されたらその度に集合論を拡大．
+				\item 後者は存在文の成立不成立に関係なく集合論を一気に拡大．
+			\end{itemize}
 	\end{itemize}
 	
-	\begin{block}{$\varepsilon$項を使う他のメリット}
+	\begin{block}{$\varepsilon$項を使うメリット}
 		\begin{itemize}
+			\item 「存在」の「実在」による補強が簡単で明示的．
+			\item 量化$\forall,\exists$の範囲が具体的に掴める．
 			\item 証明で用いる推論規則は三段論法のみで済む．
-			\item 量化の範囲が具体的になる．
 			\item 証明が容易になる場合がある．
 		\end{itemize}
 	\end{block}
@@ -196,8 +211,22 @@
 			が成立しない場合は「$\varphi$である集合の全体」という意味を持たない．
 		
 		\item {\bf ZF}集合論では「定義による拡大」 or インフォーマルな導入．
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{クラスについて}
+	\begin{itemize}
+		\item 「集合しか扱わない」という立場だと集合ではない「モノの集まり」は扱えない．これを合法的に扱いたい．
+		%\item 集合ではない「モノの集まり」も，``合法的''に集合のように扱いたい．
+		\item クラスを扱う理論として{\bf BG}や{\bf MK}がある．これらはクラス用の変項(大文字)を用意して，
+			\begin{align}
+				\exists X\, \forall x\, (\, \varphi(x) \lrarrow x \in X\, )
+			\end{align}
+			が成り立ったら「定義による拡大」で$\Set{x}{\varphi(x)}$を追加．
 			
-		\item \textcolor{red}{式$\varphi$から直接$\Set{x}{\varphi(x)}$の形のモノを作ればよい
+		\item クラス用の変項は不要で，一度に全てのクラスを導入する方法がある．
+		
+		\item \textcolor{red}{式$\varphi$から直接$\Set{x}{\varphi}$を作ればよい
 			(Bernays\cite{Bernays}，竹内\cite{TakeuchiSet})．}
 	\end{itemize}
 \end{frame}
@@ -740,10 +769,113 @@
 			式の列であるものが取れる」ならば「$\Sigma$から$\psi$への{\bf HE}の証明で
 			$\lang{\varepsilon}$の文の列であるものが取れる」ことを示す．
 		
-		\item[step3]  「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列
+		\item[step3] 「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列
 			であるものが取れる」ならば 「$\Sigma$から$\psi$への{\bf HE}の証明で
 			$\lang{\varepsilon}$の文の列であるものが取れる」ことを示す．
+			
+			\textcolor{red}{step3の逆は明らか．$\lang{\varepsilon}$の文は$\mathcal{L}$の文なので．}
 	\end{description}
+\end{frame}
+
+\begin{frame}\frametitle{step1の略証}
+	\begin{block}{step1}
+		「$\Sigma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+		であるものが取れる」ならば「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+		式の列であるものが取れる」
+	\end{block}
+	
+	\begin{block}{補題}
+		「$\Sigma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+		であるものが取れる」ならば「$\Gamma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+		であるものが取れる」
+	\end{block}
+	
+	$\Sigma$の公理で$\lang{\varepsilon}$の文で書かれているものに対して
+	「$\Gamma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+	であるものが取れる」ことを示せばよい．
+\end{frame}
+
+\begin{frame}\frametitle{step1の略証}
+	{\bf HK}に$\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi)$の形の公理を追加した
+	証明体系を{\bf HK$\varepsilon$}とする．
+	\begin{block}{補題}
+		「$\Gamma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+		であるものが取れる」ならば「$\Gamma$から$\psi$への{\bf HK$\varepsilon$}の証明で
+		$\lang{\varepsilon}$の文の列であるものが取れる」
+	\end{block}
+	
+	{\bf HE}の公理で{\bf HK$\varepsilon$}の公理でないものは
+	\begin{align}
+		\negation \forall x \varphi \rarrow \exists x \negation \varphi
+	\end{align}
+	のみ．これは{\bf HK}の定理なので{\bf HK$\varepsilon$}の定理でもある．
+\end{frame}
+
+\begin{frame}\frametitle{step1の略証}
+	\begin{itemize}
+		\item 「$\Gamma$から$\psi$への{\bf HK$\varepsilon$}の証明で
+			$\lang{\varepsilon}$の文の列であるもの」
+			の中の$\exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi)$の形の公理
+			を演繹定理で外に出すと：
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}},\lang{\varepsilon}} 
+				(\, \exists x \varphi \rarrow \varphi(x/\varepsilon x \varphi)\, ) \rarrow \psi.
+			\end{align}
+		\item 上の証明に現れる$\varepsilon x \varphi$を新しい変項$y$で置き換えると
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}},\lang{\varepsilon}} 
+				(\, \exists x \varphi \rarrow \varphi(x/y)\, ) \rarrow \psi.
+			\end{align}
+			
+		\item {\bf HK}の汎化と量化公理より
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}},\lang{\varepsilon}} 
+				\exists y\, (\, \exists x \varphi \rarrow \varphi(x/y)\, ) \rarrow \psi.
+			\end{align}
+		
+		\item $\provable{\mbox{{\bf HK}},\lang{\varepsilon}} 
+			\exists y\, (\, \exists x \varphi \rarrow \varphi(x/y)\, )$なので，三段論法で
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi.
+			\end{align}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{step2の略証}
+	\begin{block}{step2}
+		「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+		式の列であるものが取れる」ならば「$\Sigma$から$\psi$への{\bf HE}の証明で
+		$\lang{\varepsilon}$の文の列であるものが取れる」
+	\end{block}
+	
+	\begin{itemize}
+		\item 「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるもの」を
+			正則証明(汎化の固有変項が一度しか使われない証明)に変換．
+			
+		\item 得られた正則証明に自由に現れる変項のうち，固有変項以外のものをすべて主要$\varepsilon$項に置き換える．
+		
+		\item 固有変項を主要$\varepsilon$項に置き換える．このとき
+			\begin{align}
+				\varphi(x/\varepsilon x \negation \varphi) \rarrow \forall x \varphi
+			\end{align}
+			が{\bf HE}の定理であることを利用する．
+	\end{itemize}	
+\end{frame}
+
+\begin{frame}\frametitle{step3の略証}
+	\begin{block}{step3}
+		「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列
+		であるものが取れる」ならば 「$\Sigma$から$\psi$への{\bf HE}の証明で
+		$\lang{\varepsilon}$の文の列であるものが取れる」
+	\end{block}
+	
+	\begin{itemize}
+		\item $\mathcal{L}$の文の列である証明$\varphi_{1},\cdots,\varphi_{n}$を
+			$\lang{\varepsilon}$の文に書き換える．このとき命題論理の公理と三段論法の形式は崩れない．
+		
+		\item {\bf HE}の量化公理と$\Sigma$の公理は公理でない式に変わりうるが，それらが
+			$\lang{\varepsilon}$の文で証明可能であることを示す．
+	\end{itemize}	
 \end{frame}
 
 \section{いくつかの性質}
@@ -916,6 +1048,22 @@
 		&\rarrow \exists y\, (\, \exists x \varphi(x) \rarrow \varphi(y) \, )
 	\end{align}
 	の証明が必要になる．明らかに数行で終わる証明ではないし，証明の方針も直観とはずれる．
+\end{frame}
+
+\section{まとめ}
+\begin{frame}\frametitle{まとめ}
+	本論文では$\varepsilon$計算(オリジナルとは違うが)とクラスの直接的な導入を併せた集合論を構築した．
+	
+	\begin{block}{何が具体的で直観的か}
+		\begin{itemize}
+			\item 量化の範囲が具体的．
+			%\item 集合を物体として扱える．
+			\item 初めから集合とクラスが用意されていて，集合とクラスの範囲が明確．
+			\item 存在するなら取れる．
+			%\item クラスの取り入れ方
+			%\itemm 変項で語るのではなく集合を直に扱っているという感覚に順応
+		\end{itemize}
+	\end{block}
 \end{frame}
 
 \input{bibliography}
