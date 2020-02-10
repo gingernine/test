@@ -1,0 +1,521 @@
+\section{Henkin拡大}
+\label{sec:Henkin_expansion}
+	この節では「$\Sigma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+	であるものが取れる」ならば「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+	式の列であるものが取れる」ことを示す．\underline{{\bf HE}の証明に使われる式は全て文である}．
+	また{\bf HE}の証明で扱う項と式は$\lang{\varepsilon}$のものか$\mathcal{L}$のものを想定している
+	(ただし\ref{sec:restriction_of_formulas}節の条件を満たす式に限る)．
+	
+	\begin{screen}
+		\begin{logicalaxm}[{\bf HE}の公理(命題論理)]
+			$\varphi$と$\psi$と$\xi$を文とするとき
+			\begin{description}
+				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
+					\rarrow (\, (\, \varphi \rarrow \psi\, )
+					\rarrow (\, \varphi \rarrow \chi\, )\, ).$
+				\item[(K)] $\varphi \rarrow (\, \psi \rarrow \varphi\, ).$
+				\item[(CTD1)] $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
+				\item[(CTD2)] $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
+				\item[(DI)] $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
+				\item[(DI1)] $\varphi \rarrow (\, \varphi \vee \psi\, ).$
+				\item[(DI2)] $\psi \rarrow (\, \varphi \vee \psi\, ).$
+				\item[(DE)] $(\, \varphi \rarrow \chi\, ) \rarrow 
+					(\, (\, \psi \rarrow \chi\, ) 
+					\rarrow (\, (\, \varphi \vee \psi) \rarrow \chi\, )\, ).$
+				\item[(CI)] $\varphi \rarrow (\, \psi \rarrow (\, \varphi \wedge \psi\, )\, ).$
+				\item[(CE1)] $(\, \varphi \wedge \psi\, ) \rarrow \varphi.$
+				\item[(CE2)] $(\, \varphi \wedge \psi\, ) \rarrow \psi.$
+				\item[(DNE)] $\negation \negation \varphi \rarrow \varphi$.
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[{\bf HE}の公理(量化)]
+			$\varphi$を式とし，$\tau$を主要$\varepsilon$項とし，
+			$x$を変項とし，$\varphi$には$x$のみが自由に現れているとするとき
+			\begin{description}
+				\item[(DM)] $\negation \forall x \varphi
+					\rarrow \exists x \negation \varphi.$
+				
+				\item[(UE)] $\forall x \varphi \rarrow \varphi(x/\tau).$
+				
+				\item[(EI)] $\varphi(x/\tau) \rarrow \exists x \varphi.$
+				
+				\item[(EE)] $\hat{\varphi}$を，$\varphi$が$\lang{\varepsilon}$の式でないときは
+					$\varphi$を$\lang{\varepsilon}$の式に書き直したものとし，
+					$\varphi$が$\lang{\varepsilon}$の式であるときは$\varphi$そのものとする．このとき
+					\begin{align}
+						\exists x \varphi \rarrow \varphi(x/\varepsilon x \hat{\varphi}).
+					\end{align}
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	第\ref{chap:inference}章での証明可能性の定義を列の概念を用いて書き直しておく．
+	
+	\begin{screen}
+		\begin{metadfn}[{\bf HE}における証明]
+			$\mathscr{S}$を文からなる公理系とする．このとき文の列$\varphi_{1},\varphi_{2},\cdots,
+			\varphi_{n}$が$\mathscr{S}$から$\varphi_{n}$への{\bf HE}の証明であるとは，
+			各$\varphi_{i}$が次のいずれかであるということである：
+			\begin{itemize}
+				\item $\varphi_{i}$は{\bf HE}の公理である．
+				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
+				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$と$\varphi_{k}$の
+					三段論法で得られる．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	$\psi$を文とし，$\mathscr{S}$を公理系とするとき，「$\mathscr{S}$から$\psi$への
+	{\bf HE}の証明で$\lang{\varepsilon}$の文の列であるものが取れる」ことを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi
+	\end{align}
+	と書く．また「$\mathscr{S}$から$\psi$への
+	{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」ことを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HE}},\mathcal{L}} \psi
+	\end{align}
+	と書くが，$\provable{\mbox{{\bf HE}},\mathcal{L}}$と第\ref{chap:inference}章の証明可能性
+	とは同義であるから
+	\begin{align}
+		\mathscr{S} \vdash \psi
+	\end{align}
+	と書いても同じである．
+	
+	いま{\bf HK}の公理に{\bf HE}の(EE)を追加した証明体系を{\bf HK$\varepsilon$}とする．
+	$\mathscr{T}$を公理系とするとき，$\mathscr{T}$に
+	{\bf HE}の(EE)を追加した公理系を$\mathscr{T}$の{\bf Henkin拡大}
+	\index{Henkinかくだい@Henkin拡大}{\bf (Henkin extension)}と呼ぶが，
+	今回は{\bf HK}の公理に追加しているのでHenkin拡大の一種と見ることが出来る．
+	Henkin拡大とはすなわち，全ての存在文に証人を付けるための拡大である．
+	「公理系$\mathscr{S}$から文$\psi$への{\bf HK$\varepsilon$}の証明で
+	$\lang{\varepsilon}$の式の列であるものが取れる」ことを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HK}$\varepsilon$},\lang{\varepsilon}} \psi
+	\end{align}
+	と書く．
+	
+	\begin{screen}
+		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK$\varepsilon$}でも証明可能]
+		\label{metathm:Henkin_expansion_1}
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とする．
+			このとき$\mathscr{S} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば
+			$\mathscr{S} \provable{\mbox{{\bf HK}$\varepsilon$},\lang{\varepsilon}} \psi$
+			である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		{\bf HE}の公理で{\bf HK$\varepsilon$}の公理でないものは
+		\begin{align}
+			\negation \forall x \varphi \rarrow \exists x \negation \varphi
+		\end{align}
+		だけであるが，これはDe Morgan の法則
+		(定理\ref{classic:strong_De_Morgan_law_for_quantifier_2})より導かれる．
+		従って，$\mathscr{S}$から$\psi$への{\bf HE}の証明の中に{\bf HE}の公理(DM)があれば，
+		それより前の列に(DM)への{\bf HK}の証明を挿入すれば，
+		$\mathscr{S}$から$\psi$への{\bf HK$\varepsilon$}の証明になる．
+		\QED
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[$\varepsilon$項を変項に取り替えても証明]
+		\label{metathm:Henkin_expansion_2_lemma}
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とし，
+			$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から$\psi$への
+			{\bf HK}の証明で$\lang{\varepsilon}$の式の列であるものとする．
+			また$e$をこの証明に項として現れる\footnotemark
+			主要$\varepsilon$項とし，$y$をこの証明に現れない変項とする．
+			そして各$\varphi_{i}$で項として現れる$e$を全て$y$に取り替えた式を
+			$\widehat{\varphi}_{i}$と書く．
+			ただし$\varphi_{i}$に$e$が現れなければ$\widehat{\varphi}_{i}$は$\varphi_{i}$とする．
+			このとき
+			\begin{align}
+				\widehat{\varphi}_{1},\ \widehat{\varphi}_{2},\ 
+				\cdots,\ \widehat{\varphi}_{n}
+			\end{align}
+			は$\mathscr{S}$から$\psi$への{\bf HK}の証明である．
+		\end{metathm}
+	\end{screen}
+	
+	\footnotetext{
+		「証明に項として現れる」とは，$e$はいずれかの$\varphi_{i}$の項
+		(定義\ref{metadfn:L_term_of_formula})であるということである．
+	}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[case1] $\varphi_{i}$が{\bf HK}の命題論理の公理であるとき，
+				たとえば$\varphi_{i}$が
+				\begin{align}
+					\varphi \rarrow (\, \chi \rarrow \varphi\, )
+				\end{align}
+				なる式なら，$\widehat{\varphi}_{i}$も
+				\begin{align}
+					\widehat{\varphi} \rarrow 
+					(\, \widehat{\chi} \rarrow \widehat{\varphi}\, )
+				\end{align}
+				なる形の式となるので{\bf HK}の公理である．他の場合も同様である．
+				
+			\item[case2] $\varphi_{i}$が{\bf HK}の量化公理であるとき，つまり
+				\begin{align}
+					&\forall z\, (\, \chi \rarrow \varphi(x/z)\, ) 
+						\rarrow (\, \chi \rarrow \forall x \varphi\, ), \\
+					&\forall x \varphi \rarrow \varphi(x/t), \\
+					&\varphi(x/t) \rarrow \exists x \varphi, \\
+					&\forall z\, (\, \varphi(x/z) \rarrow \chi\, )
+						\rarrow (\, \exists x \varphi \rarrow \chi\, )
+				\end{align}
+				のいずれかであるとき，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					&\forall z\, (\, \widehat{\chi} \rarrow \widehat{\varphi}(x/z)\, ) 
+						\rarrow (\, \widehat{\chi} \rarrow \forall x \widehat{\varphi}\, ), \\
+					&\forall x \widehat{\varphi} \rarrow \widehat{\varphi}(x/t), \\
+					&\widehat{\varphi}(x/t) \rarrow \exists x \widehat{\varphi}, \\
+					&\forall z\, (\, \widehat{\varphi}(x/z) \rarrow \widehat{\chi}\, )
+						\rarrow (\, \exists x \widehat{\varphi} \rarrow \widehat{\chi}\, )
+				\end{align}
+				なる形の式となり，{\bf HK}の公理であるための変項の条件も満たされる．
+				ここで注意しておくと，$e$が$\varphi(x/t)$に現れる場合，
+				$\varphi$で$x$に代入された$t$を含むようには$e$は現れない．もし
+				そのような$t$が$e$に現れたら，$e$の中のその$t$を$x$に置き換えた$\varepsilon$項$e'$は，
+				$\varphi$すなわち$\exists x \varphi$の中に現れることになるが，
+				$x$は$e'$に自由に現れるので第\ref{sec:restriction_of_formulas}節の
+				約束に違反してしまう．従って$\varphi(x/t)$に現れる$e$を$y$に置き換えた式は
+				$\widehat{\varphi}(x/t)$なる形で書けるのである．同じように，
+				$\varphi$で$x$に代入された$z$を含むようには$e$は現れない．
+				
+			\item[case3] $\varphi_{i}$が$\mathscr{S}$の公理であるとき，$\varphi_{i}$は
+				$\lang{\in}$の文なので，$\widehat{\varphi}_{i}$は$\varphi_{i}$である．
+				
+			\item[case4] $\varphi_{i}$が前の式$\varphi_{j},\varphi_{k}$から
+				三段論法で得られているとき，$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$
+				なる式なら$\widehat{\varphi}_{k}$は
+				\begin{align}
+					\widehat{\varphi}_{j} \rarrow \widehat{\varphi}_{i}
+				\end{align}
+				なる式であるから，$\widehat{\varphi}_{i}$は$\widehat{\varphi}_{j}$と
+				$\widehat{\varphi}_{k}$から三段論法で得られる．
+				
+			\item[case5] $\varphi_{i}$が前の式$\varphi_{j}$から
+				汎化で得られているとき，つまり変項$a,x$と$x$が自由に現れる式$\chi$が取れて，
+				$\varphi_{j}$が$\chi(x/a)$で$\varphi_{i}$が$\forall x \chi$であるとき，
+				$x$に代入された$a$は$\chi(x/a)$の中で自由であるから，
+				主要$\varepsilon$項である$e$はそれらの$a$を含むようには
+				$\chi(x/a)$に現れない．従って$\widehat{\varphi}_{j}$は
+				\begin{align}
+					\widehat{\chi}(x/a)
+				\end{align}
+				なる式で，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\forall x \widehat{\chi}
+				\end{align}
+				なる式である．すなわち$\widehat{\varphi}_{i}$もまた$\widehat{\varphi}_{j}$から
+				汎化で得られる．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[{\bf HK$\varepsilon$}で証明可能なら{\bf HK}でも証明可能]
+		\label{metathm:Henkin_expansion_2}
+			$\mathscr{S}$を$\lang{\in}$の文からなる公理系とし，$\psi$を$\lang{\in}$の文とするとき，
+			$\mathscr{S} \provable{\mbox{{\bf HK}$\varepsilon$},\lang{\varepsilon}} \psi$
+			ならば$\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\lang{\varepsilon}$の式の列$\varphi_{1},\cdots,\varphi_{n}$を$\mathscr{S}$から
+		$\psi$への{\bf HK}$\varepsilon$の証明とし，$\varphi_{1},\cdots,\varphi_{n}$
+		の中から{\bf HE}の(EE)であるものを全て取り出して$\xi_{1},\cdots,\xi_{m}$と並べる．
+		すると$\varphi_{1},\cdots,\varphi_{n}$は公理系
+		$\xi_{1},\cdots,\xi{m},\mathscr{S}$から$\psi$への
+		{\bf HK}の証明となる．各$\xi_{j}$は
+		\begin{align}
+			\exists x_{j} F_{j}(x_{j}) \rarrow F_{j}(\varepsilon x_{j} F_{j})
+		\end{align}
+		なる形をしている．ここで$\varepsilon x_{m} F_{m}$は$F_{1},\cdots,F_{m-1}$の中には
+		現れないとすると
+		\footnote{
+			このような項$\varepsilon x_{m} F_{m}$は必ず取れる．たとえば
+			$\varepsilon x_{i} F_{i}$が$F_{j}$に現れたら，
+			$\varepsilon x_{j} F_{j}$は$F_{i}$には現れない．
+			実際$F_{i}$に現れたら$\varepsilon x_{i} F_{i}$が$F_{i}$に現れることになるが，
+			$F_{i}$より長い$\varepsilon x_{i} F_{i}$が$F_{i}$に現れることなどあり得ない．
+			同様に，$\varepsilon x_{j} F_{j}$が$F_{k}$に現れたら，
+			$\varepsilon x_{k} F_{k}$は$F_{i}$と$F_{j}$には現れない．この確認を繰り返せばよい．
+		}
+		\begin{align}
+			\xi_{1},\cdots,\xi_{m-1},\mathscr{S} 
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi
+		\end{align}
+		が示される．実際，{\bf HK}の演繹定理より
+		\begin{align}
+			\xi_{1},\cdots,\xi_{m-1},\mathscr{S} 
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}} 
+			(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(\varepsilon x_{m} F_{m})\, ) \rarrow \psi
+		\end{align}
+		が成り立つが，このときの$\xi_{1},\cdots,\xi_{m-1},\mathscr{S}$から
+		$(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(\varepsilon x_{m} F_{m})\, ) 
+		\rarrow \psi$への証明に項として現れる$\varepsilon x_{m} F_{m}$を，
+		その証明に使われていない変項$y$に置き換えれば
+		\footnote{
+			置き換える$\varepsilon x_{m} F_{m}$は他の項の真部分項になっていない
+			箇所のものだけである(定義\ref{metadfn:L_term_of_formula})．
+			また$\varepsilon x_{m} F_{m}$は$F_{1},\cdots,F_{m-1}$の中には現れないので
+			$\xi_{1},\cdots,\xi_{m-1}$の中にも現れない．ここで注意しておくと，
+			たとえば$\varepsilon x_{m} F_{m}$が$F_{1}(\varepsilon x_{1} F_{1})$に
+			現れたとすると，つまりその$\varepsilon x_{m} F_{m}$は$F_{1}(\varepsilon x_{1} F_{1})$
+			で$x_{1}$に代入された$\varepsilon x_{1} F_{1}$を部分項として含むように現れるが，
+			その$\varepsilon x_{m} F_{m}$の中の$\varepsilon x_{1} F_{1}$を
+			$x_{1}$に置き換えた$\varepsilon$項が$F_{1}$に現れることになる．しかし
+			その$\varepsilon$項には$x_{1}$が自由に現れるので主要$\varepsilon$項ではなく，
+			第\ref{sec:restriction_of_formulas}節の約束に違反してしまう．
+			ゆえに$\varepsilon x_{m} F_{m}$は$\xi_{1},\cdots,\xi_{m-1}$
+			の中に現れず，これらの式は置換による影響を受けない．
+			$\mathscr{S}$の公理も$\lang{\in}$の文であるから置換による影響を受けない．
+		}，それで得られる式の列は$\xi_{1},\cdots,\xi_{m-1},\mathscr{S}$
+		から$(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi$への
+		{\bf HK}の証明となる(メタ定理\ref{metathm:Henkin_expansion_2_lemma})．つまり
+		\begin{align}
+			\xi_{1},\cdots,\xi_{m-1},\mathscr{S} 
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}} 
+			(\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi
+		\end{align}
+		が成り立つ．すると汎化により
+		\begin{align}
+			\xi_{1},\cdots,\xi_{m-1},\mathscr{S} 
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}}
+			\forall y\, (\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi\, )
+		\end{align}
+		となり，{\bf HK}の公理(EE)により
+		\begin{align}
+			\xi_{1},\cdots,\xi_{m-1},\mathscr{S} 
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}}
+			\exists y\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, ) \rarrow \psi
+		\end{align}
+		が従う．定理\ref{classic:lemma_for_Henkin_expansion}より
+		\begin{align}
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}}
+			\exists y\, (\, \exists x_{m} F_{m}(x_{m}) \rarrow F_{m}(y)\, )
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\xi_{1},\cdots,\xi_{m-1},\mathscr{S} 
+			\provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi
+		\end{align}
+		が従う．以降も同様にして{\bf HK}の公理(EE)を一本ずつ削除していけば，
+		$\mathscr{S}$から$\psi$への{\bf HK}の証明で
+		$\lang{\varepsilon}$の式の列であるものが得られる．
+		\QED
+	\end{sketch}
+	
+	第\ref{chap:inference}章の$\Sigma$の公理は$\lang{\varepsilon}$の文の集まりであったが，
+	それらを$\lang{\in}$の文に直した公理体系を$\Gamma$\index{gamma@$\Gamma$}と書く．$\Gamma$は次の文からなる．
+	\begin{description}
+	\label{axioms_of_Gamma}
+		\item[外延性]
+			\begin{align}
+				\forall x\, \forall y\, (\, \forall z\, 
+				(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ).
+			\end{align}
+			
+		\item[相等性] 
+			\begin{align}
+				&\forall x\, \forall y\, (\, x = y \rarrow y = x\, ), \\
+				&\forall x\, \forall y\, \forall z\, 
+				(\, x = y \rarrow (\, x \in z \rarrow y \in z\, )\, ), \\
+				&\forall x\, \forall y\, \forall z\, 
+				(\, x = y \rarrow (\, z \in x \rarrow z \in y\, )\, ).
+			\end{align}
+		
+		\item[置換] $\varphi$を$\lang{\in}$の式とし，
+			$s,t$を$\varphi$に自由に現れる変項とし，
+			$x$は$\varphi$で$s$への代入について自由であり，
+			$y,z$は$\varphi$で$t$への代入について自由であるとするとき，
+			次の式の全称閉包\footnotemark は公理である：
+			\begin{align}
+				\forall x\, \forall y\, \forall z\, 
+				(\, \varphi(x,y) \wedge \varphi(x,z)
+				\rarrow y = z\, )
+				\rarrow \forall a\, \exists z\, \forall y\,
+				(\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,y)\, )\, ).
+			\end{align}
+			
+		\item[対] 
+			\begin{align}
+				\forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
+			\end{align}
+			
+		\item[合併] 
+			\begin{align}
+				\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).
+			\end{align}
+			
+		\item[冪] 
+			\begin{align}
+				\forall x\, \exists p\, \forall y\, 
+				(\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, ).
+			\end{align}
+			
+		\item[正則性] 
+			\begin{align}
+				\forall r\, (\, \exists x\, (\, x \in r\, ) \rarrow
+				\exists y\, (\, y \in r \wedge \forall z\, (\, z \in r \rarrow
+				z \notin y\, )\, )\, ).
+			\end{align}
+			
+		\item[無限] 
+			\begin{align}
+				\exists x\, (\, 
+				\exists s\, (\, \forall t\, (\, t \notin s\, ) \wedge s \in x\, ) 
+				\wedge \forall y\, (\, 
+				y \in x \rarrow \exists u\, (\, 
+				\forall v\, (\, v \in u \lrarrow v \in y \vee v = y\, )
+				\wedge u \in x\, )\, )\, ).
+			\end{align}
+	\end{description}
+	
+	\footnotetext{
+		$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の{\bf 全称閉包}
+		\index{ぜんしょうへいほう@全称閉包}{\bf (universal closure)}とは
+		\begin{align}
+			\forall x_{1}\, \cdots \forall x_{n} \varphi
+		\end{align}
+		なる形の文を指す．ただし$x_{1},\cdots,x_{n}$は$\varphi$に自由に現れる変項であって，
+		また$\varphi$に自由に現れる変項はこれらのみであるとする．$\varphi$が文であるときは
+		$\varphi$自身を全称閉包とする．
+	}
+	
+	\begin{screen}
+		\begin{metathm}[$\Sigma$の定理は$\Gamma$の定理]
+		\label{metathm:Henkin_expansion_3}
+			$\psi$を$\lang{\in}$の文とするとき，
+			$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば
+			$\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\Sigma$の公理が$\lang{\varepsilon}$の文であるときに$\Gamma$から証明できることを示せばよい．
+		$\Sigma$と$\Gamma$で形が違う公理は外延性，相等性，要素，置換である
+		(内包性公理は$\lang{\varepsilon}$の式ではありえないので今回は対象外)．
+		\begin{description}
+			\item[外延性]	$a$と$b$を主要$\varepsilon$項とするとき，{\bf HE}の公理(UE)によって
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x\, \forall y\, (\, \forall z\, 
+						(\, z \in x \lrarrow z \in y\, ) \rarrow x = y\, ), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall y\, (\, \forall z\, 
+						(\, z \in a \lrarrow z \in y\, ) \rarrow a = y\, ), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, 
+						(\, z \in a \lrarrow z \in b\, ) \rarrow a = b
+				\end{align}
+				となる．$\Sigma$の相等性の公理も同様に導かれる．
+				
+			\item[要素] $a$と$b$を主要$\varepsilon$項とするとき，
+				定理\ref{thm:any_class_equals_to_itself}と
+				定理\ref{thm:critical_epsilon_term_is_set}の証明をもう一度おさらいすれば
+				\begin{align}
+					\sigma &\defeq \varepsilon z \negation (\, z \in a \lrarrow z \in a\, ), \\
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a \lrarrow \sigma \in a, 
+						&& \mbox{含意の反射律(論理的定理\ref{logicalthm:reflective_law_of_implication})と論理積の導入} \\
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, (\, z \in a \lrarrow z \in a\, ), 
+						&& \mbox{全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})} \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall z\, (\, z \in a \lrarrow z \in a\, ) \rarrow a = a, 
+						&& \mbox{前段の結果} \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} a = a, 
+						&& \mbox{三段論法} \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, )
+						&& \mbox{{\bf HE}の公理(EI)}
+				\end{align}
+				となる．含意の導入(K)より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, ) \rarrow
+					(\, a \in b \rarrow \exists x\, (\, a = x\, )\, )
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} a \in b \rarrow \exists x\, (\, a = x\, )
+				\end{align}
+				が従う．
+				
+			\item[置換] $\chi$を
+				\begin{align}
+					\forall x\, \forall y\, \forall z\, 
+					(\, \varphi(x,y) \wedge \varphi(x,z)
+					\rarrow y = z\, )
+					\rarrow \forall a\, \exists z\, \forall y\,
+					(\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
+					\varphi(x,y)\, )\, )
+				\end{align}
+				なる文とするとき，$\varphi$に項として現れる
+				\footnote{
+					定義\ref{metadfn:L_term_of_formula}.
+				}
+				主要$\varepsilon$項を$\chi$に現れない変項で置き換える．
+				その際主要$\varepsilon$項ごとに違う変項を用いるが，
+				同じ主要$\varepsilon$項は同じ変項で置き換える．
+				そうして得られた式を$\widetilde{\chi}$とし，新しく追加した変項を
+				$x_{1},\cdots,x_{n}$とすれば
+				\begin{align}
+					\forall x_{1} \cdots \forall x_{n} 
+					\widetilde{\chi}(x_{1},\cdots,x_{n})
+				\end{align}
+				は$\Gamma$の置換公理となる．$x_{1},\cdots,x_{n}$によって置き換えられた
+				主要$\varepsilon$項を$\tau_{1},\cdots,\tau_{n}$とすれば，
+				{\bf HE}の公理(UE)より
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x_{1} \cdots \forall x_{n} \widetilde{\chi}(x_{1},\cdots,x_{n}), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x_{2} \cdots \forall x_{n} \widetilde{\chi}(\tau_{1},x_{2},\cdots,x_{n}), \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x_{3} \cdots \forall x_{n} \widetilde{\chi}(\tau_{1},\tau_{2},x_{3},\cdots,x_{n}), \\
+					&\vdots \\
+					\Gamma &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\chi}(\tau_{1},\cdots,\tau_{n}), \\
+				\end{align}
+				が得られる．$\widetilde{\chi}(\tau_{1},\cdots,\tau_{n})$とは$\chi$のことであるから
+				$\chi$は$\Gamma$の定理である．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{metathm}[{\bf HE}で証明可能なら{\bf HK}でも証明可能]
+		\label{metathm:Henkin_expansion_HE_to_HK}
+			$\psi$を$\lang{\in}$の文とするとき，$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば
+			$\Gamma \provable{\mbox{{\bf HK}},\lang{\in}} \psi$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$ならば，
+		メタ定理\ref{metathm:Henkin_expansion_3}より
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi
+		\end{align}
+		となり，メタ定理\ref{metathm:Henkin_expansion_1}より
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HK$\varepsilon$}},\lang{\varepsilon}} \psi
+		\end{align}
+		となり，メタ定理\ref{metathm:Henkin_expansion_2}より
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \psi
+		\end{align}
+		となる．最後の{\bf HK}の証明を$\varphi_{1},\cdots,\varphi_{n}$とする．
+		$\varphi_{1},\cdots,\varphi_{n}$には主要$\varepsilon$項が残っている場合，
+		$\varphi_{1},\cdots,\varphi_{n}$に項として現れる
+		\footnote{
+			$\varphi_{1},\cdots,\varphi_{n}$のどれかの式に項として現れる
+			(定義\ref{metadfn:L_term_of_formula})ということ．
+		}
+		主要$\varepsilon$項が$e_{1},\cdots,e_{m}$で全てであるなら，
+		$\varphi_{1},\cdots,\varphi_{n}$に現れない相異なる変項$y_{1},\cdots,y_{m}$
+		を用意して，項として現れる$e_{1},e_{2},\cdots,e_{m}$をそれぞれ$y_{1},y_{2},\cdots,y_{m}$
+		に置き換える．全て置き換え終わった後の式の列はメタ定理\ref{metathm:Henkin_expansion_2_lemma}
+		より{\bf HK}の証明であるし，式は$\lang{\in}$のものである．
+		\QED
+	\end{sketch}

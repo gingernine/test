@@ -1,0 +1,168 @@
+\section{クラス}
+	\begin{comment}
+	\begin{screen}
+		\begin{dfn}[閉項]
+			どの変項も自由に現れない$\varepsilon$項を
+			{\bf 閉${\boldsymbol \varepsilon}$項}\index{
+			へいイプシロンこう@閉$\varepsilon$項}{\bf (closed epsilon term)}と呼び，
+			どの変項も自由に現れない内包項を{\bf 閉内包項}\index{
+			へいないほうこう@閉内包項}{\bf (closed comprehension term)}と呼ぶ．
+			また閉$\varepsilon$項と閉内包項は以上のみである．
+		\end{dfn}
+	\end{screen}
+	\end{comment}
+	
+	元々の意図としては，例えば$x$のみが自由に現れる式$\varphi(x)$に対して
+	「$\varphi(x)$を満たすいずれかの集合$x$」という意味を込めて
+	\begin{align}
+		\varepsilon x \varphi(x)
+	\end{align}
+	を作ったのだし，「$\varphi(x)$を満たす集合$x$の全体」という意味を込めて
+	\begin{align}
+		\Set{x}{\varphi(x)}
+	\end{align}
+	を作ったのである．つまりこの場合の$\varepsilon x \varphi(x)$と
+	$\Set{x}{\varphi(x)}$は``意味を持っている''わけである．
+	これが，もし$x$とは別の変項$y$が$\varphi$に自由に現れているとすれば，
+	$\varepsilon x \varphi$も$\Set{x}{\varphi}$も$y$に依存してしまい
+	意味が定まらなくなる．というのも，変項とは代入可能な項であるから，$y$に代入する項ごとに
+	$\varepsilon x \varphi$と$\Set{x}{\varphi}$は別の意味を持ち得るのである．
+	また項が閉じていても意味不明な場合がある．たとえば
+	\begin{align}
+		\varepsilon y \forall x\, (\, x = x\, )
+	\end{align}
+	や
+	\begin{align}
+		\Set{y}{\forall x\, (\, x = x\, )}
+	\end{align}
+	なる項は閉じてはいるが，導入の意図には適っていない．意味不明ながらこういった項が存在しているのは
+	導入時にこれらを排除する面倒を避けたからであり，また一旦すべてを作り終えた後で余計なものを捨てる方が
+	楽だからである．とりあえず，導入の意図に適っている項は特別の名前を持っているべきである．
+	
+	\begin{screen}
+		\begin{dfn}[クラス]
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみ自由に現れているとするとき，$\varepsilon x \varphi(x)$
+			と$\Set{x}{\varphi(x)}$を{\bf クラス}\index{クラス}{\bf (class)}と呼ぶ．
+			またこれらのみがクラスである．
+		\end{dfn}
+	\end{screen}
+	
+	クラスには二種類あるので，それらも名前を分けておく．
+	\begin{screen}
+		\begin{dfn}[主要$\varepsilon$項]
+			クラスである$\varepsilon$項を{\bf 主要${\boldsymbol \varepsilon}$項}
+			\index{しゅよういぷしんろんこう@主要$\varepsilon$項}
+			{\bf (critical epsilon term)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\underline{主要$\varepsilon$項はいかなる場合も代入可能である}．
+	また後述することだが，本論文における集合とは，主要$\varepsilon$項か
+	主要$\varepsilon$項に等しいクラスのことである
+	(定理\ref{thm:critical_epsilon_term_is_set})．
+	
+	
+	\begin{screen}
+		\begin{dfn}[主要内包項]
+			クラスである内包項を{\bf 主要内包項}\index{しゅようないほうこう@主要内包項}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	内包項に関しては便宜上自由な変項の出現も許すことにするが，
+	たとえば$\Set{x}{\varphi}$と書いたら少なくとも$x$は$\varphi$に自由に現れているべきであり，
+	この意味で性質の良い内包項に対しても特別な名前を付けておく．
+	
+	\begin{screen}
+		\begin{dfn}[正則内包項]
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を変項とし，
+			$\varphi$に$x$が自由に現れているとするとき，
+			$\Set{x}{\varphi}$を{\bf 正則内包項}\index{せいそくないほうこう@正則内包項}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	主要内包項という呼び名も正則内包項という呼び名も本論文で勝手に付けた名前であるし，
+	主要$\varepsilon$項をクラスと呼ぶのも本論文の特徴である．
+	
+\section{扱う式の制限}
+\label{sec:restriction_of_formulas}
+	\begin{itembox}[l]{式の制限}
+		以降で扱う$\mathcal{L}$の項と式に対して，特筆が無い限り次が満たされていることを約束する：
+		\begin{itemize}
+			\item 式に現れる$\varepsilon$項は全て主要$\varepsilon$項である．
+			\item 式に現れる内包項は全て正則内包項である．
+			\item 項或いは式の上に現れる$\forall x \psi,\exists x \psi$なる形の式は，$\psi$の中に$x$が自由に現れている．
+		\end{itemize}
+	\end{itembox}
+	
+	項の中に現れる$\varepsilon$項も，項の中の項の中に現れる$\varepsilon$項も，
+	現れうる$\varepsilon$項は全て主要$\varepsilon$項である．
+	
+	\begin{screen}
+		\begin{metathm}[$\lang{\varepsilon}$の式に代入後も$\lang{\varepsilon}$の式]
+		\label{metathm:substitutions_into_L_epsilon_formulas}
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$a$を$\varphi$の中で$x$への代入について自由である$\lang{\varepsilon}$の項
+			(変項または主要$\varepsilon$項)とする．
+			このとき$\varphi(x/a)$は$\lang{\varepsilon}$の式である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\varphi$が原子式であるとき，例えば$\varphi$が
+				\begin{align}
+					x \in b
+				\end{align}
+				なる式であれば，$\varphi(x/a)$は
+				\begin{align}
+					a \in b
+				\end{align}
+				なる式である($b$が$x$ならば$\varphi(x/a)$は$a \in a$となる．$b$が$x$でない
+				ならば$b$は変項か主要$\varepsilon$項なので$\varphi(x/a)$は$a \in b$となる)．
+				他の場合も同様に$\varphi(x/a)$が$\lang{\in}$の式であると判る．
+			
+			\item[step2] $\varphi$が原子式でないとき，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_formulas}の仮定)]
+						$\varphi$の任意の真部分式$\psi$に対して
+						$\psi(x/a)$は$\lang{\varepsilon}$の式である
+				\end{description}
+				と仮定する．
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる式のとき，$\varphi(x/a)$は
+						\begin{align}
+							\negation \psi(x/a)
+						\end{align}
+						なる式であって，(IH)より$\psi(x/a)$は$\lang{\varepsilon}$の式であるから
+						$\varphi(x/a)$は$\lang{\varepsilon}$の式である．
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \xi
+						\end{align}
+						なる式のとき，$\varphi(x/a)$は
+						\begin{align}
+							\vee \psi(x/a) \xi(x/a)
+						\end{align}
+						なる式であって，(IH)より$\psi(x/a),\xi(x/a)$は$\lang{\varepsilon}$の式
+						であるから$\varphi(x/a)$は$\lang{\varepsilon}$の式である．
+					
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists z \psi
+						\end{align}
+						なる式のとき，$\varphi(x/a)$は
+						\begin{align}
+							\exists z \psi(x/a)
+						\end{align}
+						なる式であって，(IH)より$\psi(x/a)$は$\lang{\varepsilon}$の式であるから
+						$\varphi(x/a)$は$\lang{\varepsilon}$の式である．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}

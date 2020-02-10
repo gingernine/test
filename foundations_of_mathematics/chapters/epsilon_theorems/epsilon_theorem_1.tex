@@ -1,0 +1,490 @@
+\section{第一イプシロン定理メモ}
+	
+\subsection{埋め込み定理}
+	$A$を$L(PC_{\varepsilon})$の式とするとき，$A$を$L(EC_{\varepsilon})$の式に書き換える．
+	\begin{align}
+		x^{\varepsilon} &\mbox{は} x \\
+		(\in \tau \sigma)^{\varepsilon} &\mbox{は} \in \tau^{\varepsilon} \sigma^{\varepsilon} \\
+		(= \tau \sigma)^{\varepsilon} &\mbox{は} = \tau^{\varepsilon} \sigma^{\varepsilon} \\
+		(\rightharpoondown \varphi)^{\varepsilon} &\mbox{は} \rightharpoondown \varphi^{\varepsilon} \\
+		(\vee \varphi \psi)^{\varepsilon} &\mbox{は} \vee \varphi^{\varepsilon} \psi^{\varepsilon} \\
+		(\wedge \varphi \psi)^{\varepsilon} &\mbox{は} \wedge \varphi^{\varepsilon} \psi^{\varepsilon} \\
+		(\rightarrow \varphi \psi)^{\varepsilon} &\mbox{は} \rightarrow \varphi^{\varepsilon} \psi^{\varepsilon} \\
+		(\exists x \varphi)^{\varepsilon} &\mbox{は} \varphi^{\varepsilon}(\varepsilon x \varphi^{\varepsilon}) \\
+		(\forall x \varphi)^{\varepsilon} &\mbox{は} \varphi^{\varepsilon}(\varepsilon x \rightharpoondown \varphi^{\varepsilon}) \\
+		(\varepsilon x \psi)^{\varepsilon} &\mbox{は} \varepsilon x \varphi^{\varepsilon}
+	\end{align}
+	
+	$A$が$L(PC_{\varepsilon})$の式で，$x$が$A$に自由に現れて，
+	かつ$A$に自由に現れているのが$x$のみであるとき，
+	$A^{\varepsilon}$にも$x$が自由に現れて，かつ$A^{\varepsilon}$に
+	自由に現れているのは$x$のみである．
+	
+	\begin{screen}
+		\begin{metathm}[埋め込み定理]
+			$A$を$L(PC_{\varepsilon})$の文とし，$\provable{\mbox{{\bf PC}${}_{\varepsilon}$}} A$であるとする．
+			このとき$\provable{\mbox{{\bf EC}${}_{\varepsilon}$}} A^{\varepsilon}$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{comment}
+	示すべきことは
+	\begin{itemize}
+		\item $A \in Ax(PC_{\varepsilon})$ならば$\vdash A^{\varepsilon}$であること．
+			\begin{itemize}
+				\item $\vdash A$ならば$\vdash A^{\varepsilon}$であること．
+				\item $A$に$x$が自由に現れて，かつ自由に現れているのが$x$のみであるとき，
+					\begin{align}
+						\vdash A^{\varepsilon}(t^{\varepsilon}) \Longrightarrow A^{\varepsilon}(\varepsilon x A^{\varepsilon})
+					\end{align}
+					であること．
+				\item $A$に$x$が自由に現れて，かつ自由に現れているのが$x$のみであるとき，
+					\begin{align}
+						\vdash A^{\varepsilon}(\varepsilon x \rightharpoondown A^{\varepsilon}) \Longrightarrow A^{\varepsilon}(t^{\varepsilon})
+					\end{align}
+					であること．
+			\end{itemize}
+		
+		\item $PC_{\varepsilon} \vdash B$かつ$PC_{\varepsilon} \vdash B \Longrightarrow A$である$B$が取れるとき，
+			$(B \Longrightarrow A)^{\varepsilon}$は$B^{\varepsilon} \Longrightarrow A^{\varepsilon}$なので
+			$EC_{\varepsilon} \vdash B^{\varepsilon}$ならば
+			$EC_{\varepsilon} \vdash A^{\varepsilon}$となる．
+	\end{itemize}
+	\end{comment}
+
+\subsection{階数}
+	$B(x,y,z)$を，変項$x,y,z$が，そしてこれらのみが自由に現れる
+	$L(EC)$の式とする．このとき
+	\begin{align}
+		\exists x\, \exists y\, \exists z\, B(x,y,z) \label{fom:rank_of_epsilon_term_3}
+	\end{align}
+	に対して，$z$から順に$\varepsilon$項に変換していくと
+	\begin{align}
+		&\exists x\, \exists y\, B(x,y,\varepsilon z B(x,y,z)), \label{fom:rank_of_epsilon_term_1} \\
+		&\exists x\, \, B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),\varepsilon z B(x,\varepsilon y B(x,y,\varepsilon z B(x,y,z)),z)) \label{fom:rank_of_epsilon_term_2}
+	\end{align}
+	となるが，最後に$\exists x$を無くすと式が長くなりすぎるので一旦止めておく．
+	さて$z$に注目すれば，$B$に自由に現れていた$z$はまず
+	\begin{align}
+		\varepsilon z B(x,y,z)
+	\end{align}
+	に置き換えられる(\refeq{fom:rank_of_epsilon_term_1})．この時点では$x$と$y$は自由なままであるから，この$\varepsilon$項を
+	\begin{align}
+		e_{1}[x,y]
+	\end{align}
+	と略記する．次に$y$は
+	\begin{align}
+		\varepsilon y B(x,y,\varepsilon z B(x,y,z))
+	\end{align}
+	に置き換えられる(\refeq{fom:rank_of_epsilon_term_2})が，$e_{1}[x,y]$を使えば
+	\begin{align}
+		\varepsilon y B(x,y,e_{1}[x,y])
+	\end{align}
+	と書ける．この$\varepsilon$項でも$x$は自由なままであるから
+	\begin{align}
+		e_{2}[x]
+	\end{align}
+	と略記する．$e_{1}$と$e_{2}$を用いれば(\refeq{fom:rank_of_epsilon_term_2})の式は
+	\begin{align}
+		\exists x\, B\left(x,e_{2}[x],e_{1}[x,e_{2}[x]]\right)
+	\end{align}
+	と見やすく書き直せる．残る$\exists$を除去するには$x$を
+	\begin{align}
+		\varepsilon x B\left(x,e_{2}[x],e_{1}[x,e_{2}[x]]\right)
+	\end{align}
+	に置き換えれば良い．この$\varepsilon$項を$e_{3}$と書く．以上で
+	(\refeq{fom:rank_of_epsilon_term_3})の式は$L(EC_{\varepsilon})$の式
+	\begin{align}
+		B\left(e_{3},e_{2}[e_{3}],e_{1}[e_{3},e_{2}[e_{3}]]\right)
+	\end{align}
+	に変換されたわけである．それはさておき，ここで考察するのは{\bf 項間の主従関係}である．
+	$e_{2}[x]$は$x$のみによってコントロールされているのだから，
+	$x$を司る$e_{3}$を親分だと思えば$e_{2}[x]$は$e_{3}$の直属の子分である．
+	$e_{1}[x,y]$は$y$によってもコントロールされているので，
+	$e_{1}[x,y]$とは$e_{2}[x]$の子分であり，すなわち$e_{3}$の子分の子分であって，
+	この例において一番身分が低いわけである．
+	
+	$\varepsilon$項を構文解析して，それが何重の子分を従えているかを測った指標を
+	{\bf 階数}{\bf (rank)}と呼ぶ．とはいえ直属の子分が複数いることもあり得るので，
+	子分の子分の子分の子分…と次々に枝分かれしていく従属関係の中で，最も
+	深いものを辿って階数を定めることにする．
+	
+	\begin{screen}
+		\begin{metadfn}[従属]
+			$\varepsilon x A$を$L(EC_{\varepsilon})$の$\varepsilon$項とし，
+			$e$を$A$に現れる$L(EC_{\varepsilon})$の$\varepsilon$項とするとき，
+			$x$が$e$に自由に現れているなら$e$は{\bf $\varepsilon x A$に従属している}
+			\index{じゅうぞく@従属}{\bf (subordinate to $\varepsilon x A$)}という．
+		\end{metadfn}
+	\end{screen}
+	
+	はじめの例では，$e_{2}[x]$と$e_{1}[x,e_{2}[x]]$は共に$e_{3}$に従属しているし，
+	$e_{1}[x,y]$は$e_{2}[x]$に従属している．
+	$e_{1}[x,e_{2}[x]]$に従属している$\varepsilon$項は無いし，
+	$e_{1}[x,y]$に従属している$\varepsilon$項も無い．
+	
+	\begin{screen}
+		\begin{metadfn}[階数]
+			$e$を$L(EC_{\varepsilon})$の$\varepsilon$項とするとき，
+			$e$の{\bf 階数}\index{かいすう@階数}{\bf (rank)}を
+			以下の要領で定義する．
+			\begin{enumerate}
+				\item $e$に従属する$\varepsilon$項が無いならば，$e$の階数を$1$とする.
+				\item $e$に従属する$\varepsilon$項があるならば，$e$に従属する
+					$\varepsilon$項の階数の最大値に$1$を足したものを$e$の階数とする．
+			\end{enumerate}
+			また$e$の階数を$rk(e)$と書く．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{comment}
+	実際に$L(EC_{\varepsilon})$の全ての$\varepsilon$項に対して階数が定まっている．
+	(構造的帰納法について準備不足だが，直感的に次の説明は妥当である...)
+	\begin{description}
+		\item[step1] $e$が$L(EC)$の式で作られた$\varepsilon$項ならば$e$の階数は$1$である．
+		
+		\item[step3] 項$\tau_{1},\cdots,\tau_{n}$のそれぞれに対して，
+			その全ての部分$\varepsilon$項に階数が定まっていれば，
+			$f$を$n$項関数として，$f\tau_{1}\cdots\tau_{n}$の階数は
+			$rk(\tau_{1}),\cdots,rk(\tau_{n})$の中の最大値である．
+			というのも，$f\tau_{1}\cdots\tau_{n}$に現れる$\varepsilon$項は
+			$\tau_{1},\cdots,\tau_{n}$のいずれかの部分項になっているためである．
+			
+		\item[step4] 項$\tau_{1},\cdots,\tau_{n}$のそれぞれに対して，
+			その全ての部分$\varepsilon$項に階数が定まっていれば，
+			$p$を$n$項述語として，$p\tau_{1}\cdots\tau_{n}$の階数は
+			$rk(\tau_{1}),\cdots,rk(\tau_{n})$の中の最大値である．
+		
+		\item[step5] 式$\varphi$と$\psi$のそれぞれに対して，
+			その全ての部分$\varepsilon$項に階数が定まっていれば，
+			\begin{align}
+				rk(\rightharpoondown \varphi) &\coloneqq rk(\varphi), \\
+				rk(\vee \varphi \psi) &\coloneqq \max\{rk(\varphi),rk(\psi)\}, \\
+				rk(\wedge \varphi \psi) &\coloneqq \max\{rk(\varphi),rk(\psi)\}, \\
+				rk(\Longrightarrow \varphi \psi) 
+				&\coloneqq \max\{rk(\varphi),rk(\psi)\}, \\
+			\end{align}
+			である．というのも，左辺の式に現れる$\varepsilon$項は
+			$\varphi$か$\psi$の少なくとも一方に現れているからである．
+		
+		\item[step2] $e$に従属している全ての$\varepsilon$項に対して階数が定まっているならば，
+			$e$の階数は定義通りに定めることが出来る．
+	\end{description}
+	\end{comment}
+	
+	\begin{screen}
+		\begin{metathm}[階数定理]
+			$e$を$L(EC_{\varepsilon})$の$\varepsilon$項とし，
+			$s$と$t$を$L(EC_{\varepsilon})$の項とし，$e$の中で束縛されている変項はどれも$s,t$の中に自由に現れないとする．
+			このとき，$e$に現れる$s$の一つを$t$に置き換えた式を$e^{t}$とすれば
+			\begin{align}
+				rk(e) = rk(e^{t})
+			\end{align}
+			が成り立つ．$e$に$s$が現れなければ$e^{t}$は$e$とする．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1]
+				$e$の中に$\varepsilon$項$u$が現れているとして，
+				$u$に(もし現れているなら)現れる$s$が$t$に置き換わった項を$u^{t}$と書く．
+				$u$が$e$に従属していないとき，$u^{t}$は$e$に従属しない．実際，$e$を
+				\begin{align}
+					\varepsilon x A
+				\end{align}
+				なる$\varepsilon$項だとして，$x$は$t$に自由に現れないので
+				$u^{t}$にも$x$は自由に現れない．
+				
+				$u$が$e$に従属している場合，$u^{t}$の階数は
+				$u^{t}$に従属する$\varepsilon$項によって定まるのだから，
+				$u^{t}$の階数がどうなるかは$u$に従属する$\varepsilon$項の階数が
+				置換によって変動するか否かにかかっている．
+				
+				$u$に従属する$\varepsilon$項の階数についても，それに従属する
+				$\varepsilon$項の階数が置換によって変動するか否かで決まる．
+				
+				従属する$\varepsilon$項を辿っていけば，いずれは従属する$\varepsilon$項
+				を持たない$\varepsilon$項に行きつくのであるから，
+				$e$には従属する$\varepsilon$項が現れないとして
+				$e$と$e^{t}$の階数が等しいことを示せば良い．それは次段で示す．
+				
+			\item[step2]
+				$e$に従属する$\varepsilon$項が無ければ，
+				$e^{t}$に従属する$\varepsilon$項も無い．
+				なぜならば，$s$にも$t$にも$x$は自由に現れていないのであり，
+				仮に$e$に現れる$\varepsilon$項の中に$s$があったとしても，
+				それが$t$へ置き換わったところで$e$には従属しないからである．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	$\varepsilon x A(x)$と$\varepsilon y A(y)$のランクは同じ？
+	
+	\begin{screen}
+		\begin{metathm}[置換定理]
+			$\pi$を$L(EC_{\varepsilon})$の証明とし，
+			$e$を，$\pi$の主要$\varepsilon$項の中で階数が最大であって，かつ
+			階数が最大の$\pi$の主要$\varepsilon$項の中で極大であるものとする．また
+			$B(y/s) \rarrow B(y/\varepsilon y B)$を$\pi$の主要論理式とし，
+			$e$と$\varepsilon y B$は別物であるとする．そして，
+			$B(y/s) \rarrow B(y/\varepsilon y B)$に現れる
+			$e$を全て項$t$に置き換えた式を$C$とする．このとき，
+			\begin{description}
+				\item[(1)] $C$は主要論理式である．$C$に属する$\varepsilon$項を$e'$と書く．
+				\item[(2)] $rk(\varepsilon y B) = rk(e')$が成り立つ．
+				\item[(3)] $rk(\varepsilon y B) = rk(e)$ならば$\varepsilon y B$と$e'$は一致する．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	(2)が言っているのは$\varepsilon$項の階数は置換の前後で変わらないということであり，
+	(3)が言っているのは，階数が最大である(今の場合は$rk(e)$に等しい)$\varepsilon$項は増えないということである．
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1]
+				$y$から代わった$s$ (或いは$\varepsilon y B$)の少なくとも一つを部分項として含む形で
+				$e$が$B(y/s)$ (或いは$B(y/\varepsilon y B)$)に出現しているとする．
+				
+				実はこれは起こり得ない．もし起きたとすると，$e$に現れる$s$
+				(或いは$\varepsilon y B$)
+				を元の$y$に戻した項を$e^{y}$とすれば，
+				$e^{y}$には$y$が自由に現れるので(そうでないと$y$は$s$
+				(或いは$\varepsilon y B$)に置き換えられない)，$e^{y}$は
+				$y$とは別の変項$x$と式$A$によって
+				\begin{align}
+					\varepsilon x A
+				\end{align}
+				なる形をしている．$e^{y}$は$\varepsilon y B$に従属していることになり
+				\footnote{
+					$e^{y}$が$\varepsilon$項であって$B$に現れることの証明．
+				}
+				，階数定理と併せて
+				\begin{align}
+					rk(e) = rk(e^{y}) < rk(\varepsilon y B)
+				\end{align}
+				が成り立ってしまう．しかしこれは$rk(e)$が最大であることに矛盾する．
+				
+			\item[step2] $rk(\varepsilon y B) = rk(\pi)$ならば$B$に$e$は現れない．なぜならば，
+				$e$は階数が$rk(\pi)$である$\pi$の主要$\varepsilon$項の中で極大であるからである．
+				$\varepsilon y B$にも$e$は現れず，前段の結果より$B(y/\varepsilon y B)$に$e$が現れることもない．
+				ゆえに，$s$に(もし現れるなら)現れる$e$を$t$に置換した項を$s'$とすれば，$C$は
+				\begin{align}
+					B(y/s') \rarrow B(y/\varepsilon y B)
+				\end{align}
+				となる．
+			
+			\item[step3]
+				$rk(\varepsilon y B) < rk(\pi)$である場合
+				\begin{align}
+					rk(\varepsilon y B) = rk(e')
+				\end{align}
+				が成り立つことを示す．$B$に$e$が現れないならば$e'$は$\varepsilon y B$に一致する．
+				$B$に$e$が現れる場合，$B$に現れる$e$を$t$に置き換えた式を$B'$とする．
+				このとき階数定理より
+				\begin{align}
+					rk(\varepsilon y B) = rk(\varepsilon y B')
+				\end{align}
+				となる．また$B(y/s)$に現れる$e$を$t$に置き換えた式は，
+				$B(y/s)$において$y$から置き換えられた$s$を跨ぐようには$e$は現れないので
+				\begin{align}
+					B'(y/s')
+				\end{align}
+				となり，同様に$B(y/\varepsilon y B)$に現れる$e$を$t$に置き換えた式は
+				\begin{align}
+					B'(y/\varepsilon y B')
+				\end{align}
+				となる．すなわち$C$は
+				\begin{align}
+					B'(y/s') \rarrow B'(y/\varepsilon y B')
+				\end{align}
+				なる主要論理式である．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+\subsection{アイデア}
+	
+	主要論理式
+	\begin{align}
+		A(t/x) \rightarrow A(\varepsilon x A / x)
+	\end{align}
+	において，$\varepsilon x A$は$A(t/x) \rightarrow A(\varepsilon x A / x)$に
+	{\bf 属している}と言うことにする．
+	
+	$EC_{\varepsilon}$の式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\pi$と書くとき，
+	$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$の中で主要論理式である式を
+	{\bf $\pi$の主要論理式}や{\bf $\pi$に現れる主要論理式}と呼ぶことにする．
+	また$\pi$の主要論理式に属している$\varepsilon$項を{\bf $\pi$の主要$\varepsilon$項}
+	と呼ぶことにする．また，$\pi$の主要$\varepsilon$項の階数の最大値を
+	{\bf $\pi$の階数}と呼ぶことにする．
+	
+	\begin{screen}
+		\begin{metathm}[第一イプシロン定理]
+			$B$を$L(EC)$の式とし，$\provable{\mbox{{\bf EC}${}_{\varepsilon}$}} B$とする．
+			このとき$\provable{\mbox{{\bf EC}}} B$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{itembox}[l]{第一イプシロン定理の証明の流れ}
+		\begin{itemize}
+			\item $B$への証明$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$を$\pi$とする．
+			\item $e$を，$\pi$の主要$\varepsilon$項のうち階数が最大であって，かつ
+				その階数を持つ$\pi$の主要$\varepsilon$項の中で極大である(
+				他の$\varepsilon$項の部分項ではない)ものとする．
+			\item $e$が属する$\pi$の主要論理式の一つ$A(t/x) \rightarrow A(e/x)$を取る
+				(つまりこのとき$e$は$\varepsilon x A$なる$\varepsilon$項)．
+			\item $A(t/x) \rightarrow A(e/x)$を用いずに
+				{\bf EC}から$B$への証明$\pi'$を構成する．このとき以下が満たされる．
+				\begin{enumerate}
+					\item $A(t/x) \rightarrow A(e/x)$なる主要論理式は排除される．
+					\item $\pi$に$A(u/x) \rightarrow A(e/x)$なる主要論理式があれば，
+						この式は$\pi'$にも残っている．ただし$\pi'$に現れる主要論理式のうち，
+						$e$が属するものは他に無い．
+						つまり，{\bf $e$が属する主要論理式は$A(t/x) \rightarrow A(e/x)$
+						の分だけ減る．}
+					\item $\pi'$に現れる主要論理式の本数は増加するかもしれないが，
+						{\bf $e$と同じ階数の主要$\varepsilon$項の個数は増えない．}
+				\end{enumerate}
+			
+			\item 従って，まずは$e$が属する主要論理式から一本ずつ排除できる．
+				$e$が属する主要論理式が全て証明から排除されたら，
+				次は別の最高階数の$\varepsilon$項を一つ選んで
+				それが属する主要論理式を一本ずつ排除していく．
+				この段取りで，証明の階数を落としながら，最後には主要論理式が現れない証明が得られる．
+					
+			\item 最後に得られた証明に現れる式は，いずれも主要論理式以外の
+				{\bf EC}${}_{\varepsilon}$の定理であるから，項を取り替えても
+				{\bf EC}${}_{\varepsilon}$の定理のままである．証明に残っている
+				$\varepsilon$項を全て{\bf EC}の項に置き換えれば
+				{\bf EC}からの$B$への証明が得られる．
+		\end{itemize}
+	\end{itembox}
+	
+	以下では，上のフローのうち$A(t/x) \rightarrow A(e/x)$を排除するところの詳細を書く．
+	はじめに大まかに言えば，まず$\rightharpoondown A(t/x) \rightarrow B$と
+	$A(t/x) \rightarrow B$の証明を構成し，それから排中律と
+	$A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B$に訴えて
+	$B$への証明を得るという寸法である．
+	
+	\begin{description}
+		\item[$\rightharpoondown A(t/x) \rightarrow B$の証明を構成する]
+			$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$でない
+			{\bf EC}${}_{\varepsilon}$の公理ならば，
+			$\varphi_{i}$と$\varphi_{i+1}$の間に
+			\begin{align}
+				&\varphi_{i} \rightarrow 
+				(\rightharpoondown A(t/x) \rightarrow \varphi_{i}), \\
+				&\rightharpoondown A(t/x) \rightarrow \varphi_{i}
+			\end{align}
+			を挿入する(この時点で，$A(t/x) \rightarrow A(e/x)$でない主要論理式は
+			無傷のまま残ることが判る)．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}
+			\equiv \varphi_{j} \rightarrow \varphi_{i}$から三段論法で得られる場合は，
+			$\varphi_{i}$を
+			\begin{align}
+				&(\rightharpoondown A(t/x) \rightarrow (\varphi_{j} \rightarrow \varphi_{i})) \rightarrow
+				[(\rightharpoondown A(t/x) \rightarrow \varphi_{j})
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow \varphi_{i})], \\
+				&(\rightharpoondown A(t/x) \rightarrow \varphi_{j})
+				\rightarrow (\rightharpoondown A(t/x) \rightarrow \varphi_{i}), \\
+				&\rightharpoondown A(t/x) \rightarrow \varphi_{i}
+			\end{align}
+			で置き換える．$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$であるときは，
+			$\varphi_{i}$を
+			\begin{align}
+				\rightharpoondown A(t/x) \rightarrow (A(t/x) \rightarrow A(e/x))
+			\end{align}
+			で置き換える．
+	
+		\item[$A(t/x) \rightarrow B$の証明の構成]
+			$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$に現れる$e$を
+			($e$が部分項として現れる場合も)$t$に置き換えた式を
+			\begin{align}
+				\tilde{\varphi}_{1},\ \tilde{\varphi}_{2},\cdots, \tilde{\varphi}_{n}
+			\end{align}
+			と書く．このとき，任意の$i \in \{1,2,\cdots,n\}$で
+			\begin{enumerate}
+				\item $\varphi_{i}$が主要論理式でない{\bf EC}${}_{\varepsilon}$の定理なら
+					$\tilde{\varphi}_{i}$も主要論理式でない{\bf EC}${}_{\varepsilon}$の定理である．
+				\item $\varphi_{i}$が$A(u/x) \rightarrow A(e/x)$なる形の主要論理式
+					ならば，$\tilde{\varphi}_{i}$は$A(v/x) \rightarrow A(t/x)$
+					の形の式である．ただし$v$とは，$u$に$e$が現れていたらそれを$t$
+					に置き換えた項である\footnotemark．
+				\item $\varphi_{i}$が主要論理式で，$e$が属していないならば，
+					$\tilde{\varphi}_{i}$も主要論理式である(置換定理)．
+			\end{enumerate}
+			
+			\footnotetext{
+				$x$を$A$に現れている自由な変項とすれば，$e$とは$\varepsilon x A$のことであるし，
+				$A(\varepsilon x A/x)$とは$A$に自由に現れる$x$を
+				$\varepsilon x A$に置換した式である．
+				$A$には$\varepsilon x A$は現れていないので($A$に$\varepsilon x A$が
+				収まるはずはない)，$A(e/x)$に現れる$e$を$t$に変換した式は
+				$A(t/x)$になる．同様に，$A(u/x)$に$e$が現れるとすれば，
+				その$e$は$u$の部分項でしかありえない．すなわち，$A(u/x)$に現れる$e$を$t$で
+				置換した式は，$v$を$u$に現れる$e$を$t$に変換した項として
+				$A(v/x)$となるわけである．
+			}
+			\footnote{
+				$\varphi_{i}$が$e$が属する主要論理式ならば，
+				$\varphi_{i}$は$A(u/x) \rightarrow A(e/x)$なる式である．
+				実際，$\varphi_{i}$に属する$\varepsilon$項を$\varepsilon y B$とすれば，
+				$\varepsilon x A$と$\varepsilon y B$は記号列として一致するので，
+				$x$と$y$は一致するし，式$A$と式$B$も一致する．
+			}
+	
+			$\varphi_{i}$が$A(t/x) \rightarrow A(e/x)$でない$EC_{\varepsilon}$の公理
+			ならば，$\tilde{\varphi}_{i}$と$\tilde{\varphi}_{i+1}$の間に
+			\begin{align}
+				&\tilde{\varphi}_{i} \rightarrow 
+				\left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right), \\
+				&A(t/x) \rightarrow \tilde{\varphi}_{i}
+			\end{align}
+			を挿入する．$\varphi_{i}$が$\varphi_{j}$と$\varphi_{k}
+			\equiv \varphi_{j} \rightarrow \varphi_{i}$からモーダスポンネスで得られる場合は，
+			$\tilde{\varphi}_{i}$を
+			\begin{align}
+				&\left( A(t/x) \rightarrow \left(\tilde{\varphi}_{j} \rightarrow
+				\tilde{\varphi}_{i} \right) \right)
+				\rightarrow \left[ \left( A(t/x) \rightarrow \tilde{\varphi}_{j} \right)
+				\rightarrow \left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right) \right], \\
+				&\left( A(t/x) \rightarrow \tilde{\varphi}_{j} \right)
+				\rightarrow \left( A(t/x) \rightarrow \tilde{\varphi}_{i} \right), \\
+				&A(t) \rightarrow \tilde{\varphi}_{i}
+			\end{align}
+			で置き換える．$\varphi_{i}$が$e$が属する主要論理式
+			$A(u/x) \rightarrow A(e/x)$であるときは，$\tilde{\varphi}_{i}$とは
+			\begin{align}
+				A(v/x) \rightarrow A(t/x)
+			\end{align}
+			なる形の式であるが，$\tilde{\varphi}_{i}$を
+			\begin{align}
+				A(t/x) \rightarrow (A(v/x) \rightarrow A(t/x))
+			\end{align}
+			で置き換える．
+	
+		\item[$B$への証明の構成]
+			以上で$A(t/x) \rightarrow B$と$\rightharpoondown A(t/x) \rightarrow B$に対して
+			$A(t/x) \rightarrow A(e/x)$を用いない{\bf EC}${}_{\varepsilon}$の証明が
+			得られた．後はこれに
+			\begin{align}
+				(A(t/x) \rightarrow B) \rightarrow
+				\left[ (\rightharpoondown A(t/x) \rightarrow B) \rightarrow
+				(A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B)\right]
+			\end{align}
+			への証明を追加し(これは$(\varphi \rightarrow \chi) \rightarrow
+			((\psi \rightarrow \chi) \rightarrow 
+			(\varphi \vee \psi \rightarrow \chi))$
+			の形の{\bf EC}${}_{\varepsilon}$の定理である)，
+			\begin{align}
+				&(\rightharpoondown A(t/x) \rightarrow B) \rightarrow
+				(A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B), \\
+				&A(t/x) \vee \rightharpoondown A(t/x) \rightarrow B, \\
+				&A(t) \vee \rightharpoondown A(t), \\
+				&B
+			\end{align}
+			を追加すれば，$A(t/x) \rightarrow A(e/x)$を用いない
+			$B$への{\bf EC}${}_{\varepsilon}$の証明となる．
+			\QED
+	\end{description}

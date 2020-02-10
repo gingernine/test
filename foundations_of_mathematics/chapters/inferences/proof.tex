@@ -1,0 +1,528 @@
+	第\ref{sec:restriction_of_formulas}節で決めた通り，
+	式に現れる$\varepsilon$項は全て主要$\varepsilon$項であり，
+	式に現れる内包項は全て正則内包項であり，
+	項や式の上に現れる$\forall x \psi,\exists x \psi$なる形の式は，
+	$\psi$の中に$x$が自由に現れている．
+	
+\section{証明}
+	本節では{\bf 論理的公理}\index{ろんりてきこうり@論理的公理}{\bf (logical axiom)}を導入し，
+	主要な{\bf 論理的定理}\index{ろんりてきていり@論理的定理}を導出する．
+	論理的定理とは本論文で勝手に付けた名前であり，別に単に定理と呼んでも何も問題は無いのだが，
+	集合論特有の定理と区別するために敢えて名前を変えている．
+	
+	以下では
+	\begin{align}
+		\vdash
+	\end{align}
+	なる記号を用いて
+	\begin{align}
+		\varphi \vdash \psi
+	\end{align}
+	などと書く．これは「$\vdash$の右の文は，$\vdash$の左の文から証明できる」と読む．
+	$\vdash$の左右にあるのは必ず$\mathcal{L}$の文であって，
+	右側に置かれる文は必ず一本だけであるが，左側には文がいくつあっても良いし，全く無くても良い．
+	特に
+	\begin{align}
+		\vdash \psi
+	\end{align}
+	を満たす文$\psi$を論理的定理と呼ぶ．
+	
+	%証明とはどのようにされるのだとか，$\vdash \psi$を満たすとは
+	%どういう意味なのか，とかいったことは後に回して，とりあえず記号のパズルゲームと見立てて
+	%$\vdash$のルールを定める．
+	
+	%\begin{screen}
+	%	\begin{logicalrule}[演繹定理]\label{logicalrule:deduction_rule}
+	%		$A,B,C,D$を文とするとき，
+	%		\begin{description}
+	%			\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
+	%			\item[(b)] $A,B \vdash D$ならば
+	%				\begin{align}
+	%					B \vdash A \rarrow D,\quad
+	%					A \vdash B \rarrow D
+	%				\end{align}
+	%				が成り立つ．
+	%			\item[(c)] $A,B,C \vdash D$ならば
+	%				\begin{align}
+	%					B,C \vdash A \rarrow D,\quad
+	%					A,C \vdash B \rarrow D,\quad
+	%					A,B \vdash C \rarrow D
+	%				\end{align}
+	%				のいずれも成り立つ．
+	%		\end{description}
+	%	\end{logicalrule}
+	%\end{screen}
+	
+	%演繹定理においては$\vdash$の左側にせいぜい三つの文しかないのだが，
+	%実は$\vdash$の左側に不特定多数の文を持ってきても
+	%演繹定理じみたことが成立する(後述の演繹定理)．
+	
+	まずは{\bf 証明}\index{しょうめい@証明}{\bf (proof)}とは何かを規定する．
+	\underline{証明される式や証明の過程で出てくる式は全て文である}．本論文では証明された文を
+	{\bf 真な}\index{しん@真}{\bf (true)}文と呼ぶことにするが，
+	「証明された」や「真である」という状況は議論が立脚している前提に依存する．
+	ここでいう前提とは，論理的公理や言語ではなくて
+	{\bf 公理系}\index{こうりけい@公理系}{\bf (axioms)}と呼ばれるものを指している．
+	公理系とは文の集まりである．$\mathscr{S}$を公理系とするとき，
+	$\mathscr{S}$に収容された文を$\mathscr{S}$の{\bf 公理}\index{こうり@公理}{\bf (axiom)}
+	と呼ぶ．以下では本論文の集合論が立脚する公理系を$\Sigma$と書くが，
+	$\Sigma$に属する文は単に公理と呼んだりもする．
+	
+	$\Sigma$\index{sigma@$\Sigma$}とは以下の文からなる:
+	\begin{description}
+		\item[外延性] $a$と$b$をクラスとするとき
+			\begin{align}
+				\forall x\, (\, x \in a \lrarrow x \in b\, ) \rarrow a = b.
+			\end{align}
+			
+		\item[相等性] $a,b,c$をクラスとするとき
+			\begin{align}
+				a = b &\rarrow b = a, \\
+				a = b &\rarrow (\, a \in c \rarrow b \in c\, ), \\
+				a = b &\rarrow (\, c \in a \rarrow c \in b\, ).
+			\end{align}
+		
+		\item[内包性] $\varphi$を$y$のみが自由に現れる$\mathcal{L}$の式とし，
+			$x$は$\varphi$で$y$への代入について自由であるとするとき，
+			\begin{align}
+				\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, ).
+			\end{align}
+		
+		\item[要素] $a,b$をクラスとするとき
+			\begin{align}
+				a \in b \rarrow \exists x\, (\, x = a\, ).
+			\end{align}
+		
+		\item[置換] $x,y,s,y$を変項とし，
+			$\varphi$を$s,t$のみが自由に現れる$\mathcal{L}$の式とし，
+			$x$は$\varphi$で$s$への代入について自由であり，
+			$y,z$は$\varphi$で$t$への代入について自由であるとするとき，
+			\begin{align}
+				\forall x\, \forall y\, \forall z\, 
+				(\, \varphi(x,y) \wedge \varphi(x,z)
+				\rarrow y = z\, )
+				\rarrow \forall a\, \exists z\, \forall y\,
+				(\, y \in z \lrarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,y)\, )\, ).
+			\end{align}
+			
+		\item[対] 
+			\begin{align}
+				\forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
+			\end{align}
+			
+		\item[合併] 
+			\begin{align}
+				\forall x\, \exists u\, \forall y\, (\, \exists z\, (\, z \in x \wedge y \in z\, ) \lrarrow y \in u\, ).
+			\end{align}
+			
+		\item[冪] 
+			\begin{align}
+				\forall x\, \exists p\, \forall y\, 
+				(\, \forall z\, (\, z \in y \rarrow z \in x\, ) \lrarrow y \in p\, ).
+			\end{align}
+			
+		\item[正則性]
+			\begin{align}
+				\forall r\, (\, \exists x\, (\, x \in r\, )
+				\rarrow \exists y\, (\, y \in r \wedge \forall z\, 
+				(\, z \in r \rarrow z \notin y\, )\, )\, ).
+			\end{align}
+			
+		\item[無限] 
+			\begin{align}
+				\exists x\, (\, 
+				\exists s\, (\, \forall t\, (\, t \notin s\, ) \wedge s \in x\, ) 
+				\wedge \forall y\, (\, 
+				y \in x \rarrow \exists u\, (\, 
+				\forall v\, (\, v \in u \lrarrow v \in y \vee v = y\, )
+				\wedge u \in x\, )\, )\, ).
+			\end{align}
+	\end{description}
+	
+	\begin{screen}
+		\begin{metadfn}[証明可能]
+			文$\varphi$が公理系$\mathscr{S}$から
+			{\bf 証明された}や{\bf 証明可能である}\index{しょうめいかのう@証明可能}
+			{\bf (provable)}とは，
+			\begin{itemize}
+				\item $\varphi$は論理的公理である．
+				\item $\varphi$は$\mathscr{S}$の公理である．
+				\item 文$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\mathscr{S}$から
+				既に証明されているものが取れる({\bf 三段論法}\index{さんだんろんぽう@三段論法}
+				{\bf (Modus Pones)}\footnotemark)．
+			\end{itemize}
+			のいずれかが満たされているということである．ただし公理系を変項した場合の証明可能性には，
+			後述の演繹定理およびその逆の結果を適用することが出来る．
+		\end{metadfn}
+	\end{screen}		
+	
+	\footnotetext{
+		三段論法のように或る式から他の式を導き出す規則のことを{\bf 推論規則}
+		\index{すいろんきそく@推論規則}{\bf (rule of inference)}と呼ぶ．
+		第\ref{chap:conservative_extension}章では{\bf 汎化}
+		\index{はんか@汎化}{\bf (generalization)}と呼ばれる規則も登場する．
+	}
+	
+	$\varphi$が$\mathscr{S}$から証明可能であることを
+	\begin{align}
+		\mathscr{S} \vdash \varphi
+	\end{align}
+	と書く．$A,B \vdash \varphi$と書いてあれば，これは$A$と$B$の二つの文のみを
+	公理とした体系において$\varphi$が証明可能であることを表している．
+	たとえばどんな文$\varphi$に対しても
+	\begin{align}
+		\varphi \vdash \varphi
+	\end{align}
+	となるし，どんな文$\psi$を追加しても
+	\begin{align}
+		\varphi,\psi \vdash \varphi
+	\end{align}
+	となる．これらは最も単純なケースであるが，大抵の定理は数多くの複雑なステップを踏まなくては得られない．
+	$\mathscr{S}$から証明済みの$\varphi$を起点にして$\mathscr{S} \vdash \psi$であると判明すれば，
+	$\varphi$から始めて$\psi$が真であることに辿り着くまでの一連の作業を$\psi$の$\mathscr{S}$からの
+	{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼び，
+	$\psi$を$\mathscr{S}$の{\bf 定理}\index{ていり@定理}{\bf (theorem)}と呼ぶ．
+	特に論理的定理とは論理的公理だけから導かれる定理のことである．
+	
+	\begin{screen}
+		\begin{rem}[$\lang{\varepsilon}$の定理の導出]
+		\label{rem:deduction_of_L_epsilon_sentence}
+			第\ref{chap:conservative_extension}章に関連して大切な事柄に触れておくと，
+			\textcolor{red}{{\bf 以下の定理は全て，それが$\lang{\varepsilon}$の文を導くものであれば，
+			証明に使う文は全て$\lang{\varepsilon}$の文で良いのである！}}
+			このことは実際に定理を証明してみれば自ずと見えてくる．
+		\end{rem}
+	\end{screen}
+	
+	ではさっそく演繹定理の証明に進む．ところで演繹定理とは
+	証明の構造に関する性質を述べたものであるから，いま規定したばかりの「定理」ではなく
+	「メタ定理」である．
+	
+	ここで論理記号の名称を書いておく．
+	\begin{itemize}
+		\item $\vee$を{\bf 論理和}\index{ろんりわ@論理和}{\bf (logical disjunction)}
+			や{\bf 選言}と呼ぶ．
+		\item $\wedge$を{\bf 論理積}\index{ろんりせき@論理積}{\bf (logical conjunction)}
+			や{\bf 連言}と呼ぶ．
+		\item $\rarrow$を{\bf 含意}\index{がんい@含意}{\bf (implication)}と呼ぶ．
+		\item $\negation$を{\bf 否定}\index{ひてい@否定}{\bf (negation)}と呼ぶ．
+	\end{itemize}
+	
+	\begin{screen}
+		\begin{logicalaxm}[含意の分配律]
+		\label{logicalaxm:distributive_law_of_implication}
+			$A,B,C$を文とするとき
+			\begin{align}
+				(\, A \rarrow (\, B \rarrow C\, )\, ) 
+				\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, ).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	上の言明は``どんな文でも持ってくれば，その式に対して含意の分配律が成立する''という意味である．
+	このように無数に存在し得る定理を一括して表す書き方は{\bf 公理図式}\index{こうりずしき@公理図式}
+	{\bf (schema)}と呼ばれる．公理に限らず論理的定理や定理であっても図式であるものが多い．
+	
+	\begin{screen}
+		\begin{logicalaxm}[含意の導入]
+		\label{logicalaxm:introduction_of_implication}
+			$A,B$を文とするとき
+			\begin{align}
+				B \rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の反射律]
+		\label{logicalthm:reflective_law_of_implication}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		含意の導入より
+		\begin{align}
+			&\vdash A \rarrow (\, (\, A \rarrow A\, ) \rarrow A\, ), 
+			\label{fom:reflective_law_of_implication_1} \\
+			&\vdash A \rarrow (\, A \rarrow A\, )
+			\label{fom:reflective_law_of_implication_2}
+		\end{align}
+		が成り立ち，含意の分配律より
+		\begin{align}
+			\vdash (\, A \rarrow (\, (\, A \rarrow A\, ) \rarrow A\, )\, )
+				\rarrow (\, (\, A \rarrow (\, A \rarrow A\, )\, )
+				\rarrow (\, A \rarrow A\, )\, )
+				\label{fom:reflective_law_of_implication_3}
+		\end{align}
+		が成り立つ．(\refeq{fom:reflective_law_of_implication_1})と
+		(\refeq{fom:reflective_law_of_implication_3})との三段論法より
+		\begin{align}
+			\vdash (\, A \rarrow (\, A \rarrow A\, )\, )
+				\rarrow (\, A \rarrow A\, )
+			\label{fom:reflective_law_of_implication_4}
+		\end{align}
+		となり，(\refeq{fom:reflective_law_of_implication_2})と
+		(\refeq{fom:reflective_law_of_implication_4})との三段論法より
+		\begin{align}
+			\vdash A \rarrow A
+		\end{align}
+		が出る．
+		\QED
+	\end{prf}
+	
+	%\begin{screen}
+	%	\begin{logicalthm}[含意の導入]
+	%	\label{logicalthm:introduction_of_implication}
+	%		$A,B$を文とするとき
+	%		\begin{align}
+	%			\vdash B \rarrow (\, A \rarrow B\, ).
+	%		\end{align}
+	%	\end{logicalthm}
+	%\end{screen}
+	
+	%\begin{prf}
+	%	\begin{align}
+	%		A,B \vdash B
+	%	\end{align}
+	%	より演繹定理から
+	%	\begin{align}
+	%		B \vdash A \rarrow B
+	%	\end{align}
+	%	となり，再び演繹定理より
+	%	\begin{align}
+	%		\vdash B \rarrow (\, A \rarrow B\, )
+	%	\end{align}
+	%	が得られる．
+	%	\QED
+	%\end{prf}
+	
+	%演繹定理を示すための論理的定理の導出は次で最後である．
+	
+	%\begin{screen}
+	%	\begin{logicalthm}[含意の分配則]
+	%	\label{logicalthm:distributive_law_of_implication}
+	%		$A,B,C$を文とするとき
+	%		\begin{align}
+	%			\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
+	%			\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, ).
+	%		\end{align}
+	%	\end{logicalthm}
+	%\end{screen}
+	
+	%\begin{prf}
+	%	証明可能性の規則より
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A, \\
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A \rarrow B
+	%	\end{align}
+	%	となるので
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		\vdash B
+	%	\end{align}
+	%	が成り立つし，同じように
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A, \\
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		&\vdash A \rarrow (\, B \rarrow C\, )
+	%	\end{align}
+	%	であるから
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A
+	%		\vdash B \rarrow C
+	%	\end{align}
+	%	も成り立つ．これによって
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B,\ A \vdash C
+	%	\end{align}
+	%	も成り立つから，あとは演繹定理を順次適用すれば
+	%	\begin{align}
+	%		A \rarrow (\, B \rarrow C\, ),\ A \rarrow B
+	%		&\vdash A \rarrow C, \\
+	%		A \rarrow (\, B \rarrow C\, )
+	%		&\vdash (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, ), \\
+	%		&\vdash (\, A \rarrow (\, B \rarrow C\, )\, ) 
+	%			\rarrow (\, (\, A \rarrow B\, ) \rarrow (\, A \rarrow C\, )\, )
+	%	\end{align}
+	%	となる．
+	%	\QED
+	%\end{prf}
+	
+	\begin{screen}
+		\begin{metaaxm}[証明に対する構造的帰納法]
+		\label{metaaxm:induction_principle_of_proofs}
+			$\mathscr{S}$を公理系とし，Xを文に対する何らかの言明とするとき，
+			\begin{itemize}
+				\item $\mathscr{S}$の公理に対してXが言える．
+				\item 論理的公理に対してXが言える．
+				\item $\varphi$と$\varphi \rarrow \psi$が$\mathscr{S}$の
+					定理であるような文$\varphi$と文$\psi$が取れたとき，
+					$\varphi$と$\varphi \rarrow \psi$に対して
+					Xが言えるならば，$\psi$に対してXが言える．
+			\end{itemize}
+			のすべてが満たされていれば，$\mathscr{S}$から証明可能なあらゆる文に対してXが言える．
+		\end{metaaxm}
+	\end{screen}
+	
+	公理系$\mathscr{S}$に文$A$を追加した公理系を
+	\begin{align}
+		A,\ \mathscr{S}
+	\end{align}
+	や
+	\begin{align}
+		\mathscr{S},\ A
+	\end{align}
+	と書く．$A$が既に$\mathscr{S}$の公理であってもこのように表記するが，
+	その場合は$\mathscr{S}, A$や$A,\mathscr{S}$とは$\mathscr{S}$そのものである．
+	
+	\begin{screen}
+		\begin{metathm}[演繹定理]\label{metathm:deduction_theorem}
+			$\mathscr{S}$を公理系とし，$A$を文とするとき，
+			$A,\mathscr{S}$の任意の定理$B$に対して
+			\begin{align}
+				\mathscr{S} \vdash A \rarrow B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[第一段]
+				$B$を$\mathscr{S},A$の公理か或いは論理的公理とする．
+				$B$が$A$ならば含意の反射律
+				(論理的定理\ref{logicalthm:reflective_law_of_implication})より
+				\begin{align}
+					\vdash A \rarrow B
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\mathscr{S} \vdash A \rarrow B
+				\end{align}
+				となる．$B$が$\mathscr{S}$の公理又は論理的公理であるとき，まず
+				\begin{align}
+					\mathscr{S} \vdash B
+				\end{align}
+				が成り立つが，他方で含意の導入より
+				\begin{align}
+					\mathscr{S} \vdash B \rarrow (\, A \rarrow B\, ) 
+				\end{align}
+				も成り立つので，証明可能性の定義より
+				\begin{align}
+					\mathscr{S} \vdash A \rarrow B
+				\end{align}
+				が従う．
+				
+			\item[第二段]
+				$C$及び$C \rarrow B$が$\mathscr{S}$の定理であるような
+				文$C$と文$B$が取れたとして，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_proofs}の仮定)]
+						$\mathscr{S} \vdash A \rarrow (\, C \rarrow B\, )$かつ
+						$\mathscr{S} \vdash A \rarrow C$
+				\end{description}
+				と仮定する．含意の分配律より
+				\begin{align}
+					\mathscr{S} \vdash 
+					(\, A \rarrow (\, C \rarrow B\, )\, ) 
+					\rarrow (\, (\, A \rarrow C\, ) \rarrow (\, A \rarrow B\, )\, )
+				\end{align}
+				が満たされるので，証明可能性の定義の通りに
+				\begin{align}
+					\mathscr{S} \vdash (\, A \rarrow C\, ) 
+					\rarrow (\, A \rarrow B\, )
+				\end{align}
+				が従い，
+				\begin{align}
+					\mathscr{S} \vdash A \rarrow B
+				\end{align}
+				が従う．以上と構造的帰納法より，$\mathscr{S},A$の任意の定理$B$に対して
+				\begin{align}
+					\mathscr{S} \vdash A \rarrow B
+				\end{align}
+				が言える．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	演繹定理の逆も得られる．つまり，
+	$\mathscr{S}$を公理系とし，$A$と$B$を文とするとき，
+	\begin{align}
+		\mathscr{S} \vdash A \rarrow B
+	\end{align}
+	であれば
+	\begin{align}
+		A,\ \mathscr{S} \vdash B
+	\end{align}
+	が成り立つ．実際
+	\begin{align}
+		A,\ \mathscr{S} \vdash A
+	\end{align}
+	が成り立つのは証明の定義の通りであるし，
+	$A \rarrow B$が$\mathscr{S}$の定理ならば
+	\begin{align}
+		A,\ \mathscr{S} \vdash A \rarrow B
+		\label{fom:inversion_of_deduction_theorem}
+	\end{align}
+	が成り立つので，併せて
+	\begin{align}
+		A,\ \mathscr{S} \vdash B
+	\end{align}
+	が従う．ただし(\refeq{fom:inversion_of_deduction_theorem})に
+	関しては次のメタ定理を示さなくてはいけない．
+	
+	\begin{screen}
+		\begin{metathm}[公理が増えても証明可能]
+			$\mathscr{S}$を公理系とし，$A$を文とするとき，
+			$\mathscr{S}$の任意の定理$B$に対して$A,\ \mathscr{S} \vdash B$が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		$B$が$\mathscr{S}$の公理であるか論理的公理であれば
+		\begin{align}
+			A,\ \mathscr{S} \vdash B
+		\end{align}
+		は言える．また
+		\begin{align}
+			\mathscr{S} &\vdash C, \\
+			\mathscr{S} &\vdash C \rarrow B
+		\end{align}
+		を満たす文$C$が取れたとして，
+		\begin{description}
+			\item[IH (帰納法\ref{metaaxm:induction_principle_of_proofs}の仮定)]
+				$A,\ \mathscr{S} \vdash C$かつ$A,\ \mathscr{S} \vdash C \rarrow B$
+		\end{description}
+		と仮定すれば
+		\begin{align}
+			A,\ \mathscr{S} \vdash B
+		\end{align}
+		となる．以上と構造的帰納法より$\mathscr{S}$の任意の定理$B$に対して
+		\begin{align}
+			A,\ \mathscr{S} \vdash B
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{metaprf}
+	
+	以上で次を得た．
+	\begin{screen}
+		\begin{metathm}[演繹定理の逆]
+		\label{metathm:inverse_of_deduction_theorem}
+			$\mathscr{S}$を公理系とし，$A$と$B$を文とするとき，
+			$\mathscr{S} \vdash A \rarrow B$であれば
+			\begin{align}
+				A,\ \mathscr{S} \vdash B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}

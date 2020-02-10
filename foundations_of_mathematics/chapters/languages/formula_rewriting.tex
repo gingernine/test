@@ -1,0 +1,928 @@
+\section{式の書き換え}
+\label{subsec:formula_rewriting}
+	$\varepsilon$項を取り入れたのは{\bf 存在文}\index{そんざいぶん@存在文}
+	{\bf (existential sentence)}に対して{\bf 証人}\index{しょうにん@証人}
+	{\bf (witnessing term)}を与えるためであり，そのために
+	\begin{align}
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \varphi(x))
+	\end{align}
+	なる式を公理とする．ただし$\varepsilon$項を作れるのは$\lang{\varepsilon}$
+	の式のみであるから，$\varphi$が内包項を含んだ式であると$\varepsilon x \varphi(x)$を
+	使うことが出来ない．とはいえ内包項を含んだ存在文も往々にして登場するので，それらに対しても
+	証人を用意できると便利である．そこで$\varphi$を内包項を含んだ$\mathcal{L}$の式とするとき，
+	$\varphi$を``同値''な$\lang{\varepsilon}$の式$\widehat{\varphi}$に書き換えて
+	\begin{align}
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \widehat{\varphi}(x))
+	\end{align}
+	を公理とする(量化公理\ref{logicalaxm:rules_of_quantifiers})．
+	注意点は\underline{同値な書き換えはいくらでも作れる}ということであり，
+	$\check{\varphi}$も$\varphi$の書き換えならば
+	\begin{align}
+		\exists x \varphi(x) \rarrow \varphi(\varepsilon x \check{\varphi}(x))
+	\end{align}
+	も公理とする．書き換える必要があるのは内包項を含んでいる式のみであり，
+	またそのような式の{\bf 原子式の部分だけを書き換えれば十分}である．
+	書き換えが``同値''というのは後述の\ref{sec:equivalence_of_formula_rewriting}節
+	で述べてあるような意味であり，直感的に当然な範囲でしかないのだが，
+	書き換え時に課す変項の条件が多いから読むだけでも疲労困憊する．
+	これらは全て\underline{自由に現れる変項を書き換え後も自由ならしめるため}のものであるが，
+	とりあえずは「式の書き換えが可能である」ということと「式の書き換えの形」だけを認識されれば，
+	その他の些末事項を当面無視しても大して問題は無い．
+	原子式の書き換えは次の要領で行う：
+	
+	\begin{table}[H]
+		\begin{center}
+		\caption{式の書き換え表}
+		\begin{tabular}{c|c|c|c}
+			 & 元の式 & 書き換え後 & 付記 \\ \hline \hline
+			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
+			(2) & $\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
+			(3) & $\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
+			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら変項の名前替え \\ \hline
+			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
+			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
+		\end{tabular}
+		\label{tab:formula_rewriting}
+		\end{center}
+	\end{table}
+	
+	上の表の書き換えでは変項$u,v,s$を追加したが，以下の条件を満たす限りどの変項を選んでも構わない．
+	従って\underline{式の書き換えは一つに決まらない}ということになるが，違う変項を選んでも式の意味は変わらない
+	(定理\ref{logicalthm:equivalence_by_replacing_bound_variables})．
+	上の表にある項が満たしている条件は次である：
+			
+	\begin{itemize}
+		\item $a,b$は$\lang{\varepsilon}$の項である
+			(\ref{sec:restriction_of_formulas}節より
+			$a,b$は変項か主要$\varepsilon$項)．
+		
+		\item $\Set{y}{\varphi}$と$\Set{z}{\psi}$を正則内包項である．
+		
+		\item (1)の$v$は$\psi$に自由に現れる$z$以外のどの変項とも$a$とも違い，
+			また$\psi$の中で$z$への代入について自由である．
+		
+		\item (2)の$u$は$\varphi$に自由に現れる$y$以外のどの変項とも$b$とも違い，
+			また$\varphi$の中で$y$への代入について自由である．
+			
+		\item (3)の$u$は$\varphi$に自由に現れる$y$以外のどの変項とも，
+			$\psi$に自由に現れる$z$以外のどの変項とも違い，また
+			$\varphi$の中で$y$への代入について自由であり，
+			$\psi$の中で$z$への代入について自由である．
+		
+		\item (5)の$u$は$\varphi$に自由に現れる$y$以外のどの変項とも違い，
+			また$\varphi$の中で$y$への代入について自由である．
+			$s$は$\varphi$に自由に現れる$y$以外のどの変項とも$b,u$とも違う．
+		
+		\item (6)の$u$は$\varphi$に自由に現れる$y$以外のどの変項とも違い，
+			また$\varphi$の中で$y$への代入について自由である．
+			$s$は，$\varphi$に自由に現れる$y$以外のどの変項とも，
+			$\psi$に自由に現れる$z$以外のどの変項とも，$u$とも違い，
+			また$\psi$の中で$z$への代入について自由である．
+			
+		\item (4)の「変項の名前替え」について．$\psi$の中の$z$の自由な出現が，$\psi$の
+			$\forall a \chi$或いは$\exists a \chi$なる形の部分式(定義\ref{metadfn:L_subformula})
+			の中にある場合，その部分式を$\forall b \chi(a/b)$或いは$\exists b \chi(a/b)$に差し替える．
+			この$b$としては，\underline{$\chi$に自由に現れず，かつ$\chi$の中で$a$への代入について
+			自由である変項}を取るが，これは$\forall a \chi$或いは$\exists a \chi$に
+			自由に現れる変項を束縛しないためである．たとえば
+			\begin{align}
+				a \in \Set{z}{\exists a\, (\, z \in a\, )}
+			\end{align}
+			という式では左辺の$a$は自由であるのに，書き換えの規則をそのまま適用すると
+			\begin{align}
+				\exists a\, (\, a \in a\, )
+			\end{align}
+			となり束縛されてしまう．こうならないためには
+			\begin{align}
+				a \in \Set{z}{\exists b\, (\, z \in b\, )}
+			\end{align}
+			のように$a$を別の変項$b$に替えて
+			\begin{align}
+				\exists b\, (\, a \in b\, )
+			\end{align}
+			とすればよい．ただし，
+			\begin{align}
+				\forall a\, (\, ...\exists a\, (\, ...\, z\, ...\, )...\, )
+			\end{align}
+			のように$\forall a,\exists a$の多層構造の内部に$z$の自由な出現がある場合，
+			$z$のその自由な出現がある$\forall a,\exists a$から始まる$\psi$の部分式
+			を一本ずつ取り(取る順番はどうでもよい)，上と同じ要領で差し替えを行う．
+			この操作をより抽象的かつ具体的に述べ直しておく．
+			%その直部分式(定義\ref{metadfn:L_immediate_subformula})を差し替える．
+			%うちまずは最も狭いものを取り，
+			%その直部分式(定義\ref{metadfn:L_immediate_subformula})に
+			%自由に現れる$a$に$b$を代入して$b$の量化式とする．次は二番目に狭い部分式を取り，
+			%その直部分式に自由に現れる$a$に$b$を代入して$b$の量化式とする．
+			%同じ操作を$\forall a,\exists a$のスコープから抜け出るまで繰り返す．
+	\end{itemize}
+		
+	\begin{screen}
+		\begin{rem}[$a \in \Set{z}{\psi}$の書き換え]
+		\label{rem:rewriting_of_the_4th_kind}
+			ここで$a$は変項としておく．$\psi$の中の$z$の自由な出現を内部に持つ$\psi$の部分式のうち，
+			$\forall a$または$\exists a$から始まるものが$\xi_{1},\xi_{2},\cdots,\xi_{n}$で
+			全てであるとする．ただし，これらの中に重複があっても出現位置が違えば別個のものと見做す．
+			この設定の下では，$a \in \Set{z}{\psi}$は以下の要領で書き換える．
+		\end{rem}
+	\end{screen}
+	
+	まずは，便宜上の措置として$\xi_{i}$を$\xi_{i}^{1}$と書き($1 \leq i \leq n$
+	\footnote{
+		ここでの数字や大小関係は日常的な感覚で扱えるものとする．
+	})，
+	$\chi_{1}^{1}$を$\xi_{1}^{1}$の直部分式(定義\ref{metadfn:L_immediate_subformula})とする．
+	つまり$\xi_{1}^{1}$は$\forall a \chi_{1}^{1}$であるか$\exists a \chi_{1}^{1}$なる形の式である．
+	$b_{1}$を，$\chi_{1}^{1}$に自由に現れず，かつ$\chi_{1}^{1}$の中で$a$への代入について自由である変項とし，
+	$\psi$のこの$\xi_{1}^{1}$の部分を，$\xi_{1}^{1}$が$\forall a \chi_{1}^{1}$である場合は
+	\begin{align}
+		\forall b_{1} \chi_{1}^{1}(a/b_{1})
+	\end{align}
+	に，$\xi_{1}^{1}$が$\exists a \chi_{1}^{1}$である場合は
+	\begin{align}
+		\exists b_{1} \chi_{1}^{1}(a/b_{1})
+	\end{align}
+	に差し替える．$\psi$の$\xi_{1}^{1}$を差し替えた後の式を$\psi_{1}$とし，
+	$\xi_{i}^{2}$を，$\xi_{i}^{1}$に$\xi_{1}^{1}$が部分式として表れていない場合は$\xi_{i}^{1}$のままとし，
+	$\xi_{i}^{1}$に$\xi_{1}^{1}$が部分式として表れている場合は$\xi_{1}^{1}$を上式に差し替えた式とする．
+	このときメタ定理\ref{metathm:replace_subformula_with_some_formula}より
+	$\psi_{1}$も$\xi_{i}^{2}$も$\lang{\varepsilon}$の式であるし，差し替え前後で自由に現れる変項は一致している．
+	また$\psi_{1}$の中での$z$の自由な出現を内部に持つ$\psi_{1}$の部分式のうち，$\forall a$または
+	$\exists a$から始まるものは
+	\begin{align}
+		\xi_{2}^{2},\ \xi_{3}^{2},\ \cdots,\ \xi_{n}^{2}
+	\end{align}
+	だけである．実際，$\psi$のどの部分式も差し替え前後で自由に現れる変項は一致しているし，
+	$\xi_{2}^{1},\cdots,\xi_{n}^{1}$には$z$が自由に現れるので，
+	$\xi_{2}^{2},\cdots,\xi_{n}^{2}$にも$z$は自由に現れる．
+	また差し替えによって$\forall a$或いは$\exists a$から始まる部分式が増えることはないので，
+	$\psi_{1}$の中での$z$の自由な出現を内部に持つ$\psi_{1}$の部分式のうち，$\forall a$または$\exists a$
+	から始まるものは，差し替え前の$\xi_{2}^{1},\cdots,\xi_{n}^{1}$のいずれかであったものである．
+	
+	先と同じ要領で，今度は$\psi_{1}$の$\xi_{2}^{2}$を$\forall b_{2} \chi_{2}^{2}(a/b_{2})$或いは
+	$\exists b_{2}\chi_{2}^{2}(a/b_{2})$に差し替える．ただしこの$\chi_{2}^{2}$とは$\xi_{2}^{2}$の
+	直部分式であり，$b_{2}$は適当に選んだ変項である．$\psi_{1}$の$\xi_{2}^{2}$を差し替えた後の式を
+	$\psi_{2}$とし，$\xi_{i}^{3}$を，$\xi_{i}^{2}$に$\xi_{2}^{2}$が部分式として表れていない場合は
+	$\xi_{i}^{2}$のままとし，$\xi_{i}^{2}$に$\xi_{2}^{2}$が部分式として表れている場合は
+	$\xi_{2}^{2}$を先述の式に差し替えた式とする．すると同様に$\psi_{2}$の中での$z$の自由な出現を内部に持つ
+	$\psi_{2}$の部分式のうち，$\forall a$または$\exists a$から始まるものは
+	%或いはそのような$\psi_{2}$の部分式を部分式として持つような式(例えば$\xi_{3}$が$\xi_{1}$の部分式である場合)は
+	\begin{align}
+		\xi_{3}^{3},\ \xi_{4}^{3},\ \cdots,\ \xi_{n}^{3}
+	\end{align}
+	に限られる．この操作をあと$n-2$回継続すれば，$a$は$\psi_{n}$の中で$z$への代入について自由となる．
+	\QED
+			
+	少し煩雑になってしまったが，たとえば$\psi$が
+	\begin{align}
+		\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists a \chi\, )\, )
+	\end{align}
+	なる式で(他に$a$の量化はないとする)，$z$の自由な出現が$\chi$の中にある状況では，まず
+	\begin{align}
+		\forall a (\, \eta \vee \forall a (\, \xi \wedge \exists b \chi(a/b)\, )\, )
+	\end{align}
+	とし，次に
+	\begin{align}
+		\forall a (\, \eta \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
+	\end{align}
+	とし，最後に
+	\begin{align}
+		\forall b (\, \eta(a/b) \vee \forall b (\, \xi(a/b) \wedge \exists b \chi(a/b)\, )\, )
+	\end{align}
+	とすればよい．
+	
+	\begin{screen}
+		\begin{metadfn}[式の書き換え]\label{def:formula_rewriting}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+			$\varphi$の{\bf 書き換え}\index{かきかえ@書き換え}とは次の手順で得られる式のこととする：
+			\begin{enumerate}
+				\item $\varphi$の部分式のうち原子式であるものを全て
+					表\ref{tab:formula_rewriting}に従って直した式は
+					$\varphi$の書き換えである．
+					
+				\item $\widehat{\varphi}$を$\varphi$の書き換えとし，$\widehat{\varphi}$に
+					$\forall x \xi$ (resp. $\exists x \xi$)の形の部分式\footnotemark
+					が現れているとし，$y$を$\xi$に自由に現れない変項で
+					$\xi$の中で$x$への代入について自由であるものとするとき，
+					$\widehat{\varphi}$の$\forall x \xi$ (resp. $\exists x \xi$)
+					の部分を一か所だけ\footnotemark
+					$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)
+					に差し替えた式は$\varphi$の書き換えである．
+			\end{enumerate}
+		\end{metadfn}
+	\end{screen}
+	この「resp. 」とは並列表現を簡素化するための記号であり，「a (resp. b)はA (resp. B)である」と書いたら
+	「aはAであり，bはBである」と読む．
+	\footnotetext{
+		第\ref{sec:restriction_of_formulas}節の約束により，$\xi$には$x$が自由に現れている．
+	}
+	
+	\footnotetext{
+		仮に$\forall x \xi$ (resp. $\exists x \xi$)が$\varphi$の中で複数個所に現れている
+		としても，差し替えるのはどれか一か所のみとする．
+	}
+	
+	便宜上，$\forall x \xi$や$\exists x \xi$の形の部分式を
+	{\bf 量化部分式}\index{りょうかぶぶんしき@量化部分式}と呼ぶことにする．
+	
+	\begin{screen}
+		\begin{metathm}[同じ式の別の書き換えには量化部分式の複数回の書き換えで辿り着ける]
+		\label{metathm:formula_rewritings_coincide_except_the_differences_of_bound_variables}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\widehat{\varphi}$と$\widetilde{\varphi}$をそれぞれ$\varphi$の書き換えとする．
+			このとき，$\widehat{\varphi}$から始めて量化部分式を複数回だけ差し替えれば
+			$\widetilde{\varphi}$が得られる．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				便宜上，$\varphi$の部分式のうち原子式であるものを全て表\ref{tab:formula_rewriting}に従って
+				直した式を$\varphi$の「一次書き換え」と呼ぶことにする．書き換えの定義より，$\widehat{\varphi}$と
+				$\widetilde{\varphi}$にはそれぞれスタート地点である一次書き換え$\widehat{\varphi}_{1}$と
+				$\widetilde{\varphi}_{1}$があり，量化部分式を一本ずつ差し替えていった履歴
+				\begin{align}
+					\widehat{\varphi}_{1},\ \cdots,\ \widehat{\varphi}_{n}
+				\end{align}
+				と
+				\begin{align}
+					\widetilde{\varphi}_{1},\ \cdots,\ \widetilde{\varphi}_{m}
+				\end{align}
+				が取れる．ここで$\widehat{\varphi}_{n}$は$\widehat{\varphi}$であり，
+				$\widetilde{\varphi}_{m}$は$\widetilde{\varphi}$である．
+				$\widehat{\varphi}$から$\widetilde{\varphi}$へ量化部分式の差し替えで辿るには
+				\begin{align}
+					&\widehat{\varphi}_{n} \dashrightarrow \widehat{\varphi}_{n-1} 
+					\dashrightarrow \widehat{\varphi}_{n-2} \dashrightarrow \cdots 
+					\dashrightarrow \widehat{\varphi}_{1} \\
+					&\dashrightarrow \widetilde{\varphi}_{1} 
+					\dashrightarrow \widetilde{\varphi}_{2} 
+					\dashrightarrow \widetilde{\varphi}_{3} 
+					\dashrightarrow \cdots \dashrightarrow \widetilde{\varphi}_{m}
+				\end{align}
+				の道を通ればよいが，問題は
+				\begin{align}
+					\widehat{\varphi}_{1} \dashrightarrow \widetilde{\varphi}_{1}
+				\end{align}
+				が量化部分式の差し替えであるかという点である．これを次の段で明らかにする．
+			
+			\item[step2]	
+				$\varphi$の部分式のうち原子式であるものが$\xi_{1},\cdots,\xi_{k}$で全てであるとし，
+				$\widehat{\varphi}_{1}$は各$\xi_{i}$を表\ref{tab:formula_rewriting}に従って
+				$\widehat{\xi}_{i}$に書き換えた式であるとし，$\widetilde{\varphi}_{1}$は各$\xi_{i}$を
+				表\ref{tab:formula_rewriting}に従って$\widetilde{\xi}_{i}$に書き換えた式であるとする．
+				$\xi_{i}$が表\ref{tab:formula_rewriting}の(4)以外の式であれば，$\widehat{\xi}_{i}$と
+				$\widetilde{\xi}_{i}$の違いは書き換え時の変項の取り方の違いでしかないから，
+				$\widehat{\varphi}_{1}$の$\widehat{\xi}_{i}$の部分を$\widetilde{\xi}_{i}$に
+				差し替えることは量化部分式の差し替えである．$\xi_{i}$が
+				\begin{align}
+					a \in \Set{z}{\psi}
+				\end{align}
+				なる式で，$a$が変項である場合は，場合によっては$\psi$を書き換えねばならないのが多少厄介である．
+				その厄介な場合を考える．$\psi$の中の$z$の自由な出現を内部に持つ$\psi$の部分式のうち，
+				$\forall a$或いは$\exists a$から始まるものを全て$\chi_{1},\cdots,\chi_{p}$と列挙する．
+				この中に重複があっても出現位置が違えば別個の式と見做す．
+				注意\ref{rem:rewriting_of_the_4th_kind}の通りに書き換えれば，
+				$\chi_{1},\cdots,\chi_{p}$は$\widehat{\xi}_{i}$の中では
+				何らかの量化部分式
+				\begin{align}
+					\widehat{\chi}_{1},\ \cdots,\ \widehat{\chi}_{p}
+				\end{align}
+				となって現れ，$\widetilde{\xi}_{i}$の中でも何らかの量化部分式
+				\begin{align}
+					\widetilde{\chi}_{1},\ \cdots,\ \widetilde{\chi}_{p}
+				\end{align}
+				となって現れる．また$\psi$の$\chi_{1},\cdots,\chi_{p}$を除く部分は書き換えの影響を受けない．
+				ここで$\chi_{1},\cdots,\chi_{p}$の中で極大であるもの(他の部分式ではないもの)を
+				$\chi_{q_{1}},\cdots,\chi_{q_{r}}$とすれば，
+				$\widehat{\chi}_{q_{1}},\cdots,\widehat{\chi}_{q_{r}}$は
+				$\widehat{\chi}_{1},\cdots,\widehat{\chi}_{p}$の中でも極大であるし，
+				$\widetilde{\chi}_{q_{1}},\cdots,\widetilde{\chi}_{q_{r}}$も
+				$\widetilde{\chi}_{1},\cdots,\widetilde{\chi}_{p}$の中で極大である．
+				従って，$\widehat{\xi}_{i}$から$\widetilde{\xi}_{i}$を得るには，
+				$\widehat{\xi}_{i}$の$\widehat{\chi}_{q_{1}},\cdots,\widehat{\chi}_{q_{r}}$を
+				それぞれ$\widetilde{\chi}_{q_{1}},\cdots,\widetilde{\chi}_{q_{r}}$に差し替えればよい．
+				$\widehat{\chi}_{q_{1}},\cdots,\widehat{\chi}_{q_{r}}$は$\widehat{\varphi}_{1}$
+				の部分式(定義\ref{metadfn:L_subformula})でもあるから，
+				この操作は$\widehat{\varphi}_{1}$の量化部分式の差し替えである．
+				以上を総合すれば，$\widehat{\varphi}_{1}$の量化部分式の差し替えによって
+				$\widetilde{\varphi}_{1}$が得られると判る．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{metaaxm}[式の書き換えに関する構造的帰納法の原理]
+		\label{metaaxm:induction_principle_of_formula_rewriting}
+			$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式の書き換えに対する言明Xに対し，
+			\begin{itemize}
+				\item $\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式
+					とするとき，$\varphi$の部分式で原子式であるものを全て
+					表\ref{tab:formula_rewriting}の通り
+					に直した式に対してXが言える．
+					
+				\item $\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+					$\widehat{\varphi}$を$\varphi$の書き換えとし，$\widehat{\varphi}$
+					に対してXが言えると仮定する．このとき，$\widehat{\varphi}$に
+					$\forall x \xi$ (resp. $\exists x \xi$)の形の部分式が現れているとし，
+					$y$を$\xi$に自由に現れない変項で
+					$\xi$の中で$x$への代入について自由であるものとすれば，
+					$\widehat{\varphi}$の$\forall x \xi$ (resp. $\exists x \xi$)
+					の部分を一か所だけ$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)
+					に差し替えた式に対してもXが言える．
+			\end{itemize}
+			ならば，$\lang{\varepsilon}$の式ではない$\mathcal{L}$の任意の式の
+			全ての書き換えに対してXが言える．
+		\end{metaaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[書き換えは$\lang{\varepsilon}$の式]
+		\label{metathm:rewritten_formulas_are_of_L_epsilon}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とするとき，
+			$\varphi$の任意の書き換えは$\lang{\varepsilon}$の式である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式
+				とするとき，$\varphi$の部分式で原子式であるものを全て
+				表\ref{tab:formula_rewriting}の通り
+				に直した式が$\lang{\varepsilon}$の式であることを示す．
+				\begin{description}
+					\item[case1] $\varphi$が原子式であるとき，
+						$\varphi$を表\ref{tab:formula_rewriting}の通りに書き換えた式は，
+						表の通り$\lang{\varepsilon}$の式である．
+						ちなみに表\ref{tab:formula_rewriting}の(4)の場合では
+						$\psi$の部分式を取り替えることもあるが，
+						メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+						取り替えた後の式$\widetilde{\psi}$も$\lang{\varepsilon}$の式
+						であり，$\widetilde{\psi}(z/a)$は$\lang{\varepsilon}$の式である
+						(メタ定理\ref{metathm:substitutions_into_L_epsilon_formulas})．
+						
+					\item[case2] $\varphi$が原子式でないとき，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_formulas}の仮定)]
+								$\varphi$の任意の真部分式に対して，
+								その部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								$\lang{\varepsilon}$の式である
+						\end{description}
+						と仮定する．
+						\begin{description}
+							\item[case2-1] $\varphi$が
+								\begin{align}
+									\negation \psi
+								\end{align}
+								なる式であるとき，$\varphi$の部分式で原子式であるものは
+								$\psi$の部分式で原子式であり，逆に$\psi$の部分式で
+								原子式であるものは$\varphi$の部分式で原子式であるから，
+								$\varphi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								次のように表される：
+								\begin{align}
+									\negation \widehat{\psi}
+								\end{align}
+								ここで$\widehat{\psi}$とは，$\psi$の部分式で
+								原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式である．
+								(IH)より$\widehat{\psi}$は$\lang{\varepsilon}$の式
+								なので，$\widehat{\varphi}$も$\lang{\varepsilon}$の式
+								である．
+								
+							\item[case2-2] $\varphi$が
+								\begin{align}
+									\vee \psi \xi
+								\end{align}
+								なる式であるとき，$\varphi$の部分式で原子式であるものは
+								$\psi$か$\xi$の一方の部分式で原子式であり
+								(始切片の一意性のメタ定理
+								\ref{metathm:initial_segment_L}より
+								$\varphi$の真部分式が$\psi$と$\xi$の境を跨ぐことはない)，
+								逆に$\psi,\xi$の部分式で原子式であるものは$\varphi$の
+								部分式で原子式であるから，
+								$\varphi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								次のように表される：
+								\begin{align}
+									\vee \widehat{\psi} \widehat{\xi}
+								\end{align}
+								ここで$\widehat{\psi},\widehat{\xi}$とは，
+								それぞれ$\psi,\xi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式である．
+								(IH)より$\widehat{\psi},\widehat{\xi}$は
+								$\lang{\varepsilon}$の式なので，
+								$\widehat{\varphi}$も$\lang{\varepsilon}$の式
+								である．
+								
+							\item[case2-3] $\varphi$が
+								\begin{align}
+									\exists x \psi
+								\end{align}
+								なる式であるとき，$\varphi$の部分式で原子式であるものは
+								$\psi$の部分式で原子式であり，逆に$\psi$の部分式で
+								原子式であるものは$\varphi$の部分式で原子式であるから，
+								$\varphi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式は
+								次のように表される：
+								\begin{align}
+									\exists x \widehat{\psi}
+								\end{align}
+								ここで$\widehat{\psi}$とは，$\psi$の部分式で
+								原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式である．
+								(IH)より$\widehat{\psi}$は$\lang{\varepsilon}$の式
+								なので，$\widehat{\varphi}$も$\lang{\varepsilon}$の式
+								である．
+						\end{description}
+				\end{description}
+				
+			\item[step2] $\widehat{\varphi}$を$\varphi$の書き換えとするとき，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+						$\widehat{\varphi}$は$\lang{\varepsilon}$の式である
+				\end{description}
+				と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+				(resp. $\exists x \xi$)の形の部分式が現れているとし，
+				$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入について
+				自由であるものとすれば，
+				メタ定理\ref{metathm:substitutions_into_L_epsilon_formulas}より
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)は
+				$\lang{\varepsilon}$の式である．従って，
+				メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+				$\widehat{\varphi}$のその$\forall x \xi$ (resp. $\exists x \xi$)の
+				部分を$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に差し替えた式は
+				$\lang{\varepsilon}$の式である．
+				\QED
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[部分式の書き換えとの関係1]
+		\label{metathm:relation_to_subformula_rewriting_1}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\negation \psi$なる形であるとする．このとき
+			\begin{description}
+				\item[(1)] $\varphi$の書き換え$\widehat{\varphi}$は
+					$\negation \widehat{\psi}$なる形の式であり，
+					この$\widehat{\psi}$は$\psi$の書き換えである．
+					
+				\item[(2)] $\check{\psi}$を$\psi$の書き換えとすれば
+					$\negation \check{\psi}$は$\varphi$の書き換えである．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		[注] $\varphi$の部分式で原子式であるものは
+		$\psi$の部分式で原子式であり，逆に部分式で原子式であるものは
+		$\varphi$の部分式で原子式であるから，$\varphi$の原子式の部分を
+		全て書き換えることと$\psi$の原子式の部分を全て書き換えることは同じである．
+		\begin{description}
+			\item[(1)] 
+				\begin{description}
+					\item[step1]
+						$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式は次の形で表される：
+						\begin{align}
+							\negation \hat{\psi}.
+						\end{align}
+						[注]より$\hat{\psi}$とは$\psi$の部分式で
+						原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに直した式である．
+						ゆえに$\hat{\psi}$は$\psi$の書き換えである．
+						
+					\item[step2]
+						$\widehat{\varphi}$を$\varphi$の書き換えとし，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+								$\widehat{\varphi}$は$\negation \dot{\psi}$
+								なる形で書けて，この$\dot{\psi}$は$\psi$の
+								書き換えである
+						\end{description}
+						と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとすれば，$\widehat{\varphi}$の
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式は，
+						$\dot{\psi}$の$\forall x \xi$
+						(resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式
+						$\ddot{\psi}$によって
+						\begin{align}
+							\negation \ddot{\psi}
+						\end{align}
+						と表される((IH)より)．$\dot{\psi}$は$\psi$の書き換えである
+						から，$\ddot{\psi}$も$\psi$の書き換えである．
+				\end{description}
+				
+			\item[(2)]		
+				\begin{description}
+					\item[step1]
+						$\psi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた
+						式を$\check{\psi}$とすれば，
+						\begin{align}
+							\negation \check{\psi}
+						\end{align}
+						は$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式である([注]より)．
+						従ってこれは$\varphi$の書き換えである．
+								
+					\item[step2]
+						$\widetilde{\psi}$を$\psi$の書き換えとし，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+								$\negation \widetilde{\psi}$は$\varphi$の書き換えである
+						\end{description}
+						と仮定する．このとき，$\widetilde{\psi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとし，$\widetilde{\psi}$の
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式を
+						$\overline{\psi}$とすれば，
+						\begin{align}
+							\negation \overline{\psi}
+						\end{align}
+						は$\negation \widetilde{\psi}$の
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式と同じである．
+						(IH)より$\negation \widetilde{\psi}$は$\varphi$の
+						書き換えであるから，$\negation \overline{\psi}$もまた$\varphi$の
+						書き換えである．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[部分式の書き換えとの関係2]
+		\label{metathm:relation_to_subformula_rewriting_2}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\vee \psi \xi$なる形であるとする．
+			\begin{description}
+				\item[(1)] $\varphi$の書き換え$\widehat{\varphi}$は
+					$\vee \widehat{\psi} \widehat{\xi}$なる形の式であり，
+					この$\widehat{\psi},\widehat{\xi}$はそれぞれ$\psi,\xi$の
+					書き換えである．
+					
+				\item[(2)] $\check{\psi},\check{\xi}$をそれぞれ$\psi,\xi$の
+					書き換えとすれば$\vee \check{\psi} \check{\xi}$は$\varphi$の
+					書き換えである．なお，$\psi,\xi$の一方は元から
+					$\lang{\varepsilon}$の式かもしれないが，たとえば$\psi$がそうなら
+					$\widehat{\psi}$も$\check{\psi}$も$\psi$であるとする．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		[注] $\varphi$の部分式で原子式であるものは$\psi$か$\xi$の一方の部分式で原子式であり，
+		(始切片の一意性のメタ定理\ref{metathm:initial_segment_L}より
+		$\varphi$の真部分式が$\psi$と$\xi$の境を跨ぐことはない)，
+		逆に$\psi,\xi$の部分式で原子式であるものは$\varphi$の
+		部分式で原子式であるから，$\varphi$の原子式の部分を
+		全て書き換えることと$\psi,\xi$の原子式の部分を全て書き換えることは同じである．
+		\begin{description}
+			\item[(1)] 
+				\begin{description}
+					\item[step1]
+						$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式は
+						次の形で表される：
+						\begin{align}
+							\vee \hat{\psi} \hat{\xi},
+						\end{align}
+						[注]より，$\hat{\psi},\hat{\xi}$とはそれぞれ$\psi,\xi$の部分式で
+						原子式であるものを全て表\ref{tab:formula_rewriting}の通りに
+						直した式である．ゆえに$\hat{\psi},\hat{\xi}$は
+						それぞれ$\psi,\xi$の書き換えである．
+						
+					\item[step2]
+						$\widehat{\varphi}$を$\varphi$の書き換えとし，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+								$\widehat{\varphi}$は$\negation \dot{\psi} \dot{\xi}$
+								なる形で書けて，この$\dot{\psi},\dot{\xi}$はそれぞれ
+								$\psi,\xi$の書き換えである
+						\end{description}
+						と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとすれば，$\widehat{\varphi}$のその
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に置き換えた式は，
+						$\dot{\psi}$或いは$\dot{\xi}$の$\forall x \xi$
+						(resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式
+						$\ddot{\psi},\ddot{\xi}$によって
+						\begin{align}
+							\vee \ddot{\psi} \ddot{\xi}
+						\end{align}
+						と表される((IH)より)．ただし，たとえば$\dot{\xi}$にその$\forall x \xi$
+						(resp. $\exists x \xi$)が現れていなければ
+						$\ddot{\xi}$は$\dot{\xi}$であるとする．
+						(IH)より$\dot{\psi},\dot{\xi}$はそれぞれ
+						$\psi,\xi$の書き換えであるから，
+						$\ddot{\psi},\ddot{\xi}$はそれぞれ$\psi,\xi$の書き換えである．
+				\end{description}
+				
+			\item[(2)]		
+				\begin{description}
+					\item[step1]
+						$\psi,\xi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた
+						式をそれぞれ$\check{\psi},\check{\xi}$とすれば，
+						\begin{align}
+							\vee \check{\psi} \check{\xi}
+						\end{align}
+						は$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式である([注]より)．
+						従ってこれは$\varphi$の書き換えである．
+								
+					\item[step2]
+						$\widetilde{\psi},\widetilde{\xi}$をそれぞれ$\psi,\xi$の
+						書き換えとし，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+								$\vee \widetilde{\psi} \widetilde{\xi}$は$\varphi$の書き換えである
+						\end{description}
+						と仮定する．このとき，$\widetilde{\psi}$に$\forall x \xi$ 
+						(resp. $\exists x \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入に
+						ついて自由であるものとし，$\widetilde{\psi}$の
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式を
+						$\overline{\psi}$とすれば，
+						\begin{align}
+							\vee \overline{\psi} \widetilde{\xi}
+						\end{align}
+						は$\vee \widetilde{\psi} \widetilde{\xi}$の
+						$\forall x \xi$ (resp. $\exists x \xi$)の部分を
+						$\forall y \xi(x/y)$
+						(resp. $\exists y \xi(x/y)$)に差し替えた式と同じである．
+						(IH)より$\vee \widetilde{\psi} \widetilde{\xi}$は$\varphi$の
+						書き換えであるから，$\vee \overline{\psi} \widetilde{\xi}$もまた
+						$\varphi$の書き換えである．$\forall x \xi$ 
+						(resp. $\exists x \xi$)が$\widetilde{\xi}$の部分式であったとしても
+						同様のことが言える．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[部分式の書き換えとの関係3]
+		\label{metathm:relation_to_subformula_rewriting_3}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			$\exists x \psi$なる形であるとする．
+			\begin{description}
+				\item[(1)] $\varphi$の書き換え$\widehat{\varphi}$は
+					$\exists x \widehat{\psi}$
+					なる形の式であり，この$\widehat{\psi}$は$\psi$の書き換えである．
+			
+				\item[(2)] $\check{\psi}$を$\psi$の書き換えとすれば
+					$\exists x \check{\psi}$は$\varphi$の書き換えである．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		[注] $\varphi$の部分式で原子式であるものは
+		$\psi$の部分式で原子式であり，逆に部分式で原子式であるものは
+		$\varphi$の部分式で原子式であるから，$\varphi$の原子式の部分を
+		全て書き換えることと$\psi$の原子式の部分を全て書き換えることは同じである．
+		\begin{description}
+			\item[(1)] 
+				\begin{description}
+					\item[step1]
+						$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式は
+						次の形で表される：
+						\begin{align}
+							\exists x \hat{\psi},
+						\end{align}
+						[注]より，$\hat{\psi}$とは$\psi$の部分式で
+						原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに直した式である．
+						ゆえに$\hat{\psi}$は$\psi$の書き換えである．
+						
+					\item[step2]
+						$\widehat{\varphi}$を$\varphi$の書き換えとし，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+								$\widehat{\varphi}$は$\exists x \dot{\psi}$
+								なる形で書けて，この$\dot{\psi}$は$\psi$の
+								書き換えである
+						\end{description}
+						と仮定する．このとき，$\widehat{\varphi}$に$\forall z \xi$ 
+						(resp. $\exists z \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$z$への代入に
+						ついて自由であるものとすれば，$\widehat{\varphi}$の
+						$\forall z \xi$ (resp. $\exists z \xi$)の部分を
+						$\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に差し替えた式は，
+						$\dot{\psi}$の$\forall z \xi$
+						(resp. $\exists z \xi$)の部分を
+						$\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に差し替えた式
+						$\ddot{\psi}$によって
+						\begin{align}
+							\exists x \ddot{\psi}
+						\end{align}
+						と表される((IH)より)．$\dot{\psi}$は$\psi$の書き換えである
+						から，$\ddot{\psi}$は$\psi$の書き換えである．
+				\end{description}
+				
+			\item[(2)]		
+				\begin{description}
+					\item[step1]
+						$\psi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた
+						式を$\check{\psi}$とすれば，
+						\begin{align}
+							\exists x \check{\psi}
+						\end{align}
+						は$\varphi$の部分式で原子式であるものを全て
+						表\ref{tab:formula_rewriting}の通りに書き換えた式である([注]より)．
+						従ってこれは$\varphi$の書き換えである．
+								
+					\item[step2]
+						$\widetilde{\psi}$を$\psi$の書き換えとし，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+								$\exists x \widetilde{\psi}$は$\varphi$の書き換えである
+						\end{description}
+						と仮定する．このとき，$\widetilde{\psi}$に$\forall z \xi$ 
+						(resp. $\exists z \xi$)の形の部分式が現れているとし，
+						$y$を$\xi$に自由に現れない変項で$\xi$の中で$z$への代入に
+						ついて自由であるものとし，$\widetilde{\psi}$のその
+						$\forall z \xi$ (resp. $\exists z \xi$)の部分を
+						$\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に差し替えた式を
+						$\overline{\psi}$とすれば，
+						\begin{align}
+							\exists x \overline{\psi}
+						\end{align}
+						は$\exists x \widetilde{\psi}$のその
+						$\forall z \xi$ (resp. $\exists z \xi$)の部分を
+						$\forall y \xi(z/y)$
+						(resp. $\exists y \xi(z/y)$)に差し替えた式と同じである．
+						(IH)より$\exists x \widetilde{\psi}$は$\varphi$の
+						書き換えであるから，$\exists x \overline{\psi}$もまた$\varphi$の
+						書き換えである．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metathm}[書き換えによって自由な変項は増減しない]
+		\label{metathm:variables_unchanged_after_rewriting}
+			$\varphi$を$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式とし，
+			この書き換えを$\widehat{\varphi}$とする．このとき
+			$\varphi$に自由に現れる変項は全て$\widehat{\varphi}$にも自由に現れ，
+			逆に$\widehat{\varphi}$に自由に現れる変項も全て$\varphi$にも自由に現れる．
+			特に，$\varphi$が文ならば$\widehat{\varphi}$も文である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\widehat{\varphi}$が$\varphi$の部分式で原子式であるものを全て
+				表\ref{tab:formula_rewriting}の通りに直した式であるとき，
+				$\varphi$と$\widehat{\varphi}$に自由に現れる変項が一致することを示す．
+				\begin{description}
+					\item[case1] $\varphi$が原子式であるときは
+						表\ref{tab:formula_rewriting}の通り
+						$\varphi$と$\widehat{\varphi}$に自由に現れる変項は一致する．
+						一つ見ておくと，表\ref{tab:formula_rewriting}の(4)の
+						\begin{align}
+							a \in \Set{z}{\psi}
+						\end{align}
+						の書き換えでは$\psi$の部分式を差し替えることもあるが
+						(差し替えた後の式を$\widetilde{\psi}$とする)，
+						$\psi$のその部分式と代替の式は自由に現れる変項が一致しているので，
+						メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+						$\psi$と$\widetilde{\psi}$に自由に現れる変項は一致する
+						($\psi$の中での$z$の自由な出現が$\forall a,\exists a$の
+						多層構造の奥にある場合には部分式の取り替えは複数回実行することになる
+						が，メタ定理\ref{metathm:replace_subformula_with_some_formula}
+						をその回数分適用すれば良い)．
+						$a$は$\widetilde{\psi}$の中で$z$への代入について自由なので，
+						$a \in \Set{z}{\psi}$と$\tilde{\psi}(z/a)$に自由に現れる
+						変項も一致する．
+						
+					\item[case2] $\varphi$が原子式でないとき，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_formulas}の仮定)]
+								$\varphi$の任意の真部分式$\psi$に対し，$\widehat{\psi}$が
+								$\psi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting}の通りに直した式
+								であるとすれば($\psi$が$\lang{\varepsilon}$の
+								式ならば$\widehat{\psi}$は$\psi$とする)，
+								$\psi$と$\widehat{\psi}$に自由に現れる変項は一致する
+						\end{description}
+						と仮定する．このとき
+						\begin{description}
+							\item[case1] $\varphi$が
+								\begin{align}
+									\negation \psi
+								\end{align}
+								なる式の場合，メタ定理
+								\ref{metathm:relation_to_subformula_rewriting_1}より
+								$\widehat{\varphi}$は
+								\begin{align}
+									\negation \widehat{\psi}
+								\end{align}
+								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである
+								(いま$\widehat{\varphi}$は$\varphi$の部分式で原子式で
+								あるものを全て表\ref{tab:formula_rewriting}の通りに直した
+								式なので，$\widehat{\psi}$は$\psi$の部分式で原子式である
+								ものを全て表\ref{tab:formula_rewriting}の通りに直した式
+								である)．
+								$\varphi$に自由に現れる変項は$\psi$に自由に現れる変項と
+								一致するが，(IH)よりそれは$\widehat{\psi}$に自由に現れる
+								変項と一致するので，$\widehat{\varphi}$に自由に現れる変項
+								とも一致する．
+						
+							\item[case2] $\varphi$が
+								\begin{align}
+									\vee \psi \chi
+								\end{align}
+								なる式の場合，メタ定理
+								\ref{metathm:relation_to_subformula_rewriting_2}より
+								$\widehat{\varphi}$は
+								\begin{align}
+									\vee \widehat{\psi} \widehat{\chi}
+								\end{align}
+								なる形の式であり，$\widehat{\psi},\widehat{\chi}$は
+								それぞれ$\psi,\chi$の書き換えである(いま
+								$\widehat{\varphi}$は$\varphi$の部分式で原子式で
+								あるものを全て表\ref{tab:formula_rewriting}の通りに直した
+								式なので，$\widehat{\psi},\widehat{\chi}$は
+								$\psi,\chi$の部分式で原子式である
+								ものを全て表\ref{tab:formula_rewriting}の通りに直した式
+								である．ただし，$\psi,\chi$の一方は
+								元から$\lang{\varepsilon}$の式かもしれない．たとえば
+								$\psi$がそうなら$\widehat{\psi}$は$\psi$であるとする)．
+								$\varphi$に自由に現れる変項は$\psi,\chi$に自由に現れる
+								変項と一致するが，(IH)よりそれは
+								$\widehat{\psi},\widehat{\chi}$に自由に現れる
+								変項と一致するので，$\widehat{\varphi}$に自由に現れる
+								変項とも一致する．
+					
+							\item[case3] $\varphi$が
+								\begin{align}
+									\exists x \psi
+								\end{align}
+								なる式の場合，メタ定理
+								\ref{metathm:relation_to_subformula_rewriting_3}より
+								$\widehat{\varphi}$は
+								\begin{align}
+									\exists x \widehat{\psi}
+								\end{align}
+								なる形の式であり，$\widehat{\psi}$は$\psi$の書き換えである
+								(いま$\widehat{\varphi}$は$\varphi$の部分式で原子式で
+								あるものを全て表\ref{tab:formula_rewriting}の通りに直した
+								式なので，$\widehat{\psi}$は$\psi$の部分式で原子式である
+								ものを全て表\ref{tab:formula_rewriting}の通りに直した式
+								である)．
+								$\varphi$に自由に現れる変項は$\psi$に自由に現れる
+								$x$以外の変項と一致するが，(IH)よりそれは$\widehat{\psi}$
+								に自由に現れる$x$以外の変項と一致するので，
+								$\widehat{\varphi}$に自由に現れる変項とも一致する．
+								\QED
+						\end{description}
+				\end{description}
+			
+			\item[step2]
+				$\widehat{\varphi}$を$\varphi$の書き換えとするとき，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+						$\varphi$と$\widehat{\varphi}$に自由に現れる変項は一致する
+				\end{description}
+				と仮定する．このとき，$\widehat{\varphi}$に$\forall x \xi$ 
+				(resp. $\exists x \xi$)の形の部分式が現れているとし，
+				$y$を$\xi$に自由に現れない変項で$\xi$の中で$x$への代入について
+				自由であるものとすれば，$\forall x \xi$ (resp. $\exists x \xi$)と
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に自由に現れる変項は
+				一致する．従って，$\widehat{\varphi}$のその$\forall x \xi$ 
+				(resp. $\exists x \xi$)の部分を
+				$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に差し替えた式
+				を$\widetilde{\varphi}$とすれば，
+				メタ定理\ref{metathm:replace_subformula_with_some_formula}より
+				$\widetilde{\varphi}$と$\widehat{\varphi}$に自由に現れる変項は一致する．
+				すなわち$\widetilde{\varphi}$と$\varphi$に自由に現れる変項も一致する．
+				\QED
+		\end{description}
+	\end{metaprf}

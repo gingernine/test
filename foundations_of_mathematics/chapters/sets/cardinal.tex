@@ -1,0 +1,516 @@
+	\begin{screen}
+		\begin{dfn}[有限・可算・無限]
+			
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[任意の無限集合は可算集合を含む]
+			\begin{align}
+				\forall a\ \left(\ \exists \alpha \in \ON \backslash {\bf \omega}\ (\  \alpha \eqp a\ )
+				\Longrightarrow \exists b\ (\ b \subset a \wedge {\bf \omega} \eqp b\ )\ \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[対等]
+			$\Univ$上の関係$\eqp$を
+			\begin{align}
+				\eqp\ \defeq \Set{x}{\exists s,t\, \left[\, x=(s,t) \wedge 
+				\exists f\, \left(\, f: s \bij t\, \right)\, \right]}
+			\end{align}
+			で定める．$a$と$b$を集合とするとき，
+			\begin{align}
+				(a,b) \in\ \eqp
+			\end{align}
+			なる式を``$a$と$b$は{\bf 対等である}\index{たいとう@対等}{\bf (equipotent)}''と翻訳し，中置記法によって
+			\begin{align}
+				a \eqp b
+			\end{align}
+			とも書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[対等関係は同値関係]
+			$\eqp$は$\Univ$上の同値関係である．
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[濃度・基数]
+			集合$a$に対して，$a$と対等な順序数のうち最小のものを対応させる関係を
+			\begin{align}
+				\card{} \defeq \Set{x}{\exists a\, \exists \alpha \in \ON\, 
+				\left[\, x=(a,\alpha) \wedge a \eqp \alpha \wedge
+				\forall \beta \in \ON\, \left(\, a \eqp \beta \Longrightarrow \alpha \leq \beta\, \right)\, \right]}
+			\end{align}
+			で定める．$\card{a}$を$a$の{\bf 濃度}\index{のうど@濃度}{\bf (cardinal)}と呼び，
+			\begin{align}
+				\card{\alpha} = \alpha
+			\end{align}
+			を満たす順序数$\alpha$を{\bf 基数}\index{きすう@基数}{\bf (cardinal number)}と呼ぶ．
+			また基数の全体を
+			\begin{align}
+				\CN \defeq \Set{\alpha}{\alpha \in \ON \wedge \card{\alpha} = \alpha}
+			\end{align}
+			とおく．
+		\end{dfn}
+	\end{screen}
+	
+	\monologue{
+		整列可能定理の結果より，全ての集合には濃度が定められるのですね．
+	}
+	
+	
+	
+	\begin{screen}
+		\begin{thm}[順序数はその濃度より小さくない]\label{thm:ordinal_number_is_not_less_than_its_cardinal}
+			\begin{align}
+				\forall \alpha \in \ON\, \left(\, \card{\alpha} \leq \alpha\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$上の恒等写像は$\alpha$から$\alpha$への全単射であるから
+		\begin{align}
+			\alpha \in \Set{\beta}{\beta \in \ON \wedge \beta \eqp \alpha}
+		\end{align}
+		が満たされる．従って
+		\begin{align}
+			\card{\alpha} \leq \alpha
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[濃度は基数]\label{thm:cardinal_is_cardinal_number}
+			次が成り立つ:
+			\begin{align}
+				\forall a\, \left(\, \card{a} = \card{\card{a}}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$を集合とする．まず定理\ref{thm:ordinal_number_is_not_less_than_its_cardinal}より
+		\begin{align}
+			\card{\card{a}} \leq \card{a}
+		\end{align}
+		が満たされる．他方で
+		\begin{align}
+			a \eqp \card{a} \wedge \card{a} \eqp \card{\card{a}}
+		\end{align}
+		が成り立っているので
+		\begin{align}
+			a \eqp \card{\card{a}}
+		\end{align}
+		が従い
+		\begin{align}
+			\card{a} \leq \card{\card{a}}
+		\end{align}
+		も満たされる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\CN$は濃度の全体である]
+			次が成り立つ:
+			\begin{align}
+				\CN = \Set{x}{\exists a\, \left(\, x = \card{a}\, \right)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$を$\CN$の任意の要素とすれば
+		\begin{align}
+			\alpha = \card{\alpha}
+		\end{align}
+		となるから，
+		\begin{align}
+			\exists a\, \left(\, \alpha = \card{a}\, \right)
+		\end{align}
+		が満たされ
+		\begin{align}
+			\alpha \in \Set{x}{\exists a\, \left(\, x = \card{a}\, \right)}
+		\end{align}
+		が従う．逆に$\alpha$を$\Set{x}{\exists a\, \left(\, x = \card{a}\, \right)}$の任意の要素とすれば，
+		或る集合$a$が存在して
+		\begin{align}
+			\alpha = \card{a}
+		\end{align}
+		となる．このとき定理\ref{thm:cardinal_is_cardinal_number}より
+		\begin{align}
+			\card{a} = \card{\card{a}}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\exists \beta \in \ON\, (\, \card{\beta} = \beta \wedge \card{a} = \beta\, )
+		\end{align}
+		が満たされ
+		\begin{align}
+			\alpha = \card{a} \in \CN
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			次が成り立つ:
+			\begin{align}
+				\forall a\, \forall b\, \left(\, a \eqp b \Longleftrightarrow \card{a} = \card{b}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a \eqp b$が成り立っていると仮定する．このとき
+		\begin{align}
+			\card{a} \eqp a \wedge a \eqp b
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\card{a} \eqp b
+		\end{align}
+		が従い，
+		\begin{align}
+			\card{b} \leq \card{a}
+		\end{align}
+		となる．$a$と$b$を入れ替えれば
+		\begin{align}
+			\card{a} \leq \card{b}
+		\end{align}
+		も得られ，
+		\begin{align}
+			\card{a} = \card{b}
+		\end{align}
+		が成立する．以上より
+		\begin{align}
+			a \eqp b \Longrightarrow \card{a} = \card{b}
+		\end{align}
+		が示された．逆に$\card{a} = \card{b}$が成り立っていると仮定する．このとき
+		\begin{align}
+			f_1 &\coloneqq \varepsilon f\, \left(\, f:a \bij \card{a}\, \right), \\
+			f_2 &\coloneqq \Set{x}{\exists s \in \card{a}\, (\,x = (s,s)\, )}, \\
+			f_3 &\coloneqq \varepsilon f\, \left(\, f:\card{b} \bij b\, \right)
+		\end{align}
+		とおけば$f_1,f_2,f_3$はどれも全単射であるから，
+		\begin{align}
+			g \coloneqq (f_3 \circ f_2) \circ f_1
+		\end{align}
+		は$a$から$b$への全単射となる．よって$a \eqp b$が従い
+		\begin{align}
+			\card{a} = \card{b} \Longrightarrow a \eqp b
+		\end{align}
+		も示された．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[集合が大きい方が濃度も大きい]
+		\label{thm:cardinal_of_bigger_set_is_bigger}
+			\begin{align}
+				\forall a\, \forall b\, \left(\, a \subset b \Longrightarrow \card{a} \leq \card{b}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a,b$を集合として$a \subset b$が成り立っていると仮定する．
+		\begin{align}
+			\beta \coloneqq \card{b}
+		\end{align}
+		とおいて
+		\begin{align}
+			f:b \bij \beta
+		\end{align}
+		なる$f$を取り
+		\begin{align}
+			c \coloneqq f \ast a
+		\end{align}
+		とおけば，$c$の順序型である順序数$\alpha$と
+		\begin{align}
+			g:\alpha \bij c
+		\end{align}
+		および
+		\begin{align}
+			\forall \zeta,\eta \in \alpha\,
+			\left(\, \zeta < \eta \Longrightarrow g(\zeta) < g(\eta)\, \right)
+		\end{align}
+		を満たす$g$が取れる．このとき
+		\begin{align}
+			\forall \zeta \in \alpha\, \left(\, \zeta \leq g(\zeta)\, \right)
+		\end{align}
+		が成り立つことが超限帰納法から示され，
+		\begin{align}
+			\alpha \subset \beta
+		\end{align}
+		が従う．
+		\begin{align}
+			\card{a} = \card{c} = \card{\alpha} \leq \alpha \leq \beta
+		\end{align}
+		から
+		\begin{align}
+			\card{a} \leq \card{b}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[単射が存在すれば濃度は小さい]
+			\begin{align}
+				\forall a\, \forall b\, \left(\, \exists f\, \left(\, f:a \inj  b\, \right)
+				\Longrightarrow \card{a} \leq \card{b}\, \right)
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$f$を集合$a$から集合$b$への単射とするとき，
+		\begin{align}
+			a \eqp f \ast a \subset b
+		\end{align}
+		より
+		\begin{align}
+			\card{a} = \card{(f \ast a)} \leq \card{b}
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[単射が存在すれば全射が存在し，全射が存在すれば単射が存在する]
+			\begin{align}
+				\forall a\, \forall b\,
+				\left[\, \exists f\, \left(\, f:a \inj b\, \right)
+				\Longleftrightarrow \exists g\, \left(\, g:b \srj a\, \right)\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a,b$を集合とする．
+		\begin{align}
+			\exists f\, \left(\, f:a \inj b\, \right)
+		\end{align}
+		が成り立っているとき，
+		\begin{align}
+			f \defeq \varepsilon f\, \left(\, f:a \inj b\, \right)
+		\end{align}
+		とおいて，$a$の要素$a_0$を取り
+		\begin{align}
+			g \defeq \Set{x}{\exists y \in b\, \left(\, y \in f \ast a \Longrightarrow x=(y,f^{-1}(y))
+			\wedge y \notin f \ast a \Longrightarrow x=(y,a_0)\, \right)}
+		\end{align}
+		で$g$を定めれば，
+		\begin{align}
+			g:b \srj a
+		\end{align}
+		が成立する．よって
+		\begin{align}
+			\exists f\, \left(\, f:a \inj b\, \right)
+				\Longrightarrow \exists g\, \left(\, g:b \srj a\, \right)
+		\end{align}
+		が成り立つ．逆に
+		\begin{align}
+			\exists g\, \left(\, g:b \srj a\, \right)
+		\end{align}
+		が成り立っているとき，
+		\begin{align}
+			g \defeq \varepsilon g\, \left(\, g:b \srj a\, \right)
+		\end{align}
+		とおいて
+		\begin{align}
+			h \defeq \Set{t}{\exists x \in a\, \left(\, t=(x,\Set{y}{y \in b \wedge x = g(y)})\, \right)}
+		\end{align}
+		で$h$を定めれば，
+		\begin{align}
+			h \fon a
+		\end{align}
+		かつ
+		\begin{align}
+			\forall x \in a\, (\, h(x) \neq \emptyset\, )
+		\end{align}
+		が成り立つので
+		\begin{align}
+			f \fon a \wedge \forall x \in a\, (\, f(x) \in h(x)\, )
+		\end{align}
+		なる$f$が取れる．
+		\begin{align}
+			f(x) = f(x') \Longrightarrow x = g(f(x)) = g(f(x')) = x'
+		\end{align}
+		が成り立つので$f$は単射である．従って
+		\begin{align}
+			\exists g\, \left(\, g:b \srj a\, \right)
+			\Longrightarrow \exists f\, \left(\, f:a \inj b\, \right)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[全射が存在すれば濃度は大きい]
+		\label{thm:if_exists_a_surjection_then_cardinal_of_target_is_bigger}
+			\begin{align}
+				\forall a\, \forall b\, \left(\, \exists f\, \left(\, f:a \srj  b\, \right)
+				\Longrightarrow \card{b} \leq \card{a}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a,b$を集合とするとき，
+		\begin{align}
+			\exists f\, \left(\, f:a \srj b\, \right)
+			\Longrightarrow \exists g\, \left(\, g:b \inj  a\, \right)
+		\end{align}
+		と
+		\begin{align}
+			\exists g\, \left(\, g:b \inj a\, \right) \Longrightarrow \card{b} \leq \card{a}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\exists f\, \left(\, f:a \srj b\, \right) \Longrightarrow \card{b} \leq \card{a}
+		\end{align}
+		が成立する．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[対等な集合同士は冪も対等]
+			\begin{align}
+				\forall a\, \forall b\, \left(\, a \eqp b \Longrightarrow \power{a} \eqp \power{b}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a,b$を集合とし，$a \eqp b$が成り立っているとする．このとき
+		\begin{align}
+			f:a \bij b
+		\end{align}
+		なる集合$f$を取り
+		\begin{align}
+			g \coloneqq \Set{x}{\exists s \in \power{a}\, \left(\, x=(s,f \ast s)\, \right)}
+		\end{align}
+		で$g$を定めれば，
+		\begin{align}
+			g:\power{a} \bij \power{b}
+		\end{align}
+		が成立する．実際，$x,y$を$\power{a}$の任意の要素とすれば
+		\begin{align}
+			x=y \Longrightarrow f \ast x = f \ast y
+		\end{align}
+		となるので$g$は写像である．また
+		\begin{align}
+			f \ast x = f \ast y
+		\end{align}
+		のとき
+		\begin{align}
+			x = f^{-1} \ast \left(f \ast x\right)
+			= f^{-1} \ast \left(f \ast y\right)
+			= y
+		\end{align}
+		となるので$g$は単射である．そして$z$を$\power{b}$の任意の要素とすれば，
+		\begin{align}
+			w \coloneqq f^{-1} \ast z
+		\end{align}
+		とおけば
+		\begin{align}
+			f \ast w = z
+		\end{align}
+		となるので$g$は全射である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[Cantorの定理]
+			いかなる集合もその冪集合の濃度は真に大きい:
+			\begin{align}
+				\forall a\, \left(\, \card{a} < \card{\power{a}}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$を集合とし，$f$を$a$から$\power{a}$への写像とする．このとき
+		\begin{align}
+			\ran{f} \neq \power{a}
+			\label{eq:Cantor_cardinality_theorem}
+		\end{align}
+		が成り立つことを示す．
+		\begin{align}
+			B \defeq \Set{x}{x \in a \wedge x \notin f(x)}
+		\end{align}
+		とおくと
+		\begin{align}
+			\forall x \in a\, \left(\, B \neq f(x)\, \right)
+		\end{align}
+		が成立するので
+		\begin{align}
+			B \notin \ran{f}
+		\end{align}
+		となる．他方で
+		\begin{align}
+			B \in \power{a}
+		\end{align}
+		であるから(\refeq{eq:Cantor_cardinality_theorem})が従う．ゆえに
+		$a$から$\power{a}$への全射は存在しない．ゆえに
+		$a$から$\power{a}$への全単射は存在しない．ところで
+		\begin{align}
+			g \defeq \Set{x}{\exists t \in a\, (\, x = (t,\{t\})\, )}
+		\end{align}
+		とおけば
+		\begin{align}
+			g: a \inj \power{a} 
+		\end{align}
+		となり
+		\begin{align}
+			\card{a} \leq \card{\power{a}}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\card{a} < \card{\power{a}}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\CN$は集合でない]
+			\begin{align}
+				\rightharpoondown \set{\CN}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			S \subset \ON \wedge \set{S} \Longrightarrow \card{\bigcup S} \notin S
+		\end{align}
+		が成り立つことを示す．
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[自然数は基数]
+			次が成立する．
+			\begin{align}
+				\Natural \subset \CN.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\Natural$は基数]
+			次が成立する．
+			\begin{align}
+				\Natural \in \CN.
+			\end{align}
+		\end{thm}
+	\end{screen}

@@ -1,0 +1,614 @@
+\section{順序数}
+	$0,1,2,\cdots$で表される数字は，集合論において
+	\begin{align}
+		0 &\defeq \emptyset, \\
+		1 &\defeq \{0\} = \{\emptyset\}, \\
+		2 &\defeq \{0,1\} = \{\emptyset,\{\emptyset\}\}, \\
+		3 &\defeq \{0,1,2\} = \{\emptyset,\{\emptyset\},\{\emptyset,\{\emptyset\}\}\}
+	\end{align}
+	といった反復操作で定められる．上の操作を受け継いで``頑張れば手で書き出せる''クラスを自然数と呼ぶ．
+	$0$は集合であり，集合の対は集合であるから$1$もまた集合である．
+	更には集合の合併も集合であるから$2,3,4,\cdots$と続く自然数が全て集合であることがわかる．
+	自然数の冪も自然数同士の集合演算もその結果は全て集合になるが，
+	ここで「集合は$0$に集合演算を施しただけの素姓が明らかなものに限られるか」
+	という疑問というか期待が自然に生まれてくる．実際それは正則性公理によって肯定されるわけだが，
+	そこでキーになるのは順序数と呼ばれる概念である．
+	
+	\begin{screen}
+		\begin{axm}[正則性公理]
+			次の式を$\REGAX$で参照する:
+			\begin{align}
+				\forall r\, (\, \exists x\, (\, x \in r\, )
+				\rarrow \exists y\, (\, y \in r \wedge \forall z\, 
+				(\, z \in r \rarrow z \notin y\, )\, )\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	正則性公理の主張するところは「空でない集合は自分自身と交わらない要素を持つ」である．
+	
+	\begin{screen}
+		\begin{thm}[クラスは自分自身を要素に持たない]
+		\label{thm:no_class_contains_itself}
+			$a$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash a \notin a.
+			\end{align}
+			ただし$a$が主要$\varepsilon$項であれば
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash a \notin a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		要素の公理の対偶より
+		\begin{align}
+			\ELEAX \vdash\ \negation \set{a} \rarrow a \notin a
+		\end{align}
+		が成り立つので，後は
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX 
+			\vdash \set{a} \rarrow a \notin a
+		\end{align}
+		を示せばよい．集合の対は集合である(定理\ref{thm:pair_of_sets_is_a_set})から
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{a\}}
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, \{a\} = x\, )
+		\end{align}
+		とおけば，量化記号の論理的公理より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{a\} = \tau
+			\label{fom:no_class_contains_itself_1}
+		\end{align}
+		と
+		\begin{align}
+			\REGAX \vdash \exists x\, (\, x \in \tau\, )
+			\rarrow \exists y\, (\, y \in \tau \wedge \forall z\, (\, 
+			z \in \tau \rarrow z \notin y\, )\, )
+			\label{fom:no_class_contains_itself_2}
+		\end{align}
+		が成り立つ．集合は自分自身の対の要素である
+		(定理\ref{thm:set_is_an_element_of_its_pair})から
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a\}
+			\label{fom:no_class_contains_itself_3}
+		\end{align}
+		が成り立ち，(\refeq{fom:no_class_contains_itself_1})と併せて
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash a \in \tau
+		\end{align}
+		が成り立つ．これによって
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \vdash 
+			\exists x\, (\, x \in \tau\, )
+		\end{align}
+		が従い(定理\ref{thm:emptyset_does_not_contain_any_class}によるが，
+		$a$が主要$\varepsilon$項であれば$\ELEAX$は不要)，
+		(\refeq{fom:no_class_contains_itself_2})との三段論法より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash
+			\exists y\, (\, y \in \tau \wedge \forall z\, (\, 
+			z \in \tau \rarrow z \notin y\, )\, )
+		\end{align}
+		となる．
+		\begin{align}
+			\zeta &\defeq \varepsilon x\, (\, a = x\, ), \\
+			\eta &\defeq \varepsilon y\, (\, y \in \tau \wedge \forall z\, (\, 
+			z \in \tau \rarrow z \notin y\, )\, )
+		\end{align}
+		とおけば存在記号の論理的公理より
+		\begin{align}
+			\set{a} &\vdash a = \zeta, \label{fom:no_class_contains_itself_4} \\
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX &\vdash 
+			\eta \in \tau, \label{fom:no_class_contains_itself_5} \\
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX &\vdash 
+			\forall z\, (\, z \in \tau \rarrow z \notin \eta\, )
+			\label{fom:no_class_contains_itself_6}
+		\end{align}
+		が成り立つが，まず(\refeq{fom:no_class_contains_itself_3})と
+		(\refeq{fom:no_class_contains_itself_1})と
+		(\refeq{fom:no_class_contains_itself_4})より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \zeta \in \tau
+		\end{align}
+		が成り立つので，(\refeq{fom:no_class_contains_itself_6})より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash 
+			\zeta \notin \eta
+			\label{fom:no_class_contains_itself_7}
+		\end{align}
+		が従う．また(\refeq{fom:no_class_contains_itself_5})と
+		(\refeq{fom:no_class_contains_itself_1})より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \eta \in \{a\}
+		\end{align}
+		が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \eta = a
+		\end{align}
+		が従い，(\refeq{fom:no_class_contains_itself_7})と
+		(\refeq{fom:no_class_contains_itself_4})と併せて
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash a \notin a
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[集合のどの二組も所属関係で堂々巡りしない]
+		\label{thm:no_pair_of_sets_go_round}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+				\forall x\, \forall y\, (\, x \in y \rarrow y \notin x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1] いま
+				\begin{align}
+					\chi &\defeq \varepsilon x \negation \forall y\, (\, x \in y \rarrow y \notin x\, ), \\
+					\eta &\defeq \varepsilon y \negation (\, \tau \in y \rarrow y \notin \tau\, )
+				\end{align}
+				とおく．$\chi$と$\eta$は主要$\varepsilon$項であるから
+				定理\ref{thm:critical_epsilon_term_is_set}より
+				\begin{align}
+					\EXTAX &\vdash \set{\chi}, \\
+					\EXTAX &\vdash \set{\eta}
+				\end{align}
+				となり，従って定理\ref{thm:pair_of_sets_is_a_set}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{\chi,\eta\}}
+				\end{align}
+				となる．また定理\ref{thm:set_is_an_element_of_its_pair}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \chi \in \{\chi,\eta\}
+					\label{fom:no_pair_of_sets_go_round_1}
+				\end{align}
+				が成り立つ．
+				
+			\item[step2] ここで
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, \{\chi,\eta\} = x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \{\chi,\eta\} = \tau
+					\label{fom:no_pair_of_sets_go_round_2}
+				\end{align}
+				および
+				\begin{align}
+					\REGAX \vdash \exists x\, (\, x \in \tau\, ) 
+					\rarrow \exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau 
+					\rarrow z \notin y\, )\, )
+					\label{fom:no_pair_of_sets_go_round_3}
+				\end{align}
+				が成り立つ．(\refeq{fom:no_pair_of_sets_go_round_1})と
+				(\refeq{fom:no_pair_of_sets_go_round_2})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \chi \in \tau
+					\label{fom:no_pair_of_sets_go_round_6}
+				\end{align}
+				が成り立つので%定理\ref{thm:emptyset_does_not_contain_any_class}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \exists x\, (\, x \in \tau\, )
+				\end{align}
+				となり，(\refeq{fom:no_pair_of_sets_go_round_3})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash
+					\exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau 
+					\rarrow z \notin y\, )\, )
+					\label{fom:no_pair_of_sets_go_round_10}
+				\end{align}
+				が従う．
+				
+			\item[step3] いま
+				\begin{align}
+					\gamma \defeq \varepsilon y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau \rarrow z \in y\, )\, )
+				\end{align}
+				とおく．この段では
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\eta \neq \gamma
+				\end{align}
+				を示す．
+				(\refeq{fom:no_pair_of_sets_go_round_10})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX &\vdash \gamma \in \tau, 
+					\label{fom:no_pair_of_sets_go_round_4} \\
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX &\vdash \forall z\, (\, z \in \tau \rarrow z \notin \gamma\, )
+					\label{fom:no_pair_of_sets_go_round_5}
+				\end{align}
+				が成り立つ．(\refeq{fom:no_pair_of_sets_go_round_5})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi \in \tau \rarrow \chi \notin \gamma
+				\end{align}
+				となり，(\refeq{fom:no_pair_of_sets_go_round_6})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \chi \notin \gamma
+					\label{fom:no_pair_of_sets_go_round_8}
+				\end{align}
+				が成り立つが，
+				\begin{align}
+					\EQAX \vdash \chi \notin \gamma \rarrow 
+					(\,\chi \in \eta  \rarrow \eta \neq \gamma\, )
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi \in \eta  \rarrow \eta \neq \gamma
+				\end{align}
+				となり，%対偶律2 (論理的定理\ref{logicalthm:contraposition_2})と
+				演繹定理の逆より
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\eta \neq \gamma
+					\label{fom:no_pair_of_sets_go_round_7}
+				\end{align}
+				が従う．
+				
+			\item[step4] (\refeq{fom:no_pair_of_sets_go_round_2})と
+				(\refeq{fom:no_pair_of_sets_go_round_4})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \gamma \in \{\chi,\eta\}
+				\end{align}
+				が成り立つので，定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi = \gamma \vee \eta = \gamma
+				\end{align}
+				が従う．これと(\refeq{fom:no_pair_of_sets_go_round_7})と
+				選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi = \gamma
+					\label{fom:no_pair_of_sets_go_round_9}
+				\end{align}
+				が従う．他方で(\refeq{fom:no_pair_of_sets_go_round_8})を導いたのと同様にして
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash \eta \notin \gamma
+				\end{align}
+				が成り立ち，(\refeq{fom:no_pair_of_sets_go_round_9})と相等性公理より
+				\begin{align}
+					\chi \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\eta \notin \chi
+				\end{align}
+				が従う．演繹定理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\chi \in \eta \rarrow \eta \notin \chi
+				\end{align}
+				が成り立ち，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					\forall x\, \forall y\, (\, x \in y \rarrow y \notin x\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和の結合律]
+		\label{logicalthm:associative_law_of_disjunctions}
+			$A,B,C$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (\, A \vee B\, ) \vee C \rarrow A \vee (\, B \vee C\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理和の導入より
+		\begin{align}
+			\vdash A \rarrow A \vee (\, B \vee C\, )
+			\label{fom:associative_law_of_conjunctions_1}
+		\end{align}
+		となる．同じく論理和の導入より
+		\begin{align}
+			B \vdash B \vee C
+		\end{align}
+		となるが，再び論理和の導入より
+		\begin{align}
+			\vdash B \vee C \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			B \vdash A \vee (\, B \vee C\, )
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\vdash B \rarrow A \vee (\, B \vee C\, )
+			\label{fom:associative_law_of_conjunctions_2}
+		\end{align}
+		が従う．(\refeq{fom:associative_law_of_conjunctions_1})と
+		(\refeq{fom:associative_law_of_conjunctions_2})と論理和の除去より
+		\begin{align}
+			\vdash A \vee B \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		が得られる．他方で(\refeq{fom:associative_law_of_conjunctions_2})の導出と同様にして
+		\begin{align}
+			\vdash C \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		も得られるから，再び論理和の除去により
+		\begin{align}
+			\vdash (\, A \vee B\, ) \vee C \rarrow A \vee (\, B \vee C\, )
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[集合のどの三組も所属関係で堂々巡りしない]
+		\label{thm:no_three_sets_go_round}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+				\forall x\, \forall y\, \forall z\, 
+				(\, x \in y \wedge y \in z \rarrow z \notin x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1] いま
+				\begin{align}
+					\chi &\defeq \varepsilon x \negation \forall y\, \forall z\, 
+						(\, x \in y \wedge y \in z \rarrow z \notin x\, ), \\
+					\eta &\defeq \varepsilon y \negation \forall z\, 
+						(\, \chi \in y \wedge y \in z \rarrow z \notin \chi\, ), \\
+					\zeta &\defeq \varepsilon z \negation 
+						(\, \chi \in \eta \wedge \eta \in z 
+						\rarrow z \notin \chi\, )
+				\end{align}
+				とおく．$\chi,\eta,\zeta$は主要$\varepsilon$項であるから，
+				定理\ref{thm:critical_epsilon_term_is_set}より
+				\begin{align}
+					\EXTAX &\vdash \set{\chi}, 
+					\label{fom:no_three_sets_go_round_1} \\
+					\EXTAX &\vdash \set{\eta}, 
+					\label{fom:no_three_sets_go_round_2} \\
+					\EXTAX &\vdash \set{\zeta} 
+					\label{fom:no_three_sets_go_round_3}
+				\end{align}
+				が成り立ち，定理\ref{thm:pair_of_sets_is_a_set} (集合の対は集合)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{\chi,\eta\}}
+					\label{fom:no_three_sets_go_round_4}
+				\end{align}
+				および
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{\{\zeta\}}
+					\label{fom:no_three_sets_go_round_5}
+				\end{align}
+				が成り立ち，定理\ref{thm:set_is_an_element_of_its_pair}
+				(集合は自分自身の対の要素)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \chi \in \{\chi,\eta\}
+					\label{fom:no_three_sets_go_round_6}
+				\end{align}
+				が成り立つ．定理\ref{thm:elements_of_pair_union}
+				(二つのクラスの合併はそれぞれの要素を合わせたもの)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\chi \in \{\chi,\eta\} \rarrow \chi \in \{\chi,\eta,\zeta\}
+				\end{align}
+				が成り立つので，%(\refeq{fom:no_three_sets_go_round_4})と
+				(\refeq{fom:no_three_sets_go_round_6})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \chi \in \{\chi,\eta,\zeta\}
+					\label{fom:no_three_sets_go_round_7}
+				\end{align}
+				となる．同様にして
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \eta \in \{\chi,\eta,\zeta\},
+					\label{fom:no_three_sets_go_round_8}
+				\end{align}
+				も成り立つ．
+				
+			\item[step2] (\refeq{fom:no_three_sets_go_round_4})
+				と(\refeq{fom:no_three_sets_go_round_5})と
+				定理\ref{thm:pair_of_sets_is_a_set} (集合の対は集合)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\set{\{\{\chi,\eta\},\{\zeta\}\}}
+				\end{align}
+				となるので，定理\ref{thm:union_of_a_set_is_a_set} (集合の合併は集合)と併せて
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX \vdash 
+					\set{\{\chi,\eta,\zeta\}}
+				\end{align}
+				が成立する．ここで
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, \{\chi,\eta,\zeta\} = x\, )
+					\label{fom:no_three_sets_go_round_9}
+				\end{align}
+				とおけば
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX \vdash 
+					\{\chi,\eta,\zeta\} = \tau
+					\label{fom:no_three_sets_go_round_10}
+				\end{align}
+				が成り立つので，(\refeq{fom:no_three_sets_go_round_7})と相等性公理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX \vdash \chi \in \tau
+					\label{fom:no_three_sets_go_round_11}
+				\end{align}
+				となり，
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX \vdash 
+					\exists x\, (\, x \in \tau\, )
+					\label{fom:no_three_sets_go_round_12}
+				\end{align}
+				が従う．正則性公理より
+				\begin{align}
+					\REGAX \vdash \exists x\, (\, x \in \tau\, )
+					\rarrow \exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau \rarrow z \notin y\, )\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:no_three_sets_go_round_12})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\exists y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau \rarrow z \notin y\, )\, )
+					\label{fom:no_three_sets_go_round_22}
+				\end{align}
+				が従う．
+				
+			\item[step3]
+				いま
+				\begin{align}
+					\gamma \defeq \varepsilon y\, (\, y \in \tau \wedge \forall z\, (\, z \in \tau \rarrow z \notin y\, )\, )
+				\end{align}
+				とおく．この段では
+				\begin{align}
+					\chi \in \eta \wedge \eta \in \zeta,\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash\ 
+					\negation (\, \eta = \gamma \vee \zeta = \gamma\, )
+				\end{align}
+				を示す．(\refeq{fom:no_three_sets_go_round_22})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash \gamma \in \tau, 
+					\label{fom:no_three_sets_go_round_13} \\
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\forall z\, (\, z \in \tau \rarrow z \notin \gamma\, )\, )
+					\label{fom:no_three_sets_go_round_14}
+				\end{align}
+				となるから，特に
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\chi \in \tau \rarrow \chi \notin \gamma, \\
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\eta \in \tau \rarrow \eta \notin \gamma
+				\end{align}
+				が成り立つが，(\refeq{fom:no_three_sets_go_round_7})と
+				(\refeq{fom:no_three_sets_go_round_8})および
+				(\refeq{fom:no_three_sets_go_round_10})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX &\vdash \chi \in \tau, \\
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX &\vdash \eta \in \tau
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\chi \notin \gamma, \label{fom:no_three_sets_go_round_15} \\
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\eta \notin \gamma \label{fom:no_three_sets_go_round_16}
+				\end{align}
+				が従う．他方で
+				\begin{align}
+					\EQAX &\vdash \chi \notin \gamma \rarrow (\, \chi \in \eta \rarrow \eta \neq \gamma\, ), \\
+					\EQAX &\vdash \eta \notin \gamma \rarrow (\, \eta \in \zeta \rarrow \zeta \neq \gamma\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:no_three_sets_go_round_15})と
+				(\refeq{fom:no_three_sets_go_round_16})から
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\chi \in \eta \rarrow \eta \neq \gamma, 
+					\label{fom:no_three_sets_go_round_17} \\
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX &\vdash 
+					\eta \in \zeta \rarrow \zeta \neq \gamma
+					\label{fom:no_three_sets_go_round_18}
+				\end{align}
+				が従う．つまり$\chi \in \eta \wedge \eta \in \zeta$を公理に加えれば
+				\begin{align}
+					\chi \in \eta \wedge \eta \in \zeta,\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \eta \neq \gamma \wedge \zeta \neq \gamma
+				\end{align}
+				が成り立ち，De Morgan の法則
+				(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+				\begin{align}
+					\chi \in \eta \wedge \eta \in \zeta,\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash\ 
+					\negation (\, \eta = \gamma \vee \zeta = \gamma\, )
+					\label{fom:no_three_sets_go_round_19}
+				\end{align}
+				が出る．
+				
+			\item[step4] 定理\ref{thm:elements_of_pair_union}
+				(二つのクラスの合併はそれぞれの要素を合わせたもの)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\zeta \in \{\zeta\} \rarrow \zeta \in \{\zeta\} \cup \{\chi,\eta\}
+				\end{align}
+				が成り立つので，%(\refeq{fom:no_three_sets_go_round_5})と
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \zeta \in \{\zeta\}
+				\end{align}
+				(定理\ref{thm:set_is_an_element_of_its_pair})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+					\zeta \in \{\zeta\} \cup \{\chi,\eta\}
+				\end{align}
+				が従い，定理\ref{thm:symmetry_of_union_of_a_pair} (合併の対称性)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \zeta \in \{\chi,\eta,\zeta\}
+				\end{align}
+				が成り立つ．従って(\refeq{fom:no_three_sets_go_round_10})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX \vdash \zeta \in \tau
+					\label{fom:no_three_sets_go_round_20}
+				\end{align}
+				となるが，他方で(\refeq{fom:no_three_sets_go_round_14})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\zeta \in \tau \rarrow \zeta \notin \gamma
+				\end{align}
+				となるから，三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\zeta \notin \gamma
+					\label{fom:no_three_sets_go_round_21}
+				\end{align}
+				が出る．
+				
+			\item[step5] (\refeq{fom:no_three_sets_go_round_13})と
+				(\refeq{fom:no_three_sets_go_round_10})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \gamma \in \{\chi,\eta,\zeta\}
+				\end{align}
+				が成り立つので，定理\ref{thm:triple_members_are_exactly_the_given_three}
+				(表示されている要素しか持たない)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					(\, \chi = \gamma \vee \eta = \gamma\, ) \vee \zeta = \gamma
+				\end{align}
+				となり，論理和の結合律
+				(論理的定理\ref{logicalthm:associative_law_of_disjunctions})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\chi = \gamma \vee (\, \eta = \gamma \vee \zeta = \gamma\, )
+				\end{align}
+				が従い，(\refeq{fom:no_three_sets_go_round_19})と選言三段論法
+				(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\chi \in \eta \wedge \eta \in \zeta,\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \chi = \gamma
+				\end{align}
+				が成り立つ．これと(\refeq{fom:no_three_sets_go_round_21})より
+				\begin{align}
+					\chi \in \eta \wedge \eta \in \zeta,\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \zeta \notin \chi
+				\end{align}
+				が従い，演繹定理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\chi \in \eta \wedge \eta \in \zeta \rarrow \zeta \notin \chi
+				\end{align}
+				が成り立ち，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\forall x\, \forall y\, \forall z\, (\, x \in y \wedge y \in z 
+					\rarrow z \notin x\, )
+				\end{align}
+				が出る．
+				\QED
+		\end{description}
+	\end{sketch}

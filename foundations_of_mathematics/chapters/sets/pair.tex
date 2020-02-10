@@ -1,0 +1,558 @@
+\section{対}
+	$a$と$b$をクラスとするとき，$a$か$b$の少なくとも一方に等しい集合の全体，つまり
+	\begin{align}
+		a = x \vee b = x
+	\end{align}
+	を満たす全ての集合$x$を集めたものを$a$と$b$の対と呼び
+	\begin{align}
+		\{a,b\}
+	\end{align}
+	と書く．解釈としては``$a$と$b$のみを要素とするクラス''のことであり，当然$a$が集合であるならば
+	\begin{align}
+		a \in \{a,b\}
+	\end{align}
+	が成立する．しかし$a$と$b$が共に真クラスであるときは，いかなる集合も$a$にも$b$にも等しくないため
+	\begin{align}
+		\{a,b\} = \emptyset
+	\end{align}
+	となる．以上が大雑把な対の説明である．
+	
+	\begin{screen}
+		\begin{dfn}[対]
+			$x,y$を$\mathcal{L}$の項とし，$z$を$x$にも$y$にも自由に現れない変項とするとき，
+			\begin{align}
+				\{x,y\} \defeq \Set{z}{x = z \vee y = z}
+			\end{align}
+			で$\{x,y\}$を定義し，これを$x$と$y$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{x,x\}$を$\{x\}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	上の定義では省略したが，$x$や$y$が内包項である場合は$z = x \vee z = y$を
+	$\lang{\varepsilon}$の式に書き換えてから$\{x,y\}$を定めるのである．つまり
+	\begin{align}
+		\varphi \defarrow x = z \vee y = z
+	\end{align}
+	とおけば，$\varphi$を$\lang{\varepsilon}$の式に書き換えた式$\hat{\varphi}$によって
+	\begin{align}
+		\{x,y\} \defeq \Set{z}{\hat{\varphi}(z)}
+	\end{align}
+	と定めるのである．たとえば$a$や$b$をクラスとして
+	\begin{align}
+		\varphi \defarrow a = z \vee b = z
+	\end{align}
+	とおけば，
+	\begin{align}
+		\COMAX \vdash \forall z\, (\, z \in \{a,b\} \lrarrow \hat{\varphi}(z)\, )
+	\end{align}
+	が成立するし，同時に定理\ref{thm:equivalent_formula_rewriting_1}と
+	定理\ref{thm:equivalent_formula_rewriting_2}より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash 
+		\forall z\, (\, \hat{\varphi}(z) \lrarrow \varphi(z)\, )
+	\end{align}
+	も成り立つので
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash 
+		\forall z\, (\, z \in \{a,b\} \lrarrow a = z \vee b = z\, )
+	\end{align}
+	が得られる．
+	
+	\begin{screen}
+		\begin{thm}[対は表示されている要素しか持たない]
+		\label{thm:pair_members_are_exactly_the_given_two}
+			$a$と$b$をクラスとするとき次が成立する:
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash 
+				\forall x\, (\, x \in \{a,b\} \lrarrow a = x \vee b = x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	$\ELEAX$を加えれば次が得られる．
+	
+	\begin{screen}
+		\begin{thm}[対の要素は表示されている要素の一方には等しい]
+		\label{cor:pair_members_are_exactly_the_given_two}
+			$a,b,c$をクラスとするとき次が成立する:
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash 
+				c \in \{a,b\} \rarrow a = c \vee b = c.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		要素の公理より
+		\begin{align}
+			c \in \{a,b\},\ \ELEAX \vdash \set{c}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\tau \defeq \varepsilon s\, (\, c = s\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			c \in \{a,b\},\ \ELEAX \vdash c = \tau
+			\label{fom:pair_members_are_exactly_the_given_two_2}
+		\end{align}
+		となる．$\tau$に対しては定理\ref{thm:pair_members_are_exactly_the_given_two}より 
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash 
+			\tau \in \{a,b\} \rarrow a = \tau \vee b = \tau
+		\end{align}
+		が成り立つが，ここで(\refeq{fom:pair_members_are_exactly_the_given_two_2})より
+		\begin{align}
+			c \in \{a,b\},\ \EQAX,\ELEAX \vdash \tau \in \{a,b\}
+		\end{align}
+		となるので
+		\begin{align}
+			c \in \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = \tau \vee b = \tau
+		\end{align}
+		が従い，等号の推移律(定理\ref{thm:transitive_law_of_equality})と
+		(\refeq{fom:pair_members_are_exactly_the_given_two_2})より
+		\begin{align}
+			c \in \{a,b\},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash a = c \vee b = c
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	この逆，つまり
+	\begin{align}
+		a = c \vee b = c \rarrow c \in \{a,b\}
+	\end{align}
+	は一般には成立しない．実際$a,b$が共に真クラスであるときは
+	\begin{align}
+		\{a,b\} = \emptyset
+	\end{align}
+	となるためである(定理\ref{thm:pair_of_proper_classes_is_emptyset})．
+	
+	\begin{screen}
+		\begin{thm}[表示の順番を入れ替えても対は等しい]
+		\label{thm:commutative_law_of_pairs}
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in \{a,b\} \lrarrow x \in \{b,a\}\, )
+		\end{align}
+		とおく(必要に応じて$x \in \{a,b\} \lrarrow x \in \{b,a\}$は$\lang{\varepsilon}$の
+		式に書き換える)．
+		定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash
+			\tau \in \{a,b\} \rarrow a = \tau \vee b = \tau
+		\end{align}
+		が成り立つので，演繹定理の逆より
+		\begin{align}
+			\tau \in \{a,b\},\ \EXTAX,\EQAX,\COMAX \vdash a = \tau \vee b = \tau
+		\end{align}
+		となる．また論理和の可換律
+		(論理的定理\ref{logicalthm:commutative_law_of_disjunction})より
+		\begin{align}
+			\tau \in \{a,b\},\ \EXTAX,\EQAX,\COMAX \vdash b = \tau \vee a = \tau
+		\end{align}
+		が成り立ち，定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\tau \in \{a,b\},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{b,a\}
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \rarrow \tau \in \{b,a\}
+		\end{align}
+		が得られる．$a$と$b$を入れ替えれば
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{b,a\} \rarrow \tau \in \{a,b\}
+		\end{align}
+		が得られるので，論理積の導入より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \lrarrow \tau \in \{b,a\}
+		\end{align}
+		が成り立ち，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \forall x\, (\, x \in \{a,b\} \lrarrow x \in \{b,a\}\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+		
+	\begin{screen}
+		\begin{axm}[対の公理] 次の式を$\PAIAX$により参照する：
+			\begin{align}
+				\forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[集合の対は集合である]
+		\label{thm:pair_of_sets_is_a_set}
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+				\set{a} \wedge \set{b} \rarrow \set{\{a,b\}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				論理積の除去より
+				\begin{align}
+					\set{a} \wedge \set{b} &\vdash \exists x\, (\, a = x\, ), \\
+					\set{a} \wedge \set{b} &\vdash \exists x\, (\, b = x\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\tau &\defeq \varepsilon x\, (\, a = x\, ), \\
+					\sigma &\defeq \varepsilon x\, (\, b = x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\set{a} \wedge \set{b} &\vdash a = \tau, 
+					\label{fom:pair_of_sets_is_a_set_1} \\
+					\set{a} \wedge \set{b} &\vdash b = \sigma
+				\end{align}
+				が成り立つ．対の公理より$\tau$と$\sigma$に対しては
+				\begin{align}
+					\PAIAX \vdash \exists p\, \forall z\, 
+						(\, \tau = z \vee \sigma = z \lrarrow z \in p\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\rho \defeq \varepsilon p\, \forall z\, 
+						(\, \tau = z \vee \sigma = z \lrarrow z \in p\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\PAIAX \vdash \forall z\, (\, \tau = z \vee \sigma = z \lrarrow z \in \rho\, )
+					\label{fom:pair_of_sets_is_a_set_2}
+				\end{align}
+				となる．
+				
+			\item[step2]
+				次に
+				\begin{align}
+					\forall z\, (\, z \in \{a,b\} \lrarrow z \in \rho\, )
+				\end{align}
+				を示すために
+				\begin{align}
+					\zeta \defeq \varepsilon z \negation (\, z \in \{a,b\} \lrarrow z \in \rho\, )
+				\end{align}
+				とおく(当然$\lang{\varepsilon}$の式に書き換える)．
+				等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					\EXTAX,\EQAX \vdash a = \tau \rarrow (\, a = \zeta \rarrow \tau = \zeta\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:pair_of_sets_is_a_set_1})との三段論法より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \rarrow \tau = \zeta
+				\end{align}
+				が成り立ち，論理和の導入より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \rarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				が従う．同様にして
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					b = \zeta \rarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				も成り立つので，論理和の除去より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \vee b = \zeta \rarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				が得られる．同様に
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					\tau = \zeta \vee \sigma = \zeta \rarrow a = \zeta \vee b = \zeta
+				\end{align}
+				も得られ，論理積の導入より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX \vdash 
+					a = \zeta \vee b = \zeta \lrarrow \tau = \zeta \vee \sigma = \zeta
+				\end{align}
+				が従う．他方で定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					\zeta \in \{a,b\} \lrarrow a = \zeta \vee b = \zeta
+				\end{align}
+				が成り立ち，また(\refeq{fom:pair_of_sets_is_a_set_2})より
+				\begin{align}
+					\PAIAX \vdash \tau = \zeta \vee \sigma = \zeta \lrarrow \zeta \in \rho
+				\end{align}
+				も成り立つので，同値記号の推移律
+				(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\zeta \in \{a,b\} \lrarrow \zeta \in \rho
+				\end{align}
+				が従う．そして全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\forall z\, (\, z \in \{a,b\} \lrarrow z \in \rho\, )
+				\end{align}
+				が成り立ち，外延性公理より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\{a,b\} = \rho
+				\end{align}
+				が従い，存在記号の論理的公理より
+				\begin{align}
+					\set{a} \wedge \set{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+					\exists p\, (\, \{a,b\} = p\, )
+				\end{align}
+				が成り立つ．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[集合は自分自身の対の要素である]
+		\label{thm:set_is_an_element_of_its_pair}
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX &\vdash \set{a} \rarrow a \in \{a,b\}, \\
+				\EXTAX,\EQAX,\COMAX &\vdash \set{b} \rarrow b \in \{a,b\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1]
+				いま
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, a = x\, )
+				\end{align}
+				とおくと
+				\begin{align}
+					\set{a} \vdash a = \tau
+					\label{fom:set_is_an_element_of_its_pair_1}
+				\end{align}
+				が成り立ち，論理和の導入より
+				\begin{align}
+					\set{a} \vdash a = \tau \vee b = \tau
+				\end{align}
+				も成り立つ．定理\ref{thm:pair_members_are_exactly_the_given_two}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					a = \tau \vee b = \tau \rarrow \tau \in \{a,b\}
+				\end{align}
+				が成り立つので三段論法より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
+					\label{fom:set_is_an_element_of_its_pair_2}
+				\end{align}
+				が従う．また(\refeq{fom:set_is_an_element_of_its_pair_1})と相等性公理より
+				\begin{align}
+					\set{a},\ \EQAX \vdash \tau = a
+				\end{align}
+				となり
+				\begin{align}
+					\set{a},\ \EQAX \vdash \tau \in \{a,b\} \rarrow a \in \{a,b\}
+				\end{align}
+				となるので，(\refeq{fom:set_is_an_element_of_its_pair_2})と三段論法より
+				\begin{align}
+					\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
+				\end{align}
+				が成立する．
+			
+			\item[step2]
+				前段で$a$と$b$を入れ替えれば
+				\begin{align}
+					\set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{b,a\}
+					\label{fom:set_is_an_element_of_its_pair_3}
+				\end{align}
+				が成立する．ところで対の対称性(定理\ref{thm:commutative_law_of_pairs})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash \{b,a\} = \{a,b\}
+				\end{align}
+				が成立し，また相等性公理より
+				\begin{align}
+					\EQAX \vdash \{b,a\} = \{a,b\}
+					\rarrow (\, b \in \{b,a\} \rarrow b \in \{a,b\}\, )
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash b \in \{b,a\} \rarrow b \in \{a,b\}
+					\label{fom:set_is_an_element_of_its_pair_4}
+				\end{align}
+				が従う．(\refeq{fom:set_is_an_element_of_its_pair_3})と
+				(\refeq{fom:set_is_an_element_of_its_pair_4})と三段論法より
+				\begin{align}
+					\set{b},\ \EXTAX,\EQAX,\COMAX \vdash b \in \{a,b\}
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	$a$を集合とすれば対の公理より$\{a\}$も集合となるので，
+	定理\ref{thm:set_is_an_element_of_its_pair}より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow a \in \{a\}
+	\end{align}
+	が成立する．一方で$a$も$b$も真クラスであると$\{a,b\}$は空になる．
+	
+	\begin{screen}
+		\begin{thm}[真クラス同士の対は空]\label{thm:pair_of_proper_classes_is_emptyset}
+			$a$と$b$をクラスとするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash\ 
+				\negation \set{a} \wedge \negation \set{b} \rarrow \{a,b\} = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \notin \{a,b\}\, )
+		\end{align}
+		とおく($x \notin \{a,b\}$は$\lang{\varepsilon}$の式に書き換える)．
+		\begin{align}
+			\negation \set{a} \wedge\ \negation \set{b}
+			\vdash\ \negation \exists x\, (\, a = x\, )
+		\end{align}
+		が成り立ち，De Morgan の法則
+		(論理的定理\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_2})より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b}
+			\vdash \forall x\, (\, a \neq x\, )
+		\end{align}
+		が従い，全称記号の論理的公理より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash a \neq \tau
+		\end{align}
+		となる．同様にして
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash b \neq \tau
+		\end{align}
+		も成り立つので，論理積の導入より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash
+			a \neq \tau \wedge b \neq \tau
+		\end{align}
+		が成立し，De Morgan の法則(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b} \vdash\ 
+			\negation (\, a = \tau \vee b = \tau\, )
+			\label{fom:pair_of_proper_classes_is_emptyset_1}
+		\end{align}
+		が従う．ところで定理\ref{thm:pair_members_are_exactly_the_given_two}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\} \rarrow a = \tau \vee b = \tau
+		\end{align}
+		が成り立つので，対偶を取って
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash\ 
+			\negation (\, a = \vee b = \tau\, ) \rarrow \tau \notin \{a,b\}
+		\end{align}
+		が成り立つ(論理的定理\ref{logicalthm:introduction_of_contraposition})．
+		そして(\refeq{fom:pair_of_proper_classes_is_emptyset_1})との三段論法より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b},\ \EXTAX,\EQAX,\COMAX \vdash
+			\tau \notin \{a,b\}
+		\end{align}
+		が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b},\ \EXTAX,\EQAX,\COMAX \vdash
+			\forall x\, (\, x \notin \{a,b\}\, )
+		\end{align}
+		が従う．要素を持たないクラスは空集合である(定理\ref{thm:uniqueness_of_emptyset})ので
+		\begin{align}
+			\negation \set{a} \wedge \negation \set{b},\ \EXTAX,\EQAX,\COMAX \vdash
+			\{a,b\} = \emptyset
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	上の定理とは逆に$\{a,b\}$が空ならば$a$も$b$も真クラスである．
+	
+	\begin{screen}
+		\begin{thm}[空な対に表示されているクラスは集合ではない]
+		\label{thm:classes_displayed_in_empty_pair_are_not_sets}
+			$a$と$b$をクラスとするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a} \wedge \negation \set{b}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			\set{a} \vdash a = \tau
+		\end{align}
+		が成立し，また定理\ref{thm:set_is_an_element_of_its_pair}より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \{a,b\}
+		\end{align}
+		が成り立つので相等性公理より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \tau \in \{a,b\}
+		\end{align}
+		が従い，存在記号の論理的公理より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash \exists x\, (\, x \in \{a,b\}\, )
+		\end{align}
+		が成り立つ．演繹定理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow \exists x\, (\, x \in \{a,b\}\, )
+		\end{align}
+		となり，対偶を取れば
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash\ \negation \exists x\, (\, x \in \{a,b\}\, )
+			\rarrow\ \negation \set{a}
+			\label{fom:classes_displayed_in_empty_pair_are_not_sets_1}
+		\end{align}
+		が得られる(論理的定理\ref{logicalthm:introduction_of_contraposition})．
+		他方で空のクラスは要素を持たない(定理\ref{thm:uniqueness_of_emptyset})ので
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow \forall x\, (\, x \notin \{a,b\}\, )
+			\label{fom:classes_displayed_in_empty_pair_are_not_sets_2}
+		\end{align}
+		が成り立ち，また De Morgan の法則
+		(論理的定理\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_1})より
+		\begin{align}
+			\vdash \forall x\, (\, x \notin \{a,b\}\, ) \rarrow\ \negation \exists x\, (\, x \in \{a,b\}\, )
+			\label{fom:classes_displayed_in_empty_pair_are_not_sets_3}
+		\end{align}
+		も成り立つので，(\refeq{fom:classes_displayed_in_empty_pair_are_not_sets_2})
+		(\refeq{fom:classes_displayed_in_empty_pair_are_not_sets_3})
+		(\refeq{fom:classes_displayed_in_empty_pair_are_not_sets_1})を併せて
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a}
+		\end{align}
+		が従う．同様にして
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{b}
+		\end{align}
+		も成り立ち，論理積の導入より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a} \wedge \negation \set{b}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}

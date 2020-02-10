@@ -1,0 +1,861 @@
+	$x,y$を$\mathcal{L}$の項とするとき，
+	\begin{align}
+		x \notin y \defarrow\ \negation x \in y
+	\end{align}
+	で$x \notin y$を定める．同様に
+	\begin{align}
+		x \neq y \defarrow\ \negation x = y
+	\end{align}
+	で$x \neq y$を定める．
+	
+	集合は特定の性質を持つクラスとして定義されるが，クラスが全て集合であると考えると矛盾が起こる．
+	たとえばRussellのパラドックスで有名な
+	\begin{align}
+		R \defeq \Set{x}{x \notin x}
+	\end{align}
+	なるクラスが集合であるとすると($\defarrow$は``式''に対する略記の導入に使ったが
+	(P. \pageref{fom:defining_arrow})，
+	これと同様に$\defeq$とはクラスに対する略記を導入するために使う定義記号である)
+	\begin{align}
+		R \notin R \lrarrow R \in R
+	\end{align}
+	が成り立ってしまい，これは矛盾を導く(定理\ref{thm:Russell_paradox})．
+	この点について少し掘り下げると，実のところは「集合であると考えると」ではなく
+	「要素になれると考えると」と言い換えた方がパラドックスの原因を掴みやすくなる．
+	大切なのは「要素になれるクラス」を制限することなのである(Morse\cite{Morse} P. xx)．
+	
+	\begin{screen}
+		\begin{dfn}[集合]
+			$a$をクラスとするとき，「$a$が集合である」という式を
+			\begin{align}
+				\set{a} \defarrow \exists x\, (\, a = x\, )
+			\end{align}
+			で定める．$\Sigma \vdash \set{a}$ならば$a$を
+			{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
+			$\Sigma \vdash\ \negation \set{a}$ならば$a$を
+			{\bf 真クラス}\index{しんくらす@真クラス}{\bf (proper class)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+	$x$のみが$\varphi$で自由であるとする．このとき
+	\begin{align}
+		\set{\Set{x}{\varphi(x)}} \vdash \set{\Set{x}{\varphi(x)}}
+	\end{align}
+	が満たされている．つまり
+	\begin{align}
+		\set{\Set{x}{\varphi(x)}}
+		\vdash \exists y\, \left(\, \Set{x}{\varphi(x)} = y\, \right)
+	\end{align}
+	が成り立っているということであるが，$\Set{x}{\varphi(x)} = y$を
+	\begin{align}
+		\forall x\, (\, \varphi(x) \lrarrow x \in y\, )
+	\end{align}
+	と書き換えれば，存在記号の論理的公理より
+	\begin{align}
+		\set{\Set{x}{\varphi(x)}} \vdash \Set{x}{\varphi(x)} = 
+		\varepsilon y\, \forall x\, (\, \varphi(x) \lrarrow x \in y\, )
+	\end{align}
+	が得られる．これは集合と$\varepsilon$項との関係の基本定理である．
+	
+	\begin{screen}
+		\begin{thm}[集合である内包項は$\varepsilon$項で書ける]
+		\label{thm:if_a_class_is_a_set_then_equal_to_some_epsilon_term}
+			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$x$のみが$\varphi$で自由であるとする．このとき
+			\begin{align}
+				\set{\Set{x}{\varphi(x)}} \vdash \Set{x}{\varphi(x)} 
+				= \varepsilon y\, \forall x\, (\, \varphi(x) \lrarrow x \in y\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+\section{相等性}
+	本論文において``等しい''とは項に対する言明であって，$a$と$b$を項とするとき
+	\begin{align}
+		a = b
+	\end{align}
+	なる式で表される．この記号
+	\begin{align}
+		=
+	\end{align}
+	は{\bf 等号}\index{とうごう@等号}{\bf (equal sign)}と呼ばれるが，
+	現時点では述語として導入されているだけで，推論操作における働きは不明のままである．
+	本節では，いつクラスは等しくなるのか，そして，等しい場合に何が起きるのか，の二つが主題となる．
+	
+	\begin{screen}
+		\begin{axm}[外延性の公理 (Extensionality)]
+			$a$と$b$をクラスとするとき次の式を$\EXTAX$により参照する：
+			\begin{align}
+				\forall x\, (\, x \in a \lrarrow x \in b\, ) \rarrow a=b.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[任意のクラスは自分自身と等しい]\label{thm:any_class_equals_to_itself}
+			$a$をクラスとするとき
+			\begin{align}
+				\EXTAX \vdash a = a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\sigma \defeq 
+			\varepsilon s \negation (\, s \in a \lrarrow s \in a\, )
+		\end{align}
+		とおく．含意の反射律(論理的定理\ref{logicalthm:reflective_law_of_implication})
+		と論理積の導入より
+		\begin{align}
+			\vdash \sigma \in a \lrarrow \sigma \in a
+		\end{align}
+		が成り立つから，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\vdash \forall s\, (\, s \in a  \lrarrow s \in a\, )
+		\end{align}
+		が成り立つ．外延性の公理より
+		\begin{align}
+			\EXTAX \vdash \forall s\, (\, s \in a  \lrarrow s \in a\, )
+			\rarrow a = a
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			\EXTAX \vdash a = a
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[主要$\varepsilon$項は集合である]
+		\label{thm:critical_epsilon_term_is_set}
+			$\tau$を主要$\varepsilon$項とするとき
+			\begin{align}
+				\EXTAX \vdash \set{\tau}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\EXTAX \vdash \tau = \tau
+		\end{align}
+		が成立するので，存在記号の論理的公理より
+		\begin{align}
+			\EXTAX \vdash \exists x\, \left(\, \tau = x\, \right)
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	例えば
+	\begin{align}
+		a = b
+	\end{align}
+	と書いてあったら``$a$と$b$は等しい''と読めるわけだが，明らかに$a$は$b$とは違うではないではないか！
+	こんなことはしょっちゅう起こることであって，上で述べたように$\Set{x}{A(x)}$が集合なら
+	\begin{align}
+		\Set{x}{A(x)} = \varepsilon y \forall x\, \left(\, A(x) \lrarrow x \in y\, \right)
+	\end{align}
+	が成り立ったりする．そこで``数学的に等しいとは何事か''という疑問が浮かぶのは至極自然であって，
+	それに答えるのが次の相等性公理である．
+	
+	\begin{screen}
+		\begin{axm}[相等性公理]
+			$a,b,c$をクラスとするとき次の式を$\EQAX$により参照する：
+			\begin{align}
+				a = b &\rarrow b = a,  \\
+				a = b &\rarrow (\, a \in c \rarrow b \in c\, ), \\
+				a = b &\rarrow (\, c \in a \rarrow c \in b\, ). 
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[外延性の公理の逆も成り立つ]
+		\label{thm:inverse_of_axiom_of_extensionality}
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				\EQAX \vdash 
+				a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in a  \lrarrow x \in b\, )
+		\end{align}
+		とおく．相等性公理より
+		\begin{align}
+			\EQAX \vdash a = b \rarrow (\, \tau \in a \rarrow \tau \in b\, )
+		\end{align}
+		となるので，演繹定理の逆より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in a \rarrow \tau \in b
+			\label{fom:inverse_of_axiom_of_extensionality_1}
+		\end{align}
+		となる．また相等性公理と演繹定理の逆により
+		\begin{align}
+			a = b,\ \EQAX \vdash b = a
+		\end{align}
+		が成り立ち，同じく相等性公理より
+		\begin{align}
+			\EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in b \rarrow \tau \in a
+			\label{fom:inverse_of_axiom_of_extensionality_2}
+		\end{align}
+		も得られる．論理積の導入により
+		\begin{align}
+			a = b,\ \EQAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
+			\rarrow (\, (\, \tau \in b \rarrow \tau \in a\, )
+			\rarrow (\, \tau \in a \lrarrow \tau \in b\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:inverse_of_axiom_of_extensionality_1})との三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash (\, \tau \in b \rarrow \tau \in a\, )
+			\rarrow (\, \tau \in a \lrarrow \tau \in b\, )
+		\end{align}
+		が従い，(\refeq{fom:inverse_of_axiom_of_extensionality_2})との三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in a \lrarrow \tau \in b
+		\end{align}
+		が従う．全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			a = b,\ \EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
+		\end{align}
+		が成立し，演繹定理より
+		\begin{align}
+			\EQAX \vdash a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{comment}
+	\begin{screen}
+		\begin{thm}[(ボツ!!!)等号の対称律]\label{thm:symmetry_of_equality}
+			$a,b$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX \vdash a = b \rarrow b = a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:axiom_of_extensionality_equivalent}より
+		\begin{align}
+			a=b,\ \EQAX \vdash \forall x\, (\, x \in a  \lrarrow x \in b\, )
+		\end{align}
+		となるが，ここでクラスである任意の$\varepsilon$項$\tau$に対して
+		\begin{align}
+			a=b,\ \EQAX \vdash \tau \in a \lrarrow \tau \in b
+		\end{align}
+		となるが，他方で論理的定理\ref{logicalthm:symmetry_of_equivalence_arrows}より
+		\begin{align}
+			a=b,\ \EQAX \vdash (\, \tau \in a \lrarrow \tau \in b\, )
+				\rarrow (\, \tau \in b \lrarrow \tau \in a\, )
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			a=b,\ \EQAX \vdash \tau \in b \lrarrow \tau \in a
+		\end{align}
+		となる．そして$\tau$の任意性より
+		\begin{align}
+			a=b,\ \EQAX \vdash \forall x\, (\, x \in b  \lrarrow x \in a\, )
+		\end{align}
+		が成り立つ．外延性の公理より
+		\begin{align}
+			a=b,\ \EXTAX,\EQAX \vdash \forall x\, (\, x \in b  \lrarrow x \in a\, )
+			\rarrow b = a
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			a=b,\ \EXTAX,\EQAX \vdash b = a
+		\end{align}
+		となる．最後に演繹定理より
+		\begin{align}
+			\EXTAX,\EQAX \vdash a = b \rarrow b = a
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	\end{comment}
+	
+	\begin{screen}
+		\begin{axm}[内包性公理] 
+			$\varphi$を$y$のみが自由に現れる$\mathcal{L}$の式とし，
+			$x$は$\varphi$で$y$への代入について自由であるとするとき，
+			次の式を$\COMAX$により参照する：
+			\begin{align}
+				\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[主要$\varepsilon$項は内包項で書ける]
+		\label{thm:critical_epsilon_term_can_be_written_by_intensional_notation}
+			$\tau$を主要$\varepsilon$項とするとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \Set{x}{x \in \tau} = \tau.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		内包性公理より直接
+		\begin{align}
+			\COMAX \vdash \forall x\, (\, x \in \Set{x}{x \in \tau} \lrarrow x \in \tau\, )
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\EXTAX \vdash \forall x\, (\, x \in \Set{x}{x \in \tau} \lrarrow x \in \tau\, ) \rarrow \Set{x}{x \in \tau} = \tau
+		\end{align}
+		と三段論法より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \Set{x}{x \in \tau} = \tau
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[条件を満たす集合は要素である]\label{thm:satisfactory_set_is_an_element}
+			$\varphi$を$\lang{\varepsilon}$の式とし，$x$を変項とし，
+			$\varphi$には$x$のみが自由に現れているとする．このとき，任意のクラス$a$に対して
+			\begin{align}
+				\EQAX,\COMAX \vdash \varphi(a) \rarrow 
+				(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			\set{a} \vdash \exists x\, (\, a = x\, )
+		\end{align}
+		より，
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			\set{a} \vdash a = \tau
+		\end{align}
+		となる．相等性の公理より
+		\begin{align}
+			\set{a},\EQAX \vdash 
+			a = \tau \rarrow (\, \varphi(a) \rarrow \varphi(\tau)\, )
+		\end{align}
+		となるので，三段論法と演繹定理の逆より
+		\begin{align}
+			\varphi(a),\set{a},\EQAX \vdash \varphi(\tau)
+		\end{align}
+		となる．内包性公理より
+		\begin{align}
+			\varphi(a),\set{a},\EQAX,\COMAX \vdash \tau \in \Set{x}{A(x)}
+		\end{align}
+		が従い，相等性の公理から
+		\begin{align}
+			\varphi(a),\set{a},\EQAX,\COMAX \vdash a \in \Set{x}{A(x)}
+		\end{align}
+		が成立する．演繹定理より
+		\begin{align}
+			\varphi(a),\EQAX,\COMAX &\vdash \set{a} \rarrow a \in \Set{x}{A(x)}, \\
+			\EQAX,\COMAX &\vdash \varphi(a) \rarrow 
+			\left(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, \right)
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[Russellのパラドックス]\label{thm:Russell_paradox}
+			\begin{align}
+				\EQAX,\COMAX \vdash \set{\Set{x}{x \notin x}} \rarrow \bot.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま$R \defeq \Set{x}{x \notin x}$とし
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, R = x\, )
+		\end{align}
+		とおけば，存在記号の論理的公理より
+		\begin{align}
+			\set{R} \vdash R = \tau
+			\label{fom:Russell_paradox_1}
+		\end{align}
+		が成立する．また全称記号の論理的公理と論理積の除去より
+		\begin{align}
+			\COMAX &\vdash \tau \in R \rarrow \tau \notin \tau, 
+			\label{fom:Russell_paradox_2} \\
+			\COMAX &\vdash \tau \notin \tau \rarrow \tau \in R
+			\label{fom:Russell_paradox_3}
+		\end{align}
+		が成り立つ．
+		
+		\begin{description}
+			\item[step1]
+				まず
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash \tau \in R \rarrow \bot
+					\label{fom:Russell_paradox_4}
+				\end{align}
+				を示す．(\refeq{fom:Russell_paradox_1})と
+				\begin{align}
+					\EQAX \vdash R = \tau \rarrow (\, \tau \in R \rarrow \tau \in \tau\, )
+				\end{align}
+				との三段論法より
+				\begin{align}
+					\tau \in R,\ \set{R},\ \EQAX \vdash \tau \in \tau
+				\end{align}
+				がとなり，また(\refeq{fom:Russell_paradox_2})より
+				\begin{align}
+					\tau \in R,\ \COMAX \vdash \tau \notin \tau
+				\end{align}
+				も成り立つので，矛盾の導入
+				\begin{align}
+					\vdash \tau \in \tau \rarrow (\, \tau \notin \tau \rarrow \bot\, )
+				\end{align}
+				との三段論法および演繹定理より(\refeq{fom:Russell_paradox_4})が得られる．
+				
+			\item[step2]
+				次に
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash \tau \notin R \rarrow \bot
+					\label{fom:Russell_paradox_5}
+				\end{align}
+				を示す．まず(\refeq{fom:Russell_paradox_3})と
+				対偶律3 (論理的定理\ref{logicalthm:contraposition_3})より
+				\begin{align}
+					\COMAX \vdash \tau \notin R \rarrow \tau \in \tau
+				\end{align}
+				が成り立ち
+				\begin{align}
+					\tau \notin R,\ \COMAX \vdash \tau \in \tau
+					\label{fom:Russell_paradox_6}
+				\end{align}
+				が従う．また(\refeq{fom:Russell_paradox_1})と
+				\begin{align}
+					\EQAX \vdash R = \tau \rarrow \tau = R
+				\end{align}
+				より
+				\begin{align}
+					\set{R},\ \EQAX \vdash \tau = R
+				\end{align}
+				となり，
+				\begin{align}
+					\EQAX \vdash \tau = R \rarrow (\, \tau \in \tau \rarrow 
+					\tau \in R\, )
+				\end{align}
+				との三段論法より
+				\begin{align}
+					\set{R},\ \EQAX \vdash \tau \in \tau \rarrow \tau \in R
+				\end{align}
+				が成り立つので，対偶律1 
+				(論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\set{R},\ \EQAX \vdash \tau \notin R \rarrow \tau \notin \tau
+				\end{align}
+				が成り立ち，
+				\begin{align}
+					\tau \notin R,\ \set{R},\ \EQAX \vdash \tau \notin \tau
+					\label{fom:Russell_paradox_7}
+				\end{align}
+				が従う．(\refeq{fom:Russell_paradox_6})(\refeq{fom:Russell_paradox_7})と
+				矛盾の導入および演繹定理より(\refeq{fom:Russell_paradox_5})が得られる．
+				
+			\item[step3]
+				(\refeq{fom:Russell_paradox_4})と(\refeq{fom:Russell_paradox_5})と
+				論理和の除去より
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash
+					\tau \in R \vee \tau \notin R \rarrow \bot
+				\end{align}
+				が成り立つが，排中律(論理的定理\ref{logicalthm:law_of_excluded_middle})より
+				\begin{align}
+					\vdash \tau \in R \vee \tau \notin R
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\set{R},\ \EQAX,\COMAX \vdash \bot
+				\end{align}
+				が出る．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	Russellのパラドックスと否定の導入により
+	\begin{align}
+		\EQAX,\COMAX \vdash\ \negation \set{\Set{x}{x \notin x}}
+	\end{align}
+	が成り立つ．つまり$\Set{x}{x \notin x}$は真クラスである．そして
+	定理\ref{thm:no_class_contains_itself}によって$\Set{x}{x \notin x}$が
+	次の宇宙$\Univ$と等しいことが判る．
+	
+	\begin{screen}
+		\begin{dfn}[宇宙]
+			$\Univ \defeq \Set{x}{x=x}$で定めるクラス$\Univ$を{\bf 宇宙}\index{うちゅう@宇宙}
+			{\bf (Universe)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	宇宙とは集合の全体を表すが，これ自体は集合ではない．
+	ここで$\Univ$が集合の全体を表すとは，任意のクラス$a$に対して
+	「$a$が$\Univ$の要素ならば$a$は集合であり，逆に
+	$a$が集合ならば$a$は$\Univ$の要素である」という意味である
+	(定理\ref{thm:V_is_the_whole_of_sets})．
+	%また$\Univ$のより具体的な構造ものちに判る(定理\ref{})．
+	%ちなみに名前のVとはVon NeumannのVである．
+	
+	\begin{screen}
+		\begin{axm}[要素]
+			次の公理を$\ELEAX$によって参照する:
+			$a$と$b$をクラスとするとき
+			\begin{align}
+				a \in b \rarrow \set{a}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	要素の公理は{\bf 要素となりうるクラスは集合である}と規制している．
+	もともと$\Set{x}{\varphi(x)}$に期されていた「$\varphi(x)$を満たす集合$x$の全体」
+	の意味を実質化するために要素の公理を設けたのである．
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は集合の全体である]
+		\label{thm:V_is_the_whole_of_sets}
+			$a$をクラスとするとき次が成り立つ:
+			\begin{align}
+				\ELEAX &\vdash a \in \Univ \rarrow \set{a}, \\
+				\EXTAX,\EQAX,\COMAX &\vdash \set{a} \rarrow a \in \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$をクラスとするとき，まず要素の公理より
+		\begin{align}
+			\ELEAX \vdash a \in \Univ \rarrow \set{a}
+		\end{align}
+		が得られる．逆を示す．いま
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおくと，
+		\begin{align}
+			\set{a} \vdash \exists x\, (\, a = x\, )
+		\end{align}
+		と
+		\begin{align}
+			\set{a} \vdash \exists x\, (\, a = x\, ) \rarrow a = \tau
+		\end{align}
+		(存在記号の論理的公理)より
+		\begin{align}
+			\set{a} \vdash a = \tau
+			\label{fom:thm_V_is_the_whole_of_sets_1}
+		\end{align}
+		が成り立つ．他方で定理\ref{thm:any_class_equals_to_itself}と内包性公理より
+		\begin{align}
+			\EXTAX &\vdash \tau = \tau, \\
+			\COMAX &\vdash \tau = \tau \rarrow \tau \in \Univ
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \in \Univ
+			\label{fom:thm_V_is_the_whole_of_sets_2}
+		\end{align}
+		となる．ここで相等性公理より
+		\begin{align}
+			\EQAX \vdash a = \tau \rarrow \tau = a
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_V_is_the_whole_of_sets_1})と三段論法より
+		\begin{align}
+			\set{a},\EQAX \vdash \tau = a
+			\label{fom:thm_V_is_the_whole_of_sets_3}
+		\end{align}
+		となる．同じく相等性公理より
+		\begin{align}
+			\EQAX \vdash \tau = a \rarrow (\, \tau \in \Univ \rarrow a \in \Univ\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_V_is_the_whole_of_sets_3})と三段論法より
+		\begin{align}
+			\set{a},\ \EQAX \vdash \tau \in \Univ \rarrow a \in \Univ
+		\end{align}
+		となり，(\refeq{fom:thm_V_is_the_whole_of_sets_2})と三段論法より
+		\begin{align}
+			\set{a},\ \EXTAX,\EQAX,\COMAX \vdash a \in \Univ
+		\end{align}
+		が成り立つ．最後に演繹定理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX \vdash \set{a} \rarrow a \in \Univ
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	定理\ref{thm:no_class_contains_itself}より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \Univ \notin \Univ
+	\end{align}
+	が成り立つので，前の定理より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash\ \negation \set{\Univ}
+	\end{align}
+	が従う．つまり$\Univ$は真クラスである．
+	
+	\begin{screen}
+		\begin{logicalthm}[同値関係の可換律]
+		\label{logicalthm:commutative_law_of_equivalence_symbol}
+			$A,B$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (A \lrarrow B) \rarrow (B \lrarrow A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去より
+		\begin{align}
+			A \lrarrow B &\vdash A \rarrow B, 
+			\label{fom:logicalthm_commutative_law_of_equivalence_symbol_1} \\
+			A \lrarrow B &\vdash B \rarrow A
+			\label{fom:logicalthm_commutative_law_of_equivalence_symbol_2}
+		\end{align}
+		となる．他方で論理積の導入より
+		\begin{align}
+			\vdash (B \rarrow A) \rarrow ((A \rarrow B) \rarrow (B \lrarrow A))
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A \lrarrow B \vdash (B \rarrow A) \rarrow ((A \rarrow B) \rarrow (B \lrarrow A))
+		\end{align}
+		も成り立つ．これと(\refeq{fom:logicalthm_commutative_law_of_equivalence_symbol_1})
+		との三段論法より
+		\begin{align}
+			A \lrarrow B \vdash (A \rarrow B) \rarrow (B \lrarrow A)
+		\end{align}
+		となり，(\refeq{fom:logicalthm_commutative_law_of_equivalence_symbol_2})
+		との三段論法より
+		\begin{align}
+			A \lrarrow B \vdash B \lrarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値関係の推移律]
+		\label{logicalthm:transitive_law_of_equivalence_symbol}
+			$A,B,C$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (A \lrarrow B) \rarrow ((B \lrarrow C) \rarrow 
+				(A \lrarrow C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去法則より
+		\begin{align}
+			A \lrarrow B &\vdash A \rarrow B, \\
+			A \lrarrow B &\vdash B \rarrow A
+		\end{align}
+		が成り立つので
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C &\vdash A \rarrow B, 
+			\label{fom:transitive_law_of_equivalence_symbol_1} \\
+			A \lrarrow B,\ B \lrarrow C &\vdash B \rarrow A
+		\end{align}
+		も成り立つし，対称的に
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C &\vdash B \rarrow C, 
+			\label{fom:transitive_law_of_equivalence_symbol_2} \\
+			A \lrarrow B,\ B \lrarrow C &\vdash C \rarrow B
+		\end{align}
+		も成り立つ．
+		\begin{align}
+			\vdash (A \rarrow B) \rarrow ((B \rarrow C) \rarrow (A \rarrow C))
+		\end{align}
+		も成り立つので，(\refeq{fom:transitive_law_of_equivalence_symbol_1})との三段論法より
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C \vdash (B \rarrow C) \rarrow (A \rarrow C)
+		\end{align}
+		が成り立ち，(\refeq{fom:transitive_law_of_equivalence_symbol_2})との三段論法より
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C \vdash A \rarrow C
+			\label{fom:transitive_law_of_equivalence_symbol_3}
+		\end{align}
+		が成り立つ．同様にして
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C \vdash C \rarrow A
+			\label{fom:transitive_law_of_equivalence_symbol_4}
+		\end{align}
+		も得られる．論理積の導入より
+		\begin{align}
+			\vdash (A \rarrow C) \rarrow ((C \rarrow A) \rarrow (A \lrarrow C))
+		\end{align}
+		が成り立つので，(\refeq{fom:transitive_law_of_equivalence_symbol_3})との三段論法より
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C \vdash (C \rarrow A) \rarrow (A \lrarrow C)
+		\end{align}
+		となり，(\refeq{fom:transitive_law_of_equivalence_symbol_4})との三段論法より
+		\begin{align}
+			A \lrarrow B,\ B \lrarrow C \vdash A \lrarrow C
+		\end{align}
+		となる．あとは演繹定理を二回適用すれば
+		\begin{align}
+			\vdash (A \lrarrow B) \rarrow ((B \lrarrow C) \rarrow (A \lrarrow C))
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[等号の推移律]\label{thm:transitive_law_of_equality}
+			$a,b,c$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX \vdash a = b \rarrow (\, a = c \rarrow b = c\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		まずは
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \forall x\, (\, x \in b \lrarrow x \in c\, )
+		\end{align}
+		を示したいので
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in b \lrarrow x \in c\, )
+		\end{align}
+		とおく($b,c$が$\lang{\varepsilon}$の項でなければ
+		$x \in b \lrarrow x \in c$を書き換える)．相等性公理より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash a = b \rarrow (\, \tau \in a \rarrow \tau \in b\, )
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash a = b
+			\label{fom:thm_transitive_law_of_equality_0}
+		\end{align}
+		との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in a \rarrow \tau \in b
+			\label{fom:thm_transitive_law_of_equality_1}
+		\end{align}
+		となる．同じく相等性公理より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash a = b \rarrow b = a, \\
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_0})との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash b = a
+		\end{align}
+		となり，同様に相等性公理から
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in b \rarrow \tau \in a
+			\label{fom:thm_transitive_law_of_equality_2}
+		\end{align}
+		となる．論理積の導入より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash (\tau \in a \rarrow \tau \in b)
+			\rarrow ((\tau \in b \rarrow \tau \in a) \rarrow 
+			(\tau \in a \lrarrow \tau \in b))
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_1})との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash (\tau \in b \rarrow \tau \in a) \rarrow 
+			(\tau \in a \lrarrow \tau \in b)
+		\end{align}
+		となり，(\refeq{fom:thm_transitive_law_of_equality_2})との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in a \lrarrow \tau \in b
+			\label{fom:thm_transitive_law_of_equality_4}
+		\end{align}
+		となる．対称的に
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in a \lrarrow \tau \in c
+			\label{fom:thm_transitive_law_of_equality_3}
+		\end{align}
+		も得られる．ここで含意の可換律
+		(論理的定理\ref{logicalthm:commutative_law_of_equivalence_symbol})より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash (\, \tau \in a \lrarrow \tau \in b\, )
+			\rarrow (\, \tau \in b \lrarrow \tau \in a\, ) 
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_4})との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in b \lrarrow \tau \in a
+			\label{fom:thm_transitive_law_of_equality_5}
+		\end{align}
+		となる．また含意の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash (\, \tau \in b \lrarrow \tau \in a\, )
+			\rarrow ((\, \tau \in a \lrarrow \tau \in c\, )
+			\rarrow (\, \tau \in b \lrarrow \tau \in c\, )) 
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_transitive_law_of_equality_5})との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash (\, \tau \in a \lrarrow \tau \in c\, )
+			\rarrow (\, \tau \in b \lrarrow \tau \in c\, )
+		\end{align}
+		となり，(\refeq{fom:thm_transitive_law_of_equality_3})との三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \tau \in b \lrarrow \tau \in c
+		\end{align}
+		が得られる．全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash (\tau \in b \lrarrow \tau \in c)
+			\rarrow \forall x\, (\, x \in b \lrarrow x \in c\, )
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EQAX \vdash \forall x\, (\, x \in b \lrarrow x \in c\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			a = b,\ a = c,\ \EXTAX,\EQAX \vdash \forall x\, (\, x \in b \lrarrow x \in c\, )
+			\rarrow b = c
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			a = b,\ a = c,\ \EXTAX,\EQAX \vdash b = c
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	この節の最後に等号の対称律と推移律の同値性について書いておく．本論文では等号の対称律
+	\begin{align}
+		a = b \rarrow b = a
+	\end{align}
+	を公理としたが，逆に推移律を公理にすれば
+	\begin{align}
+		\EXTAX,\EQAX \vdash a = b \rarrow b = a
+	\end{align}
+	が成立する．実際
+	\begin{align}
+		a = b,\ \EQAX &\vdash a = a \rarrow b = a, && \\
+		\EXTAX &\vdash a = a, 
+		&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}), \\
+		a = b,\ \EXTAX,\EQAX &\vdash b = a
+		&& (\mbox{三段論法})
+	\end{align}
+	となる．つまり等号の対称律と推移律は外延性公理の下で同値なのである．

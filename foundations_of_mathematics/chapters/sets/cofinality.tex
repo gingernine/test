@@ -1,0 +1,234 @@
+\section{共終数}
+	順序数$\alpha,\beta$に対して，$\alpha$から$\beta$への写像$f$で
+	\begin{align}
+		\forall \delta,\zeta \in \alpha\, (\, \delta < \zeta \rarrow f(\delta) < f(\zeta)\, )
+	\end{align}
+	と
+	\begin{align}
+		\forall \gamma \in \beta\, \exists \delta \in \alpha\, (\, \gamma < f(\delta)\, )
+	\end{align}
+	を満たすもの({\bf 共終写像}\index{きょうしゅうしゃぞう@共終写像}{\bf (cofinal function)})
+	が存在することを
+	\begin{align}
+		\cof{\alpha}{\beta}
+	\end{align}
+	と書く．つまり
+	\begin{align}
+		\cof{\alpha}{\beta} \defarrow
+		\exists f\, (\, &f:\alpha \rarrow \beta \\
+		&\wedge \forall \delta,\zeta \in \alpha\, (\, \delta < \zeta \rarrow f(\delta) < f(\zeta)\, ) \\
+		&\wedge \forall \gamma \in \beta\, \exists \delta \in \alpha\, (\, \gamma < f(\delta)\, )
+		 \, )
+	\end{align}
+	である．また$\beta$に対して$\cof{\alpha}{\beta}$を満たす最小の順序数$\alpha$を
+	\begin{align}
+		\cf{\beta}
+	\end{align}
+	と書き，$\beta$の{\bf 共終数}\index{きょうしゅうすう@共終数}{\bf (cofinality)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{thm}[共終の概念は極限数のみに使われる]
+			\begin{align}
+				&\forall \alpha,\beta \in \ON\, 
+				(\, \cof{\alpha}{\beta} \rarrow \limo{\beta}\, ), \\
+				&\forall \alpha,\beta \in \ON\, 
+				(\, \cof{\alpha}{\beta} \rarrow \limo{\alpha}\, )
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\cof{\alpha}{\beta}$であるとし，$f$を$\alpha$から$\beta$への共終写像とする．
+		$\beta$の任意の要素$\gamma$に対して
+		\begin{align}
+			\gamma < f(\delta) < \beta
+		\end{align}
+		なる$\alpha$の要素$\delta$が取れるので，
+		\begin{align}
+			\forall \gamma \in \beta\, (\, \gamma + 1 \neq \beta\, )
+		\end{align}
+		である．ゆえに$\beta$は極限数である．
+		$\alpha$の任意の要素$\delta$に対して
+		\begin{align}
+			f(\delta) < f(\zeta)
+		\end{align}
+		なる$\alpha$の要素$\zeta$が取れて，$f$の単調増大性より
+		\begin{align}
+			\delta < \zeta
+		\end{align}
+		となるので，
+		\begin{align}
+			\forall \delta \in \alpha\, (\, \delta+ 1 \neq \alpha\, )
+		\end{align}
+		である．ゆえに$\alpha$も極限数である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[極限数は自分自身と共終]
+			\begin{align}
+				\forall \alpha \in \ON\, 
+				(\, \limo{\alpha} \rarrow \cof{\alpha}{\alpha}\, )
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$上の恒等写像が共終写像となる．
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[共終なら共終数は同じ]
+			\begin{align}
+				\forall \alpha \in \ON\, 
+				(\, \limo{\alpha} \wedge \limo{\beta} \wedge \cof{\alpha}{\beta}
+				 \rarrow \cf{\alpha} = \cf{\alpha}\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\cof{\cf{\alpha}}{\alpha}$と$\cof{\alpha}{\beta}$より
+		$\cof{\cf{\alpha}}{\beta}$が成り立つので
+		\begin{align}
+			\cf{\beta} \leq \cf{\alpha}
+		\end{align}
+		となる．$f$を$\alpha$から$\beta$への共終写像とし，$g$を
+		$\cf{\beta}$から$\beta$への共終写像とし，$\cf{\beta}$から$\alpha$への写像$h$を
+		\begin{align}
+			\xi \longmapsto \min{\Set{\eta \in \alpha}{g(\xi) < f(\eta)}}
+		\end{align}
+		なるものとして定める．このとき$\alpha$の任意の要素$\delta$に対して
+		\begin{align}
+			f(\delta) < g(\xi)
+		\end{align}
+		なる$\xi$が取れて，
+		\begin{align}
+			g(\xi) < f(\eta)
+		\end{align}
+		なる$\eta$が取れるから，
+		\begin{align}
+			f(\delta) < g(\xi) < f(h(\xi))
+		\end{align}
+		が成り立つ．ゆえに
+		\begin{align}
+			\delta < h(\xi)
+		\end{align}
+		である．ゆえに
+		\begin{align}
+			\forall \delta \in \alpha\, \exists \xi \in \cf{\beta}\, 
+			(\, \delta < h(\xi)\, )
+		\end{align}
+		が成り立つ．今度は$\cf{\beta}$から$\alpha$への写像$H$を
+		\begin{align}
+			\xi \longmapsto \max{\{g(\xi),\sup{\Set{H(\kappa)+1}{\kappa < \xi}}\}}
+		\end{align}
+		なるものとして再帰的に定義する．このとき
+		\begin{align}
+			\xi_{1} < \xi_{2}
+		\end{align}
+		ならば
+		\begin{align}
+			H(\xi_{1}) < H(\xi_{1}) + 1 \leq \sup{\Set{H(\kappa)+1}{\kappa < \xi_{2}}}
+			\leq H(\xi_{2})
+		\end{align}
+		が成り立つし，また$\alpha$の任意の要素$\delta$に対して
+		\begin{align}
+			\delta < g(\xi)
+		\end{align}
+		なる$\xi$が取れるが，
+		\begin{align}
+			\delta < g(\xi) \leq H(\xi)
+		\end{align}
+		となる．ゆえに$H$は$\cf{\beta}$から$\alpha$への共終写像である．従って
+		\begin{align}
+			\cof{\cf{\beta}}{\alpha}
+		\end{align}
+		となり，
+		\begin{align}
+			\cf{\alpha} \leq \cf{\beta}
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[共終数は基数である]
+			\begin{align}
+				\forall \alpha \in \ON\, (\, \limo{\alpha} \rarrow \cf{\alpha} \in \CN\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[正則基数]
+			$\cf{\alpha} = \alpha$を満たす基数$\alpha$を{\bf 正則基数}
+			\index{せいそくきすう@正則基数}{\bf (regular cardinal)}と呼ぶ．
+			そうでない基数を{\bf 特異基数}\index{とくいきすう@特異基数}
+			{\bf (singular cardinal)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+		
+	\begin{screen}
+		\begin{thm}[$\Natural$は正則である]
+			\begin{align}
+				\cf{\Natural} = \Natural.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\limo{\Natural}$より
+		\begin{align}
+			\cof{\Natural}{\Natural}
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\cf{\Natural} \leq \Natural
+		\end{align}
+		となる．他方で
+		\begin{align}
+			\limo{\cf{\Natural}}
+		\end{align}
+		より
+		\begin{align}
+			\Natural \leq \cf{\Natural}
+		\end{align}
+		である．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[共終数は正則である]
+			\begin{align}
+				\forall \alpha \in \ON\, 
+				(\, \limo{\alpha} \rarrow \cf{\cf{\alpha}} = \cf{\alpha}\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			\cof{\cf{\alpha}}{\cf{\alpha}}
+		\end{align}
+		より
+		\begin{align}
+			\cf{\cf{\alpha}} \leq \cf{\alpha}
+		\end{align}
+		となる．また
+		\begin{align}
+			&\cof{\cf{\cf{\alpha}}}{\cf{\alpha}}, \\
+			&\cof{\cf{\alpha}}{\alpha}
+		\end{align}
+		より
+		\begin{align}
+			\cof{\cf{\cf{\alpha}}}{\alpha}
+		\end{align}
+		が従い，
+		\begin{align}
+			\cf{\cf{\alpha}} \leq \cf{\alpha}
+		\end{align}
+		も得られる．
+		\QED
+	\end{sketch}
+	

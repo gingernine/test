@@ -1,0 +1,887 @@
+\section{$\mathcal{L}$の証明の変換}
+\label{sec:L_proof_to_L_epsilon_proof}
+	この節では 「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列
+	であるものが取れる」ならば 「$\Sigma$から$\psi$への{\bf HE}の証明で
+	$\lang{\varepsilon}$の文の列であるものが取れる」ことを示す
+	
+	\begin{screen}
+		\begin{metathm}[$\mathcal{L}$の文の証明は$\lang{\varepsilon}$の文の証明に直せる]
+			$\psi$を$\lang{\in}$の文とするとき，
+			$\Sigma \provable{\mbox{{\bf HE}},\mathcal{L}} \psi$ならば
+			$\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi$である．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}
+		$\varphi_{1},\cdots,\varphi_{n}$を$\Sigma$から$\psi$への証明で$\mathcal{L}$の
+		文の列であるものとし，これらを$\lang{\varepsilon}$の文に書き換えたもの
+		(\ref{subsec:formula_rewriting}節参照)を
+		$\widehat{\varphi}_{1},\cdots,\widehat{\varphi}_{n}$とする．
+		ただし，同じ原子式の書き換えは証明全体で一致するようにしておく
+		(書き換え時に用意する変項は$\varphi_{1},\cdots,\varphi_{n}$で使われていないものとする)．
+		このときメタ定理\ref{metathm:rewritten_formulas_are_of_L_epsilon}と
+		メタ定理\ref{metathm:variables_unchanged_after_rewriting}より
+		$\widehat{\varphi}_{1},\cdots,\widehat{\varphi}_{n}$はいずれも
+		$\lang{\varepsilon}$の文であり，また各$\widehat{\varphi}_{i}$について次が言える：
+		\begin{description}
+			\item[(1)] $\varphi_{i}$が{\bf HE}の命題論理の公理ならば$\widehat{\varphi}_{i}$も
+				{\bf HE}の公理である．
+				
+			\item[(2)] $\varphi_{i}$が{\bf HE}の量化公理か$\Sigma$の公理ならば$\Sigma 
+				\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}_{i}$である．
+				
+			\item[(3)] $\varphi_{i}$が前の文$\varphi_{j},\varphi_{k}$から三段論法で
+				得られている場合は，$\widehat{\varphi}_{i}$は$\widehat{\varphi}_{j}$と
+				$\widehat{\varphi}_{k}$から三段論法で得られる．
+		\end{description}
+		
+		(1)については，書き換えても式の結合形式が変わらないため．
+		
+		(3)については，$\varphi_{k}$を$\varphi_{j} \rarrow \varphi_{i}$なる文とすれば，
+		同じ原子式の書き換えは証明全体で一致しているので$\widehat{\varphi_{k}}$は
+		$\widehat{\varphi}_{j} \rarrow \widehat{\varphi}_{i}$なる文であり，
+		$\widehat{\varphi}_{i}$は$\widehat{\varphi}_{j}$と$\widehat{\varphi}_{k}$から
+		三段論法で得られるのである．
+		
+		(2)について，内包項を含みうる$\Sigma$の公理は外延性，相等性，内包性，要素である．
+		これらと{\bf HE}の量化公理について一つずつ示していく．
+		\begin{description}
+			\item[case1] $\varphi_{i}$が
+				\begin{align}
+					\exists x \varphi \rarrow \varphi(\varepsilon x \check{\varphi})
+				\end{align}
+				なる公理であれば($\check{\varphi}$は$\varphi$の書き換え)，
+				$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\exists x \widehat{\varphi} \rarrow 
+					\widetilde{\varphi(\varepsilon x \check{\varphi})}
+				\end{align}
+				なる形の式である．ただし$\widehat{\varphi},
+				\widetilde{\varphi(\varepsilon x \check{\varphi})}$はそれぞれ
+				$\varphi,\varphi(\varepsilon x \check{\varphi})$の書き換えとする．
+				まず量化公理と演繹定理の逆より
+				\begin{align}
+					\exists x \widehat{\varphi} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi})
+				\end{align}
+				となる．ここで，メタ定理\ref{metathm:substitution_to_rewritten_formula}より
+				$\widehat{\varphi}(\varepsilon x \widehat{\varphi})$も
+				$\check{\varphi}(\varepsilon x \widehat{\varphi})$も
+				$\varphi(\varepsilon x \widehat{\varphi})$の書き換えであるし，
+				メタ定理\ref{metathm:formula_rewritings_coincide_except_the_differences_of_bound_variables}
+				より$\widehat{\varphi}(\varepsilon x \widehat{\varphi})$から始めて量化部分式を複数回
+				差し替えていけば$\check{\varphi}(\varepsilon x \widehat{\varphi})$が得られるので，
+				定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widehat{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \check{\varphi}(\varepsilon x \widehat{\varphi})
+					\label{thm:L_proof_to_L_epsilon_proof_01}
+				\end{align}
+				が成り立つ．三段論法より
+				\begin{align}
+					\exists x \widehat{\varphi}, \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi})
+				\end{align}
+				となり，存在記号の公理
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \widehat{\varphi}) \rarrow \exists x \check{\varphi}
+				\end{align}
+				と併せて
+				\begin{align}
+					\exists x \widehat{\varphi} \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi}
+				\end{align}
+				が従う．存在記号の公理より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x \check{\varphi} \rarrow \check{\varphi}(\varepsilon x \check{\varphi})
+				\end{align}
+				が成り立つので，再び三段論法より
+				\begin{align}
+					\exists x \widehat{\varphi} &\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi})
+				\end{align}
+				が従う．(\refeq{thm:L_proof_to_L_epsilon_proof_01})と同様の理由で
+				%ここで定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \check{\varphi}(\varepsilon x \check{\varphi}) \rarrow  \widetilde{\varphi(\varepsilon x \check{\varphi})}
+				\end{align}
+				が成り立つので，三段論法で
+				%(定理\ref{metathm:substitution_to_rewritten_formula}より
+				%$\check{\varphi}(\varepsilon x \check{\varphi})$も
+				%$\varphi(\varepsilon x \check{\varphi})$の書き換え)
+				\begin{align}
+					\exists x \widehat{\varphi}, \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi(\varepsilon x \check{\varphi})}
+				\end{align}
+				が得られる．$\varphi_{i}$が$\varphi(\varepsilon x \negation \check{\varphi}) \rarrow \forall x \varphi$なる式の場合も同様である．
+				
+			\item[case2] $\varphi_{i}$が
+				\begin{align}
+					\varphi(\tau) \rarrow \exists x \varphi
+				\end{align}
+				なる公理であれば，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\widetilde{\varphi(\tau)} \rarrow \exists x \widehat{\varphi}
+				\end{align}
+				なる式となる．ただし$\widetilde{\varphi(\tau)},\widehat{\varphi}$は
+				それぞれ$\varphi(\tau),\varphi$の書き換えとする．
+				これは{\bf HE}から演繹可能である．実際，
+				(\refeq{thm:L_proof_to_L_epsilon_proof_01})と同様の理由で
+				%定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\widetilde{\varphi(\tau)} \rarrow \widehat{\varphi}(\tau)
+				\end{align}
+				が成り立ち，他方で存在記号の公理より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\widehat{\varphi}(\tau) \rarrow \exists x \widehat{\varphi}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\widetilde{\varphi(\tau)} \rarrow \exists x \widehat{\varphi}
+				\end{align}
+				が従う．$\varphi_{i}$が$\forall x \varphi \rarrow \varphi(\tau)$なる
+				式の場合も同様である．
+				
+			%\item[case3] $\varphi_{i}$が
+			%	\begin{align}
+			%		\forall x \varphi \rarrow \varphi(\tau)
+			%	\end{align}
+			%	なる公理であれば，$\widehat{\varphi}_{i}$は
+			%	\begin{align}
+			%		\forall x \widetilde{\varphi} \rarrow \check{\varphi}(\tau)
+			%	\end{align}
+			%	なる式となる．これは{\bf HE}から演繹可能である．実際，{\bf HE}の量化公理より
+			%	\begin{align}
+			%		\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x \widetilde{\varphi} \rarrow \widetilde{\varphi}(\tau)
+			%	\end{align}
+			%	が成り立ち，他方で定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+			%	\begin{align}
+			%		\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \widetilde{\varphi}(\tau) \rarrow \check{\varphi}(\tau)
+			%	\end{align}
+			%	が成り立つので，
+			%	\begin{align}
+			%		\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x \widetilde{\varphi} \rarrow \check{\varphi}(\tau)
+			%	\end{align}
+			%	が従う．
+				
+			\item[case3] $\varphi_{i}$が外延性公理
+				\begin{align}
+					\forall x\, (\, x \in a \lrarrow x \in b\, ) \rarrow a = b
+				\end{align}
+				であるとき，$a,b$が共に主要$\varepsilon$項ならばこれは$\lang{\varepsilon}$
+				の文である．
+				$a$が$\Set{y}{\varphi(y)}$なる項で$b$が
+				主要$\varepsilon$項であるときは，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\forall x\, (\, \varphi(x) \lrarrow x \in b\, ) \rarrow 
+					\forall z\, (\, \varphi(z) \lrarrow z \in b\, )
+				\end{align}
+				なる形の文となり，これは${\bf HE}$で証明可能である．実際
+				\begin{align}
+					\zeta \defeq \varepsilon z \negation (\, \varphi(z) \lrarrow z \in b\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\forall x\, (\, \varphi(x) \lrarrow x \in b\, ) 
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\zeta) \lrarrow \zeta \in b
+				\end{align}
+				が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\forall x\, (\, \varphi(x) \lrarrow x \in b\, ) 
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
+					\forall z\, (\, \varphi(z) \lrarrow z \in b\, )
+				\end{align}
+				となる．$a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる
+				項のときは，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\forall x\, (\, \varphi(x) \lrarrow \psi(x)\, ) \rarrow 
+					\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+				\end{align}
+				なる形の文となり，これも${\bf HE}$で証明可能である．
+				$a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項のときも
+				同様に$\widehat{\varphi}_{i}$は{\bf HE}で証明可能である．
+			
+			\item[case4] $\varphi_{i}$が内包性公理
+				\begin{align}
+					\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, )
+				\end{align}
+				なる式であるとき，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\forall x\, (\, \varphi(x) \lrarrow \varphi(x)\, )
+				\end{align}
+				なる式であり，これは{\bf HE}から証明可能である．実際
+				\begin{align}
+					\tau \defeq \varepsilon x \negation (\, \varphi(x) \lrarrow \varphi(x)\, )
+				\end{align}
+				とおけば，含意の反射律(論理的定理\ref{logicalthm:reflective_law_of_implication})と論理積の導入より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\tau) \lrarrow \varphi(\tau)
+				\end{align}
+				が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall x\, (\, \varphi(x) \lrarrow \varphi(x)\, )
+				\end{align}
+				となる．
+			
+			\item[case5] $\varphi_{i}$が要素の公理
+				\begin{align}
+					a \in b \rarrow \exists x\, (\, a = x\, )
+				\end{align}
+				なる式であるとき，$a$も$b$も主要$\varepsilon$項ならば
+				\begin{align}
+					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, )
+				\end{align}
+				(定理\ref{thm:critical_epsilon_term_is_set})と含意の導入
+				\begin{align}
+					\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, (\, a = x\, )
+					\rarrow (\, a \in b \rarrow \exists x\, (\, a = x\, )\, )
+				\end{align}
+				から
+				\begin{align}
+					\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} a \in b \rarrow \exists x\, (\, a = x\, )
+				\end{align}
+				が従う．$a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であるとき，
+				$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\psi(a) \rarrow \exists x\, (\, a = x\, )
+				\end{align}
+				となるが，上と同様にして{\bf HE}で証明できる．
+				$a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$であるとき，
+				$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge s \in b\, ) \rarrow \exists x\, \forall v\, (\, \varphi(v) \lrarrow v \in x\, )
+				\end{align}
+				となるが，これも{\bf HE}で証明可能で，実際
+				\begin{align}
+					\sigma &\defeq \varepsilon s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ), \\
+					\tau &\defeq \varepsilon v \negation (\, \varphi(v) \lrarrow v \in \sigma\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge s \in b\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+					\wedge \sigma \in b, \\
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge s \in b\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+					\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ), \\
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge s \in b\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\tau) \lrarrow \tau \in \sigma, \\
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge s \in b\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \varphi(v) \lrarrow v \in \sigma\, ), \\
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge s \in b\, )
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists x\, \forall v\, (\, \varphi(v) \lrarrow v \in x\, )
+				\end{align}
+				が成り立つ．$a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項
+				であるとき，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+					\wedge \psi(s)\, ) \rarrow \exists x\, \forall v\, (\, \varphi(v) \lrarrow v \in x\, )
+				\end{align}
+				となるが，これも同様に{\bf HE}で証明可能である．
+				
+			\item[case6] $\varphi_{i}$が相等性公理
+				\begin{align}
+					a = b \rarrow b = a
+				\end{align}
+				なる式である場合，たとえば$a$が$\Set{y}{\varphi(y)}$なる項で
+				$b$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
+				\begin{align}
+					\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+					\rarrow \forall v\, (\, v \in b \lrarrow \varphi(v)\, ) 
+				\end{align}
+				となるが，これは{\bf HE}で証明可能であって，実際
+				\begin{align}
+					\tau \defeq \varepsilon v \negation (\, v \in b \lrarrow \varphi(v)\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\tau) \lrarrow \tau \in b, \\
+					\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \tau \in b \lrarrow \varphi(\tau), \\
+					\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+					&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, v \in b \lrarrow \varphi(v)\, )
+				\end{align}
+				が成り立つ．$a$も$b$も内包項である場合や，$a$が主要$\varepsilon$項で
+				$b$が内包項である場合も同様のことが言える．
+			
+			\item[case7] $\varphi_{i}$が相等性公理
+				\begin{align}
+					a = b \rarrow (\, a \in c \rarrow b \in c\, )
+				\end{align}
+				なる式である場合，
+				\begin{description}
+					\item[case(7-1)] $a$と$b$が主要$\varepsilon$項で$c$が$\Set{x}{\xi(x)}$なる項であれば，
+						$\widehat{\varphi}_{i}$は
+						\begin{align}
+							a = b \rarrow (\, \xi(a) \rarrow \xi(b)\, )
+						\end{align}
+						となるが，代入原理(定理\ref{thm:the_principle_of_substitution})より
+						\begin{align}
+							\Sigma \provable{\mbox{{\bf HE}},\lang{\varepsilon}} a = b \rarrow (\, \xi(a) \rarrow \xi(b)\, )
+						\end{align}
+						が成り立つ．
+						
+					\item[case(7-2)] $a$と$c$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であれば，
+						$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
+							\rarrow (\, a \in c 
+							\rarrow \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\omega \defeq \varepsilon w \negation (\, \psi(w) \lrarrow w \in a\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\omega) \lrarrow \omega \in a 
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in a\, )
+						\end{align}
+						が従い，
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ),\ a \in c
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in a\, ) \wedge a \in c
+						\end{align}
+						より
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ),\ a \in c
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )\, )
+						\end{align}
+						となる．
+						
+					\item[case(7-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
+						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
+							\rarrow (\, \xi(a) 
+							\rarrow \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(t)\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\omega \defeq \varepsilon w \negation (\, \psi(w) \lrarrow w \in t\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\omega) \lrarrow \omega \in a 
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in t\, )
+						\end{align}
+						が従い，
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )\, \xi(a)
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(a)
+						\end{align}
+						より
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )\, a \in c
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(t)\, )\, )
+						\end{align}
+						となる．
+						
+					\item[case(7-4)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$と$z$が主要$\varepsilon$項の場合，
+						$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\rarrow b \in c\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\sigma &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ), \\
+							\delta &\defeq \varepsilon u \negation (\, u \in \sigma \lrarrow u \in b\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\delta) \lrarrow \delta \in b, \\
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\delta) \lrarrow \delta \in \sigma
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \delta \in \sigma \lrarrow \delta \in b
+						\end{align}
+						が従い，
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, u \in \sigma \lrarrow u \in b\, )
+						\end{align}
+						となり，外延性公理より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ),\ 
+							\Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma = b
+						\end{align}
+						が出る．一方で
+						\begin{align}
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in c
+						\end{align}
+						となるので，相等性公理より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ),\ 
+							\Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} b \in c
+						\end{align}
+						が成り立つ．
+						
+					\item[case(7-5)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$項で
+						$z$が$\Set{x}{\xi(x)}$なる項の場合，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\rarrow \xi(b)\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\sigma &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ), \\
+							\delta &\defeq \varepsilon u \negation (\, u \in \sigma \lrarrow u \in b\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\delta) \lrarrow \delta \in b, \\
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\delta) \lrarrow \delta \in \sigma
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \delta \in \sigma \lrarrow \delta \in b
+						\end{align}
+						が従い，
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, u \in \sigma \lrarrow u \in b\, )
+						\end{align}
+						となり，外延性公理より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ),\ 
+							\Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma = b
+						\end{align}
+						が出る．一方で
+						\begin{align}
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\sigma)
+						\end{align}
+						となるので，代入原理(定理\ref{thm:the_principle_of_substitution})より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ),\ 
+							\Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(b)
+						\end{align}
+						が成り立つ．
+						
+					\item[case(7-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+						$c$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
+							&\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ) \\
+							&\rarrow \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\tau &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ), \\
+							\omega &\defeq \varepsilon w \negation (\, \psi(w) \lrarrow w \in t\, )
+						\end{align}
+						とおけば，まず
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \psi(\omega), \\
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \omega \in \tau
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\omega) \lrarrow \omega \in \tau
+						\end{align}
+						が従い
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in \tau\, )
+						\end{align}
+						が出る．他方で
+						\begin{align}
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \tau \in c, \\
+						\end{align}
+						が成り立つので，
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
+								\forall w\, (\, \psi(w) \lrarrow w \in \tau\, ) \wedge \tau \in c
+							\end{gathered}
+						\end{align}
+						となり
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge s \in c\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
+								\exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge t \in c\, )
+							\end{gathered}
+						\end{align}
+						が得られる．
+						
+					\item[case(7-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
+							&\rarrow (\, \exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ) \\
+							&\rarrow \exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(t)\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\tau &\defeq \varepsilon s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ), \\
+							\omega &\defeq \varepsilon w \negation (\, \psi(w) \lrarrow w \in t\, )
+						\end{align}
+						とおけば，まず
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \psi(\omega), \\
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\omega) \lrarrow \omega \in \tau
+						\end{align}
+						が成り立つので
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\omega) \lrarrow \omega \in \tau
+						\end{align}
+						が従い
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall w\, (\, \psi(w) \lrarrow w \in \tau\, )
+						\end{align}
+						が出る．他方で
+						\begin{align}
+							\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\tau), \\
+						\end{align}
+						が成り立つので，
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
+								\forall w\, (\, \psi(w) \lrarrow w \in \tau\, ) \wedge \xi(\tau)
+							\end{gathered}
+						\end{align}
+						となり
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ 
+								\exists s\, (\, \forall v\, (\, \varphi(v) \lrarrow v \in s\, ) \wedge \xi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}}
+								\exists t\, (\, \forall w\, (\, \psi(w) \lrarrow w \in t\, ) \wedge \xi(t)\, )
+							\end{gathered}
+						\end{align}
+						が得られる．
+				\end{description}
+				
+			\item[case8] $\varphi_{i}$が相等性公理
+				\begin{align}
+					a = b \rarrow (\, c \in a \rarrow c \in b\, )
+				\end{align}
+				なる式である場合，
+				\begin{description}
+					\item[case(8-1)] $a$と$b$が主要$\varepsilon$項で$c$が$\Set{x}{\xi(x)}$なる項であれば，
+						$\widehat{\varphi}_{i}$は
+						\begin{align}
+							a = b &\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) \\
+							&\rarrow (\, \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge t \in b\, )\, )
+						\end{align}
+						となるが，ここで
+						\begin{align}
+							\sigma \defeq \varepsilon s \, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\exists s \, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a
+						\end{align}
+						が成り立つので，相等性公理より
+						\begin{align}
+							a = b,\ \exists s \, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ),\ \Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in b
+						\end{align}
+						となる．他方で
+						\begin{align}
+							\exists s \, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, )
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, ) 
+						\end{align}
+						も成り立つので
+						\begin{align}
+							a = b,\ \exists s \, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ),\ \Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, ) \wedge \sigma \in b
+						\end{align}
+						が従い，
+						\begin{align}
+							a = b,\ \exists s \, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ),\ \Sigma
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge t \in b\, )
+						\end{align}
+						が出る．
+						
+					\item[case(8-2)] $a$と$c$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項であれば，
+						$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
+							\rarrow (\, c \in a \rarrow \psi(c)\, )
+						\end{align}
+						となるが，これは
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) \vdash c \in a \rarrow \psi(c)
+						\end{align}
+						より直接得られる．
+						
+					\item[case(8-3)] $a$が主要$\varepsilon$項で$b$が$\Set{z}{\psi(z)}$なる項で
+						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ) 
+							&\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) \\
+							&\rarrow \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge \psi(t)\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) 
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a, \\
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in a \rarrow \psi(\sigma)
+						\end{align}
+						より
+						\begin{align}
+							\forall u\, (\, u \in a \lrarrow \psi(u)\, ),\ 
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\sigma)
+						\end{align}
+						が成り立つ．他方で
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, )
+						\end{align}
+						も成り立つので，
+						\begin{align}
+							\omega \defeq \varepsilon v \negation (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\omega) \lrarrow \omega \in \sigma
+						\end{align}
+						となり
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						が従う．ゆえに
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, u \in a \lrarrow \psi(u)\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, ) \wedge \psi(\sigma)
+							\end{gathered}
+						\end{align}
+						が従い
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, u \in a \lrarrow \psi(u)\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge s \in a\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge \psi(t)\, )
+							\end{gathered}
+						\end{align}
+						が出る．
+						
+					\item[case(8-4)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$と$z$が主要$\varepsilon$項の場合，
+						$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							\rarrow (\, \varphi(c) \rarrow c \in b\, )
+						\end{align}
+						となるが，これは
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+							\varphi(c) \rarrow c \in b
+						\end{align}
+						から直接得られる．
+						
+					\item[case(8-5)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が主要$\varepsilon$項で
+						$z$が$\Set{x}{\xi(x)}$なる項の場合，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							&\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+							&\rarrow \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge t \in b\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, )
+						\end{align}
+						とおけば，
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma), \\
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma) \rarrow \sigma \in b
+						\end{align}
+						より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \sigma \in b
+						\end{align}
+						が成り立つ．他方で
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, )
+						\end{align}
+						も成り立つので，
+						\begin{align}
+							\omega \defeq \varepsilon v \negation (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\omega) \lrarrow \omega \in \sigma
+						\end{align}
+						となり
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						が従う．ゆえに
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, ) \wedge \sigma \in b
+							\end{gathered}
+						\end{align}
+						が従い
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge t \in b\, )
+							\end{gathered}
+						\end{align}
+						が出る．
+						
+					\item[case(8-6)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+						$c$が主要$\varepsilon$項であれば，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) \rarrow (\, \varphi(c) \rarrow \psi(c)\, )
+						\end{align}
+						となるが，これは
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} 
+							\varphi(c) \rarrow \psi(c)
+						\end{align}
+						から直接得られる．
+						
+					\item[case(8-7)] $a$が$\Set{y}{\varphi(y)}$なる項で$b$が$\Set{z}{\psi(z)}$なる項で
+						$c$が$\Set{x}{\xi(x)}$なる項であれば，$\widehat{\varphi}_{i}$は
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ) 
+							&\rarrow (\, \exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+							&\rarrow \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge \psi(t)\, )\, )
+						\end{align}
+						となるが，
+						\begin{align}
+							\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, )
+						\end{align}
+						とおけば，
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma), \\
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+							&\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \varphi(\sigma) \rarrow \psi(\sigma)
+						\end{align}
+						より
+						\begin{align}
+							\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \psi(\sigma)
+						\end{align}
+						が成り立つ．他方で
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall u\, (\, \xi(u) \lrarrow u \in \sigma\, )
+						\end{align}
+						も成り立つので，
+						\begin{align}
+							\omega \defeq \varepsilon v \negation (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						とおけば
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \xi(\omega) \lrarrow \omega \in \sigma
+						\end{align}
+						となり
+						\begin{align}
+							\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) 
+							\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, )
+						\end{align}
+						が従う．ゆえに
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \forall v\, (\, \xi(v) \lrarrow v \in \sigma\, ) \wedge \psi(\sigma)
+							\end{gathered}
+						\end{align}
+						が従い
+						\begin{align}
+							\begin{gathered}
+								\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ 
+								\exists s\, (\, \forall u\, (\, \xi(u) \lrarrow u \in s\, ) \wedge \varphi(s)\, ) \\
+								\provable{\mbox{{\bf HE}},\lang{\varepsilon}} \exists t\, (\, \forall v\, (\, \xi(v) \lrarrow v \in t\, ) \wedge \psi(t)\, )
+							\end{gathered}
+						\end{align}
+						が出る．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}

@@ -1,0 +1,997 @@
+\section{空集合}
+	\begin{screen}
+		\begin{logicalthm}[分配された論理積の簡約]
+		\label{logicalthm:contraction_law_of_distributed_injunctions}
+			$A,B,C$を$\mathcal{L}$の文とするとき，
+			\begin{align}
+				\vdash (A \wedge C) \wedge (B \wedge C) \rarrow A \wedge B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash A \wedge C
+		\end{align}
+		となり，また同じく論理積の除去より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) &\vdash A \wedge C \rarrow A
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) &\vdash A, 
+			\label{fom:logicalthm_contraction_law_of_injunctions_1}
+		\end{align}
+		が従う．同様にして
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash B
+			\label{fom:logicalthm_contraction_law_of_injunctions_2}
+		\end{align}
+		も得られる．ここで論理積の導入より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash A \rarrow (B \rarrow A \wedge B)
+		\end{align}
+		が成り立つので，(\refeq{fom:logicalthm_contraction_law_of_injunctions_1})と
+		(\refeq{fom:logicalthm_contraction_law_of_injunctions_2})との三段論法より
+		\begin{align}
+			(A \wedge C) \wedge (B \wedge C) \vdash A \wedge B
+		\end{align}
+		が出る．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[空集合]
+			$\emptyset \defeq \Set{x}{x \neq x}$で定めるクラス$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$x$が集合であれば
+	\begin{align}
+		x = x
+	\end{align}
+	が成り立つので，$\emptyset$に入る集合など存在しない．
+	つまり$\emptyset$は丸っきり``空っぽ''なのである．
+	さて，$\emptyset$は集合であるか否か，という問題を考える．
+	当然これが``大きすぎる集まり''であるはずはないし，
+	そもそも名前に``集合''と付いているのだから
+	$\emptyset$は集合であるべきだと思われるのだが，
+	実際にこれが集合であることを示すには少し骨が折れる．
+	まずは置換公理と分出定理を拵えなくてはならない．
+	
+	\begin{screen}
+		\begin{axm}[置換公理]
+			$x,y,s,y$を変項とし，
+			$\varphi$を$s,t$のみが自由に現れる$\mathcal{L}$の式とし，
+			$x$は$\varphi$で$s$への代入について自由であり，
+			$y,z$は$\varphi$で$t$への代入について自由であるとするとき，
+			次の式を$\REPAX$により参照する：
+			\begin{align}
+				\forall x\, \forall y\, \forall z\, 
+				(\, \varphi(x,y) \wedge \varphi(x,z)
+				\rarrow y = z\, )
+				\rarrow \forall a\, \exists u\, \forall v\,
+				(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,v)\, )\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	$\Set{x}{\varphi(x)}$は集合であるとは限らないが，
+	集合$a$との交叉(後述)
+	\begin{align}
+		a \cap \Set{x}{\varphi(x)}
+	\end{align}
+	は当然$a$より``小さい集まり''なのだから，集合であってほしいものである．
+	これを公理化した式は{\bf 分出公理}\index{ぶんしゅつこうり@分出公理}
+	{\bf (axiom of separation)}と呼ばれるが，公理化せずとも置換公理によって導かれる．
+	
+	\begin{screen}
+		\begin{thm}[分出定理]\label{thm:axiom_of_separation}
+			$\varphi$を$\mathcal{L}$の式とし，$x$を変項とし，$\varphi$には
+			$x$のみが自由に現れるとするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash 
+				\forall a\, \exists s\, \forall x\,
+				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
+				\label{fom:thm_axiom_of_separation_0}
+			\end{align}
+			が成り立つ．ただし$\varphi$が$\lang{\varepsilon}$の式であるときは
+			\begin{align}
+				\EXTAX,\EQAX,\REPAX \vdash 
+				\forall a\, \exists s\, \forall x\,
+				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$y$を，$\varphi$の$x$への代入について自由である変項とする．
+		そして$x$と$y$が自由に現れる式$\psi(x,y)$を
+		\begin{align}
+			x = y \wedge \varphi(x)
+		\end{align}
+		と設定する．
+		\begin{description}
+			\item[step1]
+				まず
+				\begin{align}
+					\EXTAX,\EQAX \vdash \forall x\, \forall y\, \forall z\, 
+					(\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, )
+					\label{fom:thm_axiom_of_separation_1}
+				\end{align}
+				が成り立つことを示す．これを見越して
+				\begin{align}
+					\tau &\defeq \varepsilon x \negation \forall y\, \forall z\, 
+					(\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, ), \\
+					\sigma &\defeq \varepsilon y \negation \forall z\, 
+					(\, \psi(\tau,y) \wedge \psi(\tau,z) \rarrow y = z\, ), \\
+					\rho &\defeq \varepsilon z \negation 
+					(\, \psi(\tau,\sigma) \wedge \psi(\tau,z) \rarrow \sigma = z\, )
+				\end{align}
+				とおく．$\psi(\tau,\sigma) \wedge \psi(\tau,\rho)$は縮約可能であって(
+				論理的定理\ref{logicalthm:contraction_law_of_distributed_injunctions})
+				\begin{align}
+					\vdash (\, \tau = \sigma \wedge \varphi(\tau)\, )
+						\wedge (\, \tau = \rho \wedge \varphi(\tau)\, )
+						\rarrow \tau = \sigma \wedge \tau = \rho
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) 
+					\vdash \tau = \sigma \wedge \tau = \rho
+				\end{align}
+				がとなり，さらに論理積の除去より
+				\begin{align}
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) &\vdash \tau = \sigma, \\
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho) &\vdash \tau = \rho
+				\end{align}
+				が出る．ここで等号の推移律(定理\ref{thm:transitive_law_of_equality})より
+				\begin{align}
+					\EXTAX,\EQAX \vdash \tau = \sigma \rarrow 
+						(\, \tau = \rho \rarrow \sigma = \rho\, )
+				\end{align}
+				が成り立つので，三段論法を二回用いれば
+				\begin{align}
+					\psi(\tau,\sigma) \wedge \psi(\tau,\rho),\ \EXTAX,\EQAX 
+					\vdash \sigma = \rho
+				\end{align}
+				が得られる．ゆえに演繹定理より
+				\begin{align}
+					\EXTAX,\EQAX \vdash \psi(\tau,\sigma) \wedge \psi(\tau,\rho)
+					\rarrow \sigma = \rho
+				\end{align}
+				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX &\vdash \forall z\, 
+						(\, \psi(\tau,\sigma) \wedge \psi(\tau,z) 
+						\rarrow \sigma = z\, ), \\
+					\EXTAX,\EQAX &\vdash \forall y\, \forall z\, 
+						(\, \psi(\tau,y) \wedge \psi(\tau,z) \rarrow y = z\, ), \\
+					\EXTAX,\EQAX &\vdash \forall x\, \forall y\, \forall z\, 
+						(\, \psi(x,y) \wedge \psi(x,z) \rarrow y = z\, )
+				\end{align}
+				が従う．
+			
+			\item[step2]
+				置換公理より
+				\begin{align}
+					\REPAX \vdash \forall x\, \forall y\, \forall z\, 
+					(\, \psi(x,y) \wedge \psi(x,z)
+					\rarrow y = z\, )
+					\rarrow \forall a\, \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+					\psi(x,v)\, )\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:thm_axiom_of_separation_1})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+					\psi(x,v)\, )\, )
+					\label{fom:thm_axiom_of_separation_2}
+				\end{align}
+				が成立する．(\refeq{fom:thm_axiom_of_separation_0})を示したいので
+				\begin{align}
+					\alpha \defeq \varepsilon a \negation \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
+				\end{align}
+				とおくと，全称記号の論理的公理より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash &\forall a\, \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+					\psi(x,v)\, )\, ) \\
+					&\rarrow \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+				\end{align}
+				となるので，(\refeq{fom:thm_axiom_of_separation_2})との三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash \exists u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+					\label{fom:thm_axiom_of_separation_3}
+				\end{align}
+				が従う．ここで
+				\begin{align}
+					\zeta \defeq \varepsilon u\, \forall v\,
+					(\, v \in u \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+				\end{align}
+				とおけば，存在記号の論理的公理により
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash \forall v\,
+					(\, v \in \zeta \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,v)\, )\, )
+					\label{fom:thm_axiom_of_separation_4}
+				\end{align}
+				が成り立つ．
+			
+			\item[step3]
+				最後に
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash \forall x\,
+					(\, x \in \zeta \lrarrow x \in \alpha \wedge \varphi(x)\, )
+					\label{fom:thm_axiom_of_separation_8}
+				\end{align}
+				となることを示す．いま
+				\begin{align}
+					\tau \defeq \varepsilon x \negation
+					(\, x \in \zeta \lrarrow x \in \alpha \wedge \varphi(x)\, )
+				\end{align}
+				とおけば，(\refeq{fom:thm_axiom_of_separation_4})と全称記号の論理的公理より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\tau \in \zeta \lrarrow \exists x\, (\, x \in \alpha \wedge 
+					\psi(x,\tau)\, )
+					\label{fom:thm_axiom_of_separation_5}
+				\end{align}
+				が従う．ゆえに
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX \vdash
+					\exists x\, (\, x \in \alpha \wedge \psi(x,\tau)\, )
+				\end{align}
+				となる．ここで
+				\begin{align}
+					\sigma \defeq \varepsilon x\, (\, x \in \alpha \wedge
+					\psi(x,\tau)\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX \vdash
+					\sigma \in \alpha \wedge \psi(\sigma,\tau)
+				\end{align}
+				となるので，
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \sigma \in \alpha, \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \sigma = \tau, \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \varphi(\sigma)
+				\end{align}
+				が従う．ところで相等性公理と代入原理
+				(定理\ref{thm:the_principle_of_substitution})より
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash 
+						\sigma = \tau \rarrow (\, \sigma \in \alpha \rarrow
+						\tau \in \alpha\, ), \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX &\vdash
+						\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow
+						\varphi(\tau)\, ), 
+						\label{fom:thm_axiom_of_separation_9} \\
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\REPAX &\vdash \tau \in \alpha, \\
+					\tau \in \zeta,\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX &\vdash \varphi(\tau)
+				\end{align}
+				が従い
+				\begin{align}
+					\tau \in \zeta,\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash
+					\tau \in \alpha \wedge \varphi(\tau)
+				\end{align}
+				となる．以上で
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash \tau \in \zeta \rarrow
+					\tau \in \alpha \wedge \varphi(\tau)
+					\label{fom:thm_axiom_of_separation_6}
+				\end{align}
+				が得られた．逆に定理\ref{thm:any_class_equals_to_itself}と併せて
+				\begin{align}
+					\tau \in \alpha \wedge \varphi(\tau),\ \EXTAX \vdash
+					\tau \in \alpha \wedge (\, \tau = \tau \wedge \varphi(\tau)\, )
+				\end{align}
+				が成り立つので，存在記号の論理的公理より
+				\begin{align}
+					\tau \in \alpha \wedge \varphi(\tau),\ \EXTAX \vdash
+					\exists x\, (\, x \in \alpha \wedge \psi(x,\tau)\, )
+				\end{align}
+				となる．他方で(\refeq{fom:thm_axiom_of_separation_5})より
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\exists x\, (\, x \in \alpha \wedge 
+					\psi(x,\tau)\, ) \rarrow \tau \in \zeta
+				\end{align}
+				が成り立つので，三段論法より
+				\begin{align}
+					\tau \in \alpha \wedge \varphi(\tau),\ 
+					\EXTAX,\EQAX,\REPAX \vdash \tau \in \zeta
+				\end{align}
+				が従う．以上で
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\tau \in \alpha \wedge \varphi(\tau) \rarrow \tau \in \zeta
+					\label{fom:thm_axiom_of_separation_7}
+				\end{align}
+				も得られた．(\refeq{fom:thm_axiom_of_separation_6})と
+				(\refeq{fom:thm_axiom_of_separation_7})および存在記号の論理的公理より
+				(\refeq{fom:thm_axiom_of_separation_8})が出る．
+				すると存在記号の論理的公理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in \alpha \wedge \varphi(x)\, )
+				\end{align}
+				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX \vdash 
+					\forall a\, \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
+				\end{align}
+				が従う．$\varphi$が$\lang{\varepsilon}$の式である場合は
+				(\refeq{fom:thm_axiom_of_separation_9})で$\COMAX$と$\ELEAX$が
+				追加されないので
+				\begin{align}
+					\EXTAX,\EQAX,\REPAX \vdash 
+					\forall a\, \exists s\, \forall x\,
+					(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	%分出定理は$\EQAXEP$を前提としているが，ステートメントの$\varphi(x)$が
+	%\begin{align}
+	%	x \neq x
+	%\end{align}
+	%なる式の場合は
+	%\begin{align}
+	%	\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
+	%		(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
+	%\end{align}
+	%が成立する．そもそも分出定理の証明で$\EQAXEP$が必要になったのは
+	%\begin{align}
+	%	\sigma = \tau \rarrow (\, \varphi(\sigma) \rarrow \varphi(\tau)\, )
+	%\end{align}
+	%を用いるためであったが(\refeq{fom:thm_axiom_of_separation_9})，
+	%$\varphi(x)$が$x \neq x$なる単純な式である場合は
+	%\begin{align}
+	%	\EXTAX \vdash \sigma = \tau \rarrow
+	%	(\, \sigma \neq \sigma \rarrow \tau \neq \tau\, )
+	%\end{align}
+	%が成り立つのである．実際
+	%\begin{align}
+	%	\sigma = \tau,\ \tau = \tau,\ \EXTAX &\vdash \sigma = \sigma,
+	%	&& (\mbox{定理\ref{thm:any_class_equals_to_itself}}) \\
+	%	\sigma = \tau,\ \EXTAX &\vdash \tau = \tau \rarrow \sigma = \sigma,
+	%	&& (\mbox{演繹定理(メタ定理\ref{metathm:deduction_theorem})}) \\
+	%	\sigma = \tau,\ \EXTAX &\vdash \sigma \neq \sigma \rarrow \tau \neq \tau,
+	%	&& (\mbox{対偶(論理的定理\ref{logicalthm:introduction_of_contraposition})})
+	%\end{align}
+	%となる．
+	
+	\begin{screen}
+		\begin{thm}[$\emptyset$は集合]\label{thm:emptyset_is_a_set}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\REPAX \vdash \set{\emptyset}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		分出定理(\ref{thm:axiom_of_separation})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \forall a\, \exists s\, \forall x\,
+			(\, x \in s \lrarrow x \in a \wedge x \neq x\, )
+			\label{fom:thm_emptyset_is_a_set_1}
+		\end{align}
+		が成立する．$\alpha$を主要$\varepsilon$項とすれば，全称記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \exists s\, \forall x\,
+			(\, x \in s \lrarrow x \in \alpha \wedge x \neq x\, )
+		\end{align}
+		となり，また
+		\begin{align}
+			\sigma \defeq \varepsilon s\, \forall x\,
+			(\, x \in s \lrarrow x \in \alpha \wedge x \neq x\, )
+		\end{align}
+		とおけば存在記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \forall x\,
+			(\, x \in \sigma \lrarrow x \in \alpha \wedge x \neq x\, )
+			\label{fom:thm_emptyset_is_a_set_2}
+		\end{align}
+		が成立する．いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in s \lrarrow x \neq x\, )
+		\end{align}
+		とおけば，(\refeq{fom:thm_emptyset_is_a_set_2})と全称記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash 
+			\tau \in \sigma \lrarrow \tau \in \alpha \wedge \tau \neq \tau
+		\end{align}
+		となるので
+		\begin{align}
+			\tau \in \sigma,\ \EXTAX,\EQAX,\REPAX \vdash
+			\tau \in \alpha \wedge \tau \neq \tau
+		\end{align}
+		が従い，論理積の除去により
+		\begin{align}
+			\tau \in \sigma,\ \EXTAX,\EQAX,\REPAX \vdash \tau \neq \tau
+		\end{align}
+		が従う．以上で
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \rarrow \tau \neq \tau
+			\label{fom:thm_emptyset_is_a_set_3}
+		\end{align}
+		が得られた．逆に，定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\EXTAX \vdash \tau = \tau 
+		\end{align}
+		が成り立つので矛盾の導入と併せて
+		\begin{align}
+			\tau \neq \tau,\ \EXTAX,\EQAX,\REPAX \vdash \bot
+		\end{align}
+		となり，爆発律(論理的定理\ref{logicalthm:principle_of_explosion})より
+		\begin{align}
+			\tau \neq \tau,\ \EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma
+		\end{align}
+		が従う．以上で
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \neq \tau \rarrow \tau \in \sigma
+			\label{fom:thm_emptyset_is_a_set_4}
+		\end{align}
+		も得られた．ゆえに(\refeq{fom:thm_emptyset_is_a_set_3})
+		と(\refeq{fom:thm_emptyset_is_a_set_4})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \neq \tau
+		\end{align}
+		が成立し，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash 
+			\forall x\, (\, x \in \sigma \lrarrow x \neq x\, )
+			\label{fom:thm_emptyset_is_a_set_6}
+		\end{align}
+		が得られる．
+		
+		次に
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash
+			\forall x\, (\, x \in \sigma \lrarrow x \in \Set{x}{x \neq x}\, )
+			\label{fom:thm_emptyset_is_a_set_5}
+		\end{align}
+		を示す．いま
+		\begin{align}
+			\chi \defeq x \negation (\, x \in \sigma \lrarrow x \in \Set{x}{x \neq x}\, )
+		\end{align}
+		とおけば，(\refeq{fom:thm_emptyset_is_a_set_6})と全称記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \chi \in \sigma \lrarrow \chi \neq \chi
+		\end{align}
+		となり，他方で内包性公理より
+		\begin{align}
+			\COMAX \vdash \chi \neq \chi \lrarrow \chi \in \Set{x}{x \neq x}
+		\end{align}
+		が成り立つので，同値関係の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash
+			\chi \in \sigma \lrarrow \chi \in \Set{x}{x \neq x}
+		\end{align}
+		が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より(\refeq{fom:thm_emptyset_is_a_set_5})が出る．
+		ゆえに外延性公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \sigma = \emptyset
+		\end{align}
+		となり，存在記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \exists s\, (\, \emptyset = s\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[空集合はいかなる集合も持たない]\label{thm:emptyset_has_nothing}
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall x\, (\, x \notin \emptyset\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\forall x\, (\, x \notin \emptyset\, )$とは
+		\begin{align}
+			\forall x \negation (\, x \in \emptyset\, )
+		\end{align}
+		の略記であり，これを$\lang{\varepsilon}$の式に書き換えると
+		\begin{align}
+			\forall x \negation (\, x \neq x\, )
+		\end{align}
+		となる．ここで
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, \negation (\, x \neq x\, )\, )
+		\end{align}
+		とおけば，内包性公理と全称記号の論理的公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \emptyset \rarrow \tau \neq \tau
+		\end{align}
+		が成り立つから，対偶を取れば
+		\begin{align}
+			\COMAX \vdash \tau = \tau \rarrow \tau \notin \emptyset
+		\end{align}
+		が成り立つ(論理的定理\ref{logicalthm:introduction_of_contraposition})．
+		定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\EXTAX \vdash \tau = \tau
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \notin \emptyset
+		\end{align}
+		が成り立つ．そして全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall x\, (\, x \notin \emptyset\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[空のクラスは空集合に等しい]\label{thm:uniqueness_of_emptyset}
+			$a$をクラスとするとき
+			\begin{align}
+				\EXTAX,\COMAX &\vdash \forall x\, (\, x \notin a\, ) \rarrow a = \emptyset, \\
+				\EXTAX,\EQAX,\COMAX &\vdash a = \emptyset \rarrow \forall x\, (\, x \notin a\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}\mbox{}
+		\begin{description}
+			\item[step1]
+				いま
+				\begin{align}
+					\varepsilon x \negation (\, x \in a \lrarrow x \in \emptyset\, )
+				\end{align}
+				(実際には$x \in a \lrarrow x \in \emptyset$を
+				$\lang{\varepsilon}$の式に書き換える)とすれば，
+				\begin{align}
+					\forall x\, (\, x \notin a\, ) \vdash \tau \notin a
+				\end{align}
+				と論理和の導入により
+				\begin{align}
+					\forall x\, (\, x \notin a\, ) \vdash 
+					\tau \notin a \vee \tau \in \emptyset
+				\end{align}
+				となり，含意に書き換えれば(論理的定理
+				\ref{logicalthm:disjunction_of_negation_rewritable_by_implication})
+				\begin{align}
+					\forall x\, (\, x \notin a\, ) \vdash 
+					\tau \in a \rarrow \tau \in \emptyset
+					\label{fom:uniqueness_of_emptyset_1}
+				\end{align}
+				が得られる．また定理\ref{thm:emptyset_has_nothing}より
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \notin \emptyset
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \notin \emptyset \vee \tau \in a
+				\end{align}
+				となり，含意に書き換えれば
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \in \emptyset \rarrow \tau \in a
+					\label{fom:uniqueness_of_emptyset_2}
+				\end{align}
+				が得られる．(\refeq{fom:uniqueness_of_emptyset_1})と
+				(\refeq{fom:uniqueness_of_emptyset_2})より
+				\begin{align}
+					\forall x\, (\, x \notin a\, ),\ \EXTAX,\COMAX \vdash
+					\tau \in a \lrarrow \tau \in \emptyset
+				\end{align}
+				が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\forall x\, (\, x \notin a\, ),\ \EXTAX,\COMAX \vdash
+					\forall x\, (\, x \in a \lrarrow x \in \emptyset\, )
+				\end{align}
+				が従い，外延性公理より
+				\begin{align}
+					\forall x\, (\, x \notin a\, ),\ \EXTAX,\COMAX \vdash
+					a = \emptyset
+				\end{align}
+				が従い，演繹定理より
+				\begin{align}
+					\EXTAX,\COMAX \vdash
+					\forall x\, (\, x \notin a\, ) \rarrow a = \emptyset
+				\end{align}
+				が得られる．
+				
+			\item[step2]
+				外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})より
+				\begin{align}
+					a = \emptyset,\ \EQAX \vdash
+					\forall x\, (\, x \in a \lrarrow x \in \emptyset\, )
+					\label{fom:uniqueness_of_emptyset_3}
+				\end{align}
+				が成り立つ．ここで
+				\begin{align}
+					\tau \defeq \varepsilon x \negation (\, x \notin a\, )
+				\end{align}
+				とおけば(必要ならば$x \notin a$を$\lang{\varepsilon}$の式に書き換える)，
+				(\refeq{fom:uniqueness_of_emptyset_3})と全称記号の論理的公理より
+				\begin{align}
+					a = \emptyset,\ \EQAX \vdash \tau \in a \rarrow \tau \in \emptyset
+				\end{align}
+				が成立し，これの対偶を取れば
+				\begin{align}
+					a = \emptyset,\ \EQAX \vdash 
+					\tau \notin \emptyset \rarrow \tau \notin a
+					\label{fom:uniqueness_of_emptyset_4}
+				\end{align}
+				となる(論理的定理\ref{logicalthm:introduction_of_contraposition})．
+				ところで定理\ref{thm:emptyset_has_nothing}より
+				\begin{align}
+					\EXTAX,\COMAX \vdash \tau \notin \emptyset
+				\end{align}
+				が成り立つので，(\refeq{fom:uniqueness_of_emptyset_4})との三段論法より
+				\begin{align}
+					a = \emptyset,\ \EXTAX,\EQAX,\COMAX \vdash \tau \notin a
+				\end{align}
+				が従う．全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					a = \emptyset,\ \EXTAX,\EQAX,\COMAX \vdash 
+					\forall x\, (\, x \notin a\, )
+				\end{align}
+				が成り立ち，演繹定理より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX \vdash 
+					a = \emptyset \rarrow \forall x\, (\, x \notin a\, )
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[クラスを要素として持てば空ではない]
+		\label{thm:emptyset_does_not_contain_any_class}
+			$a,b$をクラスとするとき
+			\begin{align}
+				\EQAX,\ELEAX \vdash a \in b \rarrow \exists x\, (\, x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		要素の公理より
+		\begin{align}
+			\ELEAX \vdash a \in b \rarrow \set{a}
+		\end{align}
+		が成立するので，
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, a = x\, )
+		\end{align}
+		とおけば(必要ならば$a = x$を$\lang{\varepsilon}$の式に書き換える)，存在記号の論理的公理から
+		\begin{align}
+			a \in b,\ \ELEAX \vdash a = \tau
+		\end{align}
+		が成り立つ．相等性の公理より
+		\begin{align}
+			\EQAX \vdash a = \tau \rarrow (\, a \in b \rarrow \tau \in b\, )
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			a \in b,\ \EQAX,\ELEAX \vdash \tau \in b
+		\end{align}
+		となる．存在記号の論理的公理より
+		\begin{align}
+			a \in b,\ \EQAX,\ELEAX \vdash \exists x\, (\, x \in b\, )
+		\end{align}
+		が成り立ち，演繹定理から
+		\begin{align}
+			\EQAX,\ELEAX \vdash a \in b \rarrow \exists x\, (\, x \in b\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[部分クラス]
+			$x,y$を$\mathcal{L}$の項とするとき，
+			\begin{align}
+				x \subset y \defarrow
+				\forall z\, (\, z \in x \rarrow z \in y\, )
+			\end{align}
+			と定める．式$z \subset y$を「$x$は$y$の{\bf 部分クラス}\index{ぶぶんくらす@部分クラス}
+			{\bf (subclass)}である」や「$x$は$y$に含まれる」などと翻訳し，特に$x$が集合である場合は
+			「$x$は$y$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である」
+			と翻訳する．また
+			\begin{align}
+				x \subsetneq y \defarrow x \subset y \wedge x \neq y
+			\end{align}
+			と定め，これを「$x$は$y$に{\bf 真に含まれる}」と翻訳する．
+		\end{dfn}
+	\end{screen}
+	
+	空虚な真の一例として次の結果を得る．
+	
+	\begin{screen}
+		\begin{thm}[空集合は全てのクラスに含まれる]
+		\label{thm:emptyset_if_a_subset_of_every_class}
+			$a$をクラスとするとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \emptyset \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in \emptyset \rarrow x \in a\, )
+		\end{align}
+		とおく(実際は$x \in \emptyset \rarrow x \in a$は$\lang{\varepsilon}$の式に書き換える)．
+		定理\ref{thm:emptyset_has_nothing}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \notin \emptyset
+		\end{align}
+		が成り立つから，論理和の導入により
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \notin \emptyset \vee \tau \in a
+		\end{align}
+		が成り立つ．これを含意の形になおせば
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \in \emptyset \rarrow \tau \in a
+		\end{align}
+		が成り立ち
+		(論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication})，
+		全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall x\, (\, x \in \emptyset \rarrow x \in a\, )
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	$a \subset b$とは$a$に属する全ての主要$\varepsilon$項が$b$に属するという定義であったが，
+	要素となりうるクラスは集合であるという公理から，$a$に属する全てのクラスもまた$b$に属する．
+	
+	\begin{screen}
+		\begin{thm}[クラスはその部分クラスに属する全てのクラスを要素に持つ]
+		\label{thm:subclass_contains_all_elements}
+			$a,b,c$をクラスとするとき
+			\begin{align}
+				\EQAX,\ELEAX \vdash 
+				a \subset b \rarrow (\, c \in a \rarrow c \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}	
+		要素の公理より
+		\begin{align}
+			c \in a,\ \ELEAX \vdash \set{c}
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\tau \defeq \varepsilon x\, (\, c=x\, )
+		\end{align}
+		とおくと(必要ならば$c = x$を$\lang{\varepsilon}$の式に書き換える)
+		存在記号の論理的公理より
+		\begin{align}
+			c \in a,\ \ELEAX \vdash c = \tau
+			\label{fom:subclass_contains_all_elements_1}
+		\end{align}
+		となる．相等性公理より
+		\begin{align}
+			\EQAX \vdash c = \tau \rarrow (\, c \in a \rarrow \tau \in a\, )
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			c \in a,\ \EQAX,\ELEAX \vdash \tau \in a
+		\end{align}
+		が従う．ところで，$\subset$の定義と全称記号の論理的公理より
+		\begin{align}
+			a \subset b \vdash \tau \in a \rarrow \tau \in b
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash \tau \in b
+			\label{fom:subclass_contains_all_elements_2}
+		\end{align}
+		が従う．相等性公理より
+		\begin{align}
+			\EQAX \vdash c = \tau \rarrow \tau = c
+		\end{align}
+		が成り立つので，(\refeq{fom:subclass_contains_all_elements_1})との三段論法より
+		\begin{align}
+			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash \tau = c
+			\label{fom:subclass_contains_all_elements_3}
+		\end{align}
+		となり，相等性公理より
+		\begin{align}
+			\EQAX \vdash \tau = c \rarrow (\, \tau \in b \rarrow c \in b\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:subclass_contains_all_elements_3})と
+		(\refeq{fom:subclass_contains_all_elements_2})との三段論法より
+		\begin{align}
+			a \subset b,\ c \in a,\ \EQAX,\ELEAX \vdash c \in b
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			\EQAX,\ELEAX \vdash 
+			a \subset b \rarrow (\, c \in a \rarrow c \in b\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	宇宙$\Univ$はクラスの一つであった．当然のようであるが，それは最大のクラスである．
+	\begin{screen}
+		\begin{thm}[$\Univ$は最大のクラスである]
+			$a$をクラスとするとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash a \subset \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in a \rarrow a \in \Univ\, )
+		\end{align}
+		とおく．定理\ref{thm:any_class_equals_to_itself}より
+		\begin{align}
+			\EXTAX \vdash \tau = \tau
+		\end{align}
+		となり，他方で内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau = \tau \rarrow \tau \in \Univ
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \in \Univ
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\tau \in a,\ \EXTAX,\COMAX \vdash \tau \in \Univ
+		\end{align}
+		も成り立ち，演繹定理より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \tau \in a \rarrow \tau \in \Univ
+		\end{align}
+		が従い，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall x\, (\, x \in a \rarrow x \in \Univ\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[等しいクラスは相手を包含する]
+		\label{thm:equivalent_classes_includes_the_other}
+			$a,b$をクラスとするとき
+			\begin{align}
+				\EQAX \vdash a = b \rarrow a \subset b \wedge b \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in a \rarrow x \in b\, )
+		\end{align}
+		とおけば，外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})と
+		全称記号の論理的公理，および論理積の除去により
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in a \rarrow \tau \in b
+		\end{align}
+		が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			a = b,\ \EQAX \vdash \forall x\, (\, x \in a \rarrow x \in b\, )
+		\end{align}
+		が成り立つ．また$\tau$を
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in b \rarrow x \in a\, )
+		\end{align}
+		として，先ほどの$a$と$b$を入れ替えれば
+		\begin{align}
+			\EQAX \vdash b = a \rarrow (\, \tau \in b \rarrow \tau \in a\, )
+		\end{align}
+		が得られるが，相等性公理より
+		\begin{align}
+			a = b,\ \EQAX \vdash b = a
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			a = b,\ \EQAX \vdash \tau \in b \rarrow \tau \in a
+		\end{align}
+		が従う．ゆえに全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			a = b,\ \EQAX \vdash b \subset a
+		\end{align}
+		も得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[互いに相手を包含するクラス同士は等しい]
+		\label{thm:mutually_including_classes_are_equivalent}
+			$a,b$をクラスとするとき
+			\begin{align}
+				\EXTAX \vdash a \subset b \wedge b \subset a \rarrow a = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in a \lrarrow x \in b\, )
+		\end{align}
+		とおく．論理積の除去により
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash a \subset b
+		\end{align}
+		となり，全称記号の論理的公理より
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash \tau \in a \rarrow \tau \in b
+		\end{align}
+		が成り立つ．同様にして
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash \tau \in b \rarrow \tau \in a
+		\end{align}
+		も成り立つので，論理積の導入により
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash \tau \in a \lrarrow \tau \in b
+		\end{align}
+		となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			a \subset b \wedge b \subset a \vdash 
+			\forall x\, (\, x \in a \lrarrow x \in b\, )
+		\end{align}
+		が得られる．そして外延性公理により
+		\begin{align}
+			a \subset b \wedge b \subset a,\ \EXTAX \vdash a = b 
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	%\begin{screen}
+	%	\begin{thm}[集合の部分クラスは集合]
+	%	\label{thm:subclass_of_set_is_set}
+	%		$a$と$b$をクラスとするとき
+	%		\begin{align}
+	%			a \subset b \rarrow (\, \set{b} \rarrow \set{a}\, ).
+	%		\end{align}
+	%	\end{thm}
+	%\end{screen}
+	
+	%\begin{sketch}\mbox{}
+	%	\begin{description}
+	%		\item[step1]
+	%		\item[step2] $a$と$b$が主要$\varepsilon$項であるとき，分出定理
+	%			(定理\ref{thm:axiom_of_separation})より
+	%			\begin{align}
+	%				\EXTAX,\EQAX,\REPAX \vdash \exists s\, \forall x\, (\, x \in s \lrarrow x \in a \wedge x \in b\, )
+	%			\end{align}
+	%			が成り立つ(分出定理の$\varphi(x)$は$x \in a$)．ここで
+	%			\begin{align}
+	%				\sigma \defeq \varepsilon s\, \forall x\, (\, x \in s \lrarrow x \in a \wedge x \in b\, )
+	%			\end{align}
+	%			とおけば，存在記号の論理的公理より			
+	%	\end{description}
+	%\end{sketch}

@@ -1,0 +1,501 @@
+	\begin{screen}
+		\begin{logicalaxm}[二重否定の除去]
+		\label{logicalaxm:elimination_of_double_negation}
+			$A$を文とするとき以下が成り立つ:
+			\begin{align}
+				\negation \negation A \rarrow A.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶律3]\label{logicalthm:contraposition_3}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow B\, )
+				\rarrow (\, \negation B \rarrow A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+		\begin{align}
+			\negation A \rarrow B \vdash\ \negation B \rarrow\ \negation \negation A
+		\end{align}
+		が成り立つので，演繹定理の逆より
+		\begin{align}
+			\negation B,\ \negation A \rarrow B \vdash\ \negation \negation A
+		\end{align}
+		となる．二重否定の除去より
+		\begin{align}
+			\vdash \negation \negation A \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\negation B,\ \negation A \rarrow B \vdash A
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\negation A \rarrow B \vdash\ \negation B \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶律4]
+		\label{logicalthm:proof_by_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation B \rarrow\ \negation A\, )
+				\rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		二重否定の導入(論理的定理\ref{logicalthm:introduction_of_double_negation})より
+		\begin{align}
+			\negation B \rarrow\ \negation A \vdash 
+			A \rarrow\ \negation \negation A
+		\end{align}
+		が成り立つので，演繹定理の逆より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation A
+		\end{align}
+		となる．また$\negation B \rarrow\ \negation A$の対偶を取れば
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ 
+			\negation \negation A \rarrow\ \negation \negation B
+		\end{align}
+		が成り立つので(論理的定理\ref{logicalthm:introduction_of_contraposition})，
+		三段論法より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ \negation \negation B
+		\end{align}
+		となる．ここで二重否定の除去より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash\ 
+			\negation \negation B \rarrow B
+		\end{align}
+		となるので，三段論法より
+		\begin{align}
+			A,\ \negation B \rarrow\ \negation A \vdash B
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\negation B \rarrow\ \negation A &\vdash A \rarrow B, \\
+			&\vdash (\, \negation B \rarrow\ \negation A\, ) 
+			\rarrow (\, A \rarrow B\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+		\label{logicalthm:proof_by_contradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		否定の導入より
+		\begin{align}
+			\negation A \rarrow \bot \vdash\ \negation \negation A
+		\end{align}
+		が成り立ち，二重否定の法則より
+		\begin{align}
+			\negation A \rarrow \bot \vdash\ \negation \negation A \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\negation A \rarrow \bot \vdash A
+		\end{align}
+		となる．そして演繹定理より
+		\begin{align}
+			\vdash (\, \negation A \rarrow \bot\, ) \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	次の{\bf 爆発律}\index{ばくはつりつ@爆発律}{\bf (principle of explosion)}
+	とは「矛盾からはあらゆる式が導かれる」ことを表している．
+	またなぜ$\bot$が「矛盾」と呼ばれるのかが明確になる．
+	実際，公理系$\mathscr{S}$からひとたび$\bot$が導かれれば，爆発律との三段論法によって
+	どんな式でも$\mathscr{S}$の定理となる．すると$\mathscr{S}$においては
+	$A$とその否定$\negation A$など食い違う結論が共に定理となってしまい，
+	まさしく``矛盾''が引き起こされるのである．
+	
+	\begin{screen}
+		\begin{logicalthm}[爆発律]
+		\label{logicalthm:principle_of_explosion}
+			$A$を文とするとき
+			\begin{align}
+				\vdash \bot \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		含意の導入より
+		\begin{align}
+			\vdash \bot \rarrow (\, \negation A \rarrow \bot\, )
+		\end{align}
+		が成り立つので，演繹定理の逆より
+		\begin{align}
+			\bot \vdash\ \negation A \rarrow \bot
+		\end{align}
+		となる．また背理法の原理(論理的定理\ref{logicalthm:proof_by_contradiction})より
+		\begin{align}
+			\bot \vdash (\, \negation A \rarrow \bot\, ) \rarrow A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			\bot \vdash A
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\vdash \bot \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[否定の論理和は含意で書ける]
+		\label{logicalthm:disjunction_of_negation_rewritable_by_implication}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \vee B\, ) \rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		矛盾の導入より
+		\begin{align}
+			A,\ \negation A \vdash \bot
+		\end{align}
+		が成り立ち，爆発律(論理的定理\ref{logicalthm:principle_of_explosion})より
+		\begin{align}
+			A,\ \negation A \vdash \bot \rarrow B
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A,\ \negation A \vdash B
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\vdash\ \negation A \rarrow (\, A \rarrow B\, )
+			\label{fom:disjunction_of_negation_rewritable_by_implication_1}
+		\end{align}
+		が得られる．また含意の導入より
+		\begin{align}
+			\vdash B \rarrow (\, A \rarrow B\, )
+			\label{fom:disjunction_of_negation_rewritable_by_implication_2}
+		\end{align}
+		も得られる．ところで論理和の除去より
+		\begin{align}
+			\vdash (\, \negation A \rarrow (\, A \rarrow B\, )\, )
+			\rarrow (\, (\, B \rarrow (\, A \rarrow B\, )\, )
+			\rarrow (\, \negation A \vee B \rarrow (\, A \rarrow B\, )\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:disjunction_of_negation_rewritable_by_implication_1})
+		との三段論法より
+		\begin{align}
+			\vdash (\, B \rarrow (\, A \rarrow B\, )\, )
+			\rarrow (\, \negation A \vee B \rarrow (\, A \rarrow B\, )\, )
+		\end{align}
+		となり，(\refeq{fom:disjunction_of_negation_rewritable_by_implication_2})
+		との三段論法より
+		\begin{align}
+			\vdash\ \negation A \vee B \rarrow (\, A \rarrow B\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[驚嘆すべき帰結]\label{logicalthm:consequentia_mirabilis}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow A\, ) \rarrow A.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash A
+		\end{align}
+		が成り立ち，他方で矛盾の導入(CTD1)より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A
+			\vdash A \rarrow (\, \negation A \rarrow \bot\, )
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash\ \negation A \rarrow \bot
+		\end{align}
+		が従う．
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash\ \negation A
+		\end{align}
+		との三段論法より
+		\begin{align}
+			\negation A,\ \negation A \rarrow A \vdash \bot
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\negation A \rarrow A \vdash\ \negation A \rarrow \bot
+		\end{align}
+		が従う．背理法の原理(論理的定理\ref{logicalthm:proof_by_contradiction})より
+		\begin{align}
+			\negation A \rarrow A \vdash (\, \negation A \rarrow \bot\, )
+			\rarrow A
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			\negation A \rarrow A \vdash A
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\vdash (\, \negation A \rarrow A\, ) \rarrow A
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[排中律]\label{logicalthm:law_of_excluded_middle}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \vee \negation A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理和の導入より
+		\begin{align}
+			A \vdash A \vee \negation A
+		\end{align}
+		となり，他方で矛盾の導入より
+		\begin{align}
+			A \vdash (\, A \vee \negation A\, )
+			\rarrow (\, \negation (\, A \vee \negation A\, ) \rarrow \bot\, )
+		\end{align}
+		も成り立つので三段論法より
+		\begin{align}
+			A \vdash\ \negation (\, A \vee \negation A\, ) \rarrow \bot
+		\end{align}
+		が従う．演繹定理の逆より
+		\begin{align}
+			\negation (\, A \vee \negation A\, ),\ A \vdash \bot
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			\negation (\, A \vee \negation A\, ) \vdash A \rarrow \bot
+		\end{align}
+		となる．否定の導入より
+		\begin{align}
+			\negation (\, A \vee \negation A\, ) \vdash (\, A \rarrow \bot\, )
+			\rarrow\ \negation A
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			\negation (\, A \vee \negation A\, ) \vdash\ \negation A
+		\end{align}
+		が従う．論理和の導入より
+		\begin{align}
+			\negation (\, A \vee \negation A\, ) \vdash\ \negation A
+			\rarrow A \vee \negation A
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			\negation (\, A \vee \negation A\, ) \vdash A \vee \negation A
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\vdash\ \negation (\, A \vee \negation A\, ) \rarrow A \vee \negation A
+		\end{align}
+		が成り立つ．驚嘆すべき帰結(論理的定理\ref{logicalthm:consequentia_mirabilis})より
+		\begin{align}
+			\vdash
+			(\, \negation (\, A \vee \negation A\, ) \rarrow A \vee \negation A\, )
+			\rarrow A \vee \negation A
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			\vdash A \vee \negation A
+		\end{align}
+		が出る．
+		\QED
+	\end{prf}
+	
+	排中律の言明は「いかなる文も肯定か否定の一方は成り立つ」と読めるが，
+	肯定と否定のどちらか一方が証明可能であるということを保証しているわけではない．
+	無矛盾律についても似たようなことが言える．無矛盾律とは「肯定と否定は両立しない」と読めるわけだが，
+	もしかすると，或る公理系$\mathscr{S}$の下では或る文$A$に対して
+	\begin{align}
+		\mathscr{S} \vdash A \wedge \negation A
+	\end{align}
+	が導かれるかもしれない．この場合$\mathscr{S}$は矛盾することになるが，
+	予め$\mathscr{S}$が無矛盾であることが判っていない限りはこの事態が起こらないとは言い切れない
+	(極端な例では，矛盾$\bot$が公理であっても無矛盾律は定理である)．
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理和への遺伝性]
+		\label{logicalthm:heredity_of_implication_to_disjunction}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (\, A \rarrow B\, ) \rarrow (\, A \vee C \rarrow B \vee C\, ), \\
+				\vdash (\, A \rarrow B\, ) \rarrow (\, C \vee A \rarrow C \vee B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			A,\ A \rarrow B \vdash B
+		\end{align}
+		が成り立ち，また論理和の導入より
+		\begin{align}
+			\vdash B \rarrow B \vee C
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			A,\ A \rarrow B \vdash B \vee C
+		\end{align}
+		となり，演繹定理より
+		\begin{align}
+			A \rarrow B \vdash A \rarrow B \vee C
+			\label{fom:heredity_of_implication_to_disjunction_1}
+		\end{align}
+		が得られる．論理和の導入より
+		\begin{align}
+			\vdash C \rarrow B \vee C
+			\label{fom:heredity_of_implication_to_disjunction_2}
+		\end{align}
+		も満たされている．ところで論理和の除去より
+		\begin{align}
+			A \rarrow B \vdash (\, A \rarrow B \vee C\, )
+			\rarrow (\, (\, C \rarrow B \vee C\, )
+			\rarrow (\, A \vee C \rarrow B \vee C\, )\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:heredity_of_implication_to_disjunction_1})との三段論法より
+		\begin{align}
+			A \rarrow B \vdash (\, C \rarrow B \vee C\, )
+			\rarrow (\, A \vee C \rarrow B \vee C\, )
+		\end{align}
+		となり，(\refeq{fom:heredity_of_implication_to_disjunction_2})との三段論法より
+		\begin{align}
+			A \rarrow B \vdash A \vee C \rarrow B \vee C
+		\end{align}
+		が従う．
+		\begin{align}
+			\vdash (\, A \rarrow B\, ) \rarrow (\, C \vee A \rarrow C \vee B\, )
+		\end{align}
+		も同様に示される．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は否定と論理和で表せる]
+		\label{logicalthm:implication_rewritable_by_disjunction_of_negation}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, A \rarrow B\, ) \rarrow (\, \negation A \vee B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		含意の論理和への遺伝性
+		(論理的定理\ref{logicalthm:heredity_of_implication_to_disjunction})より
+		\begin{align}
+			\vdash (\, A \rarrow B\, ) 
+			\rarrow (\, A \vee \negation A \rarrow B \vee \negation A\, )
+		\end{align}
+		が成り立つので，演繹定理の逆より
+		\begin{align}
+			A \rarrow B \vdash A \vee \negation A \rarrow B \vee \negation A
+		\end{align}
+		が成り立つ．また排中律(論理的定理\ref{logicalthm:law_of_excluded_middle})より
+		\begin{align}
+			A \rarrow B \vdash A \vee \negation A
+		\end{align}
+		も成り立つので，三段論法より
+		\begin{align}
+			A \rarrow B \vdash B \vee \negation A
+		\end{align}
+		となる．論理和の可換性(論理的定理\ref{logicalthm:commutative_law_of_disjunction})より
+		\begin{align}
+			A \rarrow B \vdash B \vee \negation A \rarrow\ \negation A \vee B
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A \rarrow B \vdash\ \negation A \vee B
+		\end{align}
+		が従い，演繹定理より
+		\begin{align}
+			\vdash (\, A \rarrow B\, ) \rarrow (\, \negation A \vee B\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{logicalthm}[強 De Morgan の法則(2)]
+		\label{logicalthm:strong_De_Morgan_law_2}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \wedge B\, )
+				\rarrow\ \negation A \vee \negation B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理積の導入より
+		\begin{align}
+			A \vdash B \rarrow A \wedge B
+		\end{align}
+		が成り立つので，これの対偶を取って
+		\begin{align}
+			A \vdash\ \negation (\, A \wedge B\, ) \rarrow\ \negation B
+		\end{align}
+		を得る(論理的定理\ref{logicalthm:introduction_of_contraposition})．
+		そして演繹定理の逆より
+		\begin{align}
+			A,\ \negation (\, A \wedge B\, ) \vdash\ \negation B
+		\end{align}
+		が成立し，演繹定理より
+		\begin{align}
+			\negation (\, A \wedge B\, ) \vdash A \rarrow\ \negation B
+		\end{align}
+		となる．論理的定理\ref{logicalthm:implication_rewritable_by_disjunction_of_negation}より
+		\begin{align}
+			\negation (\, A \wedge B\, ) \vdash (\, A \rarrow\ \negation B\, )
+			\rarrow (\, \negation A \vee \negation B\, )
+		\end{align}
+		が成り立つので三段論法より
+		\begin{align}
+			\negation (\, A \wedge B\, ) \vdash\ \negation A \vee \negation B
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			\vdash\ \negation (\, A \wedge B\, )
+			\rarrow\ \negation A \vee \negation B.
+		\end{align}
+		を得る．
+		\QED
+	\end{prf}

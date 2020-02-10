@@ -1,0 +1,503 @@
+\section{拡張}
+	通常は集合論の言語には$\lang{\in}$が使われる．
+	しかし乍ら，当然集合論と称している以上は「集合」というモノを扱っている筈なのに，
+	当の「集合」は$\lang{\in}$では実体を持たない空想でしかない．
+	どういう意味かというと，例えば
+	\begin{align}	
+		\exists x\, \forall y\, (\, y \notin x\, )
+	\end{align}
+	と書けば「$\forall y\, (\, y \notin x\, )$を満たすような集合$x$が存在する」
+	と読むわけだが，その在るべき$x$を$\lang{\in}$では特定できないのである
+	($\lang{\in}$の``名詞''は変項だけなので)．
+	しかし言語の拡張の仕方によっては，この``空虚な存在''を実在で補強することが可能になる．
+	
+	言語の拡張は二段階を踏む．
+	$x$が自由に現れる式$A(x)$のことを$x$に関する``性質''と見做せば，
+	$A(x)$は「$x$は$A$である」という読み方ができる．そこで第一の拡張では，
+	「$A$である集合」が存在するならばその集合の一つを表す
+	\begin{align}
+		\varepsilon x A(x)
+	\end{align}
+	なる形の項を導入する．これはHilbertの{\bf $\varepsilon$項}\index{いぷしろんこう@$\varepsilon$項}
+	{\bf (epsilon term)}と呼ばれるオブジェクトであるが，
+	導入の意図とは裏腹に$\varepsilon x A(x)$は性質$A$を持つとは限らない．
+	$\varepsilon x A(x)$が性質$A$を持つのは，$A$である集合が存在するとき，
+	またその時に限られる(この点については後述の$\exists$に関する公理によって明らかになる)．
+	$A$である集合が存在しない場合は，$\varepsilon x A(x)$は正体不明のオブジェクトとなる．
+	
+	第二の拡張では
+	\begin{align}
+		\Set{x}{A(x)}
+	\end{align}
+	なる形の項を導入する．この項の記法は{\bf 内包的記法}\index{ないほうてききほう@内包的記法}
+	{\bf (intensional notation)}と呼ばれる．導入の意図は「$A$である集合の全体」
+	という意味を込めた式の対象化であって，実際に後で
+	\begin{align}
+		\forall u\, \left(\, u \in \Set{x}{A(x)} \lrarrow A(u)\, \right)
+	\end{align}
+	を保証する(内包性公理)．
+	
+\subsection{$\varepsilon$項}
+	まずは$\varepsilon$項を項として追加した
+	言語$\lang{\varepsilon}$に拡張する．
+	$\lang{\varepsilon}$の語彙は以下である(参考：Moser$\&$Zach\cite{Moser_Zach}):
+	
+	\begin{description}
+		\item[矛盾記号] $\bot$
+		\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
+		\item[量化子] $\forall,\ \exists,\ \varepsilon$
+		\item[述語記号] $=,\ \in$
+		\item[変項] \ref{sec:variables}節のもの
+	\end{description}
+	
+	$\lang{\in}$からの変更点は量化子に$\varepsilon$が加わったことである．
+	続いて項と式の定義に移るが，帰納のステップは$\lang{\in}$より複雑になる:
+	
+	\begin{itemize}
+		\item 変項は$\lang{\varepsilon}$の項である．
+		\item $\bot$は$\lang{\varepsilon}$の式である．
+		\item $\sigma$と$\tau$を$\lang{\varepsilon}$の項とするとき，
+			$\in st$と$=st$は$\lang{\varepsilon}$の式である．
+			これらは$\lang{\varepsilon}$の{\bf 原子式}\index{げんししき@原子式}
+			{\bf (atomic formula)}である．
+		\item $\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\negation \varphi$は$\lang{\varepsilon}$の式である．
+		\item $\varphi$と$\psi$を$\lang{\varepsilon}$の式とするとき，
+			$\vee \varphi \psi,\ \wedge \varphi \psi,\ \rarrow \varphi \psi$は
+			いずれも$\lang{\varepsilon}$の式である．
+		\item $x$を変項とし，$\varphi$を
+			$\lang{\varepsilon}$の式とするとき，$\forall x \varphi$と
+			$\exists x \varphi$は$\lang{\varepsilon}$の式である．
+		\item $x$を変項とし，$\varphi$を
+			$\lang{\varepsilon}$の式とするとき，$\varepsilon x \varphi$は
+			$\lang{\varepsilon}$の項である．
+		\item 以上のみが$\lang{\varepsilon}$の項と式である．
+	\end{itemize}
+	
+	$\lang{\in}$に対して行った帰納的定義との大きな違いは，
+	{\bf 項と式の定義が循環している}点にある．
+	$\lang{\varepsilon}$の式が$\lang{\varepsilon}$の項を用いて
+	作られるのは当然ながら，その逆に$\lang{\varepsilon}$の項もまた
+	$\lang{\varepsilon}$の式から作られるのである．
+	
+	\begin{screen}
+		\begin{metadfn}[$\varepsilon$項]
+			$\varepsilon x \varphi$なる項を
+			{\bf ${\boldsymbol \varepsilon}$項}\index{いぷしろんこう@$\varepsilon$項}
+			{\bf (epsilon term)}と呼ぶ．ここで$x$は変項であり，$\varphi$は
+			$\lang{\varepsilon}$の式である．
+		\end{metadfn}
+	\end{screen}
+	
+	定義通りなら，式$\varphi$に$x$が自由に現れていない場合でも$\varepsilon x \varphi$は
+	$\lang{\varepsilon}$の項である．ただしそのような項は全く無用であるから，
+	後で実際に集合論を構築する際には排除してしまう(\ref{sec:restriction_of_formulas}節参照)．
+	
+	\begin{screen}
+		\begin{metathm}
+			$A$を$\lang{\varepsilon}$の式とするとき，
+			$\varepsilon x A$なる形の$\varepsilon$項は$A$には現れない．
+		\end{metathm}
+	\end{screen}
+	
+	もし$A$に$\varepsilon x A$が現れるならば，当然$A$の中の$\varepsilon x A$にも
+	$\varepsilon x A$が現れるし，$A$の中の$\varepsilon x A$の中の$\varepsilon x A$にも
+	$\varepsilon x A$が現れるといった具合に，この入れ子には終わりがなくなる．
+	だが，当然こんなことは起こり得ない．
+	
+	\begin{metaprf}
+		$A$が指す記号列のどの部分を切り取っても
+		それは$A$より短い記号列であって，$\varepsilon x A$の現れる余地など無いからである．
+		\QED
+	\end{metaprf}
+	
+	定義の循環によって構造が見えづらくなっているが，$\lang{\varepsilon}$の項と式は
+	次の手順で作られている．
+	
+	\begin{enumerate}
+		\item $\lang{\in}$の式から$\varepsilon$項を作り，
+			その$\varepsilon$項を第$1$世代$\varepsilon$項と呼ぶことにする．
+		\item 変項と第$1$世代$\varepsilon$項を項として式を作り，
+			これらを第$2$世代の式と呼ぶことにする．
+			また第$2$世代の式で作る$\varepsilon$項を第$2$世代$\varepsilon$項と呼ぶことにする．
+		\item 第$n$世代の$\varepsilon$項をが出来たら，
+			それらと変項を項として第$n+1$世代の式を作り，
+			第$n+1$世代$\varepsilon$項を作る．
+			ちなみに，このように考えると第$n$世代$\varepsilon$項は
+			第$n+1$世代$\varepsilon$項でもある．
+	\end{enumerate}
+	
+	$\lang{\varepsilon}$の項と式は以上のような帰納的構造を持っているのだから，
+	$\lang{\varepsilon}$における構造的帰納法はこれに則ったものになる．
+	まずは粗く考察してみると，項と式に対する言明Xが与えられたとき，
+	
+	\begin{enumerate}
+		\item $\lang{\in}$の項と式に対してXが言えて，かつ
+			第$1$世代の$\varepsilon$項に対してもXが言えることからスタートする．
+		\item 第$2$世代の式に対してXが言えることと，第$2$世代の$\varepsilon$項に対してXが言えること
+			を示す．
+			
+			$\vdots$
+			
+		\item 第$n$世代までのすべての式と項に対してXが言えることを仮定して，
+			第$n+1$世代の式に対してXが言えることと，第$n+1$世代の$\varepsilon$項に対して
+			Xが言えることを示す．
+	\end{enumerate}
+	の以上が検査出来れば，$\lang{\varepsilon}$のすべての項と式に対してXが言えると
+	結論するのは妥当である．ただし第$n$世代だとかいうカテゴライズは直感的考察を補佐するための
+	インフォーマルなものであり，更に簡略されたやり方でこの操作が実質的に為されることが期される．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の項の部分項]
+		\label{metadfn:L_epsilon_subterm_of_term}
+			$\tau$を$\lang{\varepsilon}$の項とするとき，
+			\begin{itemize}
+				\item $\tau$に現れる$\lang{\varepsilon}$の項を
+					$\tau$の{\bf 部分項}\index{ぶぶんこう@部分項}{\bf (subterm)}と呼ぶ．
+				\item $\tau$自身を除く$\tau$の部分項を$\tau$の
+					{\bf 真部分項}\index{しんぶぶんこう@真部分項}{\bf (proper subterm)}
+					と呼ぶ．
+				\item $\tau$の真部分項のうち，$\tau$の他の真部分項のいずれにも格納されていない
+					$\lang{\varepsilon}$の項を$\tau$の{\bf 直部分項}
+					\index{ちょくぶぶんこう@直部分項}{\bf (immediate subterm)}と呼ぶ．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば$\sigma$を$\lang{\varepsilon}$の項とするとき，
+	$\sigma$は$\in \sigma \tau$の部分項であり，真部分項でもあり，直部分項でもある．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の式の項]
+		\label{metadfn:L_epsilon_term_of_formula}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$に現れる$\lang{\varepsilon}$の項のうち，
+			$\varphi$に現れる他の$\lang{\varepsilon}$の項の
+			いずれにも格納されていないものを「$\varphi$の項」と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば$\lang{\varepsilon}$の式$\varphi$の上に$\varepsilon$項$e$が現れているとき，
+	$e$の真部分項は$\varphi$の項ではない．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の部分式]
+		\label{metadfn:L_epsilon_subformula}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$に現れる$\lang{\varepsilon}$の式のうち，
+			$\varphi$に現れる$\varepsilon$項のいずれにも格納されていないものを
+			$\varphi$の{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (subformula)}と呼ぶ．
+			$\varphi$自身を除く$\varphi$の部分式を特に$\varphi$の
+			{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper subformula)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の直部分式]
+		\label{metadfn:L_epsilon_immediate_subformula}
+			$\varphi$を$\lang{\varepsilon}$の式とするとき，$\varphi$の{\bf 直部分式}
+			\index{ちょくぶぶんしき@直部分式}{\bf (immediate subformula)}を
+			\begin{itemize}
+				\item $\varphi$が$\negation \psi$なる式ならば$\psi$のこと，
+				\item $\varphi$が$\vee \psi \chi,\ \wedge \psi \chi,\ \rarrow \psi \chi$
+					なる式ならば$\psi$と$\chi$のこと，
+				\item $\varphi$が$\exists x \psi,\ \forall x \psi$なる式ならば$\psi$のこと，
+			\end{itemize}
+			とする．また$\varepsilon x \psi$なる$\varepsilon$項の直部分式は$\psi$とする．
+		\end{metadfn}
+	\end{screen}
+	
+	$\lang{\in}$の項と式に関しては，以上の定義と P. \pageref{metadfn:L_in_subterm_of_term}
+	の定義は一致する．
+	
+	\begin{screen}
+		\begin{metaaxm}[$\lang{\varepsilon}$の項と式に対する構造的帰納法]
+		\label{metaaxm:induction_principle_of_L_epsilon}
+			$\lang{\varepsilon}$の項に対する言明Xと式に対する言明Yに対し，
+			\begin{enumerate}
+				\item $\lang{\in}$の項と式，および$\lang{\in}$の式
+					で作る$\varepsilon$項に対してX及びYが言える．
+				\item $\varphi$を任意に与えられた$\lang{\varepsilon}$の式として，
+					$\varphi$の任意の項および真部分式に対してXおよびYが言えると仮定するとき，
+					\begin{itemize}
+						\item $\varphi$が$\in \sigma \tau$なる形の原子式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varphi$が$\negation \varphi$なる形の式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varphi$が$\vee \psi \chi$なる形の式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varphi$が$\exists x \psi$なる形の式であるとき
+							$\varphi$に対してYが言える．
+						\item $\varepsilon x \varphi$なる$\varepsilon$項
+							に対してXが言える．
+					\end{itemize}
+			\end{enumerate}
+			ならば，いかなる項と式に対してもXが言える．
+		\end{metaaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$の始切片]
+		\label{metadfn:L_epsilon_initial_segment}
+			$\theta$を$\lang{\varepsilon}$の項或いは式とするとき，
+			$\theta$の左端から切り取る一続きの記号列を$\theta$の
+			{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[$\lang{\varepsilon}$の始切片の一意性]
+		\label{metathm:initial_segment_L_epsilon}
+			$\tau$を$\lang{\varepsilon}$の項とするとき，
+			$\tau$の始切片で$\lang{\varepsilon}$の項であるものは$\tau$自身に限られる．
+			また$\varphi$を$\lang{\varepsilon}$の式とするとき，
+			$\varphi$の始切片で$\lang{\varepsilon}$の式であるものは$\varphi$自身に限られる．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1]
+				$\lang{\in}$の式と項についてはメタ定理\ref{metathm:initial_segment_L_in}より
+				当座の定理の主張が従う．また$\varphi$を$\lang{\in}$の式とし，
+				$\tau$を$\lang{\varepsilon}$の項とし，また$\tau$は
+				\begin{align}
+					\varepsilon x \varphi
+				\end{align}
+				なる$\varepsilon$項の始切片とするとき，$\tau$の左端は$\varepsilon$であるから
+				\begin{align}
+					\varepsilon y \psi
+				\end{align}
+				なる形をしているはずである．すると$x$と$y$とは一方が他方の始切片となるので
+				メタ定理\ref{metathm:initial_segment_L_in}より$y$は$x$に一致する．
+				するとまた$\varphi$と$\psi$はは一方が他方の始切片となるので一致する．
+				つまり$\tau$は$\varepsilon x \varphi$そのものである．
+				
+			\item[step2] いま
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_epsilon}の仮定)]
+					$\varphi$の任意の項$\tau$に対して，その始切片で項であるものは$\tau$
+					に限られる．また$\varphi$の任意の真部分式$\psi$に対して，
+					その始切片で式であるものは$\psi$に限られる
+				\end{description}
+				と仮定する．
+				\begin{description}
+					\item[case1]
+						$\varphi$が
+						\begin{align}
+							\in s t
+						\end{align}
+						なる原子式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\in u v
+						\end{align}
+						なる形をしているが，$u$と$s$は一方が他方の始切片となっているので
+						(IH)より一致する．すると$v$と$t$も一方が他方の始切片となるので
+						(IH)より一致する．ゆえに$\varphi$の始切片で式であるもの
+						は$\varphi$自信に限られる．
+						
+					\item[case2] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるももまた
+						\begin{align}
+							\negation \xi
+						\end{align}
+						なる形をしている．このとき$\xi$は$\psi$の始切片であるから，
+						(IH)より$\xi$と$\psi$は一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			
+					\item[case3] $\varphi$が
+						\begin{align}
+							\vee \psi \xi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\vee \eta \zeta
+						\end{align}
+						なる形をしている．このとき$\psi$と$\eta$は一方が他方の始切片となるが
+						(IH)より一致する．すると$\xi$と$\zeta$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case4] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\exists y \xi
+						\end{align}
+						なる形の式である．このとき$x$と$y$は一方が他方の始切片であり，これらは
+						変項であるからメタ定理\ref{metathm:initial_segment_L_in}
+						より一致する．すると$\psi$と$\chi$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case5] $\varepsilon x \varphi$の始切片で項であるものは
+						\begin{align}
+							\varepsilon y \psi
+						\end{align}
+						なる形をしている筈である．このとき，まずメタ定理
+						\ref{metathm:initial_segment_L_in}より$x$と$y$は一致する．
+						すると$\psi$は$\varphi$の始切片であることになるが，
+						前段までの結果から$\varphi$と$\psi$は一致する．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\varepsilon}$のスコープ]
+		\label{metadfn:L_epsilon_scope}
+			$\theta$を$\lang{\varepsilon}$の項或いは式とし，
+			記号$s$が$\theta$に現れたとする($s$は$\natural,\in,=,\negation,\vee,\wedge,
+			\rarrow,\forall,\exists,\varepsilon$のどれかとする)．このとき，
+			$s$が$\natural$か$\varepsilon$なら
+			$s$のその位置から$\theta$に現れる$\lang{\varepsilon}$の項を，
+			$s$が他の記号なら$s$のその位置から$\theta$に現れる$\lang{\varepsilon}$の式を，
+			$\theta$におけるその$s$の{\bf スコープ}\index{スコープ@スコープ}{\bf (scope)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[$\lang{\varepsilon}$のスコープの存在]
+		\label{metathm:existence_of_scopes_L_epsilon}
+			$\varphi$を$\lang{\varepsilon}$の式，或いは項とするとき，
+			\begin{description}
+				\item[(a)] $\natural$が$\varphi$に現れたとき，変項$t$が得られて，
+					$\natural$のその出現位置から$\natural t$なる変項が$\varphi$の上に現れる．
+					
+				\item[(b)] $\in$が$\varphi$に現れたとき，$\lang{\varepsilon}$の項$\sigma,\tau$が得られて，
+					$\in$のその出現位置から$\in \sigma \tau$なる式が$\varphi$の上に現れる．
+				
+				\item[(c)] $\negation$が$\varphi$に現れたとき，
+					$\lang{\varepsilon}$の式$\psi$が得られて，
+					$\negation$のその出現位置から
+					$\negation \psi$なる式が$\varphi$の上に現れる．
+				
+				\item[(d)] $\vee$が$\varphi$に現れたとき，$\lang{\varepsilon}$の式$\psi,\xi$が得られて，
+					$\vee$のその出現位置から$\vee \psi \xi$なる式が$\varphi$の上に現れる．
+				
+				\item[(e)] $\exists$が$\varphi$に現れたとき，変項$x$と$\lang{\varepsilon}$の式$\psi$が得られて，
+					$\exists$のその出現位置から$\exists x \psi$なる式が$\varphi$の上に現れる．
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	(b)では$\in$を$=$に替えたって同じ主張が成り立つし，(d)では$\vee$を$\wedge$や$\rarrow$に替えても同じである．
+	(e)では$\exists$を$\forall$に替えても同じであるのは良いとして，
+	$\varepsilon$項の成り立ちから$\exists$を$\varepsilon$に替えても同様の主張が成り立つ．
+	
+	示すのはスコープの存在だけで良い．一意性は始切片の定理からすぐに従う．実際
+	$\varphi$を$\lang{\varepsilon}$の式として，その中に$\varepsilon$が出現したとすると，
+	``スコープの存在が保証されていれば！''$\varepsilon$のその出現位置から
+	\begin{align}
+		\varepsilon x \psi
+	\end{align}
+	なる$\varepsilon$項が$\varphi$の上に現れるわけだが，他の誰かが「$\varepsilon y \xi$という
+	$\varepsilon$項がその$\varepsilon$の出現位置から抜き取れるぞ」と言ってきたとしても，
+	当然ながら$x$と$y$は一方が他方の始切片となるので一致する変項であるし(メタ定理\ref{metathm:initial_segment_L_in})，
+	すると今度は$\psi$と$\xi$の一方が他方の始切片となるが，そのときもメタ定理\ref{metathm:initial_segment_L_epsilon}より
+	両者は一致する．
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1]
+				$\varphi$が$\lang{\in}$の式であるときは，スコープの存在は
+				メタ定理\ref{metathm:existence_of_scopes_L_in}で既に示されている．
+				また$\lang{\in}$の式$\psi$に対して，
+				\begin{align}
+					\varepsilon x \psi
+				\end{align}
+				なる形の$\varepsilon$項に対しても
+				(a)から(e)が満たされる．実際，(b)から(e)に関しては，
+				$\in,\negation,\vee,\exists$は
+				$\psi$の中にしか出現し得ないので，スコープの存在は
+				メタ定理\ref{metathm:existence_of_scopes_L_in}により保証される．
+				(a)については，$\natural$は$\psi$の中に現れる場合と$x$の中に現れる場合があるが，
+				いずれの場合もメタ定理\ref{metathm:existence_of_scopes_L_in}より
+				スコープは取れる．
+			
+				
+			\item[step2] ここで$\varphi$を任意に与えられた$\lang{\varepsilon}$の
+				式として，次の仮定を置く．
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_epsilon}の仮定)]
+					$\varphi$の任意の真部分式，及び
+					$\varphi$の項である任意の$\varepsilon$項の直部分式
+					に対して(a)から(e)まで言える
+				\end{description}
+				
+				と仮定する．式$\varphi$が$\in s t$なる形の式であるとき．
+				\begin{description}
+					\item[case1]
+						$\natural$が$\in s t$に現れたとしよう．
+						$s$や$t$が変項であれば(a)の成立は見た目通りである．$s$が
+						\begin{align}
+							\varepsilon x \psi
+						\end{align}
+						なる形の$\varepsilon$項であって，
+						$s$にその$\natural$が現れているとしよう．
+						$\natural$が$x$に現れている場合は
+						メタ定理\ref{metathm:existence_of_scopes_L_in}に訴えればよい．
+						$\natural$が$\psi$に現れている場合は，(a)の成立は(IH)から従う．
+						
+					\item[case2]
+						$\in$が$\in s t$に現れたとしよう．
+						それが左端の$\in$であれば，(b)の成立を言うには$s$と$t$を取れば良い．
+						$\in$が$s$に現れたとすれば，$s$は$\varepsilon$項であることになり，
+						変項$x$と$\lang{\varepsilon}$の式$\psi$が取れて，$s$は
+						\begin{align}
+							\varepsilon x \psi
+						\end{align}
+						と表せる．$\in$は$\psi$に現れるので，(IH)より$\lang{\varepsilon}$の項$u,v$が取れて，
+						$\in$のその出現位置から$\in s t$なる式が$\psi$の上に現れる．
+						$\in$が$t$に現れる場合も同様に(b)の成立が言える．
+				
+					\item[case3]
+						$\in s t$に論理記号($\negation,\vee,\wedge,\rarrow,\exists,\forall$のいずれか)
+						が現れたとしよう．
+						そしてその現れた記号を便宜上$\sigma$と書こう．
+						$\sigma$の出現位置が$s$にあるとすれば，そのことは$s$が
+						\begin{align}
+							\varepsilon x \psi
+						\end{align}
+						なる形の$\varepsilon$項であることを意味する．当然$\sigma$は$\psi$の中にあるわけで，
+						(c)もしくは(d)の成立は(IH)から従う．
+						
+					\item[case4]
+						$\in s t$に$\varepsilon$が現れたとしよう．
+						$\varepsilon$の出現位置が$s$にあるとすれば，そのことは$s$が
+						\begin{align}
+							\varepsilon x \psi
+						\end{align}
+						なる形の$\varepsilon$項であることを意味する．
+						$\varepsilon$の出現位置が$s$の左端である場合，(e)の成立を言うには
+						この$x$と$\psi$を取れば良い．
+						$\varepsilon$が$\psi$の中にある場合は，
+						$(e)$の成立は(IH)から従う．
+				\end{description}
+				
+			\item[step3]
+				式$\varphi$が$\negation \psi$なる形のとき，
+				$\varphi$に現れた記号は左端の$\negation$であるか，そうでなければ
+				$\psi$の中に現れる．左端の$\negation$のスコープは$\varphi$自身である．
+				$\psi$に現れた記号のスコープの存在は
+				(IH)により保証される．
+				
+			\item[step4]
+				式$\varphi$が$\vee \psi \xi$なる形のとき，
+				$\varphi$に現れた記号は左端の$\vee$であるか，そうでなければ
+				$\psi \xi$の中に現れる．左端の$\vee$のスコープは$\varphi$自身である．
+				$\psi \xi$に現れた記号のスコープの存在は(IH)により保証される．
+			
+			\item[step5]
+				式$\varphi$が$\exists x \psi$なる形のとき，
+				$\varphi$に現れた記号は左端の$\exists$であるか，そうでなければ
+				$\psi$の中に現れる．左端の$\exists$のスコープは$\varphi$自身である．
+				$\psi$に現れた記号のスコープの存在は(IH)により保証される．
+				\QED
+		\end{description}
+	\end{metaprf}

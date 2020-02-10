@@ -1,0 +1,164 @@
+\section{量化}
+	$\varphi$を$\mathcal{L}$の式とする．もし$\varphi$に$\forall$が現れたら，
+	その$\forall$に後続する変項$x$と式$\psi$が取れるが，そのとき$x$は
+	\begin{align}
+		\forall x \psi
+	\end{align}
+	の中で{\bf 「量化されている」}\index{りょうか@量化}{\bf(quantified)}や
+	{\bf 「束縛されている」}\index{そくばく@束縛}{\bf (bound)}という．
+	同様に$\varphi$の中に$\exists$や$\varepsilon$が現れたら，
+	その$\exists$ (または$\varepsilon$)の直後にくる変項は，
+	「その$\exists$ (または$\varepsilon$)のスコープの中で束縛されている」といい，
+	また$\varphi$の中に
+	\begin{align}
+		\Set{x}{\psi}
+	\end{align}
+	なる内包項が現れたら，$x$は「この内包項の中で束縛されている」という．
+	他方で$\psi$の中に$x$とは別の変項が現れていても，その変項は
+	$\forall x \psi,\ \exists x \psi,\ \varepsilon x \psi,\ \Set{x}{\psi}$
+	の中では「束縛されていない」と解釈する．
+	まとめれば，\underline{$\forall,\exists,\varepsilon,$そして$\{$は
+	直後に来る変項のみをそのスコープ内で束縛している}のである(参考：Kunen\cite{Kunen})．たとえば
+	\begin{align}
+		\forall x\, (\, x \in y\, )
+	\end{align}
+	においては$x$は束縛されているし，
+	\begin{align}
+		\Set{u}{u = z}
+	\end{align}
+	において$u$は束縛されている．束縛は二重に行われることもある．例えば
+	\begin{align}
+		\forall x\, (\, \forall x\, (\, x \in y\, ) \rarrow (\, x \in z\, )\, )
+	\end{align}
+	なる式においては，$\forall x\, (\, x \in y\, )$にある$x$は
+	上式で一番左の$\forall$のスコープ内の$x$でもあるので，これらの$x$は二重に束縛されていることになる．
+	仮に「何重にも束縛されている場合は最も広いスコープで束縛されていることにする」と決めても良いが，
+	ただし重要なのは変項が束縛されているか否かであって，それが二重でも三重でもどうでも構わない．
+	
+	上の例では$y$と$z$は束縛されていないが，考えている項や式の中で束縛されていない変項
+	を{\bf 自由な}\index{じゆう@自由}{\bf (free)}変項と呼ぶ．
+	現れる変項が自由であるか否かは当然その出現位置に依存しているのであり，たとえば
+	\begin{align}
+		\forall x\, (\, x \in y\, ) \rarrow (\, x \in z\, )
+	\end{align}
+	なる式では左の二つの$x$が束縛されている一方で右の$x$は自由であるように，
+	同じ変項が複数個所に現れる場合はその変項が束縛されているか自由であるかは一概には言えない．
+	式$\varphi$の中に束縛されていない変項が現れている場合は，
+	その変項が``その位置''に現れていることを
+	{\bf 自由な出現}\index{じゆうなしゅつげん@自由な出現}{\bf (free occurrence)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{metadfn}[文]
+			自由な変項が現れない$\mathcal{L}$の式を{\bf 文}\index{ぶん@文}{\bf (sentence)}
+			や{\bf 閉式}\index{へいしき@閉式}{\bf (closed formula)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[部分式を取り替えても式]
+		\label{metathm:replace_subformula_with_some_formula}
+			$\varphi$を$\mathcal{L}$の式とし，$\psi$を$\varphi$の部分式
+			(定義\ref{metadfn:L_subformula})とし，$\chi$を$\mathcal{L}$の式とする．
+			このとき，$\varphi$の$\psi$の部分を一か所だけ$\chi$に差し替えて得られる記号列
+			$\widetilde{\varphi}$は$\mathcal{L}$の式である．
+			また$\psi$に自由に現れる変項が全て$\chi$にも自由に現れ，逆に
+			$\chi$に自由に現れる変項が全て$\psi$にも自由に現れるなら，
+			$\varphi$に自由に現れる変項は全て$\widetilde{\varphi}$にも自由に現れ，逆に
+			$\widetilde{\varphi}$に自由に現れる変項も全て$\varphi$にも自由に現れる．
+		\end{metathm}
+	\end{screen}
+	
+	主張の「$\mathcal{L}$」の部分を「$\lang{\in}$」或いは「$\lang{\varepsilon}$」に替えても
+	同様の証明でこの定理は成立する．
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[step1] $\varphi$が原子式である場合，$\psi$とは$\varphi$自身のことである．
+				従って$\widetilde{\varphi}$は$\chi$となり，これは$\mathcal{L}$の式である．
+				当然，$\varphi$に自由に現れる変項は全て$\widetilde{\varphi}$にも自由に現れ，
+				逆に$\widetilde{\varphi}$に自由に現れる変項も全て$\varphi$にも自由に現れる．
+							
+			\item[step2] $\varphi$が原子式でないとき，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_formulas}の仮定)]
+						$\varphi$の任意の真部分式$\eta$に対して，その部分式の一つを
+						$\mathcal{L}$の他の式に差し替えて得られる記号列$\widetilde{\eta}$は
+						$\mathcal{L}$の式である．また差し替え前後の部分式に自由に現れる変項が
+						一致しているならば，$\eta$と$\widetilde{\eta}$に自由に現れる変項も一致する
+				\end{description}
+				と仮定する．このとき
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \xi
+						\end{align}
+						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$の部分式である．
+						前者の場合は$\widetilde{\varphi}$は$\chi$となるので
+						$\widetilde{\varphi}$は$\mathcal{L}$の式であり，また
+						$\psi$と$\chi$に自由に現れる変項が一致していれば
+						$\varphi$と$\widetilde{\varphi}$に自由に現れる変項も一致する．
+						後者の場合は，$\xi$に現れる$\psi$を$\chi$に差し替えた記号列
+						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\negation \widetilde{\xi}
+						\end{align}
+						なる記号列であるからこれも
+						$\mathcal{L}$の式である．また$\psi$と$\chi$に自由に現れる変項が
+						一致していれば，(IH)より$\xi$と$\widetilde{\xi}$
+						に自由に現れる変項も一致するので，
+						$\varphi$と$\widetilde{\varphi}$自由に現れる変項も一致する．
+					
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \xi \zeta
+						\end{align}
+						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$或いは
+						$\zeta$の部分式である．
+						前者の場合は$\widetilde{\varphi}$は$\chi$となるので
+						$\widetilde{\varphi}$は$\mathcal{L}$の式であり，また
+						$\psi$と$\chi$に自由に現れる変項が一致していれば
+						$\varphi$と$\widetilde{\varphi}$に自由に現れる変項も一致する．
+						後者の場合は，差し替えられる$\psi$が$\xi$に現れているとして，
+						$\xi$のその$\psi$の部分を$\chi$に差し替えた記号列
+						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\vee \widetilde{\xi} \zeta
+						\end{align}
+						なる記号列となる．その$\psi$が$\zeta$に現れていれば
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\vee \xi \widetilde{\zeta}
+						\end{align}
+						なる記号列となる．ゆえに$\widetilde{\varphi}$は
+						$\mathcal{L}$の式である．また$\psi$と$\chi$に自由に現れる変項が
+						一致していれば，(IH)より$\xi$と$\widetilde{\xi}$
+						(もしくは$\zeta$と$\widetilde{\zeta}$)
+						に自由に現れる変項は一致するので，
+						$\varphi$と$\widetilde{\varphi}$自由に現れる変項も一致する．
+						
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \xi
+						\end{align}
+						なる式のとき，$\psi$は$\varphi$自身であるか，$\xi$の部分式である．
+						前者の場合は$\widetilde{\varphi}$は$\chi$となるので
+						$\widetilde{\varphi}$は$\mathcal{L}$の式であり，また
+						$\psi$と$\chi$に自由に現れる変項が一致していれば
+						$\varphi$と$\widetilde{\varphi}$に自由に現れる変項も一致する．
+						後者の場合は，$\xi$に現れる$\psi$の部分を$\chi$に置き換えた記号列
+						$\widetilde{\xi}$は(IH)より$\mathcal{L}$の式であって，
+						$\widetilde{\varphi}$は
+						\begin{align}
+							\exists x \widetilde{\xi}
+						\end{align}
+						なる記号列であるからこれも
+						$\mathcal{L}$の式である．また$\psi$と$\chi$に自由に現れる変項が
+						一致していれば，(IH)より$\xi$と$\widetilde{\xi}$
+						に自由に現れる変項も一致するので，
+						$\varphi$と$\widetilde{\varphi}$自由に現れる変項も一致する．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}

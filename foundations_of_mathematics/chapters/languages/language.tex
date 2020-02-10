@@ -1,0 +1,691 @@
+	%この世のはじめに言葉ありきといわれるが，この原則は数学の世界でも同じである．
+	本論文の世界を展開するために使用する言語には二つ種類がある．
+	一つは自然言語の日本語であり，もう一つは新しくこれから作る言語である．
+	その人工的な言語は記号列が数学の式となるための文法を指定し，
+	そこで組み立てられた式のみが考察対象となる．
+	日本語は式を解釈したり人工言語を補助するために使われる．
+	
+	さっそく人工的な言語$\lang{\in}$を構築するが，
+	これは本論においてはスタンダードな言語ではなく，
+	後で$\lang{\in}$をより複雑な言語に拡張するという意味で原始的である．
+	以下は$\lang{\in}$の語彙である:
+	\begin{description}
+		\item[矛盾記号] $\bot$
+		\item[論理記号] $\negation,\ \vee,\ \wedge,\ \rarrow$
+		\item[量化子] $\forall,\ \exists$
+		\item[述語記号] $=,\ \in$
+		\item[変項] 後述(第\ref{sec:variables}節)．
+			
+			%\begin{table}
+			%	\begin{tabular}{ccccc ccccc ccccc ccccc ccccc c}
+			%		$a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ & $h$ & $i$ & $j$ & $k$ & $l$ & $m$ & $n$ & $o$ & $p$ & $q$ & $r$ & $s$ & $t$ & $u$ & $v$ & $w$ & $x$ & $y$ & $z$ \\
+			%		$A$ & $B$ & $C$ & $D$ & $E$ & $F$ & $G$ & $H$ & $U$ & $J$ & $K$ & $L$ & $M$ & $N$ & $O$ & $P$ & $Q$ & $R$ & $S$ & $T$ & $U$ & $V$ & $W$ & $X$ & $Y$ & $Z$ \\
+			%		$\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $\epsilon$ & $\zeta$ & $\eta$ & $\theta$ & $\iota$ & $\kappa$ & $\lambda$ & $\mu$ & $\nu$ & $\xi$ & & $\pi$ & $\rho$ & $\sigma$ & $\tau$ & $\upsilon$ & $\phi$ & $\chi$ & $\psi$ & $\omega$ & & \\
+			%		& & $\Gamma$ & $\Delta$ & & & & $\Theta$ & & & $\Lambda$ & & & $\Xi$ & & $\Pi$ & & $\Sigma$ & & $\Upsilon$ & $\Phi$ & & $\Psi$ & $\Omega$ & &
+			%	\end{tabular}
+			%\end{table}
+			
+	\end{description}
+	
+	日本語と同様に，決められた規則に従って並ぶ記号列のみを$\lang{\in}$の単語や文章として扱う．
+	$\lang{\in}$において，名詞にあたるものは{\bf 項}\index{こう@項}{\bf (term)}と呼ばれる．
+	文字は最もよく使われる項である．述語とは項同士を結ぶものであり，
+	最小の文章を形成する．例えば
+	\begin{align}
+		\in st
+	\end{align}
+	は$\lang{\in}$の文章となり，「$s$は$t$の要素である」と読む．
+	$\lang{\in}$の文章を$\lang{\in}$の{\bf 式}\index{しき@式}
+	{\bf (formula)}或いは$\lang{\in}$の{\bf 論理式}\index{ろんりしき@論理式}と呼ぶ．
+	論理記号は主に式同士を繋ぐ役割を持つ．
+	
+	論理学的な言語の語彙とは論理記号と変項以外の記号を全て集めたものである．
+	本論文で用意した記号で言うと，論理記号とは
+	\begin{align}
+		\bot,\ \negation,\ \vee,\ \wedge,\ \rarrow,\ \forall,\ \exists,\ =
+	\end{align}
+	であり，変項記号とは文字であって，$\lang{\in}$の語彙は
+	\begin{align}
+		\in
+	\end{align}
+	しかない．{\bf ZF}集合論の言語が$\{\in\}$であるとはこういう訳である(参考：菊池\cite{Kikuchi})．
+	しかし，実質的な違いははないが，本論文では論理記号も変項も全て含めて$\lang{\in}$の語彙とする．
+	これは，後で量化子に$\varepsilon$を追加するので論理記号を固定したくないためである．
+	また等号$=$は論理記号ではなく$\in$と同列の述語記号として扱う．
+	
+\section{変項}
+\label{sec:variables}
+	{\bf 変項}\index{へんこう@変項}{\bf (variable)}と呼ばれる最も典型的なものは文字であり，
+	本論文では以下の文字を変項として用いる：
+	\begin{align}
+		&a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z, \\
+		&A,B,C,D,E,F,G,H,U,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z, \\
+		&\alpha,\beta,\gamma,\delta,\epsilon,\zeta,\eta,\theta,\iota,
+			\kappa,\lambda,\mu,\nu,\xi,\pi,\rho,\sigma,\tau,\upsilon,
+			\phi,\chi,\psi,\omega, \\
+		&\Gamma,\Delta,\Theta,\Lambda,\Xi,\Pi,\Sigma,\Upsilon,\Phi,\Psi,\Omega, \\
+		&\vartheta,\ \varpi,\ \varrho,\ \varsigma,\ \varphi
+	\end{align}
+	
+	だが文字だけを変項とするのは不十分であり，
+	例えば$200$個の相異なる変項が必要であるといった場合には上の文字だけでは不足してしまう．
+	そこで，文字$x$に対して
+	\begin{align}
+		\natural x
+	\end{align}
+	もまた変項であると約束する．
+	さらに，$\tau$を変項とするときに
+	\footnote{
+		「$\tau$を変項とするときに」と書いたが，これは一時的に
+		$\tau$を或る変項に代用しているだけであって，
+		$\tau$が指している変項の本来の字面は$x$であるかもしれない．
+		この場合の$\tau$を{\bf 超記号}\index{ちょうきごう@超記号}{\bf (meta symbol)}
+		と呼ぶ．「$A$を式とする」など式にも超記号が宣言される．
+	}
+	\begin{align}
+		\natural \tau
+	\end{align}
+	も変項であると約束する．この約束に従えば，文字$x$だけを用いたとしても
+	\begin{align}
+		x,\quad \natural x, \quad \natural \natural x, \quad \natural \natural \natural x
+	\end{align}
+	はいずれも変項ということになる．極端なことを言えば，$\natural$と$x$だけで
+	無数の相異なる変項を作り出せるのである．
+	
+	大切なのは$\natural$を用いれば理屈の上では変項に不足しないということであって，
+	具体的な数式を扱うときに$\natural$が出てくるかと言えば否である．
+	$\natural$が必要になるほどに長い式を読解するのは困難であるから，
+	通常は何らかの略記法を導入して複雑なところを覆い隠してしまう．
+	
+	変項は形式的には次のよう定義される:
+	
+	\begin{screen}
+		\begin{metadfn}[変項]
+			文字は変項である．また，$\tau$を変項とするとき$\natural \tau$は変項である．
+			以上のみが変項である．
+		\end{metadfn}
+	\end{screen}
+	
+	上の定義では，はじめに発端を決めて，次に新しい項を作り出す手段を指定している．こういった定義の仕方を
+	{\bf 帰納的定義}\index{きのうてきていぎ@帰納的定義}{\bf (inductive definition)}と呼ぶ．
+	ただしそれだけでは項の範囲が定まらないので，最後に「以上のみが項である」と付け加えている．
+	「以上のみが変項である」という約束によって，例えば「$\tau$が項である」という言明が与えられたとき，
+	この言明は
+	\begin{itemize}
+		\item $\tau$は或る文字に代用されている
+		\item 項$\sigma$が取れて\footnotemark，$\tau$は$\natural \sigma$に代用されている
+	\end{itemize}
+	のどちらか一方にしか解釈され得ない．
+	
+	%のは，言うまでもない，であろうか．直感的にはそうであっても
+	%直感を万人が共有している保証はないから，やはりここは明示的に，「$\tau$が項である」という言明の解釈は
+	%\begin{itemize}
+	%	\item $\tau$は或る文字に代用されている
+	%	\item 項$\sigma$が取れて(超記号)，$\tau$は$\natural \sigma$に代用されている
+	%\end{itemize}
+	%に限られると決めてしまおう．主張はストレートな方が後々使いやすい．
+	
+	\footnotetext{
+		「変項$\sigma$が取れて」と書いたが，この$\sigma$は唐突に出てきたので，
+		それが表す文字そのものでしかないのか，或いは超記号であるのか，一見判然しない．
+		本来は「変項が取れて，これを$\sigma$で表すと」などと書くのが
+		良いのかもしれないが，はじめの書き方でも文脈上は超記号として解釈するのが自然であるし，
+		何より言い方がまどろこくない．このように見た目の簡潔さのために超記号の宣言を省略する場合もある．
+	}
+
+\section{項と式}
+	$\lang{\in}$の{\bf 項}\index{こう@項}{\bf (term)}と
+	{\bf 式}\index{しき@式}{\bf (formula)}も変項と同様に帰納的に定義される:
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の項]
+			変項は$\lang{\in}$の項であり，またこれらのみが$\lang{\in}$の項である．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の式]\mbox{}
+			\begin{itemize}
+				\item $\bot$は式である．
+				\item $\sigma$と$\tau$を項とするとき，$\in st$と$=st$は式である．
+					これらを{\bf 原子式}\index{げんししき@原子式}{\bf (atomic formula)}と呼ぶ．
+				\item $\varphi$を式とするとき，$\negation \varphi$は式である．
+				\item $\varphi$と$\psi$を式とするとき，$\vee \varphi \psi,\ 
+					\wedge \varphi \psi,\ \rarrow \varphi \psi$はいずれも式である．
+			
+				\item $x$を項とし，$\varphi$を式とするとき，$\forall x \varphi$と$\exists x \varphi$は式である．
+				
+				\item 以上のみが式である．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	変項と同様に，「$\varphi$が式である」という言明の解釈は
+	\begin{itemize}
+		\item $\varphi$は$\bot$である
+		\item 項$s$と項$t$が得られて，$\varphi$は$\in s t$である
+		\item 項$s$と項$t$が得られて，$\varphi$は$= s t$である
+		\item 式$\psi$が得られて，$\varphi$は$\negation \psi$である
+		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\vee \psi \xi$である
+		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\wedge \psi \xi$である
+		\item 式$\psi$と式$\xi$が得られて，$\varphi$は$\rarrow \psi \xi$である
+		\item 項$x$と式$\psi$が得られて，$\varphi$は$\forall x \psi$である
+		\item 項$x$と式$\psi$が得られて，$\varphi$は$\exists x \psi$である
+	\end{itemize}
+	のいずれか一つに限られる．
+	
+	以下では，$\theta$を$\lang{\in}$の項或いは式とするとき，
+	$\theta$から切り取った一続きの記号列$e$のことを
+	「{\bf $\theta$に現れる$e$}\index{あらわれる@現れる}」，
+	「{\bf $\theta$の上の$e$}\index{うえの@上の}」，
+	「{\bf $\theta$の中の$e$}\index{なかの@中の}」などと表現する．
+	この慣行は後で登場する拡張言語においても踏襲する．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の項の部分項]\label{metadfn:L_in_subterm_of_term}
+			$\tau$を$\lang{\in}$の項とするとき，
+			\begin{itemize}
+				\item $\tau$に現れる$\lang{\in}$の項を
+					$\tau$の{\bf 部分項}\index{ぶぶんこう@部分項}{\bf (subterm)}と呼ぶ．
+				\item $\tau$自身を除く$\tau$の部分項を$\tau$の
+					{\bf 真部分項}\index{しんぶぶんこう@真部分項}{\bf (proper subterm)}
+					と呼ぶ．
+				\item $\tau$が$\natural \sigma$なる項であるとき，$\sigma$を
+					$\tau$の{\bf 直部分項}\index{ちょくぶぶんこう@直部分項}
+					{\bf (immediate subterm)}と呼ぶ．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば文字$x$の部分項は$x$のみである．また
+	$\tau$を変項とするとき，$\tau$は$\natural \tau$の部分項であり，真部分項でもあり，
+	直部分項でもある．他方で$\tau$は$\natural \natural \tau$の部分項であり，真部分項でもあるが，
+	直部分項ではない．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の式の項]\label{metadfn:L_in_term_of_formula}
+			$\varphi$を$\lang{\in}$の式とするとき，$\varphi$に現れる
+			$\lang{\in}$の項のうち，$\varphi$に現れる他の$\lang{\in}$の項の
+			いずれにも格納されていないものを「$\varphi$の項」と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	たとえば$\varphi$が$\in \tau \sigma$なる式で，$\tau$が$\natural x$なる項であるとき，
+	$x$は$\varphi$の上に現れる$\lang{\in}$の項であるが$\varphi$の項ではない．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の部分式]\label{metadfn:L_in_subformula}
+			$\varphi$を$\lang{\in}$の式とするとき，
+			$\varphi$に現れる$\lang{\in}$の式を
+			$\varphi$の{\bf 部分式}\index{ぶぶんしき@部分式}{\bf (subformula)}と呼ぶ．
+			$\varphi$自身を除く$\varphi$の部分式を特に$\varphi$の
+			{\bf 真部分式}\index{しんぶぶんしき@真部分式}{\bf (proper subformula)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[直部分式]
+		\label{metadfn:L_in_immediate_subformula}
+			$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の{\bf 直部分式}
+			\index{ちょくぶぶんしき@直部分式}{\bf (immediate subformula)}を
+			\begin{itemize}
+				\item $\varphi$が$\negation \psi$なる式ならば$\psi$のこと，
+				\item $\varphi$が$\vee \psi \chi,\ \wedge \psi \chi,\ \rarrow \psi \chi$
+					なる式ならば$\psi$と$\chi$のこと，
+				\item $\varphi$が$\exists x \psi,\ \forall x \psi$なる式ならば$\psi$のこと，
+			\end{itemize}
+			とする．
+		\end{metadfn}
+	\end{screen}
+	
+\section{構造的帰納法}
+	まず
+	\begin{align}
+		\forall x \in x y
+	\end{align}
+	なる式を考える．中置記法(後述)で
+	\begin{align}
+		\forall x\, (\, x \in y\, )
+	\end{align}
+	と書けば若干見やすくなる．冠頭詞$\forall$は直後の$x$に係って「任意の$x$に対し...」の意味を持ち，
+	この式は「任意の$x$に対して$x$は$y$の要素である」と読むのであるが，
+	このとき$x$は$\forall x \in x y$で{\bf 束縛されている}{\bf (bound)}
+	或いは{\bf 量化されている}{\bf (quantified)}と言う．
+	$\forall$を$\exists$に替えても同様に「$x$は$\exists x \in x y$で束縛されている」と言う．
+	つまり，{\bf 量化子の直後の項(量化子が係っている項)は，その量化子から始まる式の中で束縛されている}
+	と解釈することになっている．
+	
+	では
+	\begin{align}
+		\rarrow \forall x \in x y \in x z
+	\end{align}
+	という式はどうであるか．$\forall x$の後ろには$x$が二か所に現れているが，
+	どちらの$x$も$\forall$によって束縛されているのか？
+	結論を言えば$\in x y$の$x$は束縛されていて，$\in x z$の$x$は束縛されていない．
+	というのも式の構成法を思い返せば，$\forall x \varphi$が式であると言ったら$\varphi$は式であるはずで，
+	今の例で$\forall x$に後続する式は
+	\begin{align}
+		\in x y
+	\end{align}
+	しかないのだから，$\forall$から始まる式は
+	\begin{align}
+		\forall x \in x y
+	\end{align}
+	しかないのである．$\forall$が係る$x$が束縛される範囲は
+	``$\forall$から始まる式''であるから，$\in x z$の$x$は
+	$\forall$の``束縛''から漏れた``自由な''$x$ということになる．
+	
+	上の例でみたように，量化はその範囲が重要になる．
+	量化子$\forall$が式$\varphi$に現れたとき，
+	その$\forall$から始まる$\varphi$の部分式を
+	$\forall$の{\bf スコープ}と呼ぶが，
+	いつでもスコープが取れることは明白であるとして，
+	$\forall$のスコープは唯一つでないと都合が悪い．
+	もしも異なるスコープが存在したら，同じ式なのに全く違う解釈に分かれてしまうからである．
+	実際そのような心配は無用であると後で保証するわけだが，
+	その前に{\bf 始切片}という概念を準備しておく必要がある．
+	
+\subsection{始切片}
+	$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の左端から切り取る一続きの記号列を
+	$\varphi$の{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ
+	(参考：Kunen\cite{Kunen})．
+	例えば$\varphi$が
+	\begin{align}
+		\rarrow \forall x \wedge \rarrow \in xy \in xz \rarrow \in xz \in xy = yz
+	\end{align}
+	である場合，
+	\begin{align}
+		\textcolor{red}{\rarrow \forall x \wedge \rarrow \in xy \in xz \rarrow \in xz \in x}y = yz
+	\end{align}
+	や
+	\begin{align}
+		\textcolor{red}{\rarrow \forall x \wedge \rarrow \in xy} \in xz \rarrow \in xz \in xy = yz
+	\end{align}
+	など赤字で分けられた部分は$\varphi$の始切片である．また$\varphi$自身も$\varphi$の始切片である．
+	項についても同様に，項の左端から切り取るひとつづきの部分列をその項の始切片と呼ぶ．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$の始切片]
+		\label{metadfn:L_in_initial_segment}
+			$\theta$を$\lang{\in}$の項或いは式とするとき，
+			$\theta$の左端から切り取る一続きの記号列を$\theta$の
+			{\bf 始切片}\index{しせっぺん@始切片}{\bf (initial segment)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	本節の主題は次である．
+	\begin{screen}
+		\begin{metathm}[始切片の一意性]\label{metathm:initial_segment_L_in}
+			$\tau$を$\lang{\in}$の項とするとき，$\tau$の始切片で$\lang{\in}$の項であるものは$\tau$自身に限られる．
+			また$\varphi$を$\lang{\in}$の式とするとき，$\varphi$の始切片で$\lang{\in}$の式であるものは$\varphi$自身に限られる．
+		\end{metathm}
+	\end{screen}
+	
+	\footnote[0]{
+		{\bf メタ定理}\index{めたていり@メタ定理}とは式や項或いは証明の形状的な性質
+		に対する主張であって，{\bf メタ証明}\index{めたしょうめい@メタ証明}はメタ定理の妥当性を
+		日本語によって検証するものである．またメタ証明に必要な直感的真理を{\bf メタ公理}
+		\index{めたこうり@メタ公理}として明示する．メタ公理は通常は暗黙の裡に認められている．
+		
+		本論文では第\ref{chap:set_theory}章から集合論の内側に入る構成になっている．
+		だからそれまでの内容は殆ど集合論の外側の話である．
+		{\bf メタ定義}\index{めたていぎ@メタ定義}とは既に何の断りもなく出してしまったが，
+		集合論の外側で出てくる概念に特別の名前を付ける際にメタ定義として提示する．
+	}
+	
+	「項の始切片で項であるものはその項自身に限られる．また，式の始切片で式であるものはその式自身に限られる．」という言明を(★)と書くことにする．
+	このメタ定理を示すには次の原理を用いる:
+	
+	\begin{screen}
+		\begin{metaaxm}[$\lang{\in}$の項に対する構造的帰納法]
+		\label{metaaxm:induction_principle_of_L_in_terms}
+			$\lang{\in}$の項に対する言明Xに対し(例えば(★))，
+			\begin{itemize}
+				\item 文字に対してXが言える．
+				\item 無作為に選ばれた項$\tau$について，その直部分項に対してXが言える
+					と仮定すれば，$\tau$に対してもXが言える．
+			\end{itemize}
+			ならば，いかなる項に対してもXが言える．
+		\end{metaaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metaaxm}[$\lang{\in}$の式に対する構造的帰納法]
+		\label{metaaxm:induction_principle_of_L_in_formulas}
+			$\lang{\in}$の式に対する言明Xに対し(例えば(★))，
+			\begin{itemize}
+				\item 原子式に対してXが言える．
+				\item 無作為に選ばれた式$\varphi$について，その任意の真部分式に対してXが言える
+					と仮定すれば，$\varphi$に対してもXが言える．
+			\end{itemize}
+			ならば，いかなる式に対してもXが言える．
+		\end{metaaxm}
+	\end{screen}
+	
+	では定理を示す．
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[項について]
+				$s$を項とするとき，$s$が文字ならば$s$の始切片は$s$のみである．つまり(★)が言える．
+				$s$が文字でないとき，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_in_terms}の仮定)]
+						$s$の直部分項$\tau$に対して，
+						$\tau$の始切片で$\lang{\in}$の項であるものは$\tau$自身に限られる．
+				\end{description}
+				と仮定する．(項の構成法より)項$t$が取れて$s$は
+				\begin{align}
+					\natural t
+				\end{align}
+				と表せる．$u$を$s$の始切片で項であるものとすると
+				$u$に対しても(項の構成法より)項$v$が取れて，$u$は
+				\begin{align}
+					\natural v
+				\end{align}
+				と表せる．このとき$v$は$t$の始切片であり，
+				$t$については(IH)より(★)が言えるので，$t$と$v$は一致する．
+				ゆえに$s$と$u$は一致する．ゆえに$s$に対しても(★)が言える．
+				
+			\item[式について]
+				$\bot$については，その始切片は$\bot$に限られる．
+				$\in st$なる原子式については，その始切片は
+				\begin{align}
+					\in, \quad \in s, \quad \in st
+				\end{align}
+				のいずれかとなるが，このうち式であるものは$\in st$のみである．
+				$=st$なる原子式についても，その始切片で式であるものは$=st$に限られる．
+	
+				いま$\varphi$を任意に与えられた式とし，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_in_formulas}の仮定)]
+					$\varphi$の任意の真部分式$\psi$に対して，
+					$\psi$の始切片で$\lang{\in}$の式であるものは$\psi$自身に限られる．
+				\end{description}
+				と仮定する．このとき
+				\begin{description}
+					\item[case1] $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\negation \xi
+						\end{align}
+						なる形をしている．このとき$\xi$は$\psi$の始切片であるから，
+						(IH)より$\xi$と$\psi$は一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+			
+					\item[case2] $\varphi$が
+						\begin{align}
+							\vee \psi \xi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\vee \eta \zeta
+						\end{align}
+						なる形をしている．このとき$\psi$と$\eta$は一方が他方の始切片であるので
+						(IH)より一致する．すると$\xi$と$\zeta$も一方が他方の始切片ということに
+						なり，(IH)より一致する．ゆえに$\varphi$の始切片で式であるものは
+						$\varphi$自身に限られる．
+						
+					\item[case3] $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\varphi$の始切片で式であるものもまた
+						\begin{align}
+							\exists y \xi
+						\end{align}
+						なる形の式である．このとき$x$と$y$は一方が他方の始切片であり，これらは
+						変項であるから前段の結果より一致する．すると$\psi$と$\chi$も
+						一方が他方の始切片ということになり，(IH)より一致する．
+						ゆえに$\varphi$の始切片で式であるものは$\varphi$自身に限られる．
+						\QED
+				\end{description}
+		\end{description}
+	\end{metaprf}
+	
+\subsection{スコープ}
+	$\varphi$を式とし，$s$を$``\natural,\in,\bot,\negation,\vee,\wedge,
+	\rarrow,\exists,\forall''$のいずれかの記号とし，$\varphi$に$s$が現れたとする．このとき，
+	$s$のその出現位置から始まる$\varphi$の部分式，
+	ただし$s$が$\natural$である場合は部分項，を
+	$s$の{\bf スコープ}\index{スコープ@スコープ}{\bf (scope)}と呼ぶ(参考：Kunen\cite{Kunen})．具体的に，$\varphi$を
+	\begin{align}
+		\rarrow \forall x \wedge \rarrow \in xy \in xz \rarrow \in xz \in xy = yz
+	\end{align}
+	なる式とするとき，$\varphi$の左から$6$番目に$\in$が現れるが，この$\in$から
+	\begin{align}
+		\in xy
+	\end{align}
+	なる原子式が$\varphi$の上に現れている:
+	\begin{align}
+		\rarrow \forall x \wedge \rarrow \textcolor{red}{\in xy} \in xz \rarrow \in xz \in xy = yz.
+	\end{align}
+	これは{\bf $\varphi$における左から6番目の記号$\in$のスコープ}である．他にも，$\varphi$の左から$4$番目に$\wedge$が現れるが，この右側に
+	\begin{align}
+		\rarrow \in xy \in xz
+	\end{align}
+	と
+	\begin{align}
+		\rarrow \in xz \in xy
+	\end{align}
+	の二つの式が続いていて，$\wedge$を起点に
+	\begin{align}
+		\wedge \rarrow \in xy \in xz \rarrow \in xz \in xy
+	\end{align}
+	なる式が$\varphi$の上に現れている:
+	\begin{align}
+		\rarrow \forall x \textcolor{red}{\wedge \rarrow \in xy \in xz \rarrow \in xz \in xy} = yz.
+	\end{align}
+	これは{\bf $\varphi$における左から4番目の記号$\wedge$のスコープ}である．$\varphi$の左から$2$番目には$\forall$が現れて，
+	この$\forall$に対して項$x$と
+	\begin{align}
+		\wedge \rarrow \in xy \in xz \rarrow \in xz \in xy
+	\end{align}
+	なる式が続き，
+	\begin{align}
+		\forall x \wedge \rarrow \in xy \in xz \rarrow \in xz \in xy
+	\end{align}
+	なる式が$\varphi$の上に現れている:
+	\begin{align}
+		\rarrow \textcolor{red}{\forall x \wedge \rarrow \in xy \in xz \rarrow \in xz \in xy} = yz.
+	\end{align}
+	
+	しかも$\in,\wedge,\forall$のスコープは上にあげた部分式のほかに取りようが無い．
+	上の具体例を見れば，直感的に「現れた記号のスコープはただ一つだけ，必ず取ることが出来る」
+	ということが一般の式に対しても当てはまるように思えるが，
+	直感を排除してこれを認めるには構造的帰納法の原理が必要になる．
+	
+	当然ながら$\lang{\in}$の式には同じ記号が何か所にも出現しうるので，
+	式$\varphi$に記号$s$が現れたと言ってもそれがどこの$s$を指定しているのかはっきりしない．
+	しかし{\bf スコープを考える際には，$\varphi$に複数現れうる$s$のどれか一つを選んで，
+	その$s$に終始注目している}のであり，
+	「その$s$の...」や「$s$のその出現位置から...」のように限定詞を付けてそれを示唆することにする．
+	
+	\begin{screen}
+		\begin{metadfn}[$\lang{\in}$のスコープ]
+		\label{metadfn:L_in_scope}
+			$\theta$を$\lang{\in}$の項或いは式とし，
+			記号$s$が$\theta$に現れたとする($s$は$\natural,\in,=,\negation,\vee,\wedge,
+			\rarrow,\forall,\exists$のどれかとする)．このとき，
+			$s$が$\natural$なら$s$のその位置から$\theta$に現れる$\lang{\in}$の項を，
+			$s$が他の記号なら$s$のその位置から$\theta$に現れる$\lang{\in}$の式を，
+			$\theta$におけるその$s$の{\bf スコープ}\index{スコープ@スコープ}{\bf (scope)}と呼ぶ．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[スコープの存在]\label{metathm:existence_of_scopes_L_in}
+		$\varphi$を式，或いは項とするとき，
+		\begin{description}
+			\item[(a)] $\natural$が$\varphi$に現れたとき，項$t$が得られて，
+				$\natural$のその出現位置から$\natural t$なる項が$\varphi$の上に現れる．
+				
+			\item[(b)] $\in$が$\varphi$に現れたとき，項$\sigma$と項$\tau$が得られて，
+				$\in$のその出現位置から$\in \sigma \tau$なる式が$\varphi$の上に現れる．
+				
+			\item[(c)] $\negation$が$\varphi$に現れたとき，式$\psi$が得られて，
+				$\negation$のその出現位置から$\negation \psi$なる式が
+				$\varphi$の上に現れる．
+				
+			\item[(d)] $\vee$が$\varphi$に現れたとき，式$\psi$と式$\xi$が得られて，
+				$\vee$のその出現位置から$\vee \psi \xi$なる式が$\varphi$の上に現れる．
+				
+			\item[(e)] $\exists$が$\varphi$に現れたとき，項$x$と式$\psi$が得られて，
+				$\exists$のその出現位置から$\exists x \psi$なる式が$\varphi$の上に現れる．
+		\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	(b)では$\in$を$=$に替えたって同じ主張が成り立つし，(d)では$\vee$を$\wedge$や$\rarrow$に替えても同じである．
+	(e)では$\exists$を$\forall$に替えても同じことが言える．
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[case1]
+				「項に$\natural$が現れたとき，項$t$が取れて，
+				その$\natural$の出現位置から$\natural t$がその項の部分項として現れる」---(※)，を示す．
+				$s$を項とするとき，$s$が文字ならば$s$に対して(※)が言える．
+				$s$が文字でないとき，$s$の直部分項に対して(※)が言えるとする．
+				$s$は文字ではないので，(項の構成法より)項$t$が取れて$s$は
+				\begin{align}
+					\natural t
+				\end{align}
+				と表せる．$s$に現れる$\natural$とは$s$の左端のものであるか
+				$t$の中に現れるものであるが，$t$は$s$の直部分項であって，
+				$t$については(※)が言えるので，結局$s$に対しても(※)が言えるのである．
+			
+			%\item[case2]
+			%	$\bot$に対しては上の言明は当てはまる．
+			
+			\item[case2]
+				$\in s t$なる式に対しては，$\in$のスコープは$\in s t$に他ならない．
+				実際，$\in$から始まる$\in s t$の部分式は，項$u,v$が取れて
+				\begin{align}
+					\in u v
+				\end{align}
+				と書けるが，このとき$u$と$s$は一方が他方の始切片となっているので，
+				メタ定理\ref{metathm:initial_segment_L_in}より$u$と$s$は一致する．
+				すると今度は$v$と$t$について一方が他方の始切片となるので，
+				メタ定理\ref{metathm:initial_segment_L_in}より$v$と$t$も一致する．
+				
+				$\in s t$に$\natural$が現れた場合，これが$s$に現れているとすると，
+				前段より項$u$が取れて，この$\natural$の出現位置から$\natural u$なる項が
+				$s$の上に現れる．$\natural$が$t$に現れたときも同じである．
+				以上より$\in s t$に対して定理の主張が当てはまる．
+					
+			\item[case3]
+				$\varphi$を任意に与えられた式として
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_in_formulas}の仮定)]
+					$\varphi$の真部分式に対しては(a)から(e)の主張が当てはまる
+				\end{description}
+				と仮定する．このとき，
+				\begin{itemize}
+					\item $\varphi$が
+						\begin{align}
+							\negation \psi
+						\end{align}
+						なる形の式であるとき，$\natural,\in,\vee,\exists$が
+						$\varphi$に現れたなら，それらは$\psi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\negation$が現れた場合，
+						その$\negation$が$\psi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\negation$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						
+					\item $\varphi$が
+						\begin{align}
+							\vee \psi \chi
+						\end{align}
+						なる形の式であるとき，$\natural,\in,\negation,\exists$が
+						$\varphi$に現れたなら，それらは$\psi$か$\chi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\vee$が現れた場合，
+						その$\vee$が$\psi,\chi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\vee$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						
+					\item $\varphi$が
+						\begin{align}
+							\exists x \psi
+						\end{align}
+						なる形の式であるとき，$\natural,\in,\negation,\vee$が
+						$\varphi$に現れたなら，それらは$\psi$の中に現れているのだから
+						(IH)よりスコープが取れる．また$\varphi$に$\exists$が現れた場合，
+						その$\exists$が$\psi$の中のものならば(IH)に訴えれば良いし，
+						$\varphi$の左端の$\exists$を指しているなら
+						スコープとして$\varphi$自身を取れば良い．
+						\QED
+				\end{itemize}
+		\end{description}
+	\end{metaprf}
+	
+	始切片に関する定理からスコープの一意性を示すことが出来る．
+	
+	\begin{screen}
+		\begin{metathm}[スコープの一意性]\label{metathm:uniqueness_of_scopes_L_in}
+			$\varphi$を式とし，$s$を
+			$\natural,\in,\bot,\negation,\vee,\wedge,\rarrow,\exists,\forall$
+			のいずれかの記号とし，$\varphi$に$s$が現れたとする．
+			このとき$\varphi$におけるその$s$のスコープは唯一つである．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[case1]
+				$\natural$が$\varphi$に現れた場合，スコープの存在定理\ref{metathm:existence_of_scopes_L_in}
+				より項$\tau$が取れて
+				\begin{align}
+					\natural \tau
+				\end{align}
+				なる形の項が$\natural$のその出現位置から$\varphi$の上に現れるわけだが，
+				\begin{align}
+					\natural \sigma
+				\end{align}
+				なる項も$\natural$のその出現位置から$\varphi$の上に出現しているといった場合，
+				$\tau$と$\sigma$は一方が他方の始切片となるわけで，
+				始切片のメタ定理\ref{metathm:initial_segment_L_in}より
+				$\tau$と$\sigma$は一致する．
+			
+			\item[case2]
+				$\negation$が$\varphi$に現れた場合，
+				これはcase1において項であったところが式に替わるだけで殆ど同じ証明となる．
+			
+			\item[case3]
+				$\vee$が$\varphi$に現れた場合，定理\ref{metathm:existence_of_scopes_L_in}
+				より式$\psi,\xi$が取れて
+				\begin{align}
+					\vee \psi \xi
+				\end{align}
+				なる形の式が$\vee$のその出現位置から$\varphi$の上に現れる．ここで
+				\begin{align}
+					\vee \eta \Gamma
+				\end{align}
+				なる式も$\vee$のその出現位置から$\varphi$の上に出現しているといった場合，
+				まず$\psi$と$\eta$は一方が他方の始切片となるわけで，
+				メタ定理\ref{metathm:initial_segment_L_in}より
+				$\psi$と$\eta$は一致する．すると今度は$\xi$と$\Gamma$について
+				一方が他方の始切片となるので，同様に$\xi$と$\Gamma$も一致する．
+				$\wedge$や$\rarrow$のスコープの一意性も同様に示される．
+				
+			\item[case4]
+				$\exists$が$\varphi$に現れた場合，定理\ref{metathm:existence_of_scopes_L_in}
+				より項$x$と式$\psi$が取れて
+				\begin{align}
+					\exists x \psi
+				\end{align}
+				なる形の式が$\exists$のその出現位置から$\varphi$の上に現れる．ここで
+				\begin{align}
+					\exists y \xi
+				\end{align}
+				なる式も$\exists$のその出現位置から$\varphi$の上に出現しているといった場合，
+				まず項$x$と項$y$は一方が他方の始切片となるわけで，
+				メタ定理\ref{metathm:initial_segment_L_in}より
+				$x$と$y$は一致する．すると今度は$\psi$と$\xi$が
+				一方が他方の始切片の関係となるので，この両者も一致する．
+				$\forall$のスコープの一意性も同様に示される．
+				\QED
+		\end{description}
+	\end{metaprf}

@@ -1,0 +1,1097 @@
+	\begin{screen}
+		\begin{dfn}[推移的クラス]
+			$\mathcal{L}$の項$x$に対して，$x$が{\bf 推移的}\index{すいいてき@推移的}
+			{\bf (transitive)}であるということを
+			\begin{align}
+				\tran{x} \defarrow
+				\forall s\, (\, s \in x \rarrow s \subset x\, )
+			\end{align}
+			で定める．
+		\end{dfn}
+	\end{screen}
+	
+	$x$が推移的であるとは，「$x$の要素の要素が$x$の要素となる」という意味である．
+	
+	\begin{screen}
+		\begin{dfn}[順序数]
+			$\mathcal{L}$の項$x$に対して
+			\begin{align}
+				\ord{x} \defarrow \tran{x} \wedge 
+				\forall t,u \in x\, (\, t \in u \vee t = u \vee u \in t\, )
+			\end{align}
+			と定め(ただし$t \in u \vee t = u \vee u \in t$は
+			$(\, t \in u \vee t = u\, ) \vee u \in t$の略記とする)，
+			\begin{align}
+				\ON \defeq \Set{x}{\ord{x}}
+			\end{align}
+			とおく．$\ON$の要素を{\bf 順序数}\index{じゅんじょすう@順序数}
+			{\bf (ordinal number)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	空虚な真の一例であるが，例えば$0$は順序数の性質を満たす．
+	ここに一つの順序数が得られたが，いま仮に$\alpha$を順序数とすれば
+	\begin{align}
+		\alpha \cup \{\alpha\}
+	\end{align}
+	もまた順序数となることが直ちに判明する．数字の定め方から
+	\begin{align}
+		1 &= 0 \cup \{0\}, \\
+		2 &= 1 \cup \{1\}, \\
+		3 &= 2 \cup \{2\}, \\
+		&\vdots
+	\end{align}
+	が成り立つから，数字は全て順序数である．
+	
+	いま関係を
+	\begin{align}
+		\leq\ \defeq \Set{x}{\exists \alpha,\beta\, 
+		(\, x=(\alpha,\beta) \wedge \alpha \subset \beta\, )}
+	\end{align}
+	と定める．そして
+	\begin{align}
+		x \leq y &\defarrow (x,y) \in\ \leq, \\
+		x < y &\defarrow x \leq y \wedge x \neq y
+	\end{align}
+	と書く(中置記法)．
+	
+	以下順序数の性質を列挙するが，長いので主張だけ先に述べておく．
+	\begin{itemize}
+		\item $\ON$は推移的クラスである．
+		\item $\ON$上で$\in$と$<$は同義になる．
+		\item $\leq$は$\ON$において整列順序となる．
+		%\item $a$を$a \subset \ON$なる集合とすると，$\bigcup a$は$a$の$\leq$に関する上限となる．
+		\item $\ON$は集合ではない．
+	\end{itemize}
+	
+	\begin{screen}
+		\begin{thm}[推移的で$\in$が全順序となるクラスは$\ON$に含まれる]
+		\label{thm:transitive_totally_ordered_class}
+			$a$をクラスとするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+				\ord{a} \rarrow a \subset \ON.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\chi \defeq \varepsilon x \negation 
+			(\, x \in a \rarrow x \in \ON\, )
+		\end{align}
+		とおく．
+		\begin{description}
+			\item[step1] まず
+				\begin{align}
+					\chi \in a,\ \ord{a} \vdash 
+					\forall s,t \in \chi\, (\, s \in t \vee s = t \vee t \in s\, )
+					\label{fom:thm_transitive_totally_ordered_class_1}
+				\end{align}
+				を示す．$a$の推移性より
+				\begin{align}
+					\chi \in a,\ \ord{a} \vdash \chi \subset a
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					\sigma &\defeq \varepsilon s \negation 
+					(\, s \in \chi \rarrow \forall t\, (\, t \in \chi \rarrow 
+					(\, s \in t \vee s = t \vee t \in s\, )\, )\, ), \\
+					\tau &\defeq \varepsilon t \negation (\, t \in \chi \rarrow 
+					(\, \sigma \in t \vee \sigma = t \vee t \in \sigma\, )\, )
+				\end{align}
+				とおけば，
+				\begin{align}
+					\tau \in \chi,\ \sigma \in \chi,\ \chi \in a,\ \ord{a} 
+					&\vdash \sigma \in a, 
+					\label{fom:thm_transitive_totally_ordered_class_2} \\
+					\tau \in \chi,\ \sigma \in \chi,\ \chi \in a,\ \ord{a} 
+					&\vdash \tau \in a
+					\label{fom:thm_transitive_totally_ordered_class_3}
+				\end{align}
+				となる．他方で$\ord{a}$の定義式より
+				\begin{align}
+					\ord{a} \vdash 
+					\forall s\, (\, s \in a \rarrow 
+					\forall t\, (\, t \in a \rarrow (\, \sigma \in t \vee \sigma = t \vee t \in \sigma\, )\, )\, )
+					\label{fom:thm_transitive_totally_ordered_class_4}
+				\end{align}
+				が成り立つので，全称記号の論理的公理および
+				(\refeq{fom:thm_transitive_totally_ordered_class_2})と
+				(\refeq{fom:thm_transitive_totally_ordered_class_3})との三段論法により
+				\begin{align}
+					\tau \in \chi,\ \sigma \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+					\sigma \in \tau \vee \sigma = \tau \vee \tau \in \sigma
+				\end{align}
+				が従う．演繹定理より
+				\begin{align}
+					\sigma \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+					\tau \in \chi \rarrow (\, \sigma \in \tau \vee \sigma = \tau \vee \tau \in \sigma\, )
+				\end{align}
+				が成り立つので，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\sigma \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+					\forall t\, (\, t \in \chi \rarrow (\, \sigma \in t \vee \sigma = t \vee t \in \sigma\, )
+				\end{align}
+				となり，再び演繹定理と全称の導出によって
+				\begin{align}
+					\chi \in a,\ \ord{a} \vdash 
+					\forall s\, (\, s \in \chi \rarrow \forall t\, (\, t \in \chi \rarrow (\, s \in t \vee s = t \vee t \in s\, )\, )
+				\end{align}
+				が得られる．
+				
+			\item[step2] 次に
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \tran{\chi}
+				\end{align}
+				を示す．いま
+				\begin{align}
+					\eta &\defeq \varepsilon y \negation (\, y \in \chi \rarrow y \subset \chi\, ), \\
+					\zeta &\defeq \varepsilon z \negation (\, z \in \eta \rarrow z \in \chi\, )
+				\end{align}
+				とおく．
+				\begin{description}
+					\item[step2-1]
+						この段では
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash 
+							\zeta \in \chi \vee \zeta = \chi \vee \chi \in \zeta
+						\end{align}
+						を示す．$a$の推移性より
+						\begin{align}
+							\chi \in a,\ \ord{a} \vdash \chi \subset a
+						\end{align}
+						が成り立つので，
+						\begin{align}
+							\eta \in \chi,\ \chi \in a,\ \ord{a} \vdash \eta \in a
+						\end{align}
+						が成り立ち，再び$a$の推移性より
+						\begin{align}
+							\eta \in \chi,\ \chi \in a,\ \ord{a} \vdash 
+							\eta \subset a
+						\end{align}
+						となる．従って
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash \zeta \in a
+						\end{align}
+						も成り立ち，
+						(\refeq{fom:thm_transitive_totally_ordered_class_4})と
+						全称記号の論理的公理より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash 
+							\zeta \in \chi \vee \zeta = \chi \vee \chi \in \zeta
+							\label{fom:thm_transitive_totally_ordered_class_5}
+						\end{align}
+						が得られる．
+						
+					\item[step2-2] この段では
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \zeta \neq \chi
+						\end{align}
+						を示す．定理\ref{thm:no_pair_of_sets_go_round}
+						(所属関係で堂々巡りしない)より
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+							\zeta \in \eta \rarrow \eta \notin \zeta
+						\end{align}
+						が成り立つので，演繹定理の逆より
+						\begin{align}
+							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \eta \notin \zeta
+						\end{align}
+						となる．他方で
+						\begin{align}
+							\EQAX \vdash \eta \notin \zeta 
+							\rarrow \zeta \neq \chi \vee \eta \notin \chi
+						\end{align}
+						が成り立つので($\zeta = \chi \wedge \eta \in \chi 
+						\rarrow \eta \in \zeta$の対偶を取ってDe Morganの法則)
+						\begin{align}
+							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \zeta \neq \chi \vee \eta \notin \chi
+						\end{align}
+						が従い，論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+						(含意の論理和は否定で書ける)より
+						\begin{align}
+							\zeta \in \eta,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \eta \in \chi
+							\rarrow \zeta \neq \chi
+						\end{align}
+						となる．そして演繹定理の逆より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX 
+							\vdash \zeta \neq \chi
+							\label{fom:thm_transitive_totally_ordered_class_6}
+						\end{align}
+						が得られる．
+						
+					\item[step2-3] この段では
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+							\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \in \chi
+						\end{align}
+						を示す．定理\ref{thm:no_three_sets_go_round}
+						(所属関係で堂々巡りしない)より
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \in \eta \wedge \eta \in \chi \rarrow 
+							\chi \notin \zeta
+						\end{align}
+						が成り立つので，
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\chi \notin \zeta
+						\end{align}
+						が従う．ここで
+						(\refeq{fom:thm_transitive_totally_ordered_class_6})
+						と論理積の導入より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \neq \chi \wedge \chi \notin \zeta
+						\end{align}
+						となり，De Morganの法則
+						(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ 
+							\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash\ 
+							\negation (\, \zeta = \chi \vee \chi \in \zeta\, )
+							\label{fom:thm_transitive_totally_ordered_class_7}
+						\end{align}
+						が成り立つ．ところで
+						(\refeq{fom:thm_transitive_totally_ordered_class_5})と
+						論理和の結合律
+						(論理的定理\ref{logicalthm:associative_law_of_disjunctions})
+						より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a} 
+							\vdash 
+							\zeta \in \chi \vee (\, \zeta = \chi \vee \chi \in \zeta\, )
+						\end{align}
+						が成り立つので，
+						(\refeq{fom:thm_transitive_totally_ordered_class_7})と
+						選言三段論法
+						(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+						\begin{align}
+							\zeta \in \eta,\ \eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+							\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+							\zeta \in \chi
+							\label{fom:thm_transitive_totally_ordered_class_8}
+						\end{align}
+						が出る．
+				\end{description}
+				(\refeq{fom:thm_transitive_totally_ordered_class_8})と演繹定理より
+				\begin{align}
+					\eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\zeta \in \eta \rarrow \zeta \in \chi
+				\end{align}
+				が成り立つので，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\eta \in \chi,\ \chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\eta \subset \chi
+				\end{align}
+				が得られ，再び演繹定理と全称の導出により
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\forall y\, (\, y \in \chi \rarrow y \subset \chi\, )
+				\end{align}
+				が得られる．すなわち
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \tran{\chi}
+				\end{align}
+				が成立する．
+				
+			\item[step3] step1 と step2 の結果を併せれば
+				\begin{align}
+					\chi \in a,\ \ord{a},\ 
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \ord{\chi}
+				\end{align}
+				が成り立つので，演繹定理より
+				\begin{align}
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					\chi \in a \rarrow \chi \in \ON
+				\end{align}
+				となり，全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+					a \subset \ON
+				\end{align}
+				が出る．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$は推移的]\label{thm:On_is_transitive}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash \tran{\ON}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま
+		\begin{align}
+			\chi \defeq \varepsilon x \negation 
+			(\, x \in \ON \rarrow x \subset \ON\, )
+		\end{align}
+		とおけば，定理\ref{thm:transitive_totally_ordered_class}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+			\chi \in \ON \rarrow \chi \subset \ON
+		\end{align}
+		が成り立つので，全称の導出
+		(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\UNIAX,\REGAX \vdash 
+			\forall x\, (\, x \in \ON \rarrow x \subset \ON\, )
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{dfn}[クラスの差]
+			$x$と$y$を$\mathcal{L}$の項とするとき，
+			\begin{align}
+				x \backslash y \defeq \Set{z}{z \in x \wedge z \notin y}
+			\end{align}
+			と定める．この$x \backslash y$を$x$と$y$の{\bf 差}\index{さ@差}{\bf (difference)}と呼び，
+			$x$と$y$が集合であれば$x \backslash y$を{\bf 差集合}\index{さしゅうごう@差集合}{\bf (set difference)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$a$と$b$をクラスとするとき，任意の主要$\varepsilon$項$\tau$に対して
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \tau \in b \backslash a \lrarrow \tau \in b \wedge \tau \notin a
+	\end{align}
+	が成り立つので(注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula})，
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash b \backslash a \subset b
+	\end{align}
+	は常に満たされる．
+	
+	\begin{screen}
+		\begin{thm}[差集合は集合]\label{thm:set_difference_is_set}
+			$a$と$b$を主要$\varepsilon$項とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\REPAX \vdash \set{b \backslash a}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		分出定理(定理\ref{thm:axiom_of_separation})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \exists s\, \forall x\, (\, x \in s \lrarrow x \in b \wedge (\, x \in b \wedge x \notin a\, )\, )
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			\sigma &\defeq \varepsilon s\, \forall x\, (\, x \in s \lrarrow x \in b \wedge (\, x \in b \wedge x \notin a\, )\, ), \\
+			\tau &\defeq \varepsilon x\, (\, x \in \sigma \lrarrow x \in b \backslash a\, )
+		\end{align}
+		とおけば，
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \in b \wedge (\, \tau \in b \wedge \tau \notin a\, )
+		\end{align}
+		が成り立つ．ところで
+		\begin{align}
+			\vdash \tau \in b \wedge (\, \tau \in b \wedge \tau \notin a\, ) \lrarrow \tau \in b \wedge \tau \notin a
+		\end{align}
+		であるから，同値関係の推移律(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\EXTAX,\EQAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \in b \wedge \tau \notin a
+		\end{align}
+		が従う．また
+		\begin{align}
+			\COMAX \vdash \tau \in b \wedge \tau \notin a \lrarrow \tau \in b \backslash a
+		\end{align}
+		も成り立つので，再び同値関係の推移律によって
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \tau \in \sigma \lrarrow \tau \in b \backslash a
+		\end{align}
+		となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \forall x\, (\, x \in \sigma \lrarrow x \in b \backslash a\, )
+		\end{align}
+		が従い，外延性公理と相等性公理(等号の対称性)より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash b \backslash a = \sigma
+		\end{align}
+		が出る．従って存在記号の論理的公理より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\REPAX \vdash \exists s\, (\, b \backslash a = s\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[$\ON$において$\in$と$<$は同義]
+		\label{thm:element_and_proper_subset_correspond}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX 
+				\vdash \forall \alpha,\beta \in \ON\, (\, \alpha \in \beta \lrarrow \alpha < \beta\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		いま
+		\begin{align}
+			a &\defeq \varepsilon \alpha \negation 
+			(\, \alpha \in \ON \rarrow \forall \beta\, (\, \beta \in \ON \rarrow 
+			(\, \alpha \in \beta \lrarrow \alpha < \beta\, )\,) \,), \\
+			b &\defeq \varepsilon \beta \negation (\, \beta \in \ON \rarrow 
+			(\, a \in \beta \lrarrow a < \beta\, )\,)
+		\end{align}
+		とおく．
+		\begin{description}
+			\item[step1] まず
+				\begin{align}
+					\ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash 
+					a \in b \rarrow a < b
+				\end{align}
+				を示す．定理\ref{thm:critical_epsilon_term_is_set} (主要$\varepsilon$項は集合)と
+				定理\ref{thm:ordered_pair_of_sets_is_a_set} (集合の順序対は集合)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash \set{(a,b)}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\tau \defeq \varepsilon x\, (\, (a,b) = x\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX \vdash (a,b) = \tau
+					\label{fom:element_and_proper_subset_correspond_1}
+				\end{align}
+				となる．ところで順序数の推移性より
+				\begin{align}
+					a \in b,\ \ord{b} \vdash a \subset b
+				\end{align}
+				が成り立つから，
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \tau = (a,b) \wedge a \subset b
+				\end{align}
+				となり，存在記号の論理的公理より
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX 
+					\vdash \exists \alpha\, \exists \beta\, (\, \tau = (\alpha,\beta) \wedge \alpha \subset \beta\, )
+				\end{align}
+				が従う．よって注意\ref{rem:epsilon_terms_of_not_L_epsilon_formula}より
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX \vdash \tau \in\ \leq
+					\label{fom:element_and_proper_subset_correspond_2}
+				\end{align}
+				となり，
+				%\begin{align}
+				%	a \in b,\ \ord{b},\ \EQAX,\COMAX 
+				%	\vdash a \leq b
+				%\end{align}
+				%ところで定理\ref{thm:transitive_totally_ordered_class}より
+				%\begin{align}
+				%	\ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \vdash 
+				%	b \subset \ON
+				%\end{align}
+				%が成り立つので，
+				%\begin{align}
+				%	a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
+				%	\vdash a \in \ON
+				%\end{align}
+				%となり，(\refeq{fom:element_and_proper_subset_correspond_2})と
+				%論理積の導入より
+				%\begin{align}
+				%	&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
+				%	&\vdash a \in \ON \wedge \exists \beta\, (\, \beta \in \ON \wedge 
+				%	(\, \tau = (a,\beta) \wedge a \subset \beta\, )\, )
+				%\end{align}
+				%が成り立ち，存在記号の論理的公理より
+				%\begin{align}
+				%	&a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX \\
+				%	&\vdash \exists \alpha\, (\, \alpha \in \ON \wedge 
+				%	\exists \beta\, (\, \beta \in \ON \wedge 
+				%	(\, \tau = (\alpha,\beta) \wedge \alpha \subset \beta\, )\, )\, )
+				%\end{align}
+				%が成り立つ．ゆえに
+				%\begin{align}
+				%	a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\PAIAX,\UNIAX,\REGAX 
+				%	\vdash \tau \in\ \leq
+				%\end{align}
+				%となり，
+				(\refeq{fom:element_and_proper_subset_correspond_1})と相等性公理より
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX 
+					\vdash a \leq b
+					\label{fom:element_and_proper_subset_correspond_3}
+				\end{align}
+				が従う．他方で
+				\begin{align}
+					a \in b,\ \EQAX \vdash a \notin a \rarrow a \neq b
+				\end{align}
+				が成り立つので，定理\ref{thm:no_class_contains_itself}
+				(自分自身は要素ではない)と併せて
+				\begin{align}
+					a \in b,\ \EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash 
+					a \neq b
+					\label{fom:element_and_proper_subset_correspond_4}
+				\end{align}
+				が従う．(\refeq{fom:element_and_proper_subset_correspond_3})と
+				(\refeq{fom:element_and_proper_subset_correspond_4})と論理積の導入より
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX 
+					\vdash a \leq b \wedge a \neq b
+				\end{align}
+				となるので，
+				\begin{align}
+					a \in b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash a < b
+					\label{fom:element_and_proper_subset_correspond_21}
+				\end{align}
+				が得られる．
+				
+			\item[step2]
+				外延性公理と対偶律1 
+				(論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation\forall x\, (\, x \in a \lrarrow x \in b\, )
+				\end{align}
+				となり，量化子の論理的公理より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash \exists x \negation (\, x \in a \lrarrow x \in b\, )
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\tau \defeq \varepsilon x \negation (\, x \in a \lrarrow x \in b\, )
+				\end{align}
+				とおけば，存在記号の論理的公理より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation (\, \tau \in a \lrarrow \tau \in b\, )
+				\end{align}
+				が成り立ち，De Morganの法則(論理的定理\ref{logicalthm:strong_De_Morgan_law_2})より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash\ \negation (\, \tau \in a \rarrow \tau \in b\, ) \vee
+					\negation (\, \tau \in b \rarrow \tau \in a\, )
+				\end{align}
+				が従う．よって論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)より
+				\begin{align}
+					a \neq b,\ \EXTAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
+					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+					\label{fom:element_and_proper_subset_correspond_22}
+				\end{align}
+				が成り立つ．他方で
+				\begin{align}
+					a < b \vdash a \neq b
+				\end{align}
+				であるから，(\refeq{fom:element_and_proper_subset_correspond_22})より
+				\begin{align}
+					a < b,\ \EXTAX \vdash (\, \tau \in a \rarrow \tau \in b\, )
+					\rarrow\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+					\label{fom:element_and_proper_subset_correspond_6}
+				\end{align}
+				が成り立ち，また
+				\begin{align}
+					a < b \vdash \tau \in a \rarrow \tau \in b
+				\end{align}
+				も成り立つので，(\refeq{fom:element_and_proper_subset_correspond_6})との三段論法より
+				\begin{align}
+					a < b,\ \EXTAX \vdash\ \negation (\, \tau \in b \rarrow \tau \in a\, )
+					\label{fom:element_and_proper_subset_correspond_7}
+				\end{align}
+				となる．ところで論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)と対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\vdash\ \negation (\, \tau \in b \rarrow \tau \in a\, ) \rarrow\ 
+					\negation (\, \tau \notin b \vee \tau \in a\, )
+				\end{align}
+				が成り立つので，(\refeq{fom:element_and_proper_subset_correspond_7})との三段論法より
+				\begin{align}
+					a < b,\ \EXTAX \vdash\ \negation (\, \tau \notin b \vee \tau \in a\, )
+				\end{align}
+				が従い，De Morganの法則(論理的定理\ref{logicalthm:weak_De_Morgan_law_2})と二重否定の除去より
+				\begin{align}
+					a < b,\ \EXTAX \vdash \tau \in b \wedge \tau \notin a
+				\end{align}
+				が従う．そして
+				\begin{align}
+					a < b,\ \EXTAX,\COMAX \vdash \tau \in b \backslash a
+					\label{fom:element_and_proper_subset_correspond_5}
+				\end{align}
+				が得られる．
+				
+			\item[step3] 定理\ref{thm:set_difference_is_set}より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\REPAX \vdash \set{b \backslash a}
+				\end{align}
+				が成り立つので，
+				\begin{align}
+					\sigma \defeq \varepsilon s\, (\, b \backslash a = s\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\REPAX \vdash b \backslash a = \sigma
+					\label{fom:element_and_proper_subset_correspond_8}
+				\end{align}
+				となる．(\refeq{fom:element_and_proper_subset_correspond_5})と併せて
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX \vdash \tau \in \sigma
+				\end{align}
+				となり，存在記号の論理的公理より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX \vdash \exists x\, (\, x \in \sigma\, )
+				\end{align}
+				となるが，正則性公理より
+				\begin{align}
+					\REGAX \vdash \exists x\, (\, x \in \sigma\, ) 
+					\rarrow \exists y\, (\, y \in \sigma \wedge \forall z\, (\, z \in \sigma \rarrow z \notin y\, )\, )
+				\end{align}
+				が成り立つので
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash 
+					\exists y\, (\, y \in \sigma \wedge \forall z\, (\, z \in \sigma \rarrow z \notin y\, )\, )
+				\end{align}
+				が従う．ここで
+				\begin{align}
+					\eta \defeq \varepsilon y\, (\, y \in \sigma \wedge 
+					\forall z\, (\, z \in \sigma \rarrow z \notin y\, )\, )
+				\end{align}
+				とおけば
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \in \sigma, 
+					\label{fom:element_and_proper_subset_correspond_9} \\
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash 
+					\forall z\, (\, z \in \sigma \rarrow z \notin \eta\, )
+					\label{fom:element_and_proper_subset_correspond_10}
+				\end{align}
+				が成り立つ．正則性公理の式の意味を考えれば，ここで取られた$\eta$は
+				「$b \backslash a$の要素であり，$b \backslash a$とは交わらない」
+				という性質を持っている．$a$と$b$が順序数であれば$\eta$は$a$に等しくなる
+				ことが示されるが，それは次段以降で解説する．
+				
+			\item[step4] この段では
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \subset \eta 
+				\end{align}
+				を示す．いま
+				\begin{align}
+					\chi \defeq \varepsilon x \negation (\, x \in a \rarrow x \in \eta\, )
+				\end{align}
+				とおく．(\refeq{fom:element_and_proper_subset_correspond_8})と
+				(\refeq{fom:element_and_proper_subset_correspond_9})より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \in b, 
+					\label{fom:element_and_proper_subset_correspond_11} \\
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin a
+					\label{fom:element_and_proper_subset_correspond_12}
+				\end{align}
+				となり，他方で
+				\begin{align}
+					\chi \in a,\ a < b \vdash \chi \in b
+				\end{align}
+				となるから，$\ord{b}$を公理に追加すれば
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					\vdash \chi \in \eta \vee \chi = \eta \vee \eta \in \chi
+					\label{fom:element_and_proper_subset_correspond_13}
+				\end{align}
+				が成り立つ．ところで
+				\begin{align}
+					\EQAX \vdash \chi = \eta \wedge \chi \in a \rarrow \eta \in a
+				\end{align}
+				が成り立つので，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\EQAX \vdash \eta \notin a \rarrow \chi \neq \eta \vee \chi \notin a
+				\end{align}
+				となる．また順序数の推移性より
+				\begin{align}
+					\ord{a} \vdash \eta \in \chi \wedge \chi \in a \rarrow \eta \in a
+				\end{align}
+				が成り立つので，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+				\begin{align}
+					\ord{a} \vdash \eta \notin a \rarrow \eta \notin \chi \vee \chi \notin a
+				\end{align}
+				となる．よって，(\refeq{fom:element_and_proper_subset_correspond_12})と併せて
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta \vee \chi \notin a, \\
+					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin \chi \vee \chi \notin a
+				\end{align}
+				が成り立ち，論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					&\vdash \chi \in a \rarrow \chi \neq \eta, \\
+					a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX 
+					&\vdash \chi \in a \rarrow \eta \notin \chi
+				\end{align}
+				が成り立ち，演繹定理の逆により
+				\begin{align}
+					\chi \in a,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \chi \neq \eta,
+					\label{fom:element_and_proper_subset_correspond_14} \\
+					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX &\vdash \eta \notin \chi
+					\label{fom:element_and_proper_subset_correspond_15}
+				\end{align}
+				となり，論理積の導入とDe Morganの法則(論理的定理\ref{logicalthm:weak_De_Morgan_law_1})より
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{a},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash\ 
+					\negation (\, \chi = \eta \vee \eta \in \chi\, )
+				\end{align}
+				が従う．これと(\refeq{fom:element_and_proper_subset_correspond_13})と
+				選言三段論法(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\chi \in a,\ a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in \eta
+				\end{align}
+				が成立するので，演繹定理より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash 
+					\chi \in a \rarrow \chi \in \eta
+				\end{align}
+				となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \subset \eta
+					\label{fom:element_and_proper_subset_correspond_16}
+				\end{align}
+				が出る．
+			
+			\item[step5] この段では
+				\begin{align}
+					a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \eta \subset a
+				\end{align}
+				を示す．いま
+				\begin{align}
+					\chi \defeq \varepsilon x \negation (\, x \in \eta \rarrow x \in a\, )
+				\end{align}
+				とおく．(\refeq{fom:element_and_proper_subset_correspond_11})と順序数の推移性より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in b
+					\label{fom:element_and_proper_subset_correspond_17}
+				\end{align}
+				となる．他方で(\refeq{fom:element_and_proper_subset_correspond_10})と
+				対偶律2 (論理的定理\ref{logicalthm:contraposition_2})より
+				\begin{align}
+					a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash 
+					\chi \in \eta \rarrow \chi \notin \sigma
+				\end{align}
+				となり，演繹定理の逆より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin \sigma
+				\end{align}
+				となるが，(\refeq{fom:element_and_proper_subset_correspond_8})より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin b \backslash a
+					\label{fom:element_and_proper_subset_correspond_18}
+				\end{align}
+				が従う．ところで
+				\begin{align}
+					\COMAX \vdash \chi \in b \backslash a \lrarrow \chi \in b \wedge \chi \notin a
+				\end{align}
+				が成り立つので，対偶を取って
+				\begin{align}
+					\COMAX \vdash \chi \notin b \backslash a \lrarrow \chi \notin b \vee \chi \in a
+				\end{align}
+				となるから，(\refeq{fom:element_and_proper_subset_correspond_18})より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \notin b \vee \chi \in a
+				\end{align}
+				が従い，論理的定理\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+				(否定の論理和は含意で書ける)より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in b \rarrow \chi \in a
+				\end{align}
+				が成り立つ．これと(\refeq{fom:element_and_proper_subset_correspond_17})との三段論法より
+				\begin{align}
+					\chi \in \eta,\ a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \chi \in a
+				\end{align}
+				が成り立ち，演繹定理と全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					a < b,\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \eta \subset a
+					\label{fom:element_and_proper_subset_correspond_19}
+				\end{align}
+				が出る．
+			
+			\item[step6] (\refeq{fom:element_and_proper_subset_correspond_16})と
+				(\refeq{fom:element_and_proper_subset_correspond_19})および
+				定理\ref{thm:mutually_including_classes_are_equivalent} (互いに相手を包含するクラス同士は等しい)より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash \eta = a
+				\end{align}
+				が成り立ち，(\refeq{fom:element_and_proper_subset_correspond_11})と相等性公理より
+				\begin{align}
+					a < b,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\REPAX,\REGAX \vdash a \in b
+					\label{fom:element_and_proper_subset_correspond_20}
+				\end{align}
+				が従う．(\refeq{fom:element_and_proper_subset_correspond_21})と
+				(\refeq{fom:element_and_proper_subset_correspond_20})と演繹定理および論理積の導入より
+				\begin{align}
+					\ord{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					\ord{b} \rarrow (\, a \in b \lrarrow a < b\, )
+				\end{align}
+				が成り立つが，ここで全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\begin{gathered}
+						\ord{a},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+						\vdash \forall \beta\, (\, \beta \in \ON \rarrow (\, a \in \beta \lrarrow a < \beta\, )\, )
+					\end{gathered}
+				\end{align}
+				が従い，同様にして
+				\begin{align}
+					\begin{gathered}
+						\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+						\vdash \forall \alpha\, (\, \alpha \in \ON \rarrow
+						\forall \beta\, (\, \beta \in \ON \rarrow (\, \alpha \in \beta \lrarrow \alpha < \beta\, )\, )\, )
+					\end{gathered}
+				\end{align}
+				が得られる．
+				\QED
+		\end{description}
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}[$\leq$は$\ON$の全順序]
+		\label{thm:ON_is_totally_ordered}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+				\forall \alpha,\beta \in \ON\,
+				(\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			a &\defeq \varepsilon \alpha \negation 
+			(\, \alpha \in \ON \rarrow \forall \beta\, (\, \beta \in \ON \rarrow 
+			(\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, )\,) \,), \\
+			b &\defeq \varepsilon \beta \negation (\, \beta \in \ON \rarrow 
+			(\, a \in \beta \vee a = \beta \vee \beta \in a\, )\,)
+		\end{align}
+		とおく．
+		\begin{description}
+			\item[step1] この段では
+				\begin{align}
+					\ord{a},\ \ord{b} \vdash \ord{a \cap b}
+					\label{fom:ON_is_totally_ordered_1}
+				\end{align}
+				を示す．実際，
+				\begin{align}
+					\chi &\defeq \varepsilon x \negation 
+					(\, x \in a \cap b \rarrow \forall y\, (\, 
+					y \in a \cap b \rarrow (\, x \in y \vee x = y \vee y \in x\, )\, )\, ), \\
+					\eta &\defeq \varepsilon y \negation (\, 
+					y \in a \cap b \rarrow (\, \chi \in y \vee \chi = y \vee y \in \chi\, )\, )
+				\end{align}
+				とおけば，
+				\begin{align}
+					\chi \in a \cap b \vdash \chi \in a
+				\end{align}
+				および
+				\begin{align}
+					\eta \in a \cap b \vdash \eta \in a
+				\end{align}
+				および
+				\begin{align}
+					\ord{a} \vdash \chi \in a \rarrow (\, 
+					\eta \in a \rarrow (\, \chi \in \eta \vee \chi = \eta \vee \eta \in \chi\, )\, )
+				\end{align}
+				より
+				\begin{align}
+					\eta \in a \cap b,\ \chi \in a \cap b,\ \ord{a} 
+					\vdash \chi \in \eta \vee \chi = \eta \vee \eta \in \chi
+				\end{align}
+				が成り立つので，演繹定理と全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\ord{a} \vdash \forall x,y \in a \cap b\, 
+					(\, x \in y \vee x = y \vee y \in x\, )
+				\end{align}
+				が得られる．今度は
+				\begin{align}
+					\chi \defeq \varepsilon x \negation 
+					(\, x \in a \cap b \rarrow x \subset a \cap b\, )
+				\end{align}
+				とおき直せば，順序数の推移性より
+				\begin{align}
+					\chi \in a \cap b,\ \ord{a} &\vdash \chi \subset a, \\
+					\chi \in a \cap b,\ \ord{b} &\vdash \chi \subset b
+				\end{align}
+				が成り立つので
+				\begin{align}
+					\chi \in a \cap b,\ \ord{a},\ \ord{b} \vdash \chi \subset a \cap b
+				\end{align}
+				となり，演繹定理と全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\ord{a},\ \ord{b} \vdash 
+					\forall x\, (\, x \in a \cap b \rarrow x \subset a \cap b\, )
+				\end{align}
+				も得られる．
+				
+			\item[step2] 
+				%\ELEAX \vdash a \cap b \in a \rarrow \exists x\, (\, a \cap b = x\, )
+				%\tau \defeq \varepsilon x\, (\, a \cap b = x\, )
+				%a \cap b \in a,\ \ELEAX \vdash a \cap b = \tau
+				%a \cap b \in a,\ \ELEAX,\EQAX \vdash a \cap b = \tau \rarrow (\, a \cap b \in a \rarrow \tau \in a\, )
+				%a \cap b \in a,\ \ELEAX,\EQAX \vdash \tau \in a
+				%a \cap b \in b,\ \ELEAX,\EQAX \vdash \tau \in b
+				%a \cap b \in a,\ a \cap b \in b,\ \ELEAX,\EQAX \vdash \tau \in a \wedge \tau \in b
+				%a \cap b \in a,\ a \cap b \in b,\ \ELEAX,\EQAX,\COMAX \vdash \tau \in a \cap b
+				%a \cap b \in a,\ a \cap b \in b,\ \ELEAX,\EQAX,\COMAX \vdash a \cap b \in a \cap b
+				%\ELEAX,\EQAX,\COMAX \vdash a \cap b \in a \wedge a \cap b \in b \rarrow a \cap b \in a \cap b
+				定理\ref{thm:no_class_contains_itself} (自分自身は要素に持たない)より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\PAIAX,\REGAX \vdash a \cap b \notin a \cap b
+				\end{align}
+				が成り立ち，他方で
+				\begin{align}
+					\EQAX,\COMAX,\ELEAX \vdash a \cap b \notin a \cap b
+					\rarrow a \cap b \notin a \vee a \cap b \notin b
+				\end{align}
+				も成り立つので，三段論法より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash 
+					a \cap b \notin a \vee a \cap b \notin b
+					\label{fom:ON_is_totally_ordered_2}
+				\end{align}
+				が従う．ところで
+				\begin{align}
+					\COMAX \vdash a \cap b \subset a
+				\end{align}
+				と定理\ref{thm:element_and_proper_subset_correspond}
+				および(\refeq{fom:ON_is_totally_ordered_1})より
+				\begin{align}
+					\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \cap b \in a \vee a \cap b = a
+				\end{align}
+				が成り立つので，選言三段論法
+				(論理的定理\ref{logicalthm:disjunctive_syllogism})より
+				\begin{align}
+					\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \cap b \notin a \rarrow a \cap b = a
+				\end{align}
+				が成り立つ．演繹定理の逆より
+				\begin{align}
+					a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \cap b = a
+				\end{align}
+				となるが，ここで
+				\begin{align}
+					a \cap b = a,\ \COMAX \vdash a \subset b
+				\end{align}
+				が成り立つので
+				\begin{align}
+					a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \subset b
+				\end{align}
+				が従い，定理\ref{thm:element_and_proper_subset_correspond}より
+				\begin{align}
+					a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					a \in b \vee a = b
+				\end{align}
+				が成り立つ．論理和の導入より
+				\begin{align}
+					\begin{gathered}
+						a \cap b \notin a,\ \ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+						\vdash a \in b \vee a = b \vee b \in a
+					\end{gathered}
+				\end{align}
+				となり，演繹定理より
+				\begin{align}
+					\begin{gathered}
+						\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+						\vdash a \cap b \notin a \rarrow a \in b \vee a = b \vee b \in a
+					\end{gathered}
+				\end{align}
+				が従う．同様にして
+				\begin{align}
+					\begin{gathered}
+						\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+						\vdash a \cap b \notin b \rarrow a \in b \vee a = b \vee b \in a
+					\end{gathered}
+				\end{align}
+				も成り立つので，論理和の除去より
+				\begin{align}
+					\begin{gathered}
+						\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \\
+						\vdash 
+						a \cap b \notin a \vee a \cap b \notin b
+						\rarrow a \in b \vee a = b \vee b \in a
+					\end{gathered}
+				\end{align}
+				が成り立ち，(\refeq{fom:ON_is_totally_ordered_2})との三段論法より
+				\begin{align}
+					\ord{a},\ \ord{b},\ \EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					\rarrow a \in b \vee a = b \vee b \in a
+				\end{align}
+				が従う．あとは演繹定理と全称の導出
+				(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\REGAX \vdash 
+					\forall \alpha,\beta \in \ON\, (\, \alpha \in \beta \vee \alpha = \beta \vee \beta \in \alpha\, )
+				\end{align}
+				が出る．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[Burali-Forti]\label{thm:Burali_Forti}
+			順序数の全体は集合ではない．
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+				\vdash\ \negation \set{\ON}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:satisfactory_set_is_an_element}より
+		\begin{align}
+			\EQAX,\COMAX \vdash \ord{\ON} \rarrow (\, \set{\ON} \rarrow \ON \in \ON\, )
+			\label{eq:Burali_Forti_1}
+		\end{align}
+		が成り立つ．定理\ref{thm:On_is_transitive}と定理\ref{thm:ON_is_totally_ordered}より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash \ord{\ON}
+		\end{align}
+		が成り立つから，(\refeq{eq:Burali_Forti_1})との三段論法より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash \set{\ON} \rarrow \ON \in \ON
+		\end{align}
+		となり，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash \ON \notin \ON \rarrow\ \negation \set{\ON}
+			\label{eq:Burali_Forti_2}
+		\end{align}
+		が従う．他方で定理\ref{thm:no_class_contains_itself} (自分自身は要素に持たない)より
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\PAIAX,\REGAX \vdash \ON \notin \ON
+		\end{align}
+		も成り立つので，(\refeq{eq:Burali_Forti_2})との三段論法から
+		\begin{align}
+			\EXTAX,\EQAX,\COMAX,\ELEAX,\REPAX,\PAIAX,\UNIAX,\REGAX
+			\vdash\ \negation \set{\ON}
+		\end{align}
+		が得られる．
+		\QED
+	\end{prf}

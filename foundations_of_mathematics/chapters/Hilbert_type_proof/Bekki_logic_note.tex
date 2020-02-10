@@ -1,0 +1,831 @@
+	\begin{flushleft}
+		参考文献: 戸次大介「数理論理学」
+	\end{flushleft}
+	
+	この章に出てくる式と項は言語$\mathcal{L}_{\in}$のものとする．
+	証明論の奇妙なところは，扱う式が文とは限らないところである．
+	式に自由な変項が残ったままであるとその式の意味は定まらない．
+	逆に変更が全て束縛されている文は，それが表す意味は非常に判然としている．
+	奇妙なのは，$\varphi$が文であって，これが証明されたとしても，その証明の過程には
+	文でない式が出現し得る点である．意味が不明瞭な式をもって意味がはっきり
+	定まった式を導こうというところが腑に落ちない．と今まで思っていたが，
+	どうも勉強しているうちにそれほど不自然には感じなくなってきた．
+	
+	%たとえば，$\psi$と$\psi \rarrow \varphi$が証明されれば通常は三段論法から
+	%$\varphi$が導かれるわけだが，$\psi$も$\varphi$も文であるとは限らない．
+
+\section{{\bf HK}}
+	証明体系には様々な流派があるが，流派の一つHilbert流と呼ばれる証明体系のうちで最も標準的なものが
+	{\bf HK}であると，と理解している．
+	証明のシステムを概括するために，抽象的に{\bf H}をHilbert流の証明体系とする．
+	はじめに，{\bf H}の(論理的)公理と推論規則と言われるものが与えられる．
+	また証明の前には公理系と呼ばれる式の集合も与えられる．公理系に属する式をその公理系の公理と呼ぶが，
+	公理は意味のはっきりした式であるべきだと思うので{\bf 全て文とする}．
+	いま公理系を$\Gamma$とすれば，$\varphi$が$\Gamma$の公理であるか{\bf H}の公理であることを
+	\begin{align}
+		\Gamma \provable{\mbox{{\bf H}}} \varphi
+	\end{align}
+	と書く．通常は公理が全くない場合も考察対象であり，その場合は$\varphi$が{\bf H}の公理であることを
+	\begin{align}
+		\provable{\mbox{{\bf H}}} \varphi
+	\end{align}
+	と書くのである．$\varphi$が一般の式である場合は，
+	$\Gamma \provable{\mbox{{\bf H}}} \varphi$
+	なることを「$\varphi$は$\Gamma$の下での定理である」といった趣旨の言い方をする．
+	つまり$\Gamma$の公理や{\bf H}の公理は$\Gamma$の下での定理であるわけであるが，
+	他の式については，それがすでに既に定理とされた式から{\bf H}の推論規則によって得られている
+	ときに限り定理となる．
+	
+	まずは一番弱い体系の{\bf SK}から始める．以下で$\Gamma$と書いたらそれは公理系を表す．
+	
+\subsection{{\bf SK}}
+	\begin{itembox}[l]{{\bf SK}の公理}
+		$\varphi$と$\psi$と$\xi$を式とするとき，次は{\bf SK}の公理である．
+		\begin{description}
+			\item[(S)] $(\varphi \rarrow (\psi \rarrow \chi)) 
+				\rarrow ((\varphi \rarrow \psi)
+				\rarrow (\varphi \rarrow \chi)).$
+			
+			\item[(K)] $\varphi \rarrow (\psi \rarrow \varphi).$
+		\end{description}
+	\end{itembox}
+	
+	そして
+	\begin{align}
+		\provable{\mbox{{\bf SK}}} (\varphi \rarrow (\psi \rarrow \chi)) 
+			\rarrow ((\varphi \rarrow \psi)
+			\rarrow (\varphi \rarrow \chi))
+	\end{align}
+	および
+	\begin{align}
+		\provable{\mbox{{\bf SK}}} \varphi \rarrow (\psi \rarrow \varphi)
+	\end{align}
+	と書く．
+	
+	\begin{itembox}[l]{{\bf SK}の推論規則}
+		$\varphi$と$\psi$を式とするとき，次は{\bf SK}の推論規則である．
+		\begin{description}
+			\item[三段論法] $\Gamma \provable{\mbox{{\bf SK}}} \psi$かつ
+				$\Gamma \provable{\mbox{{\bf SK}}} \psi \rarrow \varphi$ならば
+				$\Gamma \provable{\mbox{{\bf SK}}} \varphi$である．
+		\end{description}
+	\end{itembox}
+	
+	{\bf SK}から証明可能な式
+	\begin{description}
+		\item[(I)] $\varphi \rarrow \varphi$
+		\item[(B)] $(\psi \rarrow \chi) \rarrow ((\varphi \rarrow \psi) \rarrow (\varphi \rarrow \chi)).$
+		\item[(C)] $(\varphi \rarrow (\psi \rarrow \chi)) \rarrow (\psi \rarrow (\varphi \rarrow \chi)).$
+		\item[(W)] $(\varphi \rarrow (\varphi \rarrow \psi)) \rarrow (\varphi \rarrow \psi).$
+		\item[(B')] $(\varphi \rarrow \psi) \rarrow ((\psi \rarrow \chi) \rarrow (\varphi \rarrow \chi)).$
+		\item[(C$\ast$)] $\varphi \rarrow ((\varphi \rarrow \psi) \rarrow \psi)$
+	\end{description}
+	
+\subsection{否定}
+	{\bf SK}の公理に否定の公理を追加し，推論規則はそのまま据え置いた証明体系を{\bf SK'}とする．
+	
+	\begin{itembox}[l]{{\bf SK'}で追加された公理}
+		$\varphi$と$\psi$と$\xi$を式とするとき，{\bf SK'}の公理は(S)(K)に以下の式を加えたものである．
+		\begin{description}
+			\item[(CTI1)] $\varphi \rarrow (\negation \varphi \rarrow \bot).$
+			
+			\item[(CTI2)] $\negation \varphi \rarrow (\varphi \rarrow \bot).$
+			
+			\item[(NI)] $(\varphi \rarrow \bot) \rarrow\ \negation \varphi.$
+		\end{description}
+	\end{itembox}
+	
+	このとき証明可能な式
+	\begin{description}
+		\item[(DNI)] $\varphi \rarrow\ \negation \negation \varphi.$
+		\item[(CON1)] $(\varphi \rarrow \psi) \rarrow (\negation \psi \rarrow\ \negation \varphi).$
+		\item[(CON2)] $(\varphi \rarrow\ \negation \psi) \rarrow (\psi \rarrow\ \negation \varphi).$
+	\end{description}
+	
+\subsection{{\bf HM}}
+	{\bf HM}とは最小論理と呼ばれる証明体系である．{\bf HK}においては$\bot$が示されると
+	あらゆる式が導かれることになるが(爆発律)，{\bf HM}ではそれが起こらないので矛盾許容論理と言われる．
+	また背理法が成立しないので「$\negation A$と仮定すると矛盾するので$A$」という論法は使えず，
+	証明は矛盾に頼らないという意味で``構成的''になる．
+	
+	\begin{align}
+		\varphi(t/x)
+	\end{align}
+	とは，式$\varphi$に{\bf 自由に}現れる変項$x$を項$t$で置き換えた式を表す．
+	ただし$t$は$\varphi$の中で$x$への代入について自由である．
+	
+	\begin{itembox}[l]{{\bf HM}の公理}
+		$\varphi$と$\psi$と$\xi$を式とし，$x$と$t$を変項とし，$\tau$を項とするとき，
+		次は{\bf HM}の公理である．
+		\begin{description}
+			\item[(S)] $(\varphi \rarrow (\psi \rarrow \chi)) 
+				\rarrow ((\varphi \rarrow \psi)
+				\rarrow (\varphi \rarrow \chi)).$
+			\item[(K)] $\varphi \rarrow (\psi \rarrow \varphi).$
+			\item[(DI1)] $\varphi \rarrow (\varphi \vee \psi).$
+			\item[(DI2)] $\psi \rarrow (\varphi \vee \psi).$
+			\item[(DE)] $(\varphi \rarrow \chi) \rarrow 
+				((\psi \rarrow \chi) \rarrow ((\varphi \vee \psi) \rarrow \chi)).$
+			\item[(CI)] $\varphi \rarrow (\psi \rarrow (\varphi \wedge \psi)).$
+			\item[(CE1)] $(\varphi \wedge \psi) \rarrow \varphi.$
+			\item[(CE2)] $(\varphi \wedge \psi) \rarrow \psi.$
+			\item[(UI)] $\forall t (\psi \rarrow \varphi(t/x)) 
+				\rarrow (\psi \rarrow \forall x \varphi).$
+			\item[(UE)] $\forall x \varphi \rarrow \varphi(\tau/x).$
+			\item[(EI)] $\varphi(\tau/x) \rarrow \exists x \varphi.$
+			\item[(EE)] $\forall t (\varphi(t/x) \rarrow \psi)
+				\rarrow (\exists x \varphi \rarrow \psi).$
+		\end{description}
+	\end{itembox}
+	
+	{\bf SK}と同様に，上の{\bf HM}の公理は全て$\provable{\mbox{{\bf HM}}} ...$と書かれる．
+	
+	\begin{itembox}[l]{{\bf HM}の推論規則}
+		$\varphi$と$\psi$を式とするとき，次は{\bf HM}の推論規則である．
+		\begin{description}
+			\item[三段論法] $\Gamma \provable{\mbox{{\bf HM}}} \psi$かつ
+				$\Gamma \provable{\mbox{{\bf HM}}} \psi \rarrow \varphi$ならば
+				$\Gamma \provable{\mbox{{\bf HM}}} \varphi$である．
+			\item[汎化] $\psi$に変項$x$が自由に現れているとき，
+				$\Gamma \provable{\mbox{{\bf HM}}} \psi(y/x)$ならば
+				$\Gamma \provable{\mbox{{\bf HM}}} \forall x \psi$である．
+				ただし$y$は$\forall x \psi$に自由には現れない変項とする．
+		\end{description}
+	\end{itembox}
+	
+	{\bf HM}から証明可能な式
+	\begin{description}
+		\item[(LNC)] $\negation (\varphi \wedge \negation \varphi).$
+		\item[(DIST$\wedge$)] $\varphi \vee (\psi \wedge \chi) 
+			\lrarrow (\varphi \vee \psi) \wedge (\varphi \vee \chi).$
+		\item[(DIST$\vee$)] $\varphi \wedge (\psi \vee \chi) 
+			\lrarrow (\varphi \wedge \psi) \vee (\varphi \wedge \chi).$
+		\item[(DM$\vee$)] $\negation (\varphi \vee \psi) \lrarrow
+			\ \negation \varphi \wedge \negation \psi.$
+	\end{description}
+	
+	\begin{sketch}[LNC]
+		\begin{align}
+			\varphi \wedge \negation \varphi &\provable{\mbox{{\bf HM}}} \varphi, \\
+			\varphi \wedge \negation \varphi &\provable{\mbox{{\bf HM}}}\ \negation \varphi, \\
+			\varphi \wedge \negation \varphi &\provable{\mbox{{\bf HM}}}
+				\varphi \rarrow (\negation \varphi \rarrow \bot), \\
+			\varphi \wedge \negation \varphi &\provable{\mbox{{\bf HM}}}\ \negation \varphi \rarrow \bot, \\
+			\varphi \wedge \negation \varphi &\provable{\mbox{{\bf HM}}} \bot, \\
+			&\provable{\mbox{{\bf HM}}} (\varphi \wedge \negation \varphi) \rarrow \bot, \\
+			&\provable{\mbox{{\bf HM}}} ((\varphi \wedge \negation \varphi) \rarrow \bot)
+				\rarrow\ \negation (\varphi \wedge \negation \varphi), \\
+			&\provable{\mbox{{\bf HM}}}\ \negation (\varphi \wedge \negation \varphi).
+		\end{align}
+		\QED
+	\end{sketch}
+	
+	\begin{sketch}[DM$\vee$]
+		\begin{align}
+			&\provable{\mbox{{\bf HM}}} \varphi \rarrow (\varphi \vee \psi), && \mbox{(DI1)}\\
+			&\provable{\mbox{{\bf HM}}} (\varphi \rarrow (\varphi \vee \psi))
+				\rarrow (\negation (\varphi \vee \psi) \rarrow\ \negation \varphi), 
+				&& \mbox{(CON1)}\\
+			&\provable{\mbox{{\bf HM}}}\ \negation (\varphi \vee \psi) \rarrow\ \negation \varphi, 
+				&& \mbox{(MP)}\\
+			\negation (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ \negation \varphi．
+				&& \mbox{(DR)}
+		\end{align}
+		同様に
+		\begin{align}
+			\negation (\varphi \vee \psi) \provable{\mbox{{\bf HM}}}\ \negation \psi
+		\end{align}
+		となり，
+		\begin{align}
+			\negation (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ \negation \varphi
+				\rarrow (\negation \psi \rarrow 
+				(\negation \varphi \wedge \negation \psi)), && \mbox{(CI)}\\
+			\negation (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ 
+				\negation \psi \rarrow (\negation \varphi \wedge \negation \psi), 
+				&& \mbox{(MP)}\\
+			\negation (\varphi \vee \psi) &\provable{\mbox{{\bf HM}}}\ 
+				\negation \varphi \wedge \negation \psi && \mbox{(MP)}
+		\end{align}
+		が得られる．逆に
+		\begin{align}
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}}\ \negation \varphi, 
+				&& \mbox{(CE1)}\\
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}}\ 
+			\negation \varphi \rarrow (\varphi \rarrow \bot), && \mbox{(CTI2)}\\
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}} \varphi \rarrow \bot
+				&& \mbox{(MP)}
+		\end{align}
+		となり，同様に
+		\begin{align}
+			\negation \varphi \wedge \negation \psi \provable{\mbox{{\bf HM}}} \psi \rarrow \bot
+		\end{align}
+		も成り立つ．よって
+		\begin{align}
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}} 
+				(\varphi \rarrow \bot) \rarrow ((\psi \rarrow \bot) 
+				\rarrow ((\varphi \vee \psi) \rarrow \bot)), && \mbox{(DE)}\\
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}} 
+				(\psi \rarrow \bot) \rarrow ((\varphi \vee \psi) \rarrow \bot), && \mbox{(MP)}\\
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}} 
+				(\varphi \vee \psi) \rarrow \bot, && \mbox{(MP)}\\
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}} 
+				((\varphi \vee \psi) \rarrow \bot) \rarrow\ \negation (\varphi \vee \psi), && \mbox{(NI)}\\
+			\negation \varphi \wedge \negation \psi &\provable{\mbox{{\bf HM}}} 
+				\ \negation (\varphi \vee \psi) && \mbox{(MP)}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			$\varphi$と$\psi$を式とし，$x$を変項とし，
+			$\varphi$と$\psi$には$x$が自由に現れているとする．このとき
+			\begin{align}
+				\forall x\, (\, \varphi \lrarrow \psi\, ) \provable{\mbox{{\bf HM}}}
+				\exists x \varphi \rarrow \exists x \psi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$を$\varphi$と$\psi$に自由に現れない変項として，
+		\begin{align}
+			\forall x\, (\, \varphi \lrarrow \psi\, ) &\provable{\mbox{{\bf HM}}}
+				\varphi(x/a) \lrarrow \psi(x/a), \\
+			\forall x\, (\, \varphi \lrarrow \psi\, ) &\provable{\mbox{{\bf HM}}}
+				(\, \varphi(x/a) \lrarrow \psi(x/a)\, )
+				\rarrow (\, \varphi(x/a) \rarrow \psi(x/a)\, ), \\
+			\forall x\, (\, \varphi \lrarrow \psi\, ) &\provable{\mbox{{\bf HM}}}
+				\varphi(x/a) \rarrow \psi(x/a)
+		\end{align}
+		が成り立つので，演繹法則より
+		\begin{align}
+			\varphi(x/a),\ \forall x\, (\, \varphi \lrarrow \psi\, ) 
+				\provable{\mbox{{\bf HM}}} \psi(x/a)
+		\end{align}
+		が成り立つ．存在記号の推論公理(EI)より
+		\begin{align}
+			\varphi(x/a),\ \forall x\, (\, \varphi \lrarrow \psi\, ) 
+				&\provable{\mbox{{\bf HM}}} \psi(x/a) \rarrow \exists x \psi, \\
+			\varphi(x/a),\ \forall x\, (\, \varphi \lrarrow \psi\, ) 
+				&\provable{\mbox{{\bf HM}}} \exists x \psi
+		\end{align}
+		が成り立ち，演繹法則より
+		\begin{align}
+			\forall x\, (\, \varphi \lrarrow \psi\, ) 
+				\provable{\mbox{{\bf HM}}} \varphi(x/a) \rarrow \exists x \psi
+		\end{align}
+		が成り立つ．そして全称記号の推論公理(UE)より
+		\begin{align}
+			\forall x\, (\, \varphi \lrarrow \psi\, ) \provable{\mbox{{\bf HM}}} 
+				\forall x\, (\, \varphi \rarrow \exists x \psi\, )
+		\end{align}
+		となり，存在記号の推論公理(EE)より
+		\begin{align}
+			\forall x\, (\, \varphi \lrarrow \psi\, ) &\provable{\mbox{{\bf HM}}} 
+				\forall x\, (\, \varphi \rarrow \exists x \psi\, )
+				\rarrow (\, \exists x \varphi \rarrow \exists x \psi\, ), \\
+			\forall x\, (\, \varphi \lrarrow \psi\, ) &\provable{\mbox{{\bf HM}}} 
+				\exists x \varphi \rarrow \exists x \psi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+\subsection{{\bf HK}}
+	{\bf HM}の推論規則はそのままに，公理に{\bf 二重否定除去}を追加すると
+	古典論理の証明体系{\bf HK}となる．
+	
+	\begin{itembox}[l]{{\bf HK}の公理}
+		{\bf HM}の公理に次を追加:
+		\begin{description}
+			\item[(DNE)] $\negation \negation \varphi \rarrow \varphi.$
+		\end{description}
+	\end{itembox}
+	
+	{\bf HK}から証明可能な式
+	\begin{description}
+		\item[(CON3)] $(\negation \varphi \rarrow \psi) \rarrow (\negation \psi \rarrow \varphi).$
+		\item[(CON4)] $(\negation \varphi \rarrow\ \negation \psi) 
+			\rarrow (\psi \rarrow \varphi).$
+		\item[(RAA)] $(\negation \varphi \rarrow \bot) \rarrow \varphi.$
+		\item[(EFQ)] $\bot \rarrow \varphi.$
+	\end{description}
+	
+	\begin{sketch}[CON3]
+		\begin{align}
+			\negation \varphi \rarrow \psi,\ \negation \psi &\provable{\mbox{{\bf HK}}}
+				\ \negation \psi \rarrow\ \negation \negation \varphi,
+				&& \mbox{(CON1)} \\
+			\negation \varphi \rarrow \psi,\ \negation \psi &\provable{\mbox{{\bf HK}}}
+				\ \negation \psi, \\
+			\negation \varphi \rarrow \psi,\ \negation \psi &\provable{\mbox{{\bf HK}}}
+				\ \negation \negation \varphi, && \mbox{(MP)} \\
+			\negation \varphi \rarrow \psi,\ \negation \psi &\provable{\mbox{{\bf HK}}}
+				\ \negation \negation \varphi \rarrow \varphi, && \mbox{(DNE)} \\
+			\negation \varphi \rarrow \psi,\ \negation \psi &\provable{\mbox{{\bf HK}}}
+				\varphi, && \mbox{(MP)} \\
+			\negation \varphi \rarrow \psi &\provable{\mbox{{\bf HK}}}
+				\ \negation \psi \rarrow \varphi. && \mbox{(DR)}
+		\end{align}
+		\QED
+	\end{sketch}
+	
+	\begin{sketch}[CON4]
+		\begin{align}
+			\negation \varphi \rarrow\ \negation \psi,\ \psi &\provable{\mbox{{\bf HK}}} \psi, \\
+			\negation \varphi \rarrow\ \negation \psi,\ \psi &\provable{\mbox{{\bf HK}}} 
+				\psi \rarrow\ \negation \negation \psi, && \mbox{(DNI)} \\
+			\negation \varphi \rarrow\ \negation \psi,\ \psi &\provable{\mbox{{\bf HK}}} 
+				\ \negation \negation \psi. && \mbox{(MP)}
+		\end{align}
+		及び，(CON3)より
+		\begin{align}
+			\negation \varphi \rarrow\ \negation \psi,\ \psi \provable{\mbox{{\bf HK}}} 
+				\ \negation \negation \psi \rarrow \varphi
+		\end{align}
+		となるので，(MP)より
+		\begin{align}
+			\negation \varphi \rarrow\ \negation \psi,\ \psi \provable{\mbox{{\bf HK}}} \varphi
+		\end{align}
+		が成り立つ．よって演繹法則より
+		\begin{align}
+			\negation \varphi \rarrow\ \negation \psi \provable{\mbox{{\bf HK}}} \psi \rarrow \varphi
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{sketch}[RAA]
+		\begin{align}
+			&\provable{\mbox{{\bf HK}}} (\negation \varphi \rarrow \bot) \rarrow\ 
+				\negation \negation \varphi, && \mbox{(NI)} \\
+			\negation \varphi \rarrow \bot &\provable{\mbox{{\bf HK}}}\ 
+				\negation \negation \varphi, && \mbox{(DR)} \\
+			\negation \varphi \rarrow \bot &\provable{\mbox{{\bf HK}}}\ 
+				\negation \negation \varphi \rarrow \varphi, && \mbox{(DNE)} \\
+			\negation \varphi \rarrow \bot &\provable{\mbox{{\bf HK}}} \varphi, && \mbox{(MP)} \\
+			&\provable{\mbox{{\bf HK}}} (\negation \varphi \rarrow \bot) \rarrow \varphi. && \mbox{(DR)}
+		\end{align}
+		\QED
+	\end{sketch}
+	
+	\begin{sketch}[EFQ]
+		\begin{align}
+			&\provable{\mbox{{\bf HK}}} \bot \rarrow (\negation \varphi \rarrow \bot), && \mbox{(K)} \\
+			\bot &\provable{\mbox{{\bf HK}}}\ \negation \varphi \rarrow \bot, && \mbox{(DR)} \\
+			\bot &\provable{\mbox{{\bf HK}}} (\negation \varphi \rarrow \bot) \rarrow \varphi,
+				&& \mbox{(RAA)} \\
+			\bot &\provable{\mbox{{\bf HK}}} \varphi, && \mbox{(MP)} \\
+			&\provable{\mbox{{\bf HK}}} \bot \rarrow \varphi. && \mbox{(DR)}
+		\end{align}
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				(\, \varphi \rarrow \psi\, ) 
+				\rarrow (\, \negation \varphi \vee \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				(\, \negation \varphi \vee \psi\, ) 
+				\rarrow\ \negation (\, \varphi \wedge \negation \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				\forall x \negation \psi \rarrow\ \negation \exists x \psi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				(\, \psi \rarrow \gamma\, ) \rarrow 
+				(\, \varphi \wedge \psi \rarrow \varphi \wedge \gamma\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				\forall x\, (\, \varphi \wedge \psi\, )
+				\rarrow (\, \varphi \wedge \forall \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} 
+				\ \negation \forall x \psi \rarrow \exists x \negation \psi.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}}
+				\ \negation (\, \varphi \wedge \negation \psi\, )
+				\rarrow (\, \negation \varphi \vee \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+			\begin{align}
+				\provable{\mbox{{\bf HK}}} (\, \varphi \rarrow \exists x \psi\, ) 
+				\rarrow \exists x\, (\, \varphi \rarrow \psi\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		\begin{align}
+			(\, \varphi \rarrow \exists x \psi\, ) &\rarrow 
+				(\, \negation \varphi \vee \exists x \psi\, ), \\
+			(\, \negation \varphi \vee \exists x \psi\, ) &\rarrow
+				\ \negation (\, \varphi \wedge \negation \exists x \psi\, ), \\
+			\negation (\, \varphi \wedge \negation \exists x \psi\, ) &\rarrow 
+				\ \negation (\, \varphi \wedge \forall x \negation \psi\, ), \\
+			\negation (\, \varphi \wedge \forall x \negation \psi\, ) &\rarrow 
+				\ \negation \forall x\, (\, \varphi \wedge \negation \psi\, ), \\
+			\negation \forall x\, (\, \varphi \wedge \negation \psi\, ) &\rarrow 
+				\exists x \negation (\, \varphi \wedge \negation \psi\, ), \\
+			\exists x \negation (\, \varphi \wedge \negation \psi\, ) &\rarrow 
+				\exists x\, (\, \negation \varphi \vee \psi\, ), \\
+			\exists x\, (\, \negation \varphi \vee \psi\, ) &\rarrow 
+				\exists x\, (\, \varphi \rarrow \psi\, )
+		\end{align}
+	\end{sketch}
+	
+\section{{\bf HK'}}
+	{\bf HK}の量化公理から(UI)と(EE)を取り除き，三段論法に加え
+	{\bf 存在汎化}と{\bf 全称汎化}といった推論規則を用いた証明体系を{\bf HK'}とする．
+	つまり，
+	
+	\begin{itembox}[l]{{\bf HK'}の公理}
+		$\varphi$と$\psi$と$\xi$を式とし，$x$を変項とし，$\tau$を項とするとき，
+		次は{\bf HK'}の公理である．
+		\begin{description}
+			\item[(S)] $(\varphi \rarrow (\psi \rarrow \chi)) 
+				\rarrow ((\varphi \rarrow \psi)
+				\rarrow (\varphi \rarrow \chi)).$
+			\item[(K)] $\varphi \rarrow (\psi \rarrow \varphi).$
+			\item[(DI1)] $\varphi \rarrow (\varphi \vee \psi).$
+			\item[(DI2)] $\psi \rarrow (\varphi \vee \psi).$
+			\item[(DE)] $(\varphi \rarrow \chi) \rarrow 
+				((\psi \rarrow \chi) \rarrow ((\varphi \vee \psi) \rarrow \chi)).$
+			\item[(CI)] $\varphi \rarrow (\psi \rarrow (\varphi \wedge \psi)).$
+			\item[(CE1)] $(\varphi \wedge \psi) \rarrow \varphi.$
+			\item[(CE2)] $(\varphi \wedge \psi) \rarrow \psi.$
+			
+			\item[(UE)] $\forall x \varphi \rarrow \varphi(\tau/x).$
+			\item[(EI)] $\varphi(\tau/x) \rarrow \exists x \varphi.$
+			
+			\item[(CTI1)] $\varphi \rarrow (\negation \varphi \rarrow \bot).$
+			
+			\item[(CTI2)] $\negation \varphi \rarrow (\varphi \rarrow \bot).$
+			
+			\item[(NI)] $(\varphi \rarrow \bot) \rarrow\ \negation \varphi.$
+			\item[(DNE)] $\negation \negation \varphi \rarrow \varphi.$
+		\end{description}
+	\end{itembox}
+	
+	とし，推論規則には，三段論法に加えて
+	
+	\begin{itembox}[l]{{\bf HK'}の汎化規則}
+		$\varphi$と$\psi$を式とし，$x$と$t$を変項とし，$\varphi$に$x$が自由に現れるとし，
+		また{\bf $\psi$と$\exists x \varphi$に$t$は自由に現れないとする}．
+		\begin{description}
+			\item[存在汎化] 
+				$\Gamma \provable{\mbox{{\bf HK'}}} \varphi(t/x) \rarrow \psi$ならば
+				$\Gamma \provable{\mbox{{\bf HK'}}} \exists x \varphi \rarrow \psi$となる．
+			
+			\item[全称汎化] 
+				$\Gamma \provable{\mbox{{\bf HK'}}} \psi \rarrow \varphi(t/x)$ならば
+				$\Gamma \provable{\mbox{{\bf HK'}}} \psi \rarrow \forall x \varphi$となる．
+		\end{description}
+	\end{itembox}
+	を用いる．規則の前提で太字で強調した文言は{\bf 固有変項条件}と呼ばれる．
+	
+	\begin{screen}
+		\begin{metathm}[{\bf HK}と{\bf HK'}は同値]
+			任意の式$\varphi$に対して，$\Gamma \provable{\mbox{{\bf HK}}} \varphi$ならば
+			$\Gamma \provable{\mbox{{\bf HK'}}} \varphi$であり，その逆もまた然り．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[{\bf HK'}から示されたら{\bf HK}からも証明可能]
+			いま
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+			\end{align}
+			であるとする．$\varphi$が{\bf HK'}の公理であれば{\bf HK}の公理でもあるし，
+			$\Gamma$の公理であれば言わずもがな，これらの場合は
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \varphi
+			\end{align}
+			となる．$\varphi$が存在汎化によって得られているとき，つまり，$\varphi$とは
+			\begin{align}
+				\exists x \psi \rarrow \chi
+			\end{align}
+			なる形の式であって，$\psi(t/x) \rarrow \chi$から存在汎化で得られている場合，
+			ここで$t$は$\chi$と$\exists x \psi$に自由に現れない変項であるが，このとき，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \psi(t/x) \rarrow \chi
+			\end{align}
+			であると仮定すれば，汎化と量化公理(EE)によって
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rarrow \chi), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\psi(t/x) \rarrow \chi)
+					\rarrow (\exists x \psi \rarrow \chi), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \exists x \psi \rarrow \chi
+			\end{align}
+			となる．また$\varphi$が全称汎化によって得られているとき，つまり，$\varphi$とは
+			\begin{align}
+				\chi \rarrow \forall x \psi
+			\end{align}
+			なる形の式であって，$\chi \rarrow \psi(t/x)$から存在汎化で得られている場合，
+			ここで$t$は$\chi$と$\forall x \psi$に自由に現れない変項であるが，このとき，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \chi \rarrow \psi(t/x)
+			\end{align}
+			であると仮定すれば，汎化と量化公理(UI)によって
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rarrow \psi(t/x)), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \forall t(\chi \rarrow \psi(t/x))
+					\rarrow (\chi \rarrow \forall x \psi), \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \chi \rarrow \forall x \psi
+			\end{align}
+			となる．$\varphi$が三段論法で得られている場合，つまり$\psi$と$\psi \rarrow \varphi$
+			なる形の式が{\bf HK'}から示されている場合であるが，
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK}}} \psi, \\
+				\Gamma &\provable{\mbox{{\bf HK}}} \psi \rarrow \varphi
+			\end{align}
+			と仮定すれば$\Gamma \provable{\mbox{{\bf HK}}} \varphi$も従う．
+	
+		\item[{\bf HK}から示されたら{\bf HK'}からも証明可能]
+			いま
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK}}} \varphi
+			\end{align}
+			とする．$\varphi$が量化公理(UI)(EE)以外の{\bf HK}の公理か，$\Gamma$の公理であれば
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+			\end{align}
+			である．$\varphi$が
+			\begin{align}
+				\forall t (\chi \rarrow \psi(t/x)) 
+				\rarrow (\chi \rarrow \forall x \psi)
+			\end{align}
+			なる形の公理であるとき($t$は$\chi$と$\forall x \psi$には自由に現れない)，
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK'}}} 
+					\forall t (\chi \rarrow \psi(t/x)) 
+					\rarrow (\chi \rarrow \psi(t/x)), \\
+				\color{red}\chi \rarrow \psi(t/x),\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\chi \rarrow \psi(t/x), \\
+				\color{red}\chi \rarrow \psi(t/x),\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\chi \rarrow \forall x \psi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} (\chi \rarrow \psi(t/x)) 
+					\rarrow (\chi \rarrow \forall x \psi), \\
+				\forall t (\chi \rarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rarrow \psi(t/x)), \\
+				\forall t (\chi \rarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\chi \rarrow \psi(t/x)) 
+					\rarrow (\chi \rarrow \psi(t/x)), \\
+				\forall t (\chi \rarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \chi \rarrow \psi(t/x), \\
+				\forall t (\chi \rarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} (\chi \rarrow \psi(t/x)) 
+					\rarrow (\chi \rarrow \forall x \psi), \\
+				\forall t (\chi \rarrow \psi(t/x)),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \chi \rarrow \forall x \psi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\chi \rarrow \psi(t/x)) 
+					\rarrow (\chi \rarrow \forall x \psi)
+			\end{align}
+			となる(赤字で{\bf HK'}の全称汎化規則を用いた箇所を示している)．
+			つまり(UI)は{\bf HK'}の定理である．同様に(EE)も{\bf HK'}の定理である．実際，
+			\begin{align}
+				\Gamma &\provable{\mbox{{\bf HK'}}} 
+					\forall t (\psi(t/x) \rarrow \chi) 
+					\rarrow (\psi(t/x) \rarrow \chi), \\
+				\color{red}\psi(t/x) \rarrow \chi,\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\psi(t/x) \rarrow \chi, \\
+				\color{red}\psi(t/x) \rarrow \chi,\ \Gamma &
+				\color{red}\provable{\mbox{{\bf HK'}}}
+					\exists x \psi \rarrow \chi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rarrow \chi) 
+					\rarrow (\exists x \psi \rarrow \chi), \\
+				\forall t (\psi(t/x) \rarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rarrow \chi), \\
+				\forall t (\psi(t/x) \rarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rarrow \chi)
+					\rarrow (\psi(t/x) \rarrow \chi), \\
+				\forall t (\psi(t/x) \rarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \psi(t/x) \rarrow \chi, \\
+				\forall t (\psi(t/x) \rarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} (\psi(t/x) \rarrow \chi) 
+					\rarrow (\exists x \psi \rarrow \chi), \\
+				\forall t (\psi(t/x) \rarrow \chi),\ \Gamma
+					&\provable{\mbox{{\bf HK'}}} \exists x \psi \rarrow \chi, \\
+				\Gamma &\provable{\mbox{{\bf HK'}}} \forall t (\psi(t/x) \rarrow \chi) 
+					\rarrow (\exists x \psi \rarrow \chi)
+			\end{align}
+			となる．$\varphi$が汎化によって導かれているとき，つまり$\varphi$は
+			\begin{align}
+				\forall x \psi
+			\end{align}
+			なる式であって，先に$\psi(t/x)$なる式が{\bf HK}から証明されているとき
+			($x$は$\psi$に自由に現れ，$t$は$\forall x \psi$に自由に現れない変項である)，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \psi(t/x)
+			\end{align}
+			と仮定したら
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
+			\end{align}
+			が成り立つ．実際，$\varphi$を$\chi \rarrow \chi$といった文とすれば
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi \rarrow \psi(t/x)
+			\end{align}
+			が成り立つので，全称汎化より
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi \rarrow \forall x \psi
+			\end{align}
+			となり，
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \varphi
+			\end{align}
+			と併せて
+			\begin{align}
+				\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
+			\end{align}
+			が従う．
+			\QED
+		\end{description}
+	\end{metaprf}
+	
+\begin{comment}	
+\subsection{汎化規則は{\bf HK'}から導かれる}
+	{\bf HK}の量化公理に
+	\begin{align}
+		\forall x (\psi \rarrow \varphi) \rarrow
+		(\forall x \psi \rarrow \forall x \varphi),
+		\quad \mbox{ただし$\varphi$と$\psi$には$x$が自由に現れる}
+	\end{align}
+	を追加すれば，一般化規則は導かれる．
+	
+	\begin{screen}
+		$x$と$t$を変項とし，$x$は$\psi$に自由に現れるとし，
+		$t$は$\forall x \psi$に自由に現れないとする．．
+		このとき
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HK'}}} \psi(t/x)
+		\end{align}
+		ならば
+		\begin{align}
+			\Gamma \provable{\mbox{{\bf HK'}}} \forall x \psi
+		\end{align}
+		である．
+	\end{screen}
+	
+	\begin{sketch}
+		$\provable{\mbox{{\bf HK'}}} \psi(t/x)$であるときは
+		\begin{align}
+			\provable{\mbox{{\bf HK}}} \forall x \psi
+		\end{align}
+		が成立する．$\varphi$が三段論法によって示されるとき，つまり式$\psi$で
+		\begin{align}
+			\Gamma &\provable{\mbox{{\bf HK}}} \psi, \\
+			\Sigma &\provable{\mbox{{\bf HK}}} \psi \rarrow \varphi
+		\end{align}
+		を満たすものが取れるとき，$\psi$に$x$が自由に現れているかいないかで
+		\begin{description}
+			\item[case1] $\psi$に$x$が自由に現れていないとき，
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \psi
+				\end{align}
+				かつ
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi)
+				\end{align}
+				
+			\item[case2] $\psi$に$x$が自由に現れているとき，
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x \psi
+				\end{align}
+				かつ
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi)
+				\end{align}
+		\end{description}
+		のいずれかのケースを一つ仮定する．
+		\begin{description}
+			\item[case1] 量化公理(UI)より
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi) \rarrow (\psi \rarrow \forall x \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \psi \rarrow \forall x \varphi
+				\end{align}
+				が成り立つので，$\Gamma \provable{\mbox{{\bf HK}}} \psi$の仮定と併せて
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x \varphi
+				\end{align}
+				が得られる．
+				
+			\item[case2]
+				新しく追加した量化公理を用いれば，
+				\begin{align}
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi) \rarrow (\forall x \psi \rarrow \forall x \varphi), \\
+					\Gamma &\provable{\mbox{{\bf HK}}} \forall x \psi \rarrow \forall x \varphi
+				\end{align}
+				が得られるので，$\Gamma \provable{\mbox{{\bf HK}}} \forall x \psi$の仮定と併せて
+				\begin{align}
+					\Gamma \provable{\mbox{{\bf HK}}} \forall x \varphi
+				\end{align}
+				が従う．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	逆に，新しく追加した量化公理は一般化規則から導かれる．実際，量化規則(UE)より
+	\begin{align}
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi), \\
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi)
+		\rarrow (\psi(t/x) \rarrow \varphi(t/x)), \\
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \psi(t/x) \rarrow \varphi(t/x)
+	\end{align}
+	となり(ただし$t$は$\psi$と$\varphi$に現れない変項とする)，また一方で
+	\begin{align}
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x \psi, \\
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \forall x \psi \rarrow \psi(t/x), \\
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi &\provable{\mbox{{\bf HK}}} \psi(t/x)
+	\end{align}
+	も成り立つから，前と併せて三段論法より
+	\begin{align}
+		\forall x (\psi \rarrow \varphi),\ \forall x \psi \provable{\mbox{{\bf HK}}} \varphi(t/x)
+	\end{align}
+	となる．演繹定理より
+	\begin{align}
+		\forall x (\psi \rarrow \varphi) \provable{\mbox{{\bf HK}}} \forall x \psi  \rarrow \varphi(t/x)
+	\end{align}
+	となり，一般化規則より
+	\begin{align}
+		\forall x (\psi \rarrow \varphi) \provable{\mbox{{\bf HK}}} \forall t ( \forall x \psi  \rarrow \varphi(t/x))
+	\end{align}
+	となる．量化規則(UI)より
+	\begin{align}
+		\forall x (\psi \rarrow \varphi) \provable{\mbox{{\bf HK}}} \forall t ( \forall x \psi  \rarrow \varphi(t/x)) \rarrow
+		(\forall x \psi \rarrow \forall x \varphi)
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\forall x (\psi \rarrow \varphi) \provable{\mbox{{\bf HK}}}
+		\forall x \psi \rarrow \forall x \varphi
+	\end{align}
+	となる．演繹定理より
+	\begin{align}
+		\provable{\mbox{{\bf HK}}} \forall x (\psi \rarrow \varphi)
+		\rarrow (\forall x \psi \rarrow \forall x \varphi)
+	\end{align}
+	が得られる．
+	
+\end{comment}
+
+\section{直観主義と古典論理}
+	任意の式$\varphi$に対してその否定翻訳を$\varphi^{N}$と書く．
+	$\provable{\mbox{{\bf HM}}} \varphi^{N}$ならば
+	$\provable{\mbox{{\bf HK}}} \varphi^{N}$は当たり前．
+	逆に$\provable{\mbox{{\bf HK}}} \varphi^{N}$ならば
+	$\provable{\mbox{{\bf HK}}} \varphi$を経由して
+	$\provable{\mbox{{\bf HM}}} \varphi^{N}$となる．
+	{\bf 式を否定翻訳に制限すれば直観主義と古典論理は変わらない．}

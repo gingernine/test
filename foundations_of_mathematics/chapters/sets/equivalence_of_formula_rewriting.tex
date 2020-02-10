@@ -1,0 +1,1027 @@
+\section{書き換えの同値性}
+\label{sec:equivalence_of_formula_rewriting}
+	$\mathcal{L}$の式を$\lang{\varepsilon}$の式に変換するときは，まず部分式のうち原子式に対して
+	\begin{table}[H]
+		\begin{center}
+		\caption{式の書き換え表(再掲)}
+		\begin{tabular}{c|c|c|c}
+			 & 元の式 & 書き換え後 & 付記 \\ \hline \hline
+			(1) & $a = \Set{z}{\psi}$ & $\forall v\, (\, v \in a \lrarrow \psi(z/v)\, )$ & \\ \hline
+			(2) & $\Set{y}{\varphi} = b$ & $\forall u\, (\, \varphi(y/u) \lrarrow u \in b\, )$ & \\ \hline
+			(3) & $\Set{y}{\varphi} = \Set{z}{\psi}$ & $\forall u\, (\, \varphi(y/u) \lrarrow \psi(z/u)\, )$ & \\ \hline
+			(4) & $a \in \Set{z}{\psi}$ & $\psi(z/a)$ & 必要なら変項の名前替え \\ \hline
+			(5) & $\Set{y}{\varphi} \in b$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge s \in b\, )$ & \\ \hline
+			(6) & $\Set{y}{\varphi} \in \Set{z}{\psi}$ & $\exists s\, (\, \forall u\, (\, \varphi(y/u) \lrarrow u \in s\, ) \wedge \psi(z/s)\, )$ & \\ \hline
+		\end{tabular}
+		\label{tab:formula_rewriting_repeat}
+		\end{center}
+	\end{table}
+	
+	に則って変換したのであった．また量化部分式を逐次的に差し替えることによって得られる式も書き換えと呼んだ
+	(定義\ref{def:formula_rewriting})．
+	以下では表\ref{tab:formula_rewriting}の直後で述べた細かい変項条件等は全て満たされているとする．
+	この節では，$\varphi$が$\lang{\varepsilon}$の式ではない$\mathcal{L}$の文であるとして，
+	その書き換え$\widehat{\varphi}$に対して
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+		\label{formula_rewriting_1}
+	\end{align}
+	が成り立つことを示す．
+	これが示されれば，たとえば$\varphi$に変項$x$のみが自由に現れている場合は
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall x\, (\, \varphi(x) \lrarrow \widehat{\varphi}(x)\, )
+	\end{align}
+	が成り立つし，$x$と$y$のみが自由に現れている場合も
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall x\, \forall y\, (\, \varphi(x,y) \lrarrow \widehat{\varphi}(x,y)\, )
+	\end{align}
+	が成り立つ．実際，前者の場合は
+	\begin{align}
+		\tau \defeq \varepsilon x \negation (\, \widehat{\varphi}(x) \lrarrow \widehat{\varphi}(x)\, )
+	\end{align}
+	とおけば(\refeq{formula_rewriting_1})より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi(\tau) \lrarrow \widehat{\varphi}(\tau)
+	\end{align}
+	が成り立つのだし(メタ定理\ref{metathm:variables_unchanged_after_rewriting}より
+	$\widehat{\varphi}$に自由に現れるのは$x$だけであり，
+	メタ定理\ref{metathm:substitution_to_rewritten_formula}より
+	$\widehat{\varphi}(\tau)$は$\varphi(\tau)$の書き換えである)，後者の場合は
+	\begin{align}
+		\sigma &\defeq \varepsilon x \negation \forall y\, (\, \widehat{\varphi}(x,y) \lrarrow \widehat{\varphi}(x,y)\, ), \\
+		\rho &\defeq \varepsilon y \negation (\, \widehat{\varphi}(\sigma,y) \lrarrow \widehat{\varphi}(\sigma,y)\, )
+	\end{align}
+	とおけば(\refeq{formula_rewriting_1})より
+	\begin{align}
+		\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi(\sigma,\rho) \lrarrow \widehat{\varphi}(\sigma,\rho)
+	\end{align}
+	が成り立つので，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})を適用すればいい．
+	一般の文$\varphi$に対して(\refeq{formula_rewriting_1})を示すには
+	$\varphi$が原子式であるとして(\refeq{formula_rewriting_1})を示せば殆ど十分であり，
+	それについて先に結論を書いておくと
+	\begin{align}
+		\EQAX,\COMAX &\vdash a = \Set{z}{\psi(z)} 
+			\rarrow \forall v\, (\, v \in a \lrarrow \psi(v)\, ), \\
+		\EXTAX,\COMAX &\vdash \forall v\, (\, v \in a \lrarrow \psi(v)\, )
+			\rarrow a = \Set{z}{\psi(z)}, \\
+		\EQAX,\COMAX &\vdash \Set{y}{\varphi(y)} = b 
+			\rarrow \forall u\, (\, \varphi(u) \lrarrow u \in b\, ), \\
+		\EXTAX,\COMAX &\vdash \forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+			\rarrow \Set{y}{\varphi(y)} = b, \\
+		\EQAX,\COMAX &\vdash \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
+			\rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ), \\
+		\EXTAX,\COMAX &\vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+			\rarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}, \\
+		\COMAX &\vdash a \in \Set{z}{\psi(z)} \rarrow \widetilde{\psi}(a), \\
+		\COMAX &\vdash \widetilde{\psi}(a) \rarrow a \in \Set{z}{\psi(z)}, \\
+		\EQAX,\COMAX,\ELEAX &\vdash \Set{y}{\varphi(y)} \in b
+			\rarrow \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ), \\
+		\EXTAX,\EQAX,\COMAX &\vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ) \rarrow \Set{y}{\varphi(y)} \in b, \\
+		\EQAX,\COMAX,\ELEAX &\vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+			\rarrow \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ), \\
+		\EXTAX,\EQAX,\COMAX &\vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ) \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+	\end{align}
+	が成立する．
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の対称律]
+		\label{logicalthm:symmetry_of_equivalence_arrows}
+			$A,B$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (\, A \lrarrow B\, ) \rarrow (\, B \lrarrow A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{prf}
+		論理積の除去より
+		\begin{align}
+			A \lrarrow B &\vdash A \rarrow B, \\
+			A \lrarrow B &\vdash B \rarrow A
+		\end{align}
+		となる．他方で論理積の導入より
+		\begin{align}
+			\vdash (\, B \rarrow A\, ) \rarrow (\, (\, A \rarrow B\, ) \rarrow 
+			(\, B \rarrow A\, ) \wedge (\, A \rarrow B\, )\, )
+		\end{align}
+		が成り立つので，三段論法を二回適用すれば
+		\begin{align}
+			A \lrarrow B \vdash (\, B \rarrow A\, ) \wedge (\, A \rarrow B\, )
+		\end{align}
+		となる．つまり
+		\begin{align}
+			A \lrarrow B \vdash B \lrarrow A
+		\end{align}
+		が得られた．
+		\QED
+	\end{prf}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_1}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash a = \Set{z}{\psi(z)} 
+				\rarrow \forall v\, (\, v \in a \lrarrow \psi(v)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon v \negation (\, v \in a \lrarrow \psi(v)\, )
+		\end{align}
+		とおく．外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})より
+		\begin{align}
+			a = \Set{z}{\psi(z)},\ \EQAX \vdash 
+			\tau \in a \lrarrow \tau \in \Set{z}{\psi(z)}
+		\end{align}
+		が成り立ち，他方で内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \Set{z}{\psi(z)} \lrarrow \psi(\tau)
+		\end{align}
+		が成り立つので，同値記号の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			a = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash \tau \in a \lrarrow \psi(\tau)
+		\end{align}
+		が従う．そして全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			a = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash 
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_2}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall v\, (\, v \in a \lrarrow \psi(v)\, )
+				\rarrow a = \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq 
+			\varepsilon x \negation (\, x \in a \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		とおく．まず全称記号の論理的公理より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, )
+			\vdash \tau \in a \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_2_1}
+		\end{align}
+		が成り立つ．また内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \Set{z}{\psi(z)} \lrarrow \psi(\tau)
+		\end{align}
+		となるので，同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \psi(\tau) \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_2_2}
+		\end{align}
+		が成り立つ．(\refeq{fom:equivalent_formula_rewriting_2_1})と
+		(\refeq{fom:equivalent_formula_rewriting_2_2})と同値記号の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, ),\ \COMAX \vdash
+			\tau \in a \lrarrow \tau \in \Set{z}{\psi(z)}
+		\end{align}
+		となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, ),\ \COMAX \vdash
+			\forall x\, (\, x \in a \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\forall v\, (\, v \in a \lrarrow \psi(v)\, ),\ \EXTAX,\COMAX \vdash
+			a = \Set{z}{\psi(z)}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_3}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = b 
+				\rarrow \forall u\, (\, \varphi(u) \lrarrow u \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon u \negation (\, \varphi(u) \lrarrow u \in b\, )
+		\end{align}
+		とおけば，まず外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = b,\ \EQAX \vdash 
+			\tau \in \Set{y}{\varphi(z)} \lrarrow \tau \in b
+			\label{fom:equivalent_formula_rewriting_3_1}
+		\end{align}
+		が成り立つ．他方で内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau)
+		\end{align}
+		となり，同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \varphi(\tau) \lrarrow \tau \in \Set{y}{\varphi(y)}
+			\label{fom:equivalent_formula_rewriting_3_2}
+		\end{align}
+		が成り立つ．(\refeq{fom:equivalent_formula_rewriting_3_1})と
+		(\refeq{fom:equivalent_formula_rewriting_3_2})と同値記号の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = b,\ \EQAX,\COMAX \vdash 
+			\varphi(\tau) \lrarrow \tau \in b 
+		\end{align}
+		が成り立ち，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = b,\ \EQAX,\COMAX \vdash 
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_4}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+				\rarrow \Set{y}{\varphi(y)} = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq 
+			\varepsilon x \negation (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in b\, )
+		\end{align}
+		とおく．まず全称記号の論理的公理より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+			\vdash \varphi(\tau) \lrarrow \tau \in b
+			\label{fom:equivalent_formula_rewriting_4_1}
+		\end{align}
+		が成り立ち，また内包性公理より
+		\begin{align}
+			\COMAX \vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau)
+			\label{fom:equivalent_formula_rewriting_4_2}
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_4_1})と
+		(\refeq{fom:equivalent_formula_rewriting_4_2})と同値記号の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ \COMAX \vdash
+			\tau \in \Set{y}{\varphi(y)} \lrarrow \tau \in b
+		\end{align}
+		が成り立つ．全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ \COMAX \vdash
+			\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in b\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow u \in b\, ),\ \EXTAX,\COMAX \vdash
+			\Set{y}{\varphi(y)} = b
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_5}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
+				\rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon u \negation (\, \varphi(u) \lrarrow \psi(u)\, )
+		\end{align}
+		とおけば，まず外延性公理の逆(定理\ref{thm:inverse_of_axiom_of_extensionality})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX \vdash 
+			\tau \in \Set{y}{\varphi(z)} \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_5_1}
+		\end{align}
+		が成り立つ．また内包性公理より
+		\begin{align}
+			\COMAX &\vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau), 
+			\label{fom:equivalent_formula_rewriting_5_2} \\
+			\COMAX &\vdash \tau \in \Set{z}{\varphi(z)} \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_5_3}
+		\end{align}
+		が成り立つが，(\refeq{fom:equivalent_formula_rewriting_5_2})と
+		同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \varphi(\tau) \lrarrow \tau \in \Set{y}{\varphi(y)}
+			\label{fom:equivalent_formula_rewriting_5_4}
+		\end{align}
+		も成り立つ．(\refeq{fom:equivalent_formula_rewriting_5_4})と
+		(\refeq{fom:equivalent_formula_rewriting_5_1})と同値記号の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
+			 \varphi(\tau) \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_5_5}
+		\end{align}
+		が従い，(\refeq{fom:equivalent_formula_rewriting_5_5})と
+		(\refeq{fom:equivalent_formula_rewriting_5_3})と同値記号の推移律より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
+			\varphi(\tau) \lrarrow \psi(\tau)
+		\end{align}
+		が従う．そして全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)},\ \EQAX,\COMAX \vdash
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_6}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+				\rarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\tau \defeq \varepsilon x \negation (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		とおく．まず全称記号の論理的公理より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+			\vdash \varphi(\tau) \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_6_1}
+		\end{align}
+		が成り立つ．また内包性公理より
+		\begin{align}
+			\COMAX &\vdash \tau \in \Set{y}{\varphi(y)} \lrarrow \varphi(\tau), 
+			\label{fom:equivalent_formula_rewriting_6_2} \\
+			\COMAX &\vdash \tau \in \Set{z}{\psi(z)} \lrarrow \psi(\tau)
+		\end{align}
+		となり，同値記号の対称律(\ref{logicalthm:symmetry_of_equivalence_arrows})より
+		\begin{align}
+			\COMAX \vdash \psi(\tau) \lrarrow \tau \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_6_3}
+		\end{align}
+		も成り立つ．(\refeq{fom:equivalent_formula_rewriting_6_1})と
+		(\refeq{fom:equivalent_formula_rewriting_6_2})と同値記号の推移律
+		(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \COMAX \vdash
+			\tau \in \Set{y}{\varphi(y)} \lrarrow \psi(\tau)
+			\label{fom:equivalent_formula_rewriting_6_4}
+		\end{align}
+		となり，(\refeq{fom:equivalent_formula_rewriting_6_3})と
+		(\refeq{fom:equivalent_formula_rewriting_6_4})と同値記号の推移律より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \COMAX \vdash
+			\tau \in \Set{y}{\varphi(y)} \lrarrow \tau \in \Set{z}{\psi(z)}
+		\end{align}
+		となり，全称の導出(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \COMAX \vdash
+			\forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow x \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		となり，外延性公理より
+		\begin{align}
+			\forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ),\ \EXTAX,\COMAX \vdash
+			\Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_7}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\COMAX \vdash a \in \Set{z}{\psi(z)} \rarrow \psi(a).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$は主要$\varepsilon$項であるから，内包性公理より
+		\begin{align}
+			\COMAX \vdash a \in \Set{z}{\psi(z)} \rarrow \psi(a)
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_8}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\COMAX \vdash \psi(a) \rarrow a \in \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$a$は主要$\varepsilon$項であるから，内包性公理より
+		\begin{align}
+			\COMAX \vdash \psi(a) \rarrow a \in \Set{z}{\psi(z)}
+		\end{align}
+		が成り立つ．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_9}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EQAX,\COMAX,\ELEAX \vdash \Set{y}{\varphi(y)} \in b
+				\rarrow \exists s\, (\, 
+				\forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+				\wedge s \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		要素の公理より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in b,\ \ELEAX \vdash 
+			\exists s\, (\, \Set{y}{\varphi(y)} = s\, )
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			\sigma \defeq 
+			\varepsilon s\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+		\end{align}
+		とおけば存在記号の論理的公理より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in b,\ \ELEAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\label{fom:equivalent_formula_rewriting_9_1}
+		\end{align}
+		となる．ここで相等性公理より
+		\begin{align}
+			\EQAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\rarrow (\, \Set{y}{\varphi(y)} \in b \rarrow \sigma \in b\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_9_1})と三段論法より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in b,\ \EQAX,\ELEAX \vdash \sigma \in b
+			\label{fom:equivalent_formula_rewriting_9_2}
+		\end{align}
+		が得られる．他方で定理\ref{thm:equivalent_formula_rewriting_3}より
+		\begin{align}
+			\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\rarrow \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_9_1})と三段論法より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in b,\ \EQAX,\COMAX,\ELEAX \vdash
+			\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+			\label{fom:equivalent_formula_rewriting_9_3}
+		\end{align}
+		も得られる．(\refeq{fom:equivalent_formula_rewriting_9_2})と
+		(\refeq{fom:equivalent_formula_rewriting_9_3})と論理積の導入より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in b,\ \EQAX,\COMAX,\ELEAX \vdash
+			\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ) \wedge \sigma \in b
+		\end{align}
+		が成り立つので，存在記号の論理的公理より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in b,\ \EQAX,\COMAX,\ELEAX \vdash
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_10}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ) \rarrow \Set{y}{\varphi(y)} \in b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+		\end{align}
+		とおけば，存在記号の論理的公理と論理積の除去より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+			&\vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ), 
+			\label{fom:equivalent_formula_rewriting_10_1} \\
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, )
+			&\vdash \sigma \in b
+			\label{fom:equivalent_formula_rewriting_10_2}
+		\end{align}
+		が成り立つ．ここで定理\ref{thm:equivalent_formula_rewriting_4}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+			\rarrow \Set{y}{\varphi(y)} = \sigma
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_10_1})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ),\ \EXTAX,\COMAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\label{fom:equivalent_formula_rewriting_10_3}
+		\end{align}
+		が得られる．また相等性公理より
+		\begin{align}
+			\EQAX &\vdash \Set{y}{\varphi(y)} = \sigma \rarrow \sigma = \Set{y}{\varphi(y)}, \\
+			\EQAX &\vdash \sigma = \Set{y}{\varphi(y)} \rarrow
+			(\, \sigma \in b \rarrow \Set{y}{\varphi(y)} \in b\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_10_2})と
+		(\refeq{fom:equivalent_formula_rewriting_10_3})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ),\ \EXTAX,\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} \in b
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_11}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EQAX,\COMAX,\ELEAX \vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+				\rarrow \exists s\, (\, 
+				\forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+				\wedge \psi(s)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		まず(\refeq{fom:equivalent_formula_rewriting_9_1})と
+		(\refeq{fom:equivalent_formula_rewriting_9_3})と同様に，
+		\begin{align}
+			\sigma \defeq 
+			\varepsilon s\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+		\end{align}
+		とおけば
+		\begin{align}
+			\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)},\ \ELEAX \vdash 
+			\Set{y}{\varphi(y)} = \sigma
+			\label{fom:equivalent_formula_rewriting_11_1}
+		\end{align}
+		と
+		\begin{align}
+			\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)},\ \EQAX,\COMAX,\ELEAX \vdash
+			\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+			\label{fom:equivalent_formula_rewriting_11_2}
+		\end{align}
+		が成り立つ．また相等性公理より
+		\begin{align}
+			\EQAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\rarrow (\, \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+			\rarrow \sigma \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		となるので，(\refeq{fom:equivalent_formula_rewriting_11_1})との三段論法より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)},\ \EQAX,\ELEAX \vdash 
+			\sigma \in \Set{z}{\psi(z)}
+		\end{align}
+		が成り立ち，内包性公理より
+		\begin{align}
+			\COMAX \vdash \sigma \in \Set{z}{\psi(z)} \rarrow \psi(\sigma)
+		\end{align}
+		が成り立つので
+		\begin{align}
+			\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)},\ \EQAX,\ELEAX \vdash 
+			\psi(\sigma)
+			\label{fom:equivalent_formula_rewriting_11_3}
+		\end{align}
+		が得られる．(\refeq{fom:equivalent_formula_rewriting_11_2})と
+		(\refeq{fom:equivalent_formula_rewriting_11_3})と論理積の導入より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)},\ \EQAX,\COMAX,\ELEAX \vdash
+			\forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ) \wedge \psi(\sigma)
+		\end{align}
+		が成り立ち，存在記号の論理的公理より
+		\begin{align}
+			\Set{y}{\varphi(y)} \in \Set{z}{\psi(z)},\ \EQAX,\COMAX,\ELEAX \vdash
+			\exists s\, (\forall u\, (\, \varphi(u) \lrarrow u \in x\, ) \wedge \psi(x)\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}
+		\label{thm:equivalent_formula_rewriting_12}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$\varphi$には$y$のみ自由に現れ，
+			$\psi$には$z$のみ自由に現れているとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ) \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			\sigma \defeq \varepsilon s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, )
+		\end{align}
+		とおけば，存在記号の論理的公理と論理積の除去より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, )
+			&\vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, ), 
+			\label{fom:equivalent_formula_rewriting_12_1} \\
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, )
+			&\vdash \psi(\sigma)
+			\label{fom:equivalent_formula_rewriting_12_2}
+		\end{align}
+		が成り立つ．ここで定理\ref{thm:equivalent_formula_rewriting_4}より
+		\begin{align}
+			\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in \sigma\, )
+			\rarrow \Set{y}{\varphi(y)} = \sigma
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_12_1})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ),\ \EXTAX,\COMAX \vdash \Set{y}{\varphi(y)} = \sigma
+			\label{fom:equivalent_formula_rewriting_12_3}
+		\end{align}
+		が得られる．また内包性公理より
+		\begin{align}
+			\COMAX \vdash \psi(\sigma) \rarrow \sigma \in \Set{z}{\psi(z)}
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_12_1})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ),\ \COMAX \vdash \sigma \in \Set{z}{\psi(z)}
+			\label{fom:equivalent_formula_rewriting_12_4}
+		\end{align}
+		が得られる．相等性公理より
+		\begin{align}
+			\EQAX &\vdash \Set{y}{\varphi(y)} = \sigma \rarrow \sigma = \Set{y}{\varphi(y)}, \\
+			\EQAX &\vdash \sigma = \Set{y}{\varphi(y)} \rarrow
+			(\, \sigma \in \Set{z}{\psi(z)} \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}\, )
+		\end{align}
+		が成り立つので，(\refeq{fom:equivalent_formula_rewriting_12_3})と
+		(\refeq{fom:equivalent_formula_rewriting_12_4})との三段論法より
+		\begin{align}
+			\exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ),\ \EXTAX,\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	一般の式に対して書き換えの同値性を示す前に，いくつか必要な論理的定理を準備する．
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理和への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_disjunction_2}
+			$A,B,C,D$を文とするとき
+			\begin{align}
+				A \rarrow C,\ B \rarrow D \vdash A \vee B \rarrow C \vee D.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			A,\ A \rarrow C \vdash C
+		\end{align}
+		が成り立ち，論理和の導入より
+		\begin{align}
+			A,\ A \rarrow C \vdash C \vee D
+		\end{align}
+		が成り立つので，
+		\begin{align}
+			A \rarrow C \vdash A \rarrow C \vee D
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			B \rarrow D \vdash B \rarrow C \vee D
+		\end{align}
+		も成り立ち，論理和の除去より
+		\begin{align}
+			A \rarrow C,\ B \rarrow D \vdash A \vee B \rarrow C \vee D
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理積への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_conjunction_2}
+			$A,B,C,D$を文とするとき，
+			\begin{align}
+				A \rarrow C,\ B \rarrow D \vdash A \wedge B \rarrow C \wedge D.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		論理積の除去より
+		\begin{align}
+			A \wedge B \vdash A
+		\end{align}
+		が成り立つので，三段論法より
+		\begin{align}
+			A \wedge B,\ A \rarrow C \vdash C
+		\end{align}
+		が従う．同様に
+		\begin{align}
+			A \wedge B,\ B \rarrow D \vdash D
+		\end{align}
+		も成り立ち，論理積の導入より
+		\begin{align}
+			A \wedge B,\ A \rarrow C,\ B \rarrow D \vdash C \wedge D
+		\end{align}
+		が従う．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の含意への遺伝性2]
+		\label{logicalthm:heredity_of_implication_to_implication_2}
+			$A,B,C,D$を文とするとき，
+			\begin{align}
+				C \rarrow A,\ B \rarrow D \vdash (\, A \rarrow B\, ) 
+				\rarrow (\, C \rarrow D\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{sketch}
+		三段論法より
+		\begin{align}
+			C,\ C \rarrow A \vdash A
+		\end{align}
+		が成り立つので，再び三段論法より
+		\begin{align}
+			C,\ A \rarrow B,\ C \rarrow A \vdash B
+		\end{align}
+		が成り立ち，再び三段論法より
+		\begin{align}
+			C,\ A \rarrow B,\ C \rarrow A,\ B \rarrow D \vdash D
+		\end{align}
+		が従う．そして演繹定理より
+		\begin{align}
+			C \rarrow A,\ B \rarrow D \vdash 
+			(\, A \rarrow B\, ) \rarrow (\, C \rarrow D\, )
+		\end{align}
+		が得られる．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{thm}[書き換えの同値性]
+		\label{thm:equivalence_of_formula_rewritings}
+			$\varphi$を$\lang{\varepsilon}$の文ではない$\mathcal{L}$の文とし，
+			$\widehat{\varphi}$を$\varphi$の書き換えとするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}\mbox{}
+		\begin{description}
+			\item[step1] $\widehat{\varphi}$が，$\varphi$の部分式で原子式であるものを全て
+				表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である場合を扱う．
+				\begin{description}
+					\item[step1-1] $\varphi$が原子式であるならば，すでに示した通り
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+						\end{align}
+						が成立する．
+							
+					\item[step1-2] $\varphi$が原子式でないとき，
+						\begin{description}
+							\item[IH (帰納法\ref{metaaxm:induction_principle_of_L_formulas}の仮定)]
+								$\varphi$の任意の真部分式$\psi$に対して，
+								$\psi$に自由に現れている変項が$x_{1},\cdots,x_{n}$で全てであるとき，
+								任意に主要$\varepsilon$項$\tau_{1},\cdots,\tau_{n}$を取って
+								$\psi(x_{1}/\tau_{1})\cdots(x_{n}/\tau_{n})$なる文を
+								$\psi^{*}$とする．$\psi$が文なら$\psi^{*}$を$\psi$とする．
+								このとき，$\psi^{*}$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式\footnotemark
+								$\widehat{\psi^{*}}$に対して
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi^{*} \lrarrow \widehat{\psi^{*}}
+								\end{align}
+								となる
+						\end{description}
+						と仮定する(帰納法の考え方としては，$\varphi$よりも``前の段階''で作られた
+						任意の文に対して同値性が満たされていると仮定している)．
+						
+						\footnotetext{
+							文の書き換えは文である(メタ定理\ref{metathm:variables_unchanged_after_rewriting})．
+						}
+						
+						\begin{description}
+							\item[case1] $\varphi$が
+								\begin{align}
+									\negation \psi
+								\end{align}
+								なる文であるとき，$\widehat{\varphi}$は
+								\begin{align}
+									\negation \widehat{\psi}
+								\end{align}
+								なる形で書ける．ただし$\widehat{\psi}$とは$\psi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である．
+								(IH)より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi \lrarrow \widehat{\psi}
+								\end{align}
+								が成り立つので，対偶律1 (論理的定理\ref{logicalthm:introduction_of_contraposition})より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash\ \negation \psi \lrarrow\ \negation \widehat{\psi}
+								\end{align}
+								が従う．すなわち
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+								\end{align}
+								が成り立つ．
+								
+							\item[case2] $\varphi$が
+								\begin{align}
+									\psi \vee \chi
+								\end{align}
+								なる文であるとき，$\widehat{\varphi}$は
+								\begin{align}
+									\widehat{\psi} \vee \widehat{\chi}
+								\end{align}
+								なる形で書ける．ただし$\widehat{\psi},\widehat{\chi}$とは
+								それぞれ$\psi,\chi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である．
+								(IH)より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \psi \lrarrow \widehat{\psi}, \\
+									\EXTAX,\EQAX,\COMAX,\ELEAX &\vdash \chi \lrarrow \widehat{\chi}
+								\end{align}
+								が成り立つので，含意の論理和への遺伝性
+								(論理的定理\ref{logicalthm:heredity_of_implication_to_conjunction_2})より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi \vee \chi 
+									\lrarrow \widehat{\psi} \vee \widehat{\chi}
+								\end{align}
+								が従う．すなわち
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+								\end{align}
+								が成り立つ．$\varphi$が$\eta \wedge \chi$や$\eta \rarrow \chi$
+								なる文の場合も論理的定理
+								\ref{logicalthm:heredity_of_implication_to_conjunction_2}
+								或いは論理的定理
+								\ref{logicalthm:heredity_of_implication_to_implication_2}を使えば
+								同様にして書き換えの同値性が得られる．
+								
+							\item[case3] $\varphi$が
+								\begin{align}
+									\exists x \psi
+								\end{align}
+								なる文であるとき，$\widehat{\varphi}$は
+								\begin{align}
+									\exists x \widehat{\psi}
+								\end{align}
+								なる形で書ける．ただし$\widehat{\psi}$とは$\psi$の部分式で原子式であるものを全て
+								表\ref{tab:formula_rewriting_repeat}の通りに書き換えた式である．
+								\begin{align}
+									\tau \defeq \varepsilon x \widehat{\psi}
+								\end{align}
+								とおけば，存在記号の論理的公理より
+								\begin{align}
+									\exists x \widehat{\psi} \vdash \widehat{\psi}(x/\tau)
+								\end{align}
+								が成り立つが，いま$\widehat{\psi}$は$\psi$の書き換えであるから，
+								メタ定理\ref{metathm:substitution_to_rewritten_formula}より
+								$\widehat{\psi}(x/\tau)$は$\psi(x/\tau)$の書き換えである．従って(IH)より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \widehat{\psi}(x/\tau) \rarrow \psi(x/\tau)
+								\end{align}
+								が成り立つ．ここについて間違いの内容に述べておくと，実はこの場合$\widehat{\psi}(x/\tau)$は
+								$\psi(x/\tau)$の原子式を書き換えただけの式であるかは
+								定かではない(メタ定理\ref{metathm:substitution_to_rewritten_formula}
+								証明中のcase 6,7参照)．
+								しかし書き換えである以上は，原子式を書き換えただけでなくとも
+								せいぜい何回かの量化部分式の差し替えが行われただけであり，
+								その差し替え前後の同値性は定理\ref{logicalthm:equivalence_by_replacing_bound_variables}
+								より保証される．従って，$\psi(x/\tau)$とその原子式を書き換えただけの式との同値性が
+								(IH)により保証されれば，$\psi(x/\tau)$と$\widehat{\psi}(x/\tau)$も同値となるのである．
+								話を戻せば，三段論法より
+								\begin{align}
+									\exists x \widehat{\psi},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \psi(x/\tau)
+								\end{align}
+								となり，存在記号の論理的公理より
+								\begin{align}
+									\exists x \widehat{\psi},\ \EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x \psi
+								\end{align}
+								が従う．同様にして(いまの$\tau$で$\exists x \psi \rarrow \psi(x/\tau)$が公理であることを使う)
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x \psi \rarrow \exists x \widehat{\psi}
+								\end{align}
+								も成り立つので，論理積の導入より
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \exists x \psi \lrarrow \exists x \widehat{\psi}
+								\end{align}
+								が従う．すなわち
+								\begin{align}
+									\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+								\end{align}
+								が成り立つ．$\varphi$が$\forall y \psi$なる式であっても，全称の導出
+								(論理的定理\ref{logicalthm:derivation_of_universal_by_epsilon})を利用すれば
+								同様にして書き換えの同値性が得られる．
+						\end{description}
+				\end{description}
+				
+			\item[step2] $\widehat{\varphi}$を$\varphi$の書き換えとして，
+				\begin{description}
+					\item[IH (帰納法\ref{metaaxm:induction_principle_of_formula_rewriting}の仮定)]
+						$\varphi$と$\widehat{\varphi}$は$\EXTAX,\EQAX,\COMAX,\ELEAX$の下で同値である：
+						\begin{align}
+							\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widehat{\varphi}
+						\end{align}
+				\end{description}
+				であると仮定する．このとき，$\widehat{\varphi}$の量化部分式を
+				一つ差し替えた式を$\widetilde{\varphi}$とする．
+				つまり$\widetilde{\varphi}$とは，
+				$\widehat{\varphi}$に現れる$\forall x \xi$ (resp. $\exists x \xi$)の形の部分式を
+				一つだけ$\forall y \xi(x/y)$ (resp. $\exists y \xi(x/y)$)に差し替えた式である．
+				ここで$y$は$\xi$に自由に現れない変項で，$\xi$の中で$x$への代入について自由であるものとする．
+				このとき定理\ref{logicalthm:equivalence_by_replacing_bound_variables}より
+				\begin{align}
+					\vdash \widehat{\varphi} \lrarrow \widetilde{\varphi}
+				\end{align}
+				が成り立つので，(IH)と同値関係の推移律
+				(論理的定理\ref{logicalthm:transitive_law_of_equivalence_symbol})より
+				\begin{align}
+					\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \varphi \lrarrow \widetilde{\varphi}
+				\end{align}
+				が成立する．ゆえに構造的帰納法の原理より，$\varphi$とその任意の書き換えは
+				$\EXTAX,\EQAX,\COMAX,\ELEAX$の下で同値である．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{rem}[$\mathcal{L}$の式を用いた$\varepsilon$項と内包項]
+		\label{rem:epsilon_terms_of_not_L_epsilon_formula}
+			$\varphi$が$\lang{\varepsilon}$の式ではない$\mathcal{L}$の式である場合も，
+			以下では$\varepsilon x \varphi$や$\Set{x}{\varphi}$などと書く場合がある．ただし
+			これらは便宜上の表示であって，その本来の姿は
+			\begin{align}
+				\varepsilon x \widehat{\varphi},\quad \Set{x}{\widehat{\varphi}}
+			\end{align}
+			である．ここで$\widehat{\varphi}$とは$\varphi$の書き換えである．
+			書き換えは同値なので
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\ELEAX \vdash \forall x\, (\, x \in \Set{x}{\varphi(x)} \lrarrow \varphi(x)\, )
+			\end{align}
+			が満たされる．
+		\end{rem}
+	\end{screen}

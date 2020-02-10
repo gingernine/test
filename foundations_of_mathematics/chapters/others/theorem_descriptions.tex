@@ -1,0 +1,1207 @@
+\chapter{定理参照メモ}
+
+\section{証明}
+	\begin{screen}
+		\begin{logicalaxm}[演繹規則]\ref{logicalaxm:deduction_rule}
+			$A,B,C,D$を文とするとき，
+			\begin{description}
+				\item[(a)] $A \vdash D$ならば$\vdash A \rarrow D$が成り立つ．
+				\item[(b)] $A,B \vdash D$ならば
+					\begin{align}
+						B \vdash A \rarrow D,\quad
+						A \vdash B \rarrow D
+					\end{align}
+					が成り立つ．
+				\item[(c)] $A,B,C \vdash D$ならば
+					\begin{align}
+						B,C \vdash A \rarrow D,\quad
+						A,C \vdash B \rarrow D,\quad
+						A,B \vdash C \rarrow D
+					\end{align}
+					のいずれも成り立つ．
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metadfn}[証明可能]
+			文$\varphi$が公理系$\mathscr{S}$から
+			{\bf 証明された}だとか{\bf 証明可能である}\index{しょうめいかのう@証明可能}
+			{\bf (provable)}ということは，
+			\begin{itemize}
+				\item $\varphi$は$\mathscr{S}$の公理である．
+				\item $\vdash \varphi$である．
+				\item 文$\psi$で，$\psi$と$\psi \rightarrow \varphi$が$\mathscr{S}$から
+				証明されているものが取れる({\bf 三段論法}\index{さんだんろんぽう@三段論法}
+				{\bf (Modus Pones)})．
+			\end{itemize}
+			のいずれかが満たされているということであり，$\varphi$が$\mathscr{S}$から証明可能であることを
+			\begin{align}
+				\mathscr{S} \vdash \varphi
+			\end{align}
+			と書く．ただし，公理系に変項が生じた場合の証明可能性には
+			演繹規則や後述の演繹法則，およびその逆の結果を適用することが出来る．
+		\end{metadfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の反射律]
+		\ref{logicalthm:reflective_law_of_implication}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の導入]
+		\ref{logicalthm:introduction_of_implication}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash B \rarrow (A \rarrow B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の分配則]
+		\ref{logicalthm:distributive_law_of_implication}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow (B \rarrow C)) \rarrow ((A \rarrow B) \rarrow (A \rarrow C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metaaxm}[証明に対する構造的帰納法]
+			$\mathscr{S}$を公理系とし，Xを文に対する何らかの言明とするとき，
+			\begin{itemize}
+				\item $\mathscr{S}$の公理に対してXが言える．
+				\item 推論法則に対してXが言える．
+				\item $\varphi$と$\varphi \rarrow \psi$が$\mathscr{S}$の
+					定理であるような文$\varphi$と文$\psi$が取れたとき，
+					$\varphi$と$\varphi \rarrow \psi$に対して
+					Xが言えるならば，$\psi$に対してXが言える．
+			\end{itemize}
+			のすべてが満たされていれば，$\mathscr{S}$から証明可能なあらゆる文に対してXが言える．
+		\end{metaaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[演繹法則]\ref{metathm:deduction_theorem}
+			$\mathscr{S}$を公理系とし，$A$を文とするとき，
+			$\mathscr{S}, A$の任意の定理$B$に対して
+			\begin{align}
+				\mathscr{S} \vdash A \rarrow B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[公理が増えても証明可能]
+			$\mathscr{S}$を公理系とし，$A$を文とするとき，
+			$\mathscr{S}$の任意の定理$B$に対して
+			\begin{align}
+				\mathscr{S}, A \vdash B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{metathm}[演繹法則の逆]
+		\ref{metathm:inverse_of_deduction_theorem}
+			$\mathscr{S}$を公理系とし，$A$と$B$を文とするとき，
+			\begin{align}
+				\mathscr{S} \vdash A \rarrow B
+			\end{align}
+			であれば
+			\begin{align}
+				A,\ \mathscr{S} \vdash B
+			\end{align}
+			が成り立つ．
+		\end{metathm}
+	\end{screen}
+	
+\section{推論}
+	\begin{screen}
+		\begin{logicalaxm}[否定と矛盾に関する規則]
+		\ref{logicalaxm:rules_of_negation_and_contradiction}
+			$A$を文とするとき以下が成り立つ:
+			\begin{description}
+				\item[矛盾の導入] 否定が共に成り立つとき矛盾が起きる:
+					\begin{align}
+						A,\ \negation A \vdash \bot.
+					\end{align}
+				\item[否定の導入] 矛盾が導かれるとき否定が成り立つ:
+					\begin{align}
+						A \rarrow \bot \vdash\ \negation A.
+					\end{align}
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[対偶]
+			$\varphi \rarrow \psi$なる式に対して
+			\begin{align}
+				\negation \psi \rarrow\ \negation \varphi
+			\end{align}
+			を$\varphi \rarrow \psi$の{\bf 対偶}\index{たいぐう@対偶}
+			{\bf (contraposition)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶命題が導かれる]
+		\ref{logicalthm:introduction_of_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, A \rarrow B\, ) 
+				\rarrow (\, \negation B \rarrow \negation A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[二重否定]
+			式$\varphi$に対して，$\negation$を二つ連結させた式
+			\begin{align}
+				\negation \negation \varphi
+			\end{align}
+			を$\varphi$の{\bf 二重否定}\index{にじゅうひてい@二重否定}
+			{\bf (double negation)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[二重否定の導入]
+		\ref{logicalthm:introduction_of_double_negation}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \rarrow \negation \negation A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[論理積の除去]
+		\ref{logicalaxm:elimination_of_conjunction}
+			$A$と$B$を文とするとき
+			\begin{align}
+				A &\wedge B \vdash A, \\
+				A &\wedge B \vdash B.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[無矛盾律]
+		\ref{logicalthm:law_of_noncontradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \wedge \negation A\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[同値記号]
+			$A$と$B$を$\mathcal{L}$の式とするとき，
+			\begin{align}
+				A \lrarrow B  \defarrow
+				(\, A \rarrow B\, ) \wedge (\, B \rarrow A\, )
+			\end{align}
+			により$\lrarrow$を定め，式`$A \lrarrow B$'を
+			「$A$と$B$は{\bf 同値である}\index{どうち@同値}{\bf (equivalent)}」と読む．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[場合分け規則]
+		\ref{logicalaxm:elimination_of_disjunction}
+			$A$と$B$と$C$を文とするとき
+			\begin{align}
+				A \rarrow C,\ B \rarrow C \vdash A \vee B \rarrow C.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[弱 De Morgan の法則(1)]
+		\ref{logicalthm:weak_De_Morgan_law_1}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \wedge \negation B
+				\rarrow\ \negation (\, A \vee B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[強 De Morgan の法則(1)]
+		\ref{logicalthm:strong_De_Morgan_law_1}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \vee \negation B
+				\rarrow\ \negation (\, A \wedge B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[論理和の導入]
+		\ref{logicalaxm:introduction_of_disjunction}
+			$A$と$B$を文とするとき
+			\begin{align}
+				A &\vdash A \vee B, \\
+				B &\vdash A \vee B.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[論理和の可換律]
+		\ref{logicalthm:commutative_law_of_disjunction}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash A \vee B \rarrow B \vee A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[論理積の導入]
+		\ref{logicalaxm:introduction_of_conjunction}
+			$A$と$B$を文とするとき
+			\begin{align}
+				A,\ B \vdash A \wedge B.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[弱 De Morgan の法則(2)]
+		\ref{logicalthm:weak_De_Morgan_law_2}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \vee B\, ) 
+				\rarrow\ \negation A \wedge \negation B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[論理積の可換律]
+		\ref{logicalthm:commutative_law_of_conjunction}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash A \wedge B \rarrow B \wedge A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[二重否定の除去]
+		\ref{logicalaxm:elimination_of_double_negation}
+			$A$を文とするとき以下が成り立つ:
+			\begin{align}
+				\negation \negation A \vdash A.
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶論法の原理]
+		\ref{logicalthm:proof_by_contraposition}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, \negation B \rarrow\ \negation A\, )
+				\rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[背理法の原理]
+		\ref{logicalthm:proof_by_contradiction}
+			$A$を文とするとき
+			\begin{align}
+				\vdash (\, \negation A \rarrow \bot\, ) \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[爆発律]
+		\ref{logicalthm:principle_of_explosion}
+			$A$を文とするとき
+			\begin{align}
+				\vdash \bot \rarrow A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[否定の論理和は含意で書ける]
+		\ref{logicalthm:disjunction_of_negation_rewritable_by_implication}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \vee B \rarrow (\, A \rarrow B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[排中律]\ref{logicalthm:law_of_excluded_middle}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \vee \negation A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意の論理和への遺伝性]
+		\ref{logicalthm:heredity_of_implication_to_disjunction}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (\, A \rarrow B\, ) \rarrow (\, A \vee C \rarrow B \vee C\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は否定と論理和で表せる]
+		\ref{logicalthm:implication_rewritable_by_disjunction_of_negation}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash (\, A \rarrow B\, ) \rarrow (\, \negation A \vee B\, ).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[強 De Morgan の法則(2)]
+		\ref{logicalthm:strong_De_Morgan_law_2}
+			$A$と$B$を文とするとき
+			\begin{align}
+				\vdash\ \negation (\, A \wedge B\, )
+				\rarrow\ \negation A \vee \negation B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[量化記号に関する規則]
+		\ref{logicalaxm:rules_of_quantifiers}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			$A$に自由に現れる項が$x$のみであるとする．
+			また$\tau$を任意の$\varepsilon$項とする．このとき以下を推論規則とする．
+			\begin{align}
+				A(\tau) &\vdash \exists x A(x), \\
+				\exists x A(x) &\vdash A(\varepsilon x A(x)), \\
+				\forall x A(x) &\vdash A(\tau), \\
+				A(\varepsilon x \negation A(x)) &\vdash \forall x A(x).
+			\end{align}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する弱 De Morgan の法則(1)]
+		\ref{logicalthm:weak_De_Morgan_law_for_quantifiers_1}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash \exists x \negation A(x) \rarrow\ \negation \forall x A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する弱 De Morgan の法則(2)]
+		\ref{logicalthm:weak_De_Morgan_law_for_quantifiers_2}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash\ \negation \forall x A(x) \rarrow \exists x \negation A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する強 De Morgan の法則(1)]
+		\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_1}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash \forall x \negation A(x) \rarrow\ \negation \exists x A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する強 De Morgan の法則(2)]
+		\ref{logicalthm:strong_De_Morgan_law_for_quantifiers_2}
+			$A$を$\mathcal{L}$の式とし，$x$を$A$に自由に現れる変項とし，
+			また$A$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\vdash\ \negation \exists x A(x) \rarrow \forall x \negation A(x).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+\section{その他の推論法則}
+	\begin{screen}
+		\begin{logicalthm}[含意の推移律]
+		\ref{logicalthm:transitive_law_of_implication}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \rarrow ((B \rarrow C) \rarrow (A \rarrow C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[二式が同時に導かれるならその論理積が導かれる]
+		\ref{logicalthm:conjunction_of_consequences}
+			$A,B,C$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \rarrow ((A \rarrow C) 
+				\rarrow (A \rarrow B \wedge C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は遺伝する]
+		\ref{logicalthm:rule_of_inference_1}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \rarrow B) \rarrow ( (A \vee C) \rarrow (B \vee C) )$.
+				
+				\item[(b)] $(A \rarrow B) \rarrow ( (A \wedge C) \rarrow (B \wedge C) )$.
+				
+				\item[(c)] $(A \rarrow B) \rarrow ( (B \rarrow C) \rarrow (A \rarrow C) )$.
+				
+				\item[(c)] $(A \rarrow B) \rarrow ( (C \rarrow A) \rarrow (C \rarrow B) )$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値記号の遺伝性質]
+		\ref{logicalthm:hereditary_of_equivalence}
+			$A,B,C$を$\mathcal{L}'$の閉式とするとき以下の式が成り立つ:
+			\begin{description}
+				\item[(a)] $(A \lrarrow B) \rarrow ((A \vee C) \lrarrow (B \vee C))$.
+				\item[(b)] $(A \lrarrow B) \rarrow ((A \wedge C) \lrarrow (B \wedge C))$.
+				\item[(c)] $(A \lrarrow B) \rarrow ((B \rarrow C) \lrarrow (A \rarrow C))$.
+				
+				\item[(d)] $(A \lrarrow B) \rarrow ((C \rarrow A) \lrarrow (C \rarrow B))$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[偽な式は矛盾を導く]
+		\ref{logicalthm:false_and_negation_are_equivalent}
+			$A$を文とするとき
+			\begin{align}
+				\vdash\ \negation A \rarrow (A \rarrow \bot).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[類は集合であるか真類であるかのいずれかに定まる]
+			$a$を類とするとき
+			\begin{align}
+				\vdash \set{a} \vee \negation \set{a}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[矛盾を導く式はあらゆる式を導く]
+		\ref{logicalthm:formula_leading_to_contradiction_derives_any_formula}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow \bot) \rarrow (A \rarrow B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[含意は否定と論理和で表せる]
+		\ref{logicalthm:rule_of_inference_3}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \lrarrow (\negation A \vee B).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[二重否定の法則の逆が成り立つ]
+		\ref{logicalthm:converse_of_law_of_double_negative}
+			$A$を文とするとき
+			\begin{align}
+				\vdash A \rarrow \negation \negation A.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[対偶命題は同値]\ref{thm:contraposition_is_true}
+			$A,B$を文とするとき
+			\begin{align}
+				\vdash (A \rarrow B) \lrarrow (\negation B \rarrow \negation A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[De Morganの法則]
+			$A,B$を文とするとき
+			\begin{itemize}
+				\item $\vdash\ \negation (A \vee B) \lrarrow \negation A \wedge \negation B$.
+			
+				\item $\vdash\ \negation (A \wedge B) \lrarrow \negation A \vee \negation B$.
+			\end{itemize}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[集合であり真類でもある類は存在しない]
+			$a$を類とするとき
+			\begin{align}
+				\vdash\ \negation (\ \set{a} \wedge \negation \set{a}\ ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(ロ)]
+		\ref{logicalthm:properties_of_quantifiers_2}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とするとき，$x$のみが$A,B$で量化されていないならば以下は定理である:
+			\begin{description}
+				\item[(a)] $\exists x ( A(x) \vee B(x) ) \lrarrow \exists x A(x) \vee \exists x B(x)$.
+				
+				\item[(b)] $\forall x ( A(x) \wedge B(x) ) \lrarrow \forall x A(x) \wedge \forall x B(x)$.
+			\end{description}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号の性質(イ)]
+		\ref{logicalthm:properties_of_quantifiers}
+			$A,B$を$\mathcal{L}'$の式とし，$x$を$A,B$に現れる文字とし，$x$のみが$A,B$で量化されていないとする．
+			$\mathcal{L}$の任意の対象$\tau$に対して
+			\begin{align}
+				A(\tau) \lrarrow B(\tau)
+			\end{align}
+			が成り立っているとき，
+			\begin{align}
+				\exists x A(x) \lrarrow \exists x B(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x A(x) \lrarrow \forall x B(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[量化記号に対する De Morgan の法則]
+		\ref{logicalthm:De_Morgan_law_for_quantifiers}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$x$のみが$A$で量化されていないとする．このとき
+			\begin{align}
+				\exists x \negation A(x) \lrarrow \negation \forall x A(x)
+			\end{align}
+			および
+			\begin{align}
+				\forall x \negation A(x) \lrarrow \negation \exists x A(x)
+			\end{align}
+			が成り立つ．
+		\end{logicalthm}
+	\end{screen}
+
+\section{集合}
+	\begin{screen}
+		\begin{dfn}[集合]
+			$a$を類とするとき，$a$が集合であるという言明を
+			\begin{align}
+				\set{a} \defarrow \exists x\, (\, a = x\, )
+			\end{align}
+			で定める．$\Sigma \vdash \set{a}$を満たす類$a$を
+			{\bf 集合}\index{しゅうごう@集合}{\bf (set)}と呼び，
+			$\Sigma \vdash\ \negation \set{a}$を満たす類$a$を
+			{\bf 真類}\index{しんるい@真類}{\bf (proper class)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[集合である内包項は$\varepsilon$項で書ける]
+			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$x$のみが$\varphi$で自由であるとする．このとき
+			\begin{align}
+				\set{\Set{x}{\varphi(x)}} \vdash \Set{x}{\varphi(x)} 
+				= \varepsilon y\, \forall x\, (\, \varphi(x) \lrarrow x \in y\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+\section{相等性}
+	\begin{screen}
+		\begin{axm}[外延性の公理 (Extensionality)]
+			任意の類$a,b$に対して
+			\begin{align}
+				\EXTAX \defarrow \forall x\, (\, x \in a \lrarrow x \in b\, ) 
+				\rarrow a=b.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[任意の類は自分自身と等しい]\ref{thm:any_class_equals_to_itself}
+			任意の類$\tau$に対して
+			\begin{align}
+				\EXTAX \vdash \tau = \tau.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[類である$\varepsilon$項は集合である]
+			$\tau$を類である$\varepsilon$項とするとき
+			\begin{align}
+				\EXTAX \vdash \set{\tau}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[相等性公理]
+			$a,b,c$を類とするとき
+			\begin{align}
+				\EQAX \defarrow
+				\begin{cases}
+					a = b \rarrow b = a, & \\
+					a = b \rarrow (\, a \in c \rarrow b \in c\, ), & \\
+					a = b \rarrow (\, c \in a \rarrow c \in b\, ). & 
+				\end{cases}
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[外延性の公理の逆も成り立つ]
+		\ref{thm:inverse_of_axiom_of_extensionality}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\EQAX \vdash 
+				a = b \rarrow \forall x\, (\, x \in a  \lrarrow x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[内包性公理] 
+			$\varphi$を$\mathcal{L}$の式とし，$y$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる項は$y$のみであるとし，
+			$x$は$\varphi$で$y$への代入について自由であるとするとき，
+			\begin{align}
+				\COMAX \defarrow \forall x\, (\, x \in \Set{y}{\varphi(y)} \lrarrow \varphi(x)\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[条件を満たす集合は要素である]\ref{thm:satisfactory_set_is_an_element}
+			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$x$のみが$\varphi$で束縛されていないとする．このとき，任意の類$a$に対して
+			\begin{align}
+				\EQAX,\COMAX \vdash \varphi(a) \rarrow 
+				\left(\, \set{a} \rarrow a \in \Set{x}{\varphi(x)}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[宇宙]
+			$\Univ \defeq \Set{x}{x=x}$で定める類$\Univ$を{\bf 宇宙}\index{うちゅう@宇宙}
+			{\bf (Universe)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[要素の公理]
+			要素となりうる類は集合である．つまり，$a,b$を類とするとき
+			\begin{align}
+				\ELEAX \defarrow a \in b \rarrow \set{a}.
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は集合の全体である]
+		\ref{thm:V_is_the_whole_of_sets}
+			$a$を類とするとき次が成り立つ:
+			\begin{align}
+				\EXTAX,\EQAX,\ELEAX,\COMAX \vdash \set{a} \lrarrow a \in \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値関係の可換律]
+		\ref{logicalthm:commutative_law_of_equivalence_symbol}
+			$A,B$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (A \lrarrow B) \rarrow (B \lrarrow A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[同値関係の推移律]
+		\ref{logicalthm:transitive_law_of_equivalence_symbol}
+			$A,B,C$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (A \lrarrow B) \rarrow ((B \lrarrow C) \rarrow 
+				(A \lrarrow C)).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[等号の推移律]\ref{thm:transitive_law_of_equality}
+			$a,b,c$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX \vdash a = b \rarrow (\, a = c \rarrow b = c\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+\section{代入原理}
+	
+	\begin{screen}
+		\begin{thm}[代入原理]\ref{thm:the_principle_of_substitution}
+			$a,b$を類とし，$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項
+			とし，$\varphi$に自由に現れる変項は$x$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX \vdash a = b \rarrow 
+				(\, \varphi(a) \lrarrow \varphi(b)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+
+\section{空集合}
+	\begin{screen}
+		\begin{logicalthm}[分配された論理積の簡約]
+		\ref{logicalthm:contraction_law_of_distributed_injunctions}
+			$A,B,C$を$\mathcal{L}$の文とするとき，
+			\begin{align}
+				\vdash (A \wedge C) \wedge (B \wedge C) \rarrow A \wedge B.
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[空集合]
+			$\emptyset \defeq \Set{x}{x \neq x}$で定める類$\emptyset$を{\bf 空集合}\index{くうしゅうごう@空集合}{\bf (empty set)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[置換公理]
+			$\varphi$を$\mathcal{L}$の式とし，
+			$s,t$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる項は$s,t$のみであるとし，
+			$x$は$\varphi$で$s$への代入について自由であり，
+			$y,z,v$は$\varphi$で$t$への代入について自由であるとするとき，
+			\begin{align}
+				\REPAX \defarrow \forall x\, \forall y\, \forall z\, 
+				(\, \varphi(x,y) \wedge \varphi(x,z)
+				\rarrow y = z\, )
+				\rarrow \forall a\, \exists u\, \forall v\,
+				(\, v \in u \lrarrow \exists x\, (\, x \in a \wedge 
+				\varphi(x,v)\, )\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[分出定理]\ref{thm:axiom_of_separation}
+			$\varphi$を$\mathcal{L}$の式とし，$x$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる項は$x$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\REPAX \vdash 
+				\forall a\, \exists s\, \forall x\,
+				(\, x \in s \lrarrow x \in a \wedge \varphi(x)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\emptyset$は集合]\ref{thm:emptyset_is_a_set}
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\REPAX \vdash \set{\emptyset}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空集合はいかなる集合も持たない]\ref{thm:emptyset_has_nothing}
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall x\, (\, x \notin \emptyset\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空の類は空集合に等しい]\ref{thm:uniqueness_of_emptyset}
+			$a$を類とするとき
+			\begin{align}
+				\EXTAX,\COMAX &\vdash \forall x\, (\, x \notin a\, ) \rarrow a = \emptyset, \\
+				\EXTAX,\EQAX,\COMAX &\vdash a = \emptyset \rarrow \forall x\, (\, x \notin a\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[類を要素として持てば空ではない]
+		\ref{thm:emptyset_does_not_contain_any_class}
+			$a,b$を類とするとき
+			\begin{align}
+				\EQAX,\ELEAX \vdash a \in b \rarrow \exists x\, (\, x \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{dfn}[部分類]
+			$x,y$を$\mathcal{L}$の項とするとき，
+			\begin{align}
+				x \subset y \defarrow
+				\forall z\, (\, z \in x \rarrow z \in y\, )
+			\end{align}
+			と定める．式$z \subset y$を「$x$は$y$の{\bf 部分類}\index{ぶぶんるい@部分類}
+			{\bf (subclass)}である」や「$x$は$y$に含まれる」などと翻訳し，特に$x$が集合である場合は
+			「$x$は$y$の{\bf 部分集合}\index{ぶぶんしゅうごう@部分集合}{\bf (subset)}である」
+			と翻訳する．また
+			\begin{align}
+				x \subsetneq y \defarrow x \subset y \wedge x \neq y
+			\end{align}
+			と定め，これを「$x$は$y$に{\bf 真に含まれる}」と翻訳する．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空集合は全ての類に含まれる]
+		\ref{thm:emptyset_if_a_subset_of_every_class}
+			$a$を類とするとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \emptyset \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[類はその部分類に属する全ての類を要素に持つ]
+		\ref{thm:subclass_contains_all_elements}
+			$a,b,c$を類とするとき
+			\begin{align}
+				\EQAX,\ELEAX \vdash 
+				a \subset b \rarrow (\, c \in a \rarrow c \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[$\Univ$は最大の類である]
+			$a$を類とするとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash a \subset \Univ.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[等しい類は相手を包含する]
+		\ref{thm:equivalent_classes_includes_the_other}
+			$a,b$を類とするとき
+			\begin{align}
+				\EQAX \vdash a = b \rarrow a \subset b \wedge b \subset a.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[互いに相手を包含する類同士は等しい]
+		\ref{thm:mutually_including_classes_are_equivalent}
+			$a,b$を類とするとき
+			\begin{align}
+				\EXTAX \vdash a \subset b \wedge b \subset a \rarrow a = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+
+\section{変換の同値性}
+	\begin{screen}
+		\begin{logicalthm}[同値記号の対称律]
+		\ref{logicalthm:symmetry_of_equivalence_arrows}
+			$A,B$を$\mathcal{L}$の文とするとき
+			\begin{align}
+				\vdash (A \lrarrow B) \rarrow (B \lrarrow A).
+			\end{align}
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_1}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash a = \Set{z}{\psi(z)} 
+				\rarrow \forall v\, (\, v \in a \lrarrow \psi(v)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_2}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall v\, (\, v \in a \lrarrow \psi(v)\, )
+				\rarrow a = \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_3}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，$\varphi$に自由に現れる変項は$y$のみ
+			であるとする．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = b 
+				\rarrow \forall u\, (\, \varphi(u) \lrarrow u \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_4}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，$\varphi$に自由に現れる変項は$y$のみ
+			であるとする．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow u \in b\, )
+				\rarrow \Set{y}{\varphi(y)} = b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_5}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EQAX,\COMAX \vdash \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}
+				\rarrow \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_6}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EXTAX,\COMAX \vdash \forall u\, (\, \varphi(u) \lrarrow \psi(u)\, )
+				\rarrow \Set{y}{\varphi(y)} = \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_7}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			\begin{align}
+				\COMAX \vdash a \in \Set{z}{\psi(z)} \rarrow \psi(a).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_8}
+			$a$を主要$\varepsilon$項とし，$\psi$を$\lang{\varepsilon}$の式とし，
+			$z$を$\psi$に自由に現れる変項とし，$\psi$に自由に現れる変項は$z$のみであるとする．このとき
+			\begin{align}
+				\COMAX \vdash \psi(a) \rarrow a \in \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_9}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとする．このとき
+			\begin{align}
+				\EQAX,\COMAX,\ELEAX \vdash \Set{y}{\varphi(y)} \in b
+				\rarrow \exists s\, (\, 
+				\forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+				\wedge s \in b\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_10}
+			$b$を主要$\varepsilon$項とし，$\varphi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとする．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge s \in b\, ) \rarrow \Set{y}{\varphi(y)} \in b.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_11}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EQAX,\COMAX,\ELEAX \vdash \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}
+				\rarrow \exists s\, (\, 
+				\forall u\, (\, \varphi(u) \lrarrow u \in s\, )
+				\wedge \psi(s)\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}
+		\ref{thm:equivalent_formula_rewriting_12}
+			$\varphi$と$\psi$を$\lang{\varepsilon}$の式とし，
+			$y$を$\varphi$に自由に現れる変項とし，
+			$z$を$\psi$に自由に現れる変項とし，
+			$\varphi$に自由に現れる変項は$y$のみであるとし，
+			$\psi$に自由に現れる変項は$z$のみであるとし，する．このとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \exists s\, (\, \forall u\, (\, \varphi(u) \lrarrow u \in s\, ) \wedge \psi(s)\, ) \rarrow \Set{y}{\varphi(y)} \in \Set{z}{\psi(z)}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+\section{対}
+	\begin{screen}
+		\begin{dfn}[対]
+			$x,y$を$\mathcal{L}$の項とし，$z$を$x$にも$y$にも自由に現れない変項とするとき，
+			\begin{align}
+				\{x,y\} \defeq \Set{z}{x = z \vee y = z}
+			\end{align}
+			で$\{x,y\}$を定義し，これを$x$と$y$の{\bf 対}\index{つい@対}{\bf (pair)}と呼ぶ．
+			特に$\{x,x\}$を$\{x\}$と書く．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[対は表示されている要素しか持たない]
+		\ref{thm:pair_members_are_exactly_the_given_two}
+			$a$と$b$を類とするとき次が成立する:
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash 
+				\forall x\, (\, x \in \{a,b\} \lrarrow a = x \vee b = x\, ).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[対の対称性]
+		\ref{thm:commutative_law_of_pairs}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \{b,a\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{axm}[対の公理]
+			\begin{align}
+				\PAIAX \defarrow \forall x\, \forall y\, \exists p\, \forall z\, 
+				(\, x = z \vee y = z \lrarrow z \in p\, ).
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[集合の対は集合である]
+		\ref{thm:pair_of_sets_is_a_set}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX,\PAIAX \vdash 
+				\set{a} \wedge \set{b} \rarrow \set{\{a,b\}}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[集合は対の要素となれる]\ref{thm:set_is_an_element_of_its_pair}
+			$a$と$b$を類とするとき
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX &\vdash \set{a} \rarrow a \in \{a,b\}, \\
+				\EXTAX,\EQAX,\COMAX &\vdash \set{b} \rarrow b \in \{a,b\}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[真類同士の対は空]\ref{thm:pair_of_proper_classes_is_emptyset}
+			$a$と$b$を類とするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash\ 
+				\negation \set{a} \wedge \negation \set{b} \rarrow \{a,b\} = \emptyset.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[空な対に表示されている類は集合ではない]
+		\ref{thm:classes_displayed_in_empty_pair_are_not_sets}
+			$a$と$b$を類とするとき，
+			\begin{align}
+				\EXTAX,\EQAX,\COMAX \vdash \{a,b\} = \emptyset \rarrow\ \negation \set{a} \wedge \negation \set{b}.
+			\end{align}
+		\end{thm}
+	\end{screen}

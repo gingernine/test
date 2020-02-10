@@ -1,0 +1,228 @@
+\section{無限}
+	\begin{screen}
+		\begin{dfn}[極限数]
+			類$\alpha$が{\bf 極限数}\index{きょくげんすう@極限数}{\bf (limit ordinal)}であるということを
+			\begin{align}
+				\limo{\alpha} \defarrow \ord{\alpha} \wedge \alpha \neq \emptyset
+				\wedge \forall \beta \in \ON\, \left(\, \alpha \neq \beta \cup \{\beta\}\, \right)
+			\end{align}
+			により定める．つまり，極限数とはいずれの順序数の後者でもない$0$を除く順序数のことである．
+		\end{dfn}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[全ての要素の後者で閉じていれば極限数]\label{thm:if_closed_for_latter_then_limit_ordinal}
+			空でない順序数は，すべての要素の後者について閉じていれば極限数である:
+			\begin{align}
+				\forall \alpha \in \ON\,
+				\left[\, \alpha \neq \emptyset \wedge 
+				\forall \beta\, \left(\, \beta \in \alpha \Longrightarrow \beta \cup \{\beta\} \in \alpha\, \right)
+				\Longrightarrow \limo{\alpha}\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$を順序数とし，
+		\begin{align}
+			\alpha \neq \emptyset \wedge 
+			\forall \beta\, \left(\, \beta \in \alpha \Longrightarrow \beta \cup \{\beta\} \in \alpha\, \right)
+			\label{fom:thm_if_closed_for_latter_then_limit_ordinal_1}
+		\end{align}
+		が成り立っているとする．ここで$\beta$を順序数とすると
+		\begin{align}
+			\beta \in \alpha \vee \beta = \alpha \vee \alpha \in \beta
+		\end{align}
+		が成り立つ．
+		\begin{align}
+			\beta = \alpha
+		\end{align}
+		と
+		\begin{align}
+			\alpha \in \beta
+		\end{align}
+		の場合はいずれも
+		\begin{align}
+			\alpha \in \beta \cup \{\beta\}
+		\end{align}
+		が成り立つので，定理\ref{thm:no_set_is_an_element_of_itself}より
+		\begin{align}
+			\alpha \neq \beta \cup \{\beta\}
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			(\, \beta = \alpha \vee \beta \in \alpha\, ) \Longrightarrow \alpha \neq \beta \cup \{\beta\}
+			\label{fom:thm_if_closed_for_latter_then_limit_ordinal_2}
+		\end{align}
+		が成立する．他方で(\refeq{fom:thm_if_closed_for_latter_then_limit_ordinal_1})より
+		\begin{align}
+			\beta \in \alpha \Longrightarrow \beta \cup \{\beta\} \in \alpha
+		\end{align}
+		も満たされて，
+		\begin{align}
+			\beta \cup \{\beta\} \in \alpha \Longrightarrow \beta \cup \{\beta\} \neq \alpha
+		\end{align}
+		と併せて
+		\begin{align}
+			\beta \in \alpha \Longrightarrow \beta \cup \{\beta\} \neq \alpha
+			\label{fom:thm_if_closed_for_latter_then_limit_ordinal_3}
+		\end{align}
+		が成り立つ．そして(\refeq{fom:thm_if_closed_for_latter_then_limit_ordinal_2})と
+		(\refeq{fom:thm_if_closed_for_latter_then_limit_ordinal_3})と場合分け法則により
+		\begin{align}
+			\left(\, \beta \in \alpha \vee \beta = \alpha \vee \alpha \in \beta\, \right)
+			\Longrightarrow \alpha \neq \beta \cup \{\beta\}
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\forall \beta \in \ON\, \left(\, \alpha \neq \beta \cup \{\beta\}\, \right)
+		\end{align}
+		が成立する．ゆえに$\alpha$は極限数である．
+		\QED
+	\end{sketch}
+	
+	次の無限公理は極限数の存在を保証する．
+	
+	\begin{screen}
+		\begin{axm}[無限公理]
+			空集合を要素に持ち，全ての要素の後者について閉じている集合が存在する:
+			\begin{align}
+				\exists a\, \left[\, \emptyset \in a
+				\wedge \forall x\, \left(\, x \in a \Longrightarrow x \cup \{x\} \in a\, \right)\, \right].
+			\end{align}
+		\end{axm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{thm}[極限数は存在する]
+			\begin{align}
+				\exists \alpha \in \ON\, \left(\, \limo{\alpha}\, \right).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		無限公理より
+		\begin{align}
+			\emptyset \in a
+			\wedge \forall x\, \left(\, x \in a \Longrightarrow x \cup \{x\} \in a\, \right)
+		\end{align}
+		を満たす集合$a$が取れる．
+		\begin{align}
+			b \defeq a \cap \ON
+		\end{align}
+		とおくとき
+		\begin{align}
+			\bigcup b
+		\end{align}
+		が極限数となることを示す．まず
+		\begin{align}
+			\emptyset \in a \cap \ON \wedge \{\emptyset\} \in a \cap \ON
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\emptyset \in \bigcup b
+		\end{align}
+		が成り立つ．ゆえに$\bigcup b$は空ではない．また定理\ref{thm:union_of_set_of_ordinal_numbers_is_ordinal}より
+		\begin{align}
+			\bigcup b \in \ON
+		\end{align}
+		が成立する．$\alpha$を$\bigcup b$の要素とすると，
+		\begin{align}
+			x \in b \wedge \alpha \in x
+		\end{align}
+		を満たす順序数$x$が取れる．このとき
+		\begin{align}
+			\alpha \cup \{\alpha\} \in x
+		\end{align}
+		か
+		\begin{align}
+			\alpha \cup \{\alpha\} = x
+		\end{align}
+		が成り立つが，いずれの場合も
+		\begin{align}
+			\alpha \cup \{\alpha\} \in x \cup \{x\}
+		\end{align}
+		が成立する．他方で
+		\begin{align}
+			x \cup \{x\} \in a \cap \ON
+		\end{align}
+		も成立するから
+		\begin{align}
+			\alpha \cup \{\alpha\} \in \bigcup b
+		\end{align}
+		が成立する．ゆえに
+		\begin{align}
+			\forall \alpha\, \left(\, \alpha \in \bigcup b \Longrightarrow \alpha \cup \{\alpha\} \in \bigcup b\, \right)
+		\end{align}
+		が成立する．ゆえに定理\ref{thm:if_closed_for_latter_then_limit_ordinal}より$\bigcup b$は極限数である．
+		\QED
+	\end{prf}
+	
+	\monologue{
+		無限公理から極限数の存在が示されましたが，無限公理の
+		代わりに極限数の存在を公理に採用しても無限公理の主張は導かれます．
+		すなわち無限公理の主張と極限数が存在するという主張は同値なのです．
+		本稿の流れでは極限数の存在を公理とした方が自然に感じられますが，
+		しかし無限公理の方が主張が簡単ですし，他の文献ではこちらを公理としているようです．
+	}
+	
+	\begin{screen}
+		\begin{thm}[極限数は上限で表せる]
+			\begin{align}
+				\limo{\alpha} \Longrightarrow \alpha = \bigcup \Set{\beta}{\beta \in \alpha}.
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		$\alpha$を極限数とする．$x$を$\alpha$の要素とすれば，
+		\begin{align}
+			x \cup \{x\} \neq \alpha
+		\end{align}
+		が成り立つから
+		\begin{align}
+			x \cup \{x\} \in \alpha
+		\end{align}
+		が成り立ち
+		\begin{align}
+			x \in \bigcup \Set{\beta}{\beta \in \alpha}
+		\end{align}
+		が成立する．$x$を$\bigcup \Set{\beta}{\beta \in \alpha}$の要素とすれば
+		\begin{align}
+			x \in \beta \wedge \beta \in \alpha
+		\end{align}
+		なる順序数$\beta$が取れて，順序数の推移性より
+		\begin{align}
+			x \in \alpha
+		\end{align}
+		が従う．$x$の任意性から
+		\begin{align}
+			\alpha = \bigcup \Set{\beta}{\beta \in \alpha}
+		\end{align}
+		が成立する．
+		\QED
+	\end{sketch}
+	
+	\begin{screen}
+		\begin{dfn}[自然数]
+			最小の極限数を
+			\begin{align}
+				\Natural
+			\end{align}
+			と書く．また$\Natural$の要素を{\bf 自然数}\index{しぜんすう@自然数}{\bf (natural number)}と呼ぶ．
+		\end{dfn}
+	\end{screen}
+	
+	$\Natural$は最小の極限数であるから，その要素である自然数はどれも極限数ではない．
+	従って$\emptyset$を除く自然数は必ずいずれかの自然数の後者である．
+
+	\begin{screen}
+		\begin{dfn}[無限]\label{def:infinity}
+			本稿においては，{\bf 無限}\index{むげん@無限}{\bf (infinity)}を表す記号$\infty$を
+			\begin{align}
+				\infty \defeq \Natural
+			\end{align}
+			によって定める．
+		\end{dfn}
+	\end{screen}

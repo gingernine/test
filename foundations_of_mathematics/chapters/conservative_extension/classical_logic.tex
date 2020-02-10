@@ -1,0 +1,258 @@
+	第\ref{chap:inference}章では明記しなかったが，
+	\begin{align}
+		\mathscr{S} \vdash \varphi
+	\end{align}
+	ということは次の条件を満たす$\mathcal{L}$の文の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$
+	\footnote{
+		ここで添え字に数字が使われているが，これらは集合論の中で定義される数字ではなく生活の中にありふれた
+		数字である．足し算や大小の比較や帰納的推論は日常的な感覚で行えるものとする．
+		また「列」という用語も集合論の写像ではなく日常的な「列」を意味する．
+	}
+	が取れるということである．
+	\begin{itemize}
+		\item 各$\varphi_{i}$は次のいずれかを満たす：
+			\begin{itemize}
+				\item $\varphi_{i}$は論理的公理である．
+				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
+				\item $\varphi_{i}$は，これより前の文$\varphi_{j}$と$\varphi_{k}$の
+					三段論法で得られる．つまりこの$\varphi_{j}$と$\varphi_{k}$は，
+					$\varphi_{j}$が$\varphi_{k} \rarrow \varphi_{i}$なる文であるか，
+					$\varphi_{k}$が$\varphi_{j} \rarrow \varphi_{i}$なる文である．
+			\end{itemize}
+		
+		\item $\varphi_{n}$は$\varphi$である．
+	\end{itemize}
+	以下ではこの$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$のような列
+	を$\mathscr{S}$から$\varphi$への{\bf 証明}\index{しょうめい@証明}{\bf (proof)}と呼ぶ．
+	第\ref{chap:inference}章で規定した証明とは若干違うが，
+	異なる証明体系を比較するには証明は列であると考える方が都合が良い．
+	ただし集合の章で実演した通り，実際の証明でこのような列を構成することは殆どなく，
+	第\ref{chap:inference}章で規定した証明プロセスの方が現実的であろう．
+	
+	この章の主題は本論文の集合論が{\bf ZF}集合論の妥当な拡張であるかどうかである．
+	当然，{\bf ZF}集合論の定理とは何か，つまり証明がどのように行われるかが
+	判っていなければならないが，ここでは{\bf 古典論理}\index{こてんろんり@古典論理}
+	{\bf (classical logic)}と呼ばれる(Hilbert流){\bf 証明体系}
+	\index{しょうめいたいけい@証明体系}{\bf (proof system)}を採用する．
+	証明体系とは論理的公理と推論規則を合わせたものであり，
+	第\ref{chap:inference}章で出した論理的公理と三段論法も一つの証明体系をなしている．
+	以下では古典論理の証明体系を{\bf HK}と書き，
+	第\ref{chap:inference}章の証明体系は{\bf HE}と書く．
+	肝心の妥当性は，{\bf ZF}集合論の任意の命題(つまり$\lang{\in}$の任意の文)
+	$\psi$に対して「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列であるものが取れる」
+	ことと「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」ことが
+	同値であるということを示せば正となる．この$\Gamma$とは$\Sigma$の公理を$\lang{\in}$の文に直した
+	公理系である(参照P. \pageref{axioms_of_Gamma})．しかしいきなりこれを示すのは難しいので，
+	次の段階をふんで明らかにしていく．
+	
+	\begin{description}
+		\item[step1] 「$\Sigma$から$\psi$への{\bf HE}の証明で$\lang{\varepsilon}$の文の列
+			であるものが取れる」ならば「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+			式の列であるものが取れる」ことを示す(第\ref{sec:Henkin_expansion}節)．
+			
+		\item[step2] 「$\Gamma$から$\psi$への{\bf HK}の証明で$\lang{\in}$の
+			式の列であるものが取れる」ならば「$\Sigma$から$\psi$への{\bf HE}の証明で
+			$\lang{\varepsilon}$の文の列であるものが取れる」ことを示す
+			(第\ref{sec:regular_proof}節)．
+		
+		\item[step3]  「$\Sigma$から$\psi$への{\bf HE}の証明で$\mathcal{L}$の文の列
+			であるものが取れる」ならば 「$\Sigma$から$\psi$への{\bf HE}の証明で
+			$\lang{\varepsilon}$の文の列であるものが取れる」ことを示す
+			(第\ref{sec:L_proof_to_L_epsilon_proof}節)．
+	\end{description}
+	
+	{\bf 本題に入る前に一つ喚起しておくと，注意\ref{rem:deduction_of_L_epsilon_sentence}の確認がところどころで必要になる．}
+	
+\section{古典論理}
+	この節で扱う項と式は$\lang{\in}$のものか$\lang{\varepsilon}$のものを想定している．
+	第\ref{chap:inference}章では証明に使われる式は全て文であるとしたが，
+	\underline{{\bf HK}の証明では文に限らず一般の式も使用する}
+	(ただし\ref{sec:restriction_of_formulas}節の条件を満たす式に限る)．
+	
+	\begin{screen}
+		\begin{logicalaxm}[{\bf HK}の公理(命題論理)]
+			$\varphi$と$\psi$と$\chi$を式とするとき
+			\begin{description}
+				\item[(S)] $(\, \varphi \rarrow (\, \psi \rarrow \chi\, )\, ) 
+					\rarrow (\, (\, \varphi \rarrow \psi\, )
+					\rarrow (\, \varphi \rarrow \chi\, )\, ).$
+				\item[(K)] $\varphi \rarrow (\, \psi \rarrow \varphi\, ).$
+				\item[(CTD1)] $\varphi \rarrow (\, \negation \varphi \rarrow \bot\, ).$
+				\item[(CTD2)] $\negation \varphi \rarrow (\, \varphi \rarrow \bot\, ).$
+				\item[(NI)] $(\, \varphi \rarrow \bot\, ) \rarrow\ \negation \varphi.$
+				\item[(DI1)] $\varphi \rarrow \varphi \vee \psi.$
+				\item[(DI2)] $\psi \rarrow \varphi \vee \psi.$
+				\item[(DE)] $(\, \varphi \rarrow \chi\, ) \rarrow 
+					(\, (\, \psi \rarrow \chi\, ) 
+					\rarrow (\, \varphi \vee \psi \rarrow \chi\, )\, ).$
+				\item[(CI)] $\varphi \rarrow (\, \psi \rarrow (\, \varphi \wedge \psi\, )\, ).$
+				\item[(CE1)] $\varphi \wedge \psi \rarrow \varphi.$
+				\item[(CE2)] $\varphi \wedge \psi \rarrow \psi.$
+				\item[(DNE)] $\negation \negation \varphi \rarrow \varphi$.
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalaxm}[{\bf HK}の公理(量化)]
+			$\varphi$と$\psi$を式とし，$x$と$y$を変項とし，$t$を項とする．また
+			\textcolor{red}{$y$は$\psi,\forall x \varphi, \exists x \varphi$には
+			自由に現れず，$\varphi$には$x$が自由に現れ，$y$と$t$は$\varphi$の中で$x$への代入
+			について自由であるとする(量化公理の変項条件)．}
+			\begin{description}
+				\item[(UI)] $\forall y\, (\, \psi \rarrow \varphi(x/y)\, ) 
+					\rarrow (\, \psi \rarrow \forall x \varphi\, ).$
+				
+				\item[(UE)] $\forall x \varphi \rarrow \varphi(x/t).$
+				
+				\item[(EI)] $\varphi(x/t) \rarrow \exists x \varphi.$
+				
+				\item[(EE)] $\forall y\, (\, \varphi(x/y) \rarrow \psi\, )
+						\rarrow (\, \exists x \varphi \rarrow \psi\, ).$
+			\end{description}
+		\end{logicalaxm}
+	\end{screen}
+	
+	{\bf HK}の推論規則は「三段論法」と「{\bf 汎化}\index{はんか@汎化}{\bf (generalization)}」
+	の二つである．式$\varphi$が式$\chi$から汎化で得られるとは，
+	変項$a,x$と$x$が自由に現れる式$\psi$が取れて，$a$は$\psi$の中で$x$への代入について自由であり，
+	$\chi$は
+	\begin{align}
+		\psi(x/a)
+	\end{align}
+	なる式，$\varphi$は
+	\begin{align}
+		\forall x \psi	
+	\end{align}
+	なる式であるということである．ただし\textcolor{red}{$a$は$\forall x \psi$に自由に現れず，
+	また公理系$\mathscr{S}$が与えられているならば$a$は$\mathscr{S}$のどの公理にも自由に現れない
+	(固有変項条件)．}$a$をこの汎化の{\bf 固有変項}\index{こゆうへんこう@固有変項}
+	{\bf (eigenvariable)}と呼ぶ．
+	
+	\begin{screen}
+		\begin{metadfn}[{\bf HK}における証明]
+			$\mathscr{S}$を式からなる公理系とする．
+			このとき式の列$\varphi_{1},\varphi_{2},\cdots,\varphi_{n}$が
+			$\mathscr{S}$から$\varphi_{n}$への{\bf HK}の証明であるとは，
+			各$\varphi_{i}$が次のいずれかであるということである：
+			\begin{itemize}
+				\item $\varphi_{i}$は{\bf HK}の公理である．
+				\item $\varphi_{i}$は$\mathscr{S}$の公理である．
+				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$と$\varphi_{k}$の
+					三段論法で得られる．
+				\item $\varphi_{i}$は，これより前の式$\varphi_{j}$から汎化で得られる．
+			\end{itemize}
+		\end{metadfn}
+	\end{screen}
+	
+	本論文では複数の言語を同時に扱っているので，混乱を避けるために
+	「$\mathscr{S}$から式$\varphi$への{\bf HK}の証明で$\lang{\in}$の式の列であるものが取れる」ことを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\in}} \varphi
+	\end{align}
+	と書き，「$\mathscr{S}$から式$\varphi$への{\bf HK}の証明で
+	$\lang{\varepsilon}$の式の列であるものが取れる」ことを
+	\begin{align}
+		\mathscr{S} \provable{\mbox{{\bf HK}},\lang{\varepsilon}} \varphi
+	\end{align}
+	と書く．ただこれでは見た目が悪いので$\provable{\mbox{{\bf HK}}}$とだけ書くこともある．
+	この場合は$\provable{\mbox{{\bf HK}}}$は$\provable{\mbox{{\bf HK}},\lang{\in}}$か
+	$\provable{\mbox{{\bf HK}},\lang{\varepsilon}}$のどちらか一方を指しているのだが，
+	一つの定理の中で$\provable{\mbox{{\bf HK}}}$が指すのは一貫して片方だけである．
+	
+\subsection{演繹定理}
+	\begin{screen}
+		\begin{metathm}[{\bf HK}の演繹定理]
+		\label{metathm:deduction_theorem_of_HK}
+			$\mathscr{S}$を公理系とし，$\varphi$と$\psi$を式とするとき
+			\begin{description}
+				\item[(1)] $\mathscr{S} \provable{\mbox{{\bf HK}}} \varphi \rarrow \psi$ならば$\varphi,\ \mathscr{S} \provable{\mbox{{\bf HK}}} \psi$.
+				\item[(2)] $\varphi,\ \mathscr{S} \provable{\mbox{{\bf HK}}} \psi$ならば$\mathscr{S} \provable{\mbox{{\bf HK}}} \varphi \rarrow \psi$.
+			\end{description}
+		\end{metathm}
+	\end{screen}
+	
+	\begin{metaprf}\mbox{}
+		\begin{description}
+			\item[(1)] $\mathscr{S} \provable{\mbox{{\bf HK}}} \varphi \rarrow \psi$
+				であるとき，$\mathscr{S}$から$\varphi \rarrow \psi$への{\bf HK}の証明を
+				$\varphi_{1},\varphi_{2}\cdots,\varphi_{n}$とすれば
+				\begin{align}
+					\varphi_{1},\ \varphi_{2},\ \cdots,\ \varphi_{n},\ \varphi,\ \psi
+				\end{align}
+				は$\varphi,\ \mathscr{S}$から$\psi$への{\bf HK}の証明である．
+				
+			\item[(2)] $\varphi,\ \mathscr{S} \provable{\mbox{{\bf HK}}} \psi$
+				であるとき，$\varphi,\ \mathscr{S}$から$\psi$への{\bf HK}の証明を
+				$\varphi_{1},\varphi_{2}\cdots,\varphi_{n}$とし，
+				以下の要領で$\varphi_{1}$から順番に，式を削除して別の式で置き換えたり
+				式を新しく追加したりしていく．
+				\begin{description}
+					\item[case1] $\varphi_{i}$が{\bf HK}の公理または$\mathscr{S}$の公理
+						であるとき，$\varphi_{i}$と$\varphi_{i+1}$との間に
+						\begin{align}
+							&\varphi_{i} \rarrow (\, \varphi \rarrow \varphi_{i}\, ), \\
+							&\varphi \rarrow \varphi_{i}
+						\end{align}
+						を追加する．上の式は公理(K)の形の式であり，$\varphi_{i}$との三段論法で
+						$\varphi \rarrow \varphi_{i}$が出るという図になる．
+						
+					\item[case2] $\varphi_{i}$が$\varphi$であるとき
+						$\varphi_{i}$を証明列から削除し，その位置は
+						\begin{align}
+							&(\, \varphi \rarrow (\, (\, \varphi \rarrow \varphi\, )
+								\rarrow \varphi\, )\, )
+								\rarrow (\, (\, \varphi \rarrow 
+								(\, \varphi \rarrow \varphi\, )\, )
+								\rarrow (\, \varphi \rarrow \varphi\, )\, ), \\
+							&\varphi \rarrow (\, (\, \varphi \rarrow \varphi\, )
+								\rarrow \varphi\, ), \\
+							&(\, \varphi \rarrow 
+								(\, \varphi \rarrow \varphi\, )\, )
+								\rarrow (\, \varphi \rarrow \varphi\, ), \\
+							&\varphi \rarrow 
+								(\, \varphi \rarrow \varphi\, ), \\
+							&\varphi \rarrow \varphi
+						\end{align}
+						で置き換える．上の式は公理(S)(K)の形の式の三段論法で
+						$\varphi \rarrow \varphi$が出るという図になる．
+						
+					\item[case3] $\varphi_{i}$が前の式$\varphi_{j}$と$\varphi_{k}$の
+						三段論法で得られているとする．ここで$\varphi_{k}$は
+						$\varphi_{j} \rarrow \varphi_{i}$なる形の式とする．このとき
+						$\varphi_{i}$を証明列から削除し，その位置は
+						\begin{align}
+							&(\, \varphi \rarrow (\, \varphi_{j} \rarrow \varphi_{i}\, )\, )
+								\rarrow (\, (\, \varphi \rarrow \varphi_{j}\, )
+								\rarrow (\, \varphi \rarrow \varphi_{i}\, )\, ), \\
+							&(\, \varphi \rarrow \varphi_{j}\, )
+								\rarrow (\, \varphi \rarrow \varphi_{i}\, ), \\
+							&\varphi \rarrow \varphi_{i}
+						\end{align}
+						で置き換える．上の式は，$\varphi \rarrow \varphi_{j}$と
+						$\varphi \rarrow \varphi_{k}$に至る式の列が得られていれば
+						公理(S)(K)の形の式との三段論法で$\varphi \rarrow \varphi_{i}$
+						が出るという図になる．
+						
+					\item[case4] $\varphi_{i}$が前の式$\varphi_{j}$から汎化で
+						得られているとする．つまり変項$a,x$と$x$が自由に現れる式$\psi$が取れて，
+						$\varphi_{j}$は$\psi(x/a)$，$\varphi_{i}$は$\forall x \psi$
+						である．ただし$a$は$\forall x \psi$にも$\varphi$にも
+						$\mathscr{S}$のどの公理にも自由に現れず，
+						また$\psi$の中で$x$への代入について自由である．このとき
+						$\varphi_{i}$を証明列から削除し，その位置は
+						\begin{align}
+							&\forall a\, (\, \varphi \rarrow \psi(x/a)\, ), \\
+							&\forall a\, (\, \varphi \rarrow \psi(x/a)\, )
+							\rarrow (\, \varphi \rarrow \forall x \psi\, ), \\
+							&\varphi \rarrow \forall x \psi
+						\end{align}
+						で置き換える．上の式は，$\varphi \rarrow \varphi_{j}$に至る式の列
+						が得られていれば汎化および公理(UI)の形の式との三段論法で
+						$\varphi \rarrow \varphi_{i}$が出るという図になる．
+				\end{description}
+				以上の追加と置換の操作を$\varphi_{1}$から順に$\varphi_{n}$まで施していけば，
+				最終的に得る式の列は$\varphi \rarrow \psi$への{\bf HK}の証明になっている．
+				\QED
+		\end{description}
+	\end{metaprf}

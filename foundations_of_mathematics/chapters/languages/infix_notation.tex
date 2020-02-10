@@ -1,0 +1,98 @@
+\section{中置記法}
+	たとえば$\in s t$なる原子式は「$s$は$t$の要素である」と読むのだから，
+	$s$が$t$の中にあるというイメージ通りに
+	\begin{align}
+		s \in t
+	\end{align}
+	と書きかえる方が見やすくなる．同じように，$\vee \varphi \psi$なる式も
+	「$\varphi$または$\psi$」と読むのだから
+	\begin{align}
+		\varphi \vee \psi
+	\end{align}
+	と書きかえる方が見やすくなる．$\rarrow \vee \varphi \psi \wedge \chi \xi$のように長い式も，
+	上の作法に倣えば
+	\begin{align}
+		\begin{gathered}
+			\rarrow \vee \varphi \psi \wedge \chi \xi \\
+			\rarrow \color{red}{\varphi \vee \psi} \color{blue}{\chi \wedge \xi} \\
+			\color{red}{\varphi \vee \psi} \color{black}{\rarrow} \color{blue}{\chi \wedge \xi}
+		\end{gathered}
+	\end{align}
+	と書きかえると見やすくなるが，一々色分けするわけにもいかないので``(''と``)''を使って
+	\begin{align}
+		(\, \varphi \vee \psi\, ) \rarrow (\, \chi \wedge \xi\, )
+	\end{align}
+	と書くようにすれば良い．
+	
+	\begin{itembox}[l]{{\bf 中置記法}\index{ちゅうちきほう@中置記法}{\bf (infix notation)}}
+			$\mathcal{L}$の式は以下の手順で中置記法に変換する．
+			\begin{enumerate}
+				\item $\in s t$なる形の原子式は$s \in t$と変換する．
+					$= s t$も同様に変換する．
+					
+				\item $\negation \varphi$なる形の式は，$\varphi$の中置記法への変換
+					$\widehat{\varphi}$を用いて$\negation (\widehat{\varphi})$と変換する．
+				
+				\item $\vee \varphi \psi$なる形の式は，$\varphi,\psi$の中置記法への変換
+					$\widehat{\varphi},\widehat{\psi}$を用いて
+					$(\widehat{\varphi}) \vee (\widehat{\psi})$と変換する．
+					$\wedge \varphi \psi$と$\rarrow \varphi \psi$の形の式も同様に変換する．
+				
+				\item $\exists x \varphi$なる形の式は，$\varphi$の中置記法への変換
+					$\widehat{\varphi}$を用いて$\exists x (\widehat{\varphi})$と変換する．
+					$\forall x \varphi,\varepsilon x \varphi$なる形の式や項も同様にする．
+					
+				\item $\Set{x}{\varphi}$なる形の項は，$\varphi$の中置記法への変換
+					$\widehat{\varphi}$を用いて$\Set{x}{\widehat{\varphi}}$と変換する．
+			\end{enumerate}
+			中置記法はあくまでも表示用の記法であって，扱う項や式の``本来の姿''は前節までの{\bf 前置記法}
+			\index{ぜんちきほう@前置記法}{\bf (prefix notation)}で書かれたものである．
+	\end{itembox}
+	
+	上の変換法では，たとえば$\rarrow \vee \varphi \psi \wedge \chi \xi$なる式は
+	\begin{align}
+		(\, (\widehat{\varphi}) \vee (\widehat{\psi})\, ) 
+		\rarrow (\, (\widehat{\chi}) \wedge (\widehat{\xi})\, )
+	\end{align}
+	となるが，括弧はあくまで式の境界の印として使うものであるから，内側の括弧は外して
+	\begin{align}
+		(\, \widehat{\varphi} \vee \widehat{\psi}\, ) 
+		\rarrow (\, \widehat{\chi} \wedge \widehat{\xi}\, )
+	\end{align}
+	と書く方が良い．
+	
+	$\wedge \vee \exists x \varphi \psi \negation \rarrow \chi \in s t$なる式を変換すると
+	\begin{align}
+		(\, (\exists x (\widehat{\varphi})) \vee (\widehat{\psi})\, ) \wedge (\negation (\, (\widehat{\chi}) \rarrow (s \in t)\, ))
+	\end{align}
+	となるが，これも内側の括弧および$\negation ...$を囲う括弧は外して
+	\begin{align}
+		(\, \exists x (\widehat{\varphi}) \vee \widehat{\psi}\, ) \wedge \negation (\, \widehat{\chi} \rarrow s \in t\, )
+	\end{align}
+	と書く．
+	
+	あまり括弧が連なると読みづらくなるので，
+	\begin{align}
+		(\, \varphi \vee \psi\, ) \rarrow (\chi)
+	\end{align}
+	なる形の式は
+	\begin{align}
+		\varphi \vee \psi \rarrow \chi
+	\end{align}
+	に，同様に
+	\begin{align}
+		(\varphi) \rarrow (\, \psi \vee \chi\, )
+	\end{align}
+	なる形の式は
+	\begin{align}
+		\varphi \rarrow \psi \vee \chi
+	\end{align}
+	とも書く．また$\vee$が$\wedge$であっても同じように括弧を省く．
+	\begin{align}
+		\exists x (\negation (\varphi))
+	\end{align}
+	なる式は
+	\begin{align}
+		\exists x \negation (\varphi)
+	\end{align}
+	とも書き，$\exists$が$\forall$や$\varepsilon$であっても同じように括弧を省く．

@@ -1,0 +1,329 @@
+\section{超限帰納法}
+	$x$を任意に与えられた集合としたとき，$x$の任意の要素$y$で
+	\begin{align}
+		A(y)
+	\end{align}
+	が成り立つならば
+	\begin{align}
+		A(x)
+	\end{align}
+	が成り立つとする．すると，なんと$A(x)$は普遍的に成り立つのである．つまり
+	\begin{align}
+		\forall x\, \left[\, \forall y \in x\, A(y) \Longrightarrow A(x)\, \right]
+		\Longrightarrow \forall x A(x)
+	\end{align}
+	が成り立つわけだが，この事実を本稿では{\bf 集合の帰納法}と呼ぶ．また派生形としては，
+	集合を順序数に制限した場合の{\bf 超限帰納法}\index{ちょうげんきのうほう@超限帰納法}{\bf (transfinite induction)}と，
+	自然数に制限した場合の{\bf 数学的帰納法}\index{すうがくてききのうほう@数学的帰納法}{\bf (mathematical induction)}がある．
+	
+	\begin{screen}
+		\begin{thm}[集合の帰納法]\label{thm:equivalent_condition_of_axiom_of_regularity}
+			$A$を$\mathcal{L}'$の式とし，$x$を$A$に現れる文字とし，$y$を$A$に現れない文字とし，
+			$A$に現れる文字で$x$のみが量化されていないとする．このとき
+			\begin{align}
+				\forall x\, \left[\, \forall y \in x\, A(y) \Longrightarrow A(x)\, \right]
+				\Longrightarrow \forall x A(x).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{sketch}
+		いま
+		\begin{align}
+			a \defeq \Set{x}{\rightharpoondown A(x)}
+		\end{align}
+		とおく．正則性公理より
+		\begin{align}
+			a \neq \emptyset \Longrightarrow 
+			\exists x\, (\, x \in a \wedge x \cap a = \emptyset\, )
+		\end{align}
+		が成り立つので，対偶を取れば
+		\begin{align}
+			\forall x\, (\, x \notin a \vee x \cap a \neq \emptyset\, )
+			\Longrightarrow a = \emptyset
+			\label{fom:thm_equivalent_condition_of_axiom_of_regularity_1}
+		\end{align}
+		が成り立つ．ここで
+		\begin{align}
+			x \cap a \neq \emptyset \Longleftrightarrow \exists y \in x\, (\, y \in a\, )
+		\end{align}
+		が成り立つので(\refeq{fom:thm_equivalent_condition_of_axiom_of_regularity_1})から
+		\begin{align}
+			\forall x\, \left[\, x \notin a \vee \exists y \in x\, (\, y \in a\, )\, \right]
+			\Longrightarrow a = \emptyset
+			\label{fom:thm_equivalent_condition_of_axiom_of_regularity_2}
+		\end{align}
+		が従い，そして論理和は否定と含意で書き直せる(推論法則\ref{logicalthm:rule_of_inference_3})から
+		\begin{align}
+			\forall x\, \left[\, \forall y \in x\, (\, y \notin a\, ) \Longrightarrow x \notin a\, \right]
+			\Longrightarrow a = \emptyset
+		\end{align}
+		が従う．ところで類の公理より
+		\begin{align}
+			x \notin a \Longleftrightarrow A(x)
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\forall x\, \left[\, \forall y \in x\, A(y)
+			\Longrightarrow A(x)\, \right]
+			\Longrightarrow \forall x A(x)
+		\end{align}
+		を得る．
+		\QED
+	\end{sketch}
+	
+	本稿では正則性公理を認めているが，いまだけは認めないことにして代わりに
+	集合の帰納法が正しいと仮定してみると，今度は正則性公理が定理として導かれる．実際，$a$を類とすれば
+	\begin{align}
+		\forall x\, \left[\, \forall y \in x\, (\, y \notin a\, )
+		\Longrightarrow\ x \notin a\, \right]
+		\Longrightarrow \forall x\, (\, x \notin a\, )
+	\end{align}
+	が成立するが，ここで対偶を取れば
+	\begin{align}
+		\exists x\, (\, x \in a\, ) \Longrightarrow 
+		\exists x \in a\, \left[\, \forall y \in x\, (\, y \notin a\, )\, \right]
+	\end{align}
+	が成立し，
+	\begin{align}
+		a \neq \emptyset \Longleftrightarrow \exists x\, (\, x \in a\, )
+	\end{align}
+	と
+	\begin{align}
+		\forall y \in x\, (\, y \notin a\, ) \Longleftrightarrow x \cap a = \emptyset 
+	\end{align}
+	が成り立つことを併せれば
+	\begin{align}
+		a \neq \emptyset \Longrightarrow 
+		\exists x \in a\, (\, x \cap a = \emptyset\, )
+	\end{align}
+	が出る．この意味で正則性公理は{\bf 帰納法の公理}とも呼ばれる．
+	
+	\begin{screen}
+		\begin{thm}[超限帰納法]\label{thm:transfinite_induction}
+			$A$を$\mathcal{L}'$の式，$\alpha$を$A$に現れる文字，$\beta$を$A$に現れない文字とする．
+			このとき，$A$に現れる文字で$\alpha$のみが$A$で量化されていない場合，次が成り立つ:
+			\begin{align}
+				\forall \alpha \in \ON\, \left(\, \forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)\, \right)
+				\Longrightarrow \forall \alpha \in \ON\, A(\alpha).
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		定理\ref{thm:equivalent_condition_of_axiom_of_regularity}より
+		\begin{align}
+			\forall \alpha\, \left[\, \forall \beta \in \alpha\, (\, \beta \in \ON \Longrightarrow A(\beta)\, )
+			\Longrightarrow (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )\, \right]
+			\Longrightarrow \forall \alpha\, (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )
+			\label{fom:thm_transfinite_induction}
+		\end{align}
+		が成り立つ．いま
+		\begin{align}
+			\forall \alpha \in \ON\, \left(\, \forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)\, \right)
+			\label{fom:thm_transfinite_induction_1}
+		\end{align}
+		が成り立っているとする．その上で$\alpha$を集合とし，
+		\begin{align}
+			\forall \beta \in \alpha\, (\, \beta \in \ON \Longrightarrow A(\beta)\, )
+			\label{fom:thm_transfinite_induction_2}
+		\end{align}
+		が成り立っているとする．さらにその上で
+		\begin{align}
+			\alpha \in \ON
+		\end{align}
+		が成り立っているとする．このとき$\beta$を
+		\begin{align}
+			\beta \in \alpha
+		\end{align}
+		なる集合とすると，順序数の推移性より
+		\begin{align}
+			\beta \in \ON
+		\end{align}
+		が成り立つので，(\refeq{fom:thm_transfinite_induction_2})と併せて
+		\begin{align}
+			A(\beta)
+		\end{align}
+		が成り立つ．すなわちいま
+		\begin{align}
+			\forall \beta \in \alpha\, A(\beta)
+		\end{align}
+		が成り立つ．また(\refeq{fom:thm_transfinite_induction_1})より
+		\begin{align}
+			\forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)
+		\end{align}
+		が成り立つので，いま
+		\begin{align}
+			A(\alpha)
+		\end{align}
+		が成立する．つまり，(\refeq{fom:thm_transfinite_induction_2})までを仮定したときには
+		\begin{align}
+			\alpha \in \ON \Longrightarrow A(\alpha)
+		\end{align}
+		が成立する．ゆえに(\refeq{fom:thm_transfinite_induction_1})までを仮定したときには
+		\begin{align}
+			\forall \beta \in \alpha\, (\, \beta \in \ON \Longrightarrow A(\beta)\, )
+			\Longrightarrow (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )
+		\end{align}
+		が成立し，$\alpha$の任意性から
+		\begin{align}
+			\forall \alpha\, \left[\, \forall \beta \in \alpha\, (\, \beta \in \ON \Longrightarrow A(\beta)\, )
+			\Longrightarrow (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )\, \right]
+		\end{align}
+		が成立する．ゆえに，何も仮定しなくても
+		\begin{align}
+			(\refeq{fom:thm_transfinite_induction_1}) \Longrightarrow
+			\forall \alpha\, \left[\, \forall \beta \in \alpha\, (\, \beta \in \ON \Longrightarrow A(\beta)\, )
+			\Longrightarrow (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )\, \right]
+			\label{fom:thm_transfinite_induction_3}
+		\end{align}
+		が成立する．(\refeq{fom:thm_transfinite_induction})と(\refeq{fom:thm_transfinite_induction_3})と含意の推移性より
+		\begin{align}
+			\forall \alpha \in \ON\, \left(\, \forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)\, \right)
+			\Longrightarrow \forall \alpha\, (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )
+		\end{align}
+		が従うが，
+		\begin{align}
+			\forall \alpha\, (\, \alpha \in \ON \Longrightarrow A(\alpha)\, )
+		\end{align}
+		を略記したものが
+		\begin{align}
+			\forall \alpha \in \ON\, A(\alpha)
+		\end{align}
+		であるから
+		\begin{align}
+			\forall \alpha \in \ON\, \left(\, \forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)\, \right)
+			\Longrightarrow \forall \alpha \in \ON\, A(\alpha)
+		\end{align}
+		が成り立つことになる．
+		\QED
+	\end{prf}
+	
+	
+	以後本稿では超限帰納法を頻繁に扱うので，ここでその{\bf 利用方法}を述べておく．
+	順序数に対する何らかの言明$A$が与えられたとき，それがいかなる順序数に対しても真であることを示したいとする．往々にして
+	\begin{align}
+		\forall \alpha \in \ON\, A(\alpha)
+	\end{align}
+	をいきなり示すのは難しく，一方で
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta)
+	\end{align}
+	から
+	\begin{align}
+		A(\alpha)
+	\end{align}
+	を導くことは容易い．それは順序数の``順番''的な性質の良さによるが，超限帰納法のご利益は
+	\begin{align}
+		\forall \alpha \in \ON\, \left(\, \forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)\, \right)
+	\end{align}
+	が成り立つことさえ示してしまえばいかなる順序数に対しても$A$が真となってくれるところにある．
+	
+	$\alpha$を任意に与えられた順序数とするとき，
+	\begin{align}
+		\alpha = 0
+	\end{align}
+	であると空虚な真によって
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta)
+	\end{align}
+	は必ず真となるから，まずは
+	\begin{align}
+		A(0)
+	\end{align}
+	が成り立つことを示さなければならない．$A(0)$が偽であると
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta) \wedge \rightharpoondown A(0)
+	\end{align}
+	が真となって
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta) \Longrightarrow A(0)
+	\end{align}
+	が偽となってしまうからである．$\alpha$が$0$でないときは素直に
+	\begin{align}
+		\forall \beta \in \alpha\, A(\beta)
+	\end{align}
+	が成り立つとき
+	\begin{align}
+		A(\alpha)
+	\end{align}
+	が成り立つことを示せば良い．以上超限帰納法の利用法をまとめると，
+	
+	\begin{itembox}[l]{超限帰納法の利用手順}
+		順序数に対する何らかの言明$A$が与えられて，それがいかなる順序数に対しても真なることを示したいならば，
+		\begin{itemize}
+			\item まずは$A(0)$が成り立つことを示し，
+			\item 次は$\alpha$を$0$でない順序数として
+				$\forall \beta \in \alpha\, A(\beta) \Longrightarrow A(\alpha)$が成り立つことを示す．
+		\end{itemize}
+	\end{itembox}
+	
+	\begin{screen}
+		\begin{thm}[数学的帰納法の原理]
+		\label{thm:the_principle_of_mathematical_induction}
+			$\Natural$は次の意味で最小の無限集合である:
+			\begin{align}
+				\forall a\, \left[\, \emptyset \in a \wedge \forall x\, 
+				(\, x \in a \Longrightarrow x \cup \{x\} \in a\, ) 
+				\Longrightarrow \Natural \subset a\, \right].
+			\end{align}
+		\end{thm}
+	\end{screen}
+	
+	\begin{prf}
+		$a$を集合とし，
+		\begin{align}
+			\emptyset \in a \wedge \forall x\, 
+			(\, x \in a \Longrightarrow x \cup \{x\} \in a\, )
+			\label{fom:thm_the_principle_of_mathematical_induction_1}
+		\end{align}
+		が成り立っているとする．このとき
+		\begin{align}
+			\forall \alpha \in \ON\, (\, \alpha \in \Natural \Longrightarrow \alpha \in a\, )
+		\end{align}
+		が成り立つことを超限帰納法で示す．まずは
+		\begin{align}
+			0 \in a
+		\end{align}
+		から
+		\begin{align}
+			\emptyset \in \Natural \Longrightarrow \emptyset \in a
+		\end{align}
+		が成立する．次に$\alpha$を任意に与えられた$0$でない順序数とする．
+		\begin{align}
+			\forall \beta \in \alpha\, (\, \beta \in \Natural \Longrightarrow \beta \in a\, )
+			\label{fom:thm_the_principle_of_mathematical_induction_2}
+		\end{align}
+		が成り立っているとすると，
+		\begin{align}
+			\alpha \in \Natural
+		\end{align}
+		なら$\alpha$は極限数でないから
+		\begin{align}
+			\alpha = \beta \cup \{\beta\}
+		\end{align}
+		を満たす自然数$\beta$が取れて，(\refeq{fom:thm_the_principle_of_mathematical_induction_2})より
+		\begin{align}
+			\beta \in a
+		\end{align}
+		が成り立ち，(\refeq{fom:thm_the_principle_of_mathematical_induction_1})より
+		\begin{align}
+			\alpha \in a
+		\end{align}
+		が従う．以上で
+		\begin{align}
+			\forall \alpha \in \ON\, \left[\ 
+				\forall \beta \in \alpha\, (\, \beta \in \Natural \Longrightarrow \beta \in a\, )
+				\Longrightarrow (\, \alpha \in \Natural \Longrightarrow \alpha \in a\, )\, \right]
+		\end{align}
+		が得られた．超限帰納法により
+		\begin{align}
+			\forall \alpha \in \ON\, (\, \alpha \in \Natural \Longrightarrow \alpha \in a\, )
+		\end{align}
+		が成り立つから
+		\begin{align}
+			\Natural \subset a
+		\end{align}
+		が従う．
+		\QED
+	\end{prf}

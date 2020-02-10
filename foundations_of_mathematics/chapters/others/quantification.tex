@@ -1,0 +1,350 @@
+\section{量化再考}
+	\begin{screen}
+		\begin{logicalaxm}[量化の公理]\mbox{}
+			\begin{enumerate}
+				\item $\forall y\, \left(\, \forall x \varphi(x) \Longrightarrow \varphi(y)\, \right)$
+				\item $\forall x\, \left(\, \varphi(x) \Longrightarrow \exists y \varphi(y)\, \right)$
+				\item $\forall y\, \left(\, \varphi \Longrightarrow \psi(y)\, \right)
+					\Longrightarrow \left(\, \varphi \Longrightarrow \forall y \psi(y)\, \right)$
+				\item $\forall x\, \left(\, \varphi(x) \Longrightarrow \psi\, \right)
+					\Longrightarrow \left(\, \exists x \varphi(x) \Longrightarrow \psi\, \right)$
+				\item $\forall x\,  \left(\, \varphi(x) \Longrightarrow \psi(x)\, \right)
+					\Longrightarrow \left(\, \forall x \varphi(x) \Longrightarrow \forall x \psi(x)\, \right)$
+			
+				\item $\forall x \varphi(x) \Longrightarrow \exists x \varphi(x)$	
+			\end{enumerate}
+		\end{logicalaxm}
+	\end{screen}
+	
+	\begin{screen}
+		$\forall x \varphi(x) \Longrightarrow \forall y \varphi(y).$
+	\end{screen}
+	
+	\begin{align}
+		&\forall y\, \left(\, \forall x \varphi(x) \Longrightarrow \varphi(y)\, \right)
+		&& \mbox{(公理1)} \\
+		&\forall y\, \left(\, \forall x \varphi(x) \Longrightarrow \varphi(y)\, \right)
+		\Longrightarrow \left(\, \forall x \varphi(x) \Longrightarrow \forall y \varphi(y)\, \right),
+		&& \mbox{(公理3)} \\
+		&\forall x \varphi(x) \Longrightarrow \forall y \varphi(y).
+		&& \mbox{(MP)}
+	\end{align}
+	
+	\begin{screen}
+		$\exists x \varphi(x) \Longrightarrow \exists y \varphi(y).$
+	\end{screen}
+	
+	\begin{align}
+		&\forall x\, \left(\, \varphi(x) \Longrightarrow \exists y \varphi(y)\, \right)
+		&& \mbox{(公理2)} \\
+		&\forall x\, \left(\, \varphi(x) \Longrightarrow \exists y \varphi(y)\, \right)
+		\Longrightarrow \left(\, \exists x \varphi(x) \Longrightarrow \exists y \varphi(y)\, \right),
+		&& \mbox{(公理4)} \\
+		&\exists x \varphi(x) \Longrightarrow \exists y \varphi(y).
+		&& \mbox{(MP)}
+	\end{align}
+	
+	\begin{screen}
+		$\forall x\,  \left(\, \varphi(x) \Longrightarrow \psi\, \right)
+		\Longrightarrow \left(\, \forall x \varphi(x) \Longrightarrow \psi\, \right).$
+	\end{screen}
+	
+	$\forall x\,  \left(\, \varphi(x) \Longrightarrow \psi\, \right)$
+	と$\forall x \varphi(x)$からなる文の集合を$\Gamma$とすると，
+	\begin{align}
+		\Gamma &\vdash \forall x\,  \left(\, \varphi(x) \Longrightarrow \psi\, \right) \\
+		\Gamma &\vdash \forall x\,  \left(\, \varphi(x) \Longrightarrow \psi\, \right) \Longrightarrow \left(\, \exists x \varphi(x) \Longrightarrow \psi\, \right) \\
+		\Gamma &\vdash \exists x \varphi(x) \Longrightarrow \psi \\
+		& \\
+		\Gamma &\vdash \forall x \varphi(x) \\
+		\Gamma &\vdash \forall x \varphi(x) \Longrightarrow \exists x \varphi \\
+		\Gamma &\vdash \exists x \varphi(x) \\
+		& \\
+		\Gamma &\vdash \psi
+	\end{align}
+	が成り立つので，演繹法則より
+	\begin{align}
+		\vdash \forall x\,  \left(\, \varphi(x) \Longrightarrow \psi\, \right)
+		\Longrightarrow \left(\, \forall x \varphi(x) \Longrightarrow \psi\, \right)
+	\end{align}
+	が得られる．
+	
+	\begin{screen}
+		$\tau$を$\mathcal{L}_{\in}$には無い定数記号として，
+		$\mathcal{L}_{\in}' = \mathcal{L}_{\in} \cup \{\tau\}$とおく．
+		$\varphi$を$\mathcal{L}_{\in}'$の式とし，
+		\begin{align}
+			\Sigma \vdash_{\mathcal{L}_{\in}'} \varphi
+		\end{align}
+		であるとする．項$x$を，もし$\tau$が$\varphi$に現れるならば
+		$\varphi$の中の$\tau$の出現位置で束縛されない変項とする．
+		このとき，$\tau$が$\varphi$に現れるならば
+		\begin{align}
+			\Sigma \vdash_{\mathcal{L}_{\in}} \forall x \varphi(x/\tau)
+		\end{align}
+		が成り立つ．$\tau$が$\varphi$に現れなければ
+		\begin{align}
+			\Sigma \vdash_{\mathcal{L}_{\in}} \varphi
+		\end{align}
+		が成り立つ．
+	\end{screen}
+	
+	\begin{sketch}
+		$\varphi$が$\Sigma$の公理であるときは
+		\begin{align}
+			\Sigma \vdash_{\mathcal{L}_{\in}} \varphi
+		\end{align}
+		となるし，$\varphi$が推論法則であるときは，$\varphi$に$\tau$が現れなければ
+		\begin{align}
+			\Sigma \vdash_{\mathcal{L}_{\in}} \varphi
+		\end{align}
+		となるし，$\varphi$に$\tau$が現れても
+		\begin{align}
+			\Sigma \vdash_{\mathcal{L}_{\in}} \forall x \varphi(x/\tau)
+		\end{align}
+		が成立する．$\varphi$が三段論法によって示されるとき，つまり$\mathcal{L}_{\in}'$の文$\psi$で
+		\begin{align}
+			\Sigma &\vdash_{\mathcal{L}_{\in}'} \psi, \\
+			\Sigma &\vdash_{\mathcal{L}_{\in}'} \psi \Longrightarrow \varphi
+		\end{align}
+		を満たすものが取れるとき，$y$を$\psi$にも$\varphi$にも表れない変項とする．
+		また$\varphi$と$\psi$に$\tau$が現れているかいないかで
+		\begin{description}
+			\item[case1] $\varphi$にも$\psi$にも$\tau$が現れていないとき，
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \psi
+				\end{align}
+				かつ
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \psi \Longrightarrow \varphi
+				\end{align}
+				
+			\item[case2] $\varphi$には$\tau$が現れているが，$\psi$には$\tau$が現れていないとき，
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \psi
+				\end{align}
+				かつ
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} 
+					\forall y\, (\, \psi \Longrightarrow \varphi(y/\tau)\, )
+				\end{align}
+				
+			\item[case3] $\varphi$には$\tau$が現れていないが，$\psi$には$\tau$が現れているとき，
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y \psi(y/\tau)
+				\end{align}
+				かつ
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} 
+					\forall y\, (\, \psi(y/\tau) \Longrightarrow \varphi\, )
+				\end{align}
+				
+			\item[case4] $\varphi$にも$\psi$にも$\tau$が現れているとき，
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y \psi(y/\tau)
+				\end{align}
+				かつ
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y\, (\, \psi(y/\tau) \Longrightarrow \varphi(y/\tau)\, )
+				\end{align}
+				
+		\end{description}
+		のいずれかのケースを一つ仮定する．
+		\begin{description}
+			\item[case1] 証明可能性の定義より
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \varphi
+				\end{align}
+				が成り立つ．
+				
+			\item[case2]
+				公理2と併せて
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \psi \Longrightarrow \forall y \varphi(y/\tau)
+				\end{align}
+				が成り立つので，証明可能性の定義より
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y \varphi(y/\tau)
+				\end{align}
+				となる．そして
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall x \varphi(x/\tau)
+				\end{align}
+				も成り立つ．
+				
+			\item[case3]
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y \psi(y/\tau) \Longrightarrow \varphi
+				\end{align}
+				が成り立つので，，証明可能性の定義より
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \varphi
+				\end{align}
+				となる．
+				
+			\item[case4]
+				公理5より
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y \psi(y/\tau) \Longrightarrow \forall y \varphi(y/\tau)
+				\end{align}
+				が成り立つので，証明可能性の定義より
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall y \varphi(y/\tau)
+				\end{align}
+				となる．そして
+				\begin{align}
+					\Sigma \vdash_{\mathcal{L}_{\in}} \forall x \varphi(x/\tau)
+				\end{align}
+				も成り立つ．
+				\QED
+		\end{description}
+	\end{sketch}
+	
+	\begin{screen}
+		$\forall x \varphi(x),\ \forall x\, (\, \varphi(x) \Longrightarrow \psi(x)\, )
+		\vdash \forall x \psi(x).$
+	\end{screen}
+	
+	公理5より
+	\begin{align}
+		\forall x\, (\, \varphi(x) \Longrightarrow \psi(x)\, )
+		\vdash \forall x \varphi(x) \Longrightarrow \forall x \psi(x)
+	\end{align}
+	が成り立つので，三段論法より
+	\begin{align}
+		\forall x \varphi(x),\ \forall x\, (\, \varphi(x) \Longrightarrow \psi(x)\, )
+		\vdash \forall x \psi(x)
+	\end{align}
+	が従う．
+	
+	\begin{screen}
+		$\tau$を定項とし，$\mathcal{L}_{\in}' = \mathcal{L}_{\in} \cup \{\tau\}$とする．
+		また$\varphi$を$\mathcal{L}_{\in}$の式とし，項$x$が$\varphi$に自由に現れて，
+		また$\varphi$で自由に現れる項は$x$のみであるとする．このとき
+		$\vdash_{\mathcal{L}_{\in}'} \varphi(\tau)$なら
+		$\vdash_{\mathcal{L}_{\in}} \forall x \varphi(x)$.
+	\end{screen}
+	
+	\begin{screen}
+		\begin{logicalthm}[De Morgan 1]
+			$\vdash_{\mathcal{L}_{\in}} \forall x \rightharpoondown \varphi(x) 
+			\Longrightarrow\ \rightharpoondown \exists x \varphi(x).$
+		\end{logicalthm}
+	\end{screen}
+	
+	公理4より
+	\begin{align}
+		\vdash_{\mathcal{L}_{\in}} \forall x\, (\, \varphi(x) \Longrightarrow\ 
+		\rightharpoondown \forall x \rightharpoondown \varphi(x)\, )
+		\Longrightarrow (\, \exists x \varphi(x)
+		\Longrightarrow\ \rightharpoondown \forall x \rightharpoondown \varphi(x)\, )
+	\end{align}
+	が成り立ち，また公理1より
+	\begin{align}
+		\vdash_{\mathcal{L}_{\in}}
+		\forall x\, (\, \forall x \rightharpoondown \varphi(x)
+		\Longrightarrow \varphi(x)\, )
+	\end{align}
+	が成り立つので
+	\begin{align}
+		\vdash_{\mathcal{L}_{\in}}
+		\forall x\, (\, \rightharpoondown \varphi(x)
+		\Longrightarrow\ \rightharpoondown \forall x \rightharpoondown \varphi(x)\, )
+	\end{align}
+	も成り立つ．そして三段論法より
+	\begin{align}
+		\vdash_{\mathcal{L}_{\in}} \exists x \varphi(x)
+		\Longrightarrow\ \rightharpoondown \forall x \rightharpoondown \varphi(x)
+	\end{align}
+	が従う．ゆえに
+	\begin{align}
+		\vdash_{\mathcal{L}_{\in}} \forall x \rightharpoondown \varphi(x) 
+		\Longrightarrow\ \rightharpoondown \exists x \varphi(x)
+	\end{align}
+	となる．
+	
+	\begin{screen}
+		\begin{logicalthm}[De Morgan 2]
+			$\vdash_{\mathcal{L}_{\in}} \rightharpoondown \exists x \varphi(x)
+			\Longrightarrow \forall x \rightharpoondown \varphi(x).$
+		\end{logicalthm}
+	\end{screen}
+	
+	\begin{align}
+		&\forall y\, (\, \varphi(y) \Longrightarrow \exists x \varphi(x)\, )
+		&& \mbox{(公理2)} \\
+		&\forall y\, (\, \rightharpoondown \exists x \varphi(x) 
+		\Longrightarrow\ \rightharpoondown \varphi(y)\, )
+		&& \mbox{()} \\
+		&\forall y\, (\, \rightharpoondown \exists x \varphi(x) 
+		\Longrightarrow\ \rightharpoondown \varphi(y)\, )
+		\Longrightarrow (\, \rightharpoondown \exists x \varphi(x) 
+		\Longrightarrow \forall y \rightharpoondown \varphi(y)\, )
+		&& \mbox{(公理3)} \\
+		&\rightharpoondown \exists x \varphi(x)
+		\Longrightarrow \forall y \rightharpoondown \varphi(y)
+		&& \mbox{(MP)} \\
+		&\forall y \rightharpoondown \varphi(y)
+		\Longrightarrow \forall x \rightharpoondown \varphi(x)
+		&& \mbox{()} \\
+		&\rightharpoondown \exists x \varphi(x)
+		\Longrightarrow \forall x \rightharpoondown \varphi(x)
+		&& \mbox{()}
+	\end{align}
+	より．
+	
+	\begin{screen}
+		$\rightharpoondown \forall x \varphi(x) \Longrightarrow
+		\exists x \rightharpoondown \varphi(x).$
+	\end{screen}
+	
+	公理7より
+	\begin{align}
+		\vdash \rightharpoondown \forall x 
+		\rightharpoondown \rightharpoondown \varphi(x)
+		\Longrightarrow \exists x \rightharpoondown \varphi(x)
+	\end{align}
+	が成り立つ．また
+	\begin{align}
+		\vdash \forall x\, (\, \rightharpoondown \rightharpoondown \varphi(x)
+		\Longrightarrow \varphi(x)\, )
+	\end{align}
+	と公理5より
+	\begin{align}
+		\vdash \forall x \rightharpoondown \rightharpoondown \varphi(x)
+		\Longrightarrow \forall x \varphi(x)
+	\end{align}
+	が成り立つので，対偶を取って
+	\begin{align}
+		\vdash\ \rightharpoondown \forall x \varphi(x) \Longrightarrow\ 
+		\rightharpoondown \forall x \rightharpoondown \rightharpoondown \varphi(x)
+	\end{align}
+	が得られる．よって
+	\begin{align}
+		\vdash\ \rightharpoondown \forall x \varphi(x) \Longrightarrow
+		\exists x \rightharpoondown \varphi(x)
+	\end{align}
+	となる．
+	
+	\begin{screen}
+		$\vdash \exists x \rightharpoondown \varphi(x) 
+		\Longrightarrow\ \rightharpoondown \forall x \varphi(x).$
+	\end{screen}
+	
+	$\vdash_{\mathcal{L}_{\in}'} \varphi(\tau) \Longrightarrow\ 
+	\rightharpoondown \rightharpoondown \varphi(\tau)$より
+	\begin{align}
+		\vdash \forall x \varphi(x) \Longrightarrow
+		\forall x \rightharpoondown \rightharpoondown \varphi(x)
+	\end{align}
+	が成り立ち，さらに公理7より
+	\begin{align}
+		\vdash \forall x \rightharpoondown \rightharpoondown \varphi(x)
+		\Longrightarrow\ \rightharpoondown \exists x \rightharpoondown \varphi(x)
+	\end{align}
+	が成り立つので，
+	\begin{align}
+		\vdash \forall x \varphi(x) \Longrightarrow
+		\Longrightarrow\ \rightharpoondown \exists x \rightharpoondown \varphi(x)
+	\end{align}
+	が得られる．
